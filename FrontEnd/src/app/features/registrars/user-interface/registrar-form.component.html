@@ -1,0 +1,88 @@
+<div id="form-wrapper">
+
+    <div id="content">
+
+        <div id="header">
+            <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
+        </div>
+
+        <form [formGroup]='form' autocomplete="off">
+            <div class="group-field">
+                <!-- Fullname -->
+                <mat-form-field>
+                    <input [inputTabStop]="input" [placeholder]="getLabel('fullname')" data-tabindex="1" formControlName="fullname" matInput>
+                    <mat-error *ngIf="fullname.hasError('required')">{{ getHint("required") }}</mat-error>
+                    <mat-error *ngIf="fullname.hasError('maxlength')">{{ getHint("maxLength", fullname.errors.maxlength.requiredLength) }}</mat-error>
+                </mat-form-field>
+                <!-- Ship -->
+                <mat-form-field>
+                    <input #inputAutoComplete #trigger="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="ships" [placeholder]="getLabel('ship')" data-tabindex="2" formControlName="ship" matInput>
+                    <div matSuffix style="display:flex">
+                        <button (click)="openOrCloseAutoComplete(trigger, 'ship')" mat-icon-button type="button">
+                            <mat-icon class="open-close-panel">{{ arrowIcon.getValue() }}</mat-icon>
+                        </button>
+                    </div>
+                    <mat-error *ngIf="ship.hasError('required')">{{ getHint("required") }}</mat-error>
+                    <mat-error *ngIf="!ship.hasError('required') && ship.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="group-field">
+                <!-- Phones -->
+                <mat-form-field>
+                    <input [inputTabStop]="input" [placeholder]="getLabel('phones')" data-tabindex="3" formControlName="phones" matInput>
+                    <mat-error *ngIf="phones.hasError('maxlength')">{{ getHint("maxLength", phones.errors.maxlength.requiredLength) }}</mat-error>
+                </mat-form-field>
+                <!-- Email -->
+                <mat-form-field>
+                    <input [inputTabStop]="input" [placeholder]="getLabel('email')" data-tabindex="4" formControlName="email" matInput>
+                    <mat-error *ngIf="email.hasError('maxlength')">{{ getHint("maxLength", email.errors.maxlength.requiredLength) }}</mat-error>
+                    <mat-error *ngIf="!email.hasError('maxlength') && email.hasError('email')">{{ getHint("invalid") }}</mat-error>
+                </mat-form-field>
+                <!-- Fax -->
+                <mat-form-field>
+                    <input [inputTabStop]="input" [placeholder]="getLabel('fax')" data-tabindex="5" formControlName="fax" matInput>
+                    <mat-error *ngIf="fax.hasError('maxlength')">{{ getHint("maxLength", fax.errors.maxlength.requiredLength) }}</mat-error>
+                </mat-form-field>
+            </div>
+            <!-- Address -->
+            <mat-form-field>
+                <input [inputTabStop]="input" [placeholder]="getLabel('address')" data-tabindex="6" formControlName="address" matInput>
+                <mat-error *ngIf="address.hasError('maxlength')">{{ getHint("maxLength", address.errors.maxlength.requiredLength) }}</mat-error>
+            </mat-form-field>
+            <div id="checkboxes">
+                <!-- Primary -->
+                <div class="styled-input-square">
+                    <div class="styled-input-single">
+                        <input formControlName="isPrimary" id="isPrimary" type="checkbox">
+                        <label for="isPrimary">{{ getLabel("isPrimary") }}</label>
+                    </div>
+                </div>
+                <!-- Active -->
+                <div class="styled-input-square">
+                    <div class="styled-input-single">
+                        <input formControlName="isActive" id="isActive" type="checkbox">
+                        <label for="isActive">{{ getLabel("isActive") }}</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div id="footer">
+        <div class="button-group-right">
+            <button (click)="onDelete()" *ngIf="form.value.id !== 0" class="delete" mat-flat-button>{{ getLabel("deleteButton") }}</button>
+            <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
+                <mat-icon *ngIf="!form.valid" class="button-icon">lock</mat-icon>
+                <span>{{ getLabel("saveButton") }}</span>
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<mat-autocomplete #ships="matAutocomplete" [displayWith]="autocompleteFields" autoActiveFirstOption>
+    <mat-option *ngFor="let option of dropdownShips | async" [value]="option">
+        {{ option.description }}
+    </mat-option>
+</mat-autocomplete>

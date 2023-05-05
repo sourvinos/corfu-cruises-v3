@@ -1,0 +1,71 @@
+<div id="form-wrapper">
+
+    <div id="content">
+
+        <div id="header">
+            <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
+        </div>
+
+        <form [formGroup]="form" autocomplete="off">
+            <div class="group-field">
+                <!-- Description -->
+                <mat-form-field>
+                    <input [inputTabStop]="input" [placeholder]="getLabel('description')" data-tabindex="1" formControlName="description" matInput>
+                    <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
+                    <mat-error *ngIf="description.hasError('maxlength')">{{ getHint("maxLength", description.errors.maxlength.requiredLength) }}</mat-error>
+                </mat-form-field>
+                <!-- Profession -->
+                <mat-form-field>
+                    <input [inputTabStop]="input" [placeholder]="getLabel('profession')" data-tabindex="2" formControlName="profession" matInput>
+                    <mat-error *ngIf="profession.hasError('maxlength')">{{ getHint("maxLength", profession.errors.maxlength.requiredLength) }}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="group-field">
+                <!-- Address -->
+                <mat-form-field>
+                    <input [inputTabStop]="input" [placeholder]="getLabel('address')" data-tabindex="3" formControlName="address" matInput>
+                    <mat-error *ngIf="address.hasError('maxlength')">{{ getHint("maxLength", address.errors.maxlength.requiredLength) }}</mat-error>
+                </mat-form-field>
+                <!-- Phones -->
+                <mat-form-field>
+                    <input [inputTabStop]="input" [placeholder]="getLabel('phones')" data-tabindex="4" formControlName="phones" matInput>
+                    <mat-error *ngIf="phones.hasError('maxlength')">{{ getHint("maxLength", phones.errors.maxlength.requiredLength) }}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="group-field">
+                <!-- PersonInCharge -->
+                <mat-form-field>
+                    <input [inputTabStop]="input" [placeholder]="getLabel('personInCharge')" data-tabindex="5" formControlName="personInCharge" matInput>
+                    <mat-error *ngIf="personInCharge.hasError('maxlength')">{{ getHint("maxLength", personInCharge.errors.maxlength.requiredLength) }}</mat-error>
+                </mat-form-field>
+                <!-- Email -->
+                <mat-form-field>
+                    <input [inputTabStop]="input" [placeholder]="getLabel('email')" data-tabindex="6" formControlName="email" matInput>
+                    <mat-error *ngIf="email.hasError('maxlength')">{{ getHint("maxLength", email.errors.maxlength.requiredLength) }}</mat-error>
+                    <mat-error *ngIf="!email.hasError('maxlength') && email.hasError('email')">{{ getHint("invalid") }}</mat-error>
+                </mat-form-field>
+            </div>
+            <div id="checkboxes">
+                <!-- Active -->
+                <div class="styled-input-square">
+                    <div class="styled-input-single">
+                        <input formControlName="isActive" id="isActive" type="checkbox">
+                        <label for="isActive">{{ getLabel("isActive") }}</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div id="footer">
+        <div class="button-group-right">
+            <button (click)="onDelete()" *ngIf="form.value.id !== 0" class="delete" mat-flat-button>{{ getLabel("deleteButton") }}</button>
+            <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
+                <mat-icon *ngIf="!form.valid" class="button-icon">lock</mat-icon>
+                <span>{{ getLabel("saveButton") }}</span>
+            </button>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,65 @@
+* {
+    /* Lists and tables */
+    --color-scrollbar-thumb: #d94040;
+    --color-table-dropdown-filter-clear: #ff7a7a;
+    --color-table-dropdown-filter-background: #bfbdd7;
+    --color-table-active: #9bcf6f;
+    --color-table-inactive: #ff7a7a;
+    --color-table-delete-icon: #ff7a7a;
+    /*  Buttons */
+    --color-button-text: #ffffff;
+    --color-button-background-secondary: linear-gradient(180deg, #ffcf84 0%, #f39c12 100%);
+    --color-button-background-delete: linear-gradient(180deg, #e45142 0%, #c0392b 100%);
+    --color-button-background-primary: linear-gradient(180deg, #379fb6 0%, #126072 100%);
+    /*  Checkboxes */
+    --color-checkbox-background: #779b9b;
+    --color-checkbox-label-background-hover: #9acfca42;
+    /* Reservation Form Tabs */
+    --color-tab-overview: linear-gradient(to top, #5f80a7, #6a8eb8, #759cc9, #80aada, #8cb8ec);
+    --color-tab-passengers: linear-gradient(to top, #829ebe, #8ca7c6, #96b0ce, #a0b9d6, #aac2de);
+    --color-tab-misc: linear-gradient(to top, #a4b9d0, #a9bed4, #afc2d8, #b4c7dc, #bacce0);
+    /* Loader */
+    --color-loader: #d94040;
+    /* Criteria & Totals */
+    --color-criteria-a: linear-gradient(to top, #5f80a7, #678bb4, #6f95c2, #78a0d0, #80abde);
+    --color-criteria-b: linear-gradient(to top, #698984, #6f928c, #759a94, #7ca39d, #82aca5);
+    --color-criteria-c: linear-gradient(to top, #cf6755, #d6715f, #dd7b6a, #e48574, #eb8f7f);
+    --color-criteria-d: linear-gradient(to top, #ca874c, #d49258, #dd9c63, #e7a76f, #f0b27b);
+    /* Date picker */
+    --color-range-between: #ffeb3b;
+    --color-day-selected: #ffc107;
+    --color-range: #000000;
+    /* Custom calendar */
+    --color-background-saturday: #f29c6b;
+    --color-background-sunday: #f26513;
+    --color-background-today: #8dbf8f;
+    --color-background-month-selector: #f29c6b;
+    --color-background-summaries: #8dbf8f17;
+    /* Theme menu */
+    --color-sun: #f6ff00;
+    --color-moon: #607d8b;
+    /* Input */
+    --color-input-focus: #65b4ef;
+    --color-input-error: #e57b7b;
+    --color-input-selected-background: #65b3ef4d;
+    /* Links */
+    --color-link: #e57b7b;
+    /* New schedule weekdays */
+    --color-day-selected-weekday: #ff7a7a;
+    /* Dropdown menus */
+    --color-dropdown-menu-border: #ff7a7a;
+    --color-dropdown-item-hover: #9acfca42;
+    /* Dialog headers */
+    --color-dialog-header: #ff7a7a;
+    /* Tabs */
+    --color-active-tab-text: #ffffff;
+    --color-active-tab-background: linear-gradient(to top, #5f80a7, #6a8eb8, #759cc9, #80aada, #8cb8ec);
+    /* Common */
+    --color-green: #37b19b;
+    --color-red: #d94040;
+    --color-yellow: #dfa618;
+    --color-blue: #2980b9;
+    /* Check-in */
+    --reservation-item-label: #efba24;
+    --reservation-item-title: #65bfa2;
+}

@@ -1,0 +1,137 @@
+#content {
+    border-radius: 1rem;
+    border: 0.0625rem solid var(--color-e);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 1rem 4rem;
+    width: 90%;
+}
+
+#header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 0.3rem !important;
+}
+
+#header-buttons {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+#tab-scroller {
+    display: flex;
+    gap: 0.5rem;
+}
+
+#form {
+    display: flex;
+    flex-direction: row !important;
+    height: 100%;
+    justify-content: center;
+    overflow: hidden;
+    scroll-snap-type: x mandatory;
+}
+
+#reservations, #passengers, #misc {
+    width: 100%;
+}
+
+#tab-overview {
+    background-image: var(--color-tab-overview);
+    color: var(--color-button-text);
+}
+
+#tab-passengers {
+    background-image: var(--color-tab-passengers);
+    color: var(--color-button-text);
+}
+
+#tab-misc {
+    background-image: var(--color-tab-misc);
+    color: var(--color-button-text);
+}
+
+#qr-code {
+    left: -10rem;
+    position: absolute;
+}
+
+#remarks {
+    margin-top: auto;
+}
+
+#table-wrapper {
+    margin: 0;
+}
+
+.tab-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0 auto;
+    width: 62rem;
+}
+
+#passenger-check-total-icon {
+    margin: -0.125rem 0 0 0.5rem;
+}
+
+.hide-autocomplete {
+    display: none;
+}
+
+.material-icons.warning {
+    color: var(--color-red);
+}
+
+.material-icons.warning:hover {
+    cursor: pointer;
+}
+
+#ref-no, #total-pax {
+    border-radius: 0.625rem;
+    border: 0.0625rem solid var(--color-b);
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-family-asty);
+    font-weight: 300;
+    margin-top: var(--form-field-margin);
+    padding: 0.5rem 1rem;
+}
+
+#ref-no #ref-no-label, #total-pax #total-pax-label {
+    color: var(--color-c);
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+#ref-no #ref-no-body {
+    color: var(--color-green);
+    font-size: 1.5rem;
+    margin-top: 1.1875rem;
+    transform: scale(0.8, 1.8);
+}
+
+#total-pax #total-pax-body {
+    color: var(--color-c);
+    font-size: 1.5rem;
+    margin-top: 0.8125rem;
+    text-align: center;
+    transform: scale(0.8, 1.8);
+}
+
+#total-pax #pax-difference {
+    border-bottom: 0.25rem solid;
+    margin-top: auto;
+}
+
+.mat-menu-item span {
+    color: var(--color-c);
+    font-size: 0.75rem !important;
+}

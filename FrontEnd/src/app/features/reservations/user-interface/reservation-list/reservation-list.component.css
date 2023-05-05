@@ -1,0 +1,26 @@
+:host {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+#header #navigation {
+    align-items: center;
+    display: flex;
+    margin-right: 1rem;
+}
+
+.passenger-difference-icon {
+    font-size: 0.5rem;
+    position: relative;
+    top: -0.0625rem;
+}
+
+.mat-menu-item span {
+    color: var(--color-c);
+    font-size: 0.75rem !important;
+}
+
+.button-icon.no-right-margin {
+    margin-right: 0;
+}

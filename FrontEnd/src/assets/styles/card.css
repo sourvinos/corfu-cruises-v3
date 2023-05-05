@@ -1,0 +1,78 @@
+.mat-card {
+    align-items: flex-start;
+    backdrop-filter: blur(0.25rem);
+    background: var(--color-i);
+    border-radius: 0.3125rem;
+    border: 0.0625rem solid #ffffff2e;
+    box-shadow: 0 0.5rem 2rem 0 #1f26875e;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: background-color var(--delay) ease-in !important;
+}
+
+.mat-card:hover {
+    background-color: var(--color-x) !important;
+    cursor: pointer;
+}
+
+.mat-card-title {
+    color: var(--color-c) !important;
+    font-family: var(--font-family-asty);
+    font-weight: 300;
+    margin: 0 0 0 0.5rem !important;
+    transition: color var(--delay) ease-in !important;
+}
+
+.mat-divider.mat-divider-inset {
+    background-color: var(--color-e);
+    margin: 0.6rem 0 0.6rem 0 !important;
+    transition: background-color var(--delay) ease-in !important;
+}
+
+.mat-card-subtitle {
+    color: var(--color-c) !important;
+    font-family: var(--font-family-asty);
+    font-weight: 300;
+    line-height: 1.25rem;
+    margin: 0 0 0 0.5rem !important;
+    transition: color var(--delay) ease-in !important;
+}
+
+.mat-card img {
+    margin: 0 0 1rem 1rem;
+}
+
+@media (width <= 430px) {
+    .mat-card {
+        padding: 0.5rem !important;
+        width: 15rem;
+    }
+    .mat-card-title {
+        font-size: 0.8rem;
+    }
+    .mat-card-subtitle {
+        font-size: 0.65rem;
+    }
+    .mat-card img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (width >= 431px) {
+    .mat-card {
+        padding: 1.5rem 1.5rem !important;
+        width: 18rem;
+    }
+    .mat-card-title {
+        font-size: 1.2rem;
+    }
+    .mat-card-subtitle {
+        font-size: 0.85rem;
+    }
+    .mat-card img {
+        width: 100px;
+        height: 100px;
+    }
+}

@@ -1,0 +1,135 @@
+#list {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0 auto;
+}
+
+#header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 4rem 1rem 4rem !important;
+}
+
+#content {
+    height: 100%;
+    margin: 0 2rem 0 2rem;
+    overflow-y: scroll;
+}
+
+#footer {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    margin-top: auto;
+    padding: 1rem 4rem 1rem 4rem;
+}
+
+.mat-form-field {
+    padding: 0.5rem;
+}
+
+#search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#reservation-items {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+}
+
+.mat-radio-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+.text {
+    color: var(--color-c);
+    font-family: var(--font-family-asty);
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+
+.reservation-item {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+.reservation-item-title {
+    color: var(--color-yellow);
+    font-family: var(--font-family-asty);
+    font-size: 0.8rem;
+    font-weight: 300;
+    width: 40%;
+}
+
+.reservation-item-value {
+    color: var(--color-green);
+    font-family: var(--font-family-asty);
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+
+.instructions {
+    display: flex;
+    margin: 0 0.5rem 0 0.5rem;
+    padding: 0.5rem;
+}
+
+.instructions.last {
+    margin-bottom: 1rem;
+}
+
+.instructions .emoji {
+    font-size: 1rem;
+    margin-top: 0;
+}
+
+.instructions .text {
+    color: var(--color-c);
+    font-family: var(--font-family-asty);
+    font-size: 0.8125rem;
+    font-weight: 300;
+    margin: 0.3125rem 0 0 0.5rem;
+}
+
+.instructions.transparent {
+    background-color: transparent;
+}
+
+.instructions.yellow {
+    background-color: var(--color-yellow);
+}
+
+.instructions.blue {
+    background-color: var(--color-blue);
+}
+
+.instructions.with-margin-bottom {
+    margin-bottom: 0.9rem !important;
+}
+
+@media (width <= 430px) {
+    #content {
+        margin: 0 1rem 0 0;
+    }
+    #header {
+        display: none;
+    }
+    #footer {
+        margin: auto auto 0 auto;
+    }
+}

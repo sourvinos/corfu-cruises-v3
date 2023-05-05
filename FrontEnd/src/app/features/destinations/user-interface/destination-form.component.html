@@ -1,0 +1,44 @@
+<div id="form-wrapper">
+
+    <div id="content">
+
+        <div id="header">
+            <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
+        </div>
+
+        <form [formGroup]="form" autocomplete="off">
+            <!-- Abbreviation -->
+            <mat-form-field>
+                <input [inputTabStop]="input" [placeholder]="getLabel('abbreviation')" data-tabindex="1" formControlName="abbreviation" matInput type="text">
+                <mat-error *ngIf="abbreviation.hasError('required')">{{ getHint("required") }}</mat-error>
+                <mat-error *ngIf="abbreviation.hasError('maxlength')">{{ getHint("maxLength", abbreviation.errors.maxlength.requiredLength) }}</mat-error>
+            </mat-form-field>
+            <!-- Description -->
+            <mat-form-field>
+                <input [inputTabStop]="input" [placeholder]="getLabel('description')" data-tabindex="2" formControlName="description" matInput type="text">
+                <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
+                <mat-error *ngIf="description.hasError('maxlength')">{{ getHint("maxLength", description.errors.maxlength.requiredLength) }}</mat-error>
+            </mat-form-field>
+            <div id="checkboxes">
+                <!-- Active -->
+                <div class="styled-input-square">
+                    <div class="styled-input-single">
+                        <input formControlName="isActive" id="isActive" type="checkbox">
+                        <label for="isActive">{{ getLabel("isActive") }}</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="footer">
+        <div class="button-group-right">
+            <button (click)="onDelete()" *ngIf="form.value.id !== 0" class="delete" mat-flat-button>{{ getLabel("deleteButton") }}</button>
+            <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
+                <mat-icon *ngIf="!form.valid" class="button-icon">lock</mat-icon>
+                <span>{{ getLabel("saveButton") }}</span>
+            </button>
+        </div>
+    </div>
+
+</div>

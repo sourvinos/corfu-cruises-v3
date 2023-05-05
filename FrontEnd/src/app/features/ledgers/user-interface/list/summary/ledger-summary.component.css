@@ -1,0 +1,32 @@
+#table-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 0.4375rem 0 0 !important;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th {
+    background-color: var(--color-x);
+    border: 0.0625rem solid var(--color-e);
+    color: var(--color-c) !important;
+    font-family: var(--font-family-asty) !important;
+    font-size: var(--font-size-table-header) !important;
+    font-weight: 300 !important;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    text-align: center !important;
+}
+
+td {
+    border-bottom: 0.0625rem solid var(--color-d);
+    color: var(--color-c);
+    font-family: var(--font-family-asty) !important;
+    font-size: var(--font-size-table-row);
+    font-weight: 300;
+    padding: 0.4375rem 0.5rem;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}

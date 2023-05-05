@@ -1,0 +1,88 @@
+[
+    {
+        "feature": "months",
+        "labels": [
+            {
+                "id": "01",
+                "description": "Ιανουαρίου"
+            },
+            {
+                "id": "02",
+                "description": "Φεβρουαρίου"
+            },
+            {
+                "id": "03",
+                "description": "Μαρτίου"
+            },
+            {
+                "id": "04",
+                "description": "Απριλίου"
+            },
+            {
+                "id": "05",
+                "description": "Μαΐου"
+            },
+            {
+                "id": "06",
+                "description": "Ιουνίου"
+            },
+            {
+                "id": "07",
+                "description": "Ιουλίου"
+            },
+            {
+                "id": "08",
+                "description": "Αυγούστου"
+            },
+            {
+                "id": "09",
+                "description": "Σεπτεμβρίου"
+            },
+            {
+                "id": "10",
+                "description": "Οκτωβρίου"
+            },
+            {
+                "id": "11",
+                "description": "Νοεμβρίου"
+            },
+            {
+                "id": "12",
+                "description": "Δεκεμβρίου"
+            }
+        ]
+    },
+    {
+        "feature": "weekdays",
+        "labels": [
+            {
+                "id": "0",
+                "description": "Κυριακή"
+            },
+            {
+                "id": "1",
+                "description": "Δευτέρα"
+            },
+            {
+                "id": "2",
+                "description": "Τρίτη"
+            },
+            {
+                "id": "3",
+                "description": "Τετάρτη"
+            },
+            {
+                "id": "4",
+                "description": "Πέμπτη"
+            },
+            {
+                "id": "5",
+                "description": "Παρασκευή"
+            },
+            {
+                "id": "6",
+                "description": "Σάββατο"
+            }
+        ]
+    }
+]

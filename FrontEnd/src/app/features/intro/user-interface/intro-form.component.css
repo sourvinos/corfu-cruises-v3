@@ -1,0 +1,21 @@
+#content {
+    display: flex;
+}
+
+@media (width <= 430px) {
+    #content {
+        flex-direction: column;
+        gap: 0.5rem;
+        height: 100%;
+        justify-content: flex-end;
+        margin: auto auto 1.5rem auto;
+    }
+}
+
+@media (width >= 431px) {
+    #content {
+        flex-direction: row;
+        gap: 1rem;
+        margin: auto auto 5rem auto;
+    }
+}

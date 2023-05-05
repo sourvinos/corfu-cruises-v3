@@ -1,0 +1,36 @@
+:host {
+    display: flex;
+    justify-content: center;
+}
+
+#footer {
+    color: var(--color-c);
+    font-family: var(--font-family-asty);
+    font-weight: 300;
+    text-align: center;
+}
+
+a:link, a:visited {
+    color: var(--color-c);
+    text-decoration: none;
+}
+
+a:link:hover {
+    color: var(--color-link);
+    transition: all var(--theme-change-delay) ease-in;
+}
+
+@media (width <= 430px) {
+    :host {
+        margin: auto 4rem 0 4rem;
+    }
+    #footer {
+        font-size: 0.5rem;
+    }
+}
+
+@media (width >= 431px) {
+    #footer {
+        font-size: 0.8rem;
+    }
+}

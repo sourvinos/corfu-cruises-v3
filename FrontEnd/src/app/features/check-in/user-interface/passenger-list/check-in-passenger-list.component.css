@@ -1,0 +1,87 @@
+.passenger {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+.fullname {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.lastname, .firstname {
+    font-family: var(--font-family-asty);
+    font-weight: 300;
+}
+
+.lastname {
+    color: var(--reservation-item-label);
+    width: 50%;
+}
+
+.firstname {
+    color: var(--reservation-item-title);
+}
+
+.passenger-count-wrapper {
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.passenger-count-wrapper .material-icons {
+    font-size: 2.1875rem;
+}
+
+.material-icons.primary {
+    color: var(--color-input-focus);
+}
+
+.passenger-count-wrapper .material-icons.error:first-child {
+    font-size: 1.4rem;
+    margin-top: 2px;
+}
+
+.passenger-count {
+    color: var(--color-c);
+    font-family: var(--font-family-asty);
+    font-weight: 300;
+    margin-top: 0.1875rem;
+    transition: all var(--theme-change-delay) ease-in;
+}
+
+.edit-icon {
+    align-items: center;
+    color: var(--color-yellow);
+    display: flex;
+    font-size: 1.1875rem;
+}
+
+.delete-icon {
+    align-items: center;
+    color: var(--color-red);
+    display: flex;
+    font-size: 1.1875rem;
+}
+
+#footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 0.5rem 1rem 0.5rem;
+}
+
+@media (width <= 430px) {
+    .lastname, .firstname, .passenger-count {
+        font-size: 0.75rem;
+    }
+}
+
+@media (width >= 431px) {
+    .lastname, .firstname, .passenger-count {
+        font-size: 0.875rem;
+    }
+}

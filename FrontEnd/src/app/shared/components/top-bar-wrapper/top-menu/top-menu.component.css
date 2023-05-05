@@ -1,0 +1,25 @@
+:host {
+    display: flex;
+}
+
+#topmenu {
+    align-items: center;
+    background-color: var(--color-x);
+    border-radius: 0.3125rem;
+    border: 0.0625rem solid var(--color-e);
+    display: flex;
+    padding: 0;
+    transition: all var(--theme-change-delay) ease-in;
+}
+
+@media (width <= 430px) {
+    :host {
+        margin-left: 0;
+    }
+}
+
+@media (width >= 431px) {
+    :host {
+        margin-left: auto;
+    }
+}

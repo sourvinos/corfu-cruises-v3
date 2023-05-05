@@ -1,0 +1,26 @@
+<div id="passenger-list">
+
+    <div *ngIf="passengers" id="passengers">
+        <div *ngFor="let passenger of passengers">
+            <div class="passenger">
+                <div class="fullname">
+                    <span class="lastname">{{ passenger.lastname }}</span>
+                    <span class="firstname">{{ passenger.firstname }}</span>
+                </div>
+                <span (click)="editRecord(passenger)" class="clickable edit-icon material-icons">edit</span>
+                <span (click)="deleteRecord(passenger)" class="clickable delete-icon material-icons">delete</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div class="passenger-count-wrapper">
+            <span class="material-icons primary">group</span>
+            <span class="passenger-count">{{ passengers != null ? passengers.length : 0 }}</span>
+        </div>
+        <button [disabled]="passengers.length >= initialPassengerCount" (click)="newRow()" class="transparent" mat-mini-fab>
+            <span class="material-icons reverse">add</span>
+        </button>
+    </div>
+
+</div>

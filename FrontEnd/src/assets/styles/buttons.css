@@ -1,0 +1,165 @@
+button {
+    align-items: center;
+    border: none;
+    cursor: default !important;
+    font-family: var(--font-family-asty) !important;
+    font-size: var(--font-size-button) !important;
+    font-weight: 300 !important;
+    min-width: 0 !important;
+    outline: 0 !important;
+    padding-top: 0.0625rem !important;
+    transition: all var(--hover-change-delay) ease-in;
+}
+
+button:hover:not([disabled]) {
+    transition: all var(--hover-change-delay) ease-in;
+}
+
+button.primary {
+    background-image: var(--color-button-background-primary);
+    color: var(--color-button-text) !important;
+}
+
+button.secondary {
+    background-image: var(--color-button-background-secondary);
+    color: var(--color-button-text) !important;
+}
+
+button.delete {
+    background-image: var(--color-button-background-delete) !important;
+    color: var(--color-button-text) !important;
+}
+
+button.bold {
+    font-weight: 700 !important;
+}
+
+button.mat-focus-indicator {
+    background-color: transparent !important;
+}
+
+button.transparent {
+    background-color: transparent;
+    color: var(--color-c) !important;
+}
+
+button.transparent:hover {
+    background-color: transparent !important;
+}
+
+button.tab {
+    padding-bottom: 0.3125rem;
+}
+
+button.tab:first-child {
+    margin-right: 1rem;
+}
+
+button .mat-button-wrapper img {
+    margin-top: -0.1875rem !important;
+}
+
+button.mat-mini-fab {
+    background-color: var(--color-b);
+    box-shadow: none !important;
+    color: var(--color-a) !important;
+    margin: 0 !important;
+    outline: 0 !important;
+}
+
+button.mat-mini-fab .mat-button-wrapper {
+    color: var(--color-c);
+    line-height: 1.4375rem !important;
+    margin: 0 auto;
+}
+
+button.mat-mini-fab .mat-button-wrapper .material-icons.reverse {
+    color: var(--color-c);
+}
+
+button.mat-mini-fab:hover {
+    background-color: transparent !important;
+    color: var(--color-a) !important;
+}
+
+button:disabled {
+    cursor: not-allowed !important;
+    pointer-events: all !important;
+}
+
+button:not(:disabled) {
+    cursor: pointer !important;
+}
+
+button.mat-button-toggle-label-content {
+    line-height: 2.5rem !important;
+}
+
+button.button-icon {
+    font-size: 1.3125rem !important;
+    height: 1.0625rem !important;
+    margin-top: -0.125rem !important;
+}
+
+.mat-icon {
+    font-size: 1rem;
+    line-height: 1.375rem;
+    margin-top: -0.0625rem;
+}
+
+.mat-icon.lock {
+    color: var(--color-e);
+    font-size: 1rem;
+    line-height: 1.375rem;
+    margin-top: -0.1875rem;
+}
+
+.mat-form-field-prefix .mat-icon-button, .mat-form-field-suffix .mat-icon-button {
+    height: 2rem !important;
+    width: 2rem !important;
+}
+
+.button-group-right {
+    display: flex;
+    gap: 1rem;
+    margin-left: auto;
+}
+
+.checkbox-with-lock-icon {
+    display: flex;
+    align-items: center;
+    margin-left: 40px;
+}
+
+.checkbox-with-lock-icon .mat-icon.lock {
+    margin-top: 0;
+}
+
+button.reset-table-filters span i {
+    margin-top: -6px;
+}
+
+@media (width <= 430px) {
+    .button-text {
+        font-size: 13px;
+    }
+    .mat-button-wrapper .material-icons .navigation {
+        font-size: 12px;
+    }
+}
+
+@media (width >= 431px) {
+    .button-text {
+        font-size: 14px;
+        margin-top: 0;
+    }
+    .mat-button-wrapper .material-icons .navigation {
+        font-size: 13.6px;
+    }
+}
+
+.material-icons {
+    align-items: center;
+    color: var(--color-button-text);
+    display: flex;
+}

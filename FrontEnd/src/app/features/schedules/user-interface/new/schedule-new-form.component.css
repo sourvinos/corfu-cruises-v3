@@ -1,0 +1,47 @@
+#content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0 4rem;
+    width: 90%;
+}
+
+#header {
+    margin-bottom: 0.5rem !important;
+}
+
+#form {
+    flex-direction: column !important;
+    gap: 0.5rem;
+    margin: 0 auto;
+    width: max-content !important;
+}
+
+#date {
+    width: 15rem !important;
+}
+
+#top {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: auto;
+    width: max-content;
+}
+
+#bottom {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+#bottom #left {
+    display: flex;
+    flex-direction: row;
+}
+
+#bottom #right {
+    display: flex;
+    flex-direction: column;
+}
