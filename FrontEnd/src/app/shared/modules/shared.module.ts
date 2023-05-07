@@ -20,6 +20,7 @@ import { PadNumberPipe } from '../pipes/pad-number.pipe'
 import { PrettyPrintPipe } from '../pipes/json-pretty.pipe'
 import { ReplaceZeroPipe } from '../pipes/replace-zero.pipe'
 import { SafeStylePipe } from '../pipes/safe-style.pipe'
+import { SettingsMenuComponent } from '../components/top-bar-wrapper/settings-menu/settings-menu.component'
 import { TableTotalFilteredRecordsComponent } from '../components/table-total-filtered-records/table-total-filtered-records.component'
 import { ThemeMenuComponent } from './../components/top-bar-wrapper/theme-menu/theme-menu.component'
 import { TrimStringPipe } from './../pipes/string-trim.pipe'
@@ -41,10 +42,11 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         PrettyPrintPipe,
         ReplaceZeroPipe,
         SafeStylePipe,
+        SettingsMenuComponent,
         TableTotalFilteredRecordsComponent,
         ThemeMenuComponent,
         TrimStringPipe,
-        YearSelectorComponent
+        YearSelectorComponent,
     ],
     imports: [
         CommonModule,
@@ -73,6 +75,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         ReplaceZeroPipe,
         RouterModule,
         RouterModule,
+        SettingsMenuComponent,
         TableTotalFilteredRecordsComponent,
         ThemeMenuComponent,
         TrimStringPipe,

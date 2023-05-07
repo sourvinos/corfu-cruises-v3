@@ -2322,5 +2322,26 @@
                 "description": "Avez-vous besoin d'aide?"
             }
         ]
+    },
+    {
+        "feature": "settings",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Paramètres"
+            },
+            {
+                "id": "companyName",
+                "description": "Texte du logo"
+            },
+            {
+                "id": "closingTime",
+                "description": "Démarrer"
+            },
+            {
+                "id": "saveButton",
+                "description": "Enregistrer"
+            }
+        ]
     }
 ]

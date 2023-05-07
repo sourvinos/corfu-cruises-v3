@@ -8,7 +8,6 @@ button {
     min-width: 0 !important;
     outline: 0 !important;
     padding-top: 0.0625rem !important;
-    transition: all var(--hover-change-delay) ease-in;
 }
 
 button:hover:not([disabled]) {

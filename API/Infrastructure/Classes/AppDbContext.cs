@@ -15,6 +15,7 @@ using API.Features.ShipOwners;
 using API.Features.ShipRoutes;
 using API.Features.Ships;
 using API.Infrastructure.Auth;
+using API.Infrastructure.Settings;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -45,6 +46,7 @@ namespace API.Infrastructure.Classes {
         public DbSet<ShipOwner> ShipOwners { get; set; }
         public DbSet<ShipRoute> ShipRoutes { get; set; }
         public DbSet<Token> Tokens { get; set; }
+        public DbSet<Setting> Settings { get; set; }
 
         #endregion
 
@@ -68,6 +70,7 @@ namespace API.Infrastructure.Classes {
             modelBuilder.ApplyConfiguration(new RegistrarsConfig());
             modelBuilder.ApplyConfiguration(new ReservationsConfig());
             modelBuilder.ApplyConfiguration(new SchedulesConfig());
+            modelBuilder.ApplyConfiguration(new SettingsConfig());
             modelBuilder.ApplyConfiguration(new ShipCrewsConfig());
             modelBuilder.ApplyConfiguration(new ShipOwnersConfig());
             modelBuilder.ApplyConfiguration(new ShipRoutesConfig());

@@ -45,6 +45,8 @@ const appRoutes: Routes = [
     { path: 'users', loadChildren: () => import('../features/users/classes/modules/user.module').then(m => m.UserModule) },
     // Check-in
     { path: 'check-in', loadChildren: () => import('../features/check-in/classes/modules/check-in.module').then(m => m.CheckInModule) },
+    // Settings
+    { path: 'settings', loadChildren: () => import('../features/settings/classes/modules/settings.module').then(m => m.SettingsModule) },
     // Empty
     { path: '**', component: EmptyPageComponent }
 ]

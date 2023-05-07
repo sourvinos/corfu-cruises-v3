@@ -2322,5 +2322,26 @@
                 "description": "Do you need assistance?"
             }
         ]
+    },
+    {
+        "feature": "settings",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Settings"
+            },
+            {
+                "id": "companyName",
+                "description": "Logo text"
+            },
+            {
+                "id": "closingTime",
+                "description": "Closing time"
+            },
+            {
+                "id": "saveButton",
+                "description": "Save"
+            }
+        ]
     }
 ]

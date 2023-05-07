@@ -2322,5 +2322,26 @@
                 "description": "Χρειάζεστε βοήθεια;"
             }
         ]
+    },
+    {
+        "feature": "settings",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Ρυθμίσεις"
+            },
+            {
+                "id": "companyName",
+                "description": "Κείμενο λογότυπου"
+            },
+            {
+                "id": "closingTime",
+                "description": "Ωρα λήξης εργασιών"
+            },
+            {
+                "id": "saveButton",
+                "description": "Αποθήκευση"
+            }
+        ]
     }
 ]

@@ -2322,5 +2322,26 @@
                 "description": "Potřebujete pomoc?"
             }
         ]
+    },
+    {
+        "feature": "settings",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Nastavení"
+            },
+            {
+                "id": "companyName",
+                "description": "Text loga"
+            },
+            {
+                "id": "closingTime",
+                "description": "Zavírací doba"
+            },
+            {
+                "id": "saveButton",
+                "description": "Uložit"
+            }
+        ]
     }
 ]

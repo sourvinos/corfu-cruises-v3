@@ -2322,5 +2322,26 @@
                 "description": "Brauchen Sie Hilfe?"
             }
         ]
+    },
+    {
+        "feature": "settings",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Einstellungen"
+            },
+            {
+                "id": "companyName",
+                "description": "Logo-Text"
+            },
+            {
+                "id": "closingTime",
+                "description": "Büroschluss"
+            },
+            {
+                "id": "saveButton",
+                "description": "Speichern"
+            }
+        ]
     }
 ]

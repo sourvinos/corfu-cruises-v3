@@ -1,0 +1,35 @@
+<div id="form-wrapper">
+
+    <div id="content">
+
+        <div id="header">
+            <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
+        </div>
+
+        <form [formGroup]="form" autocomplete="off">
+            <!-- Company name -->
+            <mat-form-field>
+                <input [inputTabStop]="input" [placeholder]="getLabel('companyName')" data-tabindex="1" formControlName="companyName" matInput>
+                <mat-error *ngIf="companyName.hasError('required')">{{ getHint("required") }}</mat-error>
+                <mat-error *ngIf="companyName.hasError('maxlength')">{{ getHint("maxLength", companyName.errors.maxlength.requiredLength) }}</mat-error>
+            </mat-form-field>
+            <!-- Night hours -->
+            <mat-form-field>
+                <input [inputTabStop]="input" [placeholder]="getLabel('closingTime')" data-tabindex="2" formControlName="closingTime" matInput>
+                <mat-error *ngIf="closingTime.hasError('required')">{{ getHint("required") }}</mat-error>
+                <mat-error *ngIf="!closingTime.hasError('required') && !closingTime.hasError('isTime')">{{ getHint("invalid") }}</mat-error>
+            </mat-form-field>
+        </form>
+
+    </div>
+
+    <div id="footer">
+        <div class="button-group-right">
+            <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
+                <mat-icon *ngIf="!form.valid" class="button-icon">lock</mat-icon>
+                <span>{{ getLabel("saveButton") }}</span>
+            </button>
+        </div>
+    </div>
+
+</div>
