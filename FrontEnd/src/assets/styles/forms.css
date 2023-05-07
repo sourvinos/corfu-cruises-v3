@@ -29,6 +29,7 @@
 }
 
 #content {
+    backdrop-filter: blur(var(--blur));
     display: flex;
     flex-direction: column;
     height: 100%;
