@@ -9,7 +9,6 @@ namespace API.Infrastructure.Settings {
         // PK
         public Guid Id { get; set; }
         // Fields
-        public string CompanyName { get; set; }
         public string ClosingTime { get; set; }
         public string LastUpdate { get; set; }
         // FKs

@@ -84,7 +84,6 @@ export class SettingsComponent {
     private flattenForm(): Settings {
         return {
             id: this.form.value.id,
-            companyName: this.form.value.companyName,
             closingTime: this.form.value.closingTime
         }
     }
@@ -115,7 +114,6 @@ export class SettingsComponent {
     private initForm(): void {
         this.form = this.formBuilder.group({
             id: 0,
-            companyName: ['', [Validators.required, Validators.maxLength(128)]],
             closingTime: ['', [Validators.required, ValidationService.isTime]],
         })
     }
@@ -124,7 +122,6 @@ export class SettingsComponent {
         if (this.record != undefined) {
             this.form.setValue({
                 id: this.record.id,
-                companyName: this.record.companyName,
                 closingTime: this.record.closingTime
             })
         }
@@ -148,10 +145,6 @@ export class SettingsComponent {
     //#endregion
 
     //#region getters
-
-    get companyName(): AbstractControl {
-        return this.form.get('companyName')
-    }
 
     get closingTime(): AbstractControl {
         return this.form.get('closingTime')
