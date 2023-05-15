@@ -19,7 +19,7 @@
                     <input #inputAutoComplete #trigger="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="shipOwners" [placeholder]="getLabel('shipOwner')" data-tabindex="2" formControlName="shipOwner" matInput>
                     <div matSuffix style="display:flex">
                         <button (click)="openOrCloseAutoComplete(trigger, 'shipOwner')" mat-icon-button type="button">
-                            <mat-icon class="open-close-panel">{{ arrowIcon.getValue() }}</mat-icon>
+                            <i class="pi pi-angle-down"></i>
                         </button>
                     </div>
                     <mat-error *ngIf="shipOwner.hasError('required')">{{ getHint("required") }}</mat-error>
@@ -77,7 +77,7 @@
         <div class="button-group-right">
             <button (click)="onDelete()" *ngIf="form.value.id !== 0" class="delete" mat-flat-button>{{ getLabel("deleteButton") }}</button>
             <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
-                <mat-icon *ngIf="!form.valid" class="button-icon">lock</mat-icon>
+                <i *ngIf="!form.valid" class="pi pi-lock with-text"></i>
                 <span>{{ getLabel("saveButton") }}</span>
             </button>
         </div>

@@ -20,7 +20,3 @@
     color: var(--color-c);
     font-size: 0.75rem !important;
 }
-
-.button-icon.no-right-margin {
-    margin-right: 0;
-}

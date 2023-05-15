@@ -4,7 +4,7 @@
         <home-button-and-title [featureIcon]="featureIcon" [feature]="feature" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
         <span [ngClass]="isSizeChanged ? 'visible' : 'hidden'" (click)="askToRefreshCalendar()" class="material-icons warning">warning</span>
         <button (click)="doSelectedPeriodTasks('today')" class="transparent" id="goto-today-button" mat-mini-fab>
-            <mat-icon id="today">my_location</mat-icon>
+            <i class="pi pi-sun"></i>
         </button>
         <year-selector (yearEmitter)="doTasksAfterYearSelection($event)" [year]="getSelectedYear()"></year-selector>
     </div>

@@ -19,7 +19,7 @@
                         <mat-datepicker #picker></mat-datepicker>
                         <mat-error *ngIf="date.hasError('required')">{{ getHint("invalid") }}</mat-error>
                         <button (click)="gotoToday()" class="transparent" id="goto-today" mat-mini-fab tabindex="-1">
-                            <mat-icon id="today">my_location</mat-icon>
+                            <i class="pi pi-star-fill"></i>
                         </button>
                     </mat-form-field>
                 </fieldset>
@@ -126,7 +126,7 @@
     <div id="footer">
         <div class="button-group-right">
             <button (click)="doTasks()" [disabled]="!form.valid" class="primary" id="search" mat-flat-button>
-                <mat-icon *ngIf="!form.valid" class="button-icon">lock</mat-icon>
+                <i *ngIf="!form.valid" class="pi pi-lock with-text"></i>
                 <span>{{ getLabel("searchButton") }}</span>
             </button>
         </div>

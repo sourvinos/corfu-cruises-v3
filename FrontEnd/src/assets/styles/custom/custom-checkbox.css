@@ -19,7 +19,7 @@
     font-family: var(--font-family-asty);
     font-size: var(--font-size-checkbox-label);
     font-weight: 300;
-    margin-left: 0.8rem;
+    margin-left: 0.7rem;
     max-height: var(--font-size-checkbox-label) !important;
     overflow: hidden;
     padding: 0.65rem 2.5rem 0.65rem 1.875rem;

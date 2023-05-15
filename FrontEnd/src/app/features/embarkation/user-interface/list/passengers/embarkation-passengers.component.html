@@ -42,7 +42,7 @@
         </div>
         <div class="button-group-right">
             <button (click)="doEmbarkation(true, reservation.passengers)" [disabled]="isEmbarkAllAllowed()" class="secondary" mat-flat-button>
-                <mat-icon *ngIf="isEmbarkAllAllowed()" class="button-icon">lock</mat-icon>
+                <i *ngIf="isEmbarkAllAllowed()" class="pi pi-lock with-text"></i>
                 <span>{{ getLabel('embarkAllPassengers') }}</span>
             </button>
             <button (click)="close()" class="primary" mat-flat-button>{{ getLabel('okButton') }}</button>

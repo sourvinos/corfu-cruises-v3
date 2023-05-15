@@ -196,15 +196,15 @@
 
 <ng-template #contextMenu>
     <button (click)="assignToDriver()" [disabled]="!isAdmin()" mat-menu-item>
-        <mat-icon *ngIf="!isAdmin()" class="button-icon no-right-margin">lock</mat-icon>
+        <i *ngIf="!isAdmin()" class="pi pi-lock with-text"></i>
         <span>{{ getLabel('assignToDriverButton') }}</span>
     </button>
     <button (click)="assignToShip()" [disabled]="!isAdmin()" mat-menu-item>
-        <mat-icon *ngIf="!isAdmin()" class="button-icon no-right-margin">lock</mat-icon>
+        <i *ngIf="!isAdmin()" class="pi pi-lock with-text"></i>
         <span>{{ getLabel('assignToShipButton') }}</span>
     </button>
     <button (click)="createPdf()" [disabled]="!isAdmin()" mat-menu-item>
-        <mat-icon *ngIf="!isAdmin()" class="button-icon no-right-margin">lock</mat-icon>
+        <i *ngIf="!isAdmin()" class="pi pi-lock with-text"></i>
         <span>{{ getLabel('createPdfButton') }}</span>
     </button>
 </ng-template>

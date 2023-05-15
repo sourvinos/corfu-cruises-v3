@@ -23,7 +23,7 @@
             <span>{{ getLabel("cancelButton") }}</span>
         </button>
         <button (click)="continue()" [disabled]="!form.valid" class="primary" mat-flat-button>
-            <mat-icon *ngIf="!form.valid" class="button-icon">lock</mat-icon>
+            <i *ngIf="!form.valid" class="pi pi-lock with-text"></i>
             <span>{{ getLabel("okButton") }}</span>
         </button>
     </div>

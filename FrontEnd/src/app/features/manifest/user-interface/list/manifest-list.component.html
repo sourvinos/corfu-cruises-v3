@@ -116,7 +116,7 @@
         </div>
         <div class="button-group-right">
             <button (click)="showRouteSelectorDialog()" [disabled]="records.passengers.length==0" class="primary" mat-flat-button>
-                <mat-icon *ngIf="records.passengers.length==0" class="button-icon">lock</mat-icon>
+                <i *ngIf="records.passengers.length==0" class="pi pi-lock with-text"></i>
                 <span>{{ getLabel("createPdf") }}</span>
             </button>
         </div>

@@ -1,0 +1,8 @@
+.pi {
+    margin-top: -0.1875rem !important;
+    color: var(--color-c);
+}
+
+.pi.inside-input-field {
+    margin: -1px 0.2rem 0 0 !important;
+}

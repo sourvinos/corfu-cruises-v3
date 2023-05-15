@@ -70,7 +70,7 @@
         <div class="button-group-right">
             <button (click)="onDelete()" *ngIf="form.value.id !== 0" class="delete" mat-flat-button>{{ getLabel("deleteButton") }}</button>
             <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
-                <mat-icon *ngIf="!form.valid" class="button-icon">lock</mat-icon>
+                <i *ngIf="!form.valid" class="pi pi-lock with-text"></i>
                 <span>{{ getLabel("saveButton") }}</span>
             </button>
         </div>

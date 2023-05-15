@@ -193,7 +193,7 @@
         </div>
         <div class="button-group-right">
             <button (click)="createPdf()" [disabled]="records.reservations.length == 0" class="primary" mat-flat-button>
-                <mat-icon *ngIf="records.reservations.length == 0" class="button-icon">lock</mat-icon>
+                <i *ngIf="records.reservations.length == 0" class="pi pi-lock with-text"></i>
                 <span>{{ getLabel("createPDF") }}</span>
             </button>
         </div>

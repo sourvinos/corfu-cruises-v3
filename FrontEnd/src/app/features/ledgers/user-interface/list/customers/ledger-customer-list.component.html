@@ -46,7 +46,7 @@
         <table-total-filtered-records [filteredRecordCount]="records.length" [recordCount]="records.length" [showFilteredCount]="false"></table-total-filtered-records>
         <div class="button-group-right">
             <button [disabled]="records.length==0" (click)="exportAll()" class="primary" mat-flat-button>
-                <mat-icon *ngIf="records.length==0" class="button-icon">lock</mat-icon>
+                <i *ngIf="records.length==0" class="pi pi-lock with-text"></i>
                 <span>{{ getLabel("createPdfButton") }}</span>
             </button>
         </div>
