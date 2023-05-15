@@ -59,7 +59,7 @@ button .mat-button-wrapper img {
 }
 
 button.mat-mini-fab {
-    background-color: var(--color-b);
+    background-color: var(--color-e);
     box-shadow: none !important;
     color: var(--color-a) !important;
     margin: 0 !important;
@@ -134,7 +134,7 @@ button.button-icon {
     margin-top: 0;
 }
 
-button.reset-table-filters span i {
+button.prime-icon span i {
     margin-top: -6px;
 }
 

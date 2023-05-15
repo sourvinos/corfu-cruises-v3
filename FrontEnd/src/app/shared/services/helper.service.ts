@@ -1,15 +1,16 @@
 import { FormGroup } from '@angular/forms'
-import { Injectable } from '@angular/core'
+import { Injectable, QueryList } from '@angular/core'
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { Router } from '@angular/router'
 import { Table } from 'primeng/table'
 import { Title } from '@angular/platform-browser'
 // Custom
+import { MatExpansionPanel } from '@angular/material/expansion'
 import { MessageLabelService } from './message-label.service'
 import { ModalActionResultService } from './modal-action-result.service'
+import { Observable, Subject, defer, finalize } from 'rxjs'
 import { SessionStorageService } from './session-storage.service'
 import { environment } from 'src/environments/environment'
-import { Observable, Subject, defer, finalize } from 'rxjs'
 
 export function prepare<T>(callback: () => void): (source: Observable<T>) => Observable<T> {
     return (source: Observable<T>): Observable<T> => defer(() => {
@@ -261,6 +262,14 @@ export class HelperService {
         const elementWidth = window.innerWidth - environment.marginsInPixels
         const dayCount = Math.trunc(elementWidth / 123.2)
         return dayCount
+    }
+
+    public toggleExpansionPanel(panels: QueryList<MatExpansionPanel> | { open: () => any; close: () => any }[], newState: boolean): void {
+        panels.forEach((panel: { open: () => any; close: () => any }) => {
+            setTimeout(() => {
+                newState == true ? panel.open() : panel.close()
+            }, 400)
+        })
     }
 
     //#endregion

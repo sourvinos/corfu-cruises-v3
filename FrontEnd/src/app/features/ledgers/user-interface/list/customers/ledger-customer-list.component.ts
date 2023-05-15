@@ -1,17 +1,15 @@
 import { ActivatedRoute, Router } from '@angular/router'
-import { Component, ViewChild } from '@angular/core'
-import { MatDialog } from '@angular/material/dialog'
-import { Table } from 'primeng/table'
+import { Component, QueryList, ViewChildren } from '@angular/core'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { LedgerCriteriaVM } from '../../../classes/view-models/criteria/ledger-criteria-vm'
-import { LedgerCustomerSummaryAndReservationsComponent } from '../summary-and-reservations/ledger-summary-and-reservations.component'
 import { LedgerPDFService } from '../../../classes/services/ledger-pdf.service'
 import { LedgerVM } from '../../../classes/view-models/list/ledger-vm'
-import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { MatExpansionPanel } from '@angular/material/expansion'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
+import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { ModalActionResultService } from 'src/app/shared/services/modal-action-result.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { environment } from 'src/environments/environment'
@@ -26,23 +24,19 @@ export class LedgerCustomerListComponent {
 
     //#region variables
 
-    @ViewChild('table') table: Table | undefined
+    @ViewChildren(MatExpansionPanel) panels: QueryList<MatExpansionPanel>
 
     public feature = 'ledgerList'
     public featureIcon = 'ledgers'
     public icon = 'arrow_back'
     public parentUrl = '/ledgers'
     public records: LedgerVM[] = []
-    public recordsFilteredCount: number
 
     public criteriaPanels: LedgerCriteriaVM
 
-    public selectedRecords: LedgerVM[] = []
-    public isAdmin = false
-
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private helperService: HelperService, private interactionService: InteractionService, private ledgerPdfService: LedgerPDFService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private modalActionResultService: ModalActionResultService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
+    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private helperService: HelperService, private interactionService: InteractionService, private ledgerPdfService: LedgerPDFService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private modalActionResultService: ModalActionResultService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -51,21 +45,26 @@ export class LedgerCustomerListComponent {
         this.subscribeToInteractionService()
         this.setTabTitle()
         this.populateCriteriaPanelsFromStorage()
-        this.enableDisableFilters()
     }
 
     //#endregion
 
-    //#region public methods
+    //#region public methods2
 
-    public exportSelected(): void {
-        this.helperService.sortNestedArray(this.selectedRecords, 'customer.description')
-        this.ledgerPdfService.doReportTasks(this.selectedRecords, this.criteriaPanels)
+    public collapseAll(): void {
+        this.helperService.toggleExpansionPanel(this.panels, false)
     }
 
-    public filterRecords(event: { filteredValue: any[] }): void {
-        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
-        this.recordsFilteredCount = event.filteredValue.length
+    public exportSelected(customer: LedgerVM): void {
+        this.ledgerPdfService.doReportTasks(this.records.filter(x => x.customer.id == customer.customer.id), this.criteriaPanels)
+    }
+
+    public expandAll(): void {
+        this.helperService.toggleExpansionPanel(this.panels, true)
+    }
+
+    public exportAll(): void {
+        this.ledgerPdfService.doReportTasks(this.records, this.criteriaPanels)
     }
 
     public formatDateToLocale(date: string, showWeekday = false, showYear = false): string {
@@ -88,37 +87,15 @@ export class LedgerCustomerListComponent {
         this.helperService.highlightRow(id)
     }
 
-    public resetTableFilters(): void {
-        this.helperService.clearTableTextFilters(this.table, ['customer.description'])
-    }
-
-    public showCustomerReservations(customer: LedgerVM): void {
-        this.dialog.open(LedgerCustomerSummaryAndReservationsComponent, {
-            height: '800px',
-            width: '1110px',
-            maxWidth: '1110px',
-            data: {
-                customer: customer,
-                actions: ['abort', 'ok']
-            },
-            panelClass: 'dialog'
-        })
-    }
-
     //#endregion
 
     //#region private methods
-
-    private enableDisableFilters(): void {
-        this.records.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()
-    }
 
     private loadRecords(): Promise<any> {
         return new Promise((resolve) => {
             const listResolved = this.activatedRoute.snapshot.data[this.feature]
             if (listResolved.error === null) {
                 this.records = Object.assign([], listResolved.result)
-                this.recordsFilteredCount = this.records.length
                 resolve(this.records)
             } else {
                 this.modalActionResultService.open(this.messageSnackbarService.filterResponse(listResolved.error), 'error', ['ok']).subscribe(() => {
