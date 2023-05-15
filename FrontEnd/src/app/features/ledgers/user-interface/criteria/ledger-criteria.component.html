@@ -9,19 +9,23 @@
         <form [formGroup]="form" autocomplete="off" id="form">
             <!-- Date -->
             <div class="group-field">
-                <mat-form-field id="date">
-                    <mat-label>{{ getLabel('date') }}</mat-label>
-                    <mat-date-range-input [formGroup]="form" [rangePicker]="picker">
-                        <input class="center" formControlName="fromDate" matInput matStartDate>
-                        <input class="center" formControlName="toDate" matEndDate matInput>
-                    </mat-date-range-input>
-                    <mat-date-range-picker #picker (closed)="patchFormWithSelectedDates(fromDate, toDate)"></mat-date-range-picker>
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-error *ngIf="fromDate.hasError('required') || toDate.hasError('required')">{{ getHint("invalid") }}</mat-error>
-                    <button (click)="gotoToday()" class="transparent" id="goto-today" mat-mini-fab tabindex="-1">
-                        <mat-icon id="today">my_location</mat-icon>
-                    </button>
-                </mat-form-field>
+                <fieldset id="date-fieldset">
+                    <legend>
+                        <span>{{ getLabel('date') }}</span>
+                    </legend>
+                    <mat-form-field id="date">
+                        <mat-date-range-input [formGroup]="form" [rangePicker]="picker">
+                            <input class="center" formControlName="fromDate" matInput matStartDate>
+                            <input class="center" formControlName="toDate" matEndDate matInput>
+                        </mat-date-range-input>
+                        <mat-date-range-picker #picker (closed)="patchFormWithSelectedDates(fromDate, toDate)"></mat-date-range-picker>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-error *ngIf="fromDate.hasError('required') || toDate.hasError('required')">{{ getHint("invalid") }}</mat-error>
+                        <button (click)="gotoToday()" class="transparent" id="goto-today" mat-mini-fab tabindex="-1">
+                            <mat-icon id="today">my_location</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </fieldset>
             </div>
             <div class="group-field">
                 <!-- Customers -->

@@ -14,7 +14,7 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 @Component({
     selector: 'customer-list',
     templateUrl: './customer-list.component.html',
-    styleUrls: ['../../../../assets/styles/lists.css']
+    styleUrls: ['../../../../assets/styles/custom/lists.css']
 })
 
 export class CustomerListComponent {

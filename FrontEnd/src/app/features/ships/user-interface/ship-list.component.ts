@@ -14,7 +14,7 @@ import { ShipListVM } from '../classes/view-models/ship-list-vm'
 @Component({
     selector: 'ship-list',
     templateUrl: './ship-list.component.html',
-    styleUrls: ['../../../../assets/styles/lists.css']
+    styleUrls: ['../../../../assets/styles/custom/lists.css']
 })
 
 export class ShipListComponent {

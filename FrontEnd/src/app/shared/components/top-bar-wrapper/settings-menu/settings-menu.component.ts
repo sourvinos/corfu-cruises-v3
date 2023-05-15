@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment'
 @Component({
     selector: 'settings-menu',
     templateUrl: './settings-menu.component.html',
-    styleUrls: ['../../../../../assets/styles/dropdown-menu.css']
+    styleUrls: ['../../../../../assets/styles/custom/dropdown-menu.css']
 })
 
 export class SettingsMenuComponent {

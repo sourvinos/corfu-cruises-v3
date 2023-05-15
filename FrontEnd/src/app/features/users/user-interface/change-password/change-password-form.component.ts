@@ -15,7 +15,7 @@ import { MessageDialogService } from 'src/app/shared/services/message-dialog.ser
 @Component({
     selector: 'change-password-form',
     templateUrl: './change-password-form.component.html',
-    styleUrls: ['../../../../../assets/styles/forms.css', './change-password-form.component.css']
+    styleUrls: ['../../../../../assets/styles/custom/forms.css', './change-password-form.component.css']
 })
 
 export class ChangePasswordFormComponent {

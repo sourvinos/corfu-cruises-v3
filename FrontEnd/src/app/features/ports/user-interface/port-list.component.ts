@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment'
 @Component({
     selector: 'port-list',
     templateUrl: './port-list.component.html',
-    styleUrls: ['../../../../assets/styles/lists.css']
+    styleUrls: ['../../../../assets/styles/custom/lists.css']
 })
 
 export class PortListComponent {

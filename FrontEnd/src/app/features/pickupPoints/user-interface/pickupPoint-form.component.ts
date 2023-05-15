@@ -23,7 +23,7 @@ import { ValidationService } from '../../../shared/services/validation.service'
 @Component({
     selector: 'pickuppoint-form',
     templateUrl: './pickupPoint-form.component.html',
-    styleUrls: ['../../../../assets/styles/forms.css', './pickupPoint-form.component.css']
+    styleUrls: ['../../../../assets/styles/custom/forms.css', './pickupPoint-form.component.css']
 })
 
 export class PickupPointFormComponent {

@@ -20,7 +20,7 @@ import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 @Component({
     selector: 'ship-crew-list',
     templateUrl: './shipCrew-list.component.html',
-    styleUrls: ['../../../../assets/styles/lists.css']
+    styleUrls: ['../../../../assets/styles/custom/lists.css']
 })
 
 export class ShipCrewListComponent {

@@ -27,6 +27,8 @@
 }
 
 #table-wrapper {
+    height: inherit;
+    overflow: hidden;
     width: 100%;
 }
 

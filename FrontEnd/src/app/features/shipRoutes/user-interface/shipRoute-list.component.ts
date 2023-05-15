@@ -14,7 +14,7 @@ import { ShipRouteListVM } from '../classes/view-models/shipRoute-list-vm'
 @Component({
     selector: 'ship-route-list',
     templateUrl: './shipRoute-list.component.html',
-    styleUrls: ['../../../../assets/styles/lists.css']
+    styleUrls: ['../../../../assets/styles/custom/lists.css']
 })
 
 export class ShipRouteListComponent {

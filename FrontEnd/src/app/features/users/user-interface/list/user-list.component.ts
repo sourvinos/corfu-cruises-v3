@@ -14,7 +14,7 @@ import { UserListVM } from '../../classes/view-models/user-list-vm'
 @Component({
     selector: 'user-list',
     templateUrl: './user-list.component.html',
-    styleUrls: ['../../../../../assets/styles/lists.css']
+    styleUrls: ['../../../../../assets/styles/custom/lists.css']
 })
 
 export class UserListComponent {

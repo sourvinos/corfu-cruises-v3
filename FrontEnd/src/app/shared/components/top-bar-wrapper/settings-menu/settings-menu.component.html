@@ -1,6 +1,6 @@
 <div *ngIf=isAdmin()>
     <div id="settings-menu">
-        <button (click)="doNavigationTasks()">
+        <button (click)="doNavigationTasks()" class="drop-down-menu show-sub-menu">
             <img (load)="loadImage()" [ngClass]="imageIsLoading()" [src]="getIcon('settings')" style="height: 25px; width: 25px">
         </button>
     </div>

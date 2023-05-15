@@ -14,7 +14,7 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 @Component({
     selector: 'gender-list',
     templateUrl: './gender-list.component.html',
-    styleUrls: ['../../../../assets/styles/lists.css']
+    styleUrls: ['../../../../assets/styles/custom/lists.css']
 })
 
 export class GenderListComponent {

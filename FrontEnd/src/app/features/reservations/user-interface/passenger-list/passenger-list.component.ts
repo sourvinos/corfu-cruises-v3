@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment'
 @Component({
     selector: 'passenger-list',
     templateUrl: './passenger-list.component.html',
-    styleUrls: ['../../../../../assets/styles/forms.css', './passenger-list.component.css']
+    styleUrls: ['../../../../../assets/styles/custom/forms.css', './passenger-list.component.css']
 })
 
 export class PassengerListComponent {

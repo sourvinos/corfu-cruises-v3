@@ -16,7 +16,7 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 @Component({
     selector: 'pickupPoint-list',
     templateUrl: './pickupPoint-list.component.html',
-    styleUrls: ['../../../../assets/styles/lists.css']
+    styleUrls: ['../../../../assets/styles/custom/lists.css']
 })
 
 export class PickupPointListComponent {

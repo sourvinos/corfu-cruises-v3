@@ -29,7 +29,7 @@ import { EmbarkationPortVM } from '../../../classes/view-models/list/embarkation
 @Component({
     selector: 'embarkation-reservations',
     templateUrl: './embarkation-reservations.component.html',
-    styleUrls: ['../../../../../../assets/styles/lists.css', './embarkation-reservations.component.css', '../../../../../../assets/styles/criteria-panel.css']
+    styleUrls: ['../../../../../../assets/styles/custom/lists.css', './embarkation-reservations.component.css', '../../../../../../assets/styles/custom/criteria-panel.css']
 })
 
 export class EmbarkationReservationsComponent {

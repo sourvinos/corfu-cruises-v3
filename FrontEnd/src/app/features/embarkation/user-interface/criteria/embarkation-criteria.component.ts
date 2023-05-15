@@ -21,7 +21,7 @@ import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 @Component({
     selector: 'embarkation-criteria',
     templateUrl: './embarkation-criteria.component.html',
-    styleUrls: ['../../../../../assets/styles/forms.css', './embarkation-criteria.component.css']
+    styleUrls: ['../../../../../assets/styles/custom/forms.css', './embarkation-criteria.component.css']
 })
 
 export class EmbarkationCriteriaComponent {

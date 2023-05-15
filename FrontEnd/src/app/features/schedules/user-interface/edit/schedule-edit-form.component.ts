@@ -27,7 +27,7 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 @Component({
     selector: 'schedule-edit',
     templateUrl: './schedule-edit-form.component.html',
-    styleUrls: ['../../../../../assets/styles/forms.css', './schedule-edit-form.component.css']
+    styleUrls: ['../../../../../assets/styles/custom/forms.css', './schedule-edit-form.component.css']
 })
 
 export class ScheduleEditFormComponent {

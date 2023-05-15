@@ -14,7 +14,7 @@ import { ShipOwnerListVM } from '../classes/view-models/shipOwner-list-vm'
 @Component({
     selector: 'ship-owner-list',
     templateUrl: './shipOwner-list.component.html',
-    styleUrls: ['../../../../assets/styles/lists.css']
+    styleUrls: ['../../../../assets/styles/custom/lists.css']
 })
 
 export class ShipOwnerListComponent {

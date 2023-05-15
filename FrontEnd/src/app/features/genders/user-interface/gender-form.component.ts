@@ -18,7 +18,7 @@ import { ModalActionResultService } from 'src/app/shared/services/modal-action-r
 @Component({
     selector: 'gender-form',
     templateUrl: './gender-form.component.html',
-    styleUrls: ['../../../../assets/styles/forms.css', './gender-form.component.css']
+    styleUrls: ['../../../../assets/styles/custom/forms.css', './gender-form.component.css']
 })
 
 export class GenderFormComponent {

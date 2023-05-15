@@ -22,8 +22,7 @@
 #form .group-field:first-child {
     align-items: center;
     display: flex;
-    margin-left: auto;
-    width: 15rem;
+    margin: 0 3px 0 auto;
 }
 
 #form .group-field:last-child {
@@ -31,12 +30,25 @@
     width: max-content;
 }
 
-#date {
-    backdrop-filter: blur(0.25rem);
+#date-fieldset {
     background-color: transparent !important;
+    margin: 0 !important;
+    padding: 0 !important;
     width: 15rem !important;
 }
 
+#date-fieldset legend {
+    margin: 0 0 0 0.95rem !important;
+    width: auto !important;
+}
+
+#date {
+    background-color: transparent !important;
+    border: 0 !important;
+    padding: 0 2rem 0.625rem 1rem !important;
+    margin-top: 0 !important;
+}
+
 #date #goto-today {
-    margin: 2.875rem -0.0625rem 0 1rem !important;
+    margin: 1rem -1.5rem 0 0 !important;
 }

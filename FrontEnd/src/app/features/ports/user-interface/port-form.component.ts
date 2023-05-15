@@ -18,7 +18,7 @@ import { PortWriteDto } from '../classes/dtos/port-write-vm'
 @Component({
     selector: 'port-form',
     templateUrl: './port-form.component.html',
-    styleUrls: ['../../../../assets/styles/forms.css', './port-form.component.css']
+    styleUrls: ['../../../../assets/styles/custom/forms.css', './port-form.component.css']
 })
 
 export class PortFormComponent {

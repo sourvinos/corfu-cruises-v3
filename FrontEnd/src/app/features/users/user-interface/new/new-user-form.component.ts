@@ -18,7 +18,7 @@ import { UserService } from '../../classes/services/user.service'
 @Component({
     selector: 'new-user-form',
     templateUrl: './new-user-form.component.html',
-    styleUrls: ['../../../../../assets/styles/forms.css', './new-user-form.component.css']
+    styleUrls: ['../../../../../assets/styles/custom/forms.css', './new-user-form.component.css']
 })
 
 export class NewUserFormComponent {

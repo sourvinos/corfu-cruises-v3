@@ -36,7 +36,7 @@ import { VoucherService } from '../../classes/voucher/services/voucher.service'
 @Component({
     selector: 'reservation-form',
     templateUrl: './reservation-form.component.html',
-    styleUrls: ['../../../../../assets/styles/forms.css', './reservation-form.component.css']
+    styleUrls: ['../../../../../assets/styles/custom/forms.css', './reservation-form.component.css']
 })
 
 export class ReservationFormComponent {

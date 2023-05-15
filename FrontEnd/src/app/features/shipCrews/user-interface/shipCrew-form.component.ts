@@ -29,7 +29,7 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 @Component({
     selector: 'ship-crew-form',
     templateUrl: './shipCrew-form.component.html',
-    styleUrls: ['../../../../assets/styles/forms.css', './shipCrew-form.component.css'],
+    styleUrls: ['../../../../assets/styles/custom/forms.css', './shipCrew-form.component.css'],
 })
 
 export class ShipCrewFormComponent {

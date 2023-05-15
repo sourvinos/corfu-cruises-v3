@@ -9,15 +9,20 @@
         <form [formGroup]="form" autocomplete="off" id="form">
             <!-- Date -->
             <div class="group-field">
-                <mat-form-field id="date">
-                    <input (dateChange)="patchFormWithSelectedDate($event)" [matDatepicker]="picker" [placeholder]="getLabel('date')" formControlName="date" matInput>
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                    <mat-error *ngIf="date.hasError('required')">{{ getHint("invalid") }}</mat-error>
-                    <button (click)="gotoToday()" class="transparent" id="goto-today" mat-mini-fab tabindex="-1">
-                        <mat-icon id="today">my_location</mat-icon>
-                    </button>
-                </mat-form-field>
+                <fieldset id="date-fieldset">
+                    <legend>
+                        <span>{{ getLabel('date') }}</span>
+                    </legend>
+                    <mat-form-field id="date">
+                        <input (dateChange)="patchFormWithSelectedDate($event)" [matDatepicker]="picker" formControlName="date" matInput>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error *ngIf="date.hasError('required')">{{ getHint("invalid") }}</mat-error>
+                        <button (click)="gotoToday()" class="transparent" id="goto-today" mat-mini-fab tabindex="-1">
+                            <mat-icon id="today">my_location</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </fieldset>
             </div>
             <div class="group-field">
                 <!-- Destinations -->

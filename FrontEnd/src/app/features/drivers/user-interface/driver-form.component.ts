@@ -18,7 +18,7 @@ import { ModalActionResultService } from 'src/app/shared/services/modal-action-r
 @Component({
     selector: 'driver-form',
     templateUrl: './driver-form.component.html',
-    styleUrls: ['../../../../assets/styles/forms.css', './driver-form.component.css']
+    styleUrls: ['../../../../assets/styles/custom/forms.css', './driver-form.component.css']
 })
 
 export class DriverFormComponent {

@@ -18,7 +18,7 @@ import { ModalActionResultService } from 'src/app/shared/services/modal-action-r
 @Component({
     selector: 'customer-form',
     templateUrl: './customer-form.component.html',
-    styleUrls: ['../../../../assets/styles/forms.css', './customer-form.component.css']
+    styleUrls: ['../../../../assets/styles/custom/forms.css', './customer-form.component.css']
 })
 
 export class CustomerFormComponent {

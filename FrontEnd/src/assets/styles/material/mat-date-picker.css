@@ -170,7 +170,7 @@
 }
 
 .mat-date-range-input {
-    width: 85% !important;
+    margin-right: 0.8rem;
 }
 
 .mat-date-range-input-container {
@@ -179,6 +179,7 @@
 }
 
 .mat-date-range-input-inner {
+    margin-left: -0.375rem !important;
     margin-top: 0.1875rem !important;
 }
 

@@ -22,7 +22,7 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 @Component({
     selector: 'passenger-form',
     templateUrl: './passenger-form.component.html',
-    styleUrls: ['../../../../../assets/styles/forms.css', './passenger-form.component.css']
+    styleUrls: ['../../../../../assets/styles/custom/forms.css', './passenger-form.component.css']
 })
 
 export class PassengerFormComponent {

@@ -10,7 +10,7 @@ import { MessageDialogService } from 'src/app/shared/services/message-dialog.ser
 @Component({
     selector: 'language-menu',
     templateUrl: './language-menu.component.html',
-    styleUrls: ['../../../../../assets/styles/dropdown-menu.css', './language-menu.component.css']
+    styleUrls: ['../../../../../assets/styles/custom/dropdown-menu.css', './language-menu.component.css']
 })
 
 export class LanguageMenuComponent {
