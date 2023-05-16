@@ -62,6 +62,10 @@ button .mat-button-wrapper img {
     margin-top: -0.1875rem !important;
 }
 
+button .mat-button-wrapper .emoji {
+    margin-right: 0.2rem;
+}
+
 button.mat-mini-fab {
     background-color: var(--color-e);
     box-shadow: none !important;
@@ -114,7 +118,7 @@ button.mat-button-toggle-label-content {
     margin-top: 0;
 }
 
-@media (width <= 430px) {
+@media (width <=430px) {
     .button-text {
         font-size: 13px;
     }
@@ -123,7 +127,7 @@ button.mat-button-toggle-label-content {
     }
 }
 
-@media (width >= 431px) {
+@media (width >=431px) {
     .button-text {
         font-size: 14px;
         margin-top: 0;

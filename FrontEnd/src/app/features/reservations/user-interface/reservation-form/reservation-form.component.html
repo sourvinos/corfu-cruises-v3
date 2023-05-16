@@ -180,11 +180,11 @@
     <div id="footer">
         <div class="button-group-right">
             <button *ngIf="form.value.reservationId != ''" (click)="onDelete()" [disabled]="!isAdmin()" class="delete" mat-flat-button>
-                <i *ngIf="!isAdmin()" class="pi pi-lock with-text"></i>
+                <span *userPermission="['simple-user']" [innerText]="getEmoji('lock')" class="emoji"></span>
                 <span>{{ getLabel('deleteButton') }}</span>
             </button>
             <button (click)="onSave()" [disabled]="!form.valid || !checkForDifferenceBetweenTotalPaxAndPassengers()" class="primary" mat-flat-button>
-                <i *ngIf="!form.valid || !checkForDifferenceBetweenTotalPaxAndPassengers()" class="pi pi-lock with-text"></i>
+                <span *isFormInvalid=!form.valid || !checkForDifferenceBetweenTotalPaxAndPassengers() [innerText]="getEmoji('lock')" class="emoji"></span>
                 <span>{{ getLabel("saveButton") }}</span>
             </button>
         </div>

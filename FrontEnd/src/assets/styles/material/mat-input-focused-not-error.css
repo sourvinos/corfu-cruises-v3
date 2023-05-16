@@ -27,6 +27,10 @@
     color: var(--color-input-focus);
 }
 
+.mat-focused:read-only .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix input {
+    color: var(--color-c) !important;
+}
+
 .mat-start-date input:focus {
     padding-bottom: 0 !important;
 }

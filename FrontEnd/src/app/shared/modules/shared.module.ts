@@ -7,6 +7,7 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner'
 // Custom
 import { CriteriaPanelComponent } from '../components/criteria-panel/criteria-panel.component'
 import { DialogAlertComponent } from '../components/dialog-alert/dialog-alert.component'
+import { EmojiDirective } from '../directives/emoji.directive'
 import { HomeButtonAndTitleComponent } from '../components/home-button-and-title/home-button-and-title.component'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
 import { LanguageMenuComponent } from '../components/top-bar-wrapper/language-menu/language-menu.component'
@@ -31,6 +32,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
     declarations: [
         CriteriaPanelComponent,
         DialogAlertComponent,
+        EmojiDirective,
         HomeButtonAndTitleComponent,
         InputTabStopDirective,
         LanguageMenuComponent,
@@ -61,6 +63,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
     exports: [
         CommonModule,
         CriteriaPanelComponent,
+        EmojiDirective,
         FormsModule,
         HomeButtonAndTitleComponent,
         InputTabStopDirective,

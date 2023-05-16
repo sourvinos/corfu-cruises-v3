@@ -10,7 +10,7 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 @Component({
     selector: 'reservation-to-driver-form',
     templateUrl: './reservation-to-driver-form.component.html',
-    styleUrls: ['../../../../../assets/styles/dialogs.css', './reservation-to-driver-form.component.css']
+    styleUrls: ['../../../../../assets/styles/material/mat-dialog.css', './reservation-to-driver-form.component.css']
 })
 
 export class ReservationToDriverComponent {

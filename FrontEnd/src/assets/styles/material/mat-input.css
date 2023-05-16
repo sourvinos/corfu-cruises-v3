@@ -10,10 +10,6 @@ input.right {
     text-align: right !important;
 }
 
-input::selection {
-    background-color: var(--color-input-selected-background);
-}
-
 input.mat-input-element, textarea.mat-input-element {
     caret-color: var(--color-c) !important;
     margin-top: -0.0625rem !important;
@@ -34,7 +30,7 @@ textarea {
 }
 
 .mat-form-field {
-    background-color: var(--color-input-background) !important;
+    background-color: var(--color-x) !important;
     border-radius: 10px;
     border: 1px solid var(--color-b);
     line-height: 132%;
@@ -104,4 +100,8 @@ textarea {
 
 .mat-date-range-input-separator {
     color: transparent !important;
+}
+
+.mat-form-field-infix > span.emoji {
+    margin-top: -2px !important;
 }

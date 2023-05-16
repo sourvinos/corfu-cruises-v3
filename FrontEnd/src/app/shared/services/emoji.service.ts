@@ -17,6 +17,7 @@ export class EmojiService {
             case 'warning-triangle': return '⚠️'
             case 'wildcard': return '⭐'
             case 'yellow-circle': return '🟡'
+            case 'lock': return '🔐'
         }
 
     }

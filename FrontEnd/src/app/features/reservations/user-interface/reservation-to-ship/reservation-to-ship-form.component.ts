@@ -10,7 +10,7 @@ import { ShipActiveVM } from '../../../ships/classes/view-models/ship-active-vm'
 @Component({
     selector: 'reservation-to-ship-form',
     templateUrl: './reservation-to-ship-form.component.html',
-    styleUrls: ['../../../../../assets/styles/dialogs.css', './reservation-to-ship-form.component.css']
+    styleUrls: ['../../../../../assets/styles/material/mat-dialog.css', './reservation-to-ship-form.component.css']
 })
 
 export class ReservationToShipComponent {

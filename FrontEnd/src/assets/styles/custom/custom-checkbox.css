@@ -19,7 +19,7 @@
     font-family: var(--font-family-asty);
     font-size: var(--font-size-checkbox-label);
     font-weight: 300;
-    margin-left: 0.7rem;
+    margin-left: 0.2rem;
     max-height: var(--font-size-checkbox-label) !important;
     overflow: hidden;
     padding: 0.65rem 2.5rem 0.65rem 1.875rem;
@@ -29,6 +29,10 @@
 
 .styled-input-single .checkbox-with-lock-icon label {
     padding: 1rem 0;
+}
+
+.styled-input-single .checkbox-with-lock-icon .emoji {
+    margin-top: -3px !important;
 }
 
 .styled-input-single label.no-label {

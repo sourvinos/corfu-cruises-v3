@@ -10,7 +10,7 @@ import { ShipRouteActiveVM } from './../../../shipRoutes/classes/view-models/shi
 @Component({
     selector: 'manifest-route-selector',
     templateUrl: './manifest-route-selector.component.html',
-    styleUrls: ['../../../../../assets/styles/dialogs.css', './manifest-route-selector.component.css']
+    styleUrls: ['../../../../../assets/styles/material/mat-dialog.css', './manifest-route-selector.component.css']
 })
 
 export class ManifestRouteSelectorComponent {
