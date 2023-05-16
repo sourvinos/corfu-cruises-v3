@@ -19,7 +19,7 @@
                         <mat-datepicker #picker></mat-datepicker>
                         <mat-error *ngIf="date.hasError('required')">{{ getHint("invalid") }}</mat-error>
                         <button (click)="gotoToday()" class="transparent" id="goto-today" mat-mini-fab tabindex="-1">
-                            <i class="pi pi-star-fill"></i>
+                            <span class="material-icons-outlined">adjust</span>
                         </button>
                     </mat-form-field>
                 </fieldset>

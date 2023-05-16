@@ -18,6 +18,7 @@ export class EmojiService {
             case 'wildcard': return '⭐'
             case 'yellow-circle': return '🟡'
             case 'lock': return '🔐'
+            case 'today': return '🌀'
         }
 
     }

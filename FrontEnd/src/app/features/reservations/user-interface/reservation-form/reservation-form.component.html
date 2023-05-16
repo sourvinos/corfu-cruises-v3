@@ -29,7 +29,7 @@
                         </div>
                         <!-- Date -->
                         <mat-form-field>
-                            <i *ngIf="!isAdminOrNewRecord()" class="pi pi-lock inside-input-field"></i>
+                            <span *ngIf="!isAdminOrNewRecord()" class="emoji">{{ getEmoji('lock') }}</span>
                             <input [inputTabStop]="input" [matDatepicker]="picker" [placeholder]="getLabel('date')" [readonly]="!isAdmin()" data-tabindex="1" formControlName="date" matInput>
                             <mat-datepicker-toggle [disabled]="!isAdminOrNewRecord()" matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
@@ -38,7 +38,7 @@
                         </mat-form-field>
                         <!-- Destination -->
                         <mat-form-field>
-                            <i *ngIf="!isAdminOrNewRecord()" class="pi pi-lock inside-input-field"></i>
+                            <span *ngIf="!isAdminOrNewRecord()" class="emoji">{{ getEmoji('lock') }}</span>
                             <input #inputAutoComplete #triggerDestination="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="destinations" [placeholder]="getLabel('destination')" [readonly]="!isAdminOrNewRecord()" data-tabindex="2" formControlName="destination" matInput>
                             <div matSuffix style="display:flex">
                                 <button (click)="openOrCloseAutoComplete(triggerDestination, 'destination')" [disabled]="!isAdminOrNewRecord()" mat-icon-button type="button">
@@ -50,10 +50,10 @@
                         </mat-form-field>
                         <!-- Customer -->
                         <mat-form-field>
-                            <i *ngIf="!isAdminOrNewRecord()" class="pi pi-lock inside-input-field"></i>
+                            <span *ngIf="!isAdmin()" class="emoji">{{ getEmoji('lock') }}</span>
                             <input #inputAutoComplete #triggerCustomer="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="customers" [placeholder]="getLabel('customer')" [readonly]="!isAdmin()" data-tabindex="3" formControlName="customer" matInput>
                             <div matSuffix style="display:flex">
-                                <button (click)="openOrCloseAutoComplete(triggerCustomer, 'customer')" [disabled]="!isAdminOrNewRecord()" mat-icon-button type="button">
+                                <button *userPermission="['admin']" (click)="openOrCloseAutoComplete(triggerCustomer, 'customer')" mat-icon-button type="button">
                                     <i class="pi pi-angle-down"></i>
                                 </button>
                             </div>
@@ -64,10 +64,10 @@
                     <div class="group-field">
                         <!-- Pickup Point -->
                         <mat-form-field>
-                            <i *ngIf="!isAdminOrNewRecord()" class="pi pi-lock inside-input-field"></i>
+                            <span *ngIf="!isAdminOrNewRecord()" class="emoji">{{ getEmoji('lock') }}</span>
                             <input #inputAutoComplete #triggerPickupPoint="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="pickupPoints" [placeholder]="getLabel('pickupPoint')" [readonly]="!isAdminOrNewRecord()" data-tabindex="4" formControlName="pickupPoint" matInput>
                             <div matSuffix style="display:flex">
-                                <button (click)="openOrCloseAutoComplete(triggerPickupPoint, 'pickupPoint')" [disabled]="!isAdminOrNewRecord()" mat-icon-button type="button">
+                                <button *ngIf="isAdminOrNewRecord()" (click)="openOrCloseAutoComplete(triggerPickupPoint, 'pickupPoint')" mat-icon-button type="button">
                                     <i class="pi pi-angle-down"></i>
                                 </button>
                             </div>
@@ -88,28 +88,28 @@
                     <div class="group-field">
                         <!-- Ticket No -->
                         <mat-form-field>
-                            <i *ngIf="!isAdminOrNewRecord()" class="pi pi-lock inside-input-field"></i>
+                            <span *ngIf="!isAdminOrNewRecord()" class="emoji">{{ getEmoji('lock') }}</span>
                             <input [inputTabStop]="input" [placeholder]="getLabel('ticketNo')" [readonly]="!isAdminOrNewRecord()" data-tabindex="5" formControlName="ticketNo" matInput>
                             <mat-error *ngIf="ticketNo.hasError('required')">{{ getHint("required") }}</mat-error>
                             <mat-error *ngIf="ticketNo.hasError('maxlength')">{{ getHint("maxLength", ticketNo.errors.maxlength.requiredLength) }}</mat-error>
                         </mat-form-field>
                         <!-- Adults -->
                         <mat-form-field>
-                            <i *ngIf="!isAdminOrNewRecord()" class="pi pi-lock inside-input-field"></i>
+                            <span *ngIf="!isAdminOrNewRecord()" class="emoji">{{ getEmoji('lock') }}</span>
                             <input (keyup)="doPaxCalculations()" [inputTabStop]="input" [placeholder]="getLabel('adults')" [readonly]="!isAdminOrNewRecord()" class="number" data-tabindex="6" formControlName="adults" matInput type="number">
                             <mat-error *ngIf="adults.hasError('required')">{{ getHint("required") }}</mat-error>
                             <mat-error *ngIf="!adults.hasError('required') && adults.hasError('min') || adults.hasError('max')">{{ getHint("invalid") }}</mat-error>
                         </mat-form-field>
                         <!-- Kids -->
                         <mat-form-field>
-                            <i *ngIf="!isAdminOrNewRecord()" class="pi pi-lock inside-input-field"></i>
+                            <span *ngIf="!isAdminOrNewRecord()" class="emoji">{{ getEmoji('lock') }}</span>
                             <input (keyup)="doPaxCalculations()" [inputTabStop]="input" [placeholder]="getLabel('kids')" [readonly]="!isAdminOrNewRecord()" class="number" data-tabindex="7" formControlName="kids" matInput type="number">
                             <mat-error *ngIf="kids.hasError('required')">{{ getHint("required") }}</mat-error>
                             <mat-error *ngIf="!kids.hasError('required') && kids.hasError('min') || kids.hasError('max')">{{ getHint("invalid") }}</mat-error>
                         </mat-form-field>
                         <!-- Free -->
                         <mat-form-field>
-                            <i *ngIf="!isAdminOrNewRecord()" class="pi pi-lock inside-input-field"></i>
+                            <span *ngIf="!isAdminOrNewRecord()" class="emoji">{{ getEmoji('lock') }}</span>
                             <input (keyup)="doPaxCalculations()" [inputTabStop]="input" [placeholder]="getLabel('free')" [readonly]="!isAdminOrNewRecord()" class="number" data-tabindex="8" formControlName="free" matInput type="number">
                             <mat-error *ngIf="free.hasError('required')">{{ getHint("required") }}</mat-error>
                             <mat-error *ngIf="!free.hasError('required') && free.hasError('min') || free.hasError('max')">{{ getHint("invalid") }}</mat-error>
@@ -124,14 +124,14 @@
                     <div class="group-field">
                         <!-- Email -->
                         <mat-form-field>
-                            <i *ngIf="!isAdminOrNewRecord()" class="pi pi-lock inside-input-field"></i>
+                            <span *ngIf="!isAdminOrNewRecord()" class="emoji">{{ getEmoji('lock') }}</span>
                             <input [inputTabStop]="input" [placeholder]="getLabel('email')" [readonly]="!isAdminOrNewRecord()" data-tabindex="9" formControlName="email" matInput type="email">
                             <mat-error *ngIf="email.hasError('maxlength')">{{ getHint("maxLength", email.errors.maxlength.requiredLength) }}</mat-error>
                             <mat-error *ngIf="!email.hasError('maxlength') && email.hasError('email')">{{ getHint("invalid") }}</mat-error>
                         </mat-form-field>
                         <!-- Phones -->
                         <mat-form-field>
-                            <i *ngIf="!isAdminOrNewRecord()" class="pi pi-lock inside-input-field"></i>
+                            <span *ngIf="!isAdminOrNewRecord()" class="emoji">{{ getEmoji('lock') }}</span>
                             <input [inputTabStop]="input" [placeholder]="getLabel('phones')" [readonly]="!isAdminOrNewRecord()" data-tabindex="10" formControlName="phones" matInput>
                             <mat-error *ngIf="phones.hasError('maxlength')">{{ getHint("maxLength", phones.errors.maxlength.requiredLength) }}</mat-error>
                         </mat-form-field>
@@ -139,7 +139,7 @@
                     <div class="group-field" id="remarks">
                         <!-- Remarks -->
                         <mat-form-field>
-                            <i *ngIf="!isAdminOrNewRecord()" class="pi pi-lock inside-input-field"></i>
+                            <span *ngIf="!isAdminOrNewRecord()" class="emoji">{{ getEmoji('lock') }}</span>
                             <input [inputTabStop]="input" [placeholder]="getLabel('remarks')" [readonly]="!isAdminOrNewRecord()" data-tabindex="11" formControlName="remarks" matInput>
                             <mat-error *ngIf="remarks.hasError('maxlength')">{{ getHint("maxLength", remarks.errors.maxlength.requiredLength) }}</mat-error>
                         </mat-form-field>

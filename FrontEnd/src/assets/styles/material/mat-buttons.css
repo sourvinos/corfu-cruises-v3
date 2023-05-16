@@ -58,8 +58,9 @@ button.tab:first-child {
     margin-right: 1rem;
 }
 
-button .mat-button-wrapper img {
-    margin-top: -0.1875rem !important;
+button .mat-button-wrapper .material-icons-outlined {
+    font-size: 1.25rem !important;
+    padding: 0.625rem 0 !important;
 }
 
 button .mat-button-wrapper .emoji {
@@ -118,7 +119,7 @@ button.mat-button-toggle-label-content {
     margin-top: 0;
 }
 
-@media (width <=430px) {
+@media (width <= 430px) {
     .button-text {
         font-size: 13px;
     }
@@ -127,7 +128,7 @@ button.mat-button-toggle-label-content {
     }
 }
 
-@media (width >=431px) {
+@media (width >= 431px) {
     .button-text {
         font-size: 14px;
         margin-top: 0;

@@ -50,5 +50,9 @@
 }
 
 #date #goto-today {
-    margin: 1rem -1.5rem 0 0 !important;
+    margin: 0.5rem -1.5rem 0 0 !important;
+}
+
+#date #goto-today span {
+    color: var(--color-green) !important;
 }

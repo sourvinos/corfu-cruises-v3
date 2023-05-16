@@ -139,7 +139,7 @@ export class EditUserFormComponent {
     }
 
     private editUserFromTopMenu(): void {
-        this.parentUrl = '/'
+        this.parentUrl = '/home'
         this.icon = 'home'
     }
 
