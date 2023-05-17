@@ -23,11 +23,11 @@
             </mat-form-field>
             <!-- Customer -->
             <mat-form-field [class]="!isAdmin() ? 'disabled': null">
-                <span *ngIf="!isAdmin()" class="emoji">{{ getEmoji('lock') }}</span>
+                <mat-icon *userPermission="['simple-user']">lock</mat-icon>
                 <input #inputAutoComplete #trigger="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="customers" [placeholder]="getLabel('customer')" [readonly]="!isAdmin()" data-tabindex="3" formControlName="customer" matInput>
                 <div matSuffix style="display:flex">
                     <button *userPermission="['admin']" (click)="openOrCloseAutoComplete(trigger, 'customer')" mat-icon-button type="button">
-                        <i class="pi pi-angle-down"></i>
+                        <mat-icon>expand_more</mat-icon>
                     </button>
                 </div>
                 <mat-error *ngIf="customer.hasError('required')">{{ getHint("required") }}</mat-error>
@@ -35,7 +35,7 @@
             </mat-form-field>
             <!-- Email -->
             <mat-form-field [class]="!isAdmin() ? 'disabled': null">
-                <span *ngIf="!isAdmin()" class="emoji">{{ getEmoji('lock') }}</span>
+                <mat-icon *userPermission="['simple-user']">lock</mat-icon>
                 <input [inputTabStop]="input" [placeholder]="getLabel('email')" [readonly]="!isAdmin()" data-tabindex="4" formControlName="email" matInput type="email">
                 <mat-error *ngIf="email.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="email.hasError('email')">{{ getHint("invalid") }}</mat-error>
@@ -45,7 +45,7 @@
                 <div class="styled-input-square">
                     <div [class]="!isAdmin() ? 'disabled': null" class="styled-input-single">
                         <div class="checkbox-with-lock-icon">
-                            <span *userPermission="['simple-user']" class="emoji">{{ getEmoji('lock') }}</span>
+                            <mat-icon *userPermission="['simple-user']">lock</mat-icon>
                             <input formControlName="isAdmin" id="isAdmin" type="checkbox">
                             <label for="isAdmin">{{ getLabel("isAdmin") }}</label>
                         </div>
@@ -55,7 +55,7 @@
                 <div class="styled-input-square">
                     <div [class]="!isAdmin() ? 'disabled': null" class="styled-input-single">
                         <div class="checkbox-with-lock-icon">
-                            <span *userPermission="['simple-user']" class="emoji">{{ getEmoji('lock') }}</span>
+                            <mat-icon *userPermission="['simple-user']">lock</mat-icon>
                             <input formControlName="isActive" id="isActive" type="checkbox">
                             <label for="isActive">{{ getLabel("isActive") }}</label>
                         </div>
@@ -69,7 +69,7 @@
         <div class="button-group-right">
             <button (click)="changePassword()" class="secondary" mat-flat-button>{{ getLabel("changePasswordButton") }}</button>
             <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
-                <span *isFormInvalid=!form.valid [innerText]="getEmoji('lock')" class="emoji"></span>
+                <mat-icon *ngIf="!form.valid">lock</mat-icon>
                 <span>{{ getLabel("saveButton") }}</span>
             </button>
         </div>

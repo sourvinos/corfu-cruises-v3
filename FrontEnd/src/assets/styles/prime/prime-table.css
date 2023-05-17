@@ -37,7 +37,6 @@
     font-size: var(--font-size-table-header) !important;
     font-weight: 300 !important;
     text-align: center !important;
-    transition: all var(--theme-change-delay) ease-in;
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(1) > th {
@@ -101,7 +100,6 @@
     overflow: hidden !important;
     padding: 0.4375rem 0.5rem;
     text-overflow: ellipsis !important;
-    transition: background-color var(--theme-change-delay) ease-in, color var(--theme-change-delay) ease-in;
     white-space: nowrap !important;
 }
 
@@ -113,7 +111,6 @@
 .p-datatable .p-sortable-column .p-sortable-column-icon {
     color: var(--color-c) !important;
     margin-top: -0.25rem;
-    transition: all var(--theme-change-delay) ease-in;
 }
 
 .p-datatable .p-sortable-column .p-sortable-column-badge {

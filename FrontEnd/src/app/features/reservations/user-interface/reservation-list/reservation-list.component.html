@@ -7,8 +7,8 @@
                 <img [src]="getIcon('calendar')">
                 <div class="description">{{ formatDateToLocale(getDateFromStorage(), true, true) }}</div>
             </div>
-            <button (click)="resetTableFilters()" class="primary reset-table-filters" mat-flat-button>
-                    <span class="material-icons-outlined">filter_alt_off</span>
+            <button (click)="resetTableFilters()" class="primary" mat-flat-button>
+                <mat-icon class="no-text">filter_alt_off</mat-icon>
             </button>
         </div>
     </div>
@@ -157,7 +157,9 @@
     </div>
 
     <div id="footer">
-        <button [matMenuTriggerFor]="menu" pButton pRipple type="button" icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text transparent"></button>
+        <button [matMenuTriggerFor]="menu" mat-icon-button>
+            <mat-icon class="no-text">more_vert</mat-icon>
+        </button>
         <mat-menu #menu="matMenu" class="primary">
             <ng-container *ngTemplateOutlet="contextMenu"></ng-container>
         </mat-menu>
@@ -196,15 +198,15 @@
 
 <ng-template #contextMenu>
     <button (click)="assignToDriver()" [disabled]="!isAdmin()" mat-menu-item>
-        <i *ngIf="!isAdmin()" class="pi pi-lock with-text"></i>
+        <mat-icon *ngIf="!isAdmin()">lock</mat-icon>
         <span>{{ getLabel('assignToDriverButton') }}</span>
     </button>
     <button (click)="assignToShip()" [disabled]="!isAdmin()" mat-menu-item>
-        <i *ngIf="!isAdmin()" class="pi pi-lock with-text"></i>
+        <mat-icon *ngIf="!isAdmin()">lock</mat-icon>
         <span>{{ getLabel('assignToShipButton') }}</span>
     </button>
     <button (click)="createPdf()" [disabled]="!isAdmin()" mat-menu-item>
-        <i *ngIf="!isAdmin()" class="pi pi-lock with-text"></i>
+        <mat-icon *ngIf="!isAdmin()">lock</mat-icon>
         <span>{{ getLabel('createPdfButton') }}</span>
     </button>
 </ng-template>

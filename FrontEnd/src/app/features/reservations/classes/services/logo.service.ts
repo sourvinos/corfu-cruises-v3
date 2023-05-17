@@ -1,15 +1,16 @@
-import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { Injectable } from '@angular/core'
+// Custom
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 
 @Injectable({ providedIn: 'root' })
 
 export class LogoService {
 
-    constructor(private sessionStorageService: SessionStorageService) { }
+    constructor(private localStorageService: LocalStorageService) { }
 
     public getLogo(color?: string): any {
         if (color == null) {
-            return this.sessionStorageService.getItem('theme') == 'light' ? this.getLogoLight() : this.getLogoDark()
+            return this.localStorageService.getItem('theme') == 'light' ? this.getLogoLight() : this.getLogoDark()
         } else {
             return color == 'light' ? this.getLogoLight() : this.getLogoDark()
         }

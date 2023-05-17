@@ -17,7 +17,6 @@ a:link, a:visited {
 
 a:link:hover {
     color: var(--color-link);
-    transition: all var(--theme-change-delay) ease-in;
 }
 
 @media (width <= 430px) {

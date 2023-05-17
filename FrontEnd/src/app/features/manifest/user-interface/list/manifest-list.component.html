@@ -7,8 +7,8 @@
                 <img [src]="getIcon('calendar')">
                 <div class="description">{{ formatDateToLocale(records.date, true, true) }}</div>
             </div>
-            <button (click)="resetTableFilters()" [disabled]="totals[0]==totalsFiltered[0]" class="primary" mat-flat-button>
-                    <span class="material-icons-outlined">filter_alt_off</span>
+            <button (click)="resetTableFilters()" class="primary" mat-flat-button>
+                <mat-icon class="no-text">filter_alt_off</mat-icon>
             </button>
         </div>
     </div>
@@ -116,7 +116,7 @@
         </div>
         <div class="button-group-right">
             <button (click)="showRouteSelectorDialog()" [disabled]="records.passengers.length==0" class="primary" mat-flat-button>
-                <i *ngIf="records.passengers.length==0" class="pi pi-lock with-text"></i>
+                <mat-icon *ngIf="records.passengers.length==0">lock</mat-icon>
                 <span>{{ getLabel("createPdf") }}</span>
             </button>
         </div>

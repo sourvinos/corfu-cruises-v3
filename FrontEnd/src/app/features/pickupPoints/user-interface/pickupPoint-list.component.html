@@ -3,7 +3,7 @@
     <div id="header">
         <home-button-and-title [featureIcon]="featureIcon" [feature]="feature" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
         <div id="criteria">
-            <button (click)="resetTableFilters()" class="primary reset-table-filters" mat-flat-button>
+            <button (click)="resetTableFilters()" class="primary" mat-flat-button>
                 <span class="material-icons-outlined">filter_alt_off</span>
             </button>
         </div>
@@ -59,7 +59,7 @@
         <table-total-filtered-records [filteredRecordCount]="recordsFilteredCount" [recordCount]="records.length"></table-total-filtered-records>
         <div class="button-group-right">
             <button (click)="createPdf()" [disabled]="recordsFilteredCount==0" class="secondary" mat-flat-button>
-                <i *ngIf="recordsFilteredCount==0" class="pi pi-lock with-text"></i>
+                <mat-icon *ngIf="recordsFilteredCount==0">lock</mat-icon>
                 <span>{{ getLabel("createPdf") }}</span>
             </button>
             <button (click)="newRecord()" class="primary" mat-flat-button>{{ getLabel("newRecord") }}</button>

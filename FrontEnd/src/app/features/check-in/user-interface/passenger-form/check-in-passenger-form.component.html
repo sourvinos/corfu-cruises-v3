@@ -19,7 +19,7 @@
                 <input #inputAutoComplete #triggerNationality="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="nationalities" [placeholder]="getLabel('nationality')" data-tabindex="3" formControlName="nationality" matInput>
                 <div matSuffix style="display:flex">
                     <button (click)="openOrCloseAutoComplete(triggerNationality, 'nationality')" mat-icon-button type="button">
-                        <i class="pi pi-angle-down"></i>
+                        <mat-icon>expand_more</mat-icon>
                     </button>
                 </div>
                 <mat-error *ngIf="nationality.hasError('required')">{{ getHint("required") }}</mat-error>
@@ -30,7 +30,7 @@
                 <input #inputAutoComplete #triggerGender="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="genders" [placeholder]="getLabel('gender')" data-tabindex="4" formControlName="gender" matInput>
                 <div matSuffix style="display:flex">
                     <button (click)="openOrCloseAutoComplete(triggerGender, 'gender')" mat-icon-button type="button">
-                        <i class="pi pi-angle-down"></i>
+                        <mat-icon>expand_more</mat-icon>
                     </button>
                 </div>
                 <mat-error *ngIf="gender.hasError('required')">{{ getHint("required") }}</mat-error>
@@ -53,7 +53,7 @@
                 <span>{{ getLabel("cancelButton") }}</span>
             </button>
             <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button tabindex="-1">
-                <i *ngIf="!form.valid" class="pi pi-lock with-text"></i>
+                <mat-icon *ngIf="!form.valid">lock</mat-icon>
                 <span>{{ getLabel("okButton") }}</span>
             </button>
         </div>

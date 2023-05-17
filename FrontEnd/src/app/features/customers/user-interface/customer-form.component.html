@@ -62,7 +62,7 @@
         <div class="button-group-right">
             <button (click)="onDelete()" *ngIf="form.value.id !== 0" class="delete" mat-flat-button>{{ getLabel("deleteButton") }}</button>
             <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
-                <span *isFormInvalid=!form.valid [innerText]="getEmoji('lock')" class="emoji"></span>
+                <mat-icon *ngIf="!form.valid">lock</mat-icon>
                 <span>{{ getLabel("saveButton") }}</span>
             </button>
         </div>

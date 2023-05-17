@@ -95,8 +95,9 @@
 }
 
 #ref-no, #total-pax {
+    background-color: var(--color-x) !important;
     border-radius: 0.625rem;
-    border: 0.0625rem solid var(--color-b);
+    border: 0.0625rem solid var(--color-e);
     display: flex;
     flex-direction: column;
     font-family: var(--font-family-asty);

@@ -20,7 +20,7 @@
     <div id="footer">
         <div class="button-group-right">
             <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
-                <i *ngIf="!form.valid" class="pi pi-lock with-text"></i>
+                <mat-icon *ngIf="!form.valid">lock</mat-icon>
                 <span>{{ getLabel("saveButton") }}</span>
             </button>
         </div>

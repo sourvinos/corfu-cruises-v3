@@ -50,7 +50,6 @@
     font-family: var(--font-family-asty);
     font-weight: 300;
     margin-top: 0.1875rem;
-    transition: all var(--theme-change-delay) ease-in;
 }
 
 .edit-icon {

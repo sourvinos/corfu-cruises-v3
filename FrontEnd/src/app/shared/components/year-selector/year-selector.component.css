@@ -4,6 +4,8 @@
 
 button.trigger {
     background-color: transparent;
+    color: var(--color-c);
+    margin-top: 0.35rem;
 }
 
 .sub-menu button {
@@ -11,6 +13,7 @@ button.trigger {
     border-right: 1px solid var(--color-dropdown-menu-border);
     border-bottom: 0;
     border-left: 1px solid var(--color-dropdown-menu-border);
+    color: var(--color-c);
 }
 
 .sub-menu button:first-child {
@@ -29,5 +32,4 @@ button.trigger {
     margin-left: auto;
     margin-right: 1rem;
     transform: scale(1.5, 1);
-    transition: all var(--theme-change-delay) ease-in;
 }

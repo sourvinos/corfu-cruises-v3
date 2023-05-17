@@ -20,7 +20,7 @@ import { ConnectedUser } from 'src/app/shared/classes/connected-user'
 @Component({
     selector: 'availability',
     templateUrl: './availability.component.html',
-    styleUrls: ['./availability.component.css']
+    styleUrls: ['./availability.component.css', '../../../../assets/styles/custom/calendar.css']
 })
 
 export class AvailabilityComponent {

@@ -1,8 +1,0 @@
-.pi {
-    font-size: 12px;
-    color: var(--color-c);
-}
-
-.pi.before-input-field {
-    margin: 2px 0.2rem 0 0 !important;
-}

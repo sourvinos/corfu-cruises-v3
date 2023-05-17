@@ -14,7 +14,7 @@
             }
         ],
         "color-hex-length": "long",
-        "comment-empty-line-before": "never",
+        "comment-empty-line-before": null,
         "comment-no-empty": null,
         "custom-property-empty-line-before": "never",
         "declaration-empty-line-before": "never",

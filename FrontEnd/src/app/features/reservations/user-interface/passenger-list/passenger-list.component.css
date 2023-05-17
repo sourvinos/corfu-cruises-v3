@@ -42,7 +42,6 @@
     font-size: 1rem;
     font-weight: 300;
     margin-top: 0.1875rem;
-    transition: all var(--theme-change-delay) ease-in;
 }
 
 .fa-trash-alt {

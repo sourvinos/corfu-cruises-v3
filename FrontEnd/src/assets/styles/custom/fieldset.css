@@ -3,7 +3,6 @@ fieldset {
     border-radius: 0;
     border: 0.0625rem solid var(--color-e);
     padding: 1rem 0.5rem 1rem 1rem;
-    transition: all var(--theme-change-delay) ease-in;
 }
 
 fieldset legend {
@@ -15,6 +14,5 @@ fieldset legend {
     font-weight: 300;
     justify-content: space-between;
     padding: 0.3125rem 0.625rem 0 0.625rem;
-    transition: all var(--theme-change-delay) ease-in;
     width: 100%;
 }

@@ -9,7 +9,6 @@
     border: 0.0625rem solid var(--color-e);
     display: flex;
     padding: 0;
-    transition: all var(--theme-change-delay) ease-in;
 }
 
 @media (width <= 430px) {

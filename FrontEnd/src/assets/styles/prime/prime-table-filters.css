@@ -8,7 +8,6 @@
 .p-dropdown .p-dropdown-trigger {
     border-radius: 0;
     color: var(--color-c);
-    transition: all var(--theme-change-delay) ease-in;
 }
 
 .p-dropdown .p-dropdown-trigger:hover {

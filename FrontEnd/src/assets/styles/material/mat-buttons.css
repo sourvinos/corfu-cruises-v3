@@ -10,10 +10,6 @@ button {
     padding-top: 0.0625rem !important;
 }
 
-button:hover:not([disabled]) {
-    transition: all var(--hover-change-delay) ease-in;
-}
-
 button.primary {
     background-image: var(--color-button-background-primary);
     color: var(--color-button-text) !important;
@@ -115,16 +111,9 @@ button.mat-button-toggle-label-content {
     margin-left: 40px;
 }
 
-.checkbox-with-lock-icon .mat-icon.lock {
-    margin-top: 0;
-}
-
 @media (width <= 430px) {
     .button-text {
         font-size: 13px;
-    }
-    .mat-button-wrapper .material-icons .navigation {
-        font-size: 12px;
     }
 }
 
@@ -132,9 +121,6 @@ button.mat-button-toggle-label-content {
     .button-text {
         font-size: 14px;
         margin-top: 0;
-    }
-    .mat-button-wrapper .material-icons .navigation {
-        font-size: 13.6px;
     }
 }
 

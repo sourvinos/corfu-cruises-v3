@@ -13,7 +13,6 @@ input.right {
 input.mat-input-element, textarea.mat-input-element {
     caret-color: var(--color-c) !important;
     margin-top: -0.0625rem !important;
-    transition: all var(--theme-change-delay) ease-in;
 }
 
 input[type="text"], input[type="email"], input[type="number"], input[type="password"] {
@@ -32,11 +31,10 @@ textarea {
 .mat-form-field {
     background-color: var(--color-x) !important;
     border-radius: 10px;
-    border: 1px solid var(--color-b);
+    border: 1px solid var(--color-e) !important;
     line-height: 132%;
     margin-top: var(--form-field-margin) !important;
     padding: 0.5rem 1rem;
-    transition: all var(--theme-change-delay) ease-in;
     width: 100% !important;
 }
 
@@ -74,7 +72,6 @@ textarea {
 
 .mat-form-field-label span {
     font-size: var(--font-size-input-label) !important;
-    transition: all var(--theme-change-delay) ease-in;
 }
 
 .mat-form-field-label-wrapper {

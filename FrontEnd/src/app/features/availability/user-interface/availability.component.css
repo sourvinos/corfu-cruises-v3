@@ -1,98 +1,11 @@
-#wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-#header {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 4rem 1rem 4rem !important;
-}
-
-#content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
-    margin: 0 2.5rem 0 2.5rem;
-}
-
-#footer {
-    align-items: center;
-    display: flex;
-    gap: 1rem;
-    justify-content: space-between;
-    margin-top: auto;
-    padding: var(--gap) 4rem;
-}
-
-#days {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    justify-content: center;
-}
-
-.day {
-    background-color: var(--color-x);
-    border-radius: 0.625rem;
-    border: 0.0625rem solid var(--color-z);
-    display: flex;
-    flex-direction: column;
-    max-width: 7.7rem;
-    min-width: 7.7rem;
-    padding: 1.8rem 1rem 1.8rem 1rem;
-}
-
-.day:hover {
-    cursor: no-drop;
-}
-
-.day-data {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 2rem;
-}
-
-.day-data .weekday, .day-data .month, .day-data .year {
-    color: var(--color-c);
-    font-family: var(--font-family-asty);
-    font-size: 0.8rem;
-    font-weight: 100;
-    margin-top: 0.2rem;
-}
-
-.day-data .date {
-    color: var(--color-c);
-    font-family: var(--font-family-asty);
-    font-size: 1.8rem;
-    font-weight: 100;
-    margin-top: 0.3125rem;
-    text-align: center;
-    width: 3rem;
-}
-
-.api-object button:hover {
-    background-color: var(--color-g) !important;
-}
-
-.day.has-schedule {
-    cursor: pointer;
+#goto-today-button span {
+    color: var(--color-green) !important;
 }
 
 .no-reservation-data, .api-object {
     display: flex;
     justify-content: center;
     margin-top: auto;
-}
-
-.no-reservation-data span {
-    color: #00000023 !important;
-    font-size: 4rem;
 }
 
 .api-object span {
@@ -104,113 +17,17 @@
 }
 
 .api-object span:hover {
-    background-color: var(--color-g) !important;
-}
-
-.reservation-data {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.reservation {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: flex-start;
-    width: 100%;
-}
-
-.destinations {
-    border-radius: 0.625rem;
-    color: var(--color-c);
-    display: flex;
-    flex-direction: column;
-    font-family: var(--font-family-asty);
-    font-size: 0.8rem;
-    font-weight: 300;
-    justify-content: space-between;
-    padding: 1rem 1rem 1rem 1rem;
+    background-color: var(--color-z);
+    cursor: pointer;
 }
 
 .destinations:hover {
-    background-color: rgb(0 0 0 /10%);
-    transition: all var(--theme-change-delay) ease-in;
-}
-
-.destination-description {
-    margin-bottom: 0.8rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transform: scale(1, 1.5);
-    white-space: nowrap;
+    background-color: #00000033;
+    cursor: pointer;
 }
 
 .ports {
     display: flex;
     justify-content: space-between;
     margin: 0 0 0.3rem 0;
-}
-
-.pax {
-    color: var(--color-c);
-    font-family: var(--font-family-asty);
-    font-size: 1.5rem;
-    font-weight: 100;
-    margin: auto auto 1rem auto;
-    text-align: center;
-}
-
-.saturday {
-    background-color: var(--color-background-saturday);
-}
-
-.sunday {
-    background-color: var(--color-background-sunday);
-}
-
-.is-today {
-    background-color: var(--color-background-today) !important;
-}
-
-#goto-today-button {
-    background-color: transparent !important;
-    margin: 0 1rem 0 1rem !important;
-}
-
-.mat-icon#today {
-    color: var(--color-background-today) !important;
-    font-size: 1.4rem !important;
-    margin-top: -0.3125rem !important;
-}
-
-#period-scroller {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    margin: 0.3rem 0;
-}
-
-#period-scroller button {
-    background-color: transparent !important;
-    border: none;
-    box-shadow: none;
-    display: flex;
-    margin-right: 1rem !important;
-    transition: all var(--hover-change-delay) ease-in;
-}
-
-#period-scroller button span.material-icons {
-    color: var(--color-red);
-    font-size: 2.5rem;
-}
-
-.material-icons.warning {
-    color: var(--color-red);
-    margin-left: auto;
-}
-
-.material-icons.warning:hover {
-    cursor: pointer;
 }

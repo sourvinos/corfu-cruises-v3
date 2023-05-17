@@ -17,7 +17,6 @@
     font-weight: var(--font-weight-logo);
     line-height: 2.25rem;
     margin: 0.125rem 0 0 4rem;
-    transition: all var(--theme-change-delay) ease-in;
 }
 
 @media (width <= 430px) {

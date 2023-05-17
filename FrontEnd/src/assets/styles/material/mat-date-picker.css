@@ -54,14 +54,12 @@
 
 .mat-calendar-table-header {
     color: var(--color-c);
-    transition: all var(--hover-change-delay) ease-in;
 }
 
 .mat-calendar-controls .mat-button .mat-button-wrapper {
     color: var(--color-button-text);
     font-family: var(--font-family-asty);
     font-size: var(--font-size-datepicker-header-month);
-    transition: all var(--hover-change-delay) ease-in;
 }
 
 .mat-calendar-body-cell {
@@ -96,7 +94,6 @@
     flex-direction: column;
     font-size: var(--font-size-calendar-day);
     line-height: 0 !important;
-    transition: all var(--hover-change-delay) ease-in;
 }
 
 .mat-calendar-body-today {

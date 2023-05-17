@@ -18,7 +18,7 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 @Component({
     selector: 'calendar',
     templateUrl: './reservation-calendar.component.html',
-    styleUrls: ['./reservation-calendar.component.css'],
+    styleUrls: ['./reservation-calendar.component.css', '../../../../../assets/styles/custom/calendar.css'],
 })
 
 export class ReservationCalendarComponent {
