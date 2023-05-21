@@ -47,8 +47,6 @@ export class LedgerCriteriaComponent {
     public ports: SimpleEntity[] = []
     public ships: SimpleEntity[] = []
 
-    public isAdmin = false
-
     //#endregion
 
     constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private emojiService: EmojiService, private fieldsetCriteriaService: FieldsetCriteriaService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
@@ -81,8 +79,8 @@ export class LedgerCriteriaComponent {
 
     //#region public methods
 
-    public checkboxChange(event: any, allCheckbox: string, formControlsArray: string, array: any[], description: string): void {
-        this.fieldsetCriteriaService.checkboxChange(this.form, event, allCheckbox, formControlsArray, array, description)
+    public checkboxChange(event: any, allCheckbox: string, formControlsArray: string, array: any[], id: number, description: string): void {
+        // this.fieldsetCriteriaService.checkboxChange(this.form, event, allCheckbox, formControlsArray, array, id, description)
     }
 
     public doTasks(): void {
@@ -111,6 +109,10 @@ export class LedgerCriteriaComponent {
             fromDate: this.dateHelperService.formatDateToIso(new Date()),
             toDate: this.dateHelperService.formatDateToIso(new Date())
         })
+    }
+
+    public isAdmin(): boolean {
+        return ConnectedUser.isAdmin
     }
 
     public lookup(arrayName: string, arrayId: number): boolean {
@@ -153,8 +155,8 @@ export class LedgerCriteriaComponent {
         this.unsubscribe.unsubscribe()
     }
 
-    public getConnectedUserRole(): void {
-        this.isAdmin = ConnectedUser.isAdmin
+    public getConnectedUserRole(): boolean {
+        return ConnectedUser.isAdmin
     }
 
     private initForm(): void {
@@ -170,7 +172,7 @@ export class LedgerCriteriaComponent {
             portsFilter: '',
             shipsFilter: '',
             allCustomersCheckbox: '',
-            allDestinationsCheckbox: '',
+            allDestinationsCheckbox: false,
             allPortsCheckbox: '',
             allShipsCheckbox: ''
         })

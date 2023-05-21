@@ -41,6 +41,8 @@
 }
 
 .list-wrapper {
+    display: flex;
+    flex-direction: column;
     height: 91%;
     overflow-y: scroll;
     width: 13.5rem;

@@ -31,14 +31,17 @@ export class FieldsetCriteriaService {
     public toggleAllCheckboxes(form: FormGroup, array: string, allCheckboxes: string): void {
         const selected = form.controls[array + 's'] as FormArray
         selected.clear()
+        const newState = form.value[allCheckboxes]
         const checkboxes = document.querySelectorAll<HTMLInputElement>('.' + array)
         checkboxes.forEach(checkbox => {
-            checkbox.checked = !form.value[allCheckboxes]
-            if (checkbox.checked) {
+            if (newState) {
+                checkbox.classList.add('mat-checkbox-checked')
                 selected.push(this.formBuilder.group({
-                    id: [checkbox.value, Validators.required],
-                    description: document.getElementById(array + '-label' + checkbox.value).innerHTML
+                    id: [parseInt(checkbox.id.match(/\d/g).toString()), Validators.required],
+                    description: checkbox.outerText
                 }))
+            } else {
+                checkbox.classList.remove('mat-checkbox-checked')
             }
         })
     }
@@ -58,15 +61,15 @@ export class FieldsetCriteriaService {
         }))
     }
 
-    public checkboxChange(form: FormGroup, event: any, allCheckbox: string, formControlsArray: string, array: any[], description: string): void {
+    public checkboxChange(form: FormGroup, event: any, allCheckbox: string, formControlsArray: string, array: any[], id: number, description: string): void {
         const selected = form.controls[formControlsArray] as FormArray
-        if (event.target.checked) {
+        if (event.checked) {
             selected.push(this.formBuilder.group({
-                id: [parseInt(event.target.value), Validators.required],
+                id: [id, Validators.required],
                 description: [description]
             }))
         } else {
-            const index = selected.controls.findIndex(x => x.value.id == parseInt(event.target.value))
+            const index = selected.controls.findIndex(x => x.value.id == id)
             selected.removeAt(index)
         }
         if (selected.length == 0 || selected.length != array.length) {

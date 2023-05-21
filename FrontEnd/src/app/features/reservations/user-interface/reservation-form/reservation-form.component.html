@@ -11,9 +11,11 @@
                     <button (click)="showPassengersTab()" mat-flat-button id="tab-passengers">{{ getLabel("tabPassengers") }}</button>
                     <button (click)="showMiscTab()" mat-flat-button id="tab-misc">{{ getLabel("tabMisc") }}</button>
                 </div>
-                <button [matMenuTriggerFor]="menu" class="p-button-rounded p-button-text transparent" icon="pi pi-ellipsis-v" pButton pRipple type="button"></button>
-                <mat-menu #menu="matMenu" class="primary" xPosition="before">
-                    <ng-container *ngTemplateOutlet="voucherMenu"></ng-container>
+                <button [matMenuTriggerFor]="menu" mat-icon-button>
+                    <mat-icon class="no-text">more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu" class="primary">
+                    <ng-container *ngTemplateOutlet="contextMenu"></ng-container>
                 </mat-menu>
             </div>
         </div>
@@ -53,7 +55,7 @@
                             <mat-icon *ngIf="!isAdmin()">lock</mat-icon>
                             <input #inputAutoComplete #triggerCustomer="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="customers" [placeholder]="getLabel('customer')" [readonly]="!isAdmin()" data-tabindex="3" formControlName="customer" matInput>
                             <div matSuffix style="display:flex">
-                                <button *userPermission="['admin']" (click)="openOrCloseAutoComplete(triggerCustomer, 'customer')" mat-icon-button type="button">
+                                <button (click)="openOrCloseAutoComplete(triggerCustomer, 'customer')" [disabled]="!isAdmin()" mat-icon-button type="button">
                                     <mat-icon>expand_more</mat-icon>
                                 </button>
                             </div>
@@ -67,7 +69,7 @@
                             <mat-icon *ngIf="!isAdminOrNewRecord()">lock</mat-icon>
                             <input #inputAutoComplete #triggerPickupPoint="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="pickupPoints" [placeholder]="getLabel('pickupPoint')" [readonly]="!isAdminOrNewRecord()" data-tabindex="4" formControlName="pickupPoint" matInput>
                             <div matSuffix style="display:flex">
-                                <button *ngIf="isAdminOrNewRecord()" (click)="openOrCloseAutoComplete(triggerPickupPoint, 'pickupPoint')" mat-icon-button type="button">
+                                <button (click)="openOrCloseAutoComplete(triggerPickupPoint, 'pickupPoint')" [disabled]="!isAdminOrNewRecord()" mat-icon-button type="button">
                                     <mat-icon>expand_more</mat-icon>
                                 </button>
                             </div>
@@ -180,7 +182,7 @@
     <div id="footer">
         <div class="button-group-right">
             <button *ngIf="form.value.reservationId != ''" (click)="onDelete()" [disabled]="!isAdmin()" class="delete" mat-flat-button>
-                <mat-icon *userPermission="['simple-user']">lock</mat-icon>
+                <mat-icon *ngIf="!isAdmin()">lock</mat-icon>
                 <span>{{ getLabel('deleteButton') }}</span>
             </button>
             <button (click)="onSave()" [disabled]="!form.valid || !checkForDifferenceBetweenTotalPaxAndPassengers()" class="primary" mat-flat-button>
@@ -230,7 +232,6 @@
     </mat-option>
 </mat-autocomplete>
 
-<ng-template #voucherMenu xPosition="before">
-    <button mat-menu-item (click)="doVoucherTasksOnServer()"><span>{{ getLabel('createVoucherOnServer') }}</span></button>
+<ng-template #contextMenu xPosition="before">
     <button mat-menu-item (click)="doVoucherTasksOnClient()"><span>{{ getLabel('createVoucherOnClient') }}</span></button>
 </ng-template>

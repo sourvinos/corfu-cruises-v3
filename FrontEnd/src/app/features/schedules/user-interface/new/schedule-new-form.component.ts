@@ -255,7 +255,7 @@ export class ScheduleNewFormComponent {
     }
 
     private updateWeekdayCheckbox(event: any, allCheckbox: string, formControlsArray: string, array: any[], description: string): void {
-        this.fieldsetCriteriaService.checkboxChange(this.form, event, allCheckbox, formControlsArray, array, description)
+        // this.fieldsetCriteriaService.checkboxChange(this.form, event, allCheckbox, formControlsArray, array, description)
     }
 
     //#endregion

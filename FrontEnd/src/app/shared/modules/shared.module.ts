@@ -25,7 +25,6 @@ import { SettingsMenuComponent } from '../components/top-bar-wrapper/settings-me
 import { TableTotalFilteredRecordsComponent } from '../components/table-total-filtered-records/table-total-filtered-records.component'
 import { ThemeMenuComponent } from './../components/top-bar-wrapper/theme-menu/theme-menu.component'
 import { TrimStringPipe } from './../pipes/string-trim.pipe'
-import { UserPermissionDirective } from '../directives/user-permission.directive'
 import { YearSelectorComponent } from '../components/year-selector/year-selector.component'
 
 @NgModule({
@@ -49,7 +48,6 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         TableTotalFilteredRecordsComponent,
         ThemeMenuComponent,
         TrimStringPipe,
-        UserPermissionDirective,
         YearSelectorComponent
     ],
     imports: [
@@ -84,9 +82,8 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         TableTotalFilteredRecordsComponent,
         ThemeMenuComponent,
         TrimStringPipe,
-        UserPermissionDirective,
         YearSelectorComponent,
-        ZXingScannerModule
+        ZXingScannerModule,
     ],
     entryComponents: [
         DialogAlertComponent,

@@ -1,6 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, QueryList, ViewChildren } from '@angular/core'
 // Custom
+import { ConnectedUser } from 'src/app/shared/classes/connected-user'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
@@ -85,6 +86,10 @@ export class LedgerCustomerListComponent {
 
     public highlightRow(id: any): void {
         this.helperService.highlightRow(id)
+    }
+
+    public isAdmin(): boolean {
+        return ConnectedUser.isAdmin
     }
 
     //#endregion

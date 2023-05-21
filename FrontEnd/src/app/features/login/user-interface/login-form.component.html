@@ -25,12 +25,17 @@
                 <mat-error *ngIf="password.hasError('required')">{{ getHint("required") }}</mat-error>
             </mat-form-field>
             <div id="columns">
-                <div class="styled-input-square">
+                <mat-checkbox formControlName="noRobot">
+                    <span>{{ getLabel("noRobotCheckbox") }}</span>
+                </mat-checkbox>
+                <!-- <div class="styled-input-square">
                     <div class="styled-input-single">
-                        <input formControlName="noRobot" id="no-robot" type="checkbox">
-                        <label for="no-robot">{{ getLabel("noRobotCheckbox") }}</label>
+                        <div class="checkbox-with-lock-icon">
+                            <input formControlName="noRobot" id="no-robot" type="checkbox">
+                            <label for="no-robot">{{ getLabel("noRobotCheckbox") }}</label>
+                        </div>
                     </div>
-                </div>
+                </div> -->
                 <div id="forgot-password">
                     <span (click)="onForgotPassword()">{{ getLabel("forgotPasswordButton") }}</span>
                 </div>

@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core'
 // Material
-import { DateAdapter, MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core'
+import { DateAdapter, MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material/core'
 import { MatAutocompleteModule } from '@angular/material/autocomplete'
 import { MatButtonModule } from '@angular/material/button'
 import { MatCardModule } from '@angular/material/card'
+import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatDividerModule } from '@angular/material/divider'
@@ -25,6 +26,7 @@ import { CustomDateAdapter } from '../adapters/custom-date-adapter'
         MatAutocompleteModule,
         MatButtonModule,
         MatCardModule,
+        MatCheckboxModule,
         MatDatepickerModule,
         MatDialogModule,
         MatDividerModule,
@@ -47,6 +49,7 @@ import { CustomDateAdapter } from '../adapters/custom-date-adapter'
         { provide: MAT_DATE_LOCALE, useValue: '' },
         { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
         { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { floatLabel: 'always' } },
+        { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: { disabled: true } }
     ]
 })
 

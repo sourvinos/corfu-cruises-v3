@@ -69,7 +69,7 @@ export class ManifestCriteriaComponent {
     //#region public methods
 
     public checkboxChange(event: any, allCheckbox: string, formControlsArray: string, array: any[], description: string): void {
-        this.fieldsetCriteriaService.checkboxChange(this.form, event, allCheckbox, formControlsArray, array, description)
+        // this.fieldsetCriteriaService.checkboxChange(this.form, event, allCheckbox, formControlsArray, array, description)
     }
 
     public doTasks(): void {

@@ -29,7 +29,7 @@
             </div>
             <div class="group-field">
                 <!-- Customers -->
-                <fieldset *userPermission="['admin']" class="fieldset">
+                <fieldset *ngIf="isAdmin()" class="fieldset">
                     <legend>
                         <span>{{ getLabel('customers') }}</span>
                         <div class="selected">
@@ -49,14 +49,17 @@
                         </div>
                     </div>
                     <div class="list-wrapper">
-                        <div *ngFor="let customer of customers" [attr.id]=customer.description>
+                        <mat-checkbox *ngFor="let customer of customers" [id]="customer.id.toString()" [checked]="lookup('customers', customer.id)" class="customer" (change)="checkboxChange($event, 'allCustomersCheckbox', 'customers', customers, customer.id, customer.description)" formArrayName="customers">
+                            <span>{{ customer.description | trimString:33 }}</span>
+                        </mat-checkbox>
+                        <!-- <div *ngFor="let customer of customers" [attr.id]=customer.description>
                             <div class="styled-input-square">
                                 <div class="styled-input-single" (change)="checkboxChange($event, 'allCustomersCheckbox', 'customers', customers, customer.description)">
                                     <input [attr.id]="'customer' + customer.id" [checked]="lookup('customers', customer.id)" [value]="customer.id" class="customer" formArrayName="customers" type="checkbox">
                                     <label [attr.for]="'customer' + customer.id" [attr.id]="'customer-label' + customer.id">{{ customer.description | trimString:33 }}</label>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </fieldset>
                 <!-- Destinations -->
@@ -69,25 +72,29 @@
                         </div>
                     </legend>
                     <div class="filter">
-                        <div class="styled-input-square">
+                        <mat-checkbox formControlName="allDestinationsCheckbox" id="all-destinations" (change)="toggleAllCheckboxes(form, 'destination', 'allDestinationsCheckbox')"></mat-checkbox>
+                        <!-- <div class="styled-input-square">
                             <div class="styled-input-single">
                                 <input (click)="toggleAllCheckboxes(form, 'destination', 'allDestinationsCheckbox')" formControlName="allDestinationsCheckbox" id="all-destinations" type="checkbox">
                                 <label class="no-label" for="all-destinations"></label>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="list-filter">
                             <input (keyup)="filterList($event, 'destinations')" formControlName="destinationsFilter" id="destinationsFilter" [placeholder]="getLabel('filterPlaceholder')">
                         </div>
                     </div>
                     <div class="list-wrapper">
-                        <div *ngFor="let destination of destinations" [attr.id]=destination.description>
+                        <mat-checkbox *ngFor="let destination of destinations" [id]="'destination-' + destination.id" [checked]="lookup('destinations', destination.id)" class="destination" (change)="checkboxChange($event, 'allDestinationsCheckbox', 'destinations', destinations, destination.id, destination.description)" formArrayName="destinations">
+                            <span>{{ destination.description | trimString:33 }}</span>
+                        </mat-checkbox>
+                        <!-- <div *ngFor="let destination of destinations" [attr.id]=destination.description>
                             <div class="styled-input-square">
-                                <div class="styled-input-single" (change)="checkboxChange($event, 'allDestinationsCheckbox', 'destinations', destinations, destination.description)">
+                                <div class="styled-input-single">
                                     <input [attr.id]="'destination' + destination.id" [checked]="lookup('destinations', destination.id)" [value]="destination.id" class="destination" formArrayName="destinations" type="checkbox">
                                     <label [attr.for]="'destination' + destination.id" [attr.id]="'destination-label' + destination.id">{{ destination.description | trimString:33 }}</label>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </fieldset>
                 <!-- Ports -->
@@ -113,7 +120,7 @@
                     <div class="list-wrapper">
                         <div *ngFor="let port of ports" [attr.id]=port.description>
                             <div class="styled-input-square">
-                                <div class="styled-input-single" (change)="checkboxChange($event, 'allPortsCheckbox', 'ports', ports, port.description)">
+                                <div class="styled-input-single">
                                     <input [attr.id]="'port' + port.id" [checked]="lookup('ports', port.id)" [value]="port.id" class="port" formArrayName="ports" type="checkbox">
                                     <label [attr.for]="'port' + port.id" [attr.id]="'port-label' + port.id">{{ port.description | trimString:33 }}</label>
                                 </div>
@@ -144,7 +151,7 @@
                     <div class="list-wrapper">
                         <div *ngFor="let ship of ships" [attr.id]=ship.description>
                             <div class="styled-input-square">
-                                <div class="styled-input-single" (change)="checkboxChange($event, 'allShipsCheckbox', 'ships', ships, ship.description)">
+                                <div class="styled-input-single">
                                     <input [attr.id]="'ship' + ship.id" [checked]="lookup('ships', ship.id)" [value]="ship.id" class="ship" formArrayName="ships" type="checkbox">
                                     <label [attr.for]="'ship' + ship.id" [attr.id]="'ship-label' + ship.id">{{ ship.description | trimString:33 }}</label>
                                 </div>
@@ -154,6 +161,8 @@
                 </fieldset>
             </div>
         </form>
+
+        <p>{{ form.value | json }}</p>
 
     </div>
 
