@@ -39,13 +39,15 @@ export class LedgerCriteriaComponent {
     public parentUrl = '/home'
 
     private criteria: LedgerCriteriaVM
-    public selectedFromDate = new Date()
-    public selectedRangeValue: DateRange<Date>
-    public selectedToDate = new Date()
+    private selectedRangeValue: DateRange<Date>
     public customers: SimpleEntity[] = []
     public destinations: SimpleEntity[] = []
     public ports: SimpleEntity[] = []
     public ships: SimpleEntity[] = []
+    public selectedCustomers: SimpleEntity[] = []
+    public selectedDestinations: SimpleEntity[] = []
+    public selectedPorts: SimpleEntity[] = []
+    public selectedShips: SimpleEntity[] = []
 
     //#endregion
 
@@ -58,17 +60,10 @@ export class LedgerCriteriaComponent {
         this.populateDropdowns()
         this.getConnectedUserRole()
         this.populateFieldsFromStoredVariables()
-        this.setSelectedDates()
+        this.populateSelectedFromForm()
         this.setLocale()
         this.subscribeToInteractionService()
         this.setTabTitle()
-    }
-
-    ngAfterViewInit(): void {
-        this.checkGroupCheckbox('all-customers', this.customers, 'customers')
-        this.checkGroupCheckbox('all-destinations', this.destinations, 'destinations')
-        this.checkGroupCheckbox('all-ports', this.ports, 'ports')
-        this.checkGroupCheckbox('all-ships', this.ships, 'ships')
     }
 
     ngOnDestroy(): void {
@@ -78,10 +73,6 @@ export class LedgerCriteriaComponent {
     //#endregion
 
     //#region public methods
-
-    public checkboxChange(event: any, allCheckbox: string, formControlsArray: string, array: any[], id: number, description: string): void {
-        // this.fieldsetCriteriaService.checkboxChange(this.form, event, allCheckbox, formControlsArray, array, id, description)
-    }
 
     public doTasks(): void {
         this.storeCriteria()
@@ -115,10 +106,52 @@ export class LedgerCriteriaComponent {
         return ConnectedUser.isAdmin
     }
 
-    public lookup(arrayName: string, arrayId: number): boolean {
-        if (this.criteria) {
-            return this.criteria[arrayName].filter((x: { id: number }) => x.id == arrayId).length != 0 ? true : false
+    public onHeaderCheckboxToggle(event: any, array: string, formControl: string): void {
+        if (event.checked == true) {
+            const x = this.form.controls[formControl] as FormArray
+            x.controls = []
+            this.form.patchValue({
+                [formControl]: []
+            })
+            this[array].forEach((element: any) => {
+                x.push(new FormControl({
+                    'id': element.id,
+                    'description': element.description
+                }))
+            })
         }
+        if (event.checked == false) {
+            const x = this.form.controls[formControl] as FormArray
+            x.controls = []
+            this.form.patchValue({
+                [formControl]: []
+            })
+        }
+    }
+
+    public onRowSelect(event: any, formControl: string): void {
+        const x = this.form.controls[formControl] as FormArray
+        x.controls = []
+        this[formControl].forEach((element: any) => {
+            x.push(new FormControl({
+                'id': element.id,
+                'description': element.description
+            }))
+        })
+    }
+
+    public onRowUnselect(event: any, formControl: string): void {
+        const x = this.form.controls[formControl] as FormArray
+        x.controls = []
+        this.form.patchValue({
+            [formControl]: []
+        })
+        this[formControl].forEach((element: any) => {
+            x.push(new FormControl({
+                'id': element.id,
+                'description': element.description
+            }))
+        })
     }
 
     public patchFormWithSelectedDates(fromDate: any, toDate: any): void {
@@ -128,26 +161,21 @@ export class LedgerCriteriaComponent {
         })
     }
 
-    public toggleAllCheckboxes(form: FormGroup, array: string, allCheckboxes: string): void {
-        this.fieldsetCriteriaService.toggleAllCheckboxes(form, array, allCheckboxes)
-    }
-
     //#endregion
 
     //#region private methods
 
     private addSelectedCriteriaFromStorage(arrayName: string): void {
         const x = this.form.controls[arrayName] as FormArray
+        this.form.patchValue({
+            [arrayName]: []
+        })
         this.criteria[arrayName].forEach((element: any) => {
             x.push(new FormControl({
                 'id': element.id,
                 'description': element.description
             }))
         })
-    }
-
-    private checkGroupCheckbox(allCheckbox: string, array: SimpleEntity[], formControlsArray: string): void {
-        this.fieldsetCriteriaService.checkGroupCheckbox(this.form, allCheckbox, array, formControlsArray)
     }
 
     private cleanup(): void {
@@ -163,18 +191,10 @@ export class LedgerCriteriaComponent {
         this.form = this.formBuilder.group({
             fromDate: ['', [Validators.required]],
             toDate: ['', [Validators.required]],
-            customers: this.formBuilder.array([], ConnectedUser.isAdmin ? Validators.required : null),
-            destinations: this.formBuilder.array([], Validators.required),
-            ports: this.formBuilder.array([], Validators.required),
-            ships: this.formBuilder.array([], Validators.required),
-            customersFilter: '',
-            destinationsFilter: '',
-            portsFilter: '',
-            shipsFilter: '',
-            allCustomersCheckbox: '',
-            allDestinationsCheckbox: false,
-            allPortsCheckbox: '',
-            allShipsCheckbox: ''
+            selectedCustomers: this.formBuilder.array([], ConnectedUser.isAdmin ? Validators.required : null),
+            selectedDestinations: this.formBuilder.array([], Validators.required),
+            selectedPorts: this.formBuilder.array([], Validators.required),
+            selectedShips: this.formBuilder.array([], Validators.required)
         })
     }
 
@@ -199,32 +219,23 @@ export class LedgerCriteriaComponent {
             this.form.patchValue({
                 fromDate: this.criteria.fromDate,
                 toDate: this.criteria.toDate,
-                customers: this.addSelectedCriteriaFromStorage('customers'),
-                destinations: this.addSelectedCriteriaFromStorage('destinations'),
-                ports: this.addSelectedCriteriaFromStorage('ports'),
-                ships: this.addSelectedCriteriaFromStorage('ships'),
-                allCustomersCheckbox: this.criteria.allCustomersCheckbox,
-                allDestinationsCheckbox: this.criteria.allDestinationsCheckbox,
-                allPortsCheckbox: this.criteria.allPortsCheckbox,
-                allShipsCheckbox: this.criteria.allShipsCheckbox
+                selectedCustomers: this.addSelectedCriteriaFromStorage('selectedCustomers'),
+                selectedDestinations: this.addSelectedCriteriaFromStorage('selectedDestinations'),
+                ports: this.addSelectedCriteriaFromStorage('selectedPorts'),
+                ships: this.addSelectedCriteriaFromStorage('selectedShips')
             })
         }
+    }
+
+    private populateSelectedFromForm(): void {
+        this.selectedCustomers = this.form.value.selectedCustomers
+        this.selectedDestinations = this.form.value.selectedDestinations
+        this.selectedPorts = this.form.value.selectedPorts
+        this.selectedShips = this.form.value.selectedShips
     }
 
     private setLocale(): void {
         this.dateAdapter.setLocale(this.localStorageService.getLanguage())
-    }
-
-    private setSelectedDates(): void {
-        if (this.criteria != undefined) {
-            this.selectedRangeValue = new DateRange(new Date(this.criteria.fromDate), new Date(this.criteria.toDate))
-        } else {
-            this.selectedRangeValue = new DateRange(new Date(), new Date())
-            this.form.patchValue({
-                fromDate: this.dateHelperService.formatDateToIso(new Date(), false),
-                toDate: this.dateHelperService.formatDateToIso(new Date(), false),
-            })
-        }
     }
 
     private setTabTitle(): void {

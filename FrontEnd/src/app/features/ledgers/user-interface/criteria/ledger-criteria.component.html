@@ -33,33 +33,25 @@
                     <legend>
                         <span>{{ getLabel('customers') }}</span>
                         <div class="selected">
-                            <span class="selected-count">{{ getLabel("selected") }}: {{ form.value.customers.length }}</span>
-                            <span class="icon">{{ getEmoji(form.value.customers.length > 0 ? 'ok' : 'error') }}</span>
+                            <span class="selected-count">{{ getLabel("selected") }}: {{ selectedCustomers.length }}</span>
+                            <span class="icon">{{ getEmoji(selectedCustomers.length > 0 ? 'ok' : 'error') }}</span>
                         </div>
                     </legend>
-                    <div class="filter">
-                        <div class="styled-input-square">
-                            <div class="styled-input-single">
-                                <input (click)="toggleAllCheckboxes(form, 'customer', 'allCustomersCheckbox')" formControlName="allCustomersCheckbox" id="all-customers" type="checkbox">
-                                <label class="no-label" for="all-customers"></label>
-                            </div>
-                        </div>
-                        <div class="list-filter">
-                            <input (keyup)="filterList($event, 'customers')" formControlName="customersFilter" id="customersFilter" [placeholder]="getLabel('filterPlaceholder')">
-                        </div>
-                    </div>
-                    <div class="list-wrapper">
-                        <mat-checkbox *ngFor="let customer of customers" [id]="customer.id.toString()" [checked]="lookup('customers', customer.id)" class="customer" (change)="checkboxChange($event, 'allCustomersCheckbox', 'customers', customers, customer.id, customer.description)" formArrayName="customers">
-                            <span>{{ customer.description | trimString:33 }}</span>
-                        </mat-checkbox>
-                        <!-- <div *ngFor="let customer of customers" [attr.id]=customer.description>
-                            <div class="styled-input-square">
-                                <div class="styled-input-single" (change)="checkboxChange($event, 'allCustomersCheckbox', 'customers', customers, customer.description)">
-                                    <input [attr.id]="'customer' + customer.id" [checked]="lookup('customers', customer.id)" [value]="customer.id" class="customer" formArrayName="customers" type="checkbox">
-                                    <label [attr.for]="'customer' + customer.id" [attr.id]="'customer-label' + customer.id">{{ customer.description | trimString:33 }}</label>
-                                </div>
-                            </div>
-                        </div> -->
+                    <div class="table-wrapper">
+                        <p-table #table (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'customers','selectedCustomers')" (onRowSelect)="onRowSelect($event,'selectedCustomers')" (onRowUnselect)="onRowUnselect($event,'selectedCustomers')" [(selection)]="selectedCustomers" [scrollable]="true" [value]="customers" scrollHeight="flex" selectionMode="multiple">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th class="width-2"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+                                    <th class="width-5"><input (input)="table.filter($event.target.value, 'description', 'contains')" [value]="$any(table).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
+                                </tr>
+                            </ng-template>
+                            <ng-template let-customer pTemplate="body">
+                                <tr [attr.id]="customer.id" style="height:32px">
+                                    <td class="center width-2"><p-tableCheckbox [value]="customer"></p-tableCheckbox></td>
+                                    <td class="width-5">{{ customer.description }}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
                     </div>
                 </fieldset>
                 <!-- Destinations -->
@@ -67,34 +59,27 @@
                     <legend>
                         <span>{{ getLabel('destinations') }}</span>
                         <div class="selected">
-                            <span class="selected-count">{{ getLabel("selected") }}: {{ form.value.destinations.length }}</span>
-                            <span class="icon">{{ getEmoji(form.value.destinations.length > 0 ? 'ok' : 'error') }}</span>
+                            <span class="selected-count">{{ getLabel("selected") }}: {{ selectedDestinations.length }}</span>
+                            <span class="icon">{{ getEmoji(selectedDestinations.length > 0 ? 'ok' : 'error') }}</span>
                         </div>
                     </legend>
-                    <div class="filter">
-                        <mat-checkbox formControlName="allDestinationsCheckbox" id="all-destinations" (change)="toggleAllCheckboxes(form, 'destination', 'allDestinationsCheckbox')"></mat-checkbox>
-                        <!-- <div class="styled-input-square">
-                            <div class="styled-input-single">
-                                <input (click)="toggleAllCheckboxes(form, 'destination', 'allDestinationsCheckbox')" formControlName="allDestinationsCheckbox" id="all-destinations" type="checkbox">
-                                <label class="no-label" for="all-destinations"></label>
-                            </div>
-                        </div> -->
-                        <div class="list-filter">
-                            <input (keyup)="filterList($event, 'destinations')" formControlName="destinationsFilter" id="destinationsFilter" [placeholder]="getLabel('filterPlaceholder')">
+                    <div class="list">
+                        <div class="table-wrapper">
+                            <p-table #table (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'destinations','selectedDestinations')" (onRowSelect)="onRowSelect($event,'selectedDestinations')" (onRowUnselect)="onRowUnselect($event,'selectedDestinations')" [(selection)]="selectedDestinations" [scrollable]="true" [value]="destinations" scrollHeight="flex" selectionMode="multiple">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th class="width-2"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+                                        <th class="width-5"><input (input)="table.filter($event.target.value, 'description', 'contains')" [value]="$any(table).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template let-destination pTemplate="body">
+                                    <tr [attr.id]="destination.id" style="height:32px">
+                                        <td class="center width-2"><p-tableCheckbox [value]="destination"></p-tableCheckbox></td>
+                                        <td class="width-5">{{ destination.description }}</td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
                         </div>
-                    </div>
-                    <div class="list-wrapper">
-                        <mat-checkbox *ngFor="let destination of destinations" [id]="'destination-' + destination.id" [checked]="lookup('destinations', destination.id)" class="destination" (change)="checkboxChange($event, 'allDestinationsCheckbox', 'destinations', destinations, destination.id, destination.description)" formArrayName="destinations">
-                            <span>{{ destination.description | trimString:33 }}</span>
-                        </mat-checkbox>
-                        <!-- <div *ngFor="let destination of destinations" [attr.id]=destination.description>
-                            <div class="styled-input-square">
-                                <div class="styled-input-single">
-                                    <input [attr.id]="'destination' + destination.id" [checked]="lookup('destinations', destination.id)" [value]="destination.id" class="destination" formArrayName="destinations" type="checkbox">
-                                    <label [attr.for]="'destination' + destination.id" [attr.id]="'destination-label' + destination.id">{{ destination.description | trimString:33 }}</label>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </fieldset>
                 <!-- Ports -->
@@ -102,29 +87,26 @@
                     <legend>
                         <span>{{ getLabel('ports') }}</span>
                         <div class="selected">
-                            <span class="selected-count">{{ getLabel("selected") }}: {{ form.value.ports.length }}</span>
-                            <span class="icon">{{ getEmoji(form.value.ports.length > 0 ? 'ok' : 'error') }}</span>
+                            <span class="selected-count">{{ getLabel("selected") }}: {{ selectedPorts.length }}</span>
+                            <span class="icon">{{ getEmoji(selectedPorts.length > 0 ? 'ok' : 'error') }}</span>
                         </div>
                     </legend>
-                    <div class="filter">
-                        <div class="styled-input-square">
-                            <div class="styled-input-single">
-                                <input (click)="toggleAllCheckboxes(form, 'port', 'allPortsCheckbox')" formControlName="allPortsCheckbox" id="all-ports" type="checkbox">
-                                <label class="no-label" for="all-ports"></label>
-                            </div>
-                        </div>
-                        <div class="list-filter">
-                            <input (keyup)="filterList($event, 'ports')" formControlName="portsFilter" id="portsFilter" [placeholder]="getLabel('filterPlaceholder')">
-                        </div>
-                    </div>
-                    <div class="list-wrapper">
-                        <div *ngFor="let port of ports" [attr.id]=port.description>
-                            <div class="styled-input-square">
-                                <div class="styled-input-single">
-                                    <input [attr.id]="'port' + port.id" [checked]="lookup('ports', port.id)" [value]="port.id" class="port" formArrayName="ports" type="checkbox">
-                                    <label [attr.for]="'port' + port.id" [attr.id]="'port-label' + port.id">{{ port.description | trimString:33 }}</label>
-                                </div>
-                            </div>
+                    <div class="list">
+                        <div class="table-wrapper">
+                            <p-table #table (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'ports','selectedPorts')" (onRowSelect)="onRowSelect($event,'selectedPorts')" (onRowUnselect)="onRowUnselect($event,'selectedPorts')" [(selection)]="selectedPorts" [scrollable]="true" [value]="ports" scrollHeight="flex" selectionMode="multiple">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th class="width-2"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+                                        <th class="width-5"><input (input)="table.filter($event.target.value, 'description', 'contains')" [value]="$any(table).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template let-port pTemplate="body">
+                                    <tr [attr.id]="port.id" style="height:32px">
+                                        <td class="center width-2"><p-tableCheckbox [value]="port"></p-tableCheckbox></td>
+                                        <td class="width-5">{{ port.description }}</td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
                         </div>
                     </div>
                 </fieldset>
@@ -133,36 +115,31 @@
                     <legend>
                         <span>{{ getLabel('ships') }}</span>
                         <div class="selected">
-                            <span class="selected-count">{{ getLabel("selected") }}: {{ form.value.ships.length }}</span>
-                            <span class="icon">{{ getEmoji(form.value.ships.length > 0 ? 'ok' : 'error') }}</span>
+                            <span class="selected-count">{{ getLabel("selected") }}: {{ selectedShips.length }}</span>
+                            <span class="icon">{{ getEmoji(selectedShips.length > 0 ? 'ok' : 'error') }}</span>
                         </div>
                     </legend>
-                    <div class="filter">
-                        <div class="styled-input-square">
-                            <div class="styled-input-single">
-                                <input (click)="toggleAllCheckboxes(form, 'ship', 'allShipsCheckbox')" formControlName="allShipsCheckbox" id="all-ships" type="checkbox">
-                                <label class="no-label" for="all-ships"></label>
-                            </div>
-                        </div>
-                        <div class="list-filter">
-                            <input (keyup)="filterList($event, 'ships')" formControlName="shipsFilter" id="shipsFilter" [placeholder]="getLabel('filterPlaceholder')">
-                        </div>
-                    </div>
-                    <div class="list-wrapper">
-                        <div *ngFor="let ship of ships" [attr.id]=ship.description>
-                            <div class="styled-input-square">
-                                <div class="styled-input-single">
-                                    <input [attr.id]="'ship' + ship.id" [checked]="lookup('ships', ship.id)" [value]="ship.id" class="ship" formArrayName="ships" type="checkbox">
-                                    <label [attr.for]="'ship' + ship.id" [attr.id]="'ship-label' + ship.id">{{ ship.description | trimString:33 }}</label>
-                                </div>
-                            </div>
+                    <div class="list">
+                        <div class="table-wrapper">
+                            <p-table #table (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'ships','selectedShips')" (onRowSelect)="onRowSelect($event,'selectedShips')" (onRowUnselect)="onRowUnselect($event,'selectedShips')" [(selection)]="selectedShips" [scrollable]="true" [value]="ships" scrollHeight="flex" selectionMode="multiple">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th class="width-2"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+                                        <th class="width-5"><input (input)="table.filter($event.target.value, 'description', 'contains')" [value]="$any(table).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template let-ship pTemplate="body">
+                                    <tr [attr.id]="ship.id" style="height:32px">
+                                        <td class="center width-2"><p-tableCheckbox [value]="ship"></p-tableCheckbox></td>
+                                        <td class="width-5">{{ ship.description }}</td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
                         </div>
                     </div>
                 </fieldset>
             </div>
         </form>
-
-        <p>{{ form.value | json }}</p>
 
     </div>
 

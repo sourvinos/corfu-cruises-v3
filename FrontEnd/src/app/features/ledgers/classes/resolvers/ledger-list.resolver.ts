@@ -18,10 +18,10 @@ export class LedgerListResolver {
         const searchCriteria: LedgerSearchCriteria = {
             fromDate: storedCriteria.fromDate,
             toDate: storedCriteria.toDate,
-            customerIds: this.buildIds(storedCriteria.customers),
-            destinationIds: this.buildIds(storedCriteria.destinations),
-            portIds: this.buildIds(storedCriteria.ports),
-            shipIds: this.buildIds(storedCriteria.ships)
+            customerIds: this.buildIds(storedCriteria.selectedCustomers),
+            destinationIds: this.buildIds(storedCriteria.selectedDestinations),
+            portIds: this.buildIds(storedCriteria.selectedPorts),
+            shipIds: this.buildIds(storedCriteria.selectedShips)
         }
         return this.ledgerService.get(searchCriteria).pipe(
             map((ledgerList) => new LedgerListResolved(ledgerList)),

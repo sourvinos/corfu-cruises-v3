@@ -56,3 +56,11 @@
 #date #goto-today span {
     color: var(--color-green) !important;
 }
+
+.table-wrapper {
+    height: 100%;
+}
+
+th {
+    border: 1px solid var(--color-e) !important;
+}
