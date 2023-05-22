@@ -10,7 +10,7 @@ import { LoginFormComponent } from '../features/login/user-interface/login-form.
 import { ResetPasswordFormComponent } from '../features/users/user-interface/reset-password/reset-password-form.component'
 // Utils
 import { AuthGuardService } from '../shared/services/auth-guard.service'
-import { CustomRouteReuseStrategy } from '../shared/services/route-reuse-strategy'
+import { CustomRouteReuseStrategyService } from '../shared/services/route-reuse-strategy.service'
 
 const appRoutes: Routes = [
     // Intro
@@ -61,7 +61,7 @@ const appRoutes: Routes = [
         RouterModule.forRoot(appRoutes, { onSameUrlNavigation: 'reload', preloadingStrategy: NoPreloading, useHash: true })
     ],
     providers: [
-        { provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy }
+        { provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategyService }
     ]
 })
 
