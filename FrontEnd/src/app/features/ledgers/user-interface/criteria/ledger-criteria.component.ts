@@ -102,6 +102,10 @@ export class LedgerCriteriaComponent {
         })
     }
 
+    public highlightRow(id: any): void {
+        this.helperService.highlightRow(id)
+    }
+
     public isAdmin(): boolean {
         return ConnectedUser.isAdmin
     }
