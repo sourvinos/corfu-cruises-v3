@@ -2,7 +2,7 @@ import { Component, Inject, NgZone } from '@angular/core'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 // Custom
 import { EmbarkationPassengerVM } from '../../../classes/view-models/list/embarkation-passenger-vm'
-import { EmbarkationService } from '../../../classes/services/embarkation.service'
+import { EmbarkationHttpService } from '../../../classes/services/embarkation.http.service'
 import { EmbarkationReservationVM } from '../../../classes/view-models/list/embarkation-reservation-vm'
 import { EmojiService } from './../../../../../shared/services/emoji.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
@@ -25,7 +25,7 @@ export class EmbarkationPassengerListComponent {
 
     //#endregion
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<EmbarkationPassengerListComponent>, private embarkationService: EmbarkationService, private emojiService: EmojiService, private helperService: HelperService, private messageLabelService: MessageLabelService, private ngZone: NgZone) {
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<EmbarkationPassengerListComponent>, private embarkationService: EmbarkationHttpService, private emojiService: EmojiService, private helperService: HelperService, private messageLabelService: MessageLabelService, private ngZone: NgZone) {
         this.reservation = data.reservation
         this.initialReservation = JSON.parse(JSON.stringify(this.reservation))
     }

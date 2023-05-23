@@ -6,7 +6,7 @@ import { Subject } from 'rxjs'
 import { takeUntil } from 'rxjs/operators'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
-import { EmbarkationCriteriaVM } from '../../classes/view-models/criteria/embarkation-criteria-vm'
+import { EmbarkationCriteriaPanelVM } from '../../classes/view-models/criteria/embarkation-criteria-panel-vm'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FieldsetCriteriaService } from 'src/app/shared/services/fieldset-criteria.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
@@ -35,11 +35,14 @@ export class EmbarkationCriteriaComponent {
     public icon = 'home'
     public parentUrl = '/home'
 
-    private criteria: EmbarkationCriteriaVM
+    private criteria: EmbarkationCriteriaPanelVM
 
     public destinations: SimpleEntity[] = []
     public ports: SimpleEntity[] = []
     public ships: SimpleEntity[] = []
+    public selectedDestinations: SimpleEntity[] = []
+    public selectedPorts: SimpleEntity[] = []
+    public selectedShips: SimpleEntity[] = []
 
     //#endregion
 
@@ -51,16 +54,10 @@ export class EmbarkationCriteriaComponent {
         this.initForm()
         this.populateDropdowns()
         this.populateFieldsFromStoredVariables()
+        this.populateSelectedFromForm()
         this.setLocale()
         this.subscribeToInteractionService()
         this.setTabTitle()
-    }
-
-    ngAfterViewInit(): void {
-        this.enableFilters()
-        this.checkGroupCheckbox('all-destinations', this.destinations, 'destinations')
-        this.checkGroupCheckbox('all-ports', this.ports, 'ports')
-        this.checkGroupCheckbox('all-ships', this.ships, 'ships')
     }
 
     ngOnDestroy(): void {
@@ -71,18 +68,9 @@ export class EmbarkationCriteriaComponent {
 
     //#region public methods
 
-    public checkboxChange(event: any, allCheckbox: string, formControlsArray: string, array: any[], description: string): void {
-        // this.fieldsetCriteriaService.checkboxChange(this.form, event, allCheckbox, formControlsArray, array, description)
-    }
-
     public doTasks(): void {
         this.storeCriteria()
-        this.clearListFilters()
         this.navigateToList()
-    }
-
-    public filterList(event: { target: { value: any } }, list: string | number): void {
-        this.fieldsetCriteriaService.filterList(event.target.value, this[list])
     }
 
     public getEmoji(emoji: string): string {
@@ -103,35 +91,62 @@ export class EmbarkationCriteriaComponent {
         })
     }
 
-    public lookup(arrayName: string, arrayId: number): boolean {
-        if (this.criteria) {
-            return this.criteria[arrayName].filter((x: { id: number }) => x.id == arrayId).length != 0 ? true : false
+    public highlightRow(id: any): void {
+        this.helperService.highlightRow(id)
+    }
+
+    public onHeaderCheckboxToggle(event: any, array: string, formControl: string): void {
+        if (event.checked == true) {
+            const x = this.form.controls[formControl] as FormArray
+            x.controls = []
+            this.form.patchValue({
+                [formControl]: []
+            })
+            this[array].forEach((element: any) => {
+                x.push(new FormControl({
+                    'id': element.id,
+                    'description': element.description
+                }))
+            })
         }
+        if (event.checked == false) {
+            const x = this.form.controls[formControl] as FormArray
+            x.controls = []
+            this.form.patchValue({
+                [formControl]: []
+            })
+        }
+    }
+
+    public onRowSelect(event: any, formControl: string): void {
+        const x = this.form.controls[formControl] as FormArray
+        x.controls = []
+        this[formControl].forEach((element: any) => {
+            x.push(new FormControl({
+                'id': element.id,
+                'description': element.description
+            }))
+        })
+    }
+
+    public onRowUnselect(event: any, formControl: string): void {
+        const x = this.form.controls[formControl] as FormArray
+        x.controls = []
+        this.form.patchValue({
+            [formControl]: []
+        })
+        this[formControl].forEach((element: any) => {
+            x.push(new FormControl({
+                'id': element.id,
+                'description': element.description
+            }))
+        })
     }
 
     public patchFormWithSelectedDate(event: MatDatepickerInputEvent<Date>): void {
         this.form.patchValue({
             date: this.dateHelperService.formatDateToIso(new Date(event.value))
         })
-    }
-
-    public toggleAllCheckboxes(form: FormGroup, array: string, allCheckboxes: string): void {
-        this.fieldsetCriteriaService.toggleAllCheckboxes(form, array, allCheckboxes)
-    }
-
-    public updateRadioButtons(classname: any, idName: any, id: any, description: any): void {
-        const radios = document.getElementsByClassName(classname) as HTMLCollectionOf<HTMLInputElement>
-        for (let i = 0; i < radios.length; i++) {
-            radios[i].checked = false
-        }
-        const radio = document.getElementById(idName + id) as HTMLInputElement
-        radio.checked = true
-        const x = this.form.controls[classname] as FormArray
-        x.clear()
-        x.push(new FormControl({
-            'id': id,
-            'description': description
-        }))
     }
 
     //#endregion
@@ -148,23 +163,9 @@ export class EmbarkationCriteriaComponent {
         })
     }
 
-    private checkGroupCheckbox(allCheckbox: string, array: SimpleEntity[], formControlsArray: string): void {
-        this.fieldsetCriteriaService.checkGroupCheckbox(this.form, allCheckbox, array, formControlsArray)
-    }
-
     private cleanup(): void {
         this.unsubscribe.next()
         this.unsubscribe.unsubscribe()
-    }
-
-    private clearListFilters(): void {
-        this.sessionStorageService.deleteItems([
-            { 'item': 'embarkationList', 'when': 'always' }
-        ])
-    }
-
-    private enableFilters(): void {
-        this.helperService.enableTableFilters()
     }
 
     private getToday(): string {
@@ -174,23 +175,13 @@ export class EmbarkationCriteriaComponent {
     private initForm(): void {
         this.form = this.formBuilder.group({
             date: [this.getToday(), Validators.required],
-            destinations: this.formBuilder.array([], Validators.required),
-            ports: this.formBuilder.array([], Validators.required),
-            ships: this.formBuilder.array([], Validators.required),
-            destinationsFilter: '',
-            portsFilter: '',
-            shipsFilter: '',
-            allDestinationsCheckbox: '',
-            allPortsCheckbox: '',
-            allShipsCheckbox: ''
+            selectedDestinations: this.formBuilder.array([], Validators.required),
+            selectedPorts: this.formBuilder.array([], Validators.required),
+            selectedShips: this.formBuilder.array([], Validators.required),
         })
     }
 
     private navigateToList(): void {
-        this.sessionStorageService.deleteItems([
-            { 'item': 'scrollTop', 'when': 'always' },
-            { 'item': 'refNo', 'when': 'always' }
-        ])
         this.router.navigate(['embarkation/list'])
     }
 
@@ -209,14 +200,17 @@ export class EmbarkationCriteriaComponent {
             this.criteria = JSON.parse(this.sessionStorageService.getItem('embarkation-criteria'))
             this.form.patchValue({
                 date: this.criteria.date,
-                destinations: this.addSelectedCriteriaFromStorage('destinations'),
-                ports: this.addSelectedCriteriaFromStorage('ports'),
-                ships: this.addSelectedCriteriaFromStorage('ships'),
-                allDestinationsCheckbox: this.criteria.allDestinationsCheckbox,
-                allPortsCheckbox: this.criteria.allPortsCheckbox,
-                allShipsCheckbox: this.criteria.allShipsCheckbox
+                selectedDestinations: this.addSelectedCriteriaFromStorage('selectedDestinations'),
+                selectedports: this.addSelectedCriteriaFromStorage('selectedPorts'),
+                selectedships: this.addSelectedCriteriaFromStorage('selectedShips'),
             })
         }
+    }
+
+    private populateSelectedFromForm(): void {
+        this.selectedDestinations = this.form.value.selectedDestinations
+        this.selectedPorts = this.form.value.selectedPorts
+        this.selectedShips = this.form.value.selectedShips
     }
 
     private setLocale(): void {

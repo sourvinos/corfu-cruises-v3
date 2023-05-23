@@ -13,15 +13,15 @@ namespace API.Features.Embarkation {
 
         private readonly IEmbarkationRepository repo;
 
+        #endregion
+
         public EmbarkationController(IEmbarkationRepository repo) {
             this.repo = repo;
         }
 
-        #endregion
-
         [Authorize(Roles = "admin")]
-        public async Task<EmbarkationFinalGroupVM> Get([FromQuery(Name = "date")] string date, [FromQuery(Name = "destinationId")] int[] destinationIds, [FromQuery(Name = "portId")] int[] portIds, [FromQuery(Name = "shipId")] int?[] shipIds) {
-            return await repo.Get(date, destinationIds, portIds, shipIds);
+        public async Task<EmbarkationFinalGroupVM> Post([FromBody] EmbarkationCriteria criteria) {
+            return await repo.Get(criteria.Date, criteria.DestinationIds, criteria.PortIds, criteria.ShipIds);
         }
 
         [HttpPatch("embarkPassengers")]

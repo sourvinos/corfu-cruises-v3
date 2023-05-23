@@ -21,6 +21,7 @@ namespace API.Features.Ledger {
         public IEnumerable<LedgerVM> Post([FromBody] LedgerCriteria criteria) {
             return repo.Get(criteria.FromDate, criteria.ToDate, criteria.CustomerIds, criteria.DestinationIds, criteria.PortIds, criteria.ShipIds);
         }
+
     }
 
 }

@@ -7,24 +7,24 @@ import { Table } from 'primeng/table'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DialogService } from 'src/app/shared/services/dialog.service'
-import { EmbarkationCriteriaVM } from '../../../classes/view-models/criteria/embarkation-criteria-vm'
+import { EmbarkationCriteriaPanelVM } from '../../../classes/view-models/criteria/embarkation-criteria-panel-vm'
+import { EmbarkationDestinationVM } from '../../../classes/view-models/list/embarkation-destination-vm'
 import { EmbarkationGroupVM } from '../../../classes/view-models/list/embarkation-group-vm'
 import { EmbarkationPDFService } from '../../../classes/services/embarkation-pdf.service'
 import { EmbarkationPassengerListComponent } from '../passengers/embarkation-passengers.component'
+import { EmbarkationPortVM } from '../../../classes/view-models/list/embarkation-port-vm'
 import { EmbarkationReservationVM } from '../../../classes/view-models/list/embarkation-reservation-vm'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { ListResolved } from 'src/app/shared/classes/list-resolved'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
-import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { MessageDialogService } from '../../../../../shared/services/message-dialog.service'
+import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { ModalActionResultService } from 'src/app/shared/services/modal-action-result.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { environment } from 'src/environments/environment'
-import { EmbarkationDestinationVM } from '../../../classes/view-models/list/embarkation-destination-vm'
-import { EmbarkationPortVM } from '../../../classes/view-models/list/embarkation-port-vm'
 
 @Component({
     selector: 'embarkation-reservations',
@@ -46,7 +46,7 @@ export class EmbarkationReservationsComponent {
     public parentUrl = '/embarkation'
     public records: EmbarkationGroupVM
 
-    public criteriaPanels: EmbarkationCriteriaVM
+    public criteriaPanels: EmbarkationCriteriaPanelVM
     public totals = [0, 0, 0]
     public totalsFiltered = [0, 0, 0]
 
@@ -223,7 +223,6 @@ export class EmbarkationReservationsComponent {
             const listResolved: ListResolved = this.activatedRoute.snapshot.data[this.feature]
             if (listResolved.error === null) {
                 this.records = listResolved.list
-                console.log(this.records)
                 resolve(this.records)
             } else {
                 this.modalActionResultService.open(this.messageSnackbarService.filterResponse(listResolved.error), 'error', ['ok']).subscribe(() => {
@@ -260,9 +259,7 @@ export class EmbarkationReservationsComponent {
 
     private showPassengersDialog(reservation: EmbarkationReservationVM): void {
         const response = this.dialog.open(EmbarkationPassengerListComponent, {
-            data: {
-                reservation: reservation
-            },
+            data: { reservation: reservation },
             disableClose: true,
             height: '500px',
             panelClass: 'dialog',
