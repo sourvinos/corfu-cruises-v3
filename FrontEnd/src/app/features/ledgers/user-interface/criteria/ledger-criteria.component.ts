@@ -1,6 +1,5 @@
-import { Component, ViewChild } from '@angular/core'
+import { Component } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
-import { DateRange, MatCalendar } from '@angular/material/datepicker'
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms'
 import { Router } from '@angular/router'
 import { Subject } from 'rxjs'
@@ -29,8 +28,6 @@ export class LedgerCriteriaComponent {
 
     //#region variables
 
-    @ViewChild('calendar', { static: false }) calendar: MatCalendar<Date>
-
     private unsubscribe = new Subject<void>()
     public feature = 'ledgerCriteria'
     public featureIcon = 'ledgers'
@@ -39,7 +36,6 @@ export class LedgerCriteriaComponent {
     public parentUrl = '/home'
 
     private criteria: LedgerCriteriaVM
-    private selectedRangeValue: DateRange<Date>
     public customers: SimpleEntity[] = []
     public destinations: SimpleEntity[] = []
     public ports: SimpleEntity[] = []
@@ -225,8 +221,8 @@ export class LedgerCriteriaComponent {
                 toDate: this.criteria.toDate,
                 selectedCustomers: this.addSelectedCriteriaFromStorage('selectedCustomers'),
                 selectedDestinations: this.addSelectedCriteriaFromStorage('selectedDestinations'),
-                ports: this.addSelectedCriteriaFromStorage('selectedPorts'),
-                ships: this.addSelectedCriteriaFromStorage('selectedShips')
+                selectedPorts: this.addSelectedCriteriaFromStorage('selectedPorts'),
+                selectedShips: this.addSelectedCriteriaFromStorage('selectedShips')
             })
         }
     }
