@@ -17,7 +17,7 @@ namespace API.Features.Manifest {
             this.mapper = mapper;
         }
 
-        public ManifestFinalVM Get(string date, int destinationId, int shipId, int[] portIds) {
+        public ManifestFinalVM Get(string date, int destinationId, int[] portIds, int? shipId) {
             var manifest = new ManifestInitialVM {
                 Date = date,
                 Destination = context.Destinations

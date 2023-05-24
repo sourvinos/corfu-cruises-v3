@@ -27,6 +27,7 @@
 
 #form .group-field:last-child {
     height: 100%;
+    overflow-y: hidden;
     width: max-content;
 }
 
@@ -38,14 +39,15 @@
 }
 
 #date-fieldset legend {
-    margin: 0 0 0 0.95rem !important;
+    margin-left: 0.5rem;
+    padding: 0 0.5rem 0 0.5rem;
     width: auto !important;
 }
 
 #date {
     background-color: transparent !important;
     border: 0 !important;
-    padding: 0 2rem 0.625rem 1rem !important;
+    padding: 0 2rem 0.5rem 1rem !important;
     margin-top: 0 !important;
 }
 
@@ -55,4 +57,12 @@
 
 #date #goto-today span {
     color: var(--color-green) !important;
+}
+
+.table-wrapper {
+    height: 100%;
+}
+
+th {
+    border: 1px solid var(--color-e) !important;
 }

@@ -19,7 +19,6 @@
     color: var(--color-c) !important;
     font-family: var(--font-family-ubuntu);
     font-weight: normal;
-    padding: 0 1rem 0 1rem;
     transform: scale(1.2, 1);
 }
 

@@ -2,7 +2,7 @@ fieldset {
     background-color: var(--color-a) !important;
     border-radius: 0;
     border: 0.0625rem solid var(--color-e);
-    padding: 1rem 0.5rem 1rem 1rem;
+    padding: 1rem 0.5rem 1rem 0.65rem;
 }
 
 fieldset legend {
@@ -13,6 +13,6 @@ fieldset legend {
     font-size: var(--font-size-fieldset-legend);
     font-weight: 300;
     justify-content: space-between;
-    padding: 0.3125rem 0.625rem 0 0.625rem;
+    padding: 0 0.5rem 0 0.5rem;
     width: 100%;
 }
