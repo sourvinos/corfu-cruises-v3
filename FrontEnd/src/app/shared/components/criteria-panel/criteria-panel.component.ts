@@ -16,7 +16,7 @@ export class CriteriaPanelComponent {
     @Input() feature: string
     @Input() header: string
     @Input() icon: string
-    @Input() records: any[]
+    @Input() records: any | any[]
     @Input() sortField: string
 
     constructor(private helperService: HelperService, private messageLabelService: MessageLabelService) { }

@@ -31,6 +31,7 @@
         "selector-combinator-space-before": "always",
         "selector-list-comma-newline-after": "never-multi-line",
         "selector-list-comma-space-after": "always",
+        "selector-not-notation": "simple",
         "selector-pseudo-element-colon-notation": "double",
         "selector-pseudo-element-no-unknown": null,
         "selector-type-no-unknown": null,

@@ -1,0 +1,28 @@
+.p-radiobutton .p-radiobutton-box .p-radiobutton-icon {
+    background-color: var(--color-checkbox-background);
+}
+
+.p-radiobutton .p-radiobutton-box.p-highlight {
+    background-color: var(--color-checkbox-background) !important;
+    border-color: var(--color-checkbox-background) !important;
+}
+
+.p-radiobutton:not(.p-radiobutton-disabled).p-radiobutton-focused {
+    box-shadow: none !important;
+}
+
+.p-radiobutton .p-radiobutton-box:not(.p-disabled).p-focus {
+    box-shadow: none;
+}
+
+.p-radiobutton:not(.p-radiobutton-disabled):hover {
+    box-shadow: none;
+}
+
+.p-radiobutton .p-radiobutton-box {
+    background-color: var(--color-a);
+}
+
+.p-radiobutton .p-radiobutton-box:not(.p-disabled):not(.p-highlight):hover {
+    border-color: var(--color-checkbox-background);
+}

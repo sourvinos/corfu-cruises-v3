@@ -44,7 +44,7 @@
                                     </tr>
                                 </ng-template>
                                 <ng-template let-destination pTemplate="body">
-                                    <tr (click)="highlightRow('destination' + destination.id)" [attr.id]="'destination' + destination.id" style="height:32px">
+                                    <tr style="height:32px">
                                         <td class="center width-2"><p-tableCheckbox [value]="destination"></p-tableCheckbox></td>
                                         <td class="width-5">{{ destination.description }}</td>
                                     </tr>
@@ -72,7 +72,7 @@
                                     </tr>
                                 </ng-template>
                                 <ng-template let-port pTemplate="body">
-                                    <tr (click)="highlightRow('port' + port.id)" [attr.id]="'port' + port.id" style="height:32px">
+                                    <tr style="height:32px">
                                         <td class="center width-2"><p-tableCheckbox [value]="port"></p-tableCheckbox></td>
                                         <td class="width-5">{{ port.description }}</td>
                                     </tr>
@@ -100,7 +100,7 @@
                                     </tr>
                                 </ng-template>
                                 <ng-template let-ship pTemplate="body">
-                                    <tr (click)="highlightRow('ship' + ship.id)" [attr.id]="'ship' + ship.id" style="height:32px">
+                                    <tr style="height:32px">
                                         <td class="center width-2"><p-tableCheckbox [value]="ship"></p-tableCheckbox></td>
                                         <td class="width-5">{{ ship.description }}</td>
                                     </tr>
