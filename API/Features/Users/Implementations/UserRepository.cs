@@ -6,7 +6,6 @@ using API.Infrastructure.Classes;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Responses;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -19,16 +18,14 @@ namespace API.Features.Users {
         #region variables
 
         private readonly AppDbContext context;
-        private readonly IHttpContextAccessor httpContext;
         private readonly IMapper mapper;
         private readonly TestingEnvironment testingSettings;
         private readonly UserManager<UserExtended> userManager;
 
         #endregion
 
-        public UserRepository(AppDbContext context, IHttpContextAccessor httpContext, IMapper mapper, IOptions<TestingEnvironment> testingSettings, UserManager<UserExtended> userManager) {
+        public UserRepository(AppDbContext context, IMapper mapper, IOptions<TestingEnvironment> testingSettings, UserManager<UserExtended> userManager) {
             this.context = context;
-            this.httpContext = httpContext;
             this.mapper = mapper;
             this.userManager = userManager;
             this.testingSettings = testingSettings.Value;
@@ -61,9 +58,17 @@ namespace API.Features.Users {
             }
         }
 
-        public async Task<bool> UpdateAsync(UserExtended x, UserUpdateDto user) {
-            if (await UpdateUser(x, user)) {
-                await UpdateUserRole(x);
+        public async Task<bool> UpdateAdminAsync(UserExtended user, UserUpdateDto userToUpdate) {
+            if (await UpdateUser(user, userToUpdate, "admin")) {
+                await UpdateUserRole(user);
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public async Task<bool> UpdateSimpleUserAsync(UserExtended x, UserUpdateDto user) {
+            if (await UpdateUser(x, user, "simpleUser")) {
                 return true;
             } else {
                 return false;
@@ -91,14 +96,9 @@ namespace API.Features.Users {
             }
         }
 
-        private async Task<bool> IsAdmin() {
-            var isUserAdmin = Task.Run(() => Infrastructure.Extensions.Identity.IsUserAdmin(httpContext));
-            return await isUserAdmin;
-        }
-
-        private async Task<bool> UpdateUser(UserExtended x, UserUpdateDto user) {
+        private async Task<bool> UpdateUser(UserExtended x, UserUpdateDto user, string role) {
             x.Displayname = user.Displayname;
-            if (await IsAdmin()) {
+            if (role == "admin") {
                 x.CustomerId = user.CustomerId == 0 ? null : user.CustomerId;
                 x.UserName = user.Username;
                 x.Email = user.Email;

@@ -81,31 +81,25 @@ namespace API.Features.Users {
         [HttpPut]
         [Authorize(Roles = "user, admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<Response> PutAsync([FromBody] UserUpdateDto user) {
-            var x = await userRepo.GetByIdAsync(user.Id);
-            if (x != null) {
-                var z = userValidation.IsValid(user);
+        public async Task<Response> PutAsync([FromBody] UserUpdateDto userToUpdate) {
+            var user = await userRepo.GetByIdAsync(userToUpdate.Id);
+            if (user != null) {
+                var z = userValidation.IsValid(userToUpdate);
                 if (z == 200) {
-                    if (Identity.IsUserAdmin(httpContext) || userValidation.IsUserOwner(x.Id)) {
-                        if (await userRepo.UpdateAsync(x, user)) {
-                            return new Response {
-                                Code = 200,
-                                Icon = Icons.Success.ToString(),
-                                Message = ApiMessages.OK()
-                            };
+                    if (Identity.IsUserAdmin(httpContext)) {
+                        return await UpdateAdmin(user, userToUpdate);
+                    } else {
+                        if (userValidation.IsUserOwner(user.Id)) {
+                            return await UpdateSimpleUser(user, userToUpdate);
                         } else {
                             throw new CustomException() {
-                                ResponseCode = 492
+                                ResponseCode = 490
                             };
-                        };
-                    } else {
-                        throw new CustomException() {
-                            ResponseCode = 490
-                        };
+                        }
                     }
                 } else {
                     throw new CustomException() {
-                        ResponseCode = z
+                        ResponseCode = 492
                     };
                 }
             } else {
@@ -131,6 +125,35 @@ namespace API.Features.Users {
                     ResponseCode = 404
                 };
             }
+        }
+
+        private async Task<Response> UpdateAdmin(UserExtended user, UserUpdateDto userToUpdate) {
+            if (await userRepo.UpdateAdminAsync(user, userToUpdate)) {
+                return new Response {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 492
+                };
+            }
+        }
+
+        private async Task<Response> UpdateSimpleUser(UserExtended user, UserUpdateDto userToUpdate) {
+            if (await userRepo.UpdateSimpleUserAsync(user, userToUpdate)) {
+                return new Response {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 492
+                };
+            };
+
         }
 
     }
