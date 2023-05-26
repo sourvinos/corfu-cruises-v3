@@ -1,5 +1,5 @@
 #goto-today-button span {
-    color: var(--color-green) !important;
+    color: var(--color-red) !important;
 }
 
 .no-reservation-data, .api-object {

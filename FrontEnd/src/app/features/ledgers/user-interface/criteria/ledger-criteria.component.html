@@ -38,11 +38,11 @@
                         </div>
                     </legend>
                     <div class="table-wrapper">
-                        <p-table #customersTable (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'customers','selectedCustomers')" (onRowSelect)="onRowSelect($event,'selectedCustomers')" (onRowUnselect)="onRowUnselect($event,'selectedCustomers')" [(selection)]="selectedCustomers" [scrollable]="true" [value]="customers" scrollHeight="flex">
+                        <p-table #customersTable (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'customers','selectedCustomers')" (onRowSelect)="onRowSelect($event,'selectedCustomers')" (onRowUnselect)="onRowUnselect($event,'selectedCustomers')" [(selection)]="selectedCustomers" [scrollable]="true" [value]="customers" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex">
                             <ng-template pTemplate="header">
                                 <tr>
-                                    <th class="width-2"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
-                                    <th class="width-5"><input (input)="customersTable.filter($event.target.value, 'description', 'contains')" [value]="$any(customersTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
+                                    <th class="no-border width-2"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+                                    <th class="no-border width-5"><input (input)="customersTable.filter($event.target.value, 'description', 'contains')" [value]="$any(customersTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
                                 </tr>
                             </ng-template>
                             <ng-template let-customer pTemplate="body">
@@ -65,11 +65,11 @@
                     </legend>
                     <div class="list">
                         <div class="table-wrapper">
-                            <p-table #destinationsTable (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'destinations','selectedDestinations')" (onRowSelect)="onRowSelect($event,'selectedDestinations')" (onRowUnselect)="onRowUnselect($event,'selectedDestinations')" [(selection)]="selectedDestinations" [scrollable]="true" [value]="destinations" scrollHeight="flex">
+                            <p-table #destinationsTable (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'destinations','selectedDestinations')" (onRowSelect)="onRowSelect($event,'selectedDestinations')" (onRowUnselect)="onRowUnselect($event,'selectedDestinations')" [(selection)]="selectedDestinations" [scrollable]="true" [value]="destinations" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex">
                                 <ng-template pTemplate="header">
                                     <tr>
-                                        <th class="width-2"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
-                                        <th class="width-5"><input (input)="destinationsTable.filter($event.target.value, 'description', 'contains')" [value]="$any(destinationsTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
+                                        <th class="no-border width-2"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+                                        <th class="no-border width-5"><input (input)="destinationsTable.filter($event.target.value, 'description', 'contains')" [value]="$any(destinationsTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
                                     </tr>
                                 </ng-template>
                                 <ng-template let-destination pTemplate="body">
@@ -93,11 +93,11 @@
                     </legend>
                     <div class="list">
                         <div class="table-wrapper">
-                            <p-table #portsTable (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'ports','selectedPorts')" (onRowSelect)="onRowSelect($event,'selectedPorts')" (onRowUnselect)="onRowUnselect($event,'selectedPorts')" [(selection)]="selectedPorts" [scrollable]="true" [value]="ports" scrollHeight="flex" selectionMode="multiple">
+                            <p-table #portsTable (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'ports','selectedPorts')" (onRowSelect)="onRowSelect($event,'selectedPorts')" (onRowUnselect)="onRowUnselect($event,'selectedPorts')" [(selection)]="selectedPorts" [scrollable]="true" [value]="ports" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex">
                                 <ng-template pTemplate="header">
                                     <tr>
-                                        <th class="width-2"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
-                                        <th class="width-5"><input (input)="portsTable.filter($event.target.value, 'description', 'contains')" [value]="$any(portsTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
+                                        <th class="no-border width-2"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+                                        <th class="no-border width-5"><input (input)="portsTable.filter($event.target.value, 'description', 'contains')" [value]="$any(portsTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
                                     </tr>
                                 </ng-template>
                                 <ng-template let-port pTemplate="body">
@@ -121,7 +121,7 @@
                     </legend>
                     <div class="list">
                         <div class="table-wrapper">
-                            <p-table #shipsTable (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'ships','selectedShips')" (onRowSelect)="onRowSelect($event,'selectedShips')" (onRowUnselect)="onRowUnselect($event,'selectedShips')" [(selection)]="selectedShips" [scrollable]="true" [value]="ships" scrollHeight="flex" selectionMode="multiple">
+                            <p-table #shipsTable (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'ships','selectedShips')" (onRowSelect)="onRowSelect($event,'selectedShips')" (onRowUnselect)="onRowUnselect($event,'selectedShips')" [(selection)]="selectedShips" [scrollable]="true" [value]="ships" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex">
                                 <ng-template pTemplate="header">
                                     <tr>
                                         <th class="width-2"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>

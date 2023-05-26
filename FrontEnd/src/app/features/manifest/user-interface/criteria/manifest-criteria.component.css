@@ -4,12 +4,11 @@
     height: 100%;
     justify-content: center;
     margin: 0 auto;
-    padding: 0 4rem;
     width: 90%;
 }
 
 #header {
-    margin-bottom: 0.5rem !important;
+    margin-bottom: 0 !important;
 }
 
 #form {
@@ -35,7 +34,7 @@
     background-color: transparent !important;
     margin: 0 !important;
     padding: 0 !important;
-    width: 15rem !important;
+    width: 17rem !important;
 }
 
 #date-fieldset legend {
@@ -56,7 +55,7 @@
 }
 
 #date #goto-today span {
-    color: var(--color-green) !important;
+    color: var(--color-red) !important;
 }
 
 .table-wrapper {

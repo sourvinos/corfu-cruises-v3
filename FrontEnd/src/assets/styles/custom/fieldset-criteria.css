@@ -8,7 +8,7 @@
 
 .fieldset {
     background-color: transparent !important;
-    width: 15rem;
+    width: 17rem;
 }
 
 .fieldset legend {
@@ -61,4 +61,8 @@
     margin-left: 0.5rem;
     position: relative;
     top: -0.125rem;
+}
+
+.fieldset .list .table-wrapper.p-datatable-table thead tr th {
+    border: none !important;
 }

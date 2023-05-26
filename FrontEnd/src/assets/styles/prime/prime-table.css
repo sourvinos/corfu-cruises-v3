@@ -31,7 +31,7 @@
 
 .p-datatable .p-datatable-thead > tr > th {
     background-color: var(--color-x);
-    border-right: 0.0625rem solid var(--color-e) !important;
+    border-right: 0.0625rem solid var(--color-e);
     color: var(--color-c) !important;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-header) !important;
@@ -69,6 +69,10 @@
 
 .p-datatable .p-datatable-thead > tr > th.header-datepicker {
     padding-top: 0.875rem !important;
+}
+
+.p-datatable .p-datatable-thead > tr > th.no-border {
+    border: none !important;
 }
 
 .p-datatable .p-sortable-column.p-highlight {
