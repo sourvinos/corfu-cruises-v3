@@ -44,7 +44,7 @@
             },
             {
                 "error": 459,
-                "message": "Neue Reservierungen mit Transfer zwischen 22:00 Uhr und der Abfahrt des Schiffes sind nicht möglich. Bitte wenden Sie sich an einen Administrator."
+                "message": "Neue Reservierungen mit Überweisung, während wir geschlossen sind, sind nicht zulässig. Bitte wenden Sie sich an einen Administrator."
             },
             {
                 "error": 491,

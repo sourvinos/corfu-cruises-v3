@@ -44,7 +44,7 @@
             },
             {
                 "error": 459,
-                "message": "Les nouvelles réservations avec transfert entre 22h00 et le départ du navire ne sont pas autorisées. Veuillez contacter un administrateur."
+                "message": "Les nouvelles réservations avec transfert pendant notre fermeture ne sont pas autorisées. Veuillez contacter un administrateur."
             },
             {
                 "error": 491,

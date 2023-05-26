@@ -44,7 +44,7 @@
             },
             {
                 "error": 459,
-                "message": "Nové rezervace s přestupem mezi 22:00 a odjezdem lodi nejsou povoleny. Kontaktujte prosím správce."
+                "message": "Nové rezervace s převodem v době, kdy máme zavřeno, nejsou povoleny. Kontaktujte prosím správce."
             },
             {
                 "error": 491,
