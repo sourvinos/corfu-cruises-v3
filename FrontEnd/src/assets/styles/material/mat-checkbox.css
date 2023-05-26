@@ -1,6 +1,7 @@
 .mat-checkbox-inner-container {
     border: 1px solid var(--color-c) !important;
-    transform: scale(1.5, 1.5);
+    height: 1rem;
+    width: 1rem;
 }
 
 .mat-checkbox-layout .mat-checkbox-label {

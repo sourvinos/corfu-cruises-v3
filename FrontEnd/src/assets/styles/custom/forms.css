@@ -60,13 +60,13 @@
     overflow-y: initial;
 }
 
-@media (width <= 430px) {
+@media (width < 800px) {
     #content {
         width: fit-content;
     }
 }
 
-@media (width >= 431px) {
+@media (width >= 800px) {
     #content {
         width: 80%;
     }

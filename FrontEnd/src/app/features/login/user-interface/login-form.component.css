@@ -22,7 +22,7 @@
     cursor: pointer;
 }
 
-@media (width <= 430px) {
+@media (width < 800px) {
     #columns {
         margin: 0.5rem;
     }
@@ -31,7 +31,7 @@
     }
 }
 
-@media (width >= 431px) {
+@media (width >= 800px) {
     #columns {
         margin: 1rem;
     }

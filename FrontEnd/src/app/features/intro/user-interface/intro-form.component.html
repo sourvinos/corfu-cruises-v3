@@ -1,12 +1,15 @@
 <div class="login-forgot-reset" id="form-wrapper">
 
     <div id="top">
-        <language-menu></language-menu>
-        <theme-menu></theme-menu>
+        <div id="left">
+            <login-logo></login-logo>
+        </div>
+        <div id="right">
+            <language-menu></language-menu>
+            <theme-menu></theme-menu>
+        </div>
     </div>
-
-    <login-logo></login-logo>
-
+    
     <div id="content">
         <mat-card routerLink="/login">
             <img (load)="loadImage()" [ngClass]="imageIsLoading()" [src]="getIcon('login')">

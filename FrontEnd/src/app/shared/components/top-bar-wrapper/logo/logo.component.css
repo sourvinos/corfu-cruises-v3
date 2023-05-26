@@ -19,13 +19,13 @@
     margin: 0.125rem 0 0 4rem;
 }
 
-@media (width <= 430px) {
+@media (width < 800px) {
     #logo {
         display: none;
     }
 }
 
-@media (width >= 431px) {
+@media (width >= 800px) {
     #logo {
         display: flex;
     }

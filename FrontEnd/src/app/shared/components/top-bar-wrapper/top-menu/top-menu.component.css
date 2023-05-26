@@ -11,13 +11,13 @@
     padding: 0;
 }
 
-@media (width <= 430px) {
+@media (width < 800px) {
     :host {
         margin-left: 0;
     }
 }
 
-@media (width >= 431px) {
+@media (width >= 800px) {
     :host {
         margin-left: auto;
     }

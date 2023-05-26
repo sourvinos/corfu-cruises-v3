@@ -1,4 +1,4 @@
-@media (width <= 430px) {
+@media (width < 800px) {
     * {
         --font-size-button: 60%;
         --font-size-checkbox-label: 60%;

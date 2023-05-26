@@ -73,13 +73,13 @@
     margin: 0 0.5rem 1rem 0.5rem;
 }
 
-@media (width <= 430px) {
+@media (width < 800px) {
     .lastname, .firstname, .passenger-count {
         font-size: 0.75rem;
     }
 }
 
-@media (width >= 431px) {
+@media (width >= 800px) {
     .lastname, .firstname, .passenger-count {
         font-size: 0.875rem;
     }

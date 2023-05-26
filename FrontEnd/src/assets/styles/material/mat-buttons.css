@@ -111,13 +111,13 @@ button.mat-button-toggle-label-content {
     margin-left: 40px;
 }
 
-@media (width <= 430px) {
+@media (width < 800px) {
     .button-text {
         font-size: 13px;
     }
 }
 
-@media (width >= 431px) {
+@media (width >= 800px) {
     .button-text {
         font-size: 14px;
         margin-top: 0;

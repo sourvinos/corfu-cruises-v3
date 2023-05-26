@@ -1,11 +1,14 @@
 <div class="login-forgot-reset" id="form-wrapper">
 
     <div id="top">
-        <language-menu></language-menu>
-        <theme-menu></theme-menu>
+        <div id="left">
+            <login-logo></login-logo>
+        </div>
+        <div id="right">
+            <language-menu></language-menu>
+            <theme-menu></theme-menu>
+        </div>
     </div>
-
-    <login-logo></login-logo>
 
     <div id="header">
         <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
@@ -28,14 +31,6 @@
                 <mat-checkbox formControlName="noRobot">
                     <span>{{ getLabel("noRobotCheckbox") }}</span>
                 </mat-checkbox>
-                <!-- <div class="styled-input-square">
-                    <div class="styled-input-single">
-                        <div class="checkbox-with-lock-icon">
-                            <input formControlName="noRobot" id="no-robot" type="checkbox">
-                            <label for="no-robot">{{ getLabel("noRobotCheckbox") }}</label>
-                        </div>
-                    </div>
-                </div> -->
                 <div id="forgot-password">
                     <span (click)="onForgotPassword()">{{ getLabel("forgotPasswordButton") }}</span>
                 </div>

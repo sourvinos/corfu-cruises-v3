@@ -19,7 +19,7 @@ a:link:hover {
     color: var(--color-link);
 }
 
-@media (width <= 430px) {
+@media (width < 800px) {
     :host {
         margin: auto 4rem 0 4rem;
     }
@@ -28,7 +28,7 @@ a:link:hover {
     }
 }
 
-@media (width >= 431px) {
+@media (width >= 800px) {
     #footer {
         font-size: 0.8rem;
     }
