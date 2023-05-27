@@ -68,15 +68,10 @@
             </div>
             <div class="group-field">
                 <!-- IsBoarded -->
-                <div class="styled-input-square">
-                    <div [class]="!isAdmin() ? 'disabled': null" class="styled-input-single">
-                        <div class="checkbox-with-lock-icon">
-                            <mat-icon *ngIf="!isAdmin()">lock</mat-icon>
-                            <input formControlName="isCheckedIn" id="isCheckedIn" type="checkbox">
-                            <label for="isCheckedIn">{{ getLabel("isCheckedIn") }}</label>
-                        </div>
-                    </div>
-                </div>
+                <mat-checkbox [class]="!isAdmin() ? 'disabled': null" formControlName="isCheckedIn">
+                    <mat-icon *ngIf="!isAdmin()">lock</mat-icon>
+                    <span>{{ getLabel("isCheckedIn") }}</span>
+                </mat-checkbox>
             </div>
         </form>
     </div>

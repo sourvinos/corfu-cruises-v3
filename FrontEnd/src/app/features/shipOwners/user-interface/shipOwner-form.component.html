@@ -52,12 +52,9 @@
             </div>
             <div id="checkboxes">
                 <!-- Active -->
-                <div class="styled-input-square">
-                    <div class="styled-input-single">
-                        <input formControlName="isActive" id="isActive" type="checkbox">
-                        <label for="isActive">{{ getLabel("isActive") }}</label>
-                    </div>
-                </div>
+                <mat-checkbox formControlName="isActive">
+                    <span>{{ getLabel("isActive") }}</span>
+                </mat-checkbox>
             </div>
         </form>
 

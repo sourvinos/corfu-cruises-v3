@@ -10,6 +10,6 @@
     margin: 2rem 1rem 0 0;
 }
 
-.styled-input-square {
-    margin: 1rem 0 0 1rem;
+.group-field:last-child {
+    margin: 18px 0 0 18px;
 }

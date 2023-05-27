@@ -26,7 +26,7 @@
             <div id="bottom">
                 <div id="left">
                     <!-- Destination -->
-                    <fieldset class="fieldset">
+                    <!-- <fieldset class="fieldset">
                         <legend>
                             <span>{{ getLabel('destination') }}</span>
                             <div class="selected">
@@ -55,9 +55,9 @@
                                 </div>
                             </div>
                         </div>
-                    </fieldset>
+                    </fieldset> -->
                     <!-- Port -->
-                    <fieldset class="fieldset">
+                    <!-- <fieldset class="fieldset">
                         <legend>
                             <span>{{ getLabel('port') }}</span>
                             <div class="selected">
@@ -86,37 +86,25 @@
                                 </div>
                             </div>
                         </div>
-                    </fieldset>
+                    </fieldset> -->
                 </div>
                 <div id="right">
                     <!-- Weekdays -->
                     <fieldset class="fieldset">
                         <legend>
                             <span>{{ getLabel('weekdays') }}</span>
-                            <div class="selected">
-                                <span class="selected-count">{{ getLabel("selected") }}: {{ form.value.weekdays.length }}</span>
-                                <span class="icon">{{ getEmoji(form.value.weekdays.length > 0 ? 'ok' : 'error') }}</span>
-                            </div>
                         </legend>
-                        <div class="filter">
-                            <div class="styled-input-square">
-                                <div class="styled-input-single">
-                                    <input (click)="toggleAllCheckboxes(form, 'weekday', 'allWeekdaysCheckbox')" id="all-weekdays" type="checkbox" formControlName="allWeekdaysCheckbox">
-                                    <label class="no-label" for="all-weekdays"></label>
-                                </div>
-                            </div>
-                            <mat-form-field class="list-filter">
-                                <input (keyup)="filterList($event, 'weekdays')" formControlName="weekdaysFilter" id="weekdaysFilter" matInput>
-                            </mat-form-field>
-                        </div>
                         <div class="list-wrapper">
-                            <div *ngFor="let weekday of weekdays" [attr.id]=weekday.description>
-                                <div class="styled-input-square">
+                            <div *ngFor="let weekday of weekdays">
+                                <mat-checkbox (change)="checkboxChange()" formArrayName="weekdays">
+                                    <span>{{ getWeekday(weekday.id) | trimString:33 }}</span>
+                                </mat-checkbox>
+                                <!-- <div class="styled-input-square">
                                     <div class="styled-input-single" (change)="checkboxChange($event, 'allWeekdaysCheckbox', 'weekdays', weekdays, weekday.description)">
                                         <input class="weekday" formArrayName="weekdays" type="checkbox" [value]="weekday.id" [attr.id]="'weekday' + weekday.id">
                                         <label [attr.for]="'weekday' + weekday.id" [attr.id]="'weekday-label' + weekday.id">{{ getWeekday(weekday.id) | trimString:33 }}</label>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </fieldset>
@@ -135,6 +123,8 @@
                 </div>
             </div>
         </form>
+
+        {{ form.value | json }}
     </div>
 
     <div id="footer">

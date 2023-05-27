@@ -122,8 +122,7 @@ export class ScheduleNewFormComponent {
         this.fieldsetCriteriaService.updateRadioButtons(form, classname, idName, id, description)
     }
 
-    public checkboxChange(event: any, allCheckbox: string, formControlsArray: string, array: any[], description: string): void {
-        this.updateWeekdayCheckbox(event, allCheckbox, formControlsArray, array, description)
+    public checkboxChange(): void {
         this.createPeriod()
         this.updateFormField()
     }
@@ -158,7 +157,7 @@ export class ScheduleNewFormComponent {
         const dateArray = []
         const currentDate = from
         while (currentDate <= to) {
-            dateArray.push(this.dateHelperService.formatDateToIso(currentDate, true))
+            dateArray.push(this.dateHelperService.getWeekdayIndex(this.dateHelperService.formatDateToIso(currentDate, false)) + ' ' + this.dateHelperService.formatDateToIso(currentDate, false))
             currentDate.setDate(currentDate.getDate() + 1)
         }
         return dateArray
@@ -166,12 +165,12 @@ export class ScheduleNewFormComponent {
 
     private createPeriod(): void {
         this.daysToCreate = []
-        if (this.fromDate.valid && this.toDate.valid && this.form.value.weekdays.length != 0) {
+        if (this.fromDate.valid && this.toDate.valid) {
             const period = this.buildPeriod(new Date(this.fromDate.value), new Date(this.toDate.value))
             period.forEach((day: string) => {
-                this.form.value.weekdays.forEach((weekday: any) => {
-                    if (this.dateHelperService.getWeekdayIndex(day.substring(4)) == weekday.id) {
-                        this.daysToCreate.push(day.substring(4))
+                this.weekdays.forEach((x: any) => {
+                    if (x.id == day.substring(0, 1)) {
+                        this.daysToCreate.push(day.substring(2))
                     }
                 })
             })
@@ -189,12 +188,6 @@ export class ScheduleNewFormComponent {
             daysToInsert: ['', Validators.required],
             maxPax: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
             time: ['00:00', [Validators.required, ValidationService.isTime]],
-            destinationsFilter: '',
-            allDestinationsCheckbox: '',
-            portsFilter: '',
-            allPortsCheckbox: '',
-            weekdaysFilter: '',
-            allWeekdaysCheckbox: ''
         })
     }
 

@@ -51,19 +51,13 @@
             </mat-form-field>
             <div id="checkboxes">
                 <!-- Primary -->
-                <div class="styled-input-square">
-                    <div class="styled-input-single">
-                        <input formControlName="isPrimary" id="isPrimary" type="checkbox">
-                        <label for="isPrimary">{{ getLabel("isPrimary") }}</label>
-                    </div>
-                </div>
+                <mat-checkbox formControlName="isPrimary">
+                    <span>{{ getLabel("isPrimary") }}</span>
+                </mat-checkbox>
                 <!-- Active -->
-                <div class="styled-input-square">
-                    <div class="styled-input-single">
-                        <input formControlName="isActive" id="isActive" type="checkbox">
-                        <label for="isActive">{{ getLabel("isActive") }}</label>
-                    </div>
-                </div>
+                <mat-checkbox formControlName="isActive">
+                    <span>{{ getLabel("isActive") }}</span>
+                </mat-checkbox>
             </div>
         </form>
 

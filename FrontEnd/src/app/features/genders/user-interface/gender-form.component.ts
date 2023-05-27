@@ -18,7 +18,7 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 @Component({
     selector: 'gender-form',
     templateUrl: './gender-form.component.html',
-    styleUrls: ['../../../../assets/styles/custom/forms.css', './gender-form.component.css']
+    styleUrls: ['../../../../assets/styles/custom/forms.css']
 })
 
 export class GenderFormComponent {

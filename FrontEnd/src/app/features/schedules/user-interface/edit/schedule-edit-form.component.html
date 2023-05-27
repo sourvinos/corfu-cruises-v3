@@ -50,11 +50,11 @@
                     <mat-error *ngIf="!time.hasError('required') && !time.hasError('time')">{{ getHint("invalid") }}</mat-error>
                 </mat-form-field>
             </div>
-            <div class="styled-input-square">
-                <div class="styled-input-single">
-                    <input formControlName="isActive" id="isActive" type="checkbox">
-                    <label for="isActive">{{ getLabel("isActive") }}</label>
-                </div>
+            <div id="checkboxes">
+                <!-- Active -->
+                <mat-checkbox formControlName="isActive">
+                    <span>{{ getLabel("isActive") }}</span>
+                </mat-checkbox>
             </div>
         </form>
 

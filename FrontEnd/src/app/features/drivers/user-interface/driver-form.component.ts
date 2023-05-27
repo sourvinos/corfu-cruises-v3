@@ -18,7 +18,7 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 @Component({
     selector: 'driver-form',
     templateUrl: './driver-form.component.html',
-    styleUrls: ['../../../../assets/styles/custom/forms.css', './driver-form.component.css']
+    styleUrls: ['../../../../assets/styles/custom/forms.css']
 })
 
 export class DriverFormComponent {

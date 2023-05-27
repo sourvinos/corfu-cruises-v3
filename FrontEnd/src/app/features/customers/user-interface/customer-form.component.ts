@@ -18,7 +18,7 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 @Component({
     selector: 'customer-form',
     templateUrl: './customer-form.component.html',
-    styleUrls: ['../../../../assets/styles/custom/forms.css', './customer-form.component.css']
+    styleUrls: ['../../../../assets/styles/custom/forms.css']
 })
 
 export class CustomerFormComponent {

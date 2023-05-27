@@ -18,7 +18,7 @@ import { ShipOwnerWriteDto } from '../classes/dtos/shipOwner-write-dto'
 @Component({
     selector: 'ship-owner-form',
     templateUrl: './shipOwner-form.component.html',
-    styleUrls: ['../../../../assets/styles/custom/forms.css', './shipOwner-form.component.css']
+    styleUrls: ['../../../../assets/styles/custom/forms.css']
 })
 
 export class ShipOwnerFormComponent {

@@ -31,20 +31,14 @@
                 <mat-error *ngIf="!port.hasError('required') && port.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>
             <div id="checkboxes">
-                <!-- Has transfer -->
-                <div class="styled-input-square">
-                    <div class="styled-input-single">
-                        <input formControlName="hasTransfer" id="hasTransfer" type="checkbox">
-                        <label for="hasTransfer">{{ getLabel("hasTransfer") }}</label>
-                    </div>
-                </div>
+                <!-- Has Transfer -->
+                <mat-checkbox formControlName="hasTransfer">
+                    <span>{{ getLabel("hasTransfer") }}</span>
+                </mat-checkbox>
                 <!-- Active -->
-                <div class="styled-input-square">
-                    <div class="styled-input-single">
-                        <input formControlName="isActive" id="isActive" type="checkbox">
-                        <label for="isActive">{{ getLabel("isActive") }}</label>
-                    </div>
-                </div>
+                <mat-checkbox formControlName="isActive">
+                    <span>{{ getLabel("isActive") }}</span>
+                </mat-checkbox>
             </div>
         </form>
     </div>
