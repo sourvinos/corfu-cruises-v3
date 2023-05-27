@@ -3,7 +3,7 @@ import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 import { Subscription } from 'rxjs'
 // Custom
-import { DialogService } from 'src/app/shared/services/dialog.service'
+import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { DriverReadDto } from '../classes/dtos/driver-read-dto'
 import { DriverService } from '../classes/services/driver.service'
 import { DriverWriteDto } from '../classes/dtos/driver-write-dto'
@@ -37,7 +37,7 @@ export class DriverFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dialogService: DialogService, private driverService: DriverService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private dialogService: ModalDialogService, private driverService: DriverService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router) { }
 
     //#region lifecycle hooks
 

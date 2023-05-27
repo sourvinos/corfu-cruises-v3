@@ -4,12 +4,12 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { MessageLabelService } from '../../services/message-label.service'
 
 @Component({
-    selector: 'dialog-alert',
-    templateUrl: './dialog-alert.component.html',
-    styleUrls: ['./dialog-alert.component.css']
+    selector: 'modal-dialog',
+    templateUrl: './modal-dialog.component.html',
+    styleUrls: ['./modal-dialog.component.css']
 })
 
-export class DialogAlertComponent {
+export class ModalDialogComponent {
 
     //#region variables
 
@@ -20,7 +20,7 @@ export class DialogAlertComponent {
 
     //#endregion
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<DialogAlertComponent>, private messageLabelService: MessageLabelService) {
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ModalDialogComponent>, private messageLabelService: MessageLabelService) {
         this.iconStyle = data.iconStyle
     }
 

@@ -7,7 +7,7 @@ import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { ListResolved } from 'src/app/shared/classes/list-resolved'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
-import { DialogService } from 'src/app/shared/services/dialog.service'
+import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { PortListVM } from '../classes/view-models/port-list-vm'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { environment } from 'src/environments/environment'
@@ -35,7 +35,7 @@ export class PortListComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private helperService: HelperService, private interactionService: InteractionService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private dialogService: DialogService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private activatedRoute: ActivatedRoute, private helperService: HelperService, private interactionService: InteractionService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private dialogService: ModalDialogService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 

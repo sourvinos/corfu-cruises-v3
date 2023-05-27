@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 // Custom
 import { ConnectedUser } from '../../classes/connected-user'
-import { DialogService } from '../../services/dialog.service'
+import { ModalDialogService } from '../../services/modal-dialog.service'
 import { MessageLabelService } from '../../services/message-label.service'
 import { environment } from 'src/environments/environment'
 import { MessageDialogService } from '../../services/message-dialog.service'
@@ -21,7 +21,7 @@ export class CardsMenuComponent {
 
     //#endregion
 
-    constructor(private dialogService: DialogService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService) { }
+    constructor(private dialogService: ModalDialogService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService) { }
 
     //#region public methods
 

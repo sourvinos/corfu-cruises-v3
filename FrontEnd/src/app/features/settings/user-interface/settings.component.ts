@@ -9,7 +9,7 @@ import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.d
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { DialogService } from 'src/app/shared/services/dialog.service'
+import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { Settings } from '../classes/models/settings'
 import { SettingsService } from '../classes/services/settings.service'
 import { ValidationService } from 'src/app/shared/services/validation.service'
@@ -35,7 +35,7 @@ export class SettingsComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private dialogService: DialogService, private router: Router, private settingsService: SettingsService) { }
+    constructor(private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private dialogService: ModalDialogService, private router: Router, private settingsService: SettingsService) { }
 
     //#region lifecycle hooks
 

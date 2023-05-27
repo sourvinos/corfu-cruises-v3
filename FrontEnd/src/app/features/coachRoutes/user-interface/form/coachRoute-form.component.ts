@@ -7,7 +7,7 @@ import { map, startWith } from 'rxjs/operators'
 import { CoachRouteReadDto } from '../../classes/dtos/coachRoute-read-dto'
 import { CoachRouteService } from '../../classes/services/coachRoute.service'
 import { CoachRouteWriteDto } from '../../classes/dtos/coachRoute-write-dto'
-import { DialogService } from 'src/app/shared/services/dialog.service'
+import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
@@ -46,7 +46,7 @@ export class CoachRouteFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private coachRouteService: CoachRouteService, private dialogService: DialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private sessionStorageService: SessionStorageService,) { }
+    constructor(private activatedRoute: ActivatedRoute, private coachRouteService: CoachRouteService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private sessionStorageService: SessionStorageService,) { }
 
     //#region lifecycle hooks
 

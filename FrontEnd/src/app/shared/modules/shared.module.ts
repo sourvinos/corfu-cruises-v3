@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router'
 import { ZXingScannerModule } from '@zxing/ngx-scanner'
 // Custom
 import { CriteriaPanelComponent } from '../components/criteria-panel/criteria-panel.component'
-import { DialogAlertComponent } from '../components/dialog-alert/dialog-alert.component'
 import { EmojiDirective } from '../directives/emoji.directive'
 import { HomeButtonAndTitleComponent } from '../components/home-button-and-title/home-button-and-title.component'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -15,6 +14,7 @@ import { LoadingSpinnerComponent } from '../components/loading-spinner/loading-s
 import { LoginLogoComponent } from 'src/app/features/login/user-interface/login-logo.component'
 import { MainFooterComponent } from '../components/home/main-footer.component'
 import { MaterialModule } from './material.module'
+import { ModalDialogComponent } from '../components/modal-dialog/modal-dialog.component'
 import { MonthSelectorComponent } from '../components/month-selector/month-selector.component'
 import { PadNumberPipe } from '../pipes/pad-number.pipe'
 import { PrettyPrintPipe } from '../pipes/json-pretty.pipe'
@@ -29,7 +29,6 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
 @NgModule({
     declarations: [
         CriteriaPanelComponent,
-        DialogAlertComponent,
         EmojiDirective,
         HomeButtonAndTitleComponent,
         InputTabStopDirective,
@@ -37,6 +36,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         LoadingSpinnerComponent,
         LoginLogoComponent,
         MainFooterComponent,
+        ModalDialogComponent,
         MonthSelectorComponent,
         PadNumberPipe,
         PrettyPrintPipe,
@@ -84,7 +84,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         ZXingScannerModule,
     ],
     entryComponents: [
-        DialogAlertComponent
+        ModalDialogComponent
     ]
 })
 

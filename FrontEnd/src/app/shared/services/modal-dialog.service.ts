@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
 import { Observable } from 'rxjs'
 // Custom
-import { DialogAlertComponent } from '../components/dialog-alert/dialog-alert.component'
+import { ModalDialogComponent } from '../components/modal-dialog/modal-dialog.component'
 
 @Injectable({ providedIn: 'root' })
 
-export class DialogService {
+export class ModalDialogService {
 
     private response: any
 
@@ -23,7 +23,7 @@ export class DialogService {
     //#region private methods
 
     private openDialog(message: string | object, iconStyle: string, actions: string[]): Observable<boolean> {
-        this.response = this.dialog.open(DialogAlertComponent, {
+        this.response = this.dialog.open(ModalDialogComponent, {
             height: '30rem',
             width: '25rem',
             data: {

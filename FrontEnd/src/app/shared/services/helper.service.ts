@@ -7,8 +7,8 @@ import { Router } from '@angular/router'
 import { Table } from 'primeng/table'
 import { Title } from '@angular/platform-browser'
 // Custom
-import { DialogService } from './dialog.service'
 import { MessageLabelService } from './message-label.service'
+import { ModalDialogService } from './modal-dialog.service'
 import { SessionStorageService } from './session-storage.service'
 import { environment } from 'src/environments/environment'
 
@@ -37,7 +37,7 @@ export class HelperService {
     //#endregion
 
     constructor(
-        private dialogService: DialogService,
+        private dialogService: ModalDialogService,
         private messageLabelService: MessageLabelService,
         private router: Router,
         private sessionStorageService: SessionStorageService,
