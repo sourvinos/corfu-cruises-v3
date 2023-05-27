@@ -1029,6 +1029,10 @@
                 "description": "Ημέρες"
             },
             {
+                "id": "filterPlaceholder",
+                "description": "Γράψτε κάτι..."
+            },
+            {
                 "id": "selected",
                 "description": "Επιλεγμένα"
             },

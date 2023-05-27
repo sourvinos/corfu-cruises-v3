@@ -1,20 +1,19 @@
 import { Component } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { DateRange } from '@angular/material/datepicker'
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators, AbstractControl, FormArray, FormControl } from '@angular/forms'
 import { Subscription } from 'rxjs'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
-import { FieldsetCriteriaService } from 'src/app/shared/services/fieldset-criteria.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { MessageCalendarService } from 'src/app/shared/services/message-calendar.service'
+import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { ScheduleService } from '../../classes/services/schedule.service'
 import { ScheduleWriteVM } from '../../classes/form/schedule-write-vm'
@@ -42,18 +41,18 @@ export class ScheduleNewFormComponent {
     public parentUrl = '/schedules'
 
     public destinations: SimpleEntity[]
+    public selectedDestinations: SimpleEntity[] = []
     public ports: SimpleEntity[]
+    public selectedPorts: SimpleEntity[] = []
+
     public weekdays: any[]
-
-    public selectedFromDate = new Date()
     public selectedRangeValue: DateRange<Date>
-    public selectedToDate = new Date()
-
     private daysToCreate = []
+    private selectedDays = []
 
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private emojiService: EmojiService, private fieldsetCriteriaService: FieldsetCriteriaService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageCalendarService: MessageCalendarService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private dialogService: ModalDialogService, private scheduleService: ScheduleService, private sessionStorageService: SessionStorageService) { }
+    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageCalendarService: MessageCalendarService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private scheduleService: ScheduleService, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -78,10 +77,6 @@ export class ScheduleNewFormComponent {
         return this.emojiService.getEmoji(emoji)
     }
 
-    public filterList(event: { target: { value: any } }, list: string | number): void {
-        this.fieldsetCriteriaService.filterList(event.target.value, this[list])
-    }
-
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
     }
@@ -101,6 +96,31 @@ export class ScheduleNewFormComponent {
         })
     }
 
+    public onRowSelect(event: any, formControl: string): void {
+        const x = this.form.controls[formControl] as FormArray
+        x.controls = []
+        this[formControl].forEach((element: any) => {
+            x.push(new FormControl({
+                'id': element.id,
+                'description': element.description
+            }))
+        })
+    }
+
+    public onRowUnselect(event: any, formControl: string): void {
+        const x = this.form.controls[formControl] as FormArray
+        x.controls = []
+        this.form.patchValue({
+            [formControl]: []
+        })
+        this[formControl].forEach((element: any) => {
+            x.push(new FormControl({
+                'id': element.id,
+                'description': element.description
+            }))
+        })
+    }
+
     public onSave(): void {
         this.saveRecord()
     }
@@ -110,35 +130,48 @@ export class ScheduleNewFormComponent {
             fromDate: fromDate.value != null ? this.dateHelperService.formatDateToIso(new Date(fromDate.value)) : '',
             toDate: toDate.value != null ? this.dateHelperService.formatDateToIso(new Date(toDate.value)) : ''
         })
-        this.createPeriod()
-        this.updateFormField()
+        this.updateFormWithPeriod()
+        this.updateFormFields()
     }
 
-    public toggleAllCheckboxes(form: FormGroup, array: string, allCheckboxes: string): void {
-        this.fieldsetCriteriaService.toggleAllCheckboxes(form, array, allCheckboxes)
-    }
-
-    public updateRadioButtons(form: FormGroup, classname: any, idName: any, id: any, description: any): void {
-        this.fieldsetCriteriaService.updateRadioButtons(form, classname, idName, id, description)
-    }
-
-    public checkboxChange(): void {
-        this.createPeriod()
-        this.updateFormField()
+    public checkboxChange(event: any, selectedDay: number): void {
+        event.checked
+            ? this.selectedDays.push(selectedDay)
+            : this.selectedDays.splice(this.selectedDays.indexOf(selectedDay), 1)
+        // if (event.checked) {
+        //     this.selectedDays.push(selectedDay)
+        // } else {
+        //     this.selectedDays.splice(this.selectedDays.indexOf(selectedDay), 1)
+        // }
+        // this.form.patchValue({
+        //     indexWeekdays: this.selectedDays
+        // })
+        this.updateFormWithPeriod()
+        this.updateFormFields()
     }
 
     //#endregion
 
     //#region private methods
 
-    private buildScheduleToCreate(): ScheduleWriteVM[] {
+    private buildPeriod(from: Date, to: Date): any {
+        const period = []
+        const currentDate = from
+        while (currentDate <= to) {
+            period.push(this.dateHelperService.getWeekdayIndex(this.dateHelperService.formatDateToIso(currentDate, false)) + ' ' + this.dateHelperService.formatDateToIso(currentDate, false))
+            currentDate.setDate(currentDate.getDate() + 1)
+        }
+        return period
+    }
+
+    private buildSchedule(): ScheduleWriteVM[] {
         const formValue = this.form.value
         const objects: ScheduleWriteVM[] = []
         this.form.value.daysToInsert.forEach((day: any) => {
             const x: ScheduleWriteVM = {
                 id: formValue.id,
-                destinationId: formValue.destinations[0].id,
-                portId: formValue.ports[0].id,
+                destinationId: formValue.selectedDestinations[0].id,
+                portId: formValue.selectedPorts[0].id,
                 date: day,
                 maxPax: formValue.maxPax,
                 time: formValue.time,
@@ -153,36 +186,12 @@ export class ScheduleNewFormComponent {
         this.subscription.unsubscribe()
     }
 
-    private buildPeriod(from: Date, to: Date): any {
-        const dateArray = []
-        const currentDate = from
-        while (currentDate <= to) {
-            dateArray.push(this.dateHelperService.getWeekdayIndex(this.dateHelperService.formatDateToIso(currentDate, false)) + ' ' + this.dateHelperService.formatDateToIso(currentDate, false))
-            currentDate.setDate(currentDate.getDate() + 1)
-        }
-        return dateArray
-    }
-
-    private createPeriod(): void {
-        this.daysToCreate = []
-        if (this.fromDate.valid && this.toDate.valid) {
-            const period = this.buildPeriod(new Date(this.fromDate.value), new Date(this.toDate.value))
-            period.forEach((day: string) => {
-                this.weekdays.forEach((x: any) => {
-                    if (x.id == day.substring(0, 1)) {
-                        this.daysToCreate.push(day.substring(2))
-                    }
-                })
-            })
-        }
-    }
-
     private initForm(): void {
         this.form = this.formBuilder.group({
             id: 0,
-            destinations: this.formBuilder.array([], Validators.required),
-            ports: this.formBuilder.array([], Validators.required),
-            weekdays: this.formBuilder.array([], Validators.required),
+            selectedDestinations: this.formBuilder.array([], Validators.required),
+            selectedPorts: this.formBuilder.array([], Validators.required),
+            indexWeekdays: ['', Validators.required],
             fromDate: ['', Validators.required],
             toDate: ['', Validators.required],
             daysToInsert: ['', Validators.required],
@@ -213,7 +222,7 @@ export class ScheduleNewFormComponent {
     }
 
     private saveRecord(): void {
-        this.scheduleService.addRange(this.buildScheduleToCreate()).subscribe({
+        this.scheduleService.addRange(this.buildSchedule()).subscribe({
             complete: () => {
                 this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
             },
@@ -241,14 +250,27 @@ export class ScheduleNewFormComponent {
         })
     }
 
-    private updateFormField(): void {
+    private updateFormFields(): void {
         this.form.patchValue({
-            daysToInsert: this.daysToCreate
+            daysToInsert: this.daysToCreate,
+            indexWeekdays: this.selectedDays
         })
     }
 
-    private updateWeekdayCheckbox(event: any, allCheckbox: string, formControlsArray: string, array: any[], description: string): void {
-        // this.fieldsetCriteriaService.checkboxChange(this.form, event, allCheckbox, formControlsArray, array, description)
+    private updateFormWithPeriod(): void {
+        this.daysToCreate = []
+        if (this.fromDate.valid && this.toDate.valid) {
+            const period = this.buildPeriod(new Date(this.fromDate.value), new Date(this.toDate.value))
+            if (this.form.value.indexWeekdays) {
+                period.forEach((day: string) => {
+                    this.form.value.indexWeekdays.forEach((x: any) => {
+                        if (x == day.substring(0, 1)) {
+                            this.daysToCreate.push(day.substring(2))
+                        }
+                    })
+                })
+            }
+        }
     }
 
     //#endregion

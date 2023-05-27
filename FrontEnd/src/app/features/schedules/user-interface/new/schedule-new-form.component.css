@@ -4,12 +4,11 @@
     height: 100%;
     justify-content: center;
     margin: 0 auto;
-    padding: 0 4rem;
     width: 90%;
 }
 
 #header {
-    margin-bottom: 0.5rem !important;
+    margin-bottom: 0 !important;
 }
 
 #form {
@@ -19,29 +18,50 @@
     width: max-content !important;
 }
 
-#date {
-    width: 15rem !important;
+#form .group-field:first-child {
+    align-items: center;
+    display: flex;
+    margin: 0 3px 0 auto;
 }
 
-#top {
-    display: flex;
-    justify-content: flex-end;
-    margin-left: auto;
+#form .group-field:last-child {
+    height: 100%;
+    overflow-y: hidden;
     width: max-content;
 }
 
-#bottom {
-    display: flex;
-    flex-direction: row;
+#date-fieldset {
+    background-color: transparent !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 17rem !important;
+}
+
+#date-fieldset legend {
+    margin-left: 0.5rem;
+    padding: 0 0.5rem 0 0.5rem;
+    width: auto !important;
+}
+
+#date {
+    background-color: transparent !important;
+    border: 0 !important;
+    padding: 0 2rem 0.5rem 1rem !important;
+    margin-top: 0 !important;
+}
+
+#date #goto-today {
+    margin: 0.5rem -1.5rem 0 0 !important;
+}
+
+#date #goto-today span {
+    color: var(--color-red) !important;
+}
+
+.table-wrapper {
     height: 100%;
 }
 
-#bottom #left {
-    display: flex;
-    flex-direction: row;
-}
-
-#bottom #right {
-    display: flex;
-    flex-direction: column;
+th {
+    border: 1px solid var(--color-e) !important;
 }
