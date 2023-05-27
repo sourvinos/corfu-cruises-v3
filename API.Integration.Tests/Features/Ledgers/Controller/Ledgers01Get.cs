@@ -18,10 +18,9 @@ namespace Ledgers {
         private readonly AppSettingsFixture _appSettingsFixture;
         private readonly HttpClient _httpClient;
         private readonly TestHostFixture _testHostFixture = new();
-        private readonly string _actionVerb = "get";
+        private readonly string _actionVerb = "post";
         private readonly string _baseUrl;
-        private readonly string _adminUrl = "/ledgers?fromDate=2023-04-26&toDate=2023-04-26&destinationId=1&portId=1&portId=2&shipId=6";
-        private readonly string _simpleUserUrl = "/ledgers?fromDate=2023-04-26&toDate=2023-04-26&destinationId=1&portId=1&portId=2&shipId=6";
+        private readonly string _url = "/ledgers";
 
         #endregion
 
@@ -33,26 +32,31 @@ namespace Ledgers {
 
         [Fact]
         public async Task Unauthorized_Not_Logged_In() {
-            await InvalidCredentials.Action(_httpClient, _baseUrl, _adminUrl, _actionVerb, "", "", null);
+            await InvalidCredentials.Action(_httpClient, _baseUrl, _url, _actionVerb, "", "", null);
         }
 
         [Fact]
         public async Task Unauthorized_Invalid_Credentials() {
-            await InvalidCredentials.Action(_httpClient, _baseUrl, _adminUrl, _actionVerb, "user-does-not-exist", "not-a-valid-password", null);
+            await InvalidCredentials.Action(_httpClient, _baseUrl, _url, _actionVerb, "user-does-not-exist", "not-a-valid-password", null);
         }
 
-        [Fact]
-        public async Task Simple_Users_Can_List_Only_Owned() {
-            var actionResponse = await List.Action(_httpClient, _baseUrl, _simpleUserUrl, "simpleuser", "1234567890");
+        [Theory]
+        [ClassData(typeof(CreateAdminCriteria))]
+        public async Task Admins_Can_List_From_All_Users(TestLedgerCriteria criteria) {
+            var actionResponse = await ListByPost.Action(_httpClient, _baseUrl, _url, "john", "ec11fc8c16db", criteria);
             var records = JsonSerializer.Deserialize<IEnumerable<LedgerVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            Assert.Single(records.Select(x => x.Customer));
+            Assert.Equal(2, records.Count());
+            Assert.Equal(12, records.First().Reservations.Sum(x => x.TotalPax));
+            Assert.Equal(7, records.Last().Reservations.Sum(x => x.TotalPax));
         }
 
-        [Fact]
-        public async Task Admins_Can_List() {
-            var actionResponse = await List.Action(_httpClient, _baseUrl, _adminUrl, "john", "ec11fc8c16db");
-            var records = JsonSerializer.Deserialize<List<LedgerVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            Assert.Equal(26, records.Select(x => x.Customer).Count());
+        [Theory]
+        [ClassData(typeof(CreateSimpleUserCriteria))]
+        public async Task Simple_Users_Can_List_Only_Owned(TestLedgerCriteria criteria) {
+            var actionResponse = await ListByPost.Action(_httpClient, _baseUrl, _url, "simpleuser", "1234567890", criteria);
+            var records = JsonSerializer.Deserialize<IEnumerable<LedgerVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            Assert.Single(records);
+            Assert.Equal(23, records.First().Reservations.Sum(x => x.TotalPax));
         }
 
     }

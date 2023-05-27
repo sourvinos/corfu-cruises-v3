@@ -2,8 +2,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Infrastructure;
 
-namespace Responses
-{
+namespace Responses {
 
     public static class ListAll {
 

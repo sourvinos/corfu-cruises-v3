@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Linq;
+using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using API.Features.Embarkation;
@@ -17,9 +18,9 @@ namespace Embarkation {
         private readonly AppSettingsFixture _appSettingsFixture;
         private readonly HttpClient _httpClient;
         private readonly TestHostFixture _testHostFixture = new();
-        private readonly string _actionVerb = "get";
+        private readonly string _actionVerb = "post";
         private readonly string _baseUrl;
-        private readonly string _url = "/embarkation?date=2023-04-19&destinationId=1&portId=1&shipId=6";
+        private readonly string _url = "/embarkation";
 
         #endregion
 
@@ -45,18 +46,20 @@ namespace Embarkation {
             await InvalidCredentials.Action(_httpClient, _baseUrl, _url, _actionVerb, login.Username, login.Password, null);
         }
 
-        [Fact]
-        public async Task Simple_Users_Can_Not_List() {
-            await Forbidden.Action(_httpClient, _baseUrl, _url, _actionVerb, "simpleuser", "1234567890", null);
+        [Theory]
+        [ClassData(typeof(CreateEmbarkationCriteria))]
+        public async Task Simple_Users_Can_Not_List(TestEmbarkationCriteria criteria) {
+            await Forbidden.Action(_httpClient, _baseUrl, _url, _actionVerb, "simpleuser", "1234567890", criteria);
         }
 
-        [Fact]
-        public async Task Admins_Can_List() {
-            var actionResponse = await List.Action(_httpClient, _baseUrl, _url, "john", "ec11fc8c16db");
+        [Theory]
+        [ClassData(typeof(CreateEmbarkationCriteria))]
+        public async Task Admins_Can_List(TestEmbarkationCriteria criteria) {
+            var actionResponse = await ListByPost.Action(_httpClient, _baseUrl, _url, "john", "ec11fc8c16db", criteria);
             var records = JsonSerializer.Deserialize<EmbarkationFinalGroupVM>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            Assert.Equal(108, records.TotalPax);
-            Assert.Equal(99, records.EmbarkedPassengers);
-            Assert.Equal(9, records.PendingPax);
+            Assert.Equal(70, records.TotalPax);
+            Assert.Equal(68, records.EmbarkedPassengers);
+            Assert.Equal(28, records.Reservations.Count());
         }
 
     }
