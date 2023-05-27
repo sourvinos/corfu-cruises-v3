@@ -15,7 +15,6 @@ import { LoadingSpinnerComponent } from '../components/loading-spinner/loading-s
 import { LoginLogoComponent } from 'src/app/features/login/user-interface/login-logo.component'
 import { MainFooterComponent } from '../components/home/main-footer.component'
 import { MaterialModule } from './material.module'
-import { ModalActionResultComponent } from '../components/modal-action-result/modal-action-result.component'
 import { MonthSelectorComponent } from '../components/month-selector/month-selector.component'
 import { PadNumberPipe } from '../pipes/pad-number.pipe'
 import { PrettyPrintPipe } from '../pipes/json-pretty.pipe'
@@ -38,7 +37,6 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         LoadingSpinnerComponent,
         LoginLogoComponent,
         MainFooterComponent,
-        ModalActionResultComponent,
         MonthSelectorComponent,
         PadNumberPipe,
         PrettyPrintPipe,
@@ -86,8 +84,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         ZXingScannerModule,
     ],
     entryComponents: [
-        DialogAlertComponent,
-        ModalActionResultComponent
+        DialogAlertComponent
     ]
 })
 

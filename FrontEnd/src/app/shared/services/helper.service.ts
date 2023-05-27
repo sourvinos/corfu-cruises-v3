@@ -1,14 +1,14 @@
 import { FormGroup } from '@angular/forms'
 import { Injectable, QueryList } from '@angular/core'
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
+import { MatExpansionPanel } from '@angular/material/expansion'
+import { Observable, Subject, defer, finalize } from 'rxjs'
 import { Router } from '@angular/router'
 import { Table } from 'primeng/table'
 import { Title } from '@angular/platform-browser'
 // Custom
-import { MatExpansionPanel } from '@angular/material/expansion'
+import { DialogService } from './dialog.service'
 import { MessageLabelService } from './message-label.service'
-import { ModalActionResultService } from './modal-action-result.service'
-import { Observable, Subject, defer, finalize } from 'rxjs'
 import { SessionStorageService } from './session-storage.service'
 import { environment } from 'src/environments/environment'
 
@@ -36,13 +36,19 @@ export class HelperService {
 
     //#endregion
 
-    constructor(private messageLabelService: MessageLabelService, private modalActionResultService: ModalActionResultService, private router: Router, private sessionStorageService: SessionStorageService, private titleService: Title) { }
+    constructor(
+        private dialogService: DialogService,
+        private messageLabelService: MessageLabelService,
+        private router: Router,
+        private sessionStorageService: SessionStorageService,
+        private titleService: Title
+        ) { }
 
     //#region public methods
 
     public doPostSaveFormTasks(message: string, iconType: string, returnUrl: string, form: any, formReset = true, goBack = true): Promise<any> {
         const promise = new Promise((resolve) => {
-            this.modalActionResultService.open(message, iconType, ['ok']).subscribe(() => {
+            this.dialogService.open(message, iconType, ['ok']).subscribe(() => {
                 formReset ? form.reset() : null
                 goBack ? this.router.navigate([returnUrl]) : null
                 resolve(null)

@@ -2,6 +2,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
 import { Component, HostListener } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 // Custom
+import { ConnectedUser } from 'src/app/shared/classes/connected-user'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DayVM } from '../classes/view-models/day-vm'
 import { DialogService } from 'src/app/shared/services/dialog.service'
@@ -10,12 +11,10 @@ import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { ListResolved } from 'src/app/shared/classes/list-resolved'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { MessageCalendarService } from 'src/app/shared/services/message-calendar.service'
-import { MessageLabelService } from '../../../shared/services/message-label.service'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
-import { ModalActionResultService } from 'src/app/shared/services/modal-action-result.service'
+import { MessageLabelService } from '../../../shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
-import { ConnectedUser } from 'src/app/shared/classes/connected-user'
 
 @Component({
     selector: 'availability',
@@ -41,7 +40,7 @@ export class AvailabilityComponent {
 
     // #endregion 
 
-    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageCalendarService: MessageCalendarService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private modalActionResultService: ModalActionResultService, private router: Router, private sessionStorageService: SessionStorageService) {
+    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageCalendarService: MessageCalendarService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private sessionStorageService: SessionStorageService) {
         this.router.events.subscribe((navigation) => {
             if (navigation instanceof NavigationEnd && navigation.url == this.url) {
                 this.updateVariables()
@@ -160,7 +159,7 @@ export class AvailabilityComponent {
     }
 
     public showApiObject(day: DayVM): void {
-        this.dialogService.open(day, 'info', ['ok'])
+        this.dialogService.open(day, '', ['ok'])
     }
 
     //#endregion
@@ -223,7 +222,7 @@ export class AvailabilityComponent {
                 resolve(this.records)
             } else {
                 this.goBack()
-                this.modalActionResultService.open(this.messageSnackbarService.filterResponse(new Error('500')), 'error', ['ok'])
+                this.dialogService.open(this.messageSnackbarService.filterResponse(new Error('500')), 'error', ['ok'])
             }
         })
     }

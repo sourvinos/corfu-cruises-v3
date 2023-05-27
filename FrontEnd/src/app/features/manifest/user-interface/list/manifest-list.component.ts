@@ -15,7 +15,7 @@ import { ManifestRouteSelectorComponent } from './manifest-route-selector.compon
 import { ManifestVM } from '../../classes/view-models/list/manifest-vm'
 import { MessageDialogService } from '../../../../shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { ModalActionResultService } from 'src/app/shared/services/modal-action-result.service'
+import { DialogService } from 'src/app/shared/services/dialog.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { environment } from 'src/environments/environment'
@@ -51,7 +51,7 @@ export class ManifestListComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private manifestPdfService: ManifestPdfService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private modalActionResultService: ModalActionResultService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) {
+    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private manifestPdfService: ManifestPdfService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private dialogService: DialogService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) {
         this.toggleVirtualTable()
         this.populateCriteriaPanelsFromStorage()
     }
@@ -165,7 +165,7 @@ export class ManifestListComponent {
                 this.records = listResolved.list
                 resolve(this.records)
             } else {
-                this.modalActionResultService.open(this.messageSnackbarService.filterResponse(listResolved.error), 'error', ['ok']).subscribe(() => {
+                this.dialogService.open(this.messageSnackbarService.filterResponse(listResolved.error), 'error', ['ok']).subscribe(() => {
                     this.goBack()
                 })
             }
