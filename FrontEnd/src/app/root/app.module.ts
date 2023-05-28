@@ -14,7 +14,6 @@ import { AppComponent } from './app.component'
 import { CardsMenuComponent } from '../shared/components/home/cards-menu.component'
 import { HomeComponent } from '../shared/components/home/home.component'
 import { IntroModule } from '../features/intro/classes/modules/intro.module'
-import { LogoComponent } from '../shared/components/top-bar-wrapper/logo/logo.component'
 import { ReservationsMenuComponent } from '../shared/components/top-bar-wrapper/reservations-menu/reservations-menu.component'
 import { SearchByRefBoxComponent } from '../shared/components/top-bar-wrapper/search-byRef-box/search-byRef-box.component'
 import { TablesMenuComponent } from '../shared/components/top-bar-wrapper/tables-menu/tables-menu.component'
@@ -30,14 +29,13 @@ import { InterceptorService } from '../shared/services/interceptor.service'
         AppComponent,
         CardsMenuComponent,
         HomeComponent,
-        LogoComponent,
         ReservationsMenuComponent,
         SearchByRefBoxComponent,
         TablesMenuComponent,
         TasksMenuComponent,
         TopBarComponent,
         TopMenuComponent,
-        UserMenuComponent,
+        UserMenuComponent
     ],
     imports: [
         AppRoutingModule,

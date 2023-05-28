@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 // Custom
-import { HelperService } from 'src/app/shared/services/helper.service'
 import { LogoService } from 'src/app/features/reservations/classes/services/logo.service'
+import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 
 @Component({
     selector: 'logo',
@@ -11,29 +11,16 @@ import { LogoService } from 'src/app/features/reservations/classes/services/logo
 
 export class LogoComponent {
 
-    //#region variables
+    public feature = 'loginForm'
 
-    public companyLogoText: any
+    constructor(private logoService: LogoService, private messageLabelService: MessageLabelService) { }
 
-    //#endregion
-
-    constructor(private helperService: HelperService, private logoService: LogoService) { }
-
-    //#region lifecycle hooks
-
-    ngOnInit(): void {
-        this.companyLogoText = this.helperService.getApplicationTitle()
+    public getLabel(id: string): string {
+        return this.messageLabelService.getDescription(this.feature, id)
     }
-
-    //#endregion
-
-
-    //#region public methods
 
     public getLogo(): any {
         return this.logoService.getLogo()
     }
-
-    //#endregion
 
 }

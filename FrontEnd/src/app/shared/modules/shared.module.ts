@@ -11,7 +11,6 @@ import { HomeButtonAndTitleComponent } from '../components/home-button-and-title
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
 import { LanguageMenuComponent } from '../components/top-bar-wrapper/language-menu/language-menu.component'
 import { LoadingSpinnerComponent } from '../components/loading-spinner/loading-spinner.component'
-import { LoginLogoComponent } from 'src/app/features/login/user-interface/login-logo.component'
 import { MainFooterComponent } from '../components/home/main-footer.component'
 import { MaterialModule } from './material.module'
 import { ModalDialogComponent } from '../components/modal-dialog/modal-dialog.component'
@@ -25,6 +24,7 @@ import { TableTotalFilteredRecordsComponent } from '../components/table-total-fi
 import { ThemeMenuComponent } from './../components/top-bar-wrapper/theme-menu/theme-menu.component'
 import { TrimStringPipe } from './../pipes/string-trim.pipe'
 import { YearSelectorComponent } from '../components/year-selector/year-selector.component'
+import { LogoComponent } from '../components/top-bar-wrapper/logo/logo.component'
 
 @NgModule({
     declarations: [
@@ -33,8 +33,8 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         HomeButtonAndTitleComponent,
         InputTabStopDirective,
         LanguageMenuComponent,
+        LogoComponent,
         LoadingSpinnerComponent,
-        LoginLogoComponent,
         MainFooterComponent,
         ModalDialogComponent,
         MonthSelectorComponent,
@@ -65,7 +65,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         InputTabStopDirective,
         LanguageMenuComponent,
         LoadingSpinnerComponent,
-        LoginLogoComponent,
+        LogoComponent,
         MainFooterComponent,
         MaterialModule,
         MonthSelectorComponent,

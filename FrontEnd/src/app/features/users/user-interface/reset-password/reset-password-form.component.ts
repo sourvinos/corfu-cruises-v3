@@ -16,7 +16,7 @@ import { ResetPasswordViewModel } from '../../classes/view-models/reset-password
 @Component({
     selector: 'reset-password-form',
     templateUrl: './reset-password-form.component.html',
-    styleUrls: ['../../../../../assets/styles/custom/forms.css', '../../../../shared/styles/login-forgot-reset-password.css', '../../../../shared/styles/login-forgot-reset-password-logo.css']
+    styleUrls: ['../../../../../assets/styles/custom/forms.css', '../../../../shared/styles/login-forgot-reset-password.css']
 })
 
 export class ResetPasswordFormComponent {
