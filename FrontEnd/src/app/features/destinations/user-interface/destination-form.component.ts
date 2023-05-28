@@ -18,7 +18,7 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 @Component({
     selector: 'destination-form',
     templateUrl: './destination-form.component.html',
-    styleUrls: ['../../../../assets/styles/custom/forms.css', './destination-form.component.css']
+    styleUrls: ['../../../../assets/styles/custom/forms.css']
 })
 
 export class DestinationFormComponent {

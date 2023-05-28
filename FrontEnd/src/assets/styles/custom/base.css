@@ -148,4 +148,7 @@ ul {
 
 p {
     color: var(--color-c);
+    font-family: var(--font-family-ubuntu);
+    font-size: 1rem;
+    margin: 0;
 }

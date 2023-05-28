@@ -84,31 +84,59 @@
                         </div>
                     </div>
                 </fieldset>
-                <!-- Weekdays -->
-                <fieldset class="fieldset">
-                    <legend>
-                        <span>{{ getLabel('weekdays') }}</span>
-                    </legend>
-                    <div class="list-wrapper">
-                        <div *ngFor="let weekday of weekdays">
-                            <mat-checkbox (change)="checkboxChange($event, weekday.id)" [value]="weekday.id">
-                                <span>{{ getWeekday(weekday.id) | trimString:33 }}</span>
-                            </mat-checkbox>
+                <!-- Weekdays, Max Pax and Time -->
+                <div id="nested">
+                    <!-- Weekdays -->
+                    <fieldset class="fieldset">
+                        <legend>
+                            <span>{{ getLabel('weekdays') }}</span>
+                            <div class="selected">
+                                <span class="selected-count">{{ getLabel("selected") }}: {{ selectedWeekdays.length }}</span>
+                                <span class="icon">{{ getEmoji(selectedWeekdays.length > 0 ? 'ok' : 'error') }}</span>
+                            </div>
+                        </legend>
+                        <div class="list">
+                            <div class="table-wrapper">
+                                <p-table #weekdaysTable (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'weekdays','selectedWeekdays')" (onRowSelect)="onRowSelect($event,'selectedWeekdays')" (onRowUnselect)="onRowUnselect($event,'selectedWeekdays')" [(selection)]="selectedWeekdays" [scrollable]="true" [value]="weekdays" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th class="no-border width-2"><p-tableHeaderCheckbox class="hidden"></p-tableHeaderCheckbox></th>
+                                            <th class="no-border width-5"><input (input)="weekdaysTable.filter($event.target.value, 'description', 'contains')" [value]="$any(weekdaysTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template let-weekday pTemplate="body">
+                                        <tr style="height:32px">
+                                            <td class="center width-2"><p-tableCheckbox (click)="doTasks($event,weekday)" [value]="weekday"></p-tableCheckbox></td>
+                                            <td class="width-5">{{ weekday.description }}</td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </div>
                         </div>
-                    </div>
-                </fieldset>
-                <!-- MaxPax -->
-                <!-- <mat-form-field>
-                    <input [placeholder]="getLabel('maxPax')" class="number" formControlName="maxPax" matInput type="number" tabindex="-1">
-                    <mat-error *ngIf="maxPax.hasError('required')">{{ getHint("required") }}</mat-error>
-                    <mat-error *ngIf="!maxPax.hasError('required') && maxPax.hasError('min') || maxPax.hasError('max')">{{ getHint("invalid") }}</mat-error>
-                </mat-form-field> -->
-                <!-- Time -->
-                <!-- <mat-form-field>
-                    <input [placeholder]="getLabel('time')" class="right" formControlName="time" matInput tabindex="-1">
-                    <mat-error *ngIf="time.hasError('required')">{{ getHint("required") }}</mat-error>
-                    <mat-error *ngIf="!time.hasError('required') && !time.hasError('time')">{{ getHint("invalid") }}</mat-error>
-                </mat-form-field> -->
+                    </fieldset>
+                    <!-- MaxPax -->
+                    <fieldset class="fieldset full-height">
+                        <legend>
+                            <span>{{ getLabel('maxPax') }}</span>
+                        </legend>
+                        <mat-form-field class="no-decorations">
+                            <input class="number" formControlName="maxPax" matInput type="number" tabindex="-1">
+                            <mat-error *ngIf="maxPax.hasError('required')">{{ getHint("required") }}</mat-error>
+                            <mat-error *ngIf="!maxPax.hasError('required') && maxPax.hasError('min') || maxPax.hasError('max')">{{ getHint("invalid") }}</mat-error>
+                        </mat-form-field>
+                    </fieldset>
+                    <!-- Time -->
+                    <fieldset class="fieldset full-height">
+                        <legend>
+                            <span>{{ getLabel('time') }}</span>
+                        </legend>
+                        <mat-form-field class="no-decorations">
+                            <input class="right" formControlName="time" matInput tabindex="-1">
+                            <mat-error *ngIf="time.hasError('required')">{{ getHint("required") }}</mat-error>
+                            <mat-error *ngIf="!time.hasError('required') && !time.hasError('time')">{{ getHint("invalid") }}</mat-error>
+                        </mat-form-field>
+                    </fieldset>
+                </div>
             </div>
         </form>
 

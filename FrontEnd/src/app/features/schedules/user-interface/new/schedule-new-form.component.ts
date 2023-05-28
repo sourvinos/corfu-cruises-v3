@@ -44,11 +44,12 @@ export class ScheduleNewFormComponent {
     public selectedDestinations: SimpleEntity[] = []
     public ports: SimpleEntity[]
     public selectedPorts: SimpleEntity[] = []
+    public weekdays: SimpleEntity[]
+    public selectedWeekdays: SimpleEntity[] = []
 
-    public weekdays: any[]
     public selectedRangeValue: DateRange<Date>
-    private daysToCreate = []
-    private selectedDays = []
+    public daysToCreate = []
+    public selectedDays = []
 
     //#endregion
 
@@ -73,6 +74,16 @@ export class ScheduleNewFormComponent {
 
     //#region public methods
 
+    public doTasks(event: any, x: string): void {
+        if (event.target.classList.contains('p-checkbox-box')) {
+            this.selectedDays.push(x)
+        } else {
+            this.selectedDays.splice(this.selectedDays.indexOf(x), 1)
+        }
+        this.buildDaysToCreate()
+        this.updateFormFields()
+    }
+
     public getEmoji(emoji: string): string {
         return this.emojiService.getEmoji(emoji)
     }
@@ -94,6 +105,29 @@ export class ScheduleNewFormComponent {
             fromDate: this.dateHelperService.formatDateToIso(new Date()),
             toDate: this.dateHelperService.formatDateToIso(new Date())
         })
+    }
+
+    public onHeaderCheckboxToggle(event: any, array: string, formControl: string): void {
+        if (event.checked == true) {
+            const x = this.form.controls[formControl] as FormArray
+            x.controls = []
+            this.form.patchValue({
+                [formControl]: []
+            })
+            this[array].forEach((element: any) => {
+                x.push(new FormControl({
+                    'id': element.id,
+                    'description': element.description
+                }))
+            })
+        }
+        if (event.checked == false) {
+            const x = this.form.controls[formControl] as FormArray
+            x.controls = []
+            this.form.patchValue({
+                [formControl]: []
+            })
+        }
     }
 
     public onRowSelect(event: any, formControl: string): void {
@@ -130,23 +164,7 @@ export class ScheduleNewFormComponent {
             fromDate: fromDate.value != null ? this.dateHelperService.formatDateToIso(new Date(fromDate.value)) : '',
             toDate: toDate.value != null ? this.dateHelperService.formatDateToIso(new Date(toDate.value)) : ''
         })
-        this.updateFormWithPeriod()
-        this.updateFormFields()
-    }
-
-    public checkboxChange(event: any, selectedDay: number): void {
-        event.checked
-            ? this.selectedDays.push(selectedDay)
-            : this.selectedDays.splice(this.selectedDays.indexOf(selectedDay), 1)
-        // if (event.checked) {
-        //     this.selectedDays.push(selectedDay)
-        // } else {
-        //     this.selectedDays.splice(this.selectedDays.indexOf(selectedDay), 1)
-        // }
-        // this.form.patchValue({
-        //     indexWeekdays: this.selectedDays
-        // })
-        this.updateFormWithPeriod()
+        this.buildDaysToCreate()
         this.updateFormFields()
     }
 
@@ -191,7 +209,6 @@ export class ScheduleNewFormComponent {
             id: 0,
             selectedDestinations: this.formBuilder.array([], Validators.required),
             selectedPorts: this.formBuilder.array([], Validators.required),
-            indexWeekdays: ['', Validators.required],
             fromDate: ['', Validators.required],
             toDate: ['', Validators.required],
             daysToInsert: ['', Validators.required],
@@ -211,13 +228,13 @@ export class ScheduleNewFormComponent {
 
     private populateWeekdays(): void {
         this.weekdays = [
-            { id: '0', description: this.messageCalendarService.getDescription('weekdays', '0') },
-            { id: '1', description: this.messageCalendarService.getDescription('weekdays', '1') },
-            { id: '2', description: this.messageCalendarService.getDescription('weekdays', '2') },
-            { id: '3', description: this.messageCalendarService.getDescription('weekdays', '3') },
-            { id: '4', description: this.messageCalendarService.getDescription('weekdays', '4') },
-            { id: '5', description: this.messageCalendarService.getDescription('weekdays', '5') },
-            { id: '6', description: this.messageCalendarService.getDescription('weekdays', '6') }
+            { id: 0, description: this.messageCalendarService.getDescription('weekdays', '0') },
+            { id: 1, description: this.messageCalendarService.getDescription('weekdays', '1') },
+            { id: 2, description: this.messageCalendarService.getDescription('weekdays', '2') },
+            { id: 3, description: this.messageCalendarService.getDescription('weekdays', '3') },
+            { id: 4, description: this.messageCalendarService.getDescription('weekdays', '4') },
+            { id: 5, description: this.messageCalendarService.getDescription('weekdays', '5') },
+            { id: 6, description: this.messageCalendarService.getDescription('weekdays', '6') }
         ]
     }
 
@@ -252,19 +269,18 @@ export class ScheduleNewFormComponent {
 
     private updateFormFields(): void {
         this.form.patchValue({
-            daysToInsert: this.daysToCreate,
-            indexWeekdays: this.selectedDays
+            daysToInsert: this.daysToCreate
         })
     }
 
-    private updateFormWithPeriod(): void {
+    private buildDaysToCreate(): void {
         this.daysToCreate = []
         if (this.fromDate.valid && this.toDate.valid) {
             const period = this.buildPeriod(new Date(this.fromDate.value), new Date(this.toDate.value))
-            if (this.form.value.indexWeekdays) {
+            if (this.selectedDays.length > 0) {
                 period.forEach((day: string) => {
-                    this.form.value.indexWeekdays.forEach((x: any) => {
-                        if (x == day.substring(0, 1)) {
+                    this.selectedWeekdays.forEach((x: any) => {
+                        if (x.id == day.substring(0, 1)) {
                             this.daysToCreate.push(day.substring(2))
                         }
                     })
