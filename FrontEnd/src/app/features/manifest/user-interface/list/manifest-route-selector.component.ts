@@ -2,7 +2,6 @@ import { Component, NgZone } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { MatDialogRef } from '@angular/material/dialog'
 // Custom
-import { FieldsetCriteriaService } from 'src/app/shared/services/fieldset-criteria.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { ShipRouteActiveVM } from './../../../shipRoutes/classes/view-models/shipRoute-active-vm'
@@ -17,14 +16,13 @@ export class ManifestRouteSelectorComponent {
 
     //#region variables
 
-    private criteria: ShipRouteActiveVM
     private feature = 'manifestCriteria'
     public form: FormGroup
     public shipRoutes: ShipRouteActiveVM[] = []
 
     //#endregion
 
-    constructor(private dialogRef: MatDialogRef<ManifestRouteSelectorComponent>, private fieldsetCriteriaService: FieldsetCriteriaService, private formBuilder: FormBuilder, private messageLabelService: MessageLabelService, private ngZone: NgZone, private sessionStorageService: SessionStorageService) { }
+    constructor(private dialogRef: MatDialogRef<ManifestRouteSelectorComponent>, private formBuilder: FormBuilder, private messageLabelService: MessageLabelService, private ngZone: NgZone, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -44,7 +42,7 @@ export class ManifestRouteSelectorComponent {
     public continue(): void {
         this.ngZone.run(() => {
             const x = JSON.parse(this.sessionStorageService.getItem('shipRoutes'))
-            const z = x.find((z: any) => z.id == this.form.value.shipRoutes[0].id)
+            const z = x.find((z: any) => z.id == this.form.value.shipRoute.id)
             this.dialogRef.close(z)
         })
     }
@@ -53,23 +51,13 @@ export class ManifestRouteSelectorComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public lookup(array: string, arrayId: number): boolean {
-        if (this.criteria) {
-            return this.criteria[array].filter((x: { id: number }) => x.id == arrayId).length != 0 ? true : false
-        }
-    }
-
-    public updateRadioButtons(form: FormGroup, classname: any, idName: any, id: any, description: any): void {
-        this.fieldsetCriteriaService.updateRadioButtons(form, classname, idName, id, description)
-    }
-
     //#endregion
 
     //#region private methods
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            shipRoutes: this.formBuilder.array([], Validators.required)
+            shipRoute: ['', Validators.required]
         })
     }
 

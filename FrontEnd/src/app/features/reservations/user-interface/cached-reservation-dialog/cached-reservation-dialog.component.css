@@ -5,17 +5,32 @@
 
 #dialog-content {
     height: 100%;
-    margin: 1rem 0 !important;
+    margin: 1rem 0 1rem 0 !important;
 }
 
 #dialog-footer {
     margin-right: 0;
 }
 
+.option-label {
+    color: var(--color-c);
+    font-family: var(--font-family-asty);
+    font-size: 0.8125rem;
+    font-weight: 300;
+}
+
+.option-label span {
+    margin-left: 0.5rem;
+}
+
+.option-label span:hover {
+    cursor: pointer;
+}
+
 .option-message {
     color: var(--color-c);
     font-family: var(--font-family-asty);
     font-size: 0.8125rem;
-    font-weight: 200;
+    font-weight: 300;
     margin: 0.3rem 0 0.3rem 2.45rem;
 }

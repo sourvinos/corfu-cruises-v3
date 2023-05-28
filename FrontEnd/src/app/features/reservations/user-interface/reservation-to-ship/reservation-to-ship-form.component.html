@@ -7,13 +7,11 @@
 
     <div id="dialog-content">
         <form id="form" [formGroup]="form" autocomplete="off">
-            <div *ngFor="let ship of ships" [attr.id]=ship.description>
-                <div class="styled-input-rounded">
-                    <div class="styled-input-single rounded">
-                        <input (click)="updateRadioButtons(form, 'ships', 'ship', ship.id, ship.description)" class="ships" formArrayName="ships" type="radio" [value]="ship.id" [attr.id]="'ship' + ship.id" [checked]="false">
-                        <label [attr.for]="'ship' + ship.id" [attr.id]="'ship-label' + ship.id">{{ ship.description }}</label>
-                    </div>
-                </div>
+            <div *ngFor="let ship of ships" class="option">
+                <p-radioButton [inputId]="ship.id.toString()" [value]="ship" formControlName="ship"></p-radioButton>
+                <label class="option-label" [for]="ship.id">
+                    <span>{{ ship.description }}</span>
+                </label>
             </div>
         </form>
     </div>

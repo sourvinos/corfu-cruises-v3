@@ -23,7 +23,7 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 @Component({
     selector: 'coach-route-form',
     templateUrl: './coachRoute-form.component.html',
-    styleUrls: ['../../../../../assets/styles/custom/forms.css', './coachRoute-form.component.css']
+    styleUrls: ['../../../../../assets/styles/custom/forms.css']
 })
 
 export class CoachRouteFormComponent {

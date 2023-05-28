@@ -2,7 +2,6 @@ import { Component, NgZone } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { MatDialogRef } from '@angular/material/dialog'
 // Custom
-import { FieldsetCriteriaService } from 'src/app/shared/services/fieldset-criteria.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { ShipActiveVM } from '../../../ships/classes/view-models/ship-active-vm'
@@ -18,12 +17,12 @@ export class ReservationToShipComponent {
     //#region variables
 
     private feature = 'assignToShip'
-    public ships: ShipActiveVM[] = []
     public form: FormGroup
+    public ships: ShipActiveVM[] = []
 
     //#endregion
 
-    constructor(private dialogRef: MatDialogRef<ReservationToShipComponent>, private fieldsetCriteriaService: FieldsetCriteriaService, private formBuilder: FormBuilder, private messageLabelService: MessageLabelService, private ngZone: NgZone, private sessionStorageService: SessionStorageService) { }
+    constructor(private dialogRef: MatDialogRef<ReservationToShipComponent>, private formBuilder: FormBuilder, private messageLabelService: MessageLabelService, private ngZone: NgZone, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -50,17 +49,13 @@ export class ReservationToShipComponent {
         })
     }
 
-    public updateRadioButtons(form: FormGroup, classname: any, idName: any, id: any, description: any): void {
-        this.fieldsetCriteriaService.updateRadioButtons(form, classname, idName, id, description)
-    }
-
     //#endregion
 
     //#region private methods
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            ships: this.formBuilder.array([], Validators.required)
+            ship: ['', Validators.required]
         })
     }
 

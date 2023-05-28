@@ -78,7 +78,7 @@
     }
 }
 
-@media (width >=800px) {
+@media (width >= 800px) {
     #content {
         width: 80%;
     }

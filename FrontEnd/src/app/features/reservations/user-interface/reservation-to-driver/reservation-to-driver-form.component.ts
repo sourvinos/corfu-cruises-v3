@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { MatDialogRef } from '@angular/material/dialog'
 // Custom
 import { DriverActiveVM } from './../../../drivers/classes/view-models/driver-active-vm'
-import { FieldsetCriteriaService } from 'src/app/shared/services/fieldset-criteria.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 
@@ -18,12 +17,12 @@ export class ReservationToDriverComponent {
     //#region variables
 
     private feature = 'assignToDriver'
-    public drivers: DriverActiveVM[] = []
     public form: FormGroup
+    public drivers: DriverActiveVM[] = []
 
     //#endregion
 
-    constructor(private dialogRef: MatDialogRef<ReservationToDriverComponent>, private fieldsetCriteriaService: FieldsetCriteriaService, private formBuilder: FormBuilder, private messageLabelService: MessageLabelService, private ngZone: NgZone, private sessionStorageService: SessionStorageService) { }
+    constructor(private dialogRef: MatDialogRef<ReservationToDriverComponent>, private formBuilder: FormBuilder, private messageLabelService: MessageLabelService, private ngZone: NgZone, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -50,17 +49,13 @@ export class ReservationToDriverComponent {
         })
     }
 
-    public updateRadioButtons(form: FormGroup, classname: any, idName: any, id: any, description: any): void {
-        this.fieldsetCriteriaService.updateRadioButtons(form, classname, idName, id, description)
-    }
-
     //#endregion
 
     //#region private methods
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            drivers: this.formBuilder.array([], Validators.required)
+            driver: ['', Validators.required]
         })
     }
 

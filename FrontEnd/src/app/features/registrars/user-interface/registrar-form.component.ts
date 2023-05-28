@@ -23,7 +23,7 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 @Component({
     selector: 'registrar-form',
     templateUrl: './registrar-form.component.html',
-    styleUrls: ['../../../../assets/styles/custom/forms.css', './registrar-form.component.css']
+    styleUrls: ['../../../../assets/styles/custom/forms.css']
 })
 
 export class RegistrarFormComponent {

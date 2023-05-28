@@ -96,7 +96,7 @@ export class ReservationListComponent {
             })
             dialogRef.afterClosed().subscribe(result => {
                 if (result !== undefined) {
-                    this.reservationService.assignToDriver(result.drivers[0].id, this.selectedRecords).subscribe(() => {
+                    this.reservationService.assignToDriver(result.driver.id, this.selectedRecords).subscribe(() => {
                         this.dialogService.open(this.messageSnackbarService.success(), 'success', ['ok']).subscribe(() => {
                             this.clearSelectedRecords()
                             this.resetTableFilters()
@@ -121,7 +121,7 @@ export class ReservationListComponent {
             })
             dialogRef.afterClosed().subscribe(result => {
                 if (result !== undefined) {
-                    this.reservationService.assignToShip(result.ships[0].id, this.selectedRecords).subscribe(() => {
+                    this.reservationService.assignToShip(result.ship.id, this.selectedRecords).subscribe(() => {
                         this.dialogService.open(this.messageSnackbarService.success(), 'success', ['ok']).subscribe(() => {
                             this.clearSelectedRecords()
                             this.resetTableFilters()

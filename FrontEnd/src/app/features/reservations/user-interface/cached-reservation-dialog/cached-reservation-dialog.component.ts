@@ -1,5 +1,5 @@
 import { Component, NgZone } from '@angular/core'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup } from '@angular/forms'
 import { MatDialogRef } from '@angular/material/dialog'
 // Custom
 import { FieldsetCriteriaService } from 'src/app/shared/services/fieldset-criteria.service'
@@ -54,7 +54,7 @@ export class CachedReservationDialogComponent {
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            options: this.formBuilder.array([], Validators.required)
+            option: ''
         })
     }
 
