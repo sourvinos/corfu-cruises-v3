@@ -18,8 +18,7 @@ import { ReservationHttpService } from '../../classes/services/reservation.http.
 import { ReservationListDestinationVM } from 'src/app/features/reservations/classes/view-models/list/reservation-list-destination-vm'
 import { ReservationListOverbookedDestinationVM } from '../../classes/view-models/list/reservation-list-overbooked-destination-vm'
 import { ReservationListVM } from '../../classes/view-models/list/reservation-list-vm'
-import { ReservationToDriverComponent } from '../reservation-to-driver/reservation-to-driver-form.component'
-import { ReservationToShipComponent } from '../reservation-to-ship/reservation-to-ship-form.component'
+import { ReservationToDriverOrShipComponent } from '../reservation-to-driver-or-ship/reservation-to-driver-or-ship-form.component'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { environment } from 'src/environments/environment'
@@ -86,17 +85,15 @@ export class ReservationListComponent {
     public assignToDriver(): void {
         if (this.isAnyRowSelected()) {
             this.saveSelectedIds()
-            const dialogRef = this.dialog.open(ReservationToDriverComponent, {
+            const dialogRef = this.dialog.open(ReservationToDriverOrShipComponent, {
+                data: ['drivers', 'assignToDriver'],
                 height: '550px',
+                panelClass: 'dialog',
                 width: '500px',
-                data: {
-                    actions: ['abort', 'ok']
-                },
-                panelClass: 'dialog'
             })
             dialogRef.afterClosed().subscribe(result => {
                 if (result !== undefined) {
-                    this.reservationService.assignToDriver(result.driver.id, this.selectedRecords).subscribe(() => {
+                    this.reservationService.assignToDriver(result.record.id, this.selectedRecords).subscribe(() => {
                         this.dialogService.open(this.messageSnackbarService.success(), 'success', ['ok']).subscribe(() => {
                             this.clearSelectedRecords()
                             this.resetTableFilters()
@@ -111,17 +108,15 @@ export class ReservationListComponent {
     public assignToShip(): void {
         if (this.isAnyRowSelected()) {
             this.saveSelectedIds()
-            const dialogRef = this.dialog.open(ReservationToShipComponent, {
+            const dialogRef = this.dialog.open(ReservationToDriverOrShipComponent, {
+                data: ['ships', 'assignToShip'],
                 height: '550px',
+                panelClass: 'dialog',
                 width: '500px',
-                data: {
-                    actions: ['abort', 'ok']
-                },
-                panelClass: 'dialog'
             })
             dialogRef.afterClosed().subscribe(result => {
                 if (result !== undefined) {
-                    this.reservationService.assignToShip(result.ship.id, this.selectedRecords).subscribe(() => {
+                    this.reservationService.assignToShip(result.record.id, this.selectedRecords).subscribe(() => {
                         this.dialogService.open(this.messageSnackbarService.success(), 'success', ['ok']).subscribe(() => {
                             this.clearSelectedRecords()
                             this.resetTableFilters()
