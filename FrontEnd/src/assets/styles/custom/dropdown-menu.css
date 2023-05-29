@@ -25,7 +25,7 @@ button.drop-down-menu {
 }
 
 button.drop-down-menu.hoverable:hover {
-    background-color: var(--color-cyan) !important;
+    background-color: var(--color-e) !important;
 }
 
 li > button > span, ul > button > span {
@@ -52,8 +52,6 @@ li:hover .sub-menu {
 .sub-menu button {
     animation: enter 0.1s ease forwards;
     background-color: var(--color-e);
-    border-left: 0.0625rem solid var(--color-e);
-    border-right: 0.0625rem solid var(--color-e);
     display: flex;
     justify-content: flex-start;
     opacity: 0;
@@ -63,11 +61,11 @@ li:hover .sub-menu {
 }
 
 .sub-menu button:first-child {
-    border-top: 0.0625rem solid var(--color-e);
+    border-top: 0.0625rem solid var(--color-b);
 }
 
 .sub-menu button:last-child {
-    border-bottom: 0.0625rem solid var(--color-e);
+    border-bottom: 0.0625rem solid var(--color-b);
 }
 
 .sub-menu button:nth-child(1) {

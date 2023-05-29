@@ -11,7 +11,7 @@
 }
 
 .p-inputtext:not(.disabled):focus {
-    background-color: var(--color-a) !important;
+    /* background-color: var(--color-a) !important; */
     border: none;
     box-shadow: none;
 }

@@ -1,7 +1,6 @@
 fieldset {
-    background-color: var(--color-a) !important;
     border-radius: 0;
-    border: 0.0625rem solid var(--color-e);
+    border: 0.0625rem solid var(--color-d);
     padding: 1rem 1.5rem 1rem 1.65rem;
 }
 

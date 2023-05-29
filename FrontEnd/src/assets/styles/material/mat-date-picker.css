@@ -103,7 +103,7 @@
 .mat-calendar-body-selected {
     background-color: var(--color-day-selected) !important;
     border: 0.0625rem solid var(--color-day-selected) !important;
-    color: var(--color-a);
+    /* color: var(--color-a); */
 }
 
 .mat-calendar-body-in-range {

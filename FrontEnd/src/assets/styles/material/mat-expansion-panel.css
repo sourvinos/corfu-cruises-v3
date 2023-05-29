@@ -1,5 +1,5 @@
 .mat-expansion-panel {
-    background-color: var(--color-a);
+    /* background-color: var(--color-a); */
     border-radius: 0 !important;
     border: 0.0625rem solid var(--color-g) !important;
     box-shadow: 0 0 0 0 #000000 !important;
@@ -32,7 +32,7 @@
 }
 
 .mat-expansion-panel-body {
-    background-color: var(--color-xx) !important;
+    background-color: var(--color-e) !important;
     display: flex;
     flex-direction: column;
     gap: 1rem;

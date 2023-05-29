@@ -8,7 +8,7 @@
 }
 
 #search-by-ref-no-text {
-    background-color: var(--color-a);
+    /* background-color: var(--color-a); */
     border-radius: 0.3125rem;
     border: none;
     color: var(--color-c);

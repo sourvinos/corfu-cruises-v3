@@ -22,7 +22,7 @@
 }
 
 #loading-indication, #loading-indication::before {
-    background-color: var(--color-a);
+    /* background-color: var(--color-a); */
     display: flex;
     height: 0.0625rem;
     margin: 0;

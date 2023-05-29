@@ -42,18 +42,8 @@
     width: 100%;
 }
 
-#tab-overview {
-    background-image: var(--color-tab-overview);
-    color: var(--color-button-text);
-}
-
-#tab-passengers {
-    background-image: var(--color-tab-passengers);
-    color: var(--color-button-text);
-}
-
-#tab-misc {
-    background-image: var(--color-tab-misc);
+#tab-overview, #tab-passengers, #tab-misc {
+    background: var(--color-button-background-primary);
     color: var(--color-button-text);
 }
 

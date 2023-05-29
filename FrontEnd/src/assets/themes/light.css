@@ -1,14 +1,9 @@
 * {
-    /* --color-a: #ffffff; */
-    /* --color-b: #d1dae5; */
+    --color-a: #feeddb;
+    --color-b: #9ccfd7;
     --color-c: #000000;
-    /* --color-d: #f3f3f3; */
-    --color-e: #9ed2e5;
-    /* --color-x: #fafafa; */
-    /* --color-z: #d1dae5; */
-    /* --color-g: #c0dfd7; */
-    /* --color-i: #0000001a; */
-    /* --color-f: #ccdff9; */
-    --color-h: linear-gradient(180deg, #a7deee 0%, #dceff6 100%);
-    --color-xx: ##dceff647;
+    --color-d: #607d8b;
+    --color-e: #dfdfdf;
+    --color-h: linear-gradient(180deg, #efefef 0%, #abbaab 100%);
+    --color-xx: #607d8b;
 }

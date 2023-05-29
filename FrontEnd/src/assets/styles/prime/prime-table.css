@@ -31,7 +31,7 @@
 
 .p-datatable .p-datatable-thead > tr > th {
     background-color: var(--color-e);
-    border-right: 0.0625rem solid var(--color-e);
+    border-right: 0.0625rem solid var(--color-d);
     color: var(--color-c) !important;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-header) !important;
@@ -41,30 +41,30 @@
 
 .p-datatable .p-datatable-thead > tr:nth-child(1) > th {
     border-bottom: none;
-    border-top: 1px solid var(--color-e);
+    border-top: 1px solid var(--color-d);
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(2) > th {
-    border-bottom: 1px solid var(--color-e);
+    border-bottom: 1px solid var(--color-d);
     border-top: none;
     padding: 0 0.5rem 0.5625rem 0.5rem;
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(1) > th:first-child {
-    border-left: 1px solid var(--color-e);
+    border-left: 1px solid var(--color-d);
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(1) > th:last-child {
-    border-right: 1px solid var(--color-e);
+    border-right: 1px solid var(--color-d);
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(2) > th:first-child {
-    border-left: 1px solid var(--color-e);
+    border-left: 1px solid var(--color-d);
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(2) > th:last-child {
-    border-right: 1px solid var(--color-e) !important;
+    border-right: 1px solid var(--color-d) !important;
 }
 
 .p-datatable .p-datatable-thead > tr > th.header-datepicker {
@@ -96,7 +96,7 @@
 }
 
 .p-datatable .p-datatable-tbody > tr > td {
-    border-bottom: 0.0625rem solid var(--color-e);
+    border-bottom: 0.0625rem solid var(--color-d);
     color: var(--color-c);
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-row);
@@ -114,12 +114,6 @@
 
 .p-datatable .p-sortable-column .p-sortable-column-icon {
     color: var(--color-c) !important;
-    margin-top: -0.25rem;
-}
-
-.p-datatable .p-sortable-column .p-sortable-column-badge {
-    background-color: var(--color-a);
-    color: var(--color-c);
     margin-top: -0.25rem;
 }
 
@@ -394,8 +388,8 @@ div:not(.p-column-filter).p-column-filter-row:hover {
 
 .p-datatable .p-datatable-tfoot > tr > td {
     background-color: var(--color-e);
-    border-bottom: 0.0625rem solid var(--color-e) !important;
-    border-right: 0.0625rem solid var(--color-e) !important;
+    border-bottom: 0.0625rem solid var(--color-d) !important;
+    border-right: 0.0625rem solid var(--color-d) !important;
     color: var(--color-c) !important;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-row);
@@ -404,5 +398,5 @@ div:not(.p-column-filter).p-column-filter-row:hover {
 }
 
 .p-datatable .p-datatable-tfoot > tr > td:first-child {
-    border-left: 0.0625rem solid var(--color-e) !important;
+    border-left: 0.0625rem solid var(--color-d) !important;
 }

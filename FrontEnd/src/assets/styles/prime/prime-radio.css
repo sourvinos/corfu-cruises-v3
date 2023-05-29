@@ -20,7 +20,7 @@
 }
 
 .p-radiobutton .p-radiobutton-box {
-    background-color: var(--color-a);
+    /* background-color: var(--color-a); */
 }
 
 .p-radiobutton .p-radiobutton-box:not(.p-disabled):not(.p-highlight):hover {

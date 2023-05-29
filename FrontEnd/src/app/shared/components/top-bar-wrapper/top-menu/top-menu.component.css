@@ -6,7 +6,6 @@
     align-items: center;
     background-color: var(--color-e);
     border-radius: 0.3125rem;
-    border: 0.0625rem solid var(--color-e);
     display: flex;
     padding: 0;
 }

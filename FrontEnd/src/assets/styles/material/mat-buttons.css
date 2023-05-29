@@ -11,17 +11,17 @@ button {
 }
 
 button.primary {
-    background-image: var(--color-button-background-primary);
+    background-color: var(--color-button-background-primary) !important;
     color: var(--color-button-text) !important;
 }
 
 button.secondary {
-    background-image: var(--color-button-background-secondary);
+    background-color: var(--color-button-background-secondary);
     color: var(--color-button-text) !important;
 }
 
 button.delete {
-    background-image: var(--color-button-background-delete) !important;
+    background-color: var(--color-button-background-delete) !important;
     color: var(--color-button-text) !important;
 }
 
@@ -34,7 +34,7 @@ button.bold {
 }
 
 button.mat-focus-indicator {
-    background-color: transparent !important;
+    /* background-color: transparent !important; */
 }
 
 button.transparent {
@@ -66,7 +66,7 @@ button .mat-button-wrapper .emoji {
 button.mat-mini-fab {
     background-color: var(--color-e);
     box-shadow: none !important;
-    color: var(--color-a) !important;
+    /* color: var(--color-a) !important; */
     margin: 0 !important;
     outline: 0 !important;
 }
@@ -83,7 +83,7 @@ button.mat-mini-fab .mat-button-wrapper .material-icons.reverse {
 
 button.mat-mini-fab:hover {
     background-color: transparent !important;
-    color: var(--color-a) !important;
+    /* color: var(--color-a) !important; */
 }
 
 button:disabled {

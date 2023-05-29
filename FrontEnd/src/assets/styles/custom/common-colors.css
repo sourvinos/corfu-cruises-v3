@@ -3,21 +3,17 @@
     --color-scrollbar-thumb: #d94040;
     --color-table-dropdown-filter-clear: #ff7a7a;
     --color-table-dropdown-filter-background: #bfbdd7;
-    --color-table-active: #9bcf6f;
-    --color-table-inactive: #ff7a7a;
+    --color-table-active: #246812;
+    --color-table-inactive: #f44336;
     --color-table-delete-icon: #ff7a7a;
     /*  Buttons */
     --color-button-text: #ffffff;
-    --color-button-background-secondary: linear-gradient(180deg, #ffcf84 0%, #f39c12 100%);
-    --color-button-background-delete: linear-gradient(180deg, #e45142 0%, #c0392b 100%);
-    --color-button-background-primary: linear-gradient(180deg, #379fb6 0%, #126072 100%);
+    --color-button-background-primary: #3f51b5;
+    --color-button-background-secondary: #ff9800;
+    --color-button-background-delete: #e45142;
     /*  Checkboxes */
     --color-checkbox-background: #779b9b;
     --color-checkbox-label-background-hover: #9acfca42;
-    /* Reservation Form Tabs */
-    --color-tab-overview: linear-gradient(to top, #5f80a7, #6a8eb8, #759cc9, #80aada, #8cb8ec);
-    --color-tab-passengers: linear-gradient(to top, #829ebe, #8ca7c6, #96b0ce, #a0b9d6, #aac2de);
-    --color-tab-misc: linear-gradient(to top, #a4b9d0, #a9bed4, #afc2d8, #b4c7dc, #bacce0);
     /* Loader */
     --color-loader: #d94040;
     /* Criteria & Totals */

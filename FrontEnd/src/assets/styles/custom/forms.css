@@ -31,7 +31,7 @@
 #content {
     backdrop-filter: blur(var(--blur));
     border-radius: 1rem;
-    border: 0.0625rem solid var(--color-e);
+    border: 0.0625rem solid var(--color-d);
     display: flex;
     flex-direction: column;
     height: 100%;
