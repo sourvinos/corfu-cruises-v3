@@ -1,6 +1,6 @@
 #logo {
     align-items: center;
-    cursor: pointer;
+    display: flex;
     outline: 0;
 }
 
@@ -15,7 +15,6 @@
     font-size: var(--font-size-logo-text) !important;
     font-weight: var(--font-weight-logo);
     line-height: 2.25rem;
-    margin-left: 4rem;
 }
 
 #title-top, #title-bottom {
@@ -34,13 +33,19 @@
 }
 
 @media (width < 800px) {
-    #logo {
+    #logo-image {
         display: none;
+    }
+    #logo-text {
+        margin-left: 0;
     }
 }
 
 @media (width >= 800px) {
-    #logo {
+    #logo-image {
         display: flex;
+    }
+    #logo-text {
+        margin-left: 4rem;
     }
 }

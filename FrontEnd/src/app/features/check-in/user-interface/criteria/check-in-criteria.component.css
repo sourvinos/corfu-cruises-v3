@@ -121,15 +121,3 @@
 .instructions.with-margin-bottom {
     margin-bottom: 0.9rem !important;
 }
-
-@media (width < 800px) {
-    #content {
-        margin: 0 1rem 0 0;
-    }
-    #header {
-        display: none;
-    }
-    #footer {
-        margin: auto auto 0 auto;
-    }
-}

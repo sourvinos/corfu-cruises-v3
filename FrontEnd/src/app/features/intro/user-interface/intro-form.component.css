@@ -4,6 +4,7 @@
 
 @media (width < 800px) {
     #content {
+        align-items: center;
         flex-direction: column;
         gap: 0.5rem;
         height: 100%;
