@@ -30,7 +30,7 @@
 }
 
 .p-datatable .p-datatable-thead > tr > th {
-    background-color: var(--color-x);
+    background-color: var(--color-e);
     border-right: 0.0625rem solid var(--color-e);
     color: var(--color-c) !important;
     font-family: var(--font-family-asty) !important;
@@ -76,7 +76,7 @@
 }
 
 .p-datatable .p-sortable-column.p-highlight {
-    background-color: var(--color-x) !important;
+    background-color: var(--color-e) !important;
 }
 
 .p-datatable .p-datatable-tbody > tr.p-highlight {
@@ -129,7 +129,7 @@
 }
 
 .p-datatable .p-sortable-column:not(.p-highlight):hover {
-    background-color: var(--color-x) !important;
+    background-color: var(--color-e) !important;
 }
 
 .p-button.p-button-text.p-button-plain:enabled:hover {
@@ -142,7 +142,7 @@
 }
 
 div:not(.p-column-filter).p-column-filter-row:hover {
-    background-color: var(--color-g) !important;
+    background-color: var(--color-c) !important;
 }
 
 .p-checkbox {
@@ -393,7 +393,7 @@ div:not(.p-column-filter).p-column-filter-row:hover {
 }
 
 .p-datatable .p-datatable-tfoot > tr > td {
-    background-color: var(--color-x);
+    background-color: var(--color-e);
     border-bottom: 0.0625rem solid var(--color-e) !important;
     border-right: 0.0625rem solid var(--color-e) !important;
     color: var(--color-c) !important;

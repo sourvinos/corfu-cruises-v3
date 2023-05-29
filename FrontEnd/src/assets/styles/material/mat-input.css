@@ -29,7 +29,6 @@ textarea {
 }
 
 .mat-form-field {
-    background-color: var(--color-x) !important;
     border-radius: 10px;
     border: 1px solid var(--color-e) !important;
     line-height: 132%;

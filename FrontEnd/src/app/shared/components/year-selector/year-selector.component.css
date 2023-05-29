@@ -5,7 +5,7 @@
 button.trigger {
     background-color: transparent;
     color: var(--color-c);
-    margin-top: 0.35rem;
+    margin-top: 0.3125rem;
 }
 
 .sub-menu button {

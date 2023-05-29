@@ -5,7 +5,7 @@
 }
 
 button {
-    background-color: var(--color-a);
+    background-color: var(--color-e);
     border-radius: 50%;
     border: 1px solid var(--color-dropdown-menu-border);
     color: var(--color-c);

@@ -15,7 +15,7 @@ li {
 }
 
 button.drop-down-menu {
-    background-color: var(--color-x);
+    background-color: var(--color-e);
     border-radius: 0;
     border: none;
     color: var(--color-c);
@@ -25,7 +25,7 @@ button.drop-down-menu {
 }
 
 button.drop-down-menu.hoverable:hover {
-    background-color: var(--color-z) !important;
+    background-color: var(--color-cyan) !important;
 }
 
 li > button > span, ul > button > span {
@@ -51,7 +51,7 @@ li:hover .sub-menu {
 
 .sub-menu button {
     animation: enter 0.1s ease forwards;
-    background-color: var(--color-x);
+    background-color: var(--color-e);
     border-left: 0.0625rem solid var(--color-e);
     border-right: 0.0625rem solid var(--color-e);
     display: flex;
