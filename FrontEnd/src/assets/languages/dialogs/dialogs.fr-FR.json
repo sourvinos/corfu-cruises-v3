@@ -2,138 +2,38 @@
     {
         "feature": "snackbarMessages",
         "labels": [
-            {
-                "error": 200,
-                "message": "Tout est OK."
-            },
-            {
-                "error": 400,
-                "message": "Le modèle n'est pas valide."
-            },
-            {
-                "error": 401,
-                "message": "L'authentification n'a pas réussi."
-            },
-            {
-                "error": 402,
-                "message": "L'enregistrement après le départ n'est pas autorisé."
-            },
-            {
-                "error": 404,
-                "message": "L'enregistrement n'est pas trouve."
-            },
-            {
-                "error": 409,
-                "message": "La réservation n'est pas unique. Vérifiez la date, la destination, le client et le numéro de billet."
-            },
-            {
-                "error": 410,
-                "message": "Nous n'avons trouvé aucun départ avec les informations que vous avez fournies. Vérifiez la date, la destination et le lieu de prise en charge."
-            },
-            {
-                "error": 412,
-                "message": "Le mot de passe ne peut pas être modifié. Il est possible que le mot de passe actuel soit erroné."
-            },
-            {
-                "error": 431,
-                "message": "Il n'est pas possible d'ajouter ou de modifier une réservation après le départ."
-            },
-            {
-                "error": 433,
-                "message": "La réservation ne peut pas être sauvegardée car la surréservation est interdite."
-            },
-            {
-                "error": 459,
-                "message": "Les nouvelles réservations avec transfert pendant notre fermeture ne sont pas autorisées. Veuillez contacter un administrateur."
-            },
-            {
-                "error": 491,
-                "message": "Cet enregistrement est en cours d'utilisation et ne peut pas être supprimé."
-            },
-            {
-                "error": 492,
-                "message": "Nous ne sommes pas en mesure de continuer. Veuillez vous assurer que le nom d'utilisateur et/ou l'email n'appartiennent pas à un autre utilisateur."
-            },
-            {
-                "error": 493,
-                "message": "L'ordre d'approche existe déjà."
-            },
-            {
-                "error": 500,
-                "message": "Quelque chose a mal tourné, mais cela a été signalé."
-            },
-            {
-                "id": "authenticationFailed",
-                "message": "Authentification échouée."
-            },
-            {
-                "id": "emailSent",
-                "message": "Nous venons de vous envoyer un email."
-            },
-            {
-                "id": "emailNotSent",
-                "message": "Nous ne pouvons pas vous envoyer d'e-mail pour le moment, veuillez réessayer dans un petit moment."
-            },
-            {
-                "id": "formIsDirty",
-                "message": "Avant de continuer, les modifications doivent être enregistrées."
-            },
-            {
-                "id": "noRecordsSelected",
-                "message": "Vous n'avez pas sélectionné d'inscriptions."
-            },
-            {
-                "id": "noVideoDevicesFound",
-                "message": "Aucune caméra trouvée sur votre appareil."
-            },
-            {
-                "id": "unableToResetPassword",
-                "message": "Le nouveau mot de passe ne peut pas être enregistré. Le lien contenu dans l'e-mail qui vous a été envoyé n'est peut-être plus valide."
-            },
-            {
-                "id": "noContactWithServer",
-                "message": "Il n'y a pas de réponse de la base de données."
-            },
-            {
-                "id": "featureNotAvailable",
-                "message": "L'option requiert un niveau d'autorisation plus élevé."
-            },
-            {
-                "id": "reservationCreated",
-                "message": "RefNo "
-            },
-            {
-                "id": "success",
-                "message": "Tout est OK."
-            },
-            {
-                "id": "warning",
-                "message": "Devons-nous supprimer cette entrée?"
-            },
-            {
-                "id": "passwordCanBeChangedOnlyByAccountOwner",
-                "message": "Le mot de passe ne peut être modifié que par le propriétaire du compte."
-            },
-            {
-                "id": "askToRefreshCalendar",
-                "message": "Nous avons constaté des changements dans la taille du calendrier. Souhaitez-vous que nous l'actualisions avec les nouvelles données?"
-            },
-            {
-                "id": "resolutionWarning",
-                "message": "La résolution de votre écran est trop faible pour que l'application s'affiche correctement. Vous avez besoin d'au moins 1280x800 pixels. Continuez à vos risques et périls!"
-            },
-            {
-                "id": "reservationFound",
-                "message": "Votre réservation a été trouvée"
-            },
-            {
-                "id": "reservationNotFound",
-                "message": "Votre réservation n'a pas été trouvée"
-            },
-            {
-                "id": "helpDialog",
-                "message": "Vous pouvez contacter le lieu où vous avez effectué la réservation ou l'un de nous au +30 26610 71150 ou au +30 26620 61400"
-            }
+            { "error": 200, "message": "Tout est OK." },
+            { "error": 400, "message": "Le modèle n'est pas valide." },
+            { "error": 401, "message": "L'authentification n'a pas réussi." },
+            { "error": 404, "message": "L'enregistrement n'est pas trouve." },
+            { "error": 409, "message": "La réservation n'est pas unique. Vérifiez la date, la destination, le client et le numéro de billet." },
+            { "error": 410, "message": "Nous n'avons trouvé aucun départ avec les informations que vous avez fournies. Vérifiez la date, la destination et le lieu de prise en charge." },
+            { "error": 412, "message": "Le mot de passe ne peut pas être modifié. Il est possible que le mot de passe actuel soit erroné." },
+            { "error": 431, "message": "Il n'est pas possible d'ajouter ou de modifier une réservation après le départ." },
+            { "error": 433, "message": "La réservation ne peut pas être sauvegardée car la surréservation est interdite." },
+            { "error": 459, "message": "Les nouvelles réservations avec transfert pendant notre fermeture ne sont pas autorisées. Veuillez contacter un administrateur." },
+            { "error": 491, "message": "Cet enregistrement est en cours d'utilisation et ne peut pas être supprimé." },
+            { "error": 492, "message": "Nous ne sommes pas en mesure de continuer. Veuillez vous assurer que le nom d'utilisateur et/ou l'email n'appartiennent pas à un autre utilisateur." },
+            { "error": 493, "message": "L'ordre d'approche existe déjà." },
+            { "error": 500, "message": "Quelque chose a mal tourné, mais cela a été signalé." },
+            { "id": "authenticationFailed", "message": "Authentification échouée." },
+            { "id": "checkInAfterDepartureIsNotAllowed", "message": "L'enregistrement après le départ n'est pas autorisé." },
+            { "id": "emailSent", "message": "Nous venons de vous envoyer un email." },
+            { "id": "emailNotSent", "message": "Nous ne pouvons pas vous envoyer d'e-mail pour le moment, veuillez réessayer dans un petit moment." },
+            { "id": "formIsDirty", "message": "Avant de continuer, les modifications doivent être enregistrées." },
+            { "id": "noRecordsSelected", "message": "Vous n'avez pas sélectionné d'inscriptions." },
+            { "id": "noVideoDevicesFound", "message": "Aucune caméra trouvée sur votre appareil." },
+            { "id": "unableToResetPassword", "message": "Le nouveau mot de passe ne peut pas être enregistré. Le lien contenu dans l'e-mail qui vous a été envoyé n'est peut-être plus valide." },
+            { "id": "noContactWithServer", "message": "Il n'y a pas de réponse de la base de données." },
+            { "id": "featureNotAvailable", "message": "L'option requiert un niveau d'autorisation plus élevé." },
+            { "id": "reservationCreated", "message": "RefNo " },
+            { "id": "success", "message": "Tout est OK." },
+            { "id": "warning", "message": "Devons-nous supprimer cette entrée?" },
+            { "id": "passwordCanBeChangedOnlyByAccountOwner", "message": "Le mot de passe ne peut être modifié que par le propriétaire du compte." },
+            { "id": "askToRefreshCalendar", "message": "Nous avons constaté des changements dans la taille du calendrier. Souhaitez-vous que nous l'actualisions avec les nouvelles données?" },
+            { "id": "resolutionWarning", "message": "La résolution de votre écran est trop faible pour que l'application s'affiche correctement. Vous avez besoin d'au moins 1280x800 pixels. Continuez à vos risques et périls!" },
+            { "id": "reservationNotFound", "message": "Votre réservation n'a pas été trouvée" },
+            { "id": "helpDialog", "message": "Vous pouvez contacter le lieu où vous avez effectué la réservation ou l'un de nous au +30 26610 71150 ou au +30 26620 61400" }
         ]
     }
 ]
