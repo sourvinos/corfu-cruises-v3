@@ -12,13 +12,13 @@
 
 /* Field with icon */
 .mat-form-field-infix .mat-icon {
-    color: var(--color-e);
+    color: var(--color-table-headers);
     font-size: 1.125rem;
 }
 
 /* Checkbox with icon */
 .mat-checkbox .mat-checkbox-layout .mat-checkbox-label .mat-icon {
-    color: var(--color-e);
+    color: var(--color-table-headers);
     font-size: 1.125rem;
     margin: 0.3125rem 0.1875rem 0 0;
 }

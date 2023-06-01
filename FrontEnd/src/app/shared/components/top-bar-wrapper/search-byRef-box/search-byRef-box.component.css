@@ -8,10 +8,10 @@
 }
 
 #search-by-ref-no-text {
-    /* background-color: var(--color-a); */
+    background-color: transparent;
     border-radius: 0.3125rem;
-    border: none;
-    color: var(--color-c);
+    border: 0.0625rem solid var(--color-border);
+    color: var(--color-text);
     font-family: var(--font-family-ubuntu), sans-serif;
     font-size: 1rem;
     font-weight: 300;
@@ -20,7 +20,7 @@
 }
 
 #search-by-ref-no-text::placeholder {
-    color: var(--color-c) !important;
+    color: var(--color-text) !important;
     opacity: 0.35;
 }
 
@@ -39,5 +39,5 @@ button {
 }
 
 button span {
-    color: var(--color-c) !important;
+    color: var(--color-text) !important;
 }

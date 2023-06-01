@@ -15,17 +15,17 @@ li {
 }
 
 button.drop-down-menu {
-    background-color: var(--color-e);
+    background-color: var(--color-table-headers);
     border-radius: 0;
     border: none;
-    color: var(--color-c);
+    color: var(--color-text);
     display: flex;
     font-size: var(--font-size-button) !important;
     padding: 0.25rem 0 0.25rem 1rem !important;
 }
 
 button.drop-down-menu.hoverable:hover {
-    background-color: var(--color-e) !important;
+    background-color: var(--color-hover) !important;
 }
 
 li > button > span, ul > button > span {
@@ -51,7 +51,7 @@ li:hover .sub-menu {
 
 .sub-menu button {
     animation: enter 0.1s ease forwards;
-    background-color: var(--color-e);
+    background-color: var(--color-table-headers);
     display: flex;
     justify-content: flex-start;
     opacity: 0;
@@ -61,11 +61,11 @@ li:hover .sub-menu {
 }
 
 .sub-menu button:first-child {
-    border-top: 0.0625rem solid var(--color-b);
+    border-top: 0.0625rem solid var(--color-border);
 }
 
 .sub-menu button:last-child {
-    border-bottom: 0.0625rem solid var(--color-b);
+    border-bottom: 0.0625rem solid var(--color-border);
 }
 
 .sub-menu button:nth-child(1) {

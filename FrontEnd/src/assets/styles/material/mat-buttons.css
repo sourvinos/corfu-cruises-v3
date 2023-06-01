@@ -11,17 +11,17 @@ button {
 }
 
 button.primary {
-    background-color: var(--color-button-background-primary) !important;
+    background-color: var(--color-button-primary) !important;
     color: var(--color-button-text) !important;
 }
 
 button.secondary {
-    background-color: var(--color-button-background-secondary);
+    background-color: var(--color-button-secondary);
     color: var(--color-button-text) !important;
 }
 
 button.delete {
-    background-color: var(--color-button-background-delete) !important;
+    background-color: var(--color-button-delete) !important;
     color: var(--color-button-text) !important;
 }
 
@@ -33,17 +33,13 @@ button.bold {
     font-weight: 700 !important;
 }
 
-button.mat-focus-indicator {
-    /* background-color: transparent !important; */
-}
-
 button.transparent {
     background-color: transparent;
-    color: var(--color-c) !important;
+    color: var(--color-text) !important;
 }
 
 button.transparent:hover {
-    background-color: transparent !important;
+    background-color: var(--color-hover) !important;
 }
 
 button.tab {
@@ -63,27 +59,12 @@ button .mat-button-wrapper .emoji {
     margin-right: 0.2rem;
 }
 
-button.mat-mini-fab {
-    background-color: var(--color-e);
-    box-shadow: none !important;
-    /* color: var(--color-a) !important; */
-    margin: 0 !important;
-    outline: 0 !important;
-}
-
-button.mat-mini-fab .mat-button-wrapper {
-    color: var(--color-c);
-    line-height: 1.4375rem !important;
-    margin: 0 auto;
-}
-
 button.mat-mini-fab .mat-button-wrapper .material-icons.reverse {
-    color: var(--color-c);
+    color: var(--color-text);
 }
 
 button.mat-mini-fab:hover {
-    background-color: transparent !important;
-    /* color: var(--color-a) !important; */
+    background-color: var(--color-hover) !important;
 }
 
 button:disabled {

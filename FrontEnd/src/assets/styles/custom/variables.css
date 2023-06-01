@@ -23,4 +23,6 @@
     /* Misc */
     --blur: 0.5rem;
     --gap: 1rem;
+    --delay: 0.2s;
+    --border-radius: 0.5rem;
 }

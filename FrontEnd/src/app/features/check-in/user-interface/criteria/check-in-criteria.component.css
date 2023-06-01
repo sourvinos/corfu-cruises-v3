@@ -55,7 +55,7 @@
 }
 
 .text {
-    color: var(--color-c);
+    color: var(--color-text);
     font-family: var(--font-family-asty);
     font-size: 0.8rem;
     font-weight: 300;
@@ -99,7 +99,7 @@
 }
 
 .instructions .text {
-    color: var(--color-c);
+    color: var(--color-text);
     font-family: var(--font-family-asty);
     font-size: 0.8125rem;
     font-weight: 300;

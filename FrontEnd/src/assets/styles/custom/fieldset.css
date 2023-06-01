@@ -1,12 +1,12 @@
 fieldset {
-    border-radius: 0;
-    border: 0.0625rem solid var(--color-d);
+    border-radius: var(--border-radius);
+    border: 0.0625rem solid var(--color-border);
     padding: 1rem 1.5rem 1rem 1.65rem;
 }
 
 fieldset legend {
     align-items: center;
-    color: var(--color-c);
+    color: var(--color-text);
     display: flex;
     font-family: var(--font-family-asty);
     font-size: var(--font-size-fieldset-legend);

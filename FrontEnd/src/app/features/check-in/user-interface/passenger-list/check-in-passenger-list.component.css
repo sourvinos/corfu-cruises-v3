@@ -36,17 +36,13 @@
     font-size: 2.1875rem;
 }
 
-.material-icons.primary {
-    color: var(--color-input-focus);
-}
-
 .passenger-count-wrapper .material-icons.error:first-child {
     font-size: 1.4rem;
     margin-top: 2px;
 }
 
 .passenger-count {
-    color: var(--color-c);
+    color: var(--color-text);
     font-family: var(--font-family-asty);
     font-weight: 300;
     margin-top: 0.1875rem;

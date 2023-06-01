@@ -8,11 +8,11 @@
 }
 
 .mat-radio-inner-circle {
-    background-color: var(--color-c) !important;
+    background-color: var(--color-text) !important;
 }
 
 .mat-radio-outer-circle {
-    border: 1px solid var(--color-c) !important;
+    border: 1px solid var(--color-text) !important;
 }
 
 .mat-radio-button.mat-accent.mat-radio-checked {
@@ -24,7 +24,7 @@
 }
 
 .mat-radio-label-content {
-    color: var(--color-c);
+    color: var(--color-text);
     display: flex !important;
     flex-direction: row;
     font-family: var(--font-family-asty);

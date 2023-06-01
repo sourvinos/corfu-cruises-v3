@@ -1,9 +1,7 @@
 * {
-    --color-a: #feeddb;
-    --color-b: #9ccfd7;
-    --color-c: #000000;
-    --color-d: #607d8b;
-    --color-e: #dfdfdf;
-    --color-h: linear-gradient(180deg, #efefef 0%, #abbaab 100%);
-    --color-xx: #607d8b;
+    --color-background: #ffffff;
+    --color-border: #d9d9d9;
+    --color-text: #000000;
+    --color-table-headers: #fafafa;
+    --color-hover: #e9e9e9;
 }

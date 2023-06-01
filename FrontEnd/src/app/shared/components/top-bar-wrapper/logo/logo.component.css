@@ -10,7 +10,7 @@
 }
 
 #logo-text {
-    color: var(--color-c) !important;
+    color: var(--color-text) !important;
     font-family: var(--font-family-logo);
     font-size: var(--font-size-logo-text) !important;
     font-weight: var(--font-weight-logo);

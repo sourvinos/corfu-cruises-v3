@@ -16,13 +16,8 @@
     width: 100%;
 }
 
-.mat-calendar-controls, .mat-calendar-header {
-    color: var(--color-text);
-    margin: 0 0 1.5rem 0 !important;
-}
-
 .mat-calendar-table-header th {
-    color: var(--color-button-text) !important;
+    color: var(--color-text) !important;
 }
 
 .mat-calendar-body-label {
@@ -35,7 +30,7 @@
 }
 
 .mat-calendar-previous-button, .mat-calendar-next-button {
-    color: var(--color-button-text) !important;
+    color: var(--color-text) !important;
 }
 
 .mat-calendar-next-button {
@@ -52,12 +47,8 @@
     padding: 0 !important;
 }
 
-.mat-calendar-table-header {
-    color: var(--color-c);
-}
-
 .mat-calendar-controls .mat-button .mat-button-wrapper {
-    color: var(--color-button-text);
+    color: var(--color-text);
     font-family: var(--font-family-asty);
     font-size: var(--font-size-datepicker-header-month);
 }
@@ -66,15 +57,11 @@
     background-color: transparent !important;
     border-radius: 50%;
     font-family: var(--font-family-asty) !important;
-    transition: background-color 0.4s ease-out;
+    transition: background-color var(--delay) ease-in !important;
 }
 
 .mat-calendar-body-cell:hover {
     background-color: var(--color-day-selected) !important;
-}
-
-.mat-calendar-body-cell-content:hover {
-    color: var(--color-button-text) !important;
 }
 
 .mat-calendar-arrow {
@@ -90,7 +77,7 @@
 }
 
 .mat-calendar-body-cell-content {
-    color: var(--color-button-text);
+    color: var(--color-text);
     flex-direction: column;
     font-size: var(--font-size-calendar-day);
     line-height: 0 !important;
@@ -103,7 +90,6 @@
 .mat-calendar-body-selected {
     background-color: var(--color-day-selected) !important;
     border: 0.0625rem solid var(--color-day-selected) !important;
-    /* color: var(--color-a); */
 }
 
 .mat-calendar-body-in-range {
@@ -125,7 +111,7 @@
 }
 
 .mat-datepicker-toggle, .mat-datepicker-content .mat-datepicker-content {
-    color: var(--color-c);
+    color: var(--color-text);
     margin-left: auto;
     position: relative;
     right: 1.5rem !important;
@@ -139,27 +125,6 @@
     min-width: 100% !important;
     padding: 0.5625rem 0 0.625rem 0.5rem !important;
     width: 100% !important;
-}
-
-.header-datepicker input {
-    background-color: transparent !important;
-    border: 0;
-    color: var(--color-c);
-    font-family: var(--font-family-asty) !important;
-    font-size: 0.6875rem !important;
-    font-weight: 300;
-    outline: none !important;
-    padding-top: 0.1875rem !important;
-    text-align: left !important;
-    width: 5rem !important;
-}
-
-.date-clear-icon {
-    color: var(--color-table-dropdown-filter-clear);
-    font-size: 0.91rem;
-    margin: 0 !important;
-    position: absolute !important;
-    top: 0.5rem;
 }
 
 .date-clear-icon:hover {
@@ -179,11 +144,6 @@
     margin-left: -0.375rem !important;
     margin-top: 0.1875rem !important;
 }
-
-.mat-datepicker-toggle .mat-button-disabled {
-    color: #ffffff82 !important;
-}
-
 
 .mat-datepicker-toggle .mat-icon-button {
     height: 0 !important;
@@ -209,12 +169,4 @@
     position: absolute;
     right: -0.75rem;
     top: -1.875rem;
-}
-
-#goto-today:hover {
-    background-color: transparent !important;
-}
-
-#today {
-    color: var(--color-background-today) !important;
 }

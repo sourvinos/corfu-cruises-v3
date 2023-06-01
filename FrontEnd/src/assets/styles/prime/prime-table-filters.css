@@ -1,15 +1,3 @@
-.p-dropdown .p-dropdown-clear-icon {
-    color: var(--color-table-dropdown-filter-clear);
-    font-size: 1rem;
-    margin-top: 0;
-    top: 27%;
-}
-
-.p-dropdown .p-dropdown-trigger {
-    border-radius: 0;
-    color: var(--color-c);
-}
-
 .p-dropdown .p-dropdown-trigger:hover {
     border-radius: 0;
 }
@@ -53,8 +41,8 @@
 }
 
 .p-multiselect-panel {
-    background-color: var(--color-e);
-    padding: 0.5rem 0.5rem 0.5rem 0!important;
+    background-color: var(--color-table-headers);
+    padding: 0.5rem 0.5rem 0.5rem 0 !important;
 }
 
 .p-multiselect-panel .p-multiselect-items {
@@ -68,9 +56,9 @@
 }
 
 .p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight, .p-multiselect-panel .p-multiselect-items .p-multiselect-item, .p-multiselect-panel .p-multiselect-items .p-multiselect-item:hover {
-    background-color: var(--color-e) !important;
+    background-color: var(--color-table-headers) !important;
     box-shadow: none !important;
-    color: var(--color-c) !important;
+    color: var(--color-text) !important;
     font-family: var(--font-family-asty);
     font-size: 0.75rem;
     font-size: var(--font-size-table-row);
@@ -79,7 +67,7 @@
 }
 
 .p-multiselect-panel .p-multiselect-items .p-multiselect-item:hover {
-    background-color: var(--color-cyan) !important;
+    background-color: var(--color-hover) !important;
 }
 
 .p-multiselect-option span {
@@ -94,7 +82,6 @@
     background-image: url("/assets/images/tables/filter-remove.svg");
     border-radius: 0;
     box-shadow: none !important;
-    color: var(--color-table-dropdown-filter-clear);
     height: 0.9375rem;
     margin: 0.125rem 0 0 -0.1875rem !important;
     position: absolute !important;
@@ -103,12 +90,12 @@
 }
 
 .p-column-filter-menu-button, .p-column-filter-clear-button:hover {
-    background-color: var(--color-x);
+    background-color: var(--color-hover);
     background-image: url("/assets/images/tables/filter-remove.svg");
 }
 
 .p-multiselect .p-multiselect-trigger {
-    color: var(--color-c) !important;
+    color: var(--color-text) !important;
     justify-content: flex-end;
     margin-top: 0.4375rem;
     width: 1.1rem;

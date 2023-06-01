@@ -1,12 +1,12 @@
 .mat-menu-trigger .mat-button-wrapper .mat-icon {
-    color: var(--color-c) !important;
+    color: var(--color-text) !important;
 }
 
 .mat-menu-panel, .mat-menu-content {
     align-items: flex-start;
-    background-color: var(--color-x) !important;
+    background-color: var(--color-table-headers) !important;
     border-radius: 0 !important;
-    border: 0.0625rem solid var(--color-e);
+    border: 0.0625rem solid var(--color-border);
     display: flex;
     flex-direction: column;
     min-height: auto !important;
@@ -27,5 +27,5 @@
 }
 
 .mat-menu-item:hover:not([disabled]), .mat-menu-item.cdk-program-focused:not([disabled]), .mat-menu-item-highlighted:not([disabled]):hover {
-    background-color: var(--color-z) !important;
+    background-color: var(--color-hover) !important;
 }

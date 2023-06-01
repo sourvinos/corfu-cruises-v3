@@ -37,18 +37,13 @@
 }
 
 .day {
-    background-color: var(--color-e);
+    background-color: var(--color-table-headers);
     border-radius: 0.625rem;
     display: flex;
     flex-direction: column;
     max-width: 7.7rem;
     min-width: 7.7rem;
     padding: 1.8rem 1rem 1.8rem 1rem;
-}
-
-.day:hover {
-    background-color: var(--color-cyan);
-    cursor: auto;
 }
 
 .day-data {
@@ -60,7 +55,7 @@
 }
 
 .day-data .weekday, .day-data .month, .day-data .year {
-    color: var(--color-c);
+    color: var(--color-text);
     font-family: var(--font-family-asty);
     font-size: 0.8rem;
     font-weight: 100;
@@ -68,7 +63,7 @@
 }
 
 .day-data .date {
-    color: var(--color-c);
+    color: var(--color-text);
     font-family: var(--font-family-asty);
     font-size: 1.8rem;
     font-weight: 100;
@@ -109,7 +104,7 @@
 
 .destinations {
     border-radius: 0.625rem;
-    color: var(--color-c);
+    color: var(--color-text);
     display: flex;
     flex-direction: column;
     font-family: var(--font-family-asty);
@@ -129,7 +124,7 @@
 }
 
 .pax {
-    color: var(--color-c);
+    color: var(--color-text);
     font-family: var(--font-family-asty);
     font-size: 1.2rem;
     font-weight: 100;

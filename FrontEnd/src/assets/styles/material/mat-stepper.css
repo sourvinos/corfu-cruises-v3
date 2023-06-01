@@ -7,7 +7,7 @@
 }
 
 .mat-step-header .mat-step-label.mat-step-label-active {
-    color: var(--color-c);
+    color: var(--color-text);
     font-family: var(--font-family-asty);
     font-weight: 300;
 }
@@ -29,6 +29,6 @@
 }
 
 .mat-stepper-vertical-line::before {
-    border-left-color: var(--color-f) !important;
+    border-left-color: var(--color-border) !important;
     top: -13px !important;
 }

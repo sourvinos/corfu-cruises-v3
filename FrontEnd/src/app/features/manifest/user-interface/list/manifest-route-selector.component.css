@@ -19,22 +19,22 @@
 }
 
 .option:hover {
-    background-color: var(--color-g);
+    background-color: var(--color-hover);
 }
 
 .option-label {
-    color: var(--color-c);
+    color: var(--color-text);
     display: flex;
     font-family: var(--font-family-asty);
     font-size: 0.8125rem;
     font-weight: 300;
-    transition: background-color 0.2s;
+    transition: background-color var(--delay) ease-in !important;
     width: 100%;
 }
 
 .option-label:hover {
     cursor: pointer;
-    background-color: var(--color-g);
+    background-color: var(--color-hover);
 }
 
 .option-label span {
@@ -42,7 +42,7 @@
 }
 
 .option-message {
-    color: var(--color-c);
+    color: var(--color-text);
     font-family: var(--font-family-asty);
     font-size: 0.8125rem;
     font-weight: 300;

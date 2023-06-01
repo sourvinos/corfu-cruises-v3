@@ -17,12 +17,12 @@
 }
 
 .api-object span:hover {
-    background-color: var(--color-z);
+    background-color: var(--color-hover);
     cursor: pointer;
 }
 
 .destinations:hover {
-    background-color: #00000033;
+    background-color:var(--color-hover);
     cursor: pointer;
 }
 

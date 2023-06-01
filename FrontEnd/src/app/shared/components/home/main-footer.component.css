@@ -4,19 +4,19 @@
 }
 
 #footer {
-    color: var(--color-c);
+    color: var(--color-text);
     font-family: var(--font-family-asty);
     font-weight: 300;
     text-align: center;
 }
 
 a:link, a:visited {
-    color: var(--color-c);
+    color: var(--color-text);
     text-decoration: none;
 }
 
 a:link:hover {
-    color: var(--color-link);
+    color: var(--color-hover);
 }
 
 @media (width < 800px) {

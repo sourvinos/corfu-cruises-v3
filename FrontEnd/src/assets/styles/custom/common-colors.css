@@ -8,9 +8,9 @@
     --color-table-delete-icon: #ff7a7a;
     /*  Buttons */
     --color-button-text: #ffffff;
-    --color-button-background-primary: #3f51b5;
-    --color-button-background-secondary: #ff9800;
-    --color-button-background-delete: #e45142;
+    --color-button-primary: #0096c7;
+    --color-button-secondary: #ff9800;
+    --color-button-delete: #e45142;
     /*  Checkboxes */
     --color-checkbox-background: #779b9b;
     --color-checkbox-label-background-hover: #9acfca42;
@@ -38,19 +38,13 @@
     --color-input-background: #d3cdcd1a;
     --color-input-error: #e57b7b;
     --color-input-focus: #65b4ef;
-    --color-input-selected-background: #65b3ef4d;
     /* Links */
     --color-link: #e57b7b;
-    /* New schedule weekdays */
-    --color-day-selected-weekday: #ff7a7a;
     /* Dropdown menus */
     --color-dropdown-menu-border: #ff7a7a;
     --color-dropdown-item-hover: #9acfca42;
     /* Dialog headers */
     --color-dialog-header: #ff7a7a;
-    /* Tabs */
-    --color-active-tab-text: #ffffff;
-    --color-active-tab-background: linear-gradient(to top, #5f80a7, #6a8eb8, #759cc9, #80aada, #8cb8ec);
     /* Common */
     --color-blue: #2980b9;
     --color-cyan: #60c9c7;

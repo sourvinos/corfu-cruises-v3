@@ -8,12 +8,12 @@
 }
 
 #dialog-header h1 .title {
-    color: var(--color-c);
+    color: var(--color-text);
 }
 
 #missing-passengers {
     align-items: center;
-    color: var(--color-c);
+    color: var(--color-text);
     display: flex;
     font-family: var(--font-family-asty);
     font-weight: 100;
@@ -24,5 +24,5 @@
 }
 
 .border-bottom {
-    border-bottom: 1px solid var(--color-e) !important;
+    border-bottom: 1px solid var(--color-border) !important;
 }

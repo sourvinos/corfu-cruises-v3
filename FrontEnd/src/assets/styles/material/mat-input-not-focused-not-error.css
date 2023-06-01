@@ -1,41 +1,41 @@
 .mat-form-field-appearance-legacy .mat-form-field-label {
-    color: var(--color-c);
+    color: var(--color-text);
 }
 
 .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix input {
-    color: var(--color-c) !important;
+    color: var(--color-text) !important;
 }
 
 .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-suffix button .mat-button-wrapper .mat-icon {
-    color: var(--color-c);
+    color: var(--color-text);
 }
 
 .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix .mat-form-field-label-wrapper .mat-form-field-label span {
-    color: var(--color-c);
+    color: var(--color-text);
 }
 
 .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix input, .mat-form-field-wrapper .mat-form-field-flex textarea {
-    color: var(--color-c);
+    color: var(--color-text);
     font-size: var(--font-size-input);
     padding-bottom: 2px !important;
 }
 
 .mat-form-field-wrapper .mat-form-field-underline {
-    background-color: var(--color-c) !important;
+    background-color: var(--color-text) !important;
 }
 
 .mat-form-field-wrapper .mat-form-field-subscript-wrapper div .mat-hint {
-    color: var(--color-c);
+    color: var(--color-text);
     font-size: var(--font-size-input-hint) !important;
     font-weight: var(--font-weight-mat-hint);
 }
 
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
-    box-shadow: 0 0 0 1000px var(--color-x) inset !important;
+    box-shadow: 0 0 0 1000px var(--color-hover) inset !important;
 }
 
 input:-webkit-autofill {
-    -webkit-text-fill-color: var(--color-c) !important;
+    -webkit-text-fill-color: var(--color-text) !important;
 }
 
 input:-webkit-autofill:focus {

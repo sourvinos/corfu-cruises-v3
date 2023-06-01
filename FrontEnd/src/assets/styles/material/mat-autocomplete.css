@@ -1,5 +1,5 @@
 .mat-autocomplete-panel.mat-autocomplete-visible {
-    background-color: var(--color-x) !important;
+    background-color: var(--color-background) !important;
     border-radius: 0 !important;
 }
 
@@ -12,11 +12,11 @@
 }
 
 .mat-option:hover {
-    background-color: var(--color-g) !important;
+    background-color: var(--color-hover) !important;
 }
 
 .mat-option-text {
-    color: var(--color-c) !important;
+    color: var(--color-text) !important;
     display: flex !important;
     justify-content: space-between;
 }
@@ -30,7 +30,7 @@
 }
 
 .mat-option.mat-active {
-    background-color: var(--color-g);
+    background-color: var(--color-table-headers);
 }
 
 .mat-icon.open-close-panel {

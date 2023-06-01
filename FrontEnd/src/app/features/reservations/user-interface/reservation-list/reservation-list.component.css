@@ -15,8 +15,3 @@
     position: relative;
     top: -0.0625rem;
 }
-
-.mat-menu-item span {
-    color: var(--color-c);
-    font-size: 0.75rem !important;
-}

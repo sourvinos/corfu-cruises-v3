@@ -11,7 +11,7 @@ input.right {
 }
 
 input.mat-input-element, textarea.mat-input-element {
-    caret-color: var(--color-c) !important;
+    caret-color: var(--color-text) !important;
     margin-top: -0.0625rem !important;
 }
 
@@ -29,8 +29,8 @@ textarea {
 }
 
 .mat-form-field {
-    border-radius: 10px;
-    border: 1px solid var(--color-e) !important;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-border) !important;
     line-height: 132%;
     margin-top: var(--form-field-margin) !important;
     padding: 0.5rem 1rem;

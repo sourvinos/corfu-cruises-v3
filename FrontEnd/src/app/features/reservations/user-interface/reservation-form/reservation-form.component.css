@@ -1,6 +1,6 @@
 #content {
-    border-radius: 1rem;
-    border: 0.0625rem solid var(--color-e);
+    border-radius: var(--border-radius);
+    border: 0.0625rem solid var(--color-border);
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -43,7 +43,7 @@
 }
 
 #tab-overview, #tab-passengers, #tab-misc {
-    background: var(--color-button-background-primary);
+    background: var(--color-button-primary);
     color: var(--color-button-text);
 }
 
@@ -85,9 +85,8 @@
 }
 
 #ref-no, #total-pax {
-    background-color: var(--color-x) !important;
     border-radius: 0.625rem;
-    border: 0.0625rem solid var(--color-e);
+    border: 0.0625rem solid var(--color-border);
     display: flex;
     flex-direction: column;
     font-family: var(--font-family-asty);
@@ -97,7 +96,7 @@
 }
 
 #ref-no #ref-no-label, #total-pax #total-pax-label {
-    color: var(--color-c);
+    color: var(--color-text);
     font-size: 0.75rem;
     text-align: center;
 }
@@ -110,7 +109,7 @@
 }
 
 #total-pax #total-pax-body {
-    color: var(--color-c);
+    color: var(--color-text);
     font-size: 1.5rem;
     margin-top: 0.8125rem;
     text-align: center;
@@ -123,6 +122,6 @@
 }
 
 .mat-menu-item span {
-    color: var(--color-c);
+    color: var(--color-text);
     font-size: 0.75rem !important;
 }

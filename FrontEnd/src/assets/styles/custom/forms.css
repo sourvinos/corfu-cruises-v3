@@ -30,8 +30,8 @@
 
 #content {
     backdrop-filter: blur(var(--blur));
-    border-radius: 1rem;
-    border: 0.0625rem solid var(--color-d);
+    border-radius: var(--border-radius);
+    border: 0.0625rem solid var(--color-border);
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -78,7 +78,7 @@
     }
 }
 
-@media (width >= 800px) {
+@media (width >=800px) {
     #content {
         width: 80%;
     }

@@ -37,7 +37,7 @@
 }
 
 .passenger-count {
-    color: var(--color-c);
+    color: var(--color-text) !important;
     font-family: var(--font-family-asty);
     font-size: 1rem;
     font-weight: 300;

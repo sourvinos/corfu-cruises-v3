@@ -10,9 +10,9 @@ table {
 }
 
 th {
-    background-color: var(--color-x);
-    border: 0.0625rem solid var(--color-e);
-    color: var(--color-c) !important;
+    background-color: var(--color-table-headers);
+    border: 0.0625rem solid var(--color-border);
+    color: var(--color-text) !important;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-header) !important;
     font-weight: 300 !important;
@@ -21,8 +21,8 @@ th {
 }
 
 td {
-    border-bottom: 0.0625rem solid var(--color-e);
-    color: var(--color-c);
+    border-bottom: 0.0625rem solid var(--color-border);
+    color: var(--color-text);
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-row);
     font-weight: 300;

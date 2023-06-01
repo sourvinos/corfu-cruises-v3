@@ -17,8 +17,9 @@
 }
 
 label {
-    /* background-color: var(--color-a); */
+    background-color: transparent;
     border-radius: 1.875rem;
+    border: 0.0625rem solid var(--color-border);
     cursor: pointer;
     display: flex;
     padding: 0.3125rem;
