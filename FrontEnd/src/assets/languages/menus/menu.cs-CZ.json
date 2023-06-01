@@ -86,5 +86,9 @@
     {
         "id": "user-logout",
         "description": "Odhlásit set"
+    },
+    {
+        "id": "settings-general-settings",
+        "description": "Nastavení"
     }
 ]

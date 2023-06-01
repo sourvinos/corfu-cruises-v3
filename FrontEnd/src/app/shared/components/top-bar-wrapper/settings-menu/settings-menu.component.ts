@@ -1,27 +1,50 @@
-import { Component } from '@angular/core'
-import { Observable } from 'rxjs'
+import { Component, HostListener } from '@angular/core'
+import { Observable, Subject, takeUntil } from 'rxjs'
 import { Router } from '@angular/router'
 // Custom
 import { AccountService } from 'src/app/shared/services/account.service'
 import { ConnectedUser } from 'src/app/shared/classes/connected-user'
+import { InteractionService } from 'src/app/shared/services/interaction.service'
+import { Menu } from 'src/app/shared/classes/menu'
+import { MessageMenuService } from 'src/app/shared/services/message-menu.service'
 import { environment } from 'src/environments/environment'
 
 @Component({
     selector: 'settings-menu',
-    templateUrl: './settings-menu.component.html',
-    styleUrls: ['../../../../../assets/styles/custom/dropdown-menu.css']
+    templateUrl: './settings-menu.component.html'
 })
 
 export class SettingsMenuComponent {
 
     //#region variables
 
+    private ngunsubscribe = new Subject<void>()
     public imgIsLoaded = false
     public loginStatus: Observable<boolean>
+    public menuItems: Menu[] = []
 
     //#endregion
 
-    constructor(private accountService: AccountService, private router: Router) { }
+    constructor(private accountService: AccountService, private interactionService: InteractionService, private messageMenuService: MessageMenuService, private router: Router) { }
+
+    //#region listeners
+
+    @HostListener('mouseenter') onMouseEnter(): void {
+        document.querySelectorAll('.sub-menu').forEach((item) => {
+            item.classList.remove('hidden')
+        })
+    }
+
+    //#endregion
+
+    //#region lifecycle hooks
+
+    ngOnInit(): void {
+        this.messageMenuService.getMessages().then((response) => {
+            this.createMenu(response)
+            this.subscribeToInteractionService()
+        })
+    }
 
     ngDoCheck(): void {
         this.updateVariables()
@@ -31,12 +54,18 @@ export class SettingsMenuComponent {
 
     //#region public methods
 
-    public doNavigationTasks(): void {
-        this.router.navigate(['/settings'])
+    public doNavigationTasks(feature: string): void {
+        this.router.navigate([feature.substring(17)])
     }
 
     public getIcon(filename: string): string {
         return environment.menuIconDirectory + filename + '.svg'
+    }
+
+    public hideMenu(): void {
+        document.querySelectorAll('.sub-menu').forEach((item) => {
+            item.classList.add('hidden')
+        })
     }
 
     public imageIsLoading(): any {
@@ -55,24 +84,23 @@ export class SettingsMenuComponent {
 
     //#region private methods
 
-    // private createMenu(items: Menu[]): void {
-    //     this.menuItems = []
-    //     items.sort((a, b) => (a.description < b.description) ? -1 : 1)
-    //     items.forEach(item => {
-    //         if (item.id.startsWith('tables')) {
-    //             this.menuItems.push(item)
-    //         }
-    //     })
-    // }
+    private createMenu(items: Menu[]): void {
+        this.menuItems = []
+        items.forEach(item => {
+            if (item.id.startsWith('settings')) {
+                this.menuItems.push(item)
+            }
+        })
+    }
 
-    // private subscribeToInteractionService(): void {
-    //     this.interactionService.refreshMenus.pipe(takeUntil(this.ngunsubscribe)).subscribe(() => {
-    //         this.messageMenuService.getMessages().then((response) => {
-    //             this.menuItems = response
-    //             this.createMenu(response)
-    //         })
-    //     })
-    // }
+    private subscribeToInteractionService(): void {
+        this.interactionService.refreshMenus.pipe(takeUntil(this.ngunsubscribe)).subscribe(() => {
+            this.messageMenuService.getMessages().then((response: Menu[]) => {
+                this.menuItems = response
+                this.createMenu(response)
+            })
+        })
+    }
 
     private updateVariables(): void {
         this.loginStatus = this.accountService.isLoggedIn

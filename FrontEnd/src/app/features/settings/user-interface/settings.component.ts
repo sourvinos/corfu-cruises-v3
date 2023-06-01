@@ -27,7 +27,7 @@ export class SettingsComponent {
     private record: Settings
     private subscription = new Subscription()
     public feature = 'settings'
-    public featureIcon = 'settings'
+    public featureIcon = 'general-settings'
     public form: FormGroup
     public icon = 'arrow_back'
     public input: InputTabStopDirective

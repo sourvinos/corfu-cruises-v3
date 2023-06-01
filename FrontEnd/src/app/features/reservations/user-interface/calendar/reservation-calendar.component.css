@@ -1,7 +1,3 @@
-#goto-today-button span {
-    color: var(--color-background-today) !important;
-}
-
 .day.has-schedule {
     transition: all var(--delay) !important;
 }
@@ -9,12 +5,4 @@
 .day.has-schedule:hover {
     cursor: pointer !important;
     transform: scaleY(1.03);
-}
-
-#period-scroller button {
-    transition: transform var(--delay) !important;
-}
-
-#period-scroller button:hover {
-    transform: scale(1.5);
 }

@@ -1,6 +1,7 @@
 button {
     align-items: center;
     border: none;
+    box-shadow: none !important;
     cursor: default !important;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-button) !important;

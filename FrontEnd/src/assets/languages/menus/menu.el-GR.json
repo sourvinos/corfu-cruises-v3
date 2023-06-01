@@ -86,5 +86,9 @@
     {
         "id": "user-logout",
         "description": "Αποσύνδεση"
+    },
+    {
+        "id": "settings-general-settings",
+        "description": "Ρυθμίσεις"
     }
 ]

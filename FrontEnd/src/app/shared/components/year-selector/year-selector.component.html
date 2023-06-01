@@ -1,16 +1,14 @@
 <div id="year-picker">
-    <ul>
-        <li>
-            <button class="trigger">
-                <span id="selected-year">{{ year }}</span>
-                <span class="material-icons-outlined">expand_more</span>
+    <div class="drop-down-menu">
+        <button class="drop-down-menu-trigger">
+            <span id="selected-year">{{ year }}</span>
+            <span class="material-icons-outlined">expand_more</span>
+        </button>
+        <ul (click)="hideMenu()" class="sub-menu">
+            <button *ngFor="let year of years" (click)="selectYear(year)" class="hoverable">
+                <img [src]="getIcon('calendar')" width="20px">
+                <span>{{ year }}</span>
             </button>
-            <ul (click)="hideMenu()" class="sub-menu">
-                <button *ngFor="let year of years" (click)="selectYear(year)" class="hoverable">
-                    <img width="20px" [src]="getIcon('calendar')">
-                    <span>{{ year }}</span>
-                </button>
-            </ul>
-        </li>
-    </ul>
+        </ul>
+    </div>
 </div>

@@ -3,48 +3,23 @@
     display: flex;
 }
 
-ul {
-    display: flex;
-    list-style: none;
-    margin: 0 auto;
-    padding: 0;
-}
-
-li {
-    position: relative;
-}
-
-button.drop-down-menu {
+button.drop-down-menu-trigger {
     background-color: var(--color-table-headers);
     border-radius: 0;
-    border: none;
     color: var(--color-text);
     display: flex;
     font-size: var(--font-size-button) !important;
+    gap: 0.5rem;
     padding: 0.25rem 0 0.25rem 1rem !important;
-}
-
-button.drop-down-menu.hoverable:hover {
-    background-color: var(--color-hover) !important;
-}
-
-li > button > span, ul > button > span {
-    margin: 0.1875rem 0 0 0.5rem;
-}
-
-li:hover .sub-menu {
-    display: flex;
 }
 
 .sub-menu {
     display: none;
     flex-direction: column;
-    left: 0;
     list-style: none;
     overflow: hidden;
     padding: 0;
     position: absolute;
-    top: 100%;
     width: max-content;
     z-index: 2 !important;
 }
@@ -52,7 +27,9 @@ li:hover .sub-menu {
 .sub-menu button {
     animation: enter 0.1s ease forwards;
     background-color: var(--color-table-headers);
+    color: var(--color-text);
     display: flex;
+    gap: 0.8rem;
     justify-content: flex-start;
     opacity: 0;
     padding: 0.8rem 1rem !important;
@@ -60,12 +37,16 @@ li:hover .sub-menu {
     width: 100%;
 }
 
-.sub-menu button:first-child {
-    border-top: 0.0625rem solid var(--color-border);
+.sub-menu button span {
+    margin-top: 0.125rem;
 }
 
-.sub-menu button:last-child {
-    border-bottom: 0.0625rem solid var(--color-border);
+.sub-menu button:hover {
+    background-color: var(--color-hover) !important;
+}
+
+.drop-down-menu:hover .sub-menu {
+    display: flex;
 }
 
 .sub-menu button:nth-child(1) {

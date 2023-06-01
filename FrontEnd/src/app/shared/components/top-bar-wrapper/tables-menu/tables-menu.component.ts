@@ -11,8 +11,7 @@ import { environment } from 'src/environments/environment'
 
 @Component({
     selector: 'tables-menu',
-    templateUrl: './tables-menu.component.html',
-    styleUrls: ['../../../../../assets/styles/custom/dropdown-menu.css']
+    templateUrl: './tables-menu.component.html'
 })
 
 export class TablesMenuComponent {

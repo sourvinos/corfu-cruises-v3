@@ -5,7 +5,7 @@ import { SessionStorageService } from '../../services/session-storage.service'
 @Component({
     selector: 'year-selector',
     templateUrl: './year-selector.component.html',
-    styleUrls: ['../../../../assets/styles/custom/dropdown-menu.css', './year-selector.component.css']
+    styleUrls: ['./year-selector.component.css']
 })
 
 export class YearSelectorComponent {
