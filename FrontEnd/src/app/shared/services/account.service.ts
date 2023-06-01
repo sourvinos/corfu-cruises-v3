@@ -23,6 +23,7 @@ import { ShipRouteService } from 'src/app/features/shipRoutes/classes/services/s
 import { ShipService } from 'src/app/features/ships/classes/services/ship.service'
 import { environment } from 'src/environments/environment'
 import { DotNetVersion } from '../classes/dotnet-version'
+import { DexieService } from './dexie.service'
 
 @Injectable({ providedIn: 'root' })
 
@@ -39,7 +40,25 @@ export class AccountService extends HttpDataService {
 
     //#endregion
 
-    constructor(httpClient: HttpClient, private coachRouteService: CoachRouteService, private customerService: CustomerService, private destinationService: DestinationService, private driverService: DriverService, private genderService: GenderService, private interactionService: InteractionService, private nationalityService: NationalityService, private ngZone: NgZone, private pickupPointService: PickupPointService, private portService: PortService, private router: Router, private sessionStorageService: SessionStorageService, private shipOwnerService: ShipOwnerService, private shipRouteService: ShipRouteService, private shipService: ShipService) {
+    constructor(
+        httpClient: HttpClient,
+        private coachRouteService: CoachRouteService,
+        private customerService: CustomerService,
+        private destinationService: DestinationService,
+        private dexieService: DexieService,
+        private driverService: DriverService,
+        private genderService: GenderService,
+        private interactionService: InteractionService,
+        private nationalityService: NationalityService,
+        private ngZone: NgZone,
+        private pickupPointService: PickupPointService,
+        private portService: PortService,
+        private router: Router,
+        private sessionStorageService: SessionStorageService,
+        private shipOwnerService: ShipOwnerService,
+        private shipRouteService: ShipRouteService,
+        private shipService: ShipService
+    ) {
         super(httpClient, environment.apiUrl)
     }
 
@@ -130,6 +149,7 @@ export class AccountService extends HttpDataService {
             this.setDotNetVersion(response)
             this.setAuthSettings(response)
             this.populateStorageFromAPI()
+            this.populateDexieFromAPI()
             this.refreshMenus()
         }))
     }
@@ -184,6 +204,13 @@ export class AccountService extends HttpDataService {
         sessionStorage.setItem('refreshToken', response.refreshToken)
     }
 
+    private populateDexieFromAPI(): void {
+        this.portService.getAll().subscribe(records => {
+            records.forEach(item => {
+                this.dexieService.table('secondPorts').add({ 'id': item.id, 'description': item.description })
+            })
+        })
+    }
     private populateStorageFromAPI(): void {
         this.coachRouteService.getActive().subscribe(response => { this.sessionStorageService.saveItem('coachRoutes', JSON.stringify(response)) })
         this.customerService.getActive().subscribe(response => { this.sessionStorageService.saveItem('customers', JSON.stringify(response)) })
@@ -192,7 +219,7 @@ export class AccountService extends HttpDataService {
         this.genderService.getActive().subscribe(response => { this.sessionStorageService.saveItem('genders', JSON.stringify(response)) })
         this.nationalityService.getActive().subscribe(response => { this.sessionStorageService.saveItem('nationalities', JSON.stringify(response)) })
         this.pickupPointService.getActive().subscribe(response => { this.sessionStorageService.saveItem('pickupPoints', JSON.stringify(response)) })
-        this.portService.getActive().subscribe(response => { this.sessionStorageService.saveItem('ports', JSON.stringify(response)) })
+        // this.portService.getActive().subscribe(response => { this.sessionStorageService.saveItem('ports', JSON.stringify(response)) })
         this.shipService.getActive().subscribe(response => { this.sessionStorageService.saveItem('ships', JSON.stringify(response)) })
         this.shipOwnerService.getActive().subscribe(response => { this.sessionStorageService.saveItem('shipOwners', JSON.stringify(response)) })
         this.shipRouteService.getActive().subscribe(response => { this.sessionStorageService.saveItem('shipRoutes', JSON.stringify(response)) })

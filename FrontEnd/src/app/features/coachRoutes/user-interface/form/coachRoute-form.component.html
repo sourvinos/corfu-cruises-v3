@@ -20,7 +20,7 @@
                 <mat-error *ngIf="description.hasError('maxlength')">{{ getHint("maxLength", description.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <!-- Port -->
-            <mat-form-field>
+            <!-- <mat-form-field>
                 <input #inputAutoComplete #trigger="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="ports" [placeholder]="getLabel('port')" data-tabindex="3" formControlName="port" matInput>
                 <div matSuffix style="display:flex">
                     <button (click)="openOrCloseAutoComplete(trigger, 'port')" mat-icon-button type="button">
@@ -29,6 +29,17 @@
                 </div>
                 <mat-error *ngIf="port.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="!port.hasError('required') && port.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
+            </mat-form-field> -->
+            <!-- Second Port -->
+            <mat-form-field>
+                <input #inputAutoComplete #trigger="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="secondPorts" [placeholder]="getLabel('port')" data-tabindex="3" formControlName="secondPort" matInput>
+                <div matSuffix style="display:flex">
+                    <button (click)="openOrCloseAutoComplete(trigger, 'secondPort')" mat-icon-button type="button">
+                        <mat-icon>expand_more</mat-icon>
+                    </button>
+                </div>
+                <mat-error *ngIf="secondPort.hasError('required')">{{ getHint("required") }}</mat-error>
+                <mat-error *ngIf="!secondPort.hasError('required') && secondPort.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>
             <div id="checkboxes">
                 <!-- Has Transfer -->
@@ -55,8 +66,14 @@
 
 </div>
 
-<mat-autocomplete #ports="matAutocomplete" [displayWith]="autocompleteFields" autoActiveFirstOption>
+<!-- <mat-autocomplete #ports="matAutocomplete" [displayWith]="autocompleteFields" autoActiveFirstOption>
     <mat-option *ngFor="let option of dropdownPorts | async" [value]="option">
+        {{ option.description }}
+    </mat-option>
+</mat-autocomplete> -->
+
+<mat-autocomplete #secondPorts="matAutocomplete" [displayWith]="autocompleteFields" autoActiveFirstOption>
+    <mat-option *ngFor="let option of dropdownSecondPorts | async" [value]="option">
         {{ option.description }}
     </mat-option>
 </mat-autocomplete>
