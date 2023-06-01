@@ -18,7 +18,7 @@
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                         <mat-error *ngIf="date.hasError('required')">{{ getHint("invalid") }}</mat-error>
-                        <button (click)="gotoToday()" class="transparent" id="goto-today" mat-mini-fab tabindex="-1">
+                        <button (click)="gotoToday()" class="transparent" id="goto-today-button" mat-mini-fab>
                             <span class="material-icons-outlined">my_location</span>
                         </button>
                     </mat-form-field>

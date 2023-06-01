@@ -119,7 +119,7 @@
 }
 
 .p-datatable .p-sortable-column:not(.p-highlight):hover {
-    background-color: var(--color-hover) !important;
+    background-color: var(--color-table-headers) !important;
 }
 
 .p-button.p-button-text.p-button-plain:enabled:hover {

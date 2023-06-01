@@ -1,9 +1,7 @@
 * {
     /* Lists and tables */
     --color-scrollbar-thumb: #d94040;
-    --color-table-dropdown-filter-clear: #ff7a7a;
-    --color-table-dropdown-filter-background: #bfbdd7;
-    --color-table-active: #246812;
+    --color-table-active: #4caf50;
     --color-table-inactive: #f44336;
     --color-table-delete-icon: #ff7a7a;
     /*  Buttons */
@@ -11,16 +9,11 @@
     --color-button-primary: #0096c7;
     --color-button-secondary: #ff9800;
     --color-button-delete: #e45142;
-    /*  Checkboxes */
-    --color-checkbox-background: #779b9b;
-    --color-checkbox-label-background-hover: #9acfca42;
-    /* Loader */
-    --color-loader: #d94040;
     /* Criteria & Totals */
-    --color-criteria-a: linear-gradient(to top, #5f80a7, #678bb4, #6f95c2, #78a0d0, #80abde);
-    --color-criteria-b: linear-gradient(to top, #698984, #6f928c, #759a94, #7ca39d, #82aca5);
-    --color-criteria-c: linear-gradient(to top, #cf6755, #d6715f, #dd7b6a, #e48574, #eb8f7f);
-    --color-criteria-d: linear-gradient(to top, #ca874c, #d49258, #dd9c63, #e7a76f, #f0b27b);
+    --color-criteria-a: #5f80a7;
+    --color-criteria-b: #cf6755;
+    --color-criteria-c: #698984;
+    --color-criteria-d: #ca874c;
     /* Date picker */
     --color-range-between: #ffeb3b;
     --color-day-selected: #ffc107;
@@ -29,8 +22,6 @@
     --color-background-saturday: #f29c6b;
     --color-background-sunday: #f26513;
     --color-background-today: #8dbf8f;
-    --color-background-month-selector: #f29c6b;
-    --color-background-summaries: #8dbf8f17;
     /* Theme menu */
     --color-sun: #f6ff00;
     --color-moon: #607d8b;
@@ -38,16 +29,10 @@
     --color-input-background: #d3cdcd1a;
     --color-input-error: #e57b7b;
     --color-input-focus: #65b4ef;
-    /* Links */
-    --color-link: #e57b7b;
-    /* Dropdown menus */
-    --color-dropdown-menu-border: #ff7a7a;
-    --color-dropdown-item-hover: #9acfca42;
     /* Dialog headers */
     --color-dialog-header: #ff7a7a;
     /* Common */
     --color-blue: #2980b9;
-    --color-cyan: #60c9c7;
     --color-green: #379fb6;
     --color-red: #d94040;
     --color-yellow: #dfa618;

@@ -90,7 +90,7 @@
 }
 
 .p-column-filter-menu-button, .p-column-filter-clear-button:hover {
-    background-color: var(--color-hover);
+    background-color: transparent;
     background-image: url("/assets/images/tables/filter-remove.svg");
 }
 

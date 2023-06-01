@@ -11,12 +11,12 @@
 }
 
 a:link, a:visited {
-    color: var(--color-text);
+    color: var(--color-red);
     text-decoration: none;
 }
 
 a:link:hover {
-    color: var(--color-hover);
+    color: var(--color-red);
 }
 
 @media (width < 800px) {

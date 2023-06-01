@@ -37,17 +37,17 @@
 }
 
 .filter-pill .pill:nth-child(1) {
-    background-image: var(--color-criteria-a) !important;
+    background-color: var(--color-criteria-a) !important;
 }
 
 .filter-pill .pill:nth-child(2) {
-    background-image: var(--color-criteria-b) !important;
+    background-color: var(--color-criteria-b) !important;
 }
 
 .filter-pill .pill:nth-child(3) {
-    background-image: var(--color-criteria-c) !important;
+    background-color: var(--color-criteria-c) !important;
 }
 
 .filter-pill .pill:nth-child(4) {
-    background-image: var(--color-criteria-d) !important;
+    background-color: var(--color-criteria-d) !important;
 }

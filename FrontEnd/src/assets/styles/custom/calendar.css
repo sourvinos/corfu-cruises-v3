@@ -144,11 +144,6 @@
     background-color: var(--color-background-today);
 }
 
-#goto-today-button span {
-    color: var(--color-background-today) !important;
-    padding-top: 0.125rem !important;
-}
-
 #period-scroller {
     align-items: center;
     display: flex;
@@ -181,4 +176,14 @@
 
 #period-scroller button:hover {
     transform: scale(1.5);
+}
+
+#goto-today-button {
+    background-color: transparent !important;
+    box-shadow: none;
+    margin: -1rem -1rem 0 0;
+}
+
+#goto-today-button span {
+    color: var(--color-background-today) !important;
 }

@@ -162,11 +162,3 @@
     margin-left: 0.5625rem;
     padding-top: 0.5rem !important;
 }
-
-#goto-today {
-    background-color: transparent !important;
-    box-shadow: none;
-    position: absolute;
-    right: -0.75rem;
-    top: -1.875rem;
-}

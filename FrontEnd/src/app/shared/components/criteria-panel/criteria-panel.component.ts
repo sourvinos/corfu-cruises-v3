@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment'
 
 export class CriteriaPanelComponent {
 
-    @Input() backgroundImage: string
+    @Input() backgroundColor: string
     @Input() feature: string
     @Input() header: string
     @Input() icon: string
