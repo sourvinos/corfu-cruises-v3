@@ -5,6 +5,8 @@ import Dexie from 'dexie'
 
 export class DexieService extends Dexie {
 
+    private service: string
+
     constructor() {
         super('DexieDB')
         this.delete()
@@ -17,15 +19,21 @@ export class DexieService extends Dexie {
             nationalities: 'id, code, description',
             pickupPoints: 'id, description, exactPoint, time, port, port.id, port.description',
             ports: 'id, description',
-            secondPorts: 'id, description',
             shipOwners: 'id, description',
             shipRoutes: 'id, description',
-            ships: 'id, description',
-            items: 'id,description'
+            ships: 'id, description'
         })
         this.open()
             .then(data => console.log(data))
             .catch(err => console.log(err.message))
+    }
+
+    public populateTable(table: string, service: any): void {
+        service.getAll().subscribe((records: any) => {
+            records.forEach((item: any) => {
+                this.table(table).add({ 'id': item.id, 'description': item.description })
+            })
+        })
     }
 
 }

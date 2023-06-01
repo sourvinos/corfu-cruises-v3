@@ -9,6 +9,8 @@ import { CoachRouteService } from 'src/app/features/coachRoutes/classes/services
 import { ConnectedUser } from '../classes/connected-user'
 import { CustomerService } from 'src/app/features/customers/classes/services/customer.service'
 import { DestinationService } from 'src/app/features/destinations/classes/services/destination.service'
+import { DexieService } from './dexie.service'
+import { DotNetVersion } from '../classes/dotnet-version'
 import { DriverService } from 'src/app/features/drivers/classes/services/driver.service'
 import { GenderService } from 'src/app/features/genders/classes/services/gender.service'
 import { HttpDataService } from './http-data.service'
@@ -22,8 +24,6 @@ import { ShipOwnerService } from 'src/app/features/shipOwners/classes/services/s
 import { ShipRouteService } from 'src/app/features/shipRoutes/classes/services/shipRoute.service'
 import { ShipService } from 'src/app/features/ships/classes/services/ship.service'
 import { environment } from 'src/environments/environment'
-import { DotNetVersion } from '../classes/dotnet-version'
-import { DexieService } from './dexie.service'
 
 @Injectable({ providedIn: 'root' })
 
@@ -40,25 +40,7 @@ export class AccountService extends HttpDataService {
 
     //#endregion
 
-    constructor(
-        httpClient: HttpClient,
-        private coachRouteService: CoachRouteService,
-        private customerService: CustomerService,
-        private destinationService: DestinationService,
-        private dexieService: DexieService,
-        private driverService: DriverService,
-        private genderService: GenderService,
-        private interactionService: InteractionService,
-        private nationalityService: NationalityService,
-        private ngZone: NgZone,
-        private pickupPointService: PickupPointService,
-        private portService: PortService,
-        private router: Router,
-        private sessionStorageService: SessionStorageService,
-        private shipOwnerService: ShipOwnerService,
-        private shipRouteService: ShipRouteService,
-        private shipService: ShipService
-    ) {
+    constructor(httpClient: HttpClient, private coachRouteService: CoachRouteService, private customerService: CustomerService, private destinationService: DestinationService, private dexieService: DexieService, private driverService: DriverService, private genderService: GenderService, private interactionService: InteractionService, private nationalityService: NationalityService, private ngZone: NgZone, private pickupPointService: PickupPointService, private portService: PortService, private router: Router, private sessionStorageService: SessionStorageService, private shipOwnerService: ShipOwnerService, private shipRouteService: ShipRouteService, private shipService: ShipService) {
         super(httpClient, environment.apiUrl)
     }
 
@@ -105,19 +87,7 @@ export class AccountService extends HttpDataService {
             // Tasks filters
             { 'item': 'reservationList-filters', 'when': 'always' }, { 'item': 'reservationList-id', 'when': 'always' }, { 'item': 'reservationList-scrollTop', 'when': 'always' },
             { 'item': 'embarkationList-filters', 'when': 'always' }, { 'item': 'embarkationList-id', 'when': 'always' }, { 'item': 'embarkationList-scrollTop', 'when': 'always' },
-            { 'item': 'ledgerList-filters', 'when': 'always' }, { 'item': 'ledgerList-id', 'when': 'always' }, { 'item': 'ledgerList-scrollTop', 'when': 'always' },
-            // Tables
-            { 'item': 'coachRoutes', 'when': 'always' },
-            { 'item': 'customers', 'when': 'always' },
-            { 'item': 'destinations', 'when': 'always' },
-            { 'item': 'drivers', 'when': 'always' },
-            { 'item': 'genders', 'when': 'always' },
-            { 'item': 'nationalities', 'when': 'always' },
-            { 'item': 'pickupPoints', 'when': 'always' },
-            { 'item': 'ports', 'when': 'always' },
-            { 'item': 'shipOwners', 'when': 'always' },
-            { 'item': 'ships', 'when': 'always' },
-            { 'item': 'shipRoutes', 'when': 'always' },
+            { 'item': 'ledgerList-filters', 'when': 'always' }, { 'item': 'ledgerList-id', 'when': 'always' }, { 'item': 'ledgerList-scrollTop', 'when': 'always' }
         ])
     }
 
@@ -148,7 +118,7 @@ export class AccountService extends HttpDataService {
             this.setUserData(response)
             this.setDotNetVersion(response)
             this.setAuthSettings(response)
-            this.populateStorageFromAPI()
+            // this.populateStorageFromAPI()
             this.populateDexieFromAPI()
             this.refreshMenus()
         }))
@@ -205,24 +175,17 @@ export class AccountService extends HttpDataService {
     }
 
     private populateDexieFromAPI(): void {
-        this.portService.getAll().subscribe(records => {
-            records.forEach(item => {
-                this.dexieService.table('secondPorts').add({ 'id': item.id, 'description': item.description })
-            })
-        })
-    }
-    private populateStorageFromAPI(): void {
-        this.coachRouteService.getActive().subscribe(response => { this.sessionStorageService.saveItem('coachRoutes', JSON.stringify(response)) })
-        this.customerService.getActive().subscribe(response => { this.sessionStorageService.saveItem('customers', JSON.stringify(response)) })
-        this.destinationService.getActive().subscribe(response => { this.sessionStorageService.saveItem('destinations', JSON.stringify(response)) })
-        this.driverService.getActive().subscribe(response => { this.sessionStorageService.saveItem('drivers', JSON.stringify(response)) })
-        this.genderService.getActive().subscribe(response => { this.sessionStorageService.saveItem('genders', JSON.stringify(response)) })
-        this.nationalityService.getActive().subscribe(response => { this.sessionStorageService.saveItem('nationalities', JSON.stringify(response)) })
-        this.pickupPointService.getActive().subscribe(response => { this.sessionStorageService.saveItem('pickupPoints', JSON.stringify(response)) })
-        // this.portService.getActive().subscribe(response => { this.sessionStorageService.saveItem('ports', JSON.stringify(response)) })
-        this.shipService.getActive().subscribe(response => { this.sessionStorageService.saveItem('ships', JSON.stringify(response)) })
-        this.shipOwnerService.getActive().subscribe(response => { this.sessionStorageService.saveItem('shipOwners', JSON.stringify(response)) })
-        this.shipRouteService.getActive().subscribe(response => { this.sessionStorageService.saveItem('shipRoutes', JSON.stringify(response)) })
+        this.dexieService.populateTable('coachRoutes', this.coachRouteService)
+        this.dexieService.populateTable('customers', this.customerService)
+        this.dexieService.populateTable('destinations', this.destinationService)
+        this.dexieService.populateTable('drivers', this.driverService)
+        this.dexieService.populateTable('genders', this.genderService)
+        this.dexieService.populateTable('nationalities', this.nationalityService)
+        this.dexieService.populateTable('pickupPoints', this.pickupPointService)
+        this.dexieService.populateTable('ports', this.portService)
+        this.dexieService.populateTable('shipOwners', this.shipOwnerService)
+        this.dexieService.populateTable('shipRoutes', this.shipRouteService)
+        this.dexieService.populateTable('ships', this.shipService)
     }
 
     private setDotNetVersion(response: any): void {
