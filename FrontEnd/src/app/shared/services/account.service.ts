@@ -174,17 +174,17 @@ export class AccountService extends HttpDataService {
     }
 
     private populateDexieFromAPI(): void {
-        this.dexieService.populateTable('coachRoutes', this.coachRouteService, ['id', 'abbreviation'])
-        this.dexieService.populateTable('customers', this.customerService, ['id', 'description'])
-        this.dexieService.populateTable('destinations', this.destinationService, ['id', 'description'])
-        this.dexieService.populateTable('drivers', this.driverService, ['id', 'description'])
-        this.dexieService.populateTable('genders', this.genderService, ['id', 'description'])
-        this.dexieService.populateTable('nationalities', this.nationalityService, ['id', 'code', 'description'])
-        this.dexieService.populateTable('pickupPoints', this.pickupPointService, ['id', 'description', 'exactPoint', 'time'])
-        this.dexieService.populateTable('ports', this.portService, ['id', 'description'])
-        this.dexieService.populateTable('shipOwners', this.shipOwnerService, ['id', 'description'])
-        this.dexieService.populateTable('shipRoutes', this.shipRouteService, ['id', 'description'])
-        this.dexieService.populateTable('ships', this.shipService, ['id', 'description'])
+        this.dexieService.populateTable('coachRoutes', this.coachRouteService)
+        this.dexieService.populateTable('customers', this.customerService)
+        this.dexieService.populateTable('destinations', this.destinationService)
+        this.dexieService.populateTable('drivers', this.driverService)
+        this.dexieService.populateTable('genders', this.genderService)
+        this.dexieService.populateTable('nationalities', this.nationalityService)
+        this.dexieService.populateTable('pickupPoints', this.pickupPointService)
+        this.dexieService.populateTable('ports', this.portService)
+        this.dexieService.populateTable('shipOwners', this.shipOwnerService)
+        this.dexieService.populateTable('shipRoutes', this.shipRouteService)
+        this.dexieService.populateTable('ships', this.shipService)
     }
 
     private setDotNetVersion(response: any): void {

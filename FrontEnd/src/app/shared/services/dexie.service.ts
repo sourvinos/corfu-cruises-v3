@@ -22,19 +22,11 @@ export class DexieService extends Dexie {
             ships: 'id, description'
         })
         this.open()
-            .then(data => console.log(data))
-            .catch(err => console.log(err.message))
     }
 
-    public populateTable(table: string, httpService: any, objectKeys: any[]): void {
-        const object = {}
+    public populateTable(table: string, httpService: any): void {
         httpService.getActive().subscribe((records: any) => {
-            records.forEach((record: any) => {
-                objectKeys.forEach((key) => {
-                    object[key] = record[key]
-                })
-                this.table(table).add(object)
-            })
+            this.table(table).bulkAdd(records)
         })
     }
 

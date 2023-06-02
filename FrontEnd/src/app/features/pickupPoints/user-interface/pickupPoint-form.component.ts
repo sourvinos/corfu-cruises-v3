@@ -187,11 +187,6 @@ export class PickupPointFormComponent {
         })
     }
 
-    private populateDropdownFromStorage(table: string, filteredTable: string, formField: string, modelProperty: string): void {
-        this[table] = JSON.parse(this.sessionStorageService.getItem(table))
-        this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(table, modelProperty, value)))
-    }
-
     private populateDropdowns(): void {
         this.populateDropdownFromDexieDB('coachRoutes', 'dropdownRoutes', 'coachRoute', 'abbreviation')
     }

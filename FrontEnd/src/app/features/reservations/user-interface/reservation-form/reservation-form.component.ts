@@ -11,7 +11,7 @@ import { ConnectedUser } from 'src/app/shared/classes/connected-user'
 import { CustomerActiveVM } from '../../../customers/classes/view-models/customer-active-vm'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DestinationActiveVM } from 'src/app/features/destinations/classes/view-models/destination-active-vm'
-import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
+import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DriverActiveVM } from '../../../drivers/classes/view-models/driver-active-vm'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
@@ -23,6 +23,7 @@ import { MatDialog } from '@angular/material/dialog'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { PickupPointDropdownVM } from 'src/app/features/pickupPoints/classes/view-models/pickupPoint-dropdown-vm'
 import { PortActiveVM } from 'src/app/features/ports/classes/view-models/port-active-vm'
 import { ReservationHelperService } from '../../classes/services/reservation.helper.service'
@@ -69,7 +70,7 @@ export class ReservationFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialog: MatDialog, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private reservationHelperService: ReservationHelperService, private reservationService: ReservationHttpService, private router: Router, private sessionStorageService: SessionStorageService, private voucherService: VoucherService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialog: MatDialog, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private reservationHelperService: ReservationHelperService, private reservationService: ReservationHttpService, private router: Router, private sessionStorageService: SessionStorageService, private voucherService: VoucherService) { }
 
     //#region lifecycle hooks
 
@@ -269,7 +270,7 @@ export class ReservationFormComponent {
 
     private doPostInitTasks(): void {
         this.getLinkedCustomer()
-        this.populateDropDowns()
+        this.populateDropdowns()
         this.setLocale()
         this.setParentUrl()
         this.subscribeToInteractionService()
@@ -381,18 +382,20 @@ export class ReservationFormComponent {
         this.form.patchValue({ passengers: passengers })
     }
 
-    private populateDropdownFromStorage(table: string, filteredTable: string, formField: string, modelProperty: string): void {
-        this[table] = JSON.parse(this.sessionStorageService.getItem(table))
-        this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(table, modelProperty, value)))
+    private populateDropdowns(): void {
+        this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', 'description')
+        this.populateDropdownFromDexieDB('destinations', 'dropdownDestinations', 'destination', 'description')
+        this.populateDropdownFromDexieDB('drivers', 'dropdownDrivers', 'driver', 'description')
+        this.populateDropdownFromDexieDB('pickupPoints', 'dropdownPickupPoints', 'pickupPoint', 'description')
+        this.populateDropdownFromDexieDB('ports', 'dropdownPorts', 'port', 'description')
+        this.populateDropdownFromDexieDB('ships', 'dropdownShips', 'ship', 'description')
     }
 
-    private populateDropDowns(): void {
-        this.populateDropdownFromStorage('customers', 'dropdownCustomers', 'customer', 'description')
-        this.populateDropdownFromStorage('destinations', 'dropdownDestinations', 'destination', 'description')
-        this.populateDropdownFromStorage('drivers', 'dropdownDrivers', 'driver', 'description')
-        this.populateDropdownFromStorage('pickupPoints', 'dropdownPickupPoints', 'pickupPoint', 'description')
-        this.populateDropdownFromStorage('ports', 'dropdownPorts', 'port', 'description')
-        this.populateDropdownFromStorage('ships', 'dropdownShips', 'ship', 'description')
+    private populateDropdownFromDexieDB(table: string, filteredTable: string, formField: string, modelProperty: string): void {
+        this.dexieService.table(table).toArray().then((response) => {
+            this[table] = response
+            this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(table, modelProperty, value)))
+        })
     }
 
     private populateFields(): void {
