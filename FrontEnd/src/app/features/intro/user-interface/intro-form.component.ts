@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 // Customer
 import { DestinationService } from '../../destinations/classes/services/destination.service'
+import { DexieService } from 'src/app/shared/services/dexie.service'
 import { GenderService } from '../../genders/classes/services/gender.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
@@ -25,13 +26,13 @@ export class IntroFormComponent {
 
     //#endregion
 
-    constructor(private destinationService: DestinationService, private genderService: GenderService, private helperService: HelperService, private nationalityService: NationalityService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService, private titleService: Title) { }
+    constructor(private destinationService: DestinationService, private dexieService: DexieService, private genderService: GenderService, private helperService: HelperService, private nationalityService: NationalityService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService, private titleService: Title) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
-        this.setWindowTitle()
         this.populateStorageFromAPI()
+        this.setWindowTitle()
     }
 
     //#endregion
@@ -64,8 +65,8 @@ export class IntroFormComponent {
 
     private populateStorageFromAPI(): void {
         this.destinationService.getActive().subscribe(response => { this.sessionStorageService.saveItem('destinations', JSON.stringify(response)) })
-        this.nationalityService.getActive().subscribe(response => { this.sessionStorageService.saveItem('nationalities', JSON.stringify(response)) })
         this.genderService.getActive().subscribe(response => { this.sessionStorageService.saveItem('genders', JSON.stringify(response)) })
+        this.nationalityService.getActive().subscribe(response => { this.sessionStorageService.saveItem('nationalities', JSON.stringify(response)) })
     }
 
     private setWindowTitle(): void {

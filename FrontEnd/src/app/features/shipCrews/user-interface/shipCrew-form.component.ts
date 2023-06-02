@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { map, startWith } from 'rxjs/operators'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
-import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
+import { DexieService } from 'src/app/shared/services/dexie.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { GenderActiveVM } from '../../genders/classes/view-models/gender-active-vm'
@@ -18,6 +18,7 @@ import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { NationalityDropdownVM } from '../../nationalities/classes/view-models/nationality-dropdown-vm'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { ShipActiveVM } from '../../ships/classes/view-models/ship-active-vm'
@@ -56,7 +57,7 @@ export class ShipCrewFormComponent {
 
     //#endregion
 
-    constructor(@Inject(MAT_DATE_LOCALE) private locale: string, private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private sessionStorageService: SessionStorageService, private shipCrewService: ShipCrewService) { }
+    constructor(@Inject(MAT_DATE_LOCALE) private locale: string, private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private sessionStorageService: SessionStorageService, private shipCrewService: ShipCrewService) { }
 
     //#region lifecycle hooks
 
@@ -206,15 +207,17 @@ export class ShipCrewFormComponent {
         })
     }
 
-    private populateDropdownFromStorage(table: string, filteredTable: string, formField: string, modelProperty: string): void {
-        this[table] = JSON.parse(this.sessionStorageService.getItem(table))
-        this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(table, modelProperty, value)))
+    private populateDropdowns(): void {
+        this.populateDropdownFromDexieDB('genders', 'dropdownGenders', 'gender', 'description')
+        this.populateDropdownFromDexieDB('nationalities', 'dropdownNationalities', 'nationality', 'description')
+        this.populateDropdownFromDexieDB('ships', 'dropdownShips', 'ship', 'description')
     }
 
-    private populateDropdowns(): void {
-        this.populateDropdownFromStorage('genders', 'dropdownGenders', 'gender', 'description')
-        this.populateDropdownFromStorage('nationalities', 'dropdownNationalities', 'nationality', 'description')
-        this.populateDropdownFromStorage('ships', 'dropdownShips', 'ship', 'description')
+    private populateDropdownFromDexieDB(table: string, filteredTable: string, formField: string, modelProperty: string): void {
+        this.dexieService.table(table).toArray().then((response) => {
+            this[table] = response
+            this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(table, modelProperty, value)))
+        })
     }
 
     private populateFields(): void {

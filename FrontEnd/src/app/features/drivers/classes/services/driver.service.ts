@@ -21,10 +21,6 @@ export class DriverService extends HttpDataService {
         return this.http.get<DriverActiveVM[]>(environment.apiUrl + '/drivers/getActive')
     }
 
-    getActiveFromStorage(): DriverActiveVM[] {
-        return JSON.parse(this.sessionStorageService.getItem('ships'))
-    }
-
     //#endregion
 
 }

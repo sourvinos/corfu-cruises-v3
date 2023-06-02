@@ -4,7 +4,7 @@ import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 import { map, startWith } from 'rxjs/operators'
 // Custom
-import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
+import { DexieService } from 'src/app/shared/services/dexie.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
@@ -13,6 +13,7 @@ import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { ShipOwnerActiveVM } from '../../shipOwners/classes/view-models/shipOwner-active-vm'
 import { ShipReadDto } from '../classes/dtos/ship-read-dto'
@@ -46,7 +47,7 @@ export class ShipFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private sessionStorageService: SessionStorageService, private shipService: ShipService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private sessionStorageService: SessionStorageService, private shipService: ShipService) { }
 
     //#region lifecycle hooks
 
@@ -192,13 +193,15 @@ export class ShipFormComponent {
         })
     }
 
-    private populateDropdownFromStorage(table: string, filteredTable: string, formField: string, modelProperty: string): void {
-        this[table] = JSON.parse(this.sessionStorageService.getItem(table))
-        this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(table, modelProperty, value)))
+    private populateDropdowns(): void {
+        this.populateDropdownFromDexieDB('shipOwners', 'dropdownShipOwners', 'shipOwner', 'description')
     }
 
-    private populateDropdowns(): void {
-        this.populateDropdownFromStorage('shipOwners', 'dropdownShipOwners', 'shipOwner', 'description')
+    private populateDropdownFromDexieDB(table: string, filteredTable: string, formField: string, modelProperty: string): void {
+        this.dexieService.table(table).toArray().then((response) => {
+            this[table] = response
+            this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(table, modelProperty, value)))
+        })
     }
 
     private populateFields(): void {

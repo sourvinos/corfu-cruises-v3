@@ -9,7 +9,7 @@ import { takeUntil } from 'rxjs/operators'
 // Custom
 import { CheckInService } from '../../classes/services/check-in.service'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
-import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
+import { DestinationActiveVM } from 'src/app/features/destinations/classes/view-models/destination-active-vm'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { HelperService, indicate } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
@@ -17,10 +17,10 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { ReservationHelperService } from 'src/app/features/reservations/classes/services/reservation.helper.service'
 import { ReservationWriteDto } from 'src/app/features/reservations/classes/dtos/form/reservation-write-dto'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
-import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
 @Component({
     selector: 'check-in-criteria',
@@ -42,7 +42,7 @@ export class CheckInCriteriaComponent {
 
     public isLoading = new Subject<boolean>()
     public selected: Date | null
-    public destinations: SimpleEntity[] = []
+    public destinations: DestinationActiveVM[] = []
     public options: any[] = [
         { 'id': 1, 'description': this.getLabel('step-1-yes') },
         { 'id': 2, 'description': this.getLabel('step-1-no') }
@@ -51,7 +51,23 @@ export class CheckInCriteriaComponent {
 
     //#endregion
 
-    constructor(private checkInService: CheckInService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private reservationHelperService: ReservationHelperService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(
+        private checkInService: CheckInService,
+        private dateAdapter: DateAdapter<any>,
+        private dateHelperService: DateHelperService,
+        private dialogService: ModalDialogService,
+        private emojiService: EmojiService,
+        private formBuilder: FormBuilder,
+        private helperService: HelperService,
+        private interactionService: InteractionService,
+        private localStorageService: LocalStorageService,
+        private messageHintService: MessageInputHintService,
+        private messageLabelService: MessageLabelService,
+        private messageSnackbarService: MessageDialogService,
+        private reservationHelperService: ReservationHelperService,
+        private router: Router,
+        private sessionStorageService: SessionStorageService
+    ) { }
 
     //#region lifecycle hooks
 

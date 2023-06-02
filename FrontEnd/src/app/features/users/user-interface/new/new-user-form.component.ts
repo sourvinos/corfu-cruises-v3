@@ -4,6 +4,7 @@ import { Component } from '@angular/core'
 import { map, startWith } from 'rxjs/operators'
 // Custom
 import { ConfirmValidParentMatcher, ValidationService } from '../../../../shared/services/validation.service'
+import { DexieService } from 'src/app/shared/services/dexie.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -43,7 +44,7 @@ export class NewUserFormComponent {
 
     //#endregion
 
-    constructor(private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private sessionStorageService: SessionStorageService, private userService: UserService) { }
+    constructor(private dexieService: DexieService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private sessionStorageService: SessionStorageService, private userService: UserService) { }
 
     //#region lifecycle hooks
 
@@ -148,15 +149,16 @@ export class NewUserFormComponent {
         })
     }
 
-    private populateDropdownFromLocalStorage(table: string, filteredTable: string, formField: string, modelProperty: string, includeWildcard?: boolean): void {
-        this[table] = JSON.parse(this.sessionStorageService.getItem(table))
-        if (includeWildcard)
-            this[table].unshift({ 'id': 'all', 'description': '[⭐]' })
-        this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(table, modelProperty, value)))
+    private populateDropdowns(): void {
+        this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', 'description', true)
     }
 
-    private populateDropdowns(): void {
-        this.populateDropdownFromLocalStorage('customers', 'dropdownCustomers', 'customer', 'description', true)
+    private populateDropdownFromDexieDB(table: string, filteredTable: string, formField: string, modelProperty: string, includeWildCard: boolean): void {
+        this.dexieService.table(table).toArray().then((response) => {
+            this[table] = response
+            includeWildCard ? this[table].unshift({ 'id': '0', 'description': '[⭐]' }) : null
+            this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(table, modelProperty, value)))
+        })
     }
 
     private saveRecord(user: UserNewDto): void {

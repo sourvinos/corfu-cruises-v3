@@ -5,8 +5,6 @@ import Dexie from 'dexie'
 
 export class DexieService extends Dexie {
 
-    private service: string
-
     constructor() {
         super('DexieDB')
         this.delete()
@@ -28,10 +26,14 @@ export class DexieService extends Dexie {
             .catch(err => console.log(err.message))
     }
 
-    public populateTable(table: string, service: any): void {
-        service.getAll().subscribe((records: any) => {
-            records.forEach((item: any) => {
-                this.table(table).add({ 'id': item.id, 'description': item.description })
+    public populateTable(table: string, httpService: any, objectKeys: any[]): void {
+        const object = {}
+        httpService.getActive().subscribe((records: any) => {
+            records.forEach((record: any) => {
+                objectKeys.forEach((key) => {
+                    object[key] = record[key]
+                })
+                this.table(table).add(object)
             })
         })
     }

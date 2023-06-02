@@ -1,13 +1,13 @@
 import { ActivatedRoute, Router } from '@angular/router'
+import { BehaviorSubject, Observable, Subscription } from 'rxjs'
 import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
-import { BehaviorSubject, Observable, Subscription } from 'rxjs'
 import { map, startWith } from 'rxjs/operators'
 // Custom
 import { CoachRouteReadDto } from '../../classes/dtos/coachRoute-read-dto'
 import { CoachRouteService } from '../../classes/services/coachRoute.service'
 import { CoachRouteWriteDto } from '../../classes/dtos/coachRoute-write-dto'
-import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
+import { DexieService } from 'src/app/shared/services/dexie.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
@@ -16,10 +16,10 @@ import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { PortActiveVM } from 'src/app/features/ports/classes/view-models/port-active-vm'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { ValidationService } from 'src/app/shared/services/validation.service'
-import { DexieService } from 'src/app/shared/services/dexie.service'
 
 @Component({
     selector: 'coach-route-form',
@@ -42,13 +42,12 @@ export class CoachRouteFormComponent {
     public parentUrl = '/coachRoutes'
 
     public arrowIcon = new BehaviorSubject('arrow_drop_down')
-    // public dropdownPorts: Observable<PortActiveVM[]>
-    public dropdownSecondPorts: Observable<PortActiveVM[]>
+    public dropdownPorts: Observable<PortActiveVM[]>
     public isAutoCompleteDisabled = true
 
     //#endregion
 
-    constructor(private dexieService: DexieService, private activatedRoute: ActivatedRoute, private coachRouteService: CoachRouteService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private sessionStorageService: SessionStorageService,) { }
+    constructor(private activatedRoute: ActivatedRoute, private coachRouteService: CoachRouteService, private dexieService: DexieService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private sessionStorageService: SessionStorageService,) { }
 
     //#region lifecycle hooks
 
@@ -57,8 +56,7 @@ export class CoachRouteFormComponent {
         this.setRecordId()
         this.getRecord()
         this.populateFields()
-        // this.populateDropdowns()
-        this.populateSecondDropdowns()
+        this.populateDropdowns()
     }
 
     ngAfterViewInit(): void {
@@ -181,24 +179,14 @@ export class CoachRouteFormComponent {
             id: 0,
             abbreviation: ['', [Validators.required, Validators.maxLength(10)]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
-            // port: ['', [Validators.required, ValidationService.RequireAutocomplete]],
-            secondPort: ['', [Validators.required, ValidationService.RequireAutocomplete]],
+            port: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             hasTransfer: true,
             isActive: true
         })
     }
 
-    private populateDropdownFromStorage(table: string, filteredTable: string, formField: string, modelProperty: string): void {
-        this[table] = JSON.parse(this.sessionStorageService.getItem(table))
-        this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(table, modelProperty, value)))
-    }
-
     private populateDropdowns(): void {
-        this.populateDropdownFromStorage('ports', 'dropdownPorts', 'port', 'description')
-    }
-
-    private populateSecondDropdowns(): void {
-        this.populateDropdownFromDexieDB('secondPorts', 'dropdownSecondPorts', 'secondPort', 'description')
+        this.populateDropdownFromDexieDB('ports', 'dropdownPorts', 'port', 'description')
     }
 
     private populateDropdownFromDexieDB(table: string, filteredTable: string, formField: string, modelProperty: string): void {
@@ -208,15 +196,13 @@ export class CoachRouteFormComponent {
         })
     }
 
-
     private populateFields(): void {
         if (this.record != undefined) {
             this.form.setValue({
                 id: this.record.id,
                 abbreviation: this.record.abbreviation,
                 description: this.record.description,
-                // port: { 'id': this.record.port.id, 'description': this.record.port.description },
-                secondPort: { 'id': this.record.port.id, 'description': this.record.port.description },
+                port: { 'id': this.record.port.id, 'description': this.record.port.description },
                 hasTransfer: this.record.hasTransfer,
                 isActive: this.record.isActive
             })
@@ -258,10 +244,6 @@ export class CoachRouteFormComponent {
 
     get port(): AbstractControl {
         return this.form.get('port')
-    }
-
-    get secondPort(): AbstractControl {
-        return this.form.get('secondPort')
     }
 
     //#endregion

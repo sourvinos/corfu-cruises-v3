@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { map, startWith } from 'rxjs/operators'
 // Custom
 import { CoachRouteDropdownVM } from '../../coachRoutes/classes/view-models/coachRoute-dropdown-vm'
-import { ModalDialogService } from '../../../shared/services/modal-dialog.service'
+import { DexieService } from 'src/app/shared/services/dexie.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
@@ -14,6 +14,7 @@ import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { ModalDialogService } from '../../../shared/services/modal-dialog.service'
 import { PickupPointReadDto } from '../classes/dtos/pickupPoint-read-dto'
 import { PickupPointService } from '../classes/services/pickupPoint.service'
 import { PickupPointWriteDto } from '../classes/dtos/pickupPoint-write-dto'
@@ -46,7 +47,7 @@ export class PickupPointFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private pickupPointService: PickupPointService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private pickupPointService: PickupPointService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -55,7 +56,7 @@ export class PickupPointFormComponent {
         this.setRecordId()
         this.getRecord()
         this.populateFields()
-        this.populateDropDowns()
+        this.populateDropdowns()
     }
 
     ngAfterViewInit(): void {
@@ -191,8 +192,15 @@ export class PickupPointFormComponent {
         this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(table, modelProperty, value)))
     }
 
-    private populateDropDowns(): void {
-        this.populateDropdownFromStorage('coachRoutes', 'dropdownRoutes', 'coachRoute', 'abbreviation')
+    private populateDropdowns(): void {
+        this.populateDropdownFromDexieDB('coachRoutes', 'dropdownRoutes', 'coachRoute', 'abbreviation')
+    }
+
+    private populateDropdownFromDexieDB(table: string, filteredTable: string, formField: string, modelProperty: string): void {
+        this.dexieService.table(table).toArray().then((response) => {
+            this[table] = response
+            this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(table, modelProperty, value)))
+        })
     }
 
     private populateFields(): void {

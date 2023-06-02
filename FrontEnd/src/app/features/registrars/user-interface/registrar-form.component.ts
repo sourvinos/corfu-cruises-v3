@@ -19,6 +19,7 @@ import { RegistrarWriteDto } from '../classes/dtos/registrar-write-dto'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { ShipActiveVM } from '../../ships/classes/view-models/ship-active-vm'
 import { ValidationService } from 'src/app/shared/services/validation.service'
+import { DexieService } from 'src/app/shared/services/dexie.service'
 
 @Component({
     selector: 'registrar-form',
@@ -46,7 +47,7 @@ export class RegistrarFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private registrarService: RegistrarService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private registrarService: RegistrarService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -190,13 +191,15 @@ export class RegistrarFormComponent {
         })
     }
 
-    private populateDropdownFromStorage(table: string, filteredTable: string, formField: string, modelProperty: string): void {
-        this[table] = JSON.parse(this.sessionStorageService.getItem(table))
-        this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(table, modelProperty, value)))
+    private populateDropdowns(): void {
+        this.populateDropdownFromDexieDB('ships', 'dropdownShips', 'ship', 'description')
     }
 
-    private populateDropdowns(): void {
-        this.populateDropdownFromStorage('ships', 'dropdownShips', 'ship', 'description')
+    private populateDropdownFromDexieDB(table: string, filteredTable: string, formField: string, modelProperty: string): void {
+        this.dexieService.table(table).toArray().then((response) => {
+            this[table] = response
+            this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(table, modelProperty, value)))
+        })
     }
 
     private populateFields(): void {

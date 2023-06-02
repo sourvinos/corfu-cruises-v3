@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { map, startWith } from 'rxjs/operators'
 // Custom
 import { DestinationActiveVM } from 'src/app/features/destinations/classes/view-models/destination-active-vm'
-import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
+import { DexieService } from 'src/app/shared/services/dexie.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
@@ -17,6 +17,7 @@ import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { PortActiveVM } from 'src/app/features/ports/classes/view-models/port-active-vm'
 import { ScheduleReadDto } from '../../classes/form/schedule-read-vm'
 import { ScheduleService } from '../../classes/services/schedule.service'
@@ -51,7 +52,7 @@ export class ScheduleEditFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private scheduleService: ScheduleService, private sessionStorageService: SessionStorageService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dexieService: DexieService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private scheduleService: ScheduleService, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -199,8 +200,15 @@ export class ScheduleEditFormComponent {
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromStorage('destinations', 'dropdownDestinations', 'destination', 'description')
-        this.populateDropdownFromStorage('ports', 'dropdownPorts', 'port', 'description')
+        this.populateDropdownFromDexieDB('destinations', 'dropdownDestinations', 'destination', 'description')
+        this.populateDropdownFromDexieDB('ports', 'dropdownPorts', 'port', 'description')
+    }
+
+    private populateDropdownFromDexieDB(table: string, filteredTable: string, formField: string, modelProperty: string): void {
+        this.dexieService.table(table).toArray().then((response) => {
+            this[table] = response
+            this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(table, modelProperty, value)))
+        })
     }
 
     private populateFields(): void {

@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, FormArray, FormCon
 import { Subscription } from 'rxjs'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
+import { DexieService } from 'src/app/shared/services/dexie.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -53,7 +54,7 @@ export class ScheduleNewFormComponent {
 
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageCalendarService: MessageCalendarService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private scheduleService: ScheduleService, private sessionStorageService: SessionStorageService) { }
+    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageCalendarService: MessageCalendarService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private scheduleService: ScheduleService, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -222,8 +223,14 @@ export class ScheduleNewFormComponent {
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromLocalStorage('destinations')
-        this.populateDropdownFromLocalStorage('ports')
+        this.populateDropdownFromDexieDB('destinations')
+        this.populateDropdownFromDexieDB('ports')
+    }
+
+    private populateDropdownFromDexieDB(table: string): void {
+        this.dexieService.table(table).toArray().then((response) => {
+            this[table] = response
+        })
     }
 
     private populateWeekdays(): void {

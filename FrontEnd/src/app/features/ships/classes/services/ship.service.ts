@@ -21,10 +21,6 @@ export class ShipService extends HttpDataService {
         return this.http.get<ShipActiveVM[]>(environment.apiUrl + '/ships/getActive')
     }
 
-    getActiveFromStorage(): ShipActiveVM[] {
-        return JSON.parse(this.sessionStorageService.getItem('ships'))
-    }
-
     //#endregion
 
 }

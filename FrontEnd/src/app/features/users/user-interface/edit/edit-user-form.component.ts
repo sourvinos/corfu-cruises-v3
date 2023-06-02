@@ -5,15 +5,16 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { map, startWith } from 'rxjs/operators'
 // Custom
 import { ConnectedUser } from 'src/app/shared/classes/connected-user'
-import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
+import { DexieService } from 'src/app/shared/services/dexie.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
+import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
+import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { UpdateUserDto } from '../../classes/dtos/update-user-dto'
@@ -46,7 +47,7 @@ export class EditUserFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private sessionStorageService: SessionStorageService, private userService: UserService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private sessionStorageService: SessionStorageService, private userService: UserService) { }
 
     //#region lifecycle hooks
 
@@ -54,7 +55,7 @@ export class EditUserFormComponent {
         this.initForm()
         this.getRecord()
         this.populateFields()
-        this.populateDropDowns()
+        this.populateDropdowns()
         this.updateReturnUrl()
     }
 
@@ -197,14 +198,16 @@ export class EditUserFormComponent {
         })
     }
 
-    private populateDropdownFromLocalStorage(table: string, filteredTable: string, formField: string, modelProperty: string, includeWildCard: boolean): void {
-        this[table] = JSON.parse(this.sessionStorageService.getItem(table))
-        includeWildCard ? this[table].unshift({ 'id': '0', 'description': '[⭐]' }) : null
-        this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(table, modelProperty, value)))
+    private populateDropdowns(): void {
+        this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', 'description', true)
     }
 
-    private populateDropDowns(): void {
-        this.populateDropdownFromLocalStorage('customers', 'dropdownCustomers', 'customer', 'description', true)
+    private populateDropdownFromDexieDB(table: string, filteredTable: string, formField: string, modelProperty: string, includeWildCard: boolean): void {
+        this.dexieService.table(table).toArray().then((response) => {
+            this[table] = response
+            includeWildCard ? this[table].unshift({ 'id': '0', 'description': '[⭐]' }) : null
+            this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(table, modelProperty, value)))
+        })
     }
 
     private populateFields(): void {
