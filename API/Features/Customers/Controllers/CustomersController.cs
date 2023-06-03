@@ -58,10 +58,11 @@ namespace API.Features.Customers {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] CustomerWriteDto customer) {
-            customerRepo.Create(mapper.Map<CustomerWriteDto, Customer>((CustomerWriteDto)customerRepo.AttachUserIdToDto(customer)));
+            var id = customerRepo.Create(mapper.Map<CustomerWriteDto, Customer>((CustomerWriteDto)customerRepo.AttachUserIdToDto(customer)));
             return new Response {
                 Code = 200,
                 Icon = Icons.Success.ToString(),
+                Id = id,
                 Message = ApiMessages.OK()
             };
         }
@@ -76,6 +77,7 @@ namespace API.Features.Customers {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = x.Id,
                     Message = ApiMessages.OK()
                 };
             } else {

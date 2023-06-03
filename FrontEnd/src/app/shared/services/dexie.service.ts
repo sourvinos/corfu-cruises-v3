@@ -30,6 +30,14 @@ export class DexieService extends Dexie {
         })
     }
 
+    public update(table: string, item: any): void {
+        this.table(table).put(item)
+    }
+
+    public remove(table: string, id: any): void {
+        this.table(table).delete(id)
+    }
+
 }
 
 export const db = new DexieService()

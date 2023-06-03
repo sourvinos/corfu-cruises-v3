@@ -21,11 +21,15 @@ namespace API.Infrastructure.Implementations {
             this.testingSettings = testingSettings.Value;
         }
 
-        public void Create(T entity) {
+        public int Create(T entity) {
             using var transaction = context.Database.BeginTransaction();
             context.Add(entity);
             context.SaveChanges();
             DisposeOrCommit(transaction);
+            return (int)entity
+                .GetType()
+                .GetProperty("Id")
+                .GetValue(entity, null);
         }
 
         public void CreateList(List<T> entities) {

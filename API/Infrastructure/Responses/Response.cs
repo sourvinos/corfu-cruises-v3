@@ -4,6 +4,7 @@ namespace API.Infrastructure.Responses {
         
         public int Code { get; set; }
         public string Icon { get; set; }
+        public int Id { get; set; }
         public string Message { get; set; }
 
     }
