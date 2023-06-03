@@ -1,18 +1,18 @@
 import { Component } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms'
+import { MatDatepickerInputEvent } from '@angular/material/datepicker'
 import { Router } from '@angular/router'
 import { Subject } from 'rxjs'
 import { takeUntil } from 'rxjs/operators'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
+import { DexieService } from 'src/app/shared/services/dexie.service'
 import { EmbarkationCriteriaPanelVM } from '../../classes/view-models/criteria/embarkation-criteria-panel-vm'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
-import { FieldsetCriteriaService } from 'src/app/shared/services/fieldset-criteria.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
-import { MatDatepickerInputEvent } from '@angular/material/datepicker'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
@@ -46,7 +46,7 @@ export class EmbarkationCriteriaComponent {
 
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private emojiService: EmojiService, private fieldsetCriteriaService: FieldsetCriteriaService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -168,13 +168,9 @@ export class EmbarkationCriteriaComponent {
         this.unsubscribe.unsubscribe()
     }
 
-    private getToday(): string {
-        return (this.dateHelperService.formatDateToIso(new Date()))
-    }
-
     private initForm(): void {
         this.form = this.formBuilder.group({
-            date: [this.getToday(), Validators.required],
+            date: [this.dateHelperService.formatDateToIso(new Date()), Validators.required],
             selectedDestinations: this.formBuilder.array([], Validators.required),
             selectedPorts: this.formBuilder.array([], Validators.required),
             selectedShips: this.formBuilder.array([], Validators.required),
@@ -185,14 +181,16 @@ export class EmbarkationCriteriaComponent {
         this.router.navigate(['embarkation/list'])
     }
 
-    private populateDropdownFromLocalStorage(table: string): void {
-        this[table] = JSON.parse(this.sessionStorageService.getItem(table))
+    private populateDropdowns(): void {
+        this.populateDropdownFromDexieDB('destinations')
+        this.populateDropdownFromDexieDB('ports')
+        this.populateDropdownFromDexieDB('ships')
     }
 
-    private populateDropdowns(): void {
-        this.populateDropdownFromLocalStorage('destinations')
-        this.populateDropdownFromLocalStorage('ports')
-        this.populateDropdownFromLocalStorage('ships')
+    private populateDropdownFromDexieDB(table: string): void {
+        this.dexieService.table(table).toArray().then((response) => {
+            this[table] = response
+        })
     }
 
     private populateFieldsFromStoredVariables(): void {

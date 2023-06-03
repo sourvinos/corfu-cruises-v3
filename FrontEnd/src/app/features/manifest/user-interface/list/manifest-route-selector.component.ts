@@ -2,8 +2,8 @@ import { Component, NgZone } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { MatDialogRef } from '@angular/material/dialog'
 // Custom
+import { DexieService } from 'src/app/shared/services/dexie.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { ShipRouteActiveVM } from './../../../shipRoutes/classes/view-models/shipRoute-active-vm'
 
 @Component({
@@ -22,7 +22,7 @@ export class ManifestRouteSelectorComponent {
 
     //#endregion
 
-    constructor(private dialogRef: MatDialogRef<ManifestRouteSelectorComponent>, private formBuilder: FormBuilder, private messageLabelService: MessageLabelService, private ngZone: NgZone, private sessionStorageService: SessionStorageService) { }
+    constructor(private dialogRef: MatDialogRef<ManifestRouteSelectorComponent>, private dexieService: DexieService, private formBuilder: FormBuilder, private messageLabelService: MessageLabelService, private ngZone: NgZone) { }
 
     //#region lifecycle hooks
 
@@ -41,9 +41,7 @@ export class ManifestRouteSelectorComponent {
 
     public continue(): void {
         this.ngZone.run(() => {
-            const x = JSON.parse(this.sessionStorageService.getItem('shipRoutes'))
-            const z = x.find((z: any) => z.id == this.form.value.shipRoute.id)
-            this.dialogRef.close(z)
+            this.dialogRef.close(this.form.value.shipRoute)
         })
     }
 
@@ -61,12 +59,14 @@ export class ManifestRouteSelectorComponent {
         })
     }
 
-    private populateDropdownFromLocalStorage(table: string): void {
-        this[table] = JSON.parse(this.sessionStorageService.getItem(table))
+    private populateDropdowns(): void {
+        this.populateDropdownFromDexieDB('shipRoutes')
     }
 
-    private populateDropdowns(): void {
-        this.populateDropdownFromLocalStorage('shipRoutes')
+    private populateDropdownFromDexieDB(table: string): void {
+        this.dexieService.table(table).toArray().then((response) => {
+            this[table] = response
+        })
     }
 
     //#endregion
