@@ -3,7 +3,7 @@ import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 import { Subscription } from 'rxjs'
 // Custom
-import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
+import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DriverReadDto } from '../classes/dtos/driver-read-dto'
 import { DriverService } from '../classes/services/driver.service'
 import { DriverWriteDto } from '../classes/dtos/driver-write-dto'
@@ -14,6 +14,7 @@ import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.d
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 
 @Component({
     selector: 'driver-form',
@@ -37,7 +38,7 @@ export class DriverFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dialogService: ModalDialogService, private driverService: DriverService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: ModalDialogService, private driverService: DriverService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -81,6 +82,7 @@ export class DriverFormComponent {
             if (response) {
                 this.driverService.delete(this.form.value.id).subscribe({
                     complete: () => {
+                        this.dexieService.remove('drivers', this.form.value.id)
                         this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
                     },
                     error: (errorFromInterceptor) => {
@@ -163,7 +165,8 @@ export class DriverFormComponent {
 
     private saveRecord(driver: DriverWriteDto): void {
         this.driverService.save(driver).subscribe({
-            complete: () => {
+            next: (response) => {
+                this.dexieService.update('drivers', { 'id': response.id, 'description': driver.description })
                 this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
             },
             error: (errorFromInterceptor) => {

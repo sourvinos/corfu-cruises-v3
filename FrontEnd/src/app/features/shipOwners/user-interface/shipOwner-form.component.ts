@@ -3,7 +3,7 @@ import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 import { Subscription } from 'rxjs'
 // Custom
-import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
+import { DexieService } from 'src/app/shared/services/dexie.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
@@ -11,6 +11,7 @@ import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.d
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { ShipOwnerReadDto } from '../classes/dtos/shipOwner-read-dto'
 import { ShipOwnerService } from '../classes/services/shipOwner.service'
 import { ShipOwnerWriteDto } from '../classes/dtos/shipOwner-write-dto'
@@ -37,7 +38,7 @@ export class ShipOwnerFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private shipOwnerService: ShipOwnerService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private shipOwnerService: ShipOwnerService) { }
 
     //#region lifecycle hooks
 
@@ -81,6 +82,7 @@ export class ShipOwnerFormComponent {
             if (response) {
                 this.shipOwnerService.delete(this.form.value.id).subscribe({
                     complete: () => {
+                        this.dexieService.remove('shipOwners', this.form.value.id)
                         this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
                     },
                     error: (errorFromInterceptor) => {
@@ -178,7 +180,8 @@ export class ShipOwnerFormComponent {
 
     private saveRecord(shipOwner: ShipOwnerWriteDto): void {
         this.shipOwnerService.save(shipOwner).subscribe({
-            complete: () => {
+            next: (response) => {
+                this.dexieService.update('shipOwners', { 'id': response.id, 'description': shipOwner.description })
                 this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
             },
             error: (errorFromInterceptor) => {

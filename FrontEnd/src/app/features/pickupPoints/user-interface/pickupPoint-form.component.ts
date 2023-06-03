@@ -104,6 +104,7 @@ export class PickupPointFormComponent {
             if (response) {
                 this.pickupPointService.delete(this.form.value.id).subscribe({
                     complete: () => {
+                        this.dexieService.remove('pickupPoints', this.form.value.id)
                         this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
                     },
                     error: (errorFromInterceptor) => {
@@ -218,7 +219,8 @@ export class PickupPointFormComponent {
 
     private saveRecord(pickupPoint: PickupPointWriteDto): void {
         this.pickupPointService.save(pickupPoint).subscribe({
-            complete: () => {
+            next: (response) => {
+                this.dexieService.update('pickupPoints', { 'id': response.id, 'description': pickupPoint.description, 'exactPoint': pickupPoint.exactPoint, 'time': pickupPoint.time })
                 this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
             },
             error: (errorFromInterceptor) => {

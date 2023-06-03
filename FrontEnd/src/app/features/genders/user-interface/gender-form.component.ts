@@ -3,7 +3,7 @@ import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 import { Subscription } from 'rxjs'
 // Custom
-import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
+import { DexieService } from 'src/app/shared/services/dexie.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { GenderReadDto } from '../classes/dtos/gender-read-dto'
@@ -14,6 +14,7 @@ import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.d
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 
 @Component({
     selector: 'gender-form',
@@ -37,7 +38,7 @@ export class GenderFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private genderService: GenderService, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private genderService: GenderService, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -81,6 +82,7 @@ export class GenderFormComponent {
             if (response) {
                 this.genderService.delete(this.form.value.id).subscribe({
                     complete: () => {
+                        this.dexieService.remove('genders', this.form.value.id)
                         this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
                     },
                     error: (errorFromInterceptor) => {
@@ -160,7 +162,8 @@ export class GenderFormComponent {
 
     private saveRecord(gender: GenderWriteDto): void {
         this.genderService.save(gender).subscribe({
-            complete: () => {
+            next: (response) => {
+                this.dexieService.update('genders', { 'id': response.id, 'description': gender.description })
                 this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
             },
             error: (errorFromInterceptor) => {

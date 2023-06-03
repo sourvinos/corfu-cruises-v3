@@ -104,6 +104,7 @@ export class ShipFormComponent {
             if (response) {
                 this.shipService.delete(this.form.value.id).subscribe({
                     complete: () => {
+                        this.dexieService.remove('ships', this.form.value.id)
                         this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
                     },
                     error: (errorFromInterceptor) => {
@@ -227,7 +228,8 @@ export class ShipFormComponent {
 
     private saveRecord(ship: ShipWriteDto): void {
         this.shipService.save(ship).subscribe({
-            complete: () => {
+            next: (response) => {
+                this.dexieService.update('ships', { 'id': response.id, 'description': ship.description })
                 this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
             },
             error: (errorFromInterceptor) => {
