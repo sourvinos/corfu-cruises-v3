@@ -9,9 +9,9 @@ namespace API.Features.Users {
         Task<IEnumerable<UserListVM>> GetAsync();
         Task<UserExtended> GetByIdAsync(string id);
         Task CreateAsync(UserExtended entity, string password);
-        Task<bool> UpdateAdminAsync(UserExtended x, UserUpdateDto user);
-        Task<bool> UpdateSimpleUserAsync(UserExtended x, UserUpdateDto user);
-        Task<Response> DeleteAsync(UserExtended user);
+        Task<bool> UpdateAdminAsync(UserExtended entity, UserUpdateDto userToUpdate);
+        Task<bool> UpdateSimpleUserAsync(UserExtended entity, UserUpdateDto userToUpdate);
+        Task<Response> DeleteAsync(UserExtended entity);
 
     }
 

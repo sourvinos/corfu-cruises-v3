@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
@@ -57,10 +58,11 @@ namespace API.Features.Nationalities {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] NationalityWriteDto nationality) {
-            nationalityRepo.Create(mapper.Map<NationalityWriteDto, Nationality>((NationalityWriteDto)nationalityRepo.AttachUserIdToDto(nationality)));
+            var id = nationalityRepo.Create(mapper.Map<NationalityWriteDto, Nationality>((NationalityWriteDto)nationalityRepo.AttachUserIdToDto(nationality)));
             return new Response {
                 Code = 200,
                 Icon = Icons.Success.ToString(),
+                Id = Convert.ToInt32(id),
                 Message = ApiMessages.OK()
             };
         }
@@ -75,6 +77,7 @@ namespace API.Features.Nationalities {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = Convert.ToInt32(x.Id),
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -93,6 +96,7 @@ namespace API.Features.Nationalities {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = Convert.ToInt32(x.Id),
                     Message = ApiMessages.OK()
                 };
             } else {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
@@ -60,6 +61,7 @@ namespace API.Features.Schedules {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = null,
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -81,6 +83,7 @@ namespace API.Features.Schedules {
                     return new Response {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
+                        Id = null,
                         Message = ApiMessages.OK()
                     };
                 } else {
@@ -104,6 +107,7 @@ namespace API.Features.Schedules {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = null,
                     Message = ApiMessages.OK()
                 };
             } else {

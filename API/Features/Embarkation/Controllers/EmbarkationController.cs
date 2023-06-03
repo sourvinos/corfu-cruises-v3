@@ -31,6 +31,7 @@ namespace API.Features.Embarkation {
             return new Response {
                 Code = 200,
                 Icon = Icons.Success.ToString(),
+                Id = null,
                 Message = ApiMessages.OK()
             };
         }

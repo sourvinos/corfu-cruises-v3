@@ -34,6 +34,7 @@ namespace API.Infrastructure.Settings {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = null,
                     Message = ApiMessages.OK()
                 };
             } else {

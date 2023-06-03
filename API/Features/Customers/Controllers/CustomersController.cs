@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
@@ -62,7 +63,7 @@ namespace API.Features.Customers {
             return new Response {
                 Code = 200,
                 Icon = Icons.Success.ToString(),
-                Id = id,
+                Id = Convert.ToInt32(id),
                 Message = ApiMessages.OK()
             };
         }
@@ -77,7 +78,7 @@ namespace API.Features.Customers {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = x.Id,
+                    Id = Convert.ToInt32(x.Id),
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -96,6 +97,7 @@ namespace API.Features.Customers {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = Convert.ToInt32(x.Id),
                     Message = ApiMessages.OK()
                 };
             } else {

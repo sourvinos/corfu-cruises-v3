@@ -38,6 +38,7 @@ namespace API.Infrastructure.Middleware {
             var result = JsonConvert.SerializeObject(new Response {
                 Code = e.ResponseCode,
                 Icon = Icons.Error.ToString(),
+                Id = null,
                 Message = GetErrorMessage(e.ResponseCode)
             });
             return httpContext.Response.WriteAsync(result);
@@ -49,6 +50,7 @@ namespace API.Infrastructure.Middleware {
             var result = JsonConvert.SerializeObject(new Response {
                 Code = 500,
                 Icon = Icons.Error.ToString(),
+                Id = null,
                 Message = e.Message
             });
             return httpContext.Response.WriteAsync(result);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Infrastructure.Extensions;
@@ -58,10 +59,11 @@ namespace API.Features.Drivers {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] DriverWriteDto driver) {
-            driverRepo.Create(mapper.Map<DriverWriteDto, Driver>((DriverWriteDto)driverRepo.AttachUserIdToDto(driver)));
+            var id = driverRepo.Create(mapper.Map<DriverWriteDto, Driver>((DriverWriteDto)driverRepo.AttachUserIdToDto(driver)));
             return new Response {
                 Code = 200,
                 Icon = Icons.Success.ToString(),
+                Id = Convert.ToInt32(id),
                 Message = ApiMessages.OK()
             };
         }
@@ -76,6 +78,7 @@ namespace API.Features.Drivers {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = Convert.ToInt32(x.Id),
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -88,12 +91,13 @@ namespace API.Features.Drivers {
         [HttpDelete("{id}")]
         [Authorize(Roles = "admin")]
         public async Task<Response> Delete([FromRoute] int id) {
-            var driver = await driverRepo.GetByIdAsync(id);
-            if (driver != null) {
-                driverRepo.Delete(driver);
+            var x = await driverRepo.GetByIdAsync(id);
+            if (x != null) {
+                driverRepo.Delete(x);
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = Convert.ToInt32(x.Id),
                     Message = ApiMessages.OK()
                 };
             } else {

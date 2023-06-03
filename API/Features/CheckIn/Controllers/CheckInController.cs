@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using API.Features.Reservations;
 using API.Features.Schedules;
 using API.Infrastructure.Extensions;
@@ -95,6 +96,7 @@ namespace API.Features.CheckIn {
                     return new Response {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
+                        Id = null,
                         Message = reservation.RefNo
                     };
                 } else {

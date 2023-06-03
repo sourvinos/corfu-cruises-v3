@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs'
 import { DestinationReadDto } from '../classes/dtos/destination-read-dto'
 import { DestinationService } from '../classes/services/destination.service'
 import { DestinationWriteDto } from '../classes/dtos/destination-write-dto'
-import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
+import { DexieService } from 'src/app/shared/services/dexie.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
@@ -14,6 +14,7 @@ import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.d
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 
 @Component({
     selector: 'destination-form',
@@ -37,7 +38,7 @@ export class DestinationFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private destinationService: DestinationService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private destinationService: DestinationService, private dexieService: DexieService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -81,6 +82,7 @@ export class DestinationFormComponent {
             if (response) {
                 this.destinationService.delete(this.form.value.id).subscribe({
                     complete: () => {
+                        this.dexieService.remove('destinations', this.form.value.id)
                         this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
                     },
                     error: (errorFromInterceptor) => {
@@ -163,7 +165,8 @@ export class DestinationFormComponent {
 
     private saveRecord(destination: DestinationWriteDto): void {
         this.destinationService.save(destination).subscribe({
-            complete: () => {
+            next: (response) => {
+                this.dexieService.update('destinations', { 'id': response.id, 'description': destination.description })
                 this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
             },
             error: (errorFromInterceptor) => {

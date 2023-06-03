@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
@@ -62,10 +63,11 @@ namespace API.Features.PickupPoints {
         public Response Post([FromBody] PickupPointWriteDto pickupPoint) {
             var x = pickupPointValidation.IsValid(pickupPoint);
             if (x == 200) {
-                pickupPointRepo.Create(mapper.Map<PickupPointWriteDto, PickupPoint>((PickupPointWriteDto)pickupPointRepo.AttachUserIdToDto(pickupPoint)));
+                var id = pickupPointRepo.Create(mapper.Map<PickupPointWriteDto, PickupPoint>((PickupPointWriteDto)pickupPointRepo.AttachUserIdToDto(pickupPoint)));
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = Convert.ToInt32(id),
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -87,6 +89,7 @@ namespace API.Features.PickupPoints {
                     return new Response {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
+                        Id = Convert.ToInt32(x.Id),
                         Message = ApiMessages.OK()
                     };
                 } else {
@@ -110,6 +113,7 @@ namespace API.Features.PickupPoints {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = Convert.ToInt32(x.Id),
                     Message = ApiMessages.OK()
                 };
             } else {

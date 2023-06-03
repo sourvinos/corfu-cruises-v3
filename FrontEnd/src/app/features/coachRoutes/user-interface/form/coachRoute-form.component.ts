@@ -104,6 +104,7 @@ export class CoachRouteFormComponent {
             if (response) {
                 this.coachRouteService.delete(this.form.value.id).subscribe({
                     complete: () => {
+                        this.dexieService.remove('coachRoutes', this.form.value.id)
                         this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
                     },
                     error: (errorFromInterceptor) => {
@@ -215,7 +216,8 @@ export class CoachRouteFormComponent {
 
     private saveRecord(coachRoute: CoachRouteWriteDto): void {
         this.coachRouteService.save(coachRoute).subscribe({
-            complete: () => {
+            next: (response) => {
+                this.dexieService.update('coachRoutes', { 'id': response.id, 'description': coachRoute.abbreviation })
                 this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
             },
             error: (errorFromInterceptor) => {

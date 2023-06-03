@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Features.Schedules;
 using API.Infrastructure.Extensions;
@@ -98,6 +99,7 @@ namespace API.Features.Reservations {
                 return Task.FromResult(new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = null,
                     Message = reservation.RefNo
                 });
             } else {
@@ -123,6 +125,7 @@ namespace API.Features.Reservations {
                         return new Response {
                             Code = 200,
                             Icon = Icons.Success.ToString(),
+                            Id = null,
                             Message = reservation.RefNo
                         };
                     } else {
@@ -151,6 +154,7 @@ namespace API.Features.Reservations {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = null,
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -167,6 +171,7 @@ namespace API.Features.Reservations {
             return new Response {
                 Code = 200,
                 Icon = Icons.Success.ToString(),
+                Id = null,
                 Message = ApiMessages.OK()
             };
         }
@@ -178,6 +183,7 @@ namespace API.Features.Reservations {
             return new Response {
                 Code = 200,
                 Icon = Icons.Success.ToString(),
+                Id = null,
                 Message = ApiMessages.OK()
             };
         }

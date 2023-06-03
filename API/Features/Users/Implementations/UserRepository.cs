@@ -45,11 +45,11 @@ namespace API.Features.Users {
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task CreateAsync(UserExtended user, string password) {
+        public async Task CreateAsync(UserExtended entity, string password) {
             using var transaction = context.Database.BeginTransaction();
-            var result = await userManager.CreateAsync(user, password);
+            var result = await userManager.CreateAsync(entity, password);
             if (result.Succeeded) {
-                await userManager.AddToRoleAsync(user, user.IsAdmin ? "Admin" : "User");
+                await userManager.AddToRoleAsync(entity, entity.IsAdmin ? "Admin" : "User");
                 DisposeOrCommit(transaction);
             } else {
                 throw new CustomException() {
@@ -58,32 +58,33 @@ namespace API.Features.Users {
             }
         }
 
-        public async Task<bool> UpdateAdminAsync(UserExtended user, UserUpdateDto userToUpdate) {
-            if (await UpdateUser(user, userToUpdate, "admin")) {
-                await UpdateUserRole(user);
+        public async Task<bool> UpdateAdminAsync(UserExtended entity, UserUpdateDto entityToUpdate) {
+            if (await UpdateUser(entity, entityToUpdate, "admin")) {
+                await UpdateUserRole(entity);
                 return true;
             } else {
                 return false;
             }
         }
 
-        public async Task<bool> UpdateSimpleUserAsync(UserExtended x, UserUpdateDto user) {
-            if (await UpdateUser(x, user, "simpleUser")) {
+        public async Task<bool> UpdateSimpleUserAsync(UserExtended entity, UserUpdateDto entityToUpdate) {
+            if (await UpdateUser(entity, entityToUpdate, "simpleUser")) {
                 return true;
             } else {
                 return false;
             }
         }
 
-        public async Task<Response> DeleteAsync(UserExtended user) {
+        public async Task<Response> DeleteAsync(UserExtended entity) {
             using var transaction = context.Database.BeginTransaction();
             try {
-                var result = await userManager.DeleteAsync(await userManager.FindByIdAsync(user.Id));
-                if (result.Succeeded) {
+                var x = await userManager.DeleteAsync(await userManager.FindByIdAsync(entity.Id));
+                if (x.Succeeded) {
                     DisposeOrCommit(transaction);
                     return new Response {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
+                        Id = null,
                         Message = ApiMessages.OK()
                     };
                 } else {
@@ -96,23 +97,23 @@ namespace API.Features.Users {
             }
         }
 
-        private async Task<bool> UpdateUser(UserExtended x, UserUpdateDto user, string role) {
-            x.Displayname = user.Displayname;
+        private async Task<bool> UpdateUser(UserExtended entity, UserUpdateDto entityToUpdate, string role) {
+            entity.Displayname = entityToUpdate.Displayname;
             if (role == "admin") {
-                x.CustomerId = user.CustomerId == 0 ? null : user.CustomerId;
-                x.UserName = user.Username;
-                x.Email = user.Email;
-                x.IsAdmin = user.IsAdmin;
-                x.IsActive = user.IsActive;
+                entity.CustomerId = entityToUpdate.CustomerId == 0 ? null : entityToUpdate.CustomerId;
+                entity.UserName = entityToUpdate.Username;
+                entity.Email = entityToUpdate.Email;
+                entity.IsAdmin = entityToUpdate.IsAdmin;
+                entity.IsActive = entityToUpdate.IsActive;
             }
-            var result = await userManager.UpdateAsync(x);
+            var result = await userManager.UpdateAsync(entity);
             return result.Succeeded;
         }
 
-        private async Task UpdateUserRole(UserExtended user) {
-            var roles = await userManager.GetRolesAsync(user);
-            await userManager.RemoveFromRolesAsync(user, roles);
-            await userManager.AddToRoleAsync(user, user.IsAdmin ? "admin" : "user");
+        private async Task UpdateUserRole(UserExtended entity) {
+            var roles = await userManager.GetRolesAsync(entity);
+            await userManager.RemoveFromRolesAsync(entity, roles);
+            await userManager.AddToRoleAsync(entity, entity.IsAdmin ? "admin" : "user");
 
         }
 

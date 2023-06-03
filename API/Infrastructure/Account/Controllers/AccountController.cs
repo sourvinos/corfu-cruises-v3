@@ -45,6 +45,7 @@ namespace API.Infrastructure.Account {
                     return new Response {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
+                        Id = null,
                         Message = ApiMessages.OK()
                     };
                 } else {
@@ -72,6 +73,7 @@ namespace API.Infrastructure.Account {
                     return new Response {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
+                        Id = null,
                         Message = ApiMessages.OK()
                     };
                 } else {
@@ -96,12 +98,14 @@ namespace API.Infrastructure.Account {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = null,
                     Message = ApiMessages.OK()
                 };
             } else {
                 return new Response {
                     Code = 496,
                     Icon = Icons.Error.ToString(),
+                    Id = null,
                     Message = ApiMessages.EmailNotSent()
                 };
             }
@@ -134,12 +138,14 @@ namespace API.Infrastructure.Account {
                 } : new Response {
                     Code = 498,
                     Icon = Icons.Error.ToString(),
+                    Id = null,
                     Message = ApiMessages.EmailNotSent()
                 };
             } else {
                 return new Response {
                     Code = 498,
                     Icon = Icons.Error.ToString(),
+                    Id = null,
                     Message = ApiMessages.EmailNotSent()
                 };
             }

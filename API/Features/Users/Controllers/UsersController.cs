@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Infrastructure.Extensions;
@@ -69,6 +70,7 @@ namespace API.Features.Users {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = null,
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -118,6 +120,7 @@ namespace API.Features.Users {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = null,
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -132,6 +135,7 @@ namespace API.Features.Users {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = null,
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -146,6 +150,7 @@ namespace API.Features.Users {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = null,
                     Message = ApiMessages.OK()
                 };
             } else {

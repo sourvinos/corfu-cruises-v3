@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Infrastructure.Extensions;
@@ -58,10 +59,11 @@ namespace API.Features.ShipOwners {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] ShipOwnerWriteDto shipOwner) {
-            shipOwnerRepo.Create(mapper.Map<ShipOwnerWriteDto, ShipOwner>((ShipOwnerWriteDto)shipOwnerRepo.AttachUserIdToDto(shipOwner)));
+            var id = shipOwnerRepo.Create(mapper.Map<ShipOwnerWriteDto, ShipOwner>((ShipOwnerWriteDto)shipOwnerRepo.AttachUserIdToDto(shipOwner)));
             return new Response {
                 Code = 200,
                 Icon = Icons.Success.ToString(),
+                Id = Convert.ToInt32(id),
                 Message = ApiMessages.OK()
             };
         }
@@ -76,6 +78,7 @@ namespace API.Features.ShipOwners {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = Convert.ToInt32(x.Id),
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -94,6 +97,7 @@ namespace API.Features.ShipOwners {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = Convert.ToInt32(x.Id),
                     Message = ApiMessages.OK()
                 };
             } else {
