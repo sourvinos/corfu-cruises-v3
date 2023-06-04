@@ -7,8 +7,8 @@ import { takeUntil } from 'rxjs/operators'
 // Custom
 import { ConnectedUser } from 'src/app/shared/classes/connected-user'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
+import { DexieService } from 'src/app/shared/services/dexie.service'
 import { EmojiService } from './../../../../shared/services/emoji.service'
-import { FieldsetCriteriaService } from 'src/app/shared/services/fieldset-criteria.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { LedgerCriteriaVM } from '../../classes/view-models/criteria/ledger-criteria-vm'
@@ -47,7 +47,7 @@ export class LedgerCriteriaComponent {
 
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private emojiService: EmojiService, private fieldsetCriteriaService: FieldsetCriteriaService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -75,10 +75,6 @@ export class LedgerCriteriaComponent {
         this.navigateToList()
     }
 
-    public filterList(event: { target: { value: any } }, list: string | number): void {
-        this.fieldsetCriteriaService.filterList(event.target.value, this[list])
-    }
-
     public getEmoji(emoji: string): string {
         return this.emojiService.getEmoji(emoji)
     }
@@ -96,10 +92,6 @@ export class LedgerCriteriaComponent {
             fromDate: this.dateHelperService.formatDateToIso(new Date()),
             toDate: this.dateHelperService.formatDateToIso(new Date())
         })
-    }
-
-    public highlightRow(id: any): void {
-        this.helperService.highlightRow(id)
     }
 
     public isAdmin(): boolean {
@@ -167,9 +159,6 @@ export class LedgerCriteriaComponent {
 
     private addSelectedCriteriaFromStorage(arrayName: string): void {
         const x = this.form.controls[arrayName] as FormArray
-        this.form.patchValue({
-            [arrayName]: []
-        })
         this.criteria[arrayName].forEach((element: any) => {
             x.push(new FormControl({
                 'id': element.id,
@@ -202,15 +191,17 @@ export class LedgerCriteriaComponent {
         this.router.navigate(['ledgers/list'])
     }
 
-    private populateDropdownFromLocalStorage(table: string): void {
-        this[table] = JSON.parse(this.sessionStorageService.getItem(table))
+    private populateDropdowns(): void {
+        this.populateDropdownFromDexieDB('customers')
+        this.populateDropdownFromDexieDB('destinations')
+        this.populateDropdownFromDexieDB('ports')
+        this.populateDropdownFromDexieDB('ships')
     }
 
-    private populateDropdowns(): void {
-        this.populateDropdownFromLocalStorage('customers')
-        this.populateDropdownFromLocalStorage('destinations')
-        this.populateDropdownFromLocalStorage('ports')
-        this.populateDropdownFromLocalStorage('ships')
+    private populateDropdownFromDexieDB(table: string): void {
+        this.dexieService.table(table).toArray().then((response) => {
+            this[table] = response
+        })
     }
 
     private populateFieldsFromStoredVariables(): void {
