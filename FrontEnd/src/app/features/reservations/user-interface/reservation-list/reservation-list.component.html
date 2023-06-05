@@ -1,19 +1,20 @@
-<div id="list">
-
-    <div id="header">
-        <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
-        <div class="filter-pill">
-            <div class="pill date">
-                <img [src]="getIcon('calendar')">
-                <div class="description">{{ formatDateToLocale(getDateFromStorage(), true, true) }}</div>
-            </div>
-            <button (click)="resetTableFilters()" class="primary" mat-flat-button>
-                <mat-icon class="no-text">filter_alt_off</mat-icon>
-            </button>
-        </div>
-    </div>
+<div id="list-wrapper">
 
     <div id="content">
+
+        <div id="header">
+            <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
+            <div class="filter-pill">
+                <div class="pill date">
+                    <img [src]="getIcon('calendar')">
+                    <div class="description">{{ formatDateToLocale(getDateFromStorage(), true, true) }}</div>
+                </div>
+                <button (click)="resetTableFilters()" class="primary" mat-flat-button>
+                    <mat-icon class="no-text">filter_alt_off</mat-icon>
+                </button>
+            </div>
+        </div>
+
         <div id="table-wrapper">
             <p-table #table (onHeaderCheckboxToggle)="calculateSelectedPax()" (onFilter)="filterRecords($event)" [(selection)]="selectedRecords" [scrollable]="true" [value]="records" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="reservationId" scrollHeight="flex" selectionMode="multiple" sortMode="multiple">
                 <ng-template pTemplate="header">
@@ -154,6 +155,7 @@
                 </ng-template>
             </p-table>
         </div>
+
     </div>
 
     <div id="footer">

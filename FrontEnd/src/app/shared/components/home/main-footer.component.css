@@ -3,10 +3,11 @@
     justify-content: center;
 }
 
-#footer {
+#main-footer {
     color: var(--color-text);
     font-family: var(--font-family-asty);
     font-weight: 300;
+    margin: 1rem auto 1rem auto;
     text-align: center;
 }
 
@@ -23,13 +24,13 @@ a:link:hover {
     :host {
         margin: auto 4rem 0 4rem;
     }
-    #footer {
+    #main-footer {
         font-size: 0.5rem;
     }
 }
 
 @media (width >= 800px) {
-    #footer {
+    #main-footer {
         font-size: 0.8rem;
     }
 }

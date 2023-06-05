@@ -1,3 +1,11 @@
+#form-wrapper {
+    gap: 0 !important;
+}
+
+#header {
+    justify-content: center !important;
+}
+
 #columns {
     align-items: center;
     display: flex;
@@ -21,6 +29,11 @@
     cursor: pointer;
 }
 
+#footer {
+    display: flex;
+    justify-content: center;
+}
+
 @media (width < 800px) {
     #columns {
         margin: 0.5rem;
@@ -30,7 +43,7 @@
     }
 }
 
-@media (width >= 800px) {
+@media (width >=800px) {
     #columns {
         margin: 1rem;
     }

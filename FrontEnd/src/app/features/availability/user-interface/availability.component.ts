@@ -19,7 +19,7 @@ import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 @Component({
     selector: 'availability',
     templateUrl: './availability.component.html',
-    styleUrls: ['./availability.component.css', '../../../../assets/styles/custom/calendar.css']
+    styleUrls: ['../../../../assets/styles/custom/lists.css', '../../../../assets/styles/custom/calendar.css', './availability.component.css']
 })
 
 export class AvailabilityComponent {

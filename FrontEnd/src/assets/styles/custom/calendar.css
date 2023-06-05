@@ -8,7 +8,6 @@
     align-items: center;
     display: flex;
     justify-content: space-between;
-    padding: 0 4rem 1rem 4rem !important;
 }
 
 #content {
@@ -16,7 +15,6 @@
     flex-direction: column;
     height: 100%;
     justify-content: center;
-    margin: 0 2.5rem 0 2.5rem;
 }
 
 #footer {

@@ -1,15 +1,16 @@
-<div id="list">
-
-    <div id="header">
-        <home-button-and-title [featureIcon]="featureIcon" [feature]="feature" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
-        <div id="criteria">
-            <button (click)="resetTableFilters()" class="primary" mat-flat-button>
-                <mat-icon class="no-text">filter_alt_off</mat-icon>
-            </button>
-        </div>
-    </div>
+<div id="list-wrapper">
 
     <div id="content">
+
+        <div id="header">
+            <home-button-and-title [featureIcon]="featureIcon" [feature]="feature" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
+            <div id="criteria">
+                <button (click)="resetTableFilters()" class="primary" mat-flat-button>
+                    <mat-icon class="no-text">filter_alt_off</mat-icon>
+                </button>
+            </div>
+        </div>
+
         <div id="table-wrapper">
             <p-table #table (onFilter)="filterRecords($event)" [scrollable]="true" [value]="records" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
                 <ng-template pTemplate="header">
@@ -36,12 +37,13 @@
                 </ng-template>
             </p-table>
         </div>
+
     </div>
 
     <div id="footer">
         <table-total-filtered-records [filteredRecordCount]="recordsFilteredCount" [recordCount]="records.length"></table-total-filtered-records>
         <div class="button-group-right">
-            <button mat-flat-button class="primary" (click)="newRecord()">{{ getLabel("newRecord") }}</button>
+            <button (click)="newRecord()" class="primary" mat-flat-button>{{ getLabel("newRecord") }}</button>
         </div>
     </div>
 

@@ -9,6 +9,7 @@
 }
 
 #main {
+    backdrop-filter: blur(var(--blur));
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -16,7 +17,7 @@
     width: 100%;
 }
 
-#content {
+#outer-content {
     height: 100%;
     min-height: 0;
 }

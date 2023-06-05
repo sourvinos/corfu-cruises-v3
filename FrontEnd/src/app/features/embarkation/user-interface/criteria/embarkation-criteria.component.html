@@ -1,4 +1,4 @@
-<div id="form-wrapper">
+<div id="criteria-wrapper">
 
     <div id="content">
 
@@ -6,111 +6,113 @@
             <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
         </div>
 
-        <form [formGroup]="form" autocomplete="off" id="form">
-            <!-- Date -->
-            <div class="group-field">
-                <fieldset id="date-fieldset">
-                    <legend>
-                        <span>{{ getLabel('date') }}</span>
-                    </legend>
-                    <mat-form-field id="date">
-                        <input (dateChange)="patchFormWithSelectedDate($event)" [matDatepicker]="picker" formControlName="date" matInput>
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                        <mat-error *ngIf="date.hasError('required')">{{ getHint("invalid") }}</mat-error>
-                        <button (click)="gotoToday()" class="transparent" id="goto-today-button" mat-mini-fab>
-                            <span class="material-icons-outlined">my_location</span>
-                        </button>
-                    </mat-form-field>
-                </fieldset>
-            </div>
-            <div class="group-field">
-                <!-- Destinations -->
-                <fieldset class="fieldset">
-                    <legend>
-                        <span>{{ getLabel('destinations') }}</span>
-                        <div class="selected">
-                            <span class="selected-count">{{ getLabel("selected") }}: {{ selectedDestinations.length }}</span>
-                            <span class="icon">{{ getEmoji(selectedDestinations.length > 0 ? 'ok' : 'error') }}</span>
+        <div id="form-wrapper">
+            <form [formGroup]="form" autocomplete="off" id="form">
+                <!-- Date -->
+                <div class="group-field">
+                    <fieldset id="date-fieldset">
+                        <legend>
+                            <span>{{ getLabel('date') }}</span>
+                        </legend>
+                        <mat-form-field id="date">
+                            <input (dateChange)="patchFormWithSelectedDate($event)" [matDatepicker]="picker" formControlName="date" matInput>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-error *ngIf="date.hasError('required')">{{ getHint("invalid") }}</mat-error>
+                            <button (click)="gotoToday()" class="transparent" id="goto-today-button" mat-mini-fab>
+                                <span class="material-icons-outlined">my_location</span>
+                            </button>
+                        </mat-form-field>
+                    </fieldset>
+                </div>
+                <div class="group-field">
+                    <!-- Destinations -->
+                    <fieldset class="fieldset">
+                        <legend>
+                            <span>{{ getLabel('destinations') }}</span>
+                            <div class="selected">
+                                <span class="selected-count">{{ getLabel("selected") }}: {{ selectedDestinations.length }}</span>
+                                <span class="icon">{{ getEmoji(selectedDestinations.length > 0 ? 'ok' : 'error') }}</span>
+                            </div>
+                        </legend>
+                        <div class="list">
+                            <div class="table-wrapper">
+                                <p-table #destinationsTable (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'destinations','selectedDestinations')" (onRowSelect)="onRowSelect($event,'selectedDestinations')" (onRowUnselect)="onRowUnselect($event,'selectedDestinations')" [(selection)]="selectedDestinations" [scrollable]="true" [value]="destinations" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th class="no-border width-2"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+                                            <th class="no-border width-5"><input (input)="destinationsTable.filter($event.target.value, 'description', 'contains')" [value]="$any(destinationsTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template let-destination pTemplate="body">
+                                        <tr style="height:32px">
+                                            <td class="center width-2"><p-tableCheckbox [value]="destination"></p-tableCheckbox></td>
+                                            <td class="width-5">{{ destination.description }}</td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </div>
                         </div>
-                    </legend>
-                    <div class="list">
-                        <div class="table-wrapper">
-                            <p-table #destinationsTable (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'destinations','selectedDestinations')" (onRowSelect)="onRowSelect($event,'selectedDestinations')" (onRowUnselect)="onRowUnselect($event,'selectedDestinations')" [(selection)]="selectedDestinations" [scrollable]="true" [value]="destinations" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex">
-                                <ng-template pTemplate="header">
-                                    <tr>
-                                        <th class="no-border width-2"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
-                                        <th class="no-border width-5"><input (input)="destinationsTable.filter($event.target.value, 'description', 'contains')" [value]="$any(destinationsTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
-                                    </tr>
-                                </ng-template>
-                                <ng-template let-destination pTemplate="body">
-                                    <tr style="height:32px">
-                                        <td class="center width-2"><p-tableCheckbox [value]="destination"></p-tableCheckbox></td>
-                                        <td class="width-5">{{ destination.description }}</td>
-                                    </tr>
-                                </ng-template>
-                            </p-table>
+                    </fieldset>
+                    <!-- Ports -->
+                    <fieldset class="fieldset">
+                        <legend>
+                            <span>{{ getLabel('ports') }}</span>
+                            <div class="selected">
+                                <span class="selected-count">{{ getLabel("selected") }}: {{ selectedPorts.length }}</span>
+                                <span class="icon">{{ getEmoji(selectedPorts.length > 0 ? 'ok' : 'error') }}</span>
+                            </div>
+                        </legend>
+                        <div class="list">
+                            <div class="table-wrapper">
+                                <p-table #portsTable (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'ports','selectedPorts')" (onRowSelect)="onRowSelect($event,'selectedPorts')" (onRowUnselect)="onRowUnselect($event,'selectedPorts')" [(selection)]="selectedPorts" [scrollable]="true" [value]="ports" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th class="no-border width-2"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+                                            <th class="no-border width-5"><input (input)="portsTable.filter($event.target.value, 'description', 'contains')" [value]="$any(portsTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template let-port pTemplate="body">
+                                        <tr style="height:32px">
+                                            <td class="center width-2"><p-tableCheckbox [value]="port"></p-tableCheckbox></td>
+                                            <td class="width-5">{{ port.description }}</td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </div>
                         </div>
-                    </div>
-                </fieldset>
-                <!-- Ports -->
-                <fieldset class="fieldset">
-                    <legend>
-                        <span>{{ getLabel('ports') }}</span>
-                        <div class="selected">
-                            <span class="selected-count">{{ getLabel("selected") }}: {{ selectedPorts.length }}</span>
-                            <span class="icon">{{ getEmoji(selectedPorts.length > 0 ? 'ok' : 'error') }}</span>
+                    </fieldset>
+                    <!-- Ships -->
+                    <fieldset class="fieldset">
+                        <legend>
+                            <span>{{ getLabel('ships') }}</span>
+                            <div class="selected">
+                                <span class="selected-count">{{ getLabel("selected") }}: {{ selectedShips.length }}</span>
+                                <span class="icon">{{ getEmoji(selectedShips.length > 0 ? 'ok' : 'error') }}</span>
+                            </div>
+                        </legend>
+                        <div class="list">
+                            <div class="table-wrapper">
+                                <p-table #shipsTable (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'ships','selectedShips')" (onRowSelect)="onRowSelect($event,'selectedShips')" (onRowUnselect)="onRowUnselect($event,'selectedShips')" [(selection)]="selectedShips" [scrollable]="true" [value]="ships" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th class="no-border width-2"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+                                            <th class="no-border width-5"><input (input)="shipsTable.filter($event.target.value, 'description', 'contains')" [value]="$any(shipsTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template let-ship pTemplate="body">
+                                        <tr style="height:32px">
+                                            <td class="center width-2"><p-tableCheckbox [value]="ship"></p-tableCheckbox></td>
+                                            <td class="width-5">{{ ship.description }}</td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </div>
                         </div>
-                    </legend>
-                    <div class="list">
-                        <div class="table-wrapper">
-                            <p-table #portsTable (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'ports','selectedPorts')" (onRowSelect)="onRowSelect($event,'selectedPorts')" (onRowUnselect)="onRowUnselect($event,'selectedPorts')" [(selection)]="selectedPorts" [scrollable]="true" [value]="ports" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex">
-                                <ng-template pTemplate="header">
-                                    <tr>
-                                        <th class="no-border width-2"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
-                                        <th class="no-border width-5"><input (input)="portsTable.filter($event.target.value, 'description', 'contains')" [value]="$any(portsTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
-                                    </tr>
-                                </ng-template>
-                                <ng-template let-port pTemplate="body">
-                                    <tr style="height:32px">
-                                        <td class="center width-2"><p-tableCheckbox [value]="port"></p-tableCheckbox></td>
-                                        <td class="width-5">{{ port.description }}</td>
-                                    </tr>
-                                </ng-template>
-                            </p-table>
-                        </div>
-                    </div>
-                </fieldset>
-                <!-- Ships -->
-                <fieldset class="fieldset">
-                    <legend>
-                        <span>{{ getLabel('ships') }}</span>
-                        <div class="selected">
-                            <span class="selected-count">{{ getLabel("selected") }}: {{ selectedShips.length }}</span>
-                            <span class="icon">{{ getEmoji(selectedShips.length > 0 ? 'ok' : 'error') }}</span>
-                        </div>
-                    </legend>
-                    <div class="list">
-                        <div class="table-wrapper">
-                            <p-table #shipsTable (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'ships','selectedShips')" (onRowSelect)="onRowSelect($event,'selectedShips')" (onRowUnselect)="onRowUnselect($event,'selectedShips')" [(selection)]="selectedShips" [scrollable]="true" [value]="ships" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex">
-                                <ng-template pTemplate="header">
-                                    <tr>
-                                        <th class="no-border width-2"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
-                                        <th class="no-border width-5"><input (input)="shipsTable.filter($event.target.value, 'description', 'contains')" [value]="$any(shipsTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
-                                    </tr>
-                                </ng-template>
-                                <ng-template let-ship pTemplate="body">
-                                    <tr style="height:32px">
-                                        <td class="center width-2"><p-tableCheckbox [value]="ship"></p-tableCheckbox></td>
-                                        <td class="width-5">{{ ship.description }}</td>
-                                    </tr>
-                                </ng-template>
-                            </p-table>
-                        </div>
-                    </div>
-                </fieldset>
-            </div>
-        </form>
+                    </fieldset>
+                </div>
+            </form>
+        </div>
 
     </div>
 

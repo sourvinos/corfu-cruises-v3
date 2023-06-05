@@ -1,15 +1,5 @@
-<div class="login-forgot-reset" id="form-wrapper">
+<div id="form-wrapper">
 
-    <div id="top">
-        <div id="left">
-            <logo></logo>
-        </div>
-        <div id="right">
-            <language-menu></language-menu>
-            <theme-menu></theme-menu>
-        </div>
-    </div>
-    
     <div id="content">
         <mat-card routerLink="/login">
             <img (load)="loadImage()" [ngClass]="imageIsLoading()" [src]="getIcon('login')">
@@ -24,7 +14,7 @@
             <mat-card-subtitle>{{ getLabel("checkInSubTitle") }}</mat-card-subtitle>
         </mat-card>
     </div>
-
+    
     <main-footer></main-footer>
-
+    
 </div>

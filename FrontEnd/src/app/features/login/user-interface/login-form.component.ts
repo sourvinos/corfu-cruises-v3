@@ -13,11 +13,13 @@ import { MessageDialogService } from 'src/app/shared/services/message-dialog.ser
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { environment } from 'src/environments/environment'
+import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
+import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 
 @Component({
     selector: 'login-form',
     templateUrl: './login-form.component.html',
-    styleUrls: ['../../../../assets/styles/custom/forms.css', '../../../shared/styles/login-forgot-reset-password.css', './login-form.component.css']
+    styleUrls: ['../../../../assets/styles/custom/forms.css', './login-form.component.css']
 })
 
 export class LoginFormComponent {
@@ -36,7 +38,7 @@ export class LoginFormComponent {
 
     //#endregion
 
-    constructor(private accountService: AccountService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private titleService: Title) { }
+    constructor(private dateHelperService: DateHelperService, private sessionStorageService: SessionStorageService, private accountService: AccountService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private titleService: Title) { }
 
     //#region lifecycle hooks
 
@@ -46,6 +48,7 @@ export class LoginFormComponent {
         this.focusOnField()
         this.setWindowTitle()
         this.checkScreenResolution()
+        this.setCurrentPeriod()
     }
 
     //#endregion
@@ -107,6 +110,12 @@ export class LoginFormComponent {
             password: [environment.login.password, Validators.required],
             noRobot: [environment.login.noRobot, Validators.requiredTrue]
         })
+    }
+
+    private setCurrentPeriod(): void {
+        this.sessionStorageService.saveItem('dayCount', this.helperService.calculateDayCount().toString())
+        this.sessionStorageService.saveItem('fromDate', this.dateHelperService.getCurrentPeriodBeginDate())
+        this.sessionStorageService.saveItem('toDate', this.dateHelperService.getCurrentPeriodEndDate(parseInt(this.sessionStorageService.getItem('dayCount'))))
     }
 
     private setWindowTitle(): void {

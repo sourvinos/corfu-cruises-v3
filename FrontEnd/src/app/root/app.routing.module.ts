@@ -5,7 +5,6 @@ import { NoPreloading, RouteReuseStrategy, RouterModule, Routes } from '@angular
 import { EmptyPageComponent } from '../shared/components/empty-page/empty-page.component'
 import { ForgotPasswordFormComponent } from '../features/users/user-interface/forgot-password/forgot-password-form.component'
 import { HomeComponent } from '../shared/components/home/home.component'
-import { IntroFormComponent } from '../features/intro/user-interface/intro-form.component'
 import { LoginFormComponent } from '../features/login/user-interface/login-form.component'
 import { ResetPasswordFormComponent } from '../features/users/user-interface/reset-password/reset-password-form.component'
 // Utils
@@ -13,8 +12,8 @@ import { AuthGuardService } from '../shared/services/auth-guard.service'
 import { CustomRouteReuseStrategyService } from '../shared/services/route-reuse-strategy.service'
 
 const appRoutes: Routes = [
-    // Intro
-    { path: '', component: IntroFormComponent, pathMatch: 'full' },
+    // Login
+    { path: '', component: LoginFormComponent, pathMatch: 'full' },
     // Auth
     { path: 'login', component: LoginFormComponent },
     { path: 'forgotPassword', component: ForgotPasswordFormComponent },

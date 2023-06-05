@@ -22,7 +22,6 @@
 }
 
 .p-datatable-flex-scrollable .p-datatable-wrapper {
-    backdrop-filter: blur(var(--blur));
     background: none;
     overflow-y: scroll !important;
     overscroll-behavior: contain;

@@ -28,7 +28,6 @@ export class HomeComponent {
         this.getAppName()
         this.setWindowTitle()
         this.getNgVersion()
-        this.setCurrentPeriod()
     }
 
     //#endregion
@@ -41,12 +40,6 @@ export class HomeComponent {
 
     private getNgVersion(): any {
         this.ngVersion = VERSION.full
-    }
-
-    private setCurrentPeriod(): void {
-        this.sessionStorageService.saveItem('dayCount', this.helperService.calculateDayCount().toString())
-        this.sessionStorageService.saveItem('fromDate', this.dateHelperService.getCurrentPeriodBeginDate())
-        this.sessionStorageService.saveItem('toDate', this.dateHelperService.getCurrentPeriodEndDate(parseInt(this.sessionStorageService.getItem('dayCount'))))
     }
 
     private setWindowTitle(): void {

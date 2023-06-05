@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 // Customer
+import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DestinationService } from '../../destinations/classes/services/destination.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { GenderService } from '../../genders/classes/services/gender.service'
@@ -14,7 +15,7 @@ import { environment } from 'src/environments/environment'
 @Component({
     selector: 'intro-form',
     templateUrl: './intro-form.component.html',
-    styleUrls: ['../../../shared/styles/login-forgot-reset-password.css', './intro-form.component.css']
+    styleUrls: ['./intro-form.component.css']
 })
 
 export class IntroFormComponent {
@@ -26,13 +27,17 @@ export class IntroFormComponent {
 
     //#endregion
 
-    constructor(private destinationService: DestinationService, private dexieService: DexieService, private genderService: GenderService, private helperService: HelperService, private nationalityService: NationalityService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService, private titleService: Title) { }
+    constructor(private dateHelperService: DateHelperService, private destinationService: DestinationService, private dexieService: DexieService, private genderService: GenderService, private helperService: HelperService, private nationalityService: NationalityService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService, private titleService: Title) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
         this.populateStorageFromAPI()
         this.setWindowTitle()
+    }
+
+    ngAfterViewInit(): void {
+        // this.setCurrentPeriod()
     }
 
     //#endregion
@@ -67,6 +72,14 @@ export class IntroFormComponent {
         this.destinationService.getActive().subscribe(response => { this.sessionStorageService.saveItem('destinations', JSON.stringify(response)) })
         this.genderService.getActive().subscribe(response => { this.sessionStorageService.saveItem('genders', JSON.stringify(response)) })
         this.nationalityService.getActive().subscribe(response => { this.sessionStorageService.saveItem('nationalities', JSON.stringify(response)) })
+    }
+
+    private setCurrentPeriod(): void {
+        setTimeout(() => {
+            this.sessionStorageService.saveItem('dayCount', this.helperService.calculateDayCount().toString())
+            this.sessionStorageService.saveItem('fromDate', this.dateHelperService.getCurrentPeriodBeginDate())
+            this.sessionStorageService.saveItem('toDate', this.dateHelperService.getCurrentPeriodEndDate(parseInt(this.sessionStorageService.getItem('dayCount'))))
+        }, 5000)
     }
 
     private setWindowTitle(): void {

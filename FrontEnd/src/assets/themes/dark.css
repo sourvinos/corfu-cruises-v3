@@ -1,7 +1,9 @@
 * {
     --color-background: #333333;
     --color-border: #5a5a5a;
-    --color-text: #ffffff;
-    --color-table-headers: #444444;
+    --color-content-background: #3b3b3b6b;
     --color-hover: #917b62;
+    --color-shadow: 255;
+    --color-table-headers: #444444;
+    --color-text: #ffffff;
 }

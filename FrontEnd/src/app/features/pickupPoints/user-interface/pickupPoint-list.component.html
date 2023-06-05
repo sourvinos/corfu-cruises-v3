@@ -1,15 +1,16 @@
-<div id="list">
-
-    <div id="header">
-        <home-button-and-title [featureIcon]="featureIcon" [feature]="feature" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
-        <div id="criteria">
-            <button (click)="resetTableFilters()" class="primary" mat-flat-button>
-                <span class="material-icons-outlined">filter_alt_off</span>
-            </button>
-        </div>
-    </div>
+<div id="list-wrapper">
 
     <div id="content">
+
+        <div id="header">
+            <home-button-and-title [featureIcon]="featureIcon" [feature]="feature" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
+            <div id="criteria">
+                <button (click)="resetTableFilters()" class="primary" mat-flat-button>
+                    <span class="material-icons-outlined">filter_alt_off</span>
+                </button>
+            </div>
+        </div>
+
         <div id="table-wrapper">
             <p-table #table (onFilter)="filterRecords($event)" [scrollable]="true" [value]="records" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
                 <ng-template pTemplate="header">
@@ -53,6 +54,7 @@
                 </ng-template>
             </p-table>
         </div>
+
     </div>
 
     <div id="footer">

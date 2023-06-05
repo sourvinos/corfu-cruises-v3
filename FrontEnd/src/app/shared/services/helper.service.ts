@@ -42,7 +42,7 @@ export class HelperService {
         private router: Router,
         private sessionStorageService: SessionStorageService,
         private titleService: Title
-        ) { }
+    ) { }
 
     //#region public methods
 
@@ -265,8 +265,9 @@ export class HelperService {
     }
 
     public calculateDayCount(): number {
-        const elementWidth = window.innerWidth - environment.marginsInPixels
-        const dayCount = Math.trunc(elementWidth / 123.2)
+        const elementWidth = document.getElementById('content').clientWidth
+        console.log(elementWidth)
+        const dayCount = Math.trunc(elementWidth / 123.315)
         return dayCount
     }
 
