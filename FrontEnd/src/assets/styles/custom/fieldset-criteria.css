@@ -38,10 +38,12 @@
 }
 
 #footer {
+    align-items: center;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    margin: 0 4rem 1rem 4rem;
+    justify-content: right;
+    margin-top: auto;
+    padding: 1rem 4rem 1rem 4rem;
 }
 
 .table-wrapper {

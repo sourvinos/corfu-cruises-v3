@@ -57,8 +57,7 @@
 .no-decorations {
     background-color: transparent !important;
     border: none !important;
-    margin: -18px 0 0 0;
-    padding: 1rem 1rem 0 1rem;
+    padding: 0 1rem 0 1rem;
 }
 
 #nested {

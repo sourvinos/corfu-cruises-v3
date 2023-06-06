@@ -25,7 +25,7 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 @Component({
     selector: 'schedule-new',
     templateUrl: './schedule-new-form.component.html',
-    styleUrls: ['../../../../../assets/styles/custom/forms.css', './schedule-new-form.component.css']
+    styleUrls: ['../../../../../assets/styles/custom/forms.css', '../../../../../assets/styles/custom/fieldset-criteria.css', './schedule-new-form.component.css']
 })
 
 export class ScheduleNewFormComponent {
@@ -223,12 +223,12 @@ export class ScheduleNewFormComponent {
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('destinations')
-        this.populateDropdownFromDexieDB('ports')
+        this.populateDropdownFromDexieDB('destinations', 'description')
+        this.populateDropdownFromDexieDB('ports', 'description')
     }
 
-    private populateDropdownFromDexieDB(table: string): void {
-        this.dexieService.table(table).toArray().then((response) => {
+    private populateDropdownFromDexieDB(table: string, orderBy: string): void {
+        this.dexieService.table(table).orderBy(orderBy).toArray().then((response) => {
             this[table] = response
         })
     }

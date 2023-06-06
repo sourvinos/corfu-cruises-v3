@@ -208,13 +208,13 @@ export class ShipCrewFormComponent {
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('genders', 'dropdownGenders', 'gender', 'description')
-        this.populateDropdownFromDexieDB('nationalities', 'dropdownNationalities', 'nationality', 'description')
-        this.populateDropdownFromDexieDB('ships', 'dropdownShips', 'ship', 'description')
+        this.populateDropdownFromDexieDB('genders', 'dropdownGenders', 'gender', 'description', 'description')
+        this.populateDropdownFromDexieDB('nationalities', 'dropdownNationalities', 'nationality', 'description', 'description')
+        this.populateDropdownFromDexieDB('ships', 'dropdownShips', 'ship', 'description', 'description')
     }
 
-    private populateDropdownFromDexieDB(table: string, filteredTable: string, formField: string, modelProperty: string): void {
-        this.dexieService.table(table).toArray().then((response) => {
+    private populateDropdownFromDexieDB(table: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
+        this.dexieService.table(table).orderBy(orderBy).toArray().then((response) => {
             this[table] = response
             this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(table, modelProperty, value)))
         })

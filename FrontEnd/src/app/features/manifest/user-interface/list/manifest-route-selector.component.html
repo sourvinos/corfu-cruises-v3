@@ -17,13 +17,15 @@
     </div>
 
     <div id="dialog-footer">
-        <button (click)="close()" class="transparent" mat-flat-button tabindex="-1">
-            <span>{{ getLabel("cancelButton") }}</span>
-        </button>
-        <button (click)="continue()" [disabled]="!form.valid" class="primary" mat-flat-button>
-            <mat-icon *ngIf="!form.valid">lock</mat-icon>
-            <span>{{ getLabel("okButton") }}</span>
-        </button>
+        <div class="button-group-right">
+            <button (click)="close()" class="transparent" mat-flat-button tabindex="-1">
+                <span>{{ getLabel("cancelButton") }}</span>
+            </button>
+            <button (click)="continue()" [disabled]="!form.valid" class="primary" mat-flat-button>
+                <mat-icon *ngIf="!form.valid">lock</mat-icon>
+                <span>{{ getLabel("okButton") }}</span>
+            </button>
+        </div>
     </div>
 
 </div>

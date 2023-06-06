@@ -9,7 +9,7 @@ export class DexieService extends Dexie {
         super('DexieDB')
         this.delete()
         this.version(1).stores({
-            coachRoutes: 'id, description',
+            coachRoutes: 'id, abbreviation',
             customers: 'id, description',
             destinations: 'id, description',
             drivers: 'id, description',

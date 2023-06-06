@@ -199,11 +199,11 @@ export class EditUserFormComponent {
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', 'description', true)
+        this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', 'description', 'description', true)
     }
 
-    private populateDropdownFromDexieDB(table: string, filteredTable: string, formField: string, modelProperty: string, includeWildCard: boolean): void {
-        this.dexieService.table(table).toArray().then((response) => {
+    private populateDropdownFromDexieDB(table: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string, includeWildCard: boolean): void {
+        this.dexieService.table(table).orderBy(orderBy).toArray().then((response) => {
             this[table] = response
             includeWildCard ? this[table].unshift({ 'id': '0', 'description': '[⭐]' }) : null
             this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(table, modelProperty, value)))

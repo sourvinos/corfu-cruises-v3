@@ -383,16 +383,16 @@ export class ReservationFormComponent {
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', 'description')
-        this.populateDropdownFromDexieDB('destinations', 'dropdownDestinations', 'destination', 'description')
-        this.populateDropdownFromDexieDB('drivers', 'dropdownDrivers', 'driver', 'description')
-        this.populateDropdownFromDexieDB('pickupPoints', 'dropdownPickupPoints', 'pickupPoint', 'description')
-        this.populateDropdownFromDexieDB('ports', 'dropdownPorts', 'port', 'description')
-        this.populateDropdownFromDexieDB('ships', 'dropdownShips', 'ship', 'description')
+        this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', 'description', 'description')
+        this.populateDropdownFromDexieDB('destinations', 'dropdownDestinations', 'destination', 'description', 'description')
+        this.populateDropdownFromDexieDB('drivers', 'dropdownDrivers', 'driver', 'description', 'description')
+        this.populateDropdownFromDexieDB('pickupPoints', 'dropdownPickupPoints', 'pickupPoint', 'description', 'description')
+        this.populateDropdownFromDexieDB('ports', 'dropdownPorts', 'port', 'description', 'description')
+        this.populateDropdownFromDexieDB('ships', 'dropdownShips', 'ship', 'description', 'description')
     }
 
-    private populateDropdownFromDexieDB(table: string, filteredTable: string, formField: string, modelProperty: string): void {
-        this.dexieService.table(table).toArray().then((response) => {
+    private populateDropdownFromDexieDB(table: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
+        this.dexieService.table(table).orderBy(orderBy).toArray().then((response) => {
             this[table] = response
             this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(table, modelProperty, value)))
         })

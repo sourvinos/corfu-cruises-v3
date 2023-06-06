@@ -34,6 +34,10 @@
     justify-content: center;
 }
 
+#login-button {
+    width: 10rem;
+}
+
 @media (width < 800px) {
     #columns {
         margin: 0.5rem;

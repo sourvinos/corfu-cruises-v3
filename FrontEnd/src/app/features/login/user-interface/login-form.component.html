@@ -29,12 +29,12 @@
         </form>
 
         <div id="footer">
-            <button (click)="onLogin()" [disabled]="!form.valid" class="primary" mat-flat-button>
+            <button (click)="onLogin()" [disabled]="!form.valid" class="primary" id="login-button" mat-flat-button>
                 <mat-icon *ngIf="!form.valid">lock</mat-icon>
                 <span>{{ getLabel("loginButton") }}</span>
             </button>
         </div>
-        
+
     </div>
 
     <main-footer></main-footer>

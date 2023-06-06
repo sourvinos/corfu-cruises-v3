@@ -1,4 +1,4 @@
-<div id="form-wrapper">
+<div id="criteria-wrapper">
 
     <div id="content">
 
@@ -6,139 +6,141 @@
             <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
         </div>
 
-        <form [formGroup]="form" autocomplete="off" id="form">
-            <!-- Dates -->
-            <div class="group-field">
-                <fieldset id="date-fieldset">
-                    <legend>
-                        <span>{{ getLabel('date') }}</span>
-                    </legend>
-                    <mat-form-field id="date">
-                        <mat-date-range-input [formGroup]="form" [rangePicker]="picker">
-                            <input class="center" formControlName="fromDate" matInput matStartDate>
-                            <input class="center" formControlName="toDate" matEndDate matInput>
-                        </mat-date-range-input>
-                        <mat-date-range-picker #picker (closed)="patchFormWithSelectedDates(fromDate, toDate)"></mat-date-range-picker>
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-error *ngIf="fromDate.hasError('required') || toDate.hasError('required')">{{ getHint("invalid") }}</mat-error>
-                        <button (click)="gotoToday()" class="transparent" id="goto-today-button" mat-mini-fab tabindex="-1">
-                            <span class="material-icons-outlined">my_location</span>
-                        </button>
-                    </mat-form-field>
-                </fieldset>
-            </div>
-            <div class="group-field">
-                <!-- Destination -->
-                <fieldset class="fieldset">
-                    <legend>
-                        <span>{{ getLabel('destination') }}</span>
-                        <div class="selected">
-                            <span class="selected-count">{{ getLabel("selected") }}: {{ selectedDestinations.length }}</span>
-                            <span class="icon">{{ getEmoji(selectedDestinations.length > 0 ? 'ok' : 'error') }}</span>
-                        </div>
-                    </legend>
-                    <div class="list">
-                        <div class="table-wrapper">
-                            <p-table #destinationsTable (onRowSelect)="onRowSelect($event,'selectedDestinations')" (onRowUnselect)="onRowUnselect($event,'selectedDestinations')" [(selection)]="selectedDestinations[0]" [scrollable]="true" [value]="destinations" datakey="id" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex">
-                                <ng-template pTemplate="header">
-                                    <tr>
-                                        <th class="no-border width-2"><p-tableHeaderCheckbox class="hidden"></p-tableHeaderCheckbox></th>
-                                        <th class="no-border width-5"><input (input)="destinationsTable.filter($event.target.value, 'description', 'contains')" [value]="$any(destinationsTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
-                                    </tr>
-                                </ng-template>
-                                <ng-template let-destination pTemplate="body">
-                                    <tr style="height:32px">
-                                        <td class="center width-2"><p-tableRadioButton [value]="destination"></p-tableRadioButton></td>
-                                        <td class="width-5">{{ destination.description }}</td>
-                                    </tr>
-                                </ng-template>
-                            </p-table>
-                        </div>
-                    </div>
-                </fieldset>
-                <!-- Port -->
-                <fieldset class="fieldset">
-                    <legend>
-                        <span>{{ getLabel('port') }}</span>
-                        <div class="selected">
-                            <span class="selected-count">{{ getLabel("selected") }}: {{ selectedPorts.length }}</span>
-                            <span class="icon">{{ getEmoji(selectedPorts.length > 0 ? 'ok' : 'error') }}</span>
-                        </div>
-                    </legend>
-                    <div class="list">
-                        <div class="table-wrapper">
-                            <p-table #portsTable (onRowSelect)="onRowSelect($event,'selectedPorts')" (onRowUnselect)="onRowUnselect($event,'selectedPorts')" [(selection)]="selectedPorts[0]" [scrollable]="true" [value]="ports" datakey="id" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex">
-                                <ng-template pTemplate="header">
-                                    <tr>
-                                        <th class="no-border width-2"><p-tableHeaderCheckbox class="hidden"></p-tableHeaderCheckbox></th>
-                                        <th class="no-border width-5"><input (input)="portsTable.filter($event.target.value, 'description', 'contains')" [value]="$any(portsTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
-                                    </tr>
-                                </ng-template>
-                                <ng-template let-port pTemplate="body">
-                                    <tr style="height:32px">
-                                        <td class="center width-2"><p-tableRadioButton [value]="port"></p-tableRadioButton></td>
-                                        <td class="width-5">{{ port.description }}</td>
-                                    </tr>
-                                </ng-template>
-                            </p-table>
-                        </div>
-                    </div>
-                </fieldset>
-                <!-- Weekdays, Max Pax and Time -->
-                <div id="nested">
-                    <!-- Weekdays -->
+        <div id="form-wrapper">
+            <form [formGroup]="form" autocomplete="off" id="form">
+                <!-- Dates -->
+                <div class="group-field">
+                    <fieldset id="date-fieldset">
+                        <legend>
+                            <span>{{ getLabel('date') }}</span>
+                        </legend>
+                        <mat-form-field id="date">
+                            <mat-date-range-input [formGroup]="form" [rangePicker]="picker">
+                                <input class="center" formControlName="fromDate" matInput matStartDate>
+                                <input class="center" formControlName="toDate" matEndDate matInput>
+                            </mat-date-range-input>
+                            <mat-date-range-picker #picker (closed)="patchFormWithSelectedDates(fromDate, toDate)"></mat-date-range-picker>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-error *ngIf="fromDate.hasError('required') || toDate.hasError('required')">{{ getHint("invalid") }}</mat-error>
+                            <button (click)="gotoToday()" class="transparent" id="goto-today-button" mat-mini-fab tabindex="-1">
+                                <span class="material-icons-outlined">my_location</span>
+                            </button>
+                        </mat-form-field>
+                    </fieldset>
+                </div>
+                <div class="group-field">
+                    <!-- Destination -->
                     <fieldset class="fieldset">
                         <legend>
-                            <span>{{ getLabel('weekdays') }}</span>
+                            <span>{{ getLabel('destination') }}</span>
                             <div class="selected">
-                                <span class="selected-count">{{ getLabel("selected") }}: {{ selectedWeekdays.length }}</span>
-                                <span class="icon">{{ getEmoji(selectedWeekdays.length > 0 ? 'ok' : 'error') }}</span>
+                                <span class="selected-count">{{ getLabel("selected") }}: {{ selectedDestinations.length }}</span>
+                                <span class="icon">{{ getEmoji(selectedDestinations.length > 0 ? 'ok' : 'error') }}</span>
                             </div>
                         </legend>
                         <div class="list">
                             <div class="table-wrapper">
-                                <p-table #weekdaysTable (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'weekdays','selectedWeekdays')" (onRowSelect)="onRowSelect($event,'selectedWeekdays')" (onRowUnselect)="onRowUnselect($event,'selectedWeekdays')" [(selection)]="selectedWeekdays" [scrollable]="true" [value]="weekdays" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex">
+                                <p-table #destinationsTable (onRowSelect)="onRowSelect($event,'selectedDestinations')" (onRowUnselect)="onRowUnselect($event,'selectedDestinations')" [(selection)]="selectedDestinations[0]" [scrollable]="true" [value]="destinations" datakey="id" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex">
                                     <ng-template pTemplate="header">
                                         <tr>
                                             <th class="no-border width-2"><p-tableHeaderCheckbox class="hidden"></p-tableHeaderCheckbox></th>
-                                            <th class="no-border width-5"><input (input)="weekdaysTable.filter($event.target.value, 'description', 'contains')" [value]="$any(weekdaysTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
+                                            <th class="no-border width-5"><input (input)="destinationsTable.filter($event.target.value, 'description', 'contains')" [value]="$any(destinationsTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
                                         </tr>
                                     </ng-template>
-                                    <ng-template let-weekday pTemplate="body">
+                                    <ng-template let-destination pTemplate="body">
                                         <tr style="height:32px">
-                                            <td class="center width-2"><p-tableCheckbox (click)="doTasks($event,weekday)" [value]="weekday"></p-tableCheckbox></td>
-                                            <td class="width-5">{{ weekday.description }}</td>
+                                            <td class="center width-2"><p-tableRadioButton [value]="destination"></p-tableRadioButton></td>
+                                            <td class="width-5">{{ destination.description }}</td>
                                         </tr>
                                     </ng-template>
                                 </p-table>
                             </div>
                         </div>
                     </fieldset>
-                    <!-- MaxPax -->
-                    <fieldset class="fieldset full-height">
+                    <!-- Port -->
+                    <fieldset class="fieldset">
                         <legend>
-                            <span>{{ getLabel('maxPax') }}</span>
+                            <span>{{ getLabel('port') }}</span>
+                            <div class="selected">
+                                <span class="selected-count">{{ getLabel("selected") }}: {{ selectedPorts.length }}</span>
+                                <span class="icon">{{ getEmoji(selectedPorts.length > 0 ? 'ok' : 'error') }}</span>
+                            </div>
                         </legend>
-                        <mat-form-field class="no-decorations">
-                            <input class="number" formControlName="maxPax" matInput type="number" tabindex="-1">
-                            <mat-error *ngIf="maxPax.hasError('required')">{{ getHint("required") }}</mat-error>
-                            <mat-error *ngIf="!maxPax.hasError('required') && maxPax.hasError('min') || maxPax.hasError('max')">{{ getHint("invalid") }}</mat-error>
-                        </mat-form-field>
+                        <div class="list">
+                            <div class="table-wrapper">
+                                <p-table #portsTable (onRowSelect)="onRowSelect($event,'selectedPorts')" (onRowUnselect)="onRowUnselect($event,'selectedPorts')" [(selection)]="selectedPorts[0]" [scrollable]="true" [value]="ports" datakey="id" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th class="no-border width-2"><p-tableHeaderCheckbox class="hidden"></p-tableHeaderCheckbox></th>
+                                            <th class="no-border width-5"><input (input)="portsTable.filter($event.target.value, 'description', 'contains')" [value]="$any(portsTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template let-port pTemplate="body">
+                                        <tr style="height:32px">
+                                            <td class="center width-2"><p-tableRadioButton [value]="port"></p-tableRadioButton></td>
+                                            <td class="width-5">{{ port.description }}</td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </div>
+                        </div>
                     </fieldset>
-                    <!-- Time -->
-                    <fieldset class="fieldset full-height">
-                        <legend>
-                            <span>{{ getLabel('time') }}</span>
-                        </legend>
-                        <mat-form-field class="no-decorations">
-                            <input class="right" formControlName="time" matInput tabindex="-1">
-                            <mat-error *ngIf="time.hasError('required')">{{ getHint("required") }}</mat-error>
-                            <mat-error *ngIf="!time.hasError('required') && !time.hasError('time')">{{ getHint("invalid") }}</mat-error>
-                        </mat-form-field>
-                    </fieldset>
+                    <!-- Weekdays, Max Pax and Time -->
+                    <div id="nested">
+                        <!-- Weekdays -->
+                        <fieldset class="fieldset">
+                            <legend>
+                                <span>{{ getLabel('weekdays') }}</span>
+                                <div class="selected">
+                                    <span class="selected-count">{{ getLabel("selected") }}: {{ selectedWeekdays.length }}</span>
+                                    <span class="icon">{{ getEmoji(selectedWeekdays.length > 0 ? 'ok' : 'error') }}</span>
+                                </div>
+                            </legend>
+                            <div class="list">
+                                <div class="table-wrapper">
+                                    <p-table #weekdaysTable (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'weekdays','selectedWeekdays')" (onRowSelect)="onRowSelect($event,'selectedWeekdays')" (onRowUnselect)="onRowUnselect($event,'selectedWeekdays')" [(selection)]="selectedWeekdays" [scrollable]="true" [value]="weekdays" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                <th class="no-border width-2"><p-tableHeaderCheckbox class="hidden"></p-tableHeaderCheckbox></th>
+                                                <th class="no-border width-5"><input (input)="weekdaysTable.filter($event.target.value, 'description', 'contains')" [value]="$any(weekdaysTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template let-weekday pTemplate="body">
+                                            <tr style="height:32px">
+                                                <td class="center width-2"><p-tableCheckbox (click)="doTasks($event,weekday)" [value]="weekday"></p-tableCheckbox></td>
+                                                <td class="width-5">{{ weekday.description | uppercase }}</td>
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <!-- MaxPax -->
+                        <fieldset class="fieldset full-height">
+                            <legend>
+                                <span>{{ getLabel('maxPax') }}</span>
+                            </legend>
+                            <mat-form-field class="no-decorations">
+                                <input class="number" formControlName="maxPax" matInput type="number" tabindex="-1">
+                                <mat-error *ngIf="maxPax.hasError('required')">{{ getHint("required") }}</mat-error>
+                                <mat-error *ngIf="!maxPax.hasError('required') && maxPax.hasError('min') || maxPax.hasError('max')">{{ getHint("invalid") }}</mat-error>
+                            </mat-form-field>
+                        </fieldset>
+                        <!-- Time -->
+                        <fieldset class="fieldset full-height">
+                            <legend>
+                                <span>{{ getLabel('time') }}</span>
+                            </legend>
+                            <mat-form-field class="no-decorations">
+                                <input class="right" formControlName="time" matInput tabindex="-1">
+                                <mat-error *ngIf="time.hasError('required')">{{ getHint("required") }}</mat-error>
+                                <mat-error *ngIf="!time.hasError('required') && !time.hasError('time')">{{ getHint("invalid") }}</mat-error>
+                            </mat-form-field>
+                        </fieldset>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
 
     </div>
 

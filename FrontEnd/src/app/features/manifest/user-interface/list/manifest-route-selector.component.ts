@@ -60,11 +60,11 @@ export class ManifestRouteSelectorComponent {
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('shipRoutes')
+        this.populateDropdownFromDexieDB('shipRoutes', 'description')
     }
 
-    private populateDropdownFromDexieDB(table: string): void {
-        this.dexieService.table(table).toArray().then((response) => {
+    private populateDropdownFromDexieDB(table: string, orderBy: string): void {
+        this.dexieService.table(table).orderBy(orderBy).toArray().then((response) => {
             this[table] = response
         })
     }
