@@ -1,5 +1,4 @@
 using API.Features.Availability;
-using API.Features.CheckIn;
 using API.Features.CoachRoutes;
 using API.Features.Customers;
 using API.Features.Destinations;
@@ -55,11 +54,6 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IReservationReadRepository, ReservationReadRepository>();
             services.AddTransient<IReservationUpdateRepository, ReservationUpdateRepository>();
             services.AddTransient<IAvailabilityCalendar, AvailabilityCalendar>();
-            // Check-In
-            services.AddTransient<ICheckInReadRepository, CheckInReadRepository>();
-            services.AddTransient<ICheckInReservationValidation, CheckInReservationValidation>();
-            services.AddTransient<ICheckInUpdateRepository, CheckInUpdateRepository>();
-            services.AddTransient<ICheckInEmailSender, CheckInEmailSender>();
             // Validations
             services.AddTransient<ICoachRouteValidation, CoachRouteValidation>();
             services.AddTransient<IPickupPointValidation, PickupPointValidation>();

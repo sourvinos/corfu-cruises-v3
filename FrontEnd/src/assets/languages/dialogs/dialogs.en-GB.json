@@ -17,7 +17,6 @@
             { "error": 493, "message": "The approach order already exists." },
             { "error": 500, "message": "Something went not so well, but it has been reported." },
             { "id": "authenticationFailed", "message": "Authentication was not successful." },
-            { "id": "checkInAfterDepartureIsNotAllowed", "message": "Check-in after departure is not allowed." },
             { "id": "emailSent", "message": "We've just sent you an email." },
             { "id": "emailNotSent", "message": "We can't send you an email right now, please try again in a little while." },
             { "id": "formIsDirty", "message": "Before you continue, all changes must be saved." },

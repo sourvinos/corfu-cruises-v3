@@ -17,7 +17,6 @@
             { "error": 493, "message": "L'ordre d'approche existe déjà." },
             { "error": 500, "message": "Quelque chose a mal tourné, mais cela a été signalé." },
             { "id": "authenticationFailed", "message": "Authentification échouée." },
-            { "id": "checkInAfterDepartureIsNotAllowed", "message": "L'enregistrement après le départ n'est pas autorisé." },
             { "id": "emailSent", "message": "Nous venons de vous envoyer un email." },
             { "id": "emailNotSent", "message": "Nous ne pouvons pas vous envoyer d'e-mail pour le moment, veuillez réessayer dans un petit moment." },
             { "id": "formIsDirty", "message": "Avant de continuer, les modifications doivent être enregistrées." },
