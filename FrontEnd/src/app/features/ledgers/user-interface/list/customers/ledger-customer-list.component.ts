@@ -18,7 +18,7 @@ import { environment } from 'src/environments/environment'
 @Component({
     selector: 'ledger-customer-list',
     templateUrl: './ledger-customer-list.component.html',
-    styleUrls: ['../../../../../../assets/styles/custom/lists.css', './ledger-customer-list.component.css', '../../../../../../assets/styles/custom/criteria-panel.css']
+    styleUrls: ['../../../../../../assets/styles/custom/lists.css', './ledger-customer-list.component.css']
 })
 
 export class LedgerCustomerListComponent {

@@ -192,14 +192,14 @@ export class LedgerCriteriaComponent {
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('customers')
-        this.populateDropdownFromDexieDB('destinations')
-        this.populateDropdownFromDexieDB('ports')
-        this.populateDropdownFromDexieDB('ships')
+        this.populateDropdownFromDexieDB('customers', 'description')
+        this.populateDropdownFromDexieDB('destinations', 'description')
+        this.populateDropdownFromDexieDB('ports', 'description')
+        this.populateDropdownFromDexieDB('ships', 'description')
     }
 
-    private populateDropdownFromDexieDB(table: string): void {
-        this.dexieService.table(table).toArray().then((response) => {
+    private populateDropdownFromDexieDB(table: string, orderBy: string): void {
+        this.dexieService.table(table).orderBy(orderBy).toArray().then((response) => {
             this[table] = response
         })
     }

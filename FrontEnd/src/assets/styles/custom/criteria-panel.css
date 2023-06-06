@@ -4,3 +4,15 @@
     gap: 0.5rem;
     margin: 0 0 0 2.5rem;
 }
+
+@media (width <= 1919px) {
+    #criteria-panel {
+        display: none !important;
+    }
+}
+
+@media (width >= 1920px) {
+    #table-wrapper {
+        margin-left: 1rem;
+    }
+}

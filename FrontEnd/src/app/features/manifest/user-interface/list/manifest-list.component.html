@@ -1,26 +1,22 @@
-<div id="list">
-
-    <div id="header">
-        <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
-        <div class="filter-pill">
-            <div class="pill date">
-                <img [src]="getIcon('calendar')">
-                <div class="description">{{ formatDateToLocale(records.date, true, true) }}</div>
-            </div>
-            <button (click)="resetTableFilters()" class="primary" mat-flat-button>
-                <mat-icon class="no-text">filter_alt_off</mat-icon>
-            </button>
-        </div>
-    </div>
+<div id="list-wrapper">
 
     <div id="content">
-        <div id="criteria-panel">
-            <criteria-panel [backgroundColor]="'var(--color-criteria-a)'" [feature]="feature" [header]="'criteriaDestination'" [icon]="'destinations'" [records]="criteriaPanels.selectedDestinations"></criteria-panel>
-            <criteria-panel [backgroundColor]="'var(--color-criteria-b)'" [feature]="feature" [header]="'criteriaPorts'" [icon]="'ports'" [records]="criteriaPanels.selectedPorts"></criteria-panel>
-            <criteria-panel [backgroundColor]="'var(--color-criteria-c)'" [feature]="feature" [header]="'criteriaShip'" [icon]="'ships'" [records]="criteriaPanels.selectedShips"></criteria-panel>
+
+        <div id="header">
+            <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
+            <div class="filter-pill">
+                <div class="pill date">
+                    <img [src]="getIcon('calendar')">
+                    <div class="description">{{ formatDateToLocale(records.date, true, true) }}</div>
+                </div>
+                <button (click)="resetTableFilters()" class="primary" mat-flat-button>
+                    <mat-icon class="no-text">filter_alt_off</mat-icon>
+                </button>
+            </div>
         </div>
+
         <div id="table-wrapper">
-            <p-table #table (onFilter)="filterRecords($event)" [scrollable]="true" [value]="records.passengers" [virtualScrollItemSize]="32" [virtualScroll]="isVirtual" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
+            <p-table #table (onFilter)="filterRecords($event)" [scrollable]="true" [value]="records.passengers" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
                 <ng-template pTemplate="header">
                     <tr>
                         <th class="width-10" pSortableColumn="occupant.description">{{ getLabel("headerOccupant") }}</th>
@@ -87,6 +83,7 @@
                 </ng-template>
             </p-table>
         </div>
+
     </div>
 
     <div id="footer">

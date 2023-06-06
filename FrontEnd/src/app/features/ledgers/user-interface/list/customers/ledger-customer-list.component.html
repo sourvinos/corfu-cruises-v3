@@ -1,28 +1,23 @@
-<div id="list">
-
-    <div id="header">
-        <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
-        <div class="filter-pill">
-            <div class="pill date">
-                <div class="description">{{ formatDateToLocale(criteriaPanels.fromDate, true, true) }} - {{ formatDateToLocale(criteriaPanels.toDate, true, true) }}</div>
-            </div>
-            <button (click)="expandAll()" class="primary prime-icon" mat-flat-button>
-                <mat-icon>expand_more</mat-icon>
-            </button>
-            <button (click)="collapseAll()" class="primary prime-icon" mat-flat-button>
-                <mat-icon>expand_less</mat-icon>
-            </button>
-        </div>
-    </div>
+<div id="list-wrapper">
 
     <div id="content">
-        <div id="criteria-panel">
-            <criteria-panel *ngIf="isAdmin()" [backgroundColor]="'var(--color-criteria-a)'" [feature]="feature" [header]="'criteria-customers'" [icon]="'customers'" [records]="criteriaPanels.selectedCustomers" [sortField]="'description'"></criteria-panel>
-            <criteria-panel [backgroundColor]="'var(--color-criteria-b)'" [feature]="feature" [header]="'criteria-ports'" [icon]="'ports'" [records]="criteriaPanels.selectedPorts" [sortField]="'description'"></criteria-panel>
-            <criteria-panel [backgroundColor]="'var(--color-criteria-c)'" [feature]="feature" [header]="'criteria-ships'" [icon]="'ships'" [records]="criteriaPanels.selectedShips" [sortField]="'description'"></criteria-panel>
-            <criteria-panel [backgroundColor]="'var(--color-criteria-d)'" [feature]="feature" [header]="'criteria-destinations'" [icon]="'destinations'" [records]="criteriaPanels.selectedDestinations" [sortField]="'description'"></criteria-panel>
+
+        <div id="header">
+            <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
+            <div class="filter-pill">
+                <div class="pill date">
+                    <div class="description">{{ formatDateToLocale(criteriaPanels.fromDate, true, true) }} - {{ formatDateToLocale(criteriaPanels.toDate, true, true) }}</div>
+                </div>
+                <button (click)="expandAll()" class="primary prime-icon" mat-flat-button>
+                    <mat-icon>expand_more</mat-icon>
+                </button>
+                <button (click)="collapseAll()" class="primary prime-icon" mat-flat-button>
+                    <mat-icon>expand_less</mat-icon>
+                </button>
+            </div>
         </div>
-        <div id="table-wrapper">
+
+        <div id="accordion-wrapper">
             <mat-accordion multi>
                 <mat-expansion-panel *ngFor="let customer of records">
                     <mat-expansion-panel-header>
@@ -40,6 +35,7 @@
                 </mat-expansion-panel>
             </mat-accordion>
         </div>
+
     </div>
 
     <div id="footer">

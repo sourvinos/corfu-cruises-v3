@@ -28,7 +28,7 @@ import { environment } from 'src/environments/environment'
 @Component({
     selector: 'embarkation-reservations',
     templateUrl: './embarkation-reservations.component.html',
-    styleUrls: ['../../../../../../assets/styles/custom/lists.css', './embarkation-reservations.component.css', '../../../../../../assets/styles/custom/criteria-panel.css']
+    styleUrls: ['../../../../../../assets/styles/custom/lists.css']
 })
 
 export class EmbarkationReservationsComponent {

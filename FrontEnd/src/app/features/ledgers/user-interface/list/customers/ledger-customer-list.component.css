@@ -1,24 +1,7 @@
-#table-wrapper {
-    overflow-y: scroll;
-}
-
-#expand-buttons {
-    display: flex;
-    gap: 0.5rem;
+#accordion-wrapper {
+    overflow-y: scroll !important;
 }
 
 .button-right {
     margin: 0 1rem 0 auto;
-}
-
-@media (width <= 1919px) {
-    #criteria-panel {
-        display: none !important;
-    }
-}
-
-@media (width >= 1920px) {
-    #table-wrapper {
-        margin-left: 1rem;
-    }
 }

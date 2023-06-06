@@ -1,7 +1,7 @@
 fieldset {
     border-radius: var(--border-radius);
     border: 0.0625rem solid var(--color-border);
-    padding: 1rem 1.5rem 1rem 1.65rem;
+    padding: 1rem 1rem 1rem 1rem;
 }
 
 fieldset legend {
