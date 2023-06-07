@@ -9,10 +9,10 @@
                     <div class="description">{{ formatDateToLocale(criteriaPanels.fromDate, true, true) }} - {{ formatDateToLocale(criteriaPanels.toDate, true, true) }}</div>
                 </div>
                 <button (click)="expandAll()" class="primary prime-icon" mat-flat-button>
-                    <mat-icon>expand_more</mat-icon>
+                    <mat-icon>keyboard_double_arrow_down</mat-icon>
                 </button>
                 <button (click)="collapseAll()" class="primary prime-icon" mat-flat-button>
-                    <mat-icon>expand_less</mat-icon>
+                    <mat-icon>keyboard_double_arrow_up</mat-icon>
                 </button>
             </div>
         </div>
@@ -27,7 +27,7 @@
                         <ledger-customer-reservations [customer]="customer"></ledger-customer-reservations>
                         <ledger-customer-summary [portGroup]="customer.ports"></ledger-customer-summary>
                         <div class="button-right">
-                            <button (click)="exportSelected(customer)" class="primary" mat-flat-button>
+                            <button (click)="exportSelected(customer)" class="secondary" mat-flat-button>
                                 <span>{{ getLabel("createPdfButton") }}</span>
                             </button>
                         </div>

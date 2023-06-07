@@ -7,7 +7,6 @@ export class DexieService extends Dexie {
 
     constructor() {
         super('DexieDB')
-        this.delete()
         this.version(1).stores({
             coachRoutes: 'id, abbreviation',
             customers: 'id, description',
