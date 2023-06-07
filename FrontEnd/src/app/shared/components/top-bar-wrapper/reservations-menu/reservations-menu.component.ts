@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core'
-import { Observable, Subject, takeUntil } from 'rxjs'
+import { Subject, takeUntil } from 'rxjs'
 import { Router } from '@angular/router'
 // Custom
 import { AccountService } from 'src/app/shared/services/account.service'
@@ -21,7 +21,7 @@ export class ReservationsMenuComponent {
 
     private ngunsubscribe = new Subject<void>()
     public imgIsLoaded = false
-    public loginStatus: Observable<boolean>
+    public loginStatus: boolean
     public menuItems: Menu[] = []
 
     //#endregion

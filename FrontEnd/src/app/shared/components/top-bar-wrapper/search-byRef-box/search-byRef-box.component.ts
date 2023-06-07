@@ -1,6 +1,5 @@
 import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Observable } from 'rxjs'
 import { Router } from '@angular/router'
 // Custom
 import { AccountService } from './../../../services/account.service'
@@ -18,7 +17,7 @@ export class SearchByRefBoxComponent {
 
     private feature = 'searchByRefBox'
     public form: FormGroup
-    public loginStatus: Observable<boolean>
+    public loginStatus: boolean
 
     //#endregion
 

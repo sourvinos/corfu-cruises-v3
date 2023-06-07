@@ -9,6 +9,7 @@ import { Menu } from 'src/app/shared/classes/menu'
 import { MessageMenuService } from '../../../services/message-menu.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { environment } from 'src/environments/environment'
+import { CryptoService } from 'src/app/shared/services/crypto.service'
 
 @Component({
     selector: 'user-menu',
@@ -27,7 +28,7 @@ export class UserMenuComponent {
 
     //#endregion
 
-    constructor(private accountService: AccountService, private interactionService: InteractionService, private messageMenuService: MessageMenuService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private cryptoService: CryptoService, private accountService: AccountService, private interactionService: InteractionService, private messageMenuService: MessageMenuService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region listeners
 
@@ -45,7 +46,6 @@ export class UserMenuComponent {
         this.messageMenuService.getMessages().then((response) => {
             this.createMenu(response)
             this.subscribeToInteractionService()
-            this.getDisplayedUsername()
             this.getUserId()
         })
     }
@@ -87,7 +87,11 @@ export class UserMenuComponent {
     }
 
     public isLoggedIn(): boolean {
-        return ConnectedUser.id != null
+        if (this.sessionStorageService.getItem('userId')) {
+            return true
+        }
+        return false
+        // return this.sessionStorageService.getItem('userId') != null
     }
 
     public loadImage(): void {
@@ -111,10 +115,6 @@ export class UserMenuComponent {
         })
     }
 
-    private getDisplayedUsername(): void {
-        this.displayedUsername = ConnectedUser.displayname
-    }
-
     private getUserId(): void {
         this.userId = ConnectedUser.id
     }
@@ -129,5 +129,9 @@ export class UserMenuComponent {
     }
 
     //#endregion
+
+    getDisplayName(): any {
+        return this.cryptoService.decrypt(this.sessionStorageService.getItem('displayName'))
+    }
 
 }

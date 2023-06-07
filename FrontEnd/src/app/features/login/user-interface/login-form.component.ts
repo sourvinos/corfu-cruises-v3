@@ -49,6 +49,7 @@ export class LoginFormComponent {
         this.setWindowTitle()
         this.checkScreenResolution()
         this.setCurrentPeriod()
+        this.setNow()
     }
 
     //#endregion
@@ -116,6 +117,10 @@ export class LoginFormComponent {
         this.sessionStorageService.saveItem('dayCount', this.helperService.calculateDayCount().toString())
         this.sessionStorageService.saveItem('fromDate', this.dateHelperService.getCurrentPeriodBeginDate())
         this.sessionStorageService.saveItem('toDate', this.dateHelperService.getCurrentPeriodEndDate(parseInt(this.sessionStorageService.getItem('dayCount'))))
+    }
+
+    private setNow(): void {
+        this.sessionStorageService.saveItem('now', Date.now().toString())
     }
 
     private setWindowTitle(): void {

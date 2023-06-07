@@ -20,7 +20,7 @@ export class SettingsMenuComponent {
 
     private ngunsubscribe = new Subject<void>()
     public imgIsLoaded = false
-    public loginStatus: Observable<boolean>
+    public loginStatus:boolean
     public menuItems: Menu[] = []
 
     //#endregion

@@ -2,7 +2,7 @@
     <div class="drop-down-menu">
         <button class="drop-down-menu-trigger">
             <img (load)="loadImage()" [ngClass]="imageIsLoading()" [src]="getIcon('users')" style="height: 27px; width: 27px">
-            <span>{{ displayedUsername }}</span>
+            <span>{{ getDisplayName() }}</span>
             <span class="material-icons-outlined">expand_more</span>
         </button>
         <ul (click)="hideMenu()" class="sub-menu">

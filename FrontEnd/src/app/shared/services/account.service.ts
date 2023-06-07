@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable } from 'rxjs'
+import { Observable } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
 import { Injectable, NgZone } from '@angular/core'
 import { Router } from '@angular/router'
@@ -24,6 +24,7 @@ import { ShipOwnerService } from 'src/app/features/shipOwners/classes/services/s
 import { ShipRouteService } from 'src/app/features/shipRoutes/classes/services/shipRoute.service'
 import { ShipService } from 'src/app/features/ships/classes/services/ship.service'
 import { environment } from 'src/environments/environment'
+import { CryptoService } from './crypto.service'
 
 @Injectable({ providedIn: 'root' })
 
@@ -31,16 +32,15 @@ export class AccountService extends HttpDataService {
 
     //#region variables
 
-    private loginStatus = new BehaviorSubject<boolean>(this.checkLoginStatus())
+    private loginStatus: boolean
     private apiUrl = environment.apiUrl
     private urlForgotPassword = this.apiUrl + '/account/forgotPassword'
-    private urlRegister = this.apiUrl + '/account'
     private urlResetPassword = this.apiUrl + '/account/resetPassword'
     private urlToken = this.apiUrl + '/auth/auth'
 
     //#endregion
 
-    constructor(httpClient: HttpClient, private coachRouteService: CoachRouteService, private customerService: CustomerService, private destinationService: DestinationService, private dexieService: DexieService, private driverService: DriverService, private genderService: GenderService, private interactionService: InteractionService, private nationalityService: NationalityService, private ngZone: NgZone, private pickupPointService: PickupPointService, private portService: PortService, private router: Router, private sessionStorageService: SessionStorageService, private shipOwnerService: ShipOwnerService, private shipRouteService: ShipRouteService, private shipService: ShipService) {
+    constructor(private cryptoService: CryptoService, httpClient: HttpClient, private coachRouteService: CoachRouteService, private customerService: CustomerService, private destinationService: DestinationService, private dexieService: DexieService, private driverService: DriverService, private genderService: GenderService, private interactionService: InteractionService, private nationalityService: NationalityService, private ngZone: NgZone, private pickupPointService: PickupPointService, private portService: PortService, private router: Router, private sessionStorageService: SessionStorageService, private shipOwnerService: ShipOwnerService, private shipRouteService: ShipRouteService, private shipService: ShipService) {
         super(httpClient, environment.apiUrl)
     }
 
@@ -102,7 +102,7 @@ export class AccountService extends HttpDataService {
         return this.http.post<any>(this.urlToken, { userId, refreshToken, grantType }).pipe(
             map(response => {
                 if (response.token) {
-                    this.setLoginStatus(true)
+                    // this.setLoginStatus(true)
                     this.setAuthSettings(response)
                 }
                 return <any>response
@@ -114,7 +114,7 @@ export class AccountService extends HttpDataService {
         const grantType = 'password'
         const language = localStorage.getItem('language') || 'en-GB'
         return this.http.post<any>(this.urlToken, { language, userName, password, grantType }).pipe(map(response => {
-            this.setLoginStatus(true)
+            // this.setLoginStatus(true)
             this.setUserData(response)
             this.setDotNetVersion(response)
             this.setAuthSettings(response)
@@ -124,7 +124,7 @@ export class AccountService extends HttpDataService {
     }
 
     public logout(): void {
-        this.setLoginStatus(false)
+        // this.setLoginStatus(false)
         this.clearSessionStorage()
         this.refreshMenus()
         this.navigateToLogin()
@@ -150,10 +150,15 @@ export class AccountService extends HttpDataService {
     }
 
     private clearConnectedUser(): void {
-        ConnectedUser.id = null
-        ConnectedUser.displayname = null
-        ConnectedUser.isAdmin = null
-        ConnectedUser.customerId = null
+        // Connected user
+        this.sessionStorageService.deleteItems([
+            { 'item': 'now', 'when': 'always' },
+            { 'item': 'userId', 'when': 'always' },
+            { 'item': 'displayName', 'when': 'always' }])
+        // ConnectedUser.id = null
+        // ConnectedUser.displayname = null
+        // ConnectedUser.isAdmin = null
+        // ConnectedUser.customerId = null
     }
 
     private navigateToLogin(): void {
@@ -191,23 +196,29 @@ export class AccountService extends HttpDataService {
         DotNetVersion.version = response.dotNetVersion
     }
 
-    private setLoginStatus(status: boolean): void {
-        this.loginStatus.next(status)
-    }
+    // private setLoginStatus(status: boolean): void {
+    // this.loginStatus.next(status)
+    // }
 
     private setUserData(response: any): void {
-        ConnectedUser.id = response.userId
-        ConnectedUser.displayname = response.displayname
-        ConnectedUser.isAdmin = response.isAdmin
-        ConnectedUser.customerId = response.customerId
+        this.sessionStorageService.saveItem('userId', this.cryptoService.encrypt(response.userId))
+        this.sessionStorageService.saveItem('displayName', this.cryptoService.encrypt(response.displayname))
+        this.sessionStorageService.saveItem('isAdmin', this.cryptoService.encrypt(response.isAdmin))
+        // ConnectedUser.id = response.userId
+        // ConnectedUser.displayname = response.displayname
+        // ConnectedUser.isAdmin = response.isAdmin
+        // ConnectedUser.customerId = response.customerId
     }
 
     //#endregion
 
     //#region  getters
 
-    get isLoggedIn(): Observable<boolean> {
-        return this.loginStatus.asObservable()
+    get isLoggedIn(): boolean {
+        if (this.sessionStorageService.getItem('userId')) {
+            return true
+        }
+        return false
     }
 
     //#endregion
