@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core'
 // Custom
-import { ConnectedUser } from 'src/app/shared/classes/connected-user'
+import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
-import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { OkIconService } from './ok-icon.service'
 import { PassengerWriteDto } from '../dtos/form/passenger-write-dto'
 import { ReservationReadDto } from '../dtos/form/reservation-read-dto'
@@ -11,12 +10,13 @@ import { SessionStorageService } from './../../../../shared/services/session-sto
 import { VoucherDto } from './../voucher/dtos/voucher-dto'
 import { VoucherPassengerDto } from '../voucher/dtos/voucher-passenger-dto'
 import { WarningIconService } from './warning-icon.service'
+import { DexieService } from 'src/app/shared/services/dexie.service'
 
 @Injectable({ providedIn: 'root' })
 
 export class ReservationHelperService {
 
-    constructor(private dateHelperService: DateHelperService, private emojiService: EmojiService, private okIconService: OkIconService, private sessionStorageService: SessionStorageService, private warningIconService: WarningIconService) { }
+    constructor(private cryptoService: CryptoService, private dateHelperService: DateHelperService, private dexieService: DexieService, private okIconService: OkIconService, private sessionStorageService: SessionStorageService, private warningIconService: WarningIconService) { }
 
     //#region public methods
 
@@ -82,8 +82,12 @@ export class ReservationHelperService {
     }
 
     public getLinkedCustomer(isNewRecord: boolean): any {
-        if (ConnectedUser.isAdmin == false && isNewRecord) {
-            return JSON.parse(this.sessionStorageService.getItem('customers')).filter((x: { id: number }) => x.id == ConnectedUser.customerId)
+        if (this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'false' && isNewRecord) {
+            const connectedCustomerId = parseInt(this.cryptoService.decrypt(this.sessionStorageService.getItem('customerId')))
+            console.log(connectedCustomerId)
+            const customer = this.dexieService.getById('customers', connectedCustomerId)
+            console.log(customer)
+            return customer
         }
     }
 

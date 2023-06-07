@@ -6,7 +6,7 @@ import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { map, startWith } from 'rxjs/operators'
 // Custom
-import { ConnectedUser } from 'src/app/shared/classes/connected-user'
+import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
@@ -49,7 +49,7 @@ export class PassengerFormComponent {
 
     //#endregion
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data: PassengerReadDto, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogRef: MatDialogRef<PassengerFormComponent>, private formBuilder: FormBuilder, private helperService: HelperService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private ngZone: NgZone, private sessionStorageService: SessionStorageService) {
+    constructor(@Inject(MAT_DIALOG_DATA) public data: PassengerReadDto, private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogRef: MatDialogRef<PassengerFormComponent>, private formBuilder: FormBuilder, private helperService: HelperService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private ngZone: NgZone, private sessionStorageService: SessionStorageService) {
         this.record = data
     }
 
@@ -102,7 +102,7 @@ export class PassengerFormComponent {
     }
 
     public isAdmin(): boolean {
-        return ConnectedUser.isAdmin
+        return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' ? true : false
     }
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {

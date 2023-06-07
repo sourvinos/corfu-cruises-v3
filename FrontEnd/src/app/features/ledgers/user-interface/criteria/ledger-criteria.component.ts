@@ -5,7 +5,7 @@ import { Router } from '@angular/router'
 import { Subject } from 'rxjs'
 import { takeUntil } from 'rxjs/operators'
 // Custom
-import { ConnectedUser } from 'src/app/shared/classes/connected-user'
+import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { EmojiService } from './../../../../shared/services/emoji.service'
@@ -47,7 +47,7 @@ export class LedgerCriteriaComponent {
 
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -95,7 +95,7 @@ export class LedgerCriteriaComponent {
     }
 
     public isAdmin(): boolean {
-        return ConnectedUser.isAdmin
+        return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' ? true : false
     }
 
     public onHeaderCheckboxToggle(event: any, array: string, formControl: string): void {
@@ -173,14 +173,14 @@ export class LedgerCriteriaComponent {
     }
 
     public getConnectedUserRole(): boolean {
-        return ConnectedUser.isAdmin
+        return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true'
     }
 
     private initForm(): void {
         this.form = this.formBuilder.group({
             fromDate: ['', [Validators.required]],
             toDate: ['', [Validators.required]],
-            selectedCustomers: this.formBuilder.array([], ConnectedUser.isAdmin ? Validators.required : null),
+            selectedCustomers: this.formBuilder.array([], this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' ? Validators.required : null),
             selectedDestinations: this.formBuilder.array([], Validators.required),
             selectedPorts: this.formBuilder.array([], Validators.required),
             selectedShips: this.formBuilder.array([], Validators.required)

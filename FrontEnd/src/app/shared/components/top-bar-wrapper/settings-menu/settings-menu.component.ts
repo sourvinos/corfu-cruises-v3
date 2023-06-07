@@ -1,12 +1,13 @@
 import { Component, HostListener } from '@angular/core'
-import { Observable, Subject, takeUntil } from 'rxjs'
 import { Router } from '@angular/router'
+import { Subject, takeUntil } from 'rxjs'
 // Custom
 import { AccountService } from 'src/app/shared/services/account.service'
-import { ConnectedUser } from 'src/app/shared/classes/connected-user'
+import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { Menu } from 'src/app/shared/classes/menu'
 import { MessageMenuService } from 'src/app/shared/services/message-menu.service'
+import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { environment } from 'src/environments/environment'
 
 @Component({
@@ -20,12 +21,12 @@ export class SettingsMenuComponent {
 
     private ngunsubscribe = new Subject<void>()
     public imgIsLoaded = false
-    public loginStatus:boolean
+    public loginStatus: boolean
     public menuItems: Menu[] = []
 
     //#endregion
 
-    constructor(private accountService: AccountService, private interactionService: InteractionService, private messageMenuService: MessageMenuService, private router: Router) { }
+    constructor(private accountService: AccountService, private interactionService: InteractionService, private messageMenuService: MessageMenuService, private cryptoService: CryptoService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region listeners
 
@@ -73,7 +74,7 @@ export class SettingsMenuComponent {
     }
 
     public isAdmin(): boolean {
-        return ConnectedUser.isAdmin
+        return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' ? true : false
     }
 
     public loadImage(): void {
@@ -95,7 +96,7 @@ export class SettingsMenuComponent {
 
     private subscribeToInteractionService(): void {
         this.interactionService.refreshMenus.pipe(takeUntil(this.ngunsubscribe)).subscribe(() => {
-            this.messageMenuService.getMessages().then((response: Menu[]) => {
+            this.messageMenuService.getMessages().then((response) => {
                 this.menuItems = response
                 this.createMenu(response)
             })

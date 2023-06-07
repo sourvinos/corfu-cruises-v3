@@ -1,10 +1,9 @@
 import { Component } from '@angular/core'
 // Custom
-import { ConnectedUser } from '../../classes/connected-user'
-import { ModalDialogService } from '../../services/modal-dialog.service'
+import { CryptoService } from '../../services/crypto.service'
 import { MessageLabelService } from '../../services/message-label.service'
+import { SessionStorageService } from '../../services/session-storage.service'
 import { environment } from 'src/environments/environment'
-import { MessageDialogService } from '../../services/message-dialog.service'
 
 @Component({
     selector: 'cards-menu',
@@ -21,7 +20,7 @@ export class CardsMenuComponent {
 
     //#endregion
 
-    constructor(private dialogService: ModalDialogService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService) { }
+    constructor(private sessionStorageService: SessionStorageService, private cryptoService: CryptoService, private messageLabelService: MessageLabelService) { }
 
     //#region public methods
 
@@ -38,15 +37,11 @@ export class CardsMenuComponent {
     }
 
     public isAdmin(): boolean {
-        return ConnectedUser.isAdmin
+        return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' ? true : false
     }
 
     public loadImage(): void {
         this.imgIsLoaded = true
-    }
-
-    public notAvailable(): void {
-        this.dialogService.open(this.messageSnackbarService.featureNotAvailable(), 'error', ['ok'])
     }
 
     //#endregion

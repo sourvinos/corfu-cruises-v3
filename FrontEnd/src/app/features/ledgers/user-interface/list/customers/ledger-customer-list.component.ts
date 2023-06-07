@@ -1,19 +1,17 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, QueryList, ViewChildren } from '@angular/core'
+import { MatExpansionPanel } from '@angular/material/expansion'
 // Custom
-import { ConnectedUser } from 'src/app/shared/classes/connected-user'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { LedgerCriteriaVM } from '../../../classes/view-models/criteria/ledger-criteria-vm'
 import { LedgerPDFService } from '../../../classes/services/ledger-pdf.service'
 import { LedgerVM } from '../../../classes/view-models/list/ledger-vm'
-import { MatExpansionPanel } from '@angular/material/expansion'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
-import { environment } from 'src/environments/environment'
 
 @Component({
     selector: 'ledger-customer-list',
@@ -76,20 +74,8 @@ export class LedgerCustomerListComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public getIcon(filename: string): string {
-        return environment.menuIconDirectory + filename + '.svg'
-    }
-
     public goBack(): void {
         this.router.navigate([this.parentUrl])
-    }
-
-    public highlightRow(id: any): void {
-        this.helperService.highlightRow(id)
-    }
-
-    public isAdmin(): boolean {
-        return ConnectedUser.isAdmin
     }
 
     //#endregion

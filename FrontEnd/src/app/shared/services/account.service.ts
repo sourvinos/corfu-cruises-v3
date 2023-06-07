@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators'
 // Custom
 import { ChangePasswordViewModel } from 'src/app/features/users/classes/view-models/change-password-view-model'
 import { CoachRouteService } from 'src/app/features/coachRoutes/classes/services/coachRoute.service'
-import { ConnectedUser } from '../classes/connected-user'
+import { CryptoService } from './crypto.service'
 import { CustomerService } from 'src/app/features/customers/classes/services/customer.service'
 import { DestinationService } from 'src/app/features/destinations/classes/services/destination.service'
 import { DexieService } from './dexie.service'
@@ -24,7 +24,6 @@ import { ShipOwnerService } from 'src/app/features/shipOwners/classes/services/s
 import { ShipRouteService } from 'src/app/features/shipRoutes/classes/services/shipRoute.service'
 import { ShipService } from 'src/app/features/ships/classes/services/ship.service'
 import { environment } from 'src/environments/environment'
-import { CryptoService } from './crypto.service'
 
 @Injectable({ providedIn: 'root' })
 
@@ -32,7 +31,6 @@ export class AccountService extends HttpDataService {
 
     //#region variables
 
-    private loginStatus: boolean
     private apiUrl = environment.apiUrl
     private urlForgotPassword = this.apiUrl + '/account/forgotPassword'
     private urlResetPassword = this.apiUrl + '/account/resetPassword'
@@ -96,7 +94,7 @@ export class AccountService extends HttpDataService {
     }
 
     public getNewRefreshToken(): Observable<any> {
-        const userId = ConnectedUser.id
+        const userId = this.cryptoService.decrypt(this.sessionStorageService.getItem('userId'))
         const refreshToken = sessionStorage.getItem('refreshToken')
         const grantType = 'refresh_token'
         return this.http.post<any>(this.urlToken, { userId, refreshToken, grantType }).pipe(
@@ -114,7 +112,6 @@ export class AccountService extends HttpDataService {
         const grantType = 'password'
         const language = localStorage.getItem('language') || 'en-GB'
         return this.http.post<any>(this.urlToken, { language, userName, password, grantType }).pipe(map(response => {
-            // this.setLoginStatus(true)
             this.setUserData(response)
             this.setDotNetVersion(response)
             this.setAuthSettings(response)
@@ -124,7 +121,6 @@ export class AccountService extends HttpDataService {
     }
 
     public logout(): void {
-        // this.setLoginStatus(false)
         this.clearSessionStorage()
         this.refreshMenus()
         this.navigateToLogin()
@@ -150,15 +146,10 @@ export class AccountService extends HttpDataService {
     }
 
     private clearConnectedUser(): void {
-        // Connected user
         this.sessionStorageService.deleteItems([
             { 'item': 'now', 'when': 'always' },
             { 'item': 'userId', 'when': 'always' },
             { 'item': 'displayName', 'when': 'always' }])
-        // ConnectedUser.id = null
-        // ConnectedUser.displayname = null
-        // ConnectedUser.isAdmin = null
-        // ConnectedUser.customerId = null
     }
 
     private navigateToLogin(): void {
@@ -196,18 +187,11 @@ export class AccountService extends HttpDataService {
         DotNetVersion.version = response.dotNetVersion
     }
 
-    // private setLoginStatus(status: boolean): void {
-    // this.loginStatus.next(status)
-    // }
-
     private setUserData(response: any): void {
         this.sessionStorageService.saveItem('userId', this.cryptoService.encrypt(response.userId))
         this.sessionStorageService.saveItem('displayName', this.cryptoService.encrypt(response.displayname))
         this.sessionStorageService.saveItem('isAdmin', this.cryptoService.encrypt(response.isAdmin))
-        // ConnectedUser.id = response.userId
-        // ConnectedUser.displayname = response.displayname
-        // ConnectedUser.isAdmin = response.isAdmin
-        // ConnectedUser.customerId = response.customerId
+        this.sessionStorageService.saveItem('customerId', this.cryptoService.encrypt(response.customerId != undefined ? response.customerId : 'null'))
     }
 
     //#endregion

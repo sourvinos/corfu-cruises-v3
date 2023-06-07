@@ -3,10 +3,11 @@ import { Subject, takeUntil } from 'rxjs'
 import { Router } from '@angular/router'
 // Custom
 import { AccountService } from 'src/app/shared/services/account.service'
-import { ConnectedUser } from 'src/app/shared/classes/connected-user'
+import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { Menu } from 'src/app/shared/classes/menu'
 import { MessageMenuService } from 'src/app/shared/services/message-menu.service'
+import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { environment } from 'src/environments/environment'
 
 @Component({
@@ -25,8 +26,7 @@ export class TablesMenuComponent {
 
     //#endregion
 
-    constructor(private accountService: AccountService, private interactionService: InteractionService, private messageMenuService: MessageMenuService, private router: Router) { }
-
+    constructor(private accountService: AccountService, private cryptoService: CryptoService, private interactionService: InteractionService, private messageMenuService: MessageMenuService, private router: Router, private sessionStorageService: SessionStorageService) { }
     //#region listeners
 
     @HostListener('mouseenter') onMouseEnter(): void {
@@ -73,7 +73,7 @@ export class TablesMenuComponent {
     }
 
     public isAdmin(): boolean {
-        return ConnectedUser.isAdmin
+        return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' ? true : false
     }
 
     public loadImage(): void {

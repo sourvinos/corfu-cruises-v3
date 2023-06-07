@@ -1,4 +1,4 @@
-<div *ngIf="loginStatus">
+<div *ngIf=isLoggedIn()>
     <div class="drop-down-menu">
         <button class="drop-down-menu-trigger">
             <img (load)="loadImage()" [ngClass]="imageIsLoading()" [src]="getIcon('calendar')" style="height: 25px; width: 25px">

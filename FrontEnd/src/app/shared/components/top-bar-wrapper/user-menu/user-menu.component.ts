@@ -3,13 +3,12 @@ import { Router } from '@angular/router'
 import { Subject, takeUntil } from 'rxjs'
 // Custom
 import { AccountService } from 'src/app/shared/services/account.service'
-import { ConnectedUser } from 'src/app/shared/classes/connected-user'
+import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { Menu } from 'src/app/shared/classes/menu'
 import { MessageMenuService } from '../../../services/message-menu.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { environment } from 'src/environments/environment'
-import { CryptoService } from 'src/app/shared/services/crypto.service'
 
 @Component({
     selector: 'user-menu',
@@ -21,14 +20,13 @@ export class UserMenuComponent {
     //#region variables
 
     private ngunsubscribe = new Subject<void>()
-    private userId: string
     public displayedUsername: string
     public imgIsLoaded = false
     public menuItems: Menu[] = []
 
     //#endregion
 
-    constructor(private cryptoService: CryptoService, private accountService: AccountService, private interactionService: InteractionService, private messageMenuService: MessageMenuService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private accountService: AccountService, private cryptoService: CryptoService, private interactionService: InteractionService, private messageMenuService: MessageMenuService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region listeners
 
@@ -46,7 +44,6 @@ export class UserMenuComponent {
         this.messageMenuService.getMessages().then((response) => {
             this.createMenu(response)
             this.subscribeToInteractionService()
-            this.getUserId()
         })
     }
 
@@ -59,13 +56,12 @@ export class UserMenuComponent {
             this.accountService.logout()
         } else {
             this.sessionStorageService.saveItem('returnUrl', '/')
-            this.router.navigate(['/users/' + this.userId])
+            this.router.navigate(['/users/' + this.cryptoService.decrypt(this.sessionStorageService.getItem('userId'))])
         }
     }
 
-    public editRecord(): void {
-        this.sessionStorageService.saveItem('returnUrl', '/')
-        this.router.navigate(['/users/' + this.userId])
+    public getDisplayName(): any {
+        return this.cryptoService.decrypt(this.sessionStorageService.getItem('displayName'))
     }
 
     public getIcon(filename: string): string {
@@ -87,11 +83,7 @@ export class UserMenuComponent {
     }
 
     public isLoggedIn(): boolean {
-        if (this.sessionStorageService.getItem('userId')) {
-            return true
-        }
-        return false
-        // return this.sessionStorageService.getItem('userId') != null
+        return this.sessionStorageService.getItem('userId') ? true : false
     }
 
     public loadImage(): void {
@@ -115,10 +107,6 @@ export class UserMenuComponent {
         })
     }
 
-    private getUserId(): void {
-        this.userId = ConnectedUser.id
-    }
-
     private subscribeToInteractionService(): void {
         this.interactionService.refreshMenus.pipe(takeUntil(this.ngunsubscribe)).subscribe(() => {
             this.messageMenuService.getMessages().then((response) => {
@@ -129,9 +117,5 @@ export class UserMenuComponent {
     }
 
     //#endregion
-
-    getDisplayName(): any {
-        return this.cryptoService.decrypt(this.sessionStorageService.getItem('displayName'))
-    }
 
 }

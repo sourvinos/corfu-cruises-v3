@@ -12,7 +12,7 @@
 
 /* Field with icon */
 .mat-form-field-infix .mat-icon {
-    color: var(--color-table-headers);
+    color: var(--color-border);
     font-size: 1.125rem;
 }
 

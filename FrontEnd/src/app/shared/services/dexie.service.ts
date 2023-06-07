@@ -29,6 +29,12 @@ export class DexieService extends Dexie {
         })
     }
 
+    public getById(table: string, id: any): any {
+        this.table(table).where({ id: id }).first().then(response => {
+            return response
+        })
+    }
+
     public update(table: string, item: any): void {
         this.table(table).put(item)
     }
