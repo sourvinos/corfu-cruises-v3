@@ -33,6 +33,9 @@ namespace API.Features.PickupPoints {
                 }));
             // Write
             CreateMap<PickupPointWriteDto, PickupPoint>()
+                .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
+                .ForMember(x => x.ExactPoint, x => x.MapFrom(x => x.ExactPoint.Trim()))
+                .ForMember(x => x.Remarks, x => x.MapFrom(x => x.Remarks.Trim()))
                 .ForMember(x => x.LastUpdate, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(DateTime.Now)));
         }
 

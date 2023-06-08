@@ -11,6 +11,11 @@ namespace API.Features.Customers {
             CreateMap<Customer, CustomerActiveVM>();
             CreateMap<Customer, CustomerReadDto>();
             CreateMap<CustomerWriteDto, Customer>()
+                .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
+                .ForMember(x => x.Profession, x => x.MapFrom(x => x.Profession.Trim()))
+                .ForMember(x => x.Address, x => x.MapFrom(x => x.Address.Trim()))
+                .ForMember(x => x.Phones, x => x.MapFrom(x => x.Phones.Trim()))
+                .ForMember(x => x.PersonInCharge, x => x.MapFrom(x => x.PersonInCharge.Trim()))
                 .ForMember(x => x.LastUpdate, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(DateTime.Now)));
         }
 

@@ -73,9 +73,16 @@ namespace API.Features.Reservations {
                 }));
             // Write reservation
             CreateMap<ReservationWriteDto, Reservation>()
+                .ForMember(x => x.TicketNo, x => x.MapFrom(x => x.TicketNo.Trim()))
+                .ForMember(x => x.Phones, x => x.MapFrom(x => x.Phones.Trim()))
+                .ForMember(x => x.Remarks, x => x.MapFrom(x => x.Remarks.Trim()))
                 .ForMember(x => x.LastUpdate, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(DateTime.Now)));
             // Write passenger
             CreateMap<PassengerWriteDto, Passenger>()
+                .ForMember(x => x.Lastname, x => x.MapFrom(x => x.Lastname.Trim()))
+                .ForMember(x => x.Firstname, x => x.MapFrom(x => x.Firstname.Trim()))
+                .ForMember(x => x.SpecialCare, x => x.MapFrom(x => x.SpecialCare.Trim()))
+                .ForMember(x => x.Remarks, x => x.MapFrom(x => x.Remarks.Trim()))
                 .ForMember(x => x.OccupantId, x => x.MapFrom(x => 2));
         }
 

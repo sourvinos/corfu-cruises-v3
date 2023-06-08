@@ -20,6 +20,10 @@ namespace API.Features.Registrars {
                     Description = x.Ship.Description
                 }));
             CreateMap<RegistrarWriteDto, Registrar>()
+                .ForMember(x => x.Fullname, x => x.MapFrom(x => x.Fullname.Trim()))
+                .ForMember(x => x.Phones, x => x.MapFrom(x => x.Phones.Trim()))
+                .ForMember(x => x.Fax, x => x.MapFrom(x => x.Fax.Trim()))
+                .ForMember(x => x.Address, x => x.MapFrom(x => x.Address.Trim()))
                 .ForMember(x => x.LastUpdate, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(DateTime.Now)));
         }
 

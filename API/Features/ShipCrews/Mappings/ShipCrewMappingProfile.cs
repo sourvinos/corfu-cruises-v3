@@ -32,6 +32,8 @@ namespace API.Features.ShipCrews {
                 }));
             // Write
             CreateMap<ShipCrewWriteDto, ShipCrew>()
+                .ForMember(x => x.Lastname, x => x.MapFrom(x => x.Lastname.Trim()))
+                .ForMember(x => x.Firstname, x => x.MapFrom(x => x.Firstname.Trim()))
                 .ForMember(x => x.OccupantId, x => x.MapFrom(x => 1))
                 .ForMember(x => x.LastUpdate, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(DateTime.Now)));
             CreateMap<ShipCrew, ShipCrewActiveVM>()

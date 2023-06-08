@@ -11,6 +11,8 @@ namespace API.Features.Ports {
             CreateMap<Port, PortActiveVM>();
             CreateMap<Port, PortReadDto>();
             CreateMap<PortWriteDto, Port>()
+                .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
+                .ForMember(x => x.Abbreviation, x => x.MapFrom(x => x.Abbreviation.Trim()))
                 .ForMember(x => x.LastUpdate, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(DateTime.Now)));
         }
 

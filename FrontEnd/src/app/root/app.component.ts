@@ -2,11 +2,11 @@ import { ChangeDetectorRef, Component, HostListener } from '@angular/core'
 import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router'
 // Custom
 import { AccountService } from '../shared/services/account.service'
+import { CryptoService } from '../shared/services/crypto.service'
 import { LoadingSpinnerService } from '../shared/services/loading-spinner.service'
 import { SessionStorageService } from '../shared/services/session-storage.service'
 import { environment } from 'src/environments/environment'
 import { routeAnimation } from '../shared/animations/animations'
-import { CryptoService } from '../shared/services/crypto.service'
 
 @Component({
     selector: 'root',
@@ -23,14 +23,7 @@ export class AppComponent {
 
     //#endregion
 
-    constructor(
-        private accountService: AccountService,
-        private changeDetector: ChangeDetectorRef,
-        private loadingSpinnerService: LoadingSpinnerService,
-        private router: Router,
-        private sessionStorageService: SessionStorageService,
-        private cryptoService: CryptoService
-    ) {
+    constructor(private accountService: AccountService, private changeDetector: ChangeDetectorRef, private cryptoService: CryptoService, private loadingSpinnerService: LoadingSpinnerService, private router: Router, private sessionStorageService: SessionStorageService) {
         this.router.events.subscribe((routerEvent) => {
             if (routerEvent instanceof NavigationStart) {
                 this.isLoading = true
@@ -67,7 +60,6 @@ export class AppComponent {
             this.isLoading = status == 'start'
             this.changeDetector.detectChanges()
         })
-
     }
 
     private isUserConnected(): void {

@@ -11,6 +11,7 @@ namespace API.Features.Genders {
             CreateMap<Gender, GenderActiveVM>();
             CreateMap<Gender, GenderReadDto>();
             CreateMap<GenderWriteDto, Gender>()
+                .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
                 .ForMember(x => x.LastUpdate, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(DateTime.Now)));
         }
 
