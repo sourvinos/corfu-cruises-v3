@@ -16,12 +16,6 @@ export class AuthGuardService {
             this.router.navigate(['/'])
             return false
         }
-        // return this.accountService.isLoggedIn.pipe(take(1), map((loginStatus: boolean) => {
-        //     if (!loginStatus) {
-        //         this.router.navigate(['/'])
-        //         return false
-        //     }
-        // }))
     }
 
 }

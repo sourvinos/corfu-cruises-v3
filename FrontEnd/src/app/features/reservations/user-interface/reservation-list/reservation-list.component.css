@@ -15,3 +15,7 @@
     position: relative;
     top: -0.0625rem;
 } */
+
+.button-icon.no-right-margin {
+    margin-right: 0;
+}

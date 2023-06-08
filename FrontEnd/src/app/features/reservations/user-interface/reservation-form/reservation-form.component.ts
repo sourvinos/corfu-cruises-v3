@@ -294,14 +294,17 @@ export class ReservationFormComponent {
     }
 
     private getLinkedCustomer(): void {
-        const connectedCustomer = this.reservationHelperService.getLinkedCustomer(this.isNewRecord)
-        if (connectedCustomer != undefined) {
-            this.form.patchValue({
-                customer: {
-                    'id': connectedCustomer.length > 0 ? connectedCustomer[0].id : 0,
-                    'description': connectedCustomer.length > 0 ? connectedCustomer[0].description : ''
+        if (this.isNewRecord && this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'false') {
+            this.reservationHelperService.getLinkedCustomer().then((response => {
+                if (response != undefined) {
+                    this.form.patchValue({
+                        customer: {
+                            'id': response.id,
+                            'description': response.description
+                        }
+                    })
                 }
-            })
+            }))
         }
     }
 

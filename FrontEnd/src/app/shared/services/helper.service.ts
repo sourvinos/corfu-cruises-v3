@@ -36,14 +36,7 @@ export class HelperService {
 
     //#endregion
 
-    constructor(
-        private dialogService: ModalDialogService,
-        private messageLabelService: MessageLabelService,
-        private router: Router,
-        private sessionStorageService: SessionStorageService,
-        private titleService: Title
-    ) { }
-
+    constructor(private dialogService: ModalDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService, private titleService: Title) { }
     //#region public methods
 
     public doPostSaveFormTasks(message: string, iconType: string, returnUrl: string, form: any, formReset = true, goBack = true): Promise<any> {

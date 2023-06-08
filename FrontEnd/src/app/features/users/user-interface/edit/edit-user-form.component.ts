@@ -88,7 +88,7 @@ export class EditUserFormComponent {
     }
 
     public changePassword(): void {
-        if (this.sessionStorageService.getItem('userId') != this.record.id.toString()) {
+        if (this.cryptoService.decrypt(this.sessionStorageService.getItem('userId')) != this.record.id.toString()) {
             this.dialogService.open(this.messageSnackbarService.passwordCanBeChangedOnlyByAccountOwner(), 'error', ['ok'])
         } else {
             if (this.form.dirty) {

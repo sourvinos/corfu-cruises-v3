@@ -200,15 +200,15 @@
 
 <ng-template #contextMenu>
     <button (click)="assignToDriver()" [disabled]="!isAdmin()" mat-menu-item>
-        <mat-icon *ngIf="!isAdmin()">lock</mat-icon>
+        <mat-icon *ngIf="!isAdmin()" class="button-icon no-right-margin">lock</mat-icon>
         <span>{{ getLabel('assignToDriverButton') }}</span>
     </button>
     <button (click)="assignToShip()" [disabled]="!isAdmin()" mat-menu-item>
-        <mat-icon *ngIf="!isAdmin()">lock</mat-icon>
+        <mat-icon *ngIf="!isAdmin()" class="button-icon no-right-margin">lock</mat-icon>
         <span>{{ getLabel('assignToShipButton') }}</span>
     </button>
     <button (click)="createPdf()" [disabled]="!isAdmin()" mat-menu-item>
-        <mat-icon *ngIf="!isAdmin()">lock</mat-icon>
+        <mat-icon *ngIf="!isAdmin()" class="button-icon no-right-margin">lock</mat-icon>
         <span>{{ getLabel('createPdfButton') }}</span>
     </button>
 </ng-template>

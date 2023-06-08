@@ -9,7 +9,7 @@
             { "error": 409, "message": "Die Reservierung ist nicht eindeutig. Überprüfen Sie das Datum, den Zielort, den Kunden und die Ticketnummer." },
             { "error": 410, "message": "Wir haben keine Abfahrten mit den von Ihnen angegebenen Informationen gefunden. Überprüfen Sie das Datum, das Ziel und den Abholort." },
             { "error": 412, "message": "Das Passwort kann nicht geändert werden. Möglicherweise ist das aktuelle Kennwort falsch." },
-            { "error": 431, "message": "Es ist nicht möglich, eine Reservierung nach der Abfahrt hinzuzufügen oder zu ändern." },
+            { "error": 431, "message": "Es ist nicht möglich, eine Reservierung nach der Abfahrt des Schiffes zu ändern oder zu ergänzen." },
             { "error": 433, "message": "Die Reservierung kann nicht gespeichert werden, da eine Überbuchung verboten ist." },
             { "error": 459, "message": "Neue Reservierungen mit Überweisung, während wir geschlossen sind, sind nicht zulässig. Bitte wenden Sie sich an einen Administrator." },
             { "error": 491, "message": "Dieser Eintrag ist in Gebrauch und kann nicht gelöscht werden." },

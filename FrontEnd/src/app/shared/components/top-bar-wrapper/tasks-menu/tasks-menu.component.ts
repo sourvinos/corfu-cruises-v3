@@ -22,7 +22,6 @@ export class TasksMenuComponent {
 
     private ngunsubscribe = new Subject<void>()
     public imgIsLoaded = false
-    public loginStatus: boolean
     public menuItems: Menu[] = []
 
     //#endregion
@@ -46,10 +45,6 @@ export class TasksMenuComponent {
             this.createMenu(response)
             this.subscribeToInteractionService()
         })
-    }
-
-    ngDoCheck(): void {
-        this.updateVariables()
     }
 
     //#endregion
@@ -102,10 +97,6 @@ export class TasksMenuComponent {
                 this.createMenu(response)
             })
         })
-    }
-
-    private updateVariables(): void {
-        this.loginStatus = this.accountService.isLoggedIn
     }
 
     //#endregion

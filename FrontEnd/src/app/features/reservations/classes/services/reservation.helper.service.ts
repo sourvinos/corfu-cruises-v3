@@ -81,14 +81,13 @@ export class ReservationHelperService {
         }
     }
 
-    public getLinkedCustomer(isNewRecord: boolean): any {
-        if (this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'false' && isNewRecord) {
-            const connectedCustomerId = parseInt(this.cryptoService.decrypt(this.sessionStorageService.getItem('customerId')))
-            console.log(connectedCustomerId)
-            const customer = this.dexieService.getById('customers', connectedCustomerId)
-            console.log(customer)
-            return customer
-        }
+    public getLinkedCustomer(): Promise<any> {
+        const connectedCustomerId = parseInt(this.cryptoService.decrypt(this.sessionStorageService.getItem('customerId')))
+        return new Promise((resolve) => {
+            this.dexieService.getById('customers', connectedCustomerId).then((response) => {
+                resolve(response)
+            })
+        })
     }
 
     public getPassengerDifferenceIcon(element: any, totalPax: number, totalPassengers: number): any {

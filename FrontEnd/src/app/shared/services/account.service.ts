@@ -51,12 +51,15 @@ export class AccountService extends HttpDataService {
     public clearSessionStorage(): void {
         this.sessionStorageService.deleteItems([
             // Auth
+            { 'item': 'displayName', 'when': 'always' },
             { 'item': 'expiration', 'when': 'always' },
+            { 'item': 'isAdmin', 'when': 'always' },
             { 'item': 'jwt', 'when': 'always' },
-            { 'item': 'loginStatus', 'when': 'always' },
+            { 'item': 'now', 'when': 'always' },
             { 'item': 'refreshToken', 'when': 'always' },
             { 'item': 'returnUrl', 'when': 'always' },
-            { 'item': 'isAdmin', 'when': 'always' },
+            { 'item': 'userId', 'when': 'always' },
+            { 'item': 'customerId', 'when': 'always' },
             // Reservations
             { 'item': 'date', 'when': 'always' },
             { 'item': 'destination', 'when': 'always' },
@@ -100,7 +103,6 @@ export class AccountService extends HttpDataService {
         return this.http.post<any>(this.urlToken, { userId, refreshToken, grantType }).pipe(
             map(response => {
                 if (response.token) {
-                    // this.setLoginStatus(true)
                     this.setAuthSettings(response)
                 }
                 return <any>response
@@ -124,7 +126,6 @@ export class AccountService extends HttpDataService {
         this.clearSessionStorage()
         this.refreshMenus()
         this.navigateToLogin()
-        this.clearConnectedUser()
     }
 
     public resetPassword(vm: ResetPasswordViewModel): Observable<any> {
@@ -134,23 +135,6 @@ export class AccountService extends HttpDataService {
     //#endregion
 
     //#region private methods
-
-    private checkLoginStatus(): boolean {
-        const loginCookie = sessionStorage.getItem('loginStatus')
-        if (loginCookie === '1') {
-            if (sessionStorage.getItem('jwt') !== null || sessionStorage.getItem('jwt') !== undefined) {
-                return true
-            }
-        }
-        return false
-    }
-
-    private clearConnectedUser(): void {
-        this.sessionStorageService.deleteItems([
-            { 'item': 'now', 'when': 'always' },
-            { 'item': 'userId', 'when': 'always' },
-            { 'item': 'displayName', 'when': 'always' }])
-    }
 
     private navigateToLogin(): void {
         this.ngZone.run(() => {
@@ -165,7 +149,6 @@ export class AccountService extends HttpDataService {
     private setAuthSettings(response: any): void {
         sessionStorage.setItem('expiration', response.expiration)
         sessionStorage.setItem('jwt', response.token)
-        sessionStorage.setItem('loginStatus', '1')
         sessionStorage.setItem('refreshToken', response.refreshToken)
     }
 

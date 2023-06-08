@@ -2,7 +2,6 @@ import { Component, HostListener } from '@angular/core'
 import { Router } from '@angular/router'
 import { Subject, takeUntil } from 'rxjs'
 // Custom
-import { AccountService } from 'src/app/shared/services/account.service'
 import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { Menu } from 'src/app/shared/classes/menu'
@@ -21,12 +20,11 @@ export class SettingsMenuComponent {
 
     private ngunsubscribe = new Subject<void>()
     public imgIsLoaded = false
-    public loginStatus: boolean
     public menuItems: Menu[] = []
 
     //#endregion
 
-    constructor(private accountService: AccountService, private interactionService: InteractionService, private messageMenuService: MessageMenuService, private cryptoService: CryptoService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private interactionService: InteractionService, private messageMenuService: MessageMenuService, private cryptoService: CryptoService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region listeners
 
@@ -45,10 +43,6 @@ export class SettingsMenuComponent {
             this.createMenu(response)
             this.subscribeToInteractionService()
         })
-    }
-
-    ngDoCheck(): void {
-        this.updateVariables()
     }
 
     //#endregion
@@ -77,6 +71,10 @@ export class SettingsMenuComponent {
         return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' ? true : false
     }
 
+    public isLoggedIn(): boolean {
+        return this.sessionStorageService.getItem('userId') ? true : false
+    }
+
     public loadImage(): void {
         this.imgIsLoaded = true
     }
@@ -101,10 +99,6 @@ export class SettingsMenuComponent {
                 this.createMenu(response)
             })
         })
-    }
-
-    private updateVariables(): void {
-        this.loginStatus = this.accountService.isLoggedIn
     }
 
     //#endregion

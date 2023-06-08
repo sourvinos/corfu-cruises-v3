@@ -21,7 +21,6 @@ export class ReservationsMenuComponent {
 
     private ngunsubscribe = new Subject<void>()
     public imgIsLoaded = false
-    public loginStatus: boolean
     public menuItems: Menu[] = []
 
     //#endregion

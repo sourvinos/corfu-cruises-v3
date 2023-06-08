@@ -4,6 +4,7 @@ import { Router } from '@angular/router'
 // Custom
 import { AccountService } from './../../../services/account.service'
 import { MessageLabelService } from '../../../services/message-label.service'
+import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 
 @Component({
     selector: 'search-byRef-box',
@@ -17,20 +18,15 @@ export class SearchByRefBoxComponent {
 
     private feature = 'searchByRefBox'
     public form: FormGroup
-    public loginStatus: boolean
 
     //#endregion
 
-    constructor(private accountService: AccountService, private formBuilder: FormBuilder, private messageLabelService: MessageLabelService, private router: Router) { }
+    constructor(private accountService: AccountService, private formBuilder: FormBuilder, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
         this.initForm()
-    }
-
-    ngDoCheck(): void {
-        this.updateVariables()
     }
 
     //#endregion
@@ -39,6 +35,10 @@ export class SearchByRefBoxComponent {
 
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
+    }
+
+    public isLoggedIn(): boolean {
+        return this.sessionStorageService.getItem('userId') ? true : false
     }
 
     public onSearchByRefNo(): void {
@@ -54,10 +54,6 @@ export class SearchByRefBoxComponent {
         this.form = this.formBuilder.group({
             searchByRefNo: ['', [Validators.required]],
         })
-    }
-
-    private updateVariables(): void {
-        this.loginStatus = this.accountService.isLoggedIn
     }
 
     //#endregion

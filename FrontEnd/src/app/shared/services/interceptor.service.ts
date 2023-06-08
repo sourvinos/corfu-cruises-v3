@@ -65,7 +65,6 @@ export class InterceptorService {
                 switchMap((tokenresponse: any) => {
                     if (tokenresponse) {
                         this.tokenSubject.next(tokenresponse.token)
-                        sessionStorage.setItem('loginStatus', '1')
                         sessionStorage.setItem('jwt', tokenresponse.token)
                         sessionStorage.setItem('expiration', tokenresponse.expiration)
                         sessionStorage.setItem('refreshToken', tokenresponse.refreshToken)
@@ -88,7 +87,7 @@ export class InterceptorService {
     }
 
     private isUserLoggedIn(): boolean {
-        return sessionStorage.getItem('loginStatus') == '1'
+        return sessionStorage.getItem('userId') != ''
     }
 
     private trapError(err: number): Observable<any> {

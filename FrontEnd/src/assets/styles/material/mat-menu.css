@@ -9,6 +9,7 @@
     border: 0.0625rem solid var(--color-border);
     display: flex;
     flex-direction: column;
+    max-width: 100% !important;
     min-height: auto !important;
     overflow: visible !important;
     padding: 0 !important;

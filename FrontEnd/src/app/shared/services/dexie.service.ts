@@ -7,14 +7,15 @@ export class DexieService extends Dexie {
 
     constructor() {
         super('DexieDB')
+        this.delete()
         this.version(1).stores({
             coachRoutes: 'id, abbreviation',
             customers: 'id, description',
             destinations: 'id, description',
             drivers: 'id, description',
             genders: 'id, description',
-            nationalities: 'id, code, description',
-            pickupPoints: 'id, description, exactPoint, time',
+            nationalities: 'id, description',
+            pickupPoints: 'id, description',
             ports: 'id, description',
             shipOwners: 'id, description',
             shipRoutes: 'id, description',
@@ -29,9 +30,11 @@ export class DexieService extends Dexie {
         })
     }
 
-    public getById(table: string, id: any): any {
-        this.table(table).where({ id: id }).first().then(response => {
-            return response
+    public getById(table: string, id: any): Promise<any> {
+        return new Promise((resolve) => {
+            this.table(table).where({ id: id }).first().then(response => {
+                resolve(response)
+            })
         })
     }
 
