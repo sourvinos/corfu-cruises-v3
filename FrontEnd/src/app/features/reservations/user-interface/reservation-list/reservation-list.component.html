@@ -5,6 +5,10 @@
         <div id="header">
             <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
             <div class="filter-pill">
+                <div *ngFor="let x of overbookedDestinations" class="overbooked pill">
+                    <img [src]="getIcon(x.isOverbooked == true ? 'error' : 'ok')">
+                    <div class="description">{{ x.description }}</div>
+                </div>
                 <div class="pill date">
                     <img [src]="getIcon('calendar')">
                     <div class="description">{{ formatDateToLocale(getDateFromStorage(), true, true) }}</div>
@@ -183,12 +187,6 @@
                 <div class="description number">
                     <span>{{ totalPax[2] | padNumber : 3 : ' ' }}</span>
                 </div>
-            </div>
-        </div>
-        <div class="filter-pill">
-            <div *ngFor="let x of overbookedDestinations" class="overbooked pill">
-                <img [src]="getIcon(x.isOverbooked == true ? 'error' : 'ok')">
-                <div class="description">{{ x.description }}</div>
             </div>
         </div>
         <div class="button-group-right">

@@ -92,22 +92,3 @@ button.mat-button-toggle-label-content {
     align-items: center;
     margin-left: 40px;
 }
-
-@media (width < 800px) {
-    .button-text {
-        font-size: 13px;
-    }
-}
-
-@media (width >= 800px) {
-    .button-text {
-        font-size: 14px;
-        margin-top: 0;
-    }
-}
-
-.material-icons {
-    align-items: center;
-    color: var(--color-button-text);
-    display: flex;
-}

@@ -1,20 +1,9 @@
-#content {
-    border-radius: var(--border-radius);
-    border: 0.0625rem solid var(--color-border);
-    display: flex;
-    flex-direction: column;
+:host {
     height: 100%;
-    justify-content: center;
-    margin: 0 auto;
-    padding: 1rem 4rem;
-    width: 90%;
 }
 
 #header {
-    display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 0.3rem !important;
 }
 
 #header-buttons {
@@ -29,17 +18,8 @@
     gap: 0.5rem;
 }
 
-#form {
-    display: flex;
-    flex-direction: row !important;
+#reservation, #passengers, #misc {
     height: 100%;
-    justify-content: center;
-    overflow: hidden;
-    scroll-snap-type: x mandatory;
-}
-
-#reservations, #passengers, #misc {
-    width: 100%;
 }
 
 #tab-overview, #tab-passengers, #tab-misc {
@@ -65,7 +45,6 @@
     flex-direction: column;
     height: 100%;
     margin: 0 auto;
-    width: 62rem;
 }
 
 #passenger-check-total-icon {

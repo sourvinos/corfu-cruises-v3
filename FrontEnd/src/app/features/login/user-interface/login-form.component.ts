@@ -88,7 +88,7 @@ export class LoginFormComponent {
     //#region private methods
 
     private checkScreenResolution(): void {
-        if (window.screen.width < 1280 || window.screen.height < 800) {
+        if (window.screen.width < environment.minWidth || window.screen.height < 800) {
             this.dialogService.open(this.messageSnackbarService.resolutionWarning(), 'warning', ['ok'])
         }
     }

@@ -25,7 +25,7 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 @Component({
     selector: 'schedule-new',
     templateUrl: './schedule-new-form.component.html',
-    styleUrls: ['../../../../../assets/styles/custom/forms.css', '../../../../../assets/styles/custom/fieldset-criteria.css', './schedule-new-form.component.css']
+    styleUrls: ['../../../../../assets/styles/custom/fieldset-criteria.css', './schedule-new-form.component.css']
 })
 
 export class ScheduleNewFormComponent {
@@ -76,7 +76,7 @@ export class ScheduleNewFormComponent {
     //#region public methods
 
     public doTasks(event: any, x: string): void {
-        if (event.target.classList.contains('p-checkbox-box')) {
+        if (!event.currentTarget.classList.contains('p-highlight')) {
             this.selectedDays.push(x)
         } else {
             this.selectedDays.splice(this.selectedDays.indexOf(x), 1)

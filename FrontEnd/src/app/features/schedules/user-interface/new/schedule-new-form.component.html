@@ -38,23 +38,21 @@
                                 <span class="icon">{{ getEmoji(selectedDestinations.length > 0 ? 'ok' : 'error') }}</span>
                             </div>
                         </legend>
-                        <div class="list">
-                            <div class="table-wrapper">
-                                <p-table #destinationsTable (onRowSelect)="onRowSelect($event,'selectedDestinations')" (onRowUnselect)="onRowUnselect($event,'selectedDestinations')" [(selection)]="selectedDestinations[0]" [scrollable]="true" [value]="destinations" datakey="id" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex">
-                                    <ng-template pTemplate="header">
-                                        <tr>
-                                            <th class="no-border width-2"><p-tableHeaderCheckbox class="hidden"></p-tableHeaderCheckbox></th>
-                                            <th class="no-border width-5"><input (input)="destinationsTable.filter($event.target.value, 'description', 'contains')" [value]="$any(destinationsTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
-                                        </tr>
-                                    </ng-template>
-                                    <ng-template let-destination pTemplate="body">
-                                        <tr style="height:32px">
-                                            <td class="center width-2"><p-tableRadioButton [value]="destination"></p-tableRadioButton></td>
-                                            <td class="width-5">{{ destination.description }}</td>
-                                        </tr>
-                                    </ng-template>
-                                </p-table>
-                            </div>
+                        <div class="table-wrapper">
+                            <p-table #destinationsTable (onRowSelect)="onRowSelect($event,'selectedDestinations')" (onRowUnselect)="onRowUnselect($event,'selectedDestinations')" [(selection)]="selectedDestinations[0]" [scrollable]="true" [value]="destinations" datakey="id" [virtualScrollItemSize]="32" [virtualScroll]="true" scrollHeight="flex" selectionMode="single">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th class="no-border width-2"><p-tableHeaderCheckbox class="hidden"></p-tableHeaderCheckbox></th>
+                                        <th class="no-border width-5"><input (input)="destinationsTable.filter($event.target.value, 'description', 'contains')" [value]="$any(destinationsTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template let-destination pTemplate="body">
+                                    <tr [pSelectableRow]="destination" style="height:32px">
+                                        <td class="center width-2"><p-tableRadioButton [value]="destination"></p-tableRadioButton></td>
+                                        <td class="width-5">{{ destination.description }}</td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
                         </div>
                     </fieldset>
                     <!-- Port -->
@@ -66,23 +64,21 @@
                                 <span class="icon">{{ getEmoji(selectedPorts.length > 0 ? 'ok' : 'error') }}</span>
                             </div>
                         </legend>
-                        <div class="list">
-                            <div class="table-wrapper">
-                                <p-table #portsTable (onRowSelect)="onRowSelect($event,'selectedPorts')" (onRowUnselect)="onRowUnselect($event,'selectedPorts')" [(selection)]="selectedPorts[0]" [scrollable]="true" [value]="ports" datakey="id" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex">
-                                    <ng-template pTemplate="header">
-                                        <tr>
-                                            <th class="no-border width-2"><p-tableHeaderCheckbox class="hidden"></p-tableHeaderCheckbox></th>
-                                            <th class="no-border width-5"><input (input)="portsTable.filter($event.target.value, 'description', 'contains')" [value]="$any(portsTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
-                                        </tr>
-                                    </ng-template>
-                                    <ng-template let-port pTemplate="body">
-                                        <tr style="height:32px">
-                                            <td class="center width-2"><p-tableRadioButton [value]="port"></p-tableRadioButton></td>
-                                            <td class="width-5">{{ port.description }}</td>
-                                        </tr>
-                                    </ng-template>
-                                </p-table>
-                            </div>
+                        <div class="table-wrapper">
+                            <p-table #portsTable (onRowSelect)="onRowSelect($event,'selectedPorts')" (onRowUnselect)="onRowUnselect($event,'selectedPorts')" [(selection)]="selectedPorts[0]" [scrollable]="true" [value]="ports" datakey="id" [virtualScrollItemSize]="32" [virtualScroll]="true" scrollHeight="flex" selectionMode="single">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th class="no-border width-2"><p-tableHeaderCheckbox class="hidden"></p-tableHeaderCheckbox></th>
+                                        <th class="no-border width-5"><input (input)="portsTable.filter($event.target.value, 'description', 'contains')" [value]="$any(portsTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template let-port pTemplate="body">
+                                    <tr [pSelectableRow]="port" style="height:32px">
+                                        <td class="center width-2"><p-tableRadioButton [value]="port"></p-tableRadioButton></td>
+                                        <td class="width-5">{{ port.description }}</td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
                         </div>
                     </fieldset>
                     <!-- Weekdays, Max Pax and Time -->
@@ -96,23 +92,21 @@
                                     <span class="icon">{{ getEmoji(selectedWeekdays.length > 0 ? 'ok' : 'error') }}</span>
                                 </div>
                             </legend>
-                            <div class="list">
-                                <div class="table-wrapper">
-                                    <p-table #weekdaysTable (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'weekdays','selectedWeekdays')" (onRowSelect)="onRowSelect($event,'selectedWeekdays')" (onRowUnselect)="onRowUnselect($event,'selectedWeekdays')" [(selection)]="selectedWeekdays" [scrollable]="true" [value]="weekdays" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex">
-                                        <ng-template pTemplate="header">
-                                            <tr>
-                                                <th class="no-border width-2"><p-tableHeaderCheckbox class="hidden"></p-tableHeaderCheckbox></th>
-                                                <th class="no-border width-5"><input (input)="weekdaysTable.filter($event.target.value, 'description', 'contains')" [value]="$any(weekdaysTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
-                                            </tr>
-                                        </ng-template>
-                                        <ng-template let-weekday pTemplate="body">
-                                            <tr style="height:32px">
-                                                <td class="center width-2"><p-tableCheckbox (click)="doTasks($event,weekday)" [value]="weekday"></p-tableCheckbox></td>
-                                                <td class="width-5">{{ weekday.description | uppercase }}</td>
-                                            </tr>
-                                        </ng-template>
-                                    </p-table>
-                                </div>
+                            <div class="table-wrapper">
+                                <p-table #weekdaysTable (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'weekdays','selectedWeekdays')" (onRowSelect)="onRowSelect($event,'selectedWeekdays')" (onRowUnselect)="onRowUnselect($event,'selectedWeekdays')" [(selection)]="selectedWeekdays" [scrollable]="true" [value]="weekdays" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex" selectionMode="multiple">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th class="no-border width-2"><p-tableHeaderCheckbox class="hidden"></p-tableHeaderCheckbox></th>
+                                            <th class="no-border width-5"><input (input)="weekdaysTable.filter($event.target.value, 'description', 'contains')" [value]="$any(weekdaysTable).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template let-weekday pTemplate="body">
+                                        <tr [pSelectableRow]="weekday" (click)="doTasks($event,weekday)" style="height:32px">
+                                            <td class="center width-2"><p-tableCheckbox [value]="weekday"></p-tableCheckbox></td>
+                                            <td class="width-5">{{ weekday.description | uppercase }}</td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
                             </div>
                         </fieldset>
                         <!-- MaxPax -->

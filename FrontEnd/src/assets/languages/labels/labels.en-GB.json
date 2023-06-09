@@ -1276,7 +1276,7 @@
             },
             {
                 "id": "criteria-ships",
-                "description": "Πλοία"
+                "description": "Ships"
             },
             {
                 "id": "boardedFilter",

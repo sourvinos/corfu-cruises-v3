@@ -39,16 +39,16 @@
                     </div>
                 </div>
             </div>
-            <div id="period-scroller">
-                <button (click)="doSelectedPeriodTasks('previous')" class="transparent" mat-mini-fab>
-                    <span class="material-icons">chevron_left</span>
-                </button>
-                <button (click)="doSelectedPeriodTasks('next')" class="transparent" mat-mini-fab>
-                    <span class="material-icons">chevron_right</span>
-                </button>
-            </div>
-            <month-selector (monthEmitter)="doTasksAfterMonthSelection($event)"></month-selector>
         </div>
+        <div id="period-scroller">
+            <button (click)="doSelectedPeriodTasks('previous')" class="transparent" mat-mini-fab>
+                <span class="material-icons">chevron_left</span>
+            </button>
+            <button (click)="doSelectedPeriodTasks('next')" class="transparent" mat-mini-fab>
+                <span class="material-icons">chevron_right</span>
+            </button>
+        </div>
+        <month-selector (monthEmitter)="doTasksAfterMonthSelection($event)"></month-selector>
 
     </div>
 

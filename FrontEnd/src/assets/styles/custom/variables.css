@@ -8,13 +8,20 @@
     --font-weight-dialog-content: 300 !important;
     --font-weight-logo: 400;
     --font-weight-mat-hint: 300;
-    /* Common sizes in all screen resolutions */
+    /* Sizes */
     --font-size-autocomplete-select: 0.875rem;
+    --font-size-button: 0.85rem;
     --font-size-calendar-day: 0.85rem;
+    --font-size-checkbox-label: 80%;
     --font-size-datepicker-header-month: 1.25rem;
+    --font-size-dialog-text: 1rem;
     --font-size-dialog: 1.5rem;
     --font-size-fieldset-legend: 0.8rem;
+    --font-size-h1: 1rem;
     --font-size-h6: 0.8rem;
+    --font-size-input-hint: 11px;
+    --font-size-input-label: 17px;
+    --font-size-input: 15px;
     --font-size-line-height-h1: 1.25rem;
     --font-size-logo-text: 2.5rem;
     --font-size-table-header: 0.7rem;
@@ -22,7 +29,6 @@
     --form-field-margin: 0.625rem;
     /* Misc */
     --blur: 0.5rem;
-    --gap: 1rem;
     --delay: 0.2s;
     --border-radius: 0.5rem;
 }

@@ -9,15 +9,3 @@
     display: flex;
     padding: 0;
 }
-
-@media (width < 800px) {
-    :host {
-        margin-left: 0;
-    }
-}
-
-@media (width >= 800px) {
-    :host {
-        margin-left: auto;
-    }
-}

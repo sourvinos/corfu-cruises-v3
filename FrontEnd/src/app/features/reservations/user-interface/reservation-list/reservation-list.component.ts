@@ -26,7 +26,7 @@ import { environment } from 'src/environments/environment'
 @Component({
     selector: 'reservation-list',
     templateUrl: './reservation-list.component.html',
-    styleUrls: ['../../../../../assets/styles/custom/lists.css']
+    styleUrls: ['../../../../../assets/styles/custom/lists.css', './reservation-list.component.css']
 })
 
 export class ReservationListComponent {

@@ -57,31 +57,31 @@
         "labels": [
             {
                 "id": "0",
-                "description": "Κυριακή"
+                "description": "Κυριακη"
             },
             {
                 "id": "1",
-                "description": "Δευτέρα"
+                "description": "Δευτερα"
             },
             {
                 "id": "2",
-                "description": "Τρίτη"
+                "description": "Τριτη"
             },
             {
                 "id": "3",
-                "description": "Τετάρτη"
+                "description": "Τεταρτη"
             },
             {
                 "id": "4",
-                "description": "Πέμπτη"
+                "description": "Πεμπτη"
             },
             {
                 "id": "5",
-                "description": "Παρασκευή"
+                "description": "Παρασκευη"
             },
             {
                 "id": "6",
-                "description": "Σάββατο"
+                "description": "Σαββατο"
             }
         ]
     }

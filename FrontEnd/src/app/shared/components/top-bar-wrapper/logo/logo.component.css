@@ -1,11 +1,11 @@
 #logo {
     align-items: center;
     display: flex;
+    gap: 0.5rem;
     outline: 0;
 }
 
 #logo-image {
-    position: absolute;
     width: 3.5rem;
 }
 
@@ -30,22 +30,4 @@
 
 #title-bottom {
     margin-top: -0.75rem;
-}
-
-@media (width < 800px) {
-    #logo-image {
-        display: none;
-    }
-    #logo-text {
-        margin-left: 0;
-    }
-}
-
-@media (width >= 800px) {
-    #logo-image {
-        display: flex;
-    }
-    #logo-text {
-        margin-left: 4rem;
-    }
 }

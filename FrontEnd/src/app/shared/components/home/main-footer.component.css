@@ -9,6 +9,7 @@
     font-weight: 300;
     margin: 1rem auto 1rem auto;
     text-align: center;
+    font-size: 0.80rem;
 }
 
 a:link, a:visited {
@@ -18,19 +19,4 @@ a:link, a:visited {
 
 a:link:hover {
     color: var(--color-red);
-}
-
-@media (width < 800px) {
-    :host {
-        margin: auto 4rem 0 4rem;
-    }
-    #main-footer {
-        font-size: 0.5rem;
-    }
-}
-
-@media (width >= 800px) {
-    #main-footer {
-        font-size: 0.8rem;
-    }
 }
