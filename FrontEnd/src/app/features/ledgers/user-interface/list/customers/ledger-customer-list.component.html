@@ -28,7 +28,7 @@
                         <ledger-customer-summary [portGroup]="customer.ports"></ledger-customer-summary>
                         <div class="button-right">
                             <button (click)="exportSelected(customer)" class="secondary" mat-flat-button>
-                                <span>{{ getLabel("createPdfButton") }}</span>
+                                <span>{{ getLabel("createPdfButton") | uppercase }}</span>
                             </button>
                         </div>
                     </ng-template>
@@ -43,7 +43,7 @@
         <div class="button-group-right">
             <button [disabled]="records.length==0" (click)="exportAll()" class="primary" mat-flat-button>
                 <mat-icon *ngIf="records.length==0">lock</mat-icon>
-                <span>{{ getLabel("createPdfButton") }}</span>
+                <span>{{ getLabel("createPdfButton") | uppercase }}</span>
             </button>
         </div>
     </div>

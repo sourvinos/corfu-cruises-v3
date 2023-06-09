@@ -20,11 +20,11 @@
         <div class="button-group-right">
             <mat-dialog-actions>
                 <button (click)="close()" class="transparent" mat-flat-button tabindex="-1">
-                    <span>{{ getLabel("noButton") }}</span>
+                    <span>{{ getLabel("noButton") | uppercase }}</span>
                 </button>
                 <button (click)="save()" [disabled]="!form.valid" class="primary" mat-flat-button>
                     <mat-icon *ngIf="!form.valid">lock</mat-icon>
-                    <span>{{ getLabel("okButton") }}</span>
+                    <span>{{ getLabel("okButton") | uppercase }}</span>
                 </button>
             </mat-dialog-actions>
         </div>

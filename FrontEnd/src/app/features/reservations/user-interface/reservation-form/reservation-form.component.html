@@ -7,9 +7,9 @@
             <div id="header-buttons">
                 <span *ngIf="isReservationInStorage()" (click)="showCachedReservationDialog()" class="material-icons warning">warning</span>
                 <div id="tab-scroller">
-                    <button (click)="showReservationTab()" mat-flat-button id="tab-overview">{{ getLabel("tabGeneral") }}</button>
-                    <button (click)="showPassengersTab()" mat-flat-button id="tab-passengers">{{ getLabel("tabPassengers") }}</button>
-                    <button (click)="showMiscTab()" mat-flat-button id="tab-misc">{{ getLabel("tabMisc") }}</button>
+                    <button (click)="showReservationTab()" mat-flat-button id="tab-overview">{{ getLabel("tabGeneral") | uppercase }}</button>
+                    <button (click)="showPassengersTab()" mat-flat-button id="tab-passengers">{{ getLabel("tabPassengers") | uppercase }}</button>
+                    <button (click)="showMiscTab()" mat-flat-button id="tab-misc">{{ getLabel("tabMisc") | uppercase }}</button>
                 </div>
                 <button [matMenuTriggerFor]="menu" mat-icon-button>
                     <mat-icon class="no-text">more_vert</mat-icon>
@@ -183,11 +183,11 @@
         <div class="button-group-right">
             <button *ngIf="form.value.reservationId != ''" (click)="onDelete()" [disabled]="!isAdmin()" class="delete" mat-flat-button>
                 <mat-icon *ngIf="!isAdmin()">lock</mat-icon>
-                <span>{{ getLabel('deleteButton') }}</span>
+                <span>{{ getLabel('deleteButton') | uppercase }}</span>
             </button>
             <button (click)="onSave()" [disabled]="!form.valid || !checkForDifferenceBetweenTotalPaxAndPassengers()" class="primary" mat-flat-button>
                 <mat-icon *isFormInvalid="!form.valid || !checkForDifferenceBetweenTotalPaxAndPassengers()">lock</mat-icon>
-                <span>{{ getLabel("saveButton") }}</span>
+                <span>{{ getLabel("saveButton") | uppercase }}</span>
             </button>
         </div>
     </div>

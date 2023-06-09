@@ -57,10 +57,10 @@
 
     <div id="footer">
         <div class="button-group-right">
-            <button (click)="changePassword()" class="secondary" mat-flat-button>{{ getLabel("changePasswordButton") }}</button>
+            <button (click)="changePassword()" class="secondary" mat-flat-button>{{ getLabel("changePasswordButton") | uppercase }}</button>
             <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
                 <mat-icon *ngIf="!form.valid">lock</mat-icon>
-                <span>{{ getLabel("saveButton") }}</span>
+                <span>{{ getLabel("saveButton") | uppercase }}</span>
             </button>
         </div>
     </div>

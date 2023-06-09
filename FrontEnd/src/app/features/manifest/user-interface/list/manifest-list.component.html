@@ -114,7 +114,7 @@
         <div class="button-group-right">
             <button (click)="showRouteSelectorDialog()" [disabled]="records.passengers.length==0" class="primary" mat-flat-button>
                 <mat-icon *ngIf="records.passengers.length==0">lock</mat-icon>
-                <span>{{ getLabel("createPdf") }}</span>
+                <span>{{ getLabel("createPdf") | uppercase }}</span>
             </button>
         </div>
     </div>

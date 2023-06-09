@@ -62,9 +62,9 @@
         <div class="button-group-right">
             <button (click)="createPdf()" [disabled]="recordsFilteredCount==0" class="secondary" mat-flat-button>
                 <mat-icon *ngIf="recordsFilteredCount==0">lock</mat-icon>
-                <span>{{ getLabel("createPdf") }}</span>
+                <span>{{ getLabel("createPdf") | uppercase }}</span>
             </button>
-            <button (click)="newRecord()" class="primary" mat-flat-button>{{ getLabel("newRecord") }}</button>
+            <button (click)="newRecord()" class="primary" mat-flat-button>{{ getLabel("newRecord") | uppercase }}</button>
         </div>
     </div>
 
