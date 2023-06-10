@@ -163,6 +163,14 @@
                 "description": "Description"
             },
             {
+                "id": "user",
+                "description": "Utilisateur"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Dernière mise à jour"
+            },
+            {
                 "id": "isActive",
                 "description": "Actif"
             },
@@ -413,6 +421,14 @@
             {
                 "id": "port",
                 "description": "Port"
+            },
+            {
+                "id": "user",
+                "description": "Utilisateur"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Dernière mise à jour"
             },
             {
                 "id": "hasTransfer",

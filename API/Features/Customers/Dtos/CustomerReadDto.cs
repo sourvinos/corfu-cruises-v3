@@ -13,7 +13,6 @@
         public string User { get; set; }
         public string LastUpdate { get; set; }
 
-
     }
 
 }

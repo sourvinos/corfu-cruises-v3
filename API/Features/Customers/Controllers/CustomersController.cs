@@ -74,7 +74,7 @@ namespace API.Features.Customers {
         public async Task<Response> Put([FromBody] CustomerWriteDto customer) {
             var x = await customerRepo.GetByIdAsync(customer.Id);
             if (x != null) {
-                customer.UserId = x.UserId;
+                customer.UserId = x.User.Id;
                 customerRepo.Update(mapper.Map<CustomerWriteDto, Customer>(customer));
                 return new Response {
                     Code = 200,

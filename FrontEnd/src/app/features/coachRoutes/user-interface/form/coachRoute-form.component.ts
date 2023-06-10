@@ -182,7 +182,9 @@ export class CoachRouteFormComponent {
             description: ['', [Validators.required, Validators.maxLength(128)]],
             port: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             hasTransfer: true,
-            isActive: true
+            isActive: true,
+            user: [''],
+            lastUpdate: ['']
         })
     }
 
@@ -205,7 +207,9 @@ export class CoachRouteFormComponent {
                 description: this.record.description,
                 port: { 'id': this.record.port.id, 'description': this.record.port.description },
                 hasTransfer: this.record.hasTransfer,
-                isActive: this.record.isActive
+                isActive: this.record.isActive,
+                user: this.record.user,
+                lastUpdate: this.record.lastUpdate
             })
         }
     }
@@ -246,6 +250,14 @@ export class CoachRouteFormComponent {
 
     get port(): AbstractControl {
         return this.form.get('port')
+    }
+
+    get user(): AbstractControl {
+        return this.form.get('user')
+    }
+
+    get lastUpdate(): AbstractControl {
+        return this.form.get('lastUpdate')
     }
 
     //#endregion

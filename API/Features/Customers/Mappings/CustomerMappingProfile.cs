@@ -18,6 +18,8 @@ namespace API.Features.Customers {
                 .ForMember(x => x.Address, x => x.MapFrom(x => x.Address.Trim()))
                 .ForMember(x => x.Phones, x => x.MapFrom(x => x.Phones.Trim()))
                 .ForMember(x => x.PersonInCharge, x => x.MapFrom(x => x.PersonInCharge.Trim()))
+                .ForMember(x => x.Email, x => x.MapFrom(x => x.Email))
+                .ForMember(x => x.UserId, x => x.MapFrom(x => x.UserId))
                 .ForMember(x => x.LastUpdate, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(DateTime.Now)));
         }
 

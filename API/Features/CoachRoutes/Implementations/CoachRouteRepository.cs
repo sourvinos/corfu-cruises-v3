@@ -40,9 +40,11 @@ namespace API.Features.CoachRoutes {
                 ? await context.CoachRoutes
                     .AsNoTracking()
                     .Include(x => x.Port)
+                    .Include(x => x.User)
                     .SingleOrDefaultAsync(x => x.Id == id)
                 : await context.CoachRoutes
                     .AsNoTracking()
+                    .Include(x => x.User)
                     .SingleOrDefaultAsync(x => x.Id == id);
         }
 

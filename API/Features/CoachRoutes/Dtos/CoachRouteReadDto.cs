@@ -10,6 +10,8 @@ namespace API.Features.CoachRoutes {
         public bool HasTransfer { get; set; }
         public bool IsActive { get; set; }
         public SimpleEntity Port { get; set; }
+        public string User { get; set; }
+        public string LastUpdate { get; set; }
 
     }
 

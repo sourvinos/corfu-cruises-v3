@@ -163,6 +163,14 @@
                 "description": "Popis"
             },
             {
+                "id": "user",
+                "description": "Uživatel"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Poslední aktualizace"
+            },
+            {
                 "id": "isActive",
                 "description": "Aktivní"
             },
@@ -413,6 +421,14 @@
             {
                 "id": "port",
                 "description": "Přístav"
+            },
+            {
+                "id": "user",
+                "description": "Uživatel"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Poslední aktualizace"
             },
             {
                 "id": "hasTransfer",

@@ -203,7 +203,9 @@ export class ShipCrewFormComponent {
             ship: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             nationality: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             gender: ['', [Validators.required, ValidationService.RequireAutocomplete]],
-            isActive: true
+            isActive: true,
+            user: [''],
+            lastUpdate: ['']
         })
     }
 
@@ -230,7 +232,9 @@ export class ShipCrewFormComponent {
                 ship: { 'id': this.record.ship.id, 'description': this.record.ship.description },
                 nationality: { 'id': this.record.nationality.id, 'description': this.record.nationality.description },
                 gender: { 'id': this.record.gender.id, 'description': this.record.gender.description },
-                isActive: this.record.isActive
+                isActive: this.record.isActive,
+                user: this.record.user,
+                lastUpdate: this.record.lastUpdate
             })
         }
     }
@@ -293,6 +297,14 @@ export class ShipCrewFormComponent {
 
     get gender(): AbstractControl {
         return this.form.get('gender')
+    }
+
+    get user(): AbstractControl {
+        return this.form.get('user')
+    }
+
+    get lastUpdate(): AbstractControl {
+        return this.form.get('lastUpdate')
     }
 
     //#endregion

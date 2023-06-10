@@ -163,6 +163,14 @@
                 "description": "Περιγραφή"
             },
             {
+                "id": "user",
+                "description": "Χρήστης"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Τελευταία ενημέρωση"
+            },
+            {
                 "id": "isActive",
                 "description": "Ενεργός"
             },
@@ -413,6 +421,14 @@
             {
                 "id": "port",
                 "description": "Λιμάνι"
+            },
+            {
+                "id": "user",
+                "description": "Χρήστης"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Τελευταία ενημέρωση"
             },
             {
                 "id": "hasTransfer",

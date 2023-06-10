@@ -144,7 +144,9 @@ export class DestinationFormComponent {
             id: 0,
             abbreviation: ['', [Validators.required, Validators.maxLength(5)]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
-            isActive: true
+            isActive: true,
+            user: [''],
+            lastUpdate: ['']
         })
     }
 
@@ -154,7 +156,9 @@ export class DestinationFormComponent {
                 id: this.record.id,
                 abbreviation: this.record.abbreviation,
                 description: this.record.description,
-                isActive: this.record.isActive
+                isActive: this.record.isActive,
+                user: this.record.user,
+                lastUpdate: this.record.lastUpdate
             })
         }
     }
@@ -191,6 +195,14 @@ export class DestinationFormComponent {
 
     get description(): AbstractControl {
         return this.form.get('description')
+    }
+
+    get user(): AbstractControl {
+        return this.form.get('user')
+    }
+
+    get lastUpdate(): AbstractControl {
+        return this.form.get('lastUpdate')
     }
 
     //#endregion

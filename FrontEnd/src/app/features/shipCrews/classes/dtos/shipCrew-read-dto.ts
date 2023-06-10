@@ -12,5 +12,7 @@ export interface ShipCrewReadDto {
     firstname: string
     birthdate: string
     isActive: boolean
+    user: string
+    lastUpdate: string
 
 }

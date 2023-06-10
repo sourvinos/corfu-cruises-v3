@@ -152,9 +152,9 @@ export class CustomerFormComponent {
             phones: ['', [Validators.maxLength(128)]],
             personInCharge: ['', [Validators.maxLength(128)]],
             email: ['', [Validators.email, Validators.maxLength(128)]],
+            isActive: true,
             user: [''],
-            lastUpdate: [],
-            isActive: true
+            lastUpdate: ['']
         })
     }
 
@@ -168,9 +168,9 @@ export class CustomerFormComponent {
                 phones: this.record.phones,
                 personInCharge: this.record.personInCharge,
                 email: this.record.email,
+                isActive: this.record.isActive,
                 user: this.record.user,
                 lastUpdate: this.record.lastUpdate,
-                isActive: this.record.isActive
             })
         }
     }

@@ -73,7 +73,8 @@ namespace API.Features.Destinations {
         public async Task<Response> Put([FromBody] DestinationWriteDto destination) {
             var x = await destinationRepo.GetByIdAsync(destination.Id);
             if (x != null) {
-                destinationRepo.Update(mapper.Map<DestinationWriteDto, Destination>((DestinationWriteDto)destinationRepo.AttachUserIdToDto(destination)));
+                destination.UserId = x.User.Id;
+                destinationRepo.Update(mapper.Map<DestinationWriteDto, Destination>(destination));
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),

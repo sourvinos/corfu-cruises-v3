@@ -4,5 +4,7 @@ export interface DestinationReadDto {
     abbreviation: string
     description: string
     isActive: boolean
+    user: string
+    lastUpdate: string
 
 }

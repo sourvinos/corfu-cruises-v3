@@ -8,5 +8,7 @@ export interface CoachRouteReadDto {
     description: string
     hasTransfer: boolean
     isActive: boolean
+    user: string
+    lastUpdate: string
 
 }
