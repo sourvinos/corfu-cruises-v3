@@ -829,6 +829,14 @@
                 "description": "Komentáře"
             },
             {
+                "id": "user",
+                "description": "Uživatel"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Poslední aktualizace"
+            },
+            {
                 "id": "deleteButton",
                 "description": "Smazat"
             },
@@ -1051,6 +1059,10 @@
             {
                 "id": "weekdays",
                 "description": "Dny"
+            },
+            {
+                "id": "filterPlaceholder",
+                "description": "Napište něco..."
             },
             {
                 "id": "selected",

@@ -155,23 +155,36 @@
             </div>
             <div *ngIf="isMiscTabVisible" id="misc">
                 <div class="tab-content">
+                    <!-- Driver -->
                     <mat-form-field>
                         <mat-icon>lock</mat-icon>
                         <mat-label>{{ getLabel("driver") }}</mat-label>
                         <input [matAutocomplete]="drivers" formControlName="driver" matInput readonly>
                         <mat-error *ngIf="driver.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
                     </mat-form-field>
+                    <!-- Ship -->
                     <mat-form-field>
                         <mat-icon>lock</mat-icon>
                         <mat-label>{{ getLabel("ship") }}</mat-label>
                         <input [matAutocomplete]="ships" formControlName="ship" matInput readonly>
                         <mat-error *ngIf="ship.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
                     </mat-form-field>
+                    <!-- Port -->
                     <mat-form-field>
                         <mat-icon>lock</mat-icon>
                         <mat-label>{{ getLabel("port") }}</mat-label>
                         <input [matAutocomplete]="ports" formControlName="port" matInput readonly>
                         <mat-error *ngIf="port.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
+                    </mat-form-field>
+                    <!-- User -->
+                    <mat-form-field>
+                        <mat-icon>lock</mat-icon>
+                        <input [placeholder]="getLabel('user')" formControlName="user" matInput readonly>
+                    </mat-form-field>
+                    <!-- Last update -->
+                    <mat-form-field>
+                        <mat-icon>lock</mat-icon>
+                        <input [placeholder]="getLabel('lastUpdate')" formControlName="lastUpdate" matInput readonly>
                     </mat-form-field>
                 </div>
             </div>

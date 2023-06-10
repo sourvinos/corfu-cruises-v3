@@ -829,6 +829,14 @@
                 "description": "Remarques"
             },
             {
+                "id": "user",
+                "description": "Utilisateur"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Dernière mise à jour"
+            },
+            {
                 "id": "deleteButton",
                 "description": "Supprimer"
             },
@@ -1051,6 +1059,10 @@
             {
                 "id": "weekdays",
                 "description": "Jours"
+            },
+            {
+                "id": "filterPlaceholder",
+                "description": "Écrivez quelque chose..."
             },
             {
                 "id": "selected",

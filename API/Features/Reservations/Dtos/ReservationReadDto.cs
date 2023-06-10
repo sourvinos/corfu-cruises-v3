@@ -18,7 +18,8 @@ namespace API.Features.Reservations {
         public string Email { get; set; }
         public string Phones { get; set; }
         public string Remarks { get; set; }
-        public string UserId { get; set; }
+        public string User { get; set; }
+        public string LastUpdate { get; set; }
 
         public SimpleEntity Customer { get; set; }
         public SimpleEntity Destination { get; set; }

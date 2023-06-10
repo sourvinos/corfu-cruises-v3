@@ -829,6 +829,14 @@
                 "description": "Comments"
             },
             {
+                "id": "user",
+                "description": "User"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Latest update"
+            },
+            {
                 "id": "deleteButton",
                 "description": "Delete"
             },
@@ -1051,6 +1059,10 @@
             {
                 "id": "weekdays",
                 "description": "Days"
+            },
+            {
+                "id": "filterPlaceholder",
+                "description": "Type something..."
             },
             {
                 "id": "selected",

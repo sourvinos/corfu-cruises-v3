@@ -24,6 +24,8 @@ export interface ReservationReadDto {
     totalPax: number
     ticketNo: string
     passengers: PassengerReadDto
+    user: string
+    lastUpdate: string
 
 }
 

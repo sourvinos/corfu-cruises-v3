@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Features.Schedules;
 using API.Infrastructure.Extensions;
@@ -121,7 +120,8 @@ namespace API.Features.Reservations {
                     UpdateShipIdWithNull(reservation);
                     var z = validReservation.IsValid(reservation, scheduleRepo);
                     if (z == 200) {
-                        reservationUpdateRepo.Update(reservation.ReservationId, mapper.Map<ReservationWriteDto, Reservation>((ReservationWriteDto)reservationUpdateRepo.AttachUserIdToDto(reservation)));
+                        reservation.UserId = x.User.Id;
+                        reservationUpdateRepo.Update(reservation.ReservationId, mapper.Map<ReservationWriteDto, Reservation>(reservation));
                         return new Response {
                             Code = 200,
                             Icon = Icons.Success.ToString(),

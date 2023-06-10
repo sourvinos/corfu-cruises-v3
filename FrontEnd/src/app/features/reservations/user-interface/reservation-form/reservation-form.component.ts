@@ -377,7 +377,9 @@ export class ReservationFormComponent {
             phones: ['', Validators.maxLength(128)],
             remarks: ['', Validators.maxLength(128)],
             imageBase64: '',
-            passengers: [[]]
+            passengers: [[]],
+            user: [''],
+            lastUpdate: ['']
         })
     }
 
@@ -423,7 +425,9 @@ export class ReservationFormComponent {
             phones: this.record.phones,
             remarks: this.record.remarks,
             imageBase64: '',
-            passengers: this.record.passengers
+            passengers: this.record.passengers,
+            user: this.record.user,
+            lastUpdate: this.record.lastUpdate
         })
     }
 
@@ -570,6 +574,14 @@ export class ReservationFormComponent {
 
     get port(): AbstractControl {
         return this.form.get('port')
+    }
+
+    get user(): AbstractControl {
+        return this.form.get('user')
+    }
+
+    get lastUpdate(): AbstractControl {
+        return this.form.get('lastUpdate')
     }
 
     //#endregion

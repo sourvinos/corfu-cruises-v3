@@ -829,6 +829,14 @@
                 "description": "Kommentare"
             },
             {
+                "id": "user",
+                "description": "Benutzer"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Letzte Aktualisierung"
+            },
+            {
                 "id": "deleteButton",
                 "description": "Löschen"
             },
@@ -1051,6 +1059,10 @@
             {
                 "id": "weekdays",
                 "description": "Tage"
+            },
+            {
+                "id": "filterPlaceholder",
+                "description": "Schreiben Sie etwas..."
             },
             {
                 "id": "selected",
