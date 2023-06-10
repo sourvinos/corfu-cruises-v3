@@ -101,6 +101,14 @@
                 "description": "Email"
             },
             {
+                "id": "user",
+                "description": "User"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Latest update"
+            },
+            {
                 "id": "isActive",
                 "description": "Active"
             },

@@ -8,5 +8,7 @@ export interface CustomerReadDto {
     personInCharge: string
     email: string
     isActive: boolean
+    user: string
+    lastUpdate: string
 
 }

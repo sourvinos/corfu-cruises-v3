@@ -101,6 +101,14 @@
                 "description": "Email"
             },
             {
+                "id": "user",
+                "description": "Χρήστης"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Τελευταία ενημέρωση"
+            },
+            {
                 "id": "isActive",
                 "description": "Ενεργός"
             },

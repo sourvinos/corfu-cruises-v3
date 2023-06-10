@@ -10,6 +10,9 @@
         public string PersonInCharge { get; set; }
         public string Email { get; set; }
         public bool IsActive { get; set; }
+        public string User { get; set; }
+        public string LastUpdate { get; set; }
+
 
     }
 

@@ -101,6 +101,14 @@
                 "description": "Email"
             },
             {
+                "id": "user",
+                "description": "Uživatel"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Poslední aktualizace"
+            },
+            {
                 "id": "isActive",
                 "description": "Aktivní"
             },

@@ -9,7 +9,9 @@ namespace API.Features.Customers {
         public CustomerMappingProfile() {
             CreateMap<Customer, CustomerListVM>();
             CreateMap<Customer, CustomerActiveVM>();
-            CreateMap<Customer, CustomerReadDto>();
+            CreateMap<Customer, CustomerReadDto>()
+                .ForMember(x => x.User, x => x.MapFrom(x => x.User.Displayname))
+                .ForMember(x => x.LastUpdate, x => x.MapFrom(x => x.LastUpdate));
             CreateMap<CustomerWriteDto, Customer>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
                 .ForMember(x => x.Profession, x => x.MapFrom(x => x.Profession.Trim()))

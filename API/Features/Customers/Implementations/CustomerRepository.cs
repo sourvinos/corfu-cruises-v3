@@ -38,6 +38,7 @@ namespace API.Features.Customers {
         public async Task<Customer> GetByIdAsync(int id) {
             return await context.Customers
                 .AsNoTracking()
+                .Include(x => x.User)
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
 

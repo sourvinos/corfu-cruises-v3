@@ -152,6 +152,8 @@ export class CustomerFormComponent {
             phones: ['', [Validators.maxLength(128)]],
             personInCharge: ['', [Validators.maxLength(128)]],
             email: ['', [Validators.email, Validators.maxLength(128)]],
+            user: [''],
+            lastUpdate: [],
             isActive: true
         })
     }
@@ -166,6 +168,8 @@ export class CustomerFormComponent {
                 phones: this.record.phones,
                 personInCharge: this.record.personInCharge,
                 email: this.record.email,
+                user: this.record.user,
+                lastUpdate: this.record.lastUpdate,
                 isActive: this.record.isActive
             })
         }
@@ -219,6 +223,14 @@ export class CustomerFormComponent {
 
     get email(): AbstractControl {
         return this.form.get('email')
+    }
+
+    get user(): AbstractControl {
+        return this.form.get('user')
+    }
+
+    get lastUpdate(): AbstractControl {
+        return this.form.get('lastUpdate')
     }
 
     //#endregion
