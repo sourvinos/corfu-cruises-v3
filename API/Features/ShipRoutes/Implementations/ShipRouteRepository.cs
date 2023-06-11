@@ -38,6 +38,7 @@ namespace API.Features.ShipRoutes {
         public async Task<ShipRoute> GetByIdAsync(int id) {
             return await context.ShipRoutes
                 .AsNoTracking()
+                .Include(x => x.User)
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
 

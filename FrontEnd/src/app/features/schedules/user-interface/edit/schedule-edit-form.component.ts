@@ -190,7 +190,9 @@ export class ScheduleEditFormComponent {
             port: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             maxPax: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
             time: ['', [Validators.required, ValidationService.isTime]],
-            isActive: true
+            isActive: true,
+            user: [''],
+            lastUpdate: ['']
         })
     }
 
@@ -215,7 +217,9 @@ export class ScheduleEditFormComponent {
                 port: { 'id': this.record.port.id, 'description': this.record.port.description },
                 maxPax: this.record.maxPax,
                 time: this.record.time,
-                isActive: this.record.isActive
+                isActive: this.record.isActive,
+                user: this.record.user,
+                lastUpdate: this.record.lastUpdate
             })
         }
     }
@@ -273,6 +277,14 @@ export class ScheduleEditFormComponent {
 
     get time(): AbstractControl {
         return this.form.get('time')
+    }
+
+    get user(): AbstractControl {
+        return this.form.get('user')
+    }
+
+    get lastUpdate(): AbstractControl {
+        return this.form.get('lastUpdate')
     }
 
     //#endregion

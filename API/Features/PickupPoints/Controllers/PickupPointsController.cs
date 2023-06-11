@@ -85,7 +85,8 @@ namespace API.Features.PickupPoints {
             if (x != null) {
                 var z = pickupPointValidation.IsValid(pickupPoint);
                 if (z == 200) {
-                    pickupPointRepo.Update(mapper.Map<PickupPointWriteDto, PickupPoint>((PickupPointWriteDto)pickupPointRepo.AttachUserIdToDto(pickupPoint)));
+                    pickupPoint.UserId = x.User.Id;
+                    pickupPointRepo.Update(mapper.Map<PickupPointWriteDto, PickupPoint>(pickupPoint));
                     return new Response {
                         Code = 200,
                         Icon = Icons.Success.ToString(),

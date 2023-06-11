@@ -49,6 +49,18 @@
                 <input [inputTabStop]="input" [placeholder]="getLabel('address')" data-tabindex="6" formControlName="address" matInput>
                 <mat-error *ngIf="address.hasError('maxlength')">{{ getHint("maxLength", address.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
+            <div class="group-field">
+                <!-- User -->
+                <mat-form-field>
+                    <mat-icon>lock</mat-icon>
+                    <input [placeholder]="getLabel('user')" formControlName="user" matInput readonly>
+                </mat-form-field>
+                <!-- Last update -->
+                <mat-form-field>
+                    <mat-icon>lock</mat-icon>
+                    <input [placeholder]="getLabel('lastUpdate')" formControlName="lastUpdate" matInput readonly>
+                </mat-form-field>
+            </div>
             <div id="checkboxes">
                 <!-- Primary -->
                 <mat-checkbox formControlName="isPrimary">

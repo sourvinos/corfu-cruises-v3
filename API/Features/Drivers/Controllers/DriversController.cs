@@ -74,7 +74,8 @@ namespace API.Features.Drivers {
         public async Task<Response> Put([FromBody] DriverWriteDto driver) {
             var x = await driverRepo.GetByIdAsync(driver.Id);
             if (x != null) {
-                driverRepo.Update(mapper.Map<DriverWriteDto, Driver>((DriverWriteDto)driverRepo.AttachUserIdToDto(driver)));
+                driver.UserId = x.User.Id;
+                driverRepo.Update(mapper.Map<DriverWriteDto, Driver>(driver));
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),

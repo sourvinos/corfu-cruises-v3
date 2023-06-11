@@ -38,6 +38,7 @@ namespace API.Features.Ports {
         public async Task<Port> GetByIdAsync(int id) {
             return await context.Ports
                 .AsNoTracking()
+                .Include(x => x.User)
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
 

@@ -11,5 +11,7 @@ export interface RegistrarReadDto {
     address: string
     isPrimary: boolean
     isActive: boolean
+    user: string
+    lastUpdate: string
 
 }

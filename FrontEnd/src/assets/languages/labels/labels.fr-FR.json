@@ -225,6 +225,14 @@
                 "description": "Numeros de telephones"
             },
             {
+                "id": "user",
+                "description": "Utilisateur"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Dernière mise à jour"
+            },
+            {
                 "id": "isActive",
                 "description": "Actif"
             },
@@ -303,6 +311,14 @@
                 "description": "Remarques"
             },
             {
+                "id": "user",
+                "description": "Utilisateur"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Dernière mise à jour"
+            },
+            {
                 "id": "isActive",
                 "description": "Actif"
             },
@@ -359,6 +375,14 @@
             {
                 "id": "stopOrder",
                 "description": "Ordre d'approche"
+            },
+            {
+                "id": "user",
+                "description": "Utilisateur"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Dernière mise à jour"
             },
             {
                 "id": "isActive",
@@ -1016,6 +1040,14 @@
                 "description": "Agents maritimes"
             },
             {
+                "id": "user",
+                "description": "Utilisateur"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Dernière mise à jour"
+            },
+            {
                 "id": "isActive",
                 "description": "Actif"
             },
@@ -1183,6 +1215,14 @@
             {
                 "id": "description",
                 "description": "Description"
+            },
+            {
+                "id": "user",
+                "description": "Utilisateur"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Dernière mise à jour"
             },
             {
                 "id": "isActive",
@@ -1715,6 +1755,14 @@
                 "description": "Email"
             },
             {
+                "id": "user",
+                "description": "Utilisateur"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Dernière mise à jour"
+            },
+            {
                 "id": "isActive",
                 "description": "Actif"
             },
@@ -1793,6 +1841,14 @@
                 "description": "Heure d'arrivée"
             },
             {
+                "id": "user",
+                "description": "Utilisateur"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Dernière mise à jour"
+            },
+            {
                 "id": "isActive",
                 "description": "Actif"
             },
@@ -1865,6 +1921,14 @@
             {
                 "id": "address",
                 "description": "Adresse"
+            },
+            {
+                "id": "user",
+                "description": "Utilisateur"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Dernière mise à jour"
             },
             {
                 "id": "isPrimary",
@@ -1949,6 +2013,14 @@
                 "description": "Genre"
             },
             {
+                "id": "user",
+                "description": "Utilisateur"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Dernière mise à jour"
+            },
+            {
                 "id": "isActive",
                 "description": "Actif"
             },
@@ -2021,6 +2093,14 @@
             {
                 "id": "time",
                 "description": "Heure de départ"
+            },
+            {
+                "id": "user",
+                "description": "Utilisateur"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Dernière mise à jour"
             },
             {
                 "id": "isActive",

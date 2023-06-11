@@ -1,4 +1,3 @@
-using System;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Helpers;
 using AutoMapper;
@@ -11,10 +10,9 @@ namespace API.Features.Ships {
             CreateMap<Ship, ShipListVM>();
             CreateMap<Ship, ShipActiveVM>();
             CreateMap<Ship, ShipReadDto>()
-                .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new SimpleEntity {
-                    Id = x.ShipOwner.Id,
-                    Description = x.ShipOwner.Description
-                }));
+                .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new SimpleEntity { Id = x.ShipOwner.Id, Description = x.ShipOwner.Description }))
+                .ForMember(x => x.User, x => x.MapFrom(x => x.User.Displayname))
+                .ForMember(x => x.LastUpdate, x => x.MapFrom(x => x.LastUpdate));
             CreateMap<ShipWriteDto, Ship>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
                 .ForMember(x => x.IMO, x => x.MapFrom(x => x.IMO.Trim()))
@@ -23,7 +21,8 @@ namespace API.Features.Ships {
                 .ForMember(x => x.Manager, x => x.MapFrom(x => x.Manager.Trim()))
                 .ForMember(x => x.ManagerInGreece, x => x.MapFrom(x => x.ManagerInGreece.Trim()))
                 .ForMember(x => x.Agent, x => x.MapFrom(x => x.Agent.Trim()))
-                .ForMember(x => x.LastUpdate, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(DateTime.Now)));
+                .ForMember(x => x.UserId, x => x.MapFrom(x => x.UserId))
+                .ForMember(x => x.LastUpdate, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime())));
         }
 
     }

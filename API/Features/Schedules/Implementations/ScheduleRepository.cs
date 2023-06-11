@@ -37,9 +37,11 @@ namespace API.Features.Schedules {
                     .AsNoTracking()
                     .Include(x => x.Port)
                     .Include(p => p.Destination)
+                    .Include(x => x.User)
                     .SingleOrDefaultAsync(x => x.Id == id)
                 : await context.Schedules
                     .AsNoTracking()
+                    .Include(x => x.User)
                     .SingleOrDefaultAsync(x => x.Id == id);
         }
 

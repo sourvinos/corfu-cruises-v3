@@ -10,6 +10,8 @@ namespace API.Features.PickupPoints {
         public string Time { get; set; }
         public string Remarks { get; set; }
         public bool IsActive { get; set; }
+        public string User { get; set; }
+        public string LastUpdate { get; set; }
 
         public CoachRouteActiveVM CoachRoute { get; set; }
 

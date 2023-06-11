@@ -85,7 +85,8 @@ namespace API.Features.Ships {
             if (x != null) {
                 var z = shipValidation.IsValid(ship);
                 if (z == 200) {
-                    shipRepo.Update(mapper.Map<ShipWriteDto, Ship>((ShipWriteDto)shipRepo.AttachUserIdToDto(ship)));
+                    ship.UserId = x.User.Id;
+                    shipRepo.Update(mapper.Map<ShipWriteDto, Ship>(ship));
                     return new Response {
                         Code = 200,
                         Icon = Icons.Success.ToString(),

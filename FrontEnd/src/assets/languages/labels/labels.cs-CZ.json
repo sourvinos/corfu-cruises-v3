@@ -4,7 +4,7 @@
         "labels": [
             {
                 "id": "title-top",
-                "description": "Vítejte v "
+                "description": "Vítejte v"
             },
             {
                 "id": "title-middle",
@@ -225,6 +225,14 @@
                 "description": "Telefonní čísla"
             },
             {
+                "id": "user",
+                "description": "Uživatel"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Poslední aktualizace"
+            },
+            {
                 "id": "isActive",
                 "description": "Aktivní"
             },
@@ -303,6 +311,14 @@
                 "description": "Komentáře"
             },
             {
+                "id": "user",
+                "description": "Uživatel"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Poslední aktualizace"
+            },
+            {
                 "id": "isActive",
                 "description": "Aktivní"
             },
@@ -359,6 +375,14 @@
             {
                 "id": "stopOrder",
                 "description": "Pořadí přístupu"
+            },
+            {
+                "id": "user",
+                "description": "Uživatel"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Poslední aktualizace"
             },
             {
                 "id": "isActive",
@@ -1016,6 +1040,14 @@
                 "description": "Agenti"
             },
             {
+                "id": "user",
+                "description": "Uživatel"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Poslední aktualizace"
+            },
+            {
                 "id": "isActive",
                 "description": "Aktivní"
             },
@@ -1183,6 +1215,14 @@
             {
                 "id": "description",
                 "description": "Popis"
+            },
+            {
+                "id": "user",
+                "description": "Uživatel"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Poslední aktualizace"
             },
             {
                 "id": "isActive",
@@ -1715,6 +1755,14 @@
                 "description": "Email"
             },
             {
+                "id": "user",
+                "description": "Uživatel"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Poslední aktualizace"
+            },
+            {
                 "id": "isActive",
                 "description": "Aktivní"
             },
@@ -1793,6 +1841,14 @@
                 "description": "Čas"
             },
             {
+                "id": "user",
+                "description": "Uživatel"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Poslední aktualizace"
+            },
+            {
                 "id": "isActive",
                 "description": "Aktivní"
             },
@@ -1865,6 +1921,14 @@
             {
                 "id": "address",
                 "description": "Adresa"
+            },
+            {
+                "id": "user",
+                "description": "Uživatel"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Poslední aktualizace"
             },
             {
                 "id": "isPrimary",
@@ -1949,6 +2013,14 @@
                 "description": "Rod"
             },
             {
+                "id": "user",
+                "description": "Uživatel"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Poslední aktualizace"
+            },
+            {
                 "id": "isActive",
                 "description": "Aktivní"
             },
@@ -2021,6 +2093,14 @@
             {
                 "id": "ime",
                 "description": "Čas odjezdu"
+            },
+            {
+                "id": "user",
+                "description": "Uživatel"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Poslední aktualizace"
             },
             {
                 "id": "isActive",

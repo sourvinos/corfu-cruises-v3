@@ -38,6 +38,7 @@ namespace API.Features.Genders {
         public async Task<Gender> GetByIdAsync(int id) {
             return await context.Genders
                 .AsNoTracking()
+                .Include(x => x.User)
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
 

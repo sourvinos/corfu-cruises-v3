@@ -32,6 +32,7 @@ namespace API.Features.Genders {
         }
 
         [HttpGet("[action]")]
+        [Authorize(Roles = "user, admin")]
         public async Task<IEnumerable<GenderActiveVM>> GetActiveAsync() {
             return await genderRepo.GetActiveAsync();
         }
@@ -73,7 +74,8 @@ namespace API.Features.Genders {
         public async Task<Response> Put([FromBody] GenderWriteDto gender) {
             var x = await genderRepo.GetByIdAsync(gender.Id);
             if (x != null) {
-                genderRepo.Update(mapper.Map<GenderWriteDto, Gender>((GenderWriteDto)genderRepo.AttachUserIdToDto(gender)));
+                gender.UserId = x.User.Id;
+                genderRepo.Update(mapper.Map<GenderWriteDto, Gender>(gender));
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),

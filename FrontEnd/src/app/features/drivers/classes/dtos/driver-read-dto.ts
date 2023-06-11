@@ -4,5 +4,7 @@ export interface DriverReadDto {
     description: string
     phones: string
     isActive: boolean
+    user: string
+    lastUpdate: string
 
 }

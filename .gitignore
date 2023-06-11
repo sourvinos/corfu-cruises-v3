@@ -60,3 +60,4 @@ FrontEnd/ssl/*.*
 appsettings.json
 **/logs
 desktop.ini
+ToDo.txt

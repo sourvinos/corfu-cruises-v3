@@ -74,7 +74,8 @@ namespace API.Features.ShipOwners {
         public async Task<Response> Put([FromBody] ShipOwnerWriteDto shipOwner) {
             var x = await shipOwnerRepo.GetByIdAsync(shipOwner.Id);
             if (x != null) {
-                shipOwnerRepo.Update(mapper.Map<ShipOwnerWriteDto, ShipOwner>((ShipOwnerWriteDto)shipOwnerRepo.AttachUserIdToDto(shipOwner)));
+                shipOwner.UserId = x.User.Id;
+                shipOwnerRepo.Update(mapper.Map<ShipOwnerWriteDto, ShipOwner>(shipOwner));
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),

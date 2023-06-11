@@ -9,5 +9,7 @@ export interface ShipOwnerReadDto {
     phones: string
     email: string
     isActive: boolean
+    user: string
+    lastUpdate: string
 
 }

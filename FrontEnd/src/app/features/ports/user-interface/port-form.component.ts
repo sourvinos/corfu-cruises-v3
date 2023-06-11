@@ -146,7 +146,9 @@ export class PortFormComponent {
             abbreviation: ['', [Validators.required, Validators.maxLength(5)]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
             stopOrder: [0, [Validators.required, Validators.min(1), Validators.max(9)]],
-            isActive: true
+            isActive: true,
+            user: [''],
+            lastUpdate: ['']
         })
     }
 
@@ -157,7 +159,9 @@ export class PortFormComponent {
                 abbreviation: this.record.abbreviation,
                 description: this.record.description,
                 stopOrder: this.record.stopOrder,
-                isActive: this.record.isActive
+                isActive: this.record.isActive,
+                user: this.record.user,
+                lastUpdate: this.record.lastUpdate
             })
         }
     }
@@ -198,6 +202,14 @@ export class PortFormComponent {
 
     get stopOrder(): AbstractControl {
         return this.form.get('stopOrder')
+    }
+
+    get user(): AbstractControl {
+        return this.form.get('user')
+    }
+
+    get lastUpdate(): AbstractControl {
+        return this.form.get('lastUpdate')
     }
 
     //#endregion

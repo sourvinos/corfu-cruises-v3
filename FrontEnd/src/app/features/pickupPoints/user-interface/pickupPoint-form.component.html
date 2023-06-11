@@ -43,6 +43,18 @@
                 <textarea [placeholder]="getLabel('remarks')" formControlName="remarks" matInput></textarea>
                 <mat-error *ngIf="remarks.hasError('maxlength')">{{ getHint("maxLength", remarks.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
+            <div class="group-field">
+                <!-- User -->
+                <mat-form-field>
+                    <mat-icon>lock</mat-icon>
+                    <input [placeholder]="getLabel('user')" formControlName="user" matInput readonly>
+                </mat-form-field>
+                <!-- Last update -->
+                <mat-form-field>
+                    <mat-icon>lock</mat-icon>
+                    <input [placeholder]="getLabel('lastUpdate')" formControlName="lastUpdate" matInput readonly>
+                </mat-form-field>
+            </div>
             <div id="checkboxes">
                 <!-- Active -->
                 <mat-checkbox formControlName="isActive">

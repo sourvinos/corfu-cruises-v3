@@ -13,7 +13,9 @@ namespace API.Features.Ships {
         public string ManagerInGreece { get; set; }
         public string Agent { get; set; }
         public bool IsActive { get; set; }
-        public string UserId { get; set; }
+        public string User { get; set; }
+        public string LastUpdate { get; set; }
+
         public SimpleEntity ShipOwner { get; set; }
 
     }

@@ -7,6 +7,8 @@
         public string Abbreviation { get; set; }
         public int StopOrder { get; set; }
         public bool IsActive { get; set; }
+        public string User { get; set; }
+        public string LastUpdate { get; set; }
 
     }
 

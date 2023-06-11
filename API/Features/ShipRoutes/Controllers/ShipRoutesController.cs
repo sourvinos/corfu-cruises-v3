@@ -74,7 +74,8 @@ namespace API.Features.ShipRoutes {
         public async Task<Response> Put([FromBody] ShipRouteWriteDto shipRoute) {
             var x = await shipRouteRepo.GetByIdAsync(shipRoute.Id);
             if (x != null) {
-                shipRouteRepo.Update(mapper.Map<ShipRouteWriteDto, ShipRoute>((ShipRouteWriteDto)shipRouteRepo.AttachUserIdToDto(shipRoute)));
+                shipRoute.UserId = x.User.Id;
+                shipRouteRepo.Update(mapper.Map<ShipRouteWriteDto, ShipRoute>(shipRoute));
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),

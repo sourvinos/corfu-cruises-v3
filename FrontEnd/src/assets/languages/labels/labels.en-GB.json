@@ -225,6 +225,14 @@
                 "description": "Phone numbers"
             },
             {
+                "id": "user",
+                "description": "User"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Latest update"
+            },
+            {
                 "id": "isActive",
                 "description": "Active"
             },
@@ -303,6 +311,14 @@
                 "description": "Remarks"
             },
             {
+                "id": "user",
+                "description": "User"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Latest update"
+            },
+            {
                 "id": "isActive",
                 "description": "Active"
             },
@@ -359,6 +375,14 @@
             {
                 "id": "stopOrder",
                 "description": "Approach order"
+            },
+            {
+                "id": "user",
+                "description": "User"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Latest update"
             },
             {
                 "id": "isActive",
@@ -1016,6 +1040,14 @@
                 "description": "Shipping agents"
             },
             {
+                "id": "user",
+                "description": "User"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Latest update"
+            },
+            {
                 "id": "isActive",
                 "description": "Active"
             },
@@ -1183,6 +1215,14 @@
             {
                 "id": "description",
                 "description": "Description"
+            },
+            {
+                "id": "user",
+                "description": "User"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Latest update"
             },
             {
                 "id": "isActive",
@@ -1715,6 +1755,14 @@
                 "description": "Email"
             },
             {
+                "id": "user",
+                "description": "User"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Latest update"
+            },
+            {
                 "id": "isActive",
                 "description": "Active"
             },
@@ -1765,10 +1813,6 @@
                 "description": "Route"
             },
             {
-                "id": "isActive",
-                "description": "Active"
-            },
-            {
                 "id": "description",
                 "description": "Description"
             },
@@ -1795,6 +1839,18 @@
             {
                 "id": "toTime",
                 "description": "Arrival time"
+            },
+            {
+                "id": "user",
+                "description": "User"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Latest update"
+            },
+            {
+                "id": "isActive",
+                "description": "Active"
             },
             {
                 "id": "deleteButton",
@@ -1869,6 +1925,14 @@
             {
                 "id": "isPrimary",
                 "description": "Primary"
+            },
+            {
+                "id": "user",
+                "description": "User"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Latest update"
             },
             {
                 "id": "isActive",
@@ -1949,6 +2013,14 @@
                 "description": "Gender"
             },
             {
+                "id": "user",
+                "description": "User"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Latest update"
+            },
+            {
                 "id": "isActive",
                 "description": "Active"
             },
@@ -2021,6 +2093,14 @@
             {
                 "id": "time",
                 "description": "Departure time"
+            },
+            {
+                "id": "user",
+                "description": "User"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Latest update"
             },
             {
                 "id": "isActive",

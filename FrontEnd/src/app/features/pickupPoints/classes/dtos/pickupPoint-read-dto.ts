@@ -9,5 +9,7 @@ export interface PickupPointReadDto {
     time: string
     remarks: string
     isActive: boolean
+    user: string
+    lastUpdate: string
 
 }

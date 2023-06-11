@@ -187,7 +187,9 @@ export class RegistrarFormComponent {
             fax: ['', Validators.maxLength(128)],
             address: ['', Validators.maxLength(128)],
             isPrimary: true,
-            isActive: true
+            isActive: true,
+            user: [''],
+            lastUpdate: ['']
         })
     }
 
@@ -213,7 +215,9 @@ export class RegistrarFormComponent {
                 fax: this.record.fax,
                 address: this.record.address,
                 isPrimary: this.record.isPrimary,
-                isActive: this.record.isActive
+                isActive: this.record.isActive,
+                user: this.record.user,
+                lastUpdate: this.record.lastUpdate
             })
         }
     }
@@ -265,6 +269,14 @@ export class RegistrarFormComponent {
 
     get address(): AbstractControl {
         return this.form.get('address')
+    }
+
+    get user(): AbstractControl {
+        return this.form.get('user')
+    }
+
+    get lastUpdate(): AbstractControl {
+        return this.form.get('lastUpdate')
     }
 
     //#endregion

@@ -154,7 +154,9 @@ export class ShipOwnerFormComponent {
             city: ['', [Validators.maxLength(128)]],
             phones: ['', [Validators.maxLength(128)]],
             email: ['', [Validators.email, Validators.maxLength(128)]],
-            isActive: true
+            isActive: true,
+            user: [''],
+            lastUpdate: ['']
         })
     }
 
@@ -169,7 +171,9 @@ export class ShipOwnerFormComponent {
                 city: this.record.city,
                 phones: this.record.phones,
                 email: this.record.email,
-                isActive: this.record.isActive
+                isActive: this.record.isActive,
+                user: this.record.user,
+                lastUpdate: this.record.lastUpdate
             })
         }
     }
@@ -226,6 +230,14 @@ export class ShipOwnerFormComponent {
 
     get email(): AbstractControl {
         return this.form.get('email')
+    }
+
+    get user(): AbstractControl {
+        return this.form.get('user')
+    }
+
+    get lastUpdate(): AbstractControl {
+        return this.form.get('lastUpdate')
     }
 
     //#endregion

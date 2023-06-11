@@ -38,6 +38,7 @@ namespace API.Features.Drivers {
         public async Task<Driver> GetByIdAsync(int id) {
             return await context.Drivers
                 .AsNoTracking()
+                .Include(x => x.User)
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
 

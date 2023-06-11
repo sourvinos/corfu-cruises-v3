@@ -225,6 +225,14 @@
                 "description": "Τηλέφωνα"
             },
             {
+                "id": "user",
+                "description": "Χρήστης"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Τελευταία ενημέρωση"
+            },
+            {
                 "id": "isActive",
                 "description": "Ενεργός"
             },
@@ -303,6 +311,14 @@
                 "description": "Σχόλια"
             },
             {
+                "id": "user",
+                "description": "Χρήστης"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Τελευταία ενημέρωση"
+            },
+            {
                 "id": "isActive",
                 "description": "Ενεργό"
             },
@@ -359,6 +375,14 @@
             {
                 "id": "stopOrder",
                 "description": "Σειρά προσέγγισης"
+            },
+            {
+                "id": "user",
+                "description": "Χρήστης"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Τελευταία ενημέρωση"
             },
             {
                 "id": "isActive",
@@ -1016,6 +1040,14 @@
                 "description": "Υπεύθυνοι ναυτικοί πράκτορες"
             },
             {
+                "id": "user",
+                "description": "Χρήστης"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Τελευταία ενημέρωση"
+            },
+            {
                 "id": "isActive",
                 "description": "Ενεργό"
             },
@@ -1183,6 +1215,14 @@
             {
                 "id": "description",
                 "description": "Περιγραφή"
+            },
+            {
+                "id": "user",
+                "description": "Χρήστης"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Τελευταία ενημέρωση"
             },
             {
                 "id": "isActive",
@@ -1715,6 +1755,14 @@
                 "description": "Email"
             },
             {
+                "id": "user",
+                "description": "Χρήστης"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Τελευταία ενημέρωση"
+            },
+            {
                 "id": "isActive",
                 "description": "Ενεργός"
             },
@@ -1793,6 +1841,14 @@
                 "description": "Ώρα άφιξης"
             },
             {
+                "id": "user",
+                "description": "Χρήστης"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Τελευταία ενημέρωση"
+            },
+            {
                 "id": "isActive",
                 "description": "Ενεργό"
             },
@@ -1865,6 +1921,14 @@
             {
                 "id": "address",
                 "description": "Διεύθυνση"
+            },
+            {
+                "id": "user",
+                "description": "Χρήστης"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Τελευταία ενημέρωση"
             },
             {
                 "id": "isPrimary",
@@ -1949,6 +2013,14 @@
                 "description": "Φύλο"
             },
             {
+                "id": "user",
+                "description": "Χρήστης"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Τελευταία ενημέρωση"
+            },
+            {
                 "id": "isActive",
                 "description": "Ενεργό"
             },
@@ -2021,6 +2093,14 @@
             {
                 "id": "time",
                 "description": "Ωρα αναχώρησης"
+            },
+            {
+                "id": "user",
+                "description": "Χρήστης"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Τελευταία ενημέρωση"
             },
             {
                 "id": "isActive",

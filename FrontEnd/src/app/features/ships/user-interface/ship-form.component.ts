@@ -190,7 +190,9 @@ export class ShipFormComponent {
             manager: ['', [Validators.maxLength(128)]],
             managerInGreece: ['', [Validators.maxLength(128)]],
             agent: ['', [Validators.maxLength(128)]],
-            isActive: true
+            isActive: true,
+            user: [''],
+            lastUpdate: ['']
         })
     }
 
@@ -217,7 +219,9 @@ export class ShipFormComponent {
                 manager: this.record.manager,
                 managerInGreece: this.record.managerInGreece,
                 agent: this.record.agent,
-                isActive: this.record.isActive
+                isActive: this.record.isActive,
+                user: this.record.user,
+                lastUpdate: this.record.lastUpdate
             })
         }
     }
@@ -282,6 +286,14 @@ export class ShipFormComponent {
 
     get isActive(): AbstractControl {
         return this.form.get('isActive')
+    }
+
+    get user(): AbstractControl {
+        return this.form.get('user')
+    }
+
+    get lastUpdate(): AbstractControl {
+        return this.form.get('lastUpdate')
     }
 
     //#endregion

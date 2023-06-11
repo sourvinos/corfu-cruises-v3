@@ -170,7 +170,7 @@ export class CustomerFormComponent {
                 email: this.record.email,
                 isActive: this.record.isActive,
                 user: this.record.user,
-                lastUpdate: this.record.lastUpdate,
+                lastUpdate: this.record.lastUpdate
             })
         }
     }

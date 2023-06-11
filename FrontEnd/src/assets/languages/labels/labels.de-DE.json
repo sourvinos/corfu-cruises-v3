@@ -225,6 +225,14 @@
                 "description": "Telefonnummern"
             },
             {
+                "id": "user",
+                "description": "Benutzer"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Letzte Aktualisierung"
+            },
+            {
                 "id": "isActive",
                 "description": "Aktiv"
             },
@@ -303,6 +311,14 @@
                 "description": "Kommentare"
             },
             {
+                "id": "user",
+                "description": "Benutzer"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Letzte Aktualisierung"
+            },
+            {
                 "id": "isActive",
                 "description": "Aktiv"
             },
@@ -359,6 +375,14 @@
             {
                 "id": "stopOrder",
                 "description": "Annäherungsauftrag"
+            },
+            {
+                "id": "user",
+                "description": "Benutzer"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Letzte Aktualisierung"
             },
             {
                 "id": "isActive",
@@ -1016,6 +1040,14 @@
                 "description": "Agenten"
             },
             {
+                "id": "user",
+                "description": "Benutzer"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Letzte Aktualisierung"
+            },
+            {
                 "id": "isActive",
                 "description": "Aktiv"
             },
@@ -1183,6 +1215,14 @@
             {
                 "id": "description",
                 "description": "Beschreibung"
+            },
+            {
+                "id": "user",
+                "description": "Benutzer"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Letzte Aktualisierung"
             },
             {
                 "id": "isActive",
@@ -1715,6 +1755,14 @@
                 "description": "Email"
             },
             {
+                "id": "user",
+                "description": "Benutzer"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Letzte Aktualisierung"
+            },
+            {
                 "id": "isActive",
                 "description": "Aktiv"
             },
@@ -1793,6 +1841,14 @@
                 "description": "Ankunftszeit"
             },
             {
+                "id": "user",
+                "description": "Benutzer"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Letzte Aktualisierung"
+            },
+            {
                 "id": "isActive",
                 "description": "Aktiv"
             },
@@ -1865,6 +1921,14 @@
             {
                 "id": "address",
                 "description": "Adresse"
+            },
+            {
+                "id": "user",
+                "description": "Benutzer"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Letzte Aktualisierung"
             },
             {
                 "id": "isPrimary",
@@ -1949,6 +2013,14 @@
                 "description": "Geschlecht"
             },
             {
+                "id": "user",
+                "description": "Benutzer"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Letzte Aktualisierung"
+            },
+            {
                 "id": "isActive",
                 "description": "Aktiv"
             },
@@ -2021,6 +2093,14 @@
             {
                 "id": "time",
                 "description": "Abfahrtszeit"
+            },
+            {
+                "id": "user",
+                "description": "Benutzer"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Letzte Aktualisierung"
             },
             {
                 "id": "isActive",

@@ -12,5 +12,7 @@ export interface ShipReadDto {
     managerInGreece: string
     agent: string
     isActive: boolean
+    user: string
+    lastUpdate: string
 
 }

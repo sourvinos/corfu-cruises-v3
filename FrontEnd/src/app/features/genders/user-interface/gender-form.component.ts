@@ -142,7 +142,9 @@ export class GenderFormComponent {
         this.form = this.formBuilder.group({
             id: 0,
             description: ['', [Validators.required, Validators.maxLength(128)]],
-            isActive: true
+            isActive: true,
+            user: [''],
+            lastUpdate: ['']
         })
     }
 
@@ -151,7 +153,9 @@ export class GenderFormComponent {
             this.form.setValue({
                 id: this.record.id,
                 description: this.record.description,
-                isActive: this.record.isActive
+                isActive: this.record.isActive,
+                user: this.record.user,
+                lastUpdate: this.record.lastUpdate
             })
         }
     }
@@ -188,6 +192,14 @@ export class GenderFormComponent {
 
     get isActive(): AbstractControl {
         return this.form.get('isActive')
+    }
+
+    get user(): AbstractControl {
+        return this.form.get('user')
+    }
+
+    get lastUpdate(): AbstractControl {
+        return this.form.get('lastUpdate')
     }
 
     //#endregion

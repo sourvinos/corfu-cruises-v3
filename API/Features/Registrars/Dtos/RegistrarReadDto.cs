@@ -13,7 +13,8 @@ namespace API.Features.Registrars {
         public string Address { get; set; }
         public bool IsPrimary { get; set; }
         public bool IsActive { get; set; }
-        public string UserId { get; set; }
+        public string User { get; set; }
+        public string LastUpdate { get; set; }
 
     }
 

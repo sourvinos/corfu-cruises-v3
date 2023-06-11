@@ -144,7 +144,9 @@ export class DriverFormComponent {
             id: 0,
             description: ['', [Validators.required, Validators.maxLength(128)]],
             phones: ['', [Validators.maxLength(128)]],
-            isActive: true
+            isActive: true,
+            user: [''],
+            lastUpdate: ['']
         })
     }
 
@@ -154,7 +156,9 @@ export class DriverFormComponent {
                 id: this.record.id,
                 description: this.record.description,
                 phones: this.record.phones,
-                isActive: this.record.isActive
+                isActive: this.record.isActive,
+                user: this.record.user,
+                lastUpdate: this.record.lastUpdate
             })
         }
     }
@@ -195,6 +199,14 @@ export class DriverFormComponent {
 
     get isActive(): AbstractControl {
         return this.form.get('isActive')
+    }
+
+    get user(): AbstractControl {
+        return this.form.get('user')
+    }
+
+    get lastUpdate(): AbstractControl {
+        return this.form.get('lastUpdate')
     }
 
     //#endregion

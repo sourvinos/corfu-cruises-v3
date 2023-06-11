@@ -152,7 +152,9 @@ export class ShipRouteFormComponent {
             fromPort: ['', [Validators.required, Validators.maxLength(128)]], fromTime: ['', [Validators.required, ValidationService.isTime]],
             viaPort: ['', [Validators.maxLength(128)]], viaTime: ['', [ValidationService.isTime]],
             toPort: ['', [Validators.required, Validators.maxLength(128)]], toTime: ['', [Validators.required, ValidationService.isTime]],
-            isActive: true
+            isActive: true,
+            user: [''],
+            lastUpdate: ['']
         })
     }
 
@@ -164,7 +166,9 @@ export class ShipRouteFormComponent {
                 fromPort: this.record.fromPort, fromTime: this.record.fromTime,
                 viaPort: this.record.viaPort, viaTime: this.record.viaTime,
                 toPort: this.record.toPort, toTime: this.record.toTime,
-                isActive: this.record.isActive
+                isActive: this.record.isActive,
+                user: this.record.user,
+                lastUpdate: this.record.lastUpdate
             })
         }
     }
@@ -224,6 +228,14 @@ export class ShipRouteFormComponent {
 
     get isActive(): AbstractControl {
         return this.form.get('isActive')
+    }
+
+    get user(): AbstractControl {
+        return this.form.get('user')
+    }
+
+    get lastUpdate(): AbstractControl {
+        return this.form.get('lastUpdate')
     }
 
     //#endregion

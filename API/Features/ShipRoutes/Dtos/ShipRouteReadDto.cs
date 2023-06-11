@@ -11,6 +11,8 @@ namespace API.Features.ShipRoutes {
         public string ToPort { get; set; }
         public string ToTime { get; set; }
         public bool IsActive { get; set; }
+        public string User { get; set; }
+        public string LastUpdate { get; set; }
 
     }
 
