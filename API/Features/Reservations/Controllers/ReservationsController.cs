@@ -91,9 +91,9 @@ namespace API.Features.Reservations {
             AttachPortIdToDto(reservation);
             UpdateDriverIdWithNull(reservation);
             UpdateShipIdWithNull(reservation);
+            AttachNewRefNoToDto(reservation);
             var x = validReservation.IsValid(reservation, scheduleRepo);
             if (x == 200) {
-                AttachNewRefNoToDto(reservation);
                 reservationUpdateRepo.Create(mapper.Map<ReservationWriteDto, Reservation>((ReservationWriteDto)reservationUpdateRepo.AttachUserIdToDto(reservation)));
                 return Task.FromResult(new Response {
                     Code = 200,
@@ -200,7 +200,7 @@ namespace API.Features.Reservations {
         }
 
         private ReservationWriteDto AttachNewRefNoToDto(ReservationWriteDto reservation) {
-            reservation.RefNo = reservationUpdateRepo.AssignRefNoToNewDto(reservation);
+            reservation.RefNo ??= reservationUpdateRepo.AssignRefNoToNewDto(reservation);
             return reservation;
         }
 

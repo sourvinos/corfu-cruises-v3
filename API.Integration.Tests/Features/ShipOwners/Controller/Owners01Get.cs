@@ -55,7 +55,7 @@ namespace ShipOwners {
         public async Task Admins_Can_List() {
             var actionResponse = await List.Action(_httpClient, _baseUrl, _url, "john", "ec11fc8c16db");
             var records = JsonSerializer.Deserialize<List<ShipOwnerListVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            Assert.Equal(5, records.Count);
+            Assert.Equal(4, records.Count);
         }
 
     }

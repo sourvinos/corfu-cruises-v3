@@ -47,6 +47,14 @@ namespace API.Features.Reservations {
                     string.Equals(x.TicketNo, reservation.TicketNo, StringComparison.OrdinalIgnoreCase));
         }
 
+        public bool IsRefNoUnique(ReservationWriteDto reservation) {
+            return !context.Reservations
+                .AsNoTracking()
+                .Any(x =>
+                    x.RefNo == reservation.RefNo &&
+                    x.ReservationId != reservation.ReservationId);
+        }
+
         public int GetPortIdFromPickupPointId(ReservationWriteDto reservation) {
             PickupPoint pickupPoint = context.PickupPoints
                 .AsNoTracking()
@@ -70,6 +78,7 @@ namespace API.Features.Reservations {
         public int IsValid(ReservationWriteDto reservation, IScheduleRepository scheduleRepo) {
             return true switch {
                 var x when x == !IsKeyUnique(reservation) => 409,
+                var x when x == !IsRefNoUnique(reservation) => 414,
                 var x when x == !IsValidCustomer(reservation) => 450,
                 var x when x == !IsValidDestination(reservation) => 451,
                 var x when x == !IsValidPickupPoint(reservation) => 452,

@@ -17,7 +17,7 @@ namespace Ports {
                 new TestPort {
                     Description = Helpers.CreateRandomString(128),
                     Abbreviation= Helpers.CreateRandomString(5),
-                    StopOrder = 6
+                    StopOrder = 5
                 }
             };
         }

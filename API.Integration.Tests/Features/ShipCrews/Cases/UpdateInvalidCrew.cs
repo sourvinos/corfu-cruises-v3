@@ -18,10 +18,10 @@ namespace API.IntegrationTests.ShipCrews {
             return new object[] {
                 new TestCrew {
                     StatusCode = 457,
-                    Id = 21,
+                    Id = 22,
                     GenderId = 5,
                     NationalityId = 1,
-                    ShipId = 6,
+                    ShipId = 7,
                     Lastname = Helpers.CreateRandomString(128),
                     Firstname = Helpers.CreateRandomString(128),
                     Birthdate = "1970-01-01",
@@ -33,10 +33,10 @@ namespace API.IntegrationTests.ShipCrews {
             return new object[] {
                 new TestCrew {
                     StatusCode = 456,
-                    Id = 21,
+                    Id = 22,
                     GenderId = 1,
                     NationalityId = 999,
-                    ShipId = 6,
+                    ShipId = 7,
                     Lastname = Helpers.CreateRandomString(128),
                     Firstname = Helpers.CreateRandomString(128),
                     Birthdate = "1970-01-01",
@@ -48,7 +48,7 @@ namespace API.IntegrationTests.ShipCrews {
             return new object[] {
                 new TestCrew {
                     StatusCode = 454,
-                    Id = 21,
+                    Id = 22,
                     GenderId = 1,
                     NationalityId = 1,
                     ShipId = 99,

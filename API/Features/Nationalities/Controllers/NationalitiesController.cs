@@ -32,6 +32,7 @@ namespace API.Features.Nationalities {
         }
 
         [HttpGet("[action]")]
+        [Authorize(Roles = "user, admin")]
         public async Task<IEnumerable<NationalityActiveVM>> GetActiveAsync() {
             return await nationalityRepo.GetActiveAsync();
         }

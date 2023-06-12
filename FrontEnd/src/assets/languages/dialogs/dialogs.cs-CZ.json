@@ -9,6 +9,7 @@
             { "error": 409, "message": "Rezervace není ojedinělá. Zkontrolujte datum, destinaci, zákazníka a číslo letenky." },
             { "error": 410, "message": "U vámi poskytnutých informací jsme nezjistili žádné odchylky. Zkontrolujte datum, destinaci a místo vyzvednutí." },
             { "error": 412, "message": "Heslo nelze změnit. Je možné, že aktuální heslo je špatné." },
+            { "error": 414, "message": "RefNo již existuje. Zkuste to prosím znovu." },
             { "error": 431, "message": "Po odjezdu lodi není možné rezervaci přidat nebo změnit." },
             { "error": 433, "message": "Rezervaci nelze uložit, protože je zakázáno přeplácet rezervace." },
             { "error": 459, "message": "Nové rezervace s převodem v době, kdy máme zavřeno, nejsou povoleny. Kontaktujte prosím správce." },

@@ -15,7 +15,7 @@ namespace API.IntegrationTests.ShipCrews {
         private static object[] ValidRecord() {
             return new object[] {
                 new TestCrew {
-                    Id = 21,
+                    Id = 22,
                     GenderId = 1,
                     NationalityId = 1,
                     ShipId = 6,

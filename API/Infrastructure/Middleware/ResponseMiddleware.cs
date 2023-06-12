@@ -66,6 +66,7 @@ namespace API.Infrastructure.Middleware {
                 411 => ApiMessages.InvalidPort(),
                 412 => ApiMessages.InvalidAccountFields(),
                 413 => ApiMessages.CustomerIdDoesNotMatchConnectedSimpleUserCustomerId(),
+                414 => ApiMessages.DuplicateRefNo(),
                 431 => ApiMessages.SimpleUserCanNotAddReservationAfterDepartureTime(),
                 433 => ApiMessages.PortHasNoFreeSeats(),
                 449 => ApiMessages.InvalidShipOwner(),

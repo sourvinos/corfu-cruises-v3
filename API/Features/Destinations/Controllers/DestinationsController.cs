@@ -32,6 +32,7 @@ namespace API.Features.Destinations {
         }
 
         [HttpGet("[action]")]
+        [Authorize(Roles = "user, admin")]
         public async Task<IEnumerable<DestinationActiveVM>> GetActiveAsync() {
             return await destinationRepo.GetActiveAsync();
         }

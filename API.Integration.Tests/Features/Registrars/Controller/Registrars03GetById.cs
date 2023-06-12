@@ -18,7 +18,7 @@ namespace Registrars {
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
         private readonly string _notFoundUrl = "/registrars/999";
-        private readonly string _url = "/registrars/7";
+        private readonly string _url = "/registrars/8";
 
         #endregion
 

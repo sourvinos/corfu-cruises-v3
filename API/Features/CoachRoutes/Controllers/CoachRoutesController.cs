@@ -29,19 +29,19 @@ namespace API.Features.CoachRoutes {
 
         [HttpGet]
         [Authorize(Roles = "admin")]
-        public async Task<IEnumerable<CoachRouteListVM>> Get() {
+        public async Task<IEnumerable<CoachRouteListVM>> GetAsync() {
             return await coachRouteRepo.Get();
         }
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<CoachRouteActiveVM>> GetActive() {
+        public async Task<IEnumerable<CoachRouteActiveVM>> GetActiveAsync() {
             return await coachRouteRepo.GetActive();
         }
 
         [HttpGet("{id}")]
         [Authorize(Roles = "admin")]
-        public async Task<ResponseWithBody> GetById(int id) {
+        public async Task<ResponseWithBody> GetByIdAsync(int id) {
             var x = await coachRouteRepo.GetById(id, true);
             if (x != null) {
                 return new ResponseWithBody {

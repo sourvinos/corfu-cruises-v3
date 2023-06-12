@@ -9,6 +9,7 @@
             { "error": 409, "message": "La réservation n'est pas unique. Vérifiez la date, la destination, le client et le numéro de billet." },
             { "error": 410, "message": "Nous n'avons trouvé aucun départ avec les informations que vous avez fournies. Vérifiez la date, la destination et le lieu de prise en charge." },
             { "error": 412, "message": "Le mot de passe ne peut pas être modifié. Il est possible que le mot de passe actuel soit erroné." },
+            { "error": 414, "message": "RefNo existe déjà. Veuillez réessayer." },
             { "error": 431, "message": "Il n'est pas possible d'ajouter ou de modifier une réservation après le départ du navire." },
             { "error": 433, "message": "La réservation ne peut pas être sauvegardée car la surréservation est interdite." },
             { "error": 459, "message": "Les nouvelles réservations avec transfert pendant notre fermeture ne sont pas autorisées. Veuillez contacter un administrateur." },

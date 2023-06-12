@@ -15,7 +15,7 @@ namespace Ships {
         private static object[] ValidRecord() {
             return new object[] {
                 new TestShip {
-                    ShipOwnerId = 4,
+                    ShipOwnerId = 5,
                     Description = Helpers.CreateRandomString(5),
                 }
             };

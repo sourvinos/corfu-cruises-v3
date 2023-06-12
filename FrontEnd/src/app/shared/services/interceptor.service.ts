@@ -102,6 +102,8 @@ export class InterceptorService {
                 return throwError(() => new Error('410')) // we don't have a departure for the selected date, destination and port
             case 412:
                 return throwError(() => new Error('412')) // the password can't be changed because the current password is wrong
+            case 414:
+                return throwError(() => new Error('414')) // refNo must be unique
             case 431:
                 return throwError(() => new Error('431')) // simple users can't add a reservation in the past
             case 433:

@@ -18,7 +18,7 @@ namespace ShipRoutes {
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
         private readonly string _notFoundUrl = "/shipRoutes/999";
-        private readonly string _url = "/shipRoutes/1";
+        private readonly string _url = "/shipRoutes/5";
 
         #endregion
 

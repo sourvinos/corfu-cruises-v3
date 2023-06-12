@@ -19,7 +19,7 @@ namespace Users {
         private readonly string _baseUrl;
         private readonly string _inUseUrl = "/users/e7e014fd-5608-4936-866e-ec11fc8c16da";
         private readonly string _notFoundUrl = "/users/999";
-        private readonly string _url = "/users/09a8390c-cf3b-49f6-9159-6f6fc0727582";
+        private readonly string _url = "/users/c0e4af2d-be81-41a3-8e6c-67aea53ee486";
 
         #endregion
 

@@ -16,11 +16,11 @@ namespace Users {
             return new object[] {
                 new TestUpdateUser {
                     StatusCode = 492,
-                    Id = "09a8390c-cf3b-49f6-9159-6f6fc0727582",
+                    Id = "c0e4af2d-be81-41a3-8e6c-67aea53ee486",
                     CustomerId = 2,
-                    UserName = "capodicorfu",
-                    Displayname = "CANBEDELETED",
-                    Email = "receptioncapodicorfu@mayorhotels.com",
+                    UserName = "mpotsis",
+                    Displayname = "WOW",
+                    Email = "candebeleted@server.com",
                     IsAdmin = false,
                     IsActive = true
                 }
@@ -31,9 +31,9 @@ namespace Users {
             return new object[] {
                 new TestUpdateUser {
                     StatusCode = 492,
-                    Id = "eae03de1-6742-4015-9d52-102dba5d7365",
-                    UserName = "simpleuser",
-                    Displayname = "Simple User",
+                    Id = "c0e4af2d-be81-41a3-8e6c-67aea53ee486",
+                    UserName = "wow",
+                    Displayname = "Wow",
                     CustomerId = 2,
                     Email = "operations.corfucruises@gmail.com",
                     IsAdmin = false,

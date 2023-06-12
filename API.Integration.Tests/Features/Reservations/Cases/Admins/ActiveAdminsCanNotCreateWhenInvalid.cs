@@ -13,6 +13,7 @@ namespace Reservations {
             yield return Nothing_For_This_Day_And_Destination();
             yield return Nothing_For_This_Day_And_Destination_And_Port();
             yield return Duplicate_Records_Are_Not_Allowed();
+            yield return RefNo_Must_Not_Exist();
             yield return Passenger_Count_Is_Not_Correct();
             yield return Customer_Must_Exist();
             yield return Customer_Must_Be_Active();
@@ -88,12 +89,28 @@ namespace Reservations {
             return new object[] {
                 new TestNewReservation {
                     StatusCode = 409,
-                    Date = "2022-03-02",
+                    Date = "2023-07-01",
                     Now = new DateTime(2022, 4, 30, 12, 00, 00),
+                    CustomerId = 2,
+                    DestinationId = 1,
+                    PickupPointId = 129,
+                    TicketNo = "OUH74",
+                    Adults = 2
+                }
+            };
+        }
+
+        private static object[] RefNo_Must_Not_Exist() {
+            return new object[] {
+                new TestNewReservation {
+                    StatusCode = 414,
                     CustomerId = 1,
                     DestinationId = 1,
-                    PickupPointId = 125,
-                    TicketNo = "A123",
+                    PickupPointId = 642,
+                    Date = "2022-09-15",
+                    Now = new DateTime(2022, 9, 16, 12, 00, 00),
+                    TicketNo = "xxxx",
+                    RefNo = "PA74512",
                     Adults = 2
                 }
             };
@@ -213,7 +230,7 @@ namespace Reservations {
                     TicketNo = "xxxx",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
-                        new TestPassenger { Lastname = "AEDAN", Firstname = "ZAYAS", Birthdate = "1992-06-12", NationalityId = 3, GenderId = 3 },
+                        new TestPassenger { Lastname = "AEDAN", Firstname = "ZAYAS", Birthdate = "1992-06-12", NationalityId = 255, GenderId = 3 },
                     }
                 }
             };

@@ -15,8 +15,8 @@ namespace Registrars {
         private static object[] ValidRecord() {
             return new object[] {
                 new TestRegistrar {
-                    Id = 7,
-                    ShipId = 6,
+                    Id = 1,
+                    ShipId = 7,
                     Fullname = Helpers.CreateRandomString(128)
                 }
             };

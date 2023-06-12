@@ -15,7 +15,7 @@ namespace API.IntegrationTests.ShipRoutes {
         private static object[] ValidRecord() {
             return new object[] {
                 new TestShipRoute {
-                    Id = 1,
+                    Id = 5,
                     Description = Helpers.CreateRandomString(128),
                     FromPort = Helpers.CreateRandomString(128),
                     FromTime = "08:00",
