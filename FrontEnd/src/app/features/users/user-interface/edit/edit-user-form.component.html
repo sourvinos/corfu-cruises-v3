@@ -9,14 +9,15 @@
         <form [formGroup]="form" autocomplete="off">
             <!-- Username -->
             <mat-form-field>
-                <input [inputTabStop]="input" [placeholder]="getLabel('userName')" data-tabindex="1" formControlName="userName" matInput>
+                <mat-icon>lock</mat-icon>
+                <input [inputTabStop]="input" [placeholder]="getLabel('userName')" formControlName="userName" matInput readonly>
                 <mat-error *ngIf="userName.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="userName.hasError('maxlength')">{{ getHint("maxLength", userName.errors.maxlength.requiredLength) }}</mat-error>
                 <mat-error *ngIf="!userName.hasError('required') && userName.hasError('containsIllegalCharacters')">{{ getHint("containsIllegalCharacters") }}</mat-error>
             </mat-form-field>
             <!-- Displayed name -->
             <mat-form-field>
-                <input [inputTabStop]="input" [placeholder]="getLabel('displayname')" data-tabindex="2" formControlName="displayname" matInput>
+                <input [inputTabStop]="input" [placeholder]="getLabel('displayname')" data-tabindex="1" formControlName="displayname" matInput>
                 <mat-error *ngIf="displayname.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="displayname.hasError('maxlength')">{{ getHint("maxLength", displayname.errors.maxlength.requiredLength) }}</mat-error>
                 <mat-error *ngIf="!displayname.hasError('required') && displayname.hasError('beginsOrEndsWithSpace')">{{ getHint("beginsOrEndsWithSpace") }}</mat-error>
@@ -24,7 +25,7 @@
             <!-- Customer -->
             <mat-form-field>
                 <mat-icon *ngIf="!isAdmin()">lock</mat-icon>
-                <input #inputAutoComplete #triggerCustomer="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="customers" [placeholder]="getLabel('customer')" [readonly]="!isAdmin()" data-tabindex="3" formControlName="customer" matInput>
+                <input #inputAutoComplete #triggerCustomer="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="customers" [placeholder]="getLabel('customer')" [readonly]="!isAdmin()" data-tabindex="2" formControlName="customer" matInput>
                 <div matSuffix style="display:flex">
                     <button (click)="openOrCloseAutoComplete(triggerCustomer, 'customer')" [disabled]="!isAdmin()" mat-icon-button type="button">
                         <mat-icon>expand_more</mat-icon>
@@ -36,7 +37,7 @@
             <!-- Email -->
             <mat-form-field>
                 <mat-icon *ngIf="!isAdmin()">lock</mat-icon>
-                <input [inputTabStop]="input" [placeholder]="getLabel('email')" [readonly]="!isAdmin()" data-tabindex="4" formControlName="email" matInput type="email">
+                <input [inputTabStop]="input" [placeholder]="getLabel('email')" [readonly]="!isAdmin()" data-tabindex="3" formControlName="email" matInput type="email">
                 <mat-error *ngIf="email.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="email.hasError('email')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>
@@ -57,7 +58,7 @@
 
     <div id="footer">
         <div class="button-group-right">
-            <button (click)="changePassword()" class="secondary" mat-flat-button>{{ getLabel("changePasswordButton") | uppercase }}</button>
+            <button (click)="onChangePassword()" class="secondary" mat-flat-button>{{ getLabel("changePasswordButton") | uppercase }}</button>
             <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
                 <mat-icon *ngIf="!form.valid">lock</mat-icon>
                 <span>{{ getLabel("saveButton") | uppercase }}</span>

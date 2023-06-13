@@ -54,10 +54,6 @@ export class ChangePasswordFormComponent {
         this.cleanup()
     }
 
-    canDeactivate(): boolean {
-        return this.helperService.goBackFromForm(this.form)
-    }
-
     //#endregion
 
     //#region public methods

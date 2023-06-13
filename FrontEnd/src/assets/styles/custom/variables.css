@@ -10,7 +10,8 @@
     --font-weight-mat-hint: 300;
     /* Sizes */
     --font-size-autocomplete-select: 0.875rem;
-    --font-size-button: 0.875rem;
+    --font-size-button: 1rem;
+    --font-size-dropdown-menu-button: 0.875rem;
     --font-size-calendar-day: 0.85rem;
     --font-size-checkbox-label: 80%;
     --font-size-datepicker-header-month: 1.25rem;

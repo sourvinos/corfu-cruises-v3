@@ -87,20 +87,6 @@ export class EditUserFormComponent {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
     }
 
-    public changePassword(): void {
-        if (this.cryptoService.decrypt(this.sessionStorageService.getItem('userId')) != this.record.id.toString()) {
-            this.dialogService.open(this.messageSnackbarService.passwordCanBeChangedOnlyByAccountOwner(), 'error', ['ok'])
-        } else {
-            if (this.form.dirty) {
-                this.dialogService.open(this.messageSnackbarService.formIsDirty(), 'warning', ['abort', 'ok']).subscribe(() => {
-                    // 
-                })
-            } else {
-                this.router.navigate(['/users/' + this.record.id.toString() + '/changePassword'])
-            }
-        }
-    }
-
     public getEmoji(emoji: string): string {
         return this.emojiService.getEmoji(emoji)
     }
@@ -115,6 +101,14 @@ export class EditUserFormComponent {
 
     public isAdmin(): boolean {
         return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' ? true : false
+    }
+
+    public onChangePassword(): void {
+        if (this.cryptoService.decrypt(this.sessionStorageService.getItem('userId')) != this.record.id.toString()) {
+            this.dialogService.open(this.messageSnackbarService.passwordCanBeChangedOnlyByAccountOwner(), 'error', ['ok'])
+        } else {
+            this.router.navigate(['/users/' + this.record.id.toString() + '/changePassword'])
+        }
     }
 
     public onSave(): void {

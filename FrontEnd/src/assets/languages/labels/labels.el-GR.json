@@ -550,7 +550,7 @@
             },
             {
                 "id": "changePasswordButton",
-                "description": "Αλλαγή κωδικού"
+                "description": "Αλλαγη κωδικου"
             },
             {
                 "id": "saveButton",
@@ -1131,7 +1131,7 @@
             },
             {
                 "id": "newPassengerButton",
-                "description": "Νέος επιβάτης"
+                "description": "Νέος επιβατης"
             }
         ]
     },
@@ -1372,7 +1372,7 @@
             },
             {
                 "id": "scanOpenButton",
-                "description": "Σκανάρισμα voucher"
+                "description": "Σκαναρισμα voucher"
             },
             {
                 "id": "scan-close-button",

@@ -1,5 +1,5 @@
 .mat-checkbox-inner-container {
-    border: 1px solid var(--color-border) !important;
+    border: 0.0625rem solid var(--color-border) !important;
     height: 1rem;
     width: 1rem;
 }
@@ -19,9 +19,9 @@
 }
 
 .mat-checkbox-frame {
-    border-width: 1px !important;
+    border-width: 0.0625rem !important;
 }
 
 .mat-checkbox-label span {
-    margin-top: 1px;
+    margin-top: 0.125rem;
 }
