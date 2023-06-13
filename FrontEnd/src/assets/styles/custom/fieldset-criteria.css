@@ -12,7 +12,6 @@
     flex-direction: column;
     height: 100%;
     margin: 0 auto;
-    max-width: 80%;
     overflow-y: hidden;
     padding: 0.5rem 2rem 1rem 2rem;
     width: 100%;
@@ -114,4 +113,16 @@
     margin-left: 0.5rem;
     position: relative;
     top: -0.125rem;
+}
+
+@media (width > 1280px) {
+    #content {
+        max-width: 80%;
+    }
+}
+
+@media (width <= 1280px) {
+    #content {
+        max-width: 90%;
+    }
 }
