@@ -20,7 +20,8 @@ import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
 @Component({
     selector: 'manifest-criteria',
-    templateUrl: './manifest-criteria.component.html'
+    templateUrl: './manifest-criteria.component.html',
+    styleUrls: ['./manifest-criteria.component.css']
 })
 
 export class ManifestCriteriaComponent {

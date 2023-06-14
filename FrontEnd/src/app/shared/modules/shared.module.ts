@@ -5,12 +5,14 @@ import { PrimeNgModule } from './primeng.module'
 import { RouterModule } from '@angular/router'
 import { ZXingScannerModule } from '@zxing/ngx-scanner'
 // Custom
+import { CriteriaFieldsetComponent } from './../components/criteria-fieldset/criteria-fieldset.component'
 import { CriteriaPanelComponent } from '../components/criteria-panel/criteria-panel.component'
 import { EmojiDirective } from '../directives/emoji.directive'
 import { HomeButtonAndTitleComponent } from '../components/home-button-and-title/home-button-and-title.component'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
 import { LanguageMenuComponent } from '../components/top-bar-wrapper/language-menu/language-menu.component'
 import { LoadingSpinnerComponent } from '../components/loading-spinner/loading-spinner.component'
+import { LogoComponent } from '../components/top-bar-wrapper/logo/logo.component'
 import { MainFooterComponent } from '../components/home/main-footer.component'
 import { MaterialModule } from './material.module'
 import { ModalDialogComponent } from '../components/modal-dialog/modal-dialog.component'
@@ -24,17 +26,17 @@ import { TableTotalFilteredRecordsComponent } from '../components/table-total-fi
 import { ThemeMenuComponent } from './../components/top-bar-wrapper/theme-menu/theme-menu.component'
 import { TrimStringPipe } from './../pipes/string-trim.pipe'
 import { YearSelectorComponent } from '../components/year-selector/year-selector.component'
-import { LogoComponent } from '../components/top-bar-wrapper/logo/logo.component'
 
 @NgModule({
     declarations: [
+        CriteriaFieldsetComponent,
         CriteriaPanelComponent,
         EmojiDirective,
         HomeButtonAndTitleComponent,
         InputTabStopDirective,
         LanguageMenuComponent,
-        LogoComponent,
         LoadingSpinnerComponent,
+        LogoComponent,
         MainFooterComponent,
         ModalDialogComponent,
         MonthSelectorComponent,
@@ -58,6 +60,7 @@ import { LogoComponent } from '../components/top-bar-wrapper/logo/logo.component
     ],
     exports: [
         CommonModule,
+        CriteriaFieldsetComponent,
         CriteriaPanelComponent,
         EmojiDirective,
         FormsModule,

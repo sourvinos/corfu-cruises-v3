@@ -2,6 +2,7 @@
     background-color: transparent !important;
     height: 100%;
     width: 17rem;
+    display: flex;
 }
 
 .fieldset legend {
@@ -19,4 +20,8 @@
     margin-left: 0.5rem;
     position: relative;
     top: -0.125rem;
+}
+
+.table-wrapper {
+    width: 100%;
 }

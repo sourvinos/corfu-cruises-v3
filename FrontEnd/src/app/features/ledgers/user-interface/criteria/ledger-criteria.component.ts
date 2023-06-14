@@ -20,7 +20,8 @@ import { SimpleEntity } from './../../../../shared/classes/simple-entity'
 
 @Component({
     selector: 'ledger-criteria',
-    templateUrl: './ledger-criteria.component.html'
+    templateUrl: './ledger-criteria.component.html',
+    styleUrls: ['./ledger-criteria.component.css']
 })
 
 export class LedgerCriteriaComponent {
@@ -74,10 +75,6 @@ export class LedgerCriteriaComponent {
         this.navigateToList()
     }
 
-    public getEmoji(emoji: string): string {
-        return this.emojiService.getEmoji(emoji)
-    }
-
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
     }
@@ -97,47 +94,14 @@ export class LedgerCriteriaComponent {
         return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' ? true : false
     }
 
-    public onHeaderCheckboxToggle(event: any, array: string, formControl: string): void {
-        if (event.checked == true) {
-            const x = this.form.controls[formControl] as FormArray
-            x.controls = []
-            this.form.patchValue({
-                [formControl]: []
-            })
-            this[array].forEach((element: any) => {
-                x.push(new FormControl({
-                    'id': element.id,
-                    'description': element.description
-                }))
-            })
-        }
-        if (event.checked == false) {
-            const x = this.form.controls[formControl] as FormArray
-            x.controls = []
-            this.form.patchValue({
-                [formControl]: []
-            })
-        }
-    }
-
-    public onRowSelect(event: any, formControl: string): void {
-        const x = this.form.controls[formControl] as FormArray
+    public patchFormWithSelectedArrays(event: SimpleEntity[], name: string): void {
+        const x = this.form.controls[name] as FormArray
         x.controls = []
-        this[formControl].forEach((element: any) => {
-            x.push(new FormControl({
-                'id': element.id,
-                'description': element.description
-            }))
-        })
-    }
-
-    public onRowUnselect(event: any, formControl: string): void {
-        const x = this.form.controls[formControl] as FormArray
-        x.controls = []
+        x.value.pop()
         this.form.patchValue({
-            [formControl]: []
+            [name]: ['']
         })
-        this[formControl].forEach((element: any) => {
+        event.forEach(element => {
             x.push(new FormControl({
                 'id': element.id,
                 'description': element.description
