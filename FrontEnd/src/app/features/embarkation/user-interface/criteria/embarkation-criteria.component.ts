@@ -9,7 +9,6 @@ import { takeUntil } from 'rxjs/operators'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { EmbarkationCriteriaPanelVM } from '../../classes/view-models/criteria/embarkation-criteria-panel-vm'
-import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
@@ -17,11 +16,12 @@ import { MessageInputHintService } from 'src/app/shared/services/message-input-h
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
+import { EmojiService } from 'src/app/shared/services/emoji.service'
 
 @Component({
     selector: 'embarkation-criteria',
     templateUrl: './embarkation-criteria.component.html',
-    styleUrls: ['../../../../../assets/styles/custom/fieldset-criteria.css']
+    styleUrls: ['./embarkation-criteria.component.css']
 })
 
 export class EmbarkationCriteriaComponent {
@@ -46,7 +46,7 @@ export class EmbarkationCriteriaComponent {
 
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private emojiService: EmojiService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -91,51 +91,14 @@ export class EmbarkationCriteriaComponent {
         })
     }
 
-    public highlightRow(id: any): void {
-        this.helperService.highlightRow(id)
-    }
-
-    public onHeaderCheckboxToggle(event: any, array: string, formControl: string): void {
-        if (event.checked == true) {
-            const x = this.form.controls[formControl] as FormArray
-            x.controls = []
-            this.form.patchValue({
-                [formControl]: []
-            })
-            this[array].forEach((element: any) => {
-                x.push(new FormControl({
-                    'id': element.id,
-                    'description': element.description
-                }))
-            })
-        }
-        if (event.checked == false) {
-            const x = this.form.controls[formControl] as FormArray
-            x.controls = []
-            this.form.patchValue({
-                [formControl]: []
-            })
-        }
-    }
-
-    public onRowSelect(event: any, formControl: string): void {
-        const x = this.form.controls[formControl] as FormArray
+    public patchFormWithSelectedArrays(event: SimpleEntity[], name: string): void {
+        const x = this.form.controls[name] as FormArray
         x.controls = []
-        this[formControl].forEach((element: any) => {
-            x.push(new FormControl({
-                'id': element.id,
-                'description': element.description
-            }))
-        })
-    }
-
-    public onRowUnselect(event: any, formControl: string): void {
-        const x = this.form.controls[formControl] as FormArray
-        x.controls = []
+        x.value.pop()
         this.form.patchValue({
-            [formControl]: []
+            [name]: ['']
         })
-        this[formControl].forEach((element: any) => {
+        event.forEach(element => {
             x.push(new FormControl({
                 'id': element.id,
                 'description': element.description

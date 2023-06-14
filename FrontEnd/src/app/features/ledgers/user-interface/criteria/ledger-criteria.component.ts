@@ -20,8 +20,7 @@ import { SimpleEntity } from './../../../../shared/classes/simple-entity'
 
 @Component({
     selector: 'ledger-criteria',
-    templateUrl: './ledger-criteria.component.html',
-    styleUrls: ['../../../../../assets/styles/custom/fieldset-criteria.css']
+    templateUrl: './ledger-criteria.component.html'
 })
 
 export class LedgerCriteriaComponent {

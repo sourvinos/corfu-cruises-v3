@@ -62,6 +62,20 @@
     overflow-y: hidden;
 }
 
+#date {
+    align-items: center;
+    background-color: transparent !important;
+    border: 0 !important;
+    display: flex;
+    justify-content: center;
+    margin-top: 0 !important;
+    padding: 0 1rem 0.5rem 1rem !important;
+}
+
+#date .mat-form-field-wrapper {
+    width: 100%;
+}
+
 #date-fieldset {
     background-color: transparent !important;
     margin: 0 !important;
@@ -75,13 +89,6 @@
     width: auto !important;
 }
 
-#date {
-    background-color: transparent !important;
-    border: 0 !important;
-    padding: 0 2rem 0.5rem 1rem !important;
-    margin-top: 0 !important;
-}
-
 #goto-today-button {
     background-color: transparent !important;
     box-shadow: none;
@@ -91,28 +98,6 @@
 
 #goto-today-button span {
     color: var(--color-background-today) !important;
-}
-
-.fieldset {
-    background-color: transparent !important;
-    width: 17rem;
-}
-
-.fieldset legend {
-    background-color: transparent !important;
-}
-
-.fieldset legend .selected {
-    display: flex;
-    align-items: center;
-}
-
-
-.fieldset legend .selected .icon {
-    font-size: 0.9375rem;
-    margin-left: 0.5rem;
-    position: relative;
-    top: -0.125rem;
 }
 
 @media (width > 1280px) {

@@ -87,8 +87,6 @@ button.mat-button-toggle-label-content {
     margin-left: auto;
 }
 
-.checkbox-with-lock-icon {
-    display: flex;
-    align-items: center;
-    margin-left: 40px;
+.mat-button-focus-overlay {
+    background-color: transparent !important;
 }
