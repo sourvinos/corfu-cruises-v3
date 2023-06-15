@@ -1,9 +1,10 @@
 import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
+import { Subject } from 'rxjs'
 // Custom
 import { AccountService } from 'src/app/shared/services/account.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
-import { HelperService } from 'src/app/shared/services/helper.service'
+import { HelperService, indicate } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
@@ -26,12 +27,13 @@ export class ForgotPasswordFormComponent {
     public form: FormGroup
     public icon = 'arrow_back'
     public input: InputTabStopDirective
-    public isLoading: boolean
     public parentUrl = '/login'
+
+    public isLoading = new Subject<boolean>()
 
     //#endregion
 
-    constructor(private accountService: AccountService, private formBuilder: FormBuilder, private emojiService: EmojiService, private helperService: HelperService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService) { }
+    constructor(private accountService: AccountService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService) { }
 
     //#region lifecycle hooks
 
@@ -57,16 +59,13 @@ export class ForgotPasswordFormComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public onSave(): void {
-        this.isLoading = true
-        this.accountService.forgotPassword(this.form.value).subscribe({
+    public onSubmit(): void {
+        this.accountService.forgotPassword(this.form.value).pipe(indicate(this.isLoading)).subscribe({
             complete: () => {
                 this.helperService.doPostSaveFormTasks(this.messageSnackbarService.emailSent(), 'success', this.parentUrl, this.form, true, true)
-                this.isLoading = false
             },
             error: () => {
                 this.helperService.doPostSaveFormTasks(this.messageSnackbarService.emailNotSent(), 'error', this.parentUrl, this.form)
-                this.isLoading = false
             }
         })
     }
