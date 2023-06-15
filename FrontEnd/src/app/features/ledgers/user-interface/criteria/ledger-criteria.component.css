@@ -69,7 +69,7 @@
     display: flex;
     justify-content: center;
     margin-top: 0 !important;
-    padding: 0 1rem 0.5rem 1rem !important;
+    padding: 0 2rem 0.5rem 2rem !important;
 }
 
 #date .mat-form-field-wrapper {
@@ -92,7 +92,7 @@
 #goto-today-button {
     background-color: transparent !important;
     box-shadow: none;
-    margin: -23px 0 0 217px;
+    margin: -21px 0 0 195px;
     position: absolute;
 }
 

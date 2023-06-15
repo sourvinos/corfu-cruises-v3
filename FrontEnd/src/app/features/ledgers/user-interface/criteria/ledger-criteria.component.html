@@ -21,14 +21,17 @@
                             <mat-date-range-picker #picker (closed)="patchFormWithSelectedDates(fromDate, toDate)"></mat-date-range-picker>
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-error *ngIf="fromDate.hasError('required') || toDate.hasError('required')">{{ getHint("invalid") }}</mat-error>
+                            <button (click)="gotoToday()" class="transparent" id="goto-today-button" mat-mini-fab tabindex="-1">
+                                <span class="material-icons-outlined">my_location</span>
+                            </button>
                         </mat-form-field>
                     </fieldset>
                 </div>
                 <div class="group-field">
-                    <criteria-fieldset *ngIf="isAdmin()" (outputSelected)="patchFormWithSelectedArrays($event,'selectedCustomers')" [arrayName]="'selectedCustomers'" [array]="customers" [feature]="feature" [selected]="selectedCustomers"></criteria-fieldset>
-                    <criteria-fieldset (outputSelected)="patchFormWithSelectedArrays($event,'selectedDestinations')" [arrayName]="'selectedDestinations'" [array]="destinations" [feature]="feature" [selected]="selectedDestinations"></criteria-fieldset>
-                    <criteria-fieldset (outputSelected)="patchFormWithSelectedArrays($event,'selectedPorts')" [arrayName]="'selectedPorts'" [array]="ports" [feature]="feature" [selected]="selectedPorts"></criteria-fieldset>
-                    <criteria-fieldset (outputSelected)="patchFormWithSelectedArrays($event,'selectedShips')" [arrayName]="'selectedShips'" [array]="ships" [feature]="feature" [selected]="selectedShips"></criteria-fieldset>
+                    <criteria-fieldset-checkboxes *ngIf="isAdmin()" (outputSelected)="patchFormWithSelectedArrays($event,'selectedCustomers')" [arrayName]="'selectedCustomers'" [array]="customers" [caption]="'customers'" [feature]="feature" [selected]="selectedCustomers"></criteria-fieldset-checkboxes>
+                    <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedDestinations')" [arrayName]="'selectedDestinations'" [array]="destinations" [caption]="'destinations'" [feature]="feature" [selected]="selectedDestinations"></criteria-fieldset-checkboxes>
+                    <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedPorts')" [arrayName]="'selectedPorts'" [array]="ports" [caption]="'ports'" [feature]="feature" [selected]="selectedPorts"></criteria-fieldset-checkboxes>
+                    <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedShips')" [arrayName]="'selectedShips'" [array]="ships" [caption]="'ships'" [feature]="feature" [selected]="selectedShips"></criteria-fieldset-checkboxes>
                 </div>
             </form>
         </div>

@@ -95,47 +95,14 @@ export class ManifestCriteriaComponent {
         this.helperService.highlightRow(id)
     }
 
-    public onHeaderCheckboxToggle(event: any, array: string, formControl: string): void {
-        if (event.checked == true) {
-            const x = this.form.controls[formControl] as FormArray
-            x.controls = []
-            this.form.patchValue({
-                [formControl]: []
-            })
-            this[array].forEach((element: any) => {
-                x.push(new FormControl({
-                    'id': element.id,
-                    'description': element.description
-                }))
-            })
-        }
-        if (event.checked == false) {
-            const x = this.form.controls[formControl] as FormArray
-            x.controls = []
-            this.form.patchValue({
-                [formControl]: []
-            })
-        }
-    }
-
-    public onRowSelect(event: any, formControl: string): void {
-        const x = this.form.controls[formControl] as FormArray
+    public patchFormWithSelectedArrays(event: SimpleEntity[], name: string): void {
+        const x = this.form.controls[name] as FormArray
         x.controls = []
-        this[formControl].forEach((element: any) => {
-            x.push(new FormControl({
-                'id': element.id,
-                'description': element.description
-            }))
-        })
-    }
-
-    public onRowUnselect(event: any, formControl: string): void {
-        const x = this.form.controls[formControl] as FormArray
-        x.controls = []
+        x.value.pop()
         this.form.patchValue({
-            [formControl]: []
+            [name]: ['']
         })
-        this[formControl].forEach((element: any) => {
+        event.forEach(element => {
             x.push(new FormControl({
                 'id': element.id,
                 'description': element.description

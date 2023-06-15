@@ -665,7 +665,7 @@
             },
             {
                 "id": "summaryHeaderShips",
-                "description": "Bateaux"
+                "description": "Navires"
             },
             {
                 "id": "assignToDriverButton",
@@ -1600,16 +1600,16 @@
                 "description": "Date"
             },
             {
-                "id": "destination",
-                "description": "Destination"
+                "id": "destinations",
+                "description": "Destinations"
             },
             {
                 "id": "ports",
                 "description": "Ports"
             },
             {
-                "id": "ship",
-                "description": "Navire"
+                "id": "ships",
+                "description": "Navires"
             },
             {
                 "id": "shipRoute",

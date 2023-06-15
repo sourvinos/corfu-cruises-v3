@@ -1600,16 +1600,16 @@
                 "description": "Date"
             },
             {
-                "id": "destination",
-                "description": "Destination"
+                "id": "destinations",
+                "description": "Destinations"
             },
             {
                 "id": "ports",
                 "description": "Ports"
             },
             {
-                "id": "ship",
-                "description": "Ship"
+                "id": "ships",
+                "description": "Ships"
             },
             {
                 "id": "shipRoute",

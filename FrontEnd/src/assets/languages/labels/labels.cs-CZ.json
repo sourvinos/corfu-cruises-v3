@@ -1600,7 +1600,7 @@
                 "description": "Datum"
             },
             {
-                "id": "destination",
+                "id": "destinations",
                 "description": "Destinace"
             },
             {
@@ -1608,8 +1608,8 @@
                 "description": "Přístavy"
             },
             {
-                "id": "ship",
-                "description": "Loď"
+                "id": "ships",
+                "description": "Lodě"
             },
             {
                 "id": "shipRoute",
@@ -1646,7 +1646,7 @@
             },
             {
                 "id": "criteriaPorts",
-                "description": "Přístavt"
+                "description": "Přístavy"
             },
             {
                 "id": "criteriaShip",

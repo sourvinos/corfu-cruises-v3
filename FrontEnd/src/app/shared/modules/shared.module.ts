@@ -5,7 +5,8 @@ import { PrimeNgModule } from './primeng.module'
 import { RouterModule } from '@angular/router'
 import { ZXingScannerModule } from '@zxing/ngx-scanner'
 // Custom
-import { CriteriaFieldsetComponent } from './../components/criteria-fieldset/criteria-fieldset.component'
+import { CriteriaFieldsetCheckboxesComponent } from '../components/criteria-fieldset-checkboxes/criteria-fieldset-checkboxes.component'
+import { CriteriaFieldsetRadiosComponent } from '../components/criteria-fieldset-radios/criteria-fieldset-radios.component'
 import { CriteriaPanelComponent } from '../components/criteria-panel/criteria-panel.component'
 import { EmojiDirective } from '../directives/emoji.directive'
 import { HomeButtonAndTitleComponent } from '../components/home-button-and-title/home-button-and-title.component'
@@ -29,7 +30,8 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
 
 @NgModule({
     declarations: [
-        CriteriaFieldsetComponent,
+        CriteriaFieldsetCheckboxesComponent,
+        CriteriaFieldsetRadiosComponent,
         CriteriaPanelComponent,
         EmojiDirective,
         HomeButtonAndTitleComponent,
@@ -60,7 +62,8 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
     ],
     exports: [
         CommonModule,
-        CriteriaFieldsetComponent,
+        CriteriaFieldsetCheckboxesComponent,
+        CriteriaFieldsetRadiosComponent,
         CriteriaPanelComponent,
         EmojiDirective,
         FormsModule,

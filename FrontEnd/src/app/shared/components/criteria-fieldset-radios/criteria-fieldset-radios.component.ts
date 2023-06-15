@@ -1,21 +1,22 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 // Custom
 import { EmojiService } from '../../services/emoji.service'
 import { MessageLabelService } from '../../services/message-label.service'
 import { SimpleEntity } from '../../classes/simple-entity'
 
 @Component({
-    selector: 'criteria-fieldset',
-    templateUrl: './criteria-fieldset.component.html',
-    styleUrls: ['./criteria-fieldset.component.css']
+    selector: 'criteria-fieldset-radios',
+    templateUrl: './criteria-fieldset-radios.component.html',
+    styleUrls: ['criteria-fieldset-radios.component.css']
 })
 
-export class CriteriaFieldsetComponent {
+export class CriteriaFieldsetRadiosComponent {
 
     //#region variables
 
     @Input() feature: string
+    @Input() caption: string
     @Input() array: SimpleEntity[] = []
     @Input() selected: SimpleEntity[] = []
     @Input() arrayName: string
@@ -45,24 +46,17 @@ export class CriteriaFieldsetComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    private initForm(): void {
-        this.form = this.formBuilder.group({
-            selected: this.formBuilder.array([], Validators.required)
-        })
+    public getSelected(): boolean {
+        return this.selected == null || this.selected.length == 0 ? false : true
     }
 
-    public onHeaderCheckboxToggle(event: any, array: string, formControl: string): void {
-        this.updateSelected(formControl)
+    public onRowSelect(event: any): void {
+        this.updateSelected(event)
         this.exportSelected()
     }
 
-    public onRowSelect(event: any, formControl: string): void {
-        this.updateSelected(formControl)
-        this.exportSelected()
-    }
-
-    public onRowUnselect(event: any, formControl: string): void {
-        this.updateSelected(formControl)
+    public onRowUnselect(): void {
+        this.updateSelected()
         this.exportSelected()
     }
 
@@ -71,21 +65,25 @@ export class CriteriaFieldsetComponent {
     //#region private methods
 
     private exportSelected(): void {
-        this.outputSelected.emit(this.selected)
+        if (this.selected) {
+            const x = []
+            x.push(this.selected)
+            this.outputSelected.emit(x)
+        } else {
+            this.outputSelected.emit([])
+        }
     }
 
-    private updateSelected(formControl: any): void {
-        const x = this.form.controls[formControl] as FormArray
-        x.controls = []
-        this.form.patchValue({
-            [formControl]: []
+    private initForm(): void {
+        this.form = this.formBuilder.group({
+            selected: ['', Validators.required]
         })
-        this[formControl].forEach((element: any) => {
-            x.push(new FormControl({
-                'id': element.id,
-                'description': element.description
-            }))
-        })
+    }
+
+    private updateSelected(event?: any): void {
+        event != undefined
+            ? this.form.patchValue({ selected: event.data })
+            : this.form.patchValue({ selected: '' })
     }
 
     //#endregion

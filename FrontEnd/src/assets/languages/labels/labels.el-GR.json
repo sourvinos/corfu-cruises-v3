@@ -1600,16 +1600,16 @@
                 "description": "Ημερομηνία"
             },
             {
-                "id": "destination",
-                "description": "Προορισμός"
+                "id": "destinations",
+                "description": "Προορισμοί"
             },
             {
                 "id": "ports",
                 "description": "Λιμάνια"
             },
             {
-                "id": "ship",
-                "description": "Πλοίο"
+                "id": "ships",
+                "description": "Πλοία"
             },
             {
                 "id": "shipRoute",
