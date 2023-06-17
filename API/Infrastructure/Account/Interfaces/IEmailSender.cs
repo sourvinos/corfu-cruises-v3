@@ -1,10 +1,10 @@
+using System.Threading.Tasks;
+
 namespace API.Infrastructure.Account {
 
     public interface IEmailSender {
 
-        SendEmailResponse SendLoginCredentials(LoginCredentialsVM model, string loginLink);
-
-        SendEmailResponse SendResetPasswordEmail(string displayName, string userEmail, string callbackUrl, string language);
+        Task SendResetPasswordEmail(string displayName, string email, string callbackUrl, string language, string company, string username, string phones);
 
     }
 

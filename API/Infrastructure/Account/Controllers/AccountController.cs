@@ -30,8 +30,8 @@ namespace API.Infrastructure.Account {
         [AllowAnonymous]
         [HttpPost("[action]")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<Response> ForgotPassword([FromBody] ForgotPasswordVM model) {
-            return await SendEmail(model);
+        public async Task<Response> ForgotPasswordAsync([FromBody] ForgotPasswordVM model) {
+            return await SendResetPassword(model);
         }
 
         [AllowAnonymous]
@@ -88,29 +88,6 @@ namespace API.Infrastructure.Account {
             }
         }
 
-        [HttpPost("[action]")]
-        [Authorize(Roles = "admin")]
-        public Response SendLoginCredentials([FromBody] LoginCredentialsVM model) {
-            string baseUrl = $"{Request.Scheme}://{Request.Host.Value}{Request.PathBase.Value}";
-            string loginLink = Url.Content($"{baseUrl}/login");
-            var result = emailSender.SendLoginCredentials(model, loginLink);
-            if (result.Successful) {
-                return new Response {
-                    Code = 200,
-                    Icon = Icons.Success.ToString(),
-                    Id = null,
-                    Message = ApiMessages.OK()
-                };
-            } else {
-                return new Response {
-                    Code = 496,
-                    Icon = Icons.Error.ToString(),
-                    Id = null,
-                    Message = ApiMessages.EmailNotSent()
-                };
-            }
-        }
-
         [HttpGet("[action]")]
         [Authorize]
         public string GetConnectedUserId() {
@@ -123,24 +100,28 @@ namespace API.Infrastructure.Account {
             return Identity.IsUserAdmin(httpContextAccessor);
         }
 
-        private async Task<Response> SendEmail(ForgotPasswordVM model) {
+        private async Task<Response> SendResetPassword(ForgotPasswordVM model) {
             var user = await userManager.FindByEmailAsync(model.Email);
             if (user != null && await userManager.IsEmailConfirmedAsync(user)) {
                 string token = await userManager.GeneratePasswordResetTokenAsync(user);
                 string tokenEncoded = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
                 string baseUrl = $"{model.ReturnUrl}";
                 string passwordResetLink = Url.Content($"{baseUrl}/#/resetPassword?email={model.Email}&token={tokenEncoded}");
-                var response = emailSender.SendResetPasswordEmail(user.Displayname, user.Email, passwordResetLink, model.Language);
-                return response.Successful ? new Response {
-                    Code = 200,
-                    Icon = Icons.Success.ToString(),
-                    Message = ApiMessages.OK()
-                } : new Response {
-                    Code = 498,
-                    Icon = Icons.Error.ToString(),
-                    Id = null,
-                    Message = ApiMessages.EmailNotSent()
-                };
+                var response = emailSender.SendResetPasswordEmail(user.Displayname, user.Email, passwordResetLink, model.Language, model.Company, user.UserName, model.Phones);
+                if (response.Exception == null) {
+                    return new Response {
+                        Code = 200,
+                        Icon = Icons.Success.ToString(),
+                        Message = ApiMessages.OK()
+                    };
+                } else {
+                    return new Response {
+                        Code = 498,
+                        Icon = Icons.Error.ToString(),
+                        Id = null,
+                        Message = response.Exception.Message
+                    };
+                }
             } else {
                 return new Response {
                     Code = 498,
