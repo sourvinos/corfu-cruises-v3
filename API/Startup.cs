@@ -31,8 +31,8 @@ namespace API {
         public void ConfigureLocalDevelopmentServices(IServiceCollection services) {
             services.AddDbContextFactory<AppDbContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("LocalDevelopment"), new MySqlServerVersion(new Version(8, 0, 19)), builder => {
-                builder.EnableStringComparisonTranslations();
-            }));
+                    builder.EnableStringComparisonTranslations();
+                }));
             ConfigureServices(services);
         }
 

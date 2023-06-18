@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Options;
 
 namespace API.Infrastructure.Account {
 
@@ -19,19 +20,21 @@ namespace API.Infrastructure.Account {
         private readonly IHttpContextAccessor httpContextAccessor;
         private readonly SignInManager<UserExtended> signInManager;
         private readonly UserManager<UserExtended> userManager;
+        private readonly EmailSettings emailSettings;
 
-        public AccountController(IEmailSender emailSender, IHttpContextAccessor httpContextAccessor, SignInManager<UserExtended> signInManager, UserManager<UserExtended> userManager) {
+        public AccountController(IOptions<EmailSettings> emailSettings, IEmailSender emailSender, IHttpContextAccessor httpContextAccessor, SignInManager<UserExtended> signInManager, UserManager<UserExtended> userManager) {
             this.emailSender = emailSender;
             this.httpContextAccessor = httpContextAccessor;
             this.signInManager = signInManager;
             this.userManager = userManager;
+            this.emailSettings = emailSettings.Value;
         }
 
         [AllowAnonymous]
         [HttpPost("[action]")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<Response> ForgotPasswordAsync([FromBody] ForgotPasswordVM model) {
-            return await SendResetPassword(model);
+        public async Task<Response> ForgotPassword([FromBody] ForgotPasswordVM model) {
+            return await ForgotPasswordTasks(model);
         }
 
         [AllowAnonymous]
@@ -100,14 +103,14 @@ namespace API.Infrastructure.Account {
             return Identity.IsUserAdmin(httpContextAccessor);
         }
 
-        private async Task<Response> SendResetPassword(ForgotPasswordVM model) {
+        private async Task<Response> ForgotPasswordTasks(ForgotPasswordVM model) {
             var user = await userManager.FindByEmailAsync(model.Email);
             if (user != null && await userManager.IsEmailConfirmedAsync(user)) {
                 string token = await userManager.GeneratePasswordResetTokenAsync(user);
                 string tokenEncoded = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
-                string baseUrl = $"{model.ReturnUrl}";
-                string passwordResetLink = Url.Content($"{baseUrl}/#/resetPassword?email={model.Email}&token={tokenEncoded}");
-                var response = emailSender.SendResetPasswordEmail(user.Displayname, user.Email, passwordResetLink, model.Language, model.Company, user.UserName, model.Phones);
+                string baseUrl = emailSettings.ReturnUrl;
+                string returnUrl = Url.Content($"{baseUrl}#/resetPassword?email={model.Email}&token={tokenEncoded}");
+                var response = emailSender.SendForgotPasswordEmail(user.UserName, user.Displayname, user.Email, returnUrl, model.Language);
                 if (response.Exception == null) {
                     return new Response {
                         Code = 200,

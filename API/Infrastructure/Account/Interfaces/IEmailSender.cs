@@ -4,7 +4,7 @@ namespace API.Infrastructure.Account {
 
     public interface IEmailSender {
 
-        Task SendResetPasswordEmail(string displayName, string email, string callbackUrl, string language, string company, string username, string phones);
+        Task SendForgotPasswordEmail(string username, string displayname, string email, string callbackUrl, string language);
 
     }
 
