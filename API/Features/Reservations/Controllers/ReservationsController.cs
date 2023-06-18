@@ -200,7 +200,7 @@ namespace API.Features.Reservations {
         }
 
         private ReservationWriteDto AttachNewRefNoToDto(ReservationWriteDto reservation) {
-            reservation.RefNo ??= reservationUpdateRepo.AssignRefNoToNewDto(reservation);
+            reservation.RefNo = reservationUpdateRepo.AssignRefNoToNewDto(reservation);
             return reservation;
         }
 
