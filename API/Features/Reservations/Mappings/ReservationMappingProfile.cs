@@ -86,6 +86,12 @@ namespace API.Features.Reservations {
                 .ForMember(x => x.SpecialCare, x => x.MapFrom(x => x.SpecialCare.Trim()))
                 .ForMember(x => x.Remarks, x => x.MapFrom(x => x.Remarks.Trim()))
                 .ForMember(x => x.OccupantId, x => x.MapFrom(x => 2));
+            // Boarding pass
+            CreateMap<Reservation, BoardingPassReservationVM>()
+               .ForMember(x => x.Date, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Date)))
+               .ForMember(x => x.RefNo, x => x.MapFrom(x => x.RefNo))
+               .ForMember(x => x.Customer, x => x.MapFrom(x => new SimpleEntity { Id = x.Customer.Id, Description = x.Customer.Description }))
+               .ForMember(x => x.Email, x => x.MapFrom(x => x.Email));
         }
 
     }

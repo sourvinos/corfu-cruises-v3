@@ -4,7 +4,7 @@ namespace API.Features.Reservations {
 
     public interface IReservationSendToEmail {
 
-        Task SendReservationToEmail(Reservation reservation);
+        Task SendReservationToEmail(BoardingPassReservationVM reservation);
 
     }
 

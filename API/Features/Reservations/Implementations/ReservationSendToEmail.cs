@@ -15,8 +15,8 @@ namespace API.Features.Reservations {
             this.emailSettings = emailSettings.Value;
         }
 
-        public async Task SendReservationToEmail(Reservation reservation) {
-            string FilePath = Directory.GetCurrentDirectory() + "\\Features\\Reservations\\Templates\\Reservation.html";
+        public async Task SendReservationToEmail(BoardingPassReservationVM reservation) {
+            string FilePath = Directory.GetCurrentDirectory() + "\\Features\\Reservations\\Templates\\BoardingPasss.html";
             StreamReader str = new(FilePath);
             string MailText = str.ReadToEnd();
             str.Close();

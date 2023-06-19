@@ -196,13 +196,30 @@ namespace API.Features.Reservations {
             return validReservation.IsOverbooked(date, destinationId);
         }
 
-        [HttpGet("[action]/{reservationId}")]
+        [HttpGet("boardingPass/{reservationId}")]
         [Authorize(Roles = "user, admin")]
-        public async Task SendReservationToEmail(string reservationId) {
+        public async Task<Response> SendBoardingPassToEmailAsync(string reservationId) {
             var x = await reservationReadRepo.GetByIdAsync(reservationId, true);
             if (x != null) {
-                await reservationSendToEmail.SendReservationToEmail(x);
+                if (Identity.IsUserAdmin(httpContext) || validReservation.IsUserOwner(x.CustomerId)) {
+                    await reservationSendToEmail.SendReservationToEmail(mapper.Map<Reservation, BoardingPassReservationVM>(x));
+                    return new Response {
+                        Code = 200,
+                        Icon = Icons.Success.ToString(),
+                        Id = null,
+                        Message = ApiMessages.OK()
+                    };
+                } else {
+                    throw new CustomException() {
+                        ResponseCode = 490
+                    };
+                }
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 404
+                };
             }
+
         }
 
         private ReservationWriteDto AttachPortIdToDto(ReservationWriteDto reservation) {
