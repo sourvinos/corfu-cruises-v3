@@ -41,7 +41,7 @@
     <div id="footer">
         <div class="button-group-right">
             <button (click)="doTasks()" [disabled]="!form.valid" class="primary" mat-flat-button>
-                <mat-icon *ngIf="!form.valid">lock</mat-icon>
+                <mat-icon *ngIf="!form.valid" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("searchButton") | uppercase }}</span>
             </button>
         </div>

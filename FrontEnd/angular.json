@@ -39,6 +39,7 @@
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
                         "allowedCommonJsDependencies": [
+                            "crypto-js",
                             "moment",
                             "pdfmake",
                             "qrcode"

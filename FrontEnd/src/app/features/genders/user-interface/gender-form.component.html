@@ -16,12 +16,12 @@
             <div class="group-field">
                 <!-- User -->
                 <mat-form-field>
-                    <mat-icon>lock</mat-icon>
+                    <mat-icon class="material-icons-outlined">lock</mat-icon>
                     <input [placeholder]="getLabel('user')" formControlName="user" matInput readonly>
                 </mat-form-field>
                 <!-- Last update -->
                 <mat-form-field>
-                    <mat-icon>lock</mat-icon>
+                    <mat-icon class="material-icons-outlined">lock</mat-icon>
                     <input [placeholder]="getLabel('lastUpdate')" formControlName="lastUpdate" matInput readonly>
                 </mat-form-field>
             </div>
@@ -38,7 +38,7 @@
         <div class="button-group-right">
             <button (click)="onDelete()" *ngIf="form.value.id !== 0" class="delete" mat-flat-button>{{ getLabel("deleteButton") | uppercase }}</button>
             <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
-                <mat-icon *ngIf="!form.valid">lock</mat-icon>
+                <mat-icon *ngIf="!form.valid" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("saveButton") | uppercase }}</span>
             </button>
         </div>

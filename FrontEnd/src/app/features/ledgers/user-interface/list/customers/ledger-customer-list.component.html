@@ -9,10 +9,10 @@
                     <div class="description">{{ formatDateToLocale(criteriaPanels.fromDate, true, true) }} - {{ formatDateToLocale(criteriaPanels.toDate, true, true) }}</div>
                 </div>
                 <button (click)="expandAll()" class="primary prime-icon" mat-flat-button>
-                    <mat-icon>keyboard_double_arrow_down</mat-icon>
+                    <mat-icon class="material-icons-outlined">keyboard_double_arrow_down</mat-icon>
                 </button>
                 <button (click)="collapseAll()" class="primary prime-icon" mat-flat-button>
-                    <mat-icon>keyboard_double_arrow_up</mat-icon>
+                    <mat-icon class="material-icons-outlined">keyboard_double_arrow_up</mat-icon>
                 </button>
             </div>
         </div>
@@ -42,7 +42,7 @@
         <table-total-filtered-records [filteredRecordCount]="records.length" [recordCount]="records.length" [showFilteredCount]="false"></table-total-filtered-records>
         <div class="button-group-right">
             <button [disabled]="records.length==0" (click)="exportAll()" class="primary" mat-flat-button>
-                <mat-icon *ngIf="records.length==0">lock</mat-icon>
+                <mat-icon *ngIf="records.length==0" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("createPdfButton") | uppercase }}</span>
             </button>
         </div>

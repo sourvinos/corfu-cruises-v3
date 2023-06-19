@@ -14,7 +14,7 @@
                     <div class="description">{{ formatDateToLocale(getDateFromStorage(), true, true) }}</div>
                 </div>
                 <button (click)="resetTableFilters()" class="primary" mat-flat-button>
-                    <mat-icon class="no-text">filter_alt_off</mat-icon>
+                    <mat-icon class="material-icons-outlined no-text">filter_alt_off</mat-icon>
                 </button>
             </div>
         </div>
@@ -164,7 +164,7 @@
 
     <div id="footer">
         <button [matMenuTriggerFor]="menu" mat-icon-button>
-            <mat-icon class="no-text">more_vert</mat-icon>
+            <mat-icon class="material-icons-outlined no-text">more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" class="primary">
             <ng-container *ngTemplateOutlet="contextMenu"></ng-container>

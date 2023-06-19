@@ -28,7 +28,7 @@
                     <input #inputAutoComplete #trigger="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="customers" [placeholder]="getLabel('customer')" data-tabindex="3" formControlName="customer" matInput>
                     <div matSuffix style="display:flex">
                         <button (click)="openOrCloseAutoComplete(trigger, 'customer')" mat-icon-button type="button">
-                            <mat-icon>expand_more</mat-icon>
+                            <mat-icon class="material-icons-outlined">expand_more</mat-icon>
                         </button>
                     </div>
                     <mat-error *ngIf="customer.hasError('required')">{{ getHint("required") }}</mat-error>
@@ -48,7 +48,7 @@
                     <mat-form-field>
                         <input [inputTabStop]="input" [placeholder]="getLabel('password')" [type]="hidePassword ? 'password' : 'text'" data-tabindex="5" formControlName="password" matInput>
                         <button (click)="hidePassword = !hidePassword" mat-icon-button matSuffix type="button">
-                            <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+                            <mat-icon class="material-icons-outlined">{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
                         </button>
                         <mat-error *ngIf="password.hasError('required')">{{ getHint("required") }}</mat-error>
                         <mat-error *ngIf="password.hasError('containsSpace')">{{ getHint("spacesNotAllowed") }}</mat-error>
@@ -59,7 +59,7 @@
                     <mat-form-field>
                         <input [errorStateMatcher]="confirmValidParentMatcher" [inputTabStop]="input" [placeholder]="getLabel('confirmPassword')" [type]="hidePassword ? 'password' : 'text'" data-tabindex="6" formControlName="confirmPassword" matInput>
                         <button (click)="hidePassword = !hidePassword" mat-icon-button matSuffix type="button">
-                            <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+                            <mat-icon class="material-icons-outlined">{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
                         </button>
                         <mat-error *ngIf="confirmPassword.hasError('required')">{{ getHint("required") }}</mat-error>
                         <mat-error *ngIf="!confirmPassword.hasError('required') && !matchingPasswords">{{ getHint("passwordsNoMatch") }}</mat-error>
@@ -84,7 +84,7 @@
     <div id="footer">
         <div class="button-group-right">
             <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
-                <mat-icon *ngIf="!form.valid">lock</mat-icon>
+                <mat-icon *ngIf="!form.valid" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("saveButton") | uppercase }}</span>
             </button>
         </div>

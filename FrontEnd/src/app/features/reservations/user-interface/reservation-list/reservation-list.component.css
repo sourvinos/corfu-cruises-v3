@@ -1,3 +1,8 @@
 .button-icon.no-right-margin {
     margin-right: 0;
 }
+
+.mat-menu-item span {
+    color: var(--color-text);
+    font-size: 0.75rem !important;
+}

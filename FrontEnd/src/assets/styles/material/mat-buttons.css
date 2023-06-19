@@ -51,13 +51,14 @@ button.tab:first-child {
     margin-right: 1rem;
 }
 
-button .mat-button-wrapper .material-icons-outlined {
-    font-size: 1.25rem !important;
-    padding: 0.6875rem 0 !important;
-}
-
 button .mat-button-wrapper .emoji {
     margin-right: 0.2rem;
+}
+
+button.mat-mini-fab {
+    display: flex !important;
+    justify-content: center !important;
+    padding: 0 !important;
 }
 
 button.mat-mini-fab .mat-button-wrapper .material-icons.reverse {
@@ -85,6 +86,10 @@ button.mat-button-toggle-label-content {
     display: flex;
     gap: 1rem;
     margin-left: auto;
+}
+
+.mat-icon-button {
+    padding: 0 !important;
 }
 
 .mat-button-focus-overlay {

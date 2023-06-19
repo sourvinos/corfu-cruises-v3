@@ -113,8 +113,8 @@
     color: var(--color-text) !important;
     margin-left: auto;
     position: relative;
-    right: 0.5rem !important;
-    top: -0.0625rem !important;
+    right: 35px !important;
+    top: -8px !important;
 }
 
 .header-datepicker {
@@ -144,6 +144,10 @@
     margin-top: 0.1875rem !important;
 }
 
+.mat-datepicker-toggle .mat-focus-indicator {
+    height: 0 !important;
+    width: 0 !important;
+}
 .mat-datepicker-toggle-default-icon {
     display: flex;
     margin-bottom: -0.875rem !important;

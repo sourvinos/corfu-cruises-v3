@@ -6,5 +6,6 @@
     --color-hover: #dee2e6;
     --color-shadow: 0;
     --color-table-headers: #fafafa;
+    --color-table-selected-row: #d3e3df;
     --color-text: #000000;
 }

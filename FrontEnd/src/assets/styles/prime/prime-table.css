@@ -67,7 +67,8 @@
 }
 
 .p-datatable .p-datatable-thead > tr > th.header-datepicker {
-    padding-top: 0.875rem !important;
+    padding-bottom: 10px !important;
+    padding-top: 4px !important;
 }
 
 .p-datatable .p-datatable-thead > tr > th.no-border {
@@ -79,7 +80,7 @@
 }
 
 .p-datatable .p-datatable-tbody > tr.p-highlight {
-    background-color: var(--color-table-headers) !important;
+    background-color: var(--color-table-selected-row) !important;
 }
 
 .p-datatable .p-datatable-tbody > tr {
@@ -87,7 +88,7 @@
 }
 
 .p-datatable .p-datatable-tbody > tr:hover {
-    background-color: var(--color-hover) !important;
+    background-color: var(--color-table-selected-row) !important;
     cursor: pointer !important;
 }
 
@@ -136,10 +137,6 @@ div:not(.p-column-filter).p-column-filter-row:hover {
 
 .p-checkbox {
     margin: 0.125rem !important;
-}
-
-.material-icons-outlined {
-    font-size: 0.9375rem;
 }
 
 .number {
@@ -399,10 +396,12 @@ div:not(.p-column-filter).p-column-filter-row:hover {
 
 .is-active {
     color: var(--color-table-active);
+    font-size: 0.9375rem;
 }
 
 .is-not-active {
     color: var(--color-table-inactive);
+    font-size: 0.9375rem;
 }
 
 .p-datatable .p-datatable-tfoot > tr > td {

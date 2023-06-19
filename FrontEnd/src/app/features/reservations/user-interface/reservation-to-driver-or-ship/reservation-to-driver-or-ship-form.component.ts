@@ -2,6 +2,7 @@ import { Component, Inject, NgZone } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
 // Custom
+import { DexieService } from 'src/app/shared/services/dexie.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
@@ -23,7 +24,7 @@ export class ReservationToDriverOrShipComponent {
 
     //#endregion
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ReservationToDriverOrShipComponent>, private formBuilder: FormBuilder, private messageLabelService: MessageLabelService, private ngZone: NgZone, private sessionStorageService: SessionStorageService) {
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dexieService: DexieService, private dialogRef: MatDialogRef<ReservationToDriverOrShipComponent>, private formBuilder: FormBuilder, private messageLabelService: MessageLabelService, private ngZone: NgZone, private sessionStorageService: SessionStorageService) {
         this.table = data[0]
         this.feature = data[1]
     }
@@ -63,12 +64,14 @@ export class ReservationToDriverOrShipComponent {
         })
     }
 
-    private populateDropdownFromLocalStorage(table: string): void {
-        this.records = JSON.parse(this.sessionStorageService.getItem(table))
+    private populateDropdowns(): void {
+        this.populateDropdownFromDexieDB(this.table, 'description')
     }
 
-    private populateDropdowns(): void {
-        this.populateDropdownFromLocalStorage(this.table)
+    private populateDropdownFromDexieDB(table: string, orderBy: string): void {
+        this.dexieService.table(table).orderBy(orderBy).toArray().then((response) => {
+            this.records = response
+        })
     }
 
     //#endregion

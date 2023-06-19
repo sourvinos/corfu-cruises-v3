@@ -14,7 +14,7 @@
             <mat-form-field>
                 <input [inputTabStop]="input" [placeholder]="getLabel('password')" [type]="hidePassword ? 'password' : 'text'" data-tabindex="2" formControlName="password" id="password" matInput>
                 <button (click)="hidePassword = !hidePassword" mat-icon-button matSuffix type="button">
-                    <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+                    <mat-icon class="material-icons-outlined">{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
                 </button>
                 <mat-error *ngIf="password.hasError('required')">{{ getHint("required") }}</mat-error>
             </mat-form-field>
@@ -30,7 +30,7 @@
 
         <div id="footer">
             <button (click)="onLogin()" [disabled]="!form.valid" class="primary" id="login-button" mat-flat-button>
-                <mat-icon *ngIf="!form.valid">lock</mat-icon>
+                <mat-icon *ngIf="!form.valid" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("loginButton") | uppercase }}</span>
             </button>
         </div>

@@ -10,7 +10,7 @@
                     <div class="description">{{ formatDateToLocale(criteriaPanels.date, true, true) }}</div>
                 </div>
                 <button (click)="resetTableFilters()" class="primary" mat-flat-button>
-                    <mat-icon class="no-text">filter_alt_off</mat-icon>
+                    <mat-icon class="material-icons-outlined no-text">filter_alt_off</mat-icon>
                 </button>
             </div>
         </div>
@@ -190,7 +190,7 @@
         </div>
         <div class="button-group-right">
             <button (click)="createPdf()" [disabled]="records.reservations.length == 0" class="primary" mat-flat-button>
-                <mat-icon *ngIf="records.reservations.length==0">lock</mat-icon>
+                <mat-icon *ngIf="records.reservations.length==0" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("createPDF") | uppercase }}</span>
             </button>
         </div>
