@@ -111,6 +111,10 @@ ul {
     color: var(--color-teal) !important;
 }
 
+.green {
+    color: var(--color-green) !important;
+}
+
 .red {
     color: var(--color-red) !important;
 }

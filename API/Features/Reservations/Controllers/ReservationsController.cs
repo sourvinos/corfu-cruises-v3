@@ -20,17 +20,19 @@ namespace API.Features.Reservations {
         private readonly IMapper mapper;
         private readonly IReservationCalendar reservationCalendar;
         private readonly IReservationReadRepository reservationReadRepo;
+        private readonly IReservationSendToEmail reservationSendToEmail;
         private readonly IReservationUpdateRepository reservationUpdateRepo;
         private readonly IReservationValidation validReservation;
         private readonly IScheduleRepository scheduleRepo;
 
         #endregion
 
-        public ReservationsController(IHttpContextAccessor httpContext, IMapper mapper, IReservationCalendar reservationCalendar, IReservationReadRepository reservationReadRepo, IReservationUpdateRepository reservationUpdateRepo, IReservationValidation validReservation, IScheduleRepository scheduleRepo) {
+        public ReservationsController(IHttpContextAccessor httpContext, IMapper mapper, IReservationCalendar reservationCalendar, IReservationReadRepository reservationReadRepo, IReservationSendToEmail reservationSendToEmail, IReservationUpdateRepository reservationUpdateRepo, IReservationValidation validReservation, IScheduleRepository scheduleRepo) {
             this.httpContext = httpContext;
             this.mapper = mapper;
             this.reservationCalendar = reservationCalendar;
             this.reservationReadRepo = reservationReadRepo;
+            this.reservationSendToEmail = reservationSendToEmail;
             this.reservationUpdateRepo = reservationUpdateRepo;
             this.scheduleRepo = scheduleRepo;
             this.validReservation = validReservation;
@@ -192,6 +194,15 @@ namespace API.Features.Reservations {
         [Authorize(Roles = "user, admin")]
         public bool IsOverbooked([FromRoute] string date, int destinationId) {
             return validReservation.IsOverbooked(date, destinationId);
+        }
+
+        [HttpGet("[action]/{reservationId}")]
+        [Authorize(Roles = "user, admin")]
+        public async Task SendReservationToEmail(string reservationId) {
+            var x = await reservationReadRepo.GetByIdAsync(reservationId, true);
+            if (x != null) {
+                await reservationSendToEmail.SendReservationToEmail(x);
+            }
         }
 
         private ReservationWriteDto AttachPortIdToDto(ReservationWriteDto reservation) {

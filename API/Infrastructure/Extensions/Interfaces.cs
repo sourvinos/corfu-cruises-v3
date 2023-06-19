@@ -54,6 +54,7 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IReservationReadRepository, ReservationReadRepository>();
             services.AddTransient<IReservationUpdateRepository, ReservationUpdateRepository>();
             services.AddTransient<IAvailabilityCalendar, AvailabilityCalendar>();
+            services.AddTransient<IReservationSendToEmail, ReservationSendToEmail>();
             // Validations
             services.AddTransient<ICoachRouteValidation, CoachRouteValidation>();
             services.AddTransient<IPickupPointValidation, PickupPointValidation>();
