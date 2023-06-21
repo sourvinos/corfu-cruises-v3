@@ -1,6 +1,6 @@
-namespace API.Infrastructure.Account {
+namespace API.Infrastructure.Helpers {
 
-    public class SendEmailResponse {
+    public class EmailResponse {
 
         public bool Successful => ErrorMsg == null;
         public string ErrorMsg;

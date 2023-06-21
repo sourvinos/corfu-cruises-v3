@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using API.Features.Users;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
+using API.Infrastructure.Interfaces;
 using API.Infrastructure.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;

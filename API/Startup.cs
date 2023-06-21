@@ -1,8 +1,8 @@
 using System;
-using API.Infrastructure.Account;
 using API.Infrastructure.Auth;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Extensions;
+using API.Infrastructure.Helpers;
 using API.Infrastructure.Middleware;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;

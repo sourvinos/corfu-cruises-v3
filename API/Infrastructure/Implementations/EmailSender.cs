@@ -1,10 +1,12 @@
 using System.IO;
 using System.Threading.Tasks;
+using API.Infrastructure.Helpers;
+using API.Infrastructure.Interfaces;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
 using MimeKit;
 
-namespace API.Infrastructure.Account {
+namespace API.Infrastructure.Implementations {
 
     public class EmailSender : IEmailSender {
 

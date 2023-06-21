@@ -1,4 +1,4 @@
-﻿namespace API.Infrastructure.Account {
+﻿namespace API.Infrastructure.Helpers {
 
     public class EmailSettings {
 

@@ -1,6 +1,6 @@
 using System.IO;
 using System.Threading.Tasks;
-using API.Infrastructure.Account;
+using API.Infrastructure.Helpers;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
 using MimeKit;
