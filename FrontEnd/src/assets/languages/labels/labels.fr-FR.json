@@ -769,18 +769,6 @@
                 "description": "Réservation"
             },
             {
-                "id": "tabGeneral",
-                "description": "Aperçu"
-            },
-            {
-                "id": "tabPassengers",
-                "description": "Passagers"
-            },
-            {
-                "id": "tabMisc",
-                "description": "Détails"
-            },
-            {
                 "id": "refNo",
                 "description": "RefNo"
             },
@@ -867,14 +855,6 @@
             {
                 "id": "saveButton",
                 "description": "Enregistrer"
-            },
-            {
-                "id": "createVoucherOnServer",
-                "description": "Envoyer un bon d'achat par e-mail"
-            },
-            {
-                "id": "createVoucherOnClient",
-                "description": "Imprimer le bon d'achat"
             }
         ]
     },

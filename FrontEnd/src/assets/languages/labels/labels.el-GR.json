@@ -769,18 +769,6 @@
                 "description": "Κράτηση"
             },
             {
-                "id": "tabGeneral",
-                "description": "Συνοπτικα"
-            },
-            {
-                "id": "tabPassengers",
-                "description": "Επιβατες"
-            },
-            {
-                "id": "tabMisc",
-                "description": "Λεπτομερειες"
-            },
-            {
                 "id": "refNo",
                 "description": "RefNo"
             },
@@ -867,14 +855,6 @@
             {
                 "id": "saveButton",
                 "description": "Αποθηκευση"
-            },
-            {
-                "id": "createVoucherOnServer",
-                "description": "Αποστολή voucher σε email"
-            },
-            {
-                "id": "createVoucherOnClient",
-                "description": "Εκτύπωση voucher"
             }
         ]
     },
@@ -1131,7 +1111,7 @@
             },
             {
                 "id": "newPassengerButton",
-                "description": "Νέος επιβατης"
+                "description": "Νεος επιβατης"
             }
         ]
     },

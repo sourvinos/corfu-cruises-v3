@@ -7,10 +7,10 @@
 }
 
 #header-buttons {
-    align-items: center;
     display: flex;
-    flex-direction: row;
     gap: 0.5rem;
+    justify-content: flex-end;
+    margin: 1rem 1rem 0 0;
 }
 
 #tab-scroller {
@@ -103,4 +103,11 @@
 .mat-menu-item span {
     color: var(--color-text);
     font-size: 0.75rem !important;
+}
+
+#voucher-buttons {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    margin: 1rem 1rem 0 0;
 }

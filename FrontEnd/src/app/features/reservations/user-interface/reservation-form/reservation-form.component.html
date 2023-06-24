@@ -7,16 +7,10 @@
             <div id="header-buttons">
                 <span *ngIf="isReservationInStorage()" (click)="showCachedReservationDialog()" class="material-icons warning">warning</span>
                 <div id="tab-scroller">
-                    <button (click)="showReservationTab()" mat-flat-button id="tab-overview">{{ getLabel("tabGeneral") | uppercase }}</button>
-                    <button (click)="showPassengersTab()" mat-flat-button id="tab-passengers">{{ getLabel("tabPassengers") | uppercase }}</button>
-                    <button (click)="showMiscTab()" mat-flat-button id="tab-misc">{{ getLabel("tabMisc") | uppercase }}</button>
+                    <button (click)="showReservationTab()" class="primary" mat-flat-button><mat-icon class="material-symbols-outlined no-text">home_storage</mat-icon></button>
+                    <button (click)="showPassengersTab()" class="primary" mat-flat-button><mat-icon class="material-icons-outlined no-text">group</mat-icon></button>
+                    <button (click)="showMiscTab()" class="primary" mat-flat-button><mat-icon class="material-symbols-outlined no-text">more</mat-icon></button>
                 </div>
-                <button [matMenuTriggerFor]="menu" mat-icon-button>
-                    <mat-icon class="material-icons-outlined no-text">more_vert</mat-icon>
-                </button>
-                <mat-menu #menu="matMenu" class="primary">
-                    <ng-container *ngTemplateOutlet="contextMenu"></ng-container>
-                </mat-menu>
             </div>
         </div>
 
@@ -188,6 +182,10 @@
                     </mat-form-field>
                 </div>
             </div>
+            <div id="voucher-buttons">
+                <button (click)="printVoucher()" class="secondary" mat-flat-button><mat-icon class="material-symbols-outlined no-text">print</mat-icon></button>
+                <button (click)="emailVoucher()" class="secondary" mat-flat-button><mat-icon class="material-icons-outlined no-text">forward_to_inbox</mat-icon></button>
+            </div>
         </form>
 
     </div>
@@ -244,7 +242,3 @@
         {{ option.description }}
     </mat-option>
 </mat-autocomplete>
-
-<ng-template #contextMenu xPosition="before">
-    <button mat-menu-item class="material-icons-outlined" (click)="doVoucherTasksOnClient()"><span>{{ getLabel('createVoucherOnClient') }}</span></button>
-</ng-template>

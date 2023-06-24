@@ -24,7 +24,7 @@ namespace API.Features.Reservations {
             string MailText = str.ReadToEnd();
             str.Close();
             MailText = MailText
-                .Replace("[logo]", SetLogoAsBackground())
+                .Replace("[logo]", SetLogoTextAsBackground())
                 .Replace("[date]", DateHelpers.FormatDateStringToLocaleString(reservation.Date))
                 .Replace("[destination]", reservation.Destination.Description)
                 .Replace("[refNo]", reservation.RefNo)
@@ -54,7 +54,7 @@ namespace API.Features.Reservations {
             return "background: url(data:image/png;base64," + Convert.ToBase64String(CreateBarcode(refNo, 250, 250, 2)) + ")";
         }
 
-        private static string SetLogoAsBackground() {
+         private static string SetLogoTextAsBackground() {
             return "background: url(data:image/png;base64," + LogoService.GetBase64Logo() + ")";
         }
 

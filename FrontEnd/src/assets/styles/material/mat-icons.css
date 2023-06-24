@@ -7,7 +7,7 @@
 /* Button with icon without text */
 .mat-button-wrapper .no-text {
     font-size: 1.5rem;
-    margin-top: -5px;
+    margin-top: -0.125rem;
 }
 
 /* Field with icon */

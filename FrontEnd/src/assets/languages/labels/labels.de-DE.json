@@ -769,18 +769,6 @@
                 "description": "Reservierung"
             },
             {
-                "id": "tabGeneral",
-                "description": "Übersicht"
-            },
-            {
-                "id": "tabPassengers",
-                "description": "Passagiere"
-            },
-            {
-                "id": "tabMisc",
-                "description": "Einzelheiten"
-            },
-            {
                 "id": "refNo",
                 "description": "RefNo"
             },
@@ -867,14 +855,6 @@
             {
                 "id": "saveButton",
                 "description": "Speichern"
-            },
-            {
-                "id": "createVoucherOnServer",
-                "description": "Voucher per E-Mail versenden"
-            },
-            {
-                "id": "createVoucherOnClient",
-                "description": "Voucher drucken"
             }
         ]
     },

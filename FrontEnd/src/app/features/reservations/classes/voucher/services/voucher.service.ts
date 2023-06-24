@@ -5,6 +5,7 @@ import { Observable } from 'rxjs'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { LogoService } from '../../services/logo.service'
 import { VoucherDto } from '../dtos/voucher-dto'
+import { environment } from 'src/environments/environment'
 // Fonts
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from 'pdfmake/build/vfs_fonts'
@@ -17,13 +18,13 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs
 
 export class VoucherService extends HttpDataService {
 
-    constructor(http: HttpClient, private logoService: LogoService) {
-        super(http, '/api/voucher')
+    constructor(httpClient: HttpClient, private logoService: LogoService) {
+        super(httpClient, environment.apiUrl + '/reservations')
     }
 
     //#region public methods
 
-    public createVoucherOnClient(voucher: VoucherDto): void {
+    public printVoucher(voucher: VoucherDto): void {
         this.setFonts()
         const rows = []
         rows.push([{ text: '' }, { text: '' }])
@@ -145,12 +146,8 @@ export class VoucherService extends HttpDataService {
         this.createPdf(dd)
     }
 
-    public createVoucherOnServer(formData: any): Observable<any> {
-        return this.http.post<any>(this.url + '/createVoucher', formData)
-    }
-
-    public emailVoucher(formData: any): Observable<any> {
-        return this.http.post<any>(this.url + '/emailVoucher', formData)
+    public emailVoucher(reservationId: string): Observable<any> {
+        return this.http.get<any>(this.url + '/boardingPass/' + reservationId)
     }
 
     //#endregion

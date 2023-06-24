@@ -769,18 +769,6 @@
                 "description": "Rezervaci"
             },
             {
-                "id": "tabGeneral",
-                "description": "Přehled"
-            },
-            {
-                "id": "tabPassengers",
-                "description": "Cestující"
-            },
-            {
-                "id": "tabMisc",
-                "description": "Podrobnosti"
-            },
-            {
                 "id": "refNo",
                 "description": "RefNo"
             },
@@ -867,14 +855,6 @@
             {
                 "id": "saveButton",
                 "description": "Uložit"
-            },
-            {
-                "id": "createVoucherOnServer",
-                "description": "Odeslat voucher na e-mail"
-            },
-            {
-                "id": "createVoucherOnClient",
-                "description": "Vytisknout voucher"
             }
         ]
     },

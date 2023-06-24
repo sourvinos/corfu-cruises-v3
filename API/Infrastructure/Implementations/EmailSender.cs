@@ -22,7 +22,7 @@ namespace API.Infrastructure.Implementations {
             string MailText = str.ReadToEnd();
             str.Close();
             MailText = MailText
-                .Replace("[logo]", SetLogoAsBackground())
+                .Replace("[logo]", SetLogoTextAsBackground())
                 .Replace("[displayname]", displayname)
                 .Replace("[username]", username)
                 .Replace("[email]", email)
@@ -45,10 +45,9 @@ namespace API.Infrastructure.Implementations {
             smtp.Disconnect(true);
         }
 
-         private static string SetLogoAsBackground() {
+         private static string SetLogoTextAsBackground() {
             return "background: url(data:image/png;base64," + LogoService.GetBase64Logo() + ")";
         }
-
 
     }
 

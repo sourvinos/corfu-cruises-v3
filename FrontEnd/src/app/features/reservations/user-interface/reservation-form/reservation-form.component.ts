@@ -117,12 +117,19 @@ export class ReservationFormComponent {
         this.getPassengerDifferenceColor()
     }
 
-    public doVoucherTasksOnClient(): void {
-        this.voucherService.createVoucherOnClient(this.reservationHelperService.createVoucher(this.form.value))
+    public printVoucher(): void {
+        this.voucherService.printVoucher(this.reservationHelperService.createVoucher(this.form.value))
     }
 
-    public doVoucherTasksOnServer(): void {
-        this.dialogService.open(this.messageSnackbarService.featureNotAvailable(), 'error', ['ok'])
+    public emailVoucher(): void {
+        this.voucherService.emailVoucher(this.form.value.reservationId).subscribe({
+            next: () => {
+                this.helperService.doPostSaveFormTasks(this.messageSnackbarService.emailSent(), 'success', this.parentUrl, this.form, false, false)
+            },
+            error: (errorFromInterceptor) => {
+                this.helperService.doPostSaveFormTasks(this.messageSnackbarService.filterResponse(errorFromInterceptor), 'error', this.parentUrl, this.form, false, false)
+            }
+        })
     }
 
     public doTasksAfterPassengerFormIsClosed(passengers: any): void {
