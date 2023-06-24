@@ -90,7 +90,16 @@ namespace API.Features.Reservations {
             CreateMap<Reservation, BoardingPassReservationVM>()
                .ForMember(x => x.Date, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Date)))
                .ForMember(x => x.RefNo, x => x.MapFrom(x => x.RefNo))
+               .ForMember(x => x.Destination, x => x.MapFrom(x => new SimpleEntity {
+                   Id = x.Destination.Id,
+                   Description = x.Destination.Description
+               }))
                .ForMember(x => x.Customer, x => x.MapFrom(x => new SimpleEntity { Id = x.Customer.Id, Description = x.Customer.Description }))
+               .ForMember(x => x.PickupPoint, x => x.MapFrom(x => new BoardingPassPickupPointVM {
+                   Description = x.PickupPoint.Description,
+                   ExactPoint = x.PickupPoint.ExactPoint,
+                   Time = x.PickupPoint.Time
+               }))
                .ForMember(x => x.Email, x => x.MapFrom(x => x.Email));
         }
 

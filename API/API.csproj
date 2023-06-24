@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <UserSecretsId>8ed50324-bf19-4348-82e5-963811228a6f</UserSecretsId>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net7.0-windows</TargetFramework>
         <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
         <IsPackable>false</IsPackable>
         <BuildServerSideRenderer>false</BuildServerSideRenderer>
