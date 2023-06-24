@@ -17,12 +17,12 @@ namespace API.Infrastructure.Implementations {
         }
 
         public async Task SendForgotPasswordEmail(string username, string displayname, string email, string returnUrl, string language) {
-            string FilePath = Directory.GetCurrentDirectory() + "\\Infrastructure\\Account\\Templates\\ResetPassword.html";
+            string FilePath = Directory.GetCurrentDirectory() + "\\Infrastructure\\Account\\Templates\\ResetPassword.cshtml";
             StreamReader str = new(FilePath);
             string MailText = str.ReadToEnd();
             str.Close();
             MailText = MailText
-                .Replace("[company]", emailSettings.Company)
+                .Replace("[logo]", SetLogoAsBackground())
                 .Replace("[displayname]", displayname)
                 .Replace("[username]", username)
                 .Replace("[email]", email)
@@ -44,6 +44,11 @@ namespace API.Infrastructure.Implementations {
             await smtp.SendAsync(senderEmail);
             smtp.Disconnect(true);
         }
+
+         private static string SetLogoAsBackground() {
+            return "background: url(data:image/png;base64," + LogoService.GetBase64Logo() + ")";
+        }
+
 
     }
 
