@@ -2,21 +2,17 @@ import { Injectable } from '@angular/core'
 // Custom
 import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
-import { OkIconService } from './ok-icon.service'
+import { DexieService } from 'src/app/shared/services/dexie.service'
 import { PassengerWriteDto } from '../dtos/form/passenger-write-dto'
 import { ReservationReadDto } from '../dtos/form/reservation-read-dto'
 import { ReservationWriteDto } from '../dtos/form/reservation-write-dto'
 import { SessionStorageService } from './../../../../shared/services/session-storage.service'
-import { VoucherDto } from './../voucher/dtos/voucher-dto'
-import { VoucherPassengerDto } from '../voucher/dtos/voucher-passenger-dto'
-import { WarningIconService } from './warning-icon.service'
-import { DexieService } from 'src/app/shared/services/dexie.service'
 
 @Injectable({ providedIn: 'root' })
 
 export class ReservationHelperService {
 
-    constructor(private cryptoService: CryptoService, private dateHelperService: DateHelperService, private dexieService: DexieService, private okIconService: OkIconService, private sessionStorageService: SessionStorageService, private warningIconService: WarningIconService) { }
+    constructor(private cryptoService: CryptoService, private dateHelperService: DateHelperService, private dexieService: DexieService, private sessionStorageService: SessionStorageService) { }
 
     //#region public methods
 
@@ -34,29 +30,6 @@ export class ReservationHelperService {
         } else {
             return true
         }
-    }
-
-    public createVoucher(form: any): VoucherDto {
-        const voucher = {
-            'date': this.dateHelperService.formatISODateToLocale(form.date),
-            'refNo': form.refNo,
-            'destinationDescription': form.destination.description,
-            'customerDescription': form.customer.description,
-            'pickupPointDescription': form.pickupPoint.description,
-            'pickupPointExactPoint': form.exactPoint,
-            'pickupPointTime': form.time,
-            'adults': form.adults,
-            'kids': form.kids,
-            'free': form.free,
-            'totalPax': form.totalPax,
-            'driverDescription': form.driver.description,
-            'ticketNo': form.ticketNo,
-            'remarks': form.remarks,
-            'validPassengerIcon': this.getValidPassengerIconForVoucher(this.validatePassengerCountForVoucher(form.totalPax, form.passengers)),
-            'qr': form.ticketNo,
-            'passengers': this.mapVoucherPassengers(form.passengers)
-        }
-        return voucher
     }
 
     public flattenForm(form: any): ReservationWriteDto {
@@ -144,14 +117,6 @@ export class ReservationHelperService {
 
     //#region private methods
 
-    private getValidPassengerIconForVoucher(isValid: boolean): string {
-        if (isValid) {
-            return this.okIconService.getIcon()
-        } else {
-            return this.warningIconService.getIcon()
-        }
-    }
-
     private mapPassengers(form: any): PassengerWriteDto[] {
         const passengers = []
         form.passengers.forEach((passenger: any) => {
@@ -170,22 +135,6 @@ export class ReservationHelperService {
             passengers.push(x)
         })
         return passengers
-    }
-
-    private mapVoucherPassengers(passengers: any[]): VoucherPassengerDto[] {
-        const x = []
-        passengers.forEach((element: any) => {
-            const passenger = {
-                'lastname': element.lastname,
-                'firstname': element.firstname
-            }
-            x.push(passenger)
-        })
-        return x
-    }
-
-    private validatePassengerCountForVoucher(reservationPax: any, passengerCount: any): boolean {
-        return reservationPax == passengerCount.length ? true : false
     }
 
     //#endregion

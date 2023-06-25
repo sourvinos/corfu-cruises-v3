@@ -7,6 +7,7 @@ import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { MatDialog } from '@angular/material/dialog'
 import { map, startWith } from 'rxjs/operators'
 // Custom
+import { BoardingPassService } from '../../classes/boarding-pass/services/boarding-pass.service'
 import { CachedReservationDialogComponent } from '../cached-reservation-dialog/cached-reservation-dialog.component'
 import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { CustomerActiveVM } from '../../../customers/classes/view-models/customer-active-vm'
@@ -32,7 +33,6 @@ import { ReservationReadDto } from '../../classes/dtos/form/reservation-read-dto
 import { ReservationWriteDto } from '../../classes/dtos/form/reservation-write-dto'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { ValidationService } from './../../../../shared/services/validation.service'
-import { VoucherService } from '../../classes/voucher/services/voucher.service'
 
 @Component({
     selector: 'reservation-form',
@@ -70,7 +70,7 @@ export class ReservationFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialog: MatDialog, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private reservationHelperService: ReservationHelperService, private reservationService: ReservationHttpService, private router: Router, private sessionStorageService: SessionStorageService, private voucherService: VoucherService) { }
+    constructor(private activatedRoute: ActivatedRoute, private boardingPassService: BoardingPassService, private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialog: MatDialog, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private reservationHelperService: ReservationHelperService, private reservationService: ReservationHttpService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -117,12 +117,12 @@ export class ReservationFormComponent {
         this.getPassengerDifferenceColor()
     }
 
-    public printVoucher(): void {
-        this.voucherService.printVoucher(this.reservationHelperService.createVoucher(this.form.value))
+    public printBoardingPass(): void {
+        this.boardingPassService.printBoardingPass(this.boardingPassService.createBoardingPass(this.form.value))
     }
 
-    public emailVoucher(): void {
-        this.voucherService.emailVoucher(this.form.value.reservationId).subscribe({
+    public emailBoardingPass(): void {
+        this.boardingPassService.emailVoucher(this.form.value.reservationId).subscribe({
             next: () => {
                 this.helperService.doPostSaveFormTasks(this.messageSnackbarService.emailSent(), 'success', this.parentUrl, this.form, false, false)
             },

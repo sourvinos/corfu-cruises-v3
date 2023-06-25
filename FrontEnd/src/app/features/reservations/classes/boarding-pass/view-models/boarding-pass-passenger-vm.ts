@@ -1,4 +1,4 @@
-export interface VoucherPassengerDto {
+export interface BoardingPassPassengerVM {
 
     firstname: string
     lastname: string

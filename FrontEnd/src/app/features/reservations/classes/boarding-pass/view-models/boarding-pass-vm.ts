@@ -1,6 +1,6 @@
-import { VoucherPassengerDto } from './voucher-passenger-dto'
+import { BoardingPassPassengerVM } from './boarding-pass-passenger-vm'
 
-export interface VoucherDto {
+export interface BoardingPassVM {
 
     date: string
     refNo: string
@@ -10,14 +10,12 @@ export interface VoucherDto {
     pickupPointDescription: string
     pickupPointExactPoint: string
     pickupPointTime: string
-    driverDescription: string
     remarks: string
     qr: string
-    passengers: VoucherPassengerDto[]
+    passengers: BoardingPassPassengerVM[]
     adults: string
     kids: string
     free: string
     totalPax: string
-    validPassengerIcon: string
 
 }
