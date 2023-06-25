@@ -22,7 +22,7 @@ namespace API.Infrastructure.Implementations {
             string MailText = str.ReadToEnd();
             str.Close();
             MailText = MailText
-                .Replace("[logo]", SetLogoTextAsBackground())
+                .Replace("[logo-text]", SetLogoTextAsBackground())
                 .Replace("[displayname]", displayname)
                 .Replace("[username]", username)
                 .Replace("[email]", email)
@@ -46,7 +46,7 @@ namespace API.Infrastructure.Implementations {
         }
 
          private static string SetLogoTextAsBackground() {
-            return "background: url(data:image/png;base64," + LogoService.GetBase64Logo() + ")";
+            return "background: url(data:image/png;base64," + LogoService.GetBase64LogoText() + ")";
         }
 
     }

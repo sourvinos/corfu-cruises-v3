@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using API.Infrastructure.Classes;
 
 namespace API.Features.Reservations {
@@ -6,21 +7,15 @@ namespace API.Features.Reservations {
 
         public string Date { get; set; }
         public string RefNo { get; set; }
+        public string TicketNo { get; set; }
         public SimpleEntity Customer { get; set; }
         public SimpleEntity Destination { get; set; }
         public BoardingPassPickupPointVM PickupPoint { get; set; }
-        public string ExactPoint { get; set; }
-        public string Time { get; set; }
-        // public int Adults { get; set; }
-        // public int Kids { get; set; }
-        // public int Free { get; set; }
-        // public int TotalPax { get; set; }
-        // public string TicketNo { get; set; }
+        public int TotalPax { get; set; }
         public string Email { get; set; }
-        // public string Phones { get; set; }
-        // public string Remarks { get; set; }
+        public string Remarks { get; set; }
 
-        // public IEnumerable<BoardingPassPassengerVM> Passengers { get; set; }
+        public List<BoardingPassPassengerVM> Passengers { get; set; }
 
     }
 

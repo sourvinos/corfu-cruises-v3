@@ -19,12 +19,17 @@ namespace API.Features.Reservations {
         }
 
         public async Task SendReservationToEmail(BoardingPassReservationVM reservation) {
-            string FilePath = Directory.GetCurrentDirectory() + "\\Features\\Reservations\\Templates\\BoardingPasss.cshtml";
+            string FilePath = Directory.GetCurrentDirectory() + "\\Features\\Reservations\\Templates\\BoardingPass.cshtml";
             StreamReader str = new(FilePath);
             string MailText = str.ReadToEnd();
             str.Close();
             MailText = MailText
-                .Replace("[logo]", SetLogoTextAsBackground())
+                .Replace("[logo-image]", SetLogoImageAsBackground())
+                .Replace("[logo-text]", SetLogoTextAsBackground())
+                .Replace("[customer]", reservation.Customer.Description)
+                .Replace("[refNo]", reservation.RefNo)
+                .Replace("[ticketNo]", reservation.TicketNo)
+                .Replace("[totalPax]", reservation.TotalPax.ToString())
                 .Replace("[date]", DateHelpers.FormatDateStringToLocaleString(reservation.Date))
                 .Replace("[destination]", reservation.Destination.Description)
                 .Replace("[refNo]", reservation.RefNo)
@@ -51,11 +56,15 @@ namespace API.Features.Reservations {
         }
 
         private static string SetBarcodeAsBackground(string refNo) {
-            return "background: url(data:image/png;base64," + Convert.ToBase64String(CreateBarcode(refNo, 250, 250, 2)) + ")";
+            return "background: url(data:image/png;base64," + Convert.ToBase64String(CreateBarcode(refNo, 200, 200, 2)) + ")";
         }
 
-         private static string SetLogoTextAsBackground() {
-            return "background: url(data:image/png;base64," + LogoService.GetBase64Logo() + ")";
+        private static string SetLogoImageAsBackground() {
+            return "background: url(data:image/png;base64," + LogoService.GetBase64LogoImage() + ")";
+        }
+
+        private static string SetLogoTextAsBackground() {
+            return "background: url(data:image/png;base64," + LogoService.GetBase64LogoText() + ")";
         }
 
         private static byte[] CreateBarcode(string text, int width, int height, int margin) {

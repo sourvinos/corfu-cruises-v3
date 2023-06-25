@@ -94,13 +94,21 @@ namespace API.Features.Reservations {
                    Id = x.Destination.Id,
                    Description = x.Destination.Description
                }))
-               .ForMember(x => x.Customer, x => x.MapFrom(x => new SimpleEntity { Id = x.Customer.Id, Description = x.Customer.Description }))
+               .ForMember(x => x.Customer, x => x.MapFrom(x => new SimpleEntity {
+                   Id = x.Customer.Id,
+                   Description = x.Customer.Description
+               }))
                .ForMember(x => x.PickupPoint, x => x.MapFrom(x => new BoardingPassPickupPointVM {
                    Description = x.PickupPoint.Description,
                    ExactPoint = x.PickupPoint.ExactPoint,
                    Time = x.PickupPoint.Time
                }))
-               .ForMember(x => x.Email, x => x.MapFrom(x => x.Email));
+               .ForMember(x => x.Email, x => x.MapFrom(x => x.Email))
+               .ForMember(x => x.Remarks, x => x.MapFrom(x => x.Remarks))
+               .ForMember(x => x.Passengers, x => x.MapFrom(x => x.Passengers.Select(passenger => new BoardingPassPassengerVM {
+                   Lastname = passenger.Lastname,
+                   Firstname = passenger.Firstname
+               })));
         }
 
     }

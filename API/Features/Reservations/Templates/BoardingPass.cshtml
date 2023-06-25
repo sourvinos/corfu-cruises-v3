@@ -22,17 +22,23 @@
         }
 
         #header {
-            align-items: center;
+            align-items: flex-start;
             background-color: #457b9d;
             border-radius: 1rem 1rem 0 0;
             color: #ffffff;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 1rem 0 1rem 0;
+            padding: 1rem 0 1rem 2rem;
         }
 
-        #logo {
+        #logo-image {
+            background-repeat: no-repeat !important;
+            height: 23px;
+            width: 116px;
+        }
+
+        #logo-text {
             background-repeat: no-repeat !important;
             height: 23px;
             width: 116px;
@@ -84,27 +90,36 @@
             margin: 0 auto;
         }
 
-        #details {
+        #reservation-details {
             display: flex;
             justify-content: center;
             margin: 0.5rem auto 0 auto;
             width: 30rem;
         }
 
-        #details table {
+        #reservation-details table {
             width: 80%;
         }
 
-        .label, .field {
-            text-align: left;
+        #pickup-details {
+            display: flex;
+            justify-content: center;
+            margin: 0.5rem auto 0 auto;
+            width: 30rem;
+        }
+
+        #pickup-details table {
+            width: 80%;
         }
 
         .label {
             padding-left: 1rem;
+            text-align: left;
         }
 
         .field {
             padding-left: 0;
+            text-align: left;
         }
 
         #footer {
@@ -125,12 +140,12 @@
 
         #barcode {
             display: flex;
-            height: 250px;
+            height: 200px;
             margin: 1rem auto 0 auto;
-            width: 250px;
+            width: 200px;
         }
 
-        #refNo {
+        #wish {
             color: #000000;
             margin: 1rem auto 1rem auto;
         }
@@ -148,15 +163,42 @@
 <body>
     <div id="wrapper">
         <div id="header">
-            <div id="logo" style="[logo]"></div>
+            <div id="logo-text" style="[logo-text]"></div>
         </div>
         <div id="content">
             <div id="description">
                 <span>Your reservation for</span>
-                <span id="destination">✨ [destination]</span>
-                <span>is confirmed and ready!</span>
+                <span id="destination">🛳️ [destination]</span>
+                <span>is ready!</span>
             </div>
-            <div id="details">
+            <div id="reservation-details">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="col-span" colspan="2">Reservation details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="label">Customer</td>
+                            <td class="field">[customer]</td>
+                        </tr>
+                        <tr>
+                            <td class="label">RefNo</td>
+                            <td class="field">[refNo]</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Ticket No</td>
+                            <td class="field">[ticketNo]</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Total pax</td>
+                            <td class="field">[totalPax]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="pickup-details">
                 <table>
                     <thead>
                         <tr>
@@ -184,8 +226,8 @@
                 </table>
             </div>
             <img id="barcode" style="[image]">
-            <div id="refNo">
-                <span>RefNo: [refNo]</span>
+            <div id="wish">
+                <span>🥂 We wish you a pleasant trip! 🥂</span>
             </div>
         </div>
         <div id="footer">
