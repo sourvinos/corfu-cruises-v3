@@ -24,7 +24,7 @@ namespace API.Infrastructure.Extensions {
         public static void AddModelValidation(IServiceCollection services) {
             // Account
             services.AddTransient<IValidator<ChangePasswordVM>, ChangePasswordValidator>();
-            services.AddTransient<IValidator<ForgotPasswordVM>, ForgotPasswordValidator>();
+            services.AddTransient<IValidator<ForgotPasswordRequestVM>, ForgotPasswordValidator>();
             services.AddTransient<IValidator<ResetPasswordVM>, ResetPasswordValidator>();
             // Tables
             services.AddTransient<IValidator<CoachRouteWriteDto>, CoachRouteValidator>();
