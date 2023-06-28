@@ -1,3 +1,5 @@
+@model API.Features.Reservations.BoardingPassReservationVM
+
 <!DOCTYPE html>
 <html>
 
@@ -112,9 +114,22 @@
             width: 80%;
         }
 
+        #passengers {
+            display: flex;
+            justify-content: center;
+            margin: 0.5rem auto 0 auto;
+            width: 30rem;
+        }
+
+        #passengers table {
+            width: 80%;
+        }
+
         .label {
+            display: flex;
             padding-left: 1rem;
             text-align: left;
+            width: 6rem;
         }
 
         .field {
@@ -163,12 +178,12 @@
 <body>
     <div id="wrapper">
         <div id="header">
-            <div id="logo-text" style="[logo-text]"></div>
+            <div id="logo" style="@Model.LogoTextBase64"></div>
         </div>
         <div id="content">
             <div id="description">
                 <span>Your reservation for</span>
-                <span id="destination">🛳️ [destination]</span>
+                <span id="destination">🛳️ @Model.Destination.Description</span>
                 <span>is ready!</span>
             </div>
             <div id="reservation-details">
@@ -181,19 +196,27 @@
                     <tbody>
                         <tr>
                             <td class="label">Customer</td>
-                            <td class="field">[customer]</td>
+                            <td class="field">@Model.Customer.Description</td>
                         </tr>
                         <tr>
                             <td class="label">RefNo</td>
-                            <td class="field">[refNo]</td>
+                            <td class="field">@Model.RefNo</td>
                         </tr>
                         <tr>
                             <td class="label">Ticket No</td>
-                            <td class="field">[ticketNo]</td>
+                            <td class="field">@Model.TicketNo</td>
                         </tr>
                         <tr>
                             <td class="label">Total pax</td>
-                            <td class="field">[totalPax]</td>
+                            <td class="field">@Model.TotalPax</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Phones</td>
+                            <td class="field">@Model.Phones</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Remarks</td>
+                            <td class="field">@Model.Remarks</td>
                         </tr>
                     </tbody>
                 </table>
@@ -208,30 +231,50 @@
                     <tbody>
                         <tr>
                             <td class="label">Date</td>
-                            <td class="field">[date]</td>
+                            <td class="field">@Model.Date</td>
                         </tr>
                         <tr>
                             <td class="label">Pickup point</td>
-                            <td class="field">[pickupPoint]</td>
+                            <td class="field">@Model.PickupPoint.Description</td>
                         </tr>
                         <tr>
                             <td class="label"></td>
-                            <td class="field">[exactPoint]</td>
+                            <td class="field">@Model.PickupPoint.ExactPoint</td>
                         </tr>
                         <tr>
                             <td class="label">Time</td>
-                            <td class="field">[time]</td>
+                            <td class="field">@Model.PickupPoint.Time</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <img id="barcode" style="[image]">
+            <div id="passengers">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="col-span" colspan="2">Passengers</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var passenger in @Model.Passengers)
+
+                        {
+                            <tr>
+                                <td class="label">@passenger.Lastname</td>
+                                <td class="field">@passenger.Firstname</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <img id="barcode" style="@Model.Barcode">
             <div id="wish">
                 <span>🥂 We wish you a pleasant trip! 🥂</span>
             </div>
         </div>
         <div id="footer">
-            <span>Problems or questions? Please call<br />[phones]</span>
+            <span>Problems or questions? Please call</span>
+            <span>@Model.Phones</span>
             <span>Don't reply to this email</span>
         </div>
     </div>

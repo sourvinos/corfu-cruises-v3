@@ -104,6 +104,7 @@ namespace API.Features.Reservations {
                    Time = x.PickupPoint.Time
                }))
                .ForMember(x => x.Email, x => x.MapFrom(x => x.Email))
+               .ForMember(x => x.Phones, x => x.MapFrom(x => x.Phones))
                .ForMember(x => x.Remarks, x => x.MapFrom(x => x.Remarks))
                .ForMember(x => x.Passengers, x => x.MapFrom(x => x.Passengers.Select(passenger => new BoardingPassPassengerVM {
                    Lastname = passenger.Lastname,

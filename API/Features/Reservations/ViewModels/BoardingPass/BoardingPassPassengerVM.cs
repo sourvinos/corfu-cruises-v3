@@ -1,3 +1,5 @@
+using API.Infrastructure.Classes;
+
 namespace API.Features.Reservations {
 
     public class BoardingPassPassengerVM {
