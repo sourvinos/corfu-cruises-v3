@@ -76,17 +76,15 @@ namespace Reservations {
                     DestinationId = 1,
                     DriverId = null,
                     PickupPointId = 266,
-                    ShipId = 6,
+                    ShipId = 7,
                     Date = "2022-03-01",
-                    RefNo = "PRT507",
+                    RefNo = "PA6",
                     TicketNo = "Eagle Travel",
-                    Adults = 5,
+                    Adults = 3,
                     Passengers = new List<TestPassenger>() {
                         new TestPassenger { Lastname = "sacomono", Firstname = "MARIECLEO", Birthdate = "1981-08-14", NationalityId = 89, GenderId = 2 },
                         new TestPassenger { Lastname = "KAGREN", Firstname = "BIRCH", Birthdate = "1957-12-13", NationalityId = 89, GenderId = 2 },
-                        new TestPassenger { Lastname = "ANDREW", Firstname = "SUZAN", Birthdate = "1975-08-21", NationalityId = 89, GenderId = 2 },
-                        new TestPassenger { Lastname = "ADEONOJOBI", Firstname = "PETER", Birthdate = "1965-11-11", NationalityId = 89, GenderId = 1 },
-                        new TestPassenger { Lastname = "DERBY ", Firstname = "ELAINE", Birthdate = "1964-12-12", NationalityId = 89, GenderId = 2 }
+                        new TestPassenger { Lastname = "ANDREW", Firstname = "SUZAN", Birthdate = "1975-08-21", NationalityId = 89, GenderId = 2 }
                     }
                 }
             };
@@ -101,6 +99,8 @@ namespace Reservations {
                     CustomerId = 2,
                     DestinationId = 1,
                     PickupPointId = 266,
+                    ShipId = 7,
+                    RefNo = "PA175",
                     TicketNo = "23"
                 }
             };
@@ -114,6 +114,8 @@ namespace Reservations {
                     CustomerId = 2,
                     DestinationId = 1,
                     PickupPointId = 248,
+                    ShipId = 7,
+                    RefNo = "PA175",
                     Date = "2022-05-01",
                     TicketNo = "21",
                     Adults = 2,
@@ -135,7 +137,7 @@ namespace Reservations {
                     DestinationId = 1,
                     DriverId = 18,
                     PickupPointId = 248,
-                    ShipId = 6,
+                    ShipId = 7,
                     Date = "2022-05-01",
                     RefNo = "PA175",
                     TicketNo = "21",
@@ -158,7 +160,7 @@ namespace Reservations {
                     DestinationId = 99,
                     DriverId = 18,
                     PickupPointId = 248,
-                    ShipId = 6,
+                    ShipId = 7,
                     Date = "2022-05-01",
                     RefNo = "PA175",
                     TicketNo = "21",
@@ -176,8 +178,9 @@ namespace Reservations {
                     DestinationId = 1,
                     DriverId = 99,
                     PickupPointId = 248,
-                    ShipId = 6,
+                    ShipId = 7,
                     Date = "2022-05-01",
+                    RefNo = "PA175",
                     TicketNo = "21",
                     Adults = 2
                 }
@@ -193,8 +196,9 @@ namespace Reservations {
                     DestinationId = 1,
                     DriverId = 18,
                     PickupPointId = 248,
-                    ShipId = 6,
+                    ShipId = 7,
                     Date = "2022-05-01",
+                    RefNo = "PA175",
                     TicketNo = "21",
                     Adults = 2,
                     Free = 1,
@@ -216,8 +220,9 @@ namespace Reservations {
                     DestinationId = 1,
                     DriverId = 18,
                     PickupPointId = 248,
-                    ShipId = 6,
+                    ShipId = 7,
                     Date = "2022-05-01",
+                    RefNo = "PA175",
                     TicketNo = "21",
                     Adults = 2,
                     Free = 1,
@@ -239,7 +244,7 @@ namespace Reservations {
                     DestinationId = 1,
                     DriverId = 18,
                     PickupPointId = 999,
-                    ShipId = 6,
+                    ShipId = 7,
                     Date = "2022-05-01",
                     TicketNo = "21",
                     RefNo = "PA175",
@@ -260,6 +265,7 @@ namespace Reservations {
                     PickupPointId = 248,
                     ShipId = 99,
                     Date = "2022-05-01",
+                    RefNo = "PA175",
                     TicketNo = "21",
                     Adults = 2,
                     Free = 1

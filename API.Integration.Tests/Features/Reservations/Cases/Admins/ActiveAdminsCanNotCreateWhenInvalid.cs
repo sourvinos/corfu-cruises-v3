@@ -13,7 +13,6 @@ namespace Reservations {
             yield return Nothing_For_This_Day_And_Destination();
             yield return Nothing_For_This_Day_And_Destination_And_Port();
             yield return Duplicate_Records_Are_Not_Allowed();
-            yield return RefNo_Must_Not_Exist();
             yield return Passenger_Count_Is_Not_Correct();
             yield return Customer_Must_Exist();
             yield return Customer_Must_Be_Active();
@@ -94,23 +93,8 @@ namespace Reservations {
                     CustomerId = 2,
                     DestinationId = 1,
                     PickupPointId = 129,
-                    TicketNo = "OUH74",
-                    Adults = 2
-                }
-            };
-        }
-
-        private static object[] RefNo_Must_Not_Exist() {
-            return new object[] {
-                new TestNewReservation {
-                    StatusCode = 414,
-                    CustomerId = 1,
-                    DestinationId = 1,
-                    PickupPointId = 642,
-                    Date = "2022-09-15",
-                    Now = new DateTime(2022, 9, 16, 12, 00, 00),
-                    TicketNo = "xxxx",
                     RefNo = "PA74512",
+                    TicketNo = "OUH74",
                     Adults = 2
                 }
             };
@@ -125,6 +109,7 @@ namespace Reservations {
                     CustomerId = 1,
                     DestinationId = 1,
                     PickupPointId = 642,
+                    RefNo = "PA74512",
                     TicketNo = "xxxx",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
@@ -145,6 +130,7 @@ namespace Reservations {
                     CustomerId = 999,
                     DestinationId = 1,
                     PickupPointId = 285,
+                    RefNo = "PA74512",
                     TicketNo = "xxxxxx"
                 }
             };
@@ -159,6 +145,7 @@ namespace Reservations {
                     CustomerId = 195,
                     DestinationId = 1,
                     PickupPointId = 642,
+                    RefNo = "PA74512",                    
                     TicketNo = "xxxxxx"
                 }
             };
@@ -173,6 +160,7 @@ namespace Reservations {
                     CustomerId = 1,
                     DestinationId = 1,
                     PickupPointId = 12,
+                    RefNo = "PA74512",
                     TicketNo = "xxxx",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
@@ -191,6 +179,7 @@ namespace Reservations {
                     CustomerId = 1,
                     DestinationId = 1,
                     PickupPointId = 12,
+                    RefNo = "PA74512",
                     TicketNo = "xxxx",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
@@ -209,6 +198,7 @@ namespace Reservations {
                     CustomerId = 1,
                     DestinationId = 1,
                     PickupPointId = 12,
+                    RefNo = "PA74512",
                     TicketNo = "xxxx",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
@@ -227,6 +217,7 @@ namespace Reservations {
                     CustomerId = 1,
                     DestinationId = 1,
                     PickupPointId = 12,
+                    RefNo = "PA74512",
                     TicketNo = "xxxx",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
@@ -246,6 +237,7 @@ namespace Reservations {
                     DestinationId = 1,
                     PickupPointId = 23,
                     Adults = 2,
+                    RefNo = "PA74512",
                     TicketNo = "xxxxx"
                 }
             };
@@ -261,6 +253,7 @@ namespace Reservations {
                     DestinationId = 1,
                     PickupPointId = 999,
                     Adults = 2,
+                    RefNo = "PA74512",
                     TicketNo = "xxxxx"
                 }
             };

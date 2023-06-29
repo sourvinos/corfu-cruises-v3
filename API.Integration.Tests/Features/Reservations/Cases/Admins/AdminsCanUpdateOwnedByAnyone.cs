@@ -50,6 +50,7 @@ namespace Reservations {
                     CustomerId = 2,
                     DestinationId = 1,
                     PickupPointId = 129,
+                    RefNo = "PA623",
                     TicketNo = "1258"
                 }
             };
