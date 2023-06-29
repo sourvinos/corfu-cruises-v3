@@ -992,6 +992,10 @@
                 "description": "Όνομα"
             },
             {
+                "id": "abbreviation",
+                "description": "Συντ."
+            },
+            {
                 "id": "shipOwner",
                 "description": "Πλοιοκτήτης"
             },

@@ -89,9 +89,10 @@ namespace API.Features.Ledger {
                             Description = x.Port.Description,
                             Abbreviation = x.Port.Abbreviation
                         },
-                        Ship = new SimpleEntity {
+                        Ship = new LedgerSimpleEntityVM {
                             Id = x.Ship != null ? x.Ship.Id : 0,
-                            Description = x.Ship != null ? x.Ship.Description : "(EMPTY)"
+                            Description = x.Ship != null ? x.Ship.Description : "(EMPTY)",
+                            Abbreviation = x.Ship != null ? x.Ship.Abbreviation : "(EMPTY)"
                         },
                         TicketNo = x.TicketNo,
                         Adults = x.Adults,

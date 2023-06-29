@@ -4,7 +4,7 @@
             <tr>
                 <th class="width-5" pSortableColumn="date">{{ getLabel('headerDate') }}</th>
                 <th class="width-6" pSortableColumn="destination.abbreviation">{{ getLabel('headerDestination') }}</th>
-                <th class="width-6" pSortableColumn="ship.description">{{ getLabel('headerShip') }}</th>
+                <th class="width-6" pSortableColumn="ship.abbreviation">{{ getLabel('headerShip') }}</th>
                 <th class="width-6" pSortableColumn="port.abbreviation">{{ getLabel('headerPort') }}</th>
                 <th class="width-5" pSortableColumn="refNo">{{ getLabel('headerRefNo') }}</th>
                 <th class="width-5" pSortableColumn="ticketNo">{{ getLabel('headerTicket') }}</th>
@@ -38,7 +38,7 @@
             <tr [pSelectableRow]="reservation" style="height:32px">
                 <td class="center width-5">{{ formatDateToLocale(reservation.date) }}</td>
                 <td class="center width-6">{{ reservation.destination.abbreviation }}</td>
-                <td class="width-6">{{ reservation.ship.description == "(EMPTY)" ? getEmoji('null'): reservation.ship.description }}</td>
+                <td class="center width-6">{{ reservation.ship.abbreviation == "(EMPTY)" ? getEmoji('null'): reservation.ship.abbreviation }}</td>
                 <td class="center width-6">{{ reservation.port.abbreviation }}</td>
                 <td class="center width-5">{{ reservation.refNo }}</td>
                 <td class="width-5">{{ reservation.ticketNo }}</td>

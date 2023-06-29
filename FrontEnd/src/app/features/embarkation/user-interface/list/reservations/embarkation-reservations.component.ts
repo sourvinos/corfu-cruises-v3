@@ -6,7 +6,6 @@ import { Subscription } from 'rxjs'
 import { Table } from 'primeng/table'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
-import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { EmbarkationCriteriaPanelVM } from '../../../classes/view-models/criteria/embarkation-criteria-panel-vm'
 import { EmbarkationDestinationVM } from '../../../classes/view-models/list/embarkation-destination-vm'
 import { EmbarkationGroupVM } from '../../../classes/view-models/list/embarkation-group-vm'
@@ -14,6 +13,7 @@ import { EmbarkationPDFService } from '../../../classes/services/embarkation-pdf
 import { EmbarkationPassengerListComponent } from '../passengers/embarkation-passengers.component'
 import { EmbarkationPortVM } from '../../../classes/view-models/list/embarkation-port-vm'
 import { EmbarkationReservationVM } from '../../../classes/view-models/list/embarkation-reservation-vm'
+import { EmbarkationShipVM } from '../../../classes/view-models/list/embarkation-ship-vm'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
@@ -21,6 +21,7 @@ import { ListResolved } from 'src/app/shared/classes/list-resolved'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { MessageDialogService } from '../../../../../shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { environment } from 'src/environments/environment'
@@ -54,7 +55,7 @@ export class EmbarkationReservationsComponent {
     public distinctDrivers: SimpleEntity[] = []
     public distinctPickupPoints: SimpleEntity[] = []
     public distinctPorts: EmbarkationPortVM[] = []
-    public distinctShips: SimpleEntity[] = []
+    public distinctShips: EmbarkationShipVM[] = []
     public distinctEmbarkationStatuses: string[]
 
     //#endregion

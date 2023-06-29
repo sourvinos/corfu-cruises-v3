@@ -106,7 +106,7 @@ export class EmbarkationPDFService {
                 { text: reservation.pickupPoint.description, fontSize: 5 },
                 { text: reservation.driver.description, fontSize: 5 },
                 { text: reservation.port.abbreviation, fontSize: 5 },
-                { text: reservation.ship.description, fontSize: 5 },
+                { text: reservation.ship.abbreviation, fontSize: 5 },
                 { text: reservation.remarks, fontSize: 5 },
                 { text: reservation.totalPax, alignment: 'right', fontSize: 5 }
             ])

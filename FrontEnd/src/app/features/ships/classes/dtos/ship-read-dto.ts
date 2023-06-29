@@ -5,6 +5,7 @@ export interface ShipReadDto {
     id: number
     shipOwner: ShipOwnerActiveVM
     description: string
+    abbreviation: string
     imo: string
     flag: string
     registryNo: string

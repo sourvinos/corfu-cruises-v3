@@ -7,6 +7,7 @@ namespace API.Features.Ships {
         public ShipValidator() {
             RuleFor(x => x.ShipOwnerId).NotEmpty();
             RuleFor(x => x.Description).NotEmpty().MaximumLength(128);
+            RuleFor(x => x.Abbreviation).NotEmpty().MaximumLength(5);
             RuleFor(x => x.IMO).MaximumLength(128);
             RuleFor(x => x.Flag).MaximumLength(128);
             RuleFor(x => x.RegistryNo).MaximumLength(128);

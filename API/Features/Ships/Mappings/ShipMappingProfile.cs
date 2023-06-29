@@ -15,6 +15,7 @@ namespace API.Features.Ships {
                 .ForMember(x => x.LastUpdate, x => x.MapFrom(x => x.LastUpdate));
             CreateMap<ShipWriteDto, Ship>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
+                .ForMember(x => x.Abbreviation, x => x.MapFrom(x => x.Abbreviation.Trim()))
                 .ForMember(x => x.IMO, x => x.MapFrom(x => x.IMO.Trim()))
                 .ForMember(x => x.Flag, x => x.MapFrom(x => x.Flag.Trim()))
                 .ForMember(x => x.RegistryNo, x => x.MapFrom(x => x.RegistryNo.Trim()))

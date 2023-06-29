@@ -992,6 +992,10 @@
                 "description": "Název"
             },
             {
+                "id": "abbreviation",
+                "description": "Zkr."
+            },
+            {
                 "id": "shipOwner",
                 "description": "Majitel lodi"
             },

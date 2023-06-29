@@ -16,8 +16,9 @@ namespace Ships {
             return new object[] {
                 new TestShip {
                     Id = 6,
-                    ShipOwnerId = 4,
-                    Description = Helpers.CreateRandomString(5),
+                    ShipOwnerId = 5,
+                    Description = Helpers.CreateRandomString(15),
+                    Abbreviation = Helpers.CreateRandomString(5)
                 }
             };
         }

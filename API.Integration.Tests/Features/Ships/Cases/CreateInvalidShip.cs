@@ -18,7 +18,8 @@ namespace Ships {
                 new TestShip {
                     StatusCode = 449,
                     ShipOwnerId = 1,
-                    Description = Helpers.CreateRandomString(5),
+                    Description = Helpers.CreateRandomString(15),
+                    Abbreviation = Helpers.CreateRandomString(5)
                 }
             };
         }
@@ -28,7 +29,8 @@ namespace Ships {
                 new TestShip {
                     StatusCode = 449,
                     ShipOwnerId = 7,
-                    Description = Helpers.CreateRandomString(5),
+                    Description = Helpers.CreateRandomString(15),
+                    Abbreviation = Helpers.CreateRandomString(5)
                 }
             };
         }

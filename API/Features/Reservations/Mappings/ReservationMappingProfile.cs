@@ -18,7 +18,7 @@ namespace API.Features.Reservations {
                 .ForMember(x => x.PickupPoint, x => x.MapFrom(x => new ReservationListPickupPointVM { Id = x.PickupPoint.Id, Description = x.PickupPoint.Description, Time = x.PickupPoint.Time }))
                 .ForMember(x => x.Driver, x => x.MapFrom(x => new ReservationListDriverVM { Id = x.Driver == null ? 0 : x.Driver.Id, Description = x.Driver == null ? "(EMPTY)" : x.Driver.Description, Phones = x.Driver == null ? "(EMPTY)" : x.Driver.Phones }))
                 .ForMember(x => x.Port, x => x.MapFrom(x => new ReservationListPortVM { Id = x.Port.Id, Description = x.Port.Description, Abbreviation = x.Port.Abbreviation }))
-                .ForMember(x => x.Ship, x => x.MapFrom(x => new SimpleEntity { Id = x.Ship == null ? 0 : x.Ship.Id, Description = x.Ship == null ? "(EMPTY)" : x.Ship.Description }))
+                .ForMember(x => x.Ship, x => x.MapFrom(x => new ReservationListShipVM { Id = x.Ship == null ? 0 : x.Ship.Id, Description = x.Ship == null ? "(EMPTY)" : x.Ship.Description, Abbreviation = x.Ship == null ? "(EMPTY)" : x.Ship.Abbreviation }))
                 .ForMember(x => x.PassengerCount, x => x.MapFrom(x => x.Passengers.Count))
                 .ForMember(x => x.PassengerDifference, x => x.MapFrom(x => x.TotalPax - x.Passengers.Count));
             // DriverList

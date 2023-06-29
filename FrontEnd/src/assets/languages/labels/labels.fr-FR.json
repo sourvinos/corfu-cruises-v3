@@ -992,6 +992,10 @@
                 "description": "Nom"
             },
             {
+                "id": "abbreviation",
+                "description": "Abr."
+            },
+            {
                 "id": "shipOwner",
                 "description": "Propriétaire"
             },

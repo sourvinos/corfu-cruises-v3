@@ -25,6 +25,15 @@ namespace API.Model.Tests.Features.Ships {
         }
 
         [Theory]
+        [ClassData(typeof(ValidateStringNotEmpty))]
+        [ClassData(typeof(ValidateStringNotLongerThanMaxLength))]
+        public void Invalid_Abbreviation(string abbreviation) {
+            new ShipValidator()
+                .TestValidate(new ShipWriteDto { Abbreviation = abbreviation })
+                .ShouldHaveValidationErrorFor(x => x.Abbreviation);
+        }
+
+        [Theory]
         [ClassData(typeof(ValidateStringNotLongerThanMaxLength))]
         public void Invalid_IMO(string imo) {
             new ShipValidator()

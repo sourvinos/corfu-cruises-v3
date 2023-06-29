@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { LogoService } from 'src/app/features/reservations/classes/services/logo.service'
+import { ManifestPassengerVM } from '../view-models/list/manifest-passenger-vm'
 import { ManifestVM } from '../view-models/list/manifest-vm'
 // Fonts
 import pdfFonts from 'pdfmake/build/vfs_fonts'
 import pdfMake from 'pdfmake/build/pdfmake'
 import { strAkaAcidCanterBold } from '../../../../../assets/fonts/Aka-Acid-CanterBold.Base64.encoded'
 import { strPFHandbookPro } from '../../../../../assets/fonts/PF-Handbook-Pro.Base64.encoded'
-import { ManifestPassengerVM } from '../view-models/list/manifest-passenger-vm'
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs
 

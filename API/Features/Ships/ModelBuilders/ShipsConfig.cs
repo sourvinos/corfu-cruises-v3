@@ -13,6 +13,7 @@ namespace API.Features.Ships {
             entity.Property(x => x.UserId).HasMaxLength(36).IsRequired(true);
             // Fields
             entity.Property(x => x.Description).HasMaxLength(128).IsRequired(true);
+            entity.Property(x => x.Abbreviation).HasMaxLength(5).IsRequired(true);
             entity.Property(x => x.IMO).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.Flag).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.RegistryNo).HasDefaultValue("").HasMaxLength(128);

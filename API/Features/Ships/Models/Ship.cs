@@ -15,6 +15,7 @@ namespace API.Features.Ships {
         public int ShipOwnerId { get; set; }
         // Fields
         public string Description { get; set; }
+        public string Abbreviation { get; set; }
         public string IMO { get; set; }
         public string Flag { get; set; }
         public string RegistryNo { get; set; }

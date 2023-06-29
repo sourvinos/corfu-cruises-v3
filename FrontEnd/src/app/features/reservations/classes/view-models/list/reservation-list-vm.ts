@@ -3,6 +3,7 @@ import { ReservationListDestinationVM } from 'src/app/features/reservations/clas
 import { ReservationListDriverVM } from './reservation-list-driver-vm'
 import { ReservationListPickupPointVM } from './reservation-list-pickupPoint-vm'
 import { ReservationListPortVM } from './reservation-list-port-vm'
+import { ReservationListShipVM } from './reservation-list-ship-vm'
 import { SimpleEntity } from './../../../../../shared/classes/simple-entity'
 
 export interface ReservationListVM {
@@ -20,7 +21,7 @@ export interface ReservationListVM {
     driver: ReservationListDriverVM
     pickupPoint: ReservationListPickupPointVM
     port: ReservationListPortVM
-    ship: SimpleEntity
+    ship: ReservationListShipVM
     user: string
 
 }

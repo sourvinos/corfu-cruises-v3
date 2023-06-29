@@ -194,7 +194,7 @@ export class LedgerPDFService {
             { text: 'Actual', alignment: 'center', fillColor: '#deecf5' },
             { text: 'N/S', alignment: 'center', fillColor: '#deecf5' },
             { text: 'Transfer', fillColor: '#deecf5' },
-            { text: 'Remarks' }
+            { text: 'Remarks', alignment: 'center' }
         ])
         return row
     }
@@ -202,9 +202,9 @@ export class LedgerPDFService {
     private addReservationDetails(reservation: LedgerReservationVM): any {
         const row = ([
             { text: this.dateHelperService.formatISODateToLocale(reservation.date) },
-            { text: reservation.destination.abbreviation },
-            { text: reservation.port.abbreviation },
-            { text: reservation.ship.description },
+            { text: reservation.destination.abbreviation, alignment: 'center' },
+            { text: reservation.port.abbreviation, alignment: 'center' },
+            { text: reservation.ship.abbreviation, alignment: 'center' },
             { text: reservation.refNo },
             { text: reservation.ticketNo },
             { text: this.formatZeroAsEmpty(reservation.adults), alignment: 'right' },

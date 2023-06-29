@@ -21,7 +21,7 @@ namespace API.Features.Embarkation {
                     Driver = new SimpleEntity { Id = reservation.Driver != null ? reservation.Driver.Id : 0, Description = reservation.Driver != null ? reservation.Driver.Description : "(EMPTY)" },
                     PickupPoint = new SimpleEntity { Id = reservation.PickupPoint.Id, Description = reservation.PickupPoint.Description },
                     Port = new EmbarkationFinalPortListVM { Id = reservation.Port.Id, Abbreviation = reservation.Port.Abbreviation, Description = reservation.Port.Description },
-                    Ship = new SimpleEntity { Id = reservation.Ship.Id, Description = reservation.Ship.Description },
+                    Ship = new EmbarkationFinalShipListVM { Id = reservation.Ship.Id, Abbreviation = reservation.Ship.Abbreviation, Description = reservation.Ship.Description },
                     TotalPax = reservation.TotalPax,
                     EmbarkedPassengers = reservation.Passengers.Count(x => x.IsCheckedIn),
                     EmbarkationStatus = DetermineEmbarkationStatus(reservation),

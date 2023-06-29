@@ -1,6 +1,7 @@
 import { EmbarkationDestinationVM } from './embarkation-destination-vm'
 import { EmbarkationPassengerVM } from './embarkation-passenger-vm'
 import { EmbarkationPortVM } from './embarkation-port-vm'
+import { EmbarkationShipVM } from './embarkation-ship-vm'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
 export interface EmbarkationReservationVM {
@@ -12,7 +13,7 @@ export interface EmbarkationReservationVM {
     pickupPoint: SimpleEntity
     driver: SimpleEntity
     port: EmbarkationPortVM
-    ship: SimpleEntity
+    ship: EmbarkationShipVM
     totalPax: number
     embarkedPassengers: number
     embarkationStatus: boolean

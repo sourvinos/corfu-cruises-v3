@@ -142,8 +142,9 @@ export class ShipFormComponent {
     private flattenForm(): ShipWriteDto {
         return {
             id: this.form.value.id,
-            shipOwnerId: this.form.value.shipOwner.id,
             description: this.form.value.description,
+            abbreviation: this.form.value.abbreviation,
+            shipOwnerId: this.form.value.shipOwner.id,
             imo: this.form.value.imo,
             flag: this.form.value.flag,
             registryNo: this.form.value.registryNo,
@@ -183,6 +184,7 @@ export class ShipFormComponent {
         this.form = this.formBuilder.group({
             id: 0,
             description: ['', [Validators.required, Validators.maxLength(128)]],
+            abbreviation: ['', [Validators.required, Validators.maxLength(5)]],
             shipOwner: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             imo: ['', [Validators.maxLength(128)]],
             flag: ['', [Validators.maxLength(128)]],
@@ -211,8 +213,9 @@ export class ShipFormComponent {
         if (this.record != undefined) {
             this.form.setValue({
                 id: this.record.id,
-                shipOwner: { 'id': this.record.shipOwner.id, 'description': this.record.shipOwner.description },
                 description: this.record.description,
+                abbreviation: this.record.abbreviation,
+                shipOwner: { 'id': this.record.shipOwner.id, 'description': this.record.shipOwner.description },
                 imo: this.record.imo,
                 flag: this.record.flag,
                 registryNo: this.record.registryNo,
@@ -254,6 +257,10 @@ export class ShipFormComponent {
 
     get description(): AbstractControl {
         return this.form.get('description')
+    }
+
+    get abbreviation(): AbstractControl {
+        return this.form.get('abbreviation')
     }
 
     get shipOwner(): AbstractControl {

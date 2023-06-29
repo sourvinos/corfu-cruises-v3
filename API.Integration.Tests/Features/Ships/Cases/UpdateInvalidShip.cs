@@ -18,7 +18,8 @@ namespace Ships {
                     Id = 6,
                     StatusCode = 449,
                     ShipOwnerId = 3,
-                    Description = Helpers.CreateRandomString(5),
+                    Description = Helpers.CreateRandomString(15),
+                    Abbreviation = Helpers.CreateRandomString(5)
                 }
             };
         }

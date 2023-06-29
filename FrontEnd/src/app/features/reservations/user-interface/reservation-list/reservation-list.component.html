@@ -154,7 +154,7 @@
                         </td>
                         <td class="width-5">{{ reservation.driver.description == "(EMPTY)" ? getEmoji('null'): reservation.driver.description }}</td>
                         <td class="center width-5">{{ reservation.port.abbreviation }}</td>
-                        <td class="width-5">{{ reservation.ship.description == "(EMPTY)" ? getEmoji('null'): reservation.ship.description }}</td>
+                        <td class="center width-5">{{ reservation.ship.abbreviation == "(EMPTY)" ? getEmoji('null'): reservation.ship.abbreviation }}</td>
                     </tr>
                 </ng-template>
             </p-table>
