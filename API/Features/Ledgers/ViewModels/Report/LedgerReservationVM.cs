@@ -1,4 +1,5 @@
 using System;
+using API.Infrastructure.Classes;
 
 namespace API.Features.Ledger {
 
@@ -8,6 +9,7 @@ namespace API.Features.Ledger {
         public string RefNo { get; set; }
         public Guid ReservationId { get; set; }
         public LedgerSimpleEntityVM Destination { get; set; }
+        public SimpleEntity PickupPoint { get; set; }
         public LedgerSimpleEntityVM Port { get; set; }
         public LedgerSimpleEntityVM Ship { get; set; }
         public string TicketNo { get; set; }

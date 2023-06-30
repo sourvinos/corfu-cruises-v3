@@ -1491,6 +1491,10 @@
                 "description": "Προορισμός"
             },
             {
+                "id": "headerPickupPoint",
+                "description": "Σημείο παραλαβής"
+            },
+            {
                 "id": "headerShip",
                 "description": "Πλοίο"
             },
