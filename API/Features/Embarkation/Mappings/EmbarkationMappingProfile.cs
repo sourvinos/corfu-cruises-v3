@@ -18,10 +18,17 @@ namespace API.Features.Embarkation {
                     Remarks = reservation.Remarks,
                     Customer = new SimpleEntity { Id = reservation.Customer.Id, Description = reservation.Customer.Description },
                     Destination = new EmbarkationFinalDestinationListVM { Id = reservation.Destination.Id, Abbreviation = reservation.Destination.Abbreviation, Description = reservation.Destination.Description },
-                    Driver = new SimpleEntity { Id = reservation.Driver != null ? reservation.Driver.Id : 0, Description = reservation.Driver != null ? reservation.Driver.Description : "(EMPTY)" },
+                    Driver = new SimpleEntity {
+                        Id = reservation.Driver != null ? reservation.Driver.Id : 0,
+                        Description = reservation.Driver != null ? reservation.Driver.Description : "(EMPTY)"
+                    },
                     PickupPoint = new SimpleEntity { Id = reservation.PickupPoint.Id, Description = reservation.PickupPoint.Description },
                     Port = new EmbarkationFinalPortListVM { Id = reservation.Port.Id, Abbreviation = reservation.Port.Abbreviation, Description = reservation.Port.Description },
-                    Ship = new EmbarkationFinalShipListVM { Id = reservation.Ship.Id, Abbreviation = reservation.Ship.Abbreviation, Description = reservation.Ship.Description },
+                    Ship = new EmbarkationFinalShipListVM {
+                        Id = reservation.Ship != null ? reservation.Ship.Id : 0,
+                        Description = reservation.Ship != null ? reservation.Ship.Description : "(EMPTY)",
+                        Abbreviation = reservation.Ship != null ? reservation.Ship.Abbreviation : "(EMPTY)"
+                    },
                     TotalPax = reservation.TotalPax,
                     EmbarkedPassengers = reservation.Passengers.Count(x => x.IsCheckedIn),
                     EmbarkationStatus = DetermineEmbarkationStatus(reservation),
@@ -33,7 +40,7 @@ namespace API.Features.Embarkation {
                         NationalityCode = passenger.Nationality.Code,
                         NationalityDescription = passenger.Nationality.Description,
                         IsCheckedIn = passenger.IsCheckedIn
-                    }).ToList(),
+                    }).ToList()
                 })));
         }
 
