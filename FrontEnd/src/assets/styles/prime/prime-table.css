@@ -79,10 +79,6 @@
     background-color: var(--color-table-headers) !important;
 }
 
-.p-datatable .p-datatable-tbody > tr.p-highlight {
-    background-color: var(--color-table-selected-row) !important;
-}
-
 .p-datatable .p-datatable-tbody > tr {
     background-color: transparent !important;
 }

@@ -105,16 +105,12 @@
     width: 0 !important;
 }
 
-.mat-date-range-input-start-wrapper {
-    width: 100% !important;
-}
-
 .mat-datepicker-toggle, .mat-datepicker-content .mat-datepicker-content {
     color: var(--color-text) !important;
     margin-left: auto;
     position: relative;
-    right: 35px !important;
-    top: -8px !important;
+    right: 1.4375rem !important;
+    top: -0.1875rem !important;
 }
 
 .header-datepicker {
@@ -140,7 +136,6 @@
 }
 
 .mat-date-range-input-inner {
-    margin-left: -0.375rem !important;
     margin-top: 0.1875rem !important;
 }
 

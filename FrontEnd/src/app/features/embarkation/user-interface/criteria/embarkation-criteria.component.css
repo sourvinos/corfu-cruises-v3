@@ -63,17 +63,10 @@
 }
 
 #date {
-    align-items: center;
     background-color: transparent !important;
     border: 0 !important;
-    display: flex;
-    justify-content: center;
-    margin-top: 0 !important;
-    padding: 0 1rem 0.5rem 1rem !important;
-}
-
-#date .mat-form-field-wrapper {
-    width: 100%;
+    margin-top: -12px !important;
+    padding: 0 1.1rem 0 1.1rem !important;
 }
 
 #date-fieldset {
@@ -85,15 +78,8 @@
 
 #date-fieldset legend {
     margin-left: 0.5rem;
-    padding: 0 0.5rem 0 0.5rem;
+    padding: 0 0.5rem 0 0;
     width: auto !important;
-}
-
-#goto-today-button {
-    background-color: transparent !important;
-    box-shadow: none;
-    margin: -19px 0 0 185px;
-    position: absolute;
 }
 
 #goto-today-button span {
