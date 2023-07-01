@@ -40,7 +40,8 @@
             <span class="material-icons-outlined primary">group</span>
             <span class="passenger-count">{{ passengers != null ? passengers.length : 0 }}</span>
         </div>
-        <button (click)="newRow()" class="secondary" mat-flat-button tabindex="-1">
+        <button (click)="newRow()" [disabled]="checkTotalPaxAgainstPassengerCount()" class="secondary" mat-flat-button>
+            <mat-icon *ngIf="checkTotalPaxAgainstPassengerCount()" class="material-icons-outlined">lock</mat-icon>
             <span>{{ getLabel("newPassengerButton") | uppercase }}</span>
         </button>
     </div>

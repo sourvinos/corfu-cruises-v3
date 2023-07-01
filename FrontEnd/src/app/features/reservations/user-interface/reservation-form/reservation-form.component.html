@@ -144,7 +144,7 @@
             </div>
             <div *ngIf="isPassengersTabVisible" id="passengers">
                 <div class="tab-content">
-                    <passenger-list [passengers]="form.value.passengers" [reservationId]="form.value.reservationId" (outputPassengerCount)="getPassengerDifferenceColor($event)" (outputPassengers)="doTasksAfterPassengerFormIsClosed($event)"></passenger-list>
+                    <passenger-list [passengers]="form.value.passengers" [reservationId]="form.value.reservationId" [totalPax]="form.value.totalPax" (outputPassengerCount)="getPassengerDifferenceColor($event)" (outputPassengers)="doTasksAfterPassengerFormIsClosed($event)"></passenger-list>
                 </div>
             </div>
             <div *ngIf="isMiscTabVisible" id="misc">
@@ -182,11 +182,12 @@
                     </mat-form-field>
                 </div>
             </div>
-            <div id="voucher-buttons">
-                <button (click)="printBoardingPass()" class="secondary" mat-flat-button><mat-icon class="material-symbols-outlined no-text">print</mat-icon></button>
-                <button (click)="emailBoardingPass()" class="secondary" mat-flat-button><mat-icon class="material-icons-outlined no-text">forward_to_inbox</mat-icon></button>
-            </div>
         </form>
+
+        <div id="voucher-buttons">
+            <button (click)="printBoardingPass()" class="secondary" mat-flat-button><mat-icon class="material-symbols-outlined no-text">print</mat-icon></button>
+            <button (click)="emailBoardingPass()" class="secondary" mat-flat-button><mat-icon class="material-icons-outlined no-text">forward_to_inbox</mat-icon></button>
+        </div>
 
     </div>
 

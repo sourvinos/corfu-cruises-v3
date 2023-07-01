@@ -24,6 +24,7 @@ export class PassengerListComponent {
 
     @Input() passengers: PassengerReadDto[] = []
     @Input() reservationId: Guid
+    @Input() totalPax: number
     @Output() outputPassengerCount = new EventEmitter()
     @Output() outputPassengers = new EventEmitter()
     public feature = 'passengerList'
@@ -33,6 +34,12 @@ export class PassengerListComponent {
     constructor(private dialog: MatDialog, private emojiService: EmojiService, private helperService: HelperService, private messageLabelService: MessageLabelService) { }
 
     //#region public methods
+
+    public checkTotalPaxAgainstPassengerCount(): boolean {
+        if (this.passengers != null) {
+            return this.passengers.length >= this.totalPax ? true : false
+        }
+    }
 
     public getEmbarkationStatusIcon(status: boolean): string {
         return status ? this.getEmoji('green-circle') : this.getEmoji('red-circle')
