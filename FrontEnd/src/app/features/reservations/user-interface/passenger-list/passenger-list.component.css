@@ -23,15 +23,15 @@
     gap: 0.5rem;
 }
 
-.passenger-count-wrapper .material-icons {
+.passenger-count-wrapper .material-icons-outlined {
     font-size: 2.1875rem;
 }
 
-.passenger-count-wrapper .material-icons.primary {
+.passenger-count-wrapper .material-icons-outlined.primary {
     color: var(--color-input-focus);
 }
 
-.passenger-count-wrapper .material-icons.error:first-child {
+.passenger-count-wrapper .material-icons-outlined.error:first-child {
     font-size: 1.4rem;
     margin-top: 2px;
 }

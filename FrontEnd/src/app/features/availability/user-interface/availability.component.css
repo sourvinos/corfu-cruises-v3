@@ -1,7 +1,21 @@
-.no-reservation-data, .api-object {
+#goto-today-button span {
+    color: var(--color-background-today) !important;
+}
+
+#goto-today-button {
+    background-color: transparent !important;
+    box-shadow: none;
+    margin-top: -0.0625rem;
+}
+
+#header-right {
+    align-items: center;
     display: flex;
-    justify-content: center;
-    margin-top: auto;
+    flex-direction: row;
+}
+
+#refresh-warning {
+    margin-top: 0.1875rem;
 }
 
 .api-object span {
@@ -22,17 +36,18 @@
     cursor: pointer;
 }
 
+.material-symbols-outlined.warning:hover {
+    cursor: pointer;
+}
+
+.no-reservation-data, .api-object {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+}
+
 .ports {
     display: flex;
     justify-content: space-between;
     margin: 0 0 0.3rem 0;
-}
-
-#goto-today-button {
-    background-color: transparent !important;
-    box-shadow: none;
-}
-
-#goto-today-button span {
-    color: var(--color-background-today) !important;
 }

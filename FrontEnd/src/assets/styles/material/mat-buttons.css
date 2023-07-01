@@ -3,9 +3,11 @@ button {
     border: none;
     box-shadow: none !important;
     cursor: default !important;
+    display: flex !important;
     font-family: var(--font-family-ubuntu) !important;
     font-size: var(--font-size-button) !important;
     font-weight: 300 !important;
+    justify-content: center;
     min-width: 0 !important;
     outline: 0 !important;
     padding: 0 1rem 0.125rem 1rem !important;
@@ -49,6 +51,10 @@ button.tab {
 
 button.tab:first-child {
     margin-right: 1rem;
+}
+
+button .mat-button-wrapper {
+    margin-top: 0.0625rem;
 }
 
 button .mat-button-wrapper .emoji {

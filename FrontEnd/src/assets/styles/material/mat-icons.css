@@ -1,7 +1,7 @@
 /* Button with icon and text */
 .mat-button-wrapper .mat-icon {
     font-size: 0.9375rem;
-    margin-top: 0.58rem;
+    margin-top: 0.60rem;
 }
 
 /* Button with icon without text */
@@ -27,4 +27,8 @@
 .mat-menu-item .mat-icon {
     font-size: 0.9375rem;
     margin: 0.375rem 0 0 0 !important;
+}
+
+.material-symbols-outlined.warning {
+    color: var(--color-red);
 }

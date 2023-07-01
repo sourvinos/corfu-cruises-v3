@@ -5,7 +5,7 @@
         <div id="header">
             <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
             <div id="header-buttons">
-                <span *ngIf="isReservationInStorage()" (click)="showCachedReservationDialog()" class="material-icons warning">warning</span>
+                <span *ngIf="isReservationInStorage()" (click)="showCachedReservationDialog()" class="material-symbols-outlined warning">warning</span>
                 <div id="tab-scroller">
                     <button (click)="showReservationTab()" class="primary" mat-flat-button><mat-icon class="material-symbols-outlined no-text">home_storage</mat-icon></button>
                     <button (click)="showPassengersTab()" class="primary" mat-flat-button><mat-icon class="material-icons-outlined no-text">group</mat-icon></button>

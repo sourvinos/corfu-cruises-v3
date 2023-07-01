@@ -4,11 +4,13 @@
 
         <div id="header">
             <home-button-and-title [featureIcon]="featureIcon" [feature]="feature" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
-            <span [ngClass]="isSizeChanged ? 'visible' : 'hidden'" (click)="askToRefreshCalendar()" class="material-icons warning">warning</span>
-            <button (click)="doSelectedPeriodTasks('today')" class="transparent" id="goto-today-button" mat-mini-fab>
-                <span class="material-icons-outlined">my_location</span>
-            </button>
-            <year-selector (yearEmitter)="doTasksAfterYearSelection($event)" [year]="getSelectedYear()"></year-selector>
+            <div id="header-right">
+                <span [ngClass]="isSizeChanged ? 'visible' : 'hidden'" (click)="askToRefreshCalendar()" class="material-symbols-outlined warning" id="refresh-warning">warning</span>
+                <button (click)="doSelectedPeriodTasks('today')" class="transparent" id="goto-today-button" mat-mini-fab>
+                    <span class="material-icons-outlined">my_location</span>
+                </button>
+                <year-selector (yearEmitter)="doTasksAfterYearSelection($event)" [year]="getSelectedYear()"></year-selector>
+            </div>
         </div>
 
         <div id="table-wrapper">

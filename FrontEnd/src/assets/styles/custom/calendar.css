@@ -151,18 +151,9 @@
     transition: transform var(--delay) !important;
 }
 
-#period-scroller button span.material-icons {
+#period-scroller button span.material-icons-outlined {
     color: var(--color-red);
     font-size: 2.5rem;
-}
-
-.material-icons.warning {
-    color: var(--color-red);
-    margin-left: auto;
-}
-
-.material-icons.warning:hover {
-    cursor: pointer;
 }
 
 #period-scroller button:hover {
