@@ -9,9 +9,9 @@
 }
 
 #cube {
-    height: 200px;
+    height: 12.5rem;
     position: absolute;
-    width: 200px;
+    width: 12.5rem;
 }
 
 #cube div {
@@ -19,32 +19,32 @@
     animation-delay: -0.3s;
     background: #e15b64;
     box-sizing: content-box;
-    height: 80px;
-    left: 13.333px;
+    height: 5rem;
+    left: 0.8333rem;
     position: absolute;
-    top: 13.333px;
-    width: 80px;
+    top: 0.8333rem;
+    width: 5rem;
 }
 
 #cube div:nth-child(2) {
     animation-delay: -0.2s;
     background: #f47e60;
-    left: 106.6667px;
-    top: 13.3333px;
+    left: 6.6666rem;
+    top: 0.8333rem;
 }
 
 #cube div:nth-child(3) {
     animation-delay: 0s;
     background: #abbd81;
-    left: 13.3333px;
-    top: 106.6667px;
+    left: 0.8333rem;
+    top: 6.6666rem;
 }
 
 #cube div:nth-child(4) {
     animation-delay: -0.1s;
     background: #f8b26a;
-    left: 106.6666px;
-    top: 106.6667px;
+    left: 6.6666rem;
+    top: 6.6666rem;
 }
 
 @keyframes cube {

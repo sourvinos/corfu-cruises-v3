@@ -53,7 +53,7 @@
 #form .group-field:first-child {
     align-items: center;
     display: flex;
-    margin: 0 3px 0 auto;
+    margin: 0 0.1875rem 0 auto;
 }
 
 #form .group-field:last-child {
@@ -65,7 +65,7 @@
 #date {
     background-color: transparent !important;
     border: 0 !important;
-    margin-top: -12px !important;
+    margin-top: -0.75rem !important;
     padding: 0 1.1rem 0 1.1rem !important;
 }
 

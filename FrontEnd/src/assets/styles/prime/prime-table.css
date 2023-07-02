@@ -40,35 +40,35 @@
 
 .p-datatable .p-datatable-thead > tr:nth-child(1) > th {
     border-bottom: none;
-    border-top: 1px solid var(--color-border);
+    border-top: 0.0625rem solid var(--color-border);
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(2) > th {
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 0.0625rem solid var(--color-border);
     border-top: none;
     padding: 0 0.5rem 0.5625rem 0.5rem;
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(1) > th:first-child {
-    border-left: 1px solid var(--color-border);
+    border-left: 0.0625rem solid var(--color-border);
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(1) > th:last-child {
-    border-right: 1px solid var(--color-border);
+    border-right: 0.0625rem solid var(--color-border);
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(2) > th:first-child {
-    border-left: 1px solid var(--color-border);
+    border-left: 0.0625rem solid var(--color-border);
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(2) > th:last-child {
-    border-right: 1px solid var(--color-border) !important;
+    border-right: 0.0625rem solid var(--color-border) !important;
 }
 
 .p-datatable .p-datatable-thead > tr > th.header-datepicker {
-    padding-bottom: 10px !important;
-    padding-top: 4px !important;
+    padding-bottom: 0.625rem !important;
+    padding-top: 0.25rem !important;
 }
 
 .p-datatable .p-datatable-thead > tr > th.no-border {

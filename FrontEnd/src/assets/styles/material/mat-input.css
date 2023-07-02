@@ -25,12 +25,12 @@ input[type="text"], input[type="email"], input[type="number"], input[type="passw
 }
 
 textarea {
-    height: 100px;
+    height: 6.25rem;
 }
 
 .mat-form-field {
     border-radius: var(--border-radius);
-    border: 1px solid var(--color-border) !important;
+    border: 0.0625rem solid var(--color-border) !important;
     line-height: 132%;
     margin-top: var(--form-field-margin) !important;
     padding: 0.5rem 1rem;
@@ -51,7 +51,7 @@ textarea {
 }
 
 .mat-form-field-infix {
-    border-top: 20px solid transparent;
+    border-top: 1.25rem solid transparent;
     display: flex !important;
     font-family: var(--font-family-asty) !important;
     font-weight: 300 !important;
@@ -60,7 +60,7 @@ textarea {
 }
 
 .mat-form-field-subscript-wrapper {
-    margin-top: 2px !important;
+    margin-top: 0.125rem !important;
 }
 
 .mat-hint, .mat-error {
@@ -74,11 +74,11 @@ textarea {
 }
 
 .mat-form-field-label-wrapper {
-    top: -20px !important;
+    top: -1.25rem !important;
 }
 
 .textarea .mat-form-field-wrapper {
-    padding-bottom: 32px !important;
+    padding-bottom: 2rem !important;
 }
 
 .mat-date-range-input {
@@ -99,5 +99,5 @@ textarea {
 }
 
 .mat-form-field-infix > span.emoji {
-    margin-top: -2px !important;
+    margin-top: -0.125rem !important;
 }

@@ -16,7 +16,6 @@ import { MatMenuModule } from '@angular/material/menu'
 import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter'
 import { MatRadioModule } from '@angular/material/radio'
 import { MatSelectModule } from '@angular/material/select'
-import { MatStepperModule } from '@angular/material/stepper'
 // Custom
 import { CustomDateAdapter } from '../adapters/custom-date-adapter'
 
@@ -37,8 +36,7 @@ import { CustomDateAdapter } from '../adapters/custom-date-adapter'
         MatMomentDateModule,
         MatNativeDateModule,
         MatRadioModule,
-        MatSelectModule,
-        MatStepperModule        
+        MatSelectModule
     ],
     providers: [
         { provide: DateAdapter, useClass: CustomDateAdapter },

@@ -31,7 +31,6 @@
 @import url("../material/mat-menu.css");
 @import url("../material/mat-radio.css");
 @import url("../material/mat-select.css");
-@import url("../material/mat-stepper.css");
 @import url("../prime/prime-checkbox.css");
 @import url("../prime/prime-filter-input.css");
 @import url("../prime/prime-radio.css");
@@ -108,24 +107,12 @@ ul {
     pointer-events: none;
 }
 
-.teal {
-    color: var(--color-teal) !important;
-}
-
-.green {
-    color: var(--color-green) !important;
-}
-
 .red {
     color: var(--color-red) !important;
 }
 
 .yellow {
     color: var(--color-yellow) !important;
-}
-
-.blue {
-    color: var(--color-blue) !important;
 }
 
 .disabled:hover {

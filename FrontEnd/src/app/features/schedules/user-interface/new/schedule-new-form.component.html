@@ -47,7 +47,7 @@
                                     </tr>
                                 </ng-template>
                                 <ng-template let-destination pTemplate="body">
-                                    <tr [pSelectableRow]="destination" style="height:32px">
+                                    <tr [pSelectableRow]="destination" style="height:2rem">
                                         <td class="center width-2"><p-tableRadioButton [value]="destination"></p-tableRadioButton></td>
                                         <td class="width-5">{{ destination.description }}</td>
                                     </tr>
@@ -73,7 +73,7 @@
                                     </tr>
                                 </ng-template>
                                 <ng-template let-port pTemplate="body">
-                                    <tr [pSelectableRow]="port" style="height:32px">
+                                    <tr [pSelectableRow]="port" style="height:2rem">
                                         <td class="center width-2"><p-tableRadioButton [value]="port"></p-tableRadioButton></td>
                                         <td class="width-5">{{ port.description }}</td>
                                     </tr>
@@ -101,7 +101,7 @@
                                         </tr>
                                     </ng-template>
                                     <ng-template let-weekday pTemplate="body">
-                                        <tr [pSelectableRow]="weekday" (click)="doTasks($event,weekday)" style="height:32px">
+                                        <tr [pSelectableRow]="weekday" (click)="doTasks($event,weekday)" style="height:2rem">
                                             <td class="center width-2"><p-tableCheckbox [value]="weekday"></p-tableCheckbox></td>
                                             <td class="width-5">{{ weekday.description | uppercase }}</td>
                                         </tr>

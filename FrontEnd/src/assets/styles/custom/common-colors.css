@@ -6,7 +6,7 @@
     --color-table-delete-icon: #ff7a7a;
     /*  Buttons */
     --color-button-text: #ffffff;
-    --color-button-primary: #0096c7;
+    --color-button-primary: #4ecde6;
     --color-button-secondary: #ff9800;
     --color-button-delete: #e45142;
     /* Criteria & Totals */
@@ -32,9 +32,7 @@
     /* Dialog headers */
     --color-dialog-header: #ff7a7a;
     /* Common */
-    --color-blue: #03a9f4;
-    --color-green:#96ebb9;
+    --color-green:#34a853;
     --color-red: #d94040;
-    --color-teal: #379fb6;
     --color-yellow: #f1e424;
 }

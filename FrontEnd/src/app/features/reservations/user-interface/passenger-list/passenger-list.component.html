@@ -19,7 +19,7 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-record>
-                <tr (click)="highlightRow(record.id)" (dblclick)="editRecord(record)" [attr.id]="record.id" style="height:32px">
+                <tr (click)="highlightRow(record.id)" (dblclick)="editRecord(record)" [attr.id]="record.id" style="height:2rem">
                     <td class="center width-4">
                         <span>{{ getEmbarkationStatusIcon(record.isCheckedIn) }}</span>
                     </td>

@@ -12,8 +12,8 @@
 
 .outer {
     background: none;
-    height: 200px;
-    width: 200px;
+    height: 12.5rem;
+    width: 12.5rem;
 }
 
 .spikes {
@@ -27,12 +27,12 @@
     background: #fe718d;
     border-radius: 0 / 0;
     box-sizing: content-box;
-    height: 26px;
-    left: 95px;
+    height: 1.625rem;
+    left: 5.9375rem;
     position: absolute;
-    top: 47px;
-    transform-origin: 5px 53px;
-    width: 10px;
+    top: 2.9375rem;
+    transform-origin: 0.3125rem 3.3125rem;
+    width: 0.625rem;
 }
 
 .spikes div:nth-child(1) {
