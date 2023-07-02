@@ -849,6 +849,14 @@
                 "description": "Dernière mise à jour"
             },
             {
+                "id": "printBoardingPass",
+                "description": "Imprimer la carte d'embarquement"
+            },
+            {
+                "id": "emailBoardingPass",
+                "description": "Envoyer la carte d'embarquement par e-mail"
+            },
+            {
                 "id": "deleteButton",
                 "description": "Supprimer"
             },

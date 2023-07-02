@@ -11,7 +11,7 @@ export interface BoardingPassVM {
     pickupPointExactPoint: string
     pickupPointTime: string
     remarks: string
-    qr: string
+    barcode: string
     passengers: BoardingPassPassengerVM[]
     adults: string
     kids: string

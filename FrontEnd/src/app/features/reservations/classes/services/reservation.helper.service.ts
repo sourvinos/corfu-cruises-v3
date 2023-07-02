@@ -16,22 +16,6 @@ export class ReservationHelperService {
 
     //#region public methods
 
-    public checkForDifferenceBetweenTotalPaxAndPassengers(element: any, totalPax: number, totalPassengers: number): boolean {
-        if (totalPassengers > 0) {
-            const passengerDifference = totalPax - (element != null ? element : totalPassengers)
-            switch (true) {
-                case passengerDifference == 0:
-                    return true
-                case passengerDifference < 0:
-                    return false
-                case passengerDifference > 0:
-                    return true
-            }
-        } else {
-            return true
-        }
-    }
-
     public flattenForm(form: any): ReservationWriteDto {
         return {
             reservationId: form.reservationId != '' ? form.reservationId : null,
@@ -111,6 +95,14 @@ export class ReservationHelperService {
             user: form.user,
             lastUpdate: form.lastUpdate
         }
+    }
+
+    public totalPaxShouldBeEqualToPassengerCount(totalPax: number, passengerCount: number): boolean {
+        return totalPax != 0 && totalPax == passengerCount
+    }
+
+    public emailShouldBeValid(email: string): boolean {
+        return email != '' && email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) != null
     }
 
     //#endregion

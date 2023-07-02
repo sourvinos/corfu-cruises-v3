@@ -5,12 +5,18 @@
         <div id="header">
             <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
             <div id="header-buttons">
-                <span *ngIf="isReservationInStorage()" (click)="showCachedReservationDialog()" class="material-symbols-outlined warning">warning</span>
+                <span *ngIf="isReservationInStorage()" (click)="onShowCachedReservationDialog()" class="material-symbols-outlined warning">warning</span>
                 <div id="tab-scroller">
-                    <button (click)="showReservationTab()" class="primary" mat-flat-button><mat-icon class="material-symbols-outlined no-text">home_storage</mat-icon></button>
-                    <button (click)="showPassengersTab()" class="primary" mat-flat-button><mat-icon class="material-icons-outlined no-text">group</mat-icon></button>
-                    <button (click)="showMiscTab()" class="primary" mat-flat-button><mat-icon class="material-symbols-outlined no-text">more</mat-icon></button>
+                    <button (click)="onShowReservationTab()" class="primary" mat-flat-button><mat-icon class="material-symbols-outlined no-text">home_storage</mat-icon></button>
+                    <button (click)="onShowPassengersTab()" class="primary" mat-flat-button><mat-icon class="material-icons-outlined no-text">group</mat-icon></button>
+                    <button (click)="onShowMiscTab()" class="primary" mat-flat-button><mat-icon class="material-symbols-outlined no-text">more</mat-icon></button>
                 </div>
+                <button [matMenuTriggerFor]="menu" mat-icon-button>
+                    <mat-icon class="material-icons-outlined no-text">more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu" class="primary">
+                    <ng-container *ngTemplateOutlet="boardingPassMenu"></ng-container>
+                </mat-menu>
             </div>
         </div>
 
@@ -184,11 +190,6 @@
             </div>
         </form>
 
-        <div id="voucher-buttons">
-            <button (click)="printBoardingPass()" class="secondary" mat-flat-button><mat-icon class="material-symbols-outlined no-text">print</mat-icon></button>
-            <button (click)="emailBoardingPass()" class="secondary" mat-flat-button><mat-icon class="material-icons-outlined no-text">forward_to_inbox</mat-icon></button>
-        </div>
-
     </div>
 
     <div id="footer">
@@ -197,8 +198,8 @@
                 <mat-icon *ngIf="!isAdmin()" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel('deleteButton') | uppercase }}</span>
             </button>
-            <button (click)="onSave()" [disabled]="!form.valid || !checkForDifferenceBetweenTotalPaxAndPassengers()" class="primary" mat-flat-button>
-                <mat-icon *isFormInvalid="!form.valid || !checkForDifferenceBetweenTotalPaxAndPassengers()" class="material-icons-outlined">lock</mat-icon>
+            <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
+                <mat-icon *isFormInvalid="!form.valid" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("saveButton") | uppercase }}</span>
             </button>
         </div>
@@ -243,3 +244,12 @@
         {{ option.description }}
     </mat-option>
 </mat-autocomplete>
+
+<ng-template #boardingPassMenu xPosition="before">
+    <button (click)="onPrintBoardingPass()" mat-menu-item>
+        <span>{{ getLabel('printBoardingPass') }}</span>
+    </button>
+    <button (click)="onEmailBoardingPass()" mat-menu-item>
+        <span>{{ getLabel('emailBoardingPass') }}</span>
+    </button>
+</ng-template>

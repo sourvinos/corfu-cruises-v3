@@ -66,6 +66,8 @@ export class MessageDialogService {
     public resolutionWarning(): string { return this.getDescription(this.feature, 'resolutionWarning') }
     public reservationNotFound(): string { return this.getDescription(this.feature, 'reservationNotFound') }
     public helpDialog(): string { return this.getDescription(this.feature, 'helpDialog') }
+    public totalPaxShouldBeEqualToPassengerCount(): string { return this.getDescription(this.feature, 'totalPaxShouldBeEqualToPassengerCount') }
+    public emailShouldBeValid(): string { return this.getDescription(this.feature, 'emailShouldBeValid') }
 
     public filterResponse(error: any, feature = 'snackbarMessages'): string {
         let returnValue = ''

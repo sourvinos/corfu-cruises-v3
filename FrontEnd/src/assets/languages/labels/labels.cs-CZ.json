@@ -849,6 +849,14 @@
                 "description": "Poslední aktualizace"
             },
             {
+                "id": "printBoardingPass",
+                "description": "Tisk palubního lístku"
+            },
+            {
+                "id": "emailBoardingPass",
+                "description": "Odeslání palubní vstupenky na e-mail"
+            },
+            {
                 "id": "deleteButton",
                 "description": "Smazat"
             },

@@ -849,6 +849,14 @@
                 "description": "Latest update"
             },
             {
+                "id": "printBoardingPass",
+                "description": "Print boarding pass"
+            },
+            {
+                "id": "emailBoardingPass",
+                "description": "Send boarding pass to email"
+            },
+            {
                 "id": "deleteButton",
                 "description": "Delete"
             },

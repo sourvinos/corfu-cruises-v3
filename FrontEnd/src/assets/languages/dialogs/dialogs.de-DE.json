@@ -2,38 +2,142 @@
     {
         "feature": "snackbarMessages",
         "labels": [
-            { "error": 200, "message": "Alles OK." },
-            { "error": 400, "message": "Das Modell ist ungültig." },
-            { "error": 401, "message": "Authentifizierung fehlgeschlagen." },
-            { "error": 404, "message": "Dieser Datensatz kann nicht gefunden werden." },
-            { "error": 409, "message": "Die Reservierung ist nicht eindeutig. Überprüfen Sie das Datum, den Zielort, den Kunden und die Ticketnummer." },
-            { "error": 410, "message": "Wir haben keine Abfahrten mit den von Ihnen angegebenen Informationen gefunden. Überprüfen Sie das Datum, das Ziel und den Abholort." },
-            { "error": 412, "message": "Das Passwort kann nicht geändert werden. Möglicherweise ist das aktuelle Kennwort falsch." },
-            { "error": 414, "message": "RefNo existiert bereits. Bitte versuchen Sie es erneut." },
-            { "error": 431, "message": "Es ist nicht möglich, eine Reservierung nach der Abfahrt des Schiffes zu ändern oder zu ergänzen." },
-            { "error": 433, "message": "Die Reservierung kann nicht gespeichert werden, da eine Überbuchung verboten ist." },
-            { "error": 459, "message": "Neue Reservierungen mit Überweisung, während wir geschlossen sind, sind nicht zulässig. Bitte wenden Sie sich an einen Administrator." },
-            { "error": 491, "message": "Dieser Eintrag ist in Gebrauch und kann nicht gelöscht werden." },
-            { "error": 492, "message": "Wir können nicht fortfahren. Bitte vergewissern Sie sich, dass der Benutzername und/oder die E-Mail nicht zu einem anderen Benutzer gehören." },
-            { "error": 493, "message": "Der Anflugauftrag besteht bereits." },
-            { "error": 500, "message": "Etwas ist schief gelaufen, aber es wurde gemeldet." },
-            { "id": "authenticationFailed", "message": "Authentifizierung fehlgeschlagen." },
-            { "id": "emailSent", "message": "Wir haben Ihnen gerade eine E-Mail geschickt." },
-            { "id": "emailNotSent", "message": "Wir können Ihnen im Moment keine E-Mail senden. Bitte versuchen Sie es in Kürze erneut." },
-            { "id": "formIsDirty", "message": "Bevor Sie fortfahren, müssen alle Änderungen gespeichert werden." },
-            { "id": "noRecordsSelected", "message": "Sie haben keine Datensätze ausgewählt." },
-            { "id": "noVideoDevicesFound", "message": "Es befinden sich keine Kameras auf Ihrem Gerät." },
-            { "id": "unableToResetPassword", "message": "Das neue Passwort kann nicht gespeichert werden. Der Link in der E-Mail, die Sie erhalten haben, ist möglicherweise nicht mehr gültig." },
-            { "id": "noContactWithServer", "message": "Keine Antwort von der Datenbank." },
-            { "id": "featureNotAvailable", "message": "Diese Option erfordert eine höhere Genehmigungsstufe." },
-            { "id": "reservationCreated", "message": "RefNo " },
-            { "id": "success", "message": "Alles OK." },
-            { "id": "warning", "message": "Sollen wir diesen Eintrag löschen?" },
-            { "id": "passwordCanBeChangedOnlyByAccountOwner", "message": "Das Passwort kann nur vom Besitzer des Kontos geändert werden." },
-            { "id": "askToRefreshCalendar", "message": "Wir haben festgestellt, dass sich die Größe des Kalenders geändert hat. Möchten Sie, dass wir ihn mit neuen Daten aktualisieren?" },
-            { "id": "resolutionWarning", "message": "Ihre Bildschirmauflösung ist zu gering, um von der App korrekt angezeigt zu werden. Sie benötigen mindestens 1280x800 Pixel. Weiterfahren auf eigene Gefahr!" },
-            { "id": "reservationNotFound", "message": "Ihre Reservierung wurde nicht gefunden" },
-            { "id": "helpDialog", "message": "Sie können sich an den Ort wenden, an dem Sie die Reservierung vorgenommen haben, oder an einen von uns unter +30 26610 71150 oder +30 26620 61400" }
+            {
+                "error": 200,
+                "message": "Alles OK."
+            },
+            {
+                "error": 400,
+                "message": "Das Modell ist ungültig."
+            },
+            {
+                "error": 401,
+                "message": "Authentifizierung fehlgeschlagen."
+            },
+            {
+                "error": 404,
+                "message": "Dieser Datensatz kann nicht gefunden werden."
+            },
+            {
+                "error": 409,
+                "message": "Die Reservierung ist nicht eindeutig. Überprüfen Sie das Datum, den Zielort, den Kunden und die Ticketnummer."
+            },
+            {
+                "error": 410,
+                "message": "Wir haben keine Abfahrten mit den von Ihnen angegebenen Informationen gefunden. Überprüfen Sie das Datum, das Ziel und den Abholort."
+            },
+            {
+                "error": 412,
+                "message": "Das Passwort kann nicht geändert werden. Möglicherweise ist das aktuelle Kennwort falsch."
+            },
+            {
+                "error": 414,
+                "message": "RefNo existiert bereits. Bitte versuchen Sie es erneut."
+            },
+            {
+                "error": 431,
+                "message": "Es ist nicht möglich, eine Reservierung nach der Abfahrt des Schiffes zu ändern oder zu ergänzen."
+            },
+            {
+                "error": 433,
+                "message": "Die Reservierung kann nicht gespeichert werden, da eine Überbuchung verboten ist."
+            },
+            {
+                "error": 459,
+                "message": "Neue Reservierungen mit Überweisung, während wir geschlossen sind, sind nicht zulässig. Bitte wenden Sie sich an einen Administrator."
+            },
+            {
+                "error": 491,
+                "message": "Dieser Eintrag ist in Gebrauch und kann nicht gelöscht werden."
+            },
+            {
+                "error": 492,
+                "message": "Wir können nicht fortfahren. Bitte vergewissern Sie sich, dass der Benutzername und/oder die E-Mail nicht zu einem anderen Benutzer gehören."
+            },
+            {
+                "error": 493,
+                "message": "Der Anflugauftrag besteht bereits."
+            },
+            {
+                "error": 500,
+                "message": "Etwas ist schief gelaufen, aber es wurde gemeldet."
+            },
+            {
+                "id": "authenticationFailed",
+                "message": "Authentifizierung fehlgeschlagen."
+            },
+            {
+                "id": "emailSent",
+                "message": "Wir haben Ihnen gerade eine E-Mail geschickt."
+            },
+            {
+                "id": "emailNotSent",
+                "message": "Wir können Ihnen im Moment keine E-Mail senden. Bitte versuchen Sie es in Kürze erneut."
+            },
+            {
+                "id": "formIsDirty",
+                "message": "Bevor Sie fortfahren, müssen alle Änderungen gespeichert werden."
+            },
+            {
+                "id": "noRecordsSelected",
+                "message": "Sie haben keine Datensätze ausgewählt."
+            },
+            {
+                "id": "noVideoDevicesFound",
+                "message": "Es befinden sich keine Kameras auf Ihrem Gerät."
+            },
+            {
+                "id": "unableToResetPassword",
+                "message": "Das neue Passwort kann nicht gespeichert werden. Der Link in der E-Mail, die Sie erhalten haben, ist möglicherweise nicht mehr gültig."
+            },
+            {
+                "id": "noContactWithServer",
+                "message": "Keine Antwort von der Datenbank."
+            },
+            {
+                "id": "featureNotAvailable",
+                "message": "Diese Option erfordert eine höhere Genehmigungsstufe."
+            },
+            {
+                "id": "reservationCreated",
+                "message": "RefNo "
+            },
+            {
+                "id": "success",
+                "message": "Alles OK."
+            },
+            {
+                "id": "warning",
+                "message": "Sollen wir diesen Eintrag löschen?"
+            },
+            {
+                "id": "passwordCanBeChangedOnlyByAccountOwner",
+                "message": "Das Passwort kann nur vom Besitzer des Kontos geändert werden."
+            },
+            {
+                "id": "askToRefreshCalendar",
+                "message": "Wir haben festgestellt, dass sich die Größe des Kalenders geändert hat. Möchten Sie, dass wir ihn mit neuen Daten aktualisieren?"
+            },
+            {
+                "id": "resolutionWarning",
+                "message": "Ihre Bildschirmauflösung ist zu gering, um von der App korrekt angezeigt zu werden. Sie benötigen mindestens 1280x800 Pixel. Weiterfahren auf eigene Gefahr!"
+            },
+            {
+                "id": "reservationNotFound",
+                "message": "Ihre Reservierung wurde nicht gefunden"
+            },
+            {
+                "id": "helpDialog",
+                "message": "Sie können sich an den Ort wenden, an dem Sie die Reservierung vorgenommen haben, oder an einen von uns unter +30 26610 71150 oder +30 26620 61400"
+            },
+            {
+                "id": "totalPaxShouldBeEqualToPassengerCount",
+                "message": "Um fortzufahren, müssen Sie die Daten aller Passagiere eingegeben haben."
+            },
+            {
+                "id": "emailShouldBeValid",
+                "message": "Um fortzufahren, müssen Sie die E-Mail-Adresse eingegeben haben."
+            }
         ]
     }
 ]

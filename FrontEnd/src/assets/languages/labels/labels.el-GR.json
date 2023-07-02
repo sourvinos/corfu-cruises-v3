@@ -849,6 +849,14 @@
                 "description": "Τελευταία ενημέρωση"
             },
             {
+                "id": "printBoardingPass",
+                "description": "Εκτύπωση κάρτας επιβίβασης"
+            },
+            {
+                "id": "emailBoardingPass",
+                "description": "Αποστολή κάρτας επιβίβασης στο email"
+            },
+            {
                 "id": "deleteButton",
                 "description": "Διαγραφη"
             },

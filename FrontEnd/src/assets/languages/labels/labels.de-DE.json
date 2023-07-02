@@ -849,6 +849,14 @@
                 "description": "Letzte Aktualisierung"
             },
             {
+                "id": "printBoardingPass",
+                "description": "Bordkarte drucken"
+            },
+            {
+                "id": "emailBoardingPass",
+                "description": "Bordkarte per E-Mail versenden"
+            },
+            {
                 "id": "deleteButton",
                 "description": "Löschen"
             },

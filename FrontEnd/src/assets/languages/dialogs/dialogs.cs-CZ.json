@@ -2,38 +2,142 @@
     {
         "feature": "snackbarMessages",
         "labels": [
-            { "error": 200, "message": "Vše OK." },
-            { "error": 400, "message": "Model je neplatný." },
-            { "error": 401, "message": "Ověření se nezdařilo." },
-            { "error": 404, "message": "Tento záznam nelze nalézt." },
-            { "error": 409, "message": "Rezervace není ojedinělá. Zkontrolujte datum, destinaci, zákazníka a číslo letenky." },
-            { "error": 410, "message": "U vámi poskytnutých informací jsme nezjistili žádné odchylky. Zkontrolujte datum, destinaci a místo vyzvednutí." },
-            { "error": 412, "message": "Heslo nelze změnit. Je možné, že aktuální heslo je špatné." },
-            { "error": 414, "message": "RefNo již existuje. Zkuste to prosím znovu." },
-            { "error": 431, "message": "Po odjezdu lodi není možné rezervaci přidat nebo změnit." },
-            { "error": 433, "message": "Rezervaci nelze uložit, protože je zakázáno přeplácet rezervace." },
-            { "error": 459, "message": "Nové rezervace s převodem v době, kdy máme zavřeno, nejsou povoleny. Kontaktujte prosím správce." },
-            { "error": 491, "message": "Tento záznam je používán a nelze jej smazat." },
-            { "error": 492, "message": "Nemůžeme pokračovat. Ujistěte se prosím, že uživatelské jméno a/nebo e-mail nepatří jinému uživateli." },
-            { "error": 493, "message": "Přístupový řád již existuje." },
-            { "error": 500, "message": "Něco se pokazilo, ale bylo to nahlášeno." },
-            { "id": "authenticationFailed", "message": "Ověření se nezdařilo." },
-            { "id": "emailSent", "message": "Právě jsme vám poslali email." },
-            { "id": "emailNotSent", "message": "Nyní vám nemůžeme poslat e-mail, zkuste to prosím za chvíli znovu." },
-            { "id": "formIsDirty", "message": "Než budete pokračovat, musí být všechny změny uloženy." },
-            { "id": "noRecordsSelected", "message": "Nevybrali jste žádné záznamy." },
-            { "id": "noVideoDevicesFound", "message": "Na vašem zařízení nejsou žádné kamery." },
-            { "id": "unableToResetPassword", "message": "Nové heslo nelze uložit. Odkaz v zaslaném e-mailu již nemusí být platný." },
-            { "id": "noContactWithServer", "message": "Z databáze není žádná odpověď." },
-            { "id": "featureNotAvailable", "message": "Tato možnost vyžaduje vyšší úroveň oprávnění." },
-            { "id": "reservationCreated", "message": "RefNo " },
-            { "id": "success", "message": "Vše OK." },
-            { "id": "warning", "message": "Máme tento záznam smazat?" },
-            { "id": "passwordCanBeChangedOnlyByAccountOwner", "message": "Heslo může změnit pouze vlastník účtu." },
-            { "id": "askToRefreshCalendar", "message": "Zaznamenali jsme změny ve velikosti kalendáře. Chcete, abychom jej aktualizovali o nové údaje?" },
-            { "id": "resolutionWarning", "message": "Rozlišení vaší obrazovky je příliš nízké na to, aby se aplikace správně zobrazovala. Potřebujete alespoň 1280x800 pixelů. Pokračujte na vlastní nebezpečí!" },
-            { "id": "reservationNotFound", "message": "Vaše rezervace nebyla nalezena" },
-            { "id": "helpDialog", "message": "Můžete se obrátit na místo, kde jste rezervaci provedli, nebo na jednoho z nás na telefonním čísle +30 26610 71150 nebo +30 26620 61400" }
+            {
+                "error": 200,
+                "message": "Vše OK."
+            },
+            {
+                "error": 400,
+                "message": "Model je neplatný."
+            },
+            {
+                "error": 401,
+                "message": "Ověření se nezdařilo."
+            },
+            {
+                "error": 404,
+                "message": "Tento záznam nelze nalézt."
+            },
+            {
+                "error": 409,
+                "message": "Rezervace není ojedinělá. Zkontrolujte datum, destinaci, zákazníka a číslo letenky."
+            },
+            {
+                "error": 410,
+                "message": "U vámi poskytnutých informací jsme nezjistili žádné odchylky. Zkontrolujte datum, destinaci a místo vyzvednutí."
+            },
+            {
+                "error": 412,
+                "message": "Heslo nelze změnit. Je možné, že aktuální heslo je špatné."
+            },
+            {
+                "error": 414,
+                "message": "RefNo již existuje. Zkuste to prosím znovu."
+            },
+            {
+                "error": 431,
+                "message": "Po odjezdu lodi není možné rezervaci přidat nebo změnit."
+            },
+            {
+                "error": 433,
+                "message": "Rezervaci nelze uložit, protože je zakázáno přeplácet rezervace."
+            },
+            {
+                "error": 459,
+                "message": "Nové rezervace s převodem v době, kdy máme zavřeno, nejsou povoleny. Kontaktujte prosím správce."
+            },
+            {
+                "error": 491,
+                "message": "Tento záznam je používán a nelze jej smazat."
+            },
+            {
+                "error": 492,
+                "message": "Nemůžeme pokračovat. Ujistěte se prosím, že uživatelské jméno a/nebo e-mail nepatří jinému uživateli."
+            },
+            {
+                "error": 493,
+                "message": "Přístupový řád již existuje."
+            },
+            {
+                "error": 500,
+                "message": "Něco se pokazilo, ale bylo to nahlášeno."
+            },
+            {
+                "id": "authenticationFailed",
+                "message": "Ověření se nezdařilo."
+            },
+            {
+                "id": "emailSent",
+                "message": "Právě jsme vám poslali email."
+            },
+            {
+                "id": "emailNotSent",
+                "message": "Nyní vám nemůžeme poslat e-mail, zkuste to prosím za chvíli znovu."
+            },
+            {
+                "id": "formIsDirty",
+                "message": "Než budete pokračovat, musí být všechny změny uloženy."
+            },
+            {
+                "id": "noRecordsSelected",
+                "message": "Nevybrali jste žádné záznamy."
+            },
+            {
+                "id": "noVideoDevicesFound",
+                "message": "Na vašem zařízení nejsou žádné kamery."
+            },
+            {
+                "id": "unableToResetPassword",
+                "message": "Nové heslo nelze uložit. Odkaz v zaslaném e-mailu již nemusí být platný."
+            },
+            {
+                "id": "noContactWithServer",
+                "message": "Z databáze není žádná odpověď."
+            },
+            {
+                "id": "featureNotAvailable",
+                "message": "Tato možnost vyžaduje vyšší úroveň oprávnění."
+            },
+            {
+                "id": "reservationCreated",
+                "message": "RefNo "
+            },
+            {
+                "id": "success",
+                "message": "Vše OK."
+            },
+            {
+                "id": "warning",
+                "message": "Máme tento záznam smazat?"
+            },
+            {
+                "id": "passwordCanBeChangedOnlyByAccountOwner",
+                "message": "Heslo může změnit pouze vlastník účtu."
+            },
+            {
+                "id": "askToRefreshCalendar",
+                "message": "Zaznamenali jsme změny ve velikosti kalendáře. Chcete, abychom jej aktualizovali o nové údaje?"
+            },
+            {
+                "id": "resolutionWarning",
+                "message": "Rozlišení vaší obrazovky je příliš nízké na to, aby se aplikace správně zobrazovala. Potřebujete alespoň 1280x800 pixelů. Pokračujte na vlastní nebezpečí!"
+            },
+            {
+                "id": "reservationNotFound",
+                "message": "Vaše rezervace nebyla nalezena"
+            },
+            {
+                "id": "helpDialog",
+                "message": "Můžete se obrátit na místo, kde jste rezervaci provedli, nebo na jednoho z nás na telefonním čísle +30 26610 71150 nebo +30 26620 61400"
+            },
+            {
+                "id": "totalPaxShouldBeEqualToPassengerCount",
+                "message": "Chcete-li pokračovat, musíte zadat údaje o všech cestujících."
+            },
+            {
+                "id": "emailShouldBeValid",
+                "message": "Pro pokračování musíte mít zadanou e-mailovou adresu."
+            }
         ]
     }
 ]

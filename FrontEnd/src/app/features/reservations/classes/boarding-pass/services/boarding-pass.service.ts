@@ -5,6 +5,7 @@ import { Observable } from 'rxjs'
 import { BoardingPassPassengerVM } from '../view-models/boarding-pass-passenger-vm'
 import { BoardingPassVM } from '../view-models/boarding-pass-vm'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
+import { HelperService } from 'src/app/shared/services/helper.service'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { LogoService } from '../../services/logo.service'
 import { environment } from 'src/environments/environment'
@@ -13,7 +14,6 @@ import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from 'pdfmake/build/vfs_fonts'
 import { strPFHandbookPro } from '../../../../../../assets/fonts/PF-Handbook-Pro.Base64.encoded'
 import { strAkaAcidCanterBold } from '../../../../../../assets/fonts/Aka-Acid-CanterBold.Base64.encoded'
-import { HelperService } from 'src/app/shared/services/helper.service'
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs
 
@@ -21,14 +21,12 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs
 
 export class BoardingPassService extends HttpDataService {
 
-    constructor(httpClient: HttpClient, private dateHelperService: DateHelperService, private helperService: HelperService, private logoService: LogoService) {
-        super(httpClient, environment.apiUrl + '/reservations')
-    }
+    constructor(httpClient: HttpClient, private dateHelperService: DateHelperService, private helperService: HelperService, private logoService: LogoService) { super(httpClient, environment.apiUrl + '/reservations') }
 
     //#region public methods
 
     public createBoardingPass(form: any): BoardingPassVM {
-        const boardingpass = {
+        const boardingPass = {
             'date': this.dateHelperService.formatISODateToLocale(form.date),
             'refNo': form.refNo,
             'destinationDescription': form.destination.description,
@@ -43,10 +41,10 @@ export class BoardingPassService extends HttpDataService {
             'driverDescription': form.driver.description,
             'ticketNo': form.ticketNo,
             'remarks': form.remarks,
-            'qr': form.refNo,
+            'barcode': form.refNo,
             'passengers': this.mapBoardingPassPassengers(form.passengers)
         }
-        return boardingpass
+        return boardingPass
     }
 
     public printBoardingPass(boardingPass: BoardingPassVM): void {
@@ -58,7 +56,7 @@ export class BoardingPassService extends HttpDataService {
             rows.push([{ text: passenger.lastname, style: 'paddingLeft' }, { text: passenger.firstname }])
         }
         const dd = {
-            pageMargins: [130, 30, 130, 100],
+            pageMargins: [130, 30, 130, 250],
             pageOrientation: 'portrait',
             pageSize: 'A4',
             content: [
@@ -77,7 +75,7 @@ export class BoardingPassService extends HttpDataService {
                         body: [
                             [{ text: 'Your reservation for', alignment: 'center' }],
                             [{ text: boardingPass.destinationDescription, alignment: 'center', fontSize: 20, color: '#060770' }],
-                            [{ text: 'is confirmed and ready!', alignment: 'center' }]
+                            [{ text: 'is ready!', alignment: 'center' }]
                         ],
                         widths: ['100%'],
                         heights: [10, 20, 10],
@@ -88,16 +86,14 @@ export class BoardingPassService extends HttpDataService {
                     table: {
                         headerRows: 0,
                         body: [
-                            [{ text: '' }, { text: '' }, { text: '' }],
-                            [{ text: 'Details', alignment: 'center', fontSize: 18, colSpan: 3 }, { text: '' }, { text: '' }],
-                            [{ text: '' }, { text: '' }, { qr: boardingPass.qr, alignment: 'center', rowSpan: 6, width: 200, style: ['paddingTop'], foreground: 'darkslategray' }],
-                            [{ text: 'RefNo', style: 'paddingLeft' }, { text: boardingPass.refNo }, { text: '' }],
-                            [{ text: 'Ticket No', style: 'paddingLeft' }, { text: boardingPass.ticketNo }, { text: '' }],
-                            [{ text: 'Customer', style: 'paddingLeft' }, { text: boardingPass.customerDescription }, { text: '' }],
-                            [{ text: 'Pax', style: 'paddingLeft' }, { text: boardingPass.adults + boardingPass.kids + boardingPass.free }, { text: '' }],
-                            [{ text: 'Remarks', style: 'paddingLeft' }, { text: boardingPass.remarks }, { text: '' }],
+                            [{ text: '' }, { text: '' }],
+                            [{ text: 'Details', colSpan: 2, alignment: 'center', fontSize: 18 }],
+                            [{ text: 'RefNo', style: 'paddingLeft' }, { text: boardingPass.refNo }],
+                            [{ text: 'Ticket No', style: 'paddingLeft' }, { text: boardingPass.ticketNo }],
+                            [{ text: 'Customer', style: 'paddingLeft' }, { text: boardingPass.customerDescription }],
+                            [{ text: 'Remarks', style: 'paddingLeft' }, { text: boardingPass.remarks }],
                         ],
-                        widths: ['50%', '50%', '*'],
+                        widths: ['50%', '50%'],
                         heights: [0, 15, 15, 15, 15],
                     },
                     layout: 'lightHorizontalLines'
@@ -142,18 +138,28 @@ export class BoardingPassService extends HttpDataService {
                 },
                 small: {
                     fontSize: 8
-                },
-
+                }
             },
             defaultStyle: {
                 font: 'PFHandbookPro',
             },
-            footer: this.createPageFooter(boardingPass)
+            footer: {
+                table: {
+                    body: [
+                        [{ qr: boardingPass.barcode, alignment: 'center', width: 200, style: ['paddingTop'], foreground: 'darkslategray' }],
+                        [{ text: 'Problems or questions? Call us at +30 26620 61400', alignment: 'center', style: ['small', 'paddingTop'] }],
+                        [{ text: 'or email at info@corfucruises.com', alignment: 'center', style: 'small' }],
+                        [{ text: '© Corfu Cruises 2023, Corfu - Greece', alignment: 'center', style: 'small' }],
+                    ],
+                    widths: ['100%'],
+                },
+                layout: 'noBorders'
+            }
         }
         this.createPdf(dd)
     }
 
-    public emailVoucher(reservationId: string): Observable<any> {
+    public emailBoardingPass(reservationId: string): Observable<any> {
         return this.http.get<any>(this.url + '/boardingPass/' + reservationId)
     }
 
@@ -163,30 +169,6 @@ export class BoardingPassService extends HttpDataService {
 
     private createPdf(document: any): void {
         pdfMake.createPdf(document).open()
-    }
-
-    private createPageFooter(boardingPass: BoardingPassVM) {
-        return function (currentPage: any, pageCount: any): any {
-            if (currentPage == pageCount) {
-                return {
-                    columns: [
-                        {
-                            table: {
-                                body: [
-                                    [{ text: 'Adults: ' + boardingPass.adults + ' ' + 'Kids: ' + boardingPass.kids + ' ' + 'Free: ' + boardingPass.free + ' ' + 'Total pax: ' + boardingPass.totalPax, alignment: 'center' }],
-                                    [{ text: 'Problems or questions? Call us at +30 26620 61400', alignment: 'center', style: ['small', 'paddingTop'] }],
-                                    [{ text: 'or email at info@corfucruises.com', alignment: 'center', style: 'small' }],
-                                    [{ text: '© Corfu Cruises 2023, Corfu - Greece', alignment: 'center', style: 'small' }],
-                                ],
-                                widths: ['100%']
-                            },
-                            layout: 'noBorders'
-                        },
-                        { width: '*', text: '' }
-                    ],
-                }
-            }
-        }
     }
 
     private mapBoardingPassPassengers(passengers: any[]): BoardingPassPassengerVM[] {

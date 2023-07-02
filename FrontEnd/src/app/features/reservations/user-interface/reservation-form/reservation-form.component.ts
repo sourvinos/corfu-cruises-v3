@@ -15,7 +15,6 @@ import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DestinationActiveVM } from 'src/app/features/destinations/classes/view-models/destination-active-vm'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DriverActiveVM } from '../../../drivers/classes/view-models/driver-active-vm'
-import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -70,7 +69,7 @@ export class ReservationFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private boardingPassService: BoardingPassService, private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialog: MatDialog, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private reservationHelperService: ReservationHelperService, private reservationService: ReservationHttpService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private activatedRoute: ActivatedRoute, private boardingPassService: BoardingPassService, private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialog: MatDialog, private dialogService: ModalDialogService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private reservationHelperService: ReservationHelperService, private reservationService: ReservationHttpService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -104,32 +103,9 @@ export class ReservationFormComponent {
         if (event.target.value == '') this.isAutoCompleteDisabled = true
     }
 
-    public checkForDifferenceBetweenTotalPaxAndPassengers(element?: any): boolean {
-        return this.reservationHelperService.checkForDifferenceBetweenTotalPaxAndPassengers(element, this.form.value.totalPax, this.form.value.passengers.length)
-    }
-
-    public getPassengerDifferenceColor(element?: any): void {
-        this.passengerDifferenceColor = this.reservationHelperService.getPassengerDifferenceIcon(element, this.form.value.totalPax, this.form.value.passengers.length)
-    }
-
     public doPaxCalculations(): void {
         this.calculateTotalPax()
         this.getPassengerDifferenceColor()
-    }
-
-    public printBoardingPass(): void {
-        this.boardingPassService.printBoardingPass(this.boardingPassService.createBoardingPass(this.form.value))
-    }
-
-    public emailBoardingPass(): void {
-        this.boardingPassService.emailVoucher(this.form.value.reservationId).subscribe({
-            next: () => {
-                this.helperService.doPostSaveFormTasks(this.messageSnackbarService.emailSent(), 'success', this.parentUrl, this.form, false, false)
-            },
-            error: (errorFromInterceptor) => {
-                this.helperService.doPostSaveFormTasks(this.messageSnackbarService.filterResponse(errorFromInterceptor), 'error', this.parentUrl, this.form, false, false)
-            }
-        })
     }
 
     public doTasksAfterPassengerFormIsClosed(passengers: any): void {
@@ -141,16 +117,16 @@ export class ReservationFormComponent {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
     }
 
-    public getEmoji(emoji: string): string {
-        return this.emojiService.getEmoji(emoji)
-    }
-
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
     }
 
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
+    }
+
+    public getPassengerDifferenceColor(element?: any): void {
+        this.passengerDifferenceColor = this.reservationHelperService.getPassengerDifferenceIcon(element, this.form.value.totalPax, this.form.value.passengers.length)
     }
 
     public isAdmin(): boolean {
@@ -192,33 +168,38 @@ export class ReservationFormComponent {
         })
     }
 
+    public onEmailBoardingPass(): void {
+        if (this.reservationHelperService.totalPaxShouldBeEqualToPassengerCount(this.form.value.totalPax, this.form.value.passengers.length)) {
+            if (this.reservationHelperService.emailShouldBeValid(this.form.value.email)) {
+                this.boardingPassService.emailBoardingPass(this.form.value.reservationId).subscribe({
+                    next: () => {
+                        this.helperService.doPostSaveFormTasks(this.messageSnackbarService.emailSent(), 'success', this.parentUrl, this.form, false, false)
+                    },
+                    error: (errorFromInterceptor) => {
+                        this.helperService.doPostSaveFormTasks(this.messageSnackbarService.filterResponse(errorFromInterceptor), 'error', this.parentUrl, this.form, false, false)
+                    }
+                })
+            } else {
+                this.dialogService.open(this.messageSnackbarService.emailShouldBeValid(), 'error', ['ok'])
+            }
+        } else {
+            this.dialogService.open(this.messageSnackbarService.totalPaxShouldBeEqualToPassengerCount(), 'error', ['ok'])
+        }
+    }
+
+    public onPrintBoardingPass(): void {
+        if (this.reservationHelperService.totalPaxShouldBeEqualToPassengerCount(this.form.value.totalPax, this.form.value.passengers.length)) {
+            this.boardingPassService.printBoardingPass(this.boardingPassService.createBoardingPass(this.form.value))
+        } else {
+            this.dialogService.open(this.messageSnackbarService.totalPaxShouldBeEqualToPassengerCount(), 'error', ['ok'])
+        }
+    }
+
     public onSave(): void {
         this.saveRecord(this.flattenForm())
     }
 
-    public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
-        this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
-    }
-
-    public showReservationTab(): void {
-        this.isReservationTabVisible = true
-        this.isPassengersTabVisible = false
-        this.isMiscTabVisible = false
-    }
-
-    public showPassengersTab(): void {
-        this.isReservationTabVisible = false
-        this.isPassengersTabVisible = true
-        this.isMiscTabVisible = false
-    }
-
-    public showMiscTab(): void {
-        this.isReservationTabVisible = false
-        this.isPassengersTabVisible = false
-        this.isMiscTabVisible = true
-    }
-
-    public showCachedReservationDialog(): void {
+    public onShowCachedReservationDialog(): void {
         const dialogRef = this.dialog.open(CachedReservationDialogComponent, {
             width: '500px',
             height: '550px',
@@ -237,6 +218,28 @@ export class ReservationFormComponent {
                 }
             }
         })
+    }
+
+    public onShowMiscTab(): void {
+        this.isReservationTabVisible = false
+        this.isPassengersTabVisible = false
+        this.isMiscTabVisible = true
+    }
+
+    public onShowPassengersTab(): void {
+        this.isReservationTabVisible = false
+        this.isPassengersTabVisible = true
+        this.isMiscTabVisible = false
+    }
+
+    public onShowReservationTab(): void {
+        this.isReservationTabVisible = true
+        this.isPassengersTabVisible = false
+        this.isMiscTabVisible = false
+    }
+
+    public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
+        this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
     }
 
     public updateFieldsAfterPickupPointSelection(value: PickupPointDropdownVM): void {
