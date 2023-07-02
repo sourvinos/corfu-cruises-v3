@@ -37,10 +37,6 @@ button.drop-down-menu-trigger {
     width: 100%;
 }
 
-.sub-menu button:hover {
-    background-color: var(--color-hover) !important;
-}
-
 .drop-down-menu:hover .sub-menu {
     display: flex;
 }

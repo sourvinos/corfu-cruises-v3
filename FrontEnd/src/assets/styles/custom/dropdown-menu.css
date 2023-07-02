@@ -44,7 +44,7 @@ button.drop-down-menu-trigger {
 }
 
 .sub-menu button:hover {
-    background-color: var(--color-hover-menu) !important;
+    background-color: var(--color-hover) !important;
 }
 
 .drop-down-menu:hover .sub-menu {
