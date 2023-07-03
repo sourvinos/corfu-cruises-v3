@@ -3,7 +3,9 @@ import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Rout
 // Custom
 import { AccountService } from '../shared/services/account.service'
 import { CryptoService } from '../shared/services/crypto.service'
+import { InteractionService } from '../shared/services/interaction.service'
 import { LoadingSpinnerService } from '../shared/services/loading-spinner.service'
+import { LocalStorageService } from '../shared/services/local-storage.service'
 import { SessionStorageService } from '../shared/services/session-storage.service'
 import { environment } from 'src/environments/environment'
 import { routeAnimation } from '../shared/animations/animations'
@@ -23,7 +25,8 @@ export class AppComponent {
 
     //#endregion
 
-    constructor(private accountService: AccountService, private changeDetector: ChangeDetectorRef, private cryptoService: CryptoService, private loadingSpinnerService: LoadingSpinnerService, private router: Router, private sessionStorageService: SessionStorageService) {
+    constructor(private accountService: AccountService, private changeDetector: ChangeDetectorRef, private cryptoService: CryptoService, private interactionService: InteractionService, private loadingSpinnerService: LoadingSpinnerService, private localStorageService: LocalStorageService, private router: Router, private sessionStorageService: SessionStorageService) {
+        this.subscribeToInteractionService()
         this.router.events.subscribe((routerEvent) => {
             if (routerEvent instanceof NavigationStart) {
                 this.isLoading = true
@@ -47,6 +50,7 @@ export class AppComponent {
     ngOnInit(): void {
         this.initLoadingSpinner()
         this.setTheme()
+        this.setBackgroundImage()
         this.openBroadcastChannel()
         this.isUserConnected()
     }
@@ -72,8 +76,18 @@ export class AppComponent {
         new BroadcastChannel('test').postMessage('open')
     }
 
+    private setBackgroundImage(): void {
+        document.getElementById('wrapper').style.backgroundImage = 'url(../../assets/images/background/background-' + this.localStorageService.getItem('theme') + '.svg)'
+    }
+
     private setTheme(): void {
         document.getElementById('main').style.userSelect = environment.cssUserSelect
+    }
+
+    private subscribeToInteractionService(): void {
+        this.interactionService.refreshBackgroundImage.pipe().subscribe(() => {
+            this.setBackgroundImage()
+        })
     }
 
     //#endregion

@@ -1,9 +1,8 @@
 * {
     --color-background: #ffffff;
     --color-border: #d9d9d9;
-    --color-content-background: #f7f7f78f;
     --color-hover: #d3e3df;
-    --color-shadow: 0;
+    --color-shadow: #bbbbbb;
     --color-table-headers: #fafafa;
     --color-table-selected-row: #d3e3df;
     --color-text: #000000;

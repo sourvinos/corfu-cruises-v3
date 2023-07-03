@@ -107,6 +107,10 @@ ul {
     pointer-events: none;
 }
 
+.green {
+    color: var(--color-green) !important
+}
+
 .red {
     color: var(--color-red) !important;
 }
