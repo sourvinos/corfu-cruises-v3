@@ -7,7 +7,7 @@
 }
 
 .mat-dialog-container {
-    background-color: var(--color-background);
+    background-color: var(--color-background-dialog);
     overflow: hidden !important;
     padding: 2rem 3rem 2rem 3rem;
 }

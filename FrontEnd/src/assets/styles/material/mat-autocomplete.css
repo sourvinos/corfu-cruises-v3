@@ -1,5 +1,5 @@
 .mat-autocomplete-panel.mat-autocomplete-visible {
-    background-color: var(--color-background) !important;
+    background-color: var(--color-background-dialog) !important;
     border-radius: 0 !important;
 }
 
@@ -30,7 +30,7 @@
 }
 
 .mat-option.mat-active {
-    background-color: var(--color-table-headers);
+    background-color: var(--color-hover);
 }
 
 .mat-icon.open-close-panel {

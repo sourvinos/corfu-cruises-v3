@@ -1247,7 +1247,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Einschiffungskriterien"
+                "description": "Einschiffung"
             },
             {
                 "id": "filterPlaceholder",
@@ -1589,7 +1589,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Kriterien für die Erstellung eines Passagiermanifests"
+                "description": "Passagiermanifest"
             },
             {
                 "id": "filterPlaceholder",

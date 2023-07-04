@@ -1,7 +1,11 @@
 * {
-    --color-background: #ffffff;
+    --color-background-autofill: #f5f3f4;
+    --color-background-dialog: #fefff5;
     --color-border: #d9d9d9;
     --color-hover: #d3e3df;
+    --color-input-error: #e57b7b;
+    --color-input-focus: #2196f3;
+    --color-prime-checkbox: #00bcd4;
     --color-shadow: #bbbbbb;
     --color-table-headers: #fafafa;
     --color-table-selected-row: #d3e3df;

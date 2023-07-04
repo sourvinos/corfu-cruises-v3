@@ -1247,7 +1247,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Κριτήρια επιβίβασης"
+                "description": "Επιβίβαση"
             },
             {
                 "id": "filterPlaceholder",
@@ -1589,7 +1589,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Κριτήρια δημιουργίας κατάστασης επιβαινόντων"
+                "description": "Κατάσταση επιβαινόντων"
             },
             {
                 "id": "filterPlaceholder",

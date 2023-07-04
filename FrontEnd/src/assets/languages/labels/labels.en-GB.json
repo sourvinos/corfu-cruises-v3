@@ -1247,7 +1247,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Embarkation criteria"
+                "description": "Embarkation"
             },
             {
                 "id": "filterPlaceholder",
@@ -1589,7 +1589,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Criteria for creating a passengers manifest"
+                "description": "Passengers manifest"
             },
             {
                 "id": "filterPlaceholder",

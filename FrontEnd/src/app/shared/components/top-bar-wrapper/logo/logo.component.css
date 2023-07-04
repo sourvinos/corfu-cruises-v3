@@ -5,6 +5,10 @@
     outline: 0;
 }
 
+#logo:hover {
+    cursor: pointer;
+}
+
 #logo-image {
     width: 3.5rem;
 }

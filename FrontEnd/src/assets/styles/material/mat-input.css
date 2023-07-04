@@ -24,6 +24,11 @@ input[type="text"], input[type="email"], input[type="number"], input[type="passw
     outline: none;
 }
 
+input::placeholder {
+    color: var(--color-text) !important;
+    opacity: 0.35;
+}
+
 textarea {
     height: 6.25rem;
 }

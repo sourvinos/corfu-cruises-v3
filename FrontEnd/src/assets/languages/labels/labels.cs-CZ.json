@@ -1247,7 +1247,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Kritéria pro nalodění"
+                "description": "Nalodění"
             },
             {
                 "id": "filterPlaceholder",
@@ -1455,7 +1455,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Vyúčtování zákazníkům"
+                "description": "Knihy zákazníků"
             },
             {
                 "id": "filterPlaceholder",
@@ -1496,7 +1496,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Vyúčtování zákazníkům"
+                "description": "Knihy zákazníků"
             },
             {
                 "id": "headerCustomer",
@@ -1589,7 +1589,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Kritéria pro vytvoření seznamu cestujících"
+                "description": "Seznam cestujících"
             },
             {
                 "id": "filterPlaceholder",

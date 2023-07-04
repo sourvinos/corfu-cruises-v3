@@ -28,12 +28,9 @@
     --color-moon: #607d8b;
     /* Input */
     --color-input-background: #d3cdcd1a;
-    --color-input-error: #e57b7b;
-    --color-input-focus: #65b4ef;
     /* Dialog headers */
     --color-dialog-header: #ff7a7a;
     /* Common */
     --color-green: #34a853;
     --color-red: #d94040;
-    --color-yellow: #f1e424;
 }

@@ -5,7 +5,6 @@
 #topmenu {
     align-items: center;
     background-color: var(--color-table-headers);
-    box-shadow: 3px 3px 2px -1px var(--color-shadow) !important;
     border-radius: 0.3125rem;
     display: flex;
     padding: 0;

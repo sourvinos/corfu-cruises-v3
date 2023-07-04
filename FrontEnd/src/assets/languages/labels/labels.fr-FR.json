@@ -1247,7 +1247,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Critères d'embarquement"
+                "description": "Embarquement"
             },
             {
                 "id": "filterPlaceholder",
@@ -1589,7 +1589,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Critères pour la création d'un manifeste des passagers"
+                "description": "Manifeste des passagers"
             },
             {
                 "id": "filterPlaceholder",
