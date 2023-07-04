@@ -857,6 +857,18 @@
                 "description": "Send boarding pass to email"
             },
             {
+                "id": "toggle-button-general",
+                "description": "Overview"
+            },
+            {
+                "id": "toggle-button-passengers",
+                "description": "Passengers"
+            },
+            {
+                "id": "toggle-button-misc",
+                "description": "Misc"
+            },
+            {
                 "id": "deleteButton",
                 "description": "Delete"
             },

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core'
 import { DateAdapter, MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material/core'
 import { MatAutocompleteModule } from '@angular/material/autocomplete'
 import { MatButtonModule } from '@angular/material/button'
+import { MatButtonToggleModule } from '@angular/material/button-toggle'
 import { MatCardModule } from '@angular/material/card'
 import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatDatepickerModule } from '@angular/material/datepicker'
@@ -15,7 +16,6 @@ import { MatInputModule } from '@angular/material/input'
 import { MatMenuModule } from '@angular/material/menu'
 import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter'
 import { MatRadioModule } from '@angular/material/radio'
-import { MatSelectModule } from '@angular/material/select'
 // Custom
 import { CustomDateAdapter } from '../adapters/custom-date-adapter'
 
@@ -23,6 +23,7 @@ import { CustomDateAdapter } from '../adapters/custom-date-adapter'
     exports: [
         MatAutocompleteModule,
         MatButtonModule,
+        MatButtonToggleModule,
         MatCardModule,
         MatCheckboxModule,
         MatDatepickerModule,
@@ -35,8 +36,7 @@ import { CustomDateAdapter } from '../adapters/custom-date-adapter'
         MatMenuModule,
         MatMomentDateModule,
         MatNativeDateModule,
-        MatRadioModule,
-        MatSelectModule
+        MatRadioModule
     ],
     providers: [
         { provide: DateAdapter, useClass: CustomDateAdapter },

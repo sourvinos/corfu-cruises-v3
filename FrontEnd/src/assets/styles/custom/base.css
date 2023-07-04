@@ -16,7 +16,8 @@
 @import url("../custom/skeleton.css");
 @import url("../custom/variables.css");
 @import url("../material/mat-autocomplete.css");
-@import url("../material/mat-buttons.css");
+@import url("../material/mat-button-toggle.css");
+@import url("../material/mat-button.css");
 @import url("../material/mat-card.css");
 @import url("../material/mat-checkbox.css");
 @import url("../material/mat-date-picker.css");

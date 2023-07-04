@@ -7,6 +7,7 @@
     /*  Buttons */
     --color-button-text: #ffffff;
     --color-button-primary: #7cabe1;
+    --color-button-primary-hover: #e2f0ff;
     --color-button-secondary: #ff9800;
     --color-button-delete: #e45142;
     /* Criteria & Totals */
@@ -32,7 +33,7 @@
     /* Dialog headers */
     --color-dialog-header: #ff7a7a;
     /* Common */
-    --color-green:#34a853;
+    --color-green: #34a853;
     --color-red: #d94040;
     --color-yellow: #f1e424;
 }

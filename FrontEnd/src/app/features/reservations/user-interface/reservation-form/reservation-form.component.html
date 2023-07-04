@@ -6,11 +6,11 @@
             <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
             <div id="header-buttons">
                 <span *ngIf="isReservationInStorage()" (click)="onShowCachedReservationDialog()" class="material-symbols-outlined warning">warning</span>
-                <div id="tab-scroller">
-                    <button (click)="onShowReservationTab()" class="primary" mat-flat-button><mat-icon class="material-symbols-outlined no-text">home_storage</mat-icon></button>
-                    <button (click)="onShowPassengersTab()" class="primary" mat-flat-button><mat-icon class="material-icons-outlined no-text">group</mat-icon></button>
-                    <button (click)="onShowMiscTab()" class="primary" mat-flat-button><mat-icon class="material-symbols-outlined no-text">more</mat-icon></button>
-                </div>
+                <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                    <mat-button-toggle (click)="onShowReservationTab()" checked class="primary">{{ getLabel("toggle-button-general") | uppercase }}</mat-button-toggle>
+                    <mat-button-toggle (click)="onShowPassengersTab()">{{ getLabel("toggle-button-passengers") | uppercase }}</mat-button-toggle>
+                    <mat-button-toggle (click)="onShowMiscTab()">{{ getLabel("toggle-button-misc") | uppercase }}</mat-button-toggle>
+                </mat-button-toggle-group>
                 <button [matMenuTriggerFor]="menu" mat-icon-button>
                     <mat-icon class="material-icons-outlined no-text">more_vert</mat-icon>
                 </button>

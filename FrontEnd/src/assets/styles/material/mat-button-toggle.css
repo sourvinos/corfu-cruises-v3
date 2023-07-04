@@ -1,0 +1,20 @@
+.mat-button-toggle-group {
+    border: none !important;
+}
+
+.mat-button-toggle {
+    padding: 0.125rem 0.75rem 0 0.75rem !important;
+}
+
+.mat-button-toggle-label-content {
+    line-height: 2.25rem !important;
+}
+
+.mat-button-toggle-checked {
+    background-color: var(--color-button-primary) !important;
+    color: var(--color-button-text) !important;
+}
+
+.mat-button-toggle:not(.mat-button-toggle-checked):hover {
+    background-color: var(--color-button-primary-hover) !important;
+}

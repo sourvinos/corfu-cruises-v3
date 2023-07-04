@@ -857,6 +857,18 @@
                 "description": "Αποστολή κάρτας επιβίβασης στο email"
             },
             {
+                "id": "toggle-button-general",
+                "description": "Γενικα"
+            },
+            {
+                "id": "toggle-button-passengers",
+                "description": "Επιβατες"
+            },
+            {
+                "id": "toggle-button-misc",
+                "description": "Λοιπα"
+            },
+            {
                 "id": "deleteButton",
                 "description": "Διαγραφη"
             },
