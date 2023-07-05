@@ -8,8 +8,7 @@
             "preLaunchTask": "npm: start",
             "url": "https://localhost:4200",
             "skipFiles": [
-                "<node_internals>/**",
-                "${workspaceFolder}/node_modules/**/*.js"
+                "**/node_modules/**"
             ]
         }
     ]

@@ -5,6 +5,7 @@ import { catchError, filter, finalize, switchMap, take, tap } from 'rxjs/operato
 // Custom
 import { AccountService } from './account.service'
 import { LoadingSpinnerService } from './loading-spinner.service'
+import { SessionStorageService } from './session-storage.service'
 
 @Injectable({ providedIn: 'root' })
 
@@ -17,7 +18,7 @@ export class InterceptorService {
 
     //#endregion
 
-    constructor(private accountService: AccountService, private loadingSpinnerService: LoadingSpinnerService) { }
+    constructor(private accountService: AccountService, private loadingSpinnerService: LoadingSpinnerService, private sessionStorageService: SessionStorageService) { }
 
     //#region public methods
 
@@ -87,7 +88,7 @@ export class InterceptorService {
     }
 
     private isUserLoggedIn(): boolean {
-        return sessionStorage.getItem('userId') != ''
+        return this.sessionStorageService.getItem('userId') ? true : false
     }
 
     private trapError(err: number): Observable<any> {
