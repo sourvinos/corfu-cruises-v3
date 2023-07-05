@@ -6,6 +6,7 @@ h1 {
     line-height: var(--font-size-line-height-h1) !important;
     padding: 0 !important;
     transform: scale(1, 1.5);
+    transition: all var(--delay);
 }
 
 h6 {
@@ -13,4 +14,5 @@ h6 {
     font-size: var(--font-size-h6) !important;
     font-weight: 300 !important;
     padding: 0 !important;
+    transition: all var(--delay);
 }

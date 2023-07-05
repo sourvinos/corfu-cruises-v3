@@ -24,4 +24,5 @@
 
 .mat-checkbox-label span {
     margin-top: 0.125rem;
+    transition: all var(--delay);
 }

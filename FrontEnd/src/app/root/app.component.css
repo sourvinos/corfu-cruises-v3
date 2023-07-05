@@ -2,6 +2,7 @@
     background-position: bottom;
     background-size: cover;
     height: 100%;
+    transition: all var(--delay);
 }
 
 #main {

@@ -12,10 +12,15 @@
     font-size: 0.80rem;
 }
 
+#main-footer span {
+    transition: all var(--delay);
+}
+
 a:link, a:visited {
     color: var(--color-red);
     outline: none;
     text-decoration: none;
+    transition: all var(--delay);
 }
 
 a:link:hover {

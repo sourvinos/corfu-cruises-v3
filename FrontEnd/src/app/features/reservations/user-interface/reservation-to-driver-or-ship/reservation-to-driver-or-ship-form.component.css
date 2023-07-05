@@ -28,7 +28,6 @@
     font-family: var(--font-family-asty);
     font-size: 0.8125rem;
     font-weight: 300;
-    transition: background-color var(--delay) ease-in !important;
     width: 100%;
 }
 

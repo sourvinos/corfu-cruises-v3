@@ -149,7 +149,6 @@
     box-shadow: none;
     display: flex;
     margin-right: 1rem !important;
-    transition: transform var(--delay) !important;
 }
 
 #period-scroller button span.material-icons-outlined {

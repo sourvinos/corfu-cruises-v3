@@ -138,6 +138,9 @@ ul {
     min-height: 5rem;
 }
 
+::placeholder {
+    transition: all var(--delay);
+}
 
 p {
     color: var(--color-text) !important;

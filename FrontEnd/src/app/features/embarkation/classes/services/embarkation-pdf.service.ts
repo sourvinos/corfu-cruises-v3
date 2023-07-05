@@ -160,7 +160,7 @@ export class EmbarkationPDFService {
     private setBackgroundImage(): any[] {
         const backgroundImage = [
             {
-                image: this.logoService.getLogo(),
+                image: this.logoService.getLogo('light'),
                 width: '1000',
                 opacity: 0.03
             }

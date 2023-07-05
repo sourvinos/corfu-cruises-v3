@@ -8,7 +8,6 @@
     flex-direction: column;
     justify-content: flex-start;
     padding: 2rem 1rem 2rem 1rem !important;
-    transition: background-color var(--delay) ease-in !important;
     width: 17rem;
 }
 
@@ -23,11 +22,13 @@
     font-size: 1.25rem;
     font-weight: 300;
     margin: 0 0 0 0.5rem !important;
+    transition: all var(--delay);
 }
 
 .mat-divider.mat-divider-inset {
     background-color: var(--color-border);
     margin: 0.6rem 0 0.6rem 0 !important;
+    transition: all var(--delay);
 }
 
 .mat-card-subtitle {
@@ -36,6 +37,7 @@
     font-weight: 300;
     line-height: 1.25rem;
     margin: 0 0 0 0.5rem !important;
+    transition: all var(--delay);
 }
 
 .mat-card img {

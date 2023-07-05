@@ -100,4 +100,5 @@
     color: var(--color-text) !important;
     justify-content: flex-end;
     width: 1.1rem;
+    transition: all var(--delay);
 }

@@ -2,11 +2,13 @@
     background-color: var(--color-prime-checkbox);
     height: 1rem;
     width: 1rem;
+    transition: all var(--delay);
 }
 
 .p-radiobutton .p-radiobutton-box {
     background-color: transparent;
     border: 0.125rem solid var(--color-text) !important;
+    transition: all var(--delay);
 }
 
 .p-radiobutton .p-radiobutton-box.p-highlight {

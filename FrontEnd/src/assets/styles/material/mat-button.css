@@ -39,6 +39,7 @@ button.bold {
 button.transparent {
     background-color: transparent;
     color: var(--color-text) !important;
+    transition: all var(--delay);
 }
 
 button.transparent:hover {
