@@ -23,11 +23,6 @@
     height: 100%;
 }
 
-#tab-overview, #tab-passengers, #tab-misc {
-    background: var(--color-button-primary);
-    color: var(--color-button-text);
-}
-
 #qr-code {
     left: -10rem;
     position: absolute;

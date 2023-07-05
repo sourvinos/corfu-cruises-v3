@@ -201,8 +201,8 @@ export class ReservationFormComponent {
 
     public onShowCachedReservationDialog(): void {
         const dialogRef = this.dialog.open(CachedReservationDialogComponent, {
-            width: '500px',
-            height: '550px',
+            width: '31rem',
+            height: '34rem',
             panelClass: 'dialog',
         })
         dialogRef.afterClosed().subscribe(result => {

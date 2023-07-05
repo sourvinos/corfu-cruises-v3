@@ -261,9 +261,9 @@ export class EmbarkationReservationsComponent {
         const response = this.dialog.open(EmbarkationPassengerListComponent, {
             data: { reservation: reservation },
             disableClose: true,
-            height: '500px',
+            height: '31rem',
             panelClass: 'dialog',
-            width: '800px',
+            width: '50rem',
         })
         response.afterClosed().subscribe(result => {
             if (result !== undefined && result == true) {

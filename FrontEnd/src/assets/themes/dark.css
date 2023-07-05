@@ -1,13 +1,14 @@
 * {
     --color-background-autofill: #646a70;
-    --color-background-dialog: #6d888b;
-    --color-border: #afafaf;
-    --color-hover: #63726e;
+    --color-background-dialog: #464d54;
+    --color-border: #959595;
+    --color-content: #89898926;
+    --color-hover: #61817e;
     --color-input-error: #ff9a7b;
     --color-input-focus: #3fe9ff;
     --color-prime-checkbox: #f1e424;
     --color-shadow: #9f9f9f;
     --color-table-headers: #595e63;
-    --color-table-selected-row: #9dbfbc;
+    --color-table-selected-row: #595e63;
     --color-text: #ffffff;
 }

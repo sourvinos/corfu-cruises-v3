@@ -116,6 +116,10 @@ ul {
     color: var(--color-red) !important;
 }
 
+.yellow {
+    color: var(--color-yellow) !important;
+}
+
 .disabled:hover {
     cursor: no-drop;
     pointer-events: all;

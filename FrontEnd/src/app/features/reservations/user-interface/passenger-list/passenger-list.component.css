@@ -46,4 +46,5 @@
 
 .fa-trash-alt {
     color: var(--color-table-delete-icon) !important;
+    font-size: 1.0625rem;
 }

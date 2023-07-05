@@ -47,11 +47,13 @@
 
 #dialog-header h1 {
     color: var(--color-dialog-header) !important;
+    transform: scale(1, 2);
 }
 
 #dialog-header h6 {
     color: var(--color-text) !important;
     line-height: 1rem;
+    transform: scale(1, 1.5);
 }
 
 #dialog-content {

@@ -125,9 +125,9 @@ export class ManifestListComponent {
         const response = this.dialog.open(ManifestRouteSelectorComponent, {
             data: this.records,
             disableClose: true,
-            height: '550px',
+            height: '31rem',
             panelClass: 'dialog',
-            width: '500px',
+            width: '50rem',
         })
         response.afterClosed().subscribe(result => {
             if (result !== undefined) {

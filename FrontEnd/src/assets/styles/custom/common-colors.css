@@ -5,11 +5,13 @@
     --color-table-inactive: #f44336;
     --color-table-delete-icon: #ff7a7a;
     /*  Buttons */
-    --color-button-text: #ffffff;
-    --color-button-primary: #7cabe1;
-    --color-button-primary-hover: #e2f0ff;
-    --color-button-secondary: #ff9800;
     --color-button-delete: #e45142;
+    --color-button-primary-hover: #e2f0ff;
+    --color-button-primary: #7cabe1;
+    --color-button-secondary: #ff9800;
+    --color-button-tab-checked: #00bcd4;
+    --color-button-tab-unchecked: #e0e0e0;
+    --color-button-text: #ffffff;
     /* Criteria & Totals */
     --color-criteria-a: #5f80a7;
     --color-criteria-b: #cf6755;
@@ -31,6 +33,7 @@
     /* Dialog headers */
     --color-dialog-header: #ff7a7a;
     /* Common */
+    --color-yellow: #f1e424;
     --color-green: #34a853;
     --color-red: #d94040;
 }

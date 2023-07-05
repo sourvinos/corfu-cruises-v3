@@ -150,6 +150,6 @@
 }
 
 .mat-form-field-appearance-legacy .mat-form-field-suffix .mat-datepicker-toggle-default-icon {
-    margin-left: 33px;
-    margin-top: 16px !important;
+    margin-left: 25px;
+    margin-top: 1rem !important;
 }

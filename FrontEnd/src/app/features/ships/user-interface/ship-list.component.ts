@@ -45,7 +45,7 @@ export class ShipListComponent {
             this.filterTableFromStoredFilters()
             this.subscribeToInteractionService()
             this.setTabTitle()
-             })
+        })
     }
 
     ngAfterViewInit(): void {
