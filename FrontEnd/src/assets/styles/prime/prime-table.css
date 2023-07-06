@@ -411,6 +411,7 @@ div:not(.p-column-filter).p-column-filter-row:hover {
     font-size: var(--font-size-table-row);
     font-weight: 300;
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    transition: all var(--delay) !important;
 }
 
 .p-datatable .p-datatable-tfoot > tr > td:first-child {
@@ -419,5 +420,5 @@ div:not(.p-column-filter).p-column-filter-row:hover {
 
 .p-datatable .p-datatable-tbody > tr.p-highlight {
     background-color: var(--color-table-selected-row) !important;
-    transition: all var(--delay);
+    transition: background-color var(--delay);
 }

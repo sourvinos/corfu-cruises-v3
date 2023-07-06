@@ -28,6 +28,7 @@ input[type="text"], input[type="email"], input[type="number"], input[type="passw
 input::placeholder {
     color: var(--color-text) !important;
     opacity: 0.35;
+    transition: color var(--delay) !important;
 }
 
 textarea {
@@ -45,7 +46,7 @@ textarea {
 }
 
 .mat-form-field.list-filter {
-    backdrop-filter: blur(0);
+    backdrop-filter: blur(--blur);
     background-color: transparent !important;
     border: none !important;
     line-height: 0 !important;

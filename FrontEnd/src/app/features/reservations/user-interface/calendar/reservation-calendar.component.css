@@ -21,6 +21,7 @@
 .day.has-schedule:hover {
     cursor: pointer !important;
     transform: scaleY(1.03);
+    transition: all 0.2s !important;
 }
 
 .material-symbols-outlined.warning:hover {

@@ -37,6 +37,7 @@
     max-width: 7.7rem;
     min-width: 7.7rem;
     padding: 1.8rem 1rem 1.8rem 1rem;
+    transition: background-color var(--delay) !important;
 }
 
 .day-data {
@@ -53,6 +54,7 @@
     font-size: 0.8rem;
     font-weight: 100;
     margin-top: 0.2rem;
+    transition: color var(--delay) !important;
 }
 
 .day-data .date {
@@ -62,6 +64,7 @@
     font-weight: 100;
     margin-top: 0.3125rem;
     text-align: center;
+    transition: color var(--delay) !important;
     width: 3rem;
 }
 
@@ -106,6 +109,7 @@
     justify-content: space-between;
     margin: 0.4rem 0;
     padding: 1rem 1rem 1rem 1rem;
+    transition: color var(--delay) !important;
 }
 
 .destination-description {
@@ -123,6 +127,7 @@
     font-weight: 100;
     margin: auto auto 1rem auto;
     text-align: center;
+    transition: color var(--delay) !important;
 }
 
 .saturday {

@@ -14,6 +14,7 @@
 .mat-form-field-infix .mat-icon {
     color: var(--color-border);
     font-size: 1.125rem;
+    transition: all var(--delay);
 }
 
 /* Checkbox with icon */
@@ -21,6 +22,7 @@
     color: var(--color-borders);
     font-size: 1.125rem;
     margin: 0.3125rem 0.1875rem 0 0;
+    transition: all var(--delay);
 }
 
 /* Menu item with icon */
@@ -31,4 +33,5 @@
 
 .material-symbols-outlined.warning {
     color: var(--color-red);
+    transition: all var(--delay);
 }

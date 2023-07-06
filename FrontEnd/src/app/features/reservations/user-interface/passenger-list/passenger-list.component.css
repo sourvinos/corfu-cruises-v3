@@ -29,6 +29,7 @@
 
 .passenger-count-wrapper .material-icons-outlined.primary {
     color: var(--color-input-focus);
+    transition: color var(--delay) !important;
 }
 
 .passenger-count-wrapper .material-icons-outlined.error:first-child {
@@ -42,6 +43,7 @@
     font-size: 1rem;
     font-weight: 300;
     margin-top: 0.1875rem;
+    transition: color var(--delay) !important;
 }
 
 .fa-trash-alt {

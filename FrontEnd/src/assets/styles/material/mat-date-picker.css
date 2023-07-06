@@ -146,7 +146,7 @@
 }
 .mat-datepicker-toggle-default-icon {
     display: flex;
-    margin-bottom: -0.875rem !important;
+    margin: 0 0 -0.875rem 24px !important;
     width: 1rem !important;
 }
 

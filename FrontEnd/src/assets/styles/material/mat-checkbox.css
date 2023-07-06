@@ -2,6 +2,7 @@
     border: 0.0625rem solid var(--color-border) !important;
     height: 1rem;
     width: 1rem;
+    transition: all var(--delay);
 }
 
 .mat-checkbox-layout .mat-checkbox-label {
@@ -20,6 +21,7 @@
 
 .mat-checkbox-frame {
     border-width: 0.0625rem !important;
+    transition: all var(--delay);
 }
 
 .mat-checkbox-label span {

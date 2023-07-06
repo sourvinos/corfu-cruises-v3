@@ -1,5 +1,6 @@
 .mat-menu-trigger .mat-button-wrapper .mat-icon {
     color: var(--color-text) !important;
+    transition: color var(--delay) !important;
 }
 
 .mat-menu-panel, .mat-menu-content {

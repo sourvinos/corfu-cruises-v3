@@ -10,6 +10,7 @@ button {
     color: var(--color-text);
     padding: 0.5rem !important;
     text-align: center;
+    transition: color var(--delay) !important;
     width: 2rem;
 }
 
