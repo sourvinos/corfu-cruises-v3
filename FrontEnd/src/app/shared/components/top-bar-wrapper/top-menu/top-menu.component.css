@@ -4,9 +4,9 @@
 
 #topmenu {
     align-items: center;
-    background-color: var(--color-table-headers);
+    background-color: var(--color-secondary);
     border-radius: 0.3125rem;
     display: flex;
-    padding: 0;
+    padding: 5px 10px 5px 10px;
     transition: all var(--delay);
 }

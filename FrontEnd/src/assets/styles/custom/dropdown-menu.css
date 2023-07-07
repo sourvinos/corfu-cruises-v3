@@ -4,7 +4,7 @@
 }
 
 button.drop-down-menu-trigger {
-    background-color: var(--color-table-headers);
+    background-color: var(--color-secondary);
     border-radius: 0;
     color: var(--color-text);
     display: flex;
@@ -27,7 +27,7 @@ button.drop-down-menu-trigger {
 
 .sub-menu button {
     animation: enter 0.1s ease forwards;
-    background-color: var(--color-table-headers);
+    background-color: var(--color-secondary);
     color: var(--color-text);
     display: flex;
     font-family: var(--font-family-asty) !important;
@@ -45,7 +45,7 @@ button.drop-down-menu-trigger {
 }
 
 .sub-menu button:hover {
-    background-color: var(--color-hover) !important;
+    background-color: var(--color-primary) !important;
 }
 
 .drop-down-menu:hover .sub-menu {
