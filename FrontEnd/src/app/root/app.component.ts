@@ -77,7 +77,7 @@ export class AppComponent {
     }
 
     private setBackgroundImage(): void {
-        document.getElementById('wrapper').style.backgroundImage = 'url(../../assets/images/background/background-' + this.localStorageService.getItem('theme') + '.svg)'
+        document.getElementById('wrapper').style.backgroundImage = 'url(../../assets/images/themes/backgrounds/' + this.localStorageService.getItem('theme') + '.svg)'
     }
 
     private setTheme(): void {

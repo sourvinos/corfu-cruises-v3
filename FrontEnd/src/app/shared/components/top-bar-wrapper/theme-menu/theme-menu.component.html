@@ -1,7 +1,10 @@
-<div id="theme-menu">
-    <input type="checkbox" [checked]="checked" id="switch-button" (click)="onChangeTheme()">
-    <label for="switch-button">
-        <i class="fas fa-moon"></i>
-        <i class="fas fa-sun"></i>
-    </label>
+<div class="drop-down-menu">
+    <button class="drop-down-menu-trigger">
+        <img (load)="onLoadImage()" [ngClass]="imageIsLoading()" src="/assets/images/themes/palettes/{{ onGetTheme() }}.svg" style="height: 1.5625rem; width: 1.5625rem">
+        <span class="material-icons-outlined">expand_more</span>
+    </button>
+    <ul (click)="onHideMenu()" class="sub-menu">
+        <button class="hoverable" (click)="onChangeTheme('icy-white')"><img src="/assets/images/themes/palettes/icy-white.svg" style="width: 25px"><span>Icy White</span></button>
+        <button class="hoverable" (click)="onChangeTheme('moonless-night')"><img src="/assets/images/themes/palettes/moonless-night.svg" style="width: 25px"><span>Moonless Night</span></button>
+    </ul>
 </div>

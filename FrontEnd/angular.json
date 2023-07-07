@@ -62,13 +62,13 @@
                             "node_modules/primeng/resources/themes/saga-blue/theme.css",
                             "src/assets/styles/custom/base.css",
                             {
-                                "input": "src/assets/themes/light.css",
-                                "bundleName": "light",
+                                "input": "src/assets/themes/icy-white.css",
+                                "bundleName": "icy-white",
                                 "inject": false
                             },
                             {
-                                "input": "src/assets/themes/dark.css",
-                                "bundleName": "dark",
+                                "input": "src/assets/themes/moonless-night.css",
+                                "bundleName": "moonless-night",
                                 "inject": false
                             }
                         ],

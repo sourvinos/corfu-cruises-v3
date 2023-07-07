@@ -6,7 +6,7 @@ export const environment = {
     appName: 'Corfu Cruises',
     clientUrl: 'http://spacetravels-001-site1.btempurl.com',
     defaultLanguage: 'en-GB',
-    defaultTheme: 'light',
+    defaultTheme: 'icy-white',
     emailFooter: {
         lineA: 'Problems or questions? Call us at +30 26620 61400',
         lineB: 'or email at info@corfucruises.com',

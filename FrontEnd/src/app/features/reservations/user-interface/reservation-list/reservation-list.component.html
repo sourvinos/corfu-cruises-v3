@@ -152,7 +152,7 @@
                             <span>{{ reservation.passengerCount }} ({{ reservation.passengerDifference }})</span>
                             <span class="passenger-difference-icon">&nbsp;&nbsp;{{ showEmoji(reservation.passengerDifference) }}</span>
                         </td>
-                        <td class="width-5">{{ reservation.driver.description == "(EMPTY)" ? getEmoji('null'): reservation.driver.description }}</td>
+                        <td [class]="reservation.driver.id == 0 ? 'center' : null" class="width-5">{{ reservation.driver.description == "(EMPTY)" ? getEmoji('null'): reservation.driver.description }}</td>
                         <td class="center width-5">{{ reservation.port.abbreviation }}</td>
                         <td class="center width-5">{{ reservation.ship.abbreviation == "(EMPTY)" ? getEmoji('null'): reservation.ship.abbreviation }}</td>
                     </tr>

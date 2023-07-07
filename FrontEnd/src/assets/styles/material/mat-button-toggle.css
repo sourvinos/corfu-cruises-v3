@@ -4,6 +4,7 @@
 
 .mat-button-toggle {
     background-color: var(--color-button-tab-unchecked);
+    border: none !important;
     padding: 0.125rem 0.75rem 0 0.75rem !important;
 }
 
@@ -18,4 +19,6 @@
 
 .mat-button-toggle:not(.mat-button-toggle-checked):hover {
     background-color: var(--color-button-primary-hover) !important;
+    color: var(--color-button-text) !important;
+    transition: all 0.2s !important;
 }
