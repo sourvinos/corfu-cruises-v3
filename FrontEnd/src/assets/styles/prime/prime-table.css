@@ -77,7 +77,7 @@
 }
 
 .p-datatable .p-sortable-column.p-highlight {
-    background-color: var(--color-secondary) !important;
+    background: color-mix(in srgb, var(--color-secondary) 30%, transparent) !important;
 }
 
 .p-datatable .p-datatable-tbody > tr {
@@ -403,7 +403,7 @@ div:not(.p-column-filter).p-column-filter-row:hover {
 }
 
 .p-datatable .p-datatable-tfoot > tr > td {
-    background-color: var(--color-table-headers);
+    background-color: var(--color-secondary);
     border-bottom: 0.0625rem solid var(--color-border) !important;
     border-right: 0.0625rem solid var(--color-border) !important;
     color: var(--color-text) !important;

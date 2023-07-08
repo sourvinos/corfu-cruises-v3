@@ -1,9 +1,4 @@
 * {
-    /* Lists and tables */
-    --color-scrollbar-thumb: #d94040;
-    --color-table-active: #4caf50;
-    --color-table-inactive: #f44336;
-    --color-table-delete-icon: #ff7a7a;
     /*  Buttons */
     --color-button-delete: #e45142;
     --color-button-primary-hover: #00bcd4;
@@ -25,13 +20,6 @@
     --color-background-saturday: #f29c6b;
     --color-background-sunday: #f26513;
     --color-background-today: #8dbf8f;
-    /* Theme menu */
-    --color-sun: #f6ff00;
-    --color-moon: #607d8b;
-    /* Input */
-    --color-input-background: #d3cdcd1a;
-    /* Dialog headers */
-    --color-dialog-header: #ff7a7a;
     /* Common */
     --color-yellow: #f1e424;
     --color-green: #34a853;

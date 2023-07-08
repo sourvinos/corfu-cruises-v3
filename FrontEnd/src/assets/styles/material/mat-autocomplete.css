@@ -1,5 +1,5 @@
 .mat-autocomplete-panel.mat-autocomplete-visible {
-    background-color: var(--color-background-dialog) !important;
+    background-color: var(--color-primary) !important;
     border-radius: 0 !important;
 }
 

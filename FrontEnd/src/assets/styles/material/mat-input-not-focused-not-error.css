@@ -32,7 +32,7 @@
 }
 
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
-    box-shadow: 0 0 0 62.5rem var(--color-background-autofill) inset !important;
+    box-shadow: 0 0 0 62.5rem var(--color-primary) inset !important;
 }
 
 input:-webkit-autofill {

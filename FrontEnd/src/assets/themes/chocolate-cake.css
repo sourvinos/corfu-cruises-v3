@@ -1,15 +1,13 @@
 * {
-    --color-background-autofill: #646a70;
-    --color-background-dialog: #464d54;
+    --color-primary: #8c5535;
+    --color-secondary: #261b14;
     --color-border: #261b14;
+    --color-text: #ffffff;
     --color-hover: #61817e;
     --color-input-error: #ff9a7b;
+    --color-scrollbar-thumb: #7cabe1;
     --color-input-focus: #3fe9ff;
-    --color-prime-checkbox: #f1e424;
-    --color-shadow: #9f9f9f;
-    --color-table-headers: #595e63;
-    --color-table-selected-row: #595e63;
-    --color-text: #ffffff;
-    --color-secondary: #261b14;
-    --color-primary:#8c5535;
+    --color-table-active: #a3e17c;
+    --color-table-inactive: #ff7a7f;
+    --color-table-delete-icon: #ff7a7f;
 }

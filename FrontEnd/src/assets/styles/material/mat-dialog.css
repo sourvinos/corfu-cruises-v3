@@ -7,7 +7,7 @@
 }
 
 .mat-dialog-container {
-    background-color: var(--color-background-dialog);
+    background-color: var(--color-primary);
     overflow: hidden !important;
     padding: 2rem 3rem 2rem 3rem;
 }
@@ -46,7 +46,7 @@
 }
 
 #dialog-header h1 {
-    color: var(--color-dialog-header) !important;
+    color: var(--color-text) !important;
     transform: scale(1, 2);
 }
 

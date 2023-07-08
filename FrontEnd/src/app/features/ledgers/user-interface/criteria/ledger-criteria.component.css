@@ -89,5 +89,5 @@
 }
 
 #goto-today-button span {
-    color: var(--color-background-today) !important;
+    color: var(--color-text) !important;
 }

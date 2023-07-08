@@ -3,7 +3,6 @@
     border-radius: 0;
     border: 0.0625rem solid var(--color-text) !important;
     margin-top: -0.1875rem;
-    transition: all var(--delay);
 }
 
 .p-checkbox .p-checkbox-box .p-icon {
