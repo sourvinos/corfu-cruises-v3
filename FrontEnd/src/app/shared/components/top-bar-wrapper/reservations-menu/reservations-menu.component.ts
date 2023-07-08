@@ -4,6 +4,7 @@ import { Subject, takeUntil } from 'rxjs'
 // Custom
 import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { Menu } from 'src/app/shared/classes/menu'
 import { MessageMenuService } from 'src/app/shared/services/message-menu.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
@@ -25,7 +26,7 @@ export class ReservationsMenuComponent {
 
     //#endregion
 
-    constructor(private cryptoService: CryptoService, private interactionService: InteractionService, private messageMenuService: MessageMenuService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private cryptoService: CryptoService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageMenuService: MessageMenuService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region listeners
 
@@ -55,8 +56,12 @@ export class ReservationsMenuComponent {
         this.router.navigate([feature.substring(13)])
     }
 
-    public getIcon(filename: string): string {
-        return environment.menuIconDirectory + filename + '.svg'
+    public getMenuTopIcon(filename: string): string {
+        return environment.menuTopIconDirectory + filename + '.svg'
+    }
+
+    public getMenuDropdownIcon(filename: string): string {
+        return environment.menuDropdownIconDirectory + filename + '.svg'
     }
 
     public hideMenu(): void {

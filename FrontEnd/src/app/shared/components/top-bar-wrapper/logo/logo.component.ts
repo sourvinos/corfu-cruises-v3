@@ -23,7 +23,7 @@ export class LogoComponent {
     }
 
     public doLogoTasks(color: string): any {
-        this.setLogoOpacity()
+        this.setLogoVisibility()
         return this.getLogo(color)
     }
 
@@ -35,9 +35,9 @@ export class LogoComponent {
         return this.logoService.getLogo(color)
     }
 
-    private setLogoOpacity(): void {
-        document.getElementById('dark').style.opacity = this.localStorageService.getItem('theme') == 'dark' ? '1' : '0'
-        document.getElementById('light').style.opacity = this.localStorageService.getItem('theme') == 'light' ? '1' : '0'
+    private setLogoVisibility(): void {
+        document.getElementById('dark').style.opacity = this.localStorageService.getItem('theme-group') == 'dark' ? '1' : '0'
+        document.getElementById('light').style.opacity = this.localStorageService.getItem('theme-group') == 'light' ? '1' : '0'
     }
 
     //#endregion

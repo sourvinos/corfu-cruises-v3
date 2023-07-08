@@ -1,11 +1,12 @@
 .mat-card {
     align-items: flex-start;
     backdrop-filter: blur(--blur);
-    background: var(--color-input-background);
+    background-color: color-mix(in srgb, var(--color-secondary) 25%, transparent);
     border-radius: 0.3125rem !important;
     box-shadow: 0.1875rem 0.1875rem 0 0 rgb(var(--color-shadow) var(--color-shadow) var(--color-shadow) / var(--color-border-transparency)) !important;
     display: flex !important;
     flex-direction: column;
+    height: 16.5rem;
     justify-content: flex-start;
     padding: 2rem 1rem 2rem 1rem !important;
     transition: all 0.25s !important;
@@ -13,7 +14,7 @@
 }
 
 .mat-card:hover {
-    background-color: var(--color-hover) !important;
+    background-color: color-mix(in srgb, var(--color-secondary) 50%, transparent);
     cursor: pointer;
 }
 

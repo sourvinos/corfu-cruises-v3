@@ -7,7 +7,7 @@
 }
 
 .p-checkbox .p-checkbox-box .p-icon {
-    color: var(--color-prime-checkbox);
+    color: var(--color-secondary);
     transition: all var(--delay);
 }
 

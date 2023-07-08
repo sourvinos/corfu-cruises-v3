@@ -26,7 +26,7 @@ export class CriteriaPanelComponent {
     }
 
     public getIcon(filename: string): string {
-        return environment.menuIconDirectory + filename + '.svg'
+        return environment.featuresIconDirectory + filename + '.svg'
     }
 
     public getLabel(id: string): string {

@@ -17,12 +17,11 @@
 }
 
 a:link, a:visited {
-    color: var(--color-red);
+    color: var(--color-text);
     outline: none;
     text-decoration: none;
-    transition: all var(--delay);
 }
 
 a:link:hover {
-    color: var(--color-red);
+    color: var(--color-text);
 }

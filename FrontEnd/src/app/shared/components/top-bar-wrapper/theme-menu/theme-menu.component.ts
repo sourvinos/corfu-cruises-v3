@@ -14,20 +14,23 @@ export class ThemeMenuComponent {
 
     //#region variables
 
-    private feature = 'theme-menu'
     public defaultTheme = 'icy-white'
+    public defaultThemeGroup = 'light'
     public imgIsLoaded = false
-
 
     //#endregion
 
     constructor(@Inject(DOCUMENT) private document: Document, private interactionService: InteractionService, private localStorageService: LocalStorageService) { }
+
+    //#region listeners
 
     @HostListener('mouseenter') onMouseEnter(): void {
         document.querySelectorAll('.sub-menu').forEach((item) => {
             item.classList.remove('hidden')
         })
     }
+
+    //#endregion
 
     //#region lifecycle hooks
 
@@ -39,29 +42,29 @@ export class ThemeMenuComponent {
 
     //#region public methods
 
-    public onChangeTheme(theme: string): void {
-        this.changeTheme(theme)
-        this.attachStylesheetToHead()
-        this.updateLocalStorage()
-        this.interactionService.mustRefreshBackgroundImage()
+    public getThemeThumbnail(): string {
+        return this.localStorageService.getItem('theme') == '' ? this.defaultTheme : this.localStorageService.getItem('theme')
     }
 
-    public onGetTheme(): string {
-        return this.localStorageService.getItem('theme') == '' ? this.onSaveTheme(this.defaultTheme) : this.localStorageService.getItem('theme')
+    public imageIsLoading(): any {
+        return this.imgIsLoaded ? '' : 'skeleton'
+    }
+
+    public loadImage(): void {
+        this.imgIsLoaded = true
+    }
+
+    public onChangeTheme(theme: string, themeGroup: string): void {
+        this.setDefaultTheme(theme, themeGroup)
+        this.attachStylesheetToHead()
+        this.saveTheme()
+        this.refreshBackgroundImage()
     }
 
     public onHideMenu(): void {
         document.querySelectorAll('.sub-menu').forEach((item) => {
             item.classList.add('hidden')
         })
-    }
-
-    public onLoadImage(): void {
-        this.imgIsLoaded = true
-    }
-
-    public imageIsLoading(): any {
-        return this.imgIsLoaded ? '' : 'skeleton'
     }
 
     //#endregion
@@ -71,7 +74,7 @@ export class ThemeMenuComponent {
     private applyTheme(): void {
         this.updateVariables()
         this.attachStylesheetToHead()
-        this.updateLocalStorage()
+        this.saveTheme()
     }
 
     private attachStylesheetToHead(): void {
@@ -82,21 +85,23 @@ export class ThemeMenuComponent {
         headElement.appendChild(newLinkElement)
     }
 
-    private changeTheme(theme: string): void {
-        this.defaultTheme = theme
+    private refreshBackgroundImage(): void {
+        this.interactionService.mustRefreshBackgroundImage()
     }
 
-    private updateLocalStorage(): void {
+    private saveTheme(): void {
         this.localStorageService.saveItem('theme', this.defaultTheme)
+        this.localStorageService.saveItem('theme-group', this.defaultThemeGroup)
+    }
+
+    private setDefaultTheme(theme: string, themeGroup: string): void {
+        this.defaultTheme = theme
+        this.defaultThemeGroup = themeGroup
     }
 
     private updateVariables(): void {
         this.defaultTheme = this.localStorageService.getItem('theme') || this.defaultTheme
-    }
-
-    public onSaveTheme(theme: string): string {
-        this.localStorageService.saveItem('theme', theme)
-        return theme
+        this.defaultThemeGroup = this.localStorageService.getItem('theme-group') || this.defaultThemeGroup
     }
 
     //#endregion

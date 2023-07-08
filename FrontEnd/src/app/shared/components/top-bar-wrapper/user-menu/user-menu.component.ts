@@ -9,6 +9,7 @@ import { Menu } from 'src/app/shared/classes/menu'
 import { MessageMenuService } from '../../../services/message-menu.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { environment } from 'src/environments/environment'
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 
 @Component({
     selector: 'user-menu',
@@ -26,7 +27,7 @@ export class UserMenuComponent {
 
     //#endregion
 
-    constructor(private accountService: AccountService, private cryptoService: CryptoService, private interactionService: InteractionService, private messageMenuService: MessageMenuService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private accountService: AccountService, private cryptoService: CryptoService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageMenuService: MessageMenuService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region listeners
 
@@ -64,8 +65,12 @@ export class UserMenuComponent {
         return this.cryptoService.decrypt(this.sessionStorageService.getItem('displayName'))
     }
 
-    public getIcon(filename: string): string {
-        return environment.menuIconDirectory + filename + '.svg'
+    public getMenuTopIcon(filename: string): string {
+        return environment.menuTopIconDirectory + filename + '.svg'
+    }
+
+    public getMenuDropdownIcon(filename: string): string {
+        return environment.menuDropdownIconDirectory + filename + '.svg'
     }
 
     public getLabel(id: string): string {

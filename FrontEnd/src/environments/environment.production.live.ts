@@ -12,7 +12,8 @@ export const environment = {
         lineB: 'or email at info@corfucruises.com',
         lineC: '© Corfu Cruises 2023, Corfu - Greece'
     },
-    menuIconDirectory: 'assets/images/menu/',
+    menuTopIconDirectory: 'assets/images/menu-top/',
+    menuDropdownIconDirectory: 'assets/images/menu-dropdown/',
     featuresIconDirectory: 'assets/images/features/',
     criteriaIconDirectory: 'assets/images/criteria/',
     stopOrdersIconDirectory: 'assets/images/stopOrders/',

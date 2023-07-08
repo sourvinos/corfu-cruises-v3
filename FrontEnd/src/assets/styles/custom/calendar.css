@@ -30,7 +30,7 @@
 }
 
 .day {
-    background-color: var(--color-table-headers);
+    background-color: color-mix(in srgb, var(--color-secondary) 30%, transparent);
     border-radius: 0.625rem;
     display: flex;
     flex-direction: column;

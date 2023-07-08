@@ -1,12 +1,12 @@
 <div *ngIf=isLoggedIn()>
     <div class="drop-down-menu">
         <button class="drop-down-menu-trigger">
-            <img (load)="loadImage()" [ngClass]="imageIsLoading()" [src]="getIcon('calendar')" style="height: 1.5625rem; width: 1.5625rem">
+            <img (load)="loadImage()" [ngClass]="imageIsLoading()" [src]="getMenuTopIcon('reservations')" style="height: 1.5625rem; width: 1.5625rem">
             <span class="material-icons-outlined">expand_more</span>
         </button>
         <ul (click)="hideMenu()" class="sub-menu">
             <button *ngFor="let item of menuItems" (click)="doNavigationTasks(item.id)" class="hoverable">
-                <img [src]="getIcon(item.id.substring(13))" style="height: 1.5625rem; width: 1.5625rem">
+                <img [src]="getMenuDropdownIcon(item.id.substring(13))" style="height: 1.5625rem; width: 1.5625rem">
                 <span>{{ item.description }}</span>
             </button>
         </ul>
