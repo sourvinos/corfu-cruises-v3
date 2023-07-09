@@ -8,13 +8,13 @@
         <form id="form" [formGroup]="form" autocomplete="off">
             <div class="group-field">
                 <!-- Lastname -->
-                <mat-form-field>
+                <mat-form-field class="dialog">
                     <input [inputTabStop]="input" [placeholder]="getLabel('lastname')" data-tabindex="1" formControlName="lastname" matInput>
                     <mat-error *ngIf="lastname.hasError('required')">{{ getHint("required") }}</mat-error>
                     <mat-error *ngIf="lastname.hasError('maxlength')">{{ getHint("maxLength", lastname.errors.maxlength.requiredLength) }}</mat-error>
                 </mat-form-field>
                 <!-- Firstname -->
-                <mat-form-field>
+                <mat-form-field class="dialog">
                     <input [inputTabStop]="input" [placeholder]="getLabel('firstname')" data-tabindex="2" formControlName="firstname" matInput>
                     <mat-error *ngIf="firstname.hasError('required')">{{ getHint("required") }}</mat-error>
                     <mat-error *ngIf="firstname.hasError('maxlength')">{{ getHint("maxLength", firstname.errors.maxlength.requiredLength) }}</mat-error>
@@ -22,7 +22,7 @@
             </div>
             <div class="group-field">
                 <!-- Nationality -->
-                <mat-form-field style="width: 40% !important;">
+                <mat-form-field class="dialog" style="width: 40% !important;">
                     <input #inputAutoComplete #triggerNationality="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="nationalities" [placeholder]="getLabel('nationality')" data-tabindex="3" formControlName="nationality" matInput>
                     <div matSuffix style="display:flex">
                         <button (click)="openOrCloseAutoComplete(triggerNationality, 'nationality')" mat-icon-button type="button">
@@ -33,7 +33,7 @@
                     <mat-error *ngIf="!nationality.hasError('required') && nationality.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
                 </mat-form-field>
                 <!-- Gender -->
-                <mat-form-field style="width: 30% !important;">
+                <mat-form-field class="dialog" style="width: 30% !important;">
                     <input #inputAutoComplete #triggerGender="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="genders" [placeholder]="getLabel('gender')" data-tabindex="4" formControlName="gender" matInput>
                     <div matSuffix style="display:flex">
                         <button (click)="openOrCloseAutoComplete(triggerGender, 'gender')" mat-icon-button type="button">
@@ -44,7 +44,7 @@
                     <mat-error *ngIf="!gender.hasError('required') && gender.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
                 </mat-form-field>
                 <!-- Birthdate -->
-                <mat-form-field style="width: 40% !important;">
+                <mat-form-field class="dialog" style="width: 40% !important;">
                     <input (blur)="convertFutureDateToPastDate()" [inputTabStop]="input" [matDatepicker]="picker" [min]="minBirthDate" [placeholder]="getLabel('birthdate')" data-tabindex="5" formControlName="birthdate" matInput>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
@@ -54,13 +54,13 @@
             </div>
             <div class="group-field">
                 <!-- Special care -->
-                <mat-form-field>
+                <mat-form-field class="dialog">
                     <input [inputTabStop]="input" [placeholder]="getLabel('specialCare')" data-tabindex="6" formControlName="specialCare" matInput>
                     <mat-error *ngIf="specialCare.hasError('required')">{{ getHint("required") }}</mat-error>
                     <mat-error *ngIf="specialCare.hasError('maxlength')">{{ getHint("maxLength", specialCare.errors.maxlength.requiredLength) }}</mat-error>
                 </mat-form-field>
                 <!-- Remarks -->
-                <mat-form-field>
+                <mat-form-field class="dialog">
                     <input [inputTabStop]="input" [placeholder]="getLabel('remarks')" data-tabindex="7" formControlName="remarks" matInput>
                     <mat-error *ngIf="remarks.hasError('required')">{{ getHint("required") }}</mat-error>
                     <mat-error *ngIf="remarks.hasError('maxlength')">{{ getHint("maxLength", remarks.errors.maxlength.requiredLength) }}</mat-error>

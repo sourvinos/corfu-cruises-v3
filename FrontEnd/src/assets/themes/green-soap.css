@@ -1,13 +1,17 @@
 * {
-    --color-primary: #dde392;
-    --color-secondary: #afbe8f;
-    --color-secondary: #afbe8f;
+    --color-primary: #F5FABF;
+    --color-secondary: #AFBE8F;
     --color-text: #000000;
-    --color-hover: #d3e3df;
-    --color-input-error: #e57b7b;
-    --color-scrollbar-thumb: #ffeb3b;
-    --color-secondary: #673ab7;
-    --color-table-active: #43a506;
-    --color-table-inactive: #ff0b14;
-    --color-table-trash-icon: #ff0b14;
+    --color-dialog-header: #923131;
+    --color-hover: #a332507d;
+    --color-input-error: #FF00C7;
+    --color-input-focus: #ffffff;
+    --color-scrollbar-thumb: #923131;
+    --color-calendar-period-scroller: #923131;
+    --color-button-toggle: #923131;
+    --color-ref-no: #923131;
+    --color-checkbox: #923131;
+    --color-table-trash-icon: #923131;
+    --color-passenger-list-icon: #923131;
+    --dialog-input-transparency: 5%;
 }

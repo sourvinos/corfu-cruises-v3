@@ -2,14 +2,16 @@
     --color-primary: #d95f76;
     --color-secondary: #a63352;
     --color-text: #ffffff;
-    --color-dialog-header: #74d3fa;
+    --color-dialog-header: #ffee5b;
     --color-hover: #a332507d;
-    --color-input-error: #c52bdf;
-    --color-input-focus: #cf1b59;
+    --color-input-error: #ffffff;
+    --color-input-focus: #000000;
     --color-scrollbar-thumb: #ffee5b;
     --color-calendar-period-scroller: #ffee5b;
     --color-button-toggle: #ffee5b;
     --color-ref-no: #ffee5b;
     --color-checkbox: #ffee5b;
     --color-table-trash-icon: #ffee5b;
+    --color-passenger-list-icon: #ffee5b;
+    --dialog-input-transparency: 25%;
 }
