@@ -1,5 +1,5 @@
 <div id="table-wrapper">
-    <p-table #table [scrollable]="true" [value]="customer.reservations" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="auto" selectionMode="single" sortMode="multiple">
+    <p-table #table [scrollable]="true" [value]="customer.reservations" [virtualScrollItemSize]="35" [virtualScroll]="false" scrollHeight="auto" selectionMode="single" sortMode="multiple">
         <ng-template pTemplate="header">
             <tr>
                 <th class="width-5" pSortableColumn="date">{{ getLabel('headerDate') }}</th>
@@ -63,7 +63,7 @@
         </ng-template>
         <ng-template pTemplate="footer" let-columns>
             <tr>
-                <td colspan="7"></td>
+                <td colspan="8"></td>
                 <td class="center">{{ customer.adults | replaceZero }}</td>
                 <td class="center">{{ customer.kids | replaceZero }}</td>
                 <td class="center">{{ customer.free | replaceZero }}</td>

@@ -30,7 +30,7 @@
 }
 
 .mat-option.mat-active {
-    background-color: var(--color-hover);
+    background-color: var(--color-secondary);
 }
 
 .mat-icon.open-close-panel {

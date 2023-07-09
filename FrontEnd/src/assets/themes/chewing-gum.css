@@ -1,13 +1,15 @@
 * {
     --color-primary: #f2ffdc;
     --color-secondary: #ffcfcc;
-    --color-border: #ffcfcc;
     --color-text: #000000;
-    --color-hover: #ffcfcc;
-    --color-input-error: #e57b7b;
-    --color-scrollbar-thumb: #d94040;    
-    --color-input-focus: #2196f3;
-    --color-table-active: #4caf50;
-    --color-table-inactive: #f44336;
-    --color-table-delete-icon: #ff7a7a;
+    --color-dialog-header: #00c9eb;
+    --color-hover: #a332507d;
+    --color-input-error: #c52bdf;
+    --color-input-focus: #cf1b59;
+    --color-scrollbar-thumb: #cf6755;
+    --color-calendar-period-scroller: #74d3fa;
+    --color-button-toggle: #c3d4e7;
+    --color-ref-no: #00c9eb;
+    --color-checkbox: #00c9eb;
+    --color-table-trash-icon: #e45142;
 }

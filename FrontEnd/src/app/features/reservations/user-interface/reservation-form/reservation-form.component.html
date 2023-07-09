@@ -120,7 +120,7 @@
                         <div id="total-pax" style="width: 30% !important;">
                             <span id="total-pax-label">{{ getLabel('totalPax') }}</span>
                             <span id="total-pax-body">{{ form.value.totalPax }}</span>
-                            <span [ngClass]="passengerDifferenceColor" id="pax-difference"></span>
+                            <span>{{ getEmoji() }}</span>
                         </div>
                     </div>
                     <div class="group-field">

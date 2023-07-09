@@ -16,7 +16,7 @@
         </div>
 
         <div id="table-wrapper">
-            <p-table #table (onFilter)="filterRecords($event)" [scrollable]="true" [value]="records.reservations" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="ticketNo" scrollHeight="flex" selectionMode="single" sortMode="multiple">
+            <p-table #table (onFilter)="filterRecords($event)" [scrollable]="true" [value]="records.reservations" [virtualScrollItemSize]="35" [virtualScroll]="true" dataKey="ticketNo" scrollHeight="flex" selectionMode="single" sortMode="multiple">
                 <ng-template pTemplate="header">
                     <tr>
                         <th class="width-4" pSortableColumn="embarkationStatus.description">{{ getLabel('headerEmbarkationStatus') }}</th>

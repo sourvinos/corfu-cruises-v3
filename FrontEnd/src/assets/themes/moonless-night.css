@@ -1,8 +1,8 @@
 * {
-    --color-border: #343a40;
+    --color-secondary: #343a40;
     --color-hover: #61817e;
     --color-input-error: #ff9a7b;
-    --color-input-focus: #3fe9ff;
+    --color-secondary: #3fe9ff;
     --color-table-headers: #595e63;
     --color-text: #ffffff;
     --color-secondary: #343a40;

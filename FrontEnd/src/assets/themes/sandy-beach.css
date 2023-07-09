@@ -1,13 +1,13 @@
 * {
     --color-primary: #ffeab9;
     --color-secondary: #e5d2a6;
-    --color-border: #e5d2a6;
+    --color-secondary: #e5d2a6;
     --color-text: #000000;
     --color-hover: #d3e3df;
     --color-input-error: #e57b7b;
     --color-scrollbar-thumb: #009688;
-    --color-input-focus: #673ab7;
+    --color-secondary: #673ab7;
     --color-table-active: #43a506;
     --color-table-inactive: #ff0b14;
-    --color-table-delete-icon: #ff0b14;
+    --color-table-trash-icon: #ff0b14;
 }

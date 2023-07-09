@@ -2,11 +2,12 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { Component, ViewChild } from '@angular/core'
 import { Table } from 'primeng/table'
 // Custom
+import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { ListResolved } from 'src/app/shared/classes/list-resolved'
-import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
+import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { ShipOwnerListVM } from '../classes/view-models/shipOwner-list-vm'
@@ -34,7 +35,7 @@ export class ShipOwnerListComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private helperService: HelperService, private interactionService: InteractionService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private dialogService: ModalDialogService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private activatedRoute: ActivatedRoute, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private dialogService: ModalDialogService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -68,6 +69,12 @@ export class ShipOwnerListComponent {
     public filterRecords(event: { filteredValue: any[] }): void {
         this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
         this.recordsFilteredCount = event.filteredValue.length
+    }
+
+    public getEmoji(anything: any): string {
+        return typeof anything == 'string'
+            ? this.emojiService.getEmoji(anything)
+            : anything ? this.emojiService.getEmoji('green-circle') : this.emojiService.getEmoji('red-circle')
     }
 
     public getLabel(id: string): string {

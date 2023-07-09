@@ -6,7 +6,7 @@
 }
 
 .p-checkbox .p-checkbox-box .p-icon {
-    color: var(--color-secondary);
+    color: var(--color-checkbox);
     transition: all var(--delay);
 }
 
@@ -20,7 +20,8 @@
 }
 
 .p-checkbox {
-    height: 0.8125rem;
+    bottom: -0.0625rem;
+    height: 1rem;
     width: 1.25rem;
 }
 

@@ -74,8 +74,10 @@ export class RegistrarListComponent {
         this.recordsFilteredCount = event.filteredValue.length
     }
 
-    public getEmoji(emoji: string): string {
-        return this.emojiService.getEmoji(emoji)
+    public getEmoji(anything: any): string {
+        return typeof anything == 'string'
+            ? this.emojiService.getEmoji(anything)
+            : anything ? this.emojiService.getEmoji('green-circle') : this.emojiService.getEmoji('red-circle')
     }
 
     public getLabel(id: string): string {

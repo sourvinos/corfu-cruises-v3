@@ -1,5 +1,5 @@
 .mat-checkbox-inner-container {
-    border: 0.0625rem solid var(--color-border) !important;
+    border: 0.0625rem solid var(--color-secondary) !important;
     height: 1rem;
     width: 1rem;
     transition: all var(--delay);

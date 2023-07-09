@@ -5,12 +5,13 @@
 }
 
 button {
-    background-color: var(--color-button-secondary);
+    background-color: var(--color-secondary);
     border-radius: 50%;
+    border: 0.0625rem solid var(--color-primary);
     color: var(--color-text);
     padding: 0.5rem !important;
     text-align: center;
-    transition: color var(--delay) !important;
+    transition: all 0.25s !important;
     width: 2rem;
 }
 

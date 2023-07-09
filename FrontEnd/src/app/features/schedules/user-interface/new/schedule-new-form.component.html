@@ -39,7 +39,7 @@
                             </div>
                         </legend>
                         <div class="table-wrapper">
-                            <p-table #destinationsTable (onRowSelect)="onRowSelect($event,'selectedDestinations')" (onRowUnselect)="onRowUnselect($event,'selectedDestinations')" [(selection)]="selectedDestinations[0]" [scrollable]="true" [value]="destinations" datakey="id" [virtualScrollItemSize]="32" [virtualScroll]="true" scrollHeight="flex" selectionMode="single">
+                            <p-table #destinationsTable (onRowSelect)="onRowSelect($event,'selectedDestinations')" (onRowUnselect)="onRowUnselect($event,'selectedDestinations')" [(selection)]="selectedDestinations[0]" [scrollable]="true" [value]="destinations" datakey="id" [virtualScrollItemSize]="35" [virtualScroll]="true" scrollHeight="flex" selectionMode="single">
                                 <ng-template pTemplate="header">
                                     <tr>
                                         <th class="no-border width-2"><p-tableHeaderCheckbox class="hidden"></p-tableHeaderCheckbox></th>
@@ -65,7 +65,7 @@
                             </div>
                         </legend>
                         <div class="table-wrapper">
-                            <p-table #portsTable (onRowSelect)="onRowSelect($event,'selectedPorts')" (onRowUnselect)="onRowUnselect($event,'selectedPorts')" [(selection)]="selectedPorts[0]" [scrollable]="true" [value]="ports" datakey="id" [virtualScrollItemSize]="32" [virtualScroll]="true" scrollHeight="flex" selectionMode="single">
+                            <p-table #portsTable (onRowSelect)="onRowSelect($event,'selectedPorts')" (onRowUnselect)="onRowUnselect($event,'selectedPorts')" [(selection)]="selectedPorts[0]" [scrollable]="true" [value]="ports" datakey="id" [virtualScrollItemSize]="35" [virtualScroll]="true" scrollHeight="flex" selectionMode="single">
                                 <ng-template pTemplate="header">
                                     <tr>
                                         <th class="no-border width-2"><p-tableHeaderCheckbox class="hidden"></p-tableHeaderCheckbox></th>
@@ -93,7 +93,7 @@
                                 </div>
                             </legend>
                             <div class="table-wrapper">
-                                <p-table #weekdaysTable (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'weekdays','selectedWeekdays')" (onRowSelect)="onRowSelect($event,'selectedWeekdays')" (onRowUnselect)="onRowUnselect($event,'selectedWeekdays')" [(selection)]="selectedWeekdays" [scrollable]="true" [value]="weekdays" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex" selectionMode="multiple">
+                                <p-table #weekdaysTable (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'weekdays','selectedWeekdays')" (onRowSelect)="onRowSelect($event,'selectedWeekdays')" (onRowUnselect)="onRowUnselect($event,'selectedWeekdays')" [(selection)]="selectedWeekdays" [scrollable]="true" [value]="weekdays" [virtualScrollItemSize]="35" [virtualScroll]="false" scrollHeight="flex" selectionMode="multiple">
                                     <ng-template pTemplate="header">
                                         <tr>
                                             <th class="no-border width-2"><p-tableHeaderCheckbox class="hidden"></p-tableHeaderCheckbox></th>

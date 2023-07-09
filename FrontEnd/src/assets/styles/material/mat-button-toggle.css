@@ -3,9 +3,10 @@
 }
 
 .mat-button-toggle {
-    background-color: var(--color-button-tab-unchecked);
+    background-color: color-mix(in srgb, var(--color-button-toggle) 50%, transparent);
     border: none !important;
     padding: 0.125rem 0.75rem 0 0.75rem !important;
+    transition: background-color 0.2s !important;
 }
 
 .mat-button-toggle-label-content {
@@ -13,12 +14,5 @@
 }
 
 .mat-button-toggle-checked {
-    background-color: var(--color-button-tab-checked) !important;
-    color: var(--color-button-text) !important;
-}
-
-.mat-button-toggle:not(.mat-button-toggle-checked):hover {
-    background-color: var(--color-button-primary-hover) !important;
-    color: var(--color-button-text) !important;
-    transition: all 0.2s !important;
+    background-color: color-mix(in srgb, var(--color-button-toggle) 100%, transparent);
 }

@@ -29,8 +29,8 @@
 }
 
 .p-datatable .p-datatable-thead > tr > th {
-    background-color: var(--color-secondary);
-    border-right: 0.0625rem solid var(--color-border);
+    background-color: color-mix(in srgb, var(--color-secondary) 100%, transparent);
+    border-right: 0.0625rem solid var(--color-secondary);
     color: var(--color-text) !important;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-header) !important;
@@ -41,35 +41,35 @@
 
 .p-datatable .p-datatable-thead > tr:nth-child(1) > th {
     border-bottom: none;
-    border-top: 0.0625rem solid var(--color-border);
+    border-top: 0.0625rem solid var(--color-secondary);
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(2) > th {
-    border-bottom: 0.0625rem solid var(--color-border);
+    border-bottom: 0.0625rem solid var(--color-secondary);
     border-top: none;
     padding: 0 0.5rem 0.5625rem 0.5rem;
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(1) > th:first-child {
-    border-left: 0.0625rem solid var(--color-border);
+    border-left: 0.0625rem solid var(--color-secondary);
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(1) > th:last-child {
-    border-right: 0.0625rem solid var(--color-border);
+    border-right: 0.0625rem solid var(--color-secondary);
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(2) > th:first-child {
-    border-left: 0.0625rem solid var(--color-border);
+    border-left: 0.0625rem solid var(--color-secondary);
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(2) > th:last-child {
-    border-right: 0.0625rem solid var(--color-border) !important;
+    border-right: 0.0625rem solid var(--color-secondary) !important;
 }
 
 .p-datatable .p-datatable-thead > tr > th.header-datepicker {
-    padding-bottom: 0.75rem !important;
-    padding-top: 0.25rem !important;
+    padding-bottom: 0.8125rem !important;
+    padding-top: 0.375rem !important;
 }
 
 .p-datatable .p-datatable-thead > tr > th.no-border {
@@ -94,7 +94,7 @@
 }
 
 .p-datatable .p-datatable-tbody > tr > td {
-    border-bottom: 0.0625rem solid var(--color-border);
+    border-bottom: 0.0625rem solid var(--color-secondary);
     color: var(--color-text);
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-row);
@@ -107,6 +107,7 @@
 }
 
 .p-datatable .p-datatable-tbody > tr > td > img {
+    border: 0.0625rem solid var(--color-text);
     height: 1.0625rem;
     width: 1.25rem;
 }
@@ -404,8 +405,8 @@ div:not(.p-column-filter).p-column-filter-row:hover {
 
 .p-datatable .p-datatable-tfoot > tr > td {
     background-color: var(--color-secondary);
-    border-bottom: 0.0625rem solid var(--color-border) !important;
-    border-right: 0.0625rem solid var(--color-border) !important;
+    border-bottom: 0.0625rem solid var(--color-secondary) !important;
+    border-right: 0.0625rem solid var(--color-secondary) !important;
     color: var(--color-text) !important;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-row);
@@ -415,10 +416,9 @@ div:not(.p-column-filter).p-column-filter-row:hover {
 }
 
 .p-datatable .p-datatable-tfoot > tr > td:first-child {
-    border-left: 0.0625rem solid var(--color-border) !important;
+    border-left: 0.0625rem solid var(--color-secondary) !important;
 }
 
 .p-datatable .p-datatable-tbody > tr.p-highlight {
-    background-color: var(--color-secondary) !important;
     transition: background-color var(--delay);
 }

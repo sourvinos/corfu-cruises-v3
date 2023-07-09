@@ -30,7 +30,7 @@
 @import url("../material/mat-input-not-focused-not-error.css");
 @import url("../material/mat-input.css");
 @import url("../material/mat-menu.css");
-@import url("../material/mat-radio.css");
+/* @import url("../material/mat-radio.css"); */
 @import url("../material/mat-select.css");
 @import url("../prime/prime-checkbox.css");
 @import url("../prime/prime-filter-input.css");
@@ -106,18 +106,6 @@ ul {
 
 .disabled {
     pointer-events: none;
-}
-
-.green {
-    color: var(--color-green) !important
-}
-
-.red {
-    color: var(--color-red) !important;
-}
-
-.yellow {
-    color: var(--color-yellow) !important;
 }
 
 .disabled:hover {

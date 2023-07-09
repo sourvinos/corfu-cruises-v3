@@ -125,7 +125,7 @@ export class ManifestListComponent {
         const response = this.dialog.open(ManifestRouteSelectorComponent, {
             data: this.records,
             disableClose: true,
-            height: '31rem',
+            height: '29.5rem',
             panelClass: 'dialog',
             width: '50rem',
         })

@@ -12,7 +12,7 @@
         </div>
 
         <div id="table-wrapper">
-            <p-table #table (onFilter)="filterRecords($event)" [scrollable]="true" [value]="records" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
+            <p-table #table (onFilter)="filterRecords($event)" [scrollable]="true" [value]="records" [virtualScrollItemSize]="35" [virtualScroll]="true" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
                 <ng-template pTemplate="header">
                     <tr>
                         <th class="width-5" pSortableColumn="isActive">{{ getLabel("headerIsActive") }}</th>
@@ -30,12 +30,10 @@
                 <ng-template let-record pTemplate="body">
                     <tr (click)="unHighlightAllRows()" (dblclick)="editRecord(record.id)" [attr.id]=record.id [pSelectableRow]="record" style="height: 2rem;">
                         <td class="center width-5">
-                            <span *ngIf="record.isActive" class="is-active material-icons-outlined">check_circle</span>
-                            <span *ngIf="!record.isActive" class="is-not-active material-icons-outlined">highlight_off</span>
+                            <span>{{ getEmoji(record.isActive) }}</span>
                         </td>
                         <td class="center width-5">
-                            <span *ngIf="record.hasTransfer" class="is-active material-icons-outlined">check_circle</span>
-                            <span *ngIf="!record.hasTransfer" class="is-not-active material-icons-outlined">highlight_off</span>
+                            <span>{{ getEmoji(record.hasTransfer) }}</span>
                         </td>
                         <td class="center width-10">{{ record.abbreviation }}</td>
                         <td class="width-39">{{ record.description }}</td>

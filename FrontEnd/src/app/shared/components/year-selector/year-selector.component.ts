@@ -1,6 +1,7 @@
 import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core'
-import { environment } from 'src/environments/environment'
+// Custom
 import { SessionStorageService } from '../../services/session-storage.service'
+import { environment } from 'src/environments/environment'
 
 @Component({
     selector: 'year-selector',
@@ -42,7 +43,7 @@ export class YearSelectorComponent {
     //#region public methods
 
     public getIcon(filename: string): string {
-        return environment.menuTopIconDirectory + filename + '.svg'
+        return environment.menuDropdownIconDirectory + filename + '.svg'
     }
 
     public hideMenu(): void {
@@ -52,7 +53,6 @@ export class YearSelectorComponent {
     }
 
     public selectYear(year: string): any {
-        // this.sessionStorageService.saveItem('year', year)
         this.yearEmitter.emit(year)
     }
 

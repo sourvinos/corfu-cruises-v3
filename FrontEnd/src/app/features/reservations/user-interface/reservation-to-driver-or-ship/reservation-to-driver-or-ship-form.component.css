@@ -1,6 +1,6 @@
 #dialog-header {
     gap: 0.8rem;
-    margin-left: 0;
+    margin-left: 1rem;
 }
 
 #dialog-content {
@@ -9,7 +9,7 @@
 }
 
 #dialog-footer {
-    margin-right: 0;
+    margin-right: 1rem;
 }
 
 .option {

@@ -57,7 +57,7 @@
 
 #ref-no, #total-pax {
     border-radius: 0.625rem;
-    border: 0.0625rem solid var(--color-border);
+    border: 0.0625rem solid var(--color-secondary);
     display: flex;
     flex-direction: column;
     font-family: var(--font-family-asty);
@@ -75,7 +75,7 @@
 }
 
 #ref-no #ref-no-body {
-    color: var(--color-green);
+    color: var(--color-ref-no);
     font-size: 1.5rem;
     margin-top: 1.1875rem;
     transform: scale(0.8, 1.8);

@@ -1,15 +1,10 @@
 #dialog-header {
-    gap: 0.5rem;
-    margin-left: 0;
+    gap: 1rem;
 }
 
 #dialog-content {
     height: 100%;
     margin: 1rem 0 1rem 0 !important;
-}
-
-#dialog-footer {
-    margin-right: 0;
 }
 
 .option {

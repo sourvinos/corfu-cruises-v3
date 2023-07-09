@@ -1,11 +1,10 @@
 .mat-card {
     align-items: flex-start;
     backdrop-filter: blur(--blur);
-    background-color: color-mix(in srgb, var(--color-secondary) 25%, transparent);
+    background-color: color-mix(in srgb, var(--color-secondary) 15%, transparent);
     border-radius: 0.3125rem !important;
     display: flex !important;
     flex-direction: column;
-    height: 16.5rem;
     justify-content: flex-start;
     padding: 2rem 1rem 2rem 1rem !important;
     transition: all 0.25s !important;
@@ -27,7 +26,7 @@
 }
 
 .mat-divider.mat-divider-inset {
-    background-color: var(--color-border);
+    background-color: var(--color-secondary);
     margin: 0.6rem 0 0.6rem 0 !important;
     transition: all var(--delay);
 }

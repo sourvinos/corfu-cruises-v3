@@ -1,12 +1,9 @@
 * {
     /*  Buttons */
-    --color-button-delete: #e45142;
-    --color-button-primary-hover: #00bcd4;
+    --color-button-text: #ffffff;
     --color-button-primary: #7cabe1;
     --color-button-secondary: #ff9800;
-    --color-button-tab-checked: #00bcd4;
-    --color-button-tab-unchecked: #b7d4d7;
-    --color-button-text: #ffffff;
+    --color-button-delete: #e45142;
     /* Criteria & Totals */
     --color-criteria-a: #5f80a7;
     --color-criteria-b: #cf6755;
@@ -20,8 +17,4 @@
     --color-background-saturday: #f29c6b;
     --color-background-sunday: #f26513;
     --color-background-today: #8dbf8f;
-    /* Common */
-    --color-yellow: #f1e424;
-    --color-green: #34a853;
-    --color-red: #d94040;
 }

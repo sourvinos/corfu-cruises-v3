@@ -1,6 +1,6 @@
 fieldset {
     border-radius: var(--border-radius);
-    border: 0.0625rem solid var(--color-border);
+    border: 0.0625rem solid var(--color-secondary);
     padding: 1rem 1rem 1rem 1rem;
     transition: all var(--delay);
 }

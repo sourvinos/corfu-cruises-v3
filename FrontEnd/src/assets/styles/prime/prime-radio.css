@@ -1,5 +1,5 @@
 .p-radiobutton .p-radiobutton-box .p-radiobutton-icon {
-    background-color: var(--color-secondary);
+    background-color: var(--color-checkbox);
     height: 1rem;
     width: 1rem;
 }
