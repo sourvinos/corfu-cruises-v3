@@ -4,7 +4,7 @@
 
 #topmenu {
     align-items: center;
-    background-color: var(--color-secondary);
+    background-color: var(--color-primary);
     border-radius: 0.3125rem;
     display: flex;
     padding: 5px 10px 5px 10px;

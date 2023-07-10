@@ -1,11 +1,11 @@
 * {
-    --color-primary: #495057;
-    --color-secondary: #343a40;
+    --color-primary: #7F7F7F;
+    --color-secondary: #343A40;
     --color-text: #ffffff;
     --color-dialog-header: #ffee5b;
     --color-hover: #9b020873;
     --color-input-error: #ffffff;
-    --color-input-focus: #000000;
+    --color-input-focus: #ffffff;
     --color-scrollbar-thumb: #ffee5b;
     --color-calendar-period-scroller: #ffee5b;
     --color-button-toggle: #ffee5b;

@@ -29,7 +29,7 @@
 }
 
 .p-datatable .p-datatable-thead > tr > th {
-    background-color: color-mix(in srgb, var(--color-secondary) 100%, transparent);
+    background-color: color-mix(in srgb, var(--color-primary) 70%, transparent);
     border-right: 0.0625rem solid var(--color-secondary);
     color: var(--color-text) !important;
     font-family: var(--font-family-asty) !important;
@@ -77,7 +77,7 @@
 }
 
 .p-datatable .p-sortable-column.p-highlight {
-    background: color-mix(in srgb, var(--color-secondary) 30%, transparent) !important;
+    background: color-mix(in srgb, var(--color-primary) 70%, transparent) !important;
 }
 
 .p-datatable .p-datatable-tbody > tr {
@@ -85,7 +85,7 @@
 }
 
 .p-datatable .p-datatable-tbody > tr:hover {
-    background: color-mix(in srgb, var(--color-secondary) 30%, transparent) !important;
+    background: color-mix(in srgb, var(--color-primary) 70%, transparent) !important;
     cursor: pointer !important;
 }
 
@@ -118,7 +118,7 @@
 }
 
 .p-datatable .p-sortable-column:not(.p-highlight):hover {
-    background-color: var(--color-secondary);
+    background: color-mix(in srgb, var(--color-primary) 70%, transparent) !important;
 }
 
 .p-button.p-button-text.p-button-plain:enabled:hover {

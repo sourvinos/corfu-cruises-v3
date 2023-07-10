@@ -56,7 +56,7 @@
 }
 
 #ref-no, #total-pax {
-    background-color: color-mix(in srgb, var(--color-text) 10%, transparent);
+    background-color: color-mix(in srgb, var(--color-secondary) 20%, transparent);
     border-radius: 0.625rem;
     display: flex;
     flex-direction: column;

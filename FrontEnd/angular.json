@@ -62,23 +62,18 @@
                             "node_modules/primeng/resources/themes/saga-blue/theme.css",
                             "src/assets/styles/custom/base.css",
                             {
-                                "input": "src/assets/themes/blood-orange.css",
-                                "bundleName": "blood-orange",
+                                "input": "src/assets/themes/strawberry-cookie.css",
+                                "bundleName": "strawberry-cookie",
                                 "inject": false
                             },
                             {
-                                "input": "src/assets/themes/cherry-pie.css",
-                                "bundleName": "cherry-pie",
+                                "input": "src/assets/themes/moonless-night.css",
+                                "bundleName": "moonless-night",
                                 "inject": false
                             },
                             {
-                                "input": "src/assets/themes/chewing-gum.css",
-                                "bundleName": "chewing-gum",
-                                "inject": false
-                            },
-                            {
-                                "input": "src/assets/themes/chocolate-cake.css",
-                                "bundleName": "chocolate-cake",
+                                "input": "src/assets/themes/wild-orchid.css",
+                                "bundleName": "wild-orchid",
                                 "inject": false
                             },
                             {
@@ -87,8 +82,18 @@
                                 "inject": false
                             },
                             {
-                                "input": "src/assets/themes/green-soap.css",
-                                "bundleName": "green-soap",
+                                "input": "src/assets/themes/vintage-eighties.css",
+                                "bundleName": "vintage-eighties",
+                                "inject": false
+                            },
+                            {
+                                "input": "src/assets/themes/mint-chocolate.css",
+                                "bundleName": "mint-chocolate",
+                                "inject": false
+                            },
+                            {
+                                "input": "src/assets/themes/chewing-gum.css",
+                                "bundleName": "chewing-gum",
                                 "inject": false
                             },
                             {
@@ -102,8 +107,8 @@
                                 "inject": false
                             },
                             {
-                                "input": "src/assets/themes/moonless-night.css",
-                                "bundleName": "moonless-night",
+                                "input": "src/assets/themes/green-soap.css",
+                                "bundleName": "green-soap",
                                 "inject": false
                             },
                             {
@@ -112,13 +117,8 @@
                                 "inject": false
                             },
                             {
-                                "input": "src/assets/themes/strawberry-cream.css",
-                                "bundleName": "strawberry-cream",
-                                "inject": false
-                            },
-                            {
-                                "input": "src/assets/themes/vintage-eighties.css",
-                                "bundleName": "vintage-eighties",
+                                "input": "src/assets/themes/baby-blue.css",
+                                "bundleName": "baby-blue",
                                 "inject": false
                             }
                         ],

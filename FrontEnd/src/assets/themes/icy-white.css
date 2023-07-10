@@ -4,8 +4,8 @@
     --color-text: #000000;
     --color-dialog-header: #00c9eb;
     --color-hover: #a332507d;
-    --color-input-error: #FF00C7;
-    --color-input-focus: #ffffff;
+    --color-input-error: #000000;
+    --color-input-focus: #000000;
     --color-scrollbar-thumb: #cf6755;
     --color-calendar-period-scroller: #74d3fa;
     --color-button-toggle: #c3d4e7;
