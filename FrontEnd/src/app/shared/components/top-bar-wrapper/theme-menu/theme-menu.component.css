@@ -19,7 +19,7 @@
 label {
     background-color: transparent;
     border-radius: 1.875rem;
-    border: 0.0625rem solid var(--color-secondary);
+    border: 0.0625rem solid var(--color-background);
     cursor: pointer;
     display: flex;
     padding: 0.3125rem;

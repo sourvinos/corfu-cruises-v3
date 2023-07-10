@@ -30,7 +30,7 @@
 }
 
 .day {
-    background-color: color-mix(in srgb, var(--color-secondary) 70%, transparent);
+    background-color: color-mix(in srgb, var(--color-secondary) var(--primary-color-transparency), transparent);
     border-radius: 0.625rem;
     display: flex;
     flex-direction: column;

@@ -1,5 +1,5 @@
 .fieldset {
-    background-color: transparent !important;
+    background-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
     height: 100%;
     width: 17rem;
     display: flex;

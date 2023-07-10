@@ -1,3 +1,5 @@
+/* PASS */
+
 .p-dropdown .p-dropdown-trigger:hover {
     border-radius: 0;
 }
@@ -58,7 +60,7 @@
 .p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight, .p-multiselect-panel .p-multiselect-items .p-multiselect-item, .p-multiselect-panel .p-multiselect-items .p-multiselect-item:hover {
     background-color: var(--color-secondary) !important;
     box-shadow: none !important;
-    color: var(--color-text) !important;
+    color: var(--color-text-reverse) !important;
     font-family: var(--font-family-asty);
     font-size: 0.75rem;
     font-size: var(--font-size-table-row);
@@ -97,7 +99,7 @@
 }
 
 .p-multiselect .p-multiselect-trigger {
-    color: var(--color-text) !important;
+    color: var(--color-text-reverse) !important;
     justify-content: flex-end;
     width: 1.1rem;
     transition: all var(--delay);

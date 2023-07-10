@@ -8,7 +8,7 @@
 }
 
 #search-by-ref-no-text {
-    background-color: var(--color-primary);
+    background-color: var(--color-background);
     border-radius: 0.3125rem;
     border: none;
     color: var(--color-text);
@@ -35,6 +35,6 @@ button {
 }
 
 button span {
-    color: var(--color-text) !important;
+    color: var(--color-dropdown-trigger) !important;
     transition: all var(--delay);
 }

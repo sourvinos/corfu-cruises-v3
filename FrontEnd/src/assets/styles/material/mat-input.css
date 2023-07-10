@@ -34,7 +34,7 @@ textarea {
 }
 
 .mat-form-field {
-    background-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
+    background-color: color-mix(in srgb, var(--color-primary) var(--color-input-transparency), transparent);
     border-radius: var(--border-radius);
     line-height: 132%;
     margin-top: var(--form-field-margin) !important;
@@ -43,7 +43,7 @@ textarea {
 }
 
 .mat-form-field.mat-focused {
-    background-color: color-mix(in srgb, var(--color-primary) 70%, transparent);
+    background-color: color-mix(in srgb, var(--color-primary) var(--color-input-focus-transparency), transparent);
 }
 
 .mat-form-field.dialog {

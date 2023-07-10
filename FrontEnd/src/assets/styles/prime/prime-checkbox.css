@@ -1,7 +1,7 @@
 .p-checkbox .p-checkbox-box {
     background-color: transparent !important;
     border-radius: 0;
-    border: 0.0625rem solid var(--color-text) !important;
+    border: 0.0625rem solid var(--color-text-reverse) !important;
     margin-top: -0.1875rem;
 }
 

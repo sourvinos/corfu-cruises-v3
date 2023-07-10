@@ -106,7 +106,7 @@
 }
 
 .mat-datepicker-toggle, .mat-datepicker-content .mat-datepicker-content {
-    color: var(--color-text) !important;
+    color: var(--color-text-reverse) !important;
     margin-left: auto;
     position: relative;
     right: 1.4375rem !important;
@@ -144,6 +144,7 @@
     height: 0 !important;
     width: 0 !important;
 }
+
 .mat-datepicker-toggle-default-icon {
     display: flex;
     margin: 0 0 -0.875rem 24px !important;

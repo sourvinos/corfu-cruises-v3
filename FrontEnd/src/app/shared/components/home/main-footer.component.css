@@ -4,7 +4,7 @@
 }
 
 #main-footer {
-    color: var(--color-text);
+    color: var(--color-text-reverse);
     font-family: var(--font-family-asty);
     font-weight: 300;
     margin: 1rem auto 1rem auto;
@@ -17,11 +17,11 @@
 }
 
 a:link, a:visited {
-    color: var(--color-text);
+    color: var(--color-text-reverse);
     outline: none;
     text-decoration: none;
 }
 
 a:link:hover {
-    color: var(--color-text);
+    color: var(--color-text-reverse);
 }

@@ -19,7 +19,7 @@
 
 /* Checkbox with icon */
 .mat-checkbox .mat-checkbox-layout .mat-checkbox-label .mat-icon {
-    color: var(--color-secondarys);
+    color: var(--color-backgrounds);
     font-size: 1.125rem;
     margin: 0.3125rem 0.1875rem 0 0;
     transition: all var(--delay);

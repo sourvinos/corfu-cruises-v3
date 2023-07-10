@@ -11,7 +11,7 @@ table {
 
 th {
     background-color: var(--color-table-headers);
-    border: 0.0625rem solid var(--color-secondary);
+    border: 0.0625rem solid var(--color-background);
     color: var(--color-text) !important;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-header) !important;
@@ -22,7 +22,7 @@ th {
 }
 
 td {
-    border-bottom: 0.0625rem solid var(--color-secondary);
+    border-bottom: 0.0625rem solid var(--color-background);
     color: var(--color-text);
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-row);

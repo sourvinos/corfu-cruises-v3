@@ -5,10 +5,10 @@
 }
 
 button {
-    background-color: var(--color-secondary);
+    background-color: var(--color-button-secondary);
     border-radius: 50%;
-    border: 0.0625rem solid var(--color-primary);
-    color: var(--color-text);
+    border: 0.0625rem solid var(--color-button-secondary);
+    color: var(--color-background);
     padding: 0.5rem !important;
     text-align: center;
     transition: all 0.25s !important;
