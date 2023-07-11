@@ -27,5 +27,5 @@
 }
 
 .no-background, .no-background:hover {
-    background-color: transparent !important;
+    background-color: var(--color-background) !important;
 }

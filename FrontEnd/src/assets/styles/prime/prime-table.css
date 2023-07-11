@@ -26,7 +26,7 @@
 .p-datatable .p-datatable-thead > tr > th {
     background-color: var(--color-secondary);
     border-right: 0.0625rem solid var(--color-background);
-    color: var(--color-text-reverse) !important;
+    color: var(--color-table-headers) !important;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-header) !important;
     font-weight: 300 !important;
@@ -67,7 +67,7 @@
 }
 
 .mat-datepicker-toggle, .mat-datepicker-content .mat-datepicker-content {
-    color: var(--color-text-reverse) !important;
+    color: var(--color-table-headers) !important;
 }
 
 .p-datatable .p-datatable-thead > tr > th.no-border {

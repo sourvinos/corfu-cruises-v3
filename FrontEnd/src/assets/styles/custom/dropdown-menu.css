@@ -28,7 +28,7 @@ button.drop-down-menu-trigger {
 .sub-menu button {
     animation: enter 0.1s ease forwards;
     background-color: var(--color-primary);
-    color: var(--color-text-reverse);
+    color: var(--color-dropdown-button);
     display: flex;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-dropdown-menu-button) !important;

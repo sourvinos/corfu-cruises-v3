@@ -67,6 +67,11 @@
                                 "inject": false
                             },
                             {
+                                "input": "src/assets/themes/tangerine.css",
+                                "bundleName": "tangerine",
+                                "inject": false
+                            },
+                            {
                                 "input": "src/assets/themes/baby-blue.css",
                                 "bundleName": "baby-blue",
                                 "inject": false

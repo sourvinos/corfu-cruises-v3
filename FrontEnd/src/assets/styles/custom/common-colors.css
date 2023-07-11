@@ -4,8 +4,6 @@
     --color-button-primary: #7cabe1;
     --color-button-secondary: #ff9800;
     --color-button-delete: #e45142;
-    /* Dropdown trigger */
-    --color-dropdown-trigger: #ffffff;
     /* Criteria & Totals */
     --color-criteria-a: #5f80a7;
     --color-criteria-b: #cf6755;
@@ -19,4 +17,9 @@
     --color-background-saturday: #f29c6b;
     --color-background-sunday: #f26513;
     --color-background-today: #8dbf8f;
+    /* Text */
+    --color-dropdown-trigger: #ffffff;
+    --color-dropdown-button: #ffffff;
+    --color-footer: #ffffff;
+    --color-table-headers:#ffffff;
 }

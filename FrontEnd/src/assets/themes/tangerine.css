@@ -1,7 +1,7 @@
 * {
     /* Base */
-    --color-primary: #17608F;
-    --color-secondary: #5a8daf;
+    --color-primary: #F2774F;
+    --color-secondary: #F68561;
     --color-background: #555555;
     --color-accent: #e45142;
     /* Text */
@@ -13,6 +13,6 @@
     --color-input-focus: #ffffff;
     --color-input-error: #000000;
     /* Misc */
-    --color-dialog-header: #17608F;
-    --color-hover: #5a8daf54;
+    --color-dialog-header: #F99B7D;
+    --color-hover: #F6856154;
 }
