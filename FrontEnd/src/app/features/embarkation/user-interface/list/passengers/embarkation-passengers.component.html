@@ -8,7 +8,7 @@
     </div>
 
     <div id="table-wrapper">
-        <p-table #table [scrollable]="true" [value]="reservation.passengers" [virtualScrollItemSize]="35" [virtualScroll]="true" scrollHeight="flex" selectionMode="single" sortMode="multiple">
+        <p-table #table [scrollable]="true" [value]="reservation.passengers" [virtualScrollItemSize]="32" [virtualScroll]="true" scrollHeight="flex" selectionMode="single" sortMode="multiple">
             <ng-template pTemplate="header">
                 <tr>
                     <th class="border-bottom width-10" pSortableColumn="lastname">{{ getLabel('headerLastname')}}</th>

@@ -20,7 +20,7 @@
         </div>
 
         <div id="table-wrapper">
-            <p-table #table (onHeaderCheckboxToggle)="calculateSelectedPax()" (onFilter)="filterRecords($event)" [(selection)]="selectedRecords" [scrollable]="true" [value]="records" [virtualScrollItemSize]="35" [virtualScroll]="true" dataKey="reservationId" scrollHeight="flex" selectionMode="multiple" sortMode="multiple">
+            <p-table #table (onHeaderCheckboxToggle)="calculateSelectedPax()" (onFilter)="filterRecords($event)" [(selection)]="selectedRecords" [scrollable]="true" [value]="records" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="reservationId" scrollHeight="flex" selectionMode="multiple" sortMode="multiple">
                 <ng-template pTemplate="header">
                     <tr>
                         <th class="width-3"></th>
@@ -164,7 +164,7 @@
 
     <div id="footer">
         <button [matMenuTriggerFor]="menu" mat-icon-button>
-            <mat-icon class="material-icons-outlined no-text">more_vert</mat-icon>
+            <mat-icon class="material-icons-outlined no-text reverse">more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" class="primary">
             <ng-container *ngTemplateOutlet="contextMenu"></ng-container>

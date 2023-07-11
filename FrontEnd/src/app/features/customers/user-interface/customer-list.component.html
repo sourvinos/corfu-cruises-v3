@@ -12,7 +12,7 @@
         </div>
 
         <div id="table-wrapper">
-            <p-table #table (onFilter)="filterRecords($event)" [scrollable]="true" [value]="records" [virtualScrollItemSize]="35" [virtualScroll]="true" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
+            <p-table #table (onFilter)="filterRecords($event)" [scrollable]="true" [value]="records" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
                 <ng-template pTemplate="header">
                     <tr>
                         <th class="width-5" pSortableColumn="isActive">{{ getLabel("headerIsActive") }}</th>
@@ -21,7 +21,7 @@
                         <th class="width-18" pSortableColumn="phones">{{ getLabel("headerPhones") }}</th>
                     </tr>
                     <tr>
-                        <th class="width-5"><p-columnFilter field="isActive" type="boolean"></p-columnFilter></th>
+                        <th class="width-5"><p-columnFilter class="reverse-border-color" field="isActive" type="boolean"></p-columnFilter></th>
                         <th class="width-18"><input (input)="table.filter($event.target.value, 'description', 'contains')" [value]="$any(table).filters['description']?.value" class="p-inputtext"></th>
                         <th class="width-18"><input (input)="table.filter($event.target.value, 'email', 'contains')" [value]="$any(table).filters['email']?.value" class="p-inputtext"></th>
                         <th class="width-18"><input (input)="table.filter($event.target.value, 'phones', 'contains')" [value]="$any(table).filters['phones']?.value" class="p-inputtext"></th>

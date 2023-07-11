@@ -1,5 +1,5 @@
 <div id="table-wrapper">
-    <p-table #table [scrollable]="true" [value]="customer.reservations" [virtualScrollItemSize]="35" [virtualScroll]="false" scrollHeight="auto" selectionMode="single" sortMode="multiple">
+    <p-table #table [scrollable]="true" [value]="customer.reservations" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="auto" selectionMode="single" sortMode="multiple">
         <ng-template pTemplate="header">
             <tr>
                 <th class="width-5" pSortableColumn="date">{{ getLabel('headerDate') }}</th>

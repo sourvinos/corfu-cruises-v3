@@ -34,7 +34,7 @@ textarea {
 }
 
 .mat-form-field {
-    background-color: color-mix(in srgb, var(--color-primary) var(--color-input-transparency), transparent);
+    background-color: var(--color-input-background);
     border-radius: var(--border-radius);
     line-height: 132%;
     margin-top: var(--form-field-margin) !important;
@@ -43,11 +43,11 @@ textarea {
 }
 
 .mat-form-field.mat-focused {
-    background-color: color-mix(in srgb, var(--color-primary) var(--color-input-focus-transparency), transparent);
+    background-color: var(--color-input-background-focus);
 }
 
 .mat-form-field.dialog {
-    background-color: color-mix(in srgb, var(--color-text) var(--dialog-input-transparency), transparent);
+    background-color: var(--color-input-background) !important;
 }
 
 .mat-form-field.list-filter {
@@ -125,4 +125,8 @@ textarea {
 
 .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-suffix button .mat-button-wrapper .mat-icon {
     transition: all var(--delay);
+}
+
+.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    transform: translateY(-23px) scale(0.75) !important;
 }

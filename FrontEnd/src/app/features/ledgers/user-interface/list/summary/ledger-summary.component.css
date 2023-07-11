@@ -10,9 +10,9 @@ table {
 }
 
 th {
-    background-color: var(--color-table-headers);
+    background-color: var(--color-secondary);
     border: 0.0625rem solid var(--color-background);
-    color: var(--color-text) !important;
+    color: var(--color-text-reverse) !important;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-header) !important;
     font-weight: 300 !important;
@@ -31,4 +31,9 @@ td {
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
     transition: all var(--delay) !important;
+}
+
+tr#footer td {
+    background-color: var(--color-secondary);
+    color: var(--color-text-reverse);
 }

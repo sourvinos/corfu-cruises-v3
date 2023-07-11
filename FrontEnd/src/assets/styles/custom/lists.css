@@ -7,6 +7,7 @@
 
 #content {
     backdrop-filter: blur(var(--blur));
+    background-color: var(--color-background);
     border-radius: 0.5rem;
     box-shadow: 0 0.25rem 3.125rem #00000040;
     display: flex;
@@ -38,4 +39,8 @@
     gap: 0.5rem;
     justify-content: space-between;
     margin: 0 4rem 1rem 4rem;
+}
+
+.no-background {
+    background-color: transparent !important;
 }

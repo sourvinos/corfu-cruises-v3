@@ -1,22 +1,17 @@
 .p-checkbox .p-checkbox-box {
     background-color: transparent !important;
+    border: 2px solid #ced4da !important;
     border-radius: 0;
-    border: 0.0625rem solid var(--color-text-reverse) !important;
     margin-top: -0.1875rem;
 }
 
 .p-checkbox .p-checkbox-box .p-icon {
-    color: var(--color-checkbox);
+    color: var(--color-accent);
     transition: all var(--delay);
 }
 
 .p-checkbox .p-checkbox-box .p-icon path {
     d: path("m0,0 v14 h14 v-14 h-14");
-}
-
-.p-checkbox .p-checkbox-box.p-highlight {
-    background-color: transparent !important;
-    border-color: var(--color-text) !important;
 }
 
 .p-checkbox {
@@ -34,9 +29,13 @@
 }
 
 .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
-    border-color: var(--color-text) !important;
+    border: 2px solid #ced4da !important;
 }
 
 .p-checkbox:not(.p-checkbox-disabled):hover {
     box-shadow: none !important;
+}
+
+.reverse-border-color .p-column-filter .p-element .p-element .p-checkbox .p-checkbox-box {
+    border: 2px solid #ced4da !important;
 }

@@ -28,7 +28,7 @@
 }
 
 .passenger-count-wrapper .material-icons-outlined.primary {
-    color: var(--color-passenger-list-icon);
+    color: var(--color-accent);
     transition: color var(--delay) !important;
 }
 
@@ -47,6 +47,6 @@
 }
 
 .fa-trash-alt {
-    color: var(--color-table-trash-icon) !important;
+    color: var(--color-accent) !important;
     font-size: 1.0625rem;
 }

@@ -32,6 +32,6 @@
 }
 
 .material-symbols-outlined.warning {
-    color: var(--color-red);
+    color: var(--color-accent) !important;
     transition: all var(--delay);
 }

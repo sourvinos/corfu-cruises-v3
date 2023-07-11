@@ -1,5 +1,5 @@
 #goto-today-button span {
-    color: var(--color-text) !important;
+    color: var(--color-accent) !important;
 }
 
 #goto-today-button {

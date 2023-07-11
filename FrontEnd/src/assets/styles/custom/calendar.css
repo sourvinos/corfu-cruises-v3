@@ -30,7 +30,7 @@
 }
 
 .day {
-    background-color: color-mix(in srgb, var(--color-secondary) var(--primary-color-transparency), transparent);
+    background-color: color-mix(in srgb, var(--color-secondary) 30%, transparent);
     border-radius: 0.625rem;
     display: flex;
     flex-direction: column;
@@ -158,7 +158,7 @@
 }
 
 #period-scroller button span.material-icons-outlined {
-    color: var(--color-calendar-period-scroller);
+    color: var(--color-accent);
     font-size: 2.5rem;
 }
 

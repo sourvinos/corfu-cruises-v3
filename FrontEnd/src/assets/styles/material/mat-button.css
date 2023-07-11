@@ -37,7 +37,7 @@ button.bold {
 }
 
 button.transparent {
-    background-color: transparent;
+    background-color: transparent !important;
     color: var(--color-text) !important;
     transition: all 0.25s !important;
 }

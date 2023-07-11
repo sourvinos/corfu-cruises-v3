@@ -7,15 +7,15 @@
         </div>
     </legend>
     <div class="table-wrapper">
-        <p-table #table (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'whatever','selected')" (onRowSelect)="onRowSelect($event,'selected')" (onRowUnselect)="onRowUnselect($event,'selected')" [(selection)]="selected" [scrollable]="true" [value]="array" [virtualScrollItemSize]="35" [virtualScroll]="false" scrollHeight="flex" selectionMode="multiple">
+        <p-table #table (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'whatever','selected')" (onRowSelect)="onRowSelect($event,'selected')" (onRowUnselect)="onRowUnselect($event,'selected')" [(selection)]="selected" [scrollable]="true" [value]="array" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex" selectionMode="multiple">
             <ng-template pTemplate="header">
                 <tr>
-                    <th class="no-border width-2"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
-                    <th class="no-border width-5"><input (input)="table.filter($event.target.value, 'description', 'contains')" [value]="$any(table).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
+                    <th class="no-background no-border width-2"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+                    <th class="no-background no-border width-5"><input (input)="table.filter($event.target.value, 'description', 'contains')" [value]="$any(table).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
                 </tr>
             </ng-template>
             <ng-template let-element pTemplate="body">
-                <tr [pSelectableRow]="element" style="height:2rem">
+                <tr [pSelectableRow]="element" class="no-background" style="height:2rem">
                     <td class="center width-2"><p-tableCheckbox [value]="element"></p-tableCheckbox></td>
                     <td class="width-5">{{ element.description }}</td>
                 </tr>

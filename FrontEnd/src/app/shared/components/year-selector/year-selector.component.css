@@ -1,6 +1,7 @@
 button.drop-down-menu-trigger {
     align-items: center;
     background-color: transparent !important;
+    color: var(--color-text) !important;
     display: flex;
     padding: 0 !important;
 }

@@ -106,7 +106,7 @@
 }
 
 .mat-datepicker-toggle, .mat-datepicker-content .mat-datepicker-content {
-    color: var(--color-text-reverse) !important;
+    color: var(--color-text) !important;
     margin-left: auto;
     position: relative;
     right: 1.4375rem !important;
@@ -152,6 +152,7 @@
 }
 
 .mat-form-field-appearance-legacy .mat-form-field-suffix .mat-datepicker-toggle-default-icon {
+    color: var(--color-text);
     margin-left: 25px;
     margin-top: 1rem !important;
 }
