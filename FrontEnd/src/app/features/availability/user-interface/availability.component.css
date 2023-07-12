@@ -27,12 +27,12 @@
 }
 
 .api-object span:hover {
-    background-color: var(--color-hover);
+    background-color: color-mix(in srgb, var(--color-secondary) var(--hover-transparency), transparent);
     cursor: pointer;
 }
 
 .destinations:hover {
-    background-color: var(--color-hover);
+    background-color: color-mix(in srgb, var(--color-secondary) var(--hover-transparency), transparent);
     cursor: pointer;
 }
 

@@ -62,18 +62,23 @@
                             "node_modules/primeng/resources/themes/saga-blue/theme.css",
                             "src/assets/styles/custom/base.css",
                             {
-                                "input": "src/assets/themes/deep-sea.css",
-                                "bundleName": "deep-sea",
+                                "input": "src/assets/themes/dark-blue.css",
+                                "bundleName": "dark-blue",
                                 "inject": false
                             },
                             {
-                                "input": "src/assets/themes/tangerine.css",
-                                "bundleName": "tangerine",
+                                "input": "src/assets/themes/light-blue.css",
+                                "bundleName": "light-blue",
                                 "inject": false
                             },
                             {
-                                "input": "src/assets/themes/baby-blue.css",
-                                "bundleName": "baby-blue",
+                                "input": "src/assets/themes/dark-aquamarine.css",
+                                "bundleName": "dark-aquamarine",
+                                "inject": false
+                            },
+                            {
+                                "input": "src/assets/themes/light-aquamarine.css",
+                                "bundleName": "light-aquamarine",
                                 "inject": false
                             }
                         ],

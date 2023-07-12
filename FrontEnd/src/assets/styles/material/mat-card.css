@@ -1,7 +1,7 @@
 .mat-card {
     align-items: flex-start;
     backdrop-filter: blur(--blur);
-    background-color: color-mix(in srgb, var(--color-background) 15%, transparent);
+    background-color: color-mix(in srgb, var(--color-background) var(--hover-transparency), transparent);
     border-radius: 0.3125rem !important;
     display: flex !important;
     flex-direction: column;
@@ -12,7 +12,7 @@
 }
 
 .mat-card:hover {
-    background-color: var(--color-hover);
+    background-color: color-mix(in srgb, var(--color-secondary) var(--hover-transparency), transparent);
     cursor: pointer;
 }
 

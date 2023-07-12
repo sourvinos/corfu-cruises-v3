@@ -24,6 +24,7 @@ import { ReplaceZeroPipe } from '../pipes/replace-zero.pipe'
 import { SafeStylePipe } from '../pipes/safe-style.pipe'
 import { SettingsMenuComponent } from '../components/top-bar-wrapper/settings-menu/settings-menu.component'
 import { TableTotalFilteredRecordsComponent } from '../components/table-total-filtered-records/table-total-filtered-records.component'
+import { ThemeGroupSelectorComponent } from '../components/top-bar-wrapper/theme-group-selector/theme-group-selector.component'
 import { ThemeMenuComponent } from './../components/top-bar-wrapper/theme-menu/theme-menu.component'
 import { TrimStringPipe } from './../pipes/string-trim.pipe'
 import { YearSelectorComponent } from '../components/year-selector/year-selector.component'
@@ -48,6 +49,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         SafeStylePipe,
         SettingsMenuComponent,
         TableTotalFilteredRecordsComponent,
+        ThemeGroupSelectorComponent,
         ThemeMenuComponent,
         TrimStringPipe,
         YearSelectorComponent
@@ -84,6 +86,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         RouterModule,
         SettingsMenuComponent,
         TableTotalFilteredRecordsComponent,
+        ThemeGroupSelectorComponent,
         ThemeMenuComponent,
         TrimStringPipe,
         YearSelectorComponent,

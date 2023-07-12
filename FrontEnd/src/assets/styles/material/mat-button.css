@@ -43,7 +43,7 @@ button.transparent {
 }
 
 button.transparent:hover {
-    background-color: var(--color-hover) !important;
+    background-color: color-mix(in srgb, var(--color-secondary) var(--hover-transparency), transparent);
 }
 
 button.tab {
@@ -73,7 +73,7 @@ button.mat-mini-fab .mat-button-wrapper .material-icons.reverse {
 }
 
 button.mat-mini-fab:hover {
-    background-color: var(--color-hover) !important;
+    background-color: color-mix(in srgb, var(--color-secondary) var(--hover-transparency), transparent);
 }
 
 button:disabled {

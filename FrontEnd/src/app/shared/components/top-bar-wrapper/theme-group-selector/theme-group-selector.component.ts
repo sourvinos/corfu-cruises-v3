@@ -1,35 +1,25 @@
-import { Component, HostListener, Inject } from '@angular/core'
+import { Component, Inject } from '@angular/core'
 import { DOCUMENT } from '@angular/common'
 // Common
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 
 @Component({
-    selector: 'theme-menu',
-    templateUrl: './theme-menu.component.html',
-    styleUrls: ['./theme-menu.component.css']
+    selector: 'theme-group-selector',
+    templateUrl: './theme-group-selector.component.html'
 })
 
-export class ThemeMenuComponent {
+export class ThemeGroupSelectorComponent {
 
     //#region variables
 
-    public defaultTheme = 'blue'
+    // public defaultTheme = 'blue'
+    public defaultThemeGroup = 'light'
     public imgIsLoaded = false
 
     //#endregion
 
     constructor(@Inject(DOCUMENT) private document: Document, private interactionService: InteractionService, private localStorageService: LocalStorageService) { }
-
-    //#region listeners
-
-    @HostListener('mouseenter') onMouseEnter(): void {
-        document.querySelectorAll('.sub-menu').forEach((item) => {
-            item.classList.remove('hidden')
-        })
-    }
-
-    //#endregion
 
     //#region lifecycle hooks
 
@@ -41,8 +31,12 @@ export class ThemeMenuComponent {
 
     //#region public methods
 
-    public getThemeThumbnail(): string {
-        return this.localStorageService.getItem('theme') == '' ? this.defaultTheme : this.localStorageService.getItem('theme')
+    public getIconColor(): string {
+        return this.localStorageService.getItem('theme-group') == 'light' ? 'black' : 'white'
+    }
+
+    public getThemeGroupThumbnail(): string {
+        return this.localStorageService.getItem('theme-group') == '' ? this.defaultThemeGroup : this.localStorageService.getItem('theme-group')
     }
 
     public imageIsLoading(): any {
@@ -53,9 +47,8 @@ export class ThemeMenuComponent {
         this.imgIsLoaded = true
     }
 
-    public onChangeTheme(theme: string): void {
-        this.setDefaultTheme(theme)
-        this.saveTheme()
+    public onChangeThemeGroup(): void {
+        this.swapTheme()
         this.updateVariables()
         this.attachStylesheetToHead()
         this.refreshBackgroundImage()
@@ -73,16 +66,16 @@ export class ThemeMenuComponent {
 
     private applyTheme(): void {
         this.updateVariables()
-        this.saveTheme()
         this.attachStylesheetToHead()
         this.refreshBackgroundImage()
+        // this.swapTheme()
     }
 
     private attachStylesheetToHead(): void {
         const headElement = this.document.getElementsByTagName('head')[0]
         const newLinkElement = this.document.createElement('link')
         newLinkElement.rel = 'stylesheet'
-        newLinkElement.href =  this.localStorageService.getItem('theme-group') + '-' + this.defaultTheme + '.css'
+        newLinkElement.href = this.defaultThemeGroup + '-' + this.localStorageService.getItem('theme') + '.css'
         headElement.appendChild(newLinkElement)
     }
 
@@ -90,16 +83,13 @@ export class ThemeMenuComponent {
         this.interactionService.mustRefreshBackgroundImage()
     }
 
-    private saveTheme(): void {
-        this.localStorageService.saveItem('theme', this.defaultTheme)
-    }
-
-    private setDefaultTheme(theme: string): void {
-        this.defaultTheme = theme
+    private swapTheme(): void {
+        this.localStorageService.saveItem('theme-group', this.localStorageService.getItem('theme-group') == 'light' ? 'dark' : 'light')
     }
 
     private updateVariables(): void {
-        this.defaultTheme = this.localStorageService.getItem('theme') || this.defaultTheme
+        // this.defaultTheme = this.localStorageService.getItem('theme') || this.defaultTheme
+        this.defaultThemeGroup = this.localStorageService.getItem('theme-group') || this.defaultThemeGroup
     }
 
     //#endregion

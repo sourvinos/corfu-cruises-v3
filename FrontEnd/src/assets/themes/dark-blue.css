@@ -1,18 +1,17 @@
 * {
     /* Base */
     --color-primary: #17608F;
-    --color-secondary: #5a8daf;
+    --color-secondary: #3780AE;
     --color-background: #555555;
     --color-accent: #e45142;
     /* Text */
     --color-text: #ffffff;
     --color-text-reverse: #555555;
     /* Input */
-    --color-input-background: #46494b;
-    --color-input-background-focus: #52636F;
+    --color-input-background: #636161;
+    --color-input-background-focus: #8d8d8d;
+    --color-input-error: #956060;
     --color-input-focus: #ffffff;
-    --color-input-error: #000000;
     /* Misc */
     --color-dialog-header: #17608F;
-    --color-hover: #5a8daf54;
 }

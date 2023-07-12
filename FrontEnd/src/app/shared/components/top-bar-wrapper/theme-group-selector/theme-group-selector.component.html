@@ -1,0 +1,3 @@
+<button [style.color]="getIconColor()" (click)="onChangeThemeGroup()" class="no-text" mat-icon-button>
+    <mat-icon class="material-icons-outlined no-text">{{ getThemeGroupThumbnail() == "light" ? "dark_mode" : "light_mode" }}</mat-icon>
+</button>

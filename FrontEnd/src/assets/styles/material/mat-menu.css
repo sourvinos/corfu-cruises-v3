@@ -4,7 +4,7 @@
 }
 
 .mat-menu-trigger .mat-button-wrapper .mat-icon.reverse {
-    color: var(--color-text-reverse) !important;
+    color: var(--color-text) !important;
 }
 
 .mat-menu-panel, .mat-menu-content {

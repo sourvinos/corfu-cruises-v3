@@ -8,13 +8,13 @@
 .mat-button-wrapper .no-text {
     font-size: 1.5rem;
     margin-top: -0.125rem;
+    transition: all var(--delay);
 }
 
 /* Field with icon */
 .mat-form-field-infix .mat-icon {
     color: var(--color-text);
     font-size: 1.125rem;
-    transition: all var(--delay);
 }
 
 /* Checkbox with icon */
@@ -22,7 +22,6 @@
     color: var(--color-backgrounds);
     font-size: 1.125rem;
     margin: 0.3125rem 0.1875rem 0 0;
-    transition: all var(--delay);
 }
 
 /* Menu item with icon */

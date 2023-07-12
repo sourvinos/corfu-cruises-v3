@@ -5,23 +5,23 @@
    viewBox="0 0 100 100"
    fill="none"
    version="1.1"
-   id="svg388"
-   sodipodi:docname="strawberry-cookie.svg"
+   id="svg6"
+   sodipodi:docname="blue.svg"
    inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
-     id="defs392" />
+     id="defs10" />
   <sodipodi:namedview
-     id="namedview390"
+     id="namedview8"
      pagecolor="#ffffff"
      bordercolor="#000000"
      borderopacity="0.25"
      inkscape:showpageshadow="2"
      inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
+     inkscape:pagecheckerboard="false"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
      inkscape:zoom="8.14"
@@ -32,17 +32,12 @@
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg388" />
-  <path
-     d="M0.5 99.5V1.20711L98.7929 99.5H0.5Z"
-     fill="#6D6875"
-     stroke="black"
-     id="path384"
-     style="stroke:#e6e6e6;stroke-opacity:1;stroke-width:2;stroke-dasharray:none" />
-  <path
-     d="M99.5 0.500008L99.5 98.7929L1.20711 0.500008L99.5 0.500008Z"
-     fill="#E5989B"
-     stroke="black"
-     id="path386"
-     style="stroke-width:2;stroke-dasharray:none;stroke:#e6e6e6;stroke-opacity:1" />
+     inkscape:current-layer="svg6" />
+  <rect
+     style="fill:#17608f;fill-opacity:1;stroke:#e6e6e6;stroke-width:3.51537;stroke-dasharray:none"
+     id="rect1850"
+     width="96.484627"
+     height="96.484627"
+     x="1.7576849"
+     y="1.7576849" />
 </svg>

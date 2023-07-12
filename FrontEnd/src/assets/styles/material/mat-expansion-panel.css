@@ -22,7 +22,7 @@
 }
 
 .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:hover {
-    background-color: var(--color-hover) !important;
+    background-color: color-mix(in srgb, var(--color-secondary) var(--hover-transparency), transparent);
 }
 
 .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
