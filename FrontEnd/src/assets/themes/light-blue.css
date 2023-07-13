@@ -7,10 +7,11 @@
     /* Text */
     --color-text: #000000;
     --color-text-reverse: #ffffff;
+    --color-border: #f1f1f1;
     /* Input */
     --color-input-background: #F9F9F9;
     --color-input-background-focus: #E3E3E3;
-    --color-input-error: #FEE1E1;
+    --color-input-error: #ff8a82;
     --color-input-focus: #000000;
     /* Misc */
     --color-dialog-header: #17608F;

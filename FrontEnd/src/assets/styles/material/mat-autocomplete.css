@@ -1,6 +1,13 @@
+/* Checked */
+
 .mat-autocomplete-panel.mat-autocomplete-visible {
     background-color: var(--color-background) !important;
     border-radius: 0 !important;
+}
+
+.mat-icon.open-close-panel {
+    font-size: 1.5rem !important;
+    margin: 0.5rem 0 0 0.9375rem;
 }
 
 .mat-option {
@@ -11,8 +18,12 @@
     line-height: 2rem !important;
 }
 
-.mat-option:hover {
-    background-color: color-mix(in srgb, var(--color-secondary) var(--hover-transparency), transparent);
+.mat-option-text > span:last-child {
+    width: 3rem !important;
+}
+
+.mat-option-text > span:not(:last-child) {
+    width: 10rem !important;
 }
 
 .mat-option-text {
@@ -21,19 +32,10 @@
     justify-content: space-between;
 }
 
-.mat-option-text > span:not(:last-child) {
-    width: 10rem !important;
-}
-
-.mat-option-text > span:last-child {
-    width: 3rem !important;
-}
-
 .mat-option.mat-active {
-    background-color: var(--color-input-background-focus) !important;
+    background-color: var(--color-accent) !important;
 }
 
-.mat-icon.open-close-panel {
-    font-size: 1.5rem !important;
-    margin: 0.5rem 0 0 0.9375rem;
+.mat-option:hover {
+    background-color: color-mix(in srgb, var(--color-accent) var(--hover-transparency), transparent) !important;
 }
