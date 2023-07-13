@@ -2,26 +2,19 @@
     width: 100%;
 }
 
-#form-wrapper {
+#checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: auto 2.7rem 1rem 0.875rem;
+}
+
+#content form {
     display: flex;
     flex-direction: column;
     height: 100%;
-}
-
-#header {
-    align-items: center;
-    display: flex;
-}
-
-#header #navigation {
-    align-items: center;
-    display: flex;
-}
-
-#header #title {
-    align-items: center;
-    display: flex;
-    margin-left: 1rem;
+    overflow-y: hidden;
+    width: 100%;
 }
 
 #content {
@@ -40,21 +33,6 @@
     transition: all var(--delay);
 }
 
-#content form {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow-y: hidden;
-    width: 100%;
-}
-
-#checkboxes {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin: auto 2.7rem 1rem 0.875rem;
-}
-
 #footer {
     align-items: center;
     display: flex;
@@ -62,6 +40,28 @@
     justify-content: right;
     margin-top: auto;
     padding: 1rem 4rem 1rem 4rem;
+}
+
+#form-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#header #navigation {
+    align-items: center;
+    display: flex;
+}
+
+#header #title {
+    align-items: center;
+    display: flex;
+    margin-left: 1rem;
+}
+
+#header {
+    align-items: center;
+    display: flex;
 }
 
 .group-field {

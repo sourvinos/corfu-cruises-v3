@@ -3,11 +3,11 @@ import { DOCUMENT } from '@angular/common'
 // Common
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
+import { environment } from 'src/environments/environment'
 
 @Component({
     selector: 'theme-menu',
-    templateUrl: './theme-menu.component.html',
-    styleUrls: ['./theme-menu.component.css']
+    templateUrl: './theme-menu.component.html'
 })
 
 export class ThemeMenuComponent {
@@ -40,6 +40,10 @@ export class ThemeMenuComponent {
     //#endregion
 
     //#region public methods
+
+    public getMenuTopIcon(filename: string): string {
+        return environment.menuTopIconDirectory + filename + '.svg'
+    }
 
     public getThemeThumbnail(): string {
         return this.localStorageService.getItem('theme') == '' ? this.defaultTheme : this.localStorageService.getItem('theme')
@@ -82,7 +86,7 @@ export class ThemeMenuComponent {
         const headElement = this.document.getElementsByTagName('head')[0]
         const newLinkElement = this.document.createElement('link')
         newLinkElement.rel = 'stylesheet'
-        newLinkElement.href =  this.localStorageService.getItem('theme-group') + '-' + this.defaultTheme + '.css'
+        newLinkElement.href = this.localStorageService.getItem('theme-group') + '-' + this.defaultTheme + '.css'
         headElement.appendChild(newLinkElement)
     }
 

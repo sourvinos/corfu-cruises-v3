@@ -1,21 +1,11 @@
 <div class="drop-down-menu">
     <button class="drop-down-menu-trigger">
-        <img (load)="loadImage()" [ngClass]="imageIsLoading()" src="/assets/images/themes/palettes/{{ getThemeThumbnail() }}.svg" style="height: 1.5625rem; width: 1.5625rem">
+        <img (load)="loadImage()" [ngClass]="imageIsLoading()" [src]="getMenuTopIcon('palette')" style="height: 1.5625rem; width: 1.5625rem">
         <span class="material-icons-outlined">expand_more</span>
     </button>
     <ul (click)="onHideMenu()" class="sub-menu">
-        <!-- <button class="hoverable" (click)="onChangeTheme('tangerine','dark')"><img src="/assets/images/themes/palettes/strawberry-cookie.svg" style="width: 25px"><span>Juicy Tangerine</span></button> -->
-        <!-- <button class="hoverable" (click)="onChangeTheme('moonless-night','dark')"><img src="/assets/images/themes/palettes/moonless-night.svg" style="width: 25px"><span>Moonless Night</span></button> -->
-        <!-- <button class="hoverable" (click)="onChangeTheme('wild-orchid','dark')"><img src="/assets/images/themes/palettes/wild-orchid.svg" style="width: 25px"><span>Wild Orchid</span></button> -->
         <button class="hoverable" (click)="onChangeTheme('blue')"><img src="/assets/images/themes/palettes/blue.svg" style="width: 25px"><span>Blue</span></button>
         <button class="hoverable" (click)="onChangeTheme('aquamarine')"><img src="/assets/images/themes/palettes/aquamarine.svg" style="width: 25px"><span>Aquamarine</span></button>
-        <!-- <button class="hoverable" (click)="onChangeTheme('vintage-eighties','dark')"><img src="/assets/images/themes/palettes/vintage-eighties.svg" style="width: 25px"><span>Vintage Eighties</span></button> -->
-        <!-- <button class="hoverable" (click)="onChangeTheme('mint-chocolate','dark')"><img src="/assets/images/themes/palettes/mint-chocolate.svg" style="width: 25px"><span>Mint Chocolate</span></button> -->
-        <!-- <button class="hoverable" (click)="onChangeTheme('chewing-gum','light')"><img src="/assets/images/themes/palettes/chewing-gum.svg" style="width: 25px"><span>Chewing Gum</span></button> -->
-        <!-- <button class="hoverable" (click)="onChangeTheme('icy-white','light')"><img src="/assets/images/themes/palettes/icy-white.svg" style="width: 25px"><span>Icy White</span></button> -->
-        <!-- <button class="hoverable" (click)="onChangeTheme('minty-mojito','light')"><img src="/assets/images/themes/palettes/minty-mojito.svg" style="width: 25px"><span>Minty Mojito</span></button> -->
-        <!-- <button class="hoverable" (click)="onChangeTheme('green-soap','light')"><img src="/assets/images/themes/palettes/green-soap.svg" style="width: 25px"><span>Green Soap</span></button> -->
-        <!-- <button class="hoverable" (click)="onChangeTheme('sandy-beach','light')"><img src="/assets/images/themes/palettes/sandy-beach.svg" style="width: 25px"><span>Sandy Beach</span></button> -->
-        <!-- <button class="hoverable" (click)="onChangeTheme('baby-blue','light')"><img src="/assets/images/themes/palettes/baby-blue.svg" style="width: 25px"><span>Baby Blue</span></button> -->
+        <button class="hoverable" (click)="onChangeTheme('orange')"><img src="/assets/images/themes/palettes/orange.svg" style="width: 25px"><span>Orange</span></button>
     </ul>
 </div>

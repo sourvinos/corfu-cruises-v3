@@ -80,6 +80,16 @@
                                 "input": "src/assets/themes/light-aquamarine.css",
                                 "bundleName": "light-aquamarine",
                                 "inject": false
+                            },
+                            {
+                                "input": "src/assets/themes/dark-orange.css",
+                                "bundleName": "dark-orange",
+                                "inject": false
+                            },
+                            {
+                                "input": "src/assets/themes/light-orange.css",
+                                "bundleName": "light-orange",
+                                "inject": false
                             }
                         ],
                         "tsConfig": "tsconfig.app.json"
