@@ -112,13 +112,13 @@
                                 "inject": false
                             },
                             {
-                                "input": "src/assets/themes/dark-electric-red.css",
-                                "bundleName": "dark-electric-red",
+                                "input": "src/assets/themes/dark-pastel-red.css",
+                                "bundleName": "dark-pastel-red",
                                 "inject": false
                             },
                             {
-                                "input": "src/assets/themes/light-electric-red.css",
-                                "bundleName": "light-electric-red",
+                                "input": "src/assets/themes/light-pastel-red.css",
+                                "bundleName": "light-pastel-red",
                                 "inject": false
                             },
                             {

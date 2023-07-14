@@ -38,7 +38,7 @@
 }
 
 .sub-menu button:hover {
-    background-color: var(--color-secondary);
+    background-color: var(--color-dropdown-button-hover);
 }
 
 .sub-menu button:nth-child(1) {

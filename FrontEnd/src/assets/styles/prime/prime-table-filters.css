@@ -58,7 +58,7 @@
 .p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight, .p-multiselect-panel .p-multiselect-items .p-multiselect-item, .p-multiselect-panel .p-multiselect-items .p-multiselect-item:hover {
     background-color: var(--color-secondary) !important;
     box-shadow: none !important;
-    color: var(--color-text-reverse) !important;
+    color: var(--color-table-headers) !important;
     font-family: var(--font-family-asty);
     font-size: 0.75rem;
     font-size: var(--font-size-table-row);
@@ -79,25 +79,26 @@
 }
 
 .p-column-filter-menu-button, .p-column-filter-clear-button {
-    background-image: url("/assets/images/tables/filter-remove.svg");
-    background-repeat: no-repeat;
-    border-radius: 0;
-    box-shadow: none !important;
-    height: 0.9375rem;
-    margin: 0.125rem 0 0 -0.30rem !important;
+    color: var(--color-table-headers);
+    font-family: var(--font-family-roboto) !important;
+    font-size: 0.875rem !important;
+    line-height: 0;
+    margin-left: -1rem !important;
+    margin-top: -2.6875rem;
     position: absolute !important;
-    top: 0.25rem;
-    width: 0.9375rem;
 }
 
-.p-column-filter-menu-button, .p-column-filter-clear-button:hover {
+.p-column-filter-clear-button:hover {
     background-color: transparent;
-    background-image: url("/assets/images/tables/filter-remove.svg");
-    background-repeat: no-repeat;
+    color: var(--color-table-headers);
+}
+
+.p-column-filter-menu-button, .p-column-filter-clear-button::after {
+    content: "X";
 }
 
 .p-multiselect .p-multiselect-trigger {
-    color: var(--color-text-reverse) !important;
+    color: var(--color-table-headers) !important;
     justify-content: flex-end;
     width: 1.1rem;
     transition: all var(--delay);

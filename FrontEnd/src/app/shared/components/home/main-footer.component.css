@@ -20,6 +20,7 @@ a:link, a:visited {
     color: var(--color-footer);
     outline: none;
     text-decoration: none;
+    transition: all var(--delay);
 }
 
 a:link:hover {

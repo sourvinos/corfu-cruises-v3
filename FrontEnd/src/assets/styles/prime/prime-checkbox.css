@@ -1,6 +1,6 @@
 .p-checkbox .p-checkbox-box {
     background-color: transparent !important;
-    border: 2px solid #ced4da !important;
+    border: 2px solid var(--color-table-headers) !important;
     border-radius: 0;
     margin-top: -0.1875rem;
 }
@@ -29,7 +29,7 @@
 }
 
 .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
-    border: 2px solid #ced4da !important;
+    border: 2px solid var(--color-table-headers) !important;
 }
 
 .p-checkbox:not(.p-checkbox-disabled):hover {
@@ -37,5 +37,5 @@
 }
 
 .reverse-border-color .p-column-filter .p-element .p-element .p-checkbox .p-checkbox-box {
-    border: 2px solid #ced4da !important;
+    border: 2px solid var(--color-table-headers) !important;
 }

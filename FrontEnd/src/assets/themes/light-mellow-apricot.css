@@ -9,6 +9,7 @@
     --color-text-reverse: #ffffff;
     --color-border: #f1f1f1;
     --color-table-headers: #000000;
+    --color-footer: #000000;
     /* Input */
     --color-input-background: #F9F9F9;
     --color-input-background-focus: #E3E3E3;
@@ -16,4 +17,8 @@
     --color-input-focus: #000000;
     /* Misc */
     --color-dialog-header: #17608F;
+    /* Buttons */
+    --color-dropdown-button: #000000;
+    --color-dropdown-button-hover: #ffd18a;
+    --color-dropdown-trigger: #000000;
 }
