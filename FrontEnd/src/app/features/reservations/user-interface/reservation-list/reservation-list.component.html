@@ -13,7 +13,7 @@
                     <img [src]="getIcon('calendar')">
                     <div class="description">{{ formatDateToLocale(getDateFromStorage(), true, true) }}</div>
                 </div>
-                <button (click)="resetTableFilters()" class="primary" mat-flat-button>
+                <button (click)="resetTableFilters()" class="accent" mat-flat-button>
                     <mat-icon class="material-icons-outlined no-text">filter_alt_off</mat-icon>
                 </button>
             </div>

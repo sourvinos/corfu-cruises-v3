@@ -1,4 +1,5 @@
 #wrapper {
+    background-color: var(--color-background);
     background-position: bottom;
     background-size: cover;
     height: 100%;

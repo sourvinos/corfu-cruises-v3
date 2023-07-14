@@ -62,33 +62,73 @@
                             "node_modules/primeng/resources/themes/saga-blue/theme.css",
                             "src/assets/styles/custom/base.css",
                             {
-                                "input": "src/assets/themes/dark-blue.css",
-                                "bundleName": "dark-blue",
+                                "input": "src/assets/themes/dark-sea-blue.css",
+                                "bundleName": "dark-sea-blue",
                                 "inject": false
                             },
                             {
-                                "input": "src/assets/themes/light-blue.css",
-                                "bundleName": "light-blue",
+                                "input": "src/assets/themes/light-sea-blue.css",
+                                "bundleName": "light-sea-blue",
                                 "inject": false
                             },
                             {
-                                "input": "src/assets/themes/dark-aquamarine.css",
-                                "bundleName": "dark-aquamarine",
+                                "input": "src/assets/themes/dark-mellow-apricot.css",
+                                "bundleName": "dark-mellow-apricot",
                                 "inject": false
                             },
                             {
-                                "input": "src/assets/themes/light-aquamarine.css",
-                                "bundleName": "light-aquamarine",
+                                "input": "src/assets/themes/light-mellow-apricot.css",
+                                "bundleName": "light-mellow-apricot",
                                 "inject": false
                             },
                             {
-                                "input": "src/assets/themes/dark-orange.css",
-                                "bundleName": "dark-orange",
+                                "input": "src/assets/themes/dark-celery-stick.css",
+                                "bundleName": "dark-celery-stick",
                                 "inject": false
                             },
                             {
-                                "input": "src/assets/themes/light-orange.css",
-                                "bundleName": "light-orange",
+                                "input": "src/assets/themes/light-celery-stick.css",
+                                "bundleName": "light-celery-stick",
+                                "inject": false
+                            },
+                            {
+                                "input": "src/assets/themes/dark-persian-green.css",
+                                "bundleName": "dark-persian-green",
+                                "inject": false
+                            },
+                            {
+                                "input": "src/assets/themes/light-persian-green.css",
+                                "bundleName": "light-persian-green",
+                                "inject": false
+                            },
+                            {
+                                "input": "src/assets/themes/dark-gray-paper.css",
+                                "bundleName": "dark-gray-paper",
+                                "inject": false
+                            },
+                            {
+                                "input": "src/assets/themes/light-gray-paper.css",
+                                "bundleName": "light-gray-paper",
+                                "inject": false
+                            },
+                            {
+                                "input": "src/assets/themes/dark-electric-red.css",
+                                "bundleName": "dark-electric-red",
+                                "inject": false
+                            },
+                            {
+                                "input": "src/assets/themes/light-electric-red.css",
+                                "bundleName": "light-electric-red",
+                                "inject": false
+                            },
+                            {
+                                "input": "src/assets/themes/dark-cranberry-pie.css",
+                                "bundleName": "dark-cranberry-pie",
+                                "inject": false
+                            },
+                            {
+                                "input": "src/assets/themes/light-cranberry-pie.css",
+                                "bundleName": "light-cranberry-pie",
                                 "inject": false
                             }
                         ],

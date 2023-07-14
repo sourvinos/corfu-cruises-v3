@@ -1,13 +1,14 @@
 * {
     /* Base */
-    --color-primary: #01579B;
-    --color-secondary: #3780AE;
+    --color-primary: #737373;
+    --color-secondary: #8C8C8C;
+    --color-accent: #cddc39;
     --color-background: #ffffff;
-    --color-accent: #e45142;
     /* Text */
     --color-text: #000000;
     --color-text-reverse: #ffffff;
     --color-border: #f1f1f1;
+    --color-table-headers: #ffffff;
     /* Input */
     --color-input-background: #F9F9F9;
     --color-input-background-focus: #E3E3E3;

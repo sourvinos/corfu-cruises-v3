@@ -14,7 +14,7 @@ export class ThemeMenuComponent {
 
     //#region variables
 
-    public defaultTheme = 'blue'
+    public defaultTheme = 'sea-blue'
     public imgIsLoaded = false
 
     //#endregion

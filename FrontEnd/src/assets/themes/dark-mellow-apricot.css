@@ -1,0 +1,19 @@
+* {
+    /* Base */
+    --color-primary: #e9b76b;
+    --color-secondary: #F1C27B;
+    --color-background: #555555;
+    --color-accent: #F27777;
+    /* Text */
+    --color-text: #ffffff;
+    --color-text-reverse: #555555;
+    --color-border: #6d6d6d;
+    --color-table-headers: #000000;
+    /* Input */
+    --color-input-background: #636161;
+    --color-input-background-focus: #8d8d8d;
+    --color-input-error: #ff7878;
+    --color-input-focus: #ffffff;
+    /* Misc */
+    --color-dialog-header: #17608F;
+}

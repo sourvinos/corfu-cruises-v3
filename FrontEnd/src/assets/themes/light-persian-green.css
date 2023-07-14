@@ -1,18 +1,19 @@
 * {
     /* Base */
-    --color-primary: #F2774F;
-    --color-secondary: #f39a7d;
+    --color-primary: #2A9D8F;
+    --color-secondary: #3EB8A9;
+    --color-accent: #D96B62;
     --color-background: #ffffff;
-    --color-accent: #e45142;
     /* Text */
     --color-text: #000000;
     --color-text-reverse: #ffffff;
     --color-border: #f1f1f1;
+    --color-table-headers: #ffffff;
     /* Input */
-    --color-input-background: #F9F9F9;
-    --color-input-background-focus: #E3E3E3;
+    --color-input-background: #636161;
+    --color-input-background-focus: #8d8d8d;
     --color-input-error: #ff8a82;
-    --color-input-focus: #000000;
+    --color-input-focus: #ffffff;
     /* Misc */
     --color-dialog-header: #17608F;
 }

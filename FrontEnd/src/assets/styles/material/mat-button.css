@@ -72,6 +72,10 @@ button.secondary {
     color: var(--color-button-text) !important;
 }
 
+button.accent {
+    background-color: var(--color-accent) !important;
+    color: var(--color-button-text) !important;
+}
 button.tab {
     padding-bottom: 0.3125rem;
 }

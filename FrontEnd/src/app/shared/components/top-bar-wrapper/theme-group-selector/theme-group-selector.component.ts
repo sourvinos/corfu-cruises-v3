@@ -13,7 +13,6 @@ export class ThemeGroupSelectorComponent {
 
     //#region variables
 
-    // public defaultTheme = 'blue'
     public defaultThemeGroup = 'light'
     public imgIsLoaded = false
 
@@ -68,7 +67,6 @@ export class ThemeGroupSelectorComponent {
         this.updateVariables()
         this.attachStylesheetToHead()
         this.refreshBackgroundImage()
-        // this.swapTheme()
     }
 
     private attachStylesheetToHead(): void {
@@ -88,7 +86,6 @@ export class ThemeGroupSelectorComponent {
     }
 
     private updateVariables(): void {
-        // this.defaultTheme = this.localStorageService.getItem('theme') || this.defaultTheme
         this.defaultThemeGroup = this.localStorageService.getItem('theme-group') || this.defaultThemeGroup
     }
 
