@@ -2,6 +2,11 @@
     vertical-align: middle;
 }
 
+.date-picker-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
 .icon-with-text {
     align-items: center;
     display: flex;
@@ -9,7 +14,7 @@
 
 .mat-datepicker-toggle, .mat-datepicker-content .mat-datepicker-content {
     color: var(--color-table-headers) !important;
-    margin: 0.0625rem 1.6875rem 0.9375rem 0.0625rem;
+    margin: 0.125rem 0 0 -1.25rem;
 }
 
 .number {

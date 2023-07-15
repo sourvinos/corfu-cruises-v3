@@ -23,7 +23,14 @@
                     </tr>
                     <tr>
                         <th class="width-5"><p-columnFilter field="isActive" type="boolean"></p-columnFilter></th>
-                        <th class="width-9"></th>
+                        <th class="width-9">
+                            <div class="date-picker-wrapper">
+                                <input (dateInput)="filterByDate($event)" [matDatepicker]="picker" [ngModel]="filterDate" class="center p-inputtext" readonly>
+                                <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+                                <span (click)="clearDateFilter()" [ngClass]="hasDateFilter()" class="date-clear-icon pi pi-filter-slash"></span>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </div>
+                        </th>
                         <th class="width-20">
                             <p-columnFilter [showMenu]="false" field="destination" matchMode="in">
                                 <ng-template let-filter="filterCallback" let-value pTemplate="filter">

@@ -107,7 +107,6 @@
 
 .mat-datepicker-toggle, .mat-datepicker-content .mat-datepicker-content {
     color: var(--color-text) !important;
-    margin-left: auto;
     position: relative;
     transition: all var(--delay);
 }
