@@ -20,7 +20,7 @@ input.right {
 input.mat-input-element, textarea.mat-input-element {
     caret-color: var(--color-text);
     color: var(--color-text);
-    margin: 0.5rem 0 0.4rem 0;
+    margin: 0.6rem 0 0.2rem 0;
     transition: all var(--delay);
 }
 
@@ -80,11 +80,11 @@ textarea {
 }
 
 .mat-form-field-infix .mat-icon {
-    margin-top: 0.5rem;
+    margin-top: 0.6rem;
 }
 
 .mat-form-field-flex {
-    align-items: center;
+    align-items: center !important;
     display: flex;
 }
 
@@ -110,7 +110,7 @@ textarea {
 }
 
 .mat-form-field-prefix, .mat-form-field-suffix {
-    margin-right: -0.125rem;
+    margin: 21px -0.125rem 0 0;
 }
 
 .mat-form-field-subscript-wrapper {
@@ -158,4 +158,10 @@ textarea {
 
 .textarea .mat-form-field-wrapper {
     padding-bottom: 2rem;
+}
+
+.mat-datepicker-toggle-default-icon {
+    display: flex;
+    margin: 0 10px -1rem 2rem;
+    width: 1rem !important;
 }

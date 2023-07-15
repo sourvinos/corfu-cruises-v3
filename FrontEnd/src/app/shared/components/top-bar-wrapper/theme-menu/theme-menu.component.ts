@@ -42,7 +42,7 @@ export class ThemeMenuComponent {
     //#region public methods
 
     public getMenuTopIcon(filename: string): string {
-        return environment.menuTopIconDirectory + filename + '-' + this.localStorageService.getItem('theme-group') + '.svg'
+        return environment.menuTopIconDirectory + filename + '.svg'
     }
 
     public getThemeThumbnail(): string {

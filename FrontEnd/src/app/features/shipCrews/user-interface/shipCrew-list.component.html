@@ -38,12 +38,7 @@
                         </th>
                         <th class="width-15"><input (input)="table.filter($event.target.value, 'lastname', 'contains')" [value]="$any(table).filters['lastname']?.value" class="p-inputtext"></th>
                         <th class="width-15"><input (input)="table.filter($event.target.value, 'firstname', 'contains')" [value]="$any(table).filters['firstname']?.value" class="p-inputtext"></th>
-                        <th class="header-datepicker width-9">
-                            <input (dateInput)="filterByDate($event)" [matDatepicker]="picker" [ngModel]="filterDate" class="center" matInput readonly>
-                            <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
-                            <span (click)="clearDateFilter()" [ngClass]="hasDateFilter()" class="date-clear-icon pi pi-filter-slash"></span>
-                            <mat-datepicker #picker></mat-datepicker>
-                        </th>
+                        <th class="width-9"></th>
                     </tr>
                 </ng-template>
                 <ng-template let-record pTemplate="body">

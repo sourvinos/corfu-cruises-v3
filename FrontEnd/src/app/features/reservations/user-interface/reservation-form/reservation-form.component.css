@@ -106,3 +106,9 @@
     justify-content: flex-end;
     margin: 1rem 1rem 0 0;
 }
+
+.date-picker-in-input-field {
+    display: flex;
+    margin: -3px 10px -1rem 2rem;
+    width: 1rem !important;
+}

@@ -33,7 +33,7 @@
                         <mat-form-field>
                             <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined">lock</mat-icon>
                             <input [inputTabStop]="input" [matDatepicker]="picker" [placeholder]="getLabel('date')" [readonly]="!isAdmin()" data-tabindex="1" formControlName="date" matInput>
-                            <mat-datepicker-toggle [disabled]="!isAdminOrNewRecord()" matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker-toggle [disabled]="!isAdminOrNewRecord()" class="date-picker-in-input-field" matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                             <mat-error *ngIf="date.hasError('required')">{{ getHint("required") }}</mat-error>
                             <mat-error *ngIf="!date.hasError('required')">{{ getHint("invalid") }}</mat-error>

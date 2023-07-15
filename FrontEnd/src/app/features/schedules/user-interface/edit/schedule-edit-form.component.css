@@ -1,0 +1,5 @@
+.date-picker-in-input-field {
+    display: flex;
+    margin: 0 10px -1rem 2rem;
+    width: 1rem !important;
+}

@@ -109,8 +109,6 @@
     color: var(--color-text) !important;
     margin-left: auto;
     position: relative;
-    right: 1.4375rem !important;
-    top: -0.5rem !important;
     transition: all var(--delay);
 }
 
@@ -145,14 +143,6 @@
     width: 0 !important;
 }
 
-.mat-datepicker-toggle-default-icon {
-    display: flex;
-    margin: 0 0 -0.875rem 24px !important;
-    width: 1rem !important;
-}
-
 .mat-form-field-appearance-legacy .mat-form-field-suffix .mat-datepicker-toggle-default-icon {
     color: var(--color-text);
-    margin-left: 25px;
-    margin-top: 1rem !important;
 }
