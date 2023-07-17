@@ -66,7 +66,6 @@ export class ReservationFormComponent {
     public passengerDifferenceColor: string
     public isReservationTabVisible: boolean
     public isPassengersTabVisible: boolean
-    public isMiscTabVisible: boolean
 
     //#endregion
 
@@ -118,10 +117,6 @@ export class ReservationFormComponent {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
     }
 
-    public getEmoji(): string {
-        return this.emojiService.getEmoji('green')
-    }
-    
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
     }
@@ -130,8 +125,9 @@ export class ReservationFormComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public getPassengerDifferenceColor(element?: any): void {
-        this.passengerDifferenceColor = this.reservationHelperService.getPassengerDifferenceIcon(element, this.form.value.totalPax, this.form.value.passengers.length)
+    public getPassengerDifferenceColor(): string {
+        this.passengerDifferenceColor = this.reservationHelperService.getPassengerDifferenceColor(this.form.value.totalPax, this.form.value.passengers.length)
+        return this.emojiService.getEmoji(this.passengerDifferenceColor)
     }
 
     public isAdmin(): boolean {
@@ -225,22 +221,14 @@ export class ReservationFormComponent {
         })
     }
 
-    public onShowMiscTab(): void {
-        this.isReservationTabVisible = false
-        this.isPassengersTabVisible = false
-        this.isMiscTabVisible = true
-    }
-
     public onShowPassengersTab(): void {
         this.isReservationTabVisible = false
         this.isPassengersTabVisible = true
-        this.isMiscTabVisible = false
     }
 
     public onShowReservationTab(): void {
         this.isReservationTabVisible = true
         this.isPassengersTabVisible = false
-        this.isMiscTabVisible = false
     }
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {

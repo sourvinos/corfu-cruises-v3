@@ -9,7 +9,6 @@
                 <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
                     <mat-button-toggle (click)="onShowReservationTab()" checked class="primary">{{ getLabel("toggle-button-general") | uppercase }}</mat-button-toggle>
                     <mat-button-toggle (click)="onShowPassengersTab()">{{ getLabel("toggle-button-passengers") | uppercase }}</mat-button-toggle>
-                    <mat-button-toggle (click)="onShowMiscTab()">{{ getLabel("toggle-button-misc") | uppercase }}</mat-button-toggle>
                 </mat-button-toggle-group>
                 <button [matMenuTriggerFor]="menu" mat-icon-button>
                     <mat-icon class="material-icons-outlined no-text">more_vert</mat-icon>
@@ -21,8 +20,8 @@
         </div>
 
         <form id="form" [formGroup]="form" autocomplete="off">
-            <div *ngIf="isReservationTabVisible" id="reservation">
-                <div class="tab-content">
+            <div *ngIf="isReservationTabVisible" id="reservation-tab">
+                <div id="overview">
                     <div class="group-field">
                         <!-- RefNo -->
                         <div id="ref-no" style="width: 30% !important;">
@@ -38,10 +37,19 @@
                             <mat-error *ngIf="date.hasError('required')">{{ getHint("required") }}</mat-error>
                             <mat-error *ngIf="!date.hasError('required')">{{ getHint("invalid") }}</mat-error>
                         </mat-form-field>
+                        <!-- Ticket No -->
+                        <mat-form-field>
+                            <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined">lock</mat-icon>
+                            <input [inputTabStop]="input" [placeholder]="getLabel('ticketNo')" [readonly]="!isAdminOrNewRecord()" data-tabindex="2" formControlName="ticketNo" matInput>
+                            <mat-error *ngIf="ticketNo.hasError('required')">{{ getHint("required") }}</mat-error>
+                            <mat-error *ngIf="ticketNo.hasError('maxlength')">{{ getHint("maxLength", ticketNo.errors.maxlength.requiredLength) }}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="group-field">
                         <!-- Destination -->
                         <mat-form-field>
                             <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined">lock</mat-icon>
-                            <input #inputAutoComplete #triggerDestination="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="destinations" [placeholder]="getLabel('destination')" [readonly]="!isAdminOrNewRecord()" data-tabindex="2" formControlName="destination" matInput>
+                            <input #inputAutoComplete #triggerDestination="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="destinations" [placeholder]="getLabel('destination')" [readonly]="!isAdminOrNewRecord()" data-tabindex="3" formControlName="destination" matInput>
                             <div matSuffix style="display:flex">
                                 <button (click)="openOrCloseAutoComplete(triggerDestination, 'destination')" [disabled]="!isAdminOrNewRecord()" mat-icon-button type="button">
                                     <mat-icon class="material-icons-outlined">expand_more</mat-icon>
@@ -53,7 +61,7 @@
                         <!-- Customer -->
                         <mat-form-field>
                             <mat-icon *ngIf="!isAdmin()" class="material-icons-outlined">lock</mat-icon>
-                            <input #inputAutoComplete #triggerCustomer="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="customers" [placeholder]="getLabel('customer')" [readonly]="!isAdmin()" data-tabindex="3" formControlName="customer" matInput>
+                            <input #inputAutoComplete #triggerCustomer="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="customers" [placeholder]="getLabel('customer')" [readonly]="!isAdmin()" data-tabindex="4" formControlName="customer" matInput>
                             <div matSuffix style="display:flex">
                                 <button (click)="openOrCloseAutoComplete(triggerCustomer, 'customer')" [disabled]="!isAdmin()" mat-icon-button type="button">
                                     <mat-icon class="material-icons-outlined">expand_more</mat-icon>
@@ -67,7 +75,7 @@
                         <!-- Pickup Point -->
                         <mat-form-field>
                             <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined">lock</mat-icon>
-                            <input #inputAutoComplete #triggerPickupPoint="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="pickupPoints" [placeholder]="getLabel('pickupPoint')" [readonly]="!isAdminOrNewRecord()" data-tabindex="4" formControlName="pickupPoint" matInput>
+                            <input #inputAutoComplete #triggerPickupPoint="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="pickupPoints" [placeholder]="getLabel('pickupPoint')" [readonly]="!isAdminOrNewRecord()" data-tabindex="5" formControlName="pickupPoint" matInput>
                             <div matSuffix style="display:flex">
                                 <button (click)="openOrCloseAutoComplete(triggerPickupPoint, 'pickupPoint')" [disabled]="!isAdminOrNewRecord()" mat-icon-button type="button">
                                     <mat-icon class="material-icons-outlined">expand_more</mat-icon>
@@ -88,13 +96,6 @@
                         </mat-form-field>
                     </div>
                     <div class="group-field">
-                        <!-- Ticket No -->
-                        <mat-form-field>
-                            <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined">lock</mat-icon>
-                            <input [inputTabStop]="input" [placeholder]="getLabel('ticketNo')" [readonly]="!isAdminOrNewRecord()" data-tabindex="5" formControlName="ticketNo" matInput>
-                            <mat-error *ngIf="ticketNo.hasError('required')">{{ getHint("required") }}</mat-error>
-                            <mat-error *ngIf="ticketNo.hasError('maxlength')">{{ getHint("maxLength", ticketNo.errors.maxlength.requiredLength) }}</mat-error>
-                        </mat-form-field>
                         <!-- Adults -->
                         <mat-form-field>
                             <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined">lock</mat-icon>
@@ -120,7 +121,7 @@
                         <div id="total-pax" style="width: 30% !important;">
                             <span id="total-pax-label">{{ getLabel('totalPax') }}</span>
                             <span id="total-pax-body">{{ form.value.totalPax }}</span>
-                            <span>{{ getEmoji() }}</span>
+                            <span id="total-pax-emoji">{{ getPassengerDifferenceColor() }}</span>
                         </div>
                     </div>
                     <div class="group-field">
@@ -142,19 +143,12 @@
                         <!-- Remarks -->
                         <mat-form-field>
                             <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined">lock</mat-icon>
-                            <input [inputTabStop]="input" [placeholder]="getLabel('remarks')" [readonly]="!isAdminOrNewRecord()" data-tabindex="11" formControlName="remarks" matInput>
+                            <input [placeholder]="getLabel('remarks')" [readonly]="!isAdminOrNewRecord()" formControlName="remarks" matInput>
                             <mat-error *ngIf="remarks.hasError('maxlength')">{{ getHint("maxLength", remarks.errors.maxlength.requiredLength) }}</mat-error>
                         </mat-form-field>
                     </div>
                 </div>
-            </div>
-            <div *ngIf="isPassengersTabVisible" id="passengers">
-                <div class="tab-content">
-                    <passenger-list [passengers]="form.value.passengers" [reservationId]="form.value.reservationId" [totalPax]="form.value.totalPax" (outputPassengerCount)="getPassengerDifferenceColor($event)" (outputPassengers)="doTasksAfterPassengerFormIsClosed($event)"></passenger-list>
-                </div>
-            </div>
-            <div *ngIf="isMiscTabVisible" id="misc">
-                <div class="tab-content">
+                <div id="misc">
                     <!-- Driver -->
                     <mat-form-field>
                         <mat-icon class="material-icons-outlined">lock</mat-icon>
@@ -186,6 +180,11 @@
                         <mat-icon class="material-icons-outlined">lock</mat-icon>
                         <input [placeholder]="getLabel('lastUpdate')" formControlName="lastUpdate" matInput readonly>
                     </mat-form-field>
+                </div>
+            </div>
+            <div *ngIf="isPassengersTabVisible" id="passengers-tab">
+                <div class="tab-content">
+                    <passenger-list [passengers]="form.value.passengers" [reservationId]="form.value.reservationId" [totalPax]="form.value.totalPax" (outputPassengerCount)="getPassengerDifferenceColor()" (outputPassengers)="doTasksAfterPassengerFormIsClosed($event)"></passenger-list>
                 </div>
             </div>
         </form>

@@ -47,19 +47,19 @@ export class ReservationHelperService {
         })
     }
 
-    public getPassengerDifferenceIcon(element: any, totalPax: number, totalPassengers: number): any {
+    public getPassengerDifferenceColor(totalPax: number, totalPassengers: number): any {
         if (totalPassengers > 0) {
-            const passengerDifference = totalPax - (element != null ? element : totalPassengers)
+            const passengerDifference = totalPax - totalPassengers
             switch (true) {
                 case passengerDifference == 0:
-                    return 'green'
+                    return 'green-circle'
                 case passengerDifference < 0:
-                    return 'red'
+                    return 'red-circle'
                 case passengerDifference > 0:
-                    return 'yellow'
+                    return 'yellow-circle'
             }
         } else {
-            return 'yellow'
+            return 'yellow-circle'
         }
     }
 

@@ -15,11 +15,23 @@ input.right {
     text-align: right;
 }
 
-input.mat-input-element, textarea.mat-input-element {
+input.mat-input-element {
     caret-color: var(--color-text);
     color: var(--color-text);
     margin: 0.6rem 0 0.2rem 0;
     transition: all var(--delay);
+}
+
+textarea.mat-input-element {
+    caret-color: var(--color-text);
+    color: var(--color-text);
+    margin: 1rem 0 1rem 0;
+    padding: 0;
+    transition: all var(--delay);
+}
+
+textarea .mat-form-field-wrapper {
+    padding-bottom: 2rem;
 }
 
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
@@ -38,10 +50,6 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 input::placeholder {
     color: var(--color-text);
     opacity: 0.35;
-}
-
-textarea {
-    height: 6.25rem;
 }
 
 .mat-date-range-input {
@@ -153,10 +161,6 @@ textarea {
     font-family: var(--font-family-asty);
     font-weight: 300;
     transition: all var(--delay);
-}
-
-.textarea .mat-form-field-wrapper {
-    padding-bottom: 2rem;
 }
 
 .mat-datepicker-toggle-default-icon {
