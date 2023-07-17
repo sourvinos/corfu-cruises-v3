@@ -96,11 +96,11 @@ namespace API.Features.Reservations {
             AttachNewRefNoToDto(reservation);
             var x = validReservation.IsValid(reservation, scheduleRepo);
             if (x == 200) {
-                reservationUpdateRepo.Create(mapper.Map<ReservationWriteDto, Reservation>((ReservationWriteDto)reservationUpdateRepo.AttachUserIdToDto(reservation)));
+                var response = reservationUpdateRepo.Create(mapper.Map<ReservationWriteDto, Reservation>((ReservationWriteDto)reservationUpdateRepo.AttachUserIdToDto(reservation)));
                 return Task.FromResult(new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = null,
+                    Id = response.ReservationId.ToString(),
                     Message = reservation.RefNo
                 });
             } else {
@@ -127,7 +127,7 @@ namespace API.Features.Reservations {
                         return new Response {
                             Code = 200,
                             Icon = Icons.Success.ToString(),
-                            Id = null,
+                            Id = reservation.ReservationId.ToString(),
                             Message = reservation.RefNo
                         };
                     } else {

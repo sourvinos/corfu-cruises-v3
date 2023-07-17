@@ -128,15 +128,15 @@
             },
             {
                 "id": "helpDialog",
-                "message": "Můžete se obrátit na místo, kde jste rezervaci provedli, nebo na jednoho z nás na telefonním čísle +30 26610 71150 nebo +30 26620 61400"
+                "message": "Můžete se obrátit na místo, kde jste rezervaci provedli, nebo na jednoho z nás na telefonním čísle +30 26610 71150 nebo +30 26620 61400."
             },
             {
-                "id": "totalPaxShouldBeEqualToPassengerCount",
-                "message": "Chcete-li pokračovat, musíte zadat údaje o všech cestujících."
+                "id": "passengersAreMissingOrMustSaveBeforeContinue",
+                "message": "Chcete-li pokračovat, je třeba zadat údaje o všech cestujících a uložit rezervaci."
             },
             {
                 "id": "emailShouldBeValid",
-                "message": "Pro pokračování musíte mít zadanou e-mailovou adresu."
+                "message": "E-mail není platný."
             }
         ]
     }

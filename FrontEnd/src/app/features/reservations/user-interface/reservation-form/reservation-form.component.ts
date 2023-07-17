@@ -67,6 +67,10 @@ export class ReservationFormComponent {
     public isReservationTabVisible: boolean
     public isPassengersTabVisible: boolean
 
+    private formMustCloseAfterSave = true
+    private mustGoBackAfterSave = true
+    private mirrorRecord: ReservationWriteDto
+
     //#endregion
 
     constructor(private activatedRoute: ActivatedRoute, private boardingPassService: BoardingPassService, private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialog: MatDialog, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private reservationHelperService: ReservationHelperService, private reservationService: ReservationHttpService, private router: Router, private sessionStorageService: SessionStorageService) { }
@@ -170,21 +174,25 @@ export class ReservationFormComponent {
     }
 
     public onEmailBoardingPass(): void {
-        if (this.reservationHelperService.totalPaxShouldBeEqualToPassengerCount(this.form.value.totalPax, this.form.value.passengers.length)) {
-            if (this.reservationHelperService.emailShouldBeValid(this.form.value.email)) {
+        if (this.reservationHelperService.emailShouldBeValid(this.form.value.email)) {
+            if (this.isRecordSaved() == false || this.arePassengersMissing()) {
+                this.formMustCloseAfterSave = false
+                this.mustGoBackAfterSave = false
+                this.dialogService.open(this.messageSnackbarService.passengersAreMissingOrMustSaveBeforeContinue(), 'error', ['ok'])
+            } else {
                 this.boardingPassService.emailBoardingPass(this.form.value.reservationId).subscribe({
                     next: () => {
                         this.helperService.doPostSaveFormTasks(this.messageSnackbarService.emailSent(), 'success', this.parentUrl, this.form, false, false)
+                        this.formMustCloseAfterSave = true
+                        this.mustGoBackAfterSave = true
                     },
                     error: (errorFromInterceptor) => {
                         this.helperService.doPostSaveFormTasks(this.messageSnackbarService.filterResponse(errorFromInterceptor), 'error', this.parentUrl, this.form, false, false)
                     }
                 })
-            } else {
-                this.dialogService.open(this.messageSnackbarService.emailShouldBeValid(), 'error', ['ok'])
             }
         } else {
-            this.dialogService.open(this.messageSnackbarService.totalPaxShouldBeEqualToPassengerCount(), 'error', ['ok'])
+            this.dialogService.open(this.messageSnackbarService.emailShouldBeValid(), 'error', ['ok'])
         }
     }
 
@@ -192,7 +200,7 @@ export class ReservationFormComponent {
         if (this.reservationHelperService.totalPaxShouldBeEqualToPassengerCount(this.form.value.totalPax, this.form.value.passengers.length)) {
             this.boardingPassService.printBoardingPass(this.boardingPassService.createBoardingPass(this.form.value))
         } else {
-            this.dialogService.open(this.messageSnackbarService.totalPaxShouldBeEqualToPassengerCount(), 'error', ['ok'])
+            this.dialogService.open(this.messageSnackbarService.passengersAreMissingOrMustSaveBeforeContinue(), 'error', ['ok'])
         }
     }
 
@@ -250,6 +258,10 @@ export class ReservationFormComponent {
 
     //#region private methods
 
+    private arePassengersMissing(): boolean {
+        return this.form.value.totalPax != this.form.value.passengers.length
+    }
+
     private calculateTotalPax(): void {
         const totalPax = parseInt(this.form.value.adults, 10) + parseInt(this.form.value.kids, 10) + parseInt(this.form.value.free, 10)
         this.form.patchValue({ totalPax: Number(totalPax) ? totalPax : 0 })
@@ -257,6 +269,10 @@ export class ReservationFormComponent {
 
     private cleanup(): void {
         this.sessionStorageService.deleteItems([{ 'item': 'nationality', 'when': 'always' }])
+    }
+
+    private cloneRecord(): void {
+        this.mirrorRecord = this.flattenForm()
     }
 
     private doNewOrEditTasks(): void {
@@ -268,6 +284,7 @@ export class ReservationFormComponent {
             this.getRecord()
             this.populateFields()
             this.getPassengerDifferenceColor()
+            this.cloneRecord()
         }
     }
 
@@ -386,6 +403,10 @@ export class ReservationFormComponent {
         })
     }
 
+    private isRecordSaved(): boolean {
+        return JSON.stringify(this.mirrorRecord) == JSON.stringify(this.flattenForm())
+    }
+
     private patchFormWithPassengers(passengers: any): void {
         this.form.patchValue({ passengers: passengers })
     }
@@ -440,7 +461,12 @@ export class ReservationFormComponent {
                 const date = this.dateHelperService.formatDateToIso(new Date(this.form.value.date))
                 this.sessionStorageService.saveItem('date', date)
                 this.parentUrl = '/reservations/date/' + date
-                this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'success', this.parentUrl, this.form)
+                this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'success', this.parentUrl, this.form, this.formMustCloseAfterSave, this.mustGoBackAfterSave)
+                this.form.patchValue({
+                    reservationId: response.id,
+                    refNo: response.message
+                })
+                this.cloneRecord()
                 this.localStorageService.deleteItems([{ 'item': 'reservation', 'when': 'always' },])
                 this.sessionStorageService.deleteItems([{ 'item': 'nationality', 'when': 'always' }])
             },

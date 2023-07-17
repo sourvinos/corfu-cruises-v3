@@ -124,19 +124,19 @@
             },
             {
                 "id": "reservationNotFound",
-                "message": "Your reservation wasn't found"
+                "message": "Your reservation wasn't found."
             },
             {
                 "id": "helpDialog",
-                "message": "You can contact the place where you made the reservation or one of us at +30 26610 71150 or +30 26620 61400"
+                "message": "You can contact the place where you made the reservation or one of us at +30 26610 71150 or +30 26620 61400."
             },
             {
-                "id": "totalPaxShouldBeEqualToPassengerCount",
-                "message": "To continue you must have entered the details of all passengers."
+                "id": "passengersAreMissingOrMustSaveBeforeContinue",
+                "message": "To continue, the details of all passengers must be given and the reservation must be saved."
             },
             {
                 "id": "emailShouldBeValid",
-                "message": "To continue you must have entered the email address."
+                "message": "The email isn't valid."
             }
         ]
     }

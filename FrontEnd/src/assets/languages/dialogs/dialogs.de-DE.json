@@ -124,19 +124,19 @@
             },
             {
                 "id": "reservationNotFound",
-                "message": "Ihre Reservierung wurde nicht gefunden"
+                "message": "Ihre Reservierung wurde nicht gefunden."
             },
             {
                 "id": "helpDialog",
-                "message": "Sie können sich an den Ort wenden, an dem Sie die Reservierung vorgenommen haben, oder an einen von uns unter +30 26610 71150 oder +30 26620 61400"
+                "message": "Sie können sich an den Ort wenden, an dem Sie die Reservierung vorgenommen haben, oder an einen von uns unter +30 26610 71150 oder +30 26620 61400."
             },
             {
-                "id": "totalPaxShouldBeEqualToPassengerCount",
-                "message": "Um fortzufahren, müssen Sie die Daten aller Passagiere eingegeben haben."
+                "id": "passengersAreMissingOrMustSaveBeforeContinue",
+                "message": "Um fortzufahren, müssen die Daten aller Passagiere angegeben und die Reservierung gespeichert werden."
             },
             {
                 "id": "emailShouldBeValid",
-                "message": "Um fortzufahren, müssen Sie die E-Mail-Adresse eingegeben haben."
+                "message": "Die E-Mail ist ungültig."
             }
         ]
     }
