@@ -59,11 +59,10 @@ namespace API.Features.Destinations {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] DestinationWriteDto destination) {
-            var id = destinationRepo.Create(mapper.Map<DestinationWriteDto, Destination>((DestinationWriteDto)destinationRepo.AttachUserIdToDto(destination)));
+            destinationRepo.Create(mapper.Map<DestinationWriteDto, Destination>((DestinationWriteDto)destinationRepo.AttachUserIdToDto(destination)));
             return new Response {
                 Code = 200,
                 Icon = Icons.Success.ToString(),
-                Id = Convert.ToInt32(id),
                 Message = ApiMessages.OK()
             };
         }
@@ -79,7 +78,6 @@ namespace API.Features.Destinations {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = Convert.ToInt32(x.Id),
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -98,7 +96,6 @@ namespace API.Features.Destinations {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = Convert.ToInt32(x.Id),
                     Message = ApiMessages.OK()
                 };
             } else {

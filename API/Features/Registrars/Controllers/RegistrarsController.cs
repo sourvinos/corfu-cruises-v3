@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
@@ -63,11 +62,10 @@ namespace API.Features.Registrars {
         public Response Post([FromBody] RegistrarWriteDto registrar) {
             var x = registrarValidation.IsValid(registrar);
             if (x == 200) {
-                var id = registrarRepo.Create(mapper.Map<RegistrarWriteDto, Registrar>((RegistrarWriteDto)registrarRepo.AttachUserIdToDto(registrar)));
+                registrarRepo.Create(mapper.Map<RegistrarWriteDto, Registrar>((RegistrarWriteDto)registrarRepo.AttachUserIdToDto(registrar)));
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = Convert.ToInt32(id),
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -90,7 +88,6 @@ namespace API.Features.Registrars {
                     return new Response {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
-                        Id = Convert.ToInt32(x.Id),
                         Message = ApiMessages.OK()
                     };
                 } else {
@@ -114,7 +111,6 @@ namespace API.Features.Registrars {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = Convert.ToInt32(x.Id),
                     Message = ApiMessages.OK()
                 };
             } else {

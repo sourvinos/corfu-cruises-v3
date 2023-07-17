@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
@@ -59,11 +58,10 @@ namespace API.Features.Genders {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] GenderWriteDto gender) {
-            var id = genderRepo.Create(mapper.Map<GenderWriteDto, Gender>((GenderWriteDto)genderRepo.AttachUserIdToDto(gender)));
+            genderRepo.Create(mapper.Map<GenderWriteDto, Gender>((GenderWriteDto)genderRepo.AttachUserIdToDto(gender)));
             return new Response {
                 Code = 200,
                 Icon = Icons.Success.ToString(),
-                Id = Convert.ToInt32(id),
                 Message = ApiMessages.OK()
             };
         }
@@ -79,7 +77,6 @@ namespace API.Features.Genders {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = Convert.ToInt32(x.Id),
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -98,7 +95,6 @@ namespace API.Features.Genders {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = Convert.ToInt32(x.Id),
                     Message = ApiMessages.OK()
                 };
             } else {

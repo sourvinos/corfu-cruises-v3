@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
@@ -63,11 +62,10 @@ namespace API.Features.Ports {
         public Response Post([FromBody] PortWriteDto port) {
             var x = portValidation.IsValid(port);
             if (x == 200) {
-                var id = portRepo.Create(mapper.Map<PortWriteDto, Port>((PortWriteDto)portRepo.AttachUserIdToDto(port)));
+                portRepo.Create(mapper.Map<PortWriteDto, Port>((PortWriteDto)portRepo.AttachUserIdToDto(port)));
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = Convert.ToInt32(id),
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -90,7 +88,6 @@ namespace API.Features.Ports {
                     return new Response {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
-                        Id = Convert.ToInt32(x.Id),
                         Message = ApiMessages.OK()
                     };
                 } else {
@@ -114,7 +111,6 @@ namespace API.Features.Ports {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = Convert.ToInt32(x.Id),
                     Message = ApiMessages.OK()
                 };
             } else {

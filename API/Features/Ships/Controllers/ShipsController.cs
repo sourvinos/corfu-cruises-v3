@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Infrastructure.Extensions;
@@ -63,11 +62,10 @@ namespace API.Features.Ships {
         public Response Post([FromBody] ShipWriteDto ship) {
             var x = shipValidation.IsValid(ship);
             if (x == 200) {
-                var id = shipRepo.Create(mapper.Map<ShipWriteDto, Ship>((ShipWriteDto)shipRepo.AttachUserIdToDto(ship)));
+                shipRepo.Create(mapper.Map<ShipWriteDto, Ship>((ShipWriteDto)shipRepo.AttachUserIdToDto(ship)));
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = Convert.ToInt32(id),
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -90,7 +88,6 @@ namespace API.Features.Ships {
                     return new Response {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
-                        Id = Convert.ToInt32(x.Id),
                         Message = ApiMessages.OK(),
                     };
                 } else {
@@ -114,7 +111,6 @@ namespace API.Features.Ships {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = Convert.ToInt32(x.Id),
                     Message = ApiMessages.OK()
                 };
             } else {
