@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 using API.Infrastructure.Responses;
@@ -22,15 +21,12 @@ namespace API.Infrastructure.Implementations {
             this.testingSettings = testingSettings.Value;
         }
 
-        public object Create(T entity) {
+        public T Create(T entity) {
             using var transaction = context.Database.BeginTransaction();
             context.Add(entity);
             context.SaveChanges();
             DisposeOrCommit(transaction);
-            return entity
-                .GetType()
-                .GetProperties().First()
-                .GetValue(entity, null);
+            return entity;
         }
 
         public void CreateList(List<T> entities) {
