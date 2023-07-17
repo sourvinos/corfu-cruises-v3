@@ -1,6 +1,6 @@
 .p-checkbox .p-checkbox-box {
     background-color: transparent !important;
-    border: 0.0625rem solid var(--color-text);
+    border: 0.0625rem solid;
     border-radius: 0;
     margin-top: -0.1875rem;
 }
@@ -34,8 +34,4 @@
 
 .p-checkbox:not(.p-checkbox-disabled):hover {
     box-shadow: none !important;
-}
-
-.reverse-border-color .p-column-filter .p-element .p-element .p-checkbox .p-checkbox-box {
-    border: 0.0625rem solid var(--color-text) !important;
 }
