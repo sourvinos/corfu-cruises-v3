@@ -37,5 +37,5 @@
 }
 
 .mat-menu-item:hover:not([disabled]) > span {
-    color: var(--color-text-reverse) !important;
+    color: var(--color-button-text) !important;
 }

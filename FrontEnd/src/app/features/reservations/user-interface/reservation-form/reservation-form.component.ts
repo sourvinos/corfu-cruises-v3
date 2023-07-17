@@ -197,10 +197,12 @@ export class ReservationFormComponent {
     }
 
     public onPrintBoardingPass(): void {
-        if (this.reservationHelperService.totalPaxShouldBeEqualToPassengerCount(this.form.value.totalPax, this.form.value.passengers.length)) {
-            this.boardingPassService.printBoardingPass(this.boardingPassService.createBoardingPass(this.form.value))
-        } else {
+        if (this.isRecordSaved() == false || this.arePassengersMissing()) {
+            this.formMustCloseAfterSave = false
+            this.mustGoBackAfterSave = false
             this.dialogService.open(this.messageSnackbarService.passengersAreMissingOrMustSaveBeforeContinue(), 'error', ['ok'])
+        } else {
+            this.boardingPassService.printBoardingPass(this.boardingPassService.createBoardingPass(this.form.value))
         }
     }
 
