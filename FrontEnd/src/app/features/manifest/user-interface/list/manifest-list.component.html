@@ -74,7 +74,7 @@
                         <td class="width-10">{{ passenger.occupant.description }}</td>
                         <td class="width-10">{{ passenger.gender.description }}</td>
                         <td class="width-10" style="align-items: center; display: flex;">
-                            <img [src]="getNationalityIcon(passenger.nationality.code)" style="vertical-align: middle" />
+                            <img [src]="getNationalityIcon(passenger.nationality.code)" class="flag-with-border" style="vertical-align: middle" />
                             <span style="overflow: hidden;">&nbsp;&nbsp;&nbsp;&nbsp;{{ passenger.nationality.description }}</span>
                         </td>
                         <td>{{ passenger.lastname }}</td>

@@ -15,8 +15,10 @@
     --color-input-background-focus: #8d8d8d;
     --color-input-error: #ff7878;
     --color-input-focus: #ffffff;
-    /* Misc */
+    /* Dialogs */
     --color-dialog-header: #17608F;
+    /* Flags */
+    --color-flag-border: #ffffff;
     /* Buttons */
     --color-dropdown-button: #000000;
     --color-dropdown-button-hover: #b7bb99;

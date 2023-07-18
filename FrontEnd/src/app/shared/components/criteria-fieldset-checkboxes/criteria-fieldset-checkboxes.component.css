@@ -26,6 +26,6 @@
     width: 100%;
 }
 
-.no-background, .no-background:hover {
-    background-color: var(--color-background) !important;
+input::placeholder {
+    color: var(--color-table-headers);
 }

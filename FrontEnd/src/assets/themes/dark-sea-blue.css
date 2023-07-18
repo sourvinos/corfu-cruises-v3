@@ -2,11 +2,11 @@
     /* Base */
     --color-primary: #5298C5;
     --color-secondary: #7BB7DD;
-    --color-background: #555555;
     --color-accent: #D96B62;
+    --color-background: #555555;
     /* Text */
     --color-text: #ffffff;
-    --color-text-reverse: #555555;
+    --color-text-reverse: #ffffff;
     --color-border: #6d6d6d;
     --color-table-headers: #ffffff;
     --color-footer: #ffffff;
@@ -15,8 +15,10 @@
     --color-input-background-focus: #8d8d8d;
     --color-input-error: #ff7878;
     --color-input-focus: #ffffff;
-    /* Misc */
+    /* Dialogs */
     --color-dialog-header: #17608F;
+    /* Flags */
+    --color-flag-border: #ffffff;
     /* Buttons */
     --color-dropdown-button: #ffffff;
     --color-dropdown-button-hover: #437796;

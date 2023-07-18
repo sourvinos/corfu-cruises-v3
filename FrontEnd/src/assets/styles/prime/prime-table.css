@@ -34,6 +34,11 @@
     width: 1.25rem;
 }
 
+.p-datatable .p-datatable-tbody > tr > td > img.flag-with-border {
+    border: 0.0625rem solid var(--color-flag-border);
+    transition: all var(--delay);
+}
+
 .p-datatable .p-datatable-tbody > tr > td {
     border-bottom: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent);
     color: var(--color-text);

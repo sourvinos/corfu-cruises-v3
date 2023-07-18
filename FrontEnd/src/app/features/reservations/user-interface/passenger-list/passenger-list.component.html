@@ -26,7 +26,7 @@
                     <td class="width-20">{{ record.lastname }}</td>
                     <td class="width-20">{{ record.firstname }}</td>
                     <td class="align-vertical width-10">
-                        <img [src]="getNationalityIcon(record.nationality.code)" />
+                        <img [src]="getNationalityIcon(record.nationality.code)" class="flag-with-border" />
                         <span>&nbsp;&nbsp;&nbsp;&nbsp;{{ record.nationality.description }}</span>
                     </td>
                     <td class="center width-5"><i (click)="deleteRow(record)" class="far fa-trash-alt"></i></td>

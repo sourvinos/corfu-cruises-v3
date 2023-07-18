@@ -22,7 +22,7 @@
                     <td class="width-10">{{ passenger.lastname }}</td>
                     <td class="width-10">{{ passenger.firstname }}</td>
                     <td class="align-vertical width-10">
-                        <img [src]="getNationalityIcon(passenger.nationalityCode)" />
+                        <img [src]="getNationalityIcon(passenger.nationalityCode)" class="flag-with-border"/>
                         <span>&nbsp;&nbsp;&nbsp;&nbsp;{{ passenger.nationalityDescription }}</span>
                     </td>
                     <td (click)="toggleEmbarkationStatus(passenger)" [ngClass]="passenger.isCheckedIn ? 'complete' : 'pending'" class="center embarkation-status width-5">

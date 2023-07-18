@@ -2,8 +2,8 @@
     /* Base */
     --color-primary: #e9b76b;
     --color-secondary: #F1C27B;
-    --color-background: #ffffff;
     --color-accent: #F27777;
+    --color-background: #ffffff;
     /* Text */
     --color-text: #000000;
     --color-text-reverse: #ffffff;
@@ -15,8 +15,10 @@
     --color-input-background-focus: #E3E3E3;
     --color-input-error: #ff8a82;
     --color-input-focus: #000000;
-    /* Misc */
+    /* Dialogs */
     --color-dialog-header: #17608F;
+    /* Flags */
+    --color-flag-border: #000000;
     /* Buttons */
     --color-dropdown-button: #000000;
     --color-dropdown-button-hover: #ffd18a;

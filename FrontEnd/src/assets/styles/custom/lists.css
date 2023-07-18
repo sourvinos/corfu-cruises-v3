@@ -40,7 +40,3 @@
     justify-content: space-between;
     margin: 0 4rem 1rem 4rem;
 }
-
-.no-background {
-    background-color: transparent !important;
-}
