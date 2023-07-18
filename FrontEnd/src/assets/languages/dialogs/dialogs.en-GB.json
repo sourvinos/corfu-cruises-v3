@@ -131,12 +131,12 @@
                 "message": "You can contact the place where you made the reservation or one of us at +30 26610 71150 or +30 26620 61400."
             },
             {
-                "id": "passengersAreMissingOrMustSaveBeforeContinue",
-                "message": "To continue, the details of all passengers must be given and the reservation must be saved."
+                "id": "twoPointReservationValidation",
+                "message": "Make sure that no passenger details are missing and that the reservation has been saved."
             },
             {
-                "id": "emailShouldBeValid",
-                "message": "The email isn't valid."
+                "id": "threePointReservationValidation",
+                "message": "Make sure that no passenger details are missing, that you have provided the email and that the reservation has been saved."
             }
         ]
     }

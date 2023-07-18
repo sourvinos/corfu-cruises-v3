@@ -131,12 +131,12 @@
                 "message": "Sie können sich an den Ort wenden, an dem Sie die Reservierung vorgenommen haben, oder an einen von uns unter +30 26610 71150 oder +30 26620 61400."
             },
             {
-                "id": "passengersAreMissingOrMustSaveBeforeContinue",
-                "message": "Um fortzufahren, müssen die Daten aller Passagiere angegeben und die Reservierung gespeichert werden."
+                "id": "twoPointReservationValidation",
+                "message": "Vergewissern Sie sich, dass keine Passagierdaten fehlen und dass die Reservierung gespeichert wurde."
             },
             {
-                "id": "emailShouldBeValid",
-                "message": "Die E-Mail ist ungültig."
+                "id": "threePointReservationValidation",
+                "message": "Vergewissern Sie sich, dass keine Passagierdaten fehlen, dass Sie die E-Mail angegeben haben und dass die Reservierung gespeichert wurde."
             }
         ]
     }

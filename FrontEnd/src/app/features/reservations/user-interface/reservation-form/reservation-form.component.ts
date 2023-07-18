@@ -103,6 +103,10 @@ export class ReservationFormComponent {
         return subject ? subject.description : undefined
     }
 
+    public checkForDifferenceBetweenTotalPaxAndPassengers(element?: any): boolean {
+        return this.reservationHelperService.checkForDifferenceBetweenTotalPaxAndPassengers(element, this.form.value.totalPax, this.form.value.passengers.length)
+    }
+
     public checkForEmptyAutoComplete(event: { target: { value: any } }): void {
         if (event.target.value == '') this.isAutoCompleteDisabled = true
     }
@@ -130,7 +134,7 @@ export class ReservationFormComponent {
     }
 
     public getPassengerDifferenceColor(): string {
-        this.passengerDifferenceColor = this.reservationHelperService.getPassengerDifferenceColor(this.form.value.totalPax, this.form.value.passengers.length)
+        this.passengerDifferenceColor = this.reservationHelperService.getPassengerDifferenceColor(this.form.value.totalPax, this.form.value.passengers ? this.form.value.passengers.length : 0)
         return this.emojiService.getEmoji(this.passengerDifferenceColor)
     }
 
@@ -174,25 +178,21 @@ export class ReservationFormComponent {
     }
 
     public onEmailBoardingPass(): void {
-        if (this.reservationHelperService.emailShouldBeValid(this.form.value.email)) {
-            if (this.isRecordSaved() == false || this.arePassengersMissing()) {
-                this.formMustCloseAfterSave = false
-                this.mustGoBackAfterSave = false
-                this.dialogService.open(this.messageSnackbarService.passengersAreMissingOrMustSaveBeforeContinue(), 'error', ['ok'])
-            } else {
-                this.boardingPassService.emailBoardingPass(this.form.value.reservationId).subscribe({
-                    next: () => {
-                        this.helperService.doPostSaveFormTasks(this.messageSnackbarService.emailSent(), 'success', this.parentUrl, this.form, false, false)
-                        this.formMustCloseAfterSave = true
-                        this.mustGoBackAfterSave = true
-                    },
-                    error: (errorFromInterceptor) => {
-                        this.helperService.doPostSaveFormTasks(this.messageSnackbarService.filterResponse(errorFromInterceptor), 'error', this.parentUrl, this.form, false, false)
-                    }
-                })
-            }
+        if (this.isRecordSaved() == false || this.arePassengersMissing() || this.form.value.email == '') {
+            this.formMustCloseAfterSave = false
+            this.mustGoBackAfterSave = false
+            this.dialogService.open(this.messageSnackbarService.threePointReservationValidation(), 'error', ['ok'])
         } else {
-            this.dialogService.open(this.messageSnackbarService.emailShouldBeValid(), 'error', ['ok'])
+            this.boardingPassService.emailBoardingPass(this.form.value.reservationId).subscribe({
+                next: () => {
+                    this.helperService.doPostSaveFormTasks(this.messageSnackbarService.emailSent(), 'success', this.parentUrl, this.form, false, false)
+                    this.formMustCloseAfterSave = true
+                    this.mustGoBackAfterSave = true
+                },
+                error: (errorFromInterceptor) => {
+                    this.helperService.doPostSaveFormTasks(this.messageSnackbarService.filterResponse(errorFromInterceptor), 'error', this.parentUrl, this.form, false, false)
+                }
+            })
         }
     }
 
@@ -200,7 +200,7 @@ export class ReservationFormComponent {
         if (this.isRecordSaved() == false || this.arePassengersMissing()) {
             this.formMustCloseAfterSave = false
             this.mustGoBackAfterSave = false
-            this.dialogService.open(this.messageSnackbarService.passengersAreMissingOrMustSaveBeforeContinue(), 'error', ['ok'])
+            this.dialogService.open(this.messageSnackbarService.twoPointReervationValidation(), 'error', ['ok'])
         } else {
             this.boardingPassService.printBoardingPass(this.boardingPassService.createBoardingPass(this.form.value))
         }

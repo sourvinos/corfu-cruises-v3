@@ -131,12 +131,12 @@
                 "message": "Můžete se obrátit na místo, kde jste rezervaci provedli, nebo na jednoho z nás na telefonním čísle +30 26610 71150 nebo +30 26620 61400."
             },
             {
-                "id": "passengersAreMissingOrMustSaveBeforeContinue",
-                "message": "Chcete-li pokračovat, je třeba zadat údaje o všech cestujících a uložit rezervaci."
+                "id": "twoPointReservationValidation",
+                "message": "Zkontrolujte, zda nechybí žádné údaje o cestujícím a zda byla rezervace uložena."
             },
             {
-                "id": "emailShouldBeValid",
-                "message": "E-mail není platný."
+                "id": "threePointReservationValidation",
+                "message": "Zkontrolujte, zda nechybí žádné údaje o cestujícím, zda jste zadali e-mail a zda byla rezervace uložena."
             }
         ]
     }

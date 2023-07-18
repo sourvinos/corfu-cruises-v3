@@ -66,8 +66,8 @@ export class MessageDialogService {
     public resolutionWarning(): string { return this.getDescription(this.feature, 'resolutionWarning') }
     public reservationNotFound(): string { return this.getDescription(this.feature, 'reservationNotFound') }
     public helpDialog(): string { return this.getDescription(this.feature, 'helpDialog') }
-    public emailShouldBeValid(): string { return this.getDescription(this.feature, 'emailShouldBeValid') }
-    public passengersAreMissingOrMustSaveBeforeContinue(): string { return this.getDescription(this.feature, 'passengersAreMissingOrMustSaveBeforeContinue') }
+    public twoPointReervationValidation(): string { return this.getDescription(this.feature, 'twoPointReservationValidation') }
+    public threePointReservationValidation(): string { return this.getDescription(this.feature, 'threePointReservationValidation') }
 
     public filterResponse(error: any, feature = 'snackbarMessages'): string {
         let returnValue = ''
