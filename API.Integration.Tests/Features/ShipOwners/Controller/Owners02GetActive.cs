@@ -21,7 +21,7 @@ namespace ShipOwners {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
-        private readonly string _url = "/shipOwners/getActive";
+        private readonly string _url = "/shipOwners/getAutoComplete";
 
         #endregion
 
@@ -51,8 +51,8 @@ namespace ShipOwners {
         [ClassData(typeof(ActiveUsersCanLogin))]
         public async Task Active_Users_Can_Get_Active(Login login) {
             var actionResponse = await List.Action(_httpClient, _baseUrl, _url, login.Username, login.Password);
-            var records = JsonSerializer.Deserialize<List<ShipOwnerActiveVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            Assert.Equal(expected: 3, records.Count);
+            var records = JsonSerializer.Deserialize<List<ShipOwnerAutoCompleteVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            Assert.Equal(4, records.Count);
         }
 
     }

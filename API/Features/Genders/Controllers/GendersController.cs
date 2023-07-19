@@ -32,8 +32,8 @@ namespace API.Features.Genders {
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<GenderActiveVM>> GetActiveAsync() {
-            return await genderRepo.GetActiveAsync();
+        public async Task<IEnumerable<GenderAutoCompleteVM>> GetAutoCompleteAsync() {
+            return await genderRepo.GetAutoCompleteAsync();
         }
 
         [HttpGet("{id}")]

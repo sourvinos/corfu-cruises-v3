@@ -7,7 +7,7 @@ namespace API.Features.ShipRoutes {
 
         public ShipRouteMappingProfile() {
             CreateMap<ShipRoute, ShipRouteListVM>();
-            CreateMap<ShipRoute, ShipRouteActiveVM>();
+            CreateMap<ShipRoute, ShipRouteAutoCompleteVM>();
             CreateMap<ShipRoute, ShipRouteReadDto>()
                 .ForMember(x => x.User, x => x.MapFrom(x => x.User.Displayname))
                 .ForMember(x => x.LastUpdate, x => x.MapFrom(x => x.LastUpdate));

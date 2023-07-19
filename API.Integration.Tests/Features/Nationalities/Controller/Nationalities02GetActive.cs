@@ -20,7 +20,7 @@ namespace Nationalities {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
-        private readonly string _url = "/nationalities/getActive";
+        private readonly string _url = "/nationalities/getAutoComplete";
 
         #endregion
 
@@ -50,8 +50,8 @@ namespace Nationalities {
         [ClassData(typeof(ActiveUsersCanLogin))]
         public async Task Active_Users_Can_Get_Active(Login login) {
             var actionResponse = await List.Action(_httpClient, _baseUrl, _url, login.Username, login.Password);
-            var records = JsonSerializer.Deserialize<List<NationalityActiveVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            Assert.Equal(253, records.Count);
+            var records = JsonSerializer.Deserialize<List<NationalityAutoCompleteVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            Assert.Equal(254, records.Count);
         }
 
     }

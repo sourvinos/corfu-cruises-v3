@@ -7,7 +7,7 @@ namespace API.Features.Destinations {
     public interface IDestinationRepository : IRepository<Destination> {
 
         Task<IEnumerable<DestinationListVM>> GetAsync();
-        Task<IEnumerable<DestinationActiveVM>> GetActiveAsync();
+        Task<IEnumerable<DestinationAutoCompleteVM>> GetAutoCompleteAsync();
         Task<Destination> GetByIdAsync(int id);
 
     }

@@ -29,13 +29,12 @@ namespace API.Features.ShipCrews {
             return mapper.Map<IEnumerable<ShipCrew>, IEnumerable<ShipCrewListVM>>(shipCrews);
         }
 
-        public async Task<IEnumerable<ShipCrewActiveVM>> GetActiveAsync() {
+        public async Task<IEnumerable<ShipCrewAutoCompleteVM>> GetAutoCompleteAsync() {
             var shipCrews = await context.ShipCrews
                 .AsNoTracking()
-                .Where(x => x.IsActive)
                 .OrderBy(x => x.Lastname).ThenBy(x => x.Firstname).ThenByDescending(x => x.Birthdate)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<ShipCrew>, IEnumerable<ShipCrewActiveVM>>(shipCrews);
+            return mapper.Map<IEnumerable<ShipCrew>, IEnumerable<ShipCrewAutoCompleteVM>>(shipCrews);
         }
 
         public async Task<ShipCrew> GetByIdAsync(int id, bool includeTables) {

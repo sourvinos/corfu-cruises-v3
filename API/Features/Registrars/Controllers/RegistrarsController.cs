@@ -34,8 +34,8 @@ namespace API.Features.Registrars {
 
         [HttpGet("[action]")]
         [Authorize(Roles = "admin")]
-        public async Task<IEnumerable<RegistrarActiveVM>> GetActiveAsync() {
-            return await registrarRepo.GetActiveAsync();
+        public async Task<IEnumerable<RegistrarAutoCompleteVM>> GetAutoCompleteAsync() {
+            return await registrarRepo.GetAutoCompleteAsync();
         }
 
         [HttpGet("{id}")]

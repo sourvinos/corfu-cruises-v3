@@ -18,7 +18,7 @@ namespace API.Features.CoachRoutes {
             this.mapper = mapper;
         }
 
-        public async Task<IEnumerable<CoachRouteListVM>> Get() {
+        public async Task<IEnumerable<CoachRouteListVM>> GetAsync() {
             var coachRoutes = await context.CoachRoutes
                 .AsNoTracking()
                 .OrderBy(x => x.Description)
@@ -26,13 +26,12 @@ namespace API.Features.CoachRoutes {
             return mapper.Map<IEnumerable<CoachRoute>, IEnumerable<CoachRouteListVM>>(coachRoutes);
         }
 
-        public async Task<IEnumerable<CoachRouteActiveVM>> GetActive() {
+        public async Task<IEnumerable<CoachRouteAutoCompleteVM>> GetAutoCompleteAsync() {
             var coachRoutes = await context.CoachRoutes
                 .AsNoTracking()
-                .Where(x => x.IsActive)
                 .OrderBy(x => x.Abbreviation)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<CoachRoute>, IEnumerable<CoachRouteActiveVM>>(coachRoutes);
+            return mapper.Map<IEnumerable<CoachRoute>, IEnumerable<CoachRouteAutoCompleteVM>>(coachRoutes);
         }
 
         public async Task<CoachRoute> GetById(int id, bool includeTables) {

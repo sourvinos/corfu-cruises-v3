@@ -7,7 +7,7 @@ namespace API.Features.ShipRoutes {
     public interface IShipRouteRepository : IRepository<ShipRoute> {
 
         Task<IEnumerable<ShipRouteListVM>> GetAsync();
-        Task<IEnumerable<ShipRouteActiveVM>> GetActiveAsync();
+        Task<IEnumerable<ShipRouteAutoCompleteVM>> GetAutoCompleteAsync();
         Task<ShipRoute> GetByIdAsync(int id);
 
     }

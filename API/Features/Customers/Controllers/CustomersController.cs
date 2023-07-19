@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
@@ -33,8 +32,8 @@ namespace API.Features.Customers {
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<CustomerActiveVM>> GetActiveAsync() {
-            return await customerRepo.GetActiveAsync();
+        public async Task<IEnumerable<CustomerAutoCompleteVM>> GetAutoCompleteAsync() {
+            return await customerRepo.GetAutoCompleteAsync();
         }
 
         [HttpGet("{id}")]

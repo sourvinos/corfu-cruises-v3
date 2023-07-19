@@ -26,13 +26,12 @@ namespace API.Features.Genders {
             return mapper.Map<IEnumerable<Gender>, IEnumerable<GenderListVM>>(genders);
         }
 
-        public async Task<IEnumerable<GenderActiveVM>> GetActiveAsync() {
+        public async Task<IEnumerable<GenderAutoCompleteVM>> GetAutoCompleteAsync() {
             var genders = await context.Genders
                 .AsNoTracking()
-                .Where(x => x.IsActive)
                 .OrderBy(x => x.Description)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<Gender>, IEnumerable<GenderActiveVM>>(genders);
+            return mapper.Map<IEnumerable<Gender>, IEnumerable<GenderAutoCompleteVM>>(genders);
         }
 
         public async Task<Gender> GetByIdAsync(int id) {

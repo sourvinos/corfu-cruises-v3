@@ -26,13 +26,12 @@ namespace API.Features.Nationalities {
             return mapper.Map<IEnumerable<Nationality>, IEnumerable<NationalityListVM>>(nationalities);
         }
 
-        public async Task<IEnumerable<NationalityActiveVM>> GetActiveAsync() {
+        public async Task<IEnumerable<NationalityAutoCompleteVM>> GetAutoCompleteAsync() {
             var nationalities = await context.Nationalities
                 .AsNoTracking()
-                .Where(x => x.IsActive)
                 .OrderBy(x => x.Description)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<Nationality>, IEnumerable<NationalityActiveVM>>(nationalities);
+            return mapper.Map<IEnumerable<Nationality>, IEnumerable<NationalityAutoCompleteVM>>(nationalities);
         }
 
         public async Task<Nationality> GetByIdAsync(int id) {

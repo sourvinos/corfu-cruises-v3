@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
@@ -30,13 +29,13 @@ namespace API.Features.CoachRoutes {
         [HttpGet]
         [Authorize(Roles = "admin")]
         public async Task<IEnumerable<CoachRouteListVM>> GetAsync() {
-            return await coachRouteRepo.Get();
+            return await coachRouteRepo.GetAsync();
         }
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<CoachRouteActiveVM>> GetActiveAsync() {
-            return await coachRouteRepo.GetActive();
+        public async Task<IEnumerable<CoachRouteAutoCompleteVM>> GetAutoCompleteAsync() {
+            return await coachRouteRepo.GetAutoCompleteAsync();
         }
 
         [HttpGet("{id}")]

@@ -7,7 +7,7 @@ namespace API.Features.Registrars {
     public interface IRegistrarRepository : IRepository<Registrar> {
 
         Task<IEnumerable<RegistrarListVM>> GetAsync();
-        Task<IEnumerable<RegistrarActiveVM>> GetActiveAsync();
+        Task<IEnumerable<RegistrarAutoCompleteVM>> GetAutoCompleteAsync();
         Task<Registrar> GetByIdAsync(int id, bool includeTables);
 
     }

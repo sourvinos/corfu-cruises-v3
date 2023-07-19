@@ -20,7 +20,7 @@ namespace PickupPoints {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
-        private readonly string _url = "/pickupPoints/getActive";
+        private readonly string _url = "/pickupPoints/getAutoComplete";
 
         #endregion
 
@@ -50,8 +50,8 @@ namespace PickupPoints {
         [ClassData(typeof(ActiveUsersCanLogin))]
         public async Task Active_Users_Can_Get_Active(Login login) {
             var actionResponse = await List.Action(_httpClient, _baseUrl, _url, login.Username, login.Password);
-            var records = JsonSerializer.Deserialize<List<PickupPointActiveVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            Assert.Equal(426, records.Count);
+            var records = JsonSerializer.Deserialize<List<PickupPointAutoCompleteVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            Assert.Equal(615, records.Count);
         }
 
     }

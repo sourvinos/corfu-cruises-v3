@@ -7,7 +7,7 @@ namespace API.Features.Customers {
     public interface ICustomerRepository : IRepository<Customer> {
 
         Task<IEnumerable<CustomerListVM>> GetAsync();
-        Task<IEnumerable<CustomerActiveVM>> GetActiveAsync();
+        Task<IEnumerable<CustomerAutoCompleteVM>> GetAutoCompleteAsync();
         Task<Customer> GetByIdAsync(int id);
 
     }

@@ -20,7 +20,7 @@ namespace CoachRoutes {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
-        private readonly string _url = "/coachRoutes/getActive";
+        private readonly string _url = "/coachRoutes/getAutoComplete";
 
         #endregion
 
@@ -50,8 +50,8 @@ namespace CoachRoutes {
         [ClassData(typeof(ActiveUsersCanLogin))]
         public async Task Active_Users_Can_Get_Active(Login login) {
             var actionResponse = await List.Action(_httpClient, _baseUrl, _url, login.Username, login.Password);
-            var records = JsonSerializer.Deserialize<List<CoachRouteActiveVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            Assert.Equal(8, records.Count);
+            var records = JsonSerializer.Deserialize<List<CoachRouteAutoCompleteVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            Assert.Equal(9, records.Count);
         }
 
     }

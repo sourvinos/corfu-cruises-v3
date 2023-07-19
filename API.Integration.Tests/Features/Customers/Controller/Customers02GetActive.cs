@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
+using API.Features.Customers;
 using API.Infrastructure.Classes;
 using Cases;
 using Infrastructure;
@@ -20,7 +21,7 @@ namespace Customers {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
-        private readonly string _url = "/customers/getActive";
+        private readonly string _url = "/customers/getAutoComplete";
 
         #endregion
 
@@ -50,8 +51,8 @@ namespace Customers {
         [ClassData(typeof(ActiveUsersCanLogin))]
         public async Task Active_Users_Can_Get_Active(Login login) {
             var actionResponse = await List.Action(_httpClient, _baseUrl, _url, login.Username, login.Password);
-            var records = JsonSerializer.Deserialize<List<SimpleEntity>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            Assert.Equal(198, records.Count);
+            var records = JsonSerializer.Deserialize<List<CustomerAutoCompleteVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            Assert.Equal(200, records.Count);
         }
 
     }

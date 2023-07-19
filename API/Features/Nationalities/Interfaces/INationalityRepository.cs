@@ -7,7 +7,7 @@ namespace API.Features.Nationalities {
     public interface INationalityRepository : IRepository<Nationality> {
 
         Task<IEnumerable<NationalityListVM>> GetAsync();
-        Task<IEnumerable<NationalityActiveVM>> GetActiveAsync();
+        Task<IEnumerable<NationalityAutoCompleteVM>> GetAutoCompleteAsync();
         Task<Nationality> GetByIdAsync(int id);
 
     }

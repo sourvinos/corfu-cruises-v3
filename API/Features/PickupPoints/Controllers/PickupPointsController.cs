@@ -34,8 +34,8 @@ namespace API.Features.PickupPoints {
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<PickupPointActiveVM>> GetActiveAsync() {
-            return await pickupPointRepo.GetActiveAsync();
+        public async Task<IEnumerable<PickupPointAutoCompleteVM>> GetAutoCompleteAsync() {
+            return await pickupPointRepo.GetAutoCompleteAsync();
         }
 
         [HttpGet("{id}")]

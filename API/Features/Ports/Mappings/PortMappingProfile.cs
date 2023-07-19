@@ -7,7 +7,7 @@ namespace API.Features.Ports {
 
         public PortMappingProfile() {
             CreateMap<Port, PortListVM>();
-            CreateMap<Port, PortActiveVM>();
+            CreateMap<Port, PortAutoCompleteVM>();
             CreateMap<Port, PortReadDto>()
                 .ForMember(x => x.User, x => x.MapFrom(x => x.User.Displayname))
                 .ForMember(x => x.LastUpdate, x => x.MapFrom(x => x.LastUpdate));

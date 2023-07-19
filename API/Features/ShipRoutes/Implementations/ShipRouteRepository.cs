@@ -26,13 +26,12 @@ namespace API.Features.ShipRoutes {
             return mapper.Map<IEnumerable<ShipRoute>, IEnumerable<ShipRouteListVM>>(shipRoutes);
         }
 
-        public async Task<IEnumerable<ShipRouteActiveVM>> GetActiveAsync() {
+        public async Task<IEnumerable<ShipRouteAutoCompleteVM>> GetAutoCompleteAsync() {
             var shipRoutes = await context.ShipRoutes
                 .AsNoTracking()
-                .Where(x => x.IsActive)
                 .OrderBy(x => x.Description)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<ShipRoute>, IEnumerable<ShipRouteActiveVM>>(shipRoutes);
+            return mapper.Map<IEnumerable<ShipRoute>, IEnumerable<ShipRouteAutoCompleteVM>>(shipRoutes);
         }
 
         public async Task<ShipRoute> GetByIdAsync(int id) {

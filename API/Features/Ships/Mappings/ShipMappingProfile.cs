@@ -8,7 +8,7 @@ namespace API.Features.Ships {
 
         public ShipMappingProfile() {
             CreateMap<Ship, ShipListVM>();
-            CreateMap<Ship, ShipActiveVM>();
+            CreateMap<Ship, ShipAutoCompleteVM>();
             CreateMap<Ship, ShipReadDto>()
                 .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new SimpleEntity { Id = x.ShipOwner.Id, Description = x.ShipOwner.Description }))
                 .ForMember(x => x.User, x => x.MapFrom(x => x.User.Displayname))

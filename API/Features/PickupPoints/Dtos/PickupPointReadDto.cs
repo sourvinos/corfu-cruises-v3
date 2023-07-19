@@ -13,7 +13,7 @@ namespace API.Features.PickupPoints {
         public string User { get; set; }
         public string LastUpdate { get; set; }
 
-        public CoachRouteActiveVM CoachRoute { get; set; }
+        public CoachRouteAutoCompleteVM CoachRoute { get; set; }
 
     }
 

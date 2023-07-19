@@ -7,7 +7,7 @@ namespace API.Features.Customers {
 
         public CustomerMappingProfile() {
             CreateMap<Customer, CustomerListVM>();
-            CreateMap<Customer, CustomerActiveVM>();
+            CreateMap<Customer, CustomerAutoCompleteVM>();
             CreateMap<Customer, CustomerReadDto>()
                 .ForMember(x => x.User, x => x.MapFrom(x => x.User.Displayname))
                 .ForMember(x => x.LastUpdate, x => x.MapFrom(x => x.LastUpdate));

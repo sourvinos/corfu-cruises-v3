@@ -7,7 +7,7 @@ namespace API.Features.ShipOwners {
     public interface IShipOwnerRepository : IRepository<ShipOwner> {
 
         Task<IEnumerable<ShipOwnerListVM>> GetAsync();
-        Task<IEnumerable<ShipOwnerActiveVM>> GetActiveAsync();
+        Task<IEnumerable<ShipOwnerAutoCompleteVM>> GetAutoCompleteAsync();
         Task<ShipOwner> GetByIdAsync(int id);
 
     }

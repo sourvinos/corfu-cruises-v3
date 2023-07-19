@@ -10,13 +10,13 @@ namespace API.Features.PickupPoints {
         public PickupPointMappingProfile() {
             CreateMap<PickupPoint, PickupPointListVM>()
                 .ForMember(x => x.CoachRoute, x => x.MapFrom(x => new PickupPointListCoachRouteVM { Id = x.CoachRoute.Id, Abbreviation = x.CoachRoute.Abbreviation }));
-            CreateMap<PickupPoint, PickupPointActiveVM>()
+            CreateMap<PickupPoint, PickupPointAutoCompleteVM>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description))
                 .ForMember(x => x.ExactPoint, x => x.MapFrom(x => x.ExactPoint))
                 .ForMember(x => x.Time, x => x.MapFrom(x => x.Time))
                 .ForMember(x => x.Port, x => x.MapFrom(x => new SimpleEntity { Id = x.CoachRoute.Port.Id, Description = x.CoachRoute.Port.Description }));
             CreateMap<PickupPoint, PickupPointReadDto>()
-                .ForMember(x => x.CoachRoute, x => x.MapFrom(x => new CoachRouteActiveVM { Id = x.CoachRoute.Id, Abbreviation = x.CoachRoute.Abbreviation }))
+                .ForMember(x => x.CoachRoute, x => x.MapFrom(x => new CoachRouteAutoCompleteVM { Id = x.CoachRoute.Id, Abbreviation = x.CoachRoute.Abbreviation }))
                 .ForMember(x => x.User, x => x.MapFrom(x => x.User.Displayname))
                 .ForMember(x => x.LastUpdate, x => x.MapFrom(x => x.LastUpdate));
             CreateMap<PickupPointWriteDto, PickupPoint>()

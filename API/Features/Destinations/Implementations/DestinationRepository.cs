@@ -26,13 +26,12 @@ namespace API.Features.Destinations {
             return mapper.Map<IEnumerable<Destination>, IEnumerable<DestinationListVM>>(destinations);
         }
 
-        public async Task<IEnumerable<DestinationActiveVM>> GetActiveAsync() {
+        public async Task<IEnumerable<DestinationAutoCompleteVM>> GetAutoCompleteAsync() {
             var destinations = await context.Destinations
                 .AsNoTracking()
-                .Where(x => x.IsActive)
                 .OrderBy(x => x.Description)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<Destination>, IEnumerable<DestinationActiveVM>>(destinations);
+            return mapper.Map<IEnumerable<Destination>, IEnumerable<DestinationAutoCompleteVM>>(destinations);
         }
 
         public async Task<Destination> GetByIdAsync(int id) {

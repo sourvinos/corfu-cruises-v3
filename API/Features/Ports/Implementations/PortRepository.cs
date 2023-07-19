@@ -26,13 +26,12 @@ namespace API.Features.Ports {
             return mapper.Map<IEnumerable<Port>, IEnumerable<PortListVM>>(ports);
         }
 
-        public async Task<IEnumerable<PortActiveVM>> GetActiveAsync() {
+        public async Task<IEnumerable<PortAutoCompleteVM>> GetAutoCompleteAsync() {
             var ports = await context.Ports
                 .AsNoTracking()
-                .Where(x => x.IsActive)
                 .OrderBy(x => x.Description)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<Port>, IEnumerable<PortActiveVM>>(ports);
+            return mapper.Map<IEnumerable<Port>, IEnumerable<PortAutoCompleteVM>>(ports);
         }
 
         public async Task<Port> GetByIdAsync(int id) {

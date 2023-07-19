@@ -7,7 +7,7 @@ namespace API.Features.Destinations {
 
         public DestinationMappingProfile() {
             CreateMap<Destination, DestinationListVM>();
-            CreateMap<Destination, DestinationActiveVM>();
+            CreateMap<Destination, DestinationAutoCompleteVM>();
             CreateMap<Destination, DestinationReadDto>()
                 .ForMember(x => x.User, x => x.MapFrom(x => x.User.Displayname))
                 .ForMember(x => x.LastUpdate, x => x.MapFrom(x => x.LastUpdate));

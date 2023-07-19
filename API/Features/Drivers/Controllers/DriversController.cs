@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Infrastructure.Extensions;
@@ -33,8 +32,8 @@ namespace API.Features.Drivers {
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<DriverActiveVM>> GetActiveAsync() {
-            return await driverRepo.GetActiveAsync();
+        public async Task<IEnumerable<DriverAutoCompleteVM>> GetAutoCompleteAsync() {
+            return await driverRepo.GetAutoCompleteAsync();
         }
 
         [HttpGet("{id}")]

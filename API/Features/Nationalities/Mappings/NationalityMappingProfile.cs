@@ -7,7 +7,7 @@ namespace API.Features.Nationalities {
 
         public NationalityMappingProfile() {
             CreateMap<Nationality, NationalityListVM>();
-            CreateMap<Nationality, NationalityActiveVM>();
+            CreateMap<Nationality, NationalityAutoCompleteVM>();
             CreateMap<Nationality, NationalityReadDto>()
                 .ForMember(x => x.User, x => x.MapFrom(x => x.User.Displayname))
                 .ForMember(x => x.LastUpdate, x => x.MapFrom(x => x.LastUpdate));

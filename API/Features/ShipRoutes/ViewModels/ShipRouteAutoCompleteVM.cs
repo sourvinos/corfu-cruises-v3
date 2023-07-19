@@ -1,6 +1,6 @@
 namespace API.Features.ShipRoutes {
 
-    public class ShipRouteActiveVM {
+    public class ShipRouteAutoCompleteVM {
 
         public int Id { get; set; }
         public string Description { get; set; }
@@ -10,6 +10,7 @@ namespace API.Features.ShipRoutes {
         public string ViaTime { get; set; }
         public string ToPort { get; set; }
         public string ToTime { get; set; }
+        public bool IsActive { get; set; }
 
     }
 

@@ -26,13 +26,12 @@ namespace API.Features.Ships {
             return mapper.Map<IEnumerable<Ship>, IEnumerable<ShipListVM>>(ships);
         }
 
-        public async Task<IEnumerable<ShipActiveVM>> GetActiveAsync() {
+        public async Task<IEnumerable<ShipAutoCompleteVM>> GetAutoCompleteAsync() {
             var ships = await context.Ships
                 .AsNoTracking()
-                .Where(x => x.IsActive)
                 .OrderBy(x => x.Description)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<Ship>, IEnumerable<ShipActiveVM>>(ships);
+            return mapper.Map<IEnumerable<Ship>, IEnumerable<ShipAutoCompleteVM>>(ships);
         }
 
         public async Task<Ship> GetByIdAsync(int id, bool includeTables) {

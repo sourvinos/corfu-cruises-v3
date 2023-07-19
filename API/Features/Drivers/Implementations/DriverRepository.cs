@@ -26,13 +26,12 @@ namespace API.Features.Drivers {
             return mapper.Map<IEnumerable<Driver>, IEnumerable<DriverListVM>>(drivers);
         }
 
-        public async Task<IEnumerable<DriverActiveVM>> GetActiveAsync() {
+        public async Task<IEnumerable<DriverAutoCompleteVM>> GetAutoCompleteAsync() {
             List<Driver> activeDrivers = await context.Drivers
                 .AsNoTracking()
-                .Where(x => x.IsActive)
                 .OrderBy(x => x.Description)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<Driver>, IEnumerable<DriverActiveVM>>(activeDrivers);
+            return mapper.Map<IEnumerable<Driver>, IEnumerable<DriverAutoCompleteVM>>(activeDrivers);
         }
 
         public async Task<Driver> GetByIdAsync(int id) {

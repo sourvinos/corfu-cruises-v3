@@ -32,8 +32,8 @@ namespace API.Features.ShipRoutes {
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<ShipRouteActiveVM>> GetActiveAsync() {
-            return await shipRouteRepo.GetActiveAsync();
+        public async Task<IEnumerable<ShipRouteAutoCompleteVM>> GetAutoCompleteAsync() {
+            return await shipRouteRepo.GetAutoCompleteAsync();
         }
 
         [HttpGet("{id}")]

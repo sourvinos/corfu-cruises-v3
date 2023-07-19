@@ -20,7 +20,7 @@ namespace ShipCrews {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
-        private readonly string _url = "/shipCrews/getActive";
+        private readonly string _url = "/shipCrews/getAutoComplete";
 
         #endregion
 
@@ -54,8 +54,8 @@ namespace ShipCrews {
         [Fact]
         public async Task Admins_Can_Get_Active() {
             var actionResponse = await List.Action(_httpClient, _baseUrl, _url, "john", "ec11fc8c16db");
-            var records = JsonSerializer.Deserialize<List<ShipCrewActiveVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            Assert.Equal(16, records.Count);
+            var records = JsonSerializer.Deserialize<List<ShipCrewAutoCompleteVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            Assert.Equal(24, records.Count);
         }
 
     }

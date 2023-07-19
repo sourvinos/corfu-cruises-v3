@@ -34,8 +34,8 @@ namespace API.Features.Ports {
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<PortActiveVM>> GetActiveAsync() {
-            return await portRepo.GetActiveAsync();
+        public async Task<IEnumerable<PortAutoCompleteVM>> GetAutoCompleteAsync() {
+            return await portRepo.GetAutoCompleteAsync();
         }
 
         [HttpGet("{id}")]

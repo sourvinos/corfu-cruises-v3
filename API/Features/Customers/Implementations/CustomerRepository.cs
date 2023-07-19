@@ -26,13 +26,12 @@ namespace API.Features.Customers {
             return mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerListVM>>(customers);
         }
 
-        public async Task<IEnumerable<CustomerActiveVM>> GetActiveAsync() {
+        public async Task<IEnumerable<CustomerAutoCompleteVM>> GetAutoCompleteAsync() {
             var customers = await context.Customers
                 .AsNoTracking()
-                .Where(x => x.IsActive)
                 .OrderBy(x => x.Description)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerActiveVM>>(customers);
+            return mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerAutoCompleteVM>>(customers);
         }
 
         public async Task<Customer> GetByIdAsync(int id) {

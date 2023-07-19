@@ -27,13 +27,12 @@ namespace API.Features.Registrars {
             return mapper.Map<IEnumerable<Registrar>, IEnumerable<RegistrarListVM>>(registrars);
         }
 
-        public async Task<IEnumerable<RegistrarActiveVM>> GetActiveAsync() {
+        public async Task<IEnumerable<RegistrarAutoCompleteVM>> GetAutoCompleteAsync() {
             var registrars = await context.Registrars
                 .AsNoTracking()
-                .Where(x => x.IsActive)
                 .OrderBy(x => x.Fullname)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<Registrar>, IEnumerable<RegistrarActiveVM>>(registrars);
+            return mapper.Map<IEnumerable<Registrar>, IEnumerable<RegistrarAutoCompleteVM>>(registrars);
         }
 
         public async Task<Registrar> GetByIdAsync(int id, bool includeTables) {

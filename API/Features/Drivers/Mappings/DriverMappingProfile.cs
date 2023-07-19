@@ -7,7 +7,7 @@ namespace API.Features.Drivers {
 
         public DriverMappingProfile() {
             CreateMap<Driver, DriverListVM>();
-            CreateMap<Driver, DriverActiveVM>();
+            CreateMap<Driver, DriverAutoCompleteVM>();
             CreateMap<Driver, DriverReadDto>()
                 .ForMember(x => x.User, x => x.MapFrom(x => x.User.Displayname))
                 .ForMember(x => x.LastUpdate, x => x.MapFrom(x => x.LastUpdate));

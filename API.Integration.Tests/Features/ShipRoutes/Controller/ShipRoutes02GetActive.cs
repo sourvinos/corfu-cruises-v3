@@ -20,7 +20,7 @@ namespace ShipRoutes {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
-        private readonly string _url = "/shipRoutes/getActive";
+        private readonly string _url = "/shipRoutes/getAutoComplete";
 
         #endregion
 
@@ -50,8 +50,8 @@ namespace ShipRoutes {
         [ClassData(typeof(ActiveUsersCanLogin))]
         public async Task Active_Users_Can_Get_Active(Login login) {
             var actionResponse = await List.Action(_httpClient, _baseUrl, _url, login.Username, login.Password);
-            var records = JsonSerializer.Deserialize<List<ShipRouteActiveVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            Assert.Equal(4, records.Count);
+            var records = JsonSerializer.Deserialize<List<ShipRouteAutoCompleteVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            Assert.Equal(6, records.Count);
         }
 
     }

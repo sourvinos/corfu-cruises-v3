@@ -7,7 +7,7 @@ namespace API.Features.Drivers {
     public interface IDriverRepository : IRepository<Driver> {
 
         Task<IEnumerable<DriverListVM>> GetAsync();
-        Task<IEnumerable<DriverActiveVM>> GetActiveAsync();
+        Task<IEnumerable<DriverAutoCompleteVM>> GetAutoCompleteAsync();
         Task<Driver> GetByIdAsync(int id);
 
     }

@@ -26,13 +26,12 @@ namespace API.Features.ShipOwners {
             return mapper.Map<IEnumerable<ShipOwner>, IEnumerable<ShipOwnerListVM>>(shipOwners);
         }
 
-        public async Task<IEnumerable<ShipOwnerActiveVM>> GetActiveAsync() {
+        public async Task<IEnumerable<ShipOwnerAutoCompleteVM>> GetAutoCompleteAsync() {
             var shipOwners = await context.ShipOwners
                 .AsNoTracking()
-                .Where(x => x.IsActive)
                 .OrderBy(x => x.Description)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<ShipOwner>, IEnumerable<ShipOwnerActiveVM>>(shipOwners);
+            return mapper.Map<IEnumerable<ShipOwner>, IEnumerable<ShipOwnerAutoCompleteVM>>(shipOwners);
         }
 
         public async Task<ShipOwner> GetByIdAsync(int id) {
