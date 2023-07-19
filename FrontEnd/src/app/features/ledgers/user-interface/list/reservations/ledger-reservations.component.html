@@ -58,7 +58,7 @@
                 <td class="center width-3"><span (click)="showRemarks(reservation.remarks)" [ngClass]="hasRemarks(reservation.remarks)?'clickable':''" *ngIf="hasRemarks(reservation.remarks)" class="remarks">{{ getEmoji('remarks') }}</span></td>
             </tr>
             <tr *ngIf="hasRemarks(reservation.remarks)">
-                <td class="right" colspan="14">{{ reservation.remarks }}</td>
+                <td class="right" colspan="15">{{ reservation.remarks }}</td>
             </tr>
         </ng-template>
         <ng-template pTemplate="footer" let-columns>

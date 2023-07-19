@@ -144,4 +144,5 @@
 
 .mat-form-field-appearance-legacy .mat-form-field-suffix .mat-datepicker-toggle-default-icon {
     color: var(--color-text);
+    transition: all var(--delay);
 }

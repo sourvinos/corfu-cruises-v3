@@ -3,6 +3,7 @@
     --color-primary: #C13E65;
     --color-secondary: #DE698C;
     --color-accent: #ffc107;
+    --color-accent-secondary: #ffffff;
     --color-background: #555555;
     /* Text */
     --color-text: #ffffff;
@@ -23,4 +24,6 @@
     --color-dropdown-button: #ffffff;
     --color-dropdown-button-hover: #852c46;
     --color-dropdown-trigger: #ffffff;
+    /* Mat-Expander */
+    --color-header-background-hover: #757575;
 }

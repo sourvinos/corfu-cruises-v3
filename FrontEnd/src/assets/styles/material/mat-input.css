@@ -79,6 +79,7 @@ input::placeholder {
 .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
     color: var(--color-text);
     transform: translateY(-1.375rem) scale(0.75);
+    transition: all var(--delay);
 }
 
 .mat-form-field-appearance-legacy.mat-form-field-invalid:not(.mat-focused) .mat-form-field-ripple {
@@ -88,6 +89,7 @@ input::placeholder {
 
 .mat-form-field-infix .mat-icon {
     margin-top: 0.6rem;
+    transition: all var(--delay);
 }
 
 .mat-form-field-flex {

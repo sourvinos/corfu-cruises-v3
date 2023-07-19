@@ -2,21 +2,22 @@
 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
 
 <svg
-   width="23.293219"
-   height="23.492514"
-   viewBox="-4 0 1.8634575 1.8794012"
+   width="24.595371"
+   height="25.288542"
+   viewBox="0 0 0.73786112 0.75865624"
+   fill="none"
    version="1.1"
-   id="svg17"
-   sodipodi:docname="palette.svg"
+   id="svg10"
+   sodipodi:docname="palette-svgrepo-com.svg"
    inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
-     id="defs21" />
+     id="defs14" />
   <sodipodi:namedview
-     id="namedview19"
+     id="namedview12"
      pagecolor="#ffffff"
      bordercolor="#000000"
      borderopacity="0.25"
@@ -25,145 +26,62 @@
      inkscape:pagecheckerboard="true"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:zoom="33.372333"
-     inkscape:cx="11.656362"
-     inkscape:cy="11.746257"
-     inkscape:window-width="1680"
-     inkscape:window-height="987"
+     inkscape:zoom="32.188491"
+     inkscape:cx="12.2404"
+     inkscape:cy="12.644271"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg17" />
+     inkscape:current-layer="svg10" />
+  <rect
+     style="fill:#ffffff;fill-opacity:0.8;stroke-width:0.03"
+     id="rect1438"
+     width="0.24698269"
+     height="0.67011529"
+     x="0.044736486"
+     y="0.038212415" />
+  <rect
+     style="fill:#ffffff;fill-opacity:0.8;stroke-width:0.028112"
+     id="rect1804"
+     width="0.2399832"
+     height="0.49209002"
+     x="0.40987521"
+     y="-0.36058599"
+     transform="matrix(0.65961062,0.7516075,-0.70789445,0.70631824,0,0)" />
+  <rect
+     style="fill:#ffffff;fill-opacity:0.8;stroke-width:0.03"
+     id="rect1806"
+     width="0.41008446"
+     height="0.26562288"
+     x="0.29358318"
+     y="0.45575297" />
   <g
-     id="g879"
-     transform="translate(-0.02414294,-0.024143)">
-    <rect
-       style="fill:#ffffff;fill-opacity:0.8;stroke:none;stroke-width:0.16"
-       id="rect5168"
-       width="1.7236524"
-       height="0.26173106"
-       x="-3.9007027"
-       y="0.90489519" />
-    <rect
-       id="Rectangle_23"
-       data-name="Rectangle 23"
-       width="1.7834575"
-       height="0.32989022"
-       fill="none"
-       stroke="#1b8cff"
-       stroke-linejoin="round"
-       stroke-width="0.128286"
-       x="-3.9358571"
-       y="0.87387353"
-       style="stroke:#000000;stroke-width:0.08;stroke-dasharray:none;stroke-opacity:1" />
-    <rect
-       style="fill:#ffffff;fill-opacity:0.8;stroke:none;stroke-width:0.677128"
-       id="rect4803"
-       width="1.5774603"
-       height="0.76161385"
-       x="-3.8299646"
-       y="0.1244178" />
+     id="g247"
+     transform="matrix(0.0348785,0,0,0.03488224,-0.04392362,-0.04320027)">
     <path
-       id="Path_132"
-       data-name="Path 132"
-       d="m -2.7011555,0.064143 h 0.4801616 V 0.87387354 H -3.8672624 V 0.064143 h 0.2400808 L -3.5242898,0.24408312 -3.421398,0.064143 h 0.5144589 l 0.1028918,0.08997006 z"
-       fill="none"
-       stroke="#1b8cff"
-       stroke-linejoin="round"
-       stroke-width="0.128286"
-       style="stroke:#000000;stroke-width:0.08;stroke-dasharray:none;stroke-opacity:1" />
-    <rect
-       style="fill:#ffffff;fill-opacity:0.8;stroke:none;stroke-width:0.181842"
-       id="rect5170"
-       width="0.4197129"
-       height="0.58476853"
-       x="-3.2546279"
-       y="1.2302905" />
+       d="M 2,6 C 2,4.59987 2,3.8998 2.27248,3.36502 2.51217,2.89462 2.89462,2.51217 3.36502,2.27248 3.8998,2 4.59987,2 6,2 7.40013,2 8.1002,2 8.63498,2.27248 9.10538,2.51217 9.48783,2.89462 9.72752,3.36502 10,3.8998 10,4.59987 10,6 v 12 c 0,1.4001 0,2.1002 -0.27248,2.635 C 9.48783,21.1054 9.10538,21.4878 8.63498,21.7275 8.1002,22 7.40013,22 6,22 4.59987,22 3.8998,22 3.36502,21.7275 2.89462,21.4878 2.51217,21.1054 2.27248,20.635 2,20.1002 2,19.4001 2,18 Z"
+       stroke="#1c274c"
+       stroke-width="1.5"
+       id="path2" />
     <path
-       id="Path_133"
-       data-name="Path 133"
-       d="M -2.8040473,1.2037638 H -3.284209 v 0.4498503 a 0.24008085,0.20993017 0 0 0 0.4801617,0 z"
-       fill="none"
-       stroke="#1b8cff"
-       stroke-linejoin="round"
-       stroke-width="0.128286"
-       style="stroke:#000000;stroke-width:0.08;stroke-dasharray:none;stroke-opacity:1" />
-    <line
-       id="Line_254"
-       data-name="Line 254"
-       y1="0.87384355"
-       fill="none"
-       stroke="#1b8cff"
+       opacity="0.5"
+       d="M 7,19 H 5"
+       stroke="#1c274c"
+       stroke-width="1.5"
        stroke-linecap="round"
-       stroke-linejoin="round"
-       stroke-width="0.0641428"
-       x1="-3.6271818"
-       x2="-3.6271818"
-       y2="0.48397326"
-       style="stroke:#000000;stroke-opacity:1" />
-    <line
-       id="Line_255"
-       data-name="Line 255"
-       y1="0.87387353"
-       fill="none"
-       stroke="#1b8cff"
-       stroke-linecap="round"
-       stroke-linejoin="round"
-       stroke-width="0.0641428"
-       x1="-3.4899926"
-       x2="-3.4899926"
-       y2="0.60396338"
-       style="stroke:#000000;stroke-opacity:1" />
-    <line
-       id="Line_256"
-       data-name="Line 256"
-       y1="0.87384355"
-       fill="none"
-       stroke="#1b8cff"
-       stroke-linecap="round"
-       stroke-linejoin="round"
-       stroke-width="0.0641428"
-       x1="-2.8726418"
-       x2="-2.8726418"
-       y2="0.48397326"
-       style="stroke:#000000;stroke-opacity:1" />
-    <line
-       id="Line_257"
-       data-name="Line 257"
-       y1="0.87387353"
-       fill="none"
-       stroke="#1b8cff"
-       stroke-linecap="round"
-       stroke-linejoin="round"
-       stroke-width="0.0641428"
-       x1="-3.009831"
-       x2="-3.009831"
-       y2="0.60396338"
-       style="stroke:#000000;stroke-opacity:1" />
-    <line
-       id="Line_258"
-       data-name="Line 258"
-       y1="0.87387353"
-       fill="none"
-       stroke="#1b8cff"
-       stroke-linecap="round"
-       stroke-linejoin="round"
-       stroke-width="0.0641428"
-       x1="-2.4267776"
-       x2="-2.4267776"
-       y2="0.60396338"
-       style="stroke:#000000;stroke-opacity:1" />
-    <line
-       id="Line_259"
-       data-name="Line 259"
-       x2="-2.8040473"
-       fill="none"
-       stroke="#1b8cff"
-       stroke-linejoin="round"
-       stroke-width="0.0641428"
-       x1="-3.284209"
-       y1="1.3537139"
-       y2="1.3537139"
-       style="stroke:#000000;stroke-opacity:1" />
+       id="path4" />
+    <path
+       d="M 13.3137,4.929 11.1716,7.07109 C 10.5935,7.64915 10.3045,7.93818 10.1522,8.30573 10,8.67327 10,9.08202 10,9.89952 v 9.65688 l 8.9705,-8.9705 c 0.9901,-0.99009 1.4851,-1.48511 1.6706,-2.05593 0.1631,-0.50211 0.1631,-1.04298 0,-1.54508 C 20.4556,6.41406 19.9606,5.91904 18.9705,4.929 c -0.99,-0.99004 -1.485,-1.48506 -2.0559,-1.67053 -0.5021,-0.16315 -1.0429,-0.16315 -1.5451,0 -0.5708,0.18547 -1.0658,0.68049 -2.0558,1.67053 z"
+       stroke="#1c274c"
+       stroke-width="1.5"
+       id="path6" />
+    <path
+       opacity="0.5"
+       d="m 6,22 h 12 c 1.4001,0 2.1002,0 2.635,-0.2725 0.4704,-0.2397 0.8528,-0.6221 1.0925,-1.0925 C 22,20.1002 22,19.4001 22,18 22,16.5999 22,15.8998 21.7275,15.365 21.4878,14.8946 21.1054,14.5122 20.635,14.2725 20.1002,14 19.4001,14 18,14 h -2.5"
+       stroke="#1c274c"
+       stroke-width="1.5"
+       id="path8" />
   </g>
 </svg>

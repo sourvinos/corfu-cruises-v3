@@ -7,7 +7,7 @@
         </div>
     </legend>
     <div class="table-wrapper">
-        <p-table #table (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'whatever','selected')" (onRowSelect)="onRowSelect($event,'selected')" (onRowUnselect)="onRowUnselect($event,'selected')" [(selection)]="selected" [scrollable]="true" [value]="array" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex" selectionMode="multiple">
+        <p-table #table (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'whatever','selected')" (onRowSelect)="onRowSelect($event,'selected')" (onRowUnselect)="onRowUnselect($event,'selected')" [(selection)]="selected" [scrollable]="true" [value]="array" [virtualScrollItemSize]="32" [virtualScroll]="true" scrollHeight="flex" selectionMode="multiple">
             <ng-template pTemplate="header">
                 <tr>
                     <th class="no-border width-2"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
