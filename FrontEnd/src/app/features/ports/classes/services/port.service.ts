@@ -4,7 +4,7 @@ import { Observable } from 'rxjs'
 // Custom
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { environment } from 'src/environments/environment'
-import { PortActiveVM } from '../view-models/port-active-vm'
+import { PortAutoCompleteVM } from '../view-models/port-autocomplete-vm'
 
 @Injectable({ providedIn: 'root' })
 
@@ -16,8 +16,8 @@ export class PortService extends HttpDataService {
 
     //#region public methods
 
-    public getActive(): Observable<PortActiveVM[]> {
-        return this.http.get<PortActiveVM[]>(environment.apiUrl + '/ports/getActive')
+    public getAutoComplete(): Observable<PortAutoCompleteVM[]> {
+        return this.http.get<PortAutoCompleteVM[]>(environment.apiUrl + '/ports/getAutoComplete')
     }
 
     //#endregion

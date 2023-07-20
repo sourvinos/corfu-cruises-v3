@@ -1,7 +1,7 @@
 import { Guid } from 'guid-typescript'
 // Custom
 import { PassengerReadDto } from './passenger-read-dto'
-import { PickupPointDropdownVM } from '../../../../pickupPoints/classes/view-models/pickupPoint-dropdown-vm'
+import { PickupPointAutoCompleteVM } from '../../../../pickupPoints/classes/view-models/pickupPoint-autocomplete-vm'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
 export interface ReservationReadDto {
@@ -10,7 +10,7 @@ export interface ReservationReadDto {
     customer: SimpleEntity
     destination: SimpleEntity
     driver: SimpleEntity
-    pickupPoint: PickupPointDropdownVM
+    pickupPoint: PickupPointAutoCompleteVM
     port: SimpleEntity
     ship: SimpleEntity
     date: string

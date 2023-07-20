@@ -1,9 +1,9 @@
-import { ShipActiveVM } from '../../../ships/classes/view-models/ship-active-vm'
+import { ShipAutoCompleteVM } from '../../../ships/classes/view-models/ship-autocomplete-vm'
 
 export interface RegistrarReadDto {
 
     id: number
-    ship: ShipActiveVM
+    ship: ShipAutoCompleteVM
     fullname: string
     phones: string
     email: string

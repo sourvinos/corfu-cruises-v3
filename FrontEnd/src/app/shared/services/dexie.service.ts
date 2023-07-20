@@ -25,7 +25,7 @@ export class DexieService extends Dexie {
     }
 
     public populateTable(table: string, httpService: any): void {
-        httpService.getActive().subscribe((records: any) => {
+        httpService.getAutoComplete().subscribe((records: any) => {
             this.table(table).bulkAdd(records)
         })
     }

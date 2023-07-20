@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog'
 // Custom
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { ShipRouteActiveVM } from './../../../shipRoutes/classes/view-models/shipRoute-active-vm'
+import { ShipRouteAutoCompleteVM } from '../../../shipRoutes/classes/view-models/shipRoute-autocomplete-vm'
 
 @Component({
     selector: 'manifest-route-selector',
@@ -18,7 +18,7 @@ export class ManifestRouteSelectorComponent {
 
     private feature = 'manifestCriteria'
     public form: FormGroup
-    public shipRoutes: ShipRouteActiveVM[] = []
+    public shipRoutes: ShipRouteAutoCompleteVM[] = []
 
     //#endregion
 

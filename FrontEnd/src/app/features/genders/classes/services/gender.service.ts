@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 // Custom
-import { GenderActiveVM } from './../view-models/gender-active-vm'
+import { GenderAutoCompleteVM } from '../view-models/gender-autocomplete-vm'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { environment } from 'src/environments/environment'
 
@@ -16,8 +16,8 @@ export class GenderService extends HttpDataService {
 
     //#region public methods
 
-    public getActive(): Observable<GenderActiveVM[]> {
-        return this.http.get<GenderActiveVM[]>(environment.apiUrl + '/genders/getActive')
+    public getAutoComplete(): Observable<GenderAutoCompleteVM[]> {
+        return this.http.get<GenderAutoCompleteVM[]>(environment.apiUrl + '/genders/getAutoComplete')
     }
 
     //#endregion

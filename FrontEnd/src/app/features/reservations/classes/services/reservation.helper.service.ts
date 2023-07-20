@@ -93,7 +93,8 @@ export class ReservationHelperService {
                 port: {
                     id: form.port.id,
                     description: form.port.description
-                }
+                },
+                isActive: form.pickupPoint.isActive
             },
             port: form.port,
             ship: form.ship,

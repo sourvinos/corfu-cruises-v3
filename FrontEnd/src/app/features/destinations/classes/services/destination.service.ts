@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 // Custom
-import { DestinationActiveVM } from '../view-models/destination-active-vm'
+import { DestinationAutoCompleteVM } from '../view-models/destination-autocomplete-vm'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { environment } from 'src/environments/environment'
 
@@ -16,8 +16,8 @@ export class DestinationService extends HttpDataService {
 
     //#region public methods
 
-    public getActive(): Observable<DestinationActiveVM[]> {
-        return this.http.get<DestinationActiveVM[]>(environment.apiUrl + '/destinations/getActive')
+    public getAutoComplete(): Observable<DestinationAutoCompleteVM[]> {
+        return this.http.get<DestinationAutoCompleteVM[]>(environment.apiUrl + '/destinations/getAutoComplete')
     }
 
     //#endregion

@@ -4,7 +4,7 @@ import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 import { map, startWith } from 'rxjs/operators'
 // Custom
-import { CoachRouteDropdownVM } from '../../coachRoutes/classes/view-models/coachRoute-dropdown-vm'
+import { CoachRouteAutoCompleteVM } from '../../coachRoutes/classes/view-models/coachRoute-autocomplete-vm'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
@@ -42,7 +42,7 @@ export class PickupPointFormComponent {
     public parentUrl = '/pickupPoints'
 
     public arrowIcon = new BehaviorSubject('arrow_drop_down')
-    public dropdownRoutes: Observable<CoachRouteDropdownVM[]>
+    public dropdownRoutes: Observable<CoachRouteAutoCompleteVM[]>
     public isAutoCompleteDisabled = true
 
     //#endregion

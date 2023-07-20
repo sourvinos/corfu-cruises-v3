@@ -1,11 +1,10 @@
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
-export interface PickupPointDropdownVM {
+export interface PickupPointAutoCompleteVM extends SimpleEntity {
 
-    id: number
-    description: string
     exactPoint: string
     time: string
     port: SimpleEntity
+    isActive: boolean
 
 }

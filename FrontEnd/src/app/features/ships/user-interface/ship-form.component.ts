@@ -15,7 +15,7 @@ import { MessageInputHintService } from 'src/app/shared/services/message-input-h
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
-import { ShipOwnerActiveVM } from '../../shipOwners/classes/view-models/shipOwner-active-vm'
+import { ShipOwnerAutoCompleteVM } from '../../shipOwners/classes/view-models/shipOwner-autocomplete-vm'
 import { ShipReadDto } from '../classes/dtos/ship-read-dto'
 import { ShipService } from '../classes/services/ship.service'
 import { ShipWriteDto } from '../classes/dtos/ship-write-dto'
@@ -42,7 +42,7 @@ export class ShipFormComponent {
     public parentUrl = '/ships'
 
     public arrowIcon = new BehaviorSubject('arrow_drop_down')
-    public dropdownShipOwners: Observable<ShipOwnerActiveVM[]>
+    public dropdownShipOwners: Observable<ShipOwnerAutoCompleteVM[]>
     public isAutoCompleteDisabled = true
 
     //#endregion

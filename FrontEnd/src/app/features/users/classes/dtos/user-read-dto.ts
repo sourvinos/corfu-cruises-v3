@@ -1,13 +1,13 @@
 import { Guid } from 'guid-typescript'
 // Custom
-import { CustomerActiveVM } from '../../../customers/classes/view-models/customer-active-vm'
+import { CustomerAutoCompleteVM } from '../../../customers/classes/view-models/customer-autocomplete-vm'
 
 export class UserReadDto {
 
     id: Guid
     userName: string
     displayname: string
-    customer: CustomerActiveVM
+    customer: CustomerAutoCompleteVM
     email: string
     isAdmin: boolean
     isActive: boolean

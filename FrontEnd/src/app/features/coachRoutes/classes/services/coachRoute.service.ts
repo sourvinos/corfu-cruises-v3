@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 // Custom
-import { CoachRouteDropdownVM } from '../view-models/coachRoute-dropdown-vm'
+import { CoachRouteAutoCompleteVM } from '../view-models/coachRoute-autocomplete-vm'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { environment } from 'src/environments/environment'
 
@@ -16,8 +16,8 @@ export class CoachRouteService extends HttpDataService {
 
     //#region public methods
 
-    public getActive(): Observable<any[]> {
-        return this.http.get<CoachRouteDropdownVM[]>(environment.apiUrl + '/coachRoutes/getActive')
+    public getAutoComplete(): Observable<any[]> {
+        return this.http.get<CoachRouteAutoCompleteVM[]>(environment.apiUrl + '/coachRoutes/getAutoComplete')
     }
 
     //#endregion

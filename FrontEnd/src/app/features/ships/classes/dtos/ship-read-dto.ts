@@ -1,9 +1,9 @@
-import { ShipOwnerActiveVM } from 'src/app/features/shipOwners/classes/view-models/shipOwner-active-vm'
+import { ShipOwnerAutoCompleteVM } from 'src/app/features/shipOwners/classes/view-models/shipOwner-autocomplete-vm'
 
 export interface ShipReadDto {
 
     id: number
-    shipOwner: ShipOwnerActiveVM
+    shipOwner: ShipOwnerAutoCompleteVM
     description: string
     abbreviation: string
     imo: string

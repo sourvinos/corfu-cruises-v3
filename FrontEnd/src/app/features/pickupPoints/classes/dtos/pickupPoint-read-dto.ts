@@ -1,10 +1,10 @@
-import { CoachRouteDropdownVM } from 'src/app/features/coachRoutes/classes/view-models/coachRoute-dropdown-vm'
+import { CoachRouteAutoCompleteVM } from 'src/app/features/coachRoutes/classes/view-models/coachRoute-autocomplete-vm'
 
 export interface PickupPointReadDto {
 
     id: number
     description: string
-    coachRoute: CoachRouteDropdownVM
+    coachRoute: CoachRouteAutoCompleteVM
     exactPoint: string
     time: string
     remarks: string

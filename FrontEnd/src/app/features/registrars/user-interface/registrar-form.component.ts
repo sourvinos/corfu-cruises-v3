@@ -17,7 +17,7 @@ import { RegistrarReadDto } from '../classes/dtos/registrar-read-dto'
 import { RegistrarService } from '../classes/services/registrar.service'
 import { RegistrarWriteDto } from '../classes/dtos/registrar-write-dto'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
-import { ShipActiveVM } from '../../ships/classes/view-models/ship-active-vm'
+import { ShipAutoCompleteVM } from '../../ships/classes/view-models/ship-autocomplete-vm'
 import { ValidationService } from 'src/app/shared/services/validation.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 
@@ -42,7 +42,7 @@ export class RegistrarFormComponent {
     public parentUrl = '/registrars'
 
     public arrowIcon = new BehaviorSubject('arrow_drop_down')
-    public dropdownShips: Observable<ShipActiveVM[]>
+    public dropdownShips: Observable<ShipAutoCompleteVM[]>
     public isAutoCompleteDisabled = true
 
     //#endregion

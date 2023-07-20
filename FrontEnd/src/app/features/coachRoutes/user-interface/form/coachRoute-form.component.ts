@@ -17,7 +17,7 @@ import { MessageDialogService } from 'src/app/shared/services/message-dialog.ser
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
-import { PortActiveVM } from 'src/app/features/ports/classes/view-models/port-active-vm'
+import { PortAutoCompleteVM } from 'src/app/features/ports/classes/view-models/port-autocomplete-vm'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { ValidationService } from 'src/app/shared/services/validation.service'
 
@@ -42,7 +42,7 @@ export class CoachRouteFormComponent {
     public parentUrl = '/coachRoutes'
 
     public arrowIcon = new BehaviorSubject('arrow_drop_down')
-    public dropdownPorts: Observable<PortActiveVM[]>
+    public dropdownPorts: Observable<PortAutoCompleteVM[]>
     public isAutoCompleteDisabled = true
 
     //#endregion

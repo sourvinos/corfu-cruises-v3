@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 // Custom
-import { DriverActiveVM } from './../view-models/driver-active-vm'
+import { DriverAutoCompleteVM } from '../view-models/driver-autocomplete-vm'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { environment } from 'src/environments/environment'
@@ -17,8 +17,8 @@ export class DriverService extends HttpDataService {
 
     //#region public methods
 
-    getActive(): Observable<DriverActiveVM[]> {
-        return this.http.get<DriverActiveVM[]>(environment.apiUrl + '/drivers/getActive')
+    getAutoComplete(): Observable<DriverAutoCompleteVM[]> {
+        return this.http.get<DriverAutoCompleteVM[]>(environment.apiUrl + '/drivers/getAutoComplete')
     }
 
     //#endregion

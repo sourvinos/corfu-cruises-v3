@@ -10,11 +10,11 @@ import { map, startWith } from 'rxjs/operators'
 import { BoardingPassService } from '../../classes/boarding-pass/services/boarding-pass.service'
 import { CachedReservationDialogComponent } from '../cached-reservation-dialog/cached-reservation-dialog.component'
 import { CryptoService } from 'src/app/shared/services/crypto.service'
-import { CustomerActiveVM } from '../../../customers/classes/view-models/customer-active-vm'
+import { CustomerAutoCompleteVM } from '../../../customers/classes/view-models/customer-autocomplete-vm'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
-import { DestinationActiveVM } from 'src/app/features/destinations/classes/view-models/destination-active-vm'
+import { DestinationAutoCompleteVM } from 'src/app/features/destinations/classes/view-models/destination-autocomplete-vm'
 import { DexieService } from 'src/app/shared/services/dexie.service'
-import { DriverActiveVM } from '../../../drivers/classes/view-models/driver-active-vm'
+import { DriverAutoCompleteVM } from '../../../drivers/classes/view-models/driver-autocomplete-vm'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
@@ -25,8 +25,8 @@ import { MessageDialogService } from 'src/app/shared/services/message-dialog.ser
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
-import { PickupPointDropdownVM } from 'src/app/features/pickupPoints/classes/view-models/pickupPoint-dropdown-vm'
-import { PortActiveVM } from 'src/app/features/ports/classes/view-models/port-active-vm'
+import { PickupPointAutoCompleteVM } from 'src/app/features/pickupPoints/classes/view-models/pickupPoint-autocomplete-vm'
+import { PortAutoCompleteVM } from 'src/app/features/ports/classes/view-models/port-autocomplete-vm'
 import { ReservationHelperService } from '../../classes/services/reservation.helper.service'
 import { ReservationHttpService } from '../../classes/services/reservation.http.service'
 import { ReservationReadDto } from '../../classes/dtos/form/reservation-read-dto'
@@ -55,12 +55,12 @@ export class ReservationFormComponent {
     public parentUrl = ''
 
     public arrowIcon = new BehaviorSubject('arrow_drop_down')
-    public dropdownCustomers: Observable<CustomerActiveVM[]>
-    public dropdownDestinations: Observable<DestinationActiveVM[]>
-    public dropdownDrivers: Observable<DriverActiveVM[]>
-    public dropdownPickupPoints: Observable<PickupPointDropdownVM[]>
-    public dropdownPorts: Observable<PortActiveVM[]>
-    public dropdownShips: Observable<DriverActiveVM[]>
+    public dropdownCustomers: Observable<CustomerAutoCompleteVM[]>
+    public dropdownDestinations: Observable<DestinationAutoCompleteVM[]>
+    public dropdownDrivers: Observable<DriverAutoCompleteVM[]>
+    public dropdownPickupPoints: Observable<PickupPointAutoCompleteVM[]>
+    public dropdownPorts: Observable<PortAutoCompleteVM[]>
+    public dropdownShips: Observable<DriverAutoCompleteVM[]>
 
     public isNewRecord: boolean
     public passengerDifferenceColor: string
@@ -245,7 +245,7 @@ export class ReservationFormComponent {
         this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
     }
 
-    public updateFieldsAfterPickupPointSelection(value: PickupPointDropdownVM): void {
+    public updateFieldsAfterPickupPointSelection(value: PickupPointAutoCompleteVM): void {
         this.form.patchValue({
             exactPoint: value.exactPoint,
             time: value.time,

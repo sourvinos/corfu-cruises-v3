@@ -9,7 +9,7 @@ import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
-import { GenderActiveVM } from '../../genders/classes/view-models/gender-active-vm'
+import { GenderAutoCompleteVM } from '../../genders/classes/view-models/gender-autocomplete-vm'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
@@ -19,9 +19,9 @@ import { MessageDialogService } from 'src/app/shared/services/message-dialog.ser
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
-import { NationalityDropdownVM } from '../../nationalities/classes/view-models/nationality-dropdown-vm'
+import { NationalityDropdownVM } from '../../nationalities/classes/view-models/nationality-autocomplete-vm'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
-import { ShipActiveVM } from '../../ships/classes/view-models/ship-active-vm'
+import { ShipAutoCompleteVM } from '../../ships/classes/view-models/ship-autocomplete-vm'
 import { ShipCrewReadDto } from '../classes/dtos/shipCrew-read-dto'
 import { ShipCrewService } from '../classes/services/shipCrew.service'
 import { ShipCrewWriteDto } from '../classes/dtos/shipCrew-write-dto'
@@ -48,9 +48,9 @@ export class ShipCrewFormComponent {
     public parentUrl = '/shipCrews'
 
     public arrowIcon = new BehaviorSubject('arrow_drop_down')
-    public dropdownGenders: Observable<GenderActiveVM[]>
+    public dropdownGenders: Observable<GenderAutoCompleteVM[]>
     public dropdownNationalities: Observable<NationalityDropdownVM[]>
-    public dropdownShips: Observable<ShipActiveVM[]>
+    public dropdownShips: Observable<ShipAutoCompleteVM[]>
     public isAutoCompleteDisabled = true
 
     public minBirthDate = new Date(new Date().getFullYear() - 99, 0, 1)

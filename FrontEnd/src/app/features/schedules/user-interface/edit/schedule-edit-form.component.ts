@@ -5,7 +5,7 @@ import { DateAdapter } from '@angular/material/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 import { map, startWith } from 'rxjs/operators'
 // Custom
-import { DestinationActiveVM } from 'src/app/features/destinations/classes/view-models/destination-active-vm'
+import { DestinationAutoCompleteVM } from 'src/app/features/destinations/classes/view-models/destination-autocomplete-vm'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
@@ -18,7 +18,7 @@ import { MessageDialogService } from 'src/app/shared/services/message-dialog.ser
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
-import { PortActiveVM } from 'src/app/features/ports/classes/view-models/port-active-vm'
+import { PortAutoCompleteVM } from 'src/app/features/ports/classes/view-models/port-autocomplete-vm'
 import { ScheduleReadDto } from '../../classes/form/schedule-read-vm'
 import { ScheduleService } from '../../classes/services/schedule.service'
 import { ScheduleWriteVM } from '../../classes/form/schedule-write-vm'
@@ -46,8 +46,8 @@ export class ScheduleEditFormComponent {
     public parentUrl = '/schedules'
 
     public arrowIcon = new BehaviorSubject('arrow_drop_down')
-    public dropdownDestinations: Observable<DestinationActiveVM[]>
-    public dropdownPorts: Observable<PortActiveVM[]>
+    public dropdownDestinations: Observable<DestinationAutoCompleteVM[]>
+    public dropdownPorts: Observable<PortAutoCompleteVM[]>
     public isAutoCompleteDisabled = true
 
     //#endregion

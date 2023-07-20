@@ -1,9 +1,9 @@
-import { PortActiveVM } from 'src/app/features/ports/classes/view-models/port-active-vm'
+import { PortAutoCompleteVM } from 'src/app/features/ports/classes/view-models/port-autocomplete-vm'
 
 export interface CoachRouteReadDto {
 
     id: number
-    port: PortActiveVM
+    port: PortAutoCompleteVM
     abbreviation: string
     description: string
     hasTransfer: boolean

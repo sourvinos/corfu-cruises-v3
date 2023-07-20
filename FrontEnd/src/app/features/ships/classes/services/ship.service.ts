@@ -4,7 +4,7 @@ import { Observable } from 'rxjs'
 // Custom
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
-import { ShipActiveVM } from 'src/app/features/ships/classes/view-models/ship-active-vm'
+import { ShipAutoCompleteVM } from 'src/app/features/ships/classes/view-models/ship-autocomplete-vm'
 import { environment } from 'src/environments/environment'
 
 @Injectable({ providedIn: 'root' })
@@ -17,8 +17,8 @@ export class ShipService extends HttpDataService {
 
     //#region public methods
 
-    getActive(): Observable<ShipActiveVM[]> {
-        return this.http.get<ShipActiveVM[]>(environment.apiUrl + '/ships/getActive')
+    getAutoComplete(): Observable<ShipAutoCompleteVM[]> {
+        return this.http.get<ShipAutoCompleteVM[]>(environment.apiUrl + '/ships/getAutoComplete')
     }
 
     //#endregion
