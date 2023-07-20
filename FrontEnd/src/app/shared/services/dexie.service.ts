@@ -9,17 +9,17 @@ export class DexieService extends Dexie {
         super('DexieDB')
         this.delete()
         this.version(1).stores({
-            coachRoutes: 'id, abbreviation',
-            customers: 'id, description',
-            destinations: 'id, description',
-            drivers: 'id, description',
-            genders: 'id, description',
-            nationalities: 'id, description',
-            pickupPoints: 'id, description',
-            ports: 'id, description',
-            shipOwners: 'id, description',
-            shipRoutes: 'id, description',
-            ships: 'id, description'
+            coachRoutes: 'id, abbreviation, isActive',
+            customers: 'id, description, isActive',
+            destinations: 'id, description, isActive',
+            drivers: 'id, description, isActive',
+            genders: 'id, description, isActive',
+            nationalities: 'id, description, isActive',
+            pickupPoints: 'id, description, isActive',
+            ports: 'id, description, isActive',
+            shipOwners: 'id, description, isActive',
+            shipRoutes: 'id, description, isActive',
+            ships: 'id, description, isActive'
         })
         this.open()
     }

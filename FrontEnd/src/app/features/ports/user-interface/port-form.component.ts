@@ -173,7 +173,7 @@ export class PortFormComponent {
     private saveRecord(port: PortWriteDto): void {
         this.portService.save(port).subscribe({
             next: (response) => {
-                this.dexieService.update('ports', { 'id': response.id, 'description': port.description })
+                this.dexieService.update('ports', { 'id': parseInt(response.id), 'description': port.description, 'isActive': port.isActive })
                 this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
             },
             error: (errorFromInterceptor) => {

@@ -62,9 +62,10 @@ namespace API.Features.Ports {
         public Response Post([FromBody] PortWriteDto port) {
             var x = portValidation.IsValid(port);
             if (x == 200) {
-                portRepo.Create(mapper.Map<PortWriteDto, Port>((PortWriteDto)portRepo.AttachUserIdToDto(port)));
+                var z = portRepo.Create(mapper.Map<PortWriteDto, Port>((PortWriteDto)portRepo.AttachUserIdToDto(port)));
                 return new Response {
                     Code = 200,
+                    Id = z.Id.ToString(),
                     Icon = Icons.Success.ToString(),
                     Message = ApiMessages.OK()
                 };
@@ -87,6 +88,7 @@ namespace API.Features.Ports {
                     portRepo.Update(mapper.Map<PortWriteDto, Port>(port));
                     return new Response {
                         Code = 200,
+                        Id = x.Id.ToString(),
                         Icon = Icons.Success.ToString(),
                         Message = ApiMessages.OK()
                     };
@@ -110,6 +112,7 @@ namespace API.Features.Ports {
                 portRepo.Delete(x);
                 return new Response {
                     Code = 200,
+                    Id = x.Id.ToString(),
                     Icon = Icons.Success.ToString(),
                     Message = ApiMessages.OK()
                 };
