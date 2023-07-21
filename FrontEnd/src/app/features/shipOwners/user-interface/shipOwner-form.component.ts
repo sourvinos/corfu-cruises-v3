@@ -185,7 +185,7 @@ export class ShipOwnerFormComponent {
     private saveRecord(shipOwner: ShipOwnerWriteDto): void {
         this.shipOwnerService.save(shipOwner).subscribe({
             next: (response) => {
-                this.dexieService.update('shipOwners', { 'id': response.id, 'description': shipOwner.description })
+                this.dexieService.update('shipOwners', { 'id': parseInt(response.id), 'description': shipOwner.description, 'isActive': shipOwner.isActive })
                 this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
             },
             error: (errorFromInterceptor) => {

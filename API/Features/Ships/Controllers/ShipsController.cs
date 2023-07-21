@@ -62,9 +62,10 @@ namespace API.Features.Ships {
         public Response Post([FromBody] ShipWriteDto ship) {
             var x = shipValidation.IsValid(ship);
             if (x == 200) {
-                shipRepo.Create(mapper.Map<ShipWriteDto, Ship>((ShipWriteDto)shipRepo.AttachUserIdToDto(ship)));
+                var z = shipRepo.Create(mapper.Map<ShipWriteDto, Ship>((ShipWriteDto)shipRepo.AttachUserIdToDto(ship)));
                 return new Response {
                     Code = 200,
+                    Id = z.Id.ToString(),
                     Icon = Icons.Success.ToString(),
                     Message = ApiMessages.OK()
                 };
@@ -87,6 +88,7 @@ namespace API.Features.Ships {
                     shipRepo.Update(mapper.Map<ShipWriteDto, Ship>(ship));
                     return new Response {
                         Code = 200,
+                        Id = x.Id.ToString(),
                         Icon = Icons.Success.ToString(),
                         Message = ApiMessages.OK(),
                     };
@@ -110,6 +112,7 @@ namespace API.Features.Ships {
                 shipRepo.Delete(x);
                 return new Response {
                     Code = 200,
+                    Id = x.Id.ToString(),
                     Icon = Icons.Success.ToString(),
                     Message = ApiMessages.OK()
                 };

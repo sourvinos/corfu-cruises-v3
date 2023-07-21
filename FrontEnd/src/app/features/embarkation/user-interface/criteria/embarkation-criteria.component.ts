@@ -150,9 +150,9 @@ export class EmbarkationCriteriaComponent {
         this.populateDropdownFromDexieDB('ships', 'description')
     }
 
-    private populateDropdownFromDexieDB(table: string, orderBy: string): void {
-        this.dexieService.table(table).orderBy(orderBy).toArray().then((response) => {
-            this[table] = response
+    private populateDropdownFromDexieDB(dexieTable: string, orderBy: string): void {
+        this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
+            this[dexieTable] = response
         })
     }
 

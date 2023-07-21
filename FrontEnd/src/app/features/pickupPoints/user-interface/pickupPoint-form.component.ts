@@ -194,10 +194,10 @@ export class PickupPointFormComponent {
         this.populateDropdownFromDexieDB('coachRoutes', 'dropdownRoutes', 'coachRoute', 'abbreviation', 'abbreviation')
     }
 
-    private populateDropdownFromDexieDB(table: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
-        this.dexieService.table(table).orderBy(orderBy).toArray().then((response) => {
-            this[table] = response
-            this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(table, modelProperty, value)))
+    private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
+        this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
+            this[dexieTable] = this.recordId == undefined ? response.filter(x => x.isActive) : response
+            this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
         })
     }
 
@@ -224,7 +224,7 @@ export class PickupPointFormComponent {
     private saveRecord(pickupPoint: PickupPointWriteDto): void {
         this.pickupPointService.save(pickupPoint).subscribe({
             next: (response) => {
-                this.dexieService.update('pickupPoints', { 'id': response.id, 'description': pickupPoint.description, 'exactPoint': pickupPoint.exactPoint, 'time': pickupPoint.time })
+                this.dexieService.update('pickupPoints', { 'id': parseInt(response.id), 'description': pickupPoint.description, 'exactPoint': pickupPoint.exactPoint, 'time': pickupPoint.time, 'isActive': pickupPoint.isActive })
                 this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
             },
             error: (errorFromInterceptor) => {

@@ -180,7 +180,7 @@ export class ShipRouteFormComponent {
     private saveRecord(shipRoute: ShipRouteWriteDto): void {
         this.shipRouteService.save(shipRoute).subscribe({
             next: (response) => {
-                this.dexieService.update('shipRoutes', { 'id': response.id, 'description': shipRoute.description })
+                this.dexieService.update('shipRoutes', { 'id': parseInt(response.id), 'description': shipRoute.description, 'isActive': shipRoute.isActive })
                 this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
             },
             error: (errorFromInterceptor) => {

@@ -58,9 +58,10 @@ namespace API.Features.Drivers {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] DriverWriteDto driver) {
-            driverRepo.Create(mapper.Map<DriverWriteDto, Driver>((DriverWriteDto)driverRepo.AttachUserIdToDto(driver)));
+            var x = driverRepo.Create(mapper.Map<DriverWriteDto, Driver>((DriverWriteDto)driverRepo.AttachUserIdToDto(driver)));
             return new Response {
                 Code = 200,
+                Id = x.Id.ToString(),
                 Icon = Icons.Success.ToString(),
                 Message = ApiMessages.OK()
             };
@@ -76,6 +77,7 @@ namespace API.Features.Drivers {
                 driverRepo.Update(mapper.Map<DriverWriteDto, Driver>(driver));
                 return new Response {
                     Code = 200,
+                    Id = x.Id.ToString(),
                     Icon = Icons.Success.ToString(),
                     Message = ApiMessages.OK()
                 };
@@ -94,6 +96,7 @@ namespace API.Features.Drivers {
                 driverRepo.Delete(x);
                 return new Response {
                     Code = 200,
+                    Id = x.Id.ToString(),
                     Icon = Icons.Success.ToString(),
                     Message = ApiMessages.OK()
                 };

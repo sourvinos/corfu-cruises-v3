@@ -68,9 +68,9 @@ export class ReservationToDriverOrShipComponent {
         this.populateDropdownFromDexieDB(this.table, 'description')
     }
 
-    private populateDropdownFromDexieDB(table: string, orderBy: string): void {
-        this.dexieService.table(table).orderBy(orderBy).toArray().then((response) => {
-            this.records = response
+    private populateDropdownFromDexieDB(dexieTable: string, orderBy: string): void {
+        this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
+            this.records = response.filter(x => x.isActive)
         })
     }
 

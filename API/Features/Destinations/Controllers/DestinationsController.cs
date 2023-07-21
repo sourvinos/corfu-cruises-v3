@@ -58,9 +58,10 @@ namespace API.Features.Destinations {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] DestinationWriteDto destination) {
-            destinationRepo.Create(mapper.Map<DestinationWriteDto, Destination>((DestinationWriteDto)destinationRepo.AttachUserIdToDto(destination)));
+            var x = destinationRepo.Create(mapper.Map<DestinationWriteDto, Destination>((DestinationWriteDto)destinationRepo.AttachUserIdToDto(destination)));
             return new Response {
                 Code = 200,
+                Id = x.Id.ToString(),
                 Icon = Icons.Success.ToString(),
                 Message = ApiMessages.OK()
             };
@@ -76,6 +77,7 @@ namespace API.Features.Destinations {
                 destinationRepo.Update(mapper.Map<DestinationWriteDto, Destination>(destination));
                 return new Response {
                     Code = 200,
+                    Id = x.Id.ToString(),
                     Icon = Icons.Success.ToString(),
                     Message = ApiMessages.OK()
                 };
@@ -94,6 +96,7 @@ namespace API.Features.Destinations {
                 destinationRepo.Delete(x);
                 return new Response {
                     Code = 200,
+                    Id = x.Id.ToString(),
                     Icon = Icons.Success.ToString(),
                     Message = ApiMessages.OK()
                 };

@@ -58,9 +58,10 @@ namespace API.Features.Genders {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] GenderWriteDto gender) {
-            genderRepo.Create(mapper.Map<GenderWriteDto, Gender>((GenderWriteDto)genderRepo.AttachUserIdToDto(gender)));
+            var x = genderRepo.Create(mapper.Map<GenderWriteDto, Gender>((GenderWriteDto)genderRepo.AttachUserIdToDto(gender)));
             return new Response {
                 Code = 200,
+                Id = x.Id.ToString(),
                 Icon = Icons.Success.ToString(),
                 Message = ApiMessages.OK()
             };
@@ -76,6 +77,7 @@ namespace API.Features.Genders {
                 genderRepo.Update(mapper.Map<GenderWriteDto, Gender>(gender));
                 return new Response {
                     Code = 200,
+                    Id = x.Id.ToString(),
                     Icon = Icons.Success.ToString(),
                     Message = ApiMessages.OK()
                 };
@@ -94,6 +96,7 @@ namespace API.Features.Genders {
                 genderRepo.Delete(x);
                 return new Response {
                     Code = 200,
+                    Id = x.Id.ToString(),
                     Icon = Icons.Success.ToString(),
                     Message = ApiMessages.OK()
                 };

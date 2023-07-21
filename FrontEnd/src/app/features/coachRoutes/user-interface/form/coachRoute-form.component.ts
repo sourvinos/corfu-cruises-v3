@@ -221,7 +221,7 @@ export class CoachRouteFormComponent {
     private saveRecord(coachRoute: CoachRouteWriteDto): void {
         this.coachRouteService.save(coachRoute).subscribe({
             next: (response) => {
-                this.dexieService.update('coachRoutes', { 'id': response.id, 'description': coachRoute.abbreviation })
+                this.dexieService.update('coachRoutes', { 'id': parseInt(response.id), 'description': coachRoute.abbreviation, 'isActive': coachRoute.isActive })
                 this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
             },
             error: (errorFromInterceptor) => {

@@ -62,9 +62,10 @@ namespace API.Features.PickupPoints {
         public Response Post([FromBody] PickupPointWriteDto pickupPoint) {
             var x = pickupPointValidation.IsValid(pickupPoint);
             if (x == 200) {
-                pickupPointRepo.Create(mapper.Map<PickupPointWriteDto, PickupPoint>((PickupPointWriteDto)pickupPointRepo.AttachUserIdToDto(pickupPoint)));
+                var z = pickupPointRepo.Create(mapper.Map<PickupPointWriteDto, PickupPoint>((PickupPointWriteDto)pickupPointRepo.AttachUserIdToDto(pickupPoint)));
                 return new Response {
                     Code = 200,
+                    Id = z.Id.ToString(),
                     Icon = Icons.Success.ToString(),
                     Message = ApiMessages.OK()
                 };
@@ -87,6 +88,7 @@ namespace API.Features.PickupPoints {
                     pickupPointRepo.Update(mapper.Map<PickupPointWriteDto, PickupPoint>(pickupPoint));
                     return new Response {
                         Code = 200,
+                        Id = x.Id.ToString(),
                         Icon = Icons.Success.ToString(),
                         Message = ApiMessages.OK()
                     };
@@ -110,6 +112,7 @@ namespace API.Features.PickupPoints {
                 pickupPointRepo.Delete(x);
                 return new Response {
                     Code = 200,
+                    Id = x.Id.ToString(),
                     Icon = Icons.Success.ToString(),
                     Message = ApiMessages.OK()
                 };

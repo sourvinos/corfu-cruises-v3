@@ -167,7 +167,7 @@ export class GenderFormComponent {
     private saveRecord(gender: GenderWriteDto): void {
         this.genderService.save(gender).subscribe({
             next: (response) => {
-                this.dexieService.update('genders', { 'id': response.id, 'description': gender.description })
+                this.dexieService.update('genders', { 'id': parseInt(response.id), 'description': gender.description, 'isActive': gender.isActive })
                 this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
             },
             error: (errorFromInterceptor) => {

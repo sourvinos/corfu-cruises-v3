@@ -58,9 +58,10 @@ namespace API.Features.Customers {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] CustomerWriteDto customer) {
-            customerRepo.Create(mapper.Map<CustomerWriteDto, Customer>((CustomerWriteDto)customerRepo.AttachUserIdToDto(customer)));
+            var x = customerRepo.Create(mapper.Map<CustomerWriteDto, Customer>((CustomerWriteDto)customerRepo.AttachUserIdToDto(customer)));
             return new Response {
                 Code = 200,
+                Id = x.Id.ToString(),
                 Icon = Icons.Success.ToString(),
                 Message = ApiMessages.OK()
             };
@@ -76,6 +77,7 @@ namespace API.Features.Customers {
                 customerRepo.Update(mapper.Map<CustomerWriteDto, Customer>(customer));
                 return new Response {
                     Code = 200,
+                    Id = x.Id.ToString(),
                     Icon = Icons.Success.ToString(),
                     Message = ApiMessages.OK()
                 };
@@ -94,6 +96,7 @@ namespace API.Features.Customers {
                 customerRepo.Delete(x);
                 return new Response {
                     Code = 200,
+                    Id = x.Id.ToString(),
                     Icon = Icons.Success.ToString(),
                     Message = ApiMessages.OK()
                 };

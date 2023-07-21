@@ -202,10 +202,10 @@ export class ShipFormComponent {
         this.populateDropdownFromDexieDB('shipOwners', 'dropdownShipOwners', 'shipOwner', 'description', 'description')
     }
 
-    private populateDropdownFromDexieDB(table: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
-        this.dexieService.table(table).orderBy(orderBy).toArray().then((response) => {
-            this[table] = response
-            this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(table, modelProperty, value)))
+    private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
+        this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
+            this[dexieTable] = this.recordId == undefined ? response.filter(x => x.isActive) : response
+            this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
         })
     }
 
@@ -236,7 +236,7 @@ export class ShipFormComponent {
     private saveRecord(ship: ShipWriteDto): void {
         this.shipService.save(ship).subscribe({
             next: (response) => {
-                this.dexieService.update('ships', { 'id': response.id, 'description': ship.description })
+                this.dexieService.update('ships', { 'id': parseInt(response.id), 'description': ship.description, 'isActive': ship.isActive })
                 this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
             },
             error: (errorFromInterceptor) => {

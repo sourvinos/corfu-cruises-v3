@@ -58,9 +58,10 @@ namespace API.Features.ShipRoutes {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] ShipRouteWriteDto shipRoute) {
-            shipRouteRepo.Create(mapper.Map<ShipRouteWriteDto, ShipRoute>((ShipRouteWriteDto)shipRouteRepo.AttachUserIdToDto(shipRoute)));
+            var x = shipRouteRepo.Create(mapper.Map<ShipRouteWriteDto, ShipRoute>((ShipRouteWriteDto)shipRouteRepo.AttachUserIdToDto(shipRoute)));
             return new Response {
                 Code = 200,
+                Id = x.Id.ToString(),
                 Icon = Icons.Success.ToString(),
                 Message = ApiMessages.OK()
             };
@@ -76,6 +77,7 @@ namespace API.Features.ShipRoutes {
                 shipRouteRepo.Update(mapper.Map<ShipRouteWriteDto, ShipRoute>(shipRoute));
                 return new Response {
                     Code = 200,
+                    Id = x.Id.ToString(),
                     Icon = Icons.Success.ToString(),
                     Message = ApiMessages.OK()
                 };
@@ -94,6 +96,7 @@ namespace API.Features.ShipRoutes {
                 shipRouteRepo.Delete(x);
                 return new Response {
                     Code = 200,
+                    Id = x.Id.ToString(),
                     Icon = Icons.Success.ToString(),
                     Message = ApiMessages.OK()
                 };

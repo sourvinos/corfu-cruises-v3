@@ -170,7 +170,7 @@ export class DriverFormComponent {
     private saveRecord(driver: DriverWriteDto): void {
         this.driverService.save(driver).subscribe({
             next: (response) => {
-                this.dexieService.update('drivers', { 'id': response.id, 'description': driver.description })
+                this.dexieService.update('drivers', { 'id': parseInt(response.id), 'description': driver.description, 'isActive': driver.isActive })
                 this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
             },
             error: (errorFromInterceptor) => {
