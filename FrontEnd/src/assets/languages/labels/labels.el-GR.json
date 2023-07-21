@@ -2142,7 +2142,7 @@
         "labels": [
             {
                 "id": "placeholder",
-                "description": "Αναζήτηση με RefNo"
+                "description": "RefNo"
             }
         ]
     },

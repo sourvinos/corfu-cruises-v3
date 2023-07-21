@@ -2142,7 +2142,7 @@
         "labels": [
             {
                 "id": "placeholder",
-                "description": "Hledat podle RefNo"
+                "description": "RefNo"
             }
         ]
     },
