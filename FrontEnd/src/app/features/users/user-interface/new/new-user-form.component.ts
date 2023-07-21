@@ -156,7 +156,7 @@ export class NewUserFormComponent {
     private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string, includeWildCard: boolean): void {
         this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
             this[dexieTable] = response
-            includeWildCard ? this[dexieTable].unshift({ 'id': '0', 'description': '[⭐]' }) : null
+            includeWildCard ? this[dexieTable].unshift({ 'id': '0', 'description': '[' + this.emojiService.getEmoji('wildcard') + ']' }) : null
             this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
         })
     }

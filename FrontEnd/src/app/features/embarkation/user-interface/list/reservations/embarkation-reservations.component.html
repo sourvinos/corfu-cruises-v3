@@ -146,8 +146,8 @@
                         <td class="center width-5">{{ reservation.ship.abbreviation == "(EMPTY)" ? getEmoji('null') : reservation.ship.abbreviation }}</td>
                         <td class="right width-3">
                             <span>{{ reservation.totalPax | replaceZero }}</span>
-                            <span *ngIf="reservation.totalPax - reservation.passengers.length == 0" class="emoji-with-text">{{ getEmoji('ok') }}</span>
-                            <span *ngIf="reservation.totalPax - reservation.passengers.length != 0" class="emoji-with-text">{{ getEmoji('error') }}</span>
+                            <span *ngIf="reservation.totalPax - reservation.passengers.length == 0" class="emoji-with-text">{{ getEmoji('green-circle') }}</span>
+                            <span *ngIf="reservation.totalPax - reservation.passengers.length != 0" class="emoji-with-text">{{ getEmoji('red-circle') }}</span>
                         </td>
                         <td class="center width-2"><span (click)="showRemarks(reservation.remarks)" [ngClass]="hasRemarks(reservation.remarks)?'clickable':''" *ngIf="hasRemarks(reservation.remarks)">{{ getEmoji('remarks') }}</span></td>
                     </tr>
