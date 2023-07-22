@@ -25,9 +25,9 @@
                     </fieldset>
                 </div>
                 <div class="group-field">
-                    <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedDestinations')" [arrayName]="'selectedDestinations'" [array]="destinations" [caption]="'destinations'" [feature]="feature" [selected]="selectedDestinations"></criteria-fieldset-checkboxes>
-                    <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedPorts')" [arrayName]="'selectedPorts'" [array]="ports" [feature]="feature" [caption]="'ports'" [selected]="selectedPorts"></criteria-fieldset-checkboxes>
-                    <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedShips')" [arrayName]="'selectedShips'" [array]="ships" [feature]="feature" [caption]="'ships'" [selected]="selectedShips"></criteria-fieldset-checkboxes>
+                    <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedDestinations')" [array]="destinations" [caption]="'destinations'" [feature]="feature" [selected]="selectedDestinations"></criteria-fieldset-checkboxes>
+                    <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedPorts')" [array]="ports" [feature]="feature" [caption]="'ports'" [selected]="selectedPorts"></criteria-fieldset-checkboxes>
+                    <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedShips')" [array]="ships" [feature]="feature" [caption]="'ships'" [selected]="selectedShips"></criteria-fieldset-checkboxes>
                 </div>
             </form>
         </div>

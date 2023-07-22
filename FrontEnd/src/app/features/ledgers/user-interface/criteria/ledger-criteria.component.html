@@ -28,10 +28,10 @@
                     </fieldset>
                 </div>
                 <div class="group-field">
-                    <criteria-fieldset-checkboxes *ngIf="isAdmin()" (outputSelected)="patchFormWithSelectedArrays($event,'selectedCustomers')" [arrayName]="'selectedCustomers'" [array]="customers" [caption]="'customers'" [feature]="feature" [selected]="selectedCustomers"></criteria-fieldset-checkboxes>
-                    <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedDestinations')" [arrayName]="'selectedDestinations'" [array]="destinations" [caption]="'destinations'" [feature]="feature" [selected]="selectedDestinations"></criteria-fieldset-checkboxes>
-                    <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedPorts')" [arrayName]="'selectedPorts'" [array]="ports" [caption]="'ports'" [feature]="feature" [selected]="selectedPorts"></criteria-fieldset-checkboxes>
-                    <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedShips')" [arrayName]="'selectedShips'" [array]="ships" [caption]="'ships'" [feature]="feature" [selected]="selectedShips"></criteria-fieldset-checkboxes>
+                    <criteria-fieldset-checkboxes *ngIf="isAdmin()" (outputSelected)="patchFormWithSelectedArrays($event,'selectedCustomers')" [array]="customers" [caption]="'customers'" [feature]="feature" [selected]="selectedCustomers"></criteria-fieldset-checkboxes>
+                    <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedDestinations')" [array]="destinations" [caption]="'destinations'" [feature]="feature" [selected]="selectedDestinations"></criteria-fieldset-checkboxes>
+                    <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedPorts')" [array]="ports" [caption]="'ports'" [feature]="feature" [selected]="selectedPorts"></criteria-fieldset-checkboxes>
+                    <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedShips')" [array]="ships" [caption]="'ships'" [feature]="feature" [selected]="selectedShips"></criteria-fieldset-checkboxes>
                 </div>
             </form>
         </div>

@@ -54,7 +54,7 @@ export class EmbarkationCriteriaComponent {
         this.initForm()
         this.populateDropdowns()
         this.populateFieldsFromStoredVariables()
-        this.populateSelectedFromForm()
+        this.populateCheckboxesFromForm()
         this.setLocale()
         this.subscribeToInteractionService()
         this.setTabTitle()
@@ -101,7 +101,8 @@ export class EmbarkationCriteriaComponent {
         event.forEach(element => {
             x.push(new FormControl({
                 'id': element.id,
-                'description': element.description
+                'description': element.description,
+                'isActive': element.isActive
             }))
         })
     }
@@ -121,7 +122,8 @@ export class EmbarkationCriteriaComponent {
         this.criteria[arrayName].forEach((element: any) => {
             x.push(new FormControl({
                 'id': element.id,
-                'description': element.description
+                'description': element.description,
+                'isActive': element.isActive
             }))
         })
     }
@@ -168,7 +170,7 @@ export class EmbarkationCriteriaComponent {
         }
     }
 
-    private populateSelectedFromForm(): void {
+    private populateCheckboxesFromForm(): void {
         this.selectedDestinations = this.form.value.selectedDestinations
         this.selectedPorts = this.form.value.selectedPorts
         this.selectedShips = this.form.value.selectedShips

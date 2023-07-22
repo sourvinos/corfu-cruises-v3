@@ -1,21 +1,36 @@
+<!-- <p>{{ array | json }}</p> -->
+<p>{{ selected | json }}</p>
 <fieldset class="fieldset">
     <legend>
         <span>{{ getLabel(caption) }}</span>
         <div class="selected">
-            <span class="selected-count">{{ getLabel("selected") }}: {{ getSelected() ? 1 : 0 }}</span>
-            <span class="icon">{{ getEmoji(getSelected() ? 'ok' : 'error') }}</span>
+            <!-- <span class="selected-count">{{ getLabel("selected") }}: {{ getSelected() ? 1 : 0 }}</span> -->
+            <span class="selected-count">{{ getLabel("selected") }}: {{ selected ? '1' : '' }}</span>
+            <span class="icon">{{ getEmoji(selected ? 'green-circle' : 'red-circle') }}</span>
         </div>
     </legend>
     <div class="table-wrapper">
-        <p-table #table (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect()" [(selection)]="selected" [scrollable]="true" [value]="array" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex" selectionMode="single">
+        <p-table 
+            #table 
+            (onRowSelect)="onRowSelect($event)"
+            (onRowUnselect)="onRowUnselect($event)" 
+            [(selection)]="selected"
+            [scrollable]="true" 
+            [value]="array" 
+            [virtualScrollItemSize]="32" 
+            [virtualScroll]="true" 
+            datakey="id" 
+            scrollHeight="flex" 
+            selectionMode="single"
+            >
             <ng-template pTemplate="header">
                 <tr>
-                    <th class="no-border width-2"><p-tableHeaderCheckbox class="hidden"></p-tableHeaderCheckbox></th>
+                    <th class="no-border width-2"></th>
                     <th class="no-border width-5"><input (input)="table.filter($event.target.value, 'description', 'contains')" [value]="$any(table).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
                 </tr>
             </ng-template>
             <ng-template let-element pTemplate="body">
-                <tr [pSelectableRow]="element" style="height:2rem">
+                <tr style="height:2rem">
                     <td class="center width-2"><p-tableRadioButton [value]="element"></p-tableRadioButton></td>
                     <td class="width-5">{{ element.description }}</td>
                 </tr>

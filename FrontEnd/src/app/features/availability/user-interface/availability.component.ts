@@ -251,7 +251,8 @@ export class AvailabilityComponent {
         this.sessionStorageService.saveItem('date', date)
         this.sessionStorageService.saveItem('destination', JSON.stringify({
             'id': destination.id,
-            'description': destination.description
+            'description': destination.description,
+            'isActive': destination.isActive
         }))
     }
 

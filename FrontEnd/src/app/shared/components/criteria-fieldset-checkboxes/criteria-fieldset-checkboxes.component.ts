@@ -19,7 +19,6 @@ export class CriteriaFieldsetCheckboxesComponent {
     @Input() caption: string
     @Input() array: SimpleEntity[] = []
     @Input() selected: SimpleEntity[] = []
-    @Input() arrayName: string
     @Output() outputSelected = new EventEmitter()
 
     public form: FormGroup
@@ -46,7 +45,7 @@ export class CriteriaFieldsetCheckboxesComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public onHeaderCheckboxToggle(event: any, array: string, formControl: string): void {
+    public onHeaderCheckboxToggle(event: any, formControl: string): void {
         this.updateSelected(formControl)
         this.exportSelected()
     }
@@ -77,14 +76,11 @@ export class CriteriaFieldsetCheckboxesComponent {
 
     private updateSelected(formControl: any): void {
         const x = this.form.controls[formControl] as FormArray
-        x.controls = []
-        this.form.patchValue({
-            [formControl]: []
-        })
         this[formControl].forEach((element: any) => {
             x.push(new FormControl({
                 'id': element.id,
-                'description': element.description
+                'description': element.description,
+                'isActive': element.isActive
             }))
         })
     }

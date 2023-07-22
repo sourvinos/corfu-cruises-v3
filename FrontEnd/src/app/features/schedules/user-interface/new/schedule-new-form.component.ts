@@ -21,6 +21,7 @@ import { ScheduleWriteVM } from '../../classes/form/schedule-write-vm'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
+import { WeekdayVM } from '../../classes/view-models/weekday-vm'
 
 @Component({
     selector: 'schedule-new',
@@ -45,7 +46,7 @@ export class ScheduleNewFormComponent {
     public selectedDestinations: SimpleEntity[] = []
     public ports: SimpleEntity[]
     public selectedPorts: SimpleEntity[] = []
-    public weekdays: SimpleEntity[]
+    public weekdays: WeekdayVM[]
     public selectedWeekdays: SimpleEntity[] = []
 
     public selectedRangeValue: DateRange<Date>

@@ -54,7 +54,7 @@ export class ManifestCriteriaComponent {
         this.initForm()
         this.populateDropdowns()
         this.populateFieldsFromStoredVariables()
-        this.populateSelectedFromForm()
+        this.populateCheckboxesFromForm()
         this.setLocale()
         this.subscribeToInteractionService()
         this.setTabTitle()
@@ -70,7 +70,7 @@ export class ManifestCriteriaComponent {
 
     public doTasks(): void {
         this.storeCriteria()
-        this.navigateToList()
+        // this.navigateToList()
     }
 
     public getEmoji(emoji: string): string {
@@ -105,7 +105,8 @@ export class ManifestCriteriaComponent {
         event.forEach(element => {
             x.push(new FormControl({
                 'id': element.id,
-                'description': element.description
+                'description': element.description,
+                'isActive': element.isActive
             }))
         })
     }
@@ -125,7 +126,8 @@ export class ManifestCriteriaComponent {
         this.criteria[arrayName].forEach((element: any) => {
             x.push(new FormControl({
                 'id': element.id,
-                'description': element.description
+                'description': element.description,
+                'isActive': element.isActive
             }))
         })
     }
@@ -140,7 +142,7 @@ export class ManifestCriteriaComponent {
             date: [this.dateHelperService.formatDateToIso(new Date()), Validators.required],
             selectedDestinations: this.formBuilder.array([], Validators.required),
             selectedPorts: this.formBuilder.array([], Validators.required),
-            selectedShips: this.formBuilder.array([], Validators.required)
+            selectedShips: this.formBuilder.array([], Validators.required),
         })
     }
 
@@ -172,7 +174,7 @@ export class ManifestCriteriaComponent {
         }
     }
 
-    private populateSelectedFromForm(): void {
+    private populateCheckboxesFromForm(): void {
         this.selectedDestinations = this.form.value.selectedDestinations
         this.selectedPorts = this.form.value.selectedPorts
         this.selectedShips = this.form.value.selectedShips

@@ -18,8 +18,7 @@ export class CriteriaFieldsetRadiosComponent {
     @Input() feature: string
     @Input() caption: string
     @Input() array: SimpleEntity[] = []
-    @Input() selected: SimpleEntity[] = []
-    @Input() arrayName: string
+    @Input() selected: SimpleEntity
     @Output() outputSelected = new EventEmitter()
 
     public form: FormGroup
@@ -46,39 +45,61 @@ export class CriteriaFieldsetRadiosComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public getSelected(): boolean {
-        return this.selected == null || this.selected.length == 0 ? false : true
-    }
+    // public getSelected(): boolean {
+    //     return this.selected == null || this.selected.length == 0 ? false : true
+    // }
 
     public onRowSelect(event: any): void {
         this.updateSelected(event)
         this.exportSelected()
     }
 
-    public onRowUnselect(): void {
-        this.updateSelected()
-        this.exportSelected()
+    public onRowUnselect(event: any): void {
+        this.updateSelected(event)
+        // this.exportSelected()
     }
+
+
+    // public onRowSelect(event: any): void {
+    //     this.updateSelected(event)
+    //     this.exportSelected()
+    // }
+
+    // public onRowUnselect(): void {
+    //     this.updateSelected()
+    //     this.exportSelected()
+    // }
 
     //#endregion
 
     //#region private methods
 
     private exportSelected(): void {
-        if (this.selected) {
-            const x = []
-            x.push(this.selected)
-            this.outputSelected.emit(x)
-        } else {
-            this.outputSelected.emit([])
-        }
+        this.outputSelected.emit(this.selected)
+        console.log(this.selected)
     }
 
+    // private exportSelected(): void {
+    //     if (this.selected) {
+    //         const x = []
+    //         x.push(this.selected)
+    //         this.outputSelected.emit(x)
+    //     } else {
+    //         this.outputSelected.emit([])
+    //     }
+    // }
+
+    // private initForm(): void {
+    //     this.form = this.formBuilder.group({
+    //         selected: ['', Validators.required]
+    //     })
+    // }
     private initForm(): void {
         this.form = this.formBuilder.group({
             selected: ['', Validators.required]
         })
     }
+
 
     private updateSelected(event?: any): void {
         event != undefined
