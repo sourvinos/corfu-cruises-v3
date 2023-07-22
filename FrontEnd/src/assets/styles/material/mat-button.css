@@ -4,17 +4,17 @@
     margin-left: auto;
 }
 
-.mat-button-focus-overlay {
+/* .mat-button-focus-overlay {
     background-color: transparent !important;
-}
+} */
 
-.mat-icon-button {
+/* .mat-icon-button {
     padding: 0 !important;
-}
+} */
 
-button .mat-button-wrapper .emoji {
+/* button .mat-button-wrapper .emoji {
     margin-right: 0.2rem;
-}
+} */
 
 button .pi.with-text {
     margin-right: 0.5rem !important;
@@ -44,23 +44,23 @@ button.delete {
     color: var(--color-button-text) !important;
 }
 
-button.mat-button-toggle-label-content {
+/* button.mat-button-toggle-label-content {
     line-height: 2.5rem !important;
-}
+} */
 
-button.mat-mini-fab .mat-button-wrapper .material-icons.reverse {
+/* button.mat-mini-fab .mat-button-wrapper .material-icons.reverse {
     color: var(--color-text);
-}
+} */
 
-button.mat-mini-fab {
+/* button.mat-mini-fab {
     display: flex !important;
     justify-content: center !important;
     padding: 0 !important;
-}
+} */
 
-button.mat-mini-fab:hover {
+/* button.mat-mini-fab:hover {
     background-color: color-mix(in srgb, var(--color-secondary) var(--hover-transparency), transparent);
-}
+} */
 
 button.primary {
     background-color: var(--color-button-primary) !important;
@@ -101,4 +101,8 @@ button:disabled {
 
 button:not(:disabled) {
     cursor: pointer !important;
+}
+
+.mat-mdc-icon-button.mat-mdc-button-base {
+    padding: 0 !important;
 }

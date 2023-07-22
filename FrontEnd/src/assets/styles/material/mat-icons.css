@@ -1,36 +1,40 @@
 /* Button with icon and text */
-.mat-button-wrapper .mat-icon {
+/* .mat-button-wrapper .mat-icon {
     font-size: 0.9375rem;
     margin-top: 0.60rem;
-}
+} */
 
 /* Button with icon without text */
-.mat-button-wrapper .no-text {
+/* .mat-button-wrapper .no-text {
     font-size: 1.5rem;
     margin-top: -0.125rem;
     transition: all var(--delay);
-}
+} */
 
 /* Field with icon */
-.mat-form-field-infix .mat-icon {
+/* .mat-form-field-infix .mat-icon {
     color: var(--color-text);
     font-size: 1.125rem;
-}
+} */
 
 /* Checkbox with icon */
-.mat-checkbox .mat-checkbox-layout .mat-checkbox-label .mat-icon {
+/* .mat-checkbox .mat-checkbox-layout .mat-checkbox-label .mat-icon {
     color: var(--color-backgrounds);
     font-size: 1.125rem;
     margin: 0.3125rem 0.1875rem 0 0;
-}
+} */
 
 /* Menu item with icon */
-.mat-menu-item .mat-icon {
+/* .mat-menu-item .mat-icon {
     font-size: 0.9375rem;
     margin: 0.375rem 0 0 0 !important;
-}
+} */
 
-.material-symbols-outlined.warning {
+/* .material-symbols-outlined.warning {
     color: var(--color-accent) !important;
     transition: all var(--delay);
+} */
+.mat-mdc-icon-button.mat-mdc-button-base {
+    color: var(--color-text) !important;
+    transition: color var(--delay) !important;
 }
