@@ -1,5 +1,6 @@
 /* Background wrapper */
 .mat-mdc-form-field {
+    display: block !important;
     width: 100%;
 }
 
@@ -7,7 +8,7 @@
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background-color: var(--color-input-background) !important;
     border-radius: 0;
-    transition: all var(--delay) !important;
+    transition: background-color var(--delay) !important;
 }
 
 /* Background wrapper:hover */
@@ -26,7 +27,7 @@
     color: var(--color-text) !important;
     font-family: var(--font-family-asty) !important;
     font-weight: 300;
-    transition: all var(--delay) !important;
+    transition: color var(--delay) !important;
 }
 
 /* Label */
@@ -38,9 +39,10 @@
 
 /* Icon prefix */
 .mat-mdc-form-field-infix .mat-icon {
-    color: var(--color-text);
+    color: var(--color-input-suffix);
     margin: 0 0.4rem 0 -0.2rem;
-    transition: all var(--delay) !important;
+    transition: color var(--delay) !important;
+    overflow: visible !important;
 }
 
 /* Label with error */
@@ -53,13 +55,13 @@
     border-radius: 0 0 0 0;
     font-family: var(--font-family-asty);
     font-weight: 300;
-    transition: all var(--delay) !important;
+    /* transition: all var(--delay) !important; */
 }
 
 /* Input actual without error */
 .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input, .mdc-text-field--invalid .mdc-text-field__input {
     color: var(--color-text) !important;
-    transition: all var(--delay) !important;
+    transition: color var(--delay) !important;
 }
 
 /* Caret */
@@ -69,8 +71,19 @@
 
 /* Suffix button */
 .mat-mdc-form-field-icon-suffix {
-    margin: 0 0 0 0.25rem !important;
-    transition: all var(--delay) !important;
+    margin: 10px 0.5rem 0 0 !important;
+    color: var(--color-input-suffix);
+    transition: color var(--delay) !important;
+}
+
+/* Suffic icon */
+.mat-mdc-form-field-icon-suffix div .mat-mdc-icon-button .mat-icon {
+    overflow: visible !important;
+}
+
+/* Suffix button icon */
+.mat-mdc-icon-button svg {
+    color: var(--color-input-suffix) !important;
 }
 
 /* Hint with error */
@@ -100,7 +113,7 @@
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
     box-shadow: 0 0 0 62.5rem var(--color-input-background) inset;
     -webkit-text-fill-color: var(--color-text);
-    transition: all var(--delay) !important;
+    transition: box-shadow var(--delay) !important;
 }
 
 /* Autofill */

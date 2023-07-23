@@ -25,22 +25,25 @@
                     <div class="group-field">
                         <!-- RefNo -->
                         <div id="ref-no" style="width: 30% !important;">
-                            <span id="ref-no-label">{{ getLabel('refNo') }}</span>
                             <span id="ref-no-body">{{ form.value.refNo }}</span>
                         </div>
                         <!-- Date -->
                         <mat-form-field>
                             <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined">lock</mat-icon>
-                            <input [inputTabStop]="input" [matDatepicker]="picker" [placeholder]="getLabel('date')" [readonly]="!isAdmin()" data-tabindex="1" formControlName="date" matInput>
-                            <mat-datepicker-toggle [disabled]="!isAdminOrNewRecord()" class="date-picker-in-input-field" matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-label>{{ getLabel('date') }}</mat-label>
+                            <!-- <input matInput [matDatepicker]="picker"> -->
+                            <input [inputTabStop]="input" [matDatepicker]="picker" data-tabindex="1" formControlName="date" matInput>
+                            <mat-datepicker-toggle [disabled]="!isAdminOrNewRecord()" [for]="picker" matIconSuffix></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
+                            <!-- <mat-datepicker-toggle [disabled]="!isAdminOrNewRecord()" class="date-picker-in-input-field" matSuffix [for]="picker"></mat-datepicker-toggle> -->
+                            <!-- <mat-datepicker #picker></mat-datepicker> -->
                             <mat-error *ngIf="date.hasError('required')">{{ getHint("required") }}</mat-error>
-                            <mat-error *ngIf="!date.hasError('required')">{{ getHint("invalid") }}</mat-error>
                         </mat-form-field>
                         <!-- Ticket No -->
                         <mat-form-field>
                             <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined">lock</mat-icon>
-                            <input [inputTabStop]="input" [placeholder]="getLabel('ticketNo')" [readonly]="!isAdminOrNewRecord()" data-tabindex="2" formControlName="ticketNo" matInput>
+                            <mat-label>{{ getLabel('ticketNo') }}</mat-label>
+                            <input [inputTabStop]="input" [readonly]="!isAdminOrNewRecord()" data-tabindex="2" formControlName="ticketNo" matInput>
                             <mat-error *ngIf="ticketNo.hasError('required')">{{ getHint("required") }}</mat-error>
                             <mat-error *ngIf="ticketNo.hasError('maxlength')">{{ getHint("maxLength", ticketNo.errors.maxlength.requiredLength) }}</mat-error>
                         </mat-form-field>
@@ -49,7 +52,8 @@
                         <!-- Destination -->
                         <mat-form-field>
                             <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined">lock</mat-icon>
-                            <input #inputAutoComplete #triggerDestination="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="destinations" [placeholder]="getLabel('destination')" [readonly]="!isAdminOrNewRecord()" data-tabindex="3" formControlName="destination" matInput>
+                            <mat-label>{{ getLabel('destination') }}</mat-label>
+                            <input #inputAutoComplete #triggerDestination="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="destinations" [readonly]="!isAdminOrNewRecord()" data-tabindex="3" formControlName="destination" matInput>
                             <div matSuffix style="display:flex">
                                 <button (click)="openOrCloseAutoComplete(triggerDestination, 'destination')" [disabled]="!isAdminOrNewRecord()" mat-icon-button type="button">
                                     <mat-icon class="material-icons-outlined">expand_more</mat-icon>
@@ -61,7 +65,8 @@
                         <!-- Customer -->
                         <mat-form-field>
                             <mat-icon *ngIf="!isAdmin()" class="material-icons-outlined">lock</mat-icon>
-                            <input #inputAutoComplete #triggerCustomer="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="customers" [placeholder]="getLabel('customer')" [readonly]="!isAdmin()" data-tabindex="4" formControlName="customer" matInput>
+                            <mat-label>{{ getLabel('customer') }}</mat-label>
+                            <input #inputAutoComplete #triggerCustomer="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="customers" [readonly]="!isAdmin()" data-tabindex="4" formControlName="customer" matInput>
                             <div matSuffix style="display:flex">
                                 <button (click)="openOrCloseAutoComplete(triggerCustomer, 'customer')" [disabled]="!isAdmin()" mat-icon-button type="button">
                                     <mat-icon class="material-icons-outlined">expand_more</mat-icon>
@@ -75,7 +80,8 @@
                         <!-- Pickup Point -->
                         <mat-form-field>
                             <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined">lock</mat-icon>
-                            <input #inputAutoComplete #triggerPickupPoint="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="pickupPoints" [placeholder]="getLabel('pickupPoint')" [readonly]="!isAdminOrNewRecord()" data-tabindex="5" formControlName="pickupPoint" matInput>
+                            <mat-label>{{ getLabel('pickupPoint') }}</mat-label>
+                            <input #inputAutoComplete #triggerPickupPoint="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="pickupPoints" [readonly]="!isAdminOrNewRecord()" data-tabindex="5" formControlName="pickupPoint" matInput>
                             <div matSuffix style="display:flex">
                                 <button (click)="openOrCloseAutoComplete(triggerPickupPoint, 'pickupPoint')" [disabled]="!isAdminOrNewRecord()" mat-icon-button type="button">
                                     <mat-icon class="material-icons-outlined">expand_more</mat-icon>
@@ -99,43 +105,48 @@
                         <!-- Adults -->
                         <mat-form-field>
                             <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined">lock</mat-icon>
-                            <input (keyup)="doPaxCalculations()" [inputTabStop]="input" [placeholder]="getLabel('adults')" [readonly]="!isAdminOrNewRecord()" class="number" data-tabindex="6" formControlName="adults" matInput type="number">
+                            <mat-label>{{ getLabel('adults') }}</mat-label>
+                            <input (keyup)="doPaxCalculations()" [inputTabStop]="input" [readonly]="!isAdminOrNewRecord()" class="number" data-tabindex="6" formControlName="adults" matInput type="number">
                             <mat-error *ngIf="adults.hasError('required')">{{ getHint("required") }}</mat-error>
                             <mat-error *ngIf="!adults.hasError('required') && adults.hasError('min') || adults.hasError('max')">{{ getHint("invalid") }}</mat-error>
                         </mat-form-field>
                         <!-- Kids -->
                         <mat-form-field>
                             <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined">lock</mat-icon>
-                            <input (keyup)="doPaxCalculations()" [inputTabStop]="input" [placeholder]="getLabel('kids')" [readonly]="!isAdminOrNewRecord()" class="number" data-tabindex="7" formControlName="kids" matInput type="number">
+                            <mat-label>{{ getLabel('kids') }}</mat-label>
+                            <input (keyup)="doPaxCalculations()" [inputTabStop]="input" [readonly]="!isAdminOrNewRecord()" class="number" data-tabindex="7" formControlName="kids" matInput type="number">
                             <mat-error *ngIf="kids.hasError('required')">{{ getHint("required") }}</mat-error>
                             <mat-error *ngIf="!kids.hasError('required') && kids.hasError('min') || kids.hasError('max')">{{ getHint("invalid") }}</mat-error>
                         </mat-form-field>
                         <!-- Free -->
                         <mat-form-field>
                             <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined">lock</mat-icon>
-                            <input (keyup)="doPaxCalculations()" [inputTabStop]="input" [placeholder]="getLabel('free')" [readonly]="!isAdminOrNewRecord()" class="number" data-tabindex="8" formControlName="free" matInput type="number">
+                            <mat-label>{{ getLabel('free') }}</mat-label>
+                            <input (keyup)="doPaxCalculations()" [inputTabStop]="input" [readonly]="!isAdminOrNewRecord()" class="number" data-tabindex="8" formControlName="free" matInput type="number">
                             <mat-error *ngIf="free.hasError('required')">{{ getHint("required") }}</mat-error>
                             <mat-error *ngIf="!free.hasError('required') && free.hasError('min') || free.hasError('max')">{{ getHint("invalid") }}</mat-error>
                         </mat-form-field>
                         <!-- Total Pax -->
-                        <div id="total-pax" style="width: 30% !important;">
-                            <span id="total-pax-label">{{ getLabel('totalPax') }}</span>
-                            <span id="total-pax-body">{{ form.value.totalPax }}</span>
+                        <mat-form-field>
+                            <mat-label>{{ getLabel('totalPax') }}</mat-label>
+                            <input class="number" formControlName="totalPax" matInput>
                             <span id="total-pax-emoji">{{ getPassengerDifferenceColor() }}</span>
-                        </div>
+                        </mat-form-field>
                     </div>
                     <div class="group-field">
                         <!-- Email -->
                         <mat-form-field>
                             <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined">lock</mat-icon>
-                            <input [inputTabStop]="input" [placeholder]="getLabel('email')" [readonly]="!isAdminOrNewRecord()" data-tabindex="9" formControlName="email" matInput type="email">
+                            <mat-label>{{ getLabel('email') }}</mat-label>
+                            <input [inputTabStop]="input" [readonly]="!isAdminOrNewRecord()" data-tabindex="9" formControlName="email" matInput type="email">
                             <mat-error *ngIf="email.hasError('maxlength')">{{ getHint("maxLength", email.errors.maxlength.requiredLength) }}</mat-error>
                             <mat-error *ngIf="!email.hasError('maxlength') && email.hasError('email')">{{ getHint("invalid") }}</mat-error>
                         </mat-form-field>
                         <!-- Phones -->
                         <mat-form-field>
                             <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined">lock</mat-icon>
-                            <input [inputTabStop]="input" [placeholder]="getLabel('phones')" [readonly]="!isAdminOrNewRecord()" data-tabindex="10" formControlName="phones" matInput>
+                            <mat-label>{{ getLabel('phones') }}</mat-label>
+                            <input [inputTabStop]="input" [readonly]="!isAdminOrNewRecord()" data-tabindex="10" formControlName="phones" matInput>
                             <mat-error *ngIf="phones.hasError('maxlength')">{{ getHint("maxLength", phones.errors.maxlength.requiredLength) }}</mat-error>
                         </mat-form-field>
                     </div>
@@ -143,7 +154,8 @@
                         <!-- Remarks -->
                         <mat-form-field>
                             <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined">lock</mat-icon>
-                            <input [placeholder]="getLabel('remarks')" [readonly]="!isAdminOrNewRecord()" formControlName="remarks" matInput>
+                            <mat-label>{{ getLabel("remarks") }}</mat-label>
+                            <input [readonly]="!isAdminOrNewRecord()" formControlName="remarks" matInput>
                             <mat-error *ngIf="remarks.hasError('maxlength')">{{ getHint("maxLength", remarks.errors.maxlength.requiredLength) }}</mat-error>
                         </mat-form-field>
                     </div>
@@ -174,12 +186,14 @@
                     <!-- User -->
                     <mat-form-field>
                         <mat-icon class="material-icons-outlined">lock</mat-icon>
-                        <input [placeholder]="getLabel('user')" formControlName="user" matInput readonly>
+                        <mat-label>{{ getLabel("user") }}</mat-label>
+                        <input formControlName="user" matInput readonly>
                     </mat-form-field>
                     <!-- Last update -->
                     <mat-form-field>
                         <mat-icon class="material-icons-outlined">lock</mat-icon>
-                        <input [placeholder]="getLabel('lastUpdate')" formControlName="lastUpdate" matInput readonly>
+                        <mat-label>{{ getLabel("lastupdate") }}</mat-label>
+                        <input formControlName="lastUpdate" matInput readonly>
                     </mat-form-field>
                 </div>
             </div>

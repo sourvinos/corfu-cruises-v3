@@ -16,7 +16,7 @@ export class InputTabStopDirective {
 
         const elements = Array.prototype.slice.apply(document.querySelectorAll('input[data-tabindex]'))
 
-        if (document.getElementsByClassName('mat-option').length == 0) {
+        if (document.getElementsByClassName('mat-mdc-option').length == 0) {
 
             if (event.key === 'Enter' || event.key === 'ArrowDown') {
                 let nextTab = +(event.target.getAttribute('data-tabindex')) + 1

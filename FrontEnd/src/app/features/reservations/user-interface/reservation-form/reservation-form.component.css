@@ -68,18 +68,18 @@
 
 #ref-no, #total-pax {
     background-color: var(--color-input-background);
-    border-radius: 0.625rem;
     display: flex;
     flex-direction: column;
     font-family: var(--font-family-asty);
     font-weight: 300;
-    margin-top: var(--form-field-margin);
+    height: 60px;
     padding: 0.5rem 1rem;
     text-align: center;
     transition: all var(--delay) !important;
+
 }
 
-#ref-no #ref-no-label, #total-pax #total-pax-label {
+#ref-no #ref-no-label {
     color: var(--color-text);
     font-size: 0.80rem;
     text-align: center;
@@ -89,21 +89,12 @@
 #ref-no #ref-no-body {
     color: var(--color-accent);
     font-size: 1.5rem;
-    margin-top: 1.5625rem;
+    margin-top: 0.875rem;
     transform: scale(0.8, 2.5);
 }
 
-#total-pax #total-pax-body {
-    color: var(--color-text);
-    font-size: 1.5rem;
-    margin-top: 0.8125rem;
-    text-align: center;
-    transform: scale(0.8, 1.8);
-    transition: color var(--delay) !important;
-}
-
-#total-pax #total-pax-emoji {
-    margin-top: auto;
+#total-pax-emoji {
+    margin-left: 0.5rem;
 }
 
 .mat-menu-item span {
