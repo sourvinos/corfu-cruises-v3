@@ -5,6 +5,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inconsolata&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Material+Icons+Outlined");
 @import url("https://fonts.googleapis.com/css?family=Material+Symbols+Outlined");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto+Condensed:wght@300&family=Roboto:wght@300&display=swap');
 
 @import url("../custom/common-colors.css");
 
@@ -24,7 +25,6 @@
 @import url("../material/mat-dialog.css");
 @import url("../material/mat-divider.css");
 @import url("../material/mat-expansion-panel");
-@import url("../material/mat-icons.css");
 @import url("../material/mat-input.css");
 @import url("../material/mat-menu.css");
 @import url("../material/mat-select.css");

@@ -13,8 +13,8 @@
                     <img [src]="getIcon('calendar')">
                     <div class="description">{{ formatDateToLocale(getDateFromStorage(), true, true) }}</div>
                 </div>
-                <button (click)="resetTableFilters()" class="accent" mat-flat-button>
-                    <mat-icon class="material-icons-outlined no-text">filter_alt_off</mat-icon>
+                <button (click)="resetTableFilters()" class="fab fab-with-background" mat-icon-button>
+                    <mat-icon class="material-icons-outlined">filter_alt_off</mat-icon>
                 </button>
             </div>
         </div>
@@ -163,8 +163,8 @@
     </div>
 
     <div id="footer">
-        <button [matMenuTriggerFor]="menu" mat-icon-button>
-            <mat-icon class="material-icons-outlined no-text reverse">more_vert</mat-icon>
+        <button [matMenuTriggerFor]="menu" (click)="resetTableFilters()" class="fab fab-with-no-background" mat-icon-button>
+            <mat-icon class="material-icons-outlined">more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" class="primary">
             <ng-container *ngTemplateOutlet="contextMenu"></ng-container>

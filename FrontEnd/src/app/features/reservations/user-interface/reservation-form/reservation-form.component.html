@@ -11,7 +11,7 @@
                     <mat-button-toggle (click)="onShowPassengersTab()">{{ getLabel("toggle-button-passengers") | uppercase }}</mat-button-toggle>
                 </mat-button-toggle-group>
                 <button [matMenuTriggerFor]="menu" mat-icon-button>
-                    <mat-icon class="material-icons-outlined no-text">more_vert</mat-icon>
+                    <mat-icon class="material-icons-outlined ">more_vert</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu" class="primary">
                     <ng-container *ngTemplateOutlet="boardingPassMenu"></ng-container>

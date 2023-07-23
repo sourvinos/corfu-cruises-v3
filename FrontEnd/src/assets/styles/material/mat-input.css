@@ -1,13 +1,13 @@
-/* Outer wrapper */
+/* Background wrapper */
 .mat-mdc-form-field {
-    padding: 1rem;
+    width: 100%;
 }
 
-/* Background wrapper includes label, input, underline */
+/* Background wrapper */
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background-color: var(--color-input-background) !important;
     border-radius: 0;
-    transition: background-color var(--delay) !important;
+    transition: all var(--delay) !important;
 }
 
 /* Background wrapper:hover */
@@ -21,16 +21,26 @@
 }
 
 /* Label */
-.mat-mdc-floating-label {
+.mat-mdc-form-field .mat-mdc-floating-label.mdc-floating-label {
+    font-size: 1rem;
     color: var(--color-text) !important;
     font-family: var(--font-family-asty) !important;
-    font-size: 0.75rem !important;
     font-weight: 300;
+    transition: all var(--delay) !important;
 }
 
-/* Label position */
-.mdc-text-field--filled .mdc-floating-label--float-above {
-    transform: translateY(-150%) !important;
+/* Label */
+.mat-mdc-form-field-infix {
+    display: flex;
+    flex-direction: row;
+    padding-top: 1.75rem !important;
+}
+
+/* Icon prefix */
+.mat-mdc-form-field-infix .mat-icon {
+    color: var(--color-text);
+    margin: 0 0.4rem 0 -0.2rem;
+    transition: all var(--delay) !important;
 }
 
 /* Label with error */
@@ -43,7 +53,7 @@
     border-radius: 0 0 0 0;
     font-family: var(--font-family-asty);
     font-weight: 300;
-    transition: color var(--delay) !important;
+    transition: all var(--delay) !important;
 }
 
 /* Input actual without error */
@@ -59,7 +69,8 @@
 
 /* Suffix button */
 .mat-mdc-form-field-icon-suffix {
-    padding: 0.25rem 0 0 0.25rem !important;
+    margin: 0 0 0 0.25rem !important;
+    transition: all var(--delay) !important;
 }
 
 /* Hint with error */
@@ -89,7 +100,7 @@
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
     box-shadow: 0 0 0 62.5rem var(--color-input-background) inset;
     -webkit-text-fill-color: var(--color-text);
-    transition: color var(--delay) !important;
+    transition: all var(--delay) !important;
 }
 
 /* Autofill */

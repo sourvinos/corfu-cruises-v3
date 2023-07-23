@@ -8,7 +8,6 @@
     /* Text */
     --color-text: #000000;
     --color-text-reverse: #ffffff;
-    --color-border: #f1f1f1;
     --color-table-headers: #ffffff;
     --color-footer: #ffffff;
     /* Input */
@@ -20,10 +19,12 @@
     --color-dialog-header: #17608F;
     /* Flags */
     --color-flag-border: #000000;
-    /* Buttons */
+    /* Top menu buttons */
     --color-dropdown-button: #ffffff;
     --color-dropdown-button-hover: #437796;
     --color-dropdown-trigger: #ffffff;
+    /* Buttons */
+    --color-button-fab-hover: #f1f1f1;
     /* Mat-Expander */
     --color-header-background-hover: #f3f3f3;
 }

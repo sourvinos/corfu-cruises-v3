@@ -891,7 +891,7 @@
             },
             {
                 "id": "submitButton",
-                "description": "CONTINUE"
+                "description": "Continue"
             },
             {
                 "id": "weNeedYourEmail",

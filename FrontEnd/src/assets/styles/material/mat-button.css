@@ -1,23 +1,15 @@
+.mdc-button .mat-icon {
+    margin-top: 0.125rem !important;
+}
+.mdc-button .mdc-button__label {
+    margin-top: 0.125rem !important;
+    transform: scale(0.8, 1.4);
+}
+
 .button-group-right {
     display: flex;
     gap: 1rem;
     margin-left: auto;
-}
-
-/* .mat-button-focus-overlay {
-    background-color: transparent !important;
-} */
-
-/* .mat-icon-button {
-    padding: 0 !important;
-} */
-
-/* button .mat-button-wrapper .emoji {
-    margin-right: 0.2rem;
-} */
-
-button .pi.with-text {
-    margin-right: 0.5rem !important;
 }
 
 button {
@@ -26,13 +18,31 @@ button {
     box-shadow: none !important;
     cursor: default !important;
     display: flex !important;
-    font-family: var(--font-family-ubuntu) !important;
+    font-family: var(--font-family-roboto-condensed) !important;
     font-size: var(--font-size-button) !important;
     font-weight: 300 !important;
     justify-content: center;
     min-width: 0 !important;
     outline: 0 !important;
     padding: 0 1rem 0.125rem 1rem !important;
+}
+
+button.fab {
+    color: var(--color-text) !important;
+    height: 38px !important;
+    padding: 0 !important;
+    transition: color var(--delay) !important;
+    width: 38px !important;
+}
+
+button.fab-with-background {
+    background-color: var(--color-accent);
+    color: var(--color-button-fab) !important;
+}
+
+button.fab-with-no-background {
+    background-color: transparent;
+    color: var(--color-text) !important;
 }
 
 button.bold {
@@ -43,24 +53,6 @@ button.delete {
     background-color: var(--color-button-delete) !important;
     color: var(--color-button-text) !important;
 }
-
-/* button.mat-button-toggle-label-content {
-    line-height: 2.5rem !important;
-} */
-
-/* button.mat-mini-fab .mat-button-wrapper .material-icons.reverse {
-    color: var(--color-text);
-} */
-
-/* button.mat-mini-fab {
-    display: flex !important;
-    justify-content: center !important;
-    padding: 0 !important;
-} */
-
-/* button.mat-mini-fab:hover {
-    background-color: color-mix(in srgb, var(--color-secondary) var(--hover-transparency), transparent);
-} */
 
 button.primary {
     background-color: var(--color-button-primary) !important;
@@ -101,8 +93,4 @@ button:disabled {
 
 button:not(:disabled) {
     cursor: pointer !important;
-}
-
-.mat-mdc-icon-button.mat-mdc-button-base {
-    padding: 0 !important;
 }

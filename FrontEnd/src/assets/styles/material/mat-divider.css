@@ -1,6 +1,7 @@
 .mat-divider {
     background-color: var(--color-secondary);
     transition: all var(--delay);
+    width: 100%;
 }
 
 .mat-divider-horizontal {

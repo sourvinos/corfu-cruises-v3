@@ -23,7 +23,7 @@ export class ForgotPasswordFormComponent {
     //#region variables
 
     public feature = 'forgotPasswordForm'
-    public featureIcon = 'password'
+    public featureIcon = 'forgot-password'
     public form: FormGroup
     public icon = 'arrow_back'
     public input: InputTabStopDirective
