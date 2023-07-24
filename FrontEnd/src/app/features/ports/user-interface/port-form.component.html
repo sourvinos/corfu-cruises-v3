@@ -9,39 +9,44 @@
         <form [formGroup]="form" autocomplete="off">
             <!-- Abbreviation -->
             <mat-form-field>
-                <input [inputTabStop]="input" [placeholder]="getLabel('abbreviation')" data-tabindex="1" formControlName="abbreviation" matInput>
+                <mat-label>{{ getLabel('abbreviation') }}</mat-label>
+                <input [inputTabStop]="input" data-tabindex="1" formControlName="abbreviation" matInput>
                 <mat-error *ngIf="abbreviation.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="abbreviation.hasError('maxlength')">{{ getHint("maxLength", abbreviation.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <!-- Description -->
             <mat-form-field>
-                <input [inputTabStop]="input" [placeholder]="getLabel('description')" data-tabindex="2" formControlName="description" matInput>
+                <mat-label>{{ getLabel('description') }}</mat-label>
+                <input [inputTabStop]="input" data-tabindex="2" formControlName="description" matInput>
                 <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="description.hasError('maxlength')">{{ getHint("maxLength", description.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <!-- StopOrder -->
             <mat-form-field>
-                <input [inputTabStop]="input" [placeholder]="getLabel('stopOrder')" data-tabindex="3" formControlName="stopOrder" matInput type="number">
+                <mat-label>{{ getLabel('stopOrder') }}</mat-label>
+                <input [inputTabStop]="input" data-tabindex="3" formControlName="stopOrder" matInput type="number">
                 <mat-error *ngIf="stopOrder.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="!stopOrder.hasError('required') && stopOrder.hasError('min') || stopOrder.hasError('max')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>
-            <div class="group-field">
-                <!-- User -->
-                <mat-form-field>
-                    <mat-icon class="material-icons-outlined">lock</mat-icon>
-                    <input [placeholder]="getLabel('user')" formControlName="user" matInput readonly>
-                </mat-form-field>
-                <!-- Last update -->
-                <mat-form-field>
-                    <mat-icon class="material-icons-outlined">lock</mat-icon>
-                    <input [placeholder]="getLabel('lastUpdate')" formControlName="lastUpdate" matInput readonly>
-                </mat-form-field>
-            </div>
             <div id="checkboxes">
                 <!-- Active -->
                 <mat-checkbox formControlName="isActive">
                     <span>{{ getLabel("isActive") }}</span>
                 </mat-checkbox>
+            </div>
+            <div class="group-field hide-hint">
+                <!-- User -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('user') }}</mat-label>
+                    <mat-icon class="material-icons-outlined small">lock</mat-icon>
+                    <input formControlName="user" matInput readonly>
+                </mat-form-field>
+                <!-- Last update -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('lastUpdate') }}</mat-label>
+                    <mat-icon class="material-icons-outlined small">lock</mat-icon>
+                    <input formControlName="lastUpdate" matInput readonly>
+                </mat-form-field>
             </div>
         </form>
 

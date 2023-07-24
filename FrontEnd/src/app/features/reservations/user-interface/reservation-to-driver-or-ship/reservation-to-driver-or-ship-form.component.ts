@@ -10,7 +10,7 @@ import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 @Component({
     selector: 'reservation-to-driver-or-ship-form',
     templateUrl: './reservation-to-driver-or-ship-form.component.html',
-    styleUrls: ['../../../../../assets/styles/material/mat-dialog.css', './reservation-to-driver-or-ship-form.component.css']
+    styleUrls: ['./reservation-to-driver-or-ship-form.component.css']
 })
 
 export class ReservationToDriverOrShipComponent {

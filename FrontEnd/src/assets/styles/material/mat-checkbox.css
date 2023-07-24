@@ -18,6 +18,16 @@
     height: 20px;
 }
 
+.mat-mdc-checkbox label {
+    align-items: center !important;
+    color: var(--color-text);
+    display: flex;
+    font-family: var(--font-family-asty);
+    font-weight: 300;
+    margin-left: 0.5rem !important;
+    transition: color var(--delay) !important;
+}
+
 .mat-mdc-checkbox label .mat-icon.small {
     align-items: center;
     display: flex;
@@ -27,15 +37,6 @@
 
 .mat-mdc-checkbox label span {
     margin-top: 2px;
-}
-
-.mat-mdc-checkbox label {
-    align-items: center !important;
-    color: var(--color-text);
-    display: flex;
-    font-family: var(--font-family-asty);
-    font-weight: 300;
-    transition: color var(--delay) !important;
 }
 
 .mat-mdc-checkbox-ripple, .mdc-checkbox__ripple {

@@ -9,20 +9,23 @@
         <form [formGroup]="form" autocomplete="off">
             <!-- Description -->
             <mat-form-field>
-                <input [inputTabStop]="input" [placeholder]="getLabel('description')" data-tabindex="1" formControlName="description" matInput>
+                <mat-label>{{ getLabel('description') }}</mat-label>
+                <input [inputTabStop]="input" data-tabindex="1" formControlName="description" matInput>
                 <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="description.hasError('maxlength')">{{ getHint("maxLength", description.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <div class="group-field">
                 <!-- From Port -->
                 <mat-form-field>
-                    <input [inputTabStop]="input" [placeholder]="getLabel('fromPort')" data-tabindex="2" formControlName="fromPort" matInput>
+                    <mat-label>{{ getLabel('fromPort') }}</mat-label>
+                    <input [inputTabStop]="input" data-tabindex="2" formControlName="fromPort" matInput>
                     <mat-error *ngIf="fromPort.hasError('required')">{{ getHint("required") }}</mat-error>
                     <mat-error *ngIf="fromPort.hasError('maxlength')">{{ getHint("maxLength", fromPort.errors.maxlength.requiredLength) }}</mat-error>
                 </mat-form-field>
                 <!-- From Time -->
                 <mat-form-field>
-                    <input [inputTabStop]="input" [placeholder]="getLabel('fromTime')" data-tabindex="3" formControlName="fromTime" matInput>
+                    <mat-label>{{ getLabel('fromTime') }}</mat-label>
+                    <input [inputTabStop]="input" data-tabindex="3" formControlName="fromTime" matInput>
                     <mat-error *ngIf="fromTime.hasError('required')">{{ getHint("required") }}</mat-error>
                     <mat-error *ngIf="!fromTime.hasError('required') && !fromTime.hasError('isTime')">{{ getHint("invalid") }}</mat-error>
                 </mat-form-field>
@@ -30,39 +33,31 @@
             <div class="group-field">
                 <!-- Via Ports -->
                 <mat-form-field>
-                    <input [inputTabStop]="input" [placeholder]="getLabel('viaPort')" data-tabindex="4" formControlName="viaPort" matInput>
+                    <mat-label>{{ getLabel('viaPort') }}</mat-label>
+                    <input [inputTabStop]="input" data-tabindex="4" formControlName="viaPort" matInput>
                     <mat-error *ngIf="viaPort.hasError('maxlength')">{{ getHint("maxLength", viaPort.errors.maxlength.requiredLength) }}</mat-error>
                 </mat-form-field>
                 <!-- Via Times -->
                 <mat-form-field>
-                    <input [inputTabStop]="input" [placeholder]="getLabel('viaTime')" data-tabindex="5" formControlName="viaTime" matInput>
+                    <mat-label>{{ getLabel('viaTime') }}</mat-label>
+                    <input [inputTabStop]="input" data-tabindex="5" formControlName="viaTime" matInput>
                     <mat-error *ngIf="!viaTime.hasError('required') && !viaTime.hasError('isTime')">{{ getHint("invalid") }}</mat-error>
                 </mat-form-field>
             </div>
             <div class="group-field">
                 <!-- Destination Port -->
                 <mat-form-field>
-                    <input [inputTabStop]="input" [placeholder]="getLabel('toPort')" data-tabindex="6" formControlName="toPort" matInput>
+                    <mat-label>{{ getLabel('toPort') }}</mat-label>
+                    <input [inputTabStop]="input" data-tabindex="6" formControlName="toPort" matInput>
                     <mat-error *ngIf="toPort.hasError('required')">{{ getHint("required") }}</mat-error>
                     <mat-error *ngIf="toPort.hasError('maxlength')">{{ getHint("maxLength", toPort.errors.maxlength.requiredLength) }}</mat-error>
                 </mat-form-field>
                 <!-- Destination Time -->
                 <mat-form-field>
-                    <input [inputTabStop]="input" [placeholder]="getLabel('toTime')" data-tabindex="7" formControlName="toTime" matInput>
+                    <mat-label>{{ getLabel('toTime') }}</mat-label>
+                    <input [inputTabStop]="input" data-tabindex="7" formControlName="toTime" matInput>
                     <mat-error *ngIf="toTime.hasError('required')">{{ getHint("required") }}</mat-error>
                     <mat-error *ngIf="!toTime.hasError('required') && !toTime.hasError('isTime')">{{ getHint("invalid") }}</mat-error>
-                </mat-form-field>
-            </div>
-            <div class="group-field">
-                <!-- User -->
-                <mat-form-field>
-                    <mat-icon class="material-icons-outlined">lock</mat-icon>
-                    <input [placeholder]="getLabel('user')" formControlName="user" matInput readonly>
-                </mat-form-field>
-                <!-- Last update -->
-                <mat-form-field>
-                    <mat-icon class="material-icons-outlined">lock</mat-icon>
-                    <input [placeholder]="getLabel('lastUpdate')" formControlName="lastUpdate" matInput readonly>
                 </mat-form-field>
             </div>
             <div id="checkboxes">
@@ -70,6 +65,20 @@
                 <mat-checkbox formControlName="isActive">
                     <span>{{ getLabel("isActive") }}</span>
                 </mat-checkbox>
+            </div>
+            <div class="group-field hide-hint">
+                <!-- User -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('user') }}</mat-label>
+                    <mat-icon class="material-icons-outlined small">lock</mat-icon>
+                    <input formControlName="user" matInput readonly>
+                </mat-form-field>
+                <!-- Last update -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('lastUpdate') }}</mat-label>
+                    <mat-icon class="material-icons-outlined small">lock</mat-icon>
+                    <input formControlName="lastUpdate" matInput readonly>
+                </mat-form-field>
             </div>
         </form>
 
