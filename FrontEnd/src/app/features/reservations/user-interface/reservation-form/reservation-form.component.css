@@ -27,6 +27,7 @@
     display: flex;
     flex-direction: row;
     gap: 1rem;
+    justify-content: center;
 }
 
 #reservation-tab #overview {
@@ -39,10 +40,6 @@
     width: 33%;
 }
 
-#remarks {
-    margin-top: auto;
-}
-
 #table-wrapper {
     margin: 0;
 }
@@ -52,6 +49,9 @@
     flex-direction: row;
     height: 100%;
     margin: 0 auto;
+}
+.group-field:last-child {
+    margin-top: auto;
 }
 
 #passenger-check-total-icon {
@@ -94,7 +94,7 @@
 }
 
 #total-pax-emoji {
-    margin-left: 0.5rem;
+    margin: 0.25rem 0 0 0.5rem;
 }
 
 .mat-menu-item span {

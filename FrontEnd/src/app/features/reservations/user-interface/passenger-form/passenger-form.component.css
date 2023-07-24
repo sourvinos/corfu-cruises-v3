@@ -1,15 +1,18 @@
-#dialog-header {
-    margin: 0 0 1.1rem 1rem;
+#form-wrapper {
+    background-color: var(--color-background);
+    gap: 1rem;
+    padding: 1rem 1rem 1rem 1rem;
+    width: 25rem;
 }
 
-#dialog-content {
-    overflow-y: hidden;
+#dialog-header {
+    margin: 0 0 0 1.125rem;
 }
 
 #dialog-footer {
-    margin: 2rem 1rem 0 0;
+    margin: 2rem 1rem 0 auto;
 }
 
-.group-field:last-child {
-    margin: 1.125rem 0 0 1.125rem;
+#is-checked-in {
+    padding: 0 1.5rem 0 1.5rem;
 }

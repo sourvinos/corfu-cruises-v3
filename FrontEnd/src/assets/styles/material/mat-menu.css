@@ -1,41 +1,19 @@
-.mat-menu-trigger .mat-button-wrapper .mat-icon {
+.mat-mdc-menu-content {
+    background-color: var(--color-background);
+}
+
+.mdc-list-item__primary-text {
     color: var(--color-text) !important;
-    transition: color var(--delay) !important;
-}
-
-.mat-menu-trigger .mat-button-wrapper .mat-icon.reverse {
-    color: var(--color-button-text) !important;
-}
-
-.mat-menu-panel, .mat-menu-content {
-    align-items: flex-start;
-    background-color: var(--color-background) !important;
-    border-radius: 0 !important;
-    border: 0.0625rem solid var(--color-background);
-    display: flex;
-    flex-direction: column;
-    max-width: 100% !important;
-    min-height: auto !important;
-    overflow: visible !important;
-    padding: 0 !important;
-    width: 100%;
-}
-
-.mat-menu-item {
-    color: var(--color-button-text) !important;
-    display: flex !important;
     font-family: var(--font-family-asty) !important;
-    font-size: var(--font-size-button) !important;
-    justify-content: flex-start !important;
-    line-height: 0 !important;
-    margin-left: 0 !important;
-    padding: 0 1rem !important;
+    font-size: 0.65rem !important;
+    font-weight: 300 !important;
+    transform: scale(1, 1.5) !important;
 }
 
-.mat-menu-item:hover:not([disabled]), .mat-menu-item.cdk-program-focused:not([disabled]), .mat-menu-item-highlighted:not([disabled]):hover {
-    background-color: var(--color-secondary) !important;
+.mat-mdc-menu-item:hover {
+    background-color: var(--color-primary) !important;
 }
 
-.mat-menu-item:hover:not([disabled]) > span {
+.mat-mdc-menu-item:hover .mdc-list-item__primary-text {
     color: var(--color-text-reverse) !important;
 }

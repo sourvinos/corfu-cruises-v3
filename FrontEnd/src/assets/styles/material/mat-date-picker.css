@@ -1,8 +1,7 @@
 .mat-mdc-icon-button svg {
     color: var(--color-datepicker-color) !important;
-    height: 1.6125rem !important;
+    height: 18px !important;
     margin-top: 5px;
     position: absolute;
     transition: color var(--delay) !important;
-    width: 1.6125rem !important;
 }

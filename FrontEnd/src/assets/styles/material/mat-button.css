@@ -1,8 +1,9 @@
 .mdc-button .mat-icon {
-    margin-top: 0.125rem !important;
+    margin: 0.125rem 0 0 0 !important;
 }
+
 .mdc-button .mdc-button__label {
-    margin-top: 0.125rem !important;
+    margin-top: 0.3rem !important;
     transform: scale(0.8, 1.4);
 }
 
@@ -18,7 +19,7 @@ button {
     box-shadow: none !important;
     cursor: default !important;
     display: flex !important;
-    font-family: var(--font-family-roboto-condensed) !important;
+    font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-button) !important;
     font-weight: 300 !important;
     justify-content: center;
@@ -43,6 +44,10 @@ button.fab-with-background {
 button.fab-with-no-background {
     background-color: transparent;
     color: var(--color-text) !important;
+}
+
+button.fab-with-no-background.reverse {
+    color: var(--color-text-reverse) !important;
 }
 
 button.bold {

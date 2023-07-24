@@ -2,90 +2,12 @@
     box-sizing: border-box !important;
 }
 
-.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
-    opacity: 0 !important;
-}
-
-.mat-dialog-container {
-    padding: 2rem !important;
-}
-
-svg {
-    display: block;
-    margin: 0.625rem auto 1.3rem auto;
-    width: 6.25rem;
-}
-
-.path {
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 0;
-}
-
-.path.circle {
-    animation: dash 0.9s ease-in-out;
-}
-
-.path.line {
-    animation: dash 0.9s 0.35s ease-in-out forwards;
-    stroke-dashoffset: 1000;
-}
-
-.path.check {
-    animation: dash-check 0.9s 0.35s ease-in-out forwards;
-    stroke-dashoffset: -100;
-}
-
-@keyframes dash {
-    0% {
-        stroke-dashoffset: 1000;
-    }
-
-    100% {
-        stroke-dashoffset: 0;
-    }
-}
-
-@keyframes dash {
-    0% {
-        stroke-dashoffset: 1000;
-    }
-
-    100% {
-        stroke-dashoffset: 0;
-    }
-}
-
-@keyframes dash-check {
-    0% {
-        stroke-dashoffset: -100;
-    }
-
-    100% {
-        stroke-dashoffset: 900;
-    }
-}
-
-@keyframes dash-check {
-    0% {
-        stroke-dashoffset: -100;
-    }
-
-    100% {
-        stroke-dashoffset: 900;
-    }
-}
-
 #dialog {
+    align-items: center;
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding: 0;
-}
-
-#dialog-header {
-    display: flex;
-    justify-content: center;
-    padding: 0;
+    padding: 1rem;
 }
 
 #dialog-content {
@@ -100,6 +22,17 @@ svg {
     text-align: center;
 }
 
+#dialog-footer {
+    justify-content: center;
+    margin-top: auto;
+}
+
+#dialog-header {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
 #dialog-json-content {
     color: var(--color-text);
     font-family: monospace !important;
@@ -108,9 +41,8 @@ svg {
     overflow: scroll;
 }
 
-#dialog-footer {
-    justify-content: center;
-    margin-top: auto;
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+    opacity: 0 !important;
 }
 
 .mat-dialog-actions {
@@ -118,4 +50,69 @@ svg {
     margin: 0;
     min-height: 0;
     padding: 0;
+}
+
+.mat-dialog-container {
+    padding: 2rem !important;
+}
+
+.path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+}
+
+.path.check {
+    animation: dash-check 0.9s 0.35s ease-in-out forwards;
+    stroke-dashoffset: -100;
+}
+
+.path.circle {
+    animation: dash 0.9s ease-in-out;
+}
+
+.path.line {
+    animation: dash 0.9s 0.35s ease-in-out forwards;
+    stroke-dashoffset: 1000;
+}
+
+@keyframes dash {
+    0% {
+        stroke-dashoffset: 1000;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dashoffset: 1000;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes dash-check {
+    0% {
+        stroke-dashoffset: -100;
+    }
+    100% {
+        stroke-dashoffset: 900;
+    }
+}
+
+@keyframes dash-check {
+    0% {
+        stroke-dashoffset: -100;
+    }
+    100% {
+        stroke-dashoffset: 900;
+    }
+}
+
+svg {
+    display: block;
+    margin: 0.625rem auto 1.3rem auto;
+    width: 6.25rem;
 }

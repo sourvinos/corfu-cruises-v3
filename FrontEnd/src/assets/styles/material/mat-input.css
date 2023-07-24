@@ -23,10 +23,13 @@
 
 /* Label */
 .mat-mdc-form-field .mat-mdc-floating-label.mdc-floating-label {
-    font-size: 1rem;
     color: var(--color-text) !important;
     font-family: var(--font-family-asty) !important;
+    font-size: 12px !important;
     font-weight: 300;
+    margin-top: -19px;
+    top: 25px;
+    transform: none !important;
     transition: color var(--delay) !important;
 }
 
@@ -34,7 +37,7 @@
 .mat-mdc-form-field-infix {
     display: flex;
     flex-direction: row;
-    padding-top: 1.75rem !important;
+    padding: 1.25rem 0 0.25rem 0 !important;
 }
 
 /* Icon prefix */
@@ -43,6 +46,15 @@
     margin: 0 0.4rem 0 -0.2rem;
     transition: color var(--delay) !important;
     overflow: visible !important;
+}
+
+/* Icon prefix */
+.mat-mdc-form-field-infix .mat-icon.small {
+    align-items: center;
+    display: flex;
+    font-size: 17px;
+    justify-content: center;
+    margin-top: 3px;
 }
 
 /* Label with error */
@@ -54,8 +66,8 @@
 .mdc-text-field {
     border-radius: 0 0 0 0;
     font-family: var(--font-family-asty);
+    font-size: 14px !important;
     font-weight: 300;
-    /* transition: all var(--delay) !important; */
 }
 
 /* Input actual without error */
@@ -71,19 +83,28 @@
 
 /* Suffix button */
 .mat-mdc-form-field-icon-suffix {
-    margin: 10px 0.5rem 0 0 !important;
     color: var(--color-input-suffix);
     transition: color var(--delay) !important;
 }
 
-/* Suffic icon */
+/* Suffix button */
 .mat-mdc-form-field-icon-suffix div .mat-mdc-icon-button .mat-icon {
     overflow: visible !important;
 }
 
-/* Suffix button icon */
+/* Suffix button */
 .mat-mdc-icon-button svg {
     color: var(--color-input-suffix) !important;
+}
+
+/* Suffix button */
+.mat-mdc-form-field-icon-suffix.no-margins {
+    margin-top: 0;
+}
+
+/* Suffix button */
+.with-margin {
+    margin-top: 5px;
 }
 
 /* Hint with error */
@@ -95,7 +116,7 @@
 
 /* Underline not focused */
 .mdc-text-field--filled:not(.mdc-text-field--disabled):not(.mat-focused) .mdc-line-ripple::before, .mdc-text-field:not(.mdc-text-field--disabled) .mdc-line-ripple::after {
-    border-bottom-color: var(--color-input-background-focus) !important;
+    border-bottom-color: transparent !important;
 }
 
 /* Underline focused without error */
@@ -107,6 +128,11 @@
 /* Underline with error */
 .mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple::before, .mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple::after {
     border-bottom-color: var(--color-input-error) !important;
+}
+
+/* Hint */
+.mat-mdc-form-field-subscript-wrapper, .mat-mdc-form-field-bottom-align::before {
+    margin: -2px 0 2px -4px;
 }
 
 /* Autofill */
