@@ -15,9 +15,11 @@
             <mat-form-field>
                 <mat-label>{{ getLabel('password') }}</mat-label>
                 <input [inputTabStop]="input" [type]="hidePassword ? 'password' : 'text'" data-tabindex="2" formControlName="password" matInput>
-                <button (click)="hidePassword = !hidePassword" class="fab" mat-icon-button matSuffix type="button">
-                    <mat-icon class="material-icons-outlined">{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
-                </button>
+                <div matSuffix style="display:flex">
+                    <button (click)="hidePassword = !hidePassword" mat-icon-button type="button">
+                        <mat-icon class="material-icons-outlined with-margin">{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+                    </button>
+                </div>
                 <mat-error *ngIf="password.hasError('required')">{{ getHint("required") }}</mat-error>
             </mat-form-field>
             <div id="columns">

@@ -545,10 +545,6 @@
                 "description": "Ενεργός"
             },
             {
-                "id": "deleteButton",
-                "description": "Διαγραφη"
-            },
-            {
                 "id": "changePasswordButton",
                 "description": "Αλλαγη κωδικου"
             },

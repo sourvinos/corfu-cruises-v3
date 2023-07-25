@@ -545,10 +545,6 @@
                 "description": "Aktiv"
             },
             {
-                "id": "deleteButton",
-                "description": "Löschen"
-            },
-            {
                 "id": "changePasswordButton",
                 "description": "Passwort ändern"
             },

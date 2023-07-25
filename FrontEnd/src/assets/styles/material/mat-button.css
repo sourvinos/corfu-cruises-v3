@@ -7,6 +7,10 @@
     transform: scale(0.8, 1.4);
 }
 
+.mat-mdc-icon-button {
+    --mat-mdc-button-persistent-ripple-color: transparent !important;
+}
+
 .button-group-right {
     display: flex;
     gap: 0.5rem;
@@ -30,10 +34,10 @@ button {
 
 button.fab {
     color: var(--color-text) !important;
-    height: 38px !important;
+    height: 2.375rem !important;
     padding: 0 !important;
     transition: color var(--delay) !important;
-    width: 38px !important;
+    width: 2.375rem !important;
 }
 
 button.fab-with-background {

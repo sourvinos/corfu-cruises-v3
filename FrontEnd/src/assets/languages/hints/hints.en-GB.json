@@ -39,6 +39,10 @@
         {
             "id": "beginsOrEndsWithSpace",
             "description": "This field can't begin or end with one or more spaces."
+        },
+        {
+            "id": "remainingCharacters",
+            "description": "You can give up to xx more characters"
         }
     ]
 }

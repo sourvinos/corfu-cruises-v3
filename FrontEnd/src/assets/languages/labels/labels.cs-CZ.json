@@ -545,10 +545,6 @@
                 "description": "Aktivní"
             },
             {
-                "id": "deleteButton",
-                "description": "Smazat"
-            },
-            {
                 "id": "changePasswordButton",
                 "description": "Změna hesla"
             },

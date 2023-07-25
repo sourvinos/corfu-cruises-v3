@@ -8,7 +8,6 @@
     /* Font weights */
     --font-weight-dialog-content: 300 !important;
     --font-weight-logo: 400;
-    --font-weight-mat-hint: 300;
     /* Sizes */
     --font-size-autocomplete-select: 0.875rem;
     --font-size-button: 1rem;
@@ -21,7 +20,6 @@
     --font-size-fieldset-legend: 0.8rem;
     --font-size-h1: 1rem;
     --font-size-h6: 0.8rem;
-    --font-size-input-hint: 0.75rem;
     --font-size-input-label: 1.0625rem;
     --font-size-input: 0.9375rem;
     --font-size-line-height-h1: 1.25rem;

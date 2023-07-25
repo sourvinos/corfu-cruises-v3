@@ -25,10 +25,10 @@
 .mat-mdc-form-field .mat-mdc-floating-label.mdc-floating-label {
     color: var(--color-text) !important;
     font-family: var(--font-family-asty) !important;
-    font-size: 12px !important;
+    font-size: 0.75rem !important;
     font-weight: 300;
-    margin-top: -19px;
-    top: 25px;
+    margin-top: -1.1875rem;
+    top: 1.5625rem;
     transform: none !important;
     transition: color var(--delay) !important;
 }
@@ -52,9 +52,9 @@
 .mat-mdc-form-field-infix .mat-icon.small {
     align-items: center;
     display: flex;
-    font-size: 17px;
+    font-size: 1.0625rem;
     justify-content: center;
-    margin-top: 3px;
+    margin-top: 0.1875rem;
 }
 
 /* Label with error */
@@ -66,7 +66,7 @@
 .mdc-text-field {
     border-radius: 0 0 0 0;
     font-family: var(--font-family-asty);
-    font-size: 14px !important;
+    font-size: 0.875rem !important;
     font-weight: 300;
 }
 
@@ -104,7 +104,23 @@
 
 /* Suffix button */
 .with-margin {
-    margin-top: 5px;
+    margin-top: 0.3125rem;
+}
+
+/* Hint */
+.mat-mdc-form-field-hint {
+    color: var(--color-text);
+    display: flex;
+    font-family: var(--font-family-asty);
+    font-weight: 300;
+    justify-content: flex-end;
+    transform: translateY(0.0625rem);
+    width: 100%;
+}
+
+/* Hint */
+.mat-mdc-form-field-hint-wrapper {
+    padding: 0 !important;
 }
 
 /* Hint with error */
@@ -113,6 +129,12 @@
     font-family: var(--font-family-asty) !important;
     font-weight: 300;
 }
+
+/* Hint with error */
+.mat-mdc-form-field-subscript-wrapper {
+    transform: translateY(-0.0625rem);
+}
+
 
 /* Underline not focused */
 .mdc-text-field--filled:not(.mdc-text-field--disabled):not(.mat-focused) .mdc-line-ripple::before, .mdc-text-field:not(.mdc-text-field--disabled) .mdc-line-ripple::after {
@@ -128,11 +150,6 @@
 /* Underline with error */
 .mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple::before, .mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple::after {
     border-bottom-color: var(--color-input-error) !important;
-}
-
-/* Hint */
-.mat-mdc-form-field-subscript-wrapper, .mat-mdc-form-field-bottom-align::before {
-    margin: -2px 0 2px -4px;
 }
 
 /* Autofill */

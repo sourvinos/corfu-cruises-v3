@@ -10,6 +10,7 @@ import { CriteriaFieldsetRadiosComponent } from '../components/criteria-fieldset
 import { CriteriaPanelComponent } from '../components/criteria-panel/criteria-panel.component'
 import { EmojiDirective } from '../directives/emoji.directive'
 import { HomeButtonAndTitleComponent } from '../components/home-button-and-title/home-button-and-title.component'
+import { InputMaxLengthDirective } from '../directives/input-maxLength.directive'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
 import { LanguageMenuComponent } from '../components/top-bar-wrapper/language-menu/language-menu.component'
 import { LoadingSpinnerComponent } from '../components/loading-spinner/loading-spinner.component'
@@ -36,6 +37,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         CriteriaPanelComponent,
         EmojiDirective,
         HomeButtonAndTitleComponent,
+        InputMaxLengthDirective,
         InputTabStopDirective,
         LanguageMenuComponent,
         LoadingSpinnerComponent,
@@ -70,6 +72,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         EmojiDirective,
         FormsModule,
         HomeButtonAndTitleComponent,
+        InputMaxLengthDirective,
         InputTabStopDirective,
         LanguageMenuComponent,
         LoadingSpinnerComponent,

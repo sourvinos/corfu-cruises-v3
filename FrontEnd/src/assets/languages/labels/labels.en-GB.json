@@ -530,7 +530,7 @@
             },
             {
                 "id": "customer",
-                "description": "Linked Customer"
+                "description": "Linked customer"
             },
             {
                 "id": "email",
@@ -543,10 +543,6 @@
             {
                 "id": "isActive",
                 "description": "Active"
-            },
-            {
-                "id": "deleteButton",
-                "description": "Delete"
             },
             {
                 "id": "changePasswordButton",

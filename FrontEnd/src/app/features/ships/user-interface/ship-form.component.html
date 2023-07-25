@@ -8,33 +8,33 @@
 
         <form [formGroup]="form" autocomplete="off">
             <div class="group-field">
-                <!-- Description -->
-                <mat-form-field>
-                    <mat-label>{{ getLabel('description') }}</mat-label>
-                    <input [inputTabStop]="input" data-tabindex="1" formControlName="description" matInput>
-                    <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
-                    <mat-error *ngIf="description.hasError('maxlength')">{{ getHint("maxLength", description.errors.maxlength.requiredLength) }}</mat-error>
-                </mat-form-field>
                 <!-- Abbreviation -->
                 <mat-form-field>
                     <mat-label>{{ getLabel('abbreviation') }}</mat-label>
-                    <input [inputTabStop]="input" data-tabindex="2" formControlName="abbreviation" matInput>
+                    <input [inputTabStop]="input" data-tabindex="1" formControlName="abbreviation" matInput>
                     <mat-error *ngIf="abbreviation.hasError('required')">{{ getHint("required") }}</mat-error>
                     <mat-error *ngIf="abbreviation.hasError('maxlength')">{{ getHint("maxLength", abbreviation.errors.maxlength.requiredLength) }}</mat-error>
                 </mat-form-field>
-                <!-- Shipowner -->
+                <!-- Description -->
                 <mat-form-field>
-                    <mat-label>{{ getLabel('shipOwner') }}</mat-label>
-                    <input #inputAutoComplete #trigger="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="shipOwners" data-tabindex="3" formControlName="shipOwner" matInput>
-                    <div matSuffix style="display:flex">
-                        <button (click)="openOrCloseAutoComplete(trigger, 'shipOwner')" mat-icon-button type="button">
-                            <mat-icon class="material-icons-outlined with-margin">expand_more</mat-icon>
-                        </button>
-                    </div>
-                    <mat-error *ngIf="shipOwner.hasError('required')">{{ getHint("required") }}</mat-error>
-                    <mat-error *ngIf="!shipOwner.hasError('required') && shipOwner.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
+                    <mat-label>{{ getLabel('description') }}</mat-label>
+                    <input [inputTabStop]="input" data-tabindex="2" formControlName="description" matInput>
+                    <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
+                    <mat-error *ngIf="description.hasError('maxlength')">{{ getHint("maxLength", description.errors.maxlength.requiredLength) }}</mat-error>
                 </mat-form-field>
             </div>
+            <!-- Shipowner -->
+            <mat-form-field>
+                <mat-label>{{ getLabel('shipOwner') }}</mat-label>
+                <input #inputAutoComplete #trigger="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="shipOwners" data-tabindex="3" formControlName="shipOwner" matInput>
+                <div matSuffix style="display:flex">
+                    <button (click)="openOrCloseAutoComplete(trigger, 'shipOwner')" mat-icon-button type="button">
+                        <mat-icon class="material-icons-outlined with-margin">expand_more</mat-icon>
+                    </button>
+                </div>
+                <mat-error *ngIf="shipOwner.hasError('required')">{{ getHint("required") }}</mat-error>
+                <mat-error *ngIf="!shipOwner.hasError('required') && shipOwner.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
+            </mat-form-field>
             <div class="group-field">
                 <!-- IMO -->
                 <mat-form-field>
@@ -55,33 +55,31 @@
                     <mat-error *ngIf="registryNo.hasError('maxlength')">{{ getHint("maxLength", registryNo.errors.maxlength.requiredLength) }}</mat-error>
                 </mat-form-field>
             </div>
-            <div class="group-field">
-                <!-- Manager -->
-                <mat-form-field>
-                    <mat-label>{{ getLabel('manager') }}</mat-label>
-                    <input [inputTabStop]="input" data-tabindex="7" formControlName="manager" matInput>
-                    <mat-error *ngIf="manager.hasError('maxlength')">{{ getHint("maxLength", manager.errors.maxlength.requiredLength) }}</mat-error>
-                </mat-form-field>
-                <!-- Manager in Greece -->
-                <mat-form-field>
-                    <mat-label>{{ getLabel('managerInGreece') }}</mat-label>
-                    <input [inputTabStop]="input" data-tabindex="8" formControlName="managerInGreece" matInput>
-                    <mat-error *ngIf="managerInGreece.hasError('maxlength')">{{ getHint("maxLength", managerInGreece.errors.maxlength.requiredLength) }}</mat-error>
-                </mat-form-field>
-                <!-- Agent -->
-                <mat-form-field>
-                    <mat-label>{{ getLabel('agent') }}</mat-label>
-                    <input [inputTabStop]="input" data-tabindex="9" formControlName="agent" matInput>
-                    <mat-error *ngIf="agent.hasError('maxlength')">{{ getHint("maxLength", agent.errors.maxlength.requiredLength) }}</mat-error>
-                </mat-form-field>
-            </div>
+            <!-- Manager -->
+            <mat-form-field>
+                <mat-label>{{ getLabel('manager') }}</mat-label>
+                <input [inputTabStop]="input" data-tabindex="7" formControlName="manager" matInput>
+                <mat-error *ngIf="manager.hasError('maxlength')">{{ getHint("maxLength", manager.errors.maxlength.requiredLength) }}</mat-error>
+            </mat-form-field>
+            <!-- Manager in Greece -->
+            <mat-form-field>
+                <mat-label>{{ getLabel('managerInGreece') }}</mat-label>
+                <input [inputTabStop]="input" data-tabindex="8" formControlName="managerInGreece" matInput>
+                <mat-error *ngIf="managerInGreece.hasError('maxlength')">{{ getHint("maxLength", managerInGreece.errors.maxlength.requiredLength) }}</mat-error>
+            </mat-form-field>
+            <!-- Agent -->
+            <mat-form-field>
+                <mat-label>{{ getLabel('agent') }}</mat-label>
+                <input [inputTabStop]="input" data-tabindex="9" formControlName="agent" matInput>
+                <mat-error *ngIf="agent.hasError('maxlength')">{{ getHint("maxLength", agent.errors.maxlength.requiredLength) }}</mat-error>
+            </mat-form-field>
             <div id="checkboxes">
                 <!-- Active -->
                 <mat-checkbox formControlName="isActive">
                     <span>{{ getLabel("isActive") }}</span>
                 </mat-checkbox>
             </div>
-            <div class="group-field hide-hint">
+            <div class="align-bottom group-field hide-hint">
                 <!-- User -->
                 <mat-form-field>
                     <mat-label>{{ getLabel('user') }}</mat-label>

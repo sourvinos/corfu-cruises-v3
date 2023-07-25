@@ -6,7 +6,7 @@
 
 .p-radiobutton .p-radiobutton-box {
     background-color: transparent;
-    border: 2px solid #ced4da !important;
+    border: 0.125rem solid #ced4da !important;
 }
 
 .p-radiobutton .p-radiobutton-box.p-highlight {

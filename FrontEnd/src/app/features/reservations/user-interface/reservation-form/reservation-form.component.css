@@ -61,7 +61,7 @@
     flex-direction: column;
     font-family: var(--font-family-asty);
     font-weight: 300;
-    height: 60px;
+    height: 3.75rem;
     padding: 0.5rem 1rem;
     text-align: center;
     transition: all var(--delay) !important;
@@ -100,6 +100,6 @@
 
 .date-picker-in-input-field {
     display: flex;
-    margin: -3px 10px -1rem 2rem;
+    margin: -0.1875rem 0.625rem -1rem 2rem;
     width: 1rem !important;
 }

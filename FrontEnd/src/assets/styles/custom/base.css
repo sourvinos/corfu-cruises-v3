@@ -69,7 +69,7 @@ ul {
 }
 
 .right {
-    text-align: right !important;
+    justify-content: flex-end !important;
 }
 
 .center-buttons {

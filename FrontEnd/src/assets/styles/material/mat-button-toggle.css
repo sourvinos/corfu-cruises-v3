@@ -10,7 +10,7 @@
     background-color: color-mix(in srgb, var(--color-button-secondary) 65%, transparent);
     border: none !important;
     color: var(--color-button-text);
-    height: 34px;
+    height: 2.125rem;
     transition: background-color 0.2s !important;
 }
 

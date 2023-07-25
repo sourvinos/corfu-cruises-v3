@@ -9,27 +9,30 @@
         <form [formGroup]="form" autocomplete="off">
             <!-- Description -->
             <mat-form-field>
-                <input [inputTabStop]="input" [placeholder]="getLabel('description')" data-tabindex="1" formControlName="description" matInput>
+                <mat-label>{{ getLabel('description') }}</mat-label>
+                <input [inputTabStop]="input" data-tabindex="1" formControlName="description" matInput>
                 <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="description.hasError('maxlength')">{{ getHint("maxLength", description.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
-            <div class="group-field">
-                <!-- User -->
-                <mat-form-field>
-                    <mat-icon class="material-icons-outlined">lock</mat-icon>
-                    <input [placeholder]="getLabel('user')" formControlName="user" matInput readonly>
-                </mat-form-field>
-                <!-- Last update -->
-                <mat-form-field>
-                    <mat-icon class="material-icons-outlined">lock</mat-icon>
-                    <input [placeholder]="getLabel('lastUpdate')" formControlName="lastUpdate" matInput readonly>
-                </mat-form-field>
-            </div>
             <div id="checkboxes">
                 <!-- Active -->
                 <mat-checkbox formControlName="isActive">
                     <span>{{ getLabel("isActive") }}</span>
                 </mat-checkbox>
+            </div>
+            <div class="align-bottom group-field hide-hint">
+                <!-- User -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('user') }}</mat-label>
+                    <mat-icon class="material-icons-outlined small">lock</mat-icon>
+                    <input formControlName="user" matInput readonly>
+                </mat-form-field>
+                <!-- Last update -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('lastUpdate') }}</mat-label>
+                    <mat-icon class="material-icons-outlined small">lock</mat-icon>
+                    <input formControlName="lastUpdate" matInput readonly>
+                </mat-form-field>
             </div>
         </form>
     </div>
