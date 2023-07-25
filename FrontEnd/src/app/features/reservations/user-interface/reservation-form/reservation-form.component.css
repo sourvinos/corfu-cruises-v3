@@ -103,3 +103,28 @@
     margin: -0.1875rem 0.625rem -1rem 2rem;
     width: 1rem !important;
 }
+
+.autocomplete-pickup-point {
+    display: flex;
+    gap: 0.5rem;
+    font-family: var(--font-family-ubuntu);
+    font-size: 12px;
+}
+
+.autocomplete-pickup-point span {
+    overflow: hidden;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+}
+
+.autocomplete-pickup-point span:nth-child(1) {
+    width: 60%;
+}
+
+.autocomplete-pickup-point span:nth-child(2) {
+    width: 40%;
+}
+
+.autocomplete-pickup-point span:nth-child(3) {
+    width: 10%;
+}

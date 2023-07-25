@@ -11,7 +11,7 @@
 }
 
 .mat-mdc-menu-item:hover {
-    background-color: var(--color-primary) !important;
+    background-color: var(--color-secondary) !important;
 }
 
 .mat-mdc-menu-item:hover .mdc-list-item__primary-text {

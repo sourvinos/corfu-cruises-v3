@@ -1,41 +1,16 @@
-/* Checked */
-
-.mat-autocomplete-panel.mat-autocomplete-visible {
+.mdc-menu-surface.mat-mdc-autocomplete-panel {
     background-color: var(--color-background) !important;
     border-radius: 0 !important;
 }
 
-.mat-icon.open-close-panel {
-    font-size: 1.5rem !important;
-    margin: 0.5rem 0 0 0.9375rem;
+.mat-mdc-option.mat-mdc-option-active {
+    background-color: var(--color-secondary) !important;
 }
 
-.mat-option {
-    border: 0.0625rem solid transparent !important;
-    font-family: var(--font-family-ubuntu) !important;
-    font-size: 0.875rem;
-    height: 2rem !important;
-    line-height: 2rem !important;
+.mat-mdc-option .mdc-list-item__primary-text {
+    width: 100%;
 }
 
-.mat-option-text > span:last-child {
-    width: 3rem !important;
-}
-
-.mat-option-text > span:not(:last-child) {
-    width: 10rem !important;
-}
-
-.mat-option-text {
-    color: var(--color-text) !important;
-    display: flex !important;
-    justify-content: space-between;
-}
-
-.mat-option.mat-active {
-    background-color: var(--color-accent) !important;
-}
-
-.mat-option:hover {
-    background-color: color-mix(in srgb, var(--color-accent) var(--hover-transparency), transparent) !important;
+.mat-mdc-option:hover {
+    background-color: var(--color-secondary) !important;
 }

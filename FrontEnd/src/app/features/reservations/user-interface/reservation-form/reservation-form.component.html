@@ -232,9 +232,11 @@
 
 <mat-autocomplete #pickupPoints="matAutocomplete" (optionSelected)="updateFieldsAfterPickupPointSelection($event.option.value)" [displayWith]="autocompleteFields" autoActiveFirstOption>
     <mat-option *ngFor="let option of dropdownPickupPoints | async" [value]="option">
-        <span>{{ option.description.substring(0, 30) }}</span>
-        <span>{{ option.exactPoint.substring(0, 30) }}</span>
-        <span>{{ option.time }}</span>
+        <div class="autocomplete-pickup-point">
+            <span>{{ option.description }}</span>
+            <span>{{ option.exactPoint }}</span>
+            <span>{{ option.time }}</span>
+        </div>
     </mat-option>
 </mat-autocomplete>
 

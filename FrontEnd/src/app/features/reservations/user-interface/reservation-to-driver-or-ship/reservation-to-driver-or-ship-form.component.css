@@ -1,3 +1,13 @@
+#dialog {
+    align-items: center;
+    background-color: var(--color-background);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    padding: 1rem;
+}
+
 #dialog-header {
     gap: 0.8rem;
     margin-left: 1rem;
@@ -6,6 +16,8 @@
 #dialog-content {
     height: 100%;
     margin: 1.625rem 0 0.3125rem 0 !important;
+    overflow-y: scroll;
+    width: 100%;
 }
 
 #dialog-footer {

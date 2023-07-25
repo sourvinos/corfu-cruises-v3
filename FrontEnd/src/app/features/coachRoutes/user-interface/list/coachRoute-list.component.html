@@ -28,7 +28,7 @@
                     </tr>
                 </ng-template>
                 <ng-template let-record pTemplate="body">
-                    <tr (click)="unHighlightAllRows()" (dblclick)="editRecord(record.id)" [attr.id]=record.id [pSelectableRow]="record" style="height: 2rem;">
+                    <tr (click)="unHighlightAllRows()" (dblclick)="editRecord(record.id)" [attr.id]=record.id [pSelectableRow]="record" style="height: 32px;">
                         <td class="center width-5">
                             <span>{{ getEmoji(record.isActive) }}</span>
                         </td>
