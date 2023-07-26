@@ -1,3 +1,7 @@
+.mdc-radio__outer-circle {
+    border-color: var(--color-text) !important;
+}
+
 .mdc-form-field label {
     margin: 10px 0 0 10px !important;
 }

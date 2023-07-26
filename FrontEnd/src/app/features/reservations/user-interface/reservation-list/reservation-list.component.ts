@@ -87,7 +87,7 @@ export class ReservationListComponent {
             this.saveSelectedIds()
             const dialogRef = this.dialog.open(ReservationToDriverOrShipComponent, {
                 data: ['drivers', 'assignToDriver'],
-                height: '35rem',
+                height: '36.0625rem',
                 panelClass: 'dialog',
                 width: '31rem',
             })
@@ -110,7 +110,7 @@ export class ReservationListComponent {
             this.saveSelectedIds()
             const dialogRef = this.dialog.open(ReservationToDriverOrShipComponent, {
                 data: ['ships', 'assignToShip'],
-                height: '35rem',
+                height: '36.0625rem',
                 panelClass: 'dialog',
                 width: '31rem',
             })

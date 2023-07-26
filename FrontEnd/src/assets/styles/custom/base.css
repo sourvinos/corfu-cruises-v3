@@ -77,6 +77,10 @@ ul {
     margin: 0 auto;
 }
 
+.accent {
+    color: var(--color-accent);
+}
+
 .hidden {
     visibility: hidden !important;
 }

@@ -69,6 +69,7 @@
     border: 0 !important;
     margin-top: -0.75rem !important;
     padding: 0 1.1rem 0 1.1rem !important;
+    width: 17rem;
 }
 
 #date .mat-form-field-wrapper {
@@ -76,8 +77,6 @@
 }
 
 #date-fieldset {
-    background-color: transparent !important;
-    border: 0.0625rem solid var(--color-primary);
     margin: 0 !important;
     padding: 0 !important;
     width: 17rem !important;
@@ -91,4 +90,6 @@
 
 #goto-today-button span {
     color: var(--color-text) !important;
+    font-size: 1.125rem;
+    margin: 3px -12px 0 1px;
 }

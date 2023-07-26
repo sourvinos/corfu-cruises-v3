@@ -12,11 +12,6 @@
     display: flex;
 }
 
-/* .mat-datepicker-toggle, .mat-datepicker-content .mat-datepicker-content {
-    color: var(--color-table-headers) !important;
-    margin: 0.125rem 0 0 -1.25rem;
-} */
-
 .number {
     text-align: right !important;
 }
@@ -54,7 +49,7 @@
 
 .p-datatable .p-datatable-tbody > tr > td > .p-element > .p-component > .p-checkbox-box {
     border-color: var(--color-text);
-    transition: all var(--delay);
+    transition: border-color var(--delay);
 }
 
 .p-datatable .p-datatable-tbody > tr {

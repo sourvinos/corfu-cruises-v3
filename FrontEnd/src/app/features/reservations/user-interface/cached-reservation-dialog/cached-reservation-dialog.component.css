@@ -21,6 +21,7 @@
 
 #dialog-header h1 {
     color: var(--color-accent);
+    font-weight: bold !important;
 }
 
 #dialog-header h6 {
