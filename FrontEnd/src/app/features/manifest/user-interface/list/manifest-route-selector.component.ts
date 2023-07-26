@@ -9,7 +9,7 @@ import { ShipRouteAutoCompleteVM } from '../../../shipRoutes/classes/view-models
 @Component({
     selector: 'manifest-route-selector',
     templateUrl: './manifest-route-selector.component.html',
-    styleUrls: ['../../../../../assets/styles/material/mat-dialog.css', './manifest-route-selector.component.css']
+    styleUrls: ['./manifest-route-selector.component.css']
 })
 
 export class ManifestRouteSelectorComponent {

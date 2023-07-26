@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment'
 @Component({
     selector: 'embarkation-passengers',
     templateUrl: './embarkation-passengers.component.html',
-    styleUrls: ['../../../../../../assets/styles/material/mat-dialog.css', './embarkation-passengers.component.css']
+    styleUrls: ['./embarkation-passengers.component.css']
 })
 
 export class EmbarkationPassengerListComponent {

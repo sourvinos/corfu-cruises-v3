@@ -1,8 +1,8 @@
 <div id="dialog">
 
     <div id="dialog-header">
-        <h1 mat-dialog-title>{{ getLabel('header') }}</h1>
-        <h6 mat-dialog-title>{{ getLabel('subHeader') }}</h6>
+        <h1>{{ getLabel('header') }}</h1>
+        <h6>{{ getLabel('subHeader') }}</h6>
     </div>
 
     <div id="dialog-content">
@@ -19,7 +19,7 @@
     <div id="dialog-footer">
         <div class="button-group-right">
             <mat-dialog-actions>
-                <button (click)="close()" class="transparent" mat-flat-button tabindex="-1">
+                <button (click)="close()" class="accent" mat-flat-button tabindex="-1">
                     <span>{{ getLabel("noButton") | uppercase }}</span>
                 </button>
                 <button (click)="save()" [disabled]="!form.valid" class="primary" mat-flat-button>

@@ -7,7 +7,7 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 @Component({
     selector: 'ledger-customer-summary',
     templateUrl: './ledger-summary.component.html',
-    styleUrls: ['../../../../../../assets/styles/material/mat-dialog.css', './ledger-summary.component.css']
+    styleUrls: ['./ledger-summary.component.css']
 })
 
 export class LedgerCustomerSummaryComponent {

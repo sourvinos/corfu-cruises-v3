@@ -215,6 +215,7 @@ export class ReservationFormComponent {
             width: '31rem',
             height: '34rem',
             panelClass: 'dialog',
+            autoFocus: 'false'
         })
         dialogRef.afterClosed().subscribe(result => {
             if (result !== undefined) {

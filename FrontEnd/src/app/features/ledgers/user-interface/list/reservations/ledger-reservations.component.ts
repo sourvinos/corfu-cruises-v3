@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment'
 @Component({
     selector: 'ledger-customer-reservations',
     templateUrl: './ledger-reservations.component.html',
-    styleUrls: ['../../../../../../assets/styles/material/mat-dialog.css', './ledger-reservations.component.css']
+    styleUrls: ['./ledger-reservations.component.css']
 })
 
 export class LedgerCustomerReservationListComponent {

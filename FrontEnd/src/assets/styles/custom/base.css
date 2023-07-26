@@ -26,13 +26,14 @@
 @import url("../material/mat-expansion-panel");
 @import url("../material/mat-input.css");
 @import url("../material/mat-menu.css");
+@import url("../material/mat-radio.css");
 @import url("../material/mat-select.css");
 @import url("../prime/prime-checkbox.css");
 @import url("../prime/prime-filter-input.css");
 @import url("../prime/prime-radio.css");
-@import url("../prime/prime-table.css");
 @import url("../prime/prime-table-filters.css");
 @import url("../prime/prime-table-widths.css");
+@import url("../prime/prime-table.css");
 
 @font-face {
     font-family: Aka-Acid-CanterBold;

@@ -36,13 +36,9 @@
 }
 
 .mat-mdc-checkbox label span {
-    margin-top: 0.125rem;
+    margin-top: -0.3125rem;
 }
 
 .mat-mdc-checkbox-ripple, .mdc-checkbox__ripple {
     background-color: transparent !important;
-}
-
-.mdc-form-field {
-    display: flex !important;
 }

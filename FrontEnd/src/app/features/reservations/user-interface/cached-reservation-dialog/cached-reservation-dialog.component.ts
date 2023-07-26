@@ -8,7 +8,7 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 @Component({
     selector: 'cached-reservation-dialog',
     templateUrl: './cached-reservation-dialog.component.html',
-    styleUrls: ['../../../../../assets/styles/material/mat-dialog.css', './cached-reservation-dialog.component.css']
+    styleUrls: ['./cached-reservation-dialog.component.css']
 })
 
 export class CachedReservationDialogComponent {
