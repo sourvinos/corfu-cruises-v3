@@ -107,9 +107,9 @@ export class EmbarkationCriteriaComponent {
         })
     }
 
-    public patchFormWithSelectedDate(event: MatDatepickerInputEvent<Date>): void {
+    public patchFormWithSelectedDate(event: any): void {
         this.form.patchValue({
-            date: this.dateHelperService.formatDateToIso(new Date(event.value))
+            date: this.dateHelperService.formatDateToIso(new Date(event.value.date))
         })
     }
 

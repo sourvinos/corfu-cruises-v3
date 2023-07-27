@@ -1,0 +1,17 @@
+<form [formGroup]="form" autocomplete="off">
+    <fieldset id="date-fieldset">
+        <legend>
+            <button (click)="doTodayTasks()" class="transparent" id="goto-today-button" mat-mini-fab tabindex="-1">
+                <span class="material-icons-outlined">my_location</span>
+            </button>
+            <span>{{ getLabel('date') }}</span>
+        </legend>
+        <mat-form-field id="date-picker">
+            <input (dateInput)="emitFormValues()" [matDatepicker]="picker" formControlName="date" matInput>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="date.hasError('required')">{{ getHint("invalid") }}</mat-error>
+        </mat-form-field>
+    </fieldset>
+
+</form>

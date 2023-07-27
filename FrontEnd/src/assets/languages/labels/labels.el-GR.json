@@ -2291,5 +2291,14 @@
                 "description": "Εύρος ημερομηνίας"
             }
         ]
+    },
+    {
+        "feature": "date-picker",
+        "labels": [
+            {
+                "id": "date",
+                "description": "Ημερομηνία"
+            }
+        ]
     }
 ]
