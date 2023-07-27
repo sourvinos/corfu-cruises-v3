@@ -1,0 +1,38 @@
+#date-range-fieldset {
+    border-color: var(--color-primary);
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 17rem !important;
+}
+
+#date-range-fieldset legend {
+    margin: 0 0 0.5rem 1rem;
+    padding: 0 0.5rem 0 0;
+    width: auto !important;
+}
+
+#goto-today-button {
+    color: var(--color-accent) !important;
+    font-size: 1.125rem;
+}
+
+#goto-today-button .mdc-button__label {
+    height: 24px;
+}
+
+#date-range-picker {
+    background-color: transparent !important;
+    border: 0 !important;
+    margin-top: -0.75rem !important;
+    padding: 0 1.1rem 0 1.1rem !important;
+    width: 17rem;
+}
+
+.mat-date-range-input-container {
+    justify-content: center !important;
+    margin: -0.125rem 0 0 0 !important;
+}
+
+.mat-mdc-form-field-infix {
+    margin-top: -2px !important;
+}

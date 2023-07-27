@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
-import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms'
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms'
 import { Router } from '@angular/router'
 import { Subject } from 'rxjs'
 import { takeUntil } from 'rxjs/operators'
@@ -109,10 +109,10 @@ export class LedgerCriteriaComponent {
         })
     }
 
-    public patchFormWithSelectedDates(fromDate: any, toDate: any): void {
+    public patchFormWithSelectedDateRange(event: any): void {
         this.form.patchValue({
-            fromDate: fromDate.value != null ? this.dateHelperService.formatDateToIso(new Date(fromDate.value)) : '',
-            toDate: toDate.value != null ? this.dateHelperService.formatDateToIso(new Date(toDate.value)) : ''
+            fromDate: this.dateHelperService.formatDateToIso(new Date(event.value.fromDate)),
+            toDate: this.dateHelperService.formatDateToIso(new Date(event.value.toDate))
         })
     }
 
@@ -213,13 +213,13 @@ export class LedgerCriteriaComponent {
 
     //#region getters
 
-    get fromDate(): AbstractControl {
-        return this.form.get('fromDate')
-    }
+    // get fromDate(): AbstractControl {
+    //     return this.form.get('fromDate')
+    // }
 
-    get toDate(): AbstractControl {
-        return this.form.get('toDate')
-    }
+    // get toDate(): AbstractControl {
+    //     return this.form.get('toDate')
+    // }
 
     //#endregion    
 

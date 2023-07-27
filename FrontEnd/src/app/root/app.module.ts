@@ -21,7 +21,7 @@ import { TopBarComponent } from '../shared/components/top-bar-wrapper/top-bar/to
 import { TopMenuComponent } from '../shared/components/top-bar-wrapper/top-menu/top-menu.component'
 import { UserMenuComponent } from '../shared/components/top-bar-wrapper/user-menu/user-menu.component'
 // Services
-import { InterceptorService } from '../shared/services/interceptor.service'
+import { InterceptorService } from '../shared/services/interceptor.service';
 
 @NgModule({
     declarations: [

@@ -29,6 +29,7 @@ import { ThemeGroupSelectorComponent } from '../components/top-bar-wrapper/theme
 import { ThemeMenuComponent } from './../components/top-bar-wrapper/theme-menu/theme-menu.component'
 import { TrimStringPipe } from './../pipes/string-trim.pipe'
 import { YearSelectorComponent } from '../components/year-selector/year-selector.component'
+import { DateRangePickerComponent } from '../components/date-range-picker/date-range-picker.component'
 
 @NgModule({
     declarations: [
@@ -39,6 +40,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         HomeButtonAndTitleComponent,
         InputMaxLengthDirective,
         InputTabStopDirective,
+        DateRangePickerComponent,
         LanguageMenuComponent,
         LoadingSpinnerComponent,
         LogoComponent,
@@ -61,14 +63,16 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         FormsModule,
         MaterialModule,
         PrimeNgModule,
+        ReactiveFormsModule ,
         RouterModule,
-        ZXingScannerModule
+        ZXingScannerModule,
     ],
     exports: [
         CommonModule,
         CriteriaFieldsetCheckboxesComponent,
         CriteriaFieldsetRadiosComponent,
         CriteriaPanelComponent,
+        DateRangePickerComponent,
         EmojiDirective,
         FormsModule,
         HomeButtonAndTitleComponent,
