@@ -1458,10 +1458,6 @@
                 "description": "Écrivez quelque chose..."
             },
             {
-                "id": "date",
-                "description": "Plage de dates"
-            },
-            {
                 "id": "customers",
                 "description": "Client"
             },
@@ -2284,6 +2280,15 @@
             {
                 "id": "saveButton",
                 "description": "Enregistrer"
+            }
+        ]
+    },
+    {
+        "feature": "date-range-picker",
+        "labels": [
+            {
+                "id": "dateRange",
+                "description": "Plage de dates"
             }
         ]
     }

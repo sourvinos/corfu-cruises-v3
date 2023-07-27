@@ -1458,10 +1458,6 @@
                 "description": "Γράψτε κάτι..."
             },
             {
-                "id": "date",
-                "description": "Εύρος ημερομηνίας"
-            },
-            {
                 "id": "customers",
                 "description": "Πελάτες"
             },
@@ -2284,6 +2280,15 @@
             {
                 "id": "saveButton",
                 "description": "Αποθηκευση"
+            }
+        ]
+    },
+    {
+        "feature": "date-range-picker",
+        "labels": [
+            {
+                "id": "dateRange",
+                "description": "Εύρος ημερομηνίας"
             }
         ]
     }

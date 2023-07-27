@@ -16,8 +16,7 @@ export class DateRangePickerComponent {
 
     @Output() outputValues = new EventEmitter()
 
-    private formValue = new EventEmitter<any>()
-    public feature = 'ledgerCriteria'
+    public feature = 'date-range-picker'
     public form: FormGroup
 
     //#endregion
@@ -47,11 +46,18 @@ export class DateRangePickerComponent {
     }
 
     public gotoToday(): void {
-        this.form.patchValue({ fromDate: this.dateHelperService.formatDateToIso(new Date()), toDate: this.dateHelperService.formatDateToIso(new Date()) })
+        this.form.patchValue({
+            fromDate: this.dateHelperService.formatDateToIso(new Date()),
+            toDate: this.dateHelperService.formatDateToIso(new Date())
+        })
     }
 
-    public patchFormWithSelectedDates(
-        fromDate: any, toDate: any): void { this.form.patchValue({ fromDate: fromDate.value != null ? this.dateHelperService.formatDateToIso(new Date(fromDate.value)) : '', toDate: toDate.value != null ? this.dateHelperService.formatDateToIso(new Date(toDate.value)) : '' }) }
+    public patchFormWithSelectedDates(fromDate: any, toDate: any): void {
+        this.form.patchValue({
+            fromDate: fromDate.value != null ? this.dateHelperService.formatDateToIso(new Date(fromDate.value)) : '',
+            toDate: toDate.value != null ? this.dateHelperService.formatDateToIso(new Date(toDate.value)) : ''
+        })
+    }
 
     //#endregion
 
@@ -59,8 +65,8 @@ export class DateRangePickerComponent {
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            toDate: [this.dateHelperService.formatDateToIso(new Date()), [Validators.required]],
-            fromDate: [this.dateHelperService.formatDateToIso(new Date()), [Validators.required]],
+            toDate: ['', [Validators.required]],
+            fromDate: ['', [Validators.required]]
         })
     }
 

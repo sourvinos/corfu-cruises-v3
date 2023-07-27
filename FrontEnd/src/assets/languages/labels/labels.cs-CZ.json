@@ -1458,10 +1458,6 @@
                 "description": "Napište něco..."
             },
             {
-                "id": "date",
-                "description": "Rozsah dat"
-            },
-            {
                 "id": "customers",
                 "description": "Zákazník"
             },
@@ -2284,6 +2280,15 @@
             {
                 "id": "saveButton",
                 "description": "Uložit"
+            }
+        ]
+    },
+    {
+        "feature": "date-range-picker",
+        "labels": [
+            {
+                "id": "dateRange",
+                "description": "Rozsah dat"
             }
         ]
     }

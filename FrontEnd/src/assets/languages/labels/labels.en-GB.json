@@ -1458,10 +1458,6 @@
                 "description": "Type something..."
             },
             {
-                "id": "date",
-                "description": "Date range"
-            },
-            {
                 "id": "customers",
                 "description": "Customers"
             },
@@ -2284,6 +2280,24 @@
             {
                 "id": "saveButton",
                 "description": "Save"
+            }
+        ]
+    },
+    {
+        "feature": "date-range-picker",
+        "labels": [
+            {
+                "id": "dateRange",
+                "description": ""
+            }
+        ]
+    },
+    {
+        "feature": "date-range-picker",
+        "labels": [
+            {
+                "id": "dateRange",
+                "description": "Date range"
             }
         ]
     }

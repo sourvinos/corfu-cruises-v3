@@ -8,6 +8,7 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner'
 import { CriteriaFieldsetCheckboxesComponent } from '../components/criteria-fieldset-checkboxes/criteria-fieldset-checkboxes.component'
 import { CriteriaFieldsetRadiosComponent } from '../components/criteria-fieldset-radios/criteria-fieldset-radios.component'
 import { CriteriaPanelComponent } from '../components/criteria-panel/criteria-panel.component'
+import { DateRangePickerComponent } from '../components/date-range-picker/date-range-picker.component'
 import { EmojiDirective } from '../directives/emoji.directive'
 import { HomeButtonAndTitleComponent } from '../components/home-button-and-title/home-button-and-title.component'
 import { InputMaxLengthDirective } from '../directives/input-maxLength.directive'
@@ -29,18 +30,17 @@ import { ThemeGroupSelectorComponent } from '../components/top-bar-wrapper/theme
 import { ThemeMenuComponent } from './../components/top-bar-wrapper/theme-menu/theme-menu.component'
 import { TrimStringPipe } from './../pipes/string-trim.pipe'
 import { YearSelectorComponent } from '../components/year-selector/year-selector.component'
-import { DateRangePickerComponent } from '../components/date-range-picker/date-range-picker.component'
 
 @NgModule({
     declarations: [
         CriteriaFieldsetCheckboxesComponent,
         CriteriaFieldsetRadiosComponent,
         CriteriaPanelComponent,
+        DateRangePickerComponent,
         EmojiDirective,
         HomeButtonAndTitleComponent,
         InputMaxLengthDirective,
         InputTabStopDirective,
-        DateRangePickerComponent,
         LanguageMenuComponent,
         LoadingSpinnerComponent,
         LogoComponent,

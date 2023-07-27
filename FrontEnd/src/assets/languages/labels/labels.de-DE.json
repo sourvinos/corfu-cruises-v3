@@ -1458,10 +1458,6 @@
                 "description": "Schreiben Sie etwas..."
             },
             {
-                "id": "date",
-                "description": "Datumsbereich"
-            },
-            {
                 "id": "customers",
                 "description": "Kunden"
             },
@@ -2284,6 +2280,15 @@
             {
                 "id": "saveButton",
                 "description": "Speichern"
+            }
+        ]
+    },
+    {
+        "feature": "date-range-picker",
+        "labels": [
+            {
+                "id": "dateRange",
+                "description": "Datumsbereich"
             }
         ]
     }
