@@ -2,7 +2,6 @@ fieldset {
     border-radius: var(--border-radius);
     border: 0.0625rem solid;
     padding: 1rem 1rem 1rem 1rem;
-    transition: all var(--delay);
 }
 
 fieldset legend {
@@ -18,5 +17,5 @@ fieldset legend {
 }
 
 fieldset legend span {
-    transition: all var(--delay);
+    transition: color var(--theme-delay);
 }

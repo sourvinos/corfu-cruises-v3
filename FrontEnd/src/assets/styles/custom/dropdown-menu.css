@@ -11,7 +11,7 @@
     font-size: var(--font-size-button) !important;
     gap: 0.5rem;
     padding: 0.25rem 0 0.25rem 1rem !important;
-    transition: all var(--delay);
+    transition: all var(--theme-delay);
 }
 
 .drop-down-menu:hover .sub-menu {

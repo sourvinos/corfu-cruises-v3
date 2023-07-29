@@ -64,7 +64,7 @@
     height: 3.75rem;
     padding: 0.5rem 1rem;
     text-align: center;
-    transition: all var(--delay) !important;
+    transition: background-color var(--theme-delay) !important;
 
 }
 
@@ -72,7 +72,7 @@
     color: var(--color-text);
     font-size: 0.80rem;
     text-align: center;
-    transition: color var(--delay) !important;
+    transition: color var(--theme-delay) !important;
 }
 
 #ref-no #ref-no-body {

@@ -6,7 +6,7 @@ h1 {
     margin: 0 0 0 0 !important;
     padding: 0 0 0 0 !important;
     transform: scale(1, 1.5);
-    transition: color var(--delay);
+    transition: color var(--theme-delay);
 }
 
 h6 {
@@ -15,5 +15,5 @@ h6 {
     font-weight: 300 !important;
     margin: 0 !important;
     padding: 0 !important;
-    transition: color var(--delay);
+    transition: color var(--theme-delay);
 }

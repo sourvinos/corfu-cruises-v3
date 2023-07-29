@@ -13,14 +13,14 @@
 }
 
 #main-footer span {
-    transition: all var(--delay);
+    transition: color var(--theme-delay);
 }
 
 a:link, a:visited {
     color: var(--color-footer);
     outline: none;
     text-decoration: none;
-    transition: all var(--delay);
+    transition: color var(--theme-delay);
 }
 
 a:link:hover {

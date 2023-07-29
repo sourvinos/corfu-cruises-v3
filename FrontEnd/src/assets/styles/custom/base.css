@@ -129,7 +129,7 @@ ul {
 }
 
 ::placeholder {
-    transition: all var(--delay);
+    transition: all var(--theme-delay);
 }
 
 p {

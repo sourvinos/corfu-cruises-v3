@@ -30,7 +30,7 @@
     --form-field-margin: 0.625rem;
     /* Misc */
     --blur: 10rem;
-    --delay: 1s;
+    --theme-delay: 1s;
     --border-radius: 0.5rem;
     --hover-transparency: 30%;
 }

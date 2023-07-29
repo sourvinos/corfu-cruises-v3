@@ -115,5 +115,5 @@
     color: var(--color-table-headers) !important;
     justify-content: flex-end;
     width: 1.1rem;
-    transition: all var(--delay);
+    transition: color var(--theme-delay);
 }

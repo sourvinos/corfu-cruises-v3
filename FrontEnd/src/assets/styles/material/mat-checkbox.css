@@ -10,7 +10,7 @@
 .mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background {
     background-color: var(--color-primary) !important;
     border-color: var(--color-primary) !important;
-    transition: all var(--delay) !important;
+    transition: all var(--theme-delay) !important;
 }
 
 .mat-mdc-checkbox .mdc-checkbox__ripple {
@@ -25,7 +25,7 @@
     font-family: var(--font-family-asty);
     font-weight: 300;
     margin-left: 0.5rem !important;
-    transition: color var(--delay) !important;
+    transition: color var(--theme-delay) !important;
 }
 
 .mat-mdc-checkbox label .mat-icon.small {

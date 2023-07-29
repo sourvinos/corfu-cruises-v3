@@ -31,7 +31,7 @@
 
 .p-datatable .p-datatable-tbody > tr > td > img.flag-with-border {
     border: 0.0625rem solid var(--color-flag-border);
-    transition: all var(--delay);
+    transition: border var(--theme-delay);
 }
 
 .p-datatable .p-datatable-tbody > tr > td {
@@ -44,12 +44,12 @@
     padding: 0.3125rem 0.5rem;
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
-    transition: all var(--delay);
+    transition: all var(--theme-delay);
 }
 
 .p-datatable .p-datatable-tbody > tr > td > .p-element > .p-component > .p-checkbox-box {
     border-color: var(--color-text);
-    transition: border-color var(--delay);
+    transition: border-color var(--theme-delay);
 }
 
 .p-datatable .p-datatable-tbody > tr {
@@ -58,7 +58,7 @@
 
 .p-datatable .p-datatable-tbody > tr.p-highlight {
     background-color: color-mix(in srgb, var(--color-secondary), transparent) !important;
-    transition: background-color var(--delay);
+    transition: background-color var(--theme-delay);
 }
 
 .p-datatable .p-datatable-tbody > tr:focus {
@@ -79,7 +79,7 @@
     font-size: var(--font-size-table-row);
     font-weight: 300;
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
-    transition: all var(--delay) !important;
+    transition: all var(--theme-delay) !important;
 }
 
 .p-datatable .p-datatable-tfoot > tr > td:first-child {
@@ -98,7 +98,7 @@
     font-size: var(--font-size-table-header) !important;
     font-weight: 300 !important;
     text-align: center !important;
-    transition: all var(--delay);
+    transition: all var(--theme-delay);
 }
 
 .p-datatable .p-datatable-thead > tr > th > .p-element > .p-checkbox > .p-checkbox-box {
@@ -198,7 +198,7 @@
 
 .p-datatable .p-datatable-thead > tr > th > .date-picker-wrapper > .mat-datepicker-toggle > .mat-mdc-icon-button > svg {
     color: var(--color-table-headers);
-    transition: color var(--delay) !important;
+    transition: color var(--theme-delay) !important;
 }
 
 .mat-datepicker-toggle {

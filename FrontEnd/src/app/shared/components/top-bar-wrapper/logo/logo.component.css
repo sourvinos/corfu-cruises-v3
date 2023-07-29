@@ -12,7 +12,7 @@
 .logo-image {
     height: 3.5rem;
     position: absolute;
-    transition: all var(--delay);
+    transition: all var(--theme-delay);
     width: 3.5rem;
 }
 
@@ -23,7 +23,7 @@
     font-weight: var(--font-weight-logo);
     line-height: 2.25rem;
     margin-left: 4rem;
-    transition: all var(--delay);
+    transition: color var(--theme-delay);
 }
 
 #title-top, #title-bottom {

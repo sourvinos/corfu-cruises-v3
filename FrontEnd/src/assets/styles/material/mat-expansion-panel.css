@@ -4,23 +4,23 @@
     border: 0.0625rem solid var(--color-primary) !important;
     box-shadow: 0 0 0 0 #000000 !important;
     margin-bottom: 0.05rem !important;
-    transition: background-color var(--delay) !important;
+    transition: background-color var(--theme-delay) !important;
 }
 
 .mat-expansion-panel-header {
     background-color: var(--color-background) !important;
-    font-family: var(--font-family-asty);
-    font-size: 0.8rem;
-    font-weight: 300;
+    font-family: var(--font-family-asty) !important;
+    font-size: 0.8rem !important;
+    font-weight: 300 !important;
     height: 2rem !important;
     padding: 0.125rem 1.5rem 0 1.5rem !important;
-    transition: background-color var(--delay) !important;
+    transition: background-color var(--theme-delay) !important;
 }
 
 .mat-expansion-indicator::after {
     color: var(--color-accent-secondary);
     margin-top: -0.5625rem;
-    transition: color var(--delay) !important;
+    transition: color var(--theme-delay) !important;
 }
 
 .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:hover {
@@ -28,9 +28,9 @@
 }
 
 .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
-    color: var(--color-accent-secondary);
+    color: var(--color-text) !important;
     font-size: var(--font-size-mat-expansion-header);
-    transition: color var(--delay) !important;
+    transition: color var(--theme-delay) !important;
 }
 
 .mat-expansion-panel-body {
@@ -39,7 +39,7 @@
     flex-direction: column;
     gap: 1rem;
     padding: 0 1rem 1rem 1rem !important;
-    transition: background-color var(--delay) !important;
+    transition: background-color var(--theme-delay) !important;
 }
 
 .mat-action-row {
@@ -51,5 +51,5 @@
 .mat-expansion-panel-header.mat-expanded {
     background-color: var(--color-background) !important;
     height: 2rem !important;
-    transition: background-color var(--delay) !important;
+    transition: background-color var(--theme-delay) !important;
 }

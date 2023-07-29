@@ -18,7 +18,7 @@
     overflow-y: hidden;
     padding: 1rem 1.6rem 1rem 2rem;
     width: 100%;
-    transition: all var(--delay);
+    transition: background-color var(--theme-delay);
 }
 
 #header {

@@ -38,5 +38,5 @@
 
 #date-range-fieldset #date-range-picker > .mat-mdc-text-field-wrapper > .mat-mdc-form-field-flex > .mat-mdc-form-field-icon-suffix > .mat-datepicker-toggle > .mat-mdc-icon-button.mat-mdc-button-base > svg {
     color: var(--color-text) !important;
-    transition: color var(--delay);
+    transition: color var(--theme-delay);
 }

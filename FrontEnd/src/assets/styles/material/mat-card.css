@@ -18,20 +18,20 @@
 
 .mat-mdc-card-title {
     color: var(--color-text) !important;
-    font-family: var(--font-family-asty);
-    font-size: 1.25rem;
-    font-weight: 300;
+    font-family: var(--font-family-asty) !important;
+    font-size: 1.25rem !important;
+    font-weight: 300 !important;
     margin: 0 0 0 0.5rem !important;
-    transition: all var(--delay);
+    transition: color var(--theme-delay);
 }
 
 .mat-mdc-card-subtitle {
     color: var(--color-text) !important;
-    font-family: var(--font-family-asty);
-    font-weight: 300;
-    line-height: 1.25rem;
+    font-family: var(--font-family-asty) !important;
+    font-weight: 300 !important;
+    line-height: 1.25rem !important;
     margin: 0 0 0 0.5rem !important;
-    transition: all var(--delay);
+    transition: color var(--theme-delay);
 }
 
 .mat-mdc-card img {

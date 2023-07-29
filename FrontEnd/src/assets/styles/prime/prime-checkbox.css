@@ -7,7 +7,7 @@
 
 .p-checkbox .p-checkbox-box .p-icon {
     color: var(--color-accent);
-    transition: all var(--delay);
+    transition: color var(--theme-delay);
 }
 
 .p-checkbox .p-checkbox-box .p-icon path {

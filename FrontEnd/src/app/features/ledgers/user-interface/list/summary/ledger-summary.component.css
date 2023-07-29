@@ -18,7 +18,7 @@ th {
     font-weight: 300 !important;
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
     text-align: center !important;
-    transition: all var(--delay) !important;
+    transition: all var(--theme-delay) !important;
 }
 
 td {
@@ -30,7 +30,7 @@ td {
     padding: 0.4375rem 0.5rem;
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
-    transition: all var(--delay) !important;
+    transition: all var(--theme-delay) !important;
 }
 
 tr#footer td {

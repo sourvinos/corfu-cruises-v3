@@ -36,7 +36,7 @@ button.fab {
     color: var(--color-text) !important;
     height: 2.375rem !important;
     padding: 0 !important;
-    transition: color var(--delay) !important;
+    transition: color var(--theme-delay) !important;
     width: 2.375rem !important;
 }
 

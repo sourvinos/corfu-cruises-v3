@@ -8,7 +8,7 @@
     font-weight: 300;
     padding: 0.0625rem 0 0 0 !important;
     width: 100%;
-    transition: all var(--delay);
+    transition: color var(--theme-delay);
 }
 
 .p-inputtext:not(.disabled):focus {
