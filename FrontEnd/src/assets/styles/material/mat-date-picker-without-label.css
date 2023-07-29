@@ -1,0 +1,41 @@
+#date-fieldset-without-label {
+    border-color: var(--color-primary);
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#date-fieldset-without-label legend {
+    margin: 0 0 0.5rem 1rem;
+    padding: 0 0.5rem 0 0;
+    width: auto !important;
+}
+
+#date-fieldset-without-label legend #goto-today-button {
+    color: var(--color-accent) !important;
+    font-size: 1.125rem;
+}
+
+#date-fieldset-without-label legend #goto-today-button .mdc-button__label {
+    height: 1.5rem;
+}
+
+#date-fieldset-without-label #date-picker {
+    background-color: transparent !important;
+    border: 0 !important;
+    margin-top: -0.75rem !important;
+    padding: 0 1.1rem 0 1.1rem !important;
+    width: 15rem;
+}
+
+#date-fieldset-without-label #date-picker > .mat-mdc-text-field-wrapper > .mat-mdc-form-field-flex > .mat-mdc-form-field-infix {
+    margin-top: -0.625rem !important;
+}
+
+#date-fieldset-without-label #date-picker > .mat-mdc-text-field-wrapper > .mat-mdc-form-field-flex > .mat-mdc-form-field-icon-suffix > .mat-datepicker-toggle > .mat-mdc-icon-button {
+    margin-top: -0.1875rem !important;
+}
+
+#date-fieldset-without-label #date-picker > .mat-mdc-text-field-wrapper > .mat-mdc-form-field-flex > .mat-mdc-form-field-icon-suffix > .mat-datepicker-toggle > .mat-mdc-icon-button.mat-mdc-button-base > svg {
+    color: var(--color-text) !important;
+    transition: color var(--delay);
+}

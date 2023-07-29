@@ -9,7 +9,7 @@
                     <img [src]="getIcon('calendar')">
                     <div class="description">{{ formatDateToLocale(criteriaPanels.date, true, true) }}</div>
                 </div>
-                <button (click)="resetTableFilters()" class="accent" mat-flat-button>
+                <button (click)="resetTableFilters()" class="fab fab-with-background" mat-icon-button>
                     <mat-icon class="material-icons-outlined">filter_alt_off</mat-icon>
                 </button>
             </div>

@@ -1,8 +1,6 @@
 import { Component } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms'
-import { MatDatepickerInputEvent } from '@angular/material/datepicker'
-import { Router } from '@angular/router'
 import { Subject } from 'rxjs'
 import { takeUntil } from 'rxjs/operators'
 // Custom
@@ -46,7 +44,7 @@ export class ManifestCriteriaComponent {
 
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService,  private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -71,6 +69,10 @@ export class ManifestCriteriaComponent {
     public doTasks(): void {
         this.storeCriteria()
         // this.navigateToList()
+    }
+
+    public getDate(): string {
+        return this.form.value.date
     }
 
     public getEmoji(emoji: string): string {
@@ -111,9 +113,9 @@ export class ManifestCriteriaComponent {
         })
     }
 
-    public patchFormWithSelectedDate(event: MatDatepickerInputEvent<Date>): void {
+    public patchFormWithSelectedDate(event: any): void {
         this.form.patchValue({
-            date: this.dateHelperService.formatDateToIso(new Date(event.value))
+            date: this.dateHelperService.formatDateToIso(new Date(event.value.date))
         })
     }
 
@@ -144,10 +146,6 @@ export class ManifestCriteriaComponent {
             selectedPorts: this.formBuilder.array([], Validators.required),
             selectedShips: this.formBuilder.array([], Validators.required),
         })
-    }
-
-    private navigateToList(): void {
-        this.router.navigate(['manifest/list'])
     }
 
     private populateDropdowns(): void {

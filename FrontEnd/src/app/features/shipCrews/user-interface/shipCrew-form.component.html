@@ -24,7 +24,7 @@
             <mat-form-field>
                 <mat-label>{{ getLabel('birthdate') }}</mat-label>
                 <input (blur)="convertFutureDateToPastDate()" [inputTabStop]="input" [matDatepicker]="picker" [min]="minBirthDate" data-tabindex="3" formControlName="birthdate" matInput type="text">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
                 <mat-error *ngIf="birthdate.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="!birthdate.hasError('required')">{{ getHint("invalid") }}</mat-error>

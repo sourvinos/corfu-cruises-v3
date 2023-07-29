@@ -4,7 +4,7 @@
     border: 0.0625rem solid var(--color-primary) !important;
     box-shadow: 0 0 0 0 #000000 !important;
     margin-bottom: 0.05rem !important;
-    /* transition: all var(--delay) !important; */
+    transition: background-color var(--delay) !important;
 }
 
 .mat-expansion-panel-header {
@@ -14,6 +14,7 @@
     font-weight: 300;
     height: 2rem !important;
     padding: 0.125rem 1.5rem 0 1.5rem !important;
+    transition: background-color var(--delay) !important;
 }
 
 .mat-expansion-indicator::after {

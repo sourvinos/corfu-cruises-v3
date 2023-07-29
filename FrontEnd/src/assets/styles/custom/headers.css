@@ -3,8 +3,8 @@ h1 {
     font-size: var(--font-size-h1) !important;
     font-weight: 300 !important;
     line-height: var(--font-size-line-height-h1) !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    margin: 0 0 0 0 !important;
+    padding: 0 0 0 0 !important;
     transform: scale(1, 1.5);
     transition: color var(--delay);
 }

@@ -16,6 +16,7 @@
     margin: 0 auto;
     overflow-y: hidden;
     padding: 1rem 1.6rem 1rem 2rem;
+    transition: background-color var(--delay);
     width: 100%;
 }
 
@@ -38,20 +39,6 @@
     gap: 0.5rem;
 }
 
-#footer {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: right;
-    margin-top: auto;
-    padding: 1rem 4rem 1rem 4rem;
-}
-
-.table-wrapper {
-    height: 100%;
-    overflow-y: scroll;
-}
-
 #form .group-field:first-child {
     align-items: center;
     display: flex;
@@ -64,27 +51,11 @@
     overflow-y: hidden;
 }
 
-#date {
-    background-color: transparent !important;
-    border: 0 !important;
-    margin-top: -0.75rem !important;
-    padding: 0 1.1rem 0 1.1rem !important;
-}
-
-#date-fieldset {
-    background-color: transparent !important;
-    border: 0.0625rem solid var(--color-primary);
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 17rem !important;
-}
-
-#date-fieldset legend {
-    margin-left: 0.5rem;
-    padding: 0 0.5rem 0 0;
-    width: auto !important;
-}
-
-#goto-today-button span {
-    color: var(--color-accent) !important;
+#footer {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    margin-top: auto;
+    padding: 1rem 4rem 1rem 4rem;
 }

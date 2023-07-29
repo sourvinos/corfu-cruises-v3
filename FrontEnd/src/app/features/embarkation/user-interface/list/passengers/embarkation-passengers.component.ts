@@ -1,12 +1,13 @@
 import { Component, Inject, NgZone } from '@angular/core'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 // Custom
-import { EmbarkationPassengerVM } from '../../../classes/view-models/list/embarkation-passenger-vm'
 import { EmbarkationHttpService } from '../../../classes/services/embarkation.http.service'
+import { EmbarkationPassengerVM } from '../../../classes/view-models/list/embarkation-passenger-vm'
 import { EmbarkationReservationVM } from '../../../classes/view-models/list/embarkation-reservation-vm'
 import { EmojiService } from './../../../../../shared/services/emoji.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { environment } from 'src/environments/environment'
 
 @Component({
@@ -23,11 +24,15 @@ export class EmbarkationPassengerListComponent {
     public reservation: EmbarkationReservationVM
     public initialReservation: EmbarkationReservationVM
 
+    public distinctNationalities: SimpleEntity[]
+
     //#endregion
 
     constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<EmbarkationPassengerListComponent>, private embarkationService: EmbarkationHttpService, private emojiService: EmojiService, private helperService: HelperService, private messageLabelService: MessageLabelService, private ngZone: NgZone) {
         this.reservation = data.reservation
         this.initialReservation = JSON.parse(JSON.stringify(this.reservation))
+        this.populateDropdownFilters()
+        this.enableDisableFilters()
     }
 
     //#region public methods
@@ -79,6 +84,10 @@ export class EmbarkationPassengerListComponent {
         return this.reservation.passengers.filter(x => x.isCheckedIn == false).length == 0
     }
 
+    public isFilterDisabled(): boolean {
+        return this.reservation.passengers.length == 0
+    }
+
     public missingPassengers(): boolean {
         return this.reservation.totalPax != this.reservation.passengers.length
     }
@@ -87,8 +96,18 @@ export class EmbarkationPassengerListComponent {
 
     //#region private methods
 
+    private enableDisableFilters(): void {
+        this.reservation.passengers.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()
+    }
+
     private listMustBeRefreshed(): boolean {
         return !this.helperService.deepEqual(this.initialReservation.passengers, this.reservation.passengers)
+    }
+
+    private populateDropdownFilters(): void {
+        if (this.reservation.passengers.length > 0) {
+            this.distinctNationalities = this.helperService.getDistinctRecords(this.reservation.passengers, 'nationality', 'nationalityDescription')
+        }
     }
 
     //#endregion

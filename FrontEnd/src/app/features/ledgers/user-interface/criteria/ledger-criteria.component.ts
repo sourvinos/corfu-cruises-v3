@@ -56,7 +56,7 @@ export class LedgerCriteriaComponent {
         this.populateDropdowns()
         this.getConnectedUserRole()
         this.populateFieldsFromStoredVariables()
-        this.populateSelectedFromForm()
+        this.populateCheckboxesFromForm()
         this.setLocale()
         this.subscribeToInteractionService()
         this.setTabTitle()
@@ -73,6 +73,13 @@ export class LedgerCriteriaComponent {
     public doTasks(): void {
         this.storeCriteria()
         this.navigateToList()
+    }
+
+    public getDateRange(): any[] {
+        const x = []
+        x.push(this.form.value.fromDate)
+        x.push(this.form.value.toDate)
+        return x
     }
 
     public getHint(id: string, minmax = 0): string {
@@ -104,7 +111,8 @@ export class LedgerCriteriaComponent {
         event.forEach(element => {
             x.push(new FormControl({
                 'id': element.id,
-                'description': element.description
+                'description': element.description,
+                'isActive': element.isActive
             }))
         })
     }
@@ -125,7 +133,8 @@ export class LedgerCriteriaComponent {
         this.criteria[arrayName].forEach((element: any) => {
             x.push(new FormControl({
                 'id': element.id,
-                'description': element.description
+                'description': element.description,
+                'isActive': element.isActive
             }))
         })
     }
@@ -181,7 +190,7 @@ export class LedgerCriteriaComponent {
         }
     }
 
-    private populateSelectedFromForm(): void {
+    private populateCheckboxesFromForm(): void {
         this.selectedCustomers = this.form.value.selectedCustomers
         this.selectedDestinations = this.form.value.selectedDestinations
         this.selectedPorts = this.form.value.selectedPorts

@@ -74,6 +74,10 @@
     background-color: color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent) !important;
 }
 
+.p-multiselect-option {
+    margin-top: 3px;
+}
+
 .p-multiselect-option span {
     margin-left: 0.3rem;
 }
@@ -85,7 +89,7 @@
 .p-column-filter-menu-button, .p-column-filter-clear-button {
     color: var(--color-table-headers);
     font-family: var(--font-family-roboto) !important;
-    font-size: 0.875rem !important;
+    font-size: 0.75rem !important;
     line-height: 0;
     margin-left: -1rem !important;
     margin-top: -2.8125rem;
@@ -98,7 +102,9 @@
 }
 
 .p-column-filter-menu-button, .p-column-filter-clear-button::after {
-    content: "X";
+    color: var(--color-accent);
+    content: "❌";
+    padding: 0 0 0 14px;
 }
 
 .p-multiselect .p-multiselect-trigger {

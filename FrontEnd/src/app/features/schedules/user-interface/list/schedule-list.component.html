@@ -25,7 +25,7 @@
                         <th class="width-5"><p-columnFilter field="isActive" type="boolean"></p-columnFilter></th>
                         <th class="width-9">
                             <div class="date-picker-wrapper">
-                                <input (dateInput)="filterByDate($event)" [matDatepicker]="picker" [ngModel]="filterDate" class="center p-inputtext" readonly>
+                                <input (dateInput)="filterByDate($event)" [matDatepicker]="picker" [ngModel]="filterDate" class="left p-inputtext" readonly>
                                 <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
                                 <span (click)="clearDateFilter()" [ngClass]="hasDateFilter()" class="date-clear-icon pi pi-filter-slash"></span>
                                 <mat-datepicker #picker></mat-datepicker>

@@ -8,7 +8,7 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner'
 import { CriteriaFieldsetCheckboxesComponent } from '../components/criteria-fieldset-checkboxes/criteria-fieldset-checkboxes.component'
 import { CriteriaFieldsetRadiosComponent } from '../components/criteria-fieldset-radios/criteria-fieldset-radios.component'
 import { CriteriaPanelComponent } from '../components/criteria-panel/criteria-panel.component'
-import { DatePickerComponent } from '../components/date-picker/date-picker.component'
+import { DatePickerWithOutLabelComponent } from '../components/date-picker-without-label/date-picker-without-label.component'
 import { DateRangePickerComponent } from '../components/date-range-picker/date-range-picker.component'
 import { EmojiDirective } from '../directives/emoji.directive'
 import { HomeButtonAndTitleComponent } from '../components/home-button-and-title/home-button-and-title.component'
@@ -37,7 +37,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         CriteriaFieldsetCheckboxesComponent,
         CriteriaFieldsetRadiosComponent,
         CriteriaPanelComponent,
-        DatePickerComponent,
+        DatePickerWithOutLabelComponent,
         DateRangePickerComponent,
         EmojiDirective,
         HomeButtonAndTitleComponent,
@@ -65,7 +65,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         FormsModule,
         MaterialModule,
         PrimeNgModule,
-        ReactiveFormsModule ,
+        ReactiveFormsModule,
         RouterModule,
         ZXingScannerModule,
     ],
@@ -74,7 +74,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         CriteriaFieldsetCheckboxesComponent,
         CriteriaFieldsetRadiosComponent,
         CriteriaPanelComponent,
-        DatePickerComponent,
+        DatePickerWithOutLabelComponent,
         DateRangePickerComponent,
         EmojiDirective,
         FormsModule,

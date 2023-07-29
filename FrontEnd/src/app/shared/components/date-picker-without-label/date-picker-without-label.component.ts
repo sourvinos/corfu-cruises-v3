@@ -1,19 +1,20 @@
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Component, EventEmitter, Output } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 // Custom
 import { DateHelperService } from '../../services/date-helper.service'
 import { MessageInputHintService } from '../../services/message-input-hint.service'
 import { MessageLabelService } from '../../services/message-label.service'
 
 @Component({
-    selector: 'date-picker',
-    templateUrl: './date-picker.component.html'
+    selector: 'date-picker-without-label',
+    templateUrl: './date-picker-without-label.component.html'
 })
 
-export class DatePickerComponent {
+export class DatePickerWithOutLabelComponent {
 
     //#region variables
 
+    @Input() parentDate: string
     @Output() outputValue = new EventEmitter()
 
     public feature = 'date-picker'
@@ -52,7 +53,7 @@ export class DatePickerComponent {
         this.emitFormValues()
     }
 
-    public patchFormWithSelectedDate(date: any): void {
+    public patchFormWithSelectedDates(date: any): void {
         this.form.patchValue({
             date: date.value != null ? this.dateHelperService.formatDateToIso(new Date(date.value)) : ''
         })
@@ -64,7 +65,7 @@ export class DatePickerComponent {
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            date: ['', [Validators.required]]
+            date: [this.parentDate, [Validators.required]]
         })
     }
 

@@ -119,7 +119,7 @@
 }
 
 .is-today {
-    background-color: var(--color-background-today);
+    background-color: var(--color-background-today) !important;
 }
 
 .no-reservation-data span {

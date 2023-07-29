@@ -9,20 +9,7 @@
         <div id="form-wrapper">
             <form [formGroup]="form" autocomplete="off" id="form">
                 <div class="group-field">
-                    <fieldset id="date-fieldset">
-                        <legend>
-                            <button (click)="gotoToday()" class="transparent" id="goto-today-button" mat-mini-fab tabindex="-1">
-                                <span class="material-icons-outlined">my_location</span>
-                            </button>
-                            <span>{{ getLabel('date') }}</span>
-                        </legend>
-                        <mat-form-field id="date">
-                            <input (dateChange)="patchFormWithSelectedDate($event)" [matDatepicker]="picker" formControlName="date" matInput>
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                            <mat-error *ngIf="date.hasError('required')">{{ getHint("invalid") }}</mat-error>
-                        </mat-form-field>
-                    </fieldset>
+                    <date-picker-without-label [parentDate]="getDate()" (outputValue)="patchFormWithSelectedDate($event)"></date-picker-without-label>
                 </div>
                 <div class="group-field">
                     <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedDestinations')" [array]="destinations" [caption]="'destinations'" [feature]="feature" [selected]="selectedDestinations"></criteria-fieldset-checkboxes>
@@ -31,6 +18,7 @@
                 </div>
             </form>
         </div>
+        
     </div>
 
     <div id="footer">

@@ -3,12 +3,12 @@ import { PortAutoCompleteVM } from 'src/app/features/ports/classes/view-models/p
 
 export interface ScheduleReadDto {
 
-    id: number,
-    destination: DestinationAutoCompleteVM,
-    port: PortAutoCompleteVM,
-    date: string,
-    maxPax: number,
-    time: string,
+    id: number
+    destination: DestinationAutoCompleteVM
+    port: PortAutoCompleteVM
+    date: string
+    maxPax: number
+    time: string
     isActive: boolean
     user: string
     lastUpdate: string

@@ -1,5 +1,5 @@
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Component, EventEmitter, Output } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 // Custom
 import { DateHelperService } from '../../services/date-helper.service'
 import { MessageInputHintService } from '../../services/message-input-hint.service'
@@ -14,6 +14,7 @@ export class DateRangePickerComponent {
 
     //#region variables
 
+    @Input() parentDateRange: string[]
     @Output() outputValues = new EventEmitter()
 
     public feature = 'date-range-picker'
@@ -65,8 +66,8 @@ export class DateRangePickerComponent {
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            toDate: ['', [Validators.required]],
-            fromDate: ['', [Validators.required]]
+            fromDate: [this.parentDateRange[0], [Validators.required]],
+            toDate: [this.parentDateRange[1], [Validators.required]]
         })
     }
 

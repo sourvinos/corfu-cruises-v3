@@ -28,10 +28,6 @@
     box-shadow: none !important;
 }
 
-.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
-    border: 0.0625rem solid var(--color-text);
-}
-
 .p-checkbox:not(.p-checkbox-disabled):hover {
     box-shadow: none !important;
 }

@@ -2,7 +2,6 @@
     border-color: var(--color-primary);
     margin: 0 !important;
     padding: 0 !important;
-    width: 17rem !important;
 }
 
 #date-range-fieldset legend {
@@ -11,16 +10,16 @@
     width: auto !important;
 }
 
-#goto-today-button {
+#date-range-fieldset legend #goto-today-button {
     color: var(--color-accent) !important;
     font-size: 1.125rem;
 }
 
-#goto-today-button .mdc-button__label {
-    height: 24px;
+#date-range-fieldset legend #goto-today-button .mdc-button__label {
+    height: 1.5rem;
 }
 
-#date-range-picker {
+#date-range-fieldset #date-range-picker {
     background-color: transparent !important;
     border: 0 !important;
     margin-top: -0.75rem !important;
@@ -28,11 +27,16 @@
     width: 17rem;
 }
 
-.mat-date-range-input-container {
+#date-range-fieldset #date-range-picker > .mat-mdc-text-field-wrapper > .mat-mdc-form-field-flex > .mat-mdc-form-field-infix > .mat-date-range-input > .mat-date-range-input-container {
     justify-content: center !important;
     margin: -0.125rem 0 0 0 !important;
 }
 
-.mat-date-range-input-separator {
+#date-range-fieldset #date-range-picker > .mat-mdc-text-field-wrapper > .mat-mdc-form-field-flex > .mat-mdc-form-field-infix > .mat-date-range-input > .mat-date-range-input-container .mat-date-range-input-separator {
     color: transparent !important;
+}
+
+#date-range-fieldset #date-range-picker > .mat-mdc-text-field-wrapper > .mat-mdc-form-field-flex > .mat-mdc-form-field-icon-suffix > .mat-datepicker-toggle > .mat-mdc-icon-button.mat-mdc-button-base > svg {
+    color: var(--color-text) !important;
+    transition: color var(--delay);
 }

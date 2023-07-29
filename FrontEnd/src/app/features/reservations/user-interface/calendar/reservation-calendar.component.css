@@ -1,29 +1,21 @@
-#goto-today-button span {
-    color: var(--color-accent) !important;
-}
-
-#goto-today-button {
-    background-color: transparent !important;
-    box-shadow: none;
-    margin-top: -0.0625rem;
-}
-
 #header-right {
     align-items: center;
     display: flex;
     flex-direction: row;
 }
 
-#refresh-warning {
-    margin-top: 0.1875rem;
+#goto-today-button {
+    background-color: transparent !important;
+    box-shadow: none;
+    padding: 0.25rem 0 0 0 !important;
+}
+
+#goto-today-button span {
+    color: var(--color-accent) !important;
 }
 
 .day.has-schedule:hover {
     cursor: pointer !important;
     transform: scaleY(1.03);
     transition: all 0.2s !important;
-}
-
-.material-symbols-outlined.warning:hover {
-    cursor: pointer;
 }

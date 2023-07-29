@@ -37,8 +37,11 @@ namespace API.Features.Embarkation {
                         Id = passenger.Id,
                         Lastname = passenger.Lastname,
                         Firstname = passenger.Firstname,
-                        NationalityCode = passenger.Nationality.Code,
-                        NationalityDescription = passenger.Nationality.Description,
+                        Nationality = new EmbarkationFinalPassengerNationalityVM {
+                            Id = passenger.Nationality.Id,
+                            Code = passenger.Nationality.Code,
+                            Description = passenger.Nationality.Description,
+                        },
                         IsCheckedIn = passenger.IsCheckedIn
                     }).ToList()
                 })));

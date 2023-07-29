@@ -1,37 +1,57 @@
-<div id="dialog">
+<div id="form-wrapper">
 
-    <div id="dialog-header">
-        <h1 mat-dialog-title>
-            <span>{{ getLabel('headerRefNo') }}: </span><span class="title">{{ reservation.refNo }}</span>&nbsp;&nbsp;
-            <span>{{ getLabel('headerTicketNo') }}: </span><span class="title">{{ reservation.ticketNo }}</span>
+    <div id="form-header">
+        <h1>
+            <span style="color: var(--color-accent);">{{ getLabel('headerRefNo') }}: </span><span style="color: var(--color-text)">{{ reservation.refNo }}</span>&nbsp;&nbsp;
+            <span style="color: var(--color-accent);">{{ getLabel('headerTicketNo') }}: </span><span style="color: var(--color-text)">{{ reservation.ticketNo }}</span>
         </h1>
     </div>
 
-    <div id="table-wrapper">
-        <p-table #table [scrollable]="true" [value]="reservation.passengers" [virtualScrollItemSize]="32" [virtualScroll]="true" scrollHeight="flex" selectionMode="single" sortMode="multiple">
-            <ng-template pTemplate="header">
-                <tr>
-                    <th class="border-bottom width-10" pSortableColumn="lastname">{{ getLabel('headerLastname')}}</th>
-                    <th class="border-bottom width-10" pSortableColumn="firstname">{{ getLabel('headerFirstname') }}</th>
-                    <th class="border-bottom width-10" pSortableColumn="nationalityDescription">{{ getLabel('headerCountry') }}</th>
-                    <th class="border-bottom width-5" pSortableColumn="isCheckedIn">{{ getLabel('headerStatus') }}</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-passenger>
-                <tr style="height:2rem">
-                    <td class="width-10">{{ passenger.lastname }}</td>
-                    <td class="width-10">{{ passenger.firstname }}</td>
-                    <td class="align-vertical width-10">
-                        <img [src]="getNationalityIcon(passenger.nationalityCode)" class="flag-with-border"/>
-                        <span>&nbsp;&nbsp;&nbsp;&nbsp;{{ passenger.nationalityDescription }}</span>
-                    </td>
-                    <td (click)="toggleEmbarkationStatus(passenger)" [ngClass]="passenger.isCheckedIn ? 'complete' : 'pending'" class="center embarkation-status width-5">
-                        <span *ngIf="passenger.isCheckedIn">{{ getEmoji('green-circle') }}</span>
-                        <span *ngIf="!passenger.isCheckedIn">{{ getEmoji('red-circle') }}</span>
-                    </td>
-                </tr>
-            </ng-template>
-        </p-table>
+    <div id="dialog-content">
+        <div id="table-wrapper">
+            <p-table #table [scrollable]="true" [value]="reservation.passengers" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex" selectionMode="single" sortMode="multiple">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th class="width-10" pSortableColumn="lastname">{{ getLabel('headerLastname')}}</th>
+                        <th class="width-10" pSortableColumn="firstname">{{ getLabel('headerFirstname') }}</th>
+                        <th class="width-10" pSortableColumn="nationalityDescription">{{ getLabel('headerCountry') }}</th>
+                        <th class="width-5" pSortableColumn="isCheckedIn">{{ getLabel('headerStatus') }}</th>
+                    </tr>
+                    <tr>
+                        <th class="width-10"><input (input)="table.filter($event.target.value, 'lastname', 'contains')" [disabled]="isFilterDisabled()" [value]="$any(table).filters['lastname']?.value" class="p-inputtext"></th>
+                        <th class="width-10"><input (input)="table.filter($event.target.value, 'firstname', 'contains')" [disabled]="isFilterDisabled()"[value]="$any(table).filters['firstname']?.value" class="p-inputtext"></th>
+                        <th class="width-10">
+                            <p-columnFilter [showMenu]="false" field="nationality" matchMode="in">
+                                <ng-template let-filter="filterCallback" let-value pTemplate="filter">
+                                    <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="distinctNationalities" [placeholder]="getEmoji('wildcard')" optionLabel="description">
+                                        <ng-template let-option pTemplate="item">
+                                            <div class="p-multiselect-option">
+                                                <span>{{ option.description }}</span>
+                                            </div>
+                                        </ng-template>
+                                    </p-multiSelect>
+                                </ng-template>
+                            </p-columnFilter>
+                        </th>
+                        <th class="width-5"></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-passenger>
+                    <tr style="height:2rem">
+                        <td class="width-10">{{ passenger.lastname }}</td>
+                        <td class="width-10">{{ passenger.firstname }}</td>
+                        <td class="align-vertical width-10">
+                            <img [src]="getNationalityIcon(passenger.nationality.code)" class="flag-with-border" />
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;{{ passenger.nationality.description }}</span>
+                        </td>
+                        <td (click)="toggleEmbarkationStatus(passenger)" [ngClass]="passenger.isCheckedIn ? 'complete' : 'pending'" class="center embarkation-status width-5">
+                            <span *ngIf="passenger.isCheckedIn">{{ getEmoji('green-circle') }}</span>
+                            <span *ngIf="!passenger.isCheckedIn">{{ getEmoji('red-circle') }}</span>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
     </div>
 
     <div id="dialog-footer">

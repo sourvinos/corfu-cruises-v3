@@ -1,7 +1,6 @@
 import { Component } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms'
-import { MatDatepickerInputEvent } from '@angular/material/datepicker'
 import { Router } from '@angular/router'
 import { Subject } from 'rxjs'
 import { takeUntil } from 'rxjs/operators'
@@ -9,6 +8,7 @@ import { takeUntil } from 'rxjs/operators'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { EmbarkationCriteriaPanelVM } from '../../classes/view-models/criteria/embarkation-criteria-panel-vm'
+import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
@@ -16,7 +16,6 @@ import { MessageInputHintService } from 'src/app/shared/services/message-input-h
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
-import { EmojiService } from 'src/app/shared/services/emoji.service'
 
 @Component({
     selector: 'embarkation-criteria',
@@ -73,6 +72,10 @@ export class EmbarkationCriteriaComponent {
         this.navigateToList()
     }
 
+    public getDate(): string {
+        return this.form.value.date
+    }
+    
     public getEmoji(emoji: string): string {
         return this.emojiService.getEmoji(emoji)
     }
