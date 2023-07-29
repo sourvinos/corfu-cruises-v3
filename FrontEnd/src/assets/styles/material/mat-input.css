@@ -42,7 +42,6 @@
 
 /* Icon prefix */
 .mat-mdc-form-field-infix .mat-icon {
-    color: var(--color-input-suffix);
     margin: 0 0.4rem 0 -0.2rem;
     transition: color var(--delay) !important;
     overflow: visible !important;
@@ -51,10 +50,12 @@
 /* Icon prefix */
 .mat-mdc-form-field-infix .mat-icon.small {
     align-items: center;
+    color: var(--color-text) !important;
     display: flex;
     font-size: 1.0625rem;
     justify-content: center;
     margin-top: 0.1875rem;
+    transition: color var(--delay) !important;
 }
 
 /* Label with error */
@@ -83,7 +84,6 @@
 
 /* Suffix button */
 .mat-mdc-form-field-icon-suffix {
-    color: var(--color-input-suffix);
     margin-top: 5px !important;
     transition: color var(--delay) !important;
 }
@@ -94,8 +94,9 @@
 }
 
 /* Suffix button */
-.mat-mdc-icon-button svg {
-    color: var(--color-input-suffix) !important;
+.mat-mdc-icon-button .mat-icon {
+    color: var(--color-text) !important;
+    transition: color var(--delay) !important;
 }
 
 /* Suffix button */
@@ -108,6 +109,11 @@
     margin-top: 0.3125rem;
 }
 
+/* Suffix button */
+.mat-mdc-form-field-flex > .mat-mdc-form-field-icon-suffix > .mat-datepicker-toggle {
+    color: var(--color-text) !important;
+}
+
 /* Hint */
 .mat-mdc-form-field-hint {
     color: var(--color-text);
@@ -117,6 +123,7 @@
     justify-content: flex-end;
     transform: translateY(0.0625rem);
     width: 100%;
+    transition: color var(--delay) !important;
 }
 
 /* Hint */

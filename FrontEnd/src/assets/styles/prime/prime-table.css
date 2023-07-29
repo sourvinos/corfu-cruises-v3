@@ -196,8 +196,9 @@
     width: 1rem !important;
 }
 
-.mat-mdc-icon-button svg {
-    /* color: var(--color-table-headers) !important; */
+.p-datatable .p-datatable-thead > tr > th > .date-picker-wrapper > .mat-datepicker-toggle > .mat-mdc-icon-button > svg {
+    color: var(--color-table-headers);
+    transition: color var(--delay) !important;
 }
 
 .mat-datepicker-toggle {

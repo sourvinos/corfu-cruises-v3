@@ -50,7 +50,6 @@ const appRoutes: Routes = [
 
 @NgModule({
     declarations: [],
-    entryComponents: [],
     exports: [
         RouterModule
     ],

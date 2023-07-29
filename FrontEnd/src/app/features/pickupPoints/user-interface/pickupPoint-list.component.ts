@@ -75,7 +75,7 @@ export class PickupPointListComponent {
         this.navigateToRecord(id)
     }
 
-    public filterRecords(event: { filteredValue: any[] }): void {
+    public filterRecords(event: any): void {
         this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
         this.recordsFiltered = event.filteredValue
         this.recordsFilteredCount = event.filteredValue.length

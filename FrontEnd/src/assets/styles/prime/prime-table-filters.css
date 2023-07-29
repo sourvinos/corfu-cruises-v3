@@ -96,6 +96,10 @@
     position: absolute !important;
 }
 
+.p-column-filter-menu-button, .p-column-filter-clear-button .p-icon-wrapper svg {
+    display: none !important;
+}
+
 .p-column-filter-clear-button:hover {
     background-color: transparent;
     color: var(--color-table-headers);

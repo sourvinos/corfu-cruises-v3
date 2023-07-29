@@ -90,7 +90,7 @@ export class EmbarkationReservationsComponent {
         this.embarkationPDFService.createPDF(this.records.reservations)
     }
 
-    public filterRecords(event: { filteredValue: any[] }): void {
+    public filterRecords(event: any): void {
         this.helperService.clearTableCheckboxes()
         this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
         this.updateTotals('totalsFiltered', event.filteredValue)

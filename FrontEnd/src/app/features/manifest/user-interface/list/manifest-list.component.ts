@@ -82,7 +82,7 @@ export class ManifestListComponent {
 
     //#region public methods
 
-    public filterRecords(event: { filteredValue: any[] }): void {
+    public filterRecords(event: any): void {
         this.toggleVirtualTable()
         this.updateTotals(this.totalsFiltered, event.filteredValue)
         this.storeFilters()

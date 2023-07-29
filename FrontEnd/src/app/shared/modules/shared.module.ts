@@ -101,9 +101,6 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         TrimStringPipe,
         YearSelectorComponent,
         ZXingScannerModule,
-    ],
-    entryComponents: [
-        ModalDialogComponent
     ]
 })
 

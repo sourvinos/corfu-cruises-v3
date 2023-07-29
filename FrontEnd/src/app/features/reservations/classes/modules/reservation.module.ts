@@ -23,9 +23,6 @@ import { SharedModule } from '../../../../shared/modules/shared.module'
     imports: [
         SharedModule,
         ReservationRoutingModule
-    ],
-    entryComponents: [
-        ReservationToDriverOrShipComponent
     ]
 })
 

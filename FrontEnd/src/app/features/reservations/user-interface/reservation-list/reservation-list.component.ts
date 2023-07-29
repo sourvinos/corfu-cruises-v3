@@ -142,7 +142,7 @@ export class ReservationListComponent {
         this.gotoEditForm(id)
     }
 
-    public filterRecords(event?: { filteredValue: any[] }): void {
+    public filterRecords(event: any): void {
         this.helperService.clearTableCheckboxes()
         this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
         this.selectedRecords.splice(0)
