@@ -1,11 +1,16 @@
+/* #region master */
+
 .mat-expansion-panel {
-    background-color: var(--color-table-headers);
     border-radius: 0 !important;
-    border: 0.0625rem solid var(--color-primary) !important;
+    border: 0.0625rem solid var(--color-table-body-border) !important;
     box-shadow: 0 0 0 0 #000000 !important;
-    margin-bottom: 0.05rem !important;
+    margin-bottom: 0.1875rem !important;
     transition: background-color var(--theme-delay) !important;
 }
+
+/* #endregion */
+
+/* #region header */
 
 .mat-expansion-panel-header {
     background-color: var(--color-background) !important;
@@ -17,14 +22,9 @@
     transition: background-color var(--theme-delay) !important;
 }
 
-.mat-expansion-indicator::after {
-    color: var(--color-accent-secondary);
-    margin-top: -0.5625rem;
-    transition: color var(--theme-delay) !important;
-}
-
-.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:hover {
-    background-color: var(--color-header-background-hover) !important;
+.mat-expansion-panel-header.mat-expanded {
+    height: 2rem !important;
+    transition: background-color var(--theme-delay) !important;
 }
 
 .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
@@ -32,6 +32,16 @@
     font-size: var(--font-size-mat-expansion-header);
     transition: color var(--theme-delay) !important;
 }
+
+.mat-expansion-indicator::after {
+    color: var(--color-text) !important;
+    margin-top: -0.5625rem;
+    transition: color var(--theme-delay) !important;
+}
+
+/* #endregion */
+
+/* #region body */
 
 .mat-expansion-panel-body {
     background-color: var(--color-background) !important;
@@ -42,14 +52,4 @@
     transition: background-color var(--theme-delay) !important;
 }
 
-.mat-action-row {
-    border-top-style: none !important;
-    margin: 0 1rem 0 1rem;
-    padding: 0 !important;
-}
-
-.mat-expansion-panel-header.mat-expanded {
-    background-color: var(--color-background) !important;
-    height: 2rem !important;
-    transition: background-color var(--theme-delay) !important;
-}
+/* #endregion */

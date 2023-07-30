@@ -33,7 +33,6 @@ button {
 }
 
 button.fab {
-    color: var(--color-text) !important;
     height: 2.375rem !important;
     padding: 0 !important;
     transition: color var(--theme-delay) !important;
@@ -42,16 +41,10 @@ button.fab {
 
 button.fab-with-background {
     background-color: var(--color-accent);
-    color: var(--color-button-fab) !important;
 }
 
 button.fab-with-no-background {
     background-color: transparent;
-    color: var(--color-text) !important;
-}
-
-button.fab-with-no-background.reverse {
-    color: var(--color-text-reverse) !important;
 }
 
 button.bold {
@@ -75,8 +68,8 @@ button.secondary {
 
 button.accent {
     background-color: var(--color-accent) !important;
-    color: var(--color-button-text) !important;
 }
+
 button.tab {
     padding-bottom: 0.3125rem;
 }
@@ -87,7 +80,6 @@ button.tab:first-child {
 
 button.transparent {
     background-color: transparent !important;
-    color: var(--color-text) !important;
     transition: all 0.25s !important;
 }
 

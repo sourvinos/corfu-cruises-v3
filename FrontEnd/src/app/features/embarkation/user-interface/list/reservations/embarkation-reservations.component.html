@@ -161,29 +161,29 @@
         <div class="filter-pill">
             <div class="pill">
                 <img [src]="getIcon('total')">
-                <div class="number description">
+                <div class="right description">
                     <span>{{ totals[0] | padNumber : 3 : ' ' }}</span>
                 </div>
                 <img [src]="getIcon('boarded')">
-                <div class="number description">
+                <div class="right description">
                     <span>{{ totals[1] | padNumber : 3 : ' ' }}</span>
                 </div>
                 <img [src]="getIcon('pending')">
-                <div class="number description">
+                <div class="right description">
                     <span>{{ totals[2] | padNumber : 3 : ' ' }}</span>
                 </div>
             </div>
             <div class="pill">
                 <img [src]="getIcon('filter')">
-                <div class="number description">
+                <div class="right description">
                     <span>{{ totalsFiltered[0] | padNumber : 3 : ' ' }}</span>
                 </div>
                 <img [src]="getIcon('boarded')">
-                <div class="number description">
+                <div class="right description">
                     <span>{{ totalsFiltered[1] | padNumber : 3 : ' ' }}</span>
                 </div>
                 <img [src]="getIcon('pending')">
-                <div class="number description">
+                <div class="right description">
                     <span>{{ totalsFiltered[2] | padNumber : 3 : ' ' }}</span>
                 </div>
             </div>

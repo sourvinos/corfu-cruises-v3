@@ -115,7 +115,7 @@
                                 <span>{{ getLabel('maxPax') }}</span>
                             </legend>
                             <mat-form-field class="no-decorations">
-                                <input class="number" formControlName="maxPax" matInput type="number" tabindex="-1">
+                                <input class="right" formControlName="maxPax" matInput type="number" tabindex="-1">
                                 <mat-error *ngIf="maxPax.hasError('required')">{{ getHint("required") }}</mat-error>
                                 <mat-error *ngIf="!maxPax.hasError('required') && maxPax.hasError('min') || maxPax.hasError('max')">{{ getHint("invalid") }}</mat-error>
                             </mat-form-field>

@@ -127,7 +127,7 @@
                     <mat-form-field>
                         <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined small">lock</mat-icon>
                         <mat-label>{{ getLabel('adults') }}</mat-label>
-                        <input (keyup)="doPaxCalculations()" [inputTabStop]="input" [readonly]="!isAdminOrNewRecord()" class="number" data-tabindex="6" formControlName="adults" matInput type="number">
+                        <input (keyup)="doPaxCalculations()" [inputTabStop]="input" [readonly]="!isAdminOrNewRecord()" class="right" data-tabindex="6" formControlName="adults" matInput type="number">
                         <mat-error *ngIf="adults.hasError('required')">{{ getHint("required") }}</mat-error>
                         <mat-error *ngIf="!adults.hasError('required') && adults.hasError('min') || adults.hasError('max')">{{ getHint("invalid") }}</mat-error>
                     </mat-form-field>
@@ -135,7 +135,7 @@
                     <mat-form-field>
                         <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined small">lock</mat-icon>
                         <mat-label>{{ getLabel('kids') }}</mat-label>
-                        <input (keyup)="doPaxCalculations()" [inputTabStop]="input" [readonly]="!isAdminOrNewRecord()" class="number" data-tabindex="7" formControlName="kids" matInput type="number">
+                        <input (keyup)="doPaxCalculations()" [inputTabStop]="input" [readonly]="!isAdminOrNewRecord()" class="right" data-tabindex="7" formControlName="kids" matInput type="number">
                         <mat-error *ngIf="kids.hasError('required')">{{ getHint("required") }}</mat-error>
                         <mat-error *ngIf="!kids.hasError('required') && kids.hasError('min') || kids.hasError('max')">{{ getHint("invalid") }}</mat-error>
                     </mat-form-field>
@@ -143,7 +143,7 @@
                     <mat-form-field>
                         <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined small">lock</mat-icon>
                         <mat-label>{{ getLabel('free') }}</mat-label>
-                        <input (keyup)="doPaxCalculations()" [inputTabStop]="input" [readonly]="!isAdminOrNewRecord()" class="number" data-tabindex="8" formControlName="free" matInput type="number">
+                        <input (keyup)="doPaxCalculations()" [inputTabStop]="input" [readonly]="!isAdminOrNewRecord()" class="right" data-tabindex="8" formControlName="free" matInput type="number">
                         <mat-error *ngIf="free.hasError('required')">{{ getHint("required") }}</mat-error>
                         <mat-error *ngIf="!free.hasError('required') && free.hasError('min') || free.hasError('max')">{{ getHint("invalid") }}</mat-error>
                     </mat-form-field>
@@ -151,7 +151,7 @@
                     <mat-form-field>
                         <mat-icon class="material-icons-outlined small">lock</mat-icon>
                         <mat-label>{{ getLabel('totalPax') }}</mat-label>
-                        <input class="number" formControlName="totalPax" matInput readonly>
+                        <input class="right" formControlName="totalPax" matInput readonly>
                         <span id="total-pax-emoji">{{ getPassengerDifferenceColor() }}</span>
                     </mat-form-field>
                 </div>

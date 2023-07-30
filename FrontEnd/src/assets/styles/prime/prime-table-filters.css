@@ -91,8 +91,8 @@
     font-family: var(--font-family-roboto) !important;
     font-size: 0.75rem !important;
     line-height: 0;
-    margin-left: -1rem !important;
-    margin-top: -2.8125rem;
+    margin-left: -22px !important;
+    margin-top: -42px;
     position: absolute !important;
 }
 
@@ -116,4 +116,39 @@
     justify-content: flex-end;
     width: 1.1rem;
     transition: color var(--theme-delay);
+}
+
+.p-sortable-column:focus {
+    box-shadow: none !important;
+    outline: none;
+}
+
+.pi-chevron-down {
+    padding-top: 0.4375rem;
+}
+
+.mat-datepicker-toggle-default-icon {
+    display: flex;
+    width: 1rem !important;
+}
+
+.p-datatable .p-datatable-thead > tr > th > .date-picker-wrapper > .mat-datepicker-toggle > .mat-mdc-icon-button > svg {
+    color: var(--color-table-header-text);
+    transition: color var(--theme-delay) !important;
+}
+
+.mat-datepicker-toggle {
+    height: 20px !important;
+}
+
+.date-picker-wrapper > .mat-datepicker-toggle > .mdc-icon-button {
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+.date-picker-wrapper {
+    display: flex;
+    flex-direction: row;
 }

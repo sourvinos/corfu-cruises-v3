@@ -28,4 +28,11 @@
     --color-button-fab-hover: #f1f1f1;
     /* Mat-Expander */
     --color-header-background-hover: #757575;
+    /* Tables */
+    --color-table-header-background: #5298C5;
+    --color-table-header-border: #555555;
+    --color-table-header-text: #ffffff;
+    --color-table-body-background: #555555;
+    --color-table-body-border: #5298C5;
+    --color-table-body-text: #ffffff;
 }

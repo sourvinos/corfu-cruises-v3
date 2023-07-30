@@ -1,10 +1,10 @@
 <div class="filter-pill">
     <div class="pill">
         <img [src]="getIcon('total')">
-        <div class="number description">{{ recordCount }}</div>
+        <div class="right description">{{ recordCount }}</div>
     </div>
     <div *ngIf="showFilteredCount" class="pill">
         <img [src]="getIcon('filter')">
-        <div class="number description">{{ filteredRecordCount }}</div>
+        <div class="right description">{{ filteredRecordCount }}</div>
     </div>
 </div>
