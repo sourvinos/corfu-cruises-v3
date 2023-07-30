@@ -150,7 +150,7 @@
                         <td class="right width-2">{{ reservation.totalPax }}</td>
                         <td class="right width-4">
                             <span>{{ reservation.passengerCount }} ({{ reservation.passengerDifference }})</span>
-                            <span class="passenger-difference-icon">&nbsp;&nbsp;{{ showEmoji(reservation.passengerDifference) }}</span>
+                            <span>&nbsp;&nbsp;{{ showEmoji(reservation.passengerDifference) }}</span>
                         </td>
                         <td [class]="reservation.driver.id == 0 ? 'center' : null" class="width-5">{{ reservation.driver.description == "(EMPTY)" ? getEmoji('null'): reservation.driver.description }}</td>
                         <td class="center width-5">{{ reservation.port.abbreviation }}</td>
@@ -189,7 +189,7 @@
                 </div>
             </div>
         </div>
-        <div class="button-group-right">
+        <div id="button-align-right">
             <button (click)="newRecord()" class="primary" mat-flat-button>{{ getLabel('newButton') | uppercase }}</button>
         </div>
     </div>

@@ -11,12 +11,6 @@
     --mat-mdc-button-persistent-ripple-color: transparent !important;
 }
 
-.button-group-right {
-    display: flex;
-    gap: 0.5rem;
-    margin-left: auto;
-}
-
 button {
     align-items: center;
     border: none;
@@ -45,10 +39,6 @@ button.fab-with-background {
 
 button.fab-with-no-background {
     background-color: transparent;
-}
-
-button.bold {
-    font-weight: 700 !important;
 }
 
 button.delete {

@@ -8,10 +8,10 @@
 
         <div id="form-wrapper">
             <form [formGroup]="form" autocomplete="off" id="form">
-                <div class="group-field">
+                <div class="group-input-field">
                     <date-picker-without-label [parentDate]="getDate()" (outputValue)="patchFormWithSelectedDate($event)"></date-picker-without-label>
                 </div>
-                <div class="group-field">
+                <div class="group-input-field">
                     <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedDestinations')" [array]="destinations" [caption]="'destinations'" [feature]="feature" [selected]="selectedDestinations"></criteria-fieldset-checkboxes>
                     <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedPorts')" [array]="ports" [caption]="'ports'" [feature]="feature" [selected]="selectedPorts"></criteria-fieldset-checkboxes>
                     <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedShips')" [array]="ships" [caption]="'ships'" [feature]="feature" [selected]="selectedShips"></criteria-fieldset-checkboxes>
@@ -22,7 +22,7 @@
     </div>
 
     <div id="footer">
-        <div class="button-group-right">
+        <div id="button-align-right">
             <button (click)="doTasks()" [disabled]="!form.valid" class="primary" mat-flat-button>
                 <mat-icon *ngIf="!form.valid" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("searchButton") | uppercase }}</span>

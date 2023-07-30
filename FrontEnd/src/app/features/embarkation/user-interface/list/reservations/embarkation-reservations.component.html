@@ -145,9 +145,9 @@
                         <td class="center width-5">{{ reservation.port.abbreviation }}</td>
                         <td class="center width-5">{{ reservation.ship.abbreviation == "(EMPTY)" ? getEmoji('null') : reservation.ship.abbreviation }}</td>
                         <td class="right width-3">
-                            <span>{{ reservation.totalPax | replaceZero }}</span>
-                            <span *ngIf="reservation.totalPax - reservation.passengers.length == 0" class="emoji-with-text">{{ getEmoji('green-circle') }}</span>
-                            <span *ngIf="reservation.totalPax - reservation.passengers.length != 0" class="emoji-with-text">{{ getEmoji('red-circle') }}</span>
+                            <span>{{ reservation.totalPax | replaceZero }}&nbsp;&nbsp;</span>
+                            <span *ngIf="reservation.totalPax - reservation.passengers.length == 0" class="">{{ getEmoji('green-circle') }}</span>
+                            <span *ngIf="reservation.totalPax - reservation.passengers.length != 0" class="">{{ getEmoji('red-circle') }}</span>
                         </td>
                         <td class="center width-2"><span (click)="showRemarks(reservation.remarks)" [ngClass]="hasRemarks(reservation.remarks)?'clickable':''" *ngIf="hasRemarks(reservation.remarks)">{{ getEmoji('remarks') }}</span></td>
                     </tr>
@@ -188,7 +188,7 @@
                 </div>
             </div>
         </div>
-        <div class="button-group-right">
+        <div id="button-align-right">
             <button (click)="createPdf()" [disabled]="records.reservations.length == 0" class="primary" mat-flat-button>
                 <mat-icon *ngIf="records.reservations.length==0" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("createPDF") | uppercase }}</span>

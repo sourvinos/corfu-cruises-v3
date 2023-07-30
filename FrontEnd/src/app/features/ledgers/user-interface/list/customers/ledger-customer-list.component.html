@@ -40,7 +40,7 @@
 
     <div id="footer">
         <table-total-filtered-records [filteredRecordCount]="records.length" [recordCount]="records.length" [showFilteredCount]="false"></table-total-filtered-records>
-        <div class="button-group-right">
+        <div id="button-align-right">
             <button [disabled]="records.length==0" (click)="exportAll()" class="primary" mat-flat-button>
                 <mat-icon *ngIf="records.length==0" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("createPdfButton") | uppercase }}</span>

@@ -44,7 +44,7 @@
                 <mat-error *ngIf="port.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="!port.hasError('required') && port.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>
-            <div class="group-field">
+            <div class="group-input-field">
                 <!-- MaxPax -->
                 <mat-form-field>
                     <mat-label>{{ getLabel('maxPax') }}</mat-label>
@@ -66,7 +66,7 @@
                     <span>{{ getLabel("isActive") }}</span>
                 </mat-checkbox>
             </div>
-            <div class="align-bottom group-field hide-hint">
+            <div class="align-bottom group-input-field hide-hint">
                 <!-- User -->
                 <mat-form-field>
                     <mat-label>{{ getLabel('user') }}</mat-label>
@@ -85,7 +85,7 @@
     </div>
 
     <div id="footer">
-        <div class="button-group-right">
+        <div id="button-align-right">
             <button (click)="onDelete()" *ngIf="form.value.id !== 0" class="delete" mat-flat-button>{{ getLabel("deleteButton") | uppercase }}</button>
             <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
                 <mat-icon *ngIf="!form.valid" class="material-icons-outlined">lock</mat-icon>

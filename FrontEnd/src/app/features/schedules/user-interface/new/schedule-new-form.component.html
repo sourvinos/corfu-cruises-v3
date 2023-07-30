@@ -9,7 +9,7 @@
         <div id="form-wrapper">
             <form [formGroup]="form" autocomplete="off" id="form">
                 <!-- Dates -->
-                <div class="group-field">
+                <div class="group-input-field">
                     <fieldset id="date-fieldset">
                         <legend>
                             <span>{{ getLabel('date') }}</span>
@@ -28,7 +28,7 @@
                         </mat-form-field>
                     </fieldset>
                 </div>
-                <div class="group-field">
+                <div class="group-input-field">
                     <!-- Destination -->
                     <fieldset class="fieldset">
                         <legend>
@@ -139,7 +139,7 @@
     </div>
 
     <div id="footer">
-        <div class="button-group-right">
+        <div id="button-align-right">
             <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
                 <mat-icon *ngIf="!form.valid" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("saveButton") | uppercase }}</span>

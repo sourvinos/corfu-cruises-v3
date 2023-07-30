@@ -9,31 +9,41 @@ table {
     border-collapse: collapse;
 }
 
-/* th {
+table > thead > tr > th {
     background-color: var(--color-secondary);
-    border: 0.0625rem solid var(--color-background);
-    color: red !important;
+    border-right: 0.0625rem solid var(--color-background);
+    color: var(--color-table-headers) !important;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-header) !important;
     font-weight: 300 !important;
-    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
     text-align: center !important;
-    transition: all var(--theme-delay) !important;
-} */
+    transition: all var(--theme-delay);
+}
 
-/* td {
-    border-bottom: 0.0625rem solid var(--color-background);
+table > tbody > tr > td {
+    border-bottom: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent);
     color: var(--color-text);
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-row);
     font-weight: 300;
-    padding: 0.4375rem 0.5rem;
+    overflow: hidden !important;
+    padding: 0.3125rem 0.5rem;
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
-    transition: all var(--theme-delay) !important;
-} */
+    transition: all var(--theme-delay);
+}
 
-/* tr#footer td {
+table > tfoot > tr > td {
     background-color: var(--color-secondary);
-    color: var(--color-text-reverse);
-} */
+    border-right: 0.0625rem solid var(--color-background);
+    color: var(--color-table-headers) !important;
+    font-family: var(--font-family-asty) !important;
+    font-size: var(--font-size-table-header) !important;
+    font-weight: 300 !important;
+    text-align: center !important;
+    transition: all var(--theme-delay);
+}
+
+table > tfoot > tr > td:first-child {
+    width: 10rem;
+}

@@ -7,7 +7,7 @@
         </div>
 
         <form [formGroup]="form" autocomplete="off">
-            <div class="group-field">
+            <div class="group-input-field">
                 <!-- Description -->
                 <mat-form-field>
                     <mat-label>{{ getLabel('description') }}</mat-label>
@@ -22,7 +22,7 @@
                     <mat-error *ngIf="profession.hasError('maxlength')">{{ getHint("maxLength", profession.errors.maxlength.requiredLength) }}</mat-error>
                 </mat-form-field>
             </div>
-            <div class="group-field">
+            <div class="group-input-field">
                 <!-- Address -->
                 <mat-form-field>
                     <mat-label>{{ getLabel('address') }}</mat-label>
@@ -42,7 +42,7 @@
                     <mat-error *ngIf="phones.hasError('maxlength')">{{ getHint("maxLength", phones.errors.maxlength.requiredLength) }}</mat-error>
                 </mat-form-field>
             </div>
-            <div class="group-field">
+            <div class="group-input-field">
                 <!-- City -->
                 <mat-form-field>
                     <mat-label>{{ getLabel('city') }}</mat-label>
@@ -63,7 +63,7 @@
                     <span>{{ getLabel("isActive") }}</span>
                 </mat-checkbox>
             </div>
-            <div class="align-bottom group-field hide-hint">
+            <div class="align-bottom group-input-field hide-hint">
                 <!-- User -->
                 <mat-form-field>
                     <mat-label>{{ getLabel('user') }}</mat-label>
@@ -82,7 +82,7 @@
     </div>
 
     <div id="footer">
-        <div class="button-group-right">
+        <div id="button-align-right">
             <button (click)="onDelete()" *ngIf="form.value.id !== 0" class="delete" mat-flat-button>{{ getLabel("deleteButton") | uppercase }}</button>
             <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
                 <mat-icon *ngIf="!form.valid" class="material-icons-outlined">lock</mat-icon>

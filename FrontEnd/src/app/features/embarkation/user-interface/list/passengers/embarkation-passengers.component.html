@@ -60,7 +60,7 @@
             <span *ngIf="countMissingPassengers() == 1">{{ getLabel("missingPassenger") }}</span>
             <span *ngIf="countMissingPassengers() > 1">{{ getLabel("missingPassengers", countMissingPassengers().toString()) }}</span>
         </div>
-        <div class="button-group-right">
+        <div id="button-align-right">
             <button (click)="doEmbarkation(true, reservation.passengers)" [disabled]="isEmbarkAllAllowed()" class="secondary" mat-flat-button>
                 <mat-icon *ngIf="isEmbarkAllAllowed()" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel('embarkAllPassengers') }}</span>
