@@ -7,7 +7,7 @@
         </div>
     </legend>
     <div class="table-wrapper">
-        <p-table #table (onRowSelect)="onRowSelect($event,'selected')" [(selection)]="selected" [scrollable]="true" [value]="array" [virtualScrollItemSize]="32" [virtualScroll]="true" datakey="id" scrollHeight="flex" selectionMode="single">
+        <p-table #table (onRowSelect)="onRowSelect()" [(selection)]="selected" [scrollable]="true" [value]="array" [virtualScrollItemSize]="32" [virtualScroll]="true" datakey="id" scrollHeight="flex" selectionMode="single">
             <ng-template pTemplate="header">
                 <tr>
                     <th class="no-border width-2"></th>

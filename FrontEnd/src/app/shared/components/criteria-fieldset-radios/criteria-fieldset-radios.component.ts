@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 // Custom
 import { EmojiService } from '../../services/emoji.service'
 import { MessageLabelService } from '../../services/message-label.service'
@@ -45,8 +45,8 @@ export class CriteriaFieldsetRadiosComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public onRowSelect(event: any, formControl: string): void {
-        this.updateSelected(formControl)
+    public onRowSelect(): void {
+        this.updateSelected()
         this.exportSelected()
     }
 
@@ -55,21 +55,19 @@ export class CriteriaFieldsetRadiosComponent {
     //#region private methods
 
     private exportSelected(): void {
-        this.outputSelected.emit(this.selected)
+        this.outputSelected.emit(new Array(1).fill(this.selected))
     }
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            selected: this.formBuilder.array([], Validators.required)
+            selected: ['', Validators.required]
         })
     }
 
-    private updateSelected(formControl: any): void {
-        const x = this.form.controls[formControl] as FormArray
-        x.clear()
-        x.push(new FormControl({
+    private updateSelected(): void {
+        this.form.patchValue({
             selected: this.selected
-        }))
+        })
     }
 
     //#endregion
