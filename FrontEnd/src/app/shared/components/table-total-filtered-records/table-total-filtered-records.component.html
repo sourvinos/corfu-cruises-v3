@@ -3,7 +3,7 @@
         <img [src]="getIcon('total')">
         <div class="right description">{{ recordCount }}</div>
     </div>
-    <div *ngIf="showFilteredCount" class="pill">
+    <div (click)="mustResetTableFilters()" *ngIf="showFilteredCount" class="pill reset-table-filter">
         <img [src]="getIcon('filter')">
         <div class="right description">{{ filteredRecordCount }}</div>
     </div>

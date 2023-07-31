@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 // Custom
 import { environment } from 'src/environments/environment'
 
@@ -11,10 +11,16 @@ export class TableTotalFilteredRecordsComponent {
 
     @Input() recordCount: number
     @Input() filteredRecordCount: number
-    @Input() showFilteredCount=true
+    @Input() showFilteredCount = true
+
+    @Output() public resetTableFilters = new EventEmitter()
 
     public getIcon(filename: string): string {
         return environment.criteriaIconDirectory + filename + '.svg'
+    }
+
+    public mustResetTableFilters(): void {
+        this.resetTableFilters.emit()
     }
 
 }

@@ -9,9 +9,6 @@
                     <img [src]="getIcon('calendar')">
                     <div class="description">{{ formatDateToLocale(criteriaPanels.date, true, true) }}</div>
                 </div>
-                <button (click)="resetTableFilters()" class="fab fab-with-background" mat-icon-button>
-                    <mat-icon class="material-icons-outlined">filter_alt_off</mat-icon>
-                </button>
             </div>
         </div>
 
@@ -173,7 +170,7 @@
                     <span>{{ totals[2] | padNumber : 3 : ' ' }}</span>
                 </div>
             </div>
-            <div class="pill">
+            <div (click)="resetTableFilters()" class="pill reset-table-filter">
                 <img [src]="getIcon('filter')">
                 <div class="right description">
                     <span>{{ totalsFiltered[0] | padNumber : 3 : ' ' }}</span>

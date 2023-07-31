@@ -9,9 +9,6 @@
                     <img [src]="getIcon('calendar')">
                     <div class="description">{{ formatDateToLocale(records.date, true, true) }}</div>
                 </div>
-                <button (click)="resetTableFilters()" class="accent" mat-flat-button>
-                    <mat-icon class="material-icons-outlined">filter_alt_off</mat-icon>
-                </button>
             </div>
         </div>
 
@@ -70,12 +67,12 @@
                     </tr>
                 </ng-template>
                 <ng-template let-passenger pTemplate="body">
-                    <tr [attr.id]=passenger.id [pSelectableRow]="passenger" style="height:2rem">
+                    <tr [attr.id]=passenger.id [pSelectableRow]="passenger" style="height: 32px">
                         <td class="width-10">{{ passenger.occupant.description }}</td>
                         <td class="width-10">{{ passenger.gender.description }}</td>
-                        <td class="width-10" style="align-items: center; display: flex;">
-                            <img [src]="getNationalityIcon(passenger.nationality.code)" class="flag-with-border" style="vertical-align: middle" />
-                            <span style="overflow: hidden;">&nbsp;&nbsp;&nbsp;&nbsp;{{ passenger.nationality.description }}</span>
+                        <td class="align-vertical width-10">
+                            <img [src]="getNationalityIcon(passenger.nationality.code)" class="flag-with-border" />
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;{{ passenger.nationality.description }}</span>
                         </td>
                         <td>{{ passenger.lastname }}</td>
                         <td>{{ passenger.firstname }}</td>
@@ -99,7 +96,7 @@
                     <span>{{ getLabel('countCrew') }}&nbsp;)</span>
                 </div>
             </div>
-            <div class="pill">
+            <div (click)="resetTableFilters()" class="pill reset-table-filter">
                 <img [src]="getIcon('filter')">
                 <div class="right description">
                     <span>{{ totalsFiltered[0] | padNumber : 3 : ' ' }}&nbsp;</span>

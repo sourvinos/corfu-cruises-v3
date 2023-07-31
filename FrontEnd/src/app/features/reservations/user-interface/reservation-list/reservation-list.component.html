@@ -13,9 +13,6 @@
                     <img [src]="getIcon('calendar')">
                     <div class="description">{{ formatDateToLocale(getDateFromStorage(), true, true) }}</div>
                 </div>
-                <button (click)="resetTableFilters()" class="fab fab-with-background" mat-icon-button>
-                    <mat-icon class="material-icons-outlined">filter_alt_off</mat-icon>
-                </button>
             </div>
         </div>
 
@@ -169,7 +166,7 @@
         <mat-menu #menu="matMenu" class="primary">
             <ng-container *ngTemplateOutlet="contextMenu"></ng-container>
         </mat-menu>
-        <div class="filter-pill">
+        <div (click)="resetTableFilters()" class="filter-pill reset-table-filter">
             <div class="pill">
                 <img [src]="getIcon('total')">
                 <div class="description number">

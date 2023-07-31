@@ -104,8 +104,14 @@
     width: 1.25rem;
 }
 
+.p-datatable .p-datatable-tbody > tr > td.align-vertical {
+    align-items: center;
+    display: flex;
+}
+
 .p-datatable .p-datatable-tbody > tr > td > img.flag-with-border {
     border: 0.0625rem solid var(--color-flag-border);
+    margin: 0.125rem 0 0.125rem 0;
     transition: border var(--theme-delay);
 }
 
