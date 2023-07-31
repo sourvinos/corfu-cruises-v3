@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 // Custom
 import { EmojiService } from '../../services/emoji.service'
 import { MessageLabelService } from '../../services/message-label.service'
@@ -15,10 +15,10 @@ export class CriteriaFieldsetRadiosComponent {
 
     //#region variables
 
-    @Input() feature: string
-    @Input() caption: string
     @Input() array: SimpleEntity[] = []
-    @Input() selected: SimpleEntity
+    @Input() caption: string
+    @Input() feature: string
+    @Input() selected: SimpleEntity[] = []
     @Output() outputSelected = new EventEmitter()
 
     public form: FormGroup
@@ -45,14 +45,9 @@ export class CriteriaFieldsetRadiosComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public onRowSelect(event: any): void {
-        this.updateSelected(event)
+    public onRowSelect(event: any, formControl: string): void {
+        this.updateSelected(formControl)
         this.exportSelected()
-    }
-
-    public onRowUnselect(event: any): void {
-        this.updateSelected(event)
-        // this.exportSelected()
     }
 
     //#endregion
@@ -65,14 +60,16 @@ export class CriteriaFieldsetRadiosComponent {
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            selected: ['', Validators.required]
+            selected: this.formBuilder.array([], Validators.required)
         })
     }
 
-    private updateSelected(event?: any): void {
-        event != undefined
-            ? this.form.patchValue({ selected: event.data })
-            : this.form.patchValue({ selected: '' })
+    private updateSelected(formControl: any): void {
+        const x = this.form.controls[formControl] as FormArray
+        x.clear()
+        x.push(new FormControl({
+            selected: this.selected
+        }))
     }
 
     //#endregion

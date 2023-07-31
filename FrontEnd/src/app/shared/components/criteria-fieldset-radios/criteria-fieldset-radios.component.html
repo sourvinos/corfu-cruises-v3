@@ -1,28 +1,13 @@
-<!-- <p>{{ array | json }}</p> -->
-<p>{{ selected | json }}</p>
 <fieldset class="fieldset">
     <legend>
         <span>{{ getLabel(caption) }}</span>
         <div class="selected">
-            <!-- <span class="selected-count">{{ getLabel("selected") }}: {{ getSelected() ? 1 : 0 }}</span> -->
             <span class="selected-count">{{ getLabel("selected") }}: {{ selected ? '1' : '' }}</span>
             <span class="icon">{{ getEmoji(selected ? 'green-circle' : 'red-circle') }}</span>
         </div>
     </legend>
     <div class="table-wrapper">
-        <p-table 
-            #table 
-            (onRowSelect)="onRowSelect($event)"
-            (onRowUnselect)="onRowUnselect($event)" 
-            [(selection)]="selected"
-            [scrollable]="true" 
-            [value]="array" 
-            [virtualScrollItemSize]="32" 
-            [virtualScroll]="true" 
-            datakey="id" 
-            scrollHeight="flex" 
-            selectionMode="single"
-            >
+        <p-table #table (onRowSelect)="onRowSelect($event,'selected')" [(selection)]="selected" [scrollable]="true" [value]="array" [virtualScrollItemSize]="32" [virtualScroll]="true" datakey="id" scrollHeight="flex" selectionMode="single">
             <ng-template pTemplate="header">
                 <tr>
                     <th class="no-border width-2"></th>

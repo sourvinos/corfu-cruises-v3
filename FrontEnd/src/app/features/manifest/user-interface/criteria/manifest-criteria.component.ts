@@ -1,12 +1,12 @@
 import { Component } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
-import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms'
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms'
+import { Router } from '@angular/router'
 import { Subject } from 'rxjs'
 import { takeUntil } from 'rxjs/operators'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
-import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
@@ -44,7 +44,7 @@ export class ManifestCriteriaComponent {
 
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService,  private sessionStorageService: SessionStorageService) { }
+    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -68,33 +68,15 @@ export class ManifestCriteriaComponent {
 
     public doTasks(): void {
         this.storeCriteria()
-        // this.navigateToList()
+        this.navigateToList()
     }
 
     public getDate(): string {
         return this.form.value.date
     }
 
-    public getEmoji(emoji: string): string {
-        return this.emojiService.getEmoji(emoji)
-    }
-
-    public getHint(id: string, minmax = 0): string {
-        return this.messageHintService.getDescription(id, minmax)
-    }
-
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
-    }
-
-    public gotoToday(): void {
-        this.form.patchValue({
-            date: this.dateHelperService.formatDateToIso(new Date())
-        })
-    }
-
-    public highlightRow(id: any): void {
-        this.helperService.highlightRow(id)
     }
 
     public patchFormWithSelectedArrays(event: SimpleEntity[], name: string): void {
@@ -148,6 +130,10 @@ export class ManifestCriteriaComponent {
         })
     }
 
+    private navigateToList(): void {
+        this.router.navigate(['manifest/list'])
+    }
+
     private populateDropdowns(): void {
         this.populateDropdownFromDexieDB('destinations', 'description')
         this.populateDropdownFromDexieDB('ports', 'description')
@@ -197,14 +183,6 @@ export class ManifestCriteriaComponent {
         this.interactionService.refreshTabTitle.subscribe(() => {
             this.setTabTitle()
         })
-    }
-
-    //#endregion
-
-    //#region getters
-
-    get date(): AbstractControl {
-        return this.form.get('date')
     }
 
     //#endregion

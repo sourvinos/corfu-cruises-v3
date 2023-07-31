@@ -15,9 +15,9 @@ export class CriteriaFieldsetCheckboxesComponent {
 
     //#region variables
 
-    @Input() feature: string
-    @Input() caption: string
     @Input() array: SimpleEntity[] = []
+    @Input() caption: string
+    @Input() feature: string
     @Input() selected: SimpleEntity[] = []
     @Output() outputSelected = new EventEmitter()
 
