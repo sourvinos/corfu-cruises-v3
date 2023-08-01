@@ -1073,12 +1073,12 @@
                 "description": "Date range"
             },
             {
-                "id": "destination",
-                "description": "Destination"
+                "id": "destinations",
+                "description": "Destinations"
             },
             {
-                "id": "port",
-                "description": "Port"
+                "id": "ports",
+                "description": "Ports"
             },
             {
                 "id": "maxPax",

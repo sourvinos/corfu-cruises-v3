@@ -19,7 +19,7 @@
                     </tr>
                     <tr>
                         <th class="width-10"><input (input)="table.filter($event.target.value, 'lastname', 'contains')" [disabled]="isFilterDisabled()" [value]="$any(table).filters['lastname']?.value" class="p-inputtext"></th>
-                        <th class="width-10"><input (input)="table.filter($event.target.value, 'firstname', 'contains')" [disabled]="isFilterDisabled()"[value]="$any(table).filters['firstname']?.value" class="p-inputtext"></th>
+                        <th class="width-10"><input (input)="table.filter($event.target.value, 'firstname', 'contains')" [disabled]="isFilterDisabled()" [value]="$any(table).filters['firstname']?.value" class="p-inputtext"></th>
                         <th class="width-10">
                             <p-columnFilter [showMenu]="false" field="nationality" matchMode="in">
                                 <ng-template let-filter="filterCallback" let-value pTemplate="filter">
@@ -61,11 +61,13 @@
             <span *ngIf="countMissingPassengers() > 1">{{ getLabel("missingPassengers", countMissingPassengers().toString()) }}</span>
         </div>
         <div id="button-align-right">
-            <button (click)="doEmbarkation(true, reservation.passengers)" [disabled]="isEmbarkAllAllowed()" class="secondary" mat-flat-button>
-                <mat-icon *ngIf="isEmbarkAllAllowed()" class="material-icons-outlined">lock</mat-icon>
-                <span>{{ getLabel('embarkAllPassengers') }}</span>
-            </button>
-            <button (click)="close()" class="primary" mat-flat-button>{{ getLabel('okButton') }}</button>
+            <mat-dialog-actions>
+                <button (click)="doEmbarkation(true, reservation.passengers)" [disabled]="isEmbarkAllAllowed()" class="secondary" mat-flat-button>
+                    <mat-icon *ngIf="isEmbarkAllAllowed()" class="material-icons-outlined">lock</mat-icon>
+                    <span>{{ getLabel('embarkAllPassengers') }}</span>
+                </button>
+                <button (click)="close()" class="primary" mat-flat-button>{{ getLabel('okButton') }}</button>
+            </mat-dialog-actions>
         </div>
     </div>
 

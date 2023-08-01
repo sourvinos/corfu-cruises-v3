@@ -47,3 +47,9 @@
 .embarkation-status:hover {
     cursor: pointer;
 }
+
+#dialog-footer #button-align-right {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto;
+}

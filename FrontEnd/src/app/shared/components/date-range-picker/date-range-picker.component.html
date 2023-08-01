@@ -11,7 +11,12 @@
                 <input class="center" formControlName="fromDate" matInput matStartDate (dateInput)="emitFormValues()">
                 <input class="center" formControlName="toDate" matEndDate matInput (dateInput)="emitFormValues()">
             </mat-date-range-input>
-            <mat-date-range-picker #picker></mat-date-range-picker>
+            <mat-date-range-picker #picker>
+                <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>Cancel</button>
+                    <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                </mat-datepicker-actions>
+            </mat-date-range-picker>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-error *ngIf="fromDate.hasError('required') || toDate.hasError('required')">{{ getHint("invalid") }}</mat-error>
         </mat-form-field>

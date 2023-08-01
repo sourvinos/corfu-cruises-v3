@@ -1073,12 +1073,12 @@
                 "description": "Εύρος ημερομηνίας"
             },
             {
-                "id": "destination",
-                "description": "Προορισμός"
+                "id": "destinations",
+                "description": "Προορισμοί"
             },
             {
-                "id": "port",
-                "description": "Λιμάνι"
+                "id": "ports",
+                "description": "Λιμάνια"
             },
             {
                 "id": "maxPax",

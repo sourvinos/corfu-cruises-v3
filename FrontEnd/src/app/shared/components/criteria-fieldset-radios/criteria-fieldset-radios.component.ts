@@ -45,6 +45,10 @@ export class CriteriaFieldsetRadiosComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
+    public isSelected(): boolean {
+        return typeof this.selected === 'object' && this.selected.length != 0
+    }
+
     public onRowSelect(): void {
         this.updateSelected()
         this.exportSelected()

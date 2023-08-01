@@ -7,6 +7,7 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner'
 // Custom
 import { CriteriaFieldsetCheckboxesComponent } from '../components/criteria-fieldset-checkboxes/criteria-fieldset-checkboxes.component'
 import { CriteriaFieldsetRadiosComponent } from '../components/criteria-fieldset-radios/criteria-fieldset-radios.component'
+import { CriteriaFieldsetWeekdaysComponent } from '../components/criteria-fieldset-weekdays/criteria-fieldset-weekdays.component'
 import { CriteriaPanelComponent } from '../components/criteria-panel/criteria-panel.component'
 import { DatePickerWithOutLabelComponent } from '../components/date-picker-without-label/date-picker-without-label.component'
 import { DateRangePickerComponent } from '../components/date-range-picker/date-range-picker.component'
@@ -36,6 +37,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
     declarations: [
         CriteriaFieldsetCheckboxesComponent,
         CriteriaFieldsetRadiosComponent,
+        CriteriaFieldsetWeekdaysComponent,
         CriteriaPanelComponent,
         DatePickerWithOutLabelComponent,
         DateRangePickerComponent,
@@ -73,6 +75,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         CommonModule,
         CriteriaFieldsetCheckboxesComponent,
         CriteriaFieldsetRadiosComponent,
+        CriteriaFieldsetWeekdaysComponent,
         CriteriaPanelComponent,
         DatePickerWithOutLabelComponent,
         DateRangePickerComponent,
