@@ -40,24 +40,6 @@
     padding: 1.25rem 0 0.25rem 0 !important;
 }
 
-/* Icon prefix */
-.mat-mdc-form-field-infix .mat-icon {
-    margin: 0 0.4rem 0 -0.2rem;
-    transition: color var(--theme-delay) !important;
-    overflow: visible !important;
-}
-
-/* Icon prefix */
-.mat-mdc-form-field-infix .mat-icon.small {
-    align-items: center;
-    color: var(--color-text) !important;
-    display: flex;
-    font-size: 1.0625rem;
-    justify-content: center;
-    margin-top: 0.1875rem;
-    transition: color var(--theme-delay) !important;
-}
-
 /* Label with error */
 .mdc-text-field--invalid .mat-mdc-form-field-flex .mat-mdc-form-field-infix label {
     color: var(--color-input-error) !important;
@@ -82,34 +64,56 @@
     caret-color: var(--color-text) !important;
 }
 
-/* Suffix button */
+/* Button icon */
+.mat-mdc-form-field-infix .mat-icon {
+    margin: 0 0.4rem 0 -0.2rem;
+    transition: color var(--theme-delay) !important;
+    overflow: visible !important;
+}
+
+/* Button icon */
+.mat-mdc-form-field-infix .mat-icon.small {
+    align-items: center;
+    color: var(--color-text) !important;
+    display: flex;
+    font-size: 1.0625rem;
+    justify-content: center;
+    margin-top: 0.1875rem;
+    transition: color var(--theme-delay) !important;
+}
+
+/* Button icon */
 .mat-mdc-form-field-icon-suffix {
     margin-top: 5px !important;
 }
 
-/* Suffix button */
+/* Button icon */
 .mat-mdc-form-field-icon-suffix div .mat-mdc-icon-button .mat-icon {
     overflow: visible !important;
 }
 
-/* Suffix button */
+/* Button icon */
 .mat-mdc-icon-button .mat-icon {
-    color: var(--color-text) !important;
     transition: color var(--theme-delay) !important;
 }
 
-/* Suffix button */
+/* Button icon */
 .mat-mdc-form-field-icon-suffix.no-margins {
     margin-top: 0;
 }
 
-/* Suffix button */
+/* Button icon */
 .mat-date-picker-toggle.with-margin {
     margin-top: 0.3125rem;
 }
 
-/* Suffix button */
-.mat-mdc-form-field-flex > .mat-mdc-form-field-icon-suffix > .mat-datepicker-toggle {
+/* Button icon */
+.input-suffix {
+    color: var(--color-text) !important;
+}
+
+/* Button icon */
+.input-suffix > button > svg {
     color: var(--color-text) !important;
 }
 

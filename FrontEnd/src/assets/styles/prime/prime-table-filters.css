@@ -133,7 +133,6 @@
 }
 
 .p-datatable .p-datatable-thead > tr > th > .date-picker-wrapper > .mat-datepicker-toggle > .mat-mdc-icon-button > svg {
-    color: var(--color-table-header-text);
     transition: color var(--theme-delay) !important;
 }
 
@@ -151,4 +150,8 @@
 .date-picker-wrapper {
     display: flex;
     flex-direction: row;
+}
+
+.color-table-header > button > svg {
+    color: var(--color-table-headers) !important;
 }

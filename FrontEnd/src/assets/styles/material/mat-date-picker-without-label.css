@@ -35,7 +35,6 @@
     margin-top: -0.1875rem !important;
 }
 
-#date-fieldset-without-label #date-picker > .mat-mdc-text-field-wrapper > .mat-mdc-form-field-flex > .mat-mdc-form-field-icon-suffix > .mat-datepicker-toggle > .mat-mdc-icon-button.mat-mdc-button-base > svg {
-    color: var(--color-text) !important;
+.mat-mdc-icon-button svg {
     transition: color var(--theme-delay);
 }

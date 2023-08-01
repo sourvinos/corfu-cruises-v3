@@ -24,7 +24,7 @@
             <mat-form-field>
                 <mat-label>{{ getLabel('birthdate') }}</mat-label>
                 <input (blur)="convertFutureDateToPastDate()" [inputTabStop]="input" [matDatepicker]="picker" [min]="minBirthDate" data-tabindex="3" formControlName="birthdate" matInput type="text">
-                <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+                <mat-datepicker-toggle [for]="picker" class="input-suffix" matSuffix></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
                 <mat-error *ngIf="birthdate.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="!birthdate.hasError('required')">{{ getHint("invalid") }}</mat-error>
@@ -35,7 +35,7 @@
                 <input #inputAutoComplete #triggerShip="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="ships" data-tabindex="4" formControlName="ship" matInput>
                 <div matSuffix style="display:flex">
                     <button (click)="openOrCloseAutoComplete(triggerShip, 'ship')" mat-icon-button type="button">
-                        <mat-icon class="material-icons-outlined with-margin">expand_more</mat-icon>
+                        <mat-icon class="input-suffix material-icons-outlined with-margin">expand_more</mat-icon>
                     </button>
                 </div>
                 <mat-error *ngIf="ship.hasError('required')">{{ getHint("required") }}</mat-error>
@@ -47,7 +47,7 @@
                 <input #inputAutoComplete #triggerNationality="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="nationalities" data-tabindex="5" formControlName="nationality" matInput>
                 <div matSuffix style="display:flex">
                     <button (click)="openOrCloseAutoComplete(triggerNationality, 'nationality')" mat-icon-button type="button">
-                        <mat-icon class="material-icons-outlined with-margin">expand_more</mat-icon>
+                        <mat-icon class="input-suffix material-icons-outlined with-margin">expand_more</mat-icon>
                     </button>
                 </div>
                 <mat-error *ngIf="nationality.hasError('required')">{{ getHint("required") }}</mat-error>
@@ -59,7 +59,7 @@
                 <input #inputAutoComplete #triggerGender="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="genders" data-tabindex="6" formControlName="gender" matInput>
                 <div matSuffix style="display:flex">
                     <button (click)="openOrCloseAutoComplete(triggerGender, 'gender')" mat-icon-button type="button">
-                        <mat-icon class="material-icons-outlined with-margin">expand_more</mat-icon>
+                        <mat-icon class="input-suffix material-icons-outlined with-margin">expand_more</mat-icon>
                     </button>
                 </div>
                 <mat-error *ngIf="gender.hasError('required')">{{ getHint("required") }}</mat-error>
