@@ -46,7 +46,7 @@ export class DateRangePickerComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public gotoToday(): void {
+    public doTodayTasks(): void {
         this.form.patchValue({
             fromDate: this.dateHelperService.formatDateToIso(new Date()),
             toDate: this.dateHelperService.formatDateToIso(new Date())

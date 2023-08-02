@@ -2284,11 +2284,44 @@
         ]
     },
     {
+        "feature": "date-picker",
+        "labels": [
+            {
+                "id": "date",
+                "description": "Datum"
+            },
+            {
+                "id": "hint",
+                "description": "Wählen Sie das Datum"
+            },
+            {
+                "id": "today",
+                "description": "Heute"
+            },
+            {
+                "id": "ok",
+                "description": "Ok"
+            }
+        ]
+    },
+    {
         "feature": "date-range-picker",
         "labels": [
             {
-                "id": "dateRange",
+                "id": "date",
                 "description": "Datumsbereich"
+            },
+            {
+                "id": "hint",
+                "description": "Wählen Sie den Datumsbereich"
+            },
+            {
+                "id": "today",
+                "description": "Heute"
+            },
+            {
+                "id": "ok",
+                "description": "Ok"
             }
         ]
     }

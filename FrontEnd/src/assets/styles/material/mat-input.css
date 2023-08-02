@@ -123,10 +123,11 @@
     display: flex;
     font-family: var(--font-family-asty);
     font-weight: 300;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    margin: 0 0 0 1rem;
     transform: translateY(0.0625rem);
-    width: 100%;
     transition: color var(--theme-delay) !important;
+    width: 100%;
 }
 
 /* Hint */

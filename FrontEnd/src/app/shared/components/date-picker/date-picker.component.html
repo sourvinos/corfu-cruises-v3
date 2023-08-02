@@ -1,0 +1,15 @@
+<form [formGroup]="form" autocomplete="off">
+    <mat-form-field id="date-picker">
+        <mat-label>{{ getLabel('date') }}</mat-label>
+        <input (dateInput)="emitFormValues()" [matDatepicker]="picker" formControlName="date" matInput>
+        <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #picker>
+            <mat-datepicker-actions>
+                <button (click)="doTodayTasks()" class="accent" mat-flat-button matDatepickerApply>{{ getLabel('today') | uppercase }}</button>
+                <button class="primary" mat-flat-button matDatepickerApply>{{ getLabel("ok") | uppercase }}</button>
+            </mat-datepicker-actions>
+        </mat-datepicker>
+        <mat-hint>{{ getLabel("hint") }}</mat-hint>
+        <mat-error *ngIf="date.hasError('required')">{{ getHint("invalid") }}</mat-error>
+    </mat-form-field>
+</form>

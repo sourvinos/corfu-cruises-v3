@@ -41,7 +41,7 @@
 
 #missing-passengers span:first-child {
     position: relative;
-    margin: -3px 0 0 0;
+    margin: -0.1875rem 0 0 0;
 }
 
 .embarkation-status:hover {

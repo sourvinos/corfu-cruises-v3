@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { HelperService } from '../../services/helper.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 
 @Component({
     selector: 'app-home',
@@ -15,12 +16,13 @@ export class HomeComponent {
 
     //#region variables
 
+    public form: FormGroup
     public companyLogo: any
     public ngVersion: any
 
     //#endregion
 
-    constructor(private dateHelperService: DateHelperService, private helperService: HelperService, private sessionStorageService: SessionStorageService, private titleService: Title) { }
+    constructor(private formBuilder: FormBuilder, private dateHelperService: DateHelperService, private helperService: HelperService, private sessionStorageService: SessionStorageService, private titleService: Title) { }
 
     //#region lifecyle hooks
 
@@ -28,6 +30,7 @@ export class HomeComponent {
         this.getAppName()
         this.setWindowTitle()
         this.getNgVersion()
+        this.initForm()
     }
 
     //#endregion
@@ -47,5 +50,15 @@ export class HomeComponent {
     }
 
     //#endregion
+
+    public fix(event: any): void {
+        console.log(event)
+    }
+
+    private initForm(): void {
+        this.form = this.formBuilder.group({
+            date: ['', Validators.required]
+        })
+    }
 
 }

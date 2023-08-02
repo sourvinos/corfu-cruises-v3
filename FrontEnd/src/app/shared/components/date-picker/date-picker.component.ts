@@ -6,11 +6,11 @@ import { MessageInputHintService } from '../../services/message-input-hint.servi
 import { MessageLabelService } from '../../services/message-label.service'
 
 @Component({
-    selector: 'date-picker-without-label',
-    templateUrl: './date-picker-without-label.component.html'
+    selector: 'date-picker',
+    templateUrl: './date-picker.component.html'
 })
 
-export class DatePickerWithOutLabelComponent {
+export class DatePickerComponent {
 
     //#region variables
 
@@ -34,6 +34,13 @@ export class DatePickerWithOutLabelComponent {
 
     //#region public methods
 
+    public doTodayTasks(): void {
+        this.form.patchValue({
+            date: this.dateHelperService.formatDateToIso(new Date())
+        })
+        this.emitFormValues()
+    }
+
     public emitFormValues(): void {
         this.outputValue.emit(this.form)
     }
@@ -44,13 +51,6 @@ export class DatePickerWithOutLabelComponent {
 
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
-    }
-
-    public doTodayTasks(): void {
-        this.form.patchValue({
-            date: this.dateHelperService.formatDateToIso(new Date())
-        })
-        this.emitFormValues()
     }
 
     public patchFormWithSelectedDates(date: any): void {

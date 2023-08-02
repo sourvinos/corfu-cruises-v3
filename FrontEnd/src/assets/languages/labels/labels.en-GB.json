@@ -2284,11 +2284,23 @@
         ]
     },
     {
-        "feature": "date-range-picker",
+        "feature": "date-picker",
         "labels": [
             {
-                "id": "dateRange",
-                "description": ""
+                "id": "date",
+                "description": "Date"
+            },
+            {
+                "id": "hint",
+                "description": "Select the date"
+            },
+            {
+                "id": "today",
+                "description": "Today"
+            },
+            {
+                "id": "ok",
+                "description": "Ok"
             }
         ]
     },
@@ -2296,8 +2308,20 @@
         "feature": "date-range-picker",
         "labels": [
             {
-                "id": "dateRange",
+                "id": "date",
                 "description": "Date range"
+            },
+            {
+                "id": "hint",
+                "description": "Select the date range"
+            },
+            {
+                "id": "today",
+                "description": "Today"
+            },
+            {
+                "id": "ok",
+                "description": "Ok"
             }
         ]
     }
