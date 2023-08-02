@@ -6,24 +6,31 @@
     --color-accent-secondary: #ffffff;
     --color-background: #555555;
     /* Text */
-    --color-text: #ffffff;
-    --color-text-reverse: #ffffff;
-    --color-border: #6d6d6d;
-    --color-table-headers: #ffffff;
     --color-footer: #ffffff;
+    --color-table-headers: #ffffff;
+    --color-text-reverse: #ffffff;
+    --color-text: #ffffff;
     /* Input */
-    --color-input-background: #636161;
     --color-input-background-focus: #8d8d8d;
+    --color-input-background: #636161;
     --color-input-error: #ff7878;
     --color-input-focus: #ffffff;
+    --color-input-suffix: #ababab;
     /* Dialogs */
     --color-dialog-header: #17608F;
     /* Flags */
     --color-flag-border: #ffffff;
-    /* Buttons */
+    /* Top menu buttons */
     --color-dropdown-button: #ffffff;
     --color-dropdown-button-hover: #852c46;
     --color-dropdown-trigger: #ffffff;
     /* Mat-Expander */
     --color-header-background-hover: #757575;
+    /* Tables */
+    --color-table-header-background: #C13E65;
+    --color-table-header-border: #555555;
+    --color-table-header-text: #ffffff;
+    --color-table-body-background: #555555;
+    --color-table-body-border: #C13E65;
+    --color-table-body-text: #ffffff;
 }
