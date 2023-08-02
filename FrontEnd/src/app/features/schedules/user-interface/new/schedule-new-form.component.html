@@ -10,26 +10,18 @@
             <form [formGroup]="form" autocomplete="off" id="form">
                 <div class="group-input-field">
                     <date-range-picker [parentDateRange]="getDateRange()" (outputValues)="doDateTasks($event)"></date-range-picker>
-                    <fieldset class="fieldset">
-                        <legend>
-                            <span>{{ getLabel('maxPax') }}</span>
-                        </legend>
-                        <mat-form-field>
-                            <input class="right" formControlName="maxPax" matInput type="number" tabindex="-1">
-                            <mat-error *ngIf="maxPax.hasError('required')">{{ getHint("required") }}</mat-error>
-                            <mat-error *ngIf="!maxPax.hasError('required') && maxPax.hasError('min') || maxPax.hasError('max')">{{ getHint("invalid") }}</mat-error>
-                        </mat-form-field>
-                    </fieldset>
-                    <fieldset class="fieldset">
-                        <legend>
-                            <span>{{ getLabel('time') }}</span>
-                        </legend>
-                        <mat-form-field>
-                            <input class="right" formControlName="time" matInput tabindex="-1">
-                            <mat-error *ngIf="time.hasError('required')">{{ getHint("required") }}</mat-error>
-                            <mat-error *ngIf="!time.hasError('required') && !time.hasError('time')">{{ getHint("invalid") }}</mat-error>
-                        </mat-form-field>
-                    </fieldset>
+                    <mat-form-field>
+                        <mat-label>{{ getLabel('maxPax') }}</mat-label>
+                        <input class="right" formControlName="maxPax" matInput type="number" tabindex="-1">
+                        <mat-error *ngIf="maxPax.hasError('required')">{{ getHint("required") }}</mat-error>
+                        <mat-error *ngIf="!maxPax.hasError('required') && maxPax.hasError('min') || maxPax.hasError('max')">{{ getHint("invalid") }}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>{{ getLabel('time') }}</mat-label>
+                        <input class="right" formControlName="time" matInput tabindex="-1">
+                        <mat-error *ngIf="time.hasError('required')">{{ getHint("required") }}</mat-error>
+                        <mat-error *ngIf="!time.hasError('required') && !time.hasError('time')">{{ getHint("invalid") }}</mat-error>
+                    </mat-form-field>
                 </div>
                 <div class="group-input-field">
                     <criteria-fieldset-radios (outputSelected)="doArrayTasks($event,'selectedDestinations')" [array]="destinations" [caption]="'destinations'" [feature]="feature" [selected]="selectedDestinations"></criteria-fieldset-radios>

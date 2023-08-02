@@ -215,7 +215,6 @@ export class ScheduleNewFormComponent {
             fromDate: this.dateHelperService.formatDateToIso(new Date(event.value.fromDate)),
             toDate: this.dateHelperService.formatDateToIso(new Date(event.value.toDate))
         })
-
     }
 
     private updateFormFields(): void {
