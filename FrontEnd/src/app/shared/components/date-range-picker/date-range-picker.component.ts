@@ -15,6 +15,8 @@ export class DateRangePickerComponent {
     //#region variables
 
     @Input() parentDateRange: string[]
+    @Input() showHint: boolean
+    @Input() readOnly: boolean
     @Output() outputValues = new EventEmitter()
 
     public feature = 'date-range-picker'

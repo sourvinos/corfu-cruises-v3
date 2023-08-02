@@ -9,7 +9,7 @@
         <div id="form-wrapper">
             <form [formGroup]="form" autocomplete="off" id="form">
                 <div class="group-input-field">
-                    <date-picker [parentDate]="getDate()" (outputValue)="patchFormWithSelectedDate($event)"></date-picker>
+                    <date-picker [parentDate]="getDate()" [readOnly]=true [showHint]=false (outputValue)="patchFormWithSelectedDate($event)"></date-picker>
                 </div>
                 <div class="group-input-field">
                     <criteria-fieldset-radios (outputSelected)="patchFormWithSelectedArrays($event,'selectedDestinations')" [array]="destinations" [caption]="'destinations'" [feature]="feature" [selected]="selectedDestinations"></criteria-fieldset-radios>

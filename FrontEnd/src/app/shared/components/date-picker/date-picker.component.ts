@@ -15,6 +15,8 @@ export class DatePickerComponent {
     //#region variables
 
     @Input() parentDate: string
+    @Input() showHint: boolean
+    @Input() readOnly: boolean
     @Output() outputValue = new EventEmitter()
 
     public feature = 'date-picker'

@@ -9,7 +9,7 @@
         <div id="form-wrapper">
             <form [formGroup]="form" autocomplete="off" id="form">
                 <div class="group-input-field">
-                    <date-range-picker [parentDateRange]="getDateRange()" (outputValues)="patchFormWithSelectedDateRange($event)"></date-range-picker>
+                    <date-range-picker [parentDateRange]="getDateRange()" [readOnly]=true [showHint]=false (outputValues)="patchFormWithSelectedDateRange($event)"></date-range-picker>
                 </div>
                 <div class="group-input-field">
                     <criteria-fieldset-checkboxes *ngIf="isAdmin()" (outputSelected)="patchFormWithSelectedArrays($event,'selectedCustomers')" [array]="customers" [caption]="'customers'" [feature]="feature" [selected]="selectedCustomers"></criteria-fieldset-checkboxes>
