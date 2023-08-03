@@ -10,38 +10,38 @@
             <!-- Description -->
             <mat-form-field>
                 <mat-label>{{ getLabel('description') }}</mat-label>
-                <input [inputTabStop]="input" data-tabindex="1" formControlName="description" matInput>
+                <input [inputTabStop]="input" dataTabIndex="1" formControlName="description" matInput>
                 <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="description.hasError('maxlength')">{{ getHint("maxLength", description.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <!-- Profession -->
             <mat-form-field>
                 <mat-label>{{ getLabel('profession') }}</mat-label>
-                <input [inputTabStop]="input" data-tabindex="2" formControlName="profession" matInput>
+                <input [inputTabStop]="input" dataTabIndex="2" formControlName="profession" matInput>
                 <mat-error *ngIf="profession.hasError('maxlength')">{{ getHint("maxLength", profession.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <!-- Address -->
             <mat-form-field>
                 <mat-label>{{ getLabel('address') }}</mat-label>
-                <input [inputTabStop]="input" data-tabindex="3" formControlName="address" matInput>
+                <input [inputTabStop]="input" dataTabIndex="3" formControlName="address" matInput>
                 <mat-error *ngIf="address.hasError('maxlength')">{{ getHint("maxLength", address.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <!-- Phones -->
             <mat-form-field>
                 <mat-label>{{ getLabel('phones') }}</mat-label>
-                <input [inputTabStop]="input" data-tabindex="4" formControlName="phones" matInput>
+                <input [inputTabStop]="input" dataTabIndex="4" formControlName="phones" matInput>
                 <mat-error *ngIf="phones.hasError('maxlength')">{{ getHint("maxLength", phones.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <!-- PersonInCharge -->
             <mat-form-field>
                 <mat-label>{{ getLabel('personInCharge') }}</mat-label>
-                <input [inputTabStop]="input" data-tabindex="5" formControlName="personInCharge" matInput>
+                <input [inputTabStop]="input" dataTabIndex="5" formControlName="personInCharge" matInput>
                 <mat-error *ngIf="personInCharge.hasError('maxlength')">{{ getHint("maxLength", personInCharge.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <!-- Email -->
             <mat-form-field>
                 <mat-label>{{ getLabel('email') }}</mat-label>
-                <input [inputTabStop]="input" data-tabindex="6" formControlName="email" matInput>
+                <input [inputTabStop]="input" dataTabIndex="6" formControlName="email" matInput>
                 <mat-error *ngIf="email.hasError('maxlength')">{{ getHint("maxLength", email.errors.maxlength.requiredLength) }}</mat-error>
                 <mat-error *ngIf="!email.hasError('maxlength') && email.hasError('email')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>

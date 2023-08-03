@@ -9,21 +9,21 @@
             <!-- Lastname -->
             <mat-form-field>
                 <mat-label>{{ getLabel('lastname') }}</mat-label>
-                <input [inputTabStop]="input" data-tabindex="1" formControlName="lastname" matInput>
+                <input [inputTabStop]="input" dataTabIndex="1" formControlName="lastname" matInput>
                 <mat-error *ngIf="lastname.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="lastname.hasError('maxlength')">{{ getHint("maxLength", lastname.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <!-- Firstname -->
             <mat-form-field>
                 <mat-label>{{ getLabel('firstname') }}</mat-label>
-                <input [inputTabStop]="input" data-tabindex="2" formControlName="firstname" matInput>
+                <input [inputTabStop]="input" dataTabIndex="2" formControlName="firstname" matInput>
                 <mat-error *ngIf="firstname.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="firstname.hasError('maxlength')">{{ getHint("maxLength", firstname.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <!-- Nationality -->
             <mat-form-field>
                 <mat-label>{{ getLabel('nationality') }}</mat-label>
-                <input #inputAutoComplete #triggerNationality="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="nationalities" data-tabindex="3" formControlName="nationality" matInput>
+                <input #inputAutoComplete #triggerNationality="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="nationalities" dataTabIndex="3" formControlName="nationality" matInput>
                 <div matSuffix style="display:flex">
                     <button (click)="openOrCloseAutoComplete(triggerNationality, 'nationality')" mat-icon-button type="button">
                         <mat-icon class="input-suffix material-icons-outlined with-margin">expand_more</mat-icon>
@@ -35,7 +35,7 @@
             <!-- Gender -->
             <mat-form-field>
                 <mat-label>{{ getLabel('gender') }}</mat-label>
-                <input #inputAutoComplete #triggerGender="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="genders" data-tabindex="4" formControlName="gender" matInput>
+                <input #inputAutoComplete #triggerGender="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="genders" dataTabIndex="4" formControlName="gender" matInput>
                 <div matSuffix style="display:flex">
                     <button (click)="openOrCloseAutoComplete(triggerGender, 'gender')" mat-icon-button type="button">
                         <mat-icon class="input-suffix material-icons-outlined with-margin">expand_more</mat-icon>
@@ -47,7 +47,7 @@
             <!-- Birthdate -->
             <mat-form-field>
                 <mat-label>{{ getLabel('birthdate') }}</mat-label>
-                <input (blur)="convertFutureDateToPastDate()" [inputTabStop]="input" [matDatepicker]="picker" [min]="minBirthDate" data-tabindex="5" formControlName="birthdate" matInput>
+                <input (blur)="convertFutureDateToPastDate()" [inputTabStop]="input" [matDatepicker]="picker" [min]="minBirthDate" dataTabIndex="5" formControlName="birthdate" matInput>
                 <mat-datepicker-toggle [for]="picker" class="input-suffix" matIconSuffix no-margins></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
                 <mat-error *ngIf="birthdate.hasError('required')">{{ getHint("required") }}</mat-error>
@@ -56,14 +56,14 @@
             <!-- Special care -->
             <mat-form-field>
                 <mat-label>{{ getLabel('specialCare') }}</mat-label>
-                <input [inputTabStop]="input" data-tabindex="6" formControlName="specialCare" matInput>
+                <input [inputTabStop]="input" dataTabIndex="6" formControlName="specialCare" matInput>
                 <mat-error *ngIf="specialCare.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="specialCare.hasError('maxlength')">{{ getHint("maxLength", specialCare.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <!-- Remarks -->
             <mat-form-field>
                 <mat-label>{{ getLabel('remarks') }}</mat-label>
-                <input [inputTabStop]="input" data-tabindex="7" formControlName="remarks" matInput>
+                <input [inputTabStop]="input" dataTabIndex="7" formControlName="remarks" matInput>
                 <mat-error *ngIf="remarks.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="remarks.hasError('maxlength')">{{ getHint("maxLength", remarks.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>

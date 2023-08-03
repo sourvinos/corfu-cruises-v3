@@ -20,7 +20,6 @@ import { MessageInputHintService } from 'src/app/shared/services/message-input-h
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { NationalityDropdownVM } from '../../nationalities/classes/view-models/nationality-autocomplete-vm'
-import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { ShipAutoCompleteVM } from '../../ships/classes/view-models/ship-autocomplete-vm'
 import { ShipCrewReadDto } from '../classes/dtos/shipCrew-read-dto'
 import { ShipCrewService } from '../classes/services/shipCrew.service'
@@ -57,7 +56,7 @@ export class ShipCrewFormComponent {
 
     //#endregion
 
-    constructor(@Inject(MAT_DATE_LOCALE) private locale: string, private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private sessionStorageService: SessionStorageService, private shipCrewService: ShipCrewService) { }
+    constructor(@Inject(MAT_DATE_LOCALE) private locale: string, private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private shipCrewService: ShipCrewService) { }
 
     //#region lifecycle hooks
 
@@ -69,10 +68,6 @@ export class ShipCrewFormComponent {
         this.populateDropdowns()
         this.subscribeToInteractionService()
         this.setLocale()
-    }
-
-    ngAfterViewInit(): void {
-        this.focusOnField()
     }
 
     ngOnDestroy(): void {
@@ -103,6 +98,10 @@ export class ShipCrewFormComponent {
 
     public enableOrDisableAutoComplete(event: any): void {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
+    }
+
+    public getDate(): string {
+        return this.form.value.birthdate
     }
 
     public getEmoji(emoji: string): string {
@@ -140,6 +139,12 @@ export class ShipCrewFormComponent {
         this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
     }
 
+    public patchFormWithSelectedDate(event: any): void {
+        this.form.patchValue({
+            birthdate: this.dateHelperService.gotoPreviousCenturyIfFutureDate(event.value.date)
+        })
+    }
+
     //#endregion
 
     //#region private methods
@@ -167,10 +172,6 @@ export class ShipCrewFormComponent {
             birthdate: this.dateHelperService.formatDateToIso(new Date(this.form.value.birthdate)),
             isActive: this.form.value.isActive
         }
-    }
-
-    private focusOnField(): void {
-        this.helperService.focusOnField()
     }
 
     private getRecord(): Promise<any> {

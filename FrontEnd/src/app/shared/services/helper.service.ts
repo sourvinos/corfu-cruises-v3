@@ -72,7 +72,7 @@ export class HelperService {
 
     public focusOnField(): void {
         setTimeout(() => {
-            const input = Array.prototype.slice.apply(document.querySelectorAll('input[data-tabindex]'))[0]
+            const input = Array.prototype.slice.apply(document.querySelectorAll('input[dataTabIndex]'))[0]
             if (input != null) {
                 input.focus()
                 input.select()

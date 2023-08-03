@@ -10,14 +10,14 @@
             <!-- Fullname -->
             <mat-form-field>
                 <mat-label>{{ getLabel('fullname') }}</mat-label>
-                <input [inputTabStop]="input" data-tabindex="1" formControlName="fullname" matInput>
+                <input [inputTabStop]="input" dataTabIndex="1" formControlName="fullname" matInput>
                 <mat-error *ngIf="fullname.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="fullname.hasError('maxlength')">{{ getHint("maxLength", fullname.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <!-- Ship -->
             <mat-form-field>
                 <mat-label>{{ getLabel('ship') }}</mat-label>
-                <input #inputAutoComplete #trigger="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="ships" data-tabindex="2" formControlName="ship" matInput>
+                <input #inputAutoComplete #trigger="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="ships" dataTabIndex="2" formControlName="ship" matInput>
                 <div matSuffix style="display:flex">
                     <button (click)="openOrCloseAutoComplete(trigger, 'ship')" mat-icon-button type="button">
                         <mat-icon class="input-suffix material-icons-outlined with-margin">expand_more</mat-icon>
@@ -29,26 +29,26 @@
             <!-- Phones -->
             <mat-form-field>
                 <mat-label>{{ getLabel('phones') }}</mat-label>
-                <input [inputTabStop]="input" data-tabindex="3" formControlName="phones" matInput>
+                <input [inputTabStop]="input" dataTabIndex="3" formControlName="phones" matInput>
                 <mat-error *ngIf="phones.hasError('maxlength')">{{ getHint("maxLength", phones.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <!-- Email -->
             <mat-form-field>
                 <mat-label>{{ getLabel('email') }}</mat-label>
-                <input [inputTabStop]="input" data-tabindex="4" formControlName="email" matInput>
+                <input [inputTabStop]="input" dataTabIndex="4" formControlName="email" matInput>
                 <mat-error *ngIf="email.hasError('maxlength')">{{ getHint("maxLength", email.errors.maxlength.requiredLength) }}</mat-error>
                 <mat-error *ngIf="!email.hasError('maxlength') && email.hasError('email')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>
             <!-- Fax -->
             <mat-form-field>
                 <mat-label>{{ getLabel('fax') }}</mat-label>
-                <input [inputTabStop]="input" data-tabindex="5" formControlName="fax" matInput>
+                <input [inputTabStop]="input" dataTabIndex="5" formControlName="fax" matInput>
                 <mat-error *ngIf="fax.hasError('maxlength')">{{ getHint("maxLength", fax.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <!-- Address -->
             <mat-form-field>
                 <mat-label>{{ getLabel('address') }}</mat-label>
-                <input [inputTabStop]="input" data-tabindex="6" formControlName="address" matInput>
+                <input [inputTabStop]="input" dataTabIndex="6" formControlName="address" matInput>
                 <mat-error *ngIf="address.hasError('maxlength')">{{ getHint("maxLength", address.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <div id="checkboxes">

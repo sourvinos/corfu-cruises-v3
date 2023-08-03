@@ -2,6 +2,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 // Custom
 import { DateHelperService } from '../../services/date-helper.service'
+import { InputTabStopDirective } from '../../directives/input-tabstop.directive'
 import { MessageInputHintService } from '../../services/message-input-hint.service'
 import { MessageLabelService } from '../../services/message-label.service'
 
@@ -14,13 +15,16 @@ export class DatePickerComponent {
 
     //#region variables
 
+    @Input() dataTabIndex: number
+    @Input() label: string
     @Input() parentDate: string
-    @Input() showHint: boolean
     @Input() readOnly: boolean
+    @Input() showHint: boolean
     @Output() outputValue = new EventEmitter()
 
     public feature = 'date-picker'
     public form: FormGroup
+    public input: InputTabStopDirective
 
     //#endregion
 
@@ -53,12 +57,6 @@ export class DatePickerComponent {
 
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
-    }
-
-    public patchFormWithSelectedDates(date: any): void {
-        this.form.patchValue({
-            date: date.value != null ? this.dateHelperService.formatDateToIso(new Date(date.value)) : ''
-        })
     }
 
     //#endregion

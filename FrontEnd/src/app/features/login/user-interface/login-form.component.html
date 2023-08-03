@@ -9,12 +9,12 @@
         <form [formGroup]="form" autocomplete="off" id="form">
             <mat-form-field>
                 <mat-label>{{ getLabel('username') }}</mat-label>
-                <input [inputTabStop]="input" data-tabindex="1" formControlName="username" matInput>
+                <input [inputTabStop]="input" dataTabIndex="1" formControlName="username" matInput>
                 <mat-error *ngIf="username.hasError('required')">{{ getHint("required") }}</mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>{{ getLabel('password') }}</mat-label>
-                <input [inputTabStop]="input" [type]="hidePassword ? 'password' : 'text'" data-tabindex="2" formControlName="password" matInput>
+                <input [inputTabStop]="input" [type]="hidePassword ? 'password' : 'text'" dataTabIndex="2" formControlName="password" matInput>
                 <div matSuffix style="display:flex">
                     <button (click)="hidePassword = !hidePassword" mat-icon-button type="button">
                         <mat-icon class="input-suffix material-icons-outlined with-margin">{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>

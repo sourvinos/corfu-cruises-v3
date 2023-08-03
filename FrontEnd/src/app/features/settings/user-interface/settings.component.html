@@ -9,7 +9,7 @@
         <form [formGroup]="form" autocomplete="off">
             <!-- Closing time -->
             <mat-form-field>
-                <input [inputTabStop]="input" [placeholder]="getLabel('closingTime')" data-tabindex="2" formControlName="closingTime" matInput>
+                <input [inputTabStop]="input" [placeholder]="getLabel('closingTime')" dataTabIndex="2" formControlName="closingTime" matInput>
                 <mat-error *ngIf="closingTime.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="!closingTime.hasError('required') && !closingTime.hasError('isTime')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>

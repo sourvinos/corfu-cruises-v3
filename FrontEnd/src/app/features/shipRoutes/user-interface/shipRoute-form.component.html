@@ -10,7 +10,7 @@
             <!-- Description -->
             <mat-form-field>
                 <mat-label>{{ getLabel('description') }}</mat-label>
-                <input [inputTabStop]="input" data-tabindex="1" formControlName="description" matInput>
+                <input [inputTabStop]="input" dataTabIndex="1" formControlName="description" matInput>
                 <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="description.hasError('maxlength')">{{ getHint("maxLength", description.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
@@ -18,14 +18,14 @@
                 <!-- From Port -->
                 <mat-form-field>
                     <mat-label>{{ getLabel('fromPort') }}</mat-label>
-                    <input [inputTabStop]="input" data-tabindex="2" formControlName="fromPort" matInput>
+                    <input [inputTabStop]="input" dataTabIndex="2" formControlName="fromPort" matInput>
                     <mat-error *ngIf="fromPort.hasError('required')">{{ getHint("required") }}</mat-error>
                     <mat-error *ngIf="fromPort.hasError('maxlength')">{{ getHint("maxLength", fromPort.errors.maxlength.requiredLength) }}</mat-error>
                 </mat-form-field>
                 <!-- From Time -->
                 <mat-form-field>
                     <mat-label>{{ getLabel('fromTime') }}</mat-label>
-                    <input [inputTabStop]="input" data-tabindex="3" formControlName="fromTime" matInput>
+                    <input [inputTabStop]="input" dataTabIndex="3" formControlName="fromTime" matInput>
                     <mat-error *ngIf="fromTime.hasError('required')">{{ getHint("required") }}</mat-error>
                     <mat-error *ngIf="!fromTime.hasError('required') && !fromTime.hasError('isTime')">{{ getHint("invalid") }}</mat-error>
                 </mat-form-field>
@@ -34,13 +34,13 @@
                 <!-- Via Ports -->
                 <mat-form-field>
                     <mat-label>{{ getLabel('viaPort') }}</mat-label>
-                    <input [inputTabStop]="input" data-tabindex="4" formControlName="viaPort" matInput>
+                    <input [inputTabStop]="input" dataTabIndex="4" formControlName="viaPort" matInput>
                     <mat-error *ngIf="viaPort.hasError('maxlength')">{{ getHint("maxLength", viaPort.errors.maxlength.requiredLength) }}</mat-error>
                 </mat-form-field>
                 <!-- Via Times -->
                 <mat-form-field>
                     <mat-label>{{ getLabel('viaTime') }}</mat-label>
-                    <input [inputTabStop]="input" data-tabindex="5" formControlName="viaTime" matInput>
+                    <input [inputTabStop]="input" dataTabIndex="5" formControlName="viaTime" matInput>
                     <mat-error *ngIf="!viaTime.hasError('required') && !viaTime.hasError('isTime')">{{ getHint("invalid") }}</mat-error>
                 </mat-form-field>
             </div>
@@ -48,14 +48,14 @@
                 <!-- Destination Port -->
                 <mat-form-field>
                     <mat-label>{{ getLabel('toPort') }}</mat-label>
-                    <input [inputTabStop]="input" data-tabindex="6" formControlName="toPort" matInput>
+                    <input [inputTabStop]="input" dataTabIndex="6" formControlName="toPort" matInput>
                     <mat-error *ngIf="toPort.hasError('required')">{{ getHint("required") }}</mat-error>
                     <mat-error *ngIf="toPort.hasError('maxlength')">{{ getHint("maxLength", toPort.errors.maxlength.requiredLength) }}</mat-error>
                 </mat-form-field>
                 <!-- Destination Time -->
                 <mat-form-field>
                     <mat-label>{{ getLabel('toTime') }}</mat-label>
-                    <input [inputTabStop]="input" data-tabindex="7" formControlName="toTime" matInput>
+                    <input [inputTabStop]="input" dataTabIndex="7" formControlName="toTime" matInput>
                     <mat-error *ngIf="toTime.hasError('required')">{{ getHint("required") }}</mat-error>
                     <mat-error *ngIf="!toTime.hasError('required') && !toTime.hasError('isTime')">{{ getHint("invalid") }}</mat-error>
                 </mat-form-field>

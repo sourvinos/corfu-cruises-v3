@@ -10,21 +10,21 @@
             <!-- Abbreviation -->
             <mat-form-field>
                 <mat-label>{{ getLabel('abbreviation') }}</mat-label>
-                <input [inputTabStop]="input" data-tabindex="1" formControlName="abbreviation" matInput>
+                <input [inputTabStop]="input" dataTabIndex="1" formControlName="abbreviation" matInput>
                 <mat-error *ngIf="abbreviation.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="abbreviation.hasError('maxlength')">{{ getHint("maxLength", abbreviation.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <!-- Description -->
             <mat-form-field>
                 <mat-label>{{ getLabel('description') }}</mat-label>
-                <input [inputTabStop]="input" data-tabindex="2" formControlName="description" matInput>
+                <input [inputTabStop]="input" dataTabIndex="2" formControlName="description" matInput>
                 <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="description.hasError('maxlength')">{{ getHint("maxLength", description.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <!-- StopOrder -->
             <mat-form-field>
                 <mat-label>{{ getLabel('stopOrder') }}</mat-label>
-                <input [inputTabStop]="input" data-tabindex="3" formControlName="stopOrder" matInput type="number">
+                <input [inputTabStop]="input" dataTabIndex="3" formControlName="stopOrder" matInput type="number">
                 <mat-error *ngIf="stopOrder.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="!stopOrder.hasError('required') && stopOrder.hasError('min') || stopOrder.hasError('max')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>

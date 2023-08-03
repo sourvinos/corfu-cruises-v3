@@ -10,14 +10,14 @@
             <!-- Abbreviation -->
             <mat-form-field>
                 <mat-label>{{ getLabel('abbreviation') }}</mat-label>
-                <input [inputTabStop]="input" data-tabindex="1" formControlName="abbreviation" matInput type="text">
+                <input [inputTabStop]="input" dataTabIndex="1" formControlName="abbreviation" matInput type="text">
                 <mat-error *ngIf="abbreviation.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="abbreviation.hasError('maxlength')">{{ getHint("maxLength", abbreviation.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <!-- Description -->
             <mat-form-field>
                 <mat-label>{{ getLabel('description') }}</mat-label>
-                <input [inputTabStop]="input" data-tabindex="2" formControlName="description" matInput type="text">
+                <input [inputTabStop]="input" dataTabIndex="2" formControlName="description" matInput type="text">
                 <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="description.hasError('maxlength')">{{ getHint("maxLength", description.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>

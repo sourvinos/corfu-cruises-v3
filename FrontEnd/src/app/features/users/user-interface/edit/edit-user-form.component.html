@@ -19,7 +19,7 @@
             <!-- Displayed name -->
             <mat-form-field>
                 <mat-label>{{ getLabel('displayname') }}</mat-label>
-                <input [inputTabStop]="input" data-tabindex="1" formControlName="displayname" matInput>
+                <input [inputTabStop]="input" dataTabIndex="1" formControlName="displayname" matInput>
                 <mat-error *ngIf="displayname.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="displayname.hasError('maxlength')">{{ getHint("maxLength", displayname.errors.maxlength.requiredLength) }}</mat-error>
                 <mat-error *ngIf="!displayname.hasError('required') && displayname.hasError('beginsOrEndsWithSpace')">{{ getHint("beginsOrEndsWithSpace") }}</mat-error>
@@ -28,7 +28,7 @@
             <mat-form-field>
                 <mat-label>{{ getLabel('customer') }}</mat-label>
                 <mat-icon *ngIf="!isAdmin()" class="material-icons-outlined small">lock</mat-icon>
-                <input #inputAutoComplete #triggerCustomer="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="customers" [readonly]="!isAdmin()" data-tabindex="2" formControlName="customer" matInput>
+                <input #inputAutoComplete #triggerCustomer="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="customers" [readonly]="!isAdmin()" dataTabIndex="2" formControlName="customer" matInput>
                 <div matSuffix style="display:flex">
                     <button (click)="openOrCloseAutoComplete(triggerCustomer, 'customer')" [disabled]="!isAdmin()" mat-icon-button type="button">
                         <mat-icon class="input-suffix material-icons-outlined with-margin">expand_more</mat-icon>
@@ -41,7 +41,7 @@
             <mat-form-field>
                 <mat-label>{{ getLabel('email') }}</mat-label>
                 <mat-icon *ngIf="!isAdmin()" class="material-icons-outlined small">lock</mat-icon>
-                <input [inputTabStop]="input" [readonly]="!isAdmin()" data-tabindex="3" formControlName="email" matInput type="email">
+                <input [inputTabStop]="input" [readonly]="!isAdmin()" dataTabIndex="3" formControlName="email" matInput type="email">
                 <mat-error *ngIf="email.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="email.hasError('email')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>

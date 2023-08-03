@@ -14,15 +14,15 @@ export class InputTabStopDirective {
 
     @HostListener('keyup', ['$event']) onkeyup(event: { preventDefault: () => void; key: string; target: { getAttribute: (arg0: string) => any; }; }): any {
 
-        const elements = Array.prototype.slice.apply(document.querySelectorAll('input[data-tabindex]'))
+        const elements = Array.prototype.slice.apply(document.querySelectorAll('input[dataTabIndex]'))
 
         if (document.getElementsByClassName('mat-mdc-option').length == 0) {
 
             if (event.key === 'Enter' || event.key === 'ArrowDown') {
-                let nextTab = +(event.target.getAttribute('data-tabindex')) + 1
+                let nextTab = +(event.target.getAttribute('dataTabIndex')) + 1
                 for (let i = elements.length; i--;) {
                     if (nextTab > elements.length) { nextTab = 1 }
-                    if (+(elements[i].getAttribute('data-tabindex')) === nextTab && !elements[i].getAttribute('disabled')) {
+                    if (+(elements[i].getAttribute('dataTabIndex')) === nextTab && !elements[i].getAttribute('disabled')) {
                         elements[i].focus()
                         elements[i].select()
                         break
@@ -31,10 +31,10 @@ export class InputTabStopDirective {
             }
 
             if (event.key === 'ArrowUp') {
-                let previousTab = +(event.target.getAttribute('data-tabindex')) - 1
+                let previousTab = +(event.target.getAttribute('dataTabIndex')) - 1
                 for (let i = elements.length; i--;) {
                     if (previousTab === 0) { previousTab = elements.length }
-                    if (+(elements[i].getAttribute('data-tabindex')) === previousTab) {
+                    if (+(elements[i].getAttribute('dataTabIndex')) === previousTab) {
                         elements[i].focus()
                         elements[i].select()
                         break
