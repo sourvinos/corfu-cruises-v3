@@ -45,14 +45,7 @@
                 <mat-error *ngIf="!gender.hasError('required') && gender.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>
             <!-- Birthdate -->
-            <mat-form-field>
-                <mat-label>{{ getLabel('birthdate') }}</mat-label>
-                <input (blur)="convertFutureDateToPastDate()" [inputTabStop]="input" [matDatepicker]="picker" [min]="minBirthDate" dataTabIndex="5" formControlName="birthdate" matInput>
-                <mat-datepicker-toggle [for]="picker" class="input-suffix" matIconSuffix no-margins></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-                <mat-error *ngIf="birthdate.hasError('required')">{{ getHint("required") }}</mat-error>
-                <mat-error *ngIf="!birthdate.hasError('required')">{{ getHint("invalid") }}</mat-error>
-            </mat-form-field>
+            <date-picker (outputValue)="patchFormWithSelectedDate($event)" [dataTabIndex]=5 [isAdminOrNewRecord]=true [label]="getLabel('birthdate')" [parentDate]="getDate()" [readOnly]=false [showHint]=false></date-picker>
             <!-- Special care -->
             <mat-form-field>
                 <mat-label>{{ getLabel('specialCare') }}</mat-label>

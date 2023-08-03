@@ -63,10 +63,6 @@ export class PassengerFormComponent {
         this.setLocale()
     }
 
-    ngAfterViewInit(): void {
-        this.focusOnField()
-    }
-
     ngOnDestroy(): void {
         this.cleanup()
     }
@@ -93,6 +89,10 @@ export class PassengerFormComponent {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
     }
 
+    public getDate(): string {
+        return this.form.value.birthdate
+    }
+
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
     }
@@ -116,6 +116,12 @@ export class PassengerFormComponent {
     public onSave(): void {
         this.storeNationality()
         this.closeDialog()
+    }
+
+    public patchFormWithSelectedDate(event: any): void {
+        this.form.patchValue({
+            birthdate: this.dateHelperService.gotoPreviousCenturyIfFutureDate(event.value.date)
+        })
     }
 
     public updateFieldsAfterNationalitySelection(value: NationalityVM): void {
@@ -170,10 +176,6 @@ export class PassengerFormComponent {
             'remarks': this.form.value.remarks,
             'isCheckedIn': this.form.value.isCheckedIn
         }
-    }
-
-    private focusOnField(): void {
-        this.helperService.focusOnField()
     }
 
     private getNationalityFromStorage(): void {

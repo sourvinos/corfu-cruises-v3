@@ -66,10 +66,6 @@ export class ScheduleEditFormComponent {
         this.setLocale()
     }
 
-    ngAfterViewInit(): void {
-        this.focusOnField()
-    }
-
     ngOnDestroy(): void {
         this.cleanup()
     }
@@ -129,6 +125,12 @@ export class ScheduleEditFormComponent {
         this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
     }
 
+    public patchFormWithSelectedDate(event: any): void {
+        this.form.patchValue({
+            date: event.value.date
+        })
+    }
+
     //#endregion
 
     //#region private methods
@@ -157,8 +159,8 @@ export class ScheduleEditFormComponent {
         }
     }
 
-    private focusOnField(): void {
-        this.helperService.focusOnField()
+    public getDate(): string {
+        return this.form.value.date
     }
 
     private getRecord(): Promise<any> {

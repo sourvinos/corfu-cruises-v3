@@ -8,13 +8,7 @@
 
         <form [formGroup]="form" autocomplete="off">
             <!-- Date -->
-            <mat-form-field>
-                <mat-label>{{ getLabel('date') }}</mat-label>
-                <input [inputTabStop]="input" [matDatepicker]="picker" dataTabIndex="1" formControlName="date" matInput>
-                <mat-datepicker-toggle [for]="picker" class="input-suffix" matIconSuffix no-margins></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-                <mat-error *ngIf="date.hasError('required')">{{ getHint("required") }}</mat-error>
-            </mat-form-field>
+            <date-picker (outputValue)="patchFormWithSelectedDate($event)" [dataTabIndex]=1 [isAdminOrNewRecord]=true [label]="getLabel('date')" [parentDate]="getDate()" [readOnly]=false [showHint]=false></date-picker>
             <!-- Destination -->
             <mat-form-field>
                 <mat-label>{{ getLabel('destination') }}</mat-label>
