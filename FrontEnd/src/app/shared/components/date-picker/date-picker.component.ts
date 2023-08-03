@@ -17,6 +17,7 @@ export class DatePickerComponent {
 
     @Input() dataTabIndex: number
     @Input() label: string
+    @Input() isAdminOrNewRecord: boolean
     @Input() parentDate: string
     @Input() readOnly: boolean
     @Input() showHint: boolean

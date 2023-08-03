@@ -22,7 +22,7 @@
                 <mat-error *ngIf="firstname.hasError('maxlength')">{{ getHint("maxLength", firstname.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <!-- Birthdate -->
-            <date-picker [dataTabIndex]=3 [parentDate]="getDate()" [label]="getLabel('birthdate')" [readOnly]=false [showHint]=false (outputValue)="patchFormWithSelectedDate($event)"></date-picker>
+            <date-picker (outputValue)="patchFormWithSelectedDate($event)" [dataTabIndex]=3 [isAdminOrNewRecord]=true [label]="getLabel('birthdate')" [parentDate]="getDate()" [readOnly]=false [showHint]=false></date-picker>
             <!-- Ship -->
             <mat-form-field>
                 <mat-label>{{ getLabel('ship') }}</mat-label>

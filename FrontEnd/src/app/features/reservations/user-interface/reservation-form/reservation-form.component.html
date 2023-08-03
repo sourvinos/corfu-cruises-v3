@@ -27,14 +27,7 @@
                         <span id="ref-no-body">{{ form.value.refNo }}</span>
                     </div>
                     <!-- Date -->
-                    <mat-form-field style="width: 25% !important;">
-                        <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined small">lock</mat-icon>
-                        <mat-label>{{ getLabel('date') }}</mat-label>
-                        <input [inputTabStop]="input" [matDatepicker]="picker" dataTabIndex="1" formControlName="date" matInput>
-                        <mat-datepicker-toggle [disabled]="!isAdminOrNewRecord()" [for]="picker" class="input-suffix" matIconSuffix no-margins></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                        <mat-error *ngIf="date.hasError('required')">{{ getHint("required") }}</mat-error>
-                    </mat-form-field>
+                    <date-picker (outputValue)="patchFormWithSelectedDate($event)" [dataTabIndex]=1 [isAdminOrNewRecord]=isAdminOrNewRecord() [label]="getLabel('date')" [parentDate]="getDate()" [readOnly]=!isAdminOrNewRecord() [showHint]=false></date-picker>
                     <!-- Ticket No -->
                     <mat-form-field style="width: 55% !important;">
                         <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined small">lock</mat-icon>

@@ -61,7 +61,7 @@
     flex-direction: column;
     font-family: var(--font-family-asty);
     font-weight: 300;
-    height: 3.75rem;
+    height: 3.5rem;
     padding: 0.5rem 1rem;
     text-align: center;
     transition: background-color var(--theme-delay) !important;
@@ -78,7 +78,7 @@
 #ref-no #ref-no-body {
     color: var(--color-accent);
     font-size: 1.5rem;
-    margin-top: 0.875rem;
+    margin-top: 0.75rem;
     transform: scale(0.8, 2.5);
 }
 

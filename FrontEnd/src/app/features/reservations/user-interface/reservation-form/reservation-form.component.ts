@@ -87,10 +87,6 @@ export class ReservationFormComponent {
         this.setTabTitle()
     }
 
-    ngAfterViewInit(): void {
-        this.focusOnField()
-    }
-
     ngOnDestroy(): void {
         this.cleanup()
     }
@@ -123,6 +119,10 @@ export class ReservationFormComponent {
 
     public enableOrDisableAutoComplete(event: any): void {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
+    }
+
+    public getDate(): string {
+        return this.form.value.date
     }
 
     public getHint(id: string, minmax = 0): string {
@@ -246,6 +246,12 @@ export class ReservationFormComponent {
         this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
     }
 
+    public patchFormWithSelectedDate(event: any): void {
+        this.form.patchValue({
+            date: event.value.date
+        })
+    }
+
     public updateFieldsAfterPickupPointSelection(value: PickupPointAutoCompleteVM): void {
         this.form.patchValue({
             exactPoint: value.exactPoint,
@@ -310,10 +316,6 @@ export class ReservationFormComponent {
 
     private flattenForm(): ReservationWriteDto {
         return this.reservationHelperService.flattenForm(this.form.value)
-    }
-
-    private focusOnField(): void {
-        this.helperService.focusOnField()
     }
 
     private getLinkedCustomer(): void {
