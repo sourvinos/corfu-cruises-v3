@@ -154,7 +154,7 @@
 
 /* Underline focused without error */
 .mdc-text-field:not(.mdc-text-field--disabled) .mdc-line-ripple::before, .mdc-text-field:not(.mdc-text-field--disabled) .mdc-line-ripple::after {
-    border-bottom-color: var(--color-primary) !important;
+    border-bottom-color: var(--color-accent) !important;
     transition: border-bottom-color var(--theme-delay) !important;
 }
 

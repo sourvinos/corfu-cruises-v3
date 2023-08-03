@@ -1,16 +1,24 @@
-#form-wrapper {
+#dialog-wrapper {
     background-color: var(--color-background);
-    gap: 1rem;
-    padding: 1rem 1rem 1rem 1rem;
-    width: 25rem;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 2rem 2rem 2rem;
+    row-gap: 1.5rem;
+    width: 30rem;
 }
 
 #dialog-header {
-    margin: 0 0 0 1.125rem;
+    margin: 0 1rem 0 1rem;
 }
 
 #dialog-footer {
-    margin: 2rem 1rem 0 auto;
+    margin: 0 1rem 0 1rem;
+}
+
+#dialog-footer #button-align-right {
+    column-gap: 0.5rem;
+    display: flex;
+    justify-content: flex-end;
 }
 
 #is-checked-in {

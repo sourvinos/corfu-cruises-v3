@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable, Subject } from 'rxjs'
+import { BehaviorSubject, Observable, Subscription } from 'rxjs'
 import { Component, Inject, NgZone } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
@@ -23,7 +23,7 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 @Component({
     selector: 'passenger-form',
     templateUrl: './passenger-form.component.html',
-    styleUrls: ['../../../../../assets/styles/custom/forms.css', './passenger-form.component.css']
+    styleUrls: ['./passenger-form.component.css']
 })
 
 export class PassengerFormComponent {
@@ -31,9 +31,9 @@ export class PassengerFormComponent {
     //#region variables
 
     private record: PassengerReadDto
-    private unsubscribe = new Subject<void>()
+    private subscription = new Subscription()
     public feature = 'passengerForm'
-    public featureIcon = ''
+    public featureIcon = 'passenger'
     public form: FormGroup
     public icon = 'arrow_back'
     public input: InputTabStopDirective
@@ -137,8 +137,7 @@ export class PassengerFormComponent {
     }
 
     private cleanup(): void {
-        this.unsubscribe.next()
-        this.unsubscribe.unsubscribe()
+        this.subscription.unsubscribe()
     }
 
     private closeDialog(): void {

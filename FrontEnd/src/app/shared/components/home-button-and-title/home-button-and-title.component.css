@@ -9,7 +9,6 @@
     align-items: center;
     color: var(--color-text);
     display: flex;
-    line-height: 0;
 }
 
 #feature-icon {
