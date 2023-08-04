@@ -113,7 +113,6 @@ export class ChangePasswordFormComponent {
                 confirmPassword: ['', [Validators.required]]
             }, { validator: ValidationService.childrenEqual })
         })
-
     }
 
     private saveRecord(vm: ChangePasswordViewModel): void {

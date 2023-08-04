@@ -1,21 +1,39 @@
-.mdc-checkbox__background {
-    border-color: var(--color-primary) !important;
-    border-radius: 0 !important;
-    height: 1.5rem !important;
-    left: 0 !important;
-    top: 0 !important;
-    width: 1.5rem !important;
+.mdc-checkbox {
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
-.mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background {
-    background-color: var(--color-primary) !important;
-    border-color: var(--color-primary) !important;
+.mat-mdc-checkbox-touch-target {
+    height: 18px !important;
+    left: 50% !important;
+    top: 50% !important;
+    width: 18px !important;
+}
+
+.mdc-checkbox .mdc-checkbox__background {
+    background-color: var(--color-background) !important;
+    border-color: var(--color-input-background) !important;
+    left: 0 !important;
+    top: 0 !important;
     transition: all var(--theme-delay) !important;
 }
 
-.mat-mdc-checkbox .mdc-checkbox__ripple {
-    width: 1.25rem;
-    height: 1.25rem;
+.mdc-checkbox .mdc-checkbox__native-control {
+    height: 18px !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: 0 !important;
+    width: 18px !important;
+}
+
+.mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background {
+    background-color: var(--color-background) !important;
+    border-color: var(--color-input-background) !important;
+    transition: all var(--theme-delay) !important;
+}
+
+.mdc-checkbox__checkmark {
+    color: var(--color-text) !important;
 }
 
 .mat-mdc-checkbox label {
@@ -24,21 +42,12 @@
     display: flex;
     font-family: var(--font-family-asty);
     font-weight: 300;
-    margin-left: 0.5rem !important;
-    transition: color var(--theme-delay) !important;
+    transition: all var(--theme-delay) !important;
 }
 
 .mat-mdc-checkbox label .mat-icon.small {
     align-items: center;
     display: flex;
-    font-size: 1.0625rem;
+    font-size: 18px;
     justify-content: center;
-}
-
-.mat-mdc-checkbox label span {
-    margin-top: -0.3125rem;
-}
-
-.mat-mdc-checkbox-ripple, .mdc-checkbox__ripple {
-    background-color: transparent !important;
 }
