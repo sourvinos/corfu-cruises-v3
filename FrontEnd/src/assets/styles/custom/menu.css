@@ -1,0 +1,13 @@
+.mat-mdc-autocomplete-panel, .mat-mdc-menu-panel, .drop-down-menu button, .sub-menu button, .mat-mdc-option.mdc-list-item {
+    background-color: var(--color-primary) !important;
+    color: var(--color-text-reverse) !important;
+}
+
+.mat-mdc-option.mat-mdc-option-active, .sub-menu button:hover, .mat-mdc-menu-item:hover, .mat-mdc-option:hover {
+    background-color: var(--color-secondary) !important;
+    color: var(--color-text-reverse) !important;
+}
+
+.mat-mdc-menu-item-text {
+    color: var(--color-text-reverse) !important;
+}

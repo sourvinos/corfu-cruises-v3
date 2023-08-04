@@ -1,25 +1,16 @@
+/* Colors are here: menu.css */
+
 :host {
     align-items: center;
     display: flex;
 }
 
 .drop-down-menu button {
-    background-color: var(--color-primary);
     border-radius: 0;
-    color: var(--color-dropdown-button);
     display: flex;
     font-size: var(--font-size-button) !important;
     gap: 0.5rem;
     padding: 0.25rem 0 0.25rem 1rem !important;
-    transition: all 0.25s !important;
-}
-
-.drop-down-menu-trigger .material-icons-outlined {
-    color: var(--color-dropdown-trigger);
-}
-
-.drop-down-menu-trigger span {
-    color: var(--color-dropdown-button);
 }
 
 .drop-down-menu:hover .sub-menu {
@@ -28,7 +19,6 @@
 
 .sub-menu button {
     animation: enter 0.1s ease forwards;
-    background-color: var(--color-primary);
     display: flex;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-dropdown-menu-button) !important;
@@ -41,12 +31,7 @@
 }
 
 .sub-menu button span {
-    color: var(--color-dropdown-button);
     margin-top: 0.125rem;
-}
-
-.sub-menu button:hover {
-    background-color: var(--color-dropdown-button-hover);
 }
 
 .sub-menu button:nth-child(1) {

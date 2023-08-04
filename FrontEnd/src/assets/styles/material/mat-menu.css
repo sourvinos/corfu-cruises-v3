@@ -1,19 +1,10 @@
-.mat-mdc-menu-content {
-    background-color: var(--color-background);
-}
+/* Colors are here: menu.css */
 
-.mdc-list-item__primary-text {
-    color: var(--color-text) !important;
+.mat-mdc-menu-item-text {
     font-family: var(--font-family-asty) !important;
-    font-size: 0.65rem !important;
+    font-size: var(--font-size-dropdown-menu-button) !important;
     font-weight: 300 !important;
-    transform: scale(1, 1.5) !important;
-}
-
-.mat-mdc-menu-item:hover {
-    background-color: var(--color-secondary) !important;
-}
-
-.mat-mdc-menu-item:hover .mdc-list-item__primary-text {
-    /* color: var(--color-text-reverse) !important; */
+    letter-spacing: 0 !important;
+    margin: 3px 0 0 0 !important;
+    transform: scale(0.9, 1);
 }
