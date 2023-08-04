@@ -1,36 +1,15 @@
 * {
     /* Base */
-    --color-primary: #737373;
-    --color-secondary: #8C8C8C;
-    --color-accent: #ffc107;
-    --color-accent-secondary: #ffffff;
     --color-background: #555555;
     /* Text */
-    --color-footer: #ffffff;
-    --color-table-headers: #ffffff;
-    --color-text-reverse: #ffffff;
     --color-text: #ffffff;
     /* Input */
-    --color-input-background-focus: #8d8d8d;
     --color-input-background: #636161;
     --color-input-error: #ff7878;
-    --color-input-focus: #ffffff;
-    --color-input-suffix: #ababab;
-    /* Dialogs */
-    --color-dialog-header: #17608F;
     /* Flags */
     --color-flag-border: #ffffff;
-    /* Top menu buttons */
-    --color-dropdown-button: #ffffff;
-    --color-dropdown-button-hover: #4b4b4b;
-    --color-dropdown-trigger: #ffffff;
-    /* Mat-Expander */
-    --color-header-background-hover: #757575;
     /* Tables */
-    --color-table-header-background: #737373;
     --color-table-header-border: #555555;
-    --color-table-header-text: #ffffff;
     --color-table-body-background: #555555;
-    --color-table-body-border: #737373;
     --color-table-body-text: #ffffff;
 }

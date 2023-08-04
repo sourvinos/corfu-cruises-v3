@@ -61,7 +61,8 @@ export class ThemeMenuComponent {
         this.setDefaultTheme(theme)
         this.saveTheme()
         this.updateVariables()
-        this.attachStylesheetToHead()
+        this.attachMasterStyleSheetToHead()
+        this.attachSecondaryStylesheetToHead()
         this.refreshBackgroundImage()
     }
 
@@ -78,11 +79,20 @@ export class ThemeMenuComponent {
     private applyTheme(): void {
         this.updateVariables()
         this.saveTheme()
-        this.attachStylesheetToHead()
+        this.attachMasterStyleSheetToHead()
+        // this.attachSecondaryStylesheetToHead()
         this.refreshBackgroundImage()
     }
 
-    private attachStylesheetToHead(): void {
+    private attachMasterStyleSheetToHead(): void {
+        const headElement = this.document.getElementsByTagName('head')[0]
+        const newLinkElement = this.document.createElement('link')
+        newLinkElement.rel = 'stylesheet'
+        newLinkElement.href = this.defaultTheme + '.css'
+        headElement.appendChild(newLinkElement)
+    }
+
+    private attachSecondaryStylesheetToHead(): void {
         const headElement = this.document.getElementsByTagName('head')[0]
         const newLinkElement = this.document.createElement('link')
         newLinkElement.rel = 'stylesheet'

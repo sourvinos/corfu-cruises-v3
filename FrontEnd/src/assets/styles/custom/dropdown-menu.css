@@ -5,12 +5,15 @@
     display: flex;
 }
 
-.drop-down-menu button {
+.drop-down-menu > button {
+    background-color: var(--color-primary) !important;
     border-radius: 0;
+    color: var(--color-dropdown-trigger) !important;
     display: flex;
     font-size: var(--font-size-button) !important;
     gap: 0.5rem;
     padding: 0.25rem 0 0.25rem 1rem !important;
+    transition: background-color var(--theme-delay), color var(--theme-delay);
 }
 
 .drop-down-menu:hover .sub-menu {
@@ -19,6 +22,8 @@
 
 .sub-menu button {
     animation: enter 0.1s ease forwards;
+    background-color: var(--color-primary) !important;
+    color: var(--color-dropdown-button) !important;
     display: flex;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-dropdown-menu-button) !important;
@@ -28,6 +33,10 @@
     padding: 0.6rem 1rem !important;
     transform-origin: bottom;
     width: 100%;
+}
+
+.sub-menu button:hover {
+    background-color: var(--color-dropdown-button-hover) !important;
 }
 
 .sub-menu button span {

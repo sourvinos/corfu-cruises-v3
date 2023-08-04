@@ -62,6 +62,11 @@
                             "node_modules/primeng/resources/themes/saga-blue/theme.css",
                             "src/assets/styles/custom/base.css",
                             {
+                                "input": "src/assets/themes/sea-blue.css",
+                                "bundleName": "sea-blue",
+                                "inject": false
+                            },
+                            {
                                 "input": "src/assets/themes/dark-sea-blue.css",
                                 "bundleName": "dark-sea-blue",
                                 "inject": false
@@ -79,6 +84,11 @@
                             {
                                 "input": "src/assets/themes/light-mellow-apricot.css",
                                 "bundleName": "light-mellow-apricot",
+                                "inject": false
+                            },
+                            {
+                                "input": "src/assets/themes/celery-stick.css",
+                                "bundleName": "celery-stick",
                                 "inject": false
                             },
                             {
@@ -102,6 +112,11 @@
                                 "inject": false
                             },
                             {
+                                "input": "src/assets/themes/gray-paper.css",
+                                "bundleName": "gray-paper",
+                                "inject": false
+                            },
+                            {
                                 "input": "src/assets/themes/dark-gray-paper.css",
                                 "bundleName": "dark-gray-paper",
                                 "inject": false
@@ -119,6 +134,11 @@
                             {
                                 "input": "src/assets/themes/light-pastel-red.css",
                                 "bundleName": "light-pastel-red",
+                                "inject": false
+                            },
+                            {
+                                "input": "src/assets/themes/cranberry-pie.css",
+                                "bundleName": "cranberry-pie",
                                 "inject": false
                             },
                             {

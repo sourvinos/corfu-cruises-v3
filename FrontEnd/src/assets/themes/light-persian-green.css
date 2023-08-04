@@ -3,7 +3,6 @@
     --color-primary: #2A9D8F;
     --color-secondary: #3EB8A9;
     --color-accent: #FF9FB1;
-    --color-accent-secondary: #efac42;
     --color-background: #ffffff;
     /* Text */
     --color-text: #000000;
@@ -13,17 +12,11 @@
     --color-footer: #ffffff;
     /* Input */
     --color-input-background: #636161;
-    --color-input-background-focus: #8d8d8d;
     --color-input-error: #ff8a82;
-    --color-input-focus: #ffffff;
-    /* Dialogs */
-    --color-dialog-header: #17608F;
     /* Flags */
     --color-flag-border: #000000;
     /* Buttons */
     --color-dropdown-button: #ffffff;
     --color-dropdown-button-hover: #207167;
     --color-dropdown-trigger: #ffffff;
-    /* Mat-Expander */
-    --color-header-background-hover: #f3f3f3;
 }
