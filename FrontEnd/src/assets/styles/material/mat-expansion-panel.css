@@ -2,7 +2,7 @@
 
 .mat-expansion-panel {
     border-radius: 0 !important;
-    border: 0.0625rem solid var(--color-table-body-border) !important;
+    border: 0.0625rem solid var(--color-primary) !important;
     box-shadow: 0 0 0 0 #000000 !important;
     margin-bottom: 0.1875rem !important;
     transition: background-color var(--theme-delay) !important;

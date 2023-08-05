@@ -80,7 +80,7 @@ export class ThemeMenuComponent {
         this.updateVariables()
         this.saveTheme()
         this.attachMasterStyleSheetToHead()
-        // this.attachSecondaryStylesheetToHead()
+        this.attachSecondaryStylesheetToHead()
         this.refreshBackgroundImage()
     }
 

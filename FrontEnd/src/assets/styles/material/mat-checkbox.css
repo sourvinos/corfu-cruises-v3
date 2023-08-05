@@ -4,10 +4,10 @@
 }
 
 .mat-mdc-checkbox-touch-target {
-    height: 18px !important;
+    height: 1.125rem !important;
     left: 50% !important;
     top: 50% !important;
-    width: 18px !important;
+    width: 1.125rem !important;
 }
 
 .mdc-checkbox .mdc-checkbox__background {
@@ -19,11 +19,11 @@
 }
 
 .mdc-checkbox .mdc-checkbox__native-control {
-    height: 18px !important;
+    height: 1.125rem !important;
     left: 0 !important;
     right: 0 !important;
     top: 0 !important;
-    width: 18px !important;
+    width: 1.125rem !important;
 }
 
 .mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background {
@@ -37,17 +37,22 @@
 }
 
 .mat-mdc-checkbox label {
-    align-items: center !important;
-    color: var(--color-text);
+    align-items: center;
     display: flex;
+    padding-left: 0.5rem !important;
+}
+
+.mat-mdc-checkbox label span {
+    color: var(--color-text);
     font-family: var(--font-family-asty);
     font-weight: 300;
+    margin: 0.1875rem 0 0 0;
     transition: all var(--theme-delay) !important;
 }
 
 .mat-mdc-checkbox label .mat-icon.small {
     align-items: center;
     display: flex;
-    font-size: 18px;
+    font-size: 1.125rem;
     justify-content: center;
 }

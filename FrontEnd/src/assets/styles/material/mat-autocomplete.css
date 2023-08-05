@@ -1,11 +1,19 @@
-/* Colors are here: menu.css */
-
 .mat-mdc-autocomplete-panel {
     border-radius: 0 !important;
 }
 
 .mat-mdc-option .mdc-list-item__primary-text {
     font-family: var(--font-family-ubuntu) !important;
-    font-size: 14px !important;
+    font-size: 0.875rem !important;
     width: 100% !important;
+}
+
+.mat-mdc-autocomplete-panel, .mat-mdc-menu-panel, .mat-mdc-option.mdc-list-item {
+    background-color: var(--color-primary) !important;
+    color: var(--color-text-mat-menu) !important;
+}
+
+.mat-mdc-option.mat-mdc-option-active, .mat-mdc-menu-item:hover, .mat-mdc-option:hover {
+    background-color: var(--color-button-hover) !important;
+    color: var(--color-text-mat-menu) !important;
 }

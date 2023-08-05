@@ -1,12 +1,13 @@
 * {
     --color-accent: #ffc107;
-    --color-dropdown-button-hover: #852c46;
+    --color-button-hover: #852c46;
+    --color-datepicker-calendar: #ffffff;
     --color-dropdown-button: #ffffff;
     --color-dropdown-trigger: #ffffff;
     --color-footer: #ffffff;
     --color-primary: #C13E65;
     --color-secondary: #DE698C;
-    --color-table-body-border: #C13E65;
     --color-table-headers: #ffffff;
+    --color-text-mat-menu: #ffffff;
     --color-text-reverse: #ffffff;
 }

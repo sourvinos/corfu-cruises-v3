@@ -75,7 +75,7 @@
 }
 
 .p-multiselect-option {
-    margin-top: 3px;
+    margin-top: 0.1875rem;
 }
 
 .p-multiselect-option span {
@@ -91,8 +91,8 @@
     font-family: var(--font-family-roboto) !important;
     font-size: 0.75rem !important;
     line-height: 0;
-    margin-left: -22px !important;
-    margin-top: -42px;
+    margin-left: -1.375rem !important;
+    margin-top: -2.625rem;
     position: absolute !important;
 }
 
@@ -108,7 +108,7 @@
 .p-column-filter-menu-button, .p-column-filter-clear-button::after {
     color: var(--color-accent);
     content: "❌";
-    padding: 0 0 0 14px;
+    padding: 0 0 0 0.875rem;
 }
 
 .p-multiselect .p-multiselect-trigger {
@@ -137,7 +137,7 @@
 }
 
 .mat-datepicker-toggle {
-    height: 20px !important;
+    height: 1.25rem !important;
 }
 
 .date-picker-wrapper > .mat-datepicker-toggle > .mdc-icon-button {

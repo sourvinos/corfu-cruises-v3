@@ -1,5 +1,8 @@
 .mdc-button .mat-icon {
+    font-size: 0.75rem !important;
+    height: 0.75rem !important;
     margin: 0.125rem 0 0 0 !important;
+    width: 0.75rem !important;
 }
 
 .mdc-button .mdc-button__label {
@@ -45,18 +48,22 @@ button.fab-with-no-background {
 
 button.delete {
     background-color: var(--color-button-delete) !important;
+    border-radius: 3.125rem !important;
 }
 
 button.primary {
     background-color: var(--color-button-primary) !important;
+    border-radius: 3.125rem !important;
 }
 
 button.secondary {
     background-color: var(--color-button-secondary) !important;
+    border-radius: 3.125rem !important;
 }
 
 button.accent {
     background-color: var(--color-accent) !important;
+    border-radius: 3.125rem !important;
 }
 
 button.tab {
@@ -69,11 +76,9 @@ button.tab:first-child {
 
 button.transparent {
     background-color: transparent !important;
+    border-radius: 3.125rem !important;
+    color: var(--color-text) !important;
     transition: all 0.25s !important;
-}
-
-button.transparent:hover {
-    background-color: color-mix(in srgb, var(--color-secondary) var(--hover-transparency), transparent);
 }
 
 button:disabled {

@@ -1,0 +1,14 @@
+* {
+    /* Base */
+    --color-background: #ffffff;
+    /* Text */
+    --color-text: #000000;
+    /* Input */
+    --color-input-background: #F9F9F9;
+    --color-input-error: #ff8a82;
+    /* Flags */
+    --color-flag-border: #000000;
+    /* Tables */
+    --color-table-body-background: #ffffff;
+    --color-table-body-text: #000000;
+}

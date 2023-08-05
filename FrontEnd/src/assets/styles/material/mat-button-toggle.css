@@ -15,6 +15,14 @@
     transition: background-color 0.2s !important;
 }
 
+.mat-button-toggle:first-child {
+    border-radius: 3.125rem 0 0 3.125rem !important;
+}
+
+.mat-button-toggle:last-child {
+    border-radius: 0 3.125rem 3.125rem 0 !important;
+}
+
 .mat-button-toggle-checked {
     background-color: var(--color-button-secondary) !important;
     color: var(--color-button-text) !important;
