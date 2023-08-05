@@ -137,6 +137,10 @@
             {
                 "id": "threePointReservationValidation",
                 "message": "Vergewissern Sie sich, dass keine Passagierdaten fehlen, dass Sie die E-Mail angegeben haben und dass die Reservierung gespeichert wurde."
+            },
+            {
+                "id": "errorsInRegistrars",
+                "message": "Die Fahrgastregistriereren für dieses Schiff sind nicht korrekt. Für jedes Schiff sollte es zwei aktive Fahrgastregistriereren geben, von denen einer als aktiv angegeben werden sollte."
             }
         ]
     }

@@ -68,6 +68,7 @@ export class MessageDialogService {
     public helpDialog(): string { return this.getDescription(this.feature, 'helpDialog') }
     public twoPointReervationValidation(): string { return this.getDescription(this.feature, 'twoPointReservationValidation') }
     public threePointReservationValidation(): string { return this.getDescription(this.feature, 'threePointReservationValidation') }
+    public errorsInRegistrars(): string { return this.getDescription(this.feature, 'errorsInRegistrars') }
 
     public filterResponse(error: any, feature = 'snackbarMessages'): string {
         let returnValue = ''

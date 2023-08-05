@@ -16,6 +16,7 @@ import { ManifestVM } from '../../classes/view-models/list/manifest-vm'
 import { MessageDialogService } from '../../../../shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
+import { RegistrarService } from 'src/app/features/registrars/classes/services/registrar.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { environment } from 'src/environments/environment'
@@ -51,7 +52,21 @@ export class ManifestListComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private manifestPdfService: ManifestPdfService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private dialogService: ModalDialogService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) {
+    constructor(
+        private activatedRoute: ActivatedRoute,
+        private dateHelperService: DateHelperService,
+        private dialogService: ModalDialogService,
+        private emojiService: EmojiService,
+        private helperService: HelperService,
+        private interactionService: InteractionService,
+        private manifestPdfService: ManifestPdfService,
+        private messageLabelService: MessageLabelService,
+        private messageSnackbarService: MessageDialogService,
+        private registrarService: RegistrarService,
+        private router: Router,
+        private sessionStorageService: SessionStorageService,
+        public dialog: MatDialog
+    ) {
         this.toggleVirtualTable()
         this.populateCriteriaPanelsFromStorage()
     }
@@ -121,20 +136,12 @@ export class ManifestListComponent {
         this.helperService.clearTableTextFilters(this.table, ['lastname', 'firstname'])
     }
 
-    public showRouteSelectorDialog(): void {
-        const response = this.dialog.open(ManifestRouteSelectorComponent, {
-            data: this.records,
-            disableClose: true,
-            height: '36.0625rem',
-            panelClass: 'dialog',
-            width: '31rem',
-        })
-        response.afterClosed().subscribe(result => {
-            if (result !== undefined) {
-                this.records.shipRoute = result
-                this.manifestPdfService.createReport(this.records)
-            }
-        })
+    public doTasks(): void {
+        if (this.isRegistrarsPairValid()) {
+            this.showRouteSelectionDialog()
+        } else {
+            this.dialogService.open(this.messageSnackbarService.errorsInRegistrars(), 'error', ['ok'])
+        }
     }
 
     //#endregion
@@ -147,6 +154,12 @@ export class ManifestListComponent {
                 this.records.passengers.push(crew)
             })
         }
+    }
+
+    private isRegistrarsPairValid(): any {
+        this.registrarService.isPairValid().subscribe(response => {
+            return response
+        })
     }
 
     private cleanup(): void {
@@ -189,6 +202,22 @@ export class ManifestListComponent {
 
     private setTabTitle(): void {
         this.helperService.setTabTitle(this.feature)
+    }
+
+    private showRouteSelectionDialog(): void {
+        const response = this.dialog.open(ManifestRouteSelectorComponent, {
+            data: this.records,
+            disableClose: true,
+            height: '36.0625rem',
+            panelClass: 'dialog',
+            width: '31rem',
+        })
+        response.afterClosed().subscribe(result => {
+            if (result !== undefined) {
+                this.records.shipRoute = result
+                this.manifestPdfService.createReport(this.records)
+            }
+        })
     }
 
     private storeFilters(): void {

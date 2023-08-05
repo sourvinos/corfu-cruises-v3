@@ -8,17 +8,21 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace API.Features.Registrars {
+namespace API.Features.Registrars
+{
 
-    public class RegistrarRepository : Repository<Registrar>, IRegistrarRepository {
+    public class RegistrarRepository : Repository<Registrar>, IRegistrarRepository
+    {
 
         private readonly IMapper mapper;
 
-        public RegistrarRepository(AppDbContext appDbContext, IHttpContextAccessor httpContext, IMapper mapper, IOptions<TestingEnvironment> settings) : base(appDbContext, httpContext, settings) {
+        public RegistrarRepository(AppDbContext appDbContext, IHttpContextAccessor httpContext, IMapper mapper, IOptions<TestingEnvironment> settings) : base(appDbContext, httpContext, settings)
+        {
             this.mapper = mapper;
         }
 
-        public async Task<IEnumerable<RegistrarListVM>> GetAsync() {
+        public async Task<IEnumerable<RegistrarListVM>> GetAsync()
+        {
             var registrars = await context.Registrars
                 .AsNoTracking()
                 .Include(x => x.Ship)
@@ -27,7 +31,8 @@ namespace API.Features.Registrars {
             return mapper.Map<IEnumerable<Registrar>, IEnumerable<RegistrarListVM>>(registrars);
         }
 
-        public async Task<IEnumerable<RegistrarAutoCompleteVM>> GetAutoCompleteAsync() {
+        public async Task<IEnumerable<RegistrarAutoCompleteVM>> GetAutoCompleteAsync()
+        {
             var registrars = await context.Registrars
                 .AsNoTracking()
                 .OrderBy(x => x.Fullname)
@@ -35,7 +40,8 @@ namespace API.Features.Registrars {
             return mapper.Map<IEnumerable<Registrar>, IEnumerable<RegistrarAutoCompleteVM>>(registrars);
         }
 
-        public async Task<Registrar> GetByIdAsync(int id, bool includeTables) {
+        public async Task<Registrar> GetByIdAsync(int id, bool includeTables)
+        {
             return includeTables
                 ? await context.Registrars
                     .AsNoTracking()

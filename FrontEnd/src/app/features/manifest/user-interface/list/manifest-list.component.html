@@ -109,7 +109,7 @@
             </div>
         </div>
         <div id="button-align-right">
-            <button (click)="showRouteSelectorDialog()" [disabled]="records.passengers.length==0" class="primary" mat-flat-button>
+            <button (click)="doTasks()" [disabled]="records.passengers.length==0" class="primary" mat-flat-button>
                 <mat-icon *ngIf="records.passengers.length==0" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("createPdf") | uppercase }}</span>
             </button>
