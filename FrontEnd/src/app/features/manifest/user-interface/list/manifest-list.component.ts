@@ -1,7 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, ViewChild } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
-import { Subject } from 'rxjs'
 import { Table } from 'primeng/table'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
@@ -33,7 +32,7 @@ export class ManifestListComponent {
 
     @ViewChild('table') table: Table | undefined
 
-    private unsubscribe = new Subject<void>()
+    // private unsubscribe = new Subject<void>()
     public feature = 'manifestList'
     public featureIcon = 'manifest'
     public icon = 'arrow_back'
@@ -52,56 +51,38 @@ export class ManifestListComponent {
 
     //#endregion
 
-    constructor(
-        private activatedRoute: ActivatedRoute,
-        private dateHelperService: DateHelperService,
-        private dialogService: ModalDialogService,
-        private emojiService: EmojiService,
-        private helperService: HelperService,
-        private interactionService: InteractionService,
-        private manifestPdfService: ManifestPdfService,
-        private messageLabelService: MessageLabelService,
-        private messageSnackbarService: MessageDialogService,
-        private registrarService: RegistrarService,
-        private router: Router,
-        private sessionStorageService: SessionStorageService,
-        public dialog: MatDialog
-    ) {
-        this.toggleVirtualTable()
-        this.populateCriteriaPanelsFromStorage()
-    }
+    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private dialogService: ModalDialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private manifestPdfService: ManifestPdfService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private registrarService: RegistrarService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
         this.loadRecords().then(() => {
-            this.addCrewToPassengers()
+            this.addCrewToList()
             this.populateDropdownFilters()
             this.enableDisableFilters()
             this.updateTotals(this.totals, this.records.passengers)
             this.updateTotals(this.totalsFiltered, this.records.passengers)
+            this.populateCriteriaPanelsFromStorage()
         })
         this.subscribeToInteractionService()
         this.setTabTitle()
-    }
-
-    ngAfterViewInit(): void {
-        this.toggleVirtualTable()
-    }
-
-    ngOnDestroy(): void {
-        this.cleanup()
     }
 
     //#endregion
 
     //#region public methods
 
+    public async doTasks(): Promise<void> {
+        this.validateRegistrarsForManifest().then((response) => {
+            response.code == 200
+                ? this.showRouteSelectionDialog()
+                : this.dialogService.open(this.messageSnackbarService.errorsInRegistrars(), 'error', ['ok'])
+        })
+    }
+
     public filterRecords(event: any): void {
-        this.toggleVirtualTable()
         this.updateTotals(this.totalsFiltered, event.filteredValue)
         this.storeFilters()
-        this.toggleVirtualTable()
     }
 
     public formatDateToLocale(date: string, showWeekday = false, showYear = false): string {
@@ -136,17 +117,11 @@ export class ManifestListComponent {
         this.helperService.clearTableTextFilters(this.table, ['lastname', 'firstname'])
     }
 
-    public async doTasks(): Promise<void> {
-        this.validateForManifest().then((x) => {
-            console.log('4. now what to do? ' + JSON.stringify(x))
-        })
-    }
-
     //#endregion
 
     //#region private methods
 
-    private addCrewToPassengers(): void {
+    private addCrewToList(): void {
         if (this.records.passengers.length > 0) {
             this.records.ship.crew.forEach(crew => {
                 this.records.passengers.push(crew)
@@ -154,23 +129,10 @@ export class ManifestListComponent {
         }
     }
 
-    private async validateForManifest(): Promise<any> {
-        console.log('1. validation')
-        return new Promise((resolve) => {
-            this.registrarService.validateForManifest(this.records.ship.id).then((x) => {
-                resolve(x)
-                console.log('3. came back with x = ' + JSON.stringify(x))
-            })
-        })
-    }
-
-    private cleanup(): void {
-        this.unsubscribe.next()
-        this.unsubscribe.unsubscribe()
-    }
-
     private enableDisableFilters(): void {
-        this.records.passengers.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()
+        this.records.passengers.length == 0
+            ? this.helperService.disableTableFilters()
+            : this.helperService.enableTableFilters()
     }
 
     private loadRecords(): Promise<any> {
@@ -232,14 +194,18 @@ export class ManifestListComponent {
         })
     }
 
-    private toggleVirtualTable(): void {
-        // this.helperService.toggleVirtualTable(this.isVirtual)
-    }
-
     private updateTotals(totals: number[], filteredVelue: any[]): void {
         totals[0] = filteredVelue.length
         totals[1] = filteredVelue.filter(x => x.occupant.description == 'PASSENGER').length
         totals[2] = filteredVelue.filter(x => x.occupant.description == 'CREW').length
+    }
+
+    private validateRegistrarsForManifest(): Promise<any> {
+        return new Promise((resolve) => {
+            this.registrarService.validateRegistrarsForManifest(this.records.ship.id).then((response) => {
+                resolve(response)
+            })
+        })
     }
 
     //#endregion

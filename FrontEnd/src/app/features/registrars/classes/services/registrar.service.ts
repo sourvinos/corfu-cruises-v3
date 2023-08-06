@@ -13,8 +13,7 @@ export class RegistrarService extends HttpDataService {
         super(httpClient, environment.apiUrl + '/registrars')
     }
 
-    public async validateForManifest(shipId: number): Promise<any> {
-        console.log('2. service')
+    public async validateRegistrarsForManifest(shipId: number): Promise<any> {
         return firstValueFrom(this.http.get<any>(this.url + '/validateForManifest/' + shipId))
     }
 
