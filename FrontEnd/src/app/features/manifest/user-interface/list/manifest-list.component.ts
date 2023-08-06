@@ -136,12 +136,10 @@ export class ManifestListComponent {
         this.helperService.clearTableTextFilters(this.table, ['lastname', 'firstname'])
     }
 
-    public doTasks(): void {
-        if (this.isRegistrarsPairValid()) {
-            this.showRouteSelectionDialog()
-        } else {
-            this.dialogService.open(this.messageSnackbarService.errorsInRegistrars(), 'error', ['ok'])
-        }
+    public async doTasks(): Promise<void> {
+        this.validateForManifest().then((x) => {
+            console.log('4. now what to do? ' + JSON.stringify(x))
+        })
     }
 
     //#endregion
@@ -156,9 +154,13 @@ export class ManifestListComponent {
         }
     }
 
-    private isRegistrarsPairValid(): any {
-        this.registrarService.isPairValid().subscribe(response => {
-            return response
+    private async validateForManifest(): Promise<any> {
+        console.log('1. validation')
+        return new Promise((resolve) => {
+            this.registrarService.validateForManifest(this.records.ship.id).then((x) => {
+                resolve(x)
+                console.log('3. came back with x = ' + JSON.stringify(x))
+            })
         })
     }
 

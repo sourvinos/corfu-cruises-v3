@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Observable } from 'rxjs'
+import { firstValueFrom } from 'rxjs'
 // Common
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { environment } from 'src/environments/environment'
@@ -13,8 +13,9 @@ export class RegistrarService extends HttpDataService {
         super(httpClient, environment.apiUrl + '/registrars')
     }
 
-    public isPairValid(): Observable<boolean> {
-        return this.http.get<boolean>(environment.apiUrl + '/isPairValid')
+    public async validateForManifest(shipId: number): Promise<any> {
+        console.log('2. service')
+        return firstValueFrom(this.http.get<any>(this.url + '/validateForManifest/' + shipId))
     }
 
 }

@@ -22,6 +22,7 @@ namespace API.Infrastructure.Helpers {
         public static string UnableToDeleteConnectedUser() { return "The connected user can't be deleted."; }
         public static string LogoutError() { return "The user is not logged in."; }
         public static string NotUniqueUsernameOrEmail() { return "The username or the email are not unique"; }
+        public static string InvalidRegistrarsForManifest() { return "The registrars pair is invalid"; }
 
         #endregion
 

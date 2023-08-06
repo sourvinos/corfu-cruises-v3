@@ -4,6 +4,7 @@ import { ManifestShipOwnerVM } from './manifest-shipOwner-vm'
 
 export interface ManifestShipVM {
 
+    id: number
     description: string
     imo: string
     flag: string

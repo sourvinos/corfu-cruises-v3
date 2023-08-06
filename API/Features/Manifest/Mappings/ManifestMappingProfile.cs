@@ -15,6 +15,7 @@ namespace API.Features.Manifest {
                     Description = source.Destination.Description
                 }))
                 .ForMember(x => x.Ship, x => x.MapFrom(source => new ManifestFinalShipVM {
+                    Id = source.Ship.Id,
                     Description = source.Ship.Description,
                     IMO = source.Ship.IMO,
                     Flag = source.Ship.Flag,

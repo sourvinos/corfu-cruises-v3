@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using API.Features.Ships;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Responses;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace API.Features.Registrars {
 
@@ -17,13 +18,15 @@ namespace API.Features.Registrars {
         private readonly IMapper mapper;
         private readonly IRegistrarRepository registrarRepo;
         private readonly IRegistrarValidation registrarValidation;
+        private readonly IShipRepository shipRepo;
 
         #endregion
 
-        public RegistrarsController(IMapper mapper, IRegistrarRepository registrarRepo, IRegistrarValidation registrarValidation) {
+        public RegistrarsController(IMapper mapper, IRegistrarRepository registrarRepo, IRegistrarValidation registrarValidation, IShipRepository shipRepo) {
             this.mapper = mapper;
             this.registrarRepo = registrarRepo;
             this.registrarValidation = registrarValidation;
+            this.shipRepo = shipRepo;
         }
 
         [HttpGet]
@@ -112,6 +115,25 @@ namespace API.Features.Registrars {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
                     Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 404
+                };
+            }
+
+        }
+
+        [HttpGet("[action]/{shipId}")]
+        [Authorize(Roles = "admin")]
+        public async Task<Response> ValidateForManifest([FromRoute] int shipId) {
+            var x = await shipRepo.GetByIdAsync(shipId, false);
+            if (x != null) {
+                var z = await this.registrarRepo.ValidateForManifest(shipId);
+                return new Response {
+                    Code = z ? 200 : 499,
+                    Icon = Icons.Info.ToString(),
+                    Message = z ? ApiMessages.OK() : ApiMessages.InvalidRegistrarsForManifest()
                 };
             } else {
                 throw new CustomException() {
