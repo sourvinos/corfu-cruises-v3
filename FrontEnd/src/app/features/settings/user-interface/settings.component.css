@@ -1,0 +1,8 @@
+#closing-time-description {
+    border: 2px solid var(--color-input-background);
+    color: var(--color-accent);
+    font-family: var(--font-family-asty);
+    font-size: 13px;
+    font-weight: 300;
+    padding: 1rem;
+}

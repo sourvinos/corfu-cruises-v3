@@ -2278,6 +2278,18 @@
                 "description": "Zavírací doba"
             },
             {
+                "id": "closingTimeDescription",
+                "description": "Platí pouze pro jednoduché uživatele: Odkazuje na čas, po kterém již nepřijímáme nové rezervace s převodem na následující den. Pokud chcete tuto funkci vypnout, zadejte 00:00 hod."
+            },
+            {
+                "id": "user",
+                "description": "Uživatel"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Poslední aktualizace"
+            },
+            {
                 "id": "saveButton",
                 "description": "Uložit"
             }

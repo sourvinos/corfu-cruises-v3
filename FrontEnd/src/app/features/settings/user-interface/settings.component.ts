@@ -17,7 +17,7 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 @Component({
     selector: 'settings',
     templateUrl: './settings.component.html',
-    styleUrls: ['../../../../assets/styles/custom/forms.css']
+    styleUrls: ['../../../../assets/styles/custom/forms.css', './settings.component.css']
 })
 
 export class SettingsComponent {
@@ -115,6 +115,8 @@ export class SettingsComponent {
         this.form = this.formBuilder.group({
             id: 0,
             closingTime: ['', [Validators.required, ValidationService.isTime]],
+            user: [''],
+            lastUpdate: ['']
         })
     }
 
@@ -122,7 +124,9 @@ export class SettingsComponent {
         if (this.record != undefined) {
             this.form.setValue({
                 id: this.record.id,
-                closingTime: this.record.closingTime
+                closingTime: this.record.closingTime,
+                user: this.record.user,
+                lastUpdate: this.record.lastUpdate
             })
         }
     }
@@ -148,6 +152,14 @@ export class SettingsComponent {
 
     get closingTime(): AbstractControl {
         return this.form.get('closingTime')
+    }
+
+    get user(): AbstractControl {
+        return this.form.get('user')
+    }
+
+    get lastUpdate(): AbstractControl {
+        return this.form.get('lastUpdate')
     }
 
     //#endregion

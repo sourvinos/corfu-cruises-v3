@@ -9,10 +9,29 @@
         <form [formGroup]="form" autocomplete="off">
             <!-- Closing time -->
             <mat-form-field>
-                <input [inputTabStop]="input" [placeholder]="getLabel('closingTime')" dataTabIndex="2" formControlName="closingTime" matInput>
+                <mat-label>{{ getLabel('closingTime') }}</mat-label>
+                <input formControlName="closingTime" matInput tabindex="1">
                 <mat-error *ngIf="closingTime.hasError('required')">{{ getHint("required") }}</mat-error>
-                <mat-error *ngIf="!closingTime.hasError('required') && !closingTime.hasError('isTime')">{{ getHint("invalid") }}</mat-error>
+                <mat-error *ngIf="!closingTime.hasError('required') && !closingTime.hasError('time')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>
+            <div id="closing-time-description">
+                <span>{{ getLabel('closingTimeDescription') }}</span>
+            </div>
+            <div class="align-bottom group-input-field hide-hint">
+                <!-- User -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('user') }}</mat-label>
+                    <mat-icon class="material-icons-outlined small">lock</mat-icon>
+                    <input formControlName="user" matInput readonly>
+                </mat-form-field>
+                <!-- Last update -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('lastUpdate') }}</mat-label>
+                    <mat-icon class="material-icons-outlined small">lock</mat-icon>
+                    <input formControlName="lastUpdate" matInput readonly>
+                </mat-form-field>
+            </div>
+
         </form>
 
     </div>

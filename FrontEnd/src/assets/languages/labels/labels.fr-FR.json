@@ -2278,6 +2278,18 @@
                 "description": "Démarrer"
             },
             {
+                "id": "closingTimeDescription",
+                "description": "S'applique uniquement aux utilisateurs simples : Il s'agit de l'heure à partir de laquelle nous n'acceptons plus de nouvelles réservations avec transfert pour le jour suivant. Si vous souhaitez désactiver cette fonctionnalité, indiquez 00:00"
+            },
+            {
+                "id": "user",
+                "description": "Utilisateur"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Dernière mise à jour"
+            },
+            {
                 "id": "saveButton",
                 "description": "Enregistrer"
             }
