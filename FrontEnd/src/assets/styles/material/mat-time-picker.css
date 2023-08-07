@@ -1,0 +1,52 @@
+/* Heder */
+
+.mat-toolbar {
+    background-color: transparent !important;
+    margin: 0.2rem 0 0.2rem 0 !important;
+}
+
+.timepicker-dial {
+    color: var(--color-primary) !important;
+}
+
+.timepicker-dial__control:hover {
+    cursor: pointer;
+}
+
+.timepicker-dial__control:focus {
+    background-color: color-mix(in srgb, var(--color-secondary) var(--hover-transparency), transparent) !important;
+}
+
+/* Clock */
+
+.clock-face {
+    margin: 0 1rem 0 1rem !important;
+}
+
+.clock-face__number > .mat-mdc-fab:not(.mdc-fab--extended), .mat-mdc-mini-fab:not(.mdc-fab--extended) .mat-mdc-fab.mat-primary, .mat-mdc-mini-fab.mat-primary {
+    background-color: var(--color-accent) !important;
+}
+
+.clock-face [mat-mini-fab].mat-void {
+    color: var(--color-text) !important;
+}
+
+.clock-face__number--outer {
+    height: 127px !important;
+}
+
+/* Footer */
+
+div.ngx-mat-timepicker-dialog > mat-dialog-container div[mat-dialog-actions] {
+    justify-content: center !important;
+    margin: 0.5rem 0 0.5rem 0 !important;
+}
+
+div.ngx-mat-timepicker-dialog > mat-dialog-container div[mat-dialog-actions] > div:first-child > button {
+    display: none !important;
+}
+
+div.ngx-mat-timepicker-dialog > mat-dialog-container div[mat-dialog-actions] > div:last-child > button {
+    background-color: var(--color-primary) !important;
+    border-radius: 3.125rem !important;
+}

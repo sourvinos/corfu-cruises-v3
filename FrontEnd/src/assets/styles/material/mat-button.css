@@ -20,7 +20,7 @@ button {
     box-shadow: none !important;
     color: var(--color-button-text) !important;
     cursor: default !important;
-    display: flex !important;
+    display: inline-flex !important;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-button) !important;
     font-weight: 300 !important;

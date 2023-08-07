@@ -10,10 +10,14 @@
             <!-- Closing time -->
             <mat-form-field>
                 <mat-label>{{ getLabel('closingTime') }}</mat-label>
-                <input formControlName="closingTime" matInput tabindex="1">
-                <mat-error *ngIf="closingTime.hasError('required')">{{ getHint("required") }}</mat-error>
-                <mat-error *ngIf="!closingTime.hasError('required') && !closingTime.hasError('time')">{{ getHint("invalid") }}</mat-error>
+                <input [format]=24 [ngxMatTimepicker]="timePicker" formControlName="closingTime" matInput />
+                <div matSuffix style="display:flex">
+                    <button (click)="timePicker.open()" mat-icon-button type="button">
+                        <mat-icon class="input-suffix material-icons-outlined with-margin">watch_later</mat-icon>
+                    </button>
+                </div>
             </mat-form-field>
+            <ngx-mat-timepicker #timePicker></ngx-mat-timepicker>
             <div id="closing-time-description">
                 <span>{{ getLabel('closingTimeDescription') }}</span>
             </div>
