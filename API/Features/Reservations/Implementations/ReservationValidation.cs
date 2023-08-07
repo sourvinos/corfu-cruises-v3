@@ -288,7 +288,7 @@ namespace API.Features.Reservations {
 
         private bool IsBetweenClosingTimeAndMidnight(ReservationWriteDto reservation) {
             var timeNow = testingEnvironment.IsTesting ? new TimeOnly(reservation.Now.Hour, reservation.Now.Minute) : new TimeOnly(DateHelpers.GetLocalDateTime().Hour, DateHelpers.GetLocalDateTime().Hour);
-            var closingTime = new TimeOnly(context.Settings.Select(x => int.Parse(x.ClosingTime.Substring(0, 2))).SingleOrDefault(), context.Settings.Select(x => int.Parse(x.ClosingTime.Substring(3, 2))).SingleOrDefault());
+            var closingTime = new TimeOnly(context.Parameters.Select(x => int.Parse(x.ClosingTime.Substring(0, 2))).SingleOrDefault(), context.Parameters.Select(x => int.Parse(x.ClosingTime.Substring(3, 2))).SingleOrDefault());
             return (closingTime.Hour != 0 || closingTime.Minute != 0) && timeNow >= closingTime;
         }
 

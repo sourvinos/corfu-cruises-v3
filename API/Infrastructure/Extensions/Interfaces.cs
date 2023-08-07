@@ -19,7 +19,7 @@ using API.Features.ShipRoutes;
 using API.Features.Ships;
 using API.Features.Users;
 using API.Infrastructure.Auth;
-using API.Infrastructure.Settings;
+using API.Infrastructure.Parameters;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace API.Infrastructure.Extensions {
@@ -65,8 +65,8 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IShipCrewValidation, ShipCrewValidation>();
             services.AddTransient<IShipValidation, ShipValidation>();
             services.AddTransient<IUserValidation<IUser>, UserValidation>();
-            // Settings
-            services.AddTransient<ISettingsRepository, SettingsRepository>();
+            // Parameters
+            services.AddTransient<IParametersRepository, ParametersRepository>();
         }
 
     }

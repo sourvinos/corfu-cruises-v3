@@ -88,7 +88,7 @@
         "description": "Logout"
     },
     {
-        "id": "settings-general-settings",
+        "id": "parameters-parameters",
         "description": "Settings"
     }
 ]

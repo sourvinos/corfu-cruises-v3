@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using API.Features.CoachRoutes;
 using API.Features.Customers;
 using API.Features.Destinations;
@@ -16,8 +15,9 @@ using API.Features.ShipOwners;
 using API.Features.ShipRoutes;
 using API.Features.Ships;
 using API.Infrastructure.Auth;
-using API.Infrastructure.Settings;
+using API.Infrastructure.Parameters;
 using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 
 namespace API.Features.Users {
 
@@ -48,7 +48,7 @@ namespace API.Features.Users {
         public List<ShipOwner> ShipOwners { get; set; }
         public List<ShipRoute> ShipRoutes { get; set; }
         public List<Token> Tokens { get; set; }
-        public List<Setting> Settings { get; set; }
+        public List<Parameter> Parameters { get; set; }
 
     }
 

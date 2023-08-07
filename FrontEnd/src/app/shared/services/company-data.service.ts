@@ -16,7 +16,7 @@ export class CompanyDataService extends HttpDataService {
     //#region public methods
 
     public getCompanyData(url: string): Observable<any> {
-        return this.http.get<any>(url + '/settings')
+        return this.http.get<any>(url + '/parameters')
     }
 
 }

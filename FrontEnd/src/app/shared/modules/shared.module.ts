@@ -26,7 +26,7 @@ import { PadNumberPipe } from '../pipes/pad-number.pipe'
 import { PrettyPrintPipe } from '../pipes/json-pretty.pipe'
 import { ReplaceZeroPipe } from '../pipes/replace-zero.pipe'
 import { SafeStylePipe } from '../pipes/safe-style.pipe'
-import { SettingsMenuComponent } from '../components/top-bar-wrapper/settings-menu/settings-menu.component'
+import { ParametersMenuComponent } from '../components/top-bar-wrapper/parameters-menu/parameters-menu.component'
 import { TableTotalFilteredRecordsComponent } from '../components/table-total-filtered-records/table-total-filtered-records.component'
 import { ThemeGroupSelectorComponent } from '../components/top-bar-wrapper/theme-group-selector/theme-group-selector.component'
 import { ThemeMenuComponent } from './../components/top-bar-wrapper/theme-menu/theme-menu.component'
@@ -55,7 +55,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         PrettyPrintPipe,
         ReplaceZeroPipe,
         SafeStylePipe,
-        SettingsMenuComponent,
+        ParametersMenuComponent,
         TableTotalFilteredRecordsComponent,
         ThemeGroupSelectorComponent,
         ThemeMenuComponent,
@@ -97,7 +97,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         ReplaceZeroPipe,
         RouterModule,
         RouterModule,
-        SettingsMenuComponent,
+        ParametersMenuComponent,
         TableTotalFilteredRecordsComponent,
         ThemeGroupSelectorComponent,
         ThemeMenuComponent,

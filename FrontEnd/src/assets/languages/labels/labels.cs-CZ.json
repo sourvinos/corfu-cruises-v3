@@ -2267,7 +2267,7 @@
         ]
     },
     {
-        "feature": "settings",
+        "feature": "parameters",
         "labels": [
             {
                 "id": "header",

@@ -88,7 +88,7 @@
         "description": "Αποσύνδεση"
     },
     {
-        "id": "settings-general-settings",
+        "id": "parameters-parameters",
         "description": "Ρυθμίσεις"
     }
 ]

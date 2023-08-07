@@ -42,8 +42,8 @@ const appRoutes: Routes = [
     { path: 'shipRoutes', loadChildren: () => import('../features/shipRoutes/classes/modules/shipRoute.module').then(m => m.ShipRouteModule) },
     { path: 'ships', loadChildren: () => import('../features/ships/classes/modules/ship.module').then(m => m.ShipModule) },
     { path: 'users', loadChildren: () => import('../features/users/classes/modules/user.module').then(m => m.UserModule) },
-    // Settings
-    { path: 'settings', loadChildren: () => import('../features/settings/classes/modules/settings.module').then(m => m.SettingsModule) },
+    // Parameters
+    { path: 'parameters', loadChildren: () => import('../features/parameters/classes/modules/parameters.module').then(m => m.ParametersModule) },
     // Empty
     { path: '**', component: EmptyPageComponent }
 ]
