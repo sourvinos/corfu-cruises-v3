@@ -9,6 +9,10 @@
     color: var(--color-primary) !important;
 }
 
+.timepicker-dial__control {
+    color: var(--color-primary) !important;
+}
+
 .timepicker-dial__control:hover {
     cursor: pointer;
 }
@@ -28,7 +32,7 @@
 }
 
 .clock-face [mat-mini-fab].mat-void {
-    color: var(--color-text) !important;
+    color: var(--color-time-picker-clock) !important;
 }
 
 .clock-face__number--outer {

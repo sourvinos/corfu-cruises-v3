@@ -33,7 +33,6 @@
                 <mat-error *ngIf="port.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="!port.hasError('required') && port.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>
-            <div class="group-input-field">
                 <!-- MaxPax -->
                 <mat-form-field>
                     <mat-label>{{ getLabel('maxPax') }}</mat-label>
@@ -44,11 +43,16 @@
                 <!-- Time -->
                 <mat-form-field>
                     <mat-label>{{ getLabel('time') }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="5" formControlName="time" matInput>
+                    <input [format]=24 [inputTabStop]="input" [ngxMatTimepicker]="timePicker" dataTabIndex="5" formControlName="time" matInput readonly/>
+                    <div matSuffix style="display:flex">
+                        <button (click)="timePicker.open()" mat-icon-button type="button">
+                            <mat-icon class="input-suffix material-icons-outlined">watch_later</mat-icon>
+                        </button>
+                    </div>
                     <mat-error *ngIf="time.hasError('required')">{{ getHint("required") }}</mat-error>
                     <mat-error *ngIf="!time.hasError('required') && !time.hasError('time')">{{ getHint("invalid") }}</mat-error>
                 </mat-form-field>
-            </div>
+                <ngx-mat-timepicker #timePicker></ngx-mat-timepicker>
             <div id="checkboxes">
                 <!-- Active -->
                 <mat-checkbox formControlName="isActive">

@@ -46,10 +46,6 @@ export class ParametersComponent {
         this.populateFields()
     }
 
-    ngAfterViewInit(): void {
-        this.focusOnField()
-    }
-
     ngOnDestroy(): void {
         this.cleanup()
     }
@@ -89,10 +85,6 @@ export class ParametersComponent {
         }
     }
 
-    private focusOnField(): void {
-        this.helperService.focusOnField()
-    }
-
     private getRecord(): Promise<any> {
         return new Promise((resolve) => {
             const formResolved: FormResolved = this.activatedRoute.snapshot.data[this.feature]
@@ -115,7 +107,7 @@ export class ParametersComponent {
     private initForm(): void {
         this.form = this.formBuilder.group({
             id: [''],
-            closingTime: ['', [Validators.required, ValidationService.isTime]],
+            closingTime: ['00:00', [Validators.required, ValidationService.isTime]],
             user: [''],
             lastUpdate: ['']
         })

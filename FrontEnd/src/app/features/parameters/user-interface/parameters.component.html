@@ -10,7 +10,7 @@
             <!-- Closing time -->
             <mat-form-field>
                 <mat-label>{{ getLabel('closingTime') }}</mat-label>
-                <input [format]=24 [ngxMatTimepicker]="timePicker" formControlName="closingTime" matInput />
+                <input [format]=24 [ngxMatTimepicker]="timePicker" formControlName="closingTime" matInput readonly />
                 <div matSuffix style="display:flex">
                     <button (click)="timePicker.open()" mat-icon-button type="button">
                         <mat-icon class="input-suffix material-icons-outlined with-margin">watch_later</mat-icon>

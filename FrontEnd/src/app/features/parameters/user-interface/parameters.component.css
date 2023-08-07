@@ -1,8 +1,10 @@
 #closing-time-description {
-    border: 2px solid var(--color-input-background);
+    border: 0.125rem solid var(--color-input-background);
     color: var(--color-accent);
     font-family: var(--font-family-asty);
     font-size: 13px;
     font-weight: 300;
+    line-height: 1.5rem;
     padding: 1rem;
+    transition: all var(--theme-delay);
 }
