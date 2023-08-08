@@ -1,7 +1,3 @@
-#accordion-wrapper {
-    overflow-y: scroll !important;
-}
-
 .checkbox-label {
     color: var(--color-text-mat-menu) !important;
     margin: 0 0 0 0.5rem !important;

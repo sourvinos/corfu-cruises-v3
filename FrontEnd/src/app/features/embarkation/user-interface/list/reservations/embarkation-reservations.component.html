@@ -148,6 +148,10 @@
                         </td>
                         <td class="center width-2"><span (click)="showRemarks(reservation.remarks)" [ngClass]="hasRemarks(reservation.remarks)?'clickable':''" *ngIf="hasRemarks(reservation.remarks)">{{ getEmoji('remarks') }}</span></td>
                     </tr>
+                    <tr *ngIf="hasRemarks(reservation.remarks)" [ngClass]="getRemarksRowVisibility() ? '' : 'no-display'">
+                        <td class="right" colspan="10">{{ reservation.remarks }}</td>
+                        <td class="width-2"></td>
+                    </tr>
                 </ng-template>
             </p-table>
         </div>
@@ -155,6 +159,12 @@
     </div>
 
     <div id="footer">
+        <button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" style="color: var(--color-text-reverse) !important" mat-icon-button>
+            <mat-icon class="material-icons-outlined">more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" class="primary">
+            <ng-container *ngTemplateOutlet="contextMenu"></ng-container>
+        </mat-menu>
         <div class="filter-pill">
             <div class="pill">
                 <img [src]="getIcon('total')">
@@ -194,3 +204,11 @@
     </div>
 
 </div>
+
+<ng-template #contextMenu>
+    <button (click)="toggleRemarksRowVisibility()" mat-menu-item>
+        <mat-checkbox [(ngModel)]="remarksRowVisibility">
+            <span class="checkbox-label">Εμφάνιση σχολίων σε ξεχωριστή γραμμή</span>
+        </mat-checkbox>
+    </button>
+</ng-template>

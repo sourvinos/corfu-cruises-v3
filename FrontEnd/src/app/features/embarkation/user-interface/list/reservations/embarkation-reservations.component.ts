@@ -29,7 +29,7 @@ import { environment } from 'src/environments/environment'
 @Component({
     selector: 'embarkation-reservations',
     templateUrl: './embarkation-reservations.component.html',
-    styleUrls: ['../../../../../../assets/styles/custom/lists.css']
+    styleUrls: ['../../../../../../assets/styles/custom/lists.css', './embarkation-reservations.component.css']
 })
 
 export class EmbarkationReservationsComponent {
@@ -49,6 +49,7 @@ export class EmbarkationReservationsComponent {
     public criteriaPanels: EmbarkationCriteriaPanelVM
     public totals = [0, 0, 0]
     public totalsFiltered = [0, 0, 0]
+    public remarksRowVisibility: boolean
 
     public distinctCustomers: SimpleEntity[] = []
     public distinctDestinations: EmbarkationDestinationVM[] = []
@@ -76,6 +77,7 @@ export class EmbarkationReservationsComponent {
         this.subscribeToInteractionService()
         this.setTabTitle()
         this.doVirtualTableTasks()
+        this.updateVariables()
     }
 
     ngOnDestroy(): void {
@@ -155,6 +157,14 @@ export class EmbarkationReservationsComponent {
 
     public showRemarks(remarks: string): void {
         this.dialogService.open(remarks, 'info', ['ok'])
+    }
+
+    public getRemarksRowVisibility(): boolean {
+        return this.remarksRowVisibility
+    }
+
+    public toggleRemarksRowVisibility(): void {
+        this.sessionStorageService.saveItem('remarksRowVisibility', this.remarksRowVisibility ? '1' : '0')
     }
 
     public unHighlightAllRows(): void {
@@ -296,6 +306,10 @@ export class EmbarkationReservationsComponent {
         })
         x[2] = x[0] - x[1]
         this[totalsArray] = x
+    }
+
+    private updateVariables(): void {
+        this.remarksRowVisibility = this.sessionStorageService.getItem('remarksRowVisibility') != '' ? (this.sessionStorageService.getItem('remarksRowVisibility') == '1' ? true : false) : false
     }
 
     //#endregion

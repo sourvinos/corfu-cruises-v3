@@ -32,6 +32,7 @@ export class LedgerCustomerListComponent {
     public records: LedgerVM[] = []
 
     public criteriaPanels: LedgerCriteriaVM
+    public remarksRowVisibility: boolean
 
     //#endregion
 
@@ -44,11 +45,12 @@ export class LedgerCustomerListComponent {
         this.subscribeToInteractionService()
         this.setTabTitle()
         this.populateCriteriaPanelsFromStorage()
+        this.updateVariables()
     }
 
     //#endregion
 
-    //#region public methods2
+    //#region public methods
 
     public collapseAll(): void {
         this.helperService.toggleExpansionPanel(this.panels, false)
@@ -74,8 +76,16 @@ export class LedgerCustomerListComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
+    public getRemarksRowVisibility(): boolean {
+        return this.remarksRowVisibility
+    }
+
     public goBack(): void {
         this.router.navigate([this.parentUrl])
+    }
+
+    public toggleRemarksRowVisibility(): void {
+        this.sessionStorageService.saveItem('remarksRowVisibility', this.remarksRowVisibility ? '1' : '0')
     }
 
     //#endregion
@@ -110,6 +120,10 @@ export class LedgerCustomerListComponent {
         this.interactionService.refreshTabTitle.subscribe(() => {
             this.setTabTitle()
         })
+    }
+
+    private updateVariables(): void {
+        this.remarksRowVisibility = this.sessionStorageService.getItem('remarksRowVisibility') != '' ? (this.sessionStorageService.getItem('remarksRowVisibility') == '1' ? true : false) : false
     }
 
     //#endregion

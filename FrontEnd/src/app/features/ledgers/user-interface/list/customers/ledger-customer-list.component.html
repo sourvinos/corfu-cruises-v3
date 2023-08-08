@@ -24,9 +24,9 @@
                         <mat-panel-title>{{ customer.customer.description }}</mat-panel-title>
                     </mat-expansion-panel-header>
                     <ng-template matExpansionPanelContent>
-                        <ledger-customer-reservations [customer]="customer"></ledger-customer-reservations>
+                        <ledger-customer-reservations [customer]="customer" [remarksRowVisibility]="getRemarksRowVisibility()"></ledger-customer-reservations>
                         <ledger-customer-summary [portGroup]="customer.ports"></ledger-customer-summary>
-                        <div class="button-right">
+                        <div class="right">
                             <button (click)="exportSelected(customer)" class="secondary" mat-flat-button>
                                 <span>{{ getLabel("createPdfButton") | uppercase }}</span>
                             </button>
@@ -39,6 +39,12 @@
     </div>
 
     <div id="footer">
+        <button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" style="color: var(--color-text-reverse) !important" mat-icon-button>
+            <mat-icon class="material-icons-outlined">more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" class="primary">
+            <ng-container *ngTemplateOutlet="contextMenu"></ng-container>
+        </mat-menu>
         <table-total-filtered-records [filteredRecordCount]="records.length" [recordCount]="records.length" [showFilteredCount]="false"></table-total-filtered-records>
         <div id="button-align-right">
             <button [disabled]="records.length==0" (click)="exportAll()" class="primary" mat-flat-button>
@@ -49,3 +55,11 @@
     </div>
 
 </div>
+
+<ng-template #contextMenu>
+    <button (click)="toggleRemarksRowVisibility()" mat-menu-item>
+        <mat-checkbox [(ngModel)]="remarksRowVisibility">
+            <span class="checkbox-label">Εμφάνιση σχολίων σε ξεχωριστή γραμμή</span>
+        </mat-checkbox>
+    </button>
+</ng-template>
