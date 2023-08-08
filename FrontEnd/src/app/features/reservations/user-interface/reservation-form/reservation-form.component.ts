@@ -42,7 +42,7 @@ import { ValidationService } from './../../../../shared/services/validation.serv
 
 export class ReservationFormComponent {
 
-    //#region variables
+    //#region common variables
 
     private record: ReservationReadDto
     private recordId: string
@@ -51,9 +51,25 @@ export class ReservationFormComponent {
     public form: FormGroup
     public icon = 'arrow_back'
     public input: InputTabStopDirective
-    public isAutoCompleteDisabled = true
     public parentUrl = ''
 
+    //#endregion
+
+    //#region form specific
+
+    private formMustCloseAfterSave = true
+    private mirrorRecord: ReservationWriteDto
+    private mustGoBackAfterSave = true
+    public isNewRecord: boolean
+    public isPassengersTabVisible: boolean
+    public isReservationTabVisible: boolean
+    public passengerDifferenceColor: string
+
+    //#endregion
+
+    //#region autocompletes
+
+    public isAutoCompleteDisabled = true
     public arrowIcon = new BehaviorSubject('arrow_drop_down')
     public dropdownCustomers: Observable<CustomerAutoCompleteVM[]>
     public dropdownDestinations: Observable<DestinationAutoCompleteVM[]>
@@ -61,15 +77,6 @@ export class ReservationFormComponent {
     public dropdownPickupPoints: Observable<PickupPointAutoCompleteVM[]>
     public dropdownPorts: Observable<PortAutoCompleteVM[]>
     public dropdownShips: Observable<DriverAutoCompleteVM[]>
-
-    public isNewRecord: boolean
-    public passengerDifferenceColor: string
-    public isReservationTabVisible: boolean
-    public isPassengersTabVisible: boolean
-
-    private formMustCloseAfterSave = true
-    private mustGoBackAfterSave = true
-    private mirrorRecord: ReservationWriteDto
 
     //#endregion
 
