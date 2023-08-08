@@ -1,7 +1,8 @@
-#criteria-wrapper {
+#form-wrapper {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 93.3%;
+    margin: 0 auto;
 }
 
 #content {
@@ -25,12 +26,6 @@
     flex-direction: row;
     justify-content: space-between;
     margin: 0 2rem 0 2rem;
-}
-
-#form-wrapper {
-    display: flex;
-    height: 93.3%;
-    margin: 0 auto;
 }
 
 #form {

@@ -17,7 +17,7 @@
                 <input [inputTabStop]="input" [type]="hidePassword ? 'password' : 'text'" dataTabIndex="2" formControlName="password" matInput>
                 <div matSuffix style="display:flex">
                     <button (click)="hidePassword = !hidePassword" mat-icon-button type="button">
-                        <mat-icon class="input-suffix material-icons-outlined with-margin">{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+                        <mat-icon class="input-suffix material-icons-outlined with-top-margin small">{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
                     </button>
                 </div>
                 <mat-error *ngIf="password.hasError('required')">{{ getHint("required") }}</mat-error>

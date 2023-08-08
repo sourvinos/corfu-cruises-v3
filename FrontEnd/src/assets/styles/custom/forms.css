@@ -24,7 +24,7 @@
     width: 100%;
 }
 
-#content form {
+#form {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -55,10 +55,10 @@
     padding: 1rem 4rem 1rem 4rem;
 }
 
-#footer #button-align-right {
+#button-align-right {
     display: flex;
     gap: 0.5rem;
-    margin-left: auto;
+    margin: 0 0 0 auto;
 }
 
 .group-input-field {

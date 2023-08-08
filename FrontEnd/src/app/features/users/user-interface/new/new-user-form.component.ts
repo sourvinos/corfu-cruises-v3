@@ -12,7 +12,6 @@ import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { UserNewDto } from '../../classes/dtos/new-user-dto'
 import { UserService } from '../../classes/services/user.service'
@@ -20,7 +19,7 @@ import { UserService } from '../../classes/services/user.service'
 @Component({
     selector: 'new-user-form',
     templateUrl: './new-user-form.component.html',
-    styleUrls: ['../../../../../assets/styles/custom/forms.css', './new-user-form.component.css']
+    styleUrls: ['../../../../../assets/styles/custom/forms.css']
 })
 
 export class NewUserFormComponent {
@@ -44,7 +43,7 @@ export class NewUserFormComponent {
 
     //#endregion
 
-    constructor(private dexieService: DexieService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private sessionStorageService: SessionStorageService, private userService: UserService) { }
+    constructor(private dexieService: DexieService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private userService: UserService) { }
 
     //#region lifecycle hooks
 

@@ -103,8 +103,8 @@
 }
 
 /* Button icon */
-.mat-date-picker-toggle.with-margin {
-    margin-top: 0.3125rem;
+.with-top-margin {
+    margin-top: 0.4375rem !important;
 }
 
 /* Button icon */
@@ -115,6 +115,11 @@
 /* Button icon */
 .input-suffix > button > svg {
     color: var(--color-text) !important;
+}
+
+/* Button icon */
+.small {
+    font-size: 1rem !important;
 }
 
 /* Hint */
