@@ -3,13 +3,14 @@ import { Component, HostListener } from '@angular/core'
 import { InteractionService } from '../../../services/interaction.service'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { MessageCalendarService } from '../../../services/message-calendar.service'
+import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 
 @Component({
     selector: 'language-menu',
-    templateUrl: './language-menu.component.html'
+    templateUrl: './language-menu.component.html',
+    styleUrls: ['../../../../../assets/styles/custom/dropdown-menu.css']
 })
 
 export class LanguageMenuComponent {

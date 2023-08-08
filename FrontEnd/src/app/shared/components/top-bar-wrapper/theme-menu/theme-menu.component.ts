@@ -7,7 +7,8 @@ import { environment } from 'src/environments/environment'
 
 @Component({
     selector: 'theme-menu',
-    templateUrl: './theme-menu.component.html'
+    templateUrl: './theme-menu.component.html',
+    styleUrls: ['../../../../../assets/styles/custom/dropdown-menu.css']
 })
 
 export class ThemeMenuComponent {

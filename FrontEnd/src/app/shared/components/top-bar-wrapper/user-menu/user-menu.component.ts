@@ -1,6 +1,5 @@
 import { Component, HostListener } from '@angular/core'
 import { Router } from '@angular/router'
-import { Subject, takeUntil } from 'rxjs'
 // Custom
 import { AccountService } from 'src/app/shared/services/account.service'
 import { CryptoService } from 'src/app/shared/services/crypto.service'
@@ -9,25 +8,24 @@ import { Menu } from 'src/app/shared/classes/menu'
 import { MessageMenuService } from '../../../services/message-menu.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { environment } from 'src/environments/environment'
-import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 
 @Component({
     selector: 'user-menu',
-    templateUrl: './user-menu.component.html'
+    templateUrl: './user-menu.component.html',
+    styleUrls: ['../../../../../assets/styles/custom/dropdown-menu.css']
 })
 
 export class UserMenuComponent {
 
     //#region variables
 
-    private ngunsubscribe = new Subject<void>()
     public displayedUsername: string
     public imgIsLoaded = false
     public menuItems: Menu[] = []
 
     //#endregion
 
-    constructor(private accountService: AccountService, private cryptoService: CryptoService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageMenuService: MessageMenuService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private accountService: AccountService, private cryptoService: CryptoService, private interactionService: InteractionService, private messageMenuService: MessageMenuService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region listeners
 
@@ -73,10 +71,6 @@ export class UserMenuComponent {
         return environment.menuDropdownIconDirectory + filename + '.svg'
     }
 
-    public getLabel(id: string): string {
-        return this.messageMenuService.getDescription(this.menuItems, id)
-    }
-
     public hideMenu(): void {
         document.querySelectorAll('.sub-menu').forEach((item) => {
             item.classList.add('hidden')
@@ -95,10 +89,6 @@ export class UserMenuComponent {
         this.imgIsLoaded = true
     }
 
-    public logout(): void {
-        this.accountService.logout()
-    }
-
     //#endregion
 
     //#region private methods
@@ -113,10 +103,11 @@ export class UserMenuComponent {
     }
 
     private subscribeToInteractionService(): void {
-        this.interactionService.refreshMenus.pipe(takeUntil(this.ngunsubscribe)).subscribe(() => {
+        this.interactionService.refreshMenus.subscribe(() => {
             this.messageMenuService.getMessages().then((response) => {
                 this.menuItems = response
                 this.createMenu(response)
+                console.log('creating user menu')
             })
         })
     }
