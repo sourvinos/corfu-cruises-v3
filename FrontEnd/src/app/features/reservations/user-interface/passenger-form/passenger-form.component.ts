@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable, Subscription } from 'rxjs'
+import { BehaviorSubject, Observable } from 'rxjs'
 import { Component, Inject, NgZone } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
@@ -28,10 +28,9 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 
 export class PassengerFormComponent {
 
-    //#region variables
+    //#region common variables
 
     private record: PassengerReadDto
-    private subscription = new Subscription()
     public feature = 'passengerForm'
     public featureIcon = 'passenger'
     public form: FormGroup
@@ -39,11 +38,18 @@ export class PassengerFormComponent {
     public input: InputTabStopDirective
     public parentUrl = null
 
+    //#endregion
+
+    //#region form specific
+
     public minBirthDate = new Date(new Date().getFullYear() - 99, 0, 1)
+
+    //#endregion
+
+    //#region autocompletes
 
     public isAutoCompleteDisabled = true
     public arrowIcon = new BehaviorSubject('arrow_drop_down')
-
     public dropdownGenders: Observable<SimpleEntity[]>
     public dropdownNationalities: Observable<NationalityVM[]>
 
@@ -63,10 +69,6 @@ export class PassengerFormComponent {
         this.setLocale()
     }
 
-    ngOnDestroy(): void {
-        this.cleanup()
-    }
-
     //#endregion
 
     //#region public methods
@@ -77,12 +79,6 @@ export class PassengerFormComponent {
 
     public checkForEmptyAutoComplete(event: { target: { value: any } }): void {
         if (event.target.value == '') this.isAutoCompleteDisabled = true
-    }
-
-    public convertFutureDateToPastDate(): void {
-        this.form.patchValue({
-            birthdate: this.dateHelperService.gotoPreviousCenturyIfFutureDate(this.form.value.birthdate)
-        })
     }
 
     public enableOrDisableAutoComplete(event: any): void {
@@ -142,10 +138,6 @@ export class PassengerFormComponent {
         return Math.round(Math.random() * new Date().getMilliseconds())
     }
 
-    private cleanup(): void {
-        this.subscription.unsubscribe()
-    }
-
     private closeDialog(): void {
         this.ngZone.run(() => {
             this.dialogRef.close(this.flattenForm())
@@ -190,8 +182,8 @@ export class PassengerFormComponent {
                     }
                 })
             } catch {
-                // 
-            }
+                // do nothing - nationality is not stored
+             }
         }
     }
 
