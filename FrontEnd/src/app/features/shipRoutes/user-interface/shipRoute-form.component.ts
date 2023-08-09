@@ -1,10 +1,8 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
-import { Subscription } from 'rxjs'
 // Custom
 import { DexieService } from 'src/app/shared/services/dexie.service'
-import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -25,11 +23,10 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 
 export class ShipRouteFormComponent {
 
-    //#region variables 
+    //#region common variables
 
     private record: ShipRouteReadDto
     private recordId: number
-    private subscription = new Subscription()
     public feature = 'shipRouteForm'
     public featureIcon = 'shipRoutes'
     public form: FormGroup
@@ -39,7 +36,7 @@ export class ShipRouteFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private shipRouteService: ShipRouteService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: ModalDialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private shipRouteService: ShipRouteService) { }
 
     //#region lifecycle hooks
 
@@ -54,10 +51,6 @@ export class ShipRouteFormComponent {
         this.focusOnField()
     }
 
-    ngOnDestroy(): void {
-        this.cleanup()
-    }
-
     canDeactivate(): boolean {
         return this.helperService.goBackFromForm(this.form)
     }
@@ -65,10 +58,6 @@ export class ShipRouteFormComponent {
     //#endregion
 
     //#region public methods
-
-    public getEmoji(emoji: string): string {
-        return this.emojiService.getEmoji(emoji)
-    }
 
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
@@ -101,10 +90,6 @@ export class ShipRouteFormComponent {
     //#endregion
 
     //#region private methods
-
-    private cleanup(): void {
-        this.subscription.unsubscribe()
-    }
 
     private flattenForm(): ShipRouteWriteDto {
         return {

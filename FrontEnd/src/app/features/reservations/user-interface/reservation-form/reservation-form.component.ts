@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router'
-import { BehaviorSubject, Observable } from 'rxjs'
+import { Observable } from 'rxjs'
 import { Component } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
@@ -70,7 +70,6 @@ export class ReservationFormComponent {
     //#region autocompletes
 
     public isAutoCompleteDisabled = true
-    public arrowIcon = new BehaviorSubject('arrow_drop_down')
     public dropdownCustomers: Observable<CustomerAutoCompleteVM[]>
     public dropdownDestinations: Observable<DestinationAutoCompleteVM[]>
     public dropdownDrivers: Observable<DriverAutoCompleteVM[]>
@@ -94,9 +93,14 @@ export class ReservationFormComponent {
         this.setTabTitle()
     }
 
-    ngOnDestroy(): void {
-        this.cleanup()
+    canDeactivate(): boolean {
+        // return this.helperService.goBackFromForm(this.form)
+        return true
     }
+
+    // ngOnDestroy(): void {
+    //     this.cleanup()
+    // }
 
     //#endregion
 

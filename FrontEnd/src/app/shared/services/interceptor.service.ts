@@ -69,7 +69,6 @@ export class InterceptorService {
                         sessionStorage.setItem('jwt', tokenresponse.token)
                         sessionStorage.setItem('expiration', tokenresponse.expiration)
                         sessionStorage.setItem('refreshToken', tokenresponse.refreshToken)
-                        console.log('Token refreshed after expiration')
                         return next.handle(this.attachTokenToRequest(request))
                     }
                     return <any>this.accountService.logout()
@@ -112,7 +111,7 @@ export class InterceptorService {
             case 459:
                 return throwError(() => new Error('459')) // reservation with transfer has night restrictions for simple user
             case 491:
-                return throwError(() => new Error('491')) // record can't be deleted because it's in use 
+                return throwError(() => new Error('491')) // record can't be deleted because it's in use
             case 492:
                 return throwError(() => new Error('492')) // unable to create user or update user, username and/or password not unique
             case 493:

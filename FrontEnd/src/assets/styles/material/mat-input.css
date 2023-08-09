@@ -136,6 +136,11 @@
 }
 
 /* Hint */
+.mat-mdc-form-field-hint .right {
+    justify-content: flex-end !important;
+}
+
+/* Hint */
 .mat-mdc-form-field-hint-wrapper {
     padding: 0 !important;
 }

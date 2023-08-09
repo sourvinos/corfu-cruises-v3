@@ -69,6 +69,7 @@ ul {
 }
 
 .right {
+    justify-content: flex-end !important;
     text-align: end !important;
 }
 

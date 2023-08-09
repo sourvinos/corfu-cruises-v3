@@ -1,10 +1,10 @@
 import { Component, VERSION } from '@angular/core'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Title } from '@angular/platform-browser'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { HelperService } from '../../services/helper.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 
 @Component({
     selector: 'app-home',
@@ -45,20 +45,16 @@ export class HomeComponent {
         this.ngVersion = VERSION.full
     }
 
-    private setWindowTitle(): void {
-        this.titleService.setTitle(this.helperService.getApplicationTitle())
-    }
-
-    //#endregion
-
-    public fix(event: any): void {
-        console.log(event)
-    }
-
     private initForm(): void {
         this.form = this.formBuilder.group({
             date: ['', Validators.required]
         })
     }
+
+    private setWindowTitle(): void {
+        this.titleService.setTitle(this.helperService.getApplicationTitle())
+    }
+
+    //#endregion
 
 }

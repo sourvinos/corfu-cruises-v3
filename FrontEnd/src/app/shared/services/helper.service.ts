@@ -249,6 +249,7 @@ export class HelperService {
 
     public goBackFromForm(form: FormGroup<any>): any {
         form.reset()
+        console.log(form.value)
         setTimeout(() => {
             return true
         }, 1000)

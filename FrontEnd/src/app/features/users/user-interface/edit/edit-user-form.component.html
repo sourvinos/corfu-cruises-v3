@@ -72,7 +72,7 @@
 
 </div>
 
-<mat-autocomplete #customers="matAutocomplete" (closed)="arrowIcon.next('arrow_drop_down')" (opened)="arrowIcon.next('arrow_drop_up')" (optionSelected)="arrowIcon.next('arrow_drop_down')" [displayWith]="autocompleteFields" autoActiveFirstOption>
+<mat-autocomplete #customers="matAutocomplete" [displayWith]="autocompleteFields" autoActiveFirstOption>
     <mat-option *ngFor="let option of dropdownCustomers | async" [value]="option">
         {{ option.description }}
     </mat-option>

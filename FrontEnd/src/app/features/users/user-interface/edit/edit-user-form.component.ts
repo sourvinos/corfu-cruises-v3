@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router'
-import { BehaviorSubject, Observable, Subscription } from 'rxjs'
+import { Observable } from 'rxjs'
 import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
@@ -30,10 +30,9 @@ import { ValidationService } from '../../../../shared/services/validation.servic
 
 export class EditUserFormComponent {
 
-    //#region variables
+    //#region common variables
 
     private record: UserReadDto
-    private subscription = new Subscription()
     public feature = 'editUserForm'
     public featureIcon = 'users'
     public form: FormGroup
@@ -41,9 +40,12 @@ export class EditUserFormComponent {
     public input: InputTabStopDirective
     public parentUrl = ''
 
-    public arrowIcon = new BehaviorSubject('arrow_drop_down')
-    public dropdownCustomers: Observable<SimpleEntity[]>
+    //#endregion
+
+    //#region autocompletes
+
     public isAutoCompleteDisabled = true
+    public dropdownCustomers: Observable<SimpleEntity[]>
 
     //#endregion
 
@@ -61,10 +63,6 @@ export class EditUserFormComponent {
 
     ngAfterViewInit(): void {
         this.focusOnField()
-    }
-
-    ngOnDestroy(): void {
-        this.cleanup()
     }
 
     canDeactivate(): boolean {
@@ -85,10 +83,6 @@ export class EditUserFormComponent {
 
     public enableOrDisableAutoComplete(event: any): void {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
-    }
-
-    public getEmoji(emoji: string): string {
-        return this.emojiService.getEmoji(emoji)
     }
 
     public getHint(id: string, minmax = 0): string {
@@ -122,10 +116,6 @@ export class EditUserFormComponent {
     //#endregion
 
     //#region private methods
-
-    private cleanup(): void {
-        this.subscription.unsubscribe()
-    }
 
     private editUserFromList(): void {
         this.parentUrl = '/users'

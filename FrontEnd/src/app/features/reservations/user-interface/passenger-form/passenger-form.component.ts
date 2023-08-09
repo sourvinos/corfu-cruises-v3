@@ -49,7 +49,6 @@ export class PassengerFormComponent {
     //#region autocompletes
 
     public isAutoCompleteDisabled = true
-    public arrowIcon = new BehaviorSubject('arrow_drop_down')
     public dropdownGenders: Observable<SimpleEntity[]>
     public dropdownNationalities: Observable<NationalityVM[]>
 

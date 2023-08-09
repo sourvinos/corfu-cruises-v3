@@ -11,7 +11,7 @@ import { PickupPointListResolver } from '../resolvers/pickupPoint-list.resolver'
 const routes: Routes = [
     { path: '', component: PickupPointListComponent, canActivate: [AuthGuardService], resolve: { pickupPointList: PickupPointListResolver } },
     { path: 'new', component: PickupPointFormComponent, canActivate: [AuthGuardService], canDeactivate: [CanDeactivateGuard] },
-    { path: ':id', component: PickupPointFormComponent, canActivate: [AuthGuardService], canDeactivate: [CanDeactivateGuard], resolve: { pickupPointForm: PickupPointFormResolver } },
+    { path: ':id', component: PickupPointFormComponent, canActivate: [AuthGuardService], resolve: { pickupPointForm: PickupPointFormResolver } },
 ]
 
 @NgModule({

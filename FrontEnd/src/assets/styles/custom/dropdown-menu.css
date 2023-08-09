@@ -4,9 +4,9 @@
 }
 
 .drop-down-menu > button {
-    background-color: var(--color-primary) !important;
+    background-color: var(--color-primary);
     border-radius: 0;
-    color: var(--color-dropdown-trigger) !important;
+    color: var(--color-dropdown-trigger);
     display: flex;
     font-size: var(--font-size-button) !important;
     gap: 0.5rem;
@@ -34,7 +34,7 @@
 }
 
 .sub-menu button:hover {
-    background-color: var(--color-button-hover) !important;
+    background-color: var(--color-button-hover) ;
 }
 
 .sub-menu button span {

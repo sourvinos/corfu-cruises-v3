@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router'
-import { BehaviorSubject, Observable, Subscription } from 'rxjs'
+import { Observable } from 'rxjs'
 import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 import { map, startWith } from 'rxjs/operators'
@@ -8,7 +8,6 @@ import { CoachRouteReadDto } from '../../classes/dtos/coachRoute-read-dto'
 import { CoachRouteService } from '../../classes/services/coachRoute.service'
 import { CoachRouteWriteDto } from '../../classes/dtos/coachRoute-write-dto'
 import { DexieService } from 'src/app/shared/services/dexie.service'
-import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -29,11 +28,10 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 
 export class CoachRouteFormComponent {
 
-    //#region variables
+    //#region common variables
 
     private record: CoachRouteReadDto
     private recordId: number
-    private subscription = new Subscription()
     public feature = 'coachRouteForm'
     public featureIcon = 'coachRoutes'
     public form: FormGroup
@@ -41,13 +39,16 @@ export class CoachRouteFormComponent {
     public input: InputTabStopDirective
     public parentUrl = '/coachRoutes'
 
-    public arrowIcon = new BehaviorSubject('arrow_drop_down')
-    public dropdownPorts: Observable<PortAutoCompleteVM[]>
+    //#endregion
+
+    //#region autocompletes
+
     public isAutoCompleteDisabled = true
+    public dropdownPorts: Observable<PortAutoCompleteVM[]>
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private coachRouteService: CoachRouteService, private dexieService: DexieService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private sessionStorageService: SessionStorageService,) { }
+    constructor(private activatedRoute: ActivatedRoute, private coachRouteService: CoachRouteService, private dexieService: DexieService, private dialogService: ModalDialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private sessionStorageService: SessionStorageService,) { }
 
     //#region lifecycle hooks
 
@@ -61,10 +62,6 @@ export class CoachRouteFormComponent {
 
     ngAfterViewInit(): void {
         this.focusOnField()
-    }
-
-    ngOnDestroy(): void {
-        this.cleanup()
     }
 
     canDeactivate(): boolean {
@@ -85,10 +82,6 @@ export class CoachRouteFormComponent {
 
     public enableOrDisableAutoComplete(event: any): void {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
-    }
-
-    public getEmoji(emoji: string): string {
-        return this.emojiService.getEmoji(emoji)
     }
 
     public getHint(id: string, minmax = 0): string {
@@ -126,10 +119,6 @@ export class CoachRouteFormComponent {
     //#endregion
 
     //#region private methods
-
-    private cleanup(): void {
-        this.subscription.unsubscribe()
-    }
 
     private filterAutocomplete(array: string, field: string, value: any): any[] {
         if (typeof value !== 'object') {

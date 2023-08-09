@@ -1,10 +1,8 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
-import { Subscription } from 'rxjs'
 // Custom
 import { DexieService } from 'src/app/shared/services/dexie.service'
-import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { GenderReadDto } from '../classes/dtos/gender-read-dto'
 import { GenderService } from '../classes/services/gender.service'
@@ -24,11 +22,10 @@ import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service
 
 export class GenderFormComponent {
 
-    //#region variables 
+    //#region common variables
 
     private record: GenderReadDto
     private recordId: number
-    private subscription = new Subscription()
     public feature = 'genderForm'
     public featureIcon = 'genders'
     public form: FormGroup
@@ -38,7 +35,7 @@ export class GenderFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private genderService: GenderService, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: ModalDialogService, private formBuilder: FormBuilder, private genderService: GenderService, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -53,10 +50,6 @@ export class GenderFormComponent {
         this.focusOnField()
     }
 
-    ngOnDestroy(): void {
-        this.cleanup()
-    }
-
     canDeactivate(): boolean {
         return this.helperService.goBackFromForm(this.form)
     }
@@ -64,10 +57,6 @@ export class GenderFormComponent {
     //#endregion
 
     //#region public methods
-
-    public getEmoji(emoji: string): string {
-        return this.emojiService.getEmoji(emoji)
-    }
 
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
@@ -100,10 +89,6 @@ export class GenderFormComponent {
     //#endregion
 
     //#region private methods
-
-    private cleanup(): void {
-        this.subscription.unsubscribe()
-    }
 
     private flattenForm(): GenderWriteDto {
         return {

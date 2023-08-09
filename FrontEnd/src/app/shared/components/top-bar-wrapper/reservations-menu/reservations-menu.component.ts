@@ -104,7 +104,6 @@ export class ReservationsMenuComponent {
                 this.menuItems = response
                 this.createMenu(response)
                 this.removeMenuItemIfAdmin()
-                console.log('creating reservations menu')
             })
         })
     }

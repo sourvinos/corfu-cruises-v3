@@ -1,5 +1,5 @@
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { BehaviorSubject, Observable, Subscription } from 'rxjs'
+import { Observable } from 'rxjs'
 import { Component } from '@angular/core'
 import { map, startWith } from 'rxjs/operators'
 // Custom
@@ -24,9 +24,8 @@ import { UserService } from '../../classes/services/user.service'
 
 export class NewUserFormComponent {
 
-    //#region variables
+    //#region common variables
 
-    private subscription = new Subscription()
     public feature = 'newUserForm'
     public featureIcon = 'users'
     public form: FormGroup
@@ -34,12 +33,19 @@ export class NewUserFormComponent {
     public input: InputTabStopDirective
     public parentUrl = '/users'
 
-    public arrowIcon = new BehaviorSubject('arrow_drop_down')
-    public dropdownCustomers: Observable<SimpleEntity[]>
-    public isAutoCompleteDisabled = true
+    //#endregion
+
+    //#region form specific
 
     public confirmValidParentMatcher = new ConfirmValidParentMatcher()
     public hidePassword = true
+
+    //#endregion
+
+    //#region autocompletes
+
+    public isAutoCompleteDisabled = true
+    public dropdownCustomers: Observable<SimpleEntity[]>
 
     //#endregion
 
@@ -54,10 +60,6 @@ export class NewUserFormComponent {
 
     ngAfterViewInit(): void {
         this.focusOnField()
-    }
-
-    ngOnDestroy(): void {
-        this.cleanup()
     }
 
     canDeactivate(): boolean {
@@ -103,10 +105,6 @@ export class NewUserFormComponent {
     //#endregion
 
     //#region private methods
-
-    private cleanup(): void {
-        this.subscription.unsubscribe()
-    }
 
     private filterAutocomplete(array: string, field: string, value: any): any[] {
         if (typeof value !== 'object') {

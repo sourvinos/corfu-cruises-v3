@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment'
 @Component({
     selector: 'year-selector',
     templateUrl: './year-selector.component.html',
-    styleUrls: ['./year-selector.component.css']
+    styleUrls: ['../../../../assets/styles/custom/dropdown-menu.css', './year-selector.component.css']
 })
 
 export class YearSelectorComponent {

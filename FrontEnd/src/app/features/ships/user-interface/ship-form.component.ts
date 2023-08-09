@@ -1,11 +1,10 @@
 import { ActivatedRoute, Router } from '@angular/router'
-import { BehaviorSubject, Observable, Subscription } from 'rxjs'
+import { Observable } from 'rxjs'
 import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 import { map, startWith } from 'rxjs/operators'
 // Custom
 import { DexieService } from 'src/app/shared/services/dexie.service'
-import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -14,7 +13,6 @@ import { MessageDialogService } from 'src/app/shared/services/message-dialog.ser
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
-import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { ShipOwnerAutoCompleteVM } from '../../shipOwners/classes/view-models/shipOwner-autocomplete-vm'
 import { ShipReadDto } from '../classes/dtos/ship-read-dto'
 import { ShipService } from '../classes/services/ship.service'
@@ -29,11 +27,10 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 
 export class ShipFormComponent {
 
-    //#region variables 
+    //#region common variables
 
     private record: ShipReadDto
     private recordId: number
-    private subscription = new Subscription()
     public feature = 'shipForm'
     public featureIcon = 'ships'
     public form: FormGroup
@@ -41,13 +38,16 @@ export class ShipFormComponent {
     public input: InputTabStopDirective
     public parentUrl = '/ships'
 
-    public arrowIcon = new BehaviorSubject('arrow_drop_down')
-    public dropdownShipOwners: Observable<ShipOwnerAutoCompleteVM[]>
+    //#endregion
+
+    //#region autocompletes
+
     public isAutoCompleteDisabled = true
+    public dropdownShipOwners: Observable<ShipOwnerAutoCompleteVM[]>
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private sessionStorageService: SessionStorageService, private shipService: ShipService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: ModalDialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private shipService: ShipService) { }
 
     //#region lifecycle hooks
 
@@ -61,10 +61,6 @@ export class ShipFormComponent {
 
     ngAfterViewInit(): void {
         this.focusOnField()
-    }
-
-    ngOnDestroy(): void {
-        this.cleanup()
     }
 
     canDeactivate(): boolean {
@@ -85,10 +81,6 @@ export class ShipFormComponent {
 
     public enableOrDisableAutoComplete(event: any): void {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
-    }
-
-    public getEmoji(emoji: string): string {
-        return this.emojiService.getEmoji(emoji)
     }
 
     public getHint(id: string, minmax = 0): string {
@@ -126,10 +118,6 @@ export class ShipFormComponent {
     //#endregion
 
     //#region private methods
-
-    private cleanup(): void {
-        this.subscription.unsubscribe()
-    }
 
     private filterAutocomplete(array: string, field: string, value: any): any[] {
         if (typeof value !== 'object') {

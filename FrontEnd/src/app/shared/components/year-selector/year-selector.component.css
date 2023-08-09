@@ -1,9 +1,15 @@
-button.drop-down-menu-trigger {
-    align-items: center;
+.drop-down-menu-trigger {
     background-color: transparent !important;
     color: var(--color-text) !important;
-    display: flex;
-    padding: 0 !important;
+}
+
+.sub-menu button {
+    background-color: var(--color-background) !important;
+    color: var(--color-text) !important;
+}
+
+.sub-menu button:hover {
+    background-color: var(--color-secondary) !important;
 }
 
 #selected-year {

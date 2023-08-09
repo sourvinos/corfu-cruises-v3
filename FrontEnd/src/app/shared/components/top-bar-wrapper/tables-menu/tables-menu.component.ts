@@ -97,7 +97,6 @@ export class TablesMenuComponent {
             this.messageMenuService.getMessages().then((response) => {
                 this.menuItems = response
                 this.createMenu(response)
-                console.log('creating tables menu')
             })
         })
     }

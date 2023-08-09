@@ -1,7 +1,6 @@
 import { Component } from '@angular/core'
 import { DateRange } from '@angular/material/datepicker'
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormArray, FormControl } from '@angular/forms'
-import { Subscription } from 'rxjs'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
@@ -23,14 +22,17 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 
 export class ScheduleNewFormComponent {
 
-    //#region variables
+    //#region common variables
 
-    private subscription = new Subscription()
     public feature = 'scheduleCreateForm'
     public featureIcon = 'schedules'
     public form: FormGroup
     public icon = 'arrow_back'
     public parentUrl = '/schedules'
+
+    //#endregion
+
+    //#region form specific
 
     public destinations: SimpleEntity[] = []
     public selectedDestinations: SimpleEntity[] = []
@@ -38,9 +40,10 @@ export class ScheduleNewFormComponent {
     public selectedPorts: SimpleEntity[] = []
     public weekdays: SimpleEntity[] = []
     public selectedWeekdays: SimpleEntity[] = []
-
     public selectedRangeValue: DateRange<Date>
     public daysToCreate = []
+
+    //#endregion
 
     //#endregion
 
@@ -53,10 +56,6 @@ export class ScheduleNewFormComponent {
         this.populateDropdowns()
         this.setSelectedDates()
         this.setTabTitle()
-    }
-
-    ngOnDestroy(): void {
-        this.cleanup()
     }
 
     //#endregion
@@ -140,10 +139,6 @@ export class ScheduleNewFormComponent {
             objects.push(x)
         })
         return objects
-    }
-
-    private cleanup(): void {
-        this.subscription.unsubscribe()
     }
 
     private createFormControls(event: SimpleEntity[], name: string): void {

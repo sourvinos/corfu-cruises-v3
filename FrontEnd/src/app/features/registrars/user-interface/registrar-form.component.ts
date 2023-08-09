@@ -1,11 +1,10 @@
 import { ActivatedRoute, Router } from '@angular/router'
-import { BehaviorSubject, Observable, Subscription } from 'rxjs'
 import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
+import { Observable } from 'rxjs'
 import { map, startWith } from 'rxjs/operators'
 // Custom
-import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
-import { EmojiService } from 'src/app/shared/services/emoji.service'
+import { DexieService } from 'src/app/shared/services/dexie.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -13,13 +12,12 @@ import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { RegistrarReadDto } from '../classes/dtos/registrar-read-dto'
 import { RegistrarService } from '../classes/services/registrar.service'
 import { RegistrarWriteDto } from '../classes/dtos/registrar-write-dto'
-import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { ShipAutoCompleteVM } from '../../ships/classes/view-models/ship-autocomplete-vm'
 import { ValidationService } from 'src/app/shared/services/validation.service'
-import { DexieService } from 'src/app/shared/services/dexie.service'
 
 @Component({
     selector: 'registrar-form',
@@ -29,11 +27,10 @@ import { DexieService } from 'src/app/shared/services/dexie.service'
 
 export class RegistrarFormComponent {
 
-    //#region variables
+    //#region common variables
 
     private record: RegistrarReadDto
     private recordId: number
-    private subscription = new Subscription()
     public feature = 'registrarForm'
     public featureIcon = 'registrars'
     public form: FormGroup
@@ -41,13 +38,16 @@ export class RegistrarFormComponent {
     public input: InputTabStopDirective
     public parentUrl = '/registrars'
 
-    public arrowIcon = new BehaviorSubject('arrow_drop_down')
-    public dropdownShips: Observable<ShipAutoCompleteVM[]>
+    //#endregion
+
+    //#region autocompletes
+
     public isAutoCompleteDisabled = true
+    public dropdownShips: Observable<ShipAutoCompleteVM[]>
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private registrarService: RegistrarService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: ModalDialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private registrarService: RegistrarService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -61,10 +61,6 @@ export class RegistrarFormComponent {
 
     ngAfterViewInit(): void {
         this.focusOnField()
-    }
-
-    ngOnDestroy(): void {
-        this.cleanup()
     }
 
     canDeactivate(): boolean {
@@ -85,10 +81,6 @@ export class RegistrarFormComponent {
 
     public enableOrDisableAutoComplete(event: any): void {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
-    }
-
-    public getEmoji(emoji: string): string {
-        return this.emojiService.getEmoji(emoji)
     }
 
     public getHint(id: string, minmax = 0): string {
@@ -125,10 +117,6 @@ export class RegistrarFormComponent {
     //#endregion
 
     //#region private methods
-
-    private cleanup(): void {
-        this.subscription.unsubscribe()
-    }
 
     private filterAutocomplete(array: string, field: string, value: any): any[] {
         if (typeof value !== 'object') {

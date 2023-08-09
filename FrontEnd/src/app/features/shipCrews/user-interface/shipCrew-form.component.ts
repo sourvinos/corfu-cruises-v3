@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router'
-import { BehaviorSubject, Observable, Subscription } from 'rxjs'
+import { Observable } from 'rxjs'
 import { Component, Inject } from '@angular/core'
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
@@ -7,7 +7,6 @@ import { map, startWith } from 'rxjs/operators'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
-import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { GenderAutoCompleteVM } from '../../genders/classes/view-models/gender-autocomplete-vm'
 import { HelperService } from 'src/app/shared/services/helper.service'
@@ -34,11 +33,10 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 
 export class ShipCrewFormComponent {
 
-    //#region variables
+    //#region common variables
 
     private record: ShipCrewReadDto
     private recordId: number
-    private subscription = new Subscription()
     public feature = 'shipCrewForm'
     public featureIcon = 'shipCrews'
     public form: FormGroup
@@ -46,17 +44,18 @@ export class ShipCrewFormComponent {
     public input: InputTabStopDirective
     public parentUrl = '/shipCrews'
 
-    public arrowIcon = new BehaviorSubject('arrow_drop_down')
+    //#endregion
+
+    //#region autocompletes
+
+    public isAutoCompleteDisabled = true
     public dropdownGenders: Observable<GenderAutoCompleteVM[]>
     public dropdownNationalities: Observable<NationalityDropdownVM[]>
     public dropdownShips: Observable<ShipAutoCompleteVM[]>
-    public isAutoCompleteDisabled = true
-
-    public minBirthDate = new Date(new Date().getFullYear() - 99, 0, 1)
 
     //#endregion
 
-    constructor(@Inject(MAT_DATE_LOCALE) private locale: string, private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private shipCrewService: ShipCrewService) { }
+    constructor(@Inject(MAT_DATE_LOCALE) private locale: string, private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: ModalDialogService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private shipCrewService: ShipCrewService) { }
 
     //#region lifecycle hooks
 
@@ -68,10 +67,6 @@ export class ShipCrewFormComponent {
         this.populateDropdowns()
         this.subscribeToInteractionService()
         this.setLocale()
-    }
-
-    ngOnDestroy(): void {
-        this.cleanup()
     }
 
     canDeactivate(): boolean {
@@ -102,10 +97,6 @@ export class ShipCrewFormComponent {
 
     public getDate(): string {
         return this.form.value.birthdate
-    }
-
-    public getEmoji(emoji: string): string {
-        return this.emojiService.getEmoji(emoji)
     }
 
     public getHint(id: string, minmax = 0): string {
@@ -148,10 +139,6 @@ export class ShipCrewFormComponent {
     //#endregion
 
     //#region private methods
-
-    private cleanup(): void {
-        this.subscription.unsubscribe()
-    }
 
     private filterAutocomplete(array: string, field: string, value: any): any[] {
         if (typeof value !== 'object') {

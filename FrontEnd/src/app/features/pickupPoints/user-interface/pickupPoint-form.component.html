@@ -26,28 +26,25 @@
                 <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="description.hasError('maxlength')">{{ getHint("maxLength", description.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
-            <div class="group-input-field">
-                <!-- ExactPoint -->
-                <mat-form-field>
-                    <mat-label>{{ getLabel('exactPoint') }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="3" formControlName="exactPoint" matInput>
-                    <mat-error *ngIf="exactPoint.hasError('required')">{{ getHint("required") }}</mat-error>
-                    <mat-error *ngIf="exactPoint.hasError('maxlength')">{{ getHint("maxLength", exactPoint.errors.maxlength.requiredLength) }}</mat-error>
-                </mat-form-field>
-                <!-- Time -->
-                <mat-form-field>
-                    <mat-label>{{ getLabel('time') }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="4" formControlName="time" matInput>
-                    <mat-error *ngIf="time.hasError('required')">{{ getHint("required") }}</mat-error>
-                    <mat-error *ngIf="!time.hasError('required') && !time.hasError('isTime')">{{ getHint("invalid") }}</mat-error>
-                </mat-form-field>
-            </div>
+            <!-- ExactPoint -->
+            <mat-form-field>
+                <mat-label>{{ getLabel('exactPoint') }}</mat-label>
+                <input [inputTabStop]="input" dataTabIndex="3" formControlName="exactPoint" matInput>
+                <mat-error *ngIf="exactPoint.hasError('required')">{{ getHint("required") }}</mat-error>
+                <mat-error *ngIf="exactPoint.hasError('maxlength')">{{ getHint("maxLength", exactPoint.errors.maxlength.requiredLength) }}</mat-error>
+            </mat-form-field>
+            <!-- Time -->
+            <mat-form-field>
+                <mat-label>{{ getLabel('time') }}</mat-label>
+                <input [inputTabStop]="input" dataTabIndex="4" formControlName="time" matInput>
+                <mat-error *ngIf="time.hasError('required')">{{ getHint("required") }}</mat-error>
+                <mat-error *ngIf="!time.hasError('required') && !time.hasError('isTime')">{{ getHint("invalid") }}</mat-error>
+            </mat-form-field>
             <!-- Remarks -->
             <mat-form-field>
                 <mat-label>{{ getLabel('remarks') }}</mat-label>
                 <textarea #input formControlName="remarks" id="textarea" matInput></textarea>
-                <!-- <mat-hint>Μπορείτε να δώσετε ακόμα {{ +input.getAttribute('maxlength') - remarks.value.length }} χαρακτήρες</mat-hint> -->
-                <mat-hint>{{ getHint("remainingCharacters", +input.getAttribute('maxlength') - remarks.value.length) }}</mat-hint>
+                <mat-hint class="right">{{ getHint("remainingCharacters", +input.getAttribute('maxlength') - getRemarksLength()) }}</mat-hint>
             </mat-form-field>
             <div id="checkboxes">
                 <!-- Active -->
@@ -84,7 +81,7 @@
 
 </div>
 
-<mat-autocomplete #coachRoutes="matAutocomplete" (closed)="arrowIcon.next('arrow_drop_down')" (opened)="arrowIcon.next('arrow_drop_up')" (optionSelected)="arrowIcon.next('arrow_drop_down')" [displayWith]="autocompleteFields" autoActiveFirstOption>
+<mat-autocomplete #coachRoutes="matAutocomplete" [displayWith]="autocompleteFields" autoActiveFirstOption>
     <mat-option *ngFor="let option of dropdownRoutes | async" [value]="option">
         {{ option.abbreviation }}
     </mat-option>

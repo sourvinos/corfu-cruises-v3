@@ -1,12 +1,11 @@
 import { ActivatedRoute, Router } from '@angular/router'
-import { BehaviorSubject, Observable, Subscription } from 'rxjs'
+import { Observable } from 'rxjs'
 import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 import { map, startWith } from 'rxjs/operators'
 // Custom
 import { CoachRouteAutoCompleteVM } from '../../coachRoutes/classes/view-models/coachRoute-autocomplete-vm'
 import { DexieService } from 'src/app/shared/services/dexie.service'
-import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -18,7 +17,6 @@ import { ModalDialogService } from '../../../shared/services/modal-dialog.servic
 import { PickupPointReadDto } from '../classes/dtos/pickupPoint-read-dto'
 import { PickupPointService } from '../classes/services/pickupPoint.service'
 import { PickupPointWriteDto } from '../classes/dtos/pickupPoint-write-dto'
-import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { ValidationService } from '../../../shared/services/validation.service'
 
 @Component({
@@ -29,11 +27,10 @@ import { ValidationService } from '../../../shared/services/validation.service'
 
 export class PickupPointFormComponent {
 
-    //#region variables
+    //#region common variables
 
     private record: PickupPointReadDto
     private recordId: number
-    private subscription = new Subscription()
     public feature = 'pickupPointForm'
     public featureIcon = 'pickupPoints'
     public form: FormGroup
@@ -41,13 +38,16 @@ export class PickupPointFormComponent {
     public input: InputTabStopDirective
     public parentUrl = '/pickupPoints'
 
-    public arrowIcon = new BehaviorSubject('arrow_drop_down')
-    public dropdownRoutes: Observable<CoachRouteAutoCompleteVM[]>
+    //#endregion
+
+    //#region autocompletes
+
     public isAutoCompleteDisabled = true
+    public dropdownRoutes: Observable<CoachRouteAutoCompleteVM[]>
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private pickupPointService: PickupPointService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: ModalDialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private pickupPointService: PickupPointService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -63,12 +63,11 @@ export class PickupPointFormComponent {
         this.focusOnField()
     }
 
-    ngOnDestroy(): void {
-        this.cleanup()
-    }
-
     canDeactivate(): boolean {
-        return this.helperService.goBackFromForm(this.form)
+        // this.form.reset()
+        // this.form.valid == true
+        return true
+        // return this.helperService.goBackFromForm(this.form)
     }
 
     //#endregion
@@ -87,16 +86,16 @@ export class PickupPointFormComponent {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
     }
 
-    public getEmoji(emoji: string): string {
-        return this.emojiService.getEmoji(emoji)
-    }
-
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
     }
 
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
+    }
+
+    public getRemarksLength(): any {
+        return this.form.value.remarks != null ? this.form.value.remarks.length : 0
     }
 
     public onDelete(): void {
@@ -126,10 +125,6 @@ export class PickupPointFormComponent {
     //#endregion
 
     //#region private methods
-
-    private cleanup(): void {
-        this.subscription.unsubscribe()
-    }
 
     private filterAutocomplete(array: string, field: string, value: any): any[] {
         if (typeof value !== 'object') {
@@ -225,7 +220,7 @@ export class PickupPointFormComponent {
         this.pickupPointService.save(pickupPoint).subscribe({
             next: (response) => {
                 this.dexieService.update('pickupPoints', { 'id': parseInt(response.id), 'description': pickupPoint.description, 'exactPoint': pickupPoint.exactPoint, 'time': pickupPoint.time, 'isActive': pickupPoint.isActive })
-                this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
+                this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form, false)
             },
             error: (errorFromInterceptor) => {
                 this.helperService.doPostSaveFormTasks(this.messageSnackbarService.filterResponse(errorFromInterceptor), 'error', this.parentUrl, this.form, false)

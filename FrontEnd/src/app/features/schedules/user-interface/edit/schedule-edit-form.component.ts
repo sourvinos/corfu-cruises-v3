@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router'
-import { BehaviorSubject, Observable, Subscription } from 'rxjs'
+import { Observable } from 'rxjs'
 import { Component } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
@@ -22,7 +22,6 @@ import { PortAutoCompleteVM } from 'src/app/features/ports/classes/view-models/p
 import { ScheduleReadDto } from '../../classes/form/schedule-read-vm'
 import { ScheduleService } from '../../classes/services/schedule.service'
 import { ScheduleWriteVM } from '../../classes/form/schedule-write-vm'
-import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { ValidationService } from 'src/app/shared/services/validation.service'
 
 @Component({
@@ -33,11 +32,10 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 
 export class ScheduleEditFormComponent {
 
-    //#region variables
+    //#region common variables
 
     private record: ScheduleReadDto
     private recordId: number
-    private subscription = new Subscription()
     public feature = 'scheduleEditForm'
     public featureIcon = 'schedules'
     public form: FormGroup
@@ -45,14 +43,17 @@ export class ScheduleEditFormComponent {
     public input: InputTabStopDirective
     public parentUrl = '/schedules'
 
-    public arrowIcon = new BehaviorSubject('arrow_drop_down')
+    //#endregion
+
+    //#region autocompletes
+
+    public isAutoCompleteDisabled = true
     public dropdownDestinations: Observable<DestinationAutoCompleteVM[]>
     public dropdownPorts: Observable<PortAutoCompleteVM[]>
-    public isAutoCompleteDisabled = true
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dexieService: DexieService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private scheduleService: ScheduleService, private sessionStorageService: SessionStorageService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dexieService: DexieService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private scheduleService: ScheduleService) { }
 
     //#region lifecycle hooks
 
@@ -64,10 +65,6 @@ export class ScheduleEditFormComponent {
         this.populateDropdowns()
         this.subscribeToInteractionService()
         this.setLocale()
-    }
-
-    ngOnDestroy(): void {
-        this.cleanup()
     }
 
     canDeactivate(): boolean {
@@ -134,10 +131,6 @@ export class ScheduleEditFormComponent {
     //#endregion
 
     //#region private methods
-
-    private cleanup(): void {
-        this.subscription.unsubscribe()
-    }
 
     private filterAutocomplete(array: string, field: string, value: any): any[] {
         if (typeof value !== 'object') {

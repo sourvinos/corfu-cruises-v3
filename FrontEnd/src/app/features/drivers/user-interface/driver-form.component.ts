@@ -1,13 +1,11 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
-import { Subscription } from 'rxjs'
 // Custom
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DriverReadDto } from '../classes/dtos/driver-read-dto'
 import { DriverService } from '../classes/services/driver.service'
 import { DriverWriteDto } from '../classes/dtos/driver-write-dto'
-import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -24,11 +22,10 @@ import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service
 
 export class DriverFormComponent {
 
-    //#region variables
+    //#region common variables
 
     private record: DriverReadDto
     private recordId: number
-    private subscription = new Subscription()
     public feature = 'driverForm'
     public featureIcon = 'drivers'
     public form: FormGroup
@@ -38,7 +35,7 @@ export class DriverFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: ModalDialogService, private driverService: DriverService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: ModalDialogService, private driverService: DriverService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -53,10 +50,6 @@ export class DriverFormComponent {
         this.focusOnField()
     }
 
-    ngOnDestroy(): void {
-        this.cleanup()
-    }
-
     canDeactivate(): boolean {
         return this.helperService.goBackFromForm(this.form)
     }
@@ -64,10 +57,6 @@ export class DriverFormComponent {
     //#endregion
 
     //#region public methods
-
-    public getEmoji(emoji: string): string {
-        return this.emojiService.getEmoji(emoji)
-    }
 
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
@@ -100,10 +89,6 @@ export class DriverFormComponent {
     //#endregion
 
     //#region private methods
-
-    private cleanup(): void {
-        this.subscription.unsubscribe()
-    }
 
     private flattenForm(): DriverWriteDto {
         return {
@@ -151,7 +136,7 @@ export class DriverFormComponent {
     }
 
     private populateFields(): void {
-        if (this.recordId != undefined) {
+        if (this.record != undefined) {
             this.form.setValue({
                 id: this.record.id,
                 description: this.record.description,
