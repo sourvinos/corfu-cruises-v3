@@ -247,14 +247,6 @@ export class HelperService {
         trigger.panelOpen ? trigger.closePanel() : trigger.openPanel()
     }
 
-    public goBackFromForm(form: FormGroup<any>): any {
-        form.reset()
-        console.log(form.value)
-        setTimeout(() => {
-            return true
-        }, 1000)
-    }
-
     public setTabTitle(feature: string): void {
         this.titleService.setTitle(environment.appName + ': ' + this.messageLabelService.getDescription(feature, 'header'))
     }

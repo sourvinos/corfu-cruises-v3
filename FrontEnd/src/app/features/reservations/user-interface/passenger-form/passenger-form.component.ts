@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable } from 'rxjs'
+import { Observable } from 'rxjs'
 import { Component, Inject, NgZone } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
@@ -182,7 +182,7 @@ export class PassengerFormComponent {
                 })
             } catch {
                 // do nothing - nationality is not stored
-             }
+            }
         }
     }
 

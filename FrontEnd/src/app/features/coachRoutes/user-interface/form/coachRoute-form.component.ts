@@ -64,10 +64,6 @@ export class CoachRouteFormComponent {
         this.focusOnField()
     }
 
-    canDeactivate(): boolean {
-        return this.helperService.goBackFromForm(this.form)
-    }
-
     //#endregion
 
     //#region public methods

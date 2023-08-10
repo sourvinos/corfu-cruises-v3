@@ -63,10 +63,6 @@ export class RegistrarFormComponent {
         this.focusOnField()
     }
 
-    canDeactivate(): boolean {
-        return this.helperService.goBackFromForm(this.form)
-    }
-
     //#endregion
 
     //#region public methods

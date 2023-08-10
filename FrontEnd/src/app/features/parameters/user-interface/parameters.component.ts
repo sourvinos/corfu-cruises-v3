@@ -43,10 +43,6 @@ export class ParametersComponent {
         this.populateFields()
     }
 
-    canDeactivate(): boolean {
-        return this.helperService.goBackFromForm(this.form)
-    }
-
     //#endregion
 
     //#region public methods

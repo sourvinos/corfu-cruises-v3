@@ -93,15 +93,6 @@ export class ReservationFormComponent {
         this.setTabTitle()
     }
 
-    canDeactivate(): boolean {
-        // return this.helperService.goBackFromForm(this.form)
-        return true
-    }
-
-    // ngOnDestroy(): void {
-    //     this.cleanup()
-    // }
-
     //#endregion
 
     //#region public methods

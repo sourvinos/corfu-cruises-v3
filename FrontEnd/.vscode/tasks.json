@@ -20,7 +20,7 @@
             "problemMatcher": {
                 "owner": "typescript",
                 "source": "ts",
-                "applyTo": "closedDocuments",
+                "applyTo": "allDocuments",
                 "fileLocation": [
                     "relative",
                     "${cwd}"

@@ -67,10 +67,6 @@ export class ScheduleEditFormComponent {
         this.setLocale()
     }
 
-    canDeactivate(): boolean {
-        return this.helperService.goBackFromForm(this.form)
-    }
-
     //#endregion
 
     //#region public methods

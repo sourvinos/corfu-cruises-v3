@@ -63,13 +63,6 @@ export class PickupPointFormComponent {
         this.focusOnField()
     }
 
-    canDeactivate(): boolean {
-        // this.form.reset()
-        // this.form.valid == true
-        return true
-        // return this.helperService.goBackFromForm(this.form)
-    }
-
     //#endregion
 
     //#region public methods
