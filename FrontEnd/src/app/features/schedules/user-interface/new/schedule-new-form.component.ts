@@ -22,7 +22,7 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 
 export class ScheduleNewFormComponent {
 
-    //#region common variables
+    //#region common #5
 
     public feature = 'scheduleCreateForm'
     public featureIcon = 'schedules'
@@ -32,18 +32,16 @@ export class ScheduleNewFormComponent {
 
     //#endregion
 
-    //#region form specific
+    //#region specific #8
 
     public destinations: SimpleEntity[] = []
-    public selectedDestinations: SimpleEntity[] = []
     public ports: SimpleEntity[] = []
-    public selectedPorts: SimpleEntity[] = []
     public weekdays: SimpleEntity[] = []
+    public selectedDestinations: SimpleEntity[] = []
+    public selectedPorts: SimpleEntity[] = []
     public selectedWeekdays: SimpleEntity[] = []
     public selectedRangeValue: DateRange<Date>
     public daysToCreate = []
-
-    //#endregion
 
     //#endregion
 

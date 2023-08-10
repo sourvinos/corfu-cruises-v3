@@ -20,24 +20,22 @@ import { ShipListVM } from '../classes/view-models/ship-list-vm'
 
 export class ShipListComponent {
 
-    //#region variables
+    //#region common #9
 
     @ViewChild('table') table: Table
 
     private url = 'ships'
+    private virtualElement: any
     public feature = 'shipList'
     public featureIcon = 'ships'
     public icon = 'home'
     public parentUrl = '/home'
-    public records: ShipListVM[] = []
+    public records: ShipListVM[]
     public recordsFilteredCount: number
-    private virtualElement: any
 
     //#endregion
 
     constructor(private activatedRoute: ActivatedRoute, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private dialogService: ModalDialogService, private router: Router, private sessionStorageService: SessionStorageService) { }
-
-    //#endregion
 
     //#region lifecycle hooks
 
@@ -60,7 +58,7 @@ export class ShipListComponent {
 
     //#endregion
 
-    //#region public methods
+    //#region public common methods #7
 
     public editRecord(id: number): void {
         this.storeScrollTop()
@@ -97,7 +95,7 @@ export class ShipListComponent {
 
     //#endregion
 
-    //#region private methods
+    //#region private common methods #13
 
     private enableDisableFilters(): void {
         this.records.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()

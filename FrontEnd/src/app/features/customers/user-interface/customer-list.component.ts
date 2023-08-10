@@ -20,18 +20,18 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 
 export class CustomerListComponent {
 
-    //#region variables
+    //#region common #9
 
     @ViewChild('table') table: Table
 
     private url = 'customers'
+    private virtualElement: any
     public feature = 'customerList'
     public featureIcon = 'customers'
     public icon = 'home'
     public parentUrl = '/home'
-    public records: CustomerListVM[] = []
+    public records: CustomerListVM[]
     public recordsFilteredCount: number
-    private virtualElement: any
 
     //#endregion
 
@@ -58,7 +58,7 @@ export class CustomerListComponent {
 
     //#endregion
 
-    //#region public methods
+    //#region public common methods #7
 
     public editRecord(id: number): void {
         this.storeScrollTop()
@@ -95,7 +95,7 @@ export class CustomerListComponent {
 
     //#endregion
 
-    //#region private methods
+    //#region private common methods #13
 
     private enableDisableFilters(): void {
         this.records.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()

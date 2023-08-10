@@ -20,18 +20,18 @@ import { ShipRouteListVM } from '../classes/view-models/shipRoute-list-vm'
 
 export class ShipRouteListComponent {
 
-    //#region variables
+    //#region common #9
 
     @ViewChild('table') table: Table
 
     private url = 'shipRoutes'
+    private virtualElement: any
     public feature = 'shipRouteList'
     public featureIcon = 'shipRoutes'
     public icon = 'home'
     public parentUrl = '/home'
-    public records: ShipRouteListVM[] = []
+    public records: ShipRouteListVM[]
     public recordsFilteredCount: number
-    private virtualElement: any
 
     //#endregion
 
@@ -58,7 +58,7 @@ export class ShipRouteListComponent {
 
     //#endregion
 
-    //#region public methods
+    //#region public common methods #7
 
     public editRecord(id: number): void {
         this.storeScrollTop()
@@ -95,7 +95,7 @@ export class ShipRouteListComponent {
 
     //#endregion
 
-    //#region private methods
+    //#region private common list methods #13
 
     private enableDisableFilters(): void {
         this.records.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()

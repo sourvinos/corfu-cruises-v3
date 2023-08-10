@@ -24,7 +24,7 @@ import { UserService } from '../../classes/services/user.service'
 
 export class NewUserFormComponent {
 
-    //#region common variables
+    //#region common #6
 
     public feature = 'newUserForm'
     public featureIcon = 'users'
@@ -35,14 +35,14 @@ export class NewUserFormComponent {
 
     //#endregion
 
-    //#region form specific
+    //#region specific #2
 
     public confirmValidParentMatcher = new ConfirmValidParentMatcher()
     public hidePassword = true
 
     //#endregion
 
-    //#region autocompletes
+    //#region autocompletes #2
 
     public isAutoCompleteDisabled = true
     public dropdownCustomers: Observable<SimpleEntity[]>

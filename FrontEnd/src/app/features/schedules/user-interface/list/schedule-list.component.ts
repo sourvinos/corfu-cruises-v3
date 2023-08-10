@@ -24,22 +24,31 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 
 export class ScheduleListComponent {
 
-    //#region variables
+    //#region common #9
 
     @ViewChild('table') table: Table
 
     private url = 'schedules'
+    private virtualElement: any
     public feature = 'scheduleList'
     public featureIcon = 'schedules'
     public icon = 'home'
     public parentUrl = '/home'
-    public records: ScheduleListVM[] = []
+    public records: ScheduleListVM[]
     public recordsFilteredCount: number
-    private virtualElement: any
 
-    public filterDate = ''
+    //#endregion
+
+    //#region dropdown filters #2
+
     public dropdownDestinations = []
     public dropdownPorts = []
+
+    //#endregion
+
+    //#region specific #1
+
+    public filterDate = ''
 
     //#endregion
 
@@ -69,25 +78,12 @@ export class ScheduleListComponent {
 
     //#endregion
 
-    //#region public methods
-
-    public clearDateFilter(): void {
-        this.table.filter('', 'date', 'equals')
-        this.filterDate = ''
-        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
-    }
+    //#region public common methods #7
 
     public editRecord(id: number): void {
         this.storeScrollTop()
         this.storeSelectedId(id)
         this.navigateToRecord(id)
-    }
-
-    public filterByDate(event: MatDatepickerInputEvent<Date>): void {
-        const date = this.dateHelperService.formatDateToIso(new Date(event.value), false)
-        this.table.filter(date, 'date', 'equals')
-        this.filterDate = date
-        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
     }
 
     public filterRecords(event: any): void {
@@ -105,10 +101,6 @@ export class ScheduleListComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public hasDateFilter(): string {
-        return this.filterDate == '' ? 'hidden' : ''
-    }
-
     public newRecord(): void {
         this.router.navigate([this.url + '/new'])
     }
@@ -124,7 +116,28 @@ export class ScheduleListComponent {
 
     //#endregion
 
-    //#region private methods
+    //#region public specific methods #3
+
+    public clearDateFilter(): void {
+        this.table.filter('', 'date', 'equals')
+        this.filterDate = ''
+        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
+    }
+
+    public filterByDate(event: MatDatepickerInputEvent<Date>): void {
+        const date = this.dateHelperService.formatDateToIso(new Date(event.value), false)
+        this.table.filter(date, 'date', 'equals')
+        this.filterDate = date
+        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
+    }
+
+    public hasDateFilter(): string {
+        return this.filterDate == '' ? 'hidden' : ''
+    }
+
+    //#endregion
+
+    //#region private common methods #13
 
     private enableDisableFilters(): void {
         this.records.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()
@@ -151,12 +164,6 @@ export class ScheduleListComponent {
                 }
             }, 500)
         }
-    }
-
-    private formatDatesToLocale(): void {
-        this.records.forEach(record => {
-            record.formattedDate = this.dateHelperService.formatISODateToLocale(record.date)
-        })
     }
 
     private getVirtualElement(): void {
@@ -190,15 +197,6 @@ export class ScheduleListComponent {
         this.router.navigate([this.url, id])
     }
 
-    private populateDropdownFilters(): void {
-        this.dropdownDestinations = this.helperService.getDistinctRecords(this.records, 'destination', 'description')
-        this.dropdownPorts = this.helperService.getDistinctRecords(this.records, 'port', 'description')
-    }
-
-    private setLocale(): void {
-        this.dateAdapter.setLocale(this.localStorageService.getLanguage())
-    }
-
     private scrollToSavedPosition(): void {
         this.helperService.scrollToSavedPosition(this.virtualElement, this.feature)
     }
@@ -223,6 +221,25 @@ export class ScheduleListComponent {
                 this.setTabTitle()
             })
         })
+    }
+
+    //#endregion
+
+    //#region private specific methods #3
+
+    private formatDatesToLocale(): void {
+        this.records.forEach(record => {
+            record.formattedDate = this.dateHelperService.formatISODateToLocale(record.date)
+        })
+    }
+
+    private populateDropdownFilters(): void {
+        this.dropdownDestinations = this.helperService.getDistinctRecords(this.records, 'destination', 'description')
+        this.dropdownPorts = this.helperService.getDistinctRecords(this.records, 'port', 'description')
+    }
+
+    private setLocale(): void {
+        this.dateAdapter.setLocale(this.localStorageService.getLanguage())
     }
 
     //#endregion

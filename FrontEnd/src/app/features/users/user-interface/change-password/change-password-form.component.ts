@@ -1,7 +1,6 @@
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router'
 import { Component } from '@angular/core'
-import { Subscription } from 'rxjs'
 // Custom
 import { AccountService } from 'src/app/shared/services/account.service'
 import { ChangePasswordViewModel } from '../../classes/view-models/change-password-view-model'
@@ -21,9 +20,8 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 
 export class ChangePasswordFormComponent {
 
-    //#region variables
+    //#region common #6
 
-    private subscription = new Subscription()
     public feature = 'changePasswordForm'
     public featureIcon = 'password'
     public form: FormGroup
@@ -31,9 +29,13 @@ export class ChangePasswordFormComponent {
     public input: InputTabStopDirective
     public parentUrl = '/users'
 
+    //#endregion
+
+    //#region specific #3
+
+    private userId: string
     public confirmValidParentMatcher = new ConfirmValidParentMatcher()
     public hidePassword = true
-    private userId: string
 
     //#endregion
 
@@ -50,10 +52,6 @@ export class ChangePasswordFormComponent {
         this.focusOnField()
     }
 
-    ngOnDestroy(): void {
-        this.cleanup()
-    }
-
     //#endregion
 
     //#region public methods
@@ -61,7 +59,7 @@ export class ChangePasswordFormComponent {
     public getEmoji(emoji: string): string {
         return this.emojiService.getEmoji(emoji)
     }
-    
+
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
     }
@@ -77,10 +75,6 @@ export class ChangePasswordFormComponent {
     //#endregion
 
     //#region private methods
-
-    private cleanup(): void {
-        this.subscription.unsubscribe()
-    }
 
     private doPostInitTasks(): void {
         this.activatedRoute.params.subscribe(x => {

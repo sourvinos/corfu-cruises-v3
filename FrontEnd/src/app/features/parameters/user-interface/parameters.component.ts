@@ -21,7 +21,7 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 
 export class ParametersComponent {
 
-    //#region common variables
+    //#region common form variables
 
     private record: ParametersReadDto
     public feature = 'parameters'

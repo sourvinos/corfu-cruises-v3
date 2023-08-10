@@ -20,18 +20,18 @@ import { ShipOwnerListVM } from '../classes/view-models/shipOwner-list-vm'
 
 export class ShipOwnerListComponent {
 
-    //#region variables
+    //#region common #9
 
     @ViewChild('table') table: Table
 
     private url = 'shipOwners'
+    private virtualElement: any
     public feature = 'shipOwnerList'
     public featureIcon = 'shipOwners'
     public icon = 'home'
     public parentUrl = '/home'
-    public records: ShipOwnerListVM[] = []
+    public records: ShipOwnerListVM[]
     public recordsFilteredCount: number
-    private virtualElement: any
 
     //#endregion
 
@@ -58,7 +58,7 @@ export class ShipOwnerListComponent {
 
     //#endregion
 
-    //#region public methods
+    //#region public common methods #7
 
     public editRecord(id: number): void {
         this.storeScrollTop()
@@ -95,7 +95,7 @@ export class ShipOwnerListComponent {
 
     //#endregion
 
-    //#region private methods
+    //#region private common methods #13
 
     private enableDisableFilters(): void {
         this.records.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()

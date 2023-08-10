@@ -30,7 +30,7 @@ import { ValidationService } from '../../../../shared/services/validation.servic
 
 export class EditUserFormComponent {
 
-    //#region common variables
+    //#region common #7
 
     private record: UserReadDto
     public feature = 'editUserForm'
@@ -42,7 +42,7 @@ export class EditUserFormComponent {
 
     //#endregion
 
-    //#region autocompletes
+    //#region autocompletes #2
 
     public isAutoCompleteDisabled = true
     public dropdownCustomers: Observable<SimpleEntity[]>

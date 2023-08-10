@@ -25,22 +25,30 @@ import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
 export class ShipCrewListComponent {
 
-    //#region variables
+    //#region common #9
 
     @ViewChild('table') table: Table
 
     private url = 'shipCrews'
+    private virtualElement: any
     public feature = 'shipCrewList'
     public featureIcon = 'shipCrews'
     public icon = 'home'
     public parentUrl = '/home'
-    public records: ShipCrewListVM[] = []
-
+    public records: ShipCrewListVM[]
     public recordsFilteredCount: number
-    private virtualElement: any
+
+    //#endregion
+
+    //#region dropdown filters #1
+
+    public distinctShips: SimpleEntity[] = []
+
+    //#endregion
+
+    //#region specific #1
 
     public filterDate = ''
-    public distinctShips: SimpleEntity[] = []
 
     //#endregion
 
@@ -70,25 +78,12 @@ export class ShipCrewListComponent {
 
     //#endregion
 
-    //#region public methods
-
-    public clearDateFilter(): void {
-        this.table.filter('', 'birthdate', 'equals')
-        this.filterDate = ''
-        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
-    }
+    //#region public common methods #7
 
     public editRecord(id: number): void {
         this.storeScrollTop()
         this.storeSelectedId(id)
         this.navigateToRecord(id)
-    }
-
-    public filterByDate(event: MatDatepickerInputEvent<Date>): void {
-        const date = this.dateHelperService.formatDateToIso(new Date(event.value), false)
-        this.table.filter(date, 'birthdate', 'equals')
-        this.filterDate = date
-        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
     }
 
     public filterRecords(event: any): void {
@@ -106,10 +101,6 @@ export class ShipCrewListComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public hasDateFilter(): string {
-        return this.filterDate == '' ? 'hidden' : ''
-    }
-
     public newRecord(): void {
         this.router.navigate([this.url + '/new'])
     }
@@ -125,7 +116,28 @@ export class ShipCrewListComponent {
 
     //#endregion
 
-    //#region private methods
+    //#region public specific methods #3
+
+    public clearDateFilter(): void {
+        this.table.filter('', 'birthdate', 'equals')
+        this.filterDate = ''
+        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
+    }
+
+    public filterByDate(event: MatDatepickerInputEvent<Date>): void {
+        const date = this.dateHelperService.formatDateToIso(new Date(event.value), false)
+        this.table.filter(date, 'birthdate', 'equals')
+        this.filterDate = date
+        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
+    }
+
+    public hasDateFilter(): string {
+        return this.filterDate == '' ? 'hidden' : ''
+    }
+
+    //#endregion
+
+    //#region private common list methods #13
 
     private enableDisableFilters(): void {
         this.records.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()
@@ -152,12 +164,6 @@ export class ShipCrewListComponent {
                 }
             }, 500)
         }
-    }
-
-    private formatDatesToLocale(): void {
-        this.records.forEach(record => {
-            record.formattedBirthdate = this.dateHelperService.formatISODateToLocale(record.birthdate)
-        })
     }
 
     private getVirtualElement(): void {
@@ -191,14 +197,6 @@ export class ShipCrewListComponent {
         this.router.navigate([this.url, id])
     }
 
-    private populateDropdownFilters(): void {
-        this.distinctShips = this.helperService.getDistinctRecords(this.records, 'ship', 'description')
-    }
-
-    private setLocale(): void {
-        this.dateAdapter.setLocale(this.localStorageService.getLanguage())
-    }
-
     private scrollToSavedPosition(): void {
         this.helperService.scrollToSavedPosition(this.virtualElement, this.feature)
     }
@@ -223,6 +221,24 @@ export class ShipCrewListComponent {
         this.interactionService.refreshTabTitle.subscribe(() => {
             this.setTabTitle()
         })
+    }
+
+    //#endregion
+
+    //#region private specific list methods #3
+
+    private formatDatesToLocale(): void {
+        this.records.forEach(record => {
+            record.formattedBirthdate = this.dateHelperService.formatISODateToLocale(record.birthdate)
+        })
+    }
+
+    private populateDropdownFilters(): void {
+        this.distinctShips = this.helperService.getDistinctRecords(this.records, 'ship', 'description')
+    }
+
+    private setLocale(): void {
+        this.dateAdapter.setLocale(this.localStorageService.getLanguage())
     }
 
     //#endregion

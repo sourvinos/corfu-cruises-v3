@@ -24,7 +24,6 @@
     flex-direction: column;
     height: 100%;
     justify-content: center;
-    margin: 0 auto;
 }
 
 #passengers-tab {
@@ -79,7 +78,7 @@
     color: var(--color-accent);
     font-size: 1.5rem;
     margin-top: 0.75rem;
-    transform: scale(0.8, 2.5);
+    transform: scale(0.8, 2);
 }
 
 #total-pax-emoji {

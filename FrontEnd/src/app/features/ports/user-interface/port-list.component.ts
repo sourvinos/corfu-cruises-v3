@@ -21,18 +21,18 @@ import { environment } from 'src/environments/environment'
 
 export class PortListComponent {
 
-    //#region variables
+    //#region common #9
 
     @ViewChild('table') table: Table
 
     private url = 'ports'
+    private virtualElement: any
     public feature = 'portList'
     public featureIcon = 'ports'
     public icon = 'home'
     public parentUrl = '/home'
-    public records: PortListVM[] = []
+    public records: PortListVM[]
     public recordsFilteredCount: number
-    private virtualElement: any
 
     //#endregion
 
@@ -100,7 +100,7 @@ export class PortListComponent {
 
     //#endregion
 
-    //#region private methods
+    //#region private common list methods
 
     private enableDisableFilters(): void {
         this.records.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()

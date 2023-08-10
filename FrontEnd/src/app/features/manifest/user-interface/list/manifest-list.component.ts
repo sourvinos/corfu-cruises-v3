@@ -28,20 +28,18 @@ import { environment } from 'src/environments/environment'
 
 export class ManifestListComponent {
 
-    //#region variables
+    //#region common list variables
 
-    @ViewChild('table') table: Table | undefined
+    @ViewChild('table') table: Table
 
-    // private unsubscribe = new Subject<void>()
     public feature = 'manifestList'
     public featureIcon = 'manifest'
     public icon = 'arrow_back'
     public parentUrl = '/manifest'
-    public isVirtual = false
+    public records: ManifestVM
 
     public criteriaPanels: ManifestCriteriaPanelVM
 
-    public records: ManifestVM
     public totals = [0, 0, 0]
     public totalsFiltered = [0, 0, 0]
 

@@ -22,7 +22,7 @@ import { PortWriteDto } from '../classes/dtos/port-write-vm'
 
 export class PortFormComponent {
 
-    //#region common variables
+    //#region common #8
 
     private record: PortReadDto
     private recordId: number

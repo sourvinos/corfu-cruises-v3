@@ -21,7 +21,7 @@ import { ResetPasswordViewModel } from '../../classes/view-models/reset-password
 
 export class ResetPasswordFormComponent {
 
-    //#region variables
+    //#region common #7
 
     public feature = 'resetPasswordForm'
     public featureIcon = 'password'
@@ -30,6 +30,10 @@ export class ResetPasswordFormComponent {
     public input: InputTabStopDirective
     public isLoading: boolean
     public parentUrl = null
+
+    //#endregion
+
+    //#region specific #2
 
     public confirmValidParentMatcher = new ConfirmValidParentMatcher()
     public hidePassword = true

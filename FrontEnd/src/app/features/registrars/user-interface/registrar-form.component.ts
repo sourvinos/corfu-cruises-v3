@@ -27,7 +27,7 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 
 export class RegistrarFormComponent {
 
-    //#region common variables
+    //#region common #8
 
     private record: RegistrarReadDto
     private recordId: number
@@ -40,7 +40,7 @@ export class RegistrarFormComponent {
 
     //#endregion
 
-    //#region autocompletes
+    //#region autocompletes #2
 
     public isAutoCompleteDisabled = true
     public dropdownShips: Observable<ShipAutoCompleteVM[]>

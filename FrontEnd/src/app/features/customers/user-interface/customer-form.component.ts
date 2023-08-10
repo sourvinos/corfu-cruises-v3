@@ -22,7 +22,7 @@ import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service
 
 export class CustomerFormComponent {
 
-    //#region common variables
+    //#region common #8
 
     private record: CustomerReadDto
     private recordId: number

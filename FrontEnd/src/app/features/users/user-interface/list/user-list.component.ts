@@ -20,18 +20,18 @@ import { UserListVM } from '../../classes/view-models/user-list-vm'
 
 export class UserListComponent {
 
-    //#region variables
+    //#region common #9
 
     @ViewChild('table') table: Table
 
     private url = 'users'
+    private virtualElement: any
     public feature = 'userList'
     public featureIcon = 'users'
     public icon = 'home'
     public parentUrl = '/home'
-    public records: UserListVM[] = []
+    public records: UserListVM[]
     public recordsFilteredCount: number
-    private virtualElement: any
 
     //#endregion
 
@@ -59,7 +59,7 @@ export class UserListComponent {
 
     //#endregion
 
-    //#region public methods
+    //#region public common methods #7
 
     public editRecord(id: number): void {
         this.storeScrollTop()
@@ -96,7 +96,7 @@ export class UserListComponent {
 
     //#endregion
 
-    //#region private methods
+    //#region private common list methods #13
 
     private enableDisableFilters(): void {
         this.records.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()
@@ -160,10 +160,6 @@ export class UserListComponent {
         this.helperService.setTabTitle(this.feature)
     }
 
-    private storeReturnUrl(): void {
-        this.sessionStorageService.saveItem('returnUrl', '/users')
-    }
-
     private storeSelectedId(id: number): void {
         this.sessionStorageService.saveItem(this.feature + '-id', id.toString())
     }
@@ -176,6 +172,14 @@ export class UserListComponent {
         this.interactionService.refreshTabTitle.subscribe(() => {
             this.setTabTitle()
         })
+    }
+
+    //#endregion
+
+    //#region private specific list methods #1
+
+    private storeReturnUrl(): void {
+        this.sessionStorageService.saveItem('returnUrl', '/users')
     }
 
     //#endregion

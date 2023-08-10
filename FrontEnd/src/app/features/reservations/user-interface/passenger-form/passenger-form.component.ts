@@ -28,7 +28,7 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 
 export class PassengerFormComponent {
 
-    //#region common variables
+    //#region common #7
 
     private record: PassengerReadDto
     public feature = 'passengerForm'
@@ -40,13 +40,13 @@ export class PassengerFormComponent {
 
     //#endregion
 
-    //#region form specific
+    //#region specific #1
 
     public minBirthDate = new Date(new Date().getFullYear() - 99, 0, 1)
 
     //#endregion
 
-    //#region autocompletes
+    //#region autocompletes #3
 
     public isAutoCompleteDisabled = true
     public dropdownGenders: Observable<SimpleEntity[]>

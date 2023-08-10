@@ -93,7 +93,6 @@ export class EmbarkationReservationsComponent {
     }
 
     public filterRecords(event: any): void {
-        this.helperService.clearTableCheckboxes()
         this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
         this.updateTotals('totalsFiltered', event.filteredValue)
     }

@@ -42,7 +42,7 @@ import { ValidationService } from './../../../../shared/services/validation.serv
 
 export class ReservationFormComponent {
 
-    //#region common variables
+    //#region common #8
 
     private record: ReservationReadDto
     private recordId: string
@@ -55,7 +55,7 @@ export class ReservationFormComponent {
 
     //#endregion
 
-    //#region form specific
+    //#region specific #7
 
     private formMustCloseAfterSave = true
     private mirrorRecord: ReservationWriteDto
@@ -67,7 +67,7 @@ export class ReservationFormComponent {
 
     //#endregion
 
-    //#region autocompletes
+    //#region autocompletes #7
 
     public isAutoCompleteDisabled = true
     public dropdownCustomers: Observable<CustomerAutoCompleteVM[]>

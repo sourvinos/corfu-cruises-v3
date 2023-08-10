@@ -20,18 +20,22 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 
 export class RegistrarListComponent {
 
-    //#region variables
+    //#region common #9
 
     @ViewChild('table') table: Table
 
     private url = 'registrars'
+    private virtualElement: any
     public feature = 'registrarList'
     public featureIcon = 'registrars'
     public icon = 'home'
     public parentUrl = '/home'
-    public records: RegistrarListVM[] = []
+    public records: RegistrarListVM[]
     public recordsFilteredCount: number
-    private virtualElement: any
+
+    //#endregion
+
+    //#region dropdown filters #1
 
     public dropdownShips = []
 
@@ -54,14 +58,14 @@ export class RegistrarListComponent {
         setTimeout(() => {
             this.getVirtualElement()
             this.scrollToSavedPosition()
-            this.hightlightSavedRow()
+            this.highlightSavedRow()
             this.enableDisableFilters()
         }, 500)
     }
 
     //#endregion
 
-    //#region public methods
+    //#region public common methods #7
 
     public editRecord(id: number): void {
         this.storeScrollTop()
@@ -98,7 +102,7 @@ export class RegistrarListComponent {
 
     //#endregion
 
-    //#region private methods
+    //#region private common list methods #13
 
     private enableDisableFilters(): void {
         this.records.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()
@@ -130,7 +134,7 @@ export class RegistrarListComponent {
         this.router.navigate([this.parentUrl])
     }
 
-    private hightlightSavedRow(): void {
+    private highlightSavedRow(): void {
         this.helperService.highlightSavedRow(this.feature)
     }
 
@@ -153,10 +157,6 @@ export class RegistrarListComponent {
         this.router.navigate([this.url, id])
     }
 
-    private populateDropdownFilters(): void {
-        this.dropdownShips = this.helperService.getDistinctRecords(this.records, 'ship', 'description')
-    }
-
     private scrollToSavedPosition(): void {
         this.helperService.scrollToSavedPosition(this.virtualElement, this.feature)
     }
@@ -177,6 +177,14 @@ export class RegistrarListComponent {
         this.interactionService.refreshTabTitle.subscribe(() => {
             this.setTabTitle()
         })
+    }
+
+    //#endregion
+
+    //#region private specific list methods #1
+
+    private populateDropdownFilters(): void {
+        this.dropdownShips = this.helperService.getDistinctRecords(this.records, 'ship', 'description')
     }
 
     //#endregion

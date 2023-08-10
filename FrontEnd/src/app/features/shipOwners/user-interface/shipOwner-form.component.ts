@@ -22,7 +22,7 @@ import { ShipOwnerWriteDto } from '../classes/dtos/shipOwner-write-dto'
 
 export class ShipOwnerFormComponent {
 
-    //#region common variables
+    //#region common #8
 
     private record: ShipOwnerReadDto
     private recordId: number

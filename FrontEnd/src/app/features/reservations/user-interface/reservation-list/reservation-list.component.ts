@@ -174,10 +174,6 @@ export class ReservationListComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public highlightRow(id: any): void {
-        this.helperService.highlightRow(id)
-    }
-
     public isAdmin(): boolean {
         return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' ? true : false
     }
@@ -204,6 +200,10 @@ export class ReservationListComponent {
         if (passengerDifference < 0) {
             return this.emojiService.getEmoji('red-circle')
         }
+    }
+
+    public unHighlightAllRows(): void {
+        this.helperService.unHighlightAllRows()
     }
 
     //#endregion

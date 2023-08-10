@@ -32,7 +32,7 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 
 export class ScheduleEditFormComponent {
 
-    //#region common variables
+    //#region common #8
 
     private record: ScheduleReadDto
     private recordId: number
@@ -45,7 +45,7 @@ export class ScheduleEditFormComponent {
 
     //#endregion
 
-    //#region autocompletes
+    //#region autocompletes #3
 
     public isAutoCompleteDisabled = true
     public dropdownDestinations: Observable<DestinationAutoCompleteVM[]>

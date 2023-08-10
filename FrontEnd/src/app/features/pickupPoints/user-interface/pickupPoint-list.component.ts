@@ -21,21 +21,30 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 
 export class PickupPointListComponent {
 
-    //#region variables
+    //#region common #9
 
     @ViewChild('table') table: Table
 
     private url = 'pickupPoints'
+    private virtualElement: any
     public feature = 'pickupPointList'
     public featureIcon = 'pickupPoints'
     public icon = 'home'
     public parentUrl = '/home'
     public records: PickupPointListVM[]
-    public recordsFiltered: PickupPointListVM[]
     public recordsFilteredCount: number
-    private virtualElement: any
+
+    //#endregion
+
+    //#region dropdown filters
 
     public dropdownRoutes = []
+
+    //#endregion
+
+    //#region specific #1
+
+    public recordsFiltered: PickupPointListVM[]
 
     //#endregion
 
@@ -63,11 +72,7 @@ export class PickupPointListComponent {
 
     //#endregion
 
-    //#region public methods
-
-    public createPdf(): void {
-        this.pickupPointPdfService.createReport(this.recordsFiltered)
-    }
+    //#region public common methods #7
 
     public editRecord(id: number): void {
         this.storeScrollTop()
@@ -105,7 +110,15 @@ export class PickupPointListComponent {
 
     //#endregion
 
-    //#region private methods
+    //#region public specific methods #1
+
+    public createPdf(): void {
+        this.pickupPointPdfService.createReport(this.recordsFiltered)
+    }
+
+    //#endregion
+
+    //#region private common methods #13
 
     private enableDisableFilters(): void {
         this.records.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()
@@ -162,10 +175,6 @@ export class PickupPointListComponent {
         this.router.navigate([this.url, id])
     }
 
-    private populateDropdownFilters(): void {
-        this.dropdownRoutes = this.helperService.getDistinctRecords(this.records, 'coachRoute', 'abbreviation')
-    }
-
     private scrollToSavedPosition(): void {
         this.helperService.scrollToSavedPosition(this.virtualElement, this.feature)
     }
@@ -186,6 +195,14 @@ export class PickupPointListComponent {
         this.interactionService.refreshTabTitle.subscribe(() => {
             this.setTabTitle()
         })
+    }
+
+    //#endregion
+
+    //#region private specific methods #1
+
+    private populateDropdownFilters(): void {
+        this.dropdownRoutes = this.helperService.getDistinctRecords(this.records, 'coachRoute', 'abbreviation')
     }
 
     //#endregion

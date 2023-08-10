@@ -160,22 +160,6 @@ export class HelperService {
         })
     }
 
-    public sortNestedArray(array: any, property: any): any {
-        property = property.split('.')
-        const len = property.length
-        array.sort((a: any, b: any) => {
-            let i = 0
-            while (i < len) { a = a[property[i]]; b = b[property[i]]; i++ }
-            if (a < b) {
-                return -1
-            } else if (a > b) {
-                return 1
-            } else {
-                return 0
-            }
-        })
-    }
-
     public deepEqual(object1: any, object2: any): boolean {
         const keys1 = Object.keys(object1)
         const keys2 = Object.keys(object2)
@@ -194,15 +178,6 @@ export class HelperService {
             }
         }
         return true
-    }
-
-    public highlightRow(id: any): void {
-        const allRows = document.querySelectorAll('.p-highlight')
-        allRows.forEach(row => {
-            row.classList.remove('p-highlight')
-        })
-        const selectedRow = document.getElementById(id)
-        selectedRow.classList.add('p-highlight')
     }
 
     public highlightSavedRow(feature: string): void {

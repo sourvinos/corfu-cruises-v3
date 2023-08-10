@@ -41,6 +41,17 @@ export class PassengerListComponent {
         }
     }
 
+    public deleteRow(record: PassengerReadDto): void {
+        const index = this.passengers.indexOf(record)
+        this.passengers.splice(index, 1)
+        this.outputPassengerCount.emit(this.passengers.length)
+        this.outputPassengers.emit(this.passengers)
+    }
+
+    public editRecord(record: any): void {
+        this.showPassengerForm(record)
+    }
+
     public getEmbarkationStatusIcon(status: boolean): string {
         return status ? this.getEmoji('green-circle') : this.getEmoji('red-circle')
     }
@@ -53,29 +64,18 @@ export class PassengerListComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public deleteRow(record: PassengerReadDto): void {
-        const index = this.passengers.indexOf(record)
-        this.passengers.splice(index, 1)
-        this.outputPassengerCount.emit(this.passengers.length)
-        this.outputPassengers.emit(this.passengers)
-    }
-
-    public editRecord(record: any): void {
-        this.showPassengerForm(record)
-    }
-
     public getNationalityIcon(nationalityCode: string): any {
         if (nationalityCode != undefined) {
             return environment.nationalitiesIconDirectory + nationalityCode.toLowerCase() + '.png'
         }
     }
 
-    public highlightRow(id: any): void {
-        this.helperService.highlightRow(id)
-    }
-
     public newRow(): void {
         this.showPassengerForm()
+    }
+
+    public unHighlightAllRows(): void {
+        this.helperService.unHighlightAllRows()
     }
 
     //#endregion

@@ -20,7 +20,7 @@ import { environment } from 'src/environments/environment'
 
 export class ForgotPasswordFormComponent {
 
-    //#region variables
+    //#region common #6
 
     public feature = 'forgotPasswordForm'
     public featureIcon = 'forgot-password'
@@ -29,6 +29,10 @@ export class ForgotPasswordFormComponent {
     public input: InputTabStopDirective
     public parentUrl = '/login'
 
+    //#endregion
+
+    //#region specific #1
+    
     public isLoading = new Subject<boolean>()
 
     //#endregion

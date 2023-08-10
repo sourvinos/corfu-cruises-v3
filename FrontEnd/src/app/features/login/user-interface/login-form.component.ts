@@ -24,7 +24,7 @@ import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 
 export class LoginFormComponent {
 
-    //#region variables
+    //#region common #6
 
     public feature = 'loginForm'
     public featureIcon = 'login'
@@ -32,6 +32,10 @@ export class LoginFormComponent {
     public icon = ''
     public input: InputTabStopDirective
     public parentUrl = null
+
+    //#endregion
+
+    //#region specific #2
 
     public hidePassword = true
     public isLoading = new Subject<boolean>()

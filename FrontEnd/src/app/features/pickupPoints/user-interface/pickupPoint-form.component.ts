@@ -27,7 +27,7 @@ import { ValidationService } from '../../../shared/services/validation.service'
 
 export class PickupPointFormComponent {
 
-    //#region common variables
+    //#region common #8
 
     private record: PickupPointReadDto
     private recordId: number
@@ -40,7 +40,7 @@ export class PickupPointFormComponent {
 
     //#endregion
 
-    //#region autocompletes
+    //#region autocompletes #2
 
     public isAutoCompleteDisabled = true
     public dropdownRoutes: Observable<CoachRouteAutoCompleteVM[]>

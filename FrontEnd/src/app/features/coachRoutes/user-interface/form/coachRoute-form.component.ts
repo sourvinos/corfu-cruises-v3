@@ -17,7 +17,6 @@ import { MessageInputHintService } from 'src/app/shared/services/message-input-h
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { PortAutoCompleteVM } from 'src/app/features/ports/classes/view-models/port-autocomplete-vm'
-import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { ValidationService } from 'src/app/shared/services/validation.service'
 
 @Component({
@@ -28,7 +27,7 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 
 export class CoachRouteFormComponent {
 
-    //#region common variables
+    //#region common #8
 
     private record: CoachRouteReadDto
     private recordId: number
@@ -41,14 +40,14 @@ export class CoachRouteFormComponent {
 
     //#endregion
 
-    //#region autocompletes
+    //#region autocompletes #2
 
     public isAutoCompleteDisabled = true
     public dropdownPorts: Observable<PortAutoCompleteVM[]>
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private coachRouteService: CoachRouteService, private dexieService: DexieService, private dialogService: ModalDialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private sessionStorageService: SessionStorageService,) { }
+    constructor(private activatedRoute: ActivatedRoute, private coachRouteService: CoachRouteService, private dexieService: DexieService, private dialogService: ModalDialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router) { }
 
     //#region lifecycle hooks
 
