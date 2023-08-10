@@ -21,7 +21,7 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 
 export class LedgerCustomerListComponent {
 
-    //#region variables
+    //#region common
 
     @ViewChildren(MatExpansionPanel) panels: QueryList<MatExpansionPanel>
 
@@ -30,8 +30,12 @@ export class LedgerCustomerListComponent {
     public icon = 'arrow_back'
     public parentUrl = '/ledgers'
     public records: LedgerVM[] = []
-
     public criteriaPanels: LedgerCriteriaVM
+
+    //#endregion
+
+    //#region specific
+
     public remarksRowVisibility: boolean
 
     //#endregion

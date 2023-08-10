@@ -2,8 +2,6 @@ import { Component } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms'
 import { Router } from '@angular/router'
-import { Subject } from 'rxjs'
-import { takeUntil } from 'rxjs/operators'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
@@ -11,7 +9,6 @@ import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { ManifestSearchCriteriaVM } from '../../classes/view-models/criteria/manifest-search-criteria-vm'
-import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
@@ -24,16 +21,18 @@ import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
 export class ManifestCriteriaComponent {
 
-    //#region variables
+    //#region common
 
-    private unsubscribe = new Subject<void>()
     public feature = 'manifestCriteria'
     public featureIcon = 'manifest'
     public form: FormGroup
     public icon = 'home'
     public parentUrl = '/home'
-
     private criteria: ManifestSearchCriteriaVM
+
+    //#endregion
+
+    //#region tables
 
     public destinations: SimpleEntity[] = []
     public ports: SimpleEntity[] = []
@@ -44,7 +43,7 @@ export class ManifestCriteriaComponent {
 
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -56,10 +55,6 @@ export class ManifestCriteriaComponent {
         this.setLocale()
         this.subscribeToInteractionService()
         this.setTabTitle()
-    }
-
-    ngOnDestroy(): void {
-        this.cleanup()
     }
 
     //#endregion
@@ -114,11 +109,6 @@ export class ManifestCriteriaComponent {
                 'isActive': element.isActive
             }))
         })
-    }
-
-    private cleanup(): void {
-        this.unsubscribe.next()
-        this.unsubscribe.unsubscribe()
     }
 
     private initForm(): void {
@@ -177,7 +167,7 @@ export class ManifestCriteriaComponent {
     }
 
     private subscribeToInteractionService(): void {
-        this.interactionService.refreshDateAdapter.pipe(takeUntil(this.unsubscribe)).subscribe(() => {
+        this.interactionService.refreshDateAdapter.subscribe(() => {
             this.setLocale()
         })
         this.interactionService.refreshTabTitle.subscribe(() => {

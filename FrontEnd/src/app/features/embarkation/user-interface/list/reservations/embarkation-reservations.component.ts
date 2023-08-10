@@ -2,7 +2,6 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { Component, ViewChild } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { MatDialog } from '@angular/material/dialog'
-import { Subscription } from 'rxjs'
 import { Table } from 'primeng/table'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
@@ -34,19 +33,22 @@ import { environment } from 'src/environments/environment'
 
 export class EmbarkationReservationsComponent {
 
-    //#region variables
+    //#region common
 
     @ViewChild('table') table: Table
 
-    private subscription = new Subscription()
     private virtualElement: any
     public feature = 'embarkationList'
     public featureIcon = 'embarkation'
     public icon = 'arrow_back'
     public parentUrl = '/embarkation'
     public records: EmbarkationGroupVM
-
     public criteriaPanels: EmbarkationCriteriaPanelVM
+
+    //#endregion
+
+    //#region specific
+
     public totals = [0, 0, 0]
     public totalsFiltered = [0, 0, 0]
     public remarksRowVisibility: boolean
@@ -78,10 +80,6 @@ export class EmbarkationReservationsComponent {
         this.setTabTitle()
         this.doVirtualTableTasks()
         this.updateVariables()
-    }
-
-    ngOnDestroy(): void {
-        this.cleanup()
     }
 
     //#endregion
@@ -173,10 +171,6 @@ export class EmbarkationReservationsComponent {
     //#endregion
 
     //#region private methods
-
-    private cleanup(): void {
-        this.subscription.unsubscribe()
-    }
 
     private doVirtualTableTasks(): void {
         setTimeout(() => {

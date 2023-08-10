@@ -1,18 +1,14 @@
 import { Component } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
-import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms'
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms'
 import { Router } from '@angular/router'
-import { Subject } from 'rxjs'
-import { takeUntil } from 'rxjs/operators'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { EmbarkationCriteriaPanelVM } from '../../classes/view-models/criteria/embarkation-criteria-panel-vm'
-import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
-import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
@@ -25,16 +21,18 @@ import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
 export class EmbarkationCriteriaComponent {
 
-    //#region variables
+    //#region common
 
-    private unsubscribe = new Subject<void>()
     public feature = 'embarkationCriteria'
     public featureIcon = 'embarkation'
     public form: FormGroup
     public icon = 'home'
     public parentUrl = '/home'
-
     private criteria: EmbarkationCriteriaPanelVM
+
+    //#endregion
+
+    //#region tables
 
     public destinations: SimpleEntity[] = []
     public ports: SimpleEntity[] = []
@@ -45,7 +43,7 @@ export class EmbarkationCriteriaComponent {
 
     //#endregion
 
-    constructor(private emojiService: EmojiService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -57,10 +55,6 @@ export class EmbarkationCriteriaComponent {
         this.setLocale()
         this.subscribeToInteractionService()
         this.setTabTitle()
-    }
-
-    ngOnDestroy(): void {
-        this.cleanup()
     }
 
     //#endregion
@@ -75,23 +69,9 @@ export class EmbarkationCriteriaComponent {
     public getDate(): string {
         return this.form.value.date
     }
-    
-    public getEmoji(emoji: string): string {
-        return this.emojiService.getEmoji(emoji)
-    }
-
-    public getHint(id: string, minmax = 0): string {
-        return this.messageHintService.getDescription(id, minmax)
-    }
 
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
-    }
-
-    public gotoToday(): void {
-        this.form.patchValue({
-            date: this.dateHelperService.formatDateToIso(new Date())
-        })
     }
 
     public patchFormWithSelectedArrays(event: SimpleEntity[], name: string): void {
@@ -129,11 +109,6 @@ export class EmbarkationCriteriaComponent {
                 'isActive': element.isActive
             }))
         })
-    }
-
-    private cleanup(): void {
-        this.unsubscribe.next()
-        this.unsubscribe.unsubscribe()
     }
 
     private initForm(): void {
@@ -192,20 +167,12 @@ export class EmbarkationCriteriaComponent {
     }
 
     private subscribeToInteractionService(): void {
-        this.interactionService.refreshDateAdapter.pipe(takeUntil(this.unsubscribe)).subscribe(() => {
+        this.interactionService.refreshDateAdapter.subscribe(() => {
             this.setLocale()
         })
         this.interactionService.refreshTabTitle.subscribe(() => {
             this.setTabTitle()
         })
-    }
-
-    //#endregion
-
-    //#region getters
-
-    get date(): AbstractControl {
-        return this.form.get('date')
     }
 
     //#endregion

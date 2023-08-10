@@ -2,18 +2,14 @@ import { Component } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms'
 import { Router } from '@angular/router'
-import { Subject } from 'rxjs'
-import { takeUntil } from 'rxjs/operators'
 // Custom
 import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
-import { EmojiService } from './../../../../shared/services/emoji.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { LedgerCriteriaVM } from '../../classes/view-models/criteria/ledger-criteria-vm'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
-import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from './../../../../shared/classes/simple-entity'
@@ -26,28 +22,31 @@ import { SimpleEntity } from './../../../../shared/classes/simple-entity'
 
 export class LedgerCriteriaComponent {
 
-    //#region variables
+    //#region common
 
-    private unsubscribe = new Subject<void>()
     public feature = 'ledgerCriteria'
     public featureIcon = 'ledgers'
     public form: FormGroup
     public icon = 'home'
     public parentUrl = '/home'
-
     private criteria: LedgerCriteriaVM
-    public customers: SimpleEntity[] = []
-    public destinations: SimpleEntity[] = []
-    public ports: SimpleEntity[] = []
-    public ships: SimpleEntity[] = []
-    public selectedCustomers: SimpleEntity[] = []
-    public selectedDestinations: SimpleEntity[] = []
-    public selectedPorts: SimpleEntity[] = []
-    public selectedShips: SimpleEntity[] = []
 
     //#endregion
 
-    constructor(private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    //#region tables
+
+    public customers: SimpleEntity[]
+    public destinations: SimpleEntity[]
+    public ports: SimpleEntity[]
+    public ships: SimpleEntity[]
+    public selectedCustomers: SimpleEntity[]
+    public selectedDestinations: SimpleEntity[]
+    public selectedPorts: SimpleEntity[]
+    public selectedShips: SimpleEntity[]
+
+    //#endregion
+
+    constructor(private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -60,10 +59,6 @@ export class LedgerCriteriaComponent {
         this.setLocale()
         this.subscribeToInteractionService()
         this.setTabTitle()
-    }
-
-    ngOnDestroy(): void {
-        this.cleanup()
     }
 
     //#endregion
@@ -82,19 +77,8 @@ export class LedgerCriteriaComponent {
         return x
     }
 
-    public getHint(id: string, minmax = 0): string {
-        return this.messageHintService.getDescription(id, minmax)
-    }
-
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
-    }
-
-    public gotoToday(): void {
-        this.form.patchValue({
-            fromDate: this.dateHelperService.formatDateToIso(new Date()),
-            toDate: this.dateHelperService.formatDateToIso(new Date())
-        })
     }
 
     public isAdmin(): boolean {
@@ -137,11 +121,6 @@ export class LedgerCriteriaComponent {
                 'isActive': element.isActive
             }))
         })
-    }
-
-    private cleanup(): void {
-        this.unsubscribe.next()
-        this.unsubscribe.unsubscribe()
     }
 
     public getConnectedUserRole(): boolean {
@@ -210,7 +189,7 @@ export class LedgerCriteriaComponent {
     }
 
     private subscribeToInteractionService(): void {
-        this.interactionService.refreshDateAdapter.pipe(takeUntil(this.unsubscribe)).subscribe(() => {
+        this.interactionService.refreshDateAdapter.subscribe(() => {
             this.setLocale()
         })
         this.interactionService.refreshTabTitle.subscribe(() => {
@@ -219,17 +198,5 @@ export class LedgerCriteriaComponent {
     }
 
     //#endregion
-
-    //#region getters
-
-    // get fromDate(): AbstractControl {
-    //     return this.form.get('fromDate')
-    // }
-
-    // get toDate(): AbstractControl {
-    //     return this.form.get('toDate')
-    // }
-
-    //#endregion    
 
 }

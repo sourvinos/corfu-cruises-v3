@@ -28,7 +28,7 @@ import { environment } from 'src/environments/environment'
 
 export class ManifestListComponent {
 
-    //#region common list variables
+    //#region common
 
     @ViewChild('table') table: Table
 
@@ -37,8 +37,11 @@ export class ManifestListComponent {
     public icon = 'arrow_back'
     public parentUrl = '/manifest'
     public records: ManifestVM
-
     public criteriaPanels: ManifestCriteriaPanelVM
+
+    //#endregion
+
+    //#region specific
 
     public totals = [0, 0, 0]
     public totalsFiltered = [0, 0, 0]
