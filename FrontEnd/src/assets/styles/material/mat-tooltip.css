@@ -1,0 +1,10 @@
+.mat-mdc-tooltip .mdc-tooltip__surface {
+    background-color: var(--color-secondary) !important;
+    font-family: var(--font-family-asty) !important;
+    font-weight: 300 !important;
+    padding: 1rem 1rem 1rem 1rem !important;
+}
+
+.tooltip-inside-input-field {
+    margin-top: -0.625rem !important;
+}

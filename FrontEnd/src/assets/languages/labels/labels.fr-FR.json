@@ -2279,7 +2279,7 @@
             },
             {
                 "id": "closingTimeDescription",
-                "description": "S'applique uniquement aux utilisateurs simples : Il s'agit de l'heure à partir de laquelle nous n'acceptons plus de nouvelles réservations avec transfert pour le jour suivant. Si vous souhaitez désactiver cette fonctionnalité, indiquez 00:00"
+                "description": "Désigne l'heure à partir de laquelle nous n'acceptons plus de nouvelles réservations de la part de simples utilisateurs avec un transfert au jour suivant. Si vous souhaitez désactiver cette fonctionnalité, entrez 00:00"
             },
             {
                 "id": "user",

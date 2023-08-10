@@ -2279,7 +2279,7 @@
             },
             {
                 "id": "closingTimeDescription",
-                "description": "Platí pouze pro jednoduché uživatele: Odkazuje na čas, po kterém již nepřijímáme nové rezervace s převodem na následující den. Pokud chcete tuto funkci vypnout, zadejte 00:00 hod."
+                "description": "Označuje dobu, po které nepřijímáme nové rezervace od jednoduchých uživatelů s přesunem na následující den. Pokud chcete tuto funkci zakázat, zadejte 00:00"
             },
             {
                 "id": "user",

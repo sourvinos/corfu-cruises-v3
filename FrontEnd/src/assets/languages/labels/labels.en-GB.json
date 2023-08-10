@@ -2279,7 +2279,7 @@
             },
             {
                 "id": "closingTimeDescription",
-                "description": "Applies to simple users only: It refers to the time after which we no longer accept new reservations with transfer for the following day. I you want to disable this functionality, give 00:00"
+                "description": "Refers to the time after which we do not accept new reservations from simple users with a transfer to the next day. If you want to disable this functionality, enter 00:00"
             },
             {
                 "id": "user",

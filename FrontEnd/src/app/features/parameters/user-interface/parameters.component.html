@@ -13,14 +13,12 @@
                 <input [format]=24 [ngxMatTimepicker]="timePicker" formControlName="closingTime" matInput readonly />
                 <div matSuffix style="display:flex">
                     <button (click)="timePicker.open()" mat-icon-button type="button">
-                        <mat-icon class="input-suffix material-icons-outlined with-top-margin">watch_later</mat-icon>
+                        <mat-icon class="input-suffix material-icons-outlined with-top-margin small">watch_later</mat-icon>
                     </button>
                 </div>
+                <button #tooltip="matTooltip" class="tooltip-inside-input-field transparent" matTooltip="{{ getLabel('closingTimeDescription') }}">?</button>
             </mat-form-field>
             <ngx-mat-timepicker #timePicker></ngx-mat-timepicker>
-            <div id="closing-time-description">
-                <span>{{ getLabel('closingTimeDescription') }}</span>
-            </div>
             <div class="align-bottom group-input-field hide-hint">
                 <!-- User -->
                 <mat-form-field>

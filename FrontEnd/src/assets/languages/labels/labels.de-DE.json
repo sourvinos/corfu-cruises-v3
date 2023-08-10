@@ -2279,7 +2279,7 @@
             },
             {
                 "id": "closingTimeDescription",
-                "description": "Gilt nur für einfache Benutzer: Es handelt sich um die Zeit, nach der wir keine neuen Reservierungen mit Übertragung für den folgenden Tag mehr annehmen. Wenn Sie diese Funktion deaktivieren möchten, geben Sie 00:00"
+                "description": "Bezieht sich auf die Zeit, nach der wir keine neuen Reservierungen von einfachen Benutzern mit einer Übertragung auf den nächsten Tag akzeptieren. Wenn Sie diese Funktion deaktivieren möchten, geben Sie 00:00"
             },
             {
                 "id": "user",
