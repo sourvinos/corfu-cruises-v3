@@ -15,7 +15,9 @@ namespace API.Features.Users {
                 .ForMember(x => x.EmailConfirmed, x => x.MapFrom(x => true))
                 .ForMember(x => x.SecurityStamp, x => x.MapFrom(x => Guid.NewGuid().ToString()));
             CreateMap<UserExtended, UserReadDto>()
-                .ForMember(x => x.Customer, x => x.MapFrom(x => x.Customer == null ? new SimpleEntity { Id = 0, Description = "(EMPTY)" } : new SimpleEntity { Id = x.Customer.Id, Description = x.Customer.Description }));
+                .ForMember(x => x.Customer, x => x.MapFrom(x => x.Customer == null
+                    ? new SimpleEntity { Id = 0, Description = "(EMPTY)" }
+                    : new SimpleEntity { Id = x.Customer.Id, Description = x.Customer.Description }));
         }
 
     }

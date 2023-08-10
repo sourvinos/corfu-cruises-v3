@@ -26,6 +26,7 @@ namespace API.Features.Users {
         // Fields
         public string Displayname { get; set; }
         public bool IsAdmin { get; set; }
+        public bool IsFirstFieldFocused { get; set; }
         public bool IsActive { get; set; }
         // FKs
         public int? CustomerId { get; set; }

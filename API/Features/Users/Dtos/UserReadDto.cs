@@ -7,6 +7,7 @@ namespace API.Features.Users {
         public string Id { get; set; }
         public string UserName { get; set; }
         public string Displayname { get; set; }
+        public bool IsFirstFieldFocused { get; set; }
         public SimpleEntity Customer { get; set; }
         public string Email { get; set; }
         public bool IsAdmin { get; set; }

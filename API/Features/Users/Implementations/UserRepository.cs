@@ -92,13 +92,15 @@ namespace API.Features.Users {
                         ResponseCode = 491
                     };
                 }
-            } catch (Exception) {
+            }
+            catch (Exception) {
                 throw new CustomException { ResponseCode = 491 };
             }
         }
 
         private async Task<bool> UpdateUser(UserExtended entity, UserUpdateDto entityToUpdate, string role) {
             entity.Displayname = entityToUpdate.Displayname;
+            entity.IsFirstFieldFocused = entityToUpdate.IsFirstFieldFocused;
             if (role == "admin") {
                 entity.CustomerId = entityToUpdate.CustomerId == 0 ? null : entityToUpdate.CustomerId;
                 entity.UserName = entityToUpdate.Username;
