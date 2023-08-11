@@ -8,6 +8,7 @@ namespace API.Infrastructure.Auth {
         public bool IsAdmin { get; set; }
         public string Displayname { get; set; }
         public int? CustomerId { get; set; }
+        public bool IsFirstFieldFocused { get; set; }
         public string Token { get; set; }
         public string RefreshToken { get; set; }
         public DateTime Expiration { get; set; }

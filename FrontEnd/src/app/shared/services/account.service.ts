@@ -60,6 +60,8 @@ export class AccountService extends HttpDataService {
             { 'item': 'returnUrl', 'when': 'always' },
             { 'item': 'userId', 'when': 'always' },
             { 'item': 'customerId', 'when': 'always' },
+            // Misc
+            { 'item': 'isFirstFieldFocused', 'when': 'always' },
             // Reservations
             { 'item': 'date', 'when': 'always' },
             { 'item': 'destination', 'when': 'always' },
@@ -175,6 +177,7 @@ export class AccountService extends HttpDataService {
         this.sessionStorageService.saveItem('displayName', this.cryptoService.encrypt(response.displayname))
         this.sessionStorageService.saveItem('isAdmin', this.cryptoService.encrypt(response.isAdmin))
         this.sessionStorageService.saveItem('customerId', this.cryptoService.encrypt(response.customerId != undefined ? response.customerId : 'null'))
+        this.sessionStorageService.saveItem('isFirstFieldFocused', response.isFirstFieldFocused)
     }
 
     //#endregion

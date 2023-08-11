@@ -212,6 +212,7 @@ export class EditUserFormComponent {
     private saveRecord(user: UpdateUserDto): void {
         this.userService.save(user).subscribe({
             complete: () => {
+                this.sessionStorageService.saveItem('isFirstFieldFocused', user.isFirstFieldFocused.toString())
                 this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
             },
             error: (errorFromInterceptor) => {
