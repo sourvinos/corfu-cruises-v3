@@ -34,7 +34,7 @@
 }
 
 .sub-menu button:hover {
-    background-color: var(--color-button-hover) ;
+    background-color: var(--color-button-hover) !important;
 }
 
 .sub-menu button span {

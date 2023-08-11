@@ -57,7 +57,7 @@
                     <mat-error *ngIf="!email.hasError('maxlength') && email.hasError('email')">{{ getHint("invalid") }}</mat-error>
                 </mat-form-field>
             </div>
-            <div id="checkboxes">
+            <div class="stacked-checkboxes">
                 <!-- Active -->
                 <mat-checkbox formControlName="isActive">
                     <span>{{ getLabel("isActive") }}</span>

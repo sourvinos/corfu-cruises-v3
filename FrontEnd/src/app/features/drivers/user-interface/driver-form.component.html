@@ -20,7 +20,7 @@
                 <input [inputTabStop]="input" dataTabIndex="2" formControlName="phones" matInput>
                 <mat-error *ngIf="phones.hasError('maxlength')">{{ getHint("maxLength", phones.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
-            <div id="checkboxes">
+            <div class="stacked-checkboxes">
                 <!-- Active -->
                 <mat-checkbox formControlName="isActive">
                     <span>{{ getLabel("isActive") }}</span>

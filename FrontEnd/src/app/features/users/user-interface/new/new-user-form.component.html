@@ -48,7 +48,7 @@
                     <mat-label>{{ getLabel('password') }}</mat-label>
                     <input [inputTabStop]="input" [type]="hidePassword ? 'password' : 'text'" dataTabIndex="5" formControlName="password" matInput>
                     <button (click)="hidePassword = !hidePassword" mat-icon-button matSuffix type="button">
-                        <mat-icon class="input-suffix material-icons-outlined with-top-margin small">{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+                        <mat-icon class="input-suffix material-icons-outlined small">{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
                     </button>
                     <mat-error *ngIf="password.hasError('required')">{{ getHint("required") }}</mat-error>
                     <mat-error *ngIf="password.hasError('containsSpace')">{{ getHint("spacesNotAllowed") }}</mat-error>
@@ -60,7 +60,7 @@
                     <mat-label>{{ getLabel('confirmPassword') }}</mat-label>
                     <input [errorStateMatcher]="confirmValidParentMatcher" [inputTabStop]="input" [type]="hidePassword ? 'password' : 'text'" dataTabIndex="6" formControlName="confirmPassword" matInput>
                     <button (click)="hidePassword = !hidePassword" mat-icon-button matSuffix type="button">
-                        <mat-icon class="input-suffix material-icons-outlined with-top-margin small">{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+                        <mat-icon class="input-suffix material-icons-outlined small">{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
                     </button>
                     <mat-error *ngIf="confirmPassword.hasError('required')">{{ getHint("required") }}</mat-error>
                     <mat-error *ngIf="!confirmPassword.hasError('required') && !matchingPasswords">{{ getHint("passwordsNoMatch") }}</mat-error>

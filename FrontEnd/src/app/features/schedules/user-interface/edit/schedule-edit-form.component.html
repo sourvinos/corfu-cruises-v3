@@ -15,7 +15,7 @@
                 <input #inputAutoComplete #trigger="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="destinations" dataTabIndex="2" formControlName="destination" matInput>
                 <div matSuffix style="display:flex">
                     <button (click)="openOrCloseAutoComplete(trigger, 'destination')" mat-icon-button type="button">
-                        <mat-icon class="input-suffix material-icons-outlined with-top-margin">expand_more</mat-icon>
+                        <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
                     </button>
                 </div>
                 <mat-error *ngIf="destination.hasError('required')">{{ getHint("required") }}</mat-error>
@@ -27,7 +27,7 @@
                 <input #inputAutoComplete #trigger="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="ports" dataTabIndex="3" formControlName="port" matInput>
                 <div matSuffix style="display:flex">
                     <button (click)="openOrCloseAutoComplete(trigger, 'port')" mat-icon-button type="button">
-                        <mat-icon class="input-suffix material-icons-outlined with-top-margin">expand_more</mat-icon>
+                        <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
                     </button>
                 </div>
                 <mat-error *ngIf="port.hasError('required')">{{ getHint("required") }}</mat-error>
@@ -53,7 +53,7 @@
                     <mat-error *ngIf="!time.hasError('required') && !time.hasError('time')">{{ getHint("invalid") }}</mat-error>
                 </mat-form-field>
                 <ngx-mat-timepicker #timePicker></ngx-mat-timepicker>
-            <div id="checkboxes">
+            <div class="stacked-checkboxes">
                 <!-- Active -->
                 <mat-checkbox formControlName="isActive">
                     <span>{{ getLabel("isActive") }}</span>

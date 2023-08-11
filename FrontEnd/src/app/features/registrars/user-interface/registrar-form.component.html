@@ -6,7 +6,7 @@
             <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
         </div>
 
-        <form [formGroup]='form' autocomplete="off">
+        <form [formGroup]="form" autocomplete="off" id="form">
             <!-- Fullname -->
             <mat-form-field>
                 <mat-label>{{ getLabel('fullname') }}</mat-label>
@@ -20,7 +20,7 @@
                 <input #inputAutoComplete #trigger="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="ships" dataTabIndex="2" formControlName="ship" matInput>
                 <div matSuffix style="display:flex">
                     <button (click)="openOrCloseAutoComplete(trigger, 'ship')" mat-icon-button type="button">
-                        <mat-icon class="input-suffix material-icons-outlined with-top-margin">expand_more</mat-icon>
+                        <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
                     </button>
                 </div>
                 <mat-error *ngIf="ship.hasError('required')">{{ getHint("required") }}</mat-error>
@@ -51,7 +51,7 @@
                 <input [inputTabStop]="input" dataTabIndex="6" formControlName="address" matInput>
                 <mat-error *ngIf="address.hasError('maxlength')">{{ getHint("maxLength", address.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
-            <div id="checkboxes">
+            <div class="stacked-checkboxes">
                 <!-- Primary -->
                 <mat-checkbox formControlName="isPrimary">
                     <span>{{ getLabel("isPrimary") }}</span>

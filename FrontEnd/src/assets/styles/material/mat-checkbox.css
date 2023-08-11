@@ -52,9 +52,18 @@
 
 .mat-mdc-checkbox label .mat-icon.small {
     align-items: center;
+    color: var(--color-text);
     display: flex;
     font-size: 1.125rem;
     justify-content: center;
+    transition: color var(--theme-delay) !important;
+}
+
+.stacked-checkboxes {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    margin: 0 0 0 1rem;
 }
 
 .checkbox-with-tooltip {

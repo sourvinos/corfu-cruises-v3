@@ -103,11 +103,6 @@
 }
 
 /* Button icon */
-.with-top-margin {
-    margin-top: 0.4375rem !important;
-}
-
-/* Button icon */
 .input-suffix {
     color: var(--color-text) !important;
 }
