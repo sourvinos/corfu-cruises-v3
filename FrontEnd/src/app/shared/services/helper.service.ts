@@ -73,7 +73,7 @@ export class HelperService {
     public focusOnField(): void {
         setTimeout(() => {
             const input = Array.prototype.slice.apply(document.querySelectorAll('input[dataTabIndex]'))[0]
-            if (input != null) {
+            if (input != null && this.sessionStorageService.getItem('isFirstFieldFocused') == 'true') {
                 input.focus()
                 input.select()
             }

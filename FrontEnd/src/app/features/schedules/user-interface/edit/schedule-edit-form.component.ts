@@ -67,6 +67,10 @@ export class ScheduleEditFormComponent {
         this.setLocale()
     }
 
+    ngAfterViewInit(): void {
+        this.focusOnField()
+    }
+
     //#endregion
 
     //#region public methods
@@ -146,6 +150,10 @@ export class ScheduleEditFormComponent {
             time: this.form.value.time,
             isActive: this.form.value.isActive
         }
+    }
+
+    private focusOnField(): void {
+        this.helperService.focusOnField()
     }
 
     public getDate(): string {

@@ -43,6 +43,10 @@ export class ParametersComponent {
         this.populateFields()
     }
 
+    ngAfterViewInit(): void {
+        this.focusOnField()
+    }
+
     //#endregion
 
     //#region public methods
@@ -64,6 +68,10 @@ export class ParametersComponent {
             id: this.form.value.id,
             closingTime: this.form.value.closingTime
         }
+    }
+
+    private focusOnField(): void {
+        this.helperService.focusOnField()
     }
 
     private getRecord(): Promise<any> {

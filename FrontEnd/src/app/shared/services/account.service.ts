@@ -60,8 +60,6 @@ export class AccountService extends HttpDataService {
             { 'item': 'returnUrl', 'when': 'always' },
             { 'item': 'userId', 'when': 'always' },
             { 'item': 'customerId', 'when': 'always' },
-            // Misc
-            { 'item': 'isFirstFieldFocused', 'when': 'always' },
             // Reservations
             { 'item': 'date', 'when': 'always' },
             { 'item': 'destination', 'when': 'always' },

@@ -69,6 +69,10 @@ export class ShipCrewFormComponent {
         this.setLocale()
     }
 
+    ngAfterViewInit(): void {
+        this.focusOnField()
+    }
+
     //#endregion
 
     //#region public methods
@@ -155,6 +159,10 @@ export class ShipCrewFormComponent {
             birthdate: this.dateHelperService.formatDateToIso(new Date(this.form.value.birthdate)),
             isActive: this.form.value.isActive
         }
+    }
+
+    private focusOnField(): void {
+        this.helperService.focusOnField()
     }
 
     private getRecord(): Promise<any> {

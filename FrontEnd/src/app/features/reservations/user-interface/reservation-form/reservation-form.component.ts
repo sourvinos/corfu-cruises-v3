@@ -93,6 +93,14 @@ export class ReservationFormComponent {
         this.setTabTitle()
     }
 
+    ngAfterViewInit(): void {
+        this.focusOnField()
+    }
+
+    ngOnDestroy(): void {
+        this.cleanup()
+    }
+
     //#endregion
 
     //#region public methods
@@ -318,6 +326,10 @@ export class ReservationFormComponent {
 
     private flattenForm(): ReservationWriteDto {
         return this.reservationHelperService.flattenForm(this.form.value)
+    }
+
+    private focusOnField(): void {
+        this.helperService.focusOnField()
     }
 
     private getLinkedCustomer(): void {
