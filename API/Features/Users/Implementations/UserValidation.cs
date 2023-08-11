@@ -25,7 +25,7 @@ namespace API.Features.Users {
 
         public int IsValid(IUser user) {
             return true switch {
-                var x when x == !IsValidCustomer(user) && user.CustomerId != null => 450,
+                var x when x == !IsValidCustomer(user) => 450,
                 _ => 200,
             };
         }
@@ -37,9 +37,13 @@ namespace API.Features.Users {
         }
 
         private bool IsValidCustomer(IUser user) {
-            return context.Customers
-                .AsNoTracking()
-                .SingleOrDefault(x => x.Id == user.CustomerId && x.IsActive) != null;
+            if (user.CustomerId == 0 || user.CustomerId == null) {
+                return true;
+            } else {
+                return context.Customers
+                    .AsNoTracking()
+                    .SingleOrDefault(x => x.Id == user.CustomerId && x.IsActive) != null;
+            }
         }
 
     }

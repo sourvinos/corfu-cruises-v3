@@ -56,3 +56,10 @@
     font-size: 1.125rem;
     justify-content: center;
 }
+
+.checkbox-with-tooltip {
+    align-items: flex-end;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 0 1rem;
+}

@@ -11,7 +11,6 @@
             <mat-form-field>
                 <mat-label>{{ getLabel('userName') }}</mat-label>
                 <input [inputTabStop]="input" dataTabIndex="1" formControlName="userName" matInput>
-                <!-- <input [inputTabStop]="input" [placeholder]="getLabel('userName')" dataTabIndex="1" formControlName="userName" matInput> -->
                 <mat-error *ngIf="userName.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="userName.hasError('maxlength')">{{ getHint("maxLength", userName.errors.maxlength.requiredLength) }}</mat-error>
                 <mat-error *ngIf="!userName.hasError('maxlength') && userName.hasError('containsSpace')">{{ getHint("spacesNotAllowed") }}</mat-error>
@@ -19,8 +18,7 @@
             <!-- Display name -->
             <mat-form-field>
                 <mat-label>{{ getLabel('displayname') }}</mat-label>
-                <input [inputTabStop]="input" dataTabIndex="2" formControlName="userName" matInput>
-                <!-- <input [inputTabStop]="input" [placeholder]="getLabel('displayname')" dataTabIndex="2" formControlName="displayname" matInput> -->
+                <input [inputTabStop]="input" dataTabIndex="2" formControlName="displayname" matInput>
                 <mat-error *ngIf="displayname.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="displayname.hasError('maxlength')">{{ getHint("maxLength", displayname.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
@@ -69,7 +67,14 @@
                     <mat-error *ngIf="!confirmPassword.hasError('required') && matchingPasswords">{{ getHint("invalid") }}</mat-error>
                 </mat-form-field>
             </div>
-            <div id="checkboxes">
+            <!-- Focus on first field -->
+            <div class="checkbox-with-tooltip">
+                <mat-checkbox formControlName="isFirstFieldFocused">
+                    <span>{{ getLabel("isFirstFieldFocused") }}</span>
+                </mat-checkbox>
+                <button #tooltip="matTooltip" class="tooltip-inside-input-field transparent" matTooltip="{{ getLabel('isFirstFieldFocusedTooltip') }}">?</button>
+            </div>
+            <div class="align-bottom checkboxes">
                 <!-- Admin -->
                 <mat-checkbox formControlName="isAdmin">
                     <span>{{ getLabel("isAdmin") }}</span>

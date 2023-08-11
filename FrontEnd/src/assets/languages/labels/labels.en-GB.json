@@ -537,6 +537,14 @@
                 "description": "Email"
             },
             {
+                "id": "isFirstFieldFocused",
+                "description": "Automatic focus on the first field of the form"
+            },
+            {
+                "id": "isFirstFieldFocusedTooltip",
+                "description": "When you open a form, e.g. a customer or a reervation, the first field is automatically focused, so you don't have to click on it to start typing."
+            },
+            {
                 "id": "isAdmin",
                 "description": "Admin"
             },
@@ -584,6 +592,14 @@
             {
                 "id": "customer",
                 "description": "Linked Customer"
+            },
+            {
+                "id": "isFirstFieldFocused",
+                "description": "Automatic focus on the first field of the form"
+            },
+            {
+                "id": "isFirstFieldFocusedTooltip",
+                "description": "When you open a form, e.g. a customer or a reervation, the first field is automatically focused, so you don't have to click on it to start typing."
             },
             {
                 "id": "isAdmin",
@@ -2278,7 +2294,7 @@
                 "description": "Closing time"
             },
             {
-                "id": "closingTimeDescription",
+                "id": "closingTimeTooltip",
                 "description": "Refers to the time after which we do not accept new reservations from simple users with a transfer to the next day. If you want to disable this functionality, enter 00:00"
             },
             {

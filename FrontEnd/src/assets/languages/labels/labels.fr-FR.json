@@ -537,6 +537,14 @@
                 "description": "Email"
             },
             {
+                "id": "isFirstFieldFocused",
+                "description": "Mise au point automatique sur le premier champ du formulaire"
+            },
+            {
+                "id": "isFirstFieldFocusedTooltip",
+                "description": "Lorsque vous ouvrez un formulaire, par exemple pour un client ou une réservation, le premier champ est automatiquement mis en évidence, de sorte que vous ne devez pas cliquer dessus pour commencer à taper."
+            },
+            {
                 "id": "isAdmin",
                 "description": "Administrateur"
             },
@@ -584,6 +592,14 @@
             {
                 "id": "customer",
                 "description": "Client en connection"
+            },
+            {
+                "id": "isFirstFieldFocused",
+                "description": "Mise au point automatique sur le premier champ du formulaire"
+            },
+            {
+                "id": "isFirstFieldFocusedTooltip",
+                "description": "Lorsque vous ouvrez un formulaire, par exemple pour un client ou une réservation, le premier champ est automatiquement mis en évidence, de sorte que vous ne devez pas cliquer dessus pour commencer à taper."
             },
             {
                 "id": "isAdmin",
@@ -2278,7 +2294,7 @@
                 "description": "Démarrer"
             },
             {
-                "id": "closingTimeDescription",
+                "id": "closingTimeTooltip",
                 "description": "Désigne l'heure à partir de laquelle nous n'acceptons plus de nouvelles réservations de la part de simples utilisateurs avec un transfert au jour suivant. Si vous souhaitez désactiver cette fonctionnalité, entrez 00:00"
             },
             {

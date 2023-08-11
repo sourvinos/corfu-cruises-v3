@@ -537,6 +537,14 @@
                 "description": "Email"
             },
             {
+                "id": "isFirstFieldFocused",
+                "description": "Automatischer Fokus auf das erste Feld des Formulars"
+            },
+            {
+                "id": "isFirstFieldFocusedTooltip",
+                "description": "Wenn Sie ein Formular öffnen, z.B. für einen Kunden oder eine Reservierung, wird das erste Feld automatisch fokussiert, so dass Sie nicht erst darauf klicken müssen, um mit der Eingabe zu beginnen."
+            },
+            {
                 "id": "isAdmin",
                 "description": "Admin"
             },
@@ -584,6 +592,14 @@
             {
                 "id": "customer",
                 "description": "Linkedin-Kunde"
+            },
+            {
+                "id": "isFirstFieldFocused",
+                "description": "Automatischer Fokus auf das erste Feld des Formulars"
+            },
+            {
+                "id": "isFirstFieldFocusedTooltip",
+                "description": "Wenn Sie ein Formular öffnen, z.B. für einen Kunden oder eine Reservierung, wird das erste Feld automatisch fokussiert, so dass Sie nicht erst darauf klicken müssen, um mit der Eingabe zu beginnen."
             },
             {
                 "id": "isAdmin",
@@ -2278,7 +2294,7 @@
                 "description": "Büroschluss"
             },
             {
-                "id": "closingTimeDescription",
+                "id": "closingTimeTooltip",
                 "description": "Bezieht sich auf die Zeit, nach der wir keine neuen Reservierungen von einfachen Benutzern mit einer Übertragung auf den nächsten Tag akzeptieren. Wenn Sie diese Funktion deaktivieren möchten, geben Sie 00:00"
             },
             {

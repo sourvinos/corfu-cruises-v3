@@ -138,6 +138,7 @@ export class EditUserFormComponent {
             displayname: this.form.value.displayname,
             customerId: this.form.value.customer.id == 0 ? null : this.form.value.customer.id,
             email: this.form.value.email,
+            isFirstFieldFocused: this.form.value.isFirstFieldFocused,
             isAdmin: this.form.value.isAdmin,
             isActive: this.form.value.isActive
         }
@@ -173,6 +174,7 @@ export class EditUserFormComponent {
             displayname: ['', [Validators.required, Validators.maxLength(32), ValidationService.beginsOrEndsWithSpace]],
             customer: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             email: ['', [Validators.required, Validators.email, Validators.maxLength(128)]],
+            isFirstFieldFocused: false,
             isAdmin: false,
             isActive: true
         })
@@ -198,6 +200,7 @@ export class EditUserFormComponent {
             customer: { 'id': this.record.customer.id, 'description': this.record.customer.id == 0 ? this.emojiService.getEmoji('wildcard') : this.record.customer.description },
             email: this.record.email,
             isAdmin: this.record.isAdmin,
+            isFirstFieldFocused: this.record.isFirstFieldFocused,
             isActive: this.record.isActive
         })
     }

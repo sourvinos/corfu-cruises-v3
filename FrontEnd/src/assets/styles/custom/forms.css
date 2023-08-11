@@ -39,13 +39,6 @@
     margin-left: 1rem;
 }
 
-#checkboxes {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin: 0 2.7rem 1rem 0.875rem;
-}
-
 #footer {
     align-items: center;
     display: flex;
@@ -69,6 +62,13 @@
 
 .group-input-field.hide-hint {
     height: 3.5rem;
+}
+
+.checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0 0 0 1rem;
 }
 
 .align-bottom {

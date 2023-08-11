@@ -7,6 +7,7 @@ export interface UpdateUserDto {
     displayname: string
     customerId?: number
     email: string
+    isFirstFieldFocused: boolean
     isAdmin: boolean
     isActive: boolean
 

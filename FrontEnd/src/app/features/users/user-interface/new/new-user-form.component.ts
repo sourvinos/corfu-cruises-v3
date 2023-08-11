@@ -114,10 +114,11 @@ export class NewUserFormComponent {
         return {
             userName: this.form.value.userName,
             displayname: this.form.value.displayname,
-            customerId: this.form.value.customer.id == 'all' ? null : this.form.value.customer.id,
+            customerId: this.form.value.customer.id == 0 ? null : this.form.value.customer.id,
             email: this.form.value.email,
             password: this.form.value.passwords.password,
             confirmPassword: this.form.value.passwords.confirmPassword,
+            isFirstFieldFocused: this.form.value.isFirstFieldFocused,
             isAdmin: this.form.value.isAdmin,
             isActive: this.form.value.isActive
         }
@@ -137,6 +138,7 @@ export class NewUserFormComponent {
                 password: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(128), ValidationService.containsSpace]],
                 confirmPassword: ['', [Validators.required, ValidationService.containsSpace]]
             }, { validator: ValidationService.childrenEqual }),
+            isFirstFieldFocused: false,
             isAdmin: false,
             isActive: true
         })

@@ -9,6 +9,7 @@ export class UserReadDto {
     displayname: string
     customer: CustomerAutoCompleteVM
     email: string
+    isFirstFieldFocused: boolean
     isAdmin: boolean
     isActive: boolean
 
