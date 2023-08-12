@@ -73,3 +73,9 @@
     justify-content: space-between;
     margin: 0 0 0 1rem;
 }
+
+.checkbox-with-tooltip .mat-mdc-tooltip-trigger {
+    color: var(--color-text);
+    font-family: var(--font-family-roboto);
+    padding: 0 1rem 0 1rem;
+}

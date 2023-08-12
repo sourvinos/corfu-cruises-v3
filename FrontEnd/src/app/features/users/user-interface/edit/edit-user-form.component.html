@@ -50,7 +50,7 @@
                 <mat-checkbox formControlName="isFirstFieldFocused">
                     <span>{{ getLabel("isFirstFieldFocused") }}</span>
                 </mat-checkbox>
-                <button #tooltip="matTooltip" class="tooltip-inside-input-field transparent" matTooltip="{{ getLabel('isFirstFieldFocusedTooltip') }}">?</button>
+                <span #tooltip="matTooltip" matTooltip="{{ getLabel('isFirstFieldFocusedTooltip') }}">?</span>
             </div>
             <div class="align-bottom checkboxes">
                 <!-- Admin -->

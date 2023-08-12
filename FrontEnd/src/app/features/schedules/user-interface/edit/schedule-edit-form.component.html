@@ -46,7 +46,7 @@
                     <input [format]=24 [inputTabStop]="input" [ngxMatTimepicker]="timePicker" dataTabIndex="5" formControlName="time" matInput readonly/>
                     <div matSuffix style="display:flex">
                         <button (click)="timePicker.open()" mat-icon-button type="button">
-                            <mat-icon class="input-suffix material-icons-outlined">watch_later</mat-icon>
+                            <mat-icon class="input-suffix material-icons-outlined extra-top-margin small">watch_later</mat-icon>
                         </button>
                     </div>
                     <mat-error *ngIf="time.hasError('required')">{{ getHint("required") }}</mat-error>

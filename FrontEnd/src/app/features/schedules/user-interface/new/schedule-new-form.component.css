@@ -31,7 +31,8 @@
 #form {
     display: flex;
     flex-direction: column !important;
-    gap: 0.5rem;
+    height: 100%;
+    row-gap: 0.5rem;
 }
 
 #form .group-input-field:first-child {

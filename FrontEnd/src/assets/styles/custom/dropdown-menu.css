@@ -6,7 +6,7 @@
 .drop-down-menu > button {
     background-color: var(--color-primary);
     border-radius: 0;
-    color: var(--color-dropdown-trigger);
+    color: var(--color-dropdown-trigger) !important;
     display: flex;
     font-size: var(--font-size-button) !important;
     gap: 0.5rem;
