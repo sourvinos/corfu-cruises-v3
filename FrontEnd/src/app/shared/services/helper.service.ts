@@ -240,16 +240,35 @@ export class HelperService {
         })
     }
 
+    public clearInvisibleFieldsAndRestoreVisibility(form: FormGroup<any>, fields: string[]): void {
+        setTimeout(() => {
+            this.clearInvisibleField(form, fields)
+            this.removeFieldInvisibility()
+        }, 1000)
+    }
+
     //#endregion
 
     //#region private methods
 
-    public getLabel(feature: string, id: string): string {
-        return this.messageLabelService.getDescription(feature, id)
+    private clearInvisibleField(form: FormGroup<any>, fields: string[]): void {
+        fields.forEach(field => {
+            form.patchValue({
+                [field]: ''
+            })
+        })
+
     }
 
     private isObject(object: any): boolean {
         return object != null && typeof object === 'object'
+    }
+
+    private removeFieldInvisibility(): void {
+        const elements = document.querySelectorAll('.invisible')
+        elements.forEach(element => {
+            element.classList.remove('invisible')
+        })
     }
 
     //#endregion

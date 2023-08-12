@@ -1,6 +1,6 @@
 export interface UserNewDto {
 
-    userName: string
+    username: string
     displayname: string
     customerId?: number
     email: string

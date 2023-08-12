@@ -570,7 +570,7 @@
                 "description": "User"
             },
             {
-                "id": "userName",
+                "id": "username",
                 "description": "Username"
             },
             {

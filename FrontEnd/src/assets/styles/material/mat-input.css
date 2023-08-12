@@ -53,10 +53,15 @@
     font-weight: 300;
 }
 
-/* Input actual without error */
-.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input, .mdc-text-field--invalid .mdc-text-field__input {
-    color: var(--color-text) !important;
+/* Input actual */
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
+    color: var(--color-text);
     transition: color var(--theme-delay) !important;
+}
+
+/* Input actual */
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input.invisible {
+    color: var(--color-input-background) !important;
 }
 
 /* Caret */
@@ -98,8 +103,8 @@
 }
 
 /* Button icon */
-.mat-mdc-form-field-icon-suffix.no-margins {
-    margin-top: 0;
+.mat-mdc-icon-button .mat-icon.extra-top-margin {
+    margin-top: 0.6rem;
 }
 
 /* Button icon */

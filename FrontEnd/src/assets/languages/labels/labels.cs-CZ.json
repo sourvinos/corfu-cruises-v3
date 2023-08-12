@@ -570,7 +570,7 @@
                 "description": "Uživatel"
             },
             {
-                "id": "userName",
+                "id": "username",
                 "description": "Uživatelské jméno"
             },
             {

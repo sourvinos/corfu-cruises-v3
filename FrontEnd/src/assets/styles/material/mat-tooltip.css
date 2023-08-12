@@ -6,5 +6,7 @@
 }
 
 .tooltip-inside-input-field {
-    margin-top: -0.625rem !important;
+    color: var(--color-text);
+    padding: 0 1rem 0 1rem !important;
+    transition: color var(--theme-delay) !important;
 }

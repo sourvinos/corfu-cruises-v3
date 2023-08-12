@@ -45,6 +45,7 @@
 .mat-mdc-checkbox label span {
     color: var(--color-text);
     font-family: var(--font-family-asty);
+    font-size: 0.8125rem;
     font-weight: 300;
     margin: 0.1875rem 0 0 0;
     transition: all var(--theme-delay) !important;

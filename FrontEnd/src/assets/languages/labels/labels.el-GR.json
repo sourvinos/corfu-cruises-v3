@@ -570,7 +570,7 @@
                 "description": "Χρήστης"
             },
             {
-                "id": "userName",
+                "id": "username",
                 "description": "Όνομα"
             },
             {

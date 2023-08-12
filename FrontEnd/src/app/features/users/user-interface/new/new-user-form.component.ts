@@ -59,6 +59,7 @@ export class NewUserFormComponent {
     }
 
     ngAfterViewInit(): void {
+        this.clearInvisibleFieldsAndRestoreVisibility()
         this.focusOnField()
     }
 
@@ -76,10 +77,6 @@ export class NewUserFormComponent {
 
     public enableOrDisableAutoComplete(event: any): void {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
-    }
-
-    public getEmoji(emoji: string): string {
-        return this.emojiService.getEmoji(emoji)
     }
 
     public getHint(id: string, minmax = 0): string {
@@ -102,6 +99,10 @@ export class NewUserFormComponent {
 
     //#region private methods
 
+    private clearInvisibleFieldsAndRestoreVisibility(): void {
+        this.helperService.clearInvisibleFieldsAndRestoreVisibility(this.form, ['email'])
+    }
+
     private filterAutocomplete(array: string, field: string, value: any): any[] {
         if (typeof value !== 'object') {
             const filtervalue = value.toLowerCase()
@@ -112,7 +113,7 @@ export class NewUserFormComponent {
 
     private flattenForm(): UserNewDto {
         return {
-            userName: this.form.value.userName,
+            username: this.form.value.username,
             displayname: this.form.value.displayname,
             customerId: this.form.value.customer.id == 0 ? null : this.form.value.customer.id,
             email: this.form.value.email,
@@ -130,10 +131,10 @@ export class NewUserFormComponent {
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            userName: ['', [Validators.required, Validators.maxLength(32), ValidationService.containsIllegalCharacters]],
+            username: ['', [Validators.required, Validators.maxLength(32)]],
             displayname: ['', [Validators.required, Validators.maxLength(32)]],
             customer: ['', ValidationService.RequireAutocomplete],
-            email: ['', [Validators.required, Validators.maxLength(128), Validators.email]],
+            email: ['x@x.com', [Validators.required, Validators.maxLength(128), Validators.email]],
             passwords: this.formBuilder.group({
                 password: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(128), ValidationService.containsSpace]],
                 confirmPassword: ['', [Validators.required, ValidationService.containsSpace]]
@@ -171,8 +172,8 @@ export class NewUserFormComponent {
 
     //#region getters
 
-    get userName(): AbstractControl {
-        return this.form.get('userName')
+    get username(): AbstractControl {
+        return this.form.get('username')
     }
 
     get displayname(): AbstractControl {
