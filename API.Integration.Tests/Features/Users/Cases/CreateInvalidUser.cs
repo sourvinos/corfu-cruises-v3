@@ -20,7 +20,7 @@ namespace Users {
                 new TestNewUser {
                     StatusCode = 450,
                     CustomerId = 195,
-                    UserName = Helpers.CreateRandomString(128),
+                    Username = Helpers.CreateRandomString(128),
                     Displayname = Helpers.CreateRandomString(128),
                     Email = "email@server.com",
                     Password = "abcd1234",
@@ -34,7 +34,7 @@ namespace Users {
                 new TestNewUser {
                     StatusCode = 450,
                     CustomerId = 3,
-                    UserName = Helpers.CreateRandomString(128),
+                    Username = Helpers.CreateRandomString(128),
                     Displayname = Helpers.CreateRandomString(128),
                     Email = "email@server.com",
                     Password = "abcd1234",
@@ -47,7 +47,7 @@ namespace Users {
             return new object[] {
                 new TestNewUser {
                     StatusCode = 492,
-                    UserName = "newuser",
+                    Username = "newuser",
                     Displayname = "New User",
                     CustomerId = 2,
                     Email = "operations.corfucruises@gmail.com",
@@ -63,7 +63,7 @@ namespace Users {
             return new object[] {
                 new TestNewUser {
                     StatusCode = 492,
-                    UserName = "foteini",
+                    Username = "foteini",
                     Displayname = "FOTEINI",
                     CustomerId = 2,
                     Email = "newemail@server.com",

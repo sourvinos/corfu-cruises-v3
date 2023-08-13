@@ -50,7 +50,6 @@ namespace API.Features.Users {
         public List<ShipRoute> ShipRoutes { get; set; }
         public List<Token> Tokens { get; set; }
         public List<Parameter> Parameters { get; set; }
-        public UserExtended User { get; set; }
 
     }
 

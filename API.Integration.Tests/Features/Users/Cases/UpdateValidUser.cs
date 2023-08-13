@@ -16,7 +16,7 @@ namespace Users {
                 new TestUpdateUser {
                     Id = "eae03de1-6742-4015-9d52-102dba5d7365",
                     CustomerId = 2,
-                    UserName = "simpleuser",
+                    Username = "simpleuser",
                     Displayname = "Simple User",
                     Email = "email@server.com",
                     IsAdmin = false,

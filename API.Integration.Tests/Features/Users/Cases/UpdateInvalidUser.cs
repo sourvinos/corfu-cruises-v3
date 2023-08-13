@@ -18,7 +18,7 @@ namespace Users {
                     StatusCode = 492,
                     Id = "c0e4af2d-be81-41a3-8e6c-67aea53ee486",
                     CustomerId = 2,
-                    UserName = "mpotsis",
+                    Username = "mpotsis",
                     Displayname = "WOW",
                     Email = "candebeleted@server.com",
                     IsAdmin = false,
@@ -32,7 +32,7 @@ namespace Users {
                 new TestUpdateUser {
                     StatusCode = 492,
                     Id = "c0e4af2d-be81-41a3-8e6c-67aea53ee486",
-                    UserName = "wow",
+                    Username = "wow",
                     Displayname = "Wow",
                     CustomerId = 2,
                     Email = "operations.corfucruises@gmail.com",

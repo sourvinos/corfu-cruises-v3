@@ -15,7 +15,7 @@ namespace Users {
         private static object[] ValidRecord() {
             return new object[] {
                 new TestNewUser {
-                    UserName = "username",
+                    Username = "username",
                     Displayname = "Display Name",
                     CustomerId = 1,
                     Email = "new-email@server.com",

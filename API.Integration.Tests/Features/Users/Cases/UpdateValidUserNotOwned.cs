@@ -17,7 +17,7 @@ namespace Users {
                     StatusCode = 490,
                     Id = "ce637d02-3076-4a96-b6f6-1e3a0841b81e",
                     CustomerId = 2,
-                    UserName = "foteini",
+                    Username = "foteini",
                     Displayname = "Foteini",
                     Email = "operations.corfucruises@gmail.com",
                     IsAdmin = true,
