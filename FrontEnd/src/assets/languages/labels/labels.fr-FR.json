@@ -2307,7 +2307,15 @@
             },
             {
                 "id": "phonesTooltip",
-                "description": "Tout ce que vous écrivez ici sera imprimé en bas de page des courriels que nous envoyons."
+                "description": "Il s'agit du numéro de téléphone qui sera imprimé dans le pied de page des courriels que nous envoyons."
+            },
+            {
+                "id": "email",
+                "description": "Email"
+            },
+            {
+                "id": "emailΤooltip",
+                "description": "Il s'agit de l'e-mail qui sera imprimé dans le pied de page des e-mails que nous envoyons."
             },
             {
                 "id": "user",

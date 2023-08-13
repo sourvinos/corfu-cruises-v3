@@ -8,6 +8,7 @@ import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { LogoService } from '../../services/logo.service'
+import { ParametersService } from 'src/app/features/parameters/classes/services/parameters.service'
 import { environment } from 'src/environments/environment'
 // Fonts
 import pdfMake from 'pdfmake/build/pdfmake'
@@ -21,11 +22,13 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs
 
 export class BoardingPassService extends HttpDataService {
 
-    constructor(httpClient: HttpClient, private dateHelperService: DateHelperService, private helperService: HelperService, private logoService: LogoService) { super(httpClient, environment.apiUrl + '/reservations') }
+    constructor(httpClient: HttpClient, private dateHelperService: DateHelperService, private helperService: HelperService, private logoService: LogoService, private parametersService: ParametersService) {
+        super(httpClient, environment.apiUrl + '/reservations')
+    }
 
     //#region public methods
 
-    public createBoardingPass(form: any): BoardingPassVM {
+    public createBoardingPass(form: any, companyPhones: string, companyEmail: string): BoardingPassVM {
         const boardingPass = {
             'date': this.dateHelperService.formatISODateToLocale(form.date),
             'refNo': form.refNo,
@@ -42,7 +45,9 @@ export class BoardingPassService extends HttpDataService {
             'ticketNo': form.ticketNo,
             'remarks': form.remarks,
             'barcode': form.refNo,
-            'passengers': this.mapBoardingPassPassengers(form.passengers)
+            'passengers': this.mapBoardingPassPassengers(form.passengers),
+            'companyPhones': companyPhones,
+            'companyEmail': companyEmail,
         }
         return boardingPass
     }
@@ -147,8 +152,9 @@ export class BoardingPassService extends HttpDataService {
                 table: {
                     body: [
                         [{ qr: boardingPass.barcode, alignment: 'center', width: 200, style: ['paddingTop'], foreground: 'darkslategray' }],
-                        [{ text: 'Problems or questions? Call us at +30 26620 61400', alignment: 'center', style: ['small', 'paddingTop'] }],
-                        [{ text: 'or email at info@corfucruises.com', alignment: 'center', style: 'small' }],
+                        [{ text: 'Problems? Questions? Please call', alignment: 'center', style: ['small', 'paddingTop'] }],
+                        [{ text: boardingPass.companyPhones, alignment: 'center', style: 'small' }],
+                        [{ text: 'or email at ' + boardingPass.companyEmail, alignment: 'center', style: 'small' }],
                         [{ text: '© Corfu Cruises 2023, Corfu - Greece', alignment: 'center', style: 'small' }],
                     ],
                     widths: ['100%'],
@@ -165,10 +171,18 @@ export class BoardingPassService extends HttpDataService {
 
     //#endregion
 
-    //#region private methods   
+    //#region private methods
 
     private createPdf(document: any): void {
         pdfMake.createPdf(document).open()
+    }
+
+    public getCompanyData(): Promise<any> {
+        return new Promise((resolve) => {
+            this.parametersService.get().subscribe((response) => {
+                resolve(response)
+            })
+        })
     }
 
     private mapBoardingPassPassengers(passengers: any[]): BoardingPassPassengerVM[] {

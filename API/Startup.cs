@@ -75,7 +75,6 @@ namespace API {
             services.AddEmailSenders();
             ModelValidations.AddModelValidation(services);
             services.Configure<CookiePolicyOptions>(options => { options.CheckConsentNeeded = _ => true; options.MinimumSameSitePolicy = SameSiteMode.None; });
-            services.Configure<CompanySettings>(options => Configuration.GetSection("CompanySettings").Bind(options));
             services.Configure<EnvironmentSettings>(options => Configuration.GetSection("EnvironmentSettings").Bind(options));
             services.Configure<EmailSettings>(options => Configuration.GetSection("EmailSettings").Bind(options));
             services.Configure<TokenSettings>(options => Configuration.GetSection("TokenSettings").Bind(options));

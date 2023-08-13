@@ -72,7 +72,8 @@ export class ParametersComponent {
         return {
             id: this.form.value.id,
             closingTime: this.form.value.closingTime,
-            phones: this.form.value.phones
+            phones: this.form.value.phones,
+            email: this.form.value.email
         }
     }
 
@@ -104,6 +105,7 @@ export class ParametersComponent {
             id: [''],
             closingTime: ['00:00', [Validators.required, ValidationService.isTime]],
             phones: ['', [Validators.required, Validators.maxLength(128)]],
+            email: ['', [Validators.required, Validators.maxLength(128)]],
             user: [''],
             lastUpdate: ['']
         })
@@ -115,6 +117,7 @@ export class ParametersComponent {
                 id: this.record.id,
                 closingTime: this.record.closingTime,
                 phones: this.record.phones,
+                email: this.record.email,
                 user: this.record.user,
                 lastUpdate: this.record.lastUpdate
             })
@@ -146,6 +149,10 @@ export class ParametersComponent {
 
     get phones(): AbstractControl {
         return this.form.get('phones')
+    }
+
+    get email(): AbstractControl {
+        return this.form.get('email')
     }
 
     get user(): AbstractControl {

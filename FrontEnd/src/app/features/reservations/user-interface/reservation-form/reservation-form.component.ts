@@ -208,7 +208,9 @@ export class ReservationFormComponent {
             this.mustGoBackAfterSave = false
             this.dialogService.open(this.messageDialogService.twoPointReervationValidation(), 'error', ['ok'])
         } else {
-            this.boardingPassService.printBoardingPass(this.boardingPassService.createBoardingPass(this.form.value))
+            this.boardingPassService.getCompanyData().then(response => {
+                this.boardingPassService.printBoardingPass(this.boardingPassService.createBoardingPass(this.form.value, response.body.phones,response.body.email))
+            })
         }
     }
 

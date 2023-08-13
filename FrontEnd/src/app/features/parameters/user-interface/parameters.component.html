@@ -11,12 +11,13 @@
             <mat-form-field>
                 <mat-label>{{ getLabel('closingTime') }}</mat-label>
                 <input [format]=24 [ngxMatTimepicker]="timePicker" formControlName="closingTime" matInput readonly />
+                <button #tooltip="matTooltip" class="tooltip-inside-input-field transparent" matTooltip="{{ getLabel('closingTimeTooltip') }}">?</button>
                 <div matSuffix style="display:flex">
                     <button (click)="timePicker.open()" mat-icon-button type="button">
                         <mat-icon class="input-suffix material-icons-outlined extra-top-margin small">watch_later</mat-icon>
                     </button>
                 </div>
-                <button #tooltip="matTooltip" class="tooltip-inside-input-field transparent" matTooltip="{{ getLabel('closingTimeTooltip') }}">?</button>
+                <ngx-mat-timepicker #timePicker></ngx-mat-timepicker>
             </mat-form-field>
             <!-- Phones -->
             <mat-form-field>
@@ -26,7 +27,14 @@
                 <mat-error *ngIf="phones.hasError('maxlength')">{{ getHint("maxLength", phones.errors.maxlength.requiredLength) }}</mat-error>
                 <button #tooltip="matTooltip" class="tooltip-inside-input-field transparent" matTooltip="{{ getLabel('phonesTooltip') }}">?</button>
             </mat-form-field>
-            <ngx-mat-timepicker #timePicker></ngx-mat-timepicker>
+            <!-- Email -->
+            <mat-form-field>
+                <mat-label>{{ getLabel('email') }}</mat-label>
+                <input [inputTabStop]="input" dataTabIndex="3" formControlName="email" matInput>
+                <mat-error *ngIf="email.hasError('maxlength')">{{ getHint("maxLength", email.errors.maxlength.requiredLength) }}</mat-error>
+                <mat-error *ngIf="!email.hasError('maxlength') && email.hasError('email')">{{ getHint("invalid") }}</mat-error>
+                <button #tooltip="matTooltip" class="tooltip-inside-input-field transparent" matTooltip="{{ getLabel('emailΤooltip') }}">?</button>
+            </mat-form-field>
             <div class="align-bottom group-input-field hide-hint">
                 <!-- User -->
                 <mat-form-field>

@@ -2307,7 +2307,15 @@
             },
             {
                 "id": "phonesTooltip",
-                "description": "Cokoli zde napíšete, bude vytištěno v zápatí e-mailů, které posíláme."
+                "description": "Jedná se o telefonní číslo, které bude vytištěno v zápatí zasílaných e-mailů."
+            },
+            {
+                "id": "email",
+                "description": "Email"
+            },
+            {
+                "id": "emailΤooltip",
+                "description": "Jedná se o e-mail, který bude vytištěn v zápatí odesílaných e-mailů."
             },
             {
                 "id": "user",

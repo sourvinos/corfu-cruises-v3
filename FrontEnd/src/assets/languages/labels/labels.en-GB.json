@@ -2307,7 +2307,15 @@
             },
             {
                 "id": "phonesTooltip",
-                "description": "Whatever you write here will be printed to the footer of the emails we send."
+                "description": "This is the phone number that will be printed in the footer of the emails we send."
+            },
+            {
+                "id": "email",
+                "description": "Email"
+            },
+            {
+                "id": "emailΤooltip",
+                "description": "This is the email that will be printed in the footer of the emails we send."
             },
             {
                 "id": "user",

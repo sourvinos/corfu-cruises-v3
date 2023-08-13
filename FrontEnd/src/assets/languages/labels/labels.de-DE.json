@@ -2307,7 +2307,15 @@
             },
             {
                 "id": "phonesTooltip",
-                "description": "Alles, was Sie hier schreiben, wird in der Fußzeile der von uns verschickten E-Mails gedruckt."
+                "description": "Dies ist die Telefonnummer, die in der Fußzeile der von uns verschickten E-Mails angegeben wird."
+            },
+            {
+                "id": "email",
+                "description": "Email"
+            },
+            {
+                "id": "emailΤooltip",
+                "description": "Dies ist die E-Mail, die in der Fußzeile der von uns versandten E-Mails erscheint."
             },
             {
                 "id": "user",

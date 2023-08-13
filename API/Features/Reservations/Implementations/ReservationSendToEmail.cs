@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
 using API.Infrastructure.Helpers;
+using API.Infrastructure.Parameters;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
 using MimeKit;
@@ -14,12 +15,12 @@ namespace API.Features.Reservations {
 
     public class ReservationSendToEmail : IReservationSendToEmail {
 
-        private readonly CompanySettings companySettings;
         private readonly EmailSettings emailSettings;
+        private readonly IParametersRepository parametersRepo;
 
-        public ReservationSendToEmail(IOptions<CompanySettings> companySettings, IOptions<EmailSettings> emailSettings) {
-            this.companySettings = companySettings.Value;
+        public ReservationSendToEmail(IOptions<EmailSettings> emailSettings, IParametersRepository parametersRepo) {
             this.emailSettings = emailSettings.Value;
+            this.parametersRepo = parametersRepo;
         }
 
         public async Task SendReservationToEmail(BoardingPassReservationVM reservation) {
@@ -55,7 +56,7 @@ namespace API.Features.Reservations {
                     TicketNo = reservation.TicketNo,
                     TotalPax = reservation.TotalPax,
                     Phones = reservation.Phones,
-                    CompanyPhones = companySettings.Phones,
+                    CompanyPhones = this.parametersRepo.GetAsync().Result.Phones,
                     PickupPoint = reservation.PickupPoint,
                     Remarks = reservation.Remarks,
                     Passengers = reservation.Passengers,
@@ -95,7 +96,8 @@ namespace API.Features.Reservations {
                 var bitmapData = bitmap.LockBits(new Rectangle(0, 0, pixelData.Width, pixelData.Height), System.Drawing.Imaging.ImageLockMode.WriteOnly, System.Drawing.Imaging.PixelFormat.Format32bppRgb);
                 try {
                     System.Runtime.InteropServices.Marshal.Copy(pixelData.Pixels, 0, bitmapData.Scan0, pixelData.Pixels.Length);
-                } finally {
+                }
+                finally {
                     bitmap.UnlockBits(bitmapData);
                 }
                 bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);

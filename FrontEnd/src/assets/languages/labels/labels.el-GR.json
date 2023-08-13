@@ -2307,7 +2307,15 @@
             },
             {
                 "id": "phonesTooltip",
-                "description": "Ό,τι γράφετε εδώ θα εκτυπώνεται στο υποσέλιδο των emails που στέλνουμε."
+                "description": "Αυτό είναι το τηλέφωνο που θα εκτυπώνεται στο υποσέλιδο των emails που στέλνουμε."
+            },
+            {
+                "id": "email",
+                "description": "Email"
+            },
+            {
+                "id": "emailΤooltip",
+                "description": "Αυτό είναι το email που θα εκτυπώνεται στο υποσέλιδο των emails που στέλνουμε."
             },
             {
                 "id": "user",

@@ -6,7 +6,7 @@ namespace API.Infrastructure.Account {
         public string Displayname { get; set; }
         public string Email { get; set; }
         public string ReturnUrl { get; set; }
-        public string Phones { get; set; }
+        public string CompanyPhones { get; set; }
         public string LogoTextBase64 { get; set; }
 
     }

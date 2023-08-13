@@ -17,5 +17,7 @@ export interface BoardingPassVM {
     kids: string
     free: string
     totalPax: string
+    companyPhones: string
+    companyEmail: string
 
 }

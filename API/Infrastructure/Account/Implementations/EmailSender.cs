@@ -1,22 +1,23 @@
-using System.IO;
-using System.Reflection;
-using System.Threading.Tasks;
 using API.Infrastructure.Helpers;
+using API.Infrastructure.Parameters;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
 using MimeKit;
 using RazorLight;
+using System.IO;
+using System.Reflection;
+using System.Threading.Tasks;
 
 namespace API.Infrastructure.Account {
 
     public class EmailSender : IEmailSender {
 
-        private readonly CompanySettings companySettings;
         private readonly EmailSettings emailSettings;
+        private readonly IParametersRepository parametersRepo;
 
-        public EmailSender(IOptions<CompanySettings> companySettings, IOptions<EmailSettings> emailSettings) {
-            this.companySettings = companySettings.Value;
+        public EmailSender(IOptions<EmailSettings> emailSettings, IParametersRepository parametersRepo) {
             this.emailSettings = emailSettings.Value;
+            this.parametersRepo = parametersRepo;
         }
 
         public async Task SendForgotPasswordEmail(string username, string displayname, string email, string returnUrl, string subject) {
@@ -48,7 +49,7 @@ namespace API.Infrastructure.Account {
                     Displayname = displayname,
                     Email = email,
                     ReturnUrl = returnUrl,
-                    Phones = companySettings.Phones,
+                    CompanyPhones = this.parametersRepo.GetAsync().Result.Phones,
                     LogoTextBase64 = SetLogoTextAsBackground()
                 });
         }
