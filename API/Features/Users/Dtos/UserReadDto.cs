@@ -5,7 +5,7 @@ namespace API.Features.Users {
     public class UserReadDto {
 
         public string Id { get; set; }
-        public string UserName { get; set; }
+        public string Username { get; set; }
         public string Displayname { get; set; }
         public bool IsFirstFieldFocused { get; set; }
         public SimpleEntity Customer { get; set; }

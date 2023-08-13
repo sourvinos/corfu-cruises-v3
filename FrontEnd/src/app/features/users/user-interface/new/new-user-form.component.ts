@@ -131,13 +131,13 @@ export class NewUserFormComponent {
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            username: ['', [Validators.required, Validators.maxLength(32)]],
-            displayname: ['', [Validators.required, Validators.maxLength(32)]],
+            username: ['', [ValidationService.containsIllegalCharacters, Validators.maxLength(32), Validators.required]],
+            displayname: ['', [ValidationService.beginsOrEndsWithSpace, Validators.maxLength(32), Validators.required]],
             customer: ['', ValidationService.RequireAutocomplete],
-            email: ['x@x.com', [Validators.required, Validators.maxLength(128), Validators.email]],
+            email: ['x@x.com', [Validators.email, Validators.maxLength(128), Validators.required]],
             passwords: this.formBuilder.group({
-                password: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(128), ValidationService.containsSpace]],
-                confirmPassword: ['', [Validators.required, ValidationService.containsSpace]]
+                password: ['', [ValidationService.containsSpace, Validators.maxLength(128), Validators.minLength(10), Validators.required]],
+                confirmPassword: ['', [ValidationService.containsSpace, Validators.required]]
             }, { validator: ValidationService.childrenEqual }),
             isFirstFieldFocused: false,
             isAdmin: false,

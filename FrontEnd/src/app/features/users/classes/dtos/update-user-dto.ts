@@ -3,7 +3,7 @@ import { Guid } from 'guid-typescript'
 export interface UpdateUserDto {
 
     id: Guid
-    userName: string
+    username: string
     displayname: string
     customerId?: number
     email: string

@@ -521,7 +521,7 @@
                 "description": "Mein Konto"
             },
             {
-                "id": "userName",
+                "id": "username",
                 "description": "Nutzername"
             },
             {
@@ -572,6 +572,10 @@
             {
                 "id": "username",
                 "description": "Nutzername"
+            },
+            {
+                "id": "usernameTooltip",
+                "description": "Dies ist der Name, der auf dem Anmeldebildschirm angezeigt wird und der eindeutig sein muss. Sobald der Benutzer angelegt ist, kann er nicht mehr geändert werden. Wählen Sie mit Bedacht!"
             },
             {
                 "id": "displayname",
@@ -2295,7 +2299,7 @@
             },
             {
                 "id": "closingTimeTooltip",
-                "description": "Bezieht sich auf die Zeit, nach der wir keine neuen Reservierungen von einfachen Benutzern mit einer Übertragung auf den nächsten Tag akzeptieren. Wenn Sie diese Funktion deaktivieren möchten, geben Sie 00:00"
+                "description": "Bezieht sich auf die Zeit, nach der wir keine neuen Reservierungen von einfachen Benutzern mit einer Übertragung auf den nächsten Tag akzeptieren. Wenn Sie diese Funktion deaktivieren möchten, geben Sie 00:00."
             },
             {
                 "id": "user",

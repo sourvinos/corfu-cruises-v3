@@ -11,6 +11,7 @@ namespace API.Features.Users {
         public string ConfirmPassword { get; set; }
         public bool IsAdmin { get; set; }
         public bool IsActive { get; set; }
+
     }
 
 }

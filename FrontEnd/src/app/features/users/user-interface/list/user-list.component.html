@@ -12,14 +12,14 @@
                     <tr>
                         <th class="width-5" pSortableColumn="isActive">{{ getLabel("headerIsActive") }}</th>
                         <th class="width-5" pSortableColumn="isAdmin">{{ getLabel("headerIsAdmin") }}</th>
-                        <th class="width-16" pSortableColumn="userName">{{ getLabel("headerUsername") }}</th>
+                        <th class="width-16" pSortableColumn="username">{{ getLabel("headerUsername") }}</th>
                         <th class="width-16" pSortableColumn="displayname">{{ getLabel("headerDisplayname") }}</th>
                         <th class="width-16" pSortableColumn="email">{{ getLabel("headerEmail") }}</th>
                     </tr>
                     <tr>
                         <th class="width-5"><p-columnFilter field="isActive" type="boolean"></p-columnFilter></th>
                         <th class="width-5"><p-columnFilter field="isAdmin" type="boolean"></p-columnFilter></th>
-                        <th class="width-16"><input (input)="table.filter($event.target.value, 'userName', 'contains')" [value]="$any(table).filters['userName']?.value" class="p-inputtext"></th>
+                        <th class="width-16"><input (input)="table.filter($event.target.value, 'username', 'contains')" [value]="$any(table).filters['username']?.value" class="p-inputtext"></th>
                         <th class="width-16"><input (input)="table.filter($event.target.value, 'displayname', 'contains')" [value]="$any(table).filters['displayname']?.value" class="p-inputtext"></th>
                         <th class="width-16"><input (input)="table.filter($event.target.value, 'email', 'contains')" [value]="$any(table).filters['email']?.value" class="p-inputtext"></th>
                     </tr>
@@ -32,7 +32,7 @@
                         <td class="center width-5">
                             <span>{{ getEmoji(record.isAdmin) }}</span>
                         </td>
-                        <td class="width-16">{{ record.userName }}</td>
+                        <td class="width-16">{{ record.username }}</td>
                         <td class="width-16">{{ record.displayname }}</td>
                         <td class="width-16">{{ record.email }}</td>
                     </tr>

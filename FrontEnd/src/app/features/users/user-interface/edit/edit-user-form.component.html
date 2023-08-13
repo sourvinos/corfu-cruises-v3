@@ -9,12 +9,12 @@
         <form [formGroup]="form" autocomplete="off" id="form">
             <!-- Username -->
             <mat-form-field>
-                <mat-label>{{ getLabel('userName') }}</mat-label>
+                <mat-label>{{ getLabel('username') }}</mat-label>
                 <mat-icon class="material-icons-outlined small">lock</mat-icon>
-                <input [inputTabStop]="input" dataTabIndex="1" formControlName="userName" matInput readonly>
-                <mat-error *ngIf="userName.hasError('required')">{{ getHint("required") }}</mat-error>
-                <mat-error *ngIf="userName.hasError('maxlength')">{{ getHint("maxLength", userName.errors.maxlength.requiredLength) }}</mat-error>
-                <mat-error *ngIf="!userName.hasError('required') && userName.hasError('containsIllegalCharacters')">{{ getHint("containsIllegalCharacters") }}</mat-error>
+                <input [inputTabStop]="input" dataTabIndex="1" formControlName="username" matInput readonly>
+                <mat-error *ngIf="username.hasError('required')">{{ getHint("required") }}</mat-error>
+                <mat-error *ngIf="username.hasError('maxlength')">{{ getHint("maxLength", username.errors.maxlength.requiredLength) }}</mat-error>
+                <mat-error *ngIf="!username.hasError('required') && username.hasError('containsIllegalCharacters')">{{ getHint("containsIllegalCharacters") }}</mat-error>
             </mat-form-field>
             <!-- Displayed name -->
             <mat-form-field>

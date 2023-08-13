@@ -25,14 +25,14 @@ namespace API.Features.Reservations {
         public async Task SendReservationToEmail(BoardingPassReservationVM reservation) {
             using var smtp = new SmtpClient();
             smtp.Connect(emailSettings.SmtpClient, emailSettings.Port);
-            smtp.Authenticate(emailSettings.UserName, emailSettings.Password);
+            smtp.Authenticate(emailSettings.Username, emailSettings.Password);
             await smtp.SendAsync(await BuildMessage(reservation));
             smtp.Disconnect(true);
         }
 
         private async Task<MimeMessage> BuildMessage(BoardingPassReservationVM reservation) {
-            var message = new MimeMessage { Sender = MailboxAddress.Parse(emailSettings.UserName) };
-            message.From.Add(new MailboxAddress(emailSettings.From, emailSettings.UserName));
+            var message = new MimeMessage { Sender = MailboxAddress.Parse(emailSettings.Username) };
+            message.From.Add(new MailboxAddress(emailSettings.From, emailSettings.Username));
             message.To.Add(MailboxAddress.Parse(reservation.Email));
             message.Subject = "Your reservation is ready!";
             message.Body = new BodyBuilder { HtmlBody = await BuildTemplate(reservation) }.ToMessageBody();

@@ -521,7 +521,7 @@
                 "description": "Mon compte"
             },
             {
-                "id": "userName",
+                "id": "username",
                 "description": "Nom"
             },
             {
@@ -572,6 +572,10 @@
             {
                 "id": "username",
                 "description": "Utilisateur"
+            },
+            {
+                "id": "usernameTooltip",
+                "description": "Il s'agit du nom demandé sur l'écran de connexion et il doit être unique. Une fois l'utilisateur créé, il ne peut plus être modifié. Choisissez-le judicieusement!"
             },
             {
                 "id": "displayname",
@@ -2295,7 +2299,7 @@
             },
             {
                 "id": "closingTimeTooltip",
-                "description": "Désigne l'heure à partir de laquelle nous n'acceptons plus de nouvelles réservations de la part de simples utilisateurs avec un transfert au jour suivant. Si vous souhaitez désactiver cette fonctionnalité, entrez 00:00"
+                "description": "Désigne l'heure à partir de laquelle nous n'acceptons plus de nouvelles réservations de la part de simples utilisateurs avec un transfert au jour suivant. Si vous souhaitez désactiver cette fonctionnalité, entrez 00:00."
             },
             {
                 "id": "user",

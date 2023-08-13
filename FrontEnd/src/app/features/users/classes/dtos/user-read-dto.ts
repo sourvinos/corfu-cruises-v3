@@ -5,7 +5,7 @@ import { CustomerAutoCompleteVM } from '../../../customers/classes/view-models/c
 export class UserReadDto {
 
     id: Guid
-    userName: string
+    username: string
     displayname: string
     customer: CustomerAutoCompleteVM
     email: string

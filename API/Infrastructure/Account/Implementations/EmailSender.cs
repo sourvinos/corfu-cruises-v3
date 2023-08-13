@@ -22,14 +22,14 @@ namespace API.Infrastructure.Account {
         public async Task SendForgotPasswordEmail(string username, string displayname, string email, string returnUrl, string subject) {
             using var smtp = new SmtpClient();
             smtp.Connect(emailSettings.SmtpClient, emailSettings.Port);
-            smtp.Authenticate(emailSettings.UserName, emailSettings.Password);
+            smtp.Authenticate(emailSettings.Username, emailSettings.Password);
             await smtp.SendAsync(await BuildMessage(username, displayname, email, subject, returnUrl));
             smtp.Disconnect(true);
         }
 
         private async Task<MimeMessage> BuildMessage(string username, string displayname, string email, string subject, string returnUrl) {
-            var message = new MimeMessage { Sender = MailboxAddress.Parse(emailSettings.UserName) };
-            message.From.Add(new MailboxAddress(emailSettings.From, emailSettings.UserName));
+            var message = new MimeMessage { Sender = MailboxAddress.Parse(emailSettings.Username) };
+            message.From.Add(new MailboxAddress(emailSettings.From, emailSettings.Username));
             message.To.Add(MailboxAddress.Parse(email));
             message.Subject = subject;
             message.Body = new BodyBuilder { HtmlBody = await BuildTemplate(username, displayname, email, returnUrl) }.ToMessageBody();

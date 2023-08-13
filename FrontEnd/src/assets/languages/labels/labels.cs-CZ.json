@@ -521,7 +521,7 @@
                 "description": "Můj účet"
             },
             {
-                "id": "userName",
+                "id": "username",
                 "description": "Uživatelské jméno"
             },
             {
@@ -572,6 +572,10 @@
             {
                 "id": "username",
                 "description": "Uživatelské jméno"
+            },
+            {
+                "id": "usernameTooltip",
+                "description": "Toto jméno se zobrazí na přihlašovací obrazovce a musí být jedinečné. Jakmile je uživatel vytvořen, nelze jej změnit. Vybírejte moudře!"
             },
             {
                 "id": "displayname",
@@ -2295,7 +2299,7 @@
             },
             {
                 "id": "closingTimeTooltip",
-                "description": "Označuje dobu, po které nepřijímáme nové rezervace od jednoduchých uživatelů s přesunem na následující den. Pokud chcete tuto funkci zakázat, zadejte 00:00"
+                "description": "Označuje dobu, po které nepřijímáme nové rezervace od jednoduchých uživatelů s přesunem na následující den. Pokud chcete tuto funkci zakázat, zadejte 00:00."
             },
             {
                 "id": "user",

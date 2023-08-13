@@ -1,8 +1,8 @@
 import { ActivatedRoute, Router } from '@angular/router'
-import { Observable } from 'rxjs'
 import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
+import { Observable } from 'rxjs'
 import { map, startWith } from 'rxjs/operators'
 // Custom
 import { CryptoService } from 'src/app/shared/services/crypto.service'
@@ -16,7 +16,7 @@ import { MessageInputHintService } from 'src/app/shared/services/message-input-h
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
-import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
+import { SimpleEntity } from './../../../../shared/classes/simple-entity'
 import { UpdateUserDto } from '../../classes/dtos/update-user-dto'
 import { UserReadDto } from '../../classes/dtos/user-read-dto'
 import { UserService } from '../../classes/services/user.service'
@@ -42,6 +42,13 @@ export class EditUserFormComponent {
 
     //#endregion
 
+    //#region specific #2
+
+    private mirrorRecord: UserReadDto
+    private mustGoBackAfterSave = true
+
+    //#endregion
+
     //#region autocompletes #2
 
     public isAutoCompleteDisabled = true
@@ -59,6 +66,7 @@ export class EditUserFormComponent {
         this.populateFields()
         this.populateDropdowns()
         this.updateReturnUrl()
+        this.cloneRecord()
     }
 
     ngAfterViewInit(): void {
@@ -97,7 +105,12 @@ export class EditUserFormComponent {
         if (this.cryptoService.decrypt(this.sessionStorageService.getItem('userId')) != this.record.id.toString()) {
             this.dialogService.open(this.messageSnackbarService.passwordCanBeChangedOnlyByAccountOwner(), 'error', ['ok'])
         } else {
-            this.router.navigate(['/users/' + this.record.id.toString() + '/changePassword'])
+            if (this.helperService.deepEqual(this.form.value, this.mirrorRecord)) {
+                this.router.navigate(['/users/' + this.record.id.toString() + '/changePassword'])
+            } else {
+                this.mustGoBackAfterSave = false
+                this.dialogService.open(this.messageSnackbarService.formIsDirty(), 'error', ['ok'])
+            }
         }
     }
 
@@ -123,6 +136,10 @@ export class EditUserFormComponent {
         this.icon = 'home'
     }
 
+    private cloneRecord(): void {
+        this.mirrorRecord = this.form.value
+    }
+
     private filterAutocomplete(array: string, field: string, value: any): any[] {
         if (typeof value !== 'object') {
             const filtervalue = value.toLowerCase()
@@ -134,7 +151,7 @@ export class EditUserFormComponent {
     private flattenForm(): UpdateUserDto {
         return {
             id: this.form.value.id,
-            userName: this.form.value.userName,
+            username: this.form.value.username,
             displayname: this.form.value.displayname,
             customerId: this.form.value.customer.id == 0 ? null : this.form.value.customer.id,
             email: this.form.value.email,
@@ -170,10 +187,10 @@ export class EditUserFormComponent {
     private initForm(): void {
         this.form = this.formBuilder.group({
             id: '',
-            userName: ['', [Validators.required, Validators.maxLength(32), ValidationService.containsIllegalCharacters]],
-            displayname: ['', [Validators.required, Validators.maxLength(32), ValidationService.beginsOrEndsWithSpace]],
-            customer: ['', [Validators.required, ValidationService.RequireAutocomplete]],
-            email: ['', [Validators.required, Validators.email, Validators.maxLength(128)]],
+            username: ['', [ValidationService.containsIllegalCharacters, Validators.maxLength(32), Validators.required]],
+            displayname: ['', [ValidationService.beginsOrEndsWithSpace, Validators.maxLength(32), Validators.required]],
+            customer: ['', [ValidationService.RequireAutocomplete]],
+            email: ['', [Validators.email, Validators.maxLength(128), Validators.required]],
             isFirstFieldFocused: false,
             isAdmin: false,
             isActive: true
@@ -195,7 +212,7 @@ export class EditUserFormComponent {
     private populateFields(): void {
         this.form.setValue({
             id: this.record.id,
-            userName: this.record.userName,
+            username: this.record.username,
             displayname: this.record.displayname,
             customer: { 'id': this.record.customer.id, 'description': this.record.customer.id == 0 ? this.emojiService.getEmoji('wildcard') : this.record.customer.description },
             email: this.record.email,
@@ -213,7 +230,8 @@ export class EditUserFormComponent {
         this.userService.save(user).subscribe({
             complete: () => {
                 this.sessionStorageService.saveItem('isFirstFieldFocused', user.isFirstFieldFocused.toString())
-                this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
+                this.mirrorRecord = this.form.value
+                this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form, false, this.mustGoBackAfterSave)
             },
             error: (errorFromInterceptor) => {
                 this.helperService.doPostSaveFormTasks(this.messageSnackbarService.filterResponse(errorFromInterceptor), 'error', this.parentUrl, this.form, false, false)
@@ -229,8 +247,8 @@ export class EditUserFormComponent {
 
     //#region getters
 
-    get userName(): AbstractControl {
-        return this.form.get('userName')
+    get username(): AbstractControl {
+        return this.form.get('username')
     }
 
     get displayname(): AbstractControl {
