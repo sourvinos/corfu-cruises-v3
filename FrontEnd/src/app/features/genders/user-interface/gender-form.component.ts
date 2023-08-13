@@ -68,7 +68,7 @@ export class GenderFormComponent {
                 this.genderService.delete(this.form.value.id).subscribe({
                     complete: () => {
                         this.dexieService.remove('genders', this.form.value.id)
-                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, this.form)
+                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, true)
                     },
                     error: (errorFromInterceptor) => {
                         this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
@@ -149,10 +149,10 @@ export class GenderFormComponent {
         this.genderService.save(gender).subscribe({
             next: (response) => {
                 this.dexieService.update('genders', { 'id': parseInt(response.id), 'description': gender.description, 'isActive': gender.isActive })
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, this.form)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, true)
             },
             error: (errorFromInterceptor) => {
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', this.parentUrl, this.form, false)
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
             }
         })
     }

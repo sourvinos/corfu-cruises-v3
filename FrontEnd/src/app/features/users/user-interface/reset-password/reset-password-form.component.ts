@@ -118,7 +118,7 @@ export class ResetPasswordFormComponent {
         this.isLoading = true
         this.accountService.resetPassword(form).subscribe({
             complete: () => {
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, this.form)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, true)
                 this.router.navigate(['/login'])
                 this.isLoading = false
             },

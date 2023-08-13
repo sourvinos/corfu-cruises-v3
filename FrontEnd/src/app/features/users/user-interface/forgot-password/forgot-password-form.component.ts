@@ -66,10 +66,10 @@ export class ForgotPasswordFormComponent {
     public onSubmit(): void {
         this.accountService.forgotPassword(this.form.value).pipe(indicate(this.isLoading)).subscribe({
             complete: () => {
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.emailSent(), 'success', this.parentUrl, this.form, true, true)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.emailSent(), 'success', this.parentUrl, true)
             },
             error: () => {
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.emailNotSent(), 'error', this.parentUrl, this.form)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.emailNotSent(), 'error', this.parentUrl, true)
             }
         })
     }

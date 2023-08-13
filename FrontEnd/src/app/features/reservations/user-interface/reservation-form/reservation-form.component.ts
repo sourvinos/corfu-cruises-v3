@@ -174,7 +174,7 @@ export class ReservationFormComponent {
             if (response) {
                 this.reservationService.delete(this.form.value.reservationId).subscribe({
                     complete: () => {
-                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, this.form)
+                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, true)
                         this.localStorageService.deleteItems([{ 'item': 'reservation', 'when': 'always' },])
                         this.sessionStorageService.deleteItems([{ 'item': 'nationality', 'when': 'always' }])
                     },
@@ -193,11 +193,11 @@ export class ReservationFormComponent {
         } else {
             this.boardingPassService.emailBoardingPass(this.form.value.reservationId).subscribe({
                 next: () => {
-                    this.helperService.doPostSaveFormTasks(this.messageDialogService.emailSent(), 'success', this.parentUrl, this.form, false, false)
+                    this.helperService.doPostSaveFormTasks(this.messageDialogService.emailSent(), 'success', this.parentUrl, false)
                     this.mustGoBackAfterSave = true
                 },
                 error: (errorFromInterceptor) => {
-                    this.helperService.doPostSaveFormTasks(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', this.parentUrl, this.form, false, false)
+                    this.helperService.doPostSaveFormTasks(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', this.parentUrl, false)
                 }
             })
         }
@@ -472,7 +472,7 @@ export class ReservationFormComponent {
                 const date = this.dateHelperService.formatDateToIso(new Date(this.form.value.date))
                 this.sessionStorageService.saveItem('date', date)
                 this.parentUrl = '/reservations/date/' + date
-                this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'success', this.parentUrl, this.form, false, this.mustGoBackAfterSave)
+                this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'success', this.parentUrl, this.mustGoBackAfterSave)
                 this.form.patchValue({
                     reservationId: response.id,
                     refNo: response.message
@@ -482,7 +482,7 @@ export class ReservationFormComponent {
                 this.sessionStorageService.deleteItems([{ 'item': 'nationality', 'when': 'always' }])
             },
             error: (errorFromInterceptor) => {
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', this.parentUrl, this.form, false, false)
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
             }
         })
     }

@@ -231,10 +231,10 @@ export class EditUserFormComponent {
             complete: () => {
                 this.sessionStorageService.saveItem('isFirstFieldFocused', user.isFirstFieldFocused.toString())
                 this.mirrorRecord = this.form.value
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, this.form, false, this.mustGoBackAfterSave)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, this.mustGoBackAfterSave)
             },
             error: (errorFromInterceptor) => {
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', this.parentUrl, this.form, false, false)
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
             }
         })
     }
