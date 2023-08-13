@@ -21,7 +21,7 @@ export class LanguageMenuComponent {
 
     //#endregion
 
-    constructor(private interactionService: InteractionService, private localStorageStorageService: LocalStorageService, private messageCalendarService: MessageCalendarService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService) { }
+    constructor(private interactionService: InteractionService, private localStorageStorageService: LocalStorageService, private messageCalendarService: MessageCalendarService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService) { }
 
     //#region listeners
 
@@ -67,7 +67,7 @@ export class LanguageMenuComponent {
         this.messageCalendarService.getMessages()
         this.messageHintService.getMessages()
         this.messageLabelService.getMessages()
-        this.messageSnackbarService.getMessages()
+        this.messageDialogService.getMessages()
         this.interactionService.updateDateAdapters()
         this.interactionService.updateMenus()
         this.interactionService.updateTabTitle()

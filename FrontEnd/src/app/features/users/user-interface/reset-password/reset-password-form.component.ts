@@ -4,7 +4,7 @@ import { Component } from '@angular/core'
 // Custom
 import { AccountService } from 'src/app/shared/services/account.service'
 import { ConfirmValidParentMatcher, ValidationService } from 'src/app/shared/services/validation.service'
-import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
+import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -40,7 +40,7 @@ export class ResetPasswordFormComponent {
 
     //#endregion
 
-    constructor(private accountService: AccountService, private activatedRoute: ActivatedRoute, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router) { }
+    constructor(private accountService: AccountService, private activatedRoute: ActivatedRoute, private dialogService: DialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -118,12 +118,12 @@ export class ResetPasswordFormComponent {
         this.isLoading = true
         this.accountService.resetPassword(form).subscribe({
             complete: () => {
-                this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, this.form)
                 this.router.navigate(['/login'])
                 this.isLoading = false
             },
             error: () => {
-                this.dialogService.open(this.messageSnackbarService.unableToResetPassword(), 'error', ['ok'])
+                this.dialogService.open(this.messageDialogService.unableToResetPassword(), 'error', ['ok'])
                 this.router.navigate(['/login'])
                 this.isLoading = false
             }

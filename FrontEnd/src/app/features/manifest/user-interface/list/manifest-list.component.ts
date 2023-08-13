@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog'
 import { Table } from 'primeng/table'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
+import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
@@ -14,7 +15,6 @@ import { ManifestRouteSelectorComponent } from './manifest-route-selector.compon
 import { ManifestVM } from '../../classes/view-models/list/manifest-vm'
 import { MessageDialogService } from '../../../../shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { RegistrarService } from 'src/app/features/registrars/classes/services/registrar.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
@@ -52,7 +52,7 @@ export class ManifestListComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private dialogService: ModalDialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private manifestPdfService: ManifestPdfService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private registrarService: RegistrarService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
+    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private manifestPdfService: ManifestPdfService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private registrarService: RegistrarService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
 
@@ -77,7 +77,7 @@ export class ManifestListComponent {
         this.validateRegistrarsForManifest().then((response) => {
             response.code == 200
                 ? this.showRouteSelectionDialog()
-                : this.dialogService.open(this.messageSnackbarService.errorsInRegistrars(), 'error', ['ok'])
+                : this.dialogService.open(this.messageDialogService.errorsInRegistrars(), 'error', ['ok'])
         })
     }
 
@@ -143,7 +143,7 @@ export class ManifestListComponent {
                 this.records = listResolved.list
                 resolve(this.records)
             } else {
-                this.dialogService.open(this.messageSnackbarService.filterResponse(listResolved.error), 'error', ['ok']).subscribe(() => {
+                this.dialogService.open(this.messageDialogService.filterResponse(listResolved.error), 'error', ['ok']).subscribe(() => {
                     this.goBack()
                 })
             }

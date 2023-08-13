@@ -2,12 +2,12 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component } from '@angular/core'
 // Custom
+import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { ParametersReadDto } from '../classes/models/parameters-read.dto'
 import { ParametersService } from '../classes/services/parameters.service'
 import { ParametersWriteDto } from '../classes/models/parameters-write.dto'
@@ -33,7 +33,7 @@ export class ParametersComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder, private helperService: HelperService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private dialogService: ModalDialogService, private router: Router, private parametersService: ParametersService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private parametersService: ParametersService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -81,7 +81,7 @@ export class ParametersComponent {
                 this.record = formResolved.record.body
                 resolve(this.record)
             } else {
-                this.dialogService.open(this.messageSnackbarService.filterResponse(formResolved.error), 'error', ['ok']).subscribe(() => {
+                this.dialogService.open(this.messageDialogService.filterResponse(formResolved.error), 'error', ['ok']).subscribe(() => {
                     this.resetForm()
                     this.goBack()
                 })
@@ -120,10 +120,10 @@ export class ParametersComponent {
     private saveRecord(parameters: ParametersWriteDto): void {
         this.parametersService.save(parameters).subscribe({
             next: () => {
-                this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, this.form)
             },
             error: (errorFromInterceptor) => {
-                this.helperService.doPostSaveFormTasks(this.messageSnackbarService.filterResponse(errorFromInterceptor), 'error', this.parentUrl, this.form, false)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', this.parentUrl, this.form, false)
             }
         })
     }

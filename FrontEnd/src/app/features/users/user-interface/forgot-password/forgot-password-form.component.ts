@@ -32,12 +32,12 @@ export class ForgotPasswordFormComponent {
     //#endregion
 
     //#region specific #1
-    
+
     public isLoading = new Subject<boolean>()
 
     //#endregion
 
-    constructor(private accountService: AccountService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService) { }
+    constructor(private accountService: AccountService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService) { }
 
     //#region lifecycle hooks
 
@@ -66,10 +66,10 @@ export class ForgotPasswordFormComponent {
     public onSubmit(): void {
         this.accountService.forgotPassword(this.form.value).pipe(indicate(this.isLoading)).subscribe({
             complete: () => {
-                this.helperService.doPostSaveFormTasks(this.messageSnackbarService.emailSent(), 'success', this.parentUrl, this.form, true, true)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.emailSent(), 'success', this.parentUrl, this.form, true, true)
             },
             error: () => {
-                this.helperService.doPostSaveFormTasks(this.messageSnackbarService.emailNotSent(), 'error', this.parentUrl, this.form)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.emailNotSent(), 'error', this.parentUrl, this.form)
             }
         })
     }

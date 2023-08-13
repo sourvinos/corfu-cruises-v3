@@ -7,6 +7,7 @@ import { map, startWith } from 'rxjs/operators'
 // Custom
 import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
+import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
@@ -14,7 +15,6 @@ import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.d
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from './../../../../shared/classes/simple-entity'
 import { UpdateUserDto } from '../../classes/dtos/update-user-dto'
@@ -56,7 +56,7 @@ export class EditUserFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private cryptoService: CryptoService, private dexieService: DexieService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private sessionStorageService: SessionStorageService, private userService: UserService,) { }
+    constructor(private activatedRoute: ActivatedRoute, private cryptoService: CryptoService, private dexieService: DexieService, private dialogService: DialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService, private userService: UserService) { }
 
     //#region lifecycle hooks
 
@@ -103,13 +103,13 @@ export class EditUserFormComponent {
 
     public onChangePassword(): void {
         if (this.cryptoService.decrypt(this.sessionStorageService.getItem('userId')) != this.record.id.toString()) {
-            this.dialogService.open(this.messageSnackbarService.passwordCanBeChangedOnlyByAccountOwner(), 'error', ['ok'])
+            this.dialogService.open(this.messageDialogService.passwordCanBeChangedOnlyByAccountOwner(), 'error', ['ok'])
         } else {
             if (this.helperService.deepEqual(this.form.value, this.mirrorRecord)) {
                 this.router.navigate(['/users/' + this.record.id.toString() + '/changePassword'])
             } else {
                 this.mustGoBackAfterSave = false
-                this.dialogService.open(this.messageSnackbarService.formIsDirty(), 'error', ['ok'])
+                this.dialogService.open(this.messageDialogService.formIsDirty(), 'error', ['ok'])
             }
         }
     }
@@ -172,7 +172,7 @@ export class EditUserFormComponent {
                 this.record = formResolved.record.body
                 resolve(this.record)
             } else {
-                this.dialogService.open(this.messageSnackbarService.filterResponse(formResolved.error), 'error', ['ok']).subscribe(() => {
+                this.dialogService.open(this.messageDialogService.filterResponse(formResolved.error), 'error', ['ok']).subscribe(() => {
                     this.resetForm()
                     this.goBack()
                 })
@@ -231,10 +231,10 @@ export class EditUserFormComponent {
             complete: () => {
                 this.sessionStorageService.saveItem('isFirstFieldFocused', user.isFirstFieldFocused.toString())
                 this.mirrorRecord = this.form.value
-                this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form, false, this.mustGoBackAfterSave)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, this.form, false, this.mustGoBackAfterSave)
             },
             error: (errorFromInterceptor) => {
-                this.helperService.doPostSaveFormTasks(this.messageSnackbarService.filterResponse(errorFromInterceptor), 'error', this.parentUrl, this.form, false, false)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', this.parentUrl, this.form, false, false)
             }
         })
     }

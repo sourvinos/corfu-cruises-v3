@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
+import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { LedgerVM } from '../../../classes/view-models/list/ledger-vm'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 
 @Component({
     selector: 'ledger-customer-reservations',
@@ -23,7 +23,7 @@ export class LedgerCustomerReservationListComponent {
 
     //#endregion
 
-    constructor(private dateHelperService: DateHelperService, private dialogService: ModalDialogService, private emojiService: EmojiService, private messageLabelService: MessageLabelService) { }
+    constructor(private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private messageLabelService: MessageLabelService) { }
 
     //#region public methods
 

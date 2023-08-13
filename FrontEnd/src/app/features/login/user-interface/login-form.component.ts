@@ -5,16 +5,16 @@ import { Subject } from 'rxjs'
 import { Title } from '@angular/platform-browser'
 // Custom
 import { AccountService } from '../../../shared/services/account.service'
-import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
+import { DateHelperService } from 'src/app/shared/services/date-helper.service'
+import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { HelperService, indicate } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { environment } from 'src/environments/environment'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
-import { DateHelperService } from 'src/app/shared/services/date-helper.service'
+import { environment } from 'src/environments/environment'
 
 @Component({
     selector: 'login-form',
@@ -42,7 +42,7 @@ export class LoginFormComponent {
 
     //#endregion
 
-    constructor(private dateHelperService: DateHelperService, private sessionStorageService: SessionStorageService, private accountService: AccountService, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private titleService: Title) { }
+    constructor(private accountService: AccountService, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService, private titleService: Title) { }
 
     //#region lifecycle hooks
 
@@ -93,7 +93,7 @@ export class LoginFormComponent {
 
     private checkScreenResolution(): void {
         if (window.screen.width < environment.minWidth || window.screen.height < 800) {
-            this.dialogService.open(this.messageSnackbarService.resolutionWarning(), 'warning', ['ok'])
+            this.dialogService.open(this.messageDialogService.resolutionWarning(), 'warning', ['ok'])
         }
     }
 
@@ -134,10 +134,10 @@ export class LoginFormComponent {
     private showError(error: any): void {
         switch (error.status) {
             case 0:
-                this.dialogService.open(this.messageSnackbarService.noContactWithServer(), 'error', ['ok'])
+                this.dialogService.open(this.messageDialogService.noContactWithServer(), 'error', ['ok'])
                 break
             case 401:
-                this.dialogService.open(this.messageSnackbarService.authenticationFailed(), 'error', ['ok'])
+                this.dialogService.open(this.messageDialogService.authenticationFailed(), 'error', ['ok'])
                 break
         }
     }

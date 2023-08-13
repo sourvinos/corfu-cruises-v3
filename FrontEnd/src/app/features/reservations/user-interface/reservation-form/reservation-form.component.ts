@@ -14,6 +14,7 @@ import { CustomerAutoCompleteVM } from '../../../customers/classes/view-models/c
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DestinationAutoCompleteVM } from 'src/app/features/destinations/classes/view-models/destination-autocomplete-vm'
 import { DexieService } from 'src/app/shared/services/dexie.service'
+import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { DriverAutoCompleteVM } from '../../../drivers/classes/view-models/driver-autocomplete-vm'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
@@ -24,7 +25,6 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { PickupPointAutoCompleteVM } from 'src/app/features/pickupPoints/classes/view-models/pickupPoint-autocomplete-vm'
 import { PortAutoCompleteVM } from 'src/app/features/ports/classes/view-models/port-autocomplete-vm'
 import { ReservationHelperService } from '../../classes/services/reservation.helper.service'
@@ -79,7 +79,7 @@ export class ReservationFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private boardingPassService: BoardingPassService, private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialog: MatDialog, private dialogService: ModalDialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private reservationHelperService: ReservationHelperService, private reservationService: ReservationHttpService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private activatedRoute: ActivatedRoute, private boardingPassService: BoardingPassService, private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialog: MatDialog, private dialogService: DialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private reservationHelperService: ReservationHelperService, private reservationService: ReservationHttpService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -171,16 +171,16 @@ export class ReservationFormComponent {
     }
 
     public onDelete(): void {
-        this.dialogService.open(this.messageSnackbarService.confirmDelete(), 'warning', ['abort', 'ok']).subscribe(response => {
+        this.dialogService.open(this.messageDialogService.confirmDelete(), 'warning', ['abort', 'ok']).subscribe(response => {
             if (response) {
                 this.reservationService.delete(this.form.value.reservationId).subscribe({
                     complete: () => {
-                        this.helperService.doPostSaveFormTasks(this.messageSnackbarService.success(), 'success', this.parentUrl, this.form)
+                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, this.form)
                         this.localStorageService.deleteItems([{ 'item': 'reservation', 'when': 'always' },])
                         this.sessionStorageService.deleteItems([{ 'item': 'nationality', 'when': 'always' }])
                     },
                     error: (errorFromInterceptor) => {
-                        this.dialogService.open(this.messageSnackbarService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
                     }
                 })
             }
@@ -191,16 +191,16 @@ export class ReservationFormComponent {
         if (this.isRecordSaved() == false || this.arePassengersMissing() || this.form.value.email == '') {
             this.formMustCloseAfterSave = false
             this.mustGoBackAfterSave = false
-            this.dialogService.open(this.messageSnackbarService.threePointReservationValidation(), 'error', ['ok'])
+            this.dialogService.open(this.messageDialogService.threePointReservationValidation(), 'error', ['ok'])
         } else {
             this.boardingPassService.emailBoardingPass(this.form.value.reservationId).subscribe({
                 next: () => {
-                    this.helperService.doPostSaveFormTasks(this.messageSnackbarService.emailSent(), 'success', this.parentUrl, this.form, false, false)
+                    this.helperService.doPostSaveFormTasks(this.messageDialogService.emailSent(), 'success', this.parentUrl, this.form, false, false)
                     this.formMustCloseAfterSave = true
                     this.mustGoBackAfterSave = true
                 },
                 error: (errorFromInterceptor) => {
-                    this.helperService.doPostSaveFormTasks(this.messageSnackbarService.filterResponse(errorFromInterceptor), 'error', this.parentUrl, this.form, false, false)
+                    this.helperService.doPostSaveFormTasks(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', this.parentUrl, this.form, false, false)
                 }
             })
         }
@@ -210,7 +210,7 @@ export class ReservationFormComponent {
         if (this.isRecordSaved() == false || this.arePassengersMissing()) {
             this.formMustCloseAfterSave = false
             this.mustGoBackAfterSave = false
-            this.dialogService.open(this.messageSnackbarService.twoPointReervationValidation(), 'error', ['ok'])
+            this.dialogService.open(this.messageDialogService.twoPointReervationValidation(), 'error', ['ok'])
         } else {
             this.boardingPassService.printBoardingPass(this.boardingPassService.createBoardingPass(this.form.value))
         }
@@ -354,7 +354,7 @@ export class ReservationFormComponent {
                 this.record = formResolved.record.body
                 resolve(this.record)
             } else {
-                this.dialogService.open(this.messageSnackbarService.filterResponse(new Error('500')), 'error', ['ok'])
+                this.dialogService.open(this.messageDialogService.filterResponse(new Error('500')), 'error', ['ok'])
                 this.goBack()
             }
         })
@@ -490,7 +490,7 @@ export class ReservationFormComponent {
                 this.sessionStorageService.deleteItems([{ 'item': 'nationality', 'when': 'always' }])
             },
             error: (errorFromInterceptor) => {
-                this.helperService.doPostSaveFormTasks(this.messageSnackbarService.filterResponse(errorFromInterceptor), 'error', this.parentUrl, this.form, false, false)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', this.parentUrl, this.form, false, false)
             }
         })
     }

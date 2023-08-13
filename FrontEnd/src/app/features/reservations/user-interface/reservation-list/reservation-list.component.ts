@@ -6,6 +6,7 @@ import { Table } from 'primeng/table'
 // Custom
 import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
+import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { DriverReportService } from '../../classes/driver-report/services/driver-report.service'
 import { EmojiService } from './../../../../shared/services/emoji.service'
 import { HelperService } from './../../../../shared/services/helper.service'
@@ -13,7 +14,6 @@ import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { ListResolved } from 'src/app/shared/classes/list-resolved'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { ReservationHttpService } from '../../classes/services/reservation.http.service'
 import { ReservationListDestinationVM } from 'src/app/features/reservations/classes/view-models/list/reservation-list-destination-vm'
 import { ReservationListOverbookedDestinationVM } from '../../classes/view-models/list/reservation-list-overbooked-destination-vm'
@@ -57,7 +57,7 @@ export class ReservationListComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private cryptoService: CryptoService, private dateHelperService: DateHelperService, private driverReportService: DriverReportService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private dialogService: ModalDialogService, private reservationService: ReservationHttpService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
+    constructor(private activatedRoute: ActivatedRoute, private cryptoService: CryptoService, private dateHelperService: DateHelperService, private dialogService: DialogService, private driverReportService: DriverReportService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private reservationService: ReservationHttpService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
 
@@ -94,7 +94,7 @@ export class ReservationListComponent {
             dialogRef.afterClosed().subscribe(result => {
                 if (result !== undefined) {
                     this.reservationService.assignToDriver(result.record.id, this.selectedRecords).subscribe(() => {
-                        this.dialogService.open(this.messageSnackbarService.success(), 'success', ['ok']).subscribe(() => {
+                        this.dialogService.open(this.messageDialogService.success(), 'success', ['ok']).subscribe(() => {
                             this.clearSelectedRecords()
                             this.resetTableFilters()
                             this.refreshList()
@@ -117,7 +117,7 @@ export class ReservationListComponent {
             dialogRef.afterClosed().subscribe(result => {
                 if (result !== undefined) {
                     this.reservationService.assignToShip(result.record.id, this.selectedRecords).subscribe(() => {
-                        this.dialogService.open(this.messageSnackbarService.success(), 'success', ['ok']).subscribe(() => {
+                        this.dialogService.open(this.messageDialogService.success(), 'success', ['ok']).subscribe(() => {
                             this.clearSelectedRecords()
                             this.resetTableFilters()
                             this.refreshList()
@@ -290,7 +290,7 @@ export class ReservationListComponent {
 
     private isAnyRowSelected(): boolean {
         if (this.selectedRecords.length == 0) {
-            this.dialogService.open(this.messageSnackbarService.noRecordsSelected(), 'error', ['ok'])
+            this.dialogService.open(this.messageDialogService.noRecordsSelected(), 'error', ['ok'])
             return false
         }
         return true
@@ -303,7 +303,7 @@ export class ReservationListComponent {
                 this.records = listResolved.list
                 resolve(this.records)
             } else {
-                this.dialogService.open(this.messageSnackbarService.filterResponse(listResolved.error), 'error', ['ok']).subscribe(() => {
+                this.dialogService.open(this.messageDialogService.filterResponse(listResolved.error), 'error', ['ok']).subscribe(() => {
                     this.router.navigate([this.parentUrl])
                 })
             }

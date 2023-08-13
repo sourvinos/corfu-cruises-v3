@@ -6,7 +6,7 @@ import { ModalDialogComponent } from '../components/modal-dialog/modal-dialog.co
 
 @Injectable({ providedIn: 'root' })
 
-export class ModalDialogService {
+export class DialogService {
 
     private response: any
 

@@ -5,6 +5,7 @@ import { DateAdapter } from '@angular/material/core'
 import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DayVM } from '../classes/view-models/day-vm'
+import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { ListResolved } from 'src/app/shared/classes/list-resolved'
@@ -12,7 +13,6 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 import { MessageCalendarService } from 'src/app/shared/services/message-calendar.service'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from '../../../shared/services/message-label.service'
-import { ModalDialogService } from 'src/app/shared/services/modal-dialog.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
@@ -40,7 +40,7 @@ export class AvailabilityComponent {
 
     // #endregion 
 
-    constructor(private activatedRoute: ActivatedRoute, private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: ModalDialogService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageCalendarService: MessageCalendarService, private messageLabelService: MessageLabelService, private messageSnackbarService: MessageDialogService, private router: Router, private sessionStorageService: SessionStorageService) {
+    constructor(private activatedRoute: ActivatedRoute, private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageCalendarService: MessageCalendarService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) {
         this.router.events.subscribe((navigation) => {
             if (navigation instanceof NavigationEnd && navigation.url == this.url) {
                 this.updateVariables()
@@ -74,7 +74,7 @@ export class AvailabilityComponent {
     //#region public methods
 
     public askToRefreshCalendar(): void {
-        this.dialogService.open(this.messageSnackbarService.askToRefreshCalendar(), 'warning', ['abort', 'ok']).subscribe(response => {
+        this.dialogService.open(this.messageDialogService.askToRefreshCalendar(), 'warning', ['abort', 'ok']).subscribe(response => {
             if (response) {
                 this.isSizeChanged = false
                 this.router.navigate([this.url])
@@ -222,7 +222,7 @@ export class AvailabilityComponent {
                 resolve(this.records)
             } else {
                 this.goBack()
-                this.dialogService.open(this.messageSnackbarService.filterResponse(new Error('500')), 'error', ['ok'])
+                this.dialogService.open(this.messageDialogService.filterResponse(new Error('500')), 'error', ['ok'])
             }
         })
     }
