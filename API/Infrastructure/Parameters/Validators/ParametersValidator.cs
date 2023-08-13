@@ -7,6 +7,7 @@ namespace API.Infrastructure.Parameters {
 
         public ParametersValidator() {
             RuleFor(x => x.ClosingTime).Must(TimeHelpers.BeValidTime);
+            RuleFor(x => x.Phones).NotEmpty().MaximumLength(128);
         }
 
     }

@@ -7,6 +7,7 @@ import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
+import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { ParametersReadDto } from '../classes/models/parameters-read.dto'
 import { ParametersService } from '../classes/services/parameters.service'
@@ -33,7 +34,7 @@ export class ParametersComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private parametersService: ParametersService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private parametersService: ParametersService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -51,6 +52,10 @@ export class ParametersComponent {
 
     //#region public methods
 
+    public getHint(id: string, minmax = 0): string {
+        return this.messageHintService.getDescription(id, minmax)
+    }
+
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
     }
@@ -66,7 +71,8 @@ export class ParametersComponent {
     private flattenForm(): ParametersWriteDto {
         return {
             id: this.form.value.id,
-            closingTime: this.form.value.closingTime
+            closingTime: this.form.value.closingTime,
+            phones: this.form.value.phones
         }
     }
 
@@ -97,6 +103,7 @@ export class ParametersComponent {
         this.form = this.formBuilder.group({
             id: [''],
             closingTime: ['00:00', [Validators.required, ValidationService.isTime]],
+            phones: ['', [Validators.required, Validators.maxLength(128)]],
             user: [''],
             lastUpdate: ['']
         })
@@ -107,6 +114,7 @@ export class ParametersComponent {
             this.form.setValue({
                 id: this.record.id,
                 closingTime: this.record.closingTime,
+                phones: this.record.phones,
                 user: this.record.user,
                 lastUpdate: this.record.lastUpdate
             })
@@ -134,6 +142,10 @@ export class ParametersComponent {
 
     get closingTime(): AbstractControl {
         return this.form.get('closingTime')
+    }
+
+    get phones(): AbstractControl {
+        return this.form.get('phones')
     }
 
     get user(): AbstractControl {

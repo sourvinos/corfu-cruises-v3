@@ -2302,6 +2302,14 @@
                 "description": "Refers to the time after which we do not accept new reservations from simple users with a transfer to the next day. If you want to disable this functionality, enter 00:00."
             },
             {
+                "id": "phones",
+                "description": "Phones"
+            },
+            {
+                "id": "phonesTooltip",
+                "description": "Whatever you write here will be printed to the footer of the emails we send."
+            },
+            {
                 "id": "user",
                 "description": "User"
             },

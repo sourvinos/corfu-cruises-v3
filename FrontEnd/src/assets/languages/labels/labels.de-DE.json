@@ -2302,6 +2302,14 @@
                 "description": "Bezieht sich auf die Zeit, nach der wir keine neuen Reservierungen von einfachen Benutzern mit einer Übertragung auf den nächsten Tag akzeptieren. Wenn Sie diese Funktion deaktivieren möchten, geben Sie 00:00."
             },
             {
+                "id": "phones",
+                "description": "Telefone"
+            },
+            {
+                "id": "phonesTooltip",
+                "description": "Alles, was Sie hier schreiben, wird in der Fußzeile der von uns verschickten E-Mails gedruckt."
+            },
+            {
                 "id": "user",
                 "description": "Benutzer"
             },

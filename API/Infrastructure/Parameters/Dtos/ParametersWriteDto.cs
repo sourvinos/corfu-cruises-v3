@@ -6,6 +6,7 @@ namespace API.Infrastructure.Parameters {
 
         public Guid Id { get; set; }
         public string ClosingTime { get; set; }
+        public string Phones { get; set; }
         public string UserId { get; set; }
 
     }

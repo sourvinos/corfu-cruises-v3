@@ -2302,6 +2302,14 @@
                 "description": "Désigne l'heure à partir de laquelle nous n'acceptons plus de nouvelles réservations de la part de simples utilisateurs avec un transfert au jour suivant. Si vous souhaitez désactiver cette fonctionnalité, entrez 00:00."
             },
             {
+                "id": "phones",
+                "description": "Téléphone"
+            },
+            {
+                "id": "phonesTooltip",
+                "description": "Tout ce que vous écrivez ici sera imprimé en bas de page des courriels que nous envoyons."
+            },
+            {
                 "id": "user",
                 "description": "Utilisateur"
             },

@@ -2302,6 +2302,14 @@
                 "description": "Označuje dobu, po které nepřijímáme nové rezervace od jednoduchých uživatelů s přesunem na následující den. Pokud chcete tuto funkci zakázat, zadejte 00:00."
             },
             {
+                "id": "phones",
+                "description": "Phony"
+            },
+            {
+                "id": "phonesTooltip",
+                "description": "Cokoli zde napíšete, bude vytištěno v zápatí e-mailů, které posíláme."
+            },
+            {
                 "id": "user",
                 "description": "Uživatel"
             },

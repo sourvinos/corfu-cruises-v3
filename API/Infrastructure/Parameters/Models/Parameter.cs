@@ -10,6 +10,7 @@ namespace API.Infrastructure.Parameters {
         public Guid Id { get; set; }
         // Fields
         public string ClosingTime { get; set; }
+        public string Phones { get; set; }
         public string LastUpdate { get; set; }
         // FKs
         public string UserId { get; set; }
