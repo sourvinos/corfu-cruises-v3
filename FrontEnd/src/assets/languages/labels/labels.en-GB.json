@@ -910,8 +910,8 @@
                 "description": "Continue"
             },
             {
-                "id": "weNeedYourEmail",
-                "description": "Give us your email and we'll send you instructions on how to reset your password"
+                "id": "emailTooltip",
+                "description": "Give us your email address and if we find it listed in our records, we will send you instructions on how to create a new password."
             }
         ]
     },

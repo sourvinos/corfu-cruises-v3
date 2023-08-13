@@ -910,8 +910,8 @@
                 "description": "Weiter"
             },
             {
-                "id": "weNeedYourEmail",
-                "description": "Geben Sie uns Ihre Email-Adresse und wir senden Ihnen Anweisungen zum Zurücksetzen Ihres Passworts"
+                "id": "emailTooltip",
+                "description": "Geben Sie uns Ihre E-Mail-Adresse an, und wenn wir sie in unseren Unterlagen finden, senden wir Ihnen Anweisungen zur Erstellung eines neuen Passworts zu."
             }
         ]
     },

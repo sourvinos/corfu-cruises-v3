@@ -910,8 +910,8 @@
                 "description": "Continuer"
             },
             {
-                "id": "weNeedYourEmail",
-                "description": "Donner l'adresse email et on donnera des instructions pour creer un mot de passe de nouvel utilisateur"
+                "id": "emailTooltip",
+                "description": "Donnez-nous votre adresse électronique et si nous la trouvons dans nos dossiers, nous vous enverrons des instructions sur la manière de créer un nouveau mot de passe."
             }
         ]
     },

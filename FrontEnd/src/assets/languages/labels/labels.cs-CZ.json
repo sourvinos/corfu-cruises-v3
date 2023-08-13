@@ -910,8 +910,8 @@
                 "description": "Pokračovat"
             },
             {
-                "id": "weNeedYourEmail",
-                "description": "Sdělte nám svůj e -mail a my vám zašleme pokyny k obnovení hesla."
+                "id": "emailTooltip",
+                "description": "Sdělte nám svou e-mailovou adresu, a pokud ji najdeme v našich záznamech, zašleme vám pokyny k vytvoření nového hesla."
             }
         ]
     },

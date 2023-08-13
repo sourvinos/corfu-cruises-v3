@@ -98,11 +98,6 @@
 }
 
 /* Button icon */
-.mat-mdc-icon-button .mat-icon {
-    transition: color var(--theme-delay) !important;
-}
-
-/* Button icon */
 .mat-mdc-icon-button .mat-icon.extra-top-margin {
     margin-top: 0.6rem;
 }
