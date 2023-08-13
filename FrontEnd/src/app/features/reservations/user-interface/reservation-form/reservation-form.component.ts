@@ -57,8 +57,7 @@ export class ReservationFormComponent {
 
     //#region specific #7
 
-    private formMustCloseAfterSave = true
-    private mirrorRecord: ReservationWriteDto
+    private mirrorRecord: ReservationReadDto
     private mustGoBackAfterSave = true
     public isNewRecord: boolean
     public isPassengersTabVisible: boolean
@@ -188,15 +187,13 @@ export class ReservationFormComponent {
     }
 
     public onEmailBoardingPass(): void {
-        if (this.isRecordSaved() == false || this.arePassengersMissing() || this.form.value.email == '') {
-            this.formMustCloseAfterSave = false
+        if (this.helperService.deepEqual(this.form.value, this.mirrorRecord) == false || this.arePassengersMissing() || this.form.value.email == '') {
             this.mustGoBackAfterSave = false
             this.dialogService.open(this.messageDialogService.threePointReservationValidation(), 'error', ['ok'])
         } else {
             this.boardingPassService.emailBoardingPass(this.form.value.reservationId).subscribe({
                 next: () => {
                     this.helperService.doPostSaveFormTasks(this.messageDialogService.emailSent(), 'success', this.parentUrl, this.form, false, false)
-                    this.formMustCloseAfterSave = true
                     this.mustGoBackAfterSave = true
                 },
                 error: (errorFromInterceptor) => {
@@ -207,8 +204,7 @@ export class ReservationFormComponent {
     }
 
     public onPrintBoardingPass(): void {
-        if (this.isRecordSaved() == false || this.arePassengersMissing()) {
-            this.formMustCloseAfterSave = false
+        if (this.helperService.deepEqual(this.form.value, this.mirrorRecord) == false || this.arePassengersMissing()) {
             this.mustGoBackAfterSave = false
             this.dialogService.open(this.messageDialogService.twoPointReervationValidation(), 'error', ['ok'])
         } else {
@@ -291,7 +287,7 @@ export class ReservationFormComponent {
     }
 
     private cloneRecord(): void {
-        this.mirrorRecord = this.flattenForm()
+        this.mirrorRecord = this.form.value
     }
 
     private doNewOrEditTasks(): void {
@@ -422,10 +418,6 @@ export class ReservationFormComponent {
         })
     }
 
-    private isRecordSaved(): boolean {
-        return JSON.stringify(this.mirrorRecord) == JSON.stringify(this.flattenForm())
-    }
-
     private patchFormWithPassengers(passengers: any): void {
         this.form.patchValue({ passengers: passengers })
     }
@@ -480,12 +472,12 @@ export class ReservationFormComponent {
                 const date = this.dateHelperService.formatDateToIso(new Date(this.form.value.date))
                 this.sessionStorageService.saveItem('date', date)
                 this.parentUrl = '/reservations/date/' + date
-                this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'success', this.parentUrl, this.form, this.formMustCloseAfterSave, this.mustGoBackAfterSave)
+                this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'success', this.parentUrl, this.form, false, this.mustGoBackAfterSave)
                 this.form.patchValue({
                     reservationId: response.id,
                     refNo: response.message
                 })
-                this.cloneRecord()
+                this.mirrorRecord = this.form.value
                 this.localStorageService.deleteItems([{ 'item': 'reservation', 'when': 'always' },])
                 this.sessionStorageService.deleteItems([{ 'item': 'nationality', 'when': 'always' }])
             },
