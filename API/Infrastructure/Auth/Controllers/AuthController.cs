@@ -113,15 +113,15 @@ namespace API.Infrastructure.Auth {
         }
 
         private async Task<Login> RefreshToken(TokenRequest model) {
-            var refreshToken = context.Tokens.FirstOrDefault(t => t.ClientId == settings.ClientId && t.Value == model.RefreshToken);
-            if (refreshToken == null) AuthenticationFailed();
-            if (refreshToken.ExpiryTime < DateTime.UtcNow) AuthenticationFailed();
-            var user = await userManager.FindByIdAsync(refreshToken.UserId);
+            var existingToken = context.Tokens.FirstOrDefault(t => t.ClientId == settings.ClientId && t.Value == model.RefreshToken);
+            if (existingToken == null) AuthenticationFailed();
+            var user = await userManager.FindByIdAsync(existingToken.UserId);
             if (user == null) AuthenticationFailed();
-            var rtNew = CreateRefreshToken(refreshToken.ClientId, refreshToken.UserId);
-            context.Tokens.Add(rtNew);
+            var newToken = CreateRefreshToken(existingToken.ClientId, existingToken.UserId);
+            context.Tokens.Add(newToken);
+            context.Tokens.Remove(existingToken);
             context.SaveChanges();
-            var token = await CreateAccessToken(user, rtNew.Value);
+            var token = await CreateAccessToken(user, newToken.Value);
             return new Login {
                 UserId = user.Id,
                 IsAdmin = user.IsAdmin,
