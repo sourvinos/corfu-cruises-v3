@@ -7,6 +7,9 @@
 }
 
 .tooltip-inside-input-field {
-    font-family: var(--font-family-roboto) !important;
+    color: var(--color-text);
+    font-family: var(--font-family-roboto);
     margin: -0.5rem -0.5625rem 0 0;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    transition: color var(--theme-delay);
 }
