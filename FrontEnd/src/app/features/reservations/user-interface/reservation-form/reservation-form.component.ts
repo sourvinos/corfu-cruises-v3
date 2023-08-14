@@ -227,12 +227,12 @@ export class ReservationFormComponent {
         })
         dialogRef.afterClosed().subscribe(result => {
             if (result !== undefined) {
-                if (result.option.id == 1) {
+                if (result.selectedOption.id == 1) {
                     this.getCachedReservation()
                     this.populateFields()
                     this.getPassengerDifferenceColor()
                 }
-                if (result.option.id == 2) {
+                if (result.selectedOption.id == 2) {
                     this.localStorageService.deleteItems([{ 'item': 'reservation', 'when': 'always' },])
                     this.sessionStorageService.deleteItems([{ 'item': 'nationality', 'when': 'always' }])
                 }

@@ -1,8 +1,7 @@
 import { Component, NgZone } from '@angular/core'
-import { FormBuilder, FormGroup } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { MatDialogRef } from '@angular/material/dialog'
 // Custom
-import { FieldsetCriteriaService } from 'src/app/shared/services/fieldset-criteria.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 
 @Component({
@@ -21,7 +20,7 @@ export class CachedReservationDialogComponent {
 
     //#endregion
 
-    constructor(private dialogRef: MatDialogRef<CachedReservationDialogComponent>, private fieldsetCriteriaService: FieldsetCriteriaService, private formBuilder: FormBuilder, private messageLabelService: MessageLabelService, private ngZone: NgZone) { }
+    constructor(private dialogRef: MatDialogRef<CachedReservationDialogComponent>, private formBuilder: FormBuilder, private messageLabelService: MessageLabelService, private ngZone: NgZone) { }
 
     //#region lifecycle hooks
 
@@ -38,10 +37,6 @@ export class CachedReservationDialogComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public updateRadioButtons(form: FormGroup, classname: any, idName: any, id: any, description: any): void {
-        this.fieldsetCriteriaService.updateRadioButtons(form, classname, idName, id, description)
-    }
-
     public save(): void {
         this.ngZone.run(() => {
             this.dialogRef.close(this.form.value)
@@ -54,15 +49,15 @@ export class CachedReservationDialogComponent {
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            option: ''
+            selectedOption: ['', [Validators.required]]
         })
     }
 
     private populateOptions(): void {
         this.options = [
-            { 'id': 1, 'description': 'Replace' },
-            { 'id': 2, 'description': 'Delete' },
-            { 'id': 3, 'description': 'Nothing' }
+            { id: '1', description: 'Replace' },
+            { id: '2', description: 'Delete' },
+            { id: '3', description: 'Nothing' }
         ]
     }
 

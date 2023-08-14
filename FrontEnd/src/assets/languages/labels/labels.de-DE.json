@@ -2205,11 +2205,7 @@
             },
             {
                 "id": "subHeader",
-                "description": "Wir haben eine zwischengespeicherte Reservierung gefunden."
-            },
-            {
-                "id": "actionMessage",
-                "description": "Was sollen wir tun?"
+                "description": "Wir haben festgestellt, dass die Reservierung vorübergehend gespeichert wurde. Was sollen wir tun?"
             },
             {
                 "id": "option1",

@@ -3,21 +3,17 @@
     <div id="dialog-header">
         <h1>{{ getLabel('header') }}</h1>
         <h6>{{ getLabel('subHeader') }}</h6>
-        <h6>{{ getLabel('actionMessage') }}</h6>
     </div>
 
     <div id="dialog-content">
-        <form [formGroup]="form" autocomplete="off" id="form">
-            <mat-radio-group>
-                <div *ngFor="let option of options" class="option">
-                    <mat-radio-button [value]="option">
-                        <label class="option-label" [for]="option.id">
-                            <span>{{ getLabel('option' + option.id) }}</span>
-                        </label>
-                        <p class="option-message">{{ getLabel('option' + option.id + 'message') }}</p>
-                    </mat-radio-button>
-                </div>
-            </mat-radio-group>
+        <form [formGroup]="form">
+            <div *ngFor="let option of options" class="option">
+                <p-radioButton [inputId]="option.id" [value]="option" class="with-margin" formControlName="selectedOption"></p-radioButton>
+                <label class="option-label" [for]="option.id">
+                    <div>{{ getLabel('option' + option.id) }}</div>
+                    <div class="option-message">{{ getLabel('option' + option.id + 'message') }}</div>
+                </label>
+            </div>
         </form>
     </div>
 

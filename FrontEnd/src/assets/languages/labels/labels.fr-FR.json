@@ -2205,11 +2205,7 @@
             },
             {
                 "id": "subHeader",
-                "description": "Nous avons trouvé une réservation en cache."
-            },
-            {
-                "id": "actionMessage",
-                "description": "Que devons-nous faire?"
+                "description": "Nous avons constaté que la réservation a été temporairement sauvegardée. Que voulez-vous que nous fassions ?"
             },
             {
                 "id": "option1",

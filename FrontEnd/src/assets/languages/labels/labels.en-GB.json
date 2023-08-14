@@ -2205,11 +2205,7 @@
             },
             {
                 "id": "subHeader",
-                "description": "We found a cached reservation."
-            },
-            {
-                "id": "actionMessage",
-                "description": "What shall we do?"
+                "description": "We found that the reservation has been temporarily saved. What do you want us to do?"
             },
             {
                 "id": "option1",

@@ -2205,11 +2205,7 @@
             },
             {
                 "id": "subHeader",
-                "description": "Našli jsme rezervaci v keši."
-            },
-            {
-                "id": "actionMessage",
-                "description": "Co máme dělat?"
+                "description": "Zjistili jsme, že rezervace byla dočasně uložena. Co máme udělat?"
             },
             {
                 "id": "option1",
