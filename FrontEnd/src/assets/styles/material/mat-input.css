@@ -95,6 +95,7 @@
 /* Button icon */
 .mat-mdc-form-field-icon-suffix div .mat-mdc-icon-button .mat-icon {
     overflow: visible !important;
+    transition: color var(--theme-delay);
 }
 
 /* Button icon */

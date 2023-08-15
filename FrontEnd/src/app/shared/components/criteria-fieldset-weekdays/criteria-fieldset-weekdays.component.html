@@ -17,7 +17,7 @@
             <ng-template let-element pTemplate="body">
                 <tr style="height:2rem">
                     <td class="center width-2"><p-tableCheckbox [value]="element"></p-tableCheckbox></td>
-                    <td class="width-5">{{ element.description }}</td>
+                    <td class="width-5">{{ element.description | uppercase }}</td>
                 </tr>
             </ng-template>
         </p-table>

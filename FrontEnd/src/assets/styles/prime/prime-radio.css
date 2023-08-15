@@ -1,6 +1,7 @@
 .p-radiobutton .p-radiobutton-box {
     background-color: transparent;
     border: 0.0625rem solid var(--color-text) !important;
+    transition: border-color var(--theme-delay);
 }
 
 .p-radiobutton .p-radiobutton-box.p-highlight {
