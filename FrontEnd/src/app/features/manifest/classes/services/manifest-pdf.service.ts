@@ -36,7 +36,7 @@ export class ManifestPdfService {
         this.setFonts()
         const dd = {
             background: this.setBackgroundImage(),
-            pageOrientation: 'portrait',
+            pageOrientation: 'landscape',
             pageSize: 'A4',
             content:
                 [
@@ -55,9 +55,9 @@ export class ManifestPdfService {
                     },
                     [
                         this.createTable(this.pdfVM,
-                            ['', '', '', 'date', '', '', '', '', ''],
-                            ['', 'lastname', 'firstname', 'birthdate', 'nationality', 'occupant', 'gender', 'specialCare', 'remarks'],
-                            ['right', 'left', 'left', 'center', 'center', 'left', 'left', 'left', 'left'])
+                            ['', '', '', '', '', 'date', '', '', '', ''],
+                            ['', 'lastname', 'firstname', 'gender', 'nationality', 'birthdate', 'occupant', 'specialCare', 'phones', 'remarks'],
+                            ['right', 'left', 'left', 'center', 'center', 'left', 'left', 'left', 'left', 'left'])
                     ],
                     {
                         table: {
@@ -204,11 +204,12 @@ export class ManifestPdfService {
             { text: 'Α/Α', style: 'tableHeader', alignment: 'center' },
             { text: 'ΕΠΩΝΥΜΟ', style: 'tableHeader', alignment: 'center' },
             { text: 'ΟΝΟΜΑ', style: 'tableHeader', alignment: 'center' },
-            { text: 'ΗΜΕΡΟΜΗΝΙΑ ΓΕΝΝΗΣΗΣ', style: 'tableHeader', alignment: 'center' },
-            { text: 'ΙΘΑΓΕΝΕΙΑ', style: 'tableHeader', alignment: 'center' },
-            { text: 'ΙΔΙΟΤΗΤΑ', style: 'tableHeader', alignment: 'center' },
             { text: 'ΦΥΛΟ', style: 'tableHeader', alignment: 'center' },
+            { text: 'ΙΘΑΓΕΝΕΙΑ', style: 'tableHeader', alignment: 'center' },
+            { text: 'ΗΜΕΡΟΜΗΝΙΑ ΓΕΝΝΗΣΗΣ', style: 'tableHeader', alignment: 'center' },
+            { text: 'ΙΔΙΟΤΗΤΑ', style: 'tableHeader', alignment: 'center' },
             { text: 'ΕΙΔΙΚΗ ΦΡΟΝΤΙΔΑ', style: 'tableHeader', alignment: 'center' },
+            { text: 'ΤΗΛΕΦΩΝΑ', style: 'tableHeader', alignment: 'center' },
             { text: 'ΠΑΡΑΤΗΡΗΣΕΙΣ', style: 'tableHeader', alignment: 'center' },
         ]
     }
@@ -221,10 +222,16 @@ export class ManifestPdfService {
                 body: this.createTableRows(data, columnTypes, columns, align),
                 bold: false,
                 style: 'table',
-                layout: 'noBorders',
-                widths: [20, 70, 40, 50, 40, '10%', '10%', 50, 50],
+                widths: [15, 120, 120, 30, 30, 35, 30, 80, 100, 120],
             },
-            layout: 'lightHorizontalLines'
+            layout: {
+                hLineColor: function (): string {
+                    return '#ececec'
+                },
+                vLineColor: function (): string {
+                    return '#ececec'
+                }
+            }
         }
     }
 

@@ -16,17 +16,21 @@
             <p-table #table (onFilter)="filterRecords($event)" [scrollable]="true" [value]="records.passengers" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
                 <ng-template pTemplate="header">
                     <tr>
-                        <th class="width-10" pSortableColumn="occupant.description">{{ getLabel("headerOccupant") }}</th>
-                        <th class="width-10" pSortableColumn="gender.description">{{ getLabel("headerGender") }}</th>
-                        <th class="width-10" pSortableColumn="nationality.description">{{ getLabel("headerCountry") }}</th>
+                        <th class="width-3">#</th>
                         <th class="width-20" pSortableColumn="lastname">{{ getLabel('headerLastname') }}</th>
                         <th class="width-20" pSortableColumn="firstname">{{ getLabel('headerFirstname') }}</th>
+                        <th class="width-10" pSortableColumn="nationality.description">{{ getLabel("headerCountry") }}</th>
+                        <th class="width-10" pSortableColumn="gender.description">{{ getLabel("headerGender") }}</th>
+                        <th class="width-10" pSortableColumn="occupant.description">{{ getLabel("headerOccupant") }}</th>
                     </tr>
                     <tr>
+                        <th class="width-3"></th>
+                        <th class="width-20"><input (input)="table.filter($event.target.value, 'lastname', 'contains')" [disabled]="records.passengers.length==0" [value]="$any(table).filters['lastname']?.value" class="p-inputtext"></th>
+                        <th class="width-20"><input (input)="table.filter($event.target.value, 'firstname', 'contains')" [disabled]="records.passengers.length==0" [value]="$any(table).filters['firstname']?.value" class="p-inputtext"></th>
                         <th class="width-10">
-                            <p-columnFilter [showMenu]="false" field="occupant" matchMode="in">
+                            <p-columnFilter [showMenu]="false" field="nationality" matchMode="in">
                                 <ng-template let-filter="filterCallback" let-value pTemplate="filter">
-                                    <p-multiSelect (onChange)="filter($event.value)" [disabled]="isFilterDisabled()" [ngModel]="value" [options]="distinctOccupants" [placeholder]="getEmoji('wildcard')" optionLabel="description">
+                                    <p-multiSelect (onChange)="filter($event.value)" [disabled]="isFilterDisabled()" [ngModel]="value" [options]="distinctNationalities" [placeholder]="getEmoji('wildcard')" optionLabel="description">
                                         <ng-template let-option pTemplate="item">
                                             <div class="p-multiselect-option">
                                                 <span>{{ option.description }}</span>
@@ -50,9 +54,9 @@
                             </p-columnFilter>
                         </th>
                         <th class="width-10">
-                            <p-columnFilter [showMenu]="false" field="nationality" matchMode="in">
+                            <p-columnFilter [showMenu]="false" field="occupant" matchMode="in">
                                 <ng-template let-filter="filterCallback" let-value pTemplate="filter">
-                                    <p-multiSelect (onChange)="filter($event.value)" [disabled]="isFilterDisabled()" [ngModel]="value" [options]="distinctNationalities" [placeholder]="getEmoji('wildcard')" optionLabel="description">
+                                    <p-multiSelect (onChange)="filter($event.value)" [disabled]="isFilterDisabled()" [ngModel]="value" [options]="distinctOccupants" [placeholder]="getEmoji('wildcard')" optionLabel="description">
                                         <ng-template let-option pTemplate="item">
                                             <div class="p-multiselect-option">
                                                 <span>{{ option.description }}</span>
@@ -62,20 +66,19 @@
                                 </ng-template>
                             </p-columnFilter>
                         </th>
-                        <th class="width-20"><input (input)="table.filter($event.target.value, 'lastname', 'contains')" [disabled]="records.passengers.length==0" [value]="$any(table).filters['lastname']?.value" class="p-inputtext"></th>
-                        <th class="width-20"><input (input)="table.filter($event.target.value, 'firstname', 'contains')" [disabled]="records.passengers.length==0" [value]="$any(table).filters['firstname']?.value" class="p-inputtext"></th>
                     </tr>
                 </ng-template>
-                <ng-template let-passenger pTemplate="body">
+                <ng-template let-i="rowIndex + 1" let-passenger pTemplate="body">
                     <tr [attr.id]=passenger.id [pSelectableRow]="passenger" style="height: 32px">
-                        <td class="width-10">{{ passenger.occupant.description }}</td>
-                        <td class="width-10">{{ passenger.gender.description }}</td>
+                        <td class="right width-3" style="font-family: 'Ubuntu Mono' !important">{{ i }}</td>
+                        <td class="width-20">{{ passenger.lastname }}</td>
+                        <td class="width-20">{{ passenger.firstname }}</td>
                         <td class="align-vertical width-10">
                             <img [src]="getNationalityIcon(passenger.nationality.code)" class="flag-with-border" />
                             <span>&nbsp;&nbsp;&nbsp;&nbsp;{{ passenger.nationality.description }}</span>
                         </td>
-                        <td class="width-20">{{ passenger.lastname }}</td>
-                        <td class="width-20">{{ passenger.firstname }}</td>
+                        <td class="width-10">{{ passenger.gender.description }}</td>
+                        <td class="width-10">{{ passenger.occupant.description }}</td>
                     </tr>
                 </ng-template>
             </p-table>

@@ -48,6 +48,7 @@ namespace API.Features.Manifest {
                             Lastname = crew.Lastname.ToUpper(),
                             Firstname = crew.Firstname.ToUpper(),
                             Birthdate = DateHelpers.DateToISOString(crew.Birthdate),
+                            Phones = "",
                             Gender = new SimpleEntity {
                                 Id = crew.Gender.Id,
                                 Description = crew.Gender.Description
@@ -79,6 +80,7 @@ namespace API.Features.Manifest {
                     Lastname = passenger.Lastname.ToUpper(),
                     Firstname = passenger.Firstname.ToUpper(),
                     Birthdate = DateHelpers.DateToISOString(passenger.Birthdate),
+                    Phones = passenger.Reservation.Phones,
                     Remarks = passenger.Remarks,
                     SpecialCare = passenger.SpecialCare,
                     Gender = new SimpleEntity {

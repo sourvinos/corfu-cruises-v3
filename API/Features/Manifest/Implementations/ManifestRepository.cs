@@ -35,6 +35,7 @@ namespace API.Features.Manifest {
                     .Include(x => x.Nationality)
                     .Include(x => x.Occupant)
                     .Include(x => x.Gender)
+                    .Include(x => x.Reservation)
                     .Where(x => x.Reservation.Date.ToString() == date
                         && x.Reservation.DestinationId == destinationId
                         && x.Reservation.ShipId == shipId

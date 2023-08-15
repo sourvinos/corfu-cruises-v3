@@ -7,6 +7,7 @@ export interface ManifestPassengerVM {
     lastname: string
     firstname: string
     birthdate: string
+    phones: string
     gender: SimpleEntity,
     nationality: ManifestNationalityVM,
     occupant: SimpleEntity,
