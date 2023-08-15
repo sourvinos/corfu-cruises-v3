@@ -6,7 +6,7 @@
     </div>
 
     <div id="dialog-content">
-        <form [formGroup]="form" autocomplete="off" id="form">
+        <form [formGroup]="form" id="form">
             <div *ngFor="let record of records" class="option">
                 <p-radioButton [inputId]="record.id.toString()" [value]="record" formControlName="record"></p-radioButton>
                 <label class="option-label" [for]="record.id">
