@@ -84,7 +84,7 @@ export class LedgerPDFService {
     private setBackgroundImage(): any[] {
         const backgroundImage = [
             {
-                image: this.logoService.getLogo('light'),
+                image: this.logoService.getLogo(),
                 width: 1000,
                 opacity: 0.03
             }
@@ -127,7 +127,7 @@ export class LedgerPDFService {
         customer.reservations.forEach((reservation: LedgerReservationVM) => {
             this.rows.push(this.addReservationDetails(reservation))
         })
-        // this.rows.push(this.addReservationsTotals(customer))
+        this.rows.push(this.addReservationsTotals(customer))
         this.rows.push(this.addBlankLine())
         customer.ports.forEach((port: any) => {
             this.rows.push(this.addPortHeader(port))
@@ -135,6 +135,8 @@ export class LedgerPDFService {
             port.hasTransferGroup.forEach((hasTransfer: HasTransferGroupVM) => {
                 this.rows.push(this.addPortPerTransferTotals(hasTransfer))
             })
+            this.rows.push(this.addPortTotal(port))
+            this.rows.push(this.addBlankLine())
         })
         this.rows.push(this.addBlankLine())
     }
@@ -155,7 +157,7 @@ export class LedgerPDFService {
             { text: '' },
             { text: '' },
             { text: '' },
-            { text: '' },
+            { text: '' }
         ])
         return row
     }
@@ -176,7 +178,7 @@ export class LedgerPDFService {
             { text: '' },
             { text: '' },
             { text: this.dateHelperService.formatISODateToLocale(criteria.fromDate) + ' ' + this.dateHelperService.formatISODateToLocale(criteria.toDate), alignment: 'right', colSpan: 2, border: [false, false, false, false] },
-            { text: '' },
+            { text: '' }
         ])
         return row
     }
@@ -197,7 +199,7 @@ export class LedgerPDFService {
             { text: 'Actual', alignment: 'center', fillColor: '#deecf5' },
             { text: 'N/S', alignment: 'center', fillColor: '#deecf5' },
             { text: 'Transfer', fillColor: '#deecf5' },
-            { text: 'Remarks', alignment: 'center' }
+            { text: 'Remarks' }
         ])
         return row
     }
@@ -205,10 +207,10 @@ export class LedgerPDFService {
     private addReservationDetails(reservation: LedgerReservationVM): any {
         const row = ([
             { text: this.dateHelperService.formatISODateToLocale(reservation.date) },
-            { text: reservation.destination.abbreviation, alignment: 'center' },
+            { text: reservation.destination.abbreviation },
             { text: reservation.pickupPoint.description },
-            { text: reservation.port.abbreviation, alignment: 'center' },
-            { text: reservation.ship.abbreviation, alignment: 'center' },
+            { text: reservation.port.abbreviation },
+            { text: reservation.ship.description },
             { text: reservation.refNo },
             { text: reservation.ticketNo },
             { text: this.formatZeroAsEmpty(reservation.adults), alignment: 'right' },
@@ -225,7 +227,7 @@ export class LedgerPDFService {
 
     private addReservationsTotals(customer: LedgerVM): any {
         const row = [
-            { text: '', colSpan: 6, border: [false, false, false, false] },
+            { text: '', colSpan: 7, border: [false, false, false, false] },
             { text: '' },
             { text: '' },
             { text: '' },
@@ -274,7 +276,7 @@ export class LedgerPDFService {
             { text: '', border: [false, false, false, false] },
             { text: '', border: [false, false, false, false] },
             { text: '', border: [false, false, false, false] },
-            { text: port.port.description, colSpan: 7, border: [true, true, true, true], fillColor: '#deecf5' },
+            { text: port.port.description, colSpan: 7, border: [true, true, true, true], alignment: 'center', fillColor: '#deecf5' },
             { text: '', border: [false, false, false, false] },
             { text: '', border: [false, false, false, false] },
             { text: '', border: [false, false, false, false] },
@@ -282,6 +284,27 @@ export class LedgerPDFService {
             { text: '', border: [false, false, false, false] },
             { text: '', border: [false, false, false, false] },
             { text: '', border: [false, false, false, false] }
+        ]
+        return row
+    }
+
+    private addPortTotal(port: any): any {
+        const row = [
+            { text: '', colSpan: 7, border: [false, false, false, false] },
+            { text: '', border: [false, false, false, false] },
+            { text: '', border: [false, false, false, false] },
+            { text: '', border: [false, false, false, false] },
+            { text: '', border: [false, false, false, false] },
+            { text: '', border: [false, false, false, false] },
+            { text: '', border: [false, false, false, false] },
+            { text: this.formatZeroAsEmpty(port.adults), alignment: 'right', border: [true, true, true, true], fillColor: '#deecf5' },
+            { text: this.formatZeroAsEmpty(port.kids), alignment: 'right', border: [true, true, true, true], fillColor: '#deecf5' },
+            { text: this.formatZeroAsEmpty(port.free), alignment: 'right', border: [true, true, true, true], fillColor: '#deecf5' },
+            { text: this.formatZeroAsEmpty(port.totalPax), alignment: 'right', border: [true, true, true, true], fillColor: '#deecf5' },
+            { text: this.formatZeroAsEmpty(port.totalPassengers), alignment: 'right', border: [true, true, true, true], fillColor: '#deecf5' },
+            { text: this.formatZeroAsEmpty(port.totalPax - port.totalPassengers), alignment: 'right', border: [true, true, true, true], fillColor: '#deecf5' },
+            { text: '', fillColor: '#deecf5' },
+            { text: '', border: [false, false, false, false] },
         ]
         return row
     }
@@ -301,7 +324,7 @@ export class LedgerPDFService {
             { text: 'Total' },
             { text: 'Actual' },
             { text: 'N/S', alignment: 'center' },
-            { text: 'Transfer' },
+            { text: 'Transfer', alignment: 'center' },
             { text: '', border: [false, false, false, false] }
         ]
         return row
@@ -315,7 +338,7 @@ export class LedgerPDFService {
             { text: '', border: [false, false, false, false] },
             { text: '', border: [false, false, false, false] },
             { text: '', border: [false, false, false, false] },
-            { text: '', border: [false, false, false, false] },
+            { text: '' },
             { text: this.formatZeroAsEmpty(hasTransfer.adults), alignment: 'right', border: [true, true, true, true] },
             { text: this.formatZeroAsEmpty(hasTransfer.kids), alignment: 'right', border: [true, true, true, true] },
             { text: this.formatZeroAsEmpty(hasTransfer.free), alignment: 'right', border: [true, true, true, true] },
