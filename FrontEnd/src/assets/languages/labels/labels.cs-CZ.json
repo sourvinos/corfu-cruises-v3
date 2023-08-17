@@ -101,16 +101,16 @@
                 "description": "Email"
             },
             {
+                "id": "isActive",
+                "description": "Aktivní"
+            },
+            {
                 "id": "user",
                 "description": "Uživatel"
             },
             {
                 "id": "lastUpdate",
                 "description": "Poslední aktualizace"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktivní"
             },
             {
                 "id": "deleteButton",
@@ -163,16 +163,16 @@
                 "description": "Popis"
             },
             {
+                "id": "isActive",
+                "description": "Aktivní"
+            },
+            {
                 "id": "user",
                 "description": "Uživatel"
             },
             {
                 "id": "lastUpdate",
                 "description": "Poslední aktualizace"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktivní"
             },
             {
                 "id": "deleteButton",
@@ -225,16 +225,16 @@
                 "description": "Telefonní čísla"
             },
             {
+                "id": "isActive",
+                "description": "Aktivní"
+            },
+            {
                 "id": "user",
                 "description": "Uživatel"
             },
             {
                 "id": "lastUpdate",
                 "description": "Poslední aktualizace"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktivní"
             },
             {
                 "id": "deleteButton",
@@ -311,16 +311,16 @@
                 "description": "Komentáře"
             },
             {
+                "id": "isActive",
+                "description": "Aktivní"
+            },
+            {
                 "id": "user",
                 "description": "Uživatel"
             },
             {
                 "id": "lastUpdate",
                 "description": "Poslední aktualizace"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktivní"
             },
             {
                 "id": "deleteButton",
@@ -365,16 +365,20 @@
                 "description": "Přístavt"
             },
             {
-                "id": "description",
-                "description": "Popis"
-            },
-            {
                 "id": "abbreviation",
                 "description": "Zkr."
             },
             {
+                "id": "description",
+                "description": "Popis"
+            },
+            {
                 "id": "stopOrder",
                 "description": "Pořadí přístupu"
+            },
+            {
+                "id": "isActive",
+                "description": "Aktivní"
             },
             {
                 "id": "user",
@@ -383,10 +387,6 @@
             {
                 "id": "lastUpdate",
                 "description": "Poslední aktualizace"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktivní"
             },
             {
                 "id": "deleteButton",
@@ -447,6 +447,10 @@
                 "description": "Přístav"
             },
             {
+                "id": "isActive",
+                "description": "Aktivní"
+            },
+            {
                 "id": "user",
                 "description": "Uživatel"
             },
@@ -457,10 +461,6 @@
             {
                 "id": "hasTransfer",
                 "description": "Má transfer"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktivní"
             },
             {
                 "id": "deleteButton",
@@ -502,10 +502,6 @@
             {
                 "id": "newRecord",
                 "description": "Nový rekord"
-            },
-            {
-                "id": "showConnectedUsers",
-                "description": "PŘIPOJENÝCH UŽIVATELŮ"
             }
         ]
     },
@@ -515,10 +511,6 @@
             {
                 "id": "header",
                 "description": "Uživatel"
-            },
-            {
-                "id": "my-header",
-                "description": "Můj účet"
             },
             {
                 "id": "username",
@@ -614,10 +606,6 @@
                 "description": "Aktivní"
             },
             {
-                "id": "sendLoginCredentials",
-                "description": "ODESLAT NA EMAIL"
-            },
-            {
                 "id": "saveButton",
                 "description": "Uložit"
             }
@@ -656,34 +644,6 @@
                 "description": "Denní hlášení rezervací"
             },
             {
-                "id": "date",
-                "description": "Datum"
-            },
-            {
-                "id": "summaryHeaderDestinations",
-                "description": "Destinace"
-            },
-            {
-                "id": "summaryHeaderCustomers",
-                "description": "Zákazníci"
-            },
-            {
-                "id": "summaryHeaderRoutes",
-                "description": "Trasy"
-            },
-            {
-                "id": "summaryHeaderDrivers",
-                "description": "Řidiči"
-            },
-            {
-                "id": "summaryHeaderPorts",
-                "description": "Přístavy"
-            },
-            {
-                "id": "summaryHeaderShips",
-                "description": "Loďs"
-            },
-            {
                 "id": "assignToDriverButton",
                 "description": "Přiřaďte cestující řidiči"
             },
@@ -698,22 +658,6 @@
             {
                 "id": "newButton",
                 "description": "Nový"
-            },
-            {
-                "id": "total",
-                "description": "Celkem osob"
-            },
-            {
-                "id": "displayed",
-                "description": "Zobrazené"
-            },
-            {
-                "id": "selected",
-                "description": "Vybrané"
-            },
-            {
-                "id": "headerSelected",
-                "description": "V"
             },
             {
                 "id": "headerRefNo",
@@ -744,18 +688,6 @@
                 "description": "Místo vyzvednutí"
             },
             {
-                "id": "headerAdults",
-                "description": "Do"
-            },
-            {
-                "id": "headerKids",
-                "description": "Dí"
-            },
-            {
-                "id": "headerFree",
-                "description": "Z"
-            },
-            {
                 "id": "headerTotal",
                 "description": "Pax"
             },
@@ -783,10 +715,6 @@
             {
                 "id": "header",
                 "description": "Rezervaci"
-            },
-            {
-                "id": "refNo",
-                "description": "RefNo"
             },
             {
                 "id": "date",
@@ -879,10 +807,6 @@
             {
                 "id": "toggle-button-passengers",
                 "description": "Pasažéři"
-            },
-            {
-                "id": "toggle-button-misc",
-                "description": "Ostatní"
             },
             {
                 "id": "deleteButton",
@@ -1024,12 +948,12 @@
                 "description": "Loď"
             },
             {
-                "id": "description",
-                "description": "Název"
-            },
-            {
                 "id": "abbreviation",
                 "description": "Zkr."
+            },
+            {
+                "id": "description",
+                "description": "Název"
             },
             {
                 "id": "shipOwner",
@@ -1060,16 +984,16 @@
                 "description": "Agenti"
             },
             {
+                "id": "isActive",
+                "description": "Aktivní"
+            },
+            {
                 "id": "user",
                 "description": "Uživatel"
             },
             {
                 "id": "lastUpdate",
                 "description": "Poslední aktualizace"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktivní"
             },
             {
                 "id": "deleteButton",
@@ -1089,11 +1013,7 @@
                 "description": "Nový rozvrh"
             },
             {
-                "id": "date",
-                "description": "Rozsah dat"
-            },
-            {
-                "id": "destinations",
+                "id": "destination",
                 "description": "Destinace"
             },
             {
@@ -1130,10 +1050,6 @@
         "feature": "passengerList",
         "labels": [
             {
-                "id": "headerId",
-                "description": "Id"
-            },
-            {
                 "id": "headerLastname",
                 "description": "Příjmení"
             },
@@ -1144,10 +1060,6 @@
             {
                 "id": "headerCountry",
                 "description": "Národnost"
-            },
-            {
-                "id": "headerisBoarded",
-                "description": "Odbavený"
             },
             {
                 "id": "newPassengerButton",
@@ -1237,16 +1149,16 @@
                 "description": "Popis"
             },
             {
+                "id": "isActive",
+                "description": "Aktivní"
+            },
+            {
                 "id": "user",
                 "description": "Uživatel"
             },
             {
                 "id": "lastUpdate",
                 "description": "Poslední aktualizace"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktivní"
             },
             {
                 "id": "deleteButton",
@@ -1359,22 +1271,6 @@
                 "description": "Země"
             },
             {
-                "id": "headerStatus",
-                "description": "Nalodění"
-            },
-            {
-                "id": "criteria-destinations",
-                "description": "Destinace"
-            },
-            {
-                "id": "criteria-ports",
-                "description": "Přístavy"
-            },
-            {
-                "id": "criteria-ships",
-                "description": "Lodě"
-            },
-            {
                 "id": "boardedFilter",
                 "description": "NALODĚNÍ"
             },
@@ -1413,56 +1309,6 @@
             {
                 "id": "okButton",
                 "description": "OK"
-            }
-        ]
-    },
-    {
-        "feature": "nationalityList",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Národnosti"
-            },
-            {
-                "id": "newButton",
-                "description": "Nový"
-            },
-            {
-                "id": "headerDescription",
-                "description": "Popis"
-            },
-            {
-                "id": "headerFlag",
-                "description": "Vlajka"
-            }
-        ]
-    },
-    {
-        "feature": "nationalityForm",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Národnost"
-            },
-            {
-                "id": "description",
-                "description": "Popis"
-            },
-            {
-                "id": "code",
-                "description": "Code"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktivní"
-            },
-            {
-                "id": "deleteButton",
-                "description": "Smazat"
-            },
-            {
-                "id": "saveButton",
-                "description": "Uložit"
             }
         ]
     },
@@ -1511,10 +1357,6 @@
                 "description": "Knihy zákazníků"
             },
             {
-                "id": "headerCustomer",
-                "description": "Zákazník"
-            },
-            {
                 "id": "headerDate",
                 "description": "Datum"
             },
@@ -1559,10 +1401,6 @@
                 "description": "Z"
             },
             {
-                "id": "headerPax",
-                "description": "Σ"
-            },
-            {
                 "id": "headerNoShow",
                 "description": "N/S"
             },
@@ -1573,26 +1411,6 @@
             {
                 "id": "createPdfButton",
                 "description": "Vytvořit PDF"
-            },
-            {
-                "id": "criteria-customers",
-                "description": "Zákazníci"
-            },
-            {
-                "id": "criteria-destinations",
-                "description": "Destinace"
-            },
-            {
-                "id": "criteria-ports",
-                "description": "Přístavy"
-            },
-            {
-                "id": "criteria-ships",
-                "description": "Lodě"
-            },
-            {
-                "id": "ok-button",
-                "description": "OK"
             }
         ]
     },
@@ -1608,18 +1426,6 @@
                 "description": "Napište něco..."
             },
             {
-                "id": "headerRouteSelector",
-                "description": "Výběr trasy lodi"
-            },
-            {
-                "id": "subHeaderRouteSelector",
-                "description": "Vyberte trasu, po které se loď vydá."
-            },
-            {
-                "id": "date",
-                "description": "Datum"
-            },
-            {
                 "id": "destinations",
                 "description": "Destinace"
             },
@@ -1630,10 +1436,6 @@
             {
                 "id": "ships",
                 "description": "Lodě"
-            },
-            {
-                "id": "shipRoute",
-                "description": "Trasa"
             },
             {
                 "id": "selected",
@@ -1661,24 +1463,8 @@
                 "description": "Seznam cestujících"
             },
             {
-                "id": "criteriaDestination",
-                "description": "Destinace"
-            },
-            {
-                "id": "criteriaPorts",
-                "description": "Přístavy"
-            },
-            {
-                "id": "criteriaShip",
-                "description": "Loď"
-            },
-            {
                 "id": "headerOccupant",
                 "description": "Majetek"
-            },
-            {
-                "id": "headerId",
-                "description": "Id"
             },
             {
                 "id": "headerLastname",
@@ -1775,16 +1561,16 @@
                 "description": "Email"
             },
             {
+                "id": "isActive",
+                "description": "Aktivní"
+            },
+            {
                 "id": "user",
                 "description": "Uživatel"
             },
             {
                 "id": "lastUpdate",
                 "description": "Poslední aktualizace"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktivní"
             },
             {
                 "id": "deleteButton",
@@ -1861,16 +1647,16 @@
                 "description": "Čas"
             },
             {
+                "id": "isActive",
+                "description": "Aktivní"
+            },
+            {
                 "id": "user",
                 "description": "Uživatel"
             },
             {
                 "id": "lastUpdate",
                 "description": "Poslední aktualizace"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktivní"
             },
             {
                 "id": "deleteButton",
@@ -1943,20 +1729,20 @@
                 "description": "Adresa"
             },
             {
-                "id": "user",
-                "description": "Uživatel"
-            },
-            {
-                "id": "lastUpdate",
-                "description": "Poslední aktualizace"
-            },
-            {
                 "id": "isPrimary",
                 "description": "Hlavní"
             },
             {
                 "id": "isActive",
                 "description": "Aktivní"
+            },
+            {
+                "id": "user",
+                "description": "Uživatel"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Poslední aktualizace"
             },
             {
                 "id": "deleteButton",
@@ -2033,16 +1819,16 @@
                 "description": "Rod"
             },
             {
+                "id": "isActive",
+                "description": "Aktivní"
+            },
+            {
                 "id": "user",
                 "description": "Uživatel"
             },
             {
                 "id": "lastUpdate",
                 "description": "Poslední aktualizace"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktivní"
             },
             {
                 "id": "deleteButton",
@@ -2111,8 +1897,12 @@
                 "description": "Max Pax"
             },
             {
-                "id": "ime",
+                "id": "time",
                 "description": "Čas odjezdu"
+            },
+            {
+                "id": "isActive",
+                "description": "Aktivní"
             },
             {
                 "id": "user",
@@ -2121,10 +1911,6 @@
             {
                 "id": "lastUpdate",
                 "description": "Poslední aktualizace"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktivní"
             },
             {
                 "id": "deleteButton",
@@ -2172,31 +1958,6 @@
         ]
     },
     {
-        "feature": "connectedUserList",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Připojení uživatelé"
-            },
-            {
-                "id": "okButton",
-                "description": "OK"
-            },
-            {
-                "id": "headerId",
-                "description": "Id"
-            },
-            {
-                "id": "headerCreatedDate",
-                "description": "Přihlásit se"
-            },
-            {
-                "id": "headerExpiryDate",
-                "description": "Auto odhlášení"
-            }
-        ]
-    },
-    {
         "feature": "cachedReservationDialog",
         "labels": [
             {
@@ -2240,14 +2001,6 @@
     {
         "feature": "cardsMenu",
         "labels": [
-            {
-                "id": "loginTitle",
-                "description": "Přihlášení"
-            },
-            {
-                "id": "loginSubTitle",
-                "description": "Přístup oprávněným uživatelům, například správcům a cestovním kancelářím"
-            },
             {
                 "id": "reservationsTitle",
                 "description": "Rezervace"
@@ -2330,10 +2083,6 @@
     {
         "feature": "date-picker",
         "labels": [
-            {
-                "id": "date",
-                "description": "Datum"
-            },
             {
                 "id": "hint",
                 "description": "Vyberte datum"

@@ -101,16 +101,16 @@
                 "description": "Email"
             },
             {
+                "id": "isActive",
+                "description": "Aktiv"
+            },
+            {
                 "id": "user",
                 "description": "Benutzer"
             },
             {
                 "id": "lastUpdate",
                 "description": "Letzte Aktualisierung"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktiv"
             },
             {
                 "id": "deleteButton",
@@ -163,16 +163,16 @@
                 "description": "Beschreibung"
             },
             {
+                "id": "isActive",
+                "description": "Aktiv"
+            },
+            {
                 "id": "user",
                 "description": "Benutzer"
             },
             {
                 "id": "lastUpdate",
                 "description": "Letzte Aktualisierung"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktiv"
             },
             {
                 "id": "deleteButton",
@@ -225,16 +225,16 @@
                 "description": "Telefonnummern"
             },
             {
+                "id": "isActive",
+                "description": "Aktiv"
+            },
+            {
                 "id": "user",
                 "description": "Benutzer"
             },
             {
                 "id": "lastUpdate",
                 "description": "Letzte Aktualisierung"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktiv"
             },
             {
                 "id": "deleteButton",
@@ -311,16 +311,16 @@
                 "description": "Kommentare"
             },
             {
+                "id": "isActive",
+                "description": "Aktiv"
+            },
+            {
                 "id": "user",
                 "description": "Benutzer"
             },
             {
                 "id": "lastUpdate",
                 "description": "Letzte Aktualisierung"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktiv"
             },
             {
                 "id": "deleteButton",
@@ -365,16 +365,20 @@
                 "description": "Hafen"
             },
             {
-                "id": "description",
-                "description": "Beschreibung"
-            },
-            {
                 "id": "abbreviation",
                 "description": "Abk."
             },
             {
+                "id": "description",
+                "description": "Beschreibung"
+            },
+            {
                 "id": "stopOrder",
                 "description": "Annäherungsauftrag"
+            },
+            {
+                "id": "isActive",
+                "description": "Aktiv"
             },
             {
                 "id": "user",
@@ -383,10 +387,6 @@
             {
                 "id": "lastUpdate",
                 "description": "Letzte Aktualisierung"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktiv"
             },
             {
                 "id": "deleteButton",
@@ -447,6 +447,10 @@
                 "description": "Hafen"
             },
             {
+                "id": "isActive",
+                "description": "Aktiv"
+            },
+            {
                 "id": "user",
                 "description": "Benutzer"
             },
@@ -457,10 +461,6 @@
             {
                 "id": "hasTransfer",
                 "description": "Hat Transfer"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktiv"
             },
             {
                 "id": "deleteButton",
@@ -502,10 +502,6 @@
             {
                 "id": "newRecord",
                 "description": "Neuer Rekord"
-            },
-            {
-                "id": "showConnectedUsers",
-                "description": "ANGESCHLOSSENE BENUTZER"
             }
         ]
     },
@@ -515,10 +511,6 @@
             {
                 "id": "header",
                 "description": "Benutzer"
-            },
-            {
-                "id": "my-header",
-                "description": "Mein Konto"
             },
             {
                 "id": "username",
@@ -614,10 +606,6 @@
                 "description": "Aktiv"
             },
             {
-                "id": "sendLoginCredentials",
-                "description": "AN Email SENDEN"
-            },
-            {
                 "id": "saveButton",
                 "description": "Speichern"
             }
@@ -656,34 +644,6 @@
                 "description": "Täglicher Buchungsbericht"
             },
             {
-                "id": "date",
-                "description": "Datum"
-            },
-            {
-                "id": "summaryHeaderDestinations",
-                "description": "Reiseziele"
-            },
-            {
-                "id": "summaryHeaderCustomers",
-                "description": "Kunden"
-            },
-            {
-                "id": "summaryHeaderRoutes",
-                "description": "Routen"
-            },
-            {
-                "id": "summaryHeaderDrivers",
-                "description": "Fahrer"
-            },
-            {
-                "id": "summaryHeaderPorts",
-                "description": "Häfen"
-            },
-            {
-                "id": "summaryHeaderShips",
-                "description": "Schiffe"
-            },
-            {
                 "id": "assignToDriverButton",
                 "description": "Fahrgäste in den Bus einteilen"
             },
@@ -698,22 +658,6 @@
             {
                 "id": "newButton",
                 "description": "NEU"
-            },
-            {
-                "id": "total",
-                "description": "Gesamtpersonen"
-            },
-            {
-                "id": "displayed",
-                "description": "Angezeigte"
-            },
-            {
-                "id": "selected",
-                "description": "Ausgewählte"
-            },
-            {
-                "id": "headerSelected",
-                "description": "A"
             },
             {
                 "id": "headerRefNo",
@@ -744,18 +688,6 @@
                 "description": "Abholpunkt"
             },
             {
-                "id": "headerAdults",
-                "description": "E"
-            },
-            {
-                "id": "headerKids",
-                "description": "K"
-            },
-            {
-                "id": "headerFree",
-                "description": "G"
-            },
-            {
                 "id": "headerTotal",
                 "description": "Pax"
             },
@@ -783,10 +715,6 @@
             {
                 "id": "header",
                 "description": "Reservierung"
-            },
-            {
-                "id": "refNo",
-                "description": "RefNo"
             },
             {
                 "id": "date",
@@ -879,10 +807,6 @@
             {
                 "id": "toggle-button-passengers",
                 "description": "Passagiere"
-            },
-            {
-                "id": "toggle-button-misc",
-                "description": "Andere"
             },
             {
                 "id": "deleteButton",
@@ -1024,12 +948,12 @@
                 "description": "Schiff"
             },
             {
-                "id": "description",
-                "description": "Name"
-            },
-            {
                 "id": "abbreviation",
                 "description": "Abk."
+            },
+            {
+                "id": "description",
+                "description": "Name"
             },
             {
                 "id": "shipOwner",
@@ -1060,16 +984,16 @@
                 "description": "Agenten"
             },
             {
+                "id": "isActive",
+                "description": "Aktiv"
+            },
+            {
                 "id": "user",
                 "description": "Benutzer"
             },
             {
                 "id": "lastUpdate",
                 "description": "Letzte Aktualisierung"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktiv"
             },
             {
                 "id": "deleteButton",
@@ -1087,10 +1011,6 @@
             {
                 "id": "header",
                 "description": "Neue Terminplanung"
-            },
-            {
-                "id": "date",
-                "description": "Datumsbereich"
             },
             {
                 "id": "destination",
@@ -1130,10 +1050,6 @@
         "feature": "passengerList",
         "labels": [
             {
-                "id": "headerId",
-                "description": "Id"
-            },
-            {
                 "id": "headerLastname",
                 "description": "Nachname"
             },
@@ -1144,10 +1060,6 @@
             {
                 "id": "headerCountry",
                 "description": "Nationalität"
-            },
-            {
-                "id": "headerisBoarded",
-                "description": "Einchecken"
             },
             {
                 "id": "newPassengerButton",
@@ -1237,16 +1149,16 @@
                 "description": "Beschreibung"
             },
             {
+                "id": "isActive",
+                "description": "Aktiv"
+            },
+            {
                 "id": "user",
                 "description": "Benutzer"
             },
             {
                 "id": "lastUpdate",
                 "description": "Letzte Aktualisierung"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktiv"
             },
             {
                 "id": "deleteButton",
@@ -1359,22 +1271,6 @@
                 "description": "Land"
             },
             {
-                "id": "headerStatus",
-                "description": "Einschiffung"
-            },
-            {
-                "id": "criteria-destinations",
-                "description": "Reiseziele"
-            },
-            {
-                "id": "criteria-ports",
-                "description": "Häfen"
-            },
-            {
-                "id": "criteria-ships",
-                "description": "Schiffe"
-            },
-            {
                 "id": "boardedFilter",
                 "description": "EINGESCHIFFT"
             },
@@ -1413,56 +1309,6 @@
             {
                 "id": "okButton",
                 "description": "OK"
-            }
-        ]
-    },
-    {
-        "feature": "nationalityList",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Nationalitäten"
-            },
-            {
-                "id": "newButton",
-                "description": "NEU"
-            },
-            {
-                "id": "headerDescription",
-                "description": "Beschreibung"
-            },
-            {
-                "id": "headerFlag",
-                "description": "Flagge"
-            }
-        ]
-    },
-    {
-        "feature": "nationalityForm",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Nationalität"
-            },
-            {
-                "id": "description",
-                "description": "Beschreibung"
-            },
-            {
-                "id": "code",
-                "description": "Code"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktiv"
-            },
-            {
-                "id": "deleteButton",
-                "description": "Löschen"
-            },
-            {
-                "id": "saveButton",
-                "description": "Speichern"
             }
         ]
     },
@@ -1511,10 +1357,6 @@
                 "description": "Kundenbücher"
             },
             {
-                "id": "headerCustomer",
-                "description": "Kunde"
-            },
-            {
                 "id": "headerDate",
                 "description": "Datum"
             },
@@ -1559,10 +1401,6 @@
                 "description": "G"
             },
             {
-                "id": "headerPax",
-                "description": "Σ"
-            },
-            {
                 "id": "headerNoShow",
                 "description": "N/S"
             },
@@ -1573,26 +1411,6 @@
             {
                 "id": "createPdfButton",
                 "description": "PDF erstellen"
-            },
-            {
-                "id": "criteria-customers",
-                "description": "Kunden"
-            },
-            {
-                "id": "criteria-destinations",
-                "description": "Reiseziele"
-            },
-            {
-                "id": "criteria-ports",
-                "description": "Häfen"
-            },
-            {
-                "id": "criteria-ships",
-                "description": "Schiffe"
-            },
-            {
-                "id": "ok-button",
-                "description": "OK"
             }
         ]
     },
@@ -1608,18 +1426,6 @@
                 "description": "Schreiben Sie etwas..."
             },
             {
-                "id": "headerRouteSelector",
-                "description": "Auswahl der Schiffsroute"
-            },
-            {
-                "id": "subHeaderRouteSelector",
-                "description": "Wählen Sie die Route, der das Schiff folgen soll."
-            },
-            {
-                "id": "date",
-                "description": "Datum"
-            },
-            {
                 "id": "destinations",
                 "description": "Reiseziele"
             },
@@ -1630,10 +1436,6 @@
             {
                 "id": "ships",
                 "description": "Schiffe"
-            },
-            {
-                "id": "shipRoute",
-                "description": "Route"
             },
             {
                 "id": "selected",
@@ -1661,24 +1463,8 @@
                 "description": "Passagiermanifest"
             },
             {
-                "id": "criteriaDestination",
-                "description": "Reiseziel"
-            },
-            {
-                "id": "criteriaPort",
-                "description": "Hafen"
-            },
-            {
-                "id": "criteriaShip",
-                "description": "Schiff"
-            },
-            {
                 "id": "headerOccupant",
                 "description": "Eigentum"
-            },
-            {
-                "id": "headerId",
-                "description": "Id"
             },
             {
                 "id": "headerLastname",
@@ -1775,16 +1561,16 @@
                 "description": "Email"
             },
             {
+                "id": "isActive",
+                "description": "Aktiv"
+            },
+            {
                 "id": "user",
                 "description": "Benutzer"
             },
             {
                 "id": "lastUpdate",
                 "description": "Letzte Aktualisierung"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktiv"
             },
             {
                 "id": "deleteButton",
@@ -1861,16 +1647,16 @@
                 "description": "Ankunftszeit"
             },
             {
+                "id": "isActive",
+                "description": "Aktiv"
+            },
+            {
                 "id": "user",
                 "description": "Benutzer"
             },
             {
                 "id": "lastUpdate",
                 "description": "Letzte Aktualisierung"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktiv"
             },
             {
                 "id": "deleteButton",
@@ -1943,20 +1729,20 @@
                 "description": "Adresse"
             },
             {
-                "id": "user",
-                "description": "Benutzer"
-            },
-            {
-                "id": "lastUpdate",
-                "description": "Letzte Aktualisierung"
-            },
-            {
                 "id": "isPrimary",
                 "description": "Primär"
             },
             {
                 "id": "isActive",
                 "description": "Aktiv"
+            },
+            {
+                "id": "user",
+                "description": "Benutzer"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Letzte Aktualisierung"
             },
             {
                 "id": "deleteButton",
@@ -2033,16 +1819,16 @@
                 "description": "Geschlecht"
             },
             {
+                "id": "isActive",
+                "description": "Aktiv"
+            },
+            {
                 "id": "user",
                 "description": "Benutzer"
             },
             {
                 "id": "lastUpdate",
                 "description": "Letzte Aktualisierung"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktiv"
             },
             {
                 "id": "deleteButton",
@@ -2115,16 +1901,16 @@
                 "description": "Abfahrtszeit"
             },
             {
+                "id": "isActive",
+                "description": "Aktiv"
+            },
+            {
                 "id": "user",
                 "description": "Benutzer"
             },
             {
                 "id": "lastUpdate",
                 "description": "Letzte Aktualisierung"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktiv"
             },
             {
                 "id": "deleteButton",
@@ -2172,32 +1958,7 @@
         ]
     },
     {
-        "feature": "connectedUserList",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Angeschlossene Benutzer"
-            },
-            {
-                "id": "okButton",
-                "description": "OK"
-            },
-            {
-                "id": "headerId",
-                "description": "Id"
-            },
-            {
-                "id": "headerCreatedDate",
-                "description": "Anmeldung"
-            },
-            {
-                "id": "headerExpiryDate",
-                "description": "Automatisch abmelden"
-            }
-        ]
-    },
-    {
-        "feature": "temporaryReservationDialog",
+        "feature": "cachedReservationDialog",
         "labels": [
             {
                 "id": "header",
@@ -2240,14 +2001,6 @@
     {
         "feature": "cardsMenu",
         "labels": [
-            {
-                "id": "loginTitle",
-                "description": "Anmeldung"
-            },
-            {
-                "id": "loginSubTitle",
-                "description": "Zugang zu autorisierten Benutzern, wie Administratoren und Reisebüros"
-            },
             {
                 "id": "reservationsTitle",
                 "description": "Reservierung"
@@ -2330,10 +2083,6 @@
     {
         "feature": "date-picker",
         "labels": [
-            {
-                "id": "date",
-                "description": "Datum"
-            },
             {
                 "id": "hint",
                 "description": "Wählen Sie das Datum"

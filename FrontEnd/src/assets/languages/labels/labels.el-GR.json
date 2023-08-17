@@ -101,16 +101,16 @@
                 "description": "Email"
             },
             {
+                "id": "isActive",
+                "description": "Ενεργός"
+            },
+            {
                 "id": "user",
                 "description": "Χρήστης"
             },
             {
                 "id": "lastUpdate",
                 "description": "Τελευταία ενημέρωση"
-            },
-            {
-                "id": "isActive",
-                "description": "Ενεργός"
             },
             {
                 "id": "deleteButton",
@@ -163,16 +163,16 @@
                 "description": "Περιγραφή"
             },
             {
+                "id": "isActive",
+                "description": "Ενεργός"
+            },
+            {
                 "id": "user",
                 "description": "Χρήστης"
             },
             {
                 "id": "lastUpdate",
                 "description": "Τελευταία ενημέρωση"
-            },
-            {
-                "id": "isActive",
-                "description": "Ενεργός"
             },
             {
                 "id": "deleteButton",
@@ -225,16 +225,16 @@
                 "description": "Τηλέφωνα"
             },
             {
+                "id": "isActive",
+                "description": "Ενεργός"
+            },
+            {
                 "id": "user",
                 "description": "Χρήστης"
             },
             {
                 "id": "lastUpdate",
                 "description": "Τελευταία ενημέρωση"
-            },
-            {
-                "id": "isActive",
-                "description": "Ενεργός"
             },
             {
                 "id": "deleteButton",
@@ -311,16 +311,16 @@
                 "description": "Σχόλια"
             },
             {
+                "id": "isActive",
+                "description": "Ενεργό"
+            },
+            {
                 "id": "user",
                 "description": "Χρήστης"
             },
             {
                 "id": "lastUpdate",
                 "description": "Τελευταία ενημέρωση"
-            },
-            {
-                "id": "isActive",
-                "description": "Ενεργό"
             },
             {
                 "id": "deleteButton",
@@ -365,16 +365,20 @@
                 "description": "Λιμάνι"
             },
             {
-                "id": "description",
-                "description": "Περιγραφή"
-            },
-            {
                 "id": "abbreviation",
                 "description": "Συντ."
             },
             {
+                "id": "description",
+                "description": "Περιγραφή"
+            },
+            {
                 "id": "stopOrder",
                 "description": "Σειρά προσέγγισης"
+            },
+            {
+                "id": "isActive",
+                "description": "Ενεργό"
             },
             {
                 "id": "user",
@@ -383,10 +387,6 @@
             {
                 "id": "lastUpdate",
                 "description": "Τελευταία ενημέρωση"
-            },
-            {
-                "id": "isActive",
-                "description": "Ενεργό"
             },
             {
                 "id": "deleteButton",
@@ -447,6 +447,10 @@
                 "description": "Λιμάνι"
             },
             {
+                "id": "isActive",
+                "description": "Ενεργό"
+            },
+            {
                 "id": "user",
                 "description": "Χρήστης"
             },
@@ -457,10 +461,6 @@
             {
                 "id": "hasTransfer",
                 "description": "Έχει transfer"
-            },
-            {
-                "id": "isActive",
-                "description": "Ενεργό"
             },
             {
                 "id": "deleteButton",
@@ -502,10 +502,6 @@
             {
                 "id": "newRecord",
                 "description": "Νεα εγγραφη"
-            },
-            {
-                "id": "showConnectedUsers",
-                "description": "ΣΥΝΔΕΔΕΜΕΝΟΙ ΧΡΗΣΤΕΣ"
             }
         ]
     },
@@ -515,10 +511,6 @@
             {
                 "id": "header",
                 "description": "Χρήστης"
-            },
-            {
-                "id": "my-header",
-                "description": "Ο λογαριασμός μου"
             },
             {
                 "id": "username",
@@ -614,10 +606,6 @@
                 "description": "Ενεργός"
             },
             {
-                "id": "sendLoginCredentials",
-                "description": "Αποστολή στο email"
-            },
-            {
                 "id": "saveButton",
                 "description": "Αποθηκευση"
             }
@@ -656,34 +644,6 @@
                 "description": "Ημερήσια κατάσταση κρατήσεων"
             },
             {
-                "id": "date",
-                "description": "Ημερομηνία"
-            },
-            {
-                "id": "summaryHeaderDestinations",
-                "description": "Προορισμοί"
-            },
-            {
-                "id": "summaryHeaderCustomers",
-                "description": "Πελάτες"
-            },
-            {
-                "id": "summaryHeaderRoutes",
-                "description": "Διαδρομές"
-            },
-            {
-                "id": "summaryHeaderDrivers",
-                "description": "Οδηγοί"
-            },
-            {
-                "id": "summaryHeaderPorts",
-                "description": "Λιμάνια"
-            },
-            {
-                "id": "summaryHeaderShips",
-                "description": "Πλοία"
-            },
-            {
                 "id": "assignToDriverButton",
                 "description": "Ανάθεση επιβατών σε οδηγό"
             },
@@ -698,22 +658,6 @@
             {
                 "id": "newButton",
                 "description": "Νεα εγγραφη"
-            },
-            {
-                "id": "total",
-                "description": "Σύνολο ατόμων"
-            },
-            {
-                "id": "displayed",
-                "description": "Εμφανίζονται"
-            },
-            {
-                "id": "selected",
-                "description": "Επιλεγμένα"
-            },
-            {
-                "id": "headerSelected",
-                "description": "Ε"
             },
             {
                 "id": "headerRefNo",
@@ -744,18 +688,6 @@
                 "description": "Σημείο παραλαβής"
             },
             {
-                "id": "headerAdults",
-                "description": "Ε"
-            },
-            {
-                "id": "headerKids",
-                "description": "Π"
-            },
-            {
-                "id": "headerFree",
-                "description": "Δ"
-            },
-            {
                 "id": "headerTotal",
                 "description": "Pax"
             },
@@ -783,10 +715,6 @@
             {
                 "id": "header",
                 "description": "Κράτηση"
-            },
-            {
-                "id": "refNo",
-                "description": "RefNo"
             },
             {
                 "id": "date",
@@ -879,10 +807,6 @@
             {
                 "id": "toggle-button-passengers",
                 "description": "Επιβατες"
-            },
-            {
-                "id": "toggle-button-misc",
-                "description": "Λοιπα"
             },
             {
                 "id": "deleteButton",
@@ -1024,12 +948,12 @@
                 "description": "Πλοίο"
             },
             {
-                "id": "description",
-                "description": "Όνομα"
-            },
-            {
                 "id": "abbreviation",
                 "description": "Συντ."
+            },
+            {
+                "id": "description",
+                "description": "Όνομα"
             },
             {
                 "id": "shipOwner",
@@ -1060,16 +984,16 @@
                 "description": "Υπεύθυνοι ναυτικοί πράκτορες"
             },
             {
+                "id": "isActive",
+                "description": "Ενεργό"
+            },
+            {
                 "id": "user",
                 "description": "Χρήστης"
             },
             {
                 "id": "lastUpdate",
                 "description": "Τελευταία ενημέρωση"
-            },
-            {
-                "id": "isActive",
-                "description": "Ενεργό"
             },
             {
                 "id": "deleteButton",
@@ -1089,16 +1013,12 @@
                 "description": "Νέο πρόγραμμα"
             },
             {
-                "id": "date",
-                "description": "Εύρος ημερομηνίας"
+                "id": "destination",
+                "description": "Προορισμός"
             },
             {
-                "id": "destinations",
-                "description": "Προορισμοί"
-            },
-            {
-                "id": "ports",
-                "description": "Λιμάνια"
+                "id": "port",
+                "description": "Λιμάνι"
             },
             {
                 "id": "maxPax",
@@ -1130,10 +1050,6 @@
         "feature": "passengerList",
         "labels": [
             {
-                "id": "headerId",
-                "description": "Id"
-            },
-            {
                 "id": "headerLastname",
                 "description": "Επώνυμο"
             },
@@ -1144,10 +1060,6 @@
             {
                 "id": "headerCountry",
                 "description": "Xώρα"
-            },
-            {
-                "id": "headerisBoarded",
-                "description": "Έχει επιβιβαστεί"
             },
             {
                 "id": "newPassengerButton",
@@ -1237,16 +1149,16 @@
                 "description": "Περιγραφή"
             },
             {
+                "id": "isActive",
+                "description": "Ενεργό"
+            },
+            {
                 "id": "user",
                 "description": "Χρήστης"
             },
             {
                 "id": "lastUpdate",
                 "description": "Τελευταία ενημέρωση"
-            },
-            {
-                "id": "isActive",
-                "description": "Ενεργό"
             },
             {
                 "id": "deleteButton",
@@ -1359,22 +1271,6 @@
                 "description": "Χώρα"
             },
             {
-                "id": "headerStatus",
-                "description": "Επιβίβαση"
-            },
-            {
-                "id": "criteria-destinations",
-                "description": "Προορισμοί"
-            },
-            {
-                "id": "criteria-ports",
-                "description": "Λιμάνια"
-            },
-            {
-                "id": "criteria-ships",
-                "description": "Πλοία"
-            },
-            {
                 "id": "boardedFilter",
                 "description": "ΕΠΙΒΙΒΑΣΜΕΝΟΙ"
             },
@@ -1413,56 +1309,6 @@
             {
                 "id": "okButton",
                 "description": "OK"
-            }
-        ]
-    },
-    {
-        "feature": "nationalityList",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Εθνικότητες"
-            },
-            {
-                "id": "newButton",
-                "description": "Νεα εγγραφη"
-            },
-            {
-                "id": "headerDescription",
-                "description": "Περιγραφή"
-            },
-            {
-                "id": "headerFlag",
-                "description": "Σημαία"
-            }
-        ]
-    },
-    {
-        "feature": "nationalityForm",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Εθνικότητα"
-            },
-            {
-                "id": "description",
-                "description": "Περιγραφή"
-            },
-            {
-                "id": "code",
-                "description": "Κωδ."
-            },
-            {
-                "id": "isActive",
-                "description": "Ενεργή"
-            },
-            {
-                "id": "deleteButton",
-                "description": "Διαγραφη"
-            },
-            {
-                "id": "saveButton",
-                "description": "Αποθηκευση"
             }
         ]
     },
@@ -1511,12 +1357,8 @@
                 "description": "Καρτέλες πελατών"
             },
             {
-                "id": "headerCustomer",
-                "description": "Πελάτης"
-            },
-            {
                 "id": "headerDate",
-                "description": "Ημερ/νία"
+                "description": "Ημερομηνία"
             },
             {
                 "id": "headerDestination",
@@ -1559,10 +1401,6 @@
                 "description": "Δ"
             },
             {
-                "id": "headerPax",
-                "description": "Σ"
-            },
-            {
                 "id": "headerNoShow",
                 "description": "N/S"
             },
@@ -1573,26 +1411,6 @@
             {
                 "id": "createPdfButton",
                 "description": "Δημιουργια PDF"
-            },
-            {
-                "id": "criteria-customers",
-                "description": "Πελάτες"
-            },
-            {
-                "id": "criteria-destinations",
-                "description": "Προορισμοί"
-            },
-            {
-                "id": "criteria-ports",
-                "description": "Λιμάνια"
-            },
-            {
-                "id": "criteria-ships",
-                "description": "Πλοία"
-            },
-            {
-                "id": "ok-button",
-                "description": "OK"
             }
         ]
     },
@@ -1608,18 +1426,6 @@
                 "description": "Γράψτε κάτι..."
             },
             {
-                "id": "headerRouteSelector",
-                "description": "Επιλογή δρομολογίου"
-            },
-            {
-                "id": "subHeaderRouteSelector",
-                "description": "Επιλέξτε ποια διαδρομή θα ακολουθήσει το πλοίο."
-            },
-            {
-                "id": "date",
-                "description": "Ημερομηνία"
-            },
-            {
                 "id": "destinations",
                 "description": "Προορισμοί"
             },
@@ -1630,10 +1436,6 @@
             {
                 "id": "ships",
                 "description": "Πλοία"
-            },
-            {
-                "id": "shipRoute",
-                "description": "Δρομολόγιο"
             },
             {
                 "id": "selected",
@@ -1661,24 +1463,8 @@
                 "description": "Κατάσταση επιβαινόντων"
             },
             {
-                "id": "criteriaDestination",
-                "description": "Προορισμός"
-            },
-            {
-                "id": "criteriaPorts",
-                "description": "Λιμάνια"
-            },
-            {
-                "id": "criteriaShip",
-                "description": "Πλοίο"
-            },
-            {
                 "id": "headerOccupant",
                 "description": "Ιδιότητα"
-            },
-            {
-                "id": "headerId",
-                "description": "Id"
             },
             {
                 "id": "headerLastname",
@@ -1775,16 +1561,16 @@
                 "description": "Email"
             },
             {
+                "id": "isActive",
+                "description": "Ενεργός"
+            },
+            {
                 "id": "user",
                 "description": "Χρήστης"
             },
             {
                 "id": "lastUpdate",
                 "description": "Τελευταία ενημέρωση"
-            },
-            {
-                "id": "isActive",
-                "description": "Ενεργός"
             },
             {
                 "id": "deleteButton",
@@ -1861,16 +1647,16 @@
                 "description": "Ώρα άφιξης"
             },
             {
+                "id": "isActive",
+                "description": "Ενεργό"
+            },
+            {
                 "id": "user",
                 "description": "Χρήστης"
             },
             {
                 "id": "lastUpdate",
                 "description": "Τελευταία ενημέρωση"
-            },
-            {
-                "id": "isActive",
-                "description": "Ενεργό"
             },
             {
                 "id": "deleteButton",
@@ -1943,20 +1729,20 @@
                 "description": "Διεύθυνση"
             },
             {
-                "id": "user",
-                "description": "Χρήστης"
-            },
-            {
-                "id": "lastUpdate",
-                "description": "Τελευταία ενημέρωση"
-            },
-            {
                 "id": "isPrimary",
                 "description": "Πρωτεύον"
             },
             {
                 "id": "isActive",
                 "description": "Ενεργός"
+            },
+            {
+                "id": "user",
+                "description": "Χρήστης"
+            },
+            {
+                "id": "lastUpdate",
+                "description": "Τελευταία ενημέρωση"
             },
             {
                 "id": "deleteButton",
@@ -2033,16 +1819,16 @@
                 "description": "Φύλο"
             },
             {
+                "id": "isActive",
+                "description": "Ενεργό"
+            },
+            {
                 "id": "user",
                 "description": "Χρήστης"
             },
             {
                 "id": "lastUpdate",
                 "description": "Τελευταία ενημέρωση"
-            },
-            {
-                "id": "isActive",
-                "description": "Ενεργό"
             },
             {
                 "id": "deleteButton",
@@ -2115,16 +1901,16 @@
                 "description": "Ωρα αναχώρησης"
             },
             {
+                "id": "isActive",
+                "description": "Ενεργό"
+            },
+            {
                 "id": "user",
                 "description": "Χρήστης"
             },
             {
                 "id": "lastUpdate",
                 "description": "Τελευταία ενημέρωση"
-            },
-            {
-                "id": "isActive",
-                "description": "Ενεργό"
             },
             {
                 "id": "deleteButton",
@@ -2172,31 +1958,6 @@
         ]
     },
     {
-        "feature": "connectedUserList",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Συνδεδεμένοι χρήστες"
-            },
-            {
-                "id": "okButton",
-                "description": "OK"
-            },
-            {
-                "id": "headerId",
-                "description": "Id"
-            },
-            {
-                "id": "headerCreatedDate",
-                "description": "Σύνδεση"
-            },
-            {
-                "id": "headerExpiryDate",
-                "description": "Αυτόματη αποσύνδεση"
-            }
-        ]
-    },
-    {
         "feature": "cachedReservationDialog",
         "labels": [
             {
@@ -2240,14 +2001,6 @@
     {
         "feature": "cardsMenu",
         "labels": [
-            {
-                "id": "loginTitle",
-                "description": "Είσοδος"
-            },
-            {
-                "id": "loginSubTitle",
-                "description": "Πρόσβαση σε εξουσιοδοτημένους χρήστες, όπως διαχειριστές και τουριστικά γραφεία"
-            },
             {
                 "id": "reservationsTitle",
                 "description": "Κρατήσεις"
@@ -2330,10 +2083,6 @@
     {
         "feature": "date-picker",
         "labels": [
-            {
-                "id": "date",
-                "description": "Ημερομηνία"
-            },
             {
                 "id": "hint",
                 "description": "Επιλέξτε την ημερομηνία"

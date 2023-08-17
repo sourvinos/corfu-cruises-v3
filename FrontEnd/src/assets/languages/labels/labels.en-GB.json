@@ -101,16 +101,16 @@
                 "description": "Email"
             },
             {
+                "id": "isActive",
+                "description": "Active"
+            },
+            {
                 "id": "user",
                 "description": "User"
             },
             {
                 "id": "lastUpdate",
                 "description": "Latest update"
-            },
-            {
-                "id": "isActive",
-                "description": "Active"
             },
             {
                 "id": "deleteButton",
@@ -163,16 +163,16 @@
                 "description": "Description"
             },
             {
+                "id": "isActive",
+                "description": "Active"
+            },
+            {
                 "id": "user",
                 "description": "User"
             },
             {
                 "id": "lastUpdate",
                 "description": "Latest update"
-            },
-            {
-                "id": "isActive",
-                "description": "Active"
             },
             {
                 "id": "deleteButton",
@@ -225,16 +225,16 @@
                 "description": "Phone numbers"
             },
             {
+                "id": "isActive",
+                "description": "Active"
+            },
+            {
                 "id": "user",
                 "description": "User"
             },
             {
                 "id": "lastUpdate",
                 "description": "Latest update"
-            },
-            {
-                "id": "isActive",
-                "description": "Active"
             },
             {
                 "id": "deleteButton",
@@ -311,16 +311,16 @@
                 "description": "Remarks"
             },
             {
+                "id": "isActive",
+                "description": "Active"
+            },
+            {
                 "id": "user",
                 "description": "User"
             },
             {
                 "id": "lastUpdate",
                 "description": "Latest update"
-            },
-            {
-                "id": "isActive",
-                "description": "Active"
             },
             {
                 "id": "deleteButton",
@@ -365,16 +365,20 @@
                 "description": "Port"
             },
             {
-                "id": "description",
-                "description": "Description"
-            },
-            {
                 "id": "abbreviation",
                 "description": "Abbr."
             },
             {
+                "id": "description",
+                "description": "Description"
+            },
+            {
                 "id": "stopOrder",
                 "description": "Approach order"
+            },
+            {
+                "id": "isActive",
+                "description": "Active"
             },
             {
                 "id": "user",
@@ -383,10 +387,6 @@
             {
                 "id": "lastUpdate",
                 "description": "Latest update"
-            },
-            {
-                "id": "isActive",
-                "description": "Active"
             },
             {
                 "id": "deleteButton",
@@ -447,6 +447,10 @@
                 "description": "Port"
             },
             {
+                "id": "isActive",
+                "description": "Active"
+            },
+            {
                 "id": "user",
                 "description": "User"
             },
@@ -457,10 +461,6 @@
             {
                 "id": "hasTransfer",
                 "description": "Has transfer"
-            },
-            {
-                "id": "isActive",
-                "description": "Active"
             },
             {
                 "id": "deleteButton",
@@ -502,10 +502,6 @@
             {
                 "id": "newRecord",
                 "description": "New record"
-            },
-            {
-                "id": "showConnectedUsers",
-                "description": "CONNECTED USERS"
             }
         ]
     },
@@ -515,10 +511,6 @@
             {
                 "id": "header",
                 "description": "User"
-            },
-            {
-                "id": "my-header",
-                "description": "My account"
             },
             {
                 "id": "username",
@@ -614,10 +606,6 @@
                 "description": "Active"
             },
             {
-                "id": "sendLoginCredentials",
-                "description": "SEND TO EMAIL"
-            },
-            {
                 "id": "saveButton",
                 "description": "Save"
             }
@@ -656,34 +644,6 @@
                 "description": "Daily reservations"
             },
             {
-                "id": "date",
-                "description": "Date"
-            },
-            {
-                "id": "summaryHeaderDestinations",
-                "description": "Destinations"
-            },
-            {
-                "id": "summaryHeaderCustomers",
-                "description": "Customers"
-            },
-            {
-                "id": "summaryHeaderRoutes",
-                "description": "Routes"
-            },
-            {
-                "id": "summaryHeaderDrivers",
-                "description": "Drivers"
-            },
-            {
-                "id": "summaryHeaderPorts",
-                "description": "Ports"
-            },
-            {
-                "id": "summaryHeaderShips",
-                "description": "Ships"
-            },
-            {
                 "id": "assignToDriverButton",
                 "description": "Assign passengers to driver"
             },
@@ -698,22 +658,6 @@
             {
                 "id": "newButton",
                 "description": "New record"
-            },
-            {
-                "id": "total",
-                "description": "Total persons"
-            },
-            {
-                "id": "displayed",
-                "description": "Displayed"
-            },
-            {
-                "id": "selected",
-                "description": "Selected"
-            },
-            {
-                "id": "headerSelected",
-                "description": "S"
             },
             {
                 "id": "headerRefNo",
@@ -744,18 +688,6 @@
                 "description": "Pickup point"
             },
             {
-                "id": "headerAdults",
-                "description": "A"
-            },
-            {
-                "id": "headerKids",
-                "description": "K"
-            },
-            {
-                "id": "headerFree",
-                "description": "F"
-            },
-            {
                 "id": "headerTotal",
                 "description": "Pax"
             },
@@ -783,10 +715,6 @@
             {
                 "id": "header",
                 "description": "Reservation"
-            },
-            {
-                "id": "refNo",
-                "description": "RefNo"
             },
             {
                 "id": "date",
@@ -879,10 +807,6 @@
             {
                 "id": "toggle-button-passengers",
                 "description": "Passengers"
-            },
-            {
-                "id": "toggle-button-misc",
-                "description": "Misc"
             },
             {
                 "id": "deleteButton",
@@ -1024,12 +948,12 @@
                 "description": "Ship"
             },
             {
-                "id": "description",
-                "description": "Name"
-            },
-            {
                 "id": "abbreviation",
                 "description": "Abbr."
+            },
+            {
+                "id": "description",
+                "description": "Name"
             },
             {
                 "id": "shipOwner",
@@ -1060,16 +984,16 @@
                 "description": "Shipping agents"
             },
             {
+                "id": "isActive",
+                "description": "Active"
+            },
+            {
                 "id": "user",
                 "description": "User"
             },
             {
                 "id": "lastUpdate",
                 "description": "Latest update"
-            },
-            {
-                "id": "isActive",
-                "description": "Active"
             },
             {
                 "id": "deleteButton",
@@ -1089,16 +1013,12 @@
                 "description": "New schedule"
             },
             {
-                "id": "date",
-                "description": "Date range"
+                "id": "destination",
+                "description": "Destination"
             },
             {
-                "id": "destinations",
-                "description": "Destinations"
-            },
-            {
-                "id": "ports",
-                "description": "Ports"
+                "id": "port",
+                "description": "Port"
             },
             {
                 "id": "maxPax",
@@ -1130,10 +1050,6 @@
         "feature": "passengerList",
         "labels": [
             {
-                "id": "headerId",
-                "description": "Id"
-            },
-            {
                 "id": "headerLastname",
                 "description": "Lastname"
             },
@@ -1144,10 +1060,6 @@
             {
                 "id": "headerCountry",
                 "description": "Nationality"
-            },
-            {
-                "id": "headerisBoarded",
-                "description": "Is boarded"
             },
             {
                 "id": "newPassengerButton",
@@ -1237,16 +1149,16 @@
                 "description": "Description"
             },
             {
+                "id": "isActive",
+                "description": "Active"
+            },
+            {
                 "id": "user",
                 "description": "User"
             },
             {
                 "id": "lastUpdate",
                 "description": "Latest update"
-            },
-            {
-                "id": "isActive",
-                "description": "Active"
             },
             {
                 "id": "deleteButton",
@@ -1359,22 +1271,6 @@
                 "description": "Country"
             },
             {
-                "id": "headerStatus",
-                "description": "Embarkation"
-            },
-            {
-                "id": "criteria-destinations",
-                "description": "Destinations"
-            },
-            {
-                "id": "criteria-ports",
-                "description": "Ports"
-            },
-            {
-                "id": "criteria-ships",
-                "description": "Ships"
-            },
-            {
                 "id": "boardedFilter",
                 "description": "EMBARKED"
             },
@@ -1413,56 +1309,6 @@
             {
                 "id": "okButton",
                 "description": "OK"
-            }
-        ]
-    },
-    {
-        "feature": "nationalityList",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Nationalities"
-            },
-            {
-                "id": "newButton",
-                "description": "New record"
-            },
-            {
-                "id": "headerDescription",
-                "description": "Description"
-            },
-            {
-                "id": "headerFlag",
-                "description": "Flag"
-            }
-        ]
-    },
-    {
-        "feature": "nationalityForm",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Nationality"
-            },
-            {
-                "id": "description",
-                "description": "Description"
-            },
-            {
-                "id": "code",
-                "description": "Code"
-            },
-            {
-                "id": "isActive",
-                "description": "Active"
-            },
-            {
-                "id": "deleteButton",
-                "description": "Delete"
-            },
-            {
-                "id": "saveButton",
-                "description": "Save"
             }
         ]
     },
@@ -1511,10 +1357,6 @@
                 "description": "Customer ledgers"
             },
             {
-                "id": "headerCustomer",
-                "description": "Customer"
-            },
-            {
                 "id": "headerDate",
                 "description": "Date"
             },
@@ -1559,10 +1401,6 @@
                 "description": "F"
             },
             {
-                "id": "headerPax",
-                "description": "Σ"
-            },
-            {
                 "id": "headerNoShow",
                 "description": "N/S"
             },
@@ -1573,26 +1411,6 @@
             {
                 "id": "createPdfButton",
                 "description": "Create PDF"
-            },
-            {
-                "id": "criteria-customers",
-                "description": "Customers"
-            },
-            {
-                "id": "criteria-destinations",
-                "description": "Destinations"
-            },
-            {
-                "id": "criteria-ports",
-                "description": "Ports"
-            },
-            {
-                "id": "criteria-ships",
-                "description": "Ships"
-            },
-            {
-                "id": "ok-button",
-                "description": "OK"
             }
         ]
     },
@@ -1608,18 +1426,6 @@
                 "description": "Type something..."
             },
             {
-                "id": "headerRouteSelector",
-                "description": "Shiproute selection"
-            },
-            {
-                "id": "subHeaderRouteSelector",
-                "description": "Select which route the ship will follow."
-            },
-            {
-                "id": "date",
-                "description": "Date"
-            },
-            {
                 "id": "destinations",
                 "description": "Destinations"
             },
@@ -1630,10 +1436,6 @@
             {
                 "id": "ships",
                 "description": "Ships"
-            },
-            {
-                "id": "shipRoute",
-                "description": "Route"
             },
             {
                 "id": "selected",
@@ -1661,24 +1463,8 @@
                 "description": "Passengers manifest"
             },
             {
-                "id": "criteriaDestination",
-                "description": "Destination"
-            },
-            {
-                "id": "criteriaPorts",
-                "description": "Ports"
-            },
-            {
-                "id": "criteriaShip",
-                "description": "Ship"
-            },
-            {
                 "id": "headerOccupant",
                 "description": "Property"
-            },
-            {
-                "id": "headerId",
-                "description": "Id"
             },
             {
                 "id": "headerLastname",
@@ -1775,16 +1561,16 @@
                 "description": "Email"
             },
             {
+                "id": "isActive",
+                "description": "Active"
+            },
+            {
                 "id": "user",
                 "description": "User"
             },
             {
                 "id": "lastUpdate",
                 "description": "Latest update"
-            },
-            {
-                "id": "isActive",
-                "description": "Active"
             },
             {
                 "id": "deleteButton",
@@ -1861,16 +1647,16 @@
                 "description": "Arrival time"
             },
             {
+                "id": "isActive",
+                "description": "Active"
+            },
+            {
                 "id": "user",
                 "description": "User"
             },
             {
                 "id": "lastUpdate",
                 "description": "Latest update"
-            },
-            {
-                "id": "isActive",
-                "description": "Active"
             },
             {
                 "id": "deleteButton",
@@ -1947,16 +1733,16 @@
                 "description": "Primary"
             },
             {
+                "id": "isActive",
+                "description": "Active"
+            },
+            {
                 "id": "user",
                 "description": "User"
             },
             {
                 "id": "lastUpdate",
                 "description": "Latest update"
-            },
-            {
-                "id": "isActive",
-                "description": "Active"
             },
             {
                 "id": "deleteButton",
@@ -2033,16 +1819,16 @@
                 "description": "Gender"
             },
             {
+                "id": "isActive",
+                "description": "Active"
+            },
+            {
                 "id": "user",
                 "description": "User"
             },
             {
                 "id": "lastUpdate",
                 "description": "Latest update"
-            },
-            {
-                "id": "isActive",
-                "description": "Active"
             },
             {
                 "id": "deleteButton",
@@ -2115,16 +1901,16 @@
                 "description": "Departure time"
             },
             {
+                "id": "isActive",
+                "description": "Active"
+            },
+            {
                 "id": "user",
                 "description": "User"
             },
             {
                 "id": "lastUpdate",
                 "description": "Latest update"
-            },
-            {
-                "id": "isActive",
-                "description": "Active"
             },
             {
                 "id": "deleteButton",
@@ -2172,31 +1958,6 @@
         ]
     },
     {
-        "feature": "connectedUserList",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Connected users"
-            },
-            {
-                "id": "okButton",
-                "description": "OK"
-            },
-            {
-                "id": "headerId",
-                "description": "Id"
-            },
-            {
-                "id": "headerCreatedDate",
-                "description": "Login"
-            },
-            {
-                "id": "headerExpiryDate",
-                "description": "Auto logout"
-            }
-        ]
-    },
-    {
         "feature": "cachedReservationDialog",
         "labels": [
             {
@@ -2240,14 +2001,6 @@
     {
         "feature": "cardsMenu",
         "labels": [
-            {
-                "id": "loginTitle",
-                "description": "Login"
-            },
-            {
-                "id": "loginSubTitle",
-                "description": "Access to authorized users, such as administrators, hotels and travel offices"
-            },
             {
                 "id": "reservationsTitle",
                 "description": "Reservations"
@@ -2330,10 +2083,6 @@
     {
         "feature": "date-picker",
         "labels": [
-            {
-                "id": "date",
-                "description": "Date"
-            },
             {
                 "id": "hint",
                 "description": "Select the date"

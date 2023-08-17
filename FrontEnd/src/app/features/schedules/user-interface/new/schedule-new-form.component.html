@@ -30,8 +30,8 @@
                     </mat-form-field>
                 </div>
                 <div class="group-input-field">
-                    <criteria-fieldset-radios (outputSelected)="doArrayTasks($event,'selectedDestinations')" [array]="destinations" [caption]="'destinations'" [feature]="feature" [selected]="selectedDestinations"></criteria-fieldset-radios>
-                    <criteria-fieldset-radios (outputSelected)="doArrayTasks($event,'selectedPorts')" [array]="ports" [caption]="'ports'" [feature]="feature" [selected]="selectedPorts"></criteria-fieldset-radios>
+                    <criteria-fieldset-radios (outputSelected)="doArrayTasks($event,'selectedDestinations')" [array]="destinations" [caption]="'destination'" [feature]="feature" [selected]="selectedDestinations"></criteria-fieldset-radios>
+                    <criteria-fieldset-radios (outputSelected)="doArrayTasks($event,'selectedPorts')" [array]="ports" [caption]="'port'" [feature]="feature" [selected]="selectedPorts"></criteria-fieldset-radios>
                     <criteria-fieldset-weekdays (outputSelected)="doArrayTasks($event,'selectedWeekdays')" [caption]="'weekdays'" [feature]="feature" [selected]="selectedWeekdays"></criteria-fieldset-weekdays>
                 </div>
             </form>
