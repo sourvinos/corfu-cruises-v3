@@ -95,7 +95,7 @@ export class PassengerListComponent {
                 birthdate: passenger.birthdate,
                 remarks: passenger.remarks,
                 specialCare: passenger.specialCare,
-                isCheckedIn: passenger.isCheckedIn,
+                isBoarded: passenger.isBoarded,
             }
         })
         dialog.afterClosed().subscribe((result: any) => {
@@ -108,7 +108,7 @@ export class PassengerListComponent {
                 passenger.gender = result.gender
                 passenger.specialCare = result.specialCare
                 passenger.remarks = result.remarks
-                passenger.isCheckedIn = result.isCheckedIn
+                passenger.isBoarded = result.isBoarded
             }
         })
 
@@ -126,7 +126,7 @@ export class PassengerListComponent {
                 birthdate: '',
                 specialCare: '',
                 remarks: '',
-                isCheckedIn: false
+                isBoarded: false
             }
         })
         dialog.afterClosed().subscribe((newPassenger: any) => {

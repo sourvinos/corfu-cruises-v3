@@ -165,7 +165,7 @@ export class PassengerFormComponent {
             'gender': this.form.value.gender,
             'specialCare': this.form.value.specialCare,
             'remarks': this.form.value.remarks,
-            'isCheckedIn': this.form.value.isCheckedIn
+            'isBoarded': this.form.value.isBoarded
         }
     }
 
@@ -197,7 +197,7 @@ export class PassengerFormComponent {
             birthdate: ['', [Validators.required]],
             specialCare: ['', Validators.maxLength(128)],
             remarks: ['', Validators.maxLength(128)],
-            isCheckedIn: [{ value: false, disabled: !this.isAdmin }],
+            isBoarded: [{ value: false, disabled: !this.isAdmin }],
         })
     }
 
@@ -225,7 +225,7 @@ export class PassengerFormComponent {
                 birthdate: this.record.birthdate,
                 specialCare: this.record.specialCare,
                 remarks: this.record.remarks,
-                isCheckedIn: this.record.isCheckedIn
+                isBoarded: this.record.isBoarded
             })
         }
     }
@@ -270,8 +270,8 @@ export class PassengerFormComponent {
         return this.form.get('remarks')
     }
 
-    get isCheckedIn(): AbstractControl {
-        return this.form.get('isCheckedIn')
+    get isBoarded(): AbstractControl {
+        return this.form.get('isBoarded')
     }
 
     //#endregion

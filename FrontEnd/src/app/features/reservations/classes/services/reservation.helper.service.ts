@@ -132,7 +132,7 @@ export class ReservationHelperService {
                 birthdate: this.dateHelperService.formatDateToIso(new Date(passenger.birthdate)),
                 specialCare: passenger.specialCare,
                 remarks: passenger.remarks,
-                isCheckedIn: passenger.isCheckedIn
+                isBoarded: passenger.isBoarded
             }
             passengers.push(x)
         })

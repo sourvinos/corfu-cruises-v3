@@ -294,7 +294,7 @@ export class EmbarkationReservationsComponent {
         reservations.forEach(reservation => {
             x[0] += reservation.totalPax
             reservation.passengers.forEach(passenger => {
-                passenger.isCheckedIn ? ++x[1] : x[1]
+                passenger.isBoarded ? ++x[1] : x[1]
             })
         })
         x[2] = x[0] - x[1]

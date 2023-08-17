@@ -6,6 +6,6 @@ export interface EmbarkationPassengerVM {
     nationalityId: number
     nationalityCode: string
     nationalityDescription: string
-    isCheckedIn: boolean
+    isBoarded: boolean
 
 }

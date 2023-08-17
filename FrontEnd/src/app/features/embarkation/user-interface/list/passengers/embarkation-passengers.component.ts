@@ -56,7 +56,7 @@ export class EmbarkationPassengerListComponent {
             complete: () => {
                 passengers.forEach(passenger => {
                     const z = this.reservation.passengers.find(x => x.id == passenger.id)
-                    z.isCheckedIn = ignoreCurrentStatus || !z.isCheckedIn
+                    z.isBoarded = ignoreCurrentStatus || !z.isBoarded
                 })
             }
         })
@@ -81,7 +81,7 @@ export class EmbarkationPassengerListComponent {
     }
 
     public isEmbarkAllAllowed(): boolean {
-        return this.reservation.passengers.filter(x => x.isCheckedIn == false).length == 0
+        return this.reservation.passengers.filter(x => x.isBoarded == false).length == 0
     }
 
     public isFilterDisabled(): boolean {

@@ -1146,8 +1146,8 @@
                 "description": "Nationality"
             },
             {
-                "id": "headerIsCheckedIn",
-                "description": "Has Checked In"
+                "id": "headerisBoarded",
+                "description": "Is boarded"
             },
             {
                 "id": "newPassengerButton",
@@ -1191,8 +1191,8 @@
                 "description": "Comments"
             },
             {
-                "id": "isCheckedIn",
-                "description": "Checked In"
+                "id": "isBoarded",
+                "description": "Is boarded"
             },
             {
                 "id": "cancelButton",

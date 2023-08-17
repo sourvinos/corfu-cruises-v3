@@ -13,7 +13,7 @@ namespace API.Features.Reservations {
         public string Birthdate { get; set; }
         public string SpecialCare { get; set; }
         public string Remarks { get; set; }
-        public bool IsCheckedIn { get; set; }
+        public bool IsBoarded { get; set; }
 
     }
 

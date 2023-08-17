@@ -17,7 +17,7 @@ export interface EmbarkationReservationVM {
     totalPax: number
     embarkedPassengers: number
     embarkationStatus: boolean
-    isCheckedIn: string
+    isBoarded: string
     remarks: string
     passengerIds: number[]
 

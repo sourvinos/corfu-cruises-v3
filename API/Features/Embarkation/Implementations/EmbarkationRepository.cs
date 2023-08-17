@@ -39,7 +39,7 @@ namespace API.Features.Embarkation {
                     && (shipIds.Contains(x.ShipId) || x.ShipId == null))
                 .ToListAsync();
             int TotalPax = reservations.Sum(x => x.TotalPax);
-            int embarkedPassengers = reservations.SelectMany(c => c.Passengers).Count(x => x.IsCheckedIn);
+            int embarkedPassengers = reservations.SelectMany(c => c.Passengers).Count(x => x.IsBoarded);
             int remainingPersons = TotalPax - embarkedPassengers;
             var mainResult = new EmbarkationInitialGroupVM {
                 TotalPax = TotalPax,
@@ -55,7 +55,7 @@ namespace API.Features.Embarkation {
             var records = context.Passengers
                 .Where(x => ids.Contains(x.Id))
                 .ToList();
-            records.ForEach(x => x.IsCheckedIn = ignoreCurrentStatus || !x.IsCheckedIn);
+            records.ForEach(x => x.IsBoarded = ignoreCurrentStatus || !x.IsBoarded);
             context.SaveChanges();
             DisposeOrCommit(transaction);
         }

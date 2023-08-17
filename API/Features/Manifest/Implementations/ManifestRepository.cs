@@ -40,7 +40,7 @@ namespace API.Features.Manifest {
                         && x.Reservation.DestinationId == destinationId
                         && x.Reservation.ShipId == shipId
                         && portIds.Contains(x.Reservation.PickupPoint.CoachRoute.PortId)
-                        && x.IsCheckedIn)
+                        && x.IsBoarded)
                     .ToList()
             };
             return mapper.Map<ManifestInitialVM, ManifestFinalVM>(manifest);

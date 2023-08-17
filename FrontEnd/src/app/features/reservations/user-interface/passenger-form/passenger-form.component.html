@@ -61,10 +61,10 @@
                 <mat-error *ngIf="remarks.hasError('maxlength')">{{ getHint("maxLength", remarks.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <!-- IsBoarded -->
-            <div id="is-checked-in">
-                <mat-checkbox [class]="!isAdmin() ? 'disabled': null" formControlName="isCheckedIn">
+            <div id="is-boarded">
+                <mat-checkbox [class]="!isAdmin() ? 'disabled': null" formControlName="isBoarded">
                     <mat-icon *ngIf="!isAdmin()" class="material-icons-outlined small">lock</mat-icon>
-                    <span>{{ getLabel("isCheckedIn") }}</span>
+                    <span>{{ getLabel("isBoarded") }}</span>
                 </mat-checkbox>
             </div>
         </form>

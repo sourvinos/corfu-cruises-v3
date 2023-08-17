@@ -51,7 +51,7 @@ namespace API.Features.Reservations {
                     Birthdate = DateHelpers.DateToISOString(passenger.Birthdate),
                     Remarks = passenger.Remarks,
                     SpecialCare = passenger.SpecialCare,
-                    IsCheckedIn = passenger.IsCheckedIn,
+                    IsBoarded = passenger.IsBoarded,
                     Nationality = new NationalityDto {
                         Id = passenger.Nationality.Id,
                         Code = passenger.Nationality.Code,

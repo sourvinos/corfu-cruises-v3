@@ -5,7 +5,7 @@ namespace API.Features.Embarkation {
         public int Id { get; set; }
         public string Lastname { get; set; }
         public string Firstname { get; set; }
-        public bool IsCheckedIn { get; set; }
+        public bool IsBoarded { get; set; }
 
         public EmbarkationFinalPassengerNationalityVM Nationality { get; set; }
 

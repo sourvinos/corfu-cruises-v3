@@ -15,6 +15,6 @@ export interface PassengerReadDto {
     birthdate: string
     remarks: string
     specialCare: string
-    isCheckedIn: boolean
+    isBoarded: boolean
 
 }

@@ -11,6 +11,6 @@ export interface PassengerWriteDto {
     birthdate: string
     remarks: string
     specialCare: string
-    isCheckedIn: boolean
+    isBoarded: boolean
 
 }

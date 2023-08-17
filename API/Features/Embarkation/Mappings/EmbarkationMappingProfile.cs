@@ -30,7 +30,7 @@ namespace API.Features.Embarkation {
                         Abbreviation = reservation.Ship != null ? reservation.Ship.Abbreviation : "(EMPTY)"
                     },
                     TotalPax = reservation.TotalPax,
-                    EmbarkedPassengers = reservation.Passengers.Count(x => x.IsCheckedIn),
+                    EmbarkedPassengers = reservation.Passengers.Count(x => x.IsBoarded),
                     EmbarkationStatus = DetermineEmbarkationStatus(reservation),
                     PassengerIds = reservation.Passengers.Select(x => x.Id).ToArray(),
                     Passengers = reservation.Passengers.Select(passenger => new EmbarkationFinalPassengerVM {
@@ -42,14 +42,14 @@ namespace API.Features.Embarkation {
                             Code = passenger.Nationality.Code,
                             Description = passenger.Nationality.Description,
                         },
-                        IsCheckedIn = passenger.IsCheckedIn
+                        IsBoarded = passenger.IsBoarded
                     }).ToList()
                 })));
         }
 
         private static SimpleEntity DetermineEmbarkationStatus(Reservation reservation) {
             var passengers = reservation.Passengers.Count;
-            var embarkedPassengers = reservation.Passengers.Count(x => x.IsCheckedIn);
+            var embarkedPassengers = reservation.Passengers.Count(x => x.IsBoarded);
             if (passengers == 0 || embarkedPassengers == 0) {
                 return EmbarkationStatus(2, "None");
             } else {
