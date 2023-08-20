@@ -1,4 +1,4 @@
-@model API.Infrastructure.Account.ForgotPasswordResponseVM
+@model API.Infrastructure.Account.NewUserDetailsVM
 
 <!DOCTYPE html>
 <html>
@@ -89,11 +89,12 @@
         <div id="content">
             <p>👋 Hello @Model.Displayname,</p>
             <div id="description">
-                <span>You are receiving this email because someone (hopefully you) requested to set a new password for your account. If you did not initiate this, you can disregard this email.</span>
-                <span>However, if you would like to continue and set a new password, please click the button below.</span>
+                <span>Welcome to our reservations platform!</span>
+                <span>You are receiving this email because we have opened a new account for you.</span>
+                <span>We have also set a temporary password, which you must change before you're allowed to login. Please click on the link below and then on the 'I forgot my password' to reset it.</span>
             </div>
             <div id=button>
-                <a class="primary" href="@Model.ReturnUrl">Set new password</a>
+                <a class="primary" href="@Model.Url">Set new password</a>
             </div>
             <div id="reminder">
                 <span>As a friendly reminder, your account details are:</span>

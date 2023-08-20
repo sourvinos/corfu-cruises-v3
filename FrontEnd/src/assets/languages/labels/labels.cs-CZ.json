@@ -606,6 +606,10 @@
                 "description": "Aktivní"
             },
             {
+                "id": "sendDetailsButton",
+                "description": "Odeslání e-mailu"
+            },
+            {
                 "id": "saveButton",
                 "description": "Uložit"
             }

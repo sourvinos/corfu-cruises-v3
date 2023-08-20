@@ -606,6 +606,10 @@
                 "description": "Ενεργός"
             },
             {
+                "id": "sendDetailsButton",
+                "description": "Αποστολη email"
+            },
+            {
                 "id": "saveButton",
                 "description": "Αποθηκευση"
             }

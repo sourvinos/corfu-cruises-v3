@@ -606,6 +606,10 @@
                 "description": "Active"
             },
             {
+                "id": "sendDetailsButton",
+                "description": "Send email"
+            },
+            {
                 "id": "saveButton",
                 "description": "Save"
             }

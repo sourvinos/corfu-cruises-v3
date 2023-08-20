@@ -15,7 +15,7 @@
     margin: 0 auto;
     overflow-y: hidden;
     padding: 1rem 1.6rem 1rem 2rem;
-    row-gap: 0.5rem;
+    row-gap: 0.9375rem;
     transition: background-color var(--theme-delay);
     width: 100%;
 }

@@ -16,6 +16,7 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { UserNewDto } from '../../classes/dtos/new-user-dto'
 import { UserService } from '../../classes/services/user.service'
+import { AccountService } from 'src/app/shared/services/account.service'
 
 @Component({
     selector: 'new-user-form',
@@ -50,7 +51,7 @@ export class NewUserFormComponent {
 
     //#endregion
 
-    constructor(private dexieService: DexieService, private dialogService: DialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private userService: UserService) { }
+    constructor(private accountService: AccountService, private dexieService: DexieService, private dialogService: DialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private userService: UserService) { }
 
     //#region lifecycle hooks
 
@@ -90,6 +91,10 @@ export class NewUserFormComponent {
 
     public onSave(): void {
         this.saveRecord(this.flattenForm())
+    }
+
+    public onSendDetails(): void {
+        this.sendDetails(this.form.value)
     }
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
@@ -132,13 +137,13 @@ export class NewUserFormComponent {
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            username: ['', [ValidationService.containsIllegalCharacters, Validators.maxLength(32), Validators.required]],
-            displayname: ['', [ValidationService.beginsOrEndsWithSpace, Validators.maxLength(32), Validators.required]],
+            username: ['makis', [ValidationService.containsIllegalCharacters, Validators.maxLength(32), Validators.required]],
+            displayname: ['Makis', [ValidationService.beginsOrEndsWithSpace, Validators.maxLength(32), Validators.required]],
             customer: ['', ValidationService.RequireAutocomplete],
             email: ['x@x.com', [Validators.email, Validators.maxLength(128), Validators.required]],
             passwords: this.formBuilder.group({
-                password: ['', [ValidationService.containsSpace, Validators.maxLength(128), Validators.minLength(10), Validators.required]],
-                confirmPassword: ['', [ValidationService.containsSpace, Validators.required]]
+                password: ['1234567890', [ValidationService.containsSpace, Validators.maxLength(128), Validators.minLength(10), Validators.required]],
+                confirmPassword: ['1234567890', [ValidationService.containsSpace, Validators.required]]
             }, { validator: ValidationService.childrenEqual }),
             isFirstFieldFocused: false,
             isAdmin: false,
@@ -160,6 +165,17 @@ export class NewUserFormComponent {
 
     private saveRecord(user: UserNewDto): void {
         this.userService.saveUser(user).subscribe({
+            complete: () => {
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, true)
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
+        })
+    }
+
+    private sendDetails(user: UserNewDto): void {
+        this.accountService.sendDetails(user).subscribe({
             complete: () => {
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, true)
             },
