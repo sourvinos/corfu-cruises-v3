@@ -1,5 +1,3 @@
-using System.Text;
-using System.Threading.Tasks;
 using API.Features.Users;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
@@ -10,6 +8,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Options;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace API.Infrastructure.Account {
 
@@ -24,7 +24,6 @@ namespace API.Infrastructure.Account {
 
         public AccountController(IEmailSender emailSender, IHttpContextAccessor httpContextAccessor, IOptions<EnvironmentSettings> environmentSettings, SignInManager<UserExtended> signInManager, UserManager<UserExtended> userManager) {
             this.emailSender = emailSender;
-            this.environmentSettings = environmentSettings.Value;
             this.httpContextAccessor = httpContextAccessor;
             this.signInManager = signInManager;
             this.userManager = userManager;
@@ -130,42 +129,6 @@ namespace API.Infrastructure.Account {
                     Code = 498,
                     Icon = Icons.Error.ToString(),
                     Id = null,
-                    Message = ApiMessages.EmailNotSent()
-                };
-            }
-        }
-
-        [HttpPost("[action]")]
-        [Authorize(Roles = "admin")]
-        public async Task<Response> SendNewUserDetails([FromBody] NewUserDetailsVM model) {
-            var user = await userManager.FindByEmailAsync(model.Email);
-            if (user != null && await userManager.IsEmailConfirmedAsync(user)) {
-                string baseUrl = environmentSettings.BaseUrl;
-                var newUser = new NewUserDetailsVM {
-                    Username = user.UserName,
-                    Displayname = user.Displayname,
-                    Email = user.Email,
-                    Url = baseUrl
-                };
-                var response = emailSender.SendNewUserDetails(newUser);
-                if (response.Exception == null) {
-                    return new Response {
-                        Code = 200,
-                        Icon = Icons.Success.ToString(),
-                        Message = ApiMessages.OK()
-                    };
-                } else {
-                    return new Response {
-                        Code = 498,
-                        Icon = Icons.Error.ToString(),
-                        Id = null,
-                        Message = response.Exception.Message
-                    };
-                }
-            } else {
-                return new Response {
-                    Code = 498,
-                    Icon = Icons.Error.ToString(),
                     Message = ApiMessages.EmailNotSent()
                 };
             }

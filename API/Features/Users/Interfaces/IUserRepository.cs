@@ -12,7 +12,7 @@ namespace API.Features.Users {
         Task<bool> UpdateAdminAsync(UserExtended entity, UserUpdateDto userToUpdate);
         Task<bool> UpdateSimpleUserAsync(UserExtended entity, UserUpdateDto userToUpdate);
         Task<Response> DeleteAsync(UserExtended entity);
-
+        
     }
 
 }

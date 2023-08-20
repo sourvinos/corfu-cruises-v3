@@ -49,10 +49,6 @@ export class AccountService extends HttpDataService {
         return this.http.post<any>(environment.apiUrl + '/account/changePassword/', formData)
     }
 
-    public sendDetails(formData: UserNewDto): Observable<any> {
-        return this.http.post<any>(environment.apiUrl + '/account/sendNewUserDetails/', formData)
-    }
-
     public clearSessionStorage(): void {
         this.sessionStorageService.deleteItems([
             // Auth

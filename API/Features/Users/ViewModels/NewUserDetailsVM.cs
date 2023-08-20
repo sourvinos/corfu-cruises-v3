@@ -1,4 +1,4 @@
-namespace API.Infrastructure.Account {
+namespace API.Features.Users {
 
     public class NewUserDetailsVM {
 

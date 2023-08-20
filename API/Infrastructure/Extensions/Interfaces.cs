@@ -67,6 +67,8 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IUserValidation<IUser>, UserValidation>();
             // Parameters
             services.AddTransient<IParametersRepository, ParametersRepository>();
+            // Emails
+            services.AddTransient<IEmailSender, EmailSender>();
         }
 
     }

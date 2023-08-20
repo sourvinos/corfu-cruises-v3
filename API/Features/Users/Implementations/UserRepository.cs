@@ -1,15 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Responses;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System;
 
 namespace API.Features.Users {
 
@@ -27,8 +27,8 @@ namespace API.Features.Users {
         public UserRepository(AppDbContext context, IMapper mapper, IOptions<TestingEnvironment> testingSettings, UserManager<UserExtended> userManager) {
             this.context = context;
             this.mapper = mapper;
-            this.userManager = userManager;
             this.testingSettings = testingSettings.Value;
+            this.userManager = userManager;
         }
 
         public async Task<IEnumerable<UserListVM>> GetAsync() {

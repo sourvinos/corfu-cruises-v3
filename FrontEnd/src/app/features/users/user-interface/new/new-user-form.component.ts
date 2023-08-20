@@ -175,7 +175,7 @@ export class NewUserFormComponent {
     }
 
     private sendDetails(user: UserNewDto): void {
-        this.accountService.sendDetails(user).subscribe({
+        this.userService.emailNewUserDetails(user).subscribe({
             complete: () => {
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, true)
             },
