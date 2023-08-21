@@ -20,7 +20,7 @@ namespace API.Features.Users {
             this.parametersRepo = parametersRepo;
         }
 
-        public async Task EmailNewUserDetails(NewUserDetailsVM model) {
+        public async Task EmailUserDetails(UserDetailsExtendedVM model) {
             using var smtp = new SmtpClient();
             smtp.Connect(emailSettings.SmtpClient, emailSettings.Port);
             smtp.Authenticate(emailSettings.Username, emailSettings.Password);
@@ -28,7 +28,7 @@ namespace API.Features.Users {
             smtp.Disconnect(true);
         }
 
-        private async Task<MimeMessage> BuildMessage(NewUserDetailsVM model) {
+        private async Task<MimeMessage> BuildMessage(UserDetailsExtendedVM model) {
             var message = new MimeMessage { Sender = MailboxAddress.Parse(emailSettings.Username) };
             message.From.Add(new MailboxAddress(emailSettings.From, emailSettings.Username));
             message.To.Add(MailboxAddress.Parse(model.Email));
@@ -37,14 +37,14 @@ namespace API.Features.Users {
             return message;
         }
 
-        private async Task<string> BuildTemplate(NewUserDetailsVM model) {
+        private async Task<string> BuildTemplate(UserDetailsExtendedVM model) {
             RazorLightEngine engine = new RazorLightEngineBuilder()
                 .UseEmbeddedResourcesProject(Assembly.GetEntryAssembly())
                 .Build();
             return await engine.CompileRenderStringAsync(
                 "key",
                 LoadNewUserEmailTemplateFromFile(),
-                new NewUserDetailsVM {
+                new UserDetailsExtendedVM {
                     Username = model.Username,
                     Displayname = model.Displayname,
                     Email = model.Email,
@@ -55,7 +55,7 @@ namespace API.Features.Users {
         }
 
         private static string LoadNewUserEmailTemplateFromFile() {
-            string FilePath = Directory.GetCurrentDirectory() + "\\Features\\Users\\Templates\\NewUserDetails.cshtml";
+            string FilePath = Directory.GetCurrentDirectory() + "\\Features\\Users\\Templates\\UserDetails.cshtml";
             StreamReader str = new(FilePath);
             string template = str.ReadToEnd();
             str.Close();

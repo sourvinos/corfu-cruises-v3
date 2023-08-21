@@ -551,6 +551,10 @@
             {
                 "id": "saveButton",
                 "description": "Save"
+            },
+            {
+                "id": "emailUserDetails",
+                "description": "Send data to email"
             }
         ]
     },

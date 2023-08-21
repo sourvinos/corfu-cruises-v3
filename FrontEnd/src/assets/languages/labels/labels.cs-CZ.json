@@ -551,6 +551,10 @@
             {
                 "id": "saveButton",
                 "description": "Uložit"
+            },
+            {
+                "id": "emailUserDetails",
+                "description": "Odesílání dat na e-mail"
             }
         ]
     },

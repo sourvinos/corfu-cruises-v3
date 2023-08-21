@@ -25,7 +25,7 @@ import { ValidationService } from '../../../../shared/services/validation.servic
 @Component({
     selector: 'edit-user-form',
     templateUrl: './edit-user-form.component.html',
-    styleUrls: ['../../../../../assets/styles/custom/forms.css']
+    styleUrls: ['../../../../../assets/styles/custom/forms.css', './edit-user-form.component.css']
 })
 
 export class EditUserFormComponent {
@@ -118,6 +118,10 @@ export class EditUserFormComponent {
         this.saveRecord(this.flattenForm())
     }
 
+    public onEmailUserDetais(): void {
+        this.emailUserDetails()
+    }
+
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
         this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
     }
@@ -134,6 +138,17 @@ export class EditUserFormComponent {
     private editUserFromTopMenu(): void {
         this.parentUrl = '/home'
         this.icon = 'home'
+    }
+
+    private emailUserDetails(): void {
+        this.userService.emailUserDetails(this.record.email).subscribe({
+            complete: () => {
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, true)
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
+        })
     }
 
     private cloneRecord(): void {

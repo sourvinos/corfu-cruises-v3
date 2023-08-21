@@ -551,6 +551,10 @@
             {
                 "id": "saveButton",
                 "description": "Αποθηκευση"
+            },
+            {
+                "id": "emailUserDetails",
+                "description": "Αποστολή στοιχείων στο email"
             }
         ]
     },

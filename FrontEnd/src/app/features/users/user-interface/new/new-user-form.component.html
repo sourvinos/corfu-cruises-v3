@@ -95,10 +95,6 @@
 
     <div id="footer">
         <div id="button-align-right">
-            <button (click)="onSendDetails()" [disabled]="!form.valid" class="secondary" mat-flat-button>
-                <mat-icon *ngIf="!form.valid" class="material-icons-outlined">lock</mat-icon>
-                <span>{{ getLabel('sendDetailsButton') | uppercase }}</span>
-            </button>
             <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
                 <mat-icon *ngIf="!form.valid" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("saveButton") | uppercase }}</span>

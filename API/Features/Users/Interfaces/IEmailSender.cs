@@ -4,7 +4,7 @@ namespace API.Features.Users {
 
     public interface IEmailSender {
 
-        Task EmailNewUserDetails(NewUserDetailsVM model);
+        Task EmailUserDetails(UserDetailsExtendedVM model);
 
     }
 

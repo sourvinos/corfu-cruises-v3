@@ -551,6 +551,10 @@
             {
                 "id": "saveButton",
                 "description": "Enregistrer"
+            },
+            {
+                "id": "emailUserDetails",
+                "description": "Envoi de données par e-mail"
             }
         ]
     },

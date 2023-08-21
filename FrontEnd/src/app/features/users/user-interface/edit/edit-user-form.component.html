@@ -4,6 +4,14 @@
 
         <div id="header">
             <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
+            <div id="header-buttons">
+                <button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" mat-icon-button>
+                    <mat-icon class="material-icons-outlined">more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu" class="primary">
+                    <ng-container *ngTemplateOutlet="emailMenu"></ng-container>
+                </mat-menu>
+            </div>
         </div>
 
         <form [formGroup]="form" id="form">
@@ -84,3 +92,9 @@
         {{ option.description }}
     </mat-option>
 </mat-autocomplete>
+
+<ng-template #emailMenu xPosition="before">
+    <button (click)="onEmailUserDetais()" mat-menu-item>
+        <span>{{ getLabel('emailUserDetails') }}</span>
+    </button>
+</ng-template>

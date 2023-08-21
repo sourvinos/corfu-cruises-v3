@@ -6,7 +6,7 @@
             <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
             <div id="header-buttons">
                 <span *ngIf="isReservationInStorage()" (click)="onShowCachedReservationDialog()" class="material-symbols-outlined accent">warning</span>
-                <mat-button-toggle-group name="fontStyle">
+                <mat-button-toggle-group>
                     <mat-button-toggle (click)="onShowReservationTab()" checked class="primary">{{ getLabel("toggle-button-general") | uppercase }}</mat-button-toggle>
                     <mat-button-toggle (click)="onShowPassengersTab()">{{ getLabel("toggle-button-passengers") | uppercase }}</mat-button-toggle>
                 </mat-button-toggle-group>

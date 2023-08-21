@@ -1,5 +1,6 @@
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
+using API.Infrastructure.Parameters;
 using API.Infrastructure.Responses;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -24,14 +26,16 @@ namespace API.Features.Users {
         private readonly IUserRepository userRepo;
         private readonly IUserValidation<IUser> userValidation;
         private readonly UserManager<UserExtended> userManager;
+        private readonly IParametersRepository parametersRepo;
 
         #endregion
 
-        public UsersController(IEmailSender emailSender, IHttpContextAccessor httpContext, IMapper mapper, IOptions<EnvironmentSettings> environmentSettings, UserManager<UserExtended> userManager, IUserRepository userRepo, IUserValidation<IUser> userValidation) {
+        public UsersController(IParametersRepository parametersRepo, IEmailSender emailSender, IHttpContextAccessor httpContext, IMapper mapper, IOptions<EnvironmentSettings> environmentSettings, UserManager<UserExtended> userManager, IUserRepository userRepo, IUserValidation<IUser> userValidation) {
             this.emailSender = emailSender;
             this.environmentSettings = environmentSettings.Value;
             this.httpContext = httpContext;
             this.mapper = mapper;
+            this.parametersRepo = parametersRepo;
             this.userManager = userManager;
             this.userRepo = userRepo;
             this.userValidation = userValidation;
@@ -139,18 +143,20 @@ namespace API.Features.Users {
 
         [HttpPost("[action]")]
         [Authorize(Roles = "admin")]
-        public async Task<Response> EmailNewUserDetails([FromBody] NewUserDetailsVM model) {
-            var user = await userManager.FindByEmailAsync(model.Email);
-            if (user != null && await userManager.IsEmailConfirmedAsync(user)) {
+        public async Task<Response> EmailUserDetails([FromQuery] string email) {
+            var x = await userManager.FindByEmailAsync(email);
+            if (x != null && await userManager.IsEmailConfirmedAsync(x)) {
                 string baseUrl = environmentSettings.BaseUrl;
-                var newUser = new NewUserDetailsVM {
-                    Email = user.Email,
-                    Username = user.UserName,
-                    Displayname = user.Displayname,
+                var userDetails = new UserDetailsExtendedVM {
+                    Email = x.Email,
+                    Username = x.UserName,
+                    Displayname = x.Displayname,
                     Url = baseUrl,
-                    Subject = "Your new account is ready!"
+                    Subject = "Your new account is ready!",
+                    CompanyPhones = this.parametersRepo.GetAsync().Result.Phones,
+                    LogoTextBase64 = SetLogoTextAsBackground()
                 };
-                var response = emailSender.EmailNewUserDetails(newUser);
+                var response = emailSender.EmailUserDetails(userDetails);
                 if (response.Exception == null) {
                     return new Response {
                         Code = 200,
@@ -203,6 +209,10 @@ namespace API.Features.Users {
                 };
             };
 
+        }
+
+        private static string SetLogoTextAsBackground() {
+            return "width: 116px; height: 23px; background: url(data:image/png;base64," + LogoService.GetBase64LogoText() + ")";
         }
 
     }

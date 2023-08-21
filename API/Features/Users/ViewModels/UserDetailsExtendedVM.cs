@@ -1,8 +1,7 @@
 namespace API.Features.Users {
 
-    public class NewUserDetailsVM {
+    public class UserDetailsExtendedVM : UserDetailsVM {
 
-        public string Email { get; set; }
         public string Username { get; set; }
         public string Displayname { get; set; }
         public string CompanyPhones { get; set; }

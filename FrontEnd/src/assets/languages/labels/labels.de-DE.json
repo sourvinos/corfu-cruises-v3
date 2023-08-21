@@ -551,6 +551,10 @@
             {
                 "id": "saveButton",
                 "description": "Speichern"
+            },
+            {
+                "id": "emailUserDetails",
+                "description": "Daten per E-Mail senden"
             }
         ]
     },
