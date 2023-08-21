@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 // Custom
@@ -24,13 +24,8 @@ export class UserService extends HttpDataService {
         return this.http.post<any>(this.url, formData)
     }
 
-    public emailUserDetails(email: string): Observable<any> {
-        const body = JSON.stringify({ value: email })
-        return this.http.post<any>(this.url + '/emailUserDetails', body, {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json', Accept: 'text/plain'
-            })
-        })
+    public emailUserDetails(formData: any): Observable<any> {
+        return this.http.post<any>(this.url + '/emailUserDetails', formData)
     }
 
     //#endregion

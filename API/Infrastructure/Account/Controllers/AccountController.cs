@@ -24,6 +24,7 @@ namespace API.Infrastructure.Account {
 
         public AccountController(IEmailSender emailSender, IHttpContextAccessor httpContextAccessor, IOptions<EnvironmentSettings> environmentSettings, SignInManager<UserExtended> signInManager, UserManager<UserExtended> userManager) {
             this.emailSender = emailSender;
+            this.environmentSettings = environmentSettings.Value;
             this.httpContextAccessor = httpContextAccessor;
             this.signInManager = signInManager;
             this.userManager = userManager;

@@ -119,7 +119,14 @@ export class EditUserFormComponent {
     }
 
     public onEmailUserDetais(): void {
-        this.emailUserDetails()
+        this.userService.emailUserDetails(this.form.value).subscribe({
+            complete: () => {
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, true)
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
+        })
     }
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
@@ -138,17 +145,6 @@ export class EditUserFormComponent {
     private editUserFromTopMenu(): void {
         this.parentUrl = '/home'
         this.icon = 'home'
-    }
-
-    private emailUserDetails(): void {
-        this.userService.emailUserDetails(this.record.email).subscribe({
-            complete: () => {
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, true)
-            },
-            error: (errorFromInterceptor) => {
-                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-            }
-        })
     }
 
     private cloneRecord(): void {
