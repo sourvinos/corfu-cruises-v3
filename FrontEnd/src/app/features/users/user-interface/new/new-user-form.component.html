@@ -11,7 +11,7 @@
             <mat-form-field>
                 <mat-label>{{ getLabel('username') }}</mat-label>
                 <input [inputTabStop]="input" class="invisible" dataTabIndex="1" formControlName="username" matInput>
-                <span #tooltip="matTooltip" class="tooltip-inside-input-field transparent" matTooltip="{{ getLabel('closingTimeTooltip') }}">?</span>
+                <span #tooltip="matTooltip" class="tooltip-inside-input-field transparent" matTooltip="{{ getLabel('usernameTooltip') }}">?</span>
                 <mat-error *ngIf="username.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="username.hasError('maxlength')">{{ getHint("maxLength", username.errors.maxlength.requiredLength) }}</mat-error>
                 <mat-error *ngIf="!username.hasError('maxlength') && username.hasError('containsSpace')">{{ getHint("spacesNotAllowed") }}</mat-error>

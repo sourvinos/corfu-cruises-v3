@@ -9,7 +9,7 @@
                     <mat-icon class="material-icons-outlined">more_vert</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu" class="primary">
-                    <ng-container *ngTemplateOutlet="emailMenu"></ng-container>
+                    <ng-container *ngTemplateOutlet="contextMenu"></ng-container>
                 </mat-menu>
             </div>
         </div>
@@ -77,7 +77,6 @@
 
     <div id="footer">
         <div id="button-align-right">
-            <button (click)="onChangePassword()" class="secondary" mat-flat-button>{{ getLabel("changePasswordButton") | uppercase }}</button>
             <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
                 <mat-icon *ngIf="!form.valid" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("saveButton") | uppercase }}</span>
@@ -93,7 +92,10 @@
     </mat-option>
 </mat-autocomplete>
 
-<ng-template #emailMenu xPosition="before">
+<ng-template #contextMenu xPosition="before">
+    <button (click)="onChangePassword()" mat-menu-item>
+        <span>{{ getLabel("changePasswordButton") }}</span>
+    </button>
     <button (click)="onEmailUserDetais()" mat-menu-item>
         <span>{{ getLabel('emailUserDetails') }}</span>
     </button>

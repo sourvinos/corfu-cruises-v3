@@ -549,12 +549,12 @@
                 "description": "Passwort ändern"
             },
             {
-                "id": "saveButton",
-                "description": "Speichern"
-            },
-            {
                 "id": "emailUserDetails",
                 "description": "Daten per E-Mail senden"
+            },
+            {
+                "id": "saveButton",
+                "description": "Speichern"
             }
         ]
     },

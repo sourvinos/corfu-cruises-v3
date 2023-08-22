@@ -549,12 +549,12 @@
                 "description": "Change password"
             },
             {
-                "id": "saveButton",
-                "description": "Save"
-            },
-            {
                 "id": "emailUserDetails",
                 "description": "Send data to email"
+            },
+            {
+                "id": "saveButton",
+                "description": "Save"
             }
         ]
     },

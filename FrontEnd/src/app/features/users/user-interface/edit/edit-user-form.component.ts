@@ -119,14 +119,19 @@ export class EditUserFormComponent {
     }
 
     public onEmailUserDetais(): void {
-        this.userService.emailUserDetails(this.form.value).subscribe({
-            complete: () => {
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, true)
-            },
-            error: (errorFromInterceptor) => {
-                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-            }
-        })
+        if (this.helperService.deepEqual(this.form.value, this.mirrorRecord)) {
+            this.userService.emailUserDetails(this.form.value).subscribe({
+                complete: () => {
+                    this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, true)
+                },
+                error: (errorFromInterceptor) => {
+                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                }
+            })
+        } else {
+            this.mustGoBackAfterSave = false
+            this.dialogService.open(this.messageDialogService.formIsDirty(), 'error', ['ok'])
+        }
     }
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {

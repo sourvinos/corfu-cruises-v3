@@ -33,7 +33,6 @@ namespace API.Features.Users {
             this.httpContext = httpContext;
             this.mapper = mapper;
             this.parametersRepo = parametersRepo;
-
             this.userRepo = userRepo;
             this.userValidation = userValidation;
         }
