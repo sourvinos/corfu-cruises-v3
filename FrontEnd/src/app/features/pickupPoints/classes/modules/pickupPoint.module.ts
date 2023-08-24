@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core'
+import { NgxMatTimepickerModule } from 'ngx-mat-timepicker'
 // Custom
 import { PickupPointFormComponent } from '../../user-interface/pickupPoint-form.component'
 import { PickupPointListComponent } from '../../user-interface/pickupPoint-list.component'
@@ -11,8 +12,9 @@ import { SharedModule } from '../../../../shared/modules/shared.module'
         PickupPointFormComponent,
     ],
     imports: [
-        SharedModule,
-        PickupPointRoutingModule
+        NgxMatTimepickerModule,
+        PickupPointRoutingModule,
+        SharedModule
     ]
 })
 

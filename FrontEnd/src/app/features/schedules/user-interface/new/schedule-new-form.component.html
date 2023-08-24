@@ -18,7 +18,7 @@
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>{{ getLabel('time') }}</mat-label>
-                        <input [format]=24 [ngxMatTimepicker]="timePicker" [readonly]=true formControlName="time" matInput />
+                        <input [disableClick]="true" [format]=24 [ngxMatTimepicker]="timePicker" formControlName="time" matInput />
                         <div matSuffix style="display:flex">
                             <button (click)="timePicker.open()" mat-icon-button type="button">
                                 <mat-icon class="input-suffix material-icons-outlined extra-top-margin small">watch_later</mat-icon>
@@ -26,7 +26,7 @@
                         </div>
                         <mat-error *ngIf="time.hasError('required')">{{ getHint("required") }}</mat-error>
                         <mat-error *ngIf="!time.hasError('required') && !time.hasError('time')">{{ getHint("invalid") }}</mat-error>
-                        <ngx-mat-timepicker #timePicker></ngx-mat-timepicker>
+                        <ngx-mat-timepicker #timePicker [minutesGap]=5></ngx-mat-timepicker>
                     </mat-form-field>
                 </div>
                 <div class="group-input-field">
