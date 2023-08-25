@@ -3,15 +3,6 @@
     color: var(--color-text) !important;
 }
 
-.sub-menu button {
-    background-color: var(--color-background) !important;
-    color: var(--color-text) !important;
-}
-
-.sub-menu button:hover {
-    background-color: var(--color-secondary) !important;
-}
-
 #selected-year {
     color: var(--color-text);
     font-family: var(--font-family-asty);

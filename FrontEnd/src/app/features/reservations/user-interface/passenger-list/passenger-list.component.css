@@ -45,8 +45,3 @@
     margin-top: 0.1875rem;
     transition: color var(--theme-delay) !important;
 }
-
-.fa-trash-alt {
-    color: var(--color-accent) !important;
-    font-size: 1.0625rem;
-}

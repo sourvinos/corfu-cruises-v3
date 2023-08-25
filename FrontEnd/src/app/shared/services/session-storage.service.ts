@@ -18,7 +18,7 @@ export class SessionStorageService {
     }
 
     public saveItem(key: string, value: string): void {
-        sessionStorage.setItem(key, value)
+        sessionStorage.setItem(key, value == undefined ? '0' : value.toString())
     }
 
     public deleteItems(items: any): void {
