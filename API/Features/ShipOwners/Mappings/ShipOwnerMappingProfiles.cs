@@ -1,4 +1,3 @@
-using API.Infrastructure.Helpers;
 using AutoMapper;
 
 namespace API.Features.ShipOwners {
@@ -17,9 +16,7 @@ namespace API.Features.ShipOwners {
                 .ForMember(x => x.Address, x => x.MapFrom(x => x.Address.Trim()))
                 .ForMember(x => x.TaxNo, x => x.MapFrom(x => x.TaxNo.Trim()))
                 .ForMember(x => x.City, x => x.MapFrom(x => x.City.Trim()))
-                .ForMember(x => x.Phones, x => x.MapFrom(x => x.Phones.Trim()))
-                .ForMember(x => x.UserId, x => x.MapFrom(x => x.UserId))
-                .ForMember(x => x.LastUpdate, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime())));
+                .ForMember(x => x.Phones, x => x.MapFrom(x => x.Phones.Trim()));
         }
 
     }

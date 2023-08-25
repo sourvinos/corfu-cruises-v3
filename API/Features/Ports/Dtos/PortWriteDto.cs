@@ -9,7 +9,10 @@ namespace API.Features.Ports {
         public string Abbreviation { get; set; }
         public int StopOrder { get; set; }
         public bool IsActive { get; set; }
-        public string UserId { get; set; }
+        public string PostAt { get; set; }
+        public string PostUserId { get; set; }
+        public string PutAt { get; set; }
+        public string PutUserId { get; set; }
 
     }
 

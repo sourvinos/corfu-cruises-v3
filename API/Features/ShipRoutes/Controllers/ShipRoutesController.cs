@@ -58,7 +58,7 @@ namespace API.Features.ShipRoutes {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] ShipRouteWriteDto shipRoute) {
-            var x = shipRouteRepo.Create(mapper.Map<ShipRouteWriteDto, ShipRoute>((ShipRouteWriteDto)shipRouteRepo.AttachUserIdToDto(shipRoute)));
+            var x = shipRouteRepo.Create(mapper.Map<ShipRouteWriteDto, ShipRoute>((ShipRouteWriteDto)shipRouteRepo.AttachUserIdToDto(null, null, shipRoute)));
             return new Response {
                 Code = 200,
                 Id = x.Id.ToString(),
@@ -73,7 +73,7 @@ namespace API.Features.ShipRoutes {
         public async Task<Response> Put([FromBody] ShipRouteWriteDto shipRoute) {
             var x = await shipRouteRepo.GetByIdAsync(shipRoute.Id);
             if (x != null) {
-                shipRoute.UserId = x.User.Id;
+                shipRoute.PutUserId = x.User.Id;
                 shipRouteRepo.Update(mapper.Map<ShipRouteWriteDto, ShipRoute>(shipRoute));
                 return new Response {
                     Code = 200,

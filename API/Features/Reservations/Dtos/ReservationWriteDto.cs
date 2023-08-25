@@ -6,6 +6,7 @@ namespace API.Features.Reservations {
 
     public class ReservationWriteDto : IBaseEntity {
 
+        public int Id { get; set; }
         public Guid ReservationId { get; set; }
         public int CustomerId { get; set; }
         public int DestinationId { get; set; }
@@ -23,7 +24,10 @@ namespace API.Features.Reservations {
         public int Kids { get; set; }
         public int Free { get; set; }
         public string Remarks { get; set; }
-        public string UserId { get; set; }
+        public string PostAt { get; set; }
+        public string PostUserId { get; set; }
+        public string PutAt { get; set; }
+        public string PutUserId { get; set; }
 
         public List<PassengerWriteDto> Passengers { get; set; }
 

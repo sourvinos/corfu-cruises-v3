@@ -12,7 +12,7 @@ namespace API.Infrastructure.Parameters {
             CreateMap<ParameterWriteDto, Parameter>()
                 .ForMember(x => x.ClosingTime, x => x.MapFrom(x => x.ClosingTime))
                 .ForMember(x => x.Phones, x => x.MapFrom(x => x.Phones))
-                .ForMember(x => x.UserId, x => x.MapFrom(x => x.UserId))
+                // .ForMember(x => x.UserId, x => x.MapFrom(x => x.UserId))
                 .ForMember(x => x.LastUpdate, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime())));
         }
 

@@ -12,8 +12,11 @@ namespace API.Features.Customers {
         public string PersonInCharge { get; set; }
         public string Email { get; set; }
         public bool IsActive { get; set; }
-        public string UserId { get; set; }
-        
+        public string PostAt { get; set; }
+        public string PostUserId { get; set; }
+        public string PutAt { get; set; }
+        public string PutUserId { get; set; }
+
     }
 
 }

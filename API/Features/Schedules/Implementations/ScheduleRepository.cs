@@ -46,7 +46,7 @@ namespace API.Features.Schedules {
         }
 
         public List<ScheduleWriteDto> AttachUserIdToDtos(List<ScheduleWriteDto> schedules) {
-            schedules.ForEach(x => x = Identity.PatchEntityWithUserId(httpContext, x));
+            schedules.ForEach(x => x = Identity.PatchEntityWithUserAndDate(httpContext, null, null, x));
             return schedules;
         }
 

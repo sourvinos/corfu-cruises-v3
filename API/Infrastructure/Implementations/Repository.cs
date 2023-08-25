@@ -49,7 +49,8 @@ namespace API.Infrastructure.Implementations {
                 context.Remove(entity);
                 context.SaveChanges();
                 DisposeOrCommit(transaction);
-            } catch (Exception) {
+            }
+            catch (Exception) {
                 throw new CustomException {
                     ResponseCode = 491
                 };
@@ -60,8 +61,8 @@ namespace API.Infrastructure.Implementations {
             context.RemoveRange(entities);
         }
 
-        public IBaseEntity AttachUserIdToDto(IBaseEntity entity) {
-            return Extensions.Identity.PatchEntityWithUserId(httpContext, entity);
+        public IBaseEntity AttachUserIdToDto(string existintPostAt, string existingUserId, IBaseEntity entity) {
+            return Extensions.Identity.PatchEntityWithUserAndDate(httpContext, existintPostAt, existingUserId, entity);
         }
 
         private void DisposeOrCommit(IDbContextTransaction transaction) {

@@ -9,7 +9,7 @@ namespace API.Infrastructure.Interfaces {
         void Update(T entity);
         void Delete(T entity);
         void DeleteRange(IEnumerable<T> entities);
-        IBaseEntity AttachUserIdToDto(IBaseEntity entity);
+        IBaseEntity AttachUserIdToDto(string existingPostAt, string existingUserId, IBaseEntity entity);
 
     }
 

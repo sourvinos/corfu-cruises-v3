@@ -1,10 +1,9 @@
 using System;
 using API.Features.Users;
-using API.Infrastructure.Interfaces;
 
 namespace API.Infrastructure.Parameters {
 
-    public class Parameter : IBaseEntity {
+    public class Parameter {
 
         // PK
         public Guid Id { get; set; }
@@ -17,7 +16,7 @@ namespace API.Infrastructure.Parameters {
         public string UserId { get; set; }
         // Navigation
         public UserExtended User { get; set; }
-
+ 
     }
 
 }

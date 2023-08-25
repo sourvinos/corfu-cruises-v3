@@ -78,7 +78,7 @@ namespace API.Features.Schedules {
             if (x != null) {
                 var z = scheduleValidation.IsValidOnUpdate(schedule);
                 if (z == 200) {
-                    schedule.UserId = x.User.Id;
+                    schedule.PutUserId = x.User.Id;
                     scheduleRepo.Update(mapper.Map<ScheduleWriteDto, Schedule>(schedule));
                     return new Response {
                         Code = 200,

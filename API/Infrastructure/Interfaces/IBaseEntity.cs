@@ -2,7 +2,11 @@ namespace API.Infrastructure.Interfaces {
 
     public interface IBaseEntity {
 
-        public string UserId { get; set; }
+        public int Id { get; set; }
+        public string PostAt { get; set; }
+        public string PostUserId { get; set; }
+        public string PutAt { get; set; }
+        public string PutUserId { get; set; }
 
     }
 

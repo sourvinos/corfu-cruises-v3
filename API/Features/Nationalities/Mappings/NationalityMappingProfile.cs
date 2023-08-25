@@ -1,4 +1,3 @@
-using API.Infrastructure.Helpers;
 using AutoMapper;
 
 namespace API.Features.Nationalities {
@@ -11,9 +10,7 @@ namespace API.Features.Nationalities {
             CreateMap<Nationality, NationalityReadDto>()
                 .ForMember(x => x.User, x => x.MapFrom(x => x.User.Displayname))
                 .ForMember(x => x.LastUpdate, x => x.MapFrom(x => x.LastUpdate));
-            CreateMap<NationalityWriteDto, Nationality>()
-                .ForMember(x => x.UserId, x => x.MapFrom(x => x.UserId))
-                .ForMember(x => x.LastUpdate, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime())));
+            CreateMap<NationalityWriteDto, Nationality>();
         }
 
     }
