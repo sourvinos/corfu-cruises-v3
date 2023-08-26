@@ -2,7 +2,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.CoachRoutes {
 
-    public class CoachRouteWriteDto : IBaseEntity {
+    public class CoachRouteWriteDto : IMetadataWrite {
 
         public int Id { get; set; }
         public int PortId { get; set; }

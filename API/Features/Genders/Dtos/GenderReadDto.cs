@@ -1,13 +1,18 @@
-﻿namespace API.Features.Genders {
+﻿using API.Infrastructure.Interfaces;
 
-    public class GenderReadDto {
+namespace API.Features.Genders {
+
+    public class GenderReadDto : IMetadataRead {
 
         public int Id { get; set; }
         public string Description { get; set; }
         public bool IsActive { get; set; }
-        public string User { get; set; }
-        public string LastUpdate { get; set; }
-
+        // Metadata
+        public string PostAt { get; set; }
+        public string PostUser { get; set; }
+        public string PutAt { get; set; }
+        public string PutUser { get; set; }
+        
     }
 
 }

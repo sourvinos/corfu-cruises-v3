@@ -8,8 +8,8 @@ namespace API.Features.ShipOwners {
             CreateMap<ShipOwner, ShipOwnerListVM>();
             CreateMap<ShipOwner, ShipOwnerAutoCompleteVM>();
             CreateMap<ShipOwner, ShipOwnerReadDto>()
-                .ForMember(x => x.User, x => x.MapFrom(x => x.User.Displayname))
-                .ForMember(x => x.LastUpdate, x => x.MapFrom(x => x.LastUpdate));
+                .ForMember(x => x.PostUser, x => x.MapFrom(x => x.User.Displayname))
+                .ForMember(x => x.PutUser, x => x.MapFrom(x => x.User.Displayname));
             CreateMap<ShipOwnerWriteDto, ShipOwner>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
                 .ForMember(x => x.Profession, x => x.MapFrom(x => x.Profession.Trim()))

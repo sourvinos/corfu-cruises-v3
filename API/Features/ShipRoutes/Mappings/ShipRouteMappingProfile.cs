@@ -8,8 +8,8 @@ namespace API.Features.ShipRoutes {
             CreateMap<ShipRoute, ShipRouteListVM>();
             CreateMap<ShipRoute, ShipRouteAutoCompleteVM>();
             CreateMap<ShipRoute, ShipRouteReadDto>()
-                .ForMember(x => x.User, x => x.MapFrom(x => x.User.Displayname))
-                .ForMember(x => x.LastUpdate, x => x.MapFrom(x => x.LastUpdate));
+                .ForMember(x => x.PostUser, x => x.MapFrom(x => x.User.Displayname))
+                .ForMember(x => x.PutUser, x => x.MapFrom(x => x.User.Displayname));
             CreateMap<ShipRouteWriteDto, ShipRoute>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
                 .ForMember(x => x.FromPort, x => x.MapFrom(x => x.FromPort.Trim()))

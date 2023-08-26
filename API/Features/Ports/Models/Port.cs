@@ -3,10 +3,11 @@ using API.Features.CoachRoutes;
 using API.Features.Reservations;
 using API.Features.Schedules;
 using API.Features.Users;
+using API.Infrastructure.Interfaces;
 
 namespace API.Features.Ports {
 
-    public class Port {
+    public class Port : IMetadataWrite {
 
         // PK
         public int Id { get; set; }
@@ -15,9 +16,11 @@ namespace API.Features.Ports {
         public string Abbreviation { get; set; }
         public int StopOrder { get; set; }
         public bool IsActive { get; set; }
-        public string LastUpdate { get; set; }
-        // FKs
-        public string UserId { get; set; }
+        // Metadata
+        public string PostAt { get; set; }
+        public string PostUserId { get; set; }
+        public string PutAt { get; set; }
+        public string PutUserId { get; set; }
         // Navigation
         public UserExtended User { get; set; }
         public List<Reservation> Reservations { get; set; }

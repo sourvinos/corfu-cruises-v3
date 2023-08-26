@@ -2,7 +2,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Schedules {
 
-    public class ScheduleWriteDto : IBaseEntity {
+    public class ScheduleWriteDto : IMetadataWrite {
 
         public int Id { get; set; }
         public int DestinationId { get; set; }

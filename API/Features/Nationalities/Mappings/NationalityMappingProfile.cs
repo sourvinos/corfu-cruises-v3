@@ -8,8 +8,8 @@ namespace API.Features.Nationalities {
             CreateMap<Nationality, NationalityListVM>();
             CreateMap<Nationality, NationalityAutoCompleteVM>();
             CreateMap<Nationality, NationalityReadDto>()
-                .ForMember(x => x.User, x => x.MapFrom(x => x.User.Displayname))
-                .ForMember(x => x.LastUpdate, x => x.MapFrom(x => x.LastUpdate));
+                .ForMember(x => x.PostUser, x => x.MapFrom(x => x.User.Displayname))
+                .ForMember(x => x.PutUser, x => x.MapFrom(x => x.User.Displayname));
             CreateMap<NationalityWriteDto, Nationality>();
         }
 

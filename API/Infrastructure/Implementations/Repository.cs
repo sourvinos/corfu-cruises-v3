@@ -61,7 +61,7 @@ namespace API.Infrastructure.Implementations {
             context.RemoveRange(entities);
         }
 
-        public IBaseEntity AttachUserIdToDto(string existintPostAt, string existingUserId, IBaseEntity entity) {
+        public IMetadataWrite AttachUserIdToDto(string existintPostAt, string existingUserId, IMetadataWrite entity) {
             return Extensions.Identity.PatchEntityWithUserAndDate(httpContext, existintPostAt, existingUserId, entity);
         }
 

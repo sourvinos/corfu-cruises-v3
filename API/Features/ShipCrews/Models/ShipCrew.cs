@@ -4,10 +4,11 @@ using API.Features.Nationalities;
 using API.Features.Occupants;
 using API.Features.Ships;
 using API.Features.Users;
+using API.Infrastructure.Interfaces;
 
 namespace API.Features.ShipCrews {
 
-    public class ShipCrew {
+    public class ShipCrew : IMetadataWrite {
 
         // PK
         public int Id { get; set; }
@@ -21,9 +22,11 @@ namespace API.Features.ShipCrews {
         public string Firstname { get; set; }
         public DateTime Birthdate { get; set; }
         public bool IsActive { get; set; }
-        public string LastUpdate { get; set; }
-        // FKs
-        public string UserId { get; set; }
+        // Metadata
+        public string PostAt { get; set; }
+        public string PostUserId { get; set; }
+        public string PutAt { get; set; }
+        public string PutUserId { get; set; }
         // Navigation
         public Gender Gender { get; set; }
         public Nationality Nationality { get; set; }

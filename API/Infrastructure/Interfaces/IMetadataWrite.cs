@@ -1,6 +1,6 @@
 namespace API.Infrastructure.Interfaces {
 
-    public interface IBaseEntity {
+    public interface IMetadataWrite {
 
         public int Id { get; set; }
         public string PostAt { get; set; }

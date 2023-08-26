@@ -1,6 +1,3 @@
-using System;
-using System.Linq;
-using System.Security.Claims;
 using API.Features.Users;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Helpers;
@@ -8,6 +5,9 @@ using API.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using System.Linq;
+using System.Security.Claims;
+using System;
 
 namespace API.Infrastructure.Extensions {
 
@@ -47,7 +47,7 @@ namespace API.Infrastructure.Extensions {
             }
         }
 
-        public static T PatchEntityWithUserAndDate<T>(IHttpContextAccessor httpContextAccessor, string existingPostAt, string existingUserId, T entity) where T : IBaseEntity {
+        public static T PatchEntityWithUserAndDate<T>(IHttpContextAccessor httpContextAccessor, string existingPostAt, string existingUserId, T entity) where T : IMetadataWrite {
             if (entity.Id == 0) {
                 entity.PostAt = DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime());
                 entity.PostUserId = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;

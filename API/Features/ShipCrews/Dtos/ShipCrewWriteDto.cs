@@ -2,7 +2,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.ShipCrews {
 
-    public class ShipCrewWriteDto : IBaseEntity {
+    public class ShipCrewWriteDto : IMetadataWrite {
 
         public int Id { get; set; }
         public int GenderId { get; set; }

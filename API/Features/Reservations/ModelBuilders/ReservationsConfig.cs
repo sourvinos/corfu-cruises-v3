@@ -12,7 +12,6 @@ namespace API.Features.Reservations {
             entity.Property(x => x.CustomerId).IsRequired(true);
             entity.Property(x => x.DestinationId).IsRequired(true);
             entity.Property(x => x.PickupPointId).IsRequired(true);
-            entity.Property(x => x.UserId).HasMaxLength(36).IsRequired(true);
             // Fields
             entity.Property(x => x.Date).HasColumnType("date").IsRequired(true);
             entity.Property(x => x.RefNo).HasDefaultValue("").HasMaxLength(11);
@@ -24,7 +23,11 @@ namespace API.Features.Reservations {
             entity.Property(x => x.Email).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.Phones).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.Remarks).HasDefaultValue("").HasMaxLength(128);
-            entity.Property(x => x.LastUpdate).HasMaxLength(19);
+            // Metadata
+            entity.Property(x => x.PostAt).HasMaxLength(19);
+            entity.Property(x => x.PostUserId).HasMaxLength(36).IsRequired(true);
+            entity.Property(x => x.PutAt).HasMaxLength(19);
+            entity.Property(x => x.PutUserId).HasMaxLength(36).IsRequired(true);
             // FK Constraints
             entity.HasOne(x => x.Customer).WithMany(x => x.Reservations).HasForeignKey(x => x.CustomerId).OnDelete(DeleteBehavior.Restrict);
             entity.HasOne(x => x.Destination).WithMany(x => x.Reservations).HasForeignKey(x => x.DestinationId).OnDelete(DeleteBehavior.Restrict);
@@ -32,7 +35,8 @@ namespace API.Features.Reservations {
             entity.HasOne(x => x.PickupPoint).WithMany(x => x.Reservations).HasForeignKey(x => x.PickupPointId).OnDelete(DeleteBehavior.Restrict);
             entity.HasOne(x => x.Port).WithMany(x => x.Reservations).HasForeignKey(x => x.PortId).OnDelete(DeleteBehavior.Restrict);
             entity.HasOne(x => x.Ship).WithMany(x => x.Reservations).HasForeignKey(x => x.ShipId).IsRequired(false).OnDelete(DeleteBehavior.Restrict);
-            entity.HasOne(x => x.User).WithMany(x => x.Reservations).HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(x => x.User).WithMany(x => x.Reservations).HasForeignKey(x => x.PostUserId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(x => x.User).WithMany(x => x.Reservations).HasForeignKey(x => x.PutUserId).OnDelete(DeleteBehavior.Restrict);
         }
 
     }

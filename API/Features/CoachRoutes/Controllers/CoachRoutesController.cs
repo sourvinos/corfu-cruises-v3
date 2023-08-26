@@ -84,8 +84,7 @@ namespace API.Features.CoachRoutes {
             if (x != null) {
                 var z = coachRouteValidation.IsValid(coachRoute);
                 if (z == 200) {
-                    coachRoute.PutUserId = x.User.Id;
-                    coachRouteRepo.Update(mapper.Map<CoachRouteWriteDto, CoachRoute>(coachRoute));
+                    coachRouteRepo.Update(mapper.Map<CoachRouteWriteDto, CoachRoute>((CoachRouteWriteDto)coachRouteRepo.AttachUserIdToDto(x.PostAt, x.PostUserId, coachRoute)));
                     return new Response {
                         Code = 200,
                         Id = x.Id.ToString(),

@@ -2,10 +2,11 @@
 using API.Features.Reservations;
 using API.Features.Schedules;
 using API.Features.Users;
+using API.Infrastructure.Interfaces;
 
 namespace API.Features.Destinations {
 
-    public class Destination {
+    public class Destination : IMetadataWrite {
 
         // PK
         public int Id { get; set; }
@@ -13,9 +14,11 @@ namespace API.Features.Destinations {
         public string Description { get; set; }
         public string Abbreviation { get; set; }
         public bool IsActive { get; set; }
-        public string LastUpdate { get; set; }
-        // FKs
-        public string UserId { get; set; }
+        // Metadata
+        public string PostAt { get; set; }
+        public string PostUserId { get; set; }
+        public string PutAt { get; set; }
+        public string PutUserId { get; set; }
         // Navigation
         public UserExtended User { get; set; }
         public List<Schedule> Schedules { get; set; }

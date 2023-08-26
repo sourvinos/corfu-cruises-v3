@@ -8,8 +8,6 @@ namespace API.Features.ShipRoutes {
         public void Configure(EntityTypeBuilder<ShipRoute> entity) {
             // PK
             entity.Property(x => x.Id).ValueGeneratedOnAdd();
-            // FKs
-            entity.Property(x => x.UserId).HasMaxLength(36).IsRequired(true);
             // Fields
             entity.Property(x => x.Description).HasMaxLength(128).IsRequired(true);
             entity.Property(x => x.FromPort).HasMaxLength(128).IsRequired(true);
@@ -19,9 +17,14 @@ namespace API.Features.ShipRoutes {
             entity.Property(x => x.ToPort).HasMaxLength(128).IsRequired(true);
             entity.Property(x => x.ToTime).HasMaxLength(5).IsRequired(true);
             entity.Property(x => x.IsActive);
-            entity.Property(x => x.LastUpdate).HasMaxLength(19);
+            // Metadata
+            entity.Property(x => x.PostAt).HasMaxLength(19);
+            entity.Property(x => x.PostUserId).HasMaxLength(36).IsRequired(true);
+            entity.Property(x => x.PutAt).HasMaxLength(19);
+            entity.Property(x => x.PutUserId).HasMaxLength(36).IsRequired(true);
             // FK Constraints
-            entity.HasOne(x => x.User).WithMany(x => x.ShipRoutes).HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(x => x.User).WithMany(x => x.ShipRoutes).HasForeignKey(x => x.PostUserId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(x => x.User).WithMany(x => x.ShipRoutes).HasForeignKey(x => x.PutUserId).OnDelete(DeleteBehavior.Restrict);
         }
 
     }

@@ -2,7 +2,7 @@
 
 namespace API.Features.ShipOwners {
 
-    public class ShipOwnerWriteDto : IBaseEntity {
+    public class ShipOwnerWriteDto : IMetadataWrite {
 
         public int Id { get; set; }
         public string Description { get; set; }

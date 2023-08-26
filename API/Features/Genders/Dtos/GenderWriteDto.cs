@@ -2,7 +2,7 @@
 
 namespace API.Features.Genders {
 
-    public class GenderWriteDto : IBaseEntity {
+    public class GenderWriteDto : IMetadataWrite {
 
         public int Id { get; set; }
         public string Description { get; set; }
