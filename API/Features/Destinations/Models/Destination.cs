@@ -2,6 +2,7 @@
 using API.Features.Reservations;
 using API.Features.Schedules;
 using API.Features.Users;
+using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.Destinations {
@@ -14,12 +15,11 @@ namespace API.Features.Destinations {
         public string Description { get; set; }
         public string Abbreviation { get; set; }
         public bool IsActive { get; set; }
-        // Metadata
-        public string PostAt { get; set; }
+        // Navigation
+                public string PostAt { get; set; }
         public string PostUserId { get; set; }
         public string PutAt { get; set; }
         public string PutUserId { get; set; }
-        // Navigation
         public UserExtended User { get; set; }
         public List<Schedule> Schedules { get; set; }
         public List<Reservation> Reservations { get; set; }

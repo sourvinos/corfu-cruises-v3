@@ -84,7 +84,6 @@ namespace API.Features.Ships {
             if (x != null) {
                 var z = shipValidation.IsValid(ship);
                 if (z == 200) {
-                    ship.PutUserId = x.User.Id;
                     shipRepo.Update(mapper.Map<ShipWriteDto, Ship>(ship));
                     return new Response {
                         Code = 200,

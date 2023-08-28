@@ -34,16 +34,27 @@ namespace API.Features.CoachRoutes {
             return mapper.Map<IEnumerable<CoachRoute>, IEnumerable<CoachRouteAutoCompleteVM>>(coachRoutes);
         }
 
-        public async Task<CoachRoute> GetById(int id, bool includeTables) {
+        public async Task<CoachRoute> GetByIdAsync(int id, bool includeTables) {
+            if (includeTables) {
+                return context.CoachRoutes
+                       .Join(context.Users,
+                           supply => new { LINE_NO = supply.PortId, CUST_ORDER_ID = supply.HasTransfer },
+                           demand => new { demand.Email, demand.Id },
+                           (supply, demand) => new { custOrderLineReturn = demand })
+                       .Select(s => s.custOrderLineReturn)
+                       .ToList();
+            }
             return includeTables
                 ? await context.CoachRoutes
                     .AsNoTracking()
                     .Include(x => x.Port)
-                    .Include(x => x.User)
+                    .Include(x => x.PostUser)
+                    .Include(x => x.PutUser)
                     .SingleOrDefaultAsync(x => x.Id == id)
                 : await context.CoachRoutes
                     .AsNoTracking()
-                    .Include(x => x.User)
+                    .Include(x => x.PostUser)
+                    .Include(x => x.PutUser)
                     .SingleOrDefaultAsync(x => x.Id == id);
         }
 

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using API.Features.Ships;
 using API.Features.Users;
+using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.ShipOwners {
@@ -18,12 +19,11 @@ namespace API.Features.ShipOwners {
         public string Phones { get; set; }
         public string Email { get; set; }
         public bool IsActive { get; set; }
-        // Metadata
-        public string PostAt { get; set; }
+        // Navigation
+                public string PostAt { get; set; }
         public string PostUserId { get; set; }
         public string PutAt { get; set; }
         public string PutUserId { get; set; }
-        // Navigation
         public UserExtended User { get; set; }
         public List<Ship> Ships { get; set; }
 

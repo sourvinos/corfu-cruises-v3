@@ -83,7 +83,6 @@ namespace API.Features.ShipCrews {
             if (x != null) {
                 var z = shipCrewValidation.IsValid(shipCrew);
                 if (z == 200) {
-                    shipCrew.PutUserId = x.User.Id;
                     shipCrewRepo.Update(mapper.Map<ShipCrewWriteDto, ShipCrew>(shipCrew));
                     return new Response {
                         Code = 200,

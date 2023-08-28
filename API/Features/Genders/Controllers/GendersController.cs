@@ -73,7 +73,6 @@ namespace API.Features.Genders {
         public async Task<Response> Put([FromBody] GenderWriteDto gender) {
             var x = await genderRepo.GetByIdAsync(gender.Id);
             if (x != null) {
-                gender.PutUserId = x.User.Id;
                 genderRepo.Update(mapper.Map<GenderWriteDto, Gender>(gender));
                 return new Response {
                     Code = 200,

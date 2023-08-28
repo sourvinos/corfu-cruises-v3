@@ -73,7 +73,6 @@ namespace API.Features.Destinations {
         public async Task<Response> Put([FromBody] DestinationWriteDto destination) {
             var x = await destinationRepo.GetByIdAsync(destination.Id);
             if (x != null) {
-                destination.PutUserId = x.User.Id;
                 destinationRepo.Update(mapper.Map<DestinationWriteDto, Destination>(destination));
                 return new Response {
                     Code = 200,

@@ -41,13 +41,13 @@ namespace API.Features.CoachRoutes {
         [HttpGet("{id}")]
         [Authorize(Roles = "admin")]
         public async Task<ResponseWithBody> GetByIdAsync(int id) {
-            var x = await coachRouteRepo.GetById(id, true);
+            var x = await coachRouteRepo.GetByIdAsync(id, true);
             if (x != null) {
                 return new ResponseWithBody {
                     Code = 200,
                     Icon = Icons.Info.ToString(),
                     Message = ApiMessages.OK(),
-                    Body = mapper.Map<CoachRoute, CoachRouteReadDto>(x)
+                    Body = x
                 };
             } else {
                 throw new CustomException() {
@@ -80,7 +80,7 @@ namespace API.Features.CoachRoutes {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public async Task<Response> Put([FromBody] CoachRouteWriteDto coachRoute) {
-            var x = await coachRouteRepo.GetById(coachRoute.Id, false);
+            var x = await coachRouteRepo.GetByIdAsync(coachRoute.Id, false);
             if (x != null) {
                 var z = coachRouteValidation.IsValid(coachRoute);
                 if (z == 200) {
@@ -106,7 +106,7 @@ namespace API.Features.CoachRoutes {
         [HttpDelete("{id}")]
         [Authorize(Roles = "admin")]
         public async Task<Response> Delete([FromRoute] int id) {
-            var x = await coachRouteRepo.GetById(id, false);
+            var x = await coachRouteRepo.GetByIdAsync(id, false);
             if (x != null) {
                 coachRouteRepo.Delete(x);
                 return new Response {

@@ -51,6 +51,8 @@ namespace API.Infrastructure.Extensions {
             if (entity.Id == 0) {
                 entity.PostAt = DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime());
                 entity.PostUserId = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                entity.PutAt = entity.PostAt;
+                entity.PutUserId = entity.PostUserId;
                 return entity;
             } else {
                 entity.PostAt = existingPostAt;

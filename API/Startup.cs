@@ -29,40 +29,36 @@ namespace API {
             Environment = environment;
         }
 
-        // public void ConfigureLocalDevelopmentServices(IServiceCollection services) {
-        //     services.AddDbContextFactory<AppDbContext>(options =>
-        //         options.UseMySql(Configuration.GetConnectionString("LocalDevelopment"), new MySqlServerVersion(new Version(8, 0, 19)), builder => {
-        //             builder.EnableStringComparisonTranslations();
-        //         }));
-        //     ConfigureServices(services);
-        // }
-
-        // public void ConfigureLocalTestingServices(IServiceCollection services) {
-        //     services.AddDbContextFactory<AppDbContext>(options => {
-        //         options.UseMySql(Configuration.GetConnectionString("LocalTesting"), new MySqlServerVersion(new Version(8, 0, 19)), builder => builder.EnableStringComparisonTranslations());
-        //         options.EnableSensitiveDataLogging();
-        //     });
-        //     ConfigureServices(services);
-        // }
-
-        // public void ConfigureProductionLiveServices(IServiceCollection services) {
-        //     services.AddDbContextFactory<AppDbContext>(options => options.UseMySql(Configuration.GetConnectionString("ProductionLive"), new MySqlServerVersion(new Version(8, 0, 19)), builder =>
-        //         builder.EnableStringComparisonTranslations()));
-        //     ConfigureServices(services);
-        // }
-
-        // public void ConfigureProductionDemoServices(IServiceCollection services) {
-        //     services.AddDbContextFactory<AppDbContext>(options => options.UseMySql(Configuration.GetConnectionString("ProductionDemo"), new MySqlServerVersion(new Version(8, 0, 19)), builder => {
-        //         builder.EnableStringComparisonTranslations();
-        //     }));
-        //     ConfigureServices(services);
-        // }
-
-        public void ConfigureServices(IServiceCollection services) {
+        public void ConfigureLocalDevelopmentServices(IServiceCollection services) {
             services.AddDbContextFactory<AppDbContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("LocalDevelopment"), new MySqlServerVersion(new Version(8, 0, 19)), builder => {
                     builder.EnableStringComparisonTranslations();
                 }));
+            ConfigureServices(services);
+        }
+
+        public void ConfigureLocalTestingServices(IServiceCollection services) {
+            services.AddDbContextFactory<AppDbContext>(options => {
+                options.UseMySql(Configuration.GetConnectionString("LocalTesting"), new MySqlServerVersion(new Version(8, 0, 19)), builder => builder.EnableStringComparisonTranslations());
+                options.EnableSensitiveDataLogging();
+            });
+            ConfigureServices(services);
+        }
+
+        public void ConfigureProductionLiveServices(IServiceCollection services) {
+            services.AddDbContextFactory<AppDbContext>(options => options.UseMySql(Configuration.GetConnectionString("ProductionLive"), new MySqlServerVersion(new Version(8, 0, 19)), builder =>
+                builder.EnableStringComparisonTranslations()));
+            ConfigureServices(services);
+        }
+
+        public void ConfigureProductionDemoServices(IServiceCollection services) {
+            services.AddDbContextFactory<AppDbContext>(options => options.UseMySql(Configuration.GetConnectionString("ProductionDemo"), new MySqlServerVersion(new Version(8, 0, 19)), builder => {
+                builder.EnableStringComparisonTranslations();
+            }));
+            ConfigureServices(services);
+        }
+
+        public void ConfigureServices(IServiceCollection services) {
             Cors.AddCors(services);
             Identity.AddIdentity(services);
             Authentication.AddAuthentication(Configuration, services);
@@ -88,42 +84,37 @@ namespace API {
             services.Configure<DirectoryLocations>(options => Configuration.GetSection("DirectoryLocations").Bind(options));
         }
 
-        // public void ConfigureLocalDevelopment(IApplicationBuilder app) {
-        //     app.UseDeveloperExceptionPage();
-        //     Configure(app);
-        //     app.UseEndpoints(endpoints => {
-        //         endpoints.MapControllers();
-        //     });
-        // }
-
-        // public void ConfigureLocalTesting(IApplicationBuilder app) {
-        //     app.UseDeveloperExceptionPage();
-        //     Configure(app);
-        //     app.UseEndpoints(endpoints => endpoints.MapControllers());
-        // }
-
-        // public void ConfigureProductionLive(IApplicationBuilder app) {
-        //     app.UseHsts();
-        //     Configure(app);
-        //     app.UseEndpoints(endpoints => {
-        //         endpoints.MapControllers();
-        //     });
-        // }
-
-        // public void ConfigureProductionDemo(IApplicationBuilder app) {
-        //     app.UseHsts();
-        //     Configure(app);
-        //     app.UseEndpoints(endpoints => {
-        //         endpoints.MapControllers();
-        //     });
-        // }
-
-        public virtual void Configure(IApplicationBuilder app) {
+        public void ConfigureLocalDevelopment(IApplicationBuilder app) {
             app.UseDeveloperExceptionPage();
             Configure(app);
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
             });
+        }
+
+        public void ConfigureLocalTesting(IApplicationBuilder app) {
+            app.UseDeveloperExceptionPage();
+            Configure(app);
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
+        }
+
+        public void ConfigureProductionLive(IApplicationBuilder app) {
+            app.UseHsts();
+            Configure(app);
+            app.UseEndpoints(endpoints => {
+                endpoints.MapControllers();
+            });
+        }
+
+        public void ConfigureProductionDemo(IApplicationBuilder app) {
+            app.UseHsts();
+            Configure(app);
+            app.UseEndpoints(endpoints => {
+                endpoints.MapControllers();
+            });
+        }
+
+        public virtual void Configure(IApplicationBuilder app) {
             app.UseMiddleware<ResponseMiddleware>();
             app.UseDefaultFiles();
             app.UseHttpsRedirection();

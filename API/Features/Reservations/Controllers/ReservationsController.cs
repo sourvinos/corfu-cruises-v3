@@ -122,7 +122,6 @@ namespace API.Features.Reservations {
                     UpdateShipIdWithNull(reservation);
                     var z = validReservation.IsValid(reservation, scheduleRepo);
                     if (z == 200) {
-                        reservation.PutUserId = x.User.Id;
                         reservationUpdateRepo.Update(reservation.ReservationId, mapper.Map<ReservationWriteDto, Reservation>(reservation));
                         return new Response {
                             Code = 200,

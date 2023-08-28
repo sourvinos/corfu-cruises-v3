@@ -86,7 +86,6 @@ namespace API.Features.Registrars {
             if (x != null) {
                 var z = registrarValidation.IsValid(registrar);
                 if (z == 200) {
-                    registrar.PutUserId = x.User.Id;
                     registrarRepo.Update(mapper.Map<RegistrarWriteDto, Registrar>(registrar));
                     return new Response {
                         Code = 200,

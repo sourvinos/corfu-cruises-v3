@@ -2,6 +2,7 @@
 using API.Features.CoachRoutes;
 using API.Features.Reservations;
 using API.Features.Users;
+using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.PickupPoints {
@@ -18,12 +19,11 @@ namespace API.Features.PickupPoints {
         public string Time { get; set; }
         public string Remarks { get; set; }
         public bool IsActive { get; set; }
-        // Metadata
-        public string PostAt { get; set; }
+        // Navigation
+                public string PostAt { get; set; }
         public string PostUserId { get; set; }
         public string PutAt { get; set; }
         public string PutUserId { get; set; }
-        // Navigation
         public CoachRoute CoachRoute { get; set; }
         public UserExtended User { get; set; }
         public List<Reservation> Reservations { get; set; }

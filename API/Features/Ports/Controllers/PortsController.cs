@@ -84,7 +84,6 @@ namespace API.Features.Ports {
             if (x != null) {
                 var z = portValidation.IsValid(port);
                 if (z == 200) {
-                    port.PutUserId = x.User.Id;
                     portRepo.Update(mapper.Map<PortWriteDto, Port>(port));
                     return new Response {
                         Code = 200,

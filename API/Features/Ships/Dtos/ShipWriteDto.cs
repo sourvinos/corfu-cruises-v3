@@ -1,3 +1,4 @@
+using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.Ships {
@@ -15,7 +16,7 @@ namespace API.Features.Ships {
         public string ManagerInGreece { get; set; }
         public string Agent { get; set; }
         public bool IsActive { get; set; }
-        public string PostAt { get; set; }
+                public string PostAt { get; set; }
         public string PostUserId { get; set; }
         public string PutAt { get; set; }
         public string PutUserId { get; set; }

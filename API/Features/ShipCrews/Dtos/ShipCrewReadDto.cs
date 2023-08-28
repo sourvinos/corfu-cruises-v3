@@ -1,7 +1,6 @@
 using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
-
 namespace API.Features.ShipCrews {
 
     public class ShipCrewReadDto : IMetadataRead {
