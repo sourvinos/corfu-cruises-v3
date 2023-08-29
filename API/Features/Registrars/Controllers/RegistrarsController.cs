@@ -65,7 +65,7 @@ namespace API.Features.Registrars {
         public Response Post([FromBody] RegistrarWriteDto registrar) {
             var x = registrarValidation.IsValid(registrar);
             if (x == 200) {
-                registrarRepo.Create(mapper.Map<RegistrarWriteDto, Registrar>((RegistrarWriteDto)registrarRepo.AttachUserIdToDto(null, null, registrar)));
+                registrarRepo.Create(mapper.Map<RegistrarWriteDto, Registrar>((RegistrarWriteDto)registrarRepo.AttachMetadataToDto(null, null, registrar)));
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),

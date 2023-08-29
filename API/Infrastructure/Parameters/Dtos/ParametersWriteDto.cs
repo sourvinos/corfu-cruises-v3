@@ -8,7 +8,6 @@ namespace API.Infrastructure.Parameters {
         public string ClosingTime { get; set; }
         public string Phones { get; set; }
         public string Email { get; set; }
-        public string UserId { get; set; }
 
     }
 

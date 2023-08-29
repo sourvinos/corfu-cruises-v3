@@ -47,7 +47,7 @@ namespace API.Features.CoachRoutes {
                     Code = 200,
                     Icon = Icons.Info.ToString(),
                     Message = ApiMessages.OK(),
-                    Body = x
+                    Body = mapper.Map<CoachRoute, CoachRouteReadDto>(x)
                 };
             } else {
                 throw new CustomException() {
@@ -62,7 +62,7 @@ namespace API.Features.CoachRoutes {
         public Response Post([FromBody] CoachRouteWriteDto coachRoute) {
             var x = coachRouteValidation.IsValid(coachRoute);
             if (x == 200) {
-                var z = coachRouteRepo.Create(mapper.Map<CoachRouteWriteDto, CoachRoute>((CoachRouteWriteDto)coachRouteRepo.AttachUserIdToDto(null, null, coachRoute)));
+                var z = coachRouteRepo.Create(mapper.Map<CoachRouteWriteDto, CoachRoute>((CoachRouteWriteDto)coachRouteRepo.AttachMetadataToDto(null, null, coachRoute)));
                 return new Response {
                     Code = 200,
                     Id = z.Id.ToString(),
@@ -84,7 +84,7 @@ namespace API.Features.CoachRoutes {
             if (x != null) {
                 var z = coachRouteValidation.IsValid(coachRoute);
                 if (z == 200) {
-                    coachRouteRepo.Update(mapper.Map<CoachRouteWriteDto, CoachRoute>((CoachRouteWriteDto)coachRouteRepo.AttachUserIdToDto(x.PostAt, x.PostUserId, coachRoute)));
+                    coachRouteRepo.Update(mapper.Map<CoachRouteWriteDto, CoachRoute>((CoachRouteWriteDto)coachRouteRepo.AttachMetadataToDto(x.PostAt, x.PostUser, coachRoute)));
                     return new Response {
                         Code = 200,
                         Id = x.Id.ToString(),

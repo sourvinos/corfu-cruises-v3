@@ -61,9 +61,7 @@ namespace API.Features.Reservations {
                         Id = passenger.Gender.Id,
                         Description = passenger.Gender.Description
                     }
-                })))
-                .ForMember(x => x.PostUser, x => x.MapFrom(x => x.User.Displayname))
-                .ForMember(x => x.PutUser, x => x.MapFrom(x => x.User.Displayname));
+                })));
             // Read passenger
             CreateMap<Passenger, PassengerReadDto>()
                 .ForMember(x => x.Birthdate, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Birthdate)))

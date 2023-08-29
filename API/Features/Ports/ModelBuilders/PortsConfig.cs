@@ -15,12 +15,9 @@ namespace API.Features.Ports {
             entity.Property(x => x.IsActive);
             // Metadata
             entity.Property(x => x.PostAt).HasMaxLength(19);
-            entity.Property(x => x.PostUserId).HasMaxLength(36).IsRequired(true);
+            entity.Property(x => x.PostUser).HasMaxLength(256);
             entity.Property(x => x.PutAt).HasMaxLength(19);
-            entity.Property(x => x.PutUserId).HasMaxLength(36).IsRequired(true);
-            // FK Constraints
-            entity.HasOne(x => x.User).WithMany(x => x.Ports).HasForeignKey(x => x.PostUserId).OnDelete(DeleteBehavior.Restrict);
-            entity.HasOne(x => x.User).WithMany(x => x.Ports).HasForeignKey(x => x.PutUserId).OnDelete(DeleteBehavior.Restrict);
+            entity.Property(x => x.PutUser).HasMaxLength(256);
         }
 
     }

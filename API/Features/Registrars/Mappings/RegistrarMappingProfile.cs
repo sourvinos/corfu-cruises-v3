@@ -10,9 +10,7 @@ namespace API.Features.Registrars {
                 .ForMember(x => x.Ship, x => x.MapFrom(x => new SimpleEntity { Id = x.Ship.Id, Description = x.Ship.Description }));
             CreateMap<Registrar, RegistrarAutoCompleteVM>();
             CreateMap<Registrar, RegistrarReadDto>()
-                .ForMember(x => x.Ship, x => x.MapFrom(x => new SimpleEntity { Id = x.Ship.Id, Description = x.Ship.Description }))
-                .ForMember(x => x.PostUser, x => x.MapFrom(x => x.User.Displayname))
-                .ForMember(x => x.PutUser, x => x.MapFrom(x => x.User.Displayname));
+                .ForMember(x => x.Ship, x => x.MapFrom(x => new SimpleEntity { Id = x.Ship.Id, Description = x.Ship.Description }));
             CreateMap<RegistrarWriteDto, Registrar>()
                 .ForMember(x => x.Fullname, x => x.MapFrom(x => x.Fullname.Trim()))
                 .ForMember(x => x.Phones, x => x.MapFrom(x => x.Phones.Trim()))

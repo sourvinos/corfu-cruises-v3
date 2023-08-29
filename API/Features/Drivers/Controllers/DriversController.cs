@@ -58,7 +58,7 @@ namespace API.Features.Drivers {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] DriverWriteDto driver) {
-            var x = driverRepo.Create(mapper.Map<DriverWriteDto, Driver>((DriverWriteDto)driverRepo.AttachUserIdToDto(null, null, driver)));
+            var x = driverRepo.Create(mapper.Map<DriverWriteDto, Driver>((DriverWriteDto)driverRepo.AttachMetadataToDto(null, null, driver)));
             return new Response {
                 Code = 200,
                 Id = x.Id.ToString(),

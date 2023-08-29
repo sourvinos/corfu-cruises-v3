@@ -1,4 +1,3 @@
-using API.Features.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -18,13 +17,11 @@ namespace API.Features.CoachRoutes {
             entity.Property(x => x.IsActive);
             // Metadata
             entity.Property(x => x.PostAt).HasMaxLength(19);
-            entity.Property(x => x.PostUserId).HasMaxLength(36).IsRequired(true);
+            entity.Property(x => x.PostUser).HasMaxLength(256);
             entity.Property(x => x.PutAt).HasMaxLength(19);
-            entity.Property(x => x.PutUserId).HasMaxLength(36).IsRequired(true);
+            entity.Property(x => x.PutUser).HasMaxLength(256);
             // FK Constraints
             entity.HasOne(x => x.Port).WithMany(x => x.CoachRoutes).HasForeignKey(x => x.PortId).OnDelete(DeleteBehavior.Restrict);
-            entity.HasOne(x => x.PutUser).WithMany(x => x.CoachRoutes).HasForeignKey(x => x.PutUserId).OnDelete(DeleteBehavior.Restrict);
-            entity.HasOne(x => x.PutUser).WithOne().HasForeignKey<CoachRoute>(x => x.PutUserId).OnDelete(DeleteBehavior.Restrict);
         }
 
     }

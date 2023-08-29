@@ -58,7 +58,7 @@ namespace API.Features.ShipOwners {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] ShipOwnerWriteDto shipOwner) {
-            var x = shipOwnerRepo.Create(mapper.Map<ShipOwnerWriteDto, ShipOwner>((ShipOwnerWriteDto)shipOwnerRepo.AttachUserIdToDto(null, null, shipOwner)));
+            var x = shipOwnerRepo.Create(mapper.Map<ShipOwnerWriteDto, ShipOwner>((ShipOwnerWriteDto)shipOwnerRepo.AttachMetadataToDto(null, null, shipOwner)));
             return new Response {
                 Code = 200,
                 Id = x.Id.ToString(),

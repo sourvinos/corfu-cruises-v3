@@ -1,7 +1,9 @@
 using System.Linq;
+using API.Features.Users;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Implementations;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -9,7 +11,7 @@ namespace API.Features.CoachRoutes {
 
     public class CoachRouteValidation : Repository<CoachRoute>, ICoachRouteValidation {
 
-        public CoachRouteValidation(AppDbContext context, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> settings) : base(context, httpContext, settings) { }
+        public CoachRouteValidation(AppDbContext context, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(context, httpContext, settings, userManager) { }
 
         public int IsValid(CoachRouteWriteDto coachRoute) {
             return true switch {

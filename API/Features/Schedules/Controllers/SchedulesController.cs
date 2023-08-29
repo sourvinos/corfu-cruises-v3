@@ -56,7 +56,7 @@ namespace API.Features.Schedules {
         public Response Post([FromBody] List<ScheduleWriteDto> schedules) {
             var x = scheduleValidation.IsValidOnNew(schedules);
             if (x == 200) {
-                scheduleRepo.CreateList(mapper.Map<List<ScheduleWriteDto>, List<Schedule>>(scheduleRepo.AttachUserIdToDtos(schedules)));
+                scheduleRepo.CreateList(mapper.Map<List<ScheduleWriteDto>, List<Schedule>>(scheduleRepo.AttachMetadataToDtos(schedules)));
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),

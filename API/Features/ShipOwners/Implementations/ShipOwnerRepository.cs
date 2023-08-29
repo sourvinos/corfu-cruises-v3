@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Features.Users;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Implementations;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -14,7 +16,7 @@ namespace API.Features.ShipOwners {
 
         private readonly IMapper mapper;
 
-        public ShipOwnerRepository(AppDbContext context, IHttpContextAccessor httpContext, IMapper mapper, IOptions<TestingEnvironment> settings) : base(context, httpContext, settings) {
+        public ShipOwnerRepository(AppDbContext context, IHttpContextAccessor httpContext, IMapper mapper, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(context, httpContext, settings, userManager) {
             this.mapper = mapper;
         }
 
@@ -37,7 +39,6 @@ namespace API.Features.ShipOwners {
         public async Task<ShipOwner> GetByIdAsync(int id) {
             return await context.ShipOwners
                 .AsNoTracking()
-                .Include(x => x.User)
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
 

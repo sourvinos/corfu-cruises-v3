@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using API.Features.Users;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Implementations;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -12,7 +14,7 @@ namespace API.Features.Reservations {
 
     public class ReservationCalendar : Repository<Reservation>, IReservationCalendar {
 
-        public ReservationCalendar(AppDbContext context, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> testingEnvironment) : base(context, httpContext, testingEnvironment) { }
+        public ReservationCalendar(AppDbContext context, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> testingEnvironment, UserManager<UserExtended> userManager) : base(context, httpContext, testingEnvironment, userManager) { }
 
         public IEnumerable<ReservationCalendarGroupVM> GetForCalendar(string fromDate, string toDate) {
             return CreateCalendar(GetSchedules(fromDate, toDate), GetReservations(fromDate, toDate));

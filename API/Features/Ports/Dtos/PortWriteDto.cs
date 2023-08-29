@@ -14,9 +14,9 @@ namespace API.Features.Ports {
         public bool IsActive { get; set; }
         // Navigation
                 public string PostAt { get; set; }
-        public string PostUserId { get; set; }
+        public string PostUser { get; set; }
         public string PutAt { get; set; }
-        public string PutUserId { get; set; }
+        public string PutUser { get; set; }
 
     }
 

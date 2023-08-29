@@ -1,9 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
+using API.Features.Users;
 using API.Infrastructure.Classes;
+using API.Infrastructure.Extensions;
+using API.Infrastructure.Helpers;
 using API.Infrastructure.Interfaces;
 using API.Infrastructure.Responses;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Options;
 
@@ -11,14 +16,16 @@ namespace API.Infrastructure.Implementations {
 
     public class Repository<T> : IRepository<T> where T : class {
 
-        private readonly IHttpContextAccessor httpContext;
+        private readonly IHttpContextAccessor httpContextAccessor;
         private readonly TestingEnvironment testingSettings;
         protected readonly AppDbContext context;
+        private readonly UserManager<UserExtended> userManager;
 
-        public Repository(AppDbContext context, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> testingSettings) {
+        public Repository(AppDbContext context, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> testingSettings, UserManager<UserExtended> userManager) {
             this.context = context;
-            this.httpContext = httpContext;
+            this.httpContextAccessor = httpContext;
             this.testingSettings = testingSettings.Value;
+            this.userManager = userManager;
         }
 
         public T Create(T entity) {
@@ -61,8 +68,19 @@ namespace API.Infrastructure.Implementations {
             context.RemoveRange(entities);
         }
 
-        public IMetadataWrite AttachUserIdToDto(string existintPostAt, string existingUserId, IMetadataWrite entity) {
-            return Extensions.Identity.PatchEntityWithUserAndDate(httpContext, existintPostAt, existingUserId, entity);
+        public IMetadataWrite AttachMetadataToDto(string existingPostAt, string existingPostUser, IMetadataWrite entity) {
+            if (entity.Id == 0) {
+                entity.PostAt = DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime());
+                entity.PostUser = Identity.GetConnectedUserDetails(userManager, Identity.GetConnectedUserId(httpContextAccessor)).UserName;
+                return entity;
+            } else {
+                entity.PostAt = existingPostAt;
+                entity.PostUser = existingPostUser;
+                entity.PutAt = DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime());
+                entity.PutUser = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                return entity;
+            }
+
         }
 
         private void DisposeOrCommit(IDbContextTransaction transaction) {

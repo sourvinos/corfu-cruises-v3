@@ -96,7 +96,7 @@ namespace API.Features.Reservations {
             AttachNewRefNoToDto(reservation);
             var x = validReservation.IsValid(reservation, scheduleRepo);
             if (x == 200) {
-                var response = reservationUpdateRepo.Create(mapper.Map<ReservationWriteDto, Reservation>((ReservationWriteDto)reservationUpdateRepo.AttachUserIdToDto(null, null, reservation)));
+                var response = reservationUpdateRepo.Create(mapper.Map<ReservationWriteDto, Reservation>((ReservationWriteDto)reservationUpdateRepo.AttachMetadataToDto(null, null, reservation)));
                 return Task.FromResult(new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),

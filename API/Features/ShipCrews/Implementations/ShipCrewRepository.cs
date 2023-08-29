@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Features.Users;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Implementations;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -14,7 +16,7 @@ namespace API.Features.ShipCrews {
 
         private readonly IMapper mapper;
 
-        public ShipCrewRepository(AppDbContext appDbContext, IHttpContextAccessor httpContext, IMapper mapper, IOptions<TestingEnvironment> settings) : base(appDbContext, httpContext, settings) {
+        public ShipCrewRepository(AppDbContext appDbContext, IHttpContextAccessor httpContext, IMapper mapper, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, settings, userManager) {
             this.mapper = mapper;
         }
 
@@ -44,11 +46,9 @@ namespace API.Features.ShipCrews {
                     .Include(x => x.Ship)
                     .Include(x => x.Gender)
                     .Include(x => x.Nationality)
-                    .Include(x => x.User)
                     .SingleOrDefaultAsync(x => x.Id == id)
                 : await context.ShipCrews
                     .AsNoTracking()
-                    .Include(x => x.User)
                     .SingleOrDefaultAsync(x => x.Id == id);
         }
 

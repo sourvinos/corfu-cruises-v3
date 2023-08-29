@@ -1,5 +1,4 @@
 using System;
-using API.Features.Users;
 
 namespace API.Infrastructure.Parameters {
 
@@ -11,12 +10,12 @@ namespace API.Infrastructure.Parameters {
         public string ClosingTime { get; set; }
         public string Phones { get; set; }
         public string Email { get; set; }
-        public string LastUpdate { get; set; }
-        // FKs
-        public string UserId { get; set; }
-        // Navigation
-        public UserExtended User { get; set; }
- 
+        // Metadata
+        public string PostAt { get; set; }
+        public string PostUser { get; set; }
+        public string PutAt { get; set; }
+        public string PutUser { get; set; }
+
     }
 
 }

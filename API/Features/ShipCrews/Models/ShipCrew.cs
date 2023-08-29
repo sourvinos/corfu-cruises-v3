@@ -3,8 +3,6 @@ using API.Features.Genders;
 using API.Features.Nationalities;
 using API.Features.Occupants;
 using API.Features.Ships;
-using API.Features.Users;
-using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.ShipCrews {
@@ -23,16 +21,16 @@ namespace API.Features.ShipCrews {
         public string Firstname { get; set; }
         public DateTime Birthdate { get; set; }
         public bool IsActive { get; set; }
-        // Navigation
-                public string PostAt { get; set; }
-        public string PostUserId { get; set; }
+        // Metadata
+        public string PostAt { get; set; }
+        public string PostUser { get; set; }
         public string PutAt { get; set; }
-        public string PutUserId { get; set; }
+        public string PutUser { get; set; }
+        // Navigation
         public Gender Gender { get; set; }
         public Nationality Nationality { get; set; }
         public Occupant Occupant { get; set; }
         public Ship Ship { get; set; }
-        public UserExtended User { get; set; }
 
     }
 

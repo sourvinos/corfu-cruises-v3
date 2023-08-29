@@ -21,7 +21,7 @@ namespace API.Features.Reservations {
         private readonly IMapper mapper;
         private readonly UserManager<UserExtended> userManager;
 
-        public ReservationReadRepository(AppDbContext context, IHttpContextAccessor httpContext, IMapper mapper, IOptions<TestingEnvironment> testingEnvironment, UserManager<UserExtended> userManager) : base(context, httpContext, testingEnvironment) {
+        public ReservationReadRepository(AppDbContext context, IHttpContextAccessor httpContext, IMapper mapper, IOptions<TestingEnvironment> testingEnvironment, UserManager<UserExtended> userManager) : base(context, httpContext, testingEnvironment, userManager) {
             this.httpContext = httpContext;
             this.mapper = mapper;
             this.userManager = userManager;
@@ -72,7 +72,6 @@ namespace API.Features.Reservations {
                     .Include(x => x.Destination)
                     .Include(x => x.Driver)
                     .Include(x => x.Ship)
-                    .Include(x => x.User)
                     .Include(x => x.Passengers).ThenInclude(x => x.Nationality)
                     .Include(x => x.Passengers).ThenInclude(x => x.Occupant)
                     .Include(x => x.Passengers).ThenInclude(x => x.Gender)
@@ -81,7 +80,6 @@ namespace API.Features.Reservations {
                 : await context.Reservations
                     .AsNoTracking()
                     .Include(x => x.Passengers)
-                    .Include(x => x.User)
                     .Where(x => x.ReservationId.ToString() == reservationId)
                     .SingleOrDefaultAsync();
         }

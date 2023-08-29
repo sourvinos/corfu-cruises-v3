@@ -1,7 +1,5 @@
 using API.Features.Users;
 using API.Infrastructure.Classes;
-using API.Infrastructure.Helpers;
-using API.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -44,22 +42,6 @@ namespace API.Infrastructure.Extensions {
             }
             catch (Exception) {
                 return false;
-            }
-        }
-
-        public static T PatchEntityWithUserAndDate<T>(IHttpContextAccessor httpContextAccessor, string existingPostAt, string existingUserId, T entity) where T : IMetadataWrite {
-            if (entity.Id == 0) {
-                entity.PostAt = DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime());
-                entity.PostUserId = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                entity.PutAt = entity.PostAt;
-                entity.PutUserId = entity.PostUserId;
-                return entity;
-            } else {
-                entity.PostAt = existingPostAt;
-                entity.PostUserId = existingUserId;
-                entity.PutAt = DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime());
-                entity.PutUserId = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                return entity;
             }
         }
 

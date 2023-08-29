@@ -7,9 +7,7 @@ namespace API.Features.ShipRoutes {
         public ShipRouteMappingProfile() {
             CreateMap<ShipRoute, ShipRouteListVM>();
             CreateMap<ShipRoute, ShipRouteAutoCompleteVM>();
-            CreateMap<ShipRoute, ShipRouteReadDto>()
-                .ForMember(x => x.PostUser, x => x.MapFrom(x => x.User.Displayname))
-                .ForMember(x => x.PutUser, x => x.MapFrom(x => x.User.Displayname));
+            CreateMap<ShipRoute, ShipRouteReadDto>();
             CreateMap<ShipRouteWriteDto, ShipRoute>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
                 .ForMember(x => x.FromPort, x => x.MapFrom(x => x.FromPort.Trim()))

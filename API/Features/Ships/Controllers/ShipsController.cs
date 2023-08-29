@@ -62,7 +62,7 @@ namespace API.Features.Ships {
         public Response Post([FromBody] ShipWriteDto ship) {
             var x = shipValidation.IsValid(ship);
             if (x == 200) {
-                var z = shipRepo.Create(mapper.Map<ShipWriteDto, Ship>((ShipWriteDto)shipRepo.AttachUserIdToDto(null, null, ship)));
+                var z = shipRepo.Create(mapper.Map<ShipWriteDto, Ship>((ShipWriteDto)shipRepo.AttachMetadataToDto(null, null, ship)));
                 return new Response {
                     Code = 200,
                     Id = z.Id.ToString(),

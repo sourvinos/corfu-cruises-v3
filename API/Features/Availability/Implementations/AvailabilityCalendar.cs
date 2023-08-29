@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using API.Features.Schedules;
+using API.Features.Users;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Implementations;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -13,7 +15,7 @@ namespace API.Features.Availability {
 
     public class AvailabilityCalendar : Repository<Schedule>, IAvailabilityCalendar {
 
-        public AvailabilityCalendar(AppDbContext context, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> settings) : base(context, httpContext, settings) { }
+        public AvailabilityCalendar(AppDbContext context, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(context, httpContext, settings, userManager) { }
 
         public IEnumerable<ReservationVM> GetReservations(string fromDate, string toDate) {
             var reservations = context.Reservations
@@ -101,8 +103,8 @@ namespace API.Features.Availability {
         }
 
         private static DestinationCalendarVM DoTwoPortCalculations(DestinationCalendarVM destination) {
-            return destination.Ports.LastOrDefault().BatchId == 1 
-                ? DoTwoPortsOneShipCalculations(destination) 
+            return destination.Ports.LastOrDefault().BatchId == 1
+                ? DoTwoPortsOneShipCalculations(destination)
                 : DoTwoPortsMultipleShipsCalculations(destination);
         }
 

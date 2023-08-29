@@ -18,7 +18,7 @@ namespace API.Features.Ledger {
         private readonly IHttpContextAccessor httpContext;
         private readonly UserManager<UserExtended> userManager;
 
-        public LedgerRepository(AppDbContext appDbContext, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, settings) {
+        public LedgerRepository(AppDbContext appDbContext, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, settings, userManager) {
             this.httpContext = httpContext;
             this.userManager = userManager;
         }

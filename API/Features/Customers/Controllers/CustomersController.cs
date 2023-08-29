@@ -58,7 +58,7 @@ namespace API.Features.Customers {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] CustomerWriteDto customer) {
-            var x = customerRepo.Create(mapper.Map<CustomerWriteDto, Customer>((CustomerWriteDto)customerRepo.AttachUserIdToDto(null, null, customer)));
+            var x = customerRepo.Create(mapper.Map<CustomerWriteDto, Customer>((CustomerWriteDto)customerRepo.AttachMetadataToDto(null, null, customer)));
             return new Response {
                 Code = 200,
                 Id = x.Id.ToString(),
@@ -73,7 +73,7 @@ namespace API.Features.Customers {
         public async Task<Response> Put([FromBody] CustomerWriteDto customer) {
             var x = await customerRepo.GetByIdAsync(customer.Id);
             if (x != null) {
-                customerRepo.Update(mapper.Map<CustomerWriteDto, Customer>((CustomerWriteDto)customerRepo.AttachUserIdToDto(x.PostAt, x.PostUserId, customer)));
+                customerRepo.Update(mapper.Map<CustomerWriteDto, Customer>((CustomerWriteDto)customerRepo.AttachMetadataToDto(x.PostAt, x.PostUser, customer)));
                 return new Response {
                     Code = 200,
                     Id = x.Id.ToString(),

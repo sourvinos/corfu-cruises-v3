@@ -58,7 +58,7 @@ namespace API.Features.Destinations {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] DestinationWriteDto destination) {
-            var x = destinationRepo.Create(mapper.Map<DestinationWriteDto, Destination>((DestinationWriteDto)destinationRepo.AttachUserIdToDto(null, null, destination)));
+            var x = destinationRepo.Create(mapper.Map<DestinationWriteDto, Destination>((DestinationWriteDto)destinationRepo.AttachMetadataToDto(null, null, destination)));
             return new Response {
                 Code = 200,
                 Id = x.Id.ToString(),

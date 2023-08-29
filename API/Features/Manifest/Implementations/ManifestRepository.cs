@@ -1,9 +1,11 @@
 using System.Linq;
 using API.Features.Reservations;
+using API.Features.Users;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Implementations;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -13,7 +15,7 @@ namespace API.Features.Manifest {
 
         private readonly IMapper mapper;
 
-        public ManifestRepository(AppDbContext appDbContext, IMapper mapper, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> settings) : base(appDbContext, httpContext, settings) {
+        public ManifestRepository(AppDbContext appDbContext, IMapper mapper, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, settings, userManager) {
             this.mapper = mapper;
         }
 

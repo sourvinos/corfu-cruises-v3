@@ -62,7 +62,7 @@ namespace API.Features.ShipCrews {
         public Response Post([FromBody] ShipCrewWriteDto shipCrew) {
             var x = shipCrewValidation.IsValid(shipCrew);
             if (x == 200) {
-                shipCrewRepo.Create(mapper.Map<ShipCrewWriteDto, ShipCrew>((ShipCrewWriteDto)shipCrewRepo.AttachUserIdToDto(null, null, shipCrew)));
+                shipCrewRepo.Create(mapper.Map<ShipCrewWriteDto, ShipCrew>((ShipCrewWriteDto)shipCrewRepo.AttachMetadataToDto(null, null, shipCrew)));
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),

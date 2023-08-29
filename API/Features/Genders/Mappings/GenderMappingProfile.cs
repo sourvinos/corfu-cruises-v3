@@ -7,9 +7,7 @@ namespace API.Features.Genders {
         public GenderMappingProfile() {
             CreateMap<Gender, GenderListVM>();
             CreateMap<Gender, GenderAutoCompleteVM>();
-            CreateMap<Gender, GenderReadDto>()
-                .ForMember(x => x.PostUser, x => x.MapFrom(x => x.User.Displayname))
-                .ForMember(x => x.PutUser, x => x.MapFrom(x => x.User.Displayname));
+            CreateMap<Gender, GenderReadDto>();
             CreateMap<GenderWriteDto, Gender>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()));
         }

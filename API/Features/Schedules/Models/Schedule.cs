@@ -1,8 +1,6 @@
 using System;
 using API.Features.Destinations;
 using API.Features.Ports;
-using API.Features.Users;
-using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.Schedules {
@@ -19,14 +17,14 @@ namespace API.Features.Schedules {
         public int MaxPax { get; set; }
         public string Time { get; set; }
         public bool IsActive { get; set; }
-        // Navigation
-                public string PostAt { get; set; }
-        public string PostUserId { get; set; }
+        // Metadata
+        public string PostAt { get; set; }
+        public string PostUser { get; set; }
         public string PutAt { get; set; }
-        public string PutUserId { get; set; }
+        public string PutUser { get; set; }
+        // Navigation
         public Destination Destination { get; set; }
         public Port Port { get; set; }
-        public UserExtended User { get; set; }
 
     }
 

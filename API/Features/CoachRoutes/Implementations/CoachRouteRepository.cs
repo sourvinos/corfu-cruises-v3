@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Features.Users;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Implementations;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -14,7 +16,7 @@ namespace API.Features.CoachRoutes {
 
         private readonly IMapper mapper;
 
-        public CoachRouteRepository(AppDbContext context, IHttpContextAccessor httpContext, IMapper mapper, IOptions<TestingEnvironment> settings) : base(context, httpContext, settings) {
+        public CoachRouteRepository(AppDbContext context, IHttpContextAccessor httpContext, IMapper mapper, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(context, httpContext, settings, userManager) {
             this.mapper = mapper;
         }
 
@@ -35,26 +37,13 @@ namespace API.Features.CoachRoutes {
         }
 
         public async Task<CoachRoute> GetByIdAsync(int id, bool includeTables) {
-            if (includeTables) {
-                return context.CoachRoutes
-                       .Join(context.Users,
-                           supply => new { LINE_NO = supply.PortId, CUST_ORDER_ID = supply.HasTransfer },
-                           demand => new { demand.Email, demand.Id },
-                           (supply, demand) => new { custOrderLineReturn = demand })
-                       .Select(s => s.custOrderLineReturn)
-                       .ToList();
-            }
             return includeTables
                 ? await context.CoachRoutes
                     .AsNoTracking()
                     .Include(x => x.Port)
-                    .Include(x => x.PostUser)
-                    .Include(x => x.PutUser)
                     .SingleOrDefaultAsync(x => x.Id == id)
                 : await context.CoachRoutes
                     .AsNoTracking()
-                    .Include(x => x.PostUser)
-                    .Include(x => x.PutUser)
                     .SingleOrDefaultAsync(x => x.Id == id);
         }
 

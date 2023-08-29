@@ -9,9 +9,7 @@ namespace API.Features.Ships {
             CreateMap<Ship, ShipListVM>();
             CreateMap<Ship, ShipAutoCompleteVM>();
             CreateMap<Ship, ShipReadDto>()
-                .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new SimpleEntity { Id = x.ShipOwner.Id, Description = x.ShipOwner.Description }))
-                .ForMember(x => x.PostUser, x => x.MapFrom(x => x.User.Displayname))
-                .ForMember(x => x.PutUser, x => x.MapFrom(x => x.User.Displayname));
+                .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new SimpleEntity { Id = x.ShipOwner.Id, Description = x.ShipOwner.Description }));
             CreateMap<ShipWriteDto, Ship>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
                 .ForMember(x => x.Abbreviation, x => x.MapFrom(x => x.Abbreviation.Trim()))

@@ -37,7 +37,6 @@ namespace API.Infrastructure.Parameters {
         public async Task<Response> Put([FromBody] ParameterWriteDto setting) {
             var x = await parametersRepo.GetAsync();
             if (x != null) {
-                setting.UserId = x.UserId;
                 parametersRepo.Update(mapper.Map<ParameterWriteDto, Parameter>(setting));
                 return new Response {
                     Code = 200,

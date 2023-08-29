@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Features.Reservations;
+using API.Features.Users;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Implementations;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Options;
@@ -18,7 +20,7 @@ namespace API.Features.Embarkation {
         private readonly IMapper mapper;
         private readonly TestingEnvironment testingSettings;
 
-        public EmbarkationRepository(AppDbContext appDbContext, IHttpContextAccessor httpContext, IMapper mapper, IOptions<TestingEnvironment> testingSettings) : base(appDbContext, httpContext, testingSettings) {
+        public EmbarkationRepository(AppDbContext appDbContext, IHttpContextAccessor httpContext, IMapper mapper, IOptions<TestingEnvironment> testingSettings, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, testingSettings, userManager) {
             this.mapper = mapper;
             this.testingSettings = testingSettings.Value;
         }

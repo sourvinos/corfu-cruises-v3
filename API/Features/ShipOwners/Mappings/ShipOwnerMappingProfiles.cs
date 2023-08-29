@@ -7,9 +7,7 @@ namespace API.Features.ShipOwners {
         public ShipOwnerMappingProfile() {
             CreateMap<ShipOwner, ShipOwnerListVM>();
             CreateMap<ShipOwner, ShipOwnerAutoCompleteVM>();
-            CreateMap<ShipOwner, ShipOwnerReadDto>()
-                .ForMember(x => x.PostUser, x => x.MapFrom(x => x.User.Displayname))
-                .ForMember(x => x.PutUser, x => x.MapFrom(x => x.User.Displayname));
+            CreateMap<ShipOwner, ShipOwnerReadDto>();
             CreateMap<ShipOwnerWriteDto, ShipOwner>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
                 .ForMember(x => x.Profession, x => x.MapFrom(x => x.Profession.Trim()))

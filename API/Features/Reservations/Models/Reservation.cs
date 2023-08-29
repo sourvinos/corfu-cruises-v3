@@ -6,8 +6,6 @@ using API.Features.Drivers;
 using API.Features.PickupPoints;
 using API.Features.Ports;
 using API.Features.Ships;
-using API.Features.Users;
-using API.Infrastructure.Classes;
 
 namespace API.Features.Reservations {
 
@@ -33,18 +31,18 @@ namespace API.Features.Reservations {
         public string Email { get; set; }
         public string Phones { get; set; }
         public string Remarks { get; set; }
-        // Navigation
-                public string PostAt { get; set; }
-        public string PostUserId { get; set; }
+        // Metadata
+        public string PostAt { get; set; }
+        public string PostUser { get; set; }
         public string PutAt { get; set; }
-        public string PutUserId { get; set; }
+        public string PutUser { get; set; }
+        // Navigation
         public Customer Customer { get; set; }
         public Destination Destination { get; set; }
         public Driver Driver { get; set; }
         public PickupPoint PickupPoint { get; set; }
         public Port Port { get; set; }
         public Ship Ship { get; set; }
-        public UserExtended User { get; set; }
         public List<Passenger> Passengers { get; set; }
 
     }

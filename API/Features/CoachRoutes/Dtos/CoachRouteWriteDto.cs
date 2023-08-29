@@ -13,11 +13,11 @@ namespace API.Features.CoachRoutes {
         public string Abbreviation { get; set; }
         public bool HasTransfer { get; set; }
         public bool IsActive { get; set; }
-        // Navigation
+        // Metadata
         public string PostAt { get; set; }
-        public string PostUserId { get; set; }
+        public string PostUser { get; set; }
         public string PutAt { get; set; }
-        public string PutUserId { get; set; }
+        public string PutUser { get; set; }
 
     }
 
