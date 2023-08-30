@@ -1,22 +1,20 @@
 using System.Collections.Generic;
 using API.Features.Reservations;
-using API.Infrastructure.Interfaces;
+using API.Features.Users;
 
 namespace API.Features.Occupants {
 
-    public class Occupant : IMetadataWrite {
+    public class Occupant {
 
         // PK
         public int Id { get; set; }
         // Fields
         public string Description { get; set; }
         public bool IsActive { get; set; }
-        // Metadata
-        public string PostAt { get; set; }
-        public string PostUser { get; set; }
-        public string PutAt { get; set; }
-        public string PutUser { get; set; }
+        // FKs
+        public string UserId { get; set; }
         // Navigation
+        public UserExtended User { get; set; }
         public List<Passenger> Passengers { get; set; }
 
     }

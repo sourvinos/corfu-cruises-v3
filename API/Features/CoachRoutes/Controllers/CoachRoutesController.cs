@@ -41,7 +41,7 @@ namespace API.Features.CoachRoutes {
         [HttpGet("{id}")]
         [Authorize(Roles = "admin")]
         public async Task<ResponseWithBody> GetByIdAsync(int id) {
-            var x = await coachRouteRepo.GetByIdAsync(id, true);
+            var x = await coachRouteRepo.GetById(id, true);
             if (x != null) {
                 return new ResponseWithBody {
                     Code = 200,
@@ -62,7 +62,7 @@ namespace API.Features.CoachRoutes {
         public Response Post([FromBody] CoachRouteWriteDto coachRoute) {
             var x = coachRouteValidation.IsValid(coachRoute);
             if (x == 200) {
-                var z = coachRouteRepo.Create(mapper.Map<CoachRouteWriteDto, CoachRoute>((CoachRouteWriteDto)coachRouteRepo.AttachMetadataToDto(null, null, coachRoute)));
+                var z = coachRouteRepo.Create(mapper.Map<CoachRouteWriteDto, CoachRoute>((CoachRouteWriteDto)coachRouteRepo.AttachUserIdToDto(coachRoute)));
                 return new Response {
                     Code = 200,
                     Id = z.Id.ToString(),
@@ -80,11 +80,12 @@ namespace API.Features.CoachRoutes {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public async Task<Response> Put([FromBody] CoachRouteWriteDto coachRoute) {
-            var x = await coachRouteRepo.GetByIdAsync(coachRoute.Id, false);
+            var x = await coachRouteRepo.GetById(coachRoute.Id, false);
             if (x != null) {
                 var z = coachRouteValidation.IsValid(coachRoute);
                 if (z == 200) {
-                    coachRouteRepo.Update(mapper.Map<CoachRouteWriteDto, CoachRoute>((CoachRouteWriteDto)coachRouteRepo.AttachMetadataToDto(x.PostAt, x.PostUser, coachRoute)));
+                    coachRoute.UserId = x.User.Id;
+                    coachRouteRepo.Update(mapper.Map<CoachRouteWriteDto, CoachRoute>(coachRoute));
                     return new Response {
                         Code = 200,
                         Id = x.Id.ToString(),
@@ -106,7 +107,7 @@ namespace API.Features.CoachRoutes {
         [HttpDelete("{id}")]
         [Authorize(Roles = "admin")]
         public async Task<Response> Delete([FromRoute] int id) {
-            var x = await coachRouteRepo.GetByIdAsync(id, false);
+            var x = await coachRouteRepo.GetById(id, false);
             if (x != null) {
                 coachRouteRepo.Delete(x);
                 return new Response {

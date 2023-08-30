@@ -3,11 +3,11 @@ using API.Features.Genders;
 using API.Features.Nationalities;
 using API.Features.Occupants;
 using API.Features.Ships;
-using API.Infrastructure.Interfaces;
+using API.Features.Users;
 
 namespace API.Features.ShipCrews {
 
-    public class ShipCrew : IMetadataWrite {
+    public class ShipCrew {
 
         // PK
         public int Id { get; set; }
@@ -21,16 +21,15 @@ namespace API.Features.ShipCrews {
         public string Firstname { get; set; }
         public DateTime Birthdate { get; set; }
         public bool IsActive { get; set; }
-        // Metadata
-        public string PostAt { get; set; }
-        public string PostUser { get; set; }
-        public string PutAt { get; set; }
-        public string PutUser { get; set; }
+        public string LastUpdate { get; set; }
+        // FKs
+        public string UserId { get; set; }
         // Navigation
         public Gender Gender { get; set; }
         public Nationality Nationality { get; set; }
         public Occupant Occupant { get; set; }
         public Ship Ship { get; set; }
+        public UserExtended User { get; set; }
 
     }
 

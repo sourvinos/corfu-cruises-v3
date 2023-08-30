@@ -43,9 +43,11 @@ namespace API.Features.PickupPoints {
                 ? await context.PickupPoints
                     .AsNoTracking()
                     .Include(x => x.CoachRoute)
+                    .Include(x => x.User)
                     .SingleOrDefaultAsync(x => x.Id == id)
                 : await context.PickupPoints
                     .AsNoTracking()
+                    .Include(x => x.User)
                     .SingleOrDefaultAsync(x => x.Id == id);
         }
 

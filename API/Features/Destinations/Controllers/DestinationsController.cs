@@ -58,7 +58,7 @@ namespace API.Features.Destinations {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] DestinationWriteDto destination) {
-            var x = destinationRepo.Create(mapper.Map<DestinationWriteDto, Destination>((DestinationWriteDto)destinationRepo.AttachMetadataToDto(null, null, destination)));
+            var x = destinationRepo.Create(mapper.Map<DestinationWriteDto, Destination>((DestinationWriteDto)destinationRepo.AttachUserIdToDto(destination)));
             return new Response {
                 Code = 200,
                 Id = x.Id.ToString(),
@@ -73,6 +73,7 @@ namespace API.Features.Destinations {
         public async Task<Response> Put([FromBody] DestinationWriteDto destination) {
             var x = await destinationRepo.GetByIdAsync(destination.Id);
             if (x != null) {
+                destination.UserId = x.User.Id;
                 destinationRepo.Update(mapper.Map<DestinationWriteDto, Destination>(destination));
                 return new Response {
                     Code = 200,

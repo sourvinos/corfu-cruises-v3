@@ -8,7 +8,7 @@ namespace API.Features.CoachRoutes {
 
         Task<IEnumerable<CoachRouteListVM>> GetAsync();
         Task<IEnumerable<CoachRouteAutoCompleteVM>> GetAutoCompleteAsync();
-        Task<CoachRoute> GetByIdAsync(int id, bool includeTables);
+        Task<CoachRoute> GetById(int id, bool includeTables);
 
     }
 

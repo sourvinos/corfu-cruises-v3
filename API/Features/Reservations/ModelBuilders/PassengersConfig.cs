@@ -21,7 +21,6 @@ namespace API.Features.Reservations {
             entity.Property(x => x.SpecialCare).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.IsBoarded);
             // FK Constraints
-            entity.HasOne(x => x.Gender).WithMany(x => x.Passengers).HasForeignKey(x => x.GenderId).OnDelete(DeleteBehavior.Restrict);
             entity.HasOne(x => x.Nationality).WithMany(x => x.Passengers).HasForeignKey(x => x.NationalityId).OnDelete(DeleteBehavior.Restrict);
             entity.HasOne(x => x.Occupant).WithMany(x => x.Passengers).HasForeignKey(x => x.OccupantId).OnDelete(DeleteBehavior.Restrict);
         }

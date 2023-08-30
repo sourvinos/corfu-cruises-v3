@@ -62,7 +62,7 @@ namespace API.Features.PickupPoints {
         public Response Post([FromBody] PickupPointWriteDto pickupPoint) {
             var x = pickupPointValidation.IsValid(pickupPoint);
             if (x == 200) {
-                var z = pickupPointRepo.Create(mapper.Map<PickupPointWriteDto, PickupPoint>((PickupPointWriteDto)pickupPointRepo.AttachMetadataToDto(null, null, pickupPoint)));
+                var z = pickupPointRepo.Create(mapper.Map<PickupPointWriteDto, PickupPoint>((PickupPointWriteDto)pickupPointRepo.AttachUserIdToDto(pickupPoint)));
                 return new Response {
                     Code = 200,
                     Id = z.Id.ToString(),
@@ -84,6 +84,7 @@ namespace API.Features.PickupPoints {
             if (x != null) {
                 var z = pickupPointValidation.IsValid(pickupPoint);
                 if (z == 200) {
+                    pickupPoint.UserId = x.User.Id;
                     pickupPointRepo.Update(mapper.Map<PickupPointWriteDto, PickupPoint>(pickupPoint));
                     return new Response {
                         Code = 200,

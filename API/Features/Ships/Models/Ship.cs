@@ -3,11 +3,11 @@ using API.Features.Registrars;
 using API.Features.Reservations;
 using API.Features.ShipCrews;
 using API.Features.ShipOwners;
-using API.Infrastructure.Interfaces;
+using API.Features.Users;
 
 namespace API.Features.Ships {
 
-    public class Ship : IMetadataWrite {
+    public class Ship {
 
         // PK
         public int Id { get; set; }
@@ -23,13 +23,12 @@ namespace API.Features.Ships {
         public string ManagerInGreece { get; set; }
         public string Agent { get; set; }
         public bool IsActive { get; set; }
-        //  Metadata
-        public string PostAt { get; set; }
-        public string PostUser { get; set; }
-        public string PutAt { get; set; }
-        public string PutUser { get; set; }
+        public string LastUpdate { get; set; }
+        // FKs
+        public string UserId { get; set; }
         // Navigation
         public ShipOwner ShipOwner { get; set; }
+        public UserExtended User { get; set; }
         public List<ShipCrew> ShipCrews { get; set; }
         public List<Registrar> Registrars { get; set; }
         public List<Reservation> Reservations { get; set; }

@@ -27,7 +27,7 @@ namespace API.Infrastructure.Middleware {
             } catch (CustomException exception) {
                 await CreateCustomErrorResponse(httpContext, exception);
             } catch (Exception exception) {
-                // LogError(exception, httpContextAccessor, userManager);
+                LogError(exception, httpContextAccessor, userManager);
                 await CreateServerErrorResponse(httpContext, exception);
             }
         }

@@ -11,11 +11,10 @@ namespace API.Features.Genders {
             // Fields
             entity.Property(x => x.Description).HasMaxLength(128).IsRequired(true);
             entity.Property(x => x.IsActive);
-            // Metadata
             entity.Property(x => x.PostAt).HasMaxLength(19);
-            entity.Property(x => x.PostUser).HasMaxLength(256);
+            entity.Property(x => x.PostUser).HasMaxLength(255);
             entity.Property(x => x.PutAt).HasMaxLength(19);
-            entity.Property(x => x.PutUser).HasMaxLength(256);
+            entity.Property(x => x.PutUser).HasMaxLength(255);
         }
 
     }

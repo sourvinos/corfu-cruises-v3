@@ -17,12 +17,10 @@ namespace API.Features.Schedules {
 
         private readonly IMapper mapper;
         private readonly IHttpContextAccessor httpContext;
-        private readonly UserManager<UserExtended> userManager;
 
         public ScheduleRepository(AppDbContext context, IHttpContextAccessor httpContext, IMapper mapper, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(context, httpContext, settings, userManager) {
             this.httpContext = httpContext;
             this.mapper = mapper;
-            this.userManager = userManager;
         }
 
         public async Task<IEnumerable<ScheduleListVM>> GetAsync() {
@@ -41,14 +39,16 @@ namespace API.Features.Schedules {
                     .AsNoTracking()
                     .Include(x => x.Port)
                     .Include(p => p.Destination)
+                    .Include(x => x.User)
                     .SingleOrDefaultAsync(x => x.Id == id)
                 : await context.Schedules
                     .AsNoTracking()
+                    .Include(x => x.User)
                     .SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public List<ScheduleWriteDto> AttachMetadataToDtos(List<ScheduleWriteDto> schedules) {
-            // schedules.ForEach(x => x = Identity.PatchEntityWithMetadata(httpContext, userManager, null, null, x));
+        public List<ScheduleWriteDto> AttachUserIdToDtos(List<ScheduleWriteDto> schedules) {
+            schedules.ForEach(x => x = Identity.PatchEntityWithUserId(httpContext, x));
             return schedules;
         }
 

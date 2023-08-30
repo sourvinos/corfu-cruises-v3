@@ -75,11 +75,13 @@ namespace API.Features.Reservations {
                     .Include(x => x.Passengers).ThenInclude(x => x.Nationality)
                     .Include(x => x.Passengers).ThenInclude(x => x.Occupant)
                     .Include(x => x.Passengers).ThenInclude(x => x.Gender)
+                    .Include(x => x.User)
                     .Where(x => x.ReservationId.ToString() == reservationId)
                     .SingleOrDefaultAsync()
                 : await context.Reservations
                     .AsNoTracking()
                     .Include(x => x.Passengers)
+                    .Include(x => x.User)
                     .Where(x => x.ReservationId.ToString() == reservationId)
                     .SingleOrDefaultAsync();
         }

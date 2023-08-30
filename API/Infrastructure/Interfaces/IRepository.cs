@@ -9,7 +9,9 @@ namespace API.Infrastructure.Interfaces {
         void Update(T entity);
         void Delete(T entity);
         void DeleteRange(IEnumerable<T> entities);
-        IMetadataWrite AttachMetadataToDto(string existingPostAt, string existingPostUser, IMetadataWrite entity);
+        IBaseEntity AttachUserIdToDto(IBaseEntity entity);
+        INewBaseEntity AttachMetadataToPostDto(IMetadata entity);
+        INewBaseEntity AttachMetadataToPutDto(IMetadata existingEntity, IMetadata updatedEntity);
 
     }
 

@@ -1,9 +1,8 @@
-using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.ShipRoutes {
 
-    public class ShipRouteWriteDto : IMetadataWrite {
+    public class ShipRouteWriteDto : IBaseEntity {
 
         public int Id { get; set; }
         public string Description { get; set; }
@@ -14,11 +13,8 @@ namespace API.Features.ShipRoutes {
         public string ToPort { get; set; }
         public string ToTime { get; set; }
         public bool IsActive { get; set; }
-                public string PostAt { get; set; }
-        public string PostUser { get; set; }
-        public string PutAt { get; set; }
-        public string PutUser { get; set; }
-        
+        public string UserId { get; set; }
+
     }
 
 }

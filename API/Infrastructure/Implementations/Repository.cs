@@ -21,9 +21,9 @@ namespace API.Infrastructure.Implementations {
         protected readonly AppDbContext context;
         private readonly UserManager<UserExtended> userManager;
 
-        public Repository(AppDbContext context, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> testingSettings, UserManager<UserExtended> userManager) {
+        public Repository(AppDbContext context, IHttpContextAccessor httpContextAccessor, IOptions<TestingEnvironment> testingSettings, UserManager<UserExtended> userManager) {
             this.context = context;
-            this.httpContextAccessor = httpContext;
+            this.httpContextAccessor = httpContextAccessor;
             this.testingSettings = testingSettings.Value;
             this.userManager = userManager;
         }
@@ -68,19 +68,8 @@ namespace API.Infrastructure.Implementations {
             context.RemoveRange(entities);
         }
 
-        public IMetadataWrite AttachMetadataToDto(string existingPostAt, string existingPostUser, IMetadataWrite entity) {
-            if (entity.Id == 0) {
-                entity.PostAt = DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime());
-                entity.PostUser = Identity.GetConnectedUserDetails(userManager, Identity.GetConnectedUserId(httpContextAccessor)).UserName;
-                return entity;
-            } else {
-                entity.PostAt = existingPostAt;
-                entity.PostUser = existingPostUser;
-                entity.PutAt = DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime());
-                entity.PutUser = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                return entity;
-            }
-
+        public IBaseEntity AttachUserIdToDto(IBaseEntity entity) {
+            return Identity.PatchEntityWithUserId(httpContextAccessor, entity);
         }
 
         private void DisposeOrCommit(IDbContextTransaction transaction) {
@@ -89,6 +78,20 @@ namespace API.Infrastructure.Implementations {
             } else {
                 transaction.Commit();
             }
+        }
+
+        public INewBaseEntity AttachMetadataToPostDto(IMetadata entity) {
+            entity.PostAt = DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime());
+            entity.PostUser = Identity.GetConnectedUserDetails(userManager, Identity.GetConnectedUserId(httpContextAccessor)).UserName;
+            return entity;
+        }
+
+        public INewBaseEntity AttachMetadataToPutDto(IMetadata existingEntity, IMetadata updatedEntity) {
+            updatedEntity.PostAt = existingEntity.PostAt;
+            updatedEntity.PostUser = existingEntity.PostUser;
+            updatedEntity.PutAt = DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime());
+            updatedEntity.PutUser = Identity.GetConnectedUserDetails(userManager, Identity.GetConnectedUserId(httpContextAccessor)).UserName;
+            return updatedEntity;
         }
 
     }

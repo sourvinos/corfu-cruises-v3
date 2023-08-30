@@ -58,7 +58,7 @@ namespace API.Features.Genders {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] GenderWriteDto gender) {
-            var x = genderRepo.Create(mapper.Map<GenderWriteDto, Gender>((GenderWriteDto)genderRepo.AttachMetadataToDto(null, null, gender)));
+            var x = genderRepo.Create(mapper.Map<GenderWriteDto, Gender>((GenderWriteDto)genderRepo.AttachMetadataToPostDto(gender)));
             return new Response {
                 Code = 200,
                 Id = x.Id.ToString(),
@@ -73,7 +73,9 @@ namespace API.Features.Genders {
         public async Task<Response> Put([FromBody] GenderWriteDto gender) {
             var x = await genderRepo.GetByIdAsync(gender.Id);
             if (x != null) {
-                genderRepo.Update(mapper.Map<GenderWriteDto, Gender>(gender));
+                gender.PostAt = x.PostAt;
+                gender.PostUser = x.PostUser;
+                genderRepo.Update(mapper.Map<GenderWriteDto, Gender>((GenderWriteDto)genderRepo.AttachMetadataToPutDto(x, gender)));
                 return new Response {
                     Code = 200,
                     Id = x.Id.ToString(),

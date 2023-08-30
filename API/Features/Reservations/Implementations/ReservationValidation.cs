@@ -18,10 +18,10 @@ namespace API.Features.Reservations {
 
     public class ReservationValidation : Repository<Reservation>, IReservationValidation {
 
-        private readonly IAvailabilityCalendar availabilityCalendar;
         private readonly IHttpContextAccessor httpContext;
         private readonly TestingEnvironment testingEnvironment;
         private readonly UserManager<UserExtended> userManager;
+        private readonly IAvailabilityCalendar availabilityCalendar;
 
         public ReservationValidation(AppDbContext context, IAvailabilityCalendar availabilityCalendar, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> testingEnvironment, UserManager<UserExtended> userManager) : base(context, httpContext, testingEnvironment, userManager) {
             this.availabilityCalendar = availabilityCalendar;

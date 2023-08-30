@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using API.Features.PickupPoints;
 using API.Features.Ports;
+using API.Features.Users;
 
 namespace API.Features.CoachRoutes {
 
@@ -15,13 +16,12 @@ namespace API.Features.CoachRoutes {
         public string Abbreviation { get; set; }
         public bool HasTransfer { get; set; }
         public bool IsActive { get; set; }
-        // Metadata
-        public string PostAt { get; set; }
-        public string PostUser { get; set; }
-        public string PutAt { get; set; }
-        public string PutUser { get; set; }
+        public string LastUpdate { get; set; }
+        // FKs
+        public string UserId { get; set; }
         // Navigation
         public Port Port { get; set; }
+        public UserExtended User { get; set; }
         public List<PickupPoint> PickupPoints { get; set; }
 
     }

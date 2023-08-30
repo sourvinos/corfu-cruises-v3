@@ -8,6 +8,8 @@ namespace API.Features.Customers {
         public void Configure(EntityTypeBuilder<Customer> entity) {
             // PK
             entity.Property(x => x.Id).ValueGeneratedOnAdd();
+            // FKs
+            entity.Property(x => x.UserId).HasMaxLength(36).IsRequired(true);
             // Fields
             entity.Property(x => x.Description).HasMaxLength(128).IsRequired(true);
             entity.Property(x => x.Profession).HasDefaultValue("").HasMaxLength(128);
@@ -16,11 +18,9 @@ namespace API.Features.Customers {
             entity.Property(x => x.PersonInCharge).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.Email).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.IsActive);
-            // Metadata
-            entity.Property(x => x.PostAt).HasMaxLength(19);
-            entity.Property(x => x.PostUser).HasMaxLength(256);
-            entity.Property(x => x.PutAt).HasMaxLength(19);
-            entity.Property(x => x.PutUser).HasMaxLength(256);
+            entity.Property(x => x.LastUpdate).HasMaxLength(19);
+            // FK Constraints
+            entity.HasOne(x => x.User).WithMany(x => x.Customers).HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.Restrict);
         }
 
     }

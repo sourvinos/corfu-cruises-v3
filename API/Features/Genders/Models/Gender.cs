@@ -1,11 +1,8 @@
-using System.Collections.Generic;
-using API.Features.Reservations;
-using API.Features.ShipCrews;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.Genders {
 
-    public class Gender : IMetadataWrite {
+    public class Gender : INewBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }
@@ -17,9 +14,6 @@ namespace API.Features.Genders {
         public string PostUser { get; set; }
         public string PutAt { get; set; }
         public string PutUser { get; set; }
-        // Navigation
-        public List<ShipCrew> ShipCrews { get; set; }
-        public List<Passenger> Passengers { get; set; }
 
     }
 

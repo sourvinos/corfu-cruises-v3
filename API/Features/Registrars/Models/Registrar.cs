@@ -1,9 +1,9 @@
 using API.Features.Ships;
-using API.Infrastructure.Interfaces;
+using API.Features.Users;
 
 namespace API.Features.Registrars {
 
-    public class Registrar : IMetadataWrite {
+    public class Registrar {
 
         // PK
         public int Id { get; set; }
@@ -17,13 +17,12 @@ namespace API.Features.Registrars {
         public string Address { get; set; }
         public bool IsPrimary { get; set; }
         public bool IsActive { get; set; }
-        // Metadata
-        public string PostAt { get; set; }
-        public string PostUser { get; set; }
-        public string PutAt { get; set; }
-        public string PutUser { get; set; }
+        public string LastUpdate { get; set; }
+        // FKs
+        public string UserId { get; set; }
         // Navigation
         public Ship Ship { get; set; }
+        public UserExtended User { get; set; }
 
     }
 

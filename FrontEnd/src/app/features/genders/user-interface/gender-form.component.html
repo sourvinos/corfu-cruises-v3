@@ -21,17 +21,19 @@
                 </mat-checkbox>
             </div>
             <div class="align-bottom group-input-field hide-hint">
-                <!-- User -->
                 <mat-form-field>
-                    <mat-label>{{ getLabel('user') }}</mat-label>
-                    <mat-icon class="material-icons-outlined small">lock</mat-icon>
-                    <input formControlName="user" matInput readonly>
+                    <mat-label>{{ getLabel('postUser') }}</mat-label>
+                    <div class="multiple-inputs">
+                        <input formControlName="postUser" matInput readonly>
+                        <input class="right" formControlName="postAt" matInput readonly>
+                    </div>
                 </mat-form-field>
-                <!-- Last update -->
                 <mat-form-field>
-                    <mat-label>{{ getLabel('lastUpdate') }}</mat-label>
-                    <mat-icon class="material-icons-outlined small">lock</mat-icon>
-                    <input formControlName="lastUpdate" matInput readonly>
+                    <mat-label>{{ getLabel('putUser') }}</mat-label>
+                    <div class="multiple-inputs">
+                        <input formControlName="putUser" matInput readonly>
+                        <input class="right" formControlName="putAt" matInput readonly>
+                    </div>
                 </mat-form-field>
             </div>
         </form>

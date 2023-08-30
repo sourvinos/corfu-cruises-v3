@@ -1,10 +1,10 @@
-﻿using API.Infrastructure.Interfaces;
+﻿namespace API.Features.Genders {
 
-namespace API.Features.Genders {
+    public class GenderReadDto {
 
-    public class GenderReadDto : IMetadataRead {
-
+        // PK
         public int Id { get; set; }
+        // Fields
         public string Description { get; set; }
         public bool IsActive { get; set; }
         // Metadata
@@ -12,7 +12,7 @@ namespace API.Features.Genders {
         public string PostUser { get; set; }
         public string PutAt { get; set; }
         public string PutUser { get; set; }
-        
+
     }
 
 }

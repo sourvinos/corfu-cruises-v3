@@ -1173,12 +1173,20 @@
                 "description": "Ενεργό"
             },
             {
-                "id": "user",
-                "description": "Χρήστης"
+                "id": "postUser",
+                "description": "Αρχική εγγραφή"
             },
             {
-                "id": "lastUpdate",
+                "id": "postAt",
+                "description": "Ημερομηνία"
+            },
+            {
+                "id": "putUser",
                 "description": "Τελευταία ενημέρωση"
+            },
+            {
+                "id": "putAt",
+                "description": "Ημερομηνία"
             },
             {
                 "id": "deleteButton",

@@ -24,7 +24,6 @@ import { ShipOwnerService } from 'src/app/features/shipOwners/classes/services/s
 import { ShipRouteService } from 'src/app/features/shipRoutes/classes/services/shipRoute.service'
 import { ShipService } from 'src/app/features/ships/classes/services/ship.service'
 import { environment } from 'src/environments/environment'
-import { UserNewDto } from 'src/app/features/users/classes/dtos/new-user-dto'
 
 @Injectable({ providedIn: 'root' })
 
