@@ -39,7 +39,6 @@ namespace API.Features.Destinations {
         public async Task<Destination> GetByIdAsync(int id) {
             return await context.Destinations
                 .AsNoTracking()
-                .Include(x => x.User)
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
 

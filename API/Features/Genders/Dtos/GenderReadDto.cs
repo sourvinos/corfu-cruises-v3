@@ -1,6 +1,8 @@
-﻿namespace API.Features.Genders {
+﻿using API.Infrastructure.Interfaces;
 
-    public class GenderReadDto {
+namespace API.Features.Genders {
+
+    public class GenderReadDto : INewBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }

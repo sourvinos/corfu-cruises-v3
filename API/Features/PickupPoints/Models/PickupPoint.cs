@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using API.Features.CoachRoutes;
 using API.Features.Reservations;
-using API.Features.Users;
+using API.Infrastructure.Interfaces;
 
 namespace API.Features.PickupPoints {
 
-    public class PickupPoint {
+    public class PickupPoint : INewBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }
@@ -17,12 +17,13 @@ namespace API.Features.PickupPoints {
         public string Time { get; set; }
         public string Remarks { get; set; }
         public bool IsActive { get; set; }
-        public string LastUpdate { get; set; }
-        // FKs
-        public string UserId { get; set; }
+        // Metadata
+        public string PostAt { get; set; }
+        public string PostUser { get; set; }
+        public string PutAt { get; set; }
+        public string PutUser { get; set; }
         // Navigation
         public CoachRoute CoachRoute { get; set; }
-        public UserExtended User { get; set; }
         public List<Reservation> Reservations { get; set; }
 
     }

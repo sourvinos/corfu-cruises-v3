@@ -58,7 +58,7 @@ namespace API.Features.Drivers {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] DriverWriteDto driver) {
-            var x = driverRepo.Create(mapper.Map<DriverWriteDto, Driver>((DriverWriteDto)driverRepo.AttachUserIdToDto(driver)));
+            var x = driverRepo.Create(mapper.Map<DriverWriteDto, Driver>((DriverWriteDto)driverRepo.AttachMetadataToPostDto(driver)));
             return new Response {
                 Code = 200,
                 Id = x.Id.ToString(),
@@ -73,8 +73,7 @@ namespace API.Features.Drivers {
         public async Task<Response> Put([FromBody] DriverWriteDto driver) {
             var x = await driverRepo.GetByIdAsync(driver.Id);
             if (x != null) {
-                driver.UserId = x.User.Id;
-                driverRepo.Update(mapper.Map<DriverWriteDto, Driver>(driver));
+                driverRepo.Update(mapper.Map<DriverWriteDto, Driver>((DriverWriteDto)driverRepo.AttachMetadataToPutDto(x, driver)));
                 return new Response {
                     Code = 200,
                     Id = x.Id.ToString(),

@@ -1,8 +1,9 @@
+using API.Infrastructure.Classes;
+
 namespace API.Features.CoachRoutes {
 
-    public class CoachRouteAutoCompleteVM {
+    public class CoachRouteAutoCompleteVM : SimpleEntity {
 
-        public int Id { get; set; }
         public string Abbreviation { get; set; }
         public bool IsActive { get; set; }
 

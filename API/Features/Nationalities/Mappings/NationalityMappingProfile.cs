@@ -9,11 +9,9 @@ namespace API.Features.Nationalities {
             CreateMap<Nationality, NationalityListVM>();
             CreateMap<Nationality, NationalityAutoCompleteVM>();
             CreateMap<Nationality, NationalityReadDto>()
-                .ForMember(x => x.User, x => x.MapFrom(x => x.User.Displayname))
-                .ForMember(x => x.LastUpdate, x => x.MapFrom(x => x.LastUpdate));
-            CreateMap<NationalityWriteDto, Nationality>()
-                .ForMember(x => x.UserId, x => x.MapFrom(x => x.UserId))
-                .ForMember(x => x.LastUpdate, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime())));
+                .ForMember(x => x.PutAt, x => x.MapFrom(x => x.PutAt ?? ""))
+                .ForMember(x => x.PutUser, x => x.MapFrom(x => x.PutUser ?? ""));
+            CreateMap<NationalityWriteDto, Nationality>();
         }
 
     }

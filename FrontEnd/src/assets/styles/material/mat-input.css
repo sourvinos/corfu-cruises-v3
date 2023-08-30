@@ -53,7 +53,7 @@
     font-weight: 300;
 }
 
-/* Username and date */
+/* Metadata */
 .mat-mdc-form-field .multiple-inputs {
     display: flex;
     column-gap: 0.5rem;
@@ -62,7 +62,7 @@
 
 /* Input actual */
 .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
-    color: var(--color-text);
+    color: var(--color-text) !important;
     transition: color var(--theme-delay) !important;
 }
 

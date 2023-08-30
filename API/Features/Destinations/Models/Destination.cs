@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using API.Features.Reservations;
 using API.Features.Schedules;
-using API.Features.Users;
+using API.Infrastructure.Interfaces;
 
 namespace API.Features.Destinations {
 
-    public class Destination {
+    public class Destination : INewBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }
@@ -13,11 +13,11 @@ namespace API.Features.Destinations {
         public string Description { get; set; }
         public string Abbreviation { get; set; }
         public bool IsActive { get; set; }
-        public string LastUpdate { get; set; }
-        // FKs
-        public string UserId { get; set; }
-        // Navigation
-        public UserExtended User { get; set; }
+        // Metadata
+        public string PostAt { get; set; }
+        public string PostUser { get; set; }
+        public string PutAt { get; set; }
+        public string PutUser { get; set; }
         public List<Schedule> Schedules { get; set; }
         public List<Reservation> Reservations { get; set; }
 
