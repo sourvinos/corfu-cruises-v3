@@ -62,8 +62,8 @@ namespace API.Features.Reservations {
                         Description = passenger.Gender.Description
                     }
                 })))
-                .ForMember(x => x.User, x => x.MapFrom(x => x.User.Displayname))
-                .ForMember(x => x.LastUpdate, x => x.MapFrom(x => x.LastUpdate));
+                .ForMember(x => x.PutAt, x => x.MapFrom(x => x.PutAt ?? ""))
+                .ForMember(x => x.PutUser, x => x.MapFrom(x => x.PutUser ?? ""));
             // Read passenger
             CreateMap<Passenger, PassengerReadDto>()
                 .ForMember(x => x.Birthdate, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Birthdate)))
@@ -76,9 +76,7 @@ namespace API.Features.Reservations {
             CreateMap<ReservationWriteDto, Reservation>()
                 .ForMember(x => x.TicketNo, x => x.MapFrom(x => x.TicketNo.Trim()))
                 .ForMember(x => x.Phones, x => x.MapFrom(x => x.Phones.Trim()))
-                .ForMember(x => x.Remarks, x => x.MapFrom(x => x.Remarks.Trim()))
-                .ForMember(x => x.UserId, x => x.MapFrom(x => x.UserId))
-                .ForMember(x => x.LastUpdate, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime())));
+                .ForMember(x => x.Remarks, x => x.MapFrom(x => x.Remarks.Trim()));
             // Write passenger
             CreateMap<PassengerWriteDto, Passenger>()
                 .ForMember(x => x.Lastname, x => x.MapFrom(x => x.Lastname.Trim()))

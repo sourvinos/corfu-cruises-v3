@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Security.Claims;
 using API.Features.Users;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Extensions;
@@ -68,10 +67,6 @@ namespace API.Infrastructure.Implementations {
             context.RemoveRange(entities);
         }
 
-        public IBaseEntity AttachUserIdToDto(IBaseEntity entity) {
-            return Identity.PatchEntityWithUserId(httpContextAccessor, entity);
-        }
-
         private void DisposeOrCommit(IDbContextTransaction transaction) {
             if (testingSettings.IsTesting) {
                 transaction.Dispose();
@@ -80,13 +75,13 @@ namespace API.Infrastructure.Implementations {
             }
         }
 
-        public INewBaseEntity AttachMetadataToPostDto(IMetadata entity) {
+        public IMetadata AttachMetadataToPostDto(IMetadata entity) {
             entity.PostAt = DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime());
             entity.PostUser = Identity.GetConnectedUserDetails(userManager, Identity.GetConnectedUserId(httpContextAccessor)).UserName;
             return entity;
         }
 
-        public INewBaseEntity AttachMetadataToPutDto(IMetadata existingEntity, IMetadata updatedEntity) {
+        public IMetadata AttachMetadataToPutDto(IMetadata existingEntity, IMetadata updatedEntity) {
             updatedEntity.PostAt = existingEntity.PostAt;
             updatedEntity.PostUser = existingEntity.PostUser;
             updatedEntity.PutAt = DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime());

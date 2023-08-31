@@ -8,7 +8,7 @@ namespace API.Features.Schedules {
 
         Task<IEnumerable<ScheduleListVM>> GetAsync();
         Task<Schedule> GetByIdAsync(int id, bool includeTables);
-        List<ScheduleWriteDto> AttachUserIdToDtos(List<ScheduleWriteDto> schedules);
+        List<ScheduleWriteDto> AttachMetadataToPostDto(List<ScheduleWriteDto> schedules);
 
     }
 

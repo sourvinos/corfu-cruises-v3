@@ -1,8 +1,12 @@
+using API.Infrastructure.Interfaces;
+
 namespace API.Features.ShipOwners {
 
-    public class ShipOwnerReadDto {
+    public class ShipOwnerReadDto : INewBaseEntity, IMetadata {
 
+        // PK
         public int Id { get; set; }
+        // Fields
         public string Description { get; set; }
         public string Profession { get; set; }
         public string Address { get; set; }
@@ -11,8 +15,11 @@ namespace API.Features.ShipOwners {
         public string Phones { get; set; }
         public string Email { get; set; }
         public bool IsActive { get; set; }
-        public string User { get; set; }
-        public string LastUpdate { get; set; }
+        // Metadata
+        public string PostAt { get; set; }
+        public string PostUser { get; set; }
+        public string PutAt { get; set; }
+        public string PutUser { get; set; }
 
     }
 

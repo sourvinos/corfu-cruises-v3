@@ -96,11 +96,11 @@ namespace API.Features.Reservations {
             AttachNewRefNoToDto(reservation);
             var x = validReservation.IsValid(reservation, scheduleRepo);
             if (x == 200) {
-                var response = reservationUpdateRepo.Create(mapper.Map<ReservationWriteDto, Reservation>((ReservationWriteDto)reservationUpdateRepo.AttachUserIdToDto(reservation)));
+                var z = reservationUpdateRepo.Create(mapper.Map<ReservationWriteDto, Reservation>((ReservationWriteDto)reservationUpdateRepo.AttachMetadataToPostDto(reservation)));
                 return Task.FromResult(new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = response.ReservationId.ToString(),
+                    Id = z.ReservationId.ToString(),
                     Message = reservation.RefNo
                 });
             } else {
@@ -122,8 +122,7 @@ namespace API.Features.Reservations {
                     UpdateShipIdWithNull(reservation);
                     var z = validReservation.IsValid(reservation, scheduleRepo);
                     if (z == 200) {
-                        reservation.UserId = x.User.Id;
-                        reservationUpdateRepo.Update(reservation.ReservationId, mapper.Map<ReservationWriteDto, Reservation>(reservation));
+                        reservationUpdateRepo.Update(mapper.Map<ReservationWriteDto, Reservation>((ReservationWriteDto)reservationUpdateRepo.AttachMetadataToPutDto(x, reservation)));
                         return new Response {
                             Code = 200,
                             Icon = Icons.Success.ToString(),

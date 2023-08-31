@@ -5,7 +5,9 @@ export interface PortReadDto {
     description: string
     stopOrder: number
     isActive: boolean
-    user: string
-    lastUpdate: string
+    postAt: string
+    postUser: string
+    putAt: string
+    putUser: string
 
 }

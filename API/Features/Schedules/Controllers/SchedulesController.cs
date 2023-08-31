@@ -56,7 +56,7 @@ namespace API.Features.Schedules {
         public Response Post([FromBody] List<ScheduleWriteDto> schedules) {
             var x = scheduleValidation.IsValidOnNew(schedules);
             if (x == 200) {
-                scheduleRepo.CreateList(mapper.Map<List<ScheduleWriteDto>, List<Schedule>>(scheduleRepo.AttachUserIdToDtos(schedules)));
+                scheduleRepo.CreateList(mapper.Map<List<ScheduleWriteDto>, List<Schedule>>(scheduleRepo.AttachMetadataToPostDto(schedules)));
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
@@ -78,8 +78,7 @@ namespace API.Features.Schedules {
             if (x != null) {
                 var z = scheduleValidation.IsValidOnUpdate(schedule);
                 if (z == 200) {
-                    schedule.UserId = x.User.Id;
-                    scheduleRepo.Update(mapper.Map<ScheduleWriteDto, Schedule>(schedule));
+                    scheduleRepo.Update(mapper.Map<ScheduleWriteDto, Schedule>((ScheduleWriteDto)scheduleRepo.AttachMetadataToPutDto(x, schedule)));
                     return new Response {
                         Code = 200,
                         Icon = Icons.Success.ToString(),

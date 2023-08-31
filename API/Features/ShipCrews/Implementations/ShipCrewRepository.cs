@@ -46,11 +46,9 @@ namespace API.Features.ShipCrews {
                     .Include(x => x.Ship)
                     .Include(x => x.Gender)
                     .Include(x => x.Nationality)
-                    .Include(x => x.User)
                     .SingleOrDefaultAsync(x => x.Id == id)
                 : await context.ShipCrews
                     .AsNoTracking()
-                    .Include(x => x.User)
                     .SingleOrDefaultAsync(x => x.Id == id);
         }
 

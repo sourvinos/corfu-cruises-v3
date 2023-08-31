@@ -42,11 +42,9 @@ namespace API.Features.Registrars {
                 ? await context.Registrars
                     .AsNoTracking()
                     .Include(x => x.Ship)
-                    .Include(x => x.User)
                     .SingleOrDefaultAsync(x => x.Id == id)
                 : await context.Registrars
                     .AsNoTracking()
-                    .Include(x => x.User)
                     .SingleOrDefaultAsync(x => x.Id == id);
         }
 

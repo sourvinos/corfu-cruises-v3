@@ -2,14 +2,20 @@
 
 namespace API.Features.Ports {
 
-    public class PortWriteDto : IBaseEntity {
+    public class PortWriteDto : INewBaseEntity, IMetadata {
 
+        // PK
         public int Id { get; set; }
-        public string Description { get; set; }
+        // Fields
         public string Abbreviation { get; set; }
+        public string Description { get; set; }
         public int StopOrder { get; set; }
         public bool IsActive { get; set; }
-        public string UserId { get; set; }
+        // Metadata
+        public string PostAt { get; set; }
+        public string PostUser { get; set; }
+        public string PutAt { get; set; }
+        public string PutUser { get; set; }
 
     }
 

@@ -4,15 +4,18 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations {
 
-    public class ReservationWriteDto : IBaseEntity {
+    public class ReservationWriteDto : IMetadata {
 
+        // PK
         public Guid ReservationId { get; set; }
+        // Fks
         public int CustomerId { get; set; }
         public int DestinationId { get; set; }
         public int PickupPointId { get; set; }
         public int PortId { get; set; }
         public int? DriverId { get; set; }
         public int? ShipId { get; set; }
+        // Fields
         public string Date { get; set; }
         public DateTime Now { get; set; }
         public string RefNo { get; set; }
@@ -23,8 +26,12 @@ namespace API.Features.Reservations {
         public int Kids { get; set; }
         public int Free { get; set; }
         public string Remarks { get; set; }
-        public string UserId { get; set; }
-
+        // Metadata
+        public string PostAt { get; set; }
+        public string PostUser { get; set; }
+        public string PutAt { get; set; }
+        public string PutUser { get; set; }
+        // Navigation
         public List<PassengerWriteDto> Passengers { get; set; }
 
     }

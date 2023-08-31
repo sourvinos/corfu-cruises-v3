@@ -6,11 +6,11 @@ using API.Features.Drivers;
 using API.Features.PickupPoints;
 using API.Features.Ports;
 using API.Features.Ships;
-using API.Features.Users;
+using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations {
 
-    public class Reservation {
+    public class Reservation : IMetadata {
 
         // PK
         public Guid ReservationId { get; set; }
@@ -32,9 +32,10 @@ namespace API.Features.Reservations {
         public string Email { get; set; }
         public string Phones { get; set; }
         public string Remarks { get; set; }
-        public string LastUpdate { get; set; }
-        // FKs
-        public string UserId { get; set; }
+        public string PostAt { get; set; }
+        public string PostUser { get; set; }
+        public string PutAt { get; set; }
+        public string PutUser { get; set; }
         // Navigation
         public Customer Customer { get; set; }
         public Destination Destination { get; set; }
@@ -42,7 +43,6 @@ namespace API.Features.Reservations {
         public PickupPoint PickupPoint { get; set; }
         public Port Port { get; set; }
         public Ship Ship { get; set; }
-        public UserExtended User { get; set; }
         public List<Passenger> Passengers { get; set; }
 
     }

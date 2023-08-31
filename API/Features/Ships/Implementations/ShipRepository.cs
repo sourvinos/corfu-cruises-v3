@@ -41,11 +41,9 @@ namespace API.Features.Ships {
                 ? await context.Ships
                     .AsNoTracking()
                     .Include(x => x.ShipOwner)
-                    .Include(x => x.User)
                     .SingleOrDefaultAsync(x => x.Id == id)
                 : await context.Ships
                     .AsNoTracking()
-                    .Include(x => x.User)
                     .SingleOrDefaultAsync(x => x.Id == id);
         }
 

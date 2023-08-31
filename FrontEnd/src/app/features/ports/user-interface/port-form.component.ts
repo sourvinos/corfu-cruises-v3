@@ -128,8 +128,10 @@ export class PortFormComponent {
             description: ['', [Validators.required, Validators.maxLength(128)]],
             stopOrder: [0, [Validators.required, Validators.min(1), Validators.max(9)]],
             isActive: true,
-            user: [''],
-            lastUpdate: ['']
+            postAt: [''],
+            postUser: [''],
+            putAt: [''],
+            putUser: ['']
         })
     }
 
@@ -141,8 +143,10 @@ export class PortFormComponent {
                 description: this.record.description,
                 stopOrder: this.record.stopOrder,
                 isActive: this.record.isActive,
-                user: this.record.user,
-                lastUpdate: this.record.lastUpdate
+                postAt: this.record.postAt,
+                postUser: this.record.postUser,
+                putAt: this.record.putAt,
+                putUser: this.record.putUser
             })
         }
     }
@@ -185,12 +189,20 @@ export class PortFormComponent {
         return this.form.get('stopOrder')
     }
 
-    get user(): AbstractControl {
-        return this.form.get('user')
+    get postAt(): AbstractControl {
+        return this.form.get('postAt')
     }
 
-    get lastUpdate(): AbstractControl {
-        return this.form.get('lastUpdate')
+    get postUser(): AbstractControl {
+        return this.form.get('postUser')
+    }
+
+    get putAt(): AbstractControl {
+        return this.form.get('putAt')
+    }
+
+    get putUser(): AbstractControl {
+        return this.form.get('putUser')
     }
 
     //#endregion

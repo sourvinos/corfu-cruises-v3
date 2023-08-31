@@ -1,6 +1,6 @@
 namespace API.Infrastructure.Interfaces {
 
-    public interface IMetadata : INewBaseEntity {
+    public interface IMetadata {
 
         public string PostAt { get; set; }
         public string PostUser { get; set; }

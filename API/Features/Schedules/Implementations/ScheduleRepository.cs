@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using API.Features.Users;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Extensions;
+using API.Infrastructure.Helpers;
 using API.Infrastructure.Implementations;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
@@ -16,11 +17,13 @@ namespace API.Features.Schedules {
     public class ScheduleRepository : Repository<Schedule>, IScheduleRepository {
 
         private readonly IMapper mapper;
-        private readonly IHttpContextAccessor httpContext;
+        private readonly IHttpContextAccessor httpContextAccessor;
+        private readonly UserManager<UserExtended> userManager;
 
-        public ScheduleRepository(AppDbContext context, IHttpContextAccessor httpContext, IMapper mapper, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(context, httpContext, settings, userManager) {
-            this.httpContext = httpContext;
+        public ScheduleRepository(AppDbContext context, IHttpContextAccessor httpContextAccessor, IMapper mapper, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(context, httpContextAccessor, settings, userManager) {
+            this.httpContextAccessor = httpContextAccessor;
             this.mapper = mapper;
+            this.userManager = userManager;
         }
 
         public async Task<IEnumerable<ScheduleListVM>> GetAsync() {
@@ -39,16 +42,15 @@ namespace API.Features.Schedules {
                     .AsNoTracking()
                     .Include(x => x.Port)
                     .Include(p => p.Destination)
-                    .Include(x => x.User)
                     .SingleOrDefaultAsync(x => x.Id == id)
                 : await context.Schedules
                     .AsNoTracking()
-                    .Include(x => x.User)
                     .SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public List<ScheduleWriteDto> AttachUserIdToDtos(List<ScheduleWriteDto> schedules) {
-            schedules.ForEach(x => x = Identity.PatchEntityWithUserId(httpContext, x));
+        public List<ScheduleWriteDto> AttachMetadataToPostDto(List<ScheduleWriteDto> schedules) {
+            schedules.ForEach(x => x.PostAt = DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime()));
+            schedules.ForEach(x => x.PostUser = Identity.GetConnectedUserDetails(userManager, Identity.GetConnectedUserId(httpContextAccessor)).UserName);
             return schedules;
         }
 

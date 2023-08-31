@@ -1,8 +1,8 @@
-using API.Features.Users;
+using API.Infrastructure.Interfaces;
 
 namespace API.Features.ShipRoutes {
 
-    public class ShipRoute {
+    public class ShipRoute : INewBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }
@@ -15,11 +15,11 @@ namespace API.Features.ShipRoutes {
         public string ToPort { get; set; }
         public string ToTime { get; set; }
         public bool IsActive { get; set; }
-        public string LastUpdate { get; set; }
-        // FKs
-        public string UserId { get; set; }
-        // Navigation
-        public UserExtended User { get; set; }
+        // Metadata
+        public string PostAt { get; set; }
+        public string PostUser { get; set; }
+        public string PutAt { get; set; }
+        public string PutUser { get; set; }
 
     }
 

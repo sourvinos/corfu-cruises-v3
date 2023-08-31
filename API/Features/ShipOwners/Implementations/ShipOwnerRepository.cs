@@ -39,7 +39,6 @@ namespace API.Features.ShipOwners {
         public async Task<ShipOwner> GetByIdAsync(int id) {
             return await context.ShipOwners
                 .AsNoTracking()
-                .Include(x => x.User)
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
 

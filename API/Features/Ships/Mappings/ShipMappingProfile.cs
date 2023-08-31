@@ -1,5 +1,4 @@
 using API.Infrastructure.Classes;
-using API.Infrastructure.Helpers;
 using AutoMapper;
 
 namespace API.Features.Ships {
@@ -11,8 +10,8 @@ namespace API.Features.Ships {
             CreateMap<Ship, ShipAutoCompleteVM>();
             CreateMap<Ship, ShipReadDto>()
                 .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new SimpleEntity { Id = x.ShipOwner.Id, Description = x.ShipOwner.Description }))
-                .ForMember(x => x.User, x => x.MapFrom(x => x.User.Displayname))
-                .ForMember(x => x.LastUpdate, x => x.MapFrom(x => x.LastUpdate));
+                .ForMember(x => x.PutAt, x => x.MapFrom(x => x.PutAt ?? ""))
+                .ForMember(x => x.PutUser, x => x.MapFrom(x => x.PutUser ?? ""));
             CreateMap<ShipWriteDto, Ship>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
                 .ForMember(x => x.Abbreviation, x => x.MapFrom(x => x.Abbreviation.Trim()))
@@ -21,9 +20,7 @@ namespace API.Features.Ships {
                 .ForMember(x => x.RegistryNo, x => x.MapFrom(x => x.RegistryNo.Trim()))
                 .ForMember(x => x.Manager, x => x.MapFrom(x => x.Manager.Trim()))
                 .ForMember(x => x.ManagerInGreece, x => x.MapFrom(x => x.ManagerInGreece.Trim()))
-                .ForMember(x => x.Agent, x => x.MapFrom(x => x.Agent.Trim()))
-                .ForMember(x => x.UserId, x => x.MapFrom(x => x.UserId))
-                .ForMember(x => x.LastUpdate, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime())));
+                .ForMember(x => x.Agent, x => x.MapFrom(x => x.Agent.Trim()));
         }
 
     }
