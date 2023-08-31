@@ -65,8 +65,8 @@ namespace API.Features.PickupPoints {
                 var z = pickupPointRepo.Create(mapper.Map<PickupPointWriteDto, PickupPoint>((PickupPointWriteDto)pickupPointRepo.AttachMetadataToPostDto(pickupPoint)));
                 return new Response {
                     Code = 200,
-                    Id = z.Id.ToString(),
                     Icon = Icons.Success.ToString(),
+                    Id = z.Id.ToString(),
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -87,8 +87,8 @@ namespace API.Features.PickupPoints {
                     pickupPointRepo.Update(mapper.Map<PickupPointWriteDto, PickupPoint>((PickupPointWriteDto)pickupPointRepo.AttachMetadataToPutDto(x, pickupPoint)));
                     return new Response {
                         Code = 200,
-                        Id = x.Id.ToString(),
                         Icon = Icons.Success.ToString(),
+                        Id = x.Id.ToString(),
                         Message = ApiMessages.OK()
                     };
                 } else {
@@ -111,8 +111,8 @@ namespace API.Features.PickupPoints {
                 pickupPointRepo.Delete(x);
                 return new Response {
                     Code = 200,
-                    Id = x.Id.ToString(),
                     Icon = Icons.Success.ToString(),
+                    Id = x.Id.ToString(),
                     Message = ApiMessages.OK()
                 };
             } else {

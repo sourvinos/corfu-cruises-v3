@@ -61,8 +61,8 @@ namespace API.Features.Customers {
             var x = customerRepo.Create(mapper.Map<CustomerWriteDto, Customer>((CustomerWriteDto)customerRepo.AttachMetadataToPostDto(customer)));
             return new Response {
                 Code = 200,
-                Id = x.Id.ToString(),
                 Icon = Icons.Success.ToString(),
+                Id = x.Id.ToString(),
                 Message = ApiMessages.OK()
             };
         }
@@ -76,8 +76,8 @@ namespace API.Features.Customers {
                 customerRepo.Update(mapper.Map<CustomerWriteDto, Customer>((CustomerWriteDto)customerRepo.AttachMetadataToPutDto(x, customer)));
                 return new Response {
                     Code = 200,
-                    Id = x.Id.ToString(),
                     Icon = Icons.Success.ToString(),
+                    Id = x.Id.ToString(),
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -95,8 +95,8 @@ namespace API.Features.Customers {
                 customerRepo.Delete(x);
                 return new Response {
                     Code = 200,
-                    Id = x.Id.ToString(),
                     Icon = Icons.Success.ToString(),
+                    Id = x.Id.ToString(),
                     Message = ApiMessages.OK()
                 };
             } else {

@@ -46,8 +46,8 @@ namespace API.Features.Ships {
                 return new ResponseWithBody {
                     Code = 200,
                     Icon = Icons.Info.ToString(),
+                    Body = mapper.Map<Ship, ShipReadDto>(x),
                     Message = ApiMessages.OK(),
-                    Body = mapper.Map<Ship, ShipReadDto>(x)
                 };
             } else {
                 throw new CustomException() {
@@ -65,8 +65,8 @@ namespace API.Features.Ships {
                 var z = shipRepo.Create(mapper.Map<ShipWriteDto, Ship>((ShipWriteDto)shipRepo.AttachMetadataToPostDto(ship)));
                 return new Response {
                     Code = 200,
-                    Id = z.Id.ToString(),
                     Icon = Icons.Success.ToString(),
+                    Id = z.Id.ToString(),
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -87,8 +87,8 @@ namespace API.Features.Ships {
                     shipRepo.Update(mapper.Map<ShipWriteDto, Ship>((ShipWriteDto)shipRepo.AttachMetadataToPutDto(x, ship)));
                     return new Response {
                         Code = 200,
-                        Id = x.Id.ToString(),
                         Icon = Icons.Success.ToString(),
+                        Id = x.Id.ToString(),
                         Message = ApiMessages.OK(),
                     };
                 } else {
@@ -111,8 +111,8 @@ namespace API.Features.Ships {
                 shipRepo.Delete(x);
                 return new Response {
                     Code = 200,
-                    Id = x.Id.ToString(),
                     Icon = Icons.Success.ToString(),
+                    Id = x.Id.ToString(),
                     Message = ApiMessages.OK()
                 };
             } else {

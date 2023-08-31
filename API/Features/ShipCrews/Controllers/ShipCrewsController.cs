@@ -62,10 +62,11 @@ namespace API.Features.ShipCrews {
         public Response Post([FromBody] ShipCrewWriteDto shipCrew) {
             var x = shipCrewValidation.IsValid(shipCrew);
             if (x == 200) {
-                shipCrewRepo.Create(mapper.Map<ShipCrewWriteDto, ShipCrew>((ShipCrewWriteDto)shipCrewRepo.AttachMetadataToPostDto(shipCrew)));
+                var z = shipCrewRepo.Create(mapper.Map<ShipCrewWriteDto, ShipCrew>((ShipCrewWriteDto)shipCrewRepo.AttachMetadataToPostDto(shipCrew)));
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = z.Id.ToString(),
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -87,6 +88,7 @@ namespace API.Features.ShipCrews {
                     return new Response {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
+                        Id = x.Id.ToString(),
                         Message = ApiMessages.OK()
                     };
                 } else {
@@ -110,6 +112,7 @@ namespace API.Features.ShipCrews {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = x.Id.ToString(),
                     Message = ApiMessages.OK()
                 };
             } else {

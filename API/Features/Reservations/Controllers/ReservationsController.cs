@@ -155,7 +155,7 @@ namespace API.Features.Reservations {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = null,
+                    Id = x.ReservationId.ToString(),
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -205,7 +205,7 @@ namespace API.Features.Reservations {
                     return new Response {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
-                        Id = null,
+                        Id = x.ReservationId.ToString(),
                         Message = ApiMessages.OK()
                     };
                 } else {

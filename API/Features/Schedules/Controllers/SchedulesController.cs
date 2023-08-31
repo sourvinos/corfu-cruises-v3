@@ -82,7 +82,7 @@ namespace API.Features.Schedules {
                     return new Response {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
-                        Id = null,
+                        Id = x.Id.ToString(),
                         Message = ApiMessages.OK()
                     };
                 } else {
@@ -106,7 +106,7 @@ namespace API.Features.Schedules {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = null,
+                    Id = x.Id.ToString(),
                     Message = ApiMessages.OK()
                 };
             } else {

@@ -61,8 +61,8 @@ namespace API.Features.Destinations {
             var x = destinationRepo.Create(mapper.Map<DestinationWriteDto, Destination>((DestinationWriteDto)destinationRepo.AttachMetadataToPostDto(destination)));
             return new Response {
                 Code = 200,
-                Id = x.Id.ToString(),
                 Icon = Icons.Success.ToString(),
+                Id = x.Id.ToString(),
                 Message = ApiMessages.OK()
             };
         }
@@ -76,8 +76,8 @@ namespace API.Features.Destinations {
                 destinationRepo.Update(mapper.Map<DestinationWriteDto, Destination>((DestinationWriteDto)destinationRepo.AttachMetadataToPutDto(x, destination)));
                 return new Response {
                     Code = 200,
-                    Id = x.Id.ToString(),
                     Icon = Icons.Success.ToString(),
+                    Id = x.Id.ToString(),
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -95,8 +95,8 @@ namespace API.Features.Destinations {
                 destinationRepo.Delete(x);
                 return new Response {
                     Code = 200,
-                    Id = x.Id.ToString(),
                     Icon = Icons.Success.ToString(),
+                    Id = x.Id.ToString(),
                     Message = ApiMessages.OK()
                 };
             } else {

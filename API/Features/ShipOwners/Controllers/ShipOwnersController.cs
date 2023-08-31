@@ -61,8 +61,8 @@ namespace API.Features.ShipOwners {
             var x = shipOwnerRepo.Create(mapper.Map<ShipOwnerWriteDto, ShipOwner>((ShipOwnerWriteDto)shipOwnerRepo.AttachMetadataToPostDto(shipOwner)));
             return new Response {
                 Code = 200,
-                Id = x.Id.ToString(),
                 Icon = Icons.Success.ToString(),
+                Id = x.Id.ToString(),
                 Message = ApiMessages.OK()
             };
         }
@@ -76,8 +76,8 @@ namespace API.Features.ShipOwners {
                 shipOwnerRepo.Update(mapper.Map<ShipOwnerWriteDto, ShipOwner>((ShipOwnerWriteDto)shipOwnerRepo.AttachMetadataToPutDto(x, shipOwner)));
                 return new Response {
                     Code = 200,
-                    Id = x.Id.ToString(),
                     Icon = Icons.Success.ToString(),
+                    Id = x.Id.ToString(),
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -95,8 +95,8 @@ namespace API.Features.ShipOwners {
                 shipOwnerRepo.Delete(x);
                 return new Response {
                     Code = 200,
-                    Id = x.Id.ToString(),
                     Icon = Icons.Success.ToString(),
+                    Id = x.Id.ToString(),
                     Message = ApiMessages.OK()
                 };
             } else {

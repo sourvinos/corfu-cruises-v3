@@ -9,7 +9,9 @@ export interface ShipRouteReadDto {
     toPort: string
     toTime: string
     isActive: boolean
-    user: string
-    lastUpdate: string
+    postAt: string
+    postUser: string
+    putAt: string
+    putUser: string
 
 }

@@ -61,8 +61,8 @@ namespace API.Features.Genders {
             var x = genderRepo.Create(mapper.Map<GenderWriteDto, Gender>((GenderWriteDto)genderRepo.AttachMetadataToPostDto(gender)));
             return new Response {
                 Code = 200,
-                Id = x.Id.ToString(),
                 Icon = Icons.Success.ToString(),
+                Id = x.Id.ToString(),
                 Message = ApiMessages.OK()
             };
         }
@@ -76,8 +76,8 @@ namespace API.Features.Genders {
                 genderRepo.Update(mapper.Map<GenderWriteDto, Gender>((GenderWriteDto)genderRepo.AttachMetadataToPutDto(x, gender)));
                 return new Response {
                     Code = 200,
-                    Id = x.Id.ToString(),
                     Icon = Icons.Success.ToString(),
+                    Id = x.Id.ToString(),
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -95,8 +95,8 @@ namespace API.Features.Genders {
                 genderRepo.Delete(x);
                 return new Response {
                     Code = 200,
-                    Id = x.Id.ToString(),
                     Icon = Icons.Success.ToString(),
+                    Id = x.Id.ToString(),
                     Message = ApiMessages.OK()
                 };
             } else {

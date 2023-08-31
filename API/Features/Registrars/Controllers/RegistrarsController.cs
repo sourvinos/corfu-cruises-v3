@@ -69,6 +69,7 @@ namespace API.Features.Registrars {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = z.Id.ToString(),
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -90,6 +91,7 @@ namespace API.Features.Registrars {
                     return new Response {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
+                        Id = x.Id.ToString(),
                         Message = ApiMessages.OK()
                     };
                 } else {
@@ -113,6 +115,7 @@ namespace API.Features.Registrars {
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
+                    Id = x.Id.ToString(),
                     Message = ApiMessages.OK()
                 };
             } else {
