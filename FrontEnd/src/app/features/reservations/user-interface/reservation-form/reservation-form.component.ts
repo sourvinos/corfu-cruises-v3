@@ -209,7 +209,7 @@ export class ReservationFormComponent {
             this.dialogService.open(this.messageDialogService.twoPointReervationValidation(), 'error', ['ok'])
         } else {
             this.boardingPassService.getCompanyData().then(response => {
-                this.boardingPassService.printBoardingPass(this.boardingPassService.createBoardingPass(this.form.value, response.body.phones,response.body.email))
+                this.boardingPassService.printBoardingPass(this.boardingPassService.createBoardingPass(this.form.value, response.body.phones, response.body.email))
             })
         }
     }
@@ -415,8 +415,10 @@ export class ReservationFormComponent {
             remarks: ['', Validators.maxLength(128)],
             imageBase64: '',
             passengers: [[]],
-            user: [''],
-            lastUpdate: ['']
+            postAt: [''],
+            postUser: [''],
+            putAt: [''],
+            putUser: ['']
         })
     }
 
@@ -463,8 +465,10 @@ export class ReservationFormComponent {
             remarks: this.record.remarks,
             imageBase64: '',
             passengers: this.record.passengers,
-            user: this.record.user,
-            lastUpdate: this.record.lastUpdate
+            postAt: this.record.postAt,
+            postUser: this.record.postUser,
+            putAt: this.record.putAt,
+            putUser: this.record.putUser
         })
     }
 
@@ -618,12 +622,20 @@ export class ReservationFormComponent {
         return this.form.get('port')
     }
 
-    get user(): AbstractControl {
-        return this.form.get('user')
+    get postAt(): AbstractControl {
+        return this.form.get('postAt')
     }
 
-    get lastUpdate(): AbstractControl {
-        return this.form.get('lastUpdate')
+    get postUser(): AbstractControl {
+        return this.form.get('postUser')
+    }
+
+    get putAt(): AbstractControl {
+        return this.form.get('putAt')
+    }
+
+    get putUser(): AbstractControl {
+        return this.form.get('putUser')
     }
 
     //#endregion

@@ -7,74 +7,70 @@
         </div>
 
         <form [formGroup]="form" id="form">
-            <div class="group-input-field">
-                <!-- Description -->
-                <mat-form-field>
-                    <mat-label>{{ getLabel('description') }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="1" formControlName="description" matInput>
-                    <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
-                    <mat-error *ngIf="description.hasError('maxlength')">{{ getHint("maxLength", description.errors.maxlength.requiredLength) }}</mat-error>
-                </mat-form-field>
-                <!-- Profession -->
-                <mat-form-field>
-                    <mat-label>{{ getLabel('profession') }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="2" formControlName="profession" matInput>
-                    <mat-error *ngIf="profession.hasError('maxlength')">{{ getHint("maxLength", profession.errors.maxlength.requiredLength) }}</mat-error>
-                </mat-form-field>
-            </div>
-            <div class="group-input-field">
-                <!-- Address -->
-                <mat-form-field>
-                    <mat-label>{{ getLabel('address') }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="3" formControlName="address" matInput>
-                    <mat-error *ngIf="address.hasError('maxlength')">{{ getHint("maxLength", address.errors.maxlength.requiredLength) }}</mat-error>
-                </mat-form-field>
-                <!-- Tax No -->
-                <mat-form-field>
-                    <mat-label>{{ getLabel('taxNo') }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="4" formControlName="taxNo" matInput>
-                    <mat-error *ngIf="taxNo.hasError('maxlength')">{{ getHint("maxLength", taxNo.errors.maxlength.requiredLength) }}</mat-error>
-                </mat-form-field>
-                <!-- Phones -->
-                <mat-form-field>
-                    <mat-label>{{ getLabel('phones') }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="5" formControlName="phones" matInput>
-                    <mat-error *ngIf="phones.hasError('maxlength')">{{ getHint("maxLength", phones.errors.maxlength.requiredLength) }}</mat-error>
-                </mat-form-field>
-            </div>
-            <div class="group-input-field">
-                <!-- City -->
-                <mat-form-field>
-                    <mat-label>{{ getLabel('city') }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="6" formControlName="city" matInput>
-                    <mat-error *ngIf="city.hasError('maxlength')">{{ getHint("maxLength", city.errors.maxlength.requiredLength) }}</mat-error>
-                </mat-form-field>
-                <!-- Email -->
-                <mat-form-field>
-                    <mat-label>{{ getLabel('email') }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="7" formControlName="email" matInput>
-                    <mat-error *ngIf="email.hasError('maxlength')">{{ getHint("maxLength", email.errors.maxlength.requiredLength) }}</mat-error>
-                    <mat-error *ngIf="!email.hasError('maxlength') && email.hasError('email')">{{ getHint("invalid") }}</mat-error>
-                </mat-form-field>
-            </div>
-            <div class="stacked-checkboxes">
-                <!-- Active -->
-                <mat-checkbox formControlName="isActive">
-                    <span>{{ getLabel("isActive") }}</span>
-                </mat-checkbox>
-            </div>
+            <!-- Description -->
+            <mat-form-field>
+                <mat-label>{{ getLabel('description') }}</mat-label>
+                <input [inputTabStop]="input" dataTabIndex="1" formControlName="description" matInput>
+                <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
+                <mat-error *ngIf="description.hasError('maxlength')">{{ getHint("maxLength", description.errors.maxlength.requiredLength) }}</mat-error>
+            </mat-form-field>
+            <!-- Profession -->
+            <mat-form-field>
+                <mat-label>{{ getLabel('profession') }}</mat-label>
+                <input [inputTabStop]="input" dataTabIndex="2" formControlName="profession" matInput>
+                <mat-error *ngIf="profession.hasError('maxlength')">{{ getHint("maxLength", profession.errors.maxlength.requiredLength) }}</mat-error>
+            </mat-form-field>
+            <!-- Address -->
+            <mat-form-field>
+                <mat-label>{{ getLabel('address') }}</mat-label>
+                <input [inputTabStop]="input" dataTabIndex="3" formControlName="address" matInput>
+                <mat-error *ngIf="address.hasError('maxlength')">{{ getHint("maxLength", address.errors.maxlength.requiredLength) }}</mat-error>
+            </mat-form-field>
+            <!-- Tax No -->
+            <mat-form-field>
+                <mat-label>{{ getLabel('taxNo') }}</mat-label>
+                <input [inputTabStop]="input" dataTabIndex="4" formControlName="taxNo" matInput>
+                <mat-error *ngIf="taxNo.hasError('maxlength')">{{ getHint("maxLength", taxNo.errors.maxlength.requiredLength) }}</mat-error>
+            </mat-form-field>
+            <!-- Phones -->
+            <mat-form-field>
+                <mat-label>{{ getLabel('phones') }}</mat-label>
+                <input [inputTabStop]="input" dataTabIndex="5" formControlName="phones" matInput>
+                <mat-error *ngIf="phones.hasError('maxlength')">{{ getHint("maxLength", phones.errors.maxlength.requiredLength) }}</mat-error>
+            </mat-form-field>
+            <!-- City -->
+            <mat-form-field>
+                <mat-label>{{ getLabel('city') }}</mat-label>
+                <input [inputTabStop]="input" dataTabIndex="6" formControlName="city" matInput>
+                <mat-error *ngIf="city.hasError('maxlength')">{{ getHint("maxLength", city.errors.maxlength.requiredLength) }}</mat-error>
+            </mat-form-field>
+            <!-- Email -->
+            <mat-form-field>
+                <mat-label>{{ getLabel('email') }}</mat-label>
+                <input [inputTabStop]="input" dataTabIndex="7" formControlName="email" matInput>
+                <mat-error *ngIf="email.hasError('maxlength')">{{ getHint("maxLength", email.errors.maxlength.requiredLength) }}</mat-error>
+                <mat-error *ngIf="!email.hasError('maxlength') && email.hasError('email')">{{ getHint("invalid") }}</mat-error>
+            </mat-form-field>
+            <!-- Active -->
+            <mat-checkbox formControlName="isActive">
+                <span>{{ getLabel("isActive") }}</span>
+            </mat-checkbox>
             <div class="align-bottom group-input-field hide-hint">
-                <!-- User -->
+                <!-- Users -->
                 <mat-form-field>
-                    <mat-label>{{ getLabel('user') }}</mat-label>
-                    <mat-icon class="material-icons-outlined small">lock</mat-icon>
-                    <input formControlName="user" matInput readonly>
+                    <mat-label>{{ getLabel('post') }}</mat-label>
+                    <div class="multiple-inputs">
+                        <input formControlName="postUser" matInput readonly>
+                        <input class="right" formControlName="postAt" matInput readonly>
+                    </div>
                 </mat-form-field>
                 <!-- Updates -->
                 <mat-form-field>
-                    <mat-label>{{ getLabel('lastUpdate') }}</mat-label>
-                    <mat-icon class="material-icons-outlined small">lock</mat-icon>
-                    <input formControlName="lastUpdate" matInput readonly>
+                    <mat-label>{{ getLabel('put') }}</mat-label>
+                    <div class="multiple-inputs">
+                        <input formControlName="putUser" matInput readonly>
+                        <input class="right" formControlName="putAt" matInput readonly>
+                    </div>
                 </mat-form-field>
             </div>
         </form>

@@ -1,5 +1,6 @@
-export interface PortReadDto {
+import { Metadata } from 'src/app/shared/classes/metadata'
 
+export interface PortReadDto extends Metadata {
     id: number
     abbreviation: string
     description: string

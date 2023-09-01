@@ -175,17 +175,21 @@
                     </mat-form-field>
                 </div>
                 <div class="align-bottom group-input-field hide-hint">
-                    <!-- User -->
+                    <!-- Users -->
                     <mat-form-field>
-                        <mat-icon class="material-icons-outlined small">lock</mat-icon>
-                        <mat-label>{{ getLabel("user") }}</mat-label>
-                        <input formControlName="user" matInput readonly>
+                        <mat-label>{{ getLabel('post') }}</mat-label>
+                        <div class="multiple-inputs">
+                            <input formControlName="postUser" matInput readonly>
+                            <input class="right" formControlName="postAt" matInput readonly>
+                        </div>
                     </mat-form-field>
                     <!-- Updates -->
                     <mat-form-field>
-                        <mat-icon class="material-icons-outlined small">lock</mat-icon>
-                        <mat-label>{{ getLabel("lastUpdate") }}</mat-label>
-                        <input formControlName="lastUpdate" matInput readonly>
+                        <mat-label>{{ getLabel('put') }}</mat-label>
+                        <div class="multiple-inputs">
+                            <input formControlName="putUser" matInput readonly>
+                            <input class="right" formControlName="putAt" matInput readonly>
+                        </div>
                     </mat-form-field>
                 </div>
             </div>

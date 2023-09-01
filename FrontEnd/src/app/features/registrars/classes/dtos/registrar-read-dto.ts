@@ -1,6 +1,7 @@
+import { Metadata } from 'src/app/shared/classes/metadata'
 import { ShipAutoCompleteVM } from '../../../ships/classes/view-models/ship-autocomplete-vm'
 
-export interface RegistrarReadDto {
+export interface RegistrarReadDto extends Metadata {
 
     id: number
     ship: ShipAutoCompleteVM

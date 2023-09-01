@@ -126,8 +126,10 @@ export class DestinationFormComponent {
             abbreviation: ['', [Validators.required, Validators.maxLength(5)]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
             isActive: true,
-            user: [''],
-            lastUpdate: ['']
+            postAt: [''],
+            postUser: [''],
+            putAt: [''],
+            putUser: ['']
         })
     }
 
@@ -138,8 +140,10 @@ export class DestinationFormComponent {
                 abbreviation: this.record.abbreviation,
                 description: this.record.description,
                 isActive: this.record.isActive,
-                user: this.record.user,
-                lastUpdate: this.record.lastUpdate
+                postAt: this.record.postAt,
+                postUser: this.record.postUser,
+                putAt: this.record.putAt,
+                putUser: this.record.putUser
             })
         }
     }
@@ -178,12 +182,20 @@ export class DestinationFormComponent {
         return this.form.get('description')
     }
 
-    get user(): AbstractControl {
-        return this.form.get('user')
+    get postAt(): AbstractControl {
+        return this.form.get('postAt')
     }
 
-    get lastUpdate(): AbstractControl {
-        return this.form.get('lastUpdate')
+    get postUser(): AbstractControl {
+        return this.form.get('postUser')
+    }
+
+    get putAt(): AbstractControl {
+        return this.form.get('putAt')
+    }
+
+    get putUser(): AbstractControl {
+        return this.form.get('putUser')
     }
 
     //#endregion

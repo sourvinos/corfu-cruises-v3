@@ -110,8 +110,10 @@ export class ReservationHelperService {
             totalPax: form.totalPax,
             ticketNo: form.ticketNo,
             passengers: form.passengers,
-            user: form.user,
-            lastUpdate: form.lastUpdate
+            postAt: form.postAt,
+            postUser: form.postUser,
+            putAt: form.putAt,
+            putUser: form.putUser
         }
     }
 

@@ -105,12 +105,12 @@
                 "description": "Active"
             },
             {
-                "id": "user",
-                "description": "User"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Latest update"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -167,12 +167,12 @@
                 "description": "Active"
             },
             {
-                "id": "user",
-                "description": "User"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Latest update"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -229,12 +229,12 @@
                 "description": "Active"
             },
             {
-                "id": "user",
-                "description": "User"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Latest update"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -315,12 +315,12 @@
                 "description": "Active"
             },
             {
-                "id": "user",
-                "description": "User"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Latest update"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -381,12 +381,12 @@
                 "description": "Active"
             },
             {
-                "id": "user",
-                "description": "User"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Latest update"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -451,12 +451,12 @@
                 "description": "Active"
             },
             {
-                "id": "user",
-                "description": "User"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Latest update"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "hasTransfer",
@@ -533,16 +533,20 @@
                 "description": "Automatic focus on the first field of the form"
             },
             {
-                "id": "isFirstFieldFocusedTooltip",
-                "description": "When you open a form, e.g. a customer or a reervation, the first field is automatically focused, so you don't have to click on it to start typing."
-            },
-            {
                 "id": "isAdmin",
                 "description": "Admin"
             },
             {
                 "id": "isActive",
                 "description": "Active"
+            },
+            {
+                "id": "post",
+                "description": ""
+            },
+            {
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "changePasswordButton",
@@ -570,10 +574,6 @@
                 "description": "Username"
             },
             {
-                "id": "usernameTooltip",
-                "description": "This is the name prompted on the login screen and must be unique. Once the user is created, it cannot be changed. Choose wisely!"
-            },
-            {
                 "id": "displayname",
                 "description": "Displayed name"
             },
@@ -598,20 +598,12 @@
                 "description": "Automatic focus on the first field of the form"
             },
             {
-                "id": "isFirstFieldFocusedTooltip",
-                "description": "When you open a form, e.g. a customer or a reervation, the first field is automatically focused, so you don't have to click on it to start typing."
-            },
-            {
                 "id": "isAdmin",
                 "description": "Admin"
             },
             {
                 "id": "isActive",
                 "description": "Active"
-            },
-            {
-                "id": "sendDetailsButton",
-                "description": "Send email"
             },
             {
                 "id": "saveButton",
@@ -793,12 +785,12 @@
                 "description": "Comments"
             },
             {
-                "id": "user",
-                "description": "User"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Latest update"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "printBoardingPass",
@@ -840,10 +832,6 @@
             {
                 "id": "submitButton",
                 "description": "Continue"
-            },
-            {
-                "id": "emailTooltip",
-                "description": "Give us your email address and if we find it listed in our records, we will send you instructions on how to create a new password."
             }
         ]
     },
@@ -996,12 +984,12 @@
                 "description": "Active"
             },
             {
-                "id": "user",
-                "description": "User"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Latest update"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1161,12 +1149,12 @@
                 "description": "Active"
             },
             {
-                "id": "user",
-                "description": "User"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Latest update"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1573,12 +1561,12 @@
                 "description": "Active"
             },
             {
-                "id": "user",
-                "description": "User"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Latest update"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1659,12 +1647,12 @@
                 "description": "Active"
             },
             {
-                "id": "user",
-                "description": "User"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Latest update"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1745,12 +1733,12 @@
                 "description": "Active"
             },
             {
-                "id": "user",
-                "description": "User"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Latest update"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1831,12 +1819,12 @@
                 "description": "Active"
             },
             {
-                "id": "user",
-                "description": "User"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Latest update"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1913,12 +1901,12 @@
                 "description": "Active"
             },
             {
-                "id": "user",
-                "description": "User"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Latest update"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -2055,16 +2043,8 @@
                 "description": "Closing time"
             },
             {
-                "id": "closingTimeTooltip",
-                "description": "Refers to the time after which we do not accept new reservations from simple users with a transfer to the next day. If you want to disable this functionality, enter 00:00."
-            },
-            {
                 "id": "phones",
                 "description": "Phones"
-            },
-            {
-                "id": "phonesTooltip",
-                "description": "This is the phone number that will be printed in the footer of the emails we send."
             },
             {
                 "id": "email",
@@ -2075,12 +2055,12 @@
                 "description": "This is the email that will be printed in the footer of the emails we send."
             },
             {
-                "id": "user",
-                "description": "User"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Latest update"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "saveButton",

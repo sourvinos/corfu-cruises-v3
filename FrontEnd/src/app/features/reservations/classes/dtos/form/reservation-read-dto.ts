@@ -1,10 +1,11 @@
 import { Guid } from 'guid-typescript'
 // Custom
+import { Metadata } from 'src/app/shared/classes/metadata'
 import { PassengerReadDto } from './passenger-read-dto'
 import { PickupPointAutoCompleteVM } from '../../../../pickupPoints/classes/view-models/pickupPoint-autocomplete-vm'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
-export interface ReservationReadDto {
+export interface ReservationReadDto extends Metadata {
 
     reservationId: Guid
     customer: SimpleEntity
@@ -24,8 +25,6 @@ export interface ReservationReadDto {
     totalPax: number
     ticketNo: string
     passengers: PassengerReadDto
-    user: string
-    lastUpdate: string
 
 }
 

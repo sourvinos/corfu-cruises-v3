@@ -1,10 +1,9 @@
 using System;
-using API.Features.Users;
 using API.Infrastructure.Interfaces;
 
 namespace API.Infrastructure.Parameters {
 
-    public class Parameter : IBaseEntity {
+    public class Parameter : IMetadata {
 
         // PK
         public Guid Id { get; set; }
@@ -12,11 +11,11 @@ namespace API.Infrastructure.Parameters {
         public string ClosingTime { get; set; }
         public string Phones { get; set; }
         public string Email { get; set; }
-        public string LastUpdate { get; set; }
-        // FKs
-        public string UserId { get; set; }
-        // Navigation
-        public UserExtended User { get; set; }
+        // Metadata
+        public string PostAt { get; set; }
+        public string PostUser { get; set; }
+        public string PutAt { get; set; }
+        public string PutUser { get; set; }
 
     }
 

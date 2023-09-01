@@ -10,6 +10,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System;
+using API.Infrastructure.Interfaces;
+using API.Infrastructure.Extensions;
+using Microsoft.AspNetCore.Http;
 
 namespace API.Features.Users {
 
@@ -18,15 +21,17 @@ namespace API.Features.Users {
         #region variables
 
         private readonly AppDbContext context;
+        private readonly IHttpContextAccessor httpContextAccessor;
         private readonly IMapper mapper;
         private readonly TestingEnvironment testingSettings;
         private readonly UserManager<UserExtended> userManager;
 
         #endregion
 
-        public UserRepository(AppDbContext context, IMapper mapper, IOptions<TestingEnvironment> testingSettings, UserManager<UserExtended> userManager) {
+        public UserRepository(AppDbContext context, IHttpContextAccessor httpContextAccessor, IMapper mapper, IOptions<TestingEnvironment> testingSettings, UserManager<UserExtended> userManager) {
             this.context = context;
             this.mapper = mapper;
+            this.httpContextAccessor = httpContextAccessor;
             this.testingSettings = testingSettings.Value;
             this.userManager = userManager;
         }
@@ -98,9 +103,19 @@ namespace API.Features.Users {
             }
         }
 
+        public IMetadata AttachMetadataToPostDto(IMetadata entity) {
+            entity.PostAt = DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime());
+            entity.PostUser = Identity.GetConnectedUserDetails(userManager, Identity.GetConnectedUserId(httpContextAccessor)).UserName;
+            return entity;
+        }
+
         private async Task<bool> UpdateUser(UserExtended entity, UserUpdateDto entityToUpdate, string role) {
             entity.Displayname = entityToUpdate.Displayname;
             entity.IsFirstFieldFocused = entityToUpdate.IsFirstFieldFocused;
+            entity.PostAt = entity.PostAt;
+            entity.PostUser = entity.PostUser;
+            entity.PutAt = DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime());
+            entity.PutUser = Identity.GetConnectedUserDetails(userManager, Identity.GetConnectedUserId(httpContextAccessor)).UserName;
             if (role == "admin") {
                 entity.CustomerId = entityToUpdate.CustomerId == 0 ? null : entityToUpdate.CustomerId;
                 entity.UserName = entityToUpdate.Username;

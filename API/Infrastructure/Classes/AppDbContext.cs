@@ -19,6 +19,7 @@ using API.Infrastructure.Parameters;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using API.Features.Users;
 
 namespace API.Infrastructure.Classes {
 
@@ -35,6 +36,7 @@ namespace API.Infrastructure.Classes {
         public DbSet<Gender> Genders { get; set; }
         public DbSet<Nationality> Nationalities { get; set; }
         public DbSet<Occupant> Occupants { get; set; }
+        public DbSet<Parameter> Parameters { get; set; }
         public DbSet<Passenger> Passengers { get; set; }
         public DbSet<PickupPoint> PickupPoints { get; set; }
         public DbSet<Port> Ports { get; set; }
@@ -46,7 +48,6 @@ namespace API.Infrastructure.Classes {
         public DbSet<ShipOwner> ShipOwners { get; set; }
         public DbSet<ShipRoute> ShipRoutes { get; set; }
         public DbSet<Token> Tokens { get; set; }
-        public DbSet<Parameter> Parameters { get; set; }
 
         #endregion
 
@@ -70,11 +71,13 @@ namespace API.Infrastructure.Classes {
             modelBuilder.ApplyConfiguration(new PortsConfig());
             modelBuilder.ApplyConfiguration(new RegistrarsConfig());
             modelBuilder.ApplyConfiguration(new ReservationsConfig());
+            modelBuilder.ApplyConfiguration(new ReservationsConfig());
             modelBuilder.ApplyConfiguration(new SchedulesConfig());
             modelBuilder.ApplyConfiguration(new ShipCrewsConfig());
             modelBuilder.ApplyConfiguration(new ShipOwnersConfig());
             modelBuilder.ApplyConfiguration(new ShipRoutesConfig());
             modelBuilder.ApplyConfiguration(new ShipsConfig());
+            modelBuilder.ApplyConfiguration(new UsersConfig());
         }
 
     }

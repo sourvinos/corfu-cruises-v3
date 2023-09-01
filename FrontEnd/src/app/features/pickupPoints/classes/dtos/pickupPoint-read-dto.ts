@@ -1,6 +1,7 @@
 import { CoachRouteAutoCompleteVM } from 'src/app/features/coachRoutes/classes/view-models/coachRoute-autocomplete-vm'
+import { Metadata } from 'src/app/shared/classes/metadata'
 
-export interface PickupPointReadDto {
+export interface PickupPointReadDto extends Metadata {
 
     id: number
     description: string

@@ -105,12 +105,12 @@
                 "description": "Actif"
             },
             {
-                "id": "user",
-                "description": "Utilisateur"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Dernière mise à jour"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -167,12 +167,12 @@
                 "description": "Actif"
             },
             {
-                "id": "user",
-                "description": "Utilisateur"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Dernière mise à jour"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -229,12 +229,12 @@
                 "description": "Actif"
             },
             {
-                "id": "user",
-                "description": "Utilisateur"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Dernière mise à jour"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -315,12 +315,12 @@
                 "description": "Actif"
             },
             {
-                "id": "user",
-                "description": "Utilisateur"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Dernière mise à jour"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -381,12 +381,12 @@
                 "description": "Actif"
             },
             {
-                "id": "user",
-                "description": "Utilisateur"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Dernière mise à jour"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -451,12 +451,12 @@
                 "description": "Actif"
             },
             {
-                "id": "user",
-                "description": "Utilisateur"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Dernière mise à jour"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "hasTransfer",
@@ -533,16 +533,20 @@
                 "description": "Mise au point automatique sur le premier champ du formulaire"
             },
             {
-                "id": "isFirstFieldFocusedTooltip",
-                "description": "Lorsque vous ouvrez un formulaire, par exemple pour un client ou une réservation, le premier champ est automatiquement mis en évidence, de sorte que vous ne devez pas cliquer dessus pour commencer à taper."
-            },
-            {
                 "id": "isAdmin",
                 "description": "Administrateur"
             },
             {
                 "id": "isActive",
                 "description": "Actif"
+            },
+            {
+                "id": "post",
+                "description": ""
+            },
+            {
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "changePasswordButton",
@@ -570,10 +574,6 @@
                 "description": "Utilisateur"
             },
             {
-                "id": "usernameTooltip",
-                "description": "Il s'agit du nom demandé sur l'écran de connexion et il doit être unique. Une fois l'utilisateur créé, il ne peut plus être modifié. Choisissez-le judicieusement!"
-            },
-            {
                 "id": "displayname",
                 "description": "Nom apparu"
             },
@@ -598,20 +598,12 @@
                 "description": "Mise au point automatique sur le premier champ du formulaire"
             },
             {
-                "id": "isFirstFieldFocusedTooltip",
-                "description": "Lorsque vous ouvrez un formulaire, par exemple pour un client ou une réservation, le premier champ est automatiquement mis en évidence, de sorte que vous ne devez pas cliquer dessus pour commencer à taper."
-            },
-            {
                 "id": "isAdmin",
                 "description": "Administrateur"
             },
             {
                 "id": "isActive",
                 "description": "Actif"
-            },
-            {
-                "id": "sendDetailsButton",
-                "description": "Envoyer l'e-mail"
             },
             {
                 "id": "saveButton",
@@ -793,12 +785,12 @@
                 "description": "Remarques"
             },
             {
-                "id": "user",
-                "description": "Utilisateur"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Dernière mise à jour"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "printBoardingPass",
@@ -840,10 +832,6 @@
             {
                 "id": "submitButton",
                 "description": "Continuer"
-            },
-            {
-                "id": "emailTooltip",
-                "description": "Donnez-nous votre adresse électronique et si nous la trouvons dans nos dossiers, nous vous enverrons des instructions sur la manière de créer un nouveau mot de passe."
             }
         ]
     },
@@ -996,12 +984,12 @@
                 "description": "Actif"
             },
             {
-                "id": "user",
-                "description": "Utilisateur"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Dernière mise à jour"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1161,12 +1149,12 @@
                 "description": "Actif"
             },
             {
-                "id": "user",
-                "description": "Utilisateur"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Dernière mise à jour"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1573,12 +1561,12 @@
                 "description": "Actif"
             },
             {
-                "id": "user",
-                "description": "Utilisateur"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Dernière mise à jour"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1659,12 +1647,12 @@
                 "description": "Actif"
             },
             {
-                "id": "user",
-                "description": "Utilisateur"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Dernière mise à jour"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1745,12 +1733,12 @@
                 "description": "Actif"
             },
             {
-                "id": "user",
-                "description": "Utilisateur"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Dernière mise à jour"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1831,12 +1819,12 @@
                 "description": "Actif"
             },
             {
-                "id": "user",
-                "description": "Utilisateur"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Dernière mise à jour"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1913,12 +1901,12 @@
                 "description": "Actif"
             },
             {
-                "id": "user",
-                "description": "Utilisateur"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Dernière mise à jour"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -2055,16 +2043,8 @@
                 "description": "Démarrer"
             },
             {
-                "id": "closingTimeTooltip",
-                "description": "Désigne l'heure à partir de laquelle nous n'acceptons plus de nouvelles réservations de la part de simples utilisateurs avec un transfert au jour suivant. Si vous souhaitez désactiver cette fonctionnalité, entrez 00:00."
-            },
-            {
                 "id": "phones",
                 "description": "Téléphone"
-            },
-            {
-                "id": "phonesTooltip",
-                "description": "Il s'agit du numéro de téléphone qui sera imprimé dans le pied de page des courriels que nous envoyons."
             },
             {
                 "id": "email",
@@ -2075,12 +2055,12 @@
                 "description": "Il s'agit de l'e-mail qui sera imprimé dans le pied de page des e-mails que nous envoyons."
             },
             {
-                "id": "user",
-                "description": "Utilisateur"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Dernière mise à jour"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "saveButton",

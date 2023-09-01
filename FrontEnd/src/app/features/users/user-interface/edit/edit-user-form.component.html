@@ -53,14 +53,12 @@
                 <mat-error *ngIf="email.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="email.hasError('email')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>
-            <!-- Focus on first field -->
-            <div class="checkbox-with-tooltip">
+            <div class="stacked-checkboxes">
+                <!-- Focus on first field -->
                 <mat-checkbox formControlName="isFirstFieldFocused">
+                    <mat-icon *ngIf="!isAdmin()" class="material-icons-outlined small">lock_open</mat-icon>
                     <span>{{ getLabel("isFirstFieldFocused") }}</span>
                 </mat-checkbox>
-                <span #tooltip="matTooltip" matTooltip="{{ getLabel('isFirstFieldFocusedTooltip') }}">?</span>
-            </div>
-            <div class="align-bottom checkboxes">
                 <!-- Admin -->
                 <mat-checkbox [class]="!isAdmin() ? 'disabled': null" formControlName="isAdmin">
                     <mat-icon *ngIf="!isAdmin()" class="material-icons-outlined small">lock</mat-icon>
@@ -72,6 +70,25 @@
                     <span>{{ getLabel("isActive") }}</span>
                 </mat-checkbox>
             </div>
+            <div class="align-bottom group-input-field hide-hint">
+                <!-- Users -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('post') }}</mat-label>
+                    <div class="multiple-inputs">
+                        <input formControlName="postUser" matInput readonly>
+                        <input class="right" formControlName="postAt" matInput readonly>
+                    </div>
+                </mat-form-field>
+                <!-- Updates -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('put') }}</mat-label>
+                    <div class="multiple-inputs">
+                        <input formControlName="putUser" matInput readonly>
+                        <input class="right" formControlName="putAt" matInput readonly>
+                    </div>
+                </mat-form-field>
+            </div>
+
         </form>
     </div>
 

@@ -105,12 +105,12 @@
                 "description": "Aktivní"
             },
             {
-                "id": "user",
-                "description": "Uživatel"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Poslední aktualizace"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -167,12 +167,12 @@
                 "description": "Aktivní"
             },
             {
-                "id": "user",
-                "description": "Uživatel"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Poslední aktualizace"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -229,12 +229,12 @@
                 "description": "Aktivní"
             },
             {
-                "id": "user",
-                "description": "Uživatel"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Poslední aktualizace"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -315,12 +315,12 @@
                 "description": "Aktivní"
             },
             {
-                "id": "user",
-                "description": "Uživatel"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Poslední aktualizace"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -381,12 +381,12 @@
                 "description": "Aktivní"
             },
             {
-                "id": "user",
-                "description": "Uživatel"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Poslední aktualizace"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -447,20 +447,20 @@
                 "description": "Přístav"
             },
             {
+                "id": "hasTransfer",
+                "description": "Má transfer"
+            },
+            {
                 "id": "isActive",
                 "description": "Aktivní"
             },
             {
-                "id": "user",
-                "description": "Uživatel"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Poslední aktualizace"
-            },
-            {
-                "id": "hasTransfer",
-                "description": "Má transfer"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -533,16 +533,20 @@
                 "description": "Automatické zaměření na první pole formuláře"
             },
             {
-                "id": "isFirstFieldFocusedTooltip",
-                "description": "Při otevření formuláře, např. zákazníka nebo rezervace, se automaticky zaměří první pole, takže na něj nemusíte klikat a začít psát."
-            },
-            {
                 "id": "isAdmin",
                 "description": "Admin"
             },
             {
                 "id": "isActive",
                 "description": "Aktivní"
+            },
+            {
+                "id": "post",
+                "description": ""
+            },
+            {
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "changePasswordButton",
@@ -570,10 +574,6 @@
                 "description": "Uživatelské jméno"
             },
             {
-                "id": "usernameTooltip",
-                "description": "Toto jméno se zobrazí na přihlašovací obrazovce a musí být jedinečné. Jakmile je uživatel vytvořen, nelze jej změnit. Vybírejte moudře!"
-            },
-            {
                 "id": "displayname",
                 "description": "Zobrazené jméno"
             },
@@ -598,20 +598,12 @@
                 "description": "Automatické zaměření na první pole formuláře"
             },
             {
-                "id": "isFirstFieldFocusedTooltip",
-                "description": "Při otevření formuláře, např. zákazníka nebo rezervace, se automaticky zaměří první pole, takže na něj nemusíte klikat a začít psát."
-            },
-            {
                 "id": "isAdmin",
                 "description": "Admin"
             },
             {
                 "id": "isActive",
                 "description": "Aktivní"
-            },
-            {
-                "id": "sendDetailsButton",
-                "description": "Odeslání e-mailu"
             },
             {
                 "id": "saveButton",
@@ -793,12 +785,12 @@
                 "description": "Komentáře"
             },
             {
-                "id": "user",
-                "description": "Uživatel"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Poslední aktualizace"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "printBoardingPass",
@@ -840,10 +832,6 @@
             {
                 "id": "submitButton",
                 "description": "Pokračovat"
-            },
-            {
-                "id": "emailTooltip",
-                "description": "Sdělte nám svou e-mailovou adresu, a pokud ji najdeme v našich záznamech, zašleme vám pokyny k vytvoření nového hesla."
             }
         ]
     },
@@ -996,12 +984,12 @@
                 "description": "Aktivní"
             },
             {
-                "id": "user",
-                "description": "Uživatel"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Poslední aktualizace"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1161,12 +1149,12 @@
                 "description": "Aktivní"
             },
             {
-                "id": "user",
-                "description": "Uživatel"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Poslední aktualizace"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1573,12 +1561,12 @@
                 "description": "Aktivní"
             },
             {
-                "id": "user",
-                "description": "Uživatel"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Poslední aktualizace"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1659,12 +1647,12 @@
                 "description": "Aktivní"
             },
             {
-                "id": "user",
-                "description": "Uživatel"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Poslední aktualizace"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1745,12 +1733,12 @@
                 "description": "Aktivní"
             },
             {
-                "id": "user",
-                "description": "Uživatel"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Poslední aktualizace"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1831,12 +1819,12 @@
                 "description": "Aktivní"
             },
             {
-                "id": "user",
-                "description": "Uživatel"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Poslední aktualizace"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1913,12 +1901,12 @@
                 "description": "Aktivní"
             },
             {
-                "id": "user",
-                "description": "Uživatel"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Poslední aktualizace"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -2055,16 +2043,8 @@
                 "description": "Zavírací doba"
             },
             {
-                "id": "closingTimeTooltip",
-                "description": "Označuje dobu, po které nepřijímáme nové rezervace od jednoduchých uživatelů s přesunem na následující den. Pokud chcete tuto funkci zakázat, zadejte 00:00."
-            },
-            {
                 "id": "phones",
                 "description": "Phony"
-            },
-            {
-                "id": "phonesTooltip",
-                "description": "Jedná se o telefonní číslo, které bude vytištěno v zápatí zasílaných e-mailů."
             },
             {
                 "id": "email",
@@ -2075,12 +2055,12 @@
                 "description": "Jedná se o e-mail, který bude vytištěn v zápatí odesílaných e-mailů."
             },
             {
-                "id": "user",
-                "description": "Uživatel"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Poslední aktualizace"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "saveButton",

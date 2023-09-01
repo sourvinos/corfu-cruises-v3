@@ -73,7 +73,8 @@ namespace API.Features.Users {
         public async Task<Response> PostAsync([FromBody] UserNewDto user) {
             var x = userValidation.IsValid(user);
             if (x == 200) {
-                await userRepo.CreateAsync(mapper.Map<UserNewDto, UserExtended>(user), user.Password);
+                await userRepo.CreateAsync(mapper.Map<UserNewDto, UserExtended>((UserNewDto)userRepo.AttachMetadataToPostDto(user)), user.Password);
+                // await userRepo.CreateAsync(mapper.Map<UserNewDto, UserExtended>(user), user.Password);
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),

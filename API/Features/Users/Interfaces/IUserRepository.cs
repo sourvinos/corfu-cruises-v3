@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using API.Infrastructure.Interfaces;
 using API.Infrastructure.Responses;
 
 namespace API.Features.Users {
@@ -12,7 +13,8 @@ namespace API.Features.Users {
         Task<bool> UpdateAdminAsync(UserExtended entity, UserUpdateDto userToUpdate);
         Task<bool> UpdateSimpleUserAsync(UserExtended entity, UserUpdateDto userToUpdate);
         Task<Response> DeleteAsync(UserExtended entity);
-        
+        IMetadata AttachMetadataToPostDto(IMetadata entity);
+
     }
 
 }

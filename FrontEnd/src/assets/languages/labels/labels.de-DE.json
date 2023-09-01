@@ -105,12 +105,12 @@
                 "description": "Aktiv"
             },
             {
-                "id": "user",
-                "description": "Benutzer"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Letzte Aktualisierung"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -167,12 +167,12 @@
                 "description": "Aktiv"
             },
             {
-                "id": "user",
-                "description": "Benutzer"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Letzte Aktualisierung"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -229,12 +229,12 @@
                 "description": "Aktiv"
             },
             {
-                "id": "user",
-                "description": "Benutzer"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Letzte Aktualisierung"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -315,12 +315,12 @@
                 "description": "Aktiv"
             },
             {
-                "id": "user",
-                "description": "Benutzer"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Letzte Aktualisierung"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -381,12 +381,12 @@
                 "description": "Aktiv"
             },
             {
-                "id": "user",
-                "description": "Benutzer"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Letzte Aktualisierung"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -451,12 +451,12 @@
                 "description": "Aktiv"
             },
             {
-                "id": "user",
-                "description": "Benutzer"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Letzte Aktualisierung"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "hasTransfer",
@@ -533,16 +533,20 @@
                 "description": "Automatischer Fokus auf das erste Feld des Formulars"
             },
             {
-                "id": "isFirstFieldFocusedTooltip",
-                "description": "Wenn Sie ein Formular öffnen, z.B. für einen Kunden oder eine Reservierung, wird das erste Feld automatisch fokussiert, so dass Sie nicht erst darauf klicken müssen, um mit der Eingabe zu beginnen."
-            },
-            {
                 "id": "isAdmin",
                 "description": "Admin"
             },
             {
                 "id": "isActive",
                 "description": "Aktiv"
+            },
+            {
+                "id": "post",
+                "description": ""
+            },
+            {
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "changePasswordButton",
@@ -570,10 +574,6 @@
                 "description": "Nutzername"
             },
             {
-                "id": "usernameTooltip",
-                "description": "Dies ist der Name, der auf dem Anmeldebildschirm angezeigt wird und der eindeutig sein muss. Sobald der Benutzer angelegt ist, kann er nicht mehr geändert werden. Wählen Sie mit Bedacht!"
-            },
-            {
                 "id": "displayname",
                 "description": "Angezeigter Name"
             },
@@ -598,20 +598,12 @@
                 "description": "Automatischer Fokus auf das erste Feld des Formulars"
             },
             {
-                "id": "isFirstFieldFocusedTooltip",
-                "description": "Wenn Sie ein Formular öffnen, z.B. für einen Kunden oder eine Reservierung, wird das erste Feld automatisch fokussiert, so dass Sie nicht erst darauf klicken müssen, um mit der Eingabe zu beginnen."
-            },
-            {
                 "id": "isAdmin",
                 "description": "Admin"
             },
             {
                 "id": "isActive",
                 "description": "Aktiv"
-            },
-            {
-                "id": "sendDetailsButton",
-                "description": "E-Mail senden"
             },
             {
                 "id": "saveButton",
@@ -793,12 +785,12 @@
                 "description": "Kommentare"
             },
             {
-                "id": "user",
-                "description": "Benutzer"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Letzte Aktualisierung"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "printBoardingPass",
@@ -840,10 +832,6 @@
             {
                 "id": "submitButton",
                 "description": "Weiter"
-            },
-            {
-                "id": "emailTooltip",
-                "description": "Geben Sie uns Ihre E-Mail-Adresse an, und wenn wir sie in unseren Unterlagen finden, senden wir Ihnen Anweisungen zur Erstellung eines neuen Passworts zu."
             }
         ]
     },
@@ -996,12 +984,12 @@
                 "description": "Aktiv"
             },
             {
-                "id": "user",
-                "description": "Benutzer"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Letzte Aktualisierung"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1161,12 +1149,12 @@
                 "description": "Aktiv"
             },
             {
-                "id": "user",
-                "description": "Benutzer"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Letzte Aktualisierung"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1573,12 +1561,12 @@
                 "description": "Aktiv"
             },
             {
-                "id": "user",
-                "description": "Benutzer"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Letzte Aktualisierung"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1659,12 +1647,12 @@
                 "description": "Aktiv"
             },
             {
-                "id": "user",
-                "description": "Benutzer"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Letzte Aktualisierung"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1745,12 +1733,12 @@
                 "description": "Aktiv"
             },
             {
-                "id": "user",
-                "description": "Benutzer"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Letzte Aktualisierung"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1831,12 +1819,12 @@
                 "description": "Aktiv"
             },
             {
-                "id": "user",
-                "description": "Benutzer"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Letzte Aktualisierung"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -1913,12 +1901,12 @@
                 "description": "Aktiv"
             },
             {
-                "id": "user",
-                "description": "Benutzer"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Letzte Aktualisierung"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "deleteButton",
@@ -2055,16 +2043,8 @@
                 "description": "Büroschluss"
             },
             {
-                "id": "closingTimeTooltip",
-                "description": "Bezieht sich auf die Zeit, nach der wir keine neuen Reservierungen von einfachen Benutzern mit einer Übertragung auf den nächsten Tag akzeptieren. Wenn Sie diese Funktion deaktivieren möchten, geben Sie 00:00."
-            },
-            {
                 "id": "phones",
                 "description": "Telefone"
-            },
-            {
-                "id": "phonesTooltip",
-                "description": "Dies ist die Telefonnummer, die in der Fußzeile der von uns verschickten E-Mails angegeben wird."
             },
             {
                 "id": "email",
@@ -2075,12 +2055,12 @@
                 "description": "Dies ist die E-Mail, die in der Fußzeile der von uns versandten E-Mails erscheint."
             },
             {
-                "id": "user",
-                "description": "Benutzer"
+                "id": "post",
+                "description": ""
             },
             {
-                "id": "lastUpdate",
-                "description": "Letzte Aktualisierung"
+                "id": "put",
+                "description": ""
             },
             {
                 "id": "saveButton",

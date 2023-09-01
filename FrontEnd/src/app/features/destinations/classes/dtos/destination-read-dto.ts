@@ -1,4 +1,6 @@
-export interface DestinationReadDto {
+import { Metadata } from 'src/app/shared/classes/metadata'
+
+export interface DestinationReadDto extends Metadata {
 
     id: number
     abbreviation: string

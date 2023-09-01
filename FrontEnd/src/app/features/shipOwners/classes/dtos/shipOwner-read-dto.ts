@@ -1,4 +1,6 @@
-export interface ShipOwnerReadDto {
+import { Metadata } from 'src/app/shared/classes/metadata'
+
+export interface ShipOwnerReadDto extends Metadata {
 
     id: number
     description: string

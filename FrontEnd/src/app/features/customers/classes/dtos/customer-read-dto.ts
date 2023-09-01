@@ -1,4 +1,6 @@
-export interface CustomerReadDto {
+import { Metadata } from 'src/app/shared/classes/metadata'
+
+export interface CustomerReadDto extends Metadata {
 
     id: number
     description: string
@@ -8,7 +10,5 @@ export interface CustomerReadDto {
     personInCharge: string
     email: string
     isActive: boolean
-    user: string
-    lastUpdate: string
 
 }

@@ -3,7 +3,6 @@ using System.Linq;
 using System.Security.Claims;
 using API.Features.Users;
 using API.Infrastructure.Classes;
-using API.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,14 +39,10 @@ namespace API.Infrastructure.Extensions {
         public static bool IsUserAdmin(IHttpContextAccessor httpContextAccessor) {
             try {
                 return httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Role).Value == "admin";
-            } catch (Exception) {
+            }
+            catch (Exception) {
                 return false;
             }
-        }
-
-        public static T PatchEntityWithUserId<T>(IHttpContextAccessor httpContextAccessor, T entity) where T : IBaseEntity {
-            entity.UserId = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            return entity;
         }
 
     }

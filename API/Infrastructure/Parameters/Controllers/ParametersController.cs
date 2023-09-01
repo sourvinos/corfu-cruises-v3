@@ -34,11 +34,10 @@ namespace API.Infrastructure.Parameters {
         [HttpPut]
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<Response> Put([FromBody] ParameterWriteDto setting) {
+        public async Task<Response> Put([FromBody] ParameterWriteDto parameters) {
             var x = await parametersRepo.GetAsync();
             if (x != null) {
-                setting.UserId = x.UserId;
-                parametersRepo.Update(mapper.Map<ParameterWriteDto, Parameter>(setting));
+                parametersRepo.Update(mapper.Map<ParameterWriteDto, Parameter>((ParameterWriteDto)parametersRepo.AttachMetadataToPutDto(x, parameters)));
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),

@@ -190,8 +190,10 @@ export class ScheduleEditFormComponent {
             maxPax: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
             time: ['', [Validators.required, ValidationService.isTime]],
             isActive: true,
-            user: [''],
-            lastUpdate: ['']
+            postAt: [''],
+            postUser: [''],
+            putAt: [''],
+            putUser: ['']
         })
     }
 
@@ -217,8 +219,10 @@ export class ScheduleEditFormComponent {
                 maxPax: this.record.maxPax,
                 time: this.record.time,
                 isActive: this.record.isActive,
-                user: this.record.user,
-                lastUpdate: this.record.lastUpdate
+                postAt: this.record.postAt,
+                postUser: this.record.postUser,
+                putAt: this.record.putAt,
+                putUser: this.record.putUser
             })
         }
     }
@@ -278,12 +282,20 @@ export class ScheduleEditFormComponent {
         return this.form.get('time')
     }
 
-    get user(): AbstractControl {
-        return this.form.get('user')
+    get postAt(): AbstractControl {
+        return this.form.get('postAt')
     }
 
-    get lastUpdate(): AbstractControl {
-        return this.form.get('lastUpdate')
+    get postUser(): AbstractControl {
+        return this.form.get('postUser')
+    }
+
+    get putAt(): AbstractControl {
+        return this.form.get('putAt')
+    }
+
+    get putUser(): AbstractControl {
+        return this.form.get('putUser')
     }
 
     //#endregion

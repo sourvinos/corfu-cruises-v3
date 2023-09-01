@@ -105,11 +105,11 @@
                 "description": "Ενεργός"
             },
             {
-                "id": "user",
-                "description": "Χρήστης"
+                "id": "post",
+                "description": "Αρχική καταχώριση"
             },
             {
-                "id": "lastUpdate",
+                "id": "put",
                 "description": "Τελευταία ενημέρωση"
             },
             {
@@ -167,11 +167,11 @@
                 "description": "Ενεργός"
             },
             {
-                "id": "user",
-                "description": "Χρήστης"
+                "id": "post",
+                "description": "Αρχική καταχώριση"
             },
             {
-                "id": "lastUpdate",
+                "id": "put",
                 "description": "Τελευταία ενημέρωση"
             },
             {
@@ -229,11 +229,11 @@
                 "description": "Ενεργός"
             },
             {
-                "id": "user",
-                "description": "Χρήστης"
+                "id": "post",
+                "description": "Αρχική καταχώριση"
             },
             {
-                "id": "lastUpdate",
+                "id": "put",
                 "description": "Τελευταία ενημέρωση"
             },
             {
@@ -315,11 +315,11 @@
                 "description": "Ενεργό"
             },
             {
-                "id": "user",
-                "description": "Χρήστης"
+                "id": "post",
+                "description": "Αρχική καταχώριση"
             },
             {
-                "id": "lastUpdate",
+                "id": "put",
                 "description": "Τελευταία ενημέρωση"
             },
             {
@@ -381,11 +381,11 @@
                 "description": "Ενεργό"
             },
             {
-                "id": "user",
-                "description": "Χρήστης"
+                "id": "post",
+                "description": "Αρχική καταχώριση"
             },
             {
-                "id": "lastUpdate",
+                "id": "put",
                 "description": "Τελευταία ενημέρωση"
             },
             {
@@ -447,20 +447,20 @@
                 "description": "Λιμάνι"
             },
             {
+                "id": "hasTransfer",
+                "description": "Έχει transfer"
+            },
+            {
                 "id": "isActive",
                 "description": "Ενεργό"
             },
             {
-                "id": "user",
-                "description": "Χρήστης"
+                "id": "post",
+                "description": "Αρχική καταχώριση"
             },
             {
-                "id": "lastUpdate",
+                "id": "put",
                 "description": "Τελευταία ενημέρωση"
-            },
-            {
-                "id": "hasTransfer",
-                "description": "Έχει transfer"
             },
             {
                 "id": "deleteButton",
@@ -533,16 +533,20 @@
                 "description": "Αυτόματη εστίαση στο πρώτο πεδίο της φόρμας"
             },
             {
-                "id": "isFirstFieldFocusedTooltip",
-                "description": "Όταν ανοίγετε μια φόρμα, π.χ ενός πελάτη ή μίας κράτησης, το πρώτο πεδίο εστιάζεται αυτόματα, ώστε να μην χρειάζεται να κάνετε κλικ σε αυτό για να αρχίσετε να πληκτρολογείτε."
-            },
-            {
                 "id": "isAdmin",
                 "description": "Δχστής"
             },
             {
                 "id": "isActive",
                 "description": "Ενεργός"
+            },
+            {
+                "id": "post",
+                "description": "Αρχική καταχώριση"
+            },
+            {
+                "id": "put",
+                "description": "Τελευταία ενημέρωση"
             },
             {
                 "id": "changePasswordButton",
@@ -570,16 +574,8 @@
                 "description": "Όνομα"
             },
             {
-                "id": "usernameTooltip",
-                "description": "Το λεκτικό που ζητείται στην οθόνη σύνδεσης (π.χ. mobydicktravel) και υπόκεινται σε αυστηρούς ελέγχους (π.χ. πρέπει να είναι μοναδικό). Μόλις ο χρήστης δημιουργηθεί αυτό δεν μπορεί να αλλάξει."
-            },
-            {
                 "id": "displayname",
                 "description": "Εμφανιζόμενο όνομα"
-            },
-            {
-                "id": "displaynameTooltip",
-                "description": "Το λεκτικό που εμφανίζεται στο κεντρικό μενού (π.χ. Moby Dick Travel) ώστε να βλέπετε με τι όνομα έχετε συνδεθεί."
             },
             {
                 "id": "email",
@@ -598,32 +594,16 @@
                 "description": "Συνδεδεμένος πελάτης"
             },
             {
-                "id": "customerTooltip",
-                "description": "Δείχνει σε ποιόν πελάτη θα χρεώνονται οι κρατήσεις που καταχωρεί αυτός ο χρήστης. Επιλέξτε [⭐] όταν ο χρήστης είναι διαχειριστής, ώστε να μπορεί να καταχωρεί κρατήσεις για λογαριασμό οποιουδήποτε πελάτη."
-            },
-            {
                 "id": "isFirstFieldFocused",
                 "description": "Αυτόματη εστίαση στο πρώτο πεδίο της φόρμας"
-            },
-            {
-                "id": "isFirstFieldFocusedTooltip",
-                "description": "Όταν ανοίγετε μια φόρμα, π.χ ενός πελάτη ή μίας κράτησης, το πρώτο πεδίο εστιάζεται αυτόματα, ώστε να μην χρειάζεται να κάνετε κλικ σε αυτό για να αρχίσετε να πληκτρολογείτε."
             },
             {
                 "id": "isAdmin",
                 "description": "Δχστής"
             },
             {
-                "id": "isAdminTooltip",
-                "description": "Οταν ο χρήστης δεν είναι διαχειριστής, τα δικαιώματά του είναι πολύ περιορισμένα (π.χ. δεν μπορεί να αλλάξει μία κράτηση ή να δει κρατήσεις άλλων χρηστών)."
-            },
-            {
                 "id": "isActive",
                 "description": "Ενεργός"
-            },
-            {
-                "id": "isActiveTooltip",
-                "description": "Οταν ο χρήστης είναι ανενεργός δεν μπορεί να συνδεθεί στην εφαρμογή. Χαρακτηρίστε έτσι έναν χρήστη ο οποίος δεν εργάζεται πλέον σε εσάς ή δεν συνεργάζεστε πλέον μαζί του."
             },
             {
                 "id": "saveButton",
@@ -805,11 +785,11 @@
                 "description": "Σχόλια"
             },
             {
-                "id": "user",
-                "description": "Χρήστης"
+                "id": "post",
+                "description": "Αρχική καταχώριση"
             },
             {
-                "id": "lastUpdate",
+                "id": "put",
                 "description": "Τελευταία ενημέρωση"
             },
             {
@@ -852,10 +832,6 @@
             {
                 "id": "submitButton",
                 "description": "Συνεχεια"
-            },
-            {
-                "id": "emailTooltip",
-                "description": "Δώστε μας το email σας και αν το βρούμε καταχωρημένο στα στοιχεία μας, θα σας στείλουμε οδηγίες για να δημιουργήσετε νέο κωδικό."
             }
         ]
     },
@@ -1008,11 +984,11 @@
                 "description": "Ενεργό"
             },
             {
-                "id": "user",
-                "description": "Χρήστης"
+                "id": "post",
+                "description": "Αρχική καταχώριση"
             },
             {
-                "id": "lastUpdate",
+                "id": "put",
                 "description": "Τελευταία ενημέρωση"
             },
             {
@@ -1173,20 +1149,12 @@
                 "description": "Ενεργό"
             },
             {
-                "id": "postUser",
-                "description": "Αρχική εγγραφή"
+                "id": "post",
+                "description": "Αρχική καταχώριση"
             },
             {
-                "id": "postAt",
-                "description": "Ημερομηνία"
-            },
-            {
-                "id": "putUser",
+                "id": "put",
                 "description": "Τελευταία ενημέρωση"
-            },
-            {
-                "id": "putAt",
-                "description": "Ημερομηνία"
             },
             {
                 "id": "deleteButton",
@@ -1593,11 +1561,11 @@
                 "description": "Ενεργός"
             },
             {
-                "id": "user",
-                "description": "Χρήστης"
+                "id": "post",
+                "description": "Αρχική καταχώριση"
             },
             {
-                "id": "lastUpdate",
+                "id": "put",
                 "description": "Τελευταία ενημέρωση"
             },
             {
@@ -1679,11 +1647,11 @@
                 "description": "Ενεργό"
             },
             {
-                "id": "user",
-                "description": "Χρήστης"
+                "id": "post",
+                "description": "Αρχική καταχώριση"
             },
             {
-                "id": "lastUpdate",
+                "id": "put",
                 "description": "Τελευταία ενημέρωση"
             },
             {
@@ -1765,11 +1733,11 @@
                 "description": "Ενεργός"
             },
             {
-                "id": "user",
-                "description": "Χρήστης"
+                "id": "post",
+                "description": "Αρχική καταχώριση"
             },
             {
-                "id": "lastUpdate",
+                "id": "put",
                 "description": "Τελευταία ενημέρωση"
             },
             {
@@ -1851,11 +1819,11 @@
                 "description": "Ενεργό"
             },
             {
-                "id": "user",
-                "description": "Χρήστης"
+                "id": "post",
+                "description": "Αρχική καταχώριση"
             },
             {
-                "id": "lastUpdate",
+                "id": "put",
                 "description": "Τελευταία ενημέρωση"
             },
             {
@@ -1933,11 +1901,11 @@
                 "description": "Ενεργό"
             },
             {
-                "id": "user",
-                "description": "Χρήστης"
+                "id": "post",
+                "description": "Αρχική καταχώριση"
             },
             {
-                "id": "lastUpdate",
+                "id": "put",
                 "description": "Τελευταία ενημέρωση"
             },
             {
@@ -2075,16 +2043,8 @@
                 "description": "Ωρα λήξης εργασιών"
             },
             {
-                "id": "closingTimeTooltip",
-                "description": "Αναφέρεται στην ώρα μετά την οποία δεν δεχόμαστε νέες κρατήσεις από απλούς χρήστες με μεταφορά για την επόμενη ημέρα. Εάν θέλετε να απενεργοποιήσετε αυτή τη λειτουργία, δώστε 00:00."
-            },
-            {
                 "id": "phones",
                 "description": "Τηλέφωνα"
-            },
-            {
-                "id": "phonesTooltip",
-                "description": "Αυτό είναι το τηλέφωνο που θα εκτυπώνεται στο υποσέλιδο των emails που στέλνουμε."
             },
             {
                 "id": "email",
@@ -2095,11 +2055,11 @@
                 "description": "Αυτό είναι το email που θα εκτυπώνεται στο υποσέλιδο των emails που στέλνουμε."
             },
             {
-                "id": "user",
-                "description": "Χρήστης"
+                "id": "post",
+                "description": "Αρχική καταχώριση"
             },
             {
-                "id": "lastUpdate",
+                "id": "put",
                 "description": "Τελευταία ενημέρωση"
             },
             {

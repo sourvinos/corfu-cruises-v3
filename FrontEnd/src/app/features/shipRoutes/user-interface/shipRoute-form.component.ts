@@ -134,10 +134,10 @@ export class ShipRouteFormComponent {
             viaPort: ['', [Validators.maxLength(128)]], viaTime: ['', [ValidationService.isTime]],
             toPort: ['', [Validators.required, Validators.maxLength(128)]], toTime: ['', [Validators.required, ValidationService.isTime]],
             isActive: true,
-            postAt: this.record.postAt,
-            postUser: this.record.postUser,
-            putAt: this.record.putAt,
-            putUser: this.record.putUser
+            postAt: [''],
+            postUser: [''],
+            putAt: [''],
+            putUser: ['']
         })
     }
 

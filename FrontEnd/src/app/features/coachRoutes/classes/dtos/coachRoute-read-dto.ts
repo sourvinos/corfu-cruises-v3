@@ -1,6 +1,7 @@
 import { PortAutoCompleteVM } from 'src/app/features/ports/classes/view-models/port-autocomplete-vm'
+import { Metadata } from 'src/app/shared/classes/metadata'
 
-export interface CoachRouteReadDto {
+export interface CoachRouteReadDto extends Metadata {
 
     id: number
     port: PortAutoCompleteVM

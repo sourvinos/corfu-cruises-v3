@@ -33,26 +33,26 @@
                 <mat-error *ngIf="port.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="!port.hasError('required') && port.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>
-                <!-- MaxPax -->
-                <mat-form-field>
-                    <mat-label>{{ getLabel('maxPax') }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="4" formControlName="maxPax" matInput type="number">
-                    <mat-error *ngIf="maxPax.hasError('required')">{{ getHint("required") }}</mat-error>
-                    <mat-error *ngIf="!maxPax.hasError('required') && maxPax.hasError('min') || maxPax.hasError('max')">{{ getHint("invalid") }}</mat-error>
-                </mat-form-field>
-                <!-- Time -->
-                <mat-form-field>
-                    <mat-label>{{ getLabel('time') }}</mat-label>
-                    <input [format]=24 [inputTabStop]="input" [ngxMatTimepicker]="timePicker" dataTabIndex="5" formControlName="time" matInput readonly/>
-                    <div matSuffix style="display:flex">
-                        <button (click)="timePicker.open()" mat-icon-button type="button">
-                            <mat-icon class="input-suffix material-icons-outlined extra-top-margin small">watch_later</mat-icon>
-                        </button>
-                    </div>
-                    <mat-error *ngIf="time.hasError('required')">{{ getHint("required") }}</mat-error>
-                    <mat-error *ngIf="!time.hasError('required') && !time.hasError('time')">{{ getHint("invalid") }}</mat-error>
-                </mat-form-field>
-                <ngx-mat-timepicker #timePicker></ngx-mat-timepicker>
+            <!-- MaxPax -->
+            <mat-form-field>
+                <mat-label>{{ getLabel('maxPax') }}</mat-label>
+                <input [inputTabStop]="input" dataTabIndex="4" formControlName="maxPax" matInput type="number">
+                <mat-error *ngIf="maxPax.hasError('required')">{{ getHint("required") }}</mat-error>
+                <mat-error *ngIf="!maxPax.hasError('required') && maxPax.hasError('min') || maxPax.hasError('max')">{{ getHint("invalid") }}</mat-error>
+            </mat-form-field>
+            <!-- Time -->
+            <mat-form-field>
+                <mat-label>{{ getLabel('time') }}</mat-label>
+                <input [format]=24 [inputTabStop]="input" [ngxMatTimepicker]="timePicker" dataTabIndex="5" formControlName="time" matInput readonly />
+                <div matSuffix style="display:flex">
+                    <button (click)="timePicker.open()" mat-icon-button type="button">
+                        <mat-icon class="input-suffix material-icons-outlined extra-top-margin small">watch_later</mat-icon>
+                    </button>
+                </div>
+                <mat-error *ngIf="time.hasError('required')">{{ getHint("required") }}</mat-error>
+                <mat-error *ngIf="!time.hasError('required') && !time.hasError('time')">{{ getHint("invalid") }}</mat-error>
+            </mat-form-field>
+            <ngx-mat-timepicker #timePicker></ngx-mat-timepicker>
             <div class="stacked-checkboxes">
                 <!-- Active -->
                 <mat-checkbox formControlName="isActive">
@@ -60,17 +60,21 @@
                 </mat-checkbox>
             </div>
             <div class="align-bottom group-input-field hide-hint">
-                <!-- User -->
+                <!-- Users -->
                 <mat-form-field>
-                    <mat-label>{{ getLabel('user') }}</mat-label>
-                    <mat-icon class="material-icons-outlined small">lock</mat-icon>
-                    <input formControlName="user" matInput readonly>
+                    <mat-label>{{ getLabel('post') }}</mat-label>
+                    <div class="multiple-inputs">
+                        <input formControlName="postUser" matInput readonly>
+                        <input class="right" formControlName="postAt" matInput readonly>
+                    </div>
                 </mat-form-field>
                 <!-- Updates -->
                 <mat-form-field>
-                    <mat-label>{{ getLabel('lastUpdate') }}</mat-label>
-                    <mat-icon class="material-icons-outlined small">lock</mat-icon>
-                    <input formControlName="lastUpdate" matInput readonly>
+                    <mat-label>{{ getLabel('put') }}</mat-label>
+                    <div class="multiple-inputs">
+                        <input formControlName="putUser" matInput readonly>
+                        <input class="right" formControlName="putAt" matInput readonly>
+                    </div>
                 </mat-form-field>
             </div>
         </form>

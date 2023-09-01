@@ -1,4 +1,6 @@
-export interface GenderReadDto {
+import { Metadata } from 'src/app/shared/classes/metadata'
+
+export interface GenderReadDto extends Metadata {
 
     id: number
     description: string

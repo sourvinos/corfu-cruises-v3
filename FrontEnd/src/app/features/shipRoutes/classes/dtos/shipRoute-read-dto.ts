@@ -1,4 +1,6 @@
-export interface ShipRouteReadDto {
+import { Metadata } from 'src/app/shared/classes/metadata'
+
+export interface ShipRouteReadDto extends Metadata {
 
     id: number
     description: string
@@ -9,9 +11,5 @@ export interface ShipRouteReadDto {
     toPort: string
     toTime: string
     isActive: boolean
-    postAt: string
-    postUser: string
-    putAt: string
-    putUser: string
 
 }

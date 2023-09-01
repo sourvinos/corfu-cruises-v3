@@ -134,8 +134,10 @@ export class CustomerFormComponent {
             personInCharge: ['', [Validators.maxLength(128)]],
             email: ['', [Validators.email, Validators.maxLength(128)]],
             isActive: true,
-            user: [''],
-            lastUpdate: ['']
+            postAt: [''],
+            postUser: [''],
+            putAt: [''],
+            putUser: ['']
         })
     }
 
@@ -150,8 +152,10 @@ export class CustomerFormComponent {
                 personInCharge: this.record.personInCharge,
                 email: this.record.email,
                 isActive: this.record.isActive,
-                user: this.record.user,
-                lastUpdate: this.record.lastUpdate
+                postAt: this.record.postAt,
+                postUser: this.record.postUser,
+                putAt: this.record.putAt,
+                putUser: this.record.putUser
             })
         }
     }
@@ -206,12 +210,20 @@ export class CustomerFormComponent {
         return this.form.get('email')
     }
 
-    get user(): AbstractControl {
-        return this.form.get('user')
+    get postAt(): AbstractControl {
+        return this.form.get('postAt')
     }
 
-    get lastUpdate(): AbstractControl {
-        return this.form.get('lastUpdate')
+    get postUser(): AbstractControl {
+        return this.form.get('postUser')
+    }
+
+    get putAt(): AbstractControl {
+        return this.form.get('putAt')
+    }
+
+    get putUser(): AbstractControl {
+        return this.form.get('putUser')
     }
 
     //#endregion

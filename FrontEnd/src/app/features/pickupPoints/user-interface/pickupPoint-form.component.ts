@@ -173,8 +173,10 @@ export class PickupPointFormComponent {
             time: ['', [Validators.required, ValidationService.isTime]],
             remarks: ['', Validators.maxLength(2048)],
             isActive: true,
-            user: [''],
-            lastUpdate: ['']
+            postAt: [''],
+            postUser: [''],
+            putAt: [''],
+            putUser: ['']
         })
     }
 
@@ -199,8 +201,10 @@ export class PickupPointFormComponent {
                 time: this.record.time,
                 remarks: this.record.remarks,
                 isActive: this.record.isActive,
-                user: this.record.user,
-                lastUpdate: this.record.lastUpdate,
+                postAt: this.record.postAt,
+                postUser: this.record.postUser,
+                putAt: this.record.putAt,
+                putUser: this.record.putUser
             })
         }
     }
@@ -251,12 +255,20 @@ export class PickupPointFormComponent {
         return this.form.get('remarks')
     }
 
-    get user(): AbstractControl {
-        return this.form.get('user')
+    get postAt(): AbstractControl {
+        return this.form.get('postAt')
     }
 
-    get lastUpdate(): AbstractControl {
-        return this.form.get('lastUpdate')
+    get postUser(): AbstractControl {
+        return this.form.get('postUser')
+    }
+
+    get putAt(): AbstractControl {
+        return this.form.get('putAt')
+    }
+
+    get putUser(): AbstractControl {
+        return this.form.get('putUser')
     }
 
     //#endregion

@@ -1,7 +1,7 @@
 import { ShipOwnerAutoCompleteVM } from 'src/app/features/shipOwners/classes/view-models/shipOwner-autocomplete-vm'
+import { Metadata } from 'src/app/shared/classes/metadata'
 
-export interface ShipReadDto {
-
+export interface ShipReadDto extends Metadata {
     id: number
     shipOwner: ShipOwnerAutoCompleteVM
     description: string
@@ -13,9 +13,5 @@ export interface ShipReadDto {
     managerInGreece: string
     agent: string
     isActive: boolean
-    postAt: string
-    postUser: string
-    putAt: string
-    putUser: string
 
 }

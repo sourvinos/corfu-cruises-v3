@@ -1,4 +1,6 @@
-export interface DriverReadDto {
+import { Metadata } from 'src/app/shared/classes/metadata'
+
+export interface DriverReadDto extends Metadata {
 
     id: number
     description: string

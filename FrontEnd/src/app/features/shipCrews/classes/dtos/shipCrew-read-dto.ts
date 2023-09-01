@@ -1,8 +1,9 @@
 import { GenderAutoCompleteVM } from 'src/app/features/genders/classes/view-models/gender-autocomplete-vm'
 import { NationalityDropdownVM } from 'src/app/features/nationalities/classes/view-models/nationality-autocomplete-vm'
 import { ShipAutoCompleteVM } from 'src/app/features/ships/classes/view-models/ship-autocomplete-vm'
+import { Metadata } from 'src/app/shared/classes/metadata'
 
-export interface ShipCrewReadDto {
+export interface ShipCrewReadDto extends Metadata {
 
     id: number
     gender: GenderAutoCompleteVM

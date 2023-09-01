@@ -209,7 +209,11 @@ export class EditUserFormComponent {
             email: ['', [Validators.email, Validators.maxLength(128), Validators.required]],
             isFirstFieldFocused: false,
             isAdmin: false,
-            isActive: true
+            isActive: true,
+            postAt: [''],
+            postUser: [''],
+            putAt: [''],
+            putUser: ['']
         })
     }
 
@@ -234,7 +238,11 @@ export class EditUserFormComponent {
             email: this.record.email,
             isAdmin: this.record.isAdmin,
             isFirstFieldFocused: this.record.isFirstFieldFocused,
-            isActive: this.record.isActive
+            isActive: this.record.isActive,
+            postAt: this.record.postAt,
+            postUser: this.record.postUser,
+            putAt: this.record.putAt,
+            putUser: this.record.putUser
         })
     }
 
@@ -277,6 +285,22 @@ export class EditUserFormComponent {
 
     get email(): AbstractControl {
         return this.form.get('email')
+    }
+
+    get postAt(): AbstractControl {
+        return this.form.get('postAt')
+    }
+
+    get postUser(): AbstractControl {
+        return this.form.get('postUser')
+    }
+
+    get putAt(): AbstractControl {
+        return this.form.get('putAt')
+    }
+
+    get putUser(): AbstractControl {
+        return this.form.get('putUser')
     }
 
     //#endregion
