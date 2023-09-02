@@ -11,7 +11,6 @@
             <mat-form-field>
                 <mat-label>{{ getLabel('closingTime') }}</mat-label>
                 <input [inputTabStop]="input" dataTabIndex="1" formControlName="closingTime" matInput />
-                <span #tooltip="matTooltip" class="tooltip-inside-input-field transparent" matTooltip="{{ getLabel('closingTimeTooltip') }}">?</span>
                 <mat-error *ngIf="closingTime.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="!closingTime.hasError('required') && !closingTime.hasError('time')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>
@@ -19,7 +18,6 @@
             <mat-form-field>
                 <mat-label>{{ getLabel('phones') }}</mat-label>
                 <input [inputTabStop]="input" dataTabIndex="2" formControlName="phones" matInput>
-                <span #tooltip="matTooltip" class="tooltip-inside-input-field transparent" matTooltip="{{ getLabel('phonesTooltip') }}">?</span>
                 <mat-error *ngIf="phones.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="phones.hasError('maxlength')">{{ getHint("maxLength", phones.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
@@ -27,7 +25,6 @@
             <mat-form-field>
                 <mat-label>{{ getLabel('email') }}</mat-label>
                 <input [inputTabStop]="input" dataTabIndex="3" formControlName="email" matInput>
-                <span #tooltip="matTooltip" class="tooltip-inside-input-field transparent" matTooltip="{{ getLabel('emailΤooltip') }}">?</span>
                 <mat-error *ngIf="email.hasError('maxlength')">{{ getHint("maxLength", email.errors.maxlength.requiredLength) }}</mat-error>
                 <mat-error *ngIf="!email.hasError('maxlength') && email.hasError('email')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>

@@ -1422,6 +1422,10 @@
                 "description": "Γράψτε κάτι..."
             },
             {
+                "id": "date",
+                "description": "Ημερομηνία"
+            },
+            {
                 "id": "destinations",
                 "description": "Προορισμοί"
             },

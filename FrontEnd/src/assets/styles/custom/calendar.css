@@ -37,10 +37,6 @@
     transition: all 0.25s !important;
 }
 
-#period-scroller button:hover {
-    transform: scale(1.5);
-}
-
 #period-scroller {
     align-items: center;
     display: flex;

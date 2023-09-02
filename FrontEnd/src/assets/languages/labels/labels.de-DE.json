@@ -1422,6 +1422,10 @@
                 "description": "Schreiben Sie etwas..."
             },
             {
+                "id": "date",
+                "description": "Datum"
+            },
+            {
                 "id": "destinations",
                 "description": "Reiseziele"
             },

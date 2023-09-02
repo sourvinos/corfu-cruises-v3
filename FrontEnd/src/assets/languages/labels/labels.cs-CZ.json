@@ -1422,6 +1422,10 @@
                 "description": "Napište něco..."
             },
             {
+                "id": "date",
+                "description": "Datum"
+            },
+            {
                 "id": "destinations",
                 "description": "Destinace"
             },

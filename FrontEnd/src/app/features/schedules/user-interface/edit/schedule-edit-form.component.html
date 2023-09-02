@@ -8,7 +8,7 @@
 
         <form [formGroup]="form" id="form">
             <!-- Date -->
-            <date-picker (outputValue)="patchFormWithSelectedDate($event)" [dataTabIndex]=1 [isAdminOrNewRecord]=true [label]="getLabel('date')" [parentDate]="getDate()" [readOnly]=false [showHint]=false></date-picker>
+            <date-picker (outputValue)="patchFormWithSelectedDate($event)" [dataTabIndex]="1" [isAdminOrNewRecord]=true [label]="getLabel('date')" [parentDate]="getDate()" [readOnly]=false [showHint]=false></date-picker>
             <!-- Destination -->
             <mat-form-field>
                 <mat-label>{{ getLabel('destination') }}</mat-label>

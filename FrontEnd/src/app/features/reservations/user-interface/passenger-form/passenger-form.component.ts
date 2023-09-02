@@ -169,6 +169,10 @@ export class PassengerFormComponent {
         }
     }
 
+    private focusOnField(): void {
+        this.helperService.focusOnField()
+    }
+
     private getNationalityFromStorage(): void {
         if (this.form.value.id == 0) {
             try {

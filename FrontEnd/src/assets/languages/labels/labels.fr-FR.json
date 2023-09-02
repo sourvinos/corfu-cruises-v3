@@ -1422,6 +1422,10 @@
                 "description": "Écrivez quelque chose..."
             },
             {
+                "id": "date",
+                "description": "Date"
+            },
+            {
                 "id": "destinations",
                 "description": "Destinations"
             },
