@@ -2,7 +2,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.ShipRoutes {
 
-    public class ShipRouteReadDto : INewBaseEntity, IMetadata {
+    public class ShipRouteReadDto : IBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }

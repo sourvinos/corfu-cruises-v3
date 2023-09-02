@@ -5,7 +5,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Destinations {
 
-    public class Destination : INewBaseEntity, IMetadata {
+    public class Destination : IBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }

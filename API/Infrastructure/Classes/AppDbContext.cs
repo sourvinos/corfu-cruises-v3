@@ -14,12 +14,12 @@ using API.Features.ShipCrews;
 using API.Features.ShipOwners;
 using API.Features.ShipRoutes;
 using API.Features.Ships;
+using API.Features.Users;
 using API.Infrastructure.Auth;
 using API.Infrastructure.Parameters;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using API.Features.Users;
 
 namespace API.Infrastructure.Classes {
 

@@ -3,7 +3,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.CoachRoutes {
 
-    public class CoachRouteReadDto : INewBaseEntity, IMetadata {
+    public class CoachRouteReadDto : IBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }

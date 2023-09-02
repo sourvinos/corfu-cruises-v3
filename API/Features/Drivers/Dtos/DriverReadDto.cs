@@ -2,7 +2,7 @@
 
 namespace API.Features.Drivers {
 
-    public class DriverReadDto : INewBaseEntity, IMetadata {
+    public class DriverReadDto : IBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }

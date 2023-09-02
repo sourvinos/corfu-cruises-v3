@@ -4,7 +4,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Drivers {
 
-    public class Driver : INewBaseEntity, IMetadata {
+    public class Driver : IBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }

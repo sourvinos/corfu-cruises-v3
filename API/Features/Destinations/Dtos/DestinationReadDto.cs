@@ -2,7 +2,7 @@
 
 namespace API.Features.Destinations {
 
-    public class DestinationReadDto : INewBaseEntity, IMetadata {
+    public class DestinationReadDto : IBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }

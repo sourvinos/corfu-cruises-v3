@@ -3,7 +3,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Registrars {
 
-    public class Registrar : INewBaseEntity, IMetadata {
+    public class Registrar : IBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }

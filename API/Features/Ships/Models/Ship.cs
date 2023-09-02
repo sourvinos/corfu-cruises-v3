@@ -7,7 +7,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Ships {
 
-    public class Ship : INewBaseEntity, IMetadata {
+    public class Ship : IBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }

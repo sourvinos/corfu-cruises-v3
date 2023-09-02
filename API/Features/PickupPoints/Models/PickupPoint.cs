@@ -5,7 +5,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.PickupPoints {
 
-    public class PickupPoint : INewBaseEntity, IMetadata {
+    public class PickupPoint : IBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }

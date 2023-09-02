@@ -15,8 +15,8 @@ namespace API.Infrastructure.Parameters {
 
         public async Task<Parameter> GetAsync() {
             return await context.Parameters
-                    .AsNoTracking()
-                    .SingleOrDefaultAsync();
+                .AsNoTracking()
+                .SingleOrDefaultAsync();
         }
 
     }

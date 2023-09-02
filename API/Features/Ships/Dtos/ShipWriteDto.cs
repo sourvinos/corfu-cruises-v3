@@ -2,7 +2,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Ships {
 
-    public class ShipWriteDto : INewBaseEntity, IMetadata {
+    public class ShipWriteDto : IBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }

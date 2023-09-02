@@ -4,7 +4,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Occupants {
 
-    public class Occupant : INewBaseEntity, IMetadata {
+    public class Occupant : IBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }

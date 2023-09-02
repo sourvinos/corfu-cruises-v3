@@ -3,7 +3,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations {
 
-    public class PassengerWriteDto : INewBaseEntity {
+    public class PassengerWriteDto : IBaseEntity {
 
         // PK
         public int Id { get; set; }

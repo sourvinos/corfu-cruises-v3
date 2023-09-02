@@ -2,7 +2,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Registrars {
 
-    public class RegistrarWriteDto : INewBaseEntity, IMetadata {
+    public class RegistrarWriteDto : IBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }

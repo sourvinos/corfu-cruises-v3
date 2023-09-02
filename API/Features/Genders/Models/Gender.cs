@@ -2,7 +2,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Genders {
 
-    public class Gender : INewBaseEntity, IMetadata {
+    public class Gender : IBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }

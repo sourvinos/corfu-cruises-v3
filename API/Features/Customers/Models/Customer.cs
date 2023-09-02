@@ -4,7 +4,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Customers {
 
-    public class Customer : INewBaseEntity, IMetadata {
+    public class Customer : IBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }

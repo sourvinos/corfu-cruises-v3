@@ -6,7 +6,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Ports {
 
-    public class Port : INewBaseEntity, IMetadata {
+    public class Port : IBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }

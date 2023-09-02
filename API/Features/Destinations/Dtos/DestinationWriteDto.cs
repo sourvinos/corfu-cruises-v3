@@ -2,7 +2,7 @@
 
 namespace API.Features.Destinations {
 
-    public class DestinationWriteDto : INewBaseEntity, IMetadata {
+    public class DestinationWriteDto : IBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }

@@ -5,7 +5,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Nationalities {
 
-    public class Nationality : INewBaseEntity, IMetadata {
+    public class Nationality : IBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }

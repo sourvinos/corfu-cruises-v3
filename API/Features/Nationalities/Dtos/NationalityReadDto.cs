@@ -2,7 +2,7 @@
 
 namespace API.Features.Nationalities {
 
-    public class NationalityReadDto : INewBaseEntity, IMetadata {
+    public class NationalityReadDto : IBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }

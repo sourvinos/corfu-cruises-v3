@@ -5,7 +5,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Schedules {
 
-    public class Schedule : INewBaseEntity, IMetadata {
+    public class Schedule : IBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }

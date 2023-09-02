@@ -2,7 +2,7 @@
 
 namespace API.Features.Customers {
 
-    public class CustomerWriteDto : INewBaseEntity, IMetadata {
+    public class CustomerWriteDto : IBaseEntity, IMetadata {
 
         // PK
         public int Id { get; set; }

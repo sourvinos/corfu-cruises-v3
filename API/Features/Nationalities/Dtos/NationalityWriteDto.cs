@@ -2,7 +2,7 @@
 
 namespace API.Features.Nationalities {
 
-    public class NationalityWriteDto : INewBaseEntity, IMetadata {
+    public class NationalityWriteDto : IBaseEntity, IMetadata {
 
         public int Id { get; set; }
         public string Code { get; set; }

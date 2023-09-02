@@ -4,7 +4,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations {
 
-    public class PassengerReadDto : INewBaseEntity {
+    public class PassengerReadDto : IBaseEntity {
 
         // PK
         public int Id { get; set; }
