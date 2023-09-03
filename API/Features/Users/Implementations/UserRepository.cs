@@ -80,29 +80,6 @@ namespace API.Features.Users {
             }
         }
 
-        public async Task<Response> DeleteAsync(UserExtended entity) {
-            using var transaction = context.Database.BeginTransaction();
-            try {
-                var x = await userManager.DeleteAsync(await userManager.FindByIdAsync(entity.Id));
-                if (x.Succeeded) {
-                    DisposeOrCommit(transaction);
-                    return new Response {
-                        Code = 200,
-                        Icon = Icons.Success.ToString(),
-                        Id = null,
-                        Message = ApiMessages.OK()
-                    };
-                } else {
-                    throw new CustomException() {
-                        ResponseCode = 491
-                    };
-                }
-            }
-            catch (Exception) {
-                throw new CustomException { ResponseCode = 491 };
-            }
-        }
-
         public IMetadata AttachMetadataToPostDto(IMetadata entity) {
             entity.PostAt = DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime());
             entity.PostUser = Identity.GetConnectedUserDetails(userManager, Identity.GetConnectedUserId(httpContextAccessor)).UserName;

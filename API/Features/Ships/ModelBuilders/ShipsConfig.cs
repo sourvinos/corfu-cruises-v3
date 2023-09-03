@@ -20,8 +20,8 @@ namespace API.Features.Ships {
             entity.Property(x => x.ManagerInGreece).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.Agent).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.IsActive);
-            entity.Property(x => x.PostAt).HasMaxLength(19);
-            entity.Property(x => x.PostUser).HasMaxLength(255);
+            entity.Property(x => x.PostAt).HasMaxLength(19).IsRequired(true);
+            entity.Property(x => x.PostUser).HasMaxLength(255).IsRequired(true);
             entity.Property(x => x.PutAt).HasMaxLength(19);
             entity.Property(x => x.PutUser).HasMaxLength(255);
             // FK Constraints

@@ -12,8 +12,8 @@ namespace API.Features.Nationalities {
             entity.Property(x => x.Description).HasMaxLength(128).IsRequired(true);
             entity.Property(x => x.Code).HasMaxLength(10).IsRequired(true);
             entity.Property(x => x.IsActive).IsRequired(true);
-            entity.Property(x => x.PostAt).HasMaxLength(19);
-            entity.Property(x => x.PostUser).HasMaxLength(255);
+            entity.Property(x => x.PostAt).HasMaxLength(19).IsRequired(true);
+            entity.Property(x => x.PostUser).HasMaxLength(255).IsRequired(true);
             entity.Property(x => x.PutAt).HasMaxLength(19);
             entity.Property(x => x.PutUser).HasMaxLength(255);
         }

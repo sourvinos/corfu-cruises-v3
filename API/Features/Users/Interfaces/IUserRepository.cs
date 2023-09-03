@@ -12,7 +12,6 @@ namespace API.Features.Users {
         Task CreateAsync(UserExtended entity, string password);
         Task<bool> UpdateAdminAsync(UserExtended entity, UserUpdateDto userToUpdate);
         Task<bool> UpdateSimpleUserAsync(UserExtended entity, UserUpdateDto userToUpdate);
-        Task<Response> DeleteAsync(UserExtended entity);
         IMetadata AttachMetadataToPostDto(IMetadata entity);
 
     }

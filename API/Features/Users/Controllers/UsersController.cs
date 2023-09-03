@@ -119,25 +119,6 @@ namespace API.Features.Users {
             }
         }
 
-        [HttpDelete("{id}")]
-        [Authorize(Roles = "admin")]
-        public async Task<Response> Delete(string id) {
-            var x = await userRepo.GetByIdAsync(id);
-            if (x != null) {
-                await userRepo.DeleteAsync(x);
-                return new Response {
-                    Code = 200,
-                    Icon = Icons.Success.ToString(),
-                    Id = null,
-                    Message = ApiMessages.OK()
-                };
-            } else {
-                throw new CustomException() {
-                    ResponseCode = 404
-                };
-            }
-        }
-
         [HttpPost("[action]")]
         [Authorize(Roles = "admin")]
         public Task<Response> EmailUserDetails([FromBody] UserDetailsForEmailVM model) {

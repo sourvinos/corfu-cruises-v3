@@ -14,6 +14,8 @@ using Microsoft.Extensions.DependencyInjection;
 
 // dotnet watch run --environment LocalDevelopment | LocalTesting | ProductionLive | ProductionDemo
 // dotnet publish /p:Configuration=Release /p:EnvironmentName=ProductionDemo | ProductionLive
+// dotnet ef migrations add InitialCreate
+// dotnet ef database update
 
 namespace API {
 
