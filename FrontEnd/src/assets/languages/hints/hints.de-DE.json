@@ -1,48 +1,17 @@
 {
     "labels": [
-        {
-            "id": "required",
-            "description": "Dieses Feld wird benötigt"
-        },
-        {
-            "id": "minLength",
-            "description": "Dieses Feld muss mindestens xx Zeichen lang sein"
-        },
-        {
-            "id": "maxLength",
-            "description": "Dieses Feld kann bis zu xx Zeichen lang sein"
-        },
-        {
-            "id": "invalid",
-            "description": "Dieses Feld ist ungültig"
-        },
-        {
-            "id": "passwordsNoMatch",
-            "description": "Neues Passwort und neues Passwort bestätigen stimmen nicht überein"
-        },
-        {
-            "id": "spacesNotAllowed",
-            "description": "Leerzeichen sind nicht erlaubt"
-        },
-        {
-            "id": "otherErrors",
-            "description": "Dieses Feld enthält Fehler"
-        },
-        {
-            "id": "invalidPeriod",
-            "description": "Der Zeitraum ist ungültig"
-        },
-        {
-            "id": "containsIllegalCharacters",
-            "description": "Es sind nur alphanumerische Zeichen oder Unterstriche erlaubt."
-        },
-        {
-            "id": "beginsOrEndsWithSpace",
-            "description": "Dieses Feld darf nicht mit einem oder mehreren Leerzeichen beginnen oder enden."
-        },
-        {
-            "id": "remainingCharacters",
-            "description": "Sie können bis zu xx weitere Zeichen eingeben"
-        }
+        { "id": "required", "description": "Dieses Feld ist erforderlich" },
+        { "id": "invalid", "description": "Dieses Feld ist ungültig" },
+        { "id": "minLength", "description": "Dieses Feld muss mindestens xx Zeichen lang sein" },
+        { "id": "maxLength", "description": "Dieses Feld kann bis zu xx Zeichen lang sein" },
+        { "id": "beginsOrEndsWithSpace", "description": "Dieses Feld darf nicht mit einem Leerzeichen beginnen oder enden" },
+        { "id": "containsIllegalCharacters", "description": "Dieses Feld sind nur alphanumerische Zeichen oder Unterstriche erlaubt" },
+        { "id": "doesNotContainLowerCase", "description": "Dieses Feld muss mindestens einen Kleinbuchstaben enthalten" },
+        { "id": "doesNotContainUpperCase", "description": "Dieses Feld muss mindestens einen Großbuchstaben enthalten" },
+        { "id": "doesNotContainSymbol", "description": "Dieses Feld muss mindestens ein Symbol enthalten, z. B. % oder #" },
+        { "id": "spacesNotAllowed", "description": "Dieses Feld darf keine Leerzeichen enthalten" },
+        { "id": "remainingCharacters", "description": "Sie können bis zu xx weitere Zeichen eingeben" },
+        { "id": "passwordsNoMatch", "description": "Neues Passwort und Bestätigung des neuen Passworts stimmen nicht überein" },
+        { "id": "otherErrors", "description": "Dieses Feld enthält Fehler" }
     ]
 }

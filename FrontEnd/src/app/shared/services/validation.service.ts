@@ -17,6 +17,21 @@ export class ValidationService {
         return control.value && (control.value as string).indexOf(' ') !== -1 ? { containsSpace: true } : null
     }
 
+    static doesNotContainUpperCase(control: AbstractControl): { [key: string]: any } {
+        const pattern = /[A-Z]/
+        return pattern.test(control.value) ? null : { doesNotContainUpperCase: true }
+    }
+
+    static doesNotContainLowerCase(control: AbstractControl): { [key: string]: any } {
+        const pattern = /[a-z]/
+        return pattern.test(control.value) ? null : { doesNotContainLowerCase: true }
+    }
+
+    static doesNotContainSymbol(control: AbstractControl): { [key: string]: any } {
+        const pattern = /[!@#$%^&*()]/
+        return pattern.test(control.value) ? null : { doesNotContainSymbol: true }
+    }
+
     static containsIllegalCharacters(control: AbstractControl): { [key: string]: any } {
         const pattern = /^[a-zA-Z\d-_]+$/
         return pattern.test(control.value) ? null : { containsIllegalCharacters: true }

@@ -137,8 +137,16 @@ export class NewUserFormComponent {
             customer: ['', ValidationService.RequireAutocomplete],
             email: ['x@x.com', [Validators.email, Validators.maxLength(128), Validators.required]],
             passwords: this.formBuilder.group({
-                password: ['', [ValidationService.containsSpace, Validators.maxLength(128), Validators.minLength(10), Validators.required]],
-                confirmPassword: ['', [ValidationService.containsSpace, Validators.required]]
+                password: ['', [
+                    Validators.required,
+                    Validators.minLength(10),
+                    Validators.maxLength(128),
+                    ValidationService.containsSpace,
+                    ValidationService.doesNotContainUpperCase,
+                    ValidationService.doesNotContainLowerCase,
+                    ValidationService.doesNotContainSymbol
+                ]],
+                confirmPassword: ['', [Validators.required]]
             }, { validator: ValidationService.childrenEqual }),
             isFirstFieldFocused: false,
             isAdmin: false,

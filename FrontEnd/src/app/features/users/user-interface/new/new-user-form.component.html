@@ -52,8 +52,11 @@
                     </button>
                     <mat-error *ngIf="password.hasError('required')">{{ getHint("required") }}</mat-error>
                     <mat-error *ngIf="password.hasError('containsSpace')">{{ getHint("spacesNotAllowed") }}</mat-error>
-                    <mat-error *ngIf="password.hasError('minlength') && !password.hasError('containsSpace')">{{ getHint("minLength", password.errors.minlength.requiredLength) }}</mat-error>
-                    <mat-error *ngIf="password.hasError('maxlength') && !password.hasError('containsSpace')">{{ getHint("maxLength", password.errors.maxlength.requiredLength) }}</mat-error>
+                    <mat-error *ngIf="password.hasError('doesNotContainUpperCase')">{{ getHint("doesNotContainUpperCase") }}</mat-error>
+                    <mat-error *ngIf="password.hasError('doesNotContainLowerCase')">{{ getHint("doesNotContainLowerCase") }}</mat-error>
+                    <mat-error *ngIf="password.hasError('doesNotContainSymbol')">{{ getHint("doesNotContainSymbol") }}</mat-error>
+                    <mat-error *ngIf="password.hasError('minlength')">{{ getHint("minLength", password.errors.minlength.requiredLength) }}</mat-error>
+                    <mat-error *ngIf="password.hasError('maxlength')">{{ getHint("maxLength", password.errors.maxlength.requiredLength) }}</mat-error>
                 </mat-form-field>
                 <!-- Confirm password -->
                 <mat-form-field>
@@ -62,9 +65,9 @@
                     <button (click)="hidePassword = !hidePassword" mat-icon-button matSuffix type="button">
                         <mat-icon class="input-suffix material-icons-outlined extra-top-margin small">{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
                     </button>
-                    <mat-error *ngIf="confirmPassword.hasError('required')">{{ getHint("required") }}</mat-error>
-                    <mat-error *ngIf="!confirmPassword.hasError('required') && !matchingPasswords">{{ getHint("passwordsNoMatch") }}</mat-error>
-                    <mat-error *ngIf="!confirmPassword.hasError('required') && matchingPasswords">{{ getHint("invalid") }}</mat-error>
+                    <mat-error *ngIf="confirmPassword?.hasError('required')">{{ getHint("required") }}</mat-error>
+                    <mat-error *ngIf="!confirmPassword?.hasError('required') && !matchingPasswords">{{ getHint("passwordsNoMatch") }}</mat-error>
+                    <mat-error *ngIf="!confirmPassword?.hasError('required') && matchingPasswords">{{ getHint("invalid") }}</mat-error>
                 </mat-form-field>
             </div>
             <!-- Focus on first field -->

@@ -108,7 +108,15 @@ export class ResetPasswordFormComponent {
             email: [''],
             token: [''],
             passwords: this.formBuilder.group({
-                password: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(128), ValidationService.containsSpace]],
+                password: ['', [
+                    Validators.required,
+                    Validators.minLength(10),
+                    Validators.maxLength(128),
+                    ValidationService.containsSpace,
+                    ValidationService.doesNotContainUpperCase,
+                    ValidationService.doesNotContainLowerCase,
+                    ValidationService.doesNotContainSymbol
+                ]],
                 confirmPassword: ['', [Validators.required]]
             }, { validator: ValidationService.childrenEqual })
         })

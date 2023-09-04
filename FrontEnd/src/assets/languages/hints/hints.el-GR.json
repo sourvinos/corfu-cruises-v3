@@ -1,60 +1,17 @@
 {
     "labels": [
-        {
-            "id": "required",
-            "description": "Το πεδίο είναι υποχρεωτικό"
-        },
-        {
-            "id": "minLength",
-            "description": "Το πεδίο πρέπει να έχει μήκος τουλάχιστον xx χαρακτήρες"
-        },
-        {
-            "id": "containsNotLowercase",
-            "description": "Το πεδίο πρέπει να έχει τουλάχιστον ένα πεζό χαρακτήρα"
-        },
-        {
-            "id": "containsNotUppercase",
-            "description": "Το πεδίο πρέπει να έχει τουλάχιστον έναν κεφαλαίο χαρακτήρα"
-        },
-        {
-            "id": "containsNotSumbol",
-            "description": "Το πεδίο πρέπει να έχει τουλάχιστον ένα σύμβολο π.χ. % ή #"
-        },
-        {
-            "id": "maxLength",
-            "description": "Το πεδίο μπορεί να έχει μήκος μέχρι xx χαρακτήρες"
-        },
-        {
-            "id": "invalid",
-            "description": "Το πεδίο είναι λάθος"
-        },
-        {
-            "id": "passwordsNoMatch",
-            "description": "Ο νέος κωδικός και η επιβεβαίωση νέου κωδικού δεν συμφωνούν"
-        },
-        {
-            "id": "spacesNotAllowed",
-            "description": "Τα κενά απαγορεύονται"
-        },
-        {
-            "id": "otherErrors",
-            "description": "Το πεδίο έχει λάθη"
-        },
-        {
-            "id": "invalidPeriod",
-            "description": "Το διάστημα δεν είναι σωστό"
-        },
-        {
-            "id": "containsIllegalCharacters",
-            "description": "Επιτρέπονται μόνο αλφαριθμητικοί χαρακτήρες ή υπογραμμίσεις (κάτω παύλα)."
-        },
-        {
-            "id": "beginsOrEndsWithSpace",
-            "description": "Το πεδίο δεν μπορεί να αρχίζει ή να τελειώνει με ένα ή περισσότερα κενά."
-        },
-        {
-            "id": "remainingCharacters",
-            "description": "Μπορείτε να δώσετε ακόμα έως και xx χαρακτήρες"
-        }
+        { "id": "required", "description": "Αυτό το πεδίο είναι υποχρεωτικό" },
+        { "id": "invalid", "description": "Αυτό το πεδίο είναι άκυρο" },
+        { "id": "minLength", "description": "Αυτό το πεδίο πρέπει να έχει μήκος τουλάχιστον xx χαρακτήρες" },
+        { "id": "maxLength", "description": "Αυτό το πεδίο μπορεί να έχει μήκος έως xx χαρακτήρες" },
+        { "id": "beginsOrEndsWithSpace", "description": "Αυτό το πεδίο δεν μπορεί να αρχίζει ή να τελειώνει με κενό" },
+        { "id": "containsIllegalCharacters", "description": "Αυτό το πεδίο επιτρέπει μόνο αλφαριθμητικούς χαρακτήρες ή υπογράμμιση (κάτω παύλα)" },
+        { "id": "doesNotContainLowerCase", "description": "Το πεδίο πρέπει να έχει τουλάχιστον ένα πεζό χαρακτήρα" },
+        { "id": "doesNotContainUpperCase", "description": "Το πεδίο πρέπει να έχει τουλάχιστον έναν κεφαλαίο χαρακτήρα" },
+        { "id": "doesNotContainSymbol", "description": "Το πεδίο πρέπει να έχει τουλάχιστον ένα σύμβολο π.χ. % ή #" },
+        { "id": "spacesNotAllowed", "description": "Αυτό το πεδίο δεν μπορεί να περιέχει κενά" },
+        { "id": "remainingCharacters", "description": "Μπορείτε να δώσετε ακόμα έως και xx χαρακτήρες" },
+        { "id": "passwordsNoMatch", "description": "Ο νέος κωδικός και η επιβεβαίωση νέου κωδικού δεν συμφωνούν" },
+        { "id": "otherErrors", "description": "Αυτό το πεδίο έχει λάθη" }
     ]
 }
