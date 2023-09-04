@@ -9,6 +9,7 @@
         { "id": "doesNotContainLowerCase", "description": "Το πεδίο πρέπει να έχει τουλάχιστον ένα πεζό χαρακτήρα" },
         { "id": "doesNotContainUpperCase", "description": "Το πεδίο πρέπει να έχει τουλάχιστον έναν κεφαλαίο χαρακτήρα" },
         { "id": "doesNotContainSymbol", "description": "Το πεδίο πρέπει να έχει τουλάχιστον ένα σύμβολο π.χ. % ή #" },
+        { "id": "doesNotContainDigits", "description": "Το πεδίο πρέπει να έχει ένα τουλάχιστον ψηφίο" },
         { "id": "spacesNotAllowed", "description": "Αυτό το πεδίο δεν μπορεί να περιέχει κενά" },
         { "id": "remainingCharacters", "description": "Μπορείτε να δώσετε ακόμα έως και xx χαρακτήρες" },
         { "id": "passwordsNoMatch", "description": "Ο νέος κωδικός και η επιβεβαίωση νέου κωδικού δεν συμφωνούν" },

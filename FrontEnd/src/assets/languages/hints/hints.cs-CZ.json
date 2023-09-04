@@ -9,6 +9,7 @@
         { "id": "doesNotContainLowerCase", "description": "Toto pole musí obsahovat alespoň jeden malý znak" },
         { "id": "doesNotContainUpperCase", "description": "Toto pole musí obsahovat alespoň jeden velký znak" },
         { "id": "doesNotContainSymbol", "description": "Toto pole musí obsahovat alespoň jeden symbol, tj. % nebo #." },
+        { "id": "doesNotContainDigits", "description": "Toto pole musí obsahovat alespoň jednu číslici" },
         { "id": "spacesNotAllowed", "description": "Toto pole nesmí obsahovat mezery" },
         { "id": "remainingCharacters", "description": "Můžete uvést až xx dalších znaků" },
         { "id": "passwordsNoMatch", "description": "Nové heslo a potvrzení nového hesla se neshodují" },

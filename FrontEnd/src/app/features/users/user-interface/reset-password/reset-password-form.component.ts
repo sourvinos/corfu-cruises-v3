@@ -115,7 +115,8 @@ export class ResetPasswordFormComponent {
                     ValidationService.containsSpace,
                     ValidationService.doesNotContainUpperCase,
                     ValidationService.doesNotContainLowerCase,
-                    ValidationService.doesNotContainSymbol
+                    ValidationService.doesNotContainSymbol,
+                    ValidationService.doesNotContainDigits
                 ]],
                 confirmPassword: ['', [Validators.required]]
             }, { validator: ValidationService.childrenEqual })

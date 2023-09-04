@@ -9,6 +9,7 @@
         { "id": "doesNotContainLowerCase", "description": "This field must have at least one lowercase character" },
         { "id": "doesNotContainUpperCase", "description": "This field must have at least one uppercase character" },
         { "id": "doesNotContainSymbol", "description": "This field must have at least one symbol i.e. % or #" },
+        { "id": "doesNotContainDigits", "description": "This field must have at least one digit" },
         { "id": "spacesNotAllowed", "description": "This field can't contain spaces" },
         { "id": "remainingCharacters", "description": "You can give up to xx more characters" },
         { "id": "passwordsNoMatch", "description": "New password and confirm new password do not match" },

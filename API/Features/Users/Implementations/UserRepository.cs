@@ -86,6 +86,16 @@ namespace API.Features.Users {
             return entity;
         }
 
+        public string CreateTemporaryPassword() {
+            string validChars = "ABCDEabcde01234!@#$%";
+            Random random = new();
+            char[] chars = new char[20];
+            for (int i = 0; i < 20; i++) {
+                chars[i] = validChars[random.Next(0, validChars.Length)];
+            }
+            return new string(chars);
+        }
+
         private async Task<bool> UpdateUser(UserExtended entity, UserUpdateDto entityToUpdate, string role) {
             entity.Displayname = entityToUpdate.Displayname;
             entity.IsFirstFieldFocused = entityToUpdate.IsFirstFieldFocused;

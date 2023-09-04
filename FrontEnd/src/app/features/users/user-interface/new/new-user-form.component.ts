@@ -118,8 +118,6 @@ export class NewUserFormComponent {
             displayname: this.form.value.displayname,
             customerId: this.form.value.customer.id == 0 ? null : this.form.value.customer.id,
             email: this.form.value.email,
-            password: this.form.value.passwords.password,
-            confirmPassword: this.form.value.passwords.confirmPassword,
             isFirstFieldFocused: this.form.value.isFirstFieldFocused,
             isAdmin: this.form.value.isAdmin,
             isActive: this.form.value.isActive
@@ -136,18 +134,6 @@ export class NewUserFormComponent {
             displayname: ['', [ValidationService.beginsOrEndsWithSpace, Validators.maxLength(32), Validators.required]],
             customer: ['', ValidationService.RequireAutocomplete],
             email: ['x@x.com', [Validators.email, Validators.maxLength(128), Validators.required]],
-            passwords: this.formBuilder.group({
-                password: ['', [
-                    Validators.required,
-                    Validators.minLength(10),
-                    Validators.maxLength(128),
-                    ValidationService.containsSpace,
-                    ValidationService.doesNotContainUpperCase,
-                    ValidationService.doesNotContainLowerCase,
-                    ValidationService.doesNotContainSymbol
-                ]],
-                confirmPassword: ['', [Validators.required]]
-            }, { validator: ValidationService.childrenEqual }),
             isFirstFieldFocused: false,
             isAdmin: false,
             isActive: true

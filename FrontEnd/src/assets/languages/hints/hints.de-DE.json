@@ -9,6 +9,7 @@
         { "id": "doesNotContainLowerCase", "description": "Dieses Feld muss mindestens einen Kleinbuchstaben enthalten" },
         { "id": "doesNotContainUpperCase", "description": "Dieses Feld muss mindestens einen Großbuchstaben enthalten" },
         { "id": "doesNotContainSymbol", "description": "Dieses Feld muss mindestens ein Symbol enthalten, z. B. % oder #" },
+        { "id": "doesNotContainDigits", "description": "Dieses Feld muss mindestens eine Ziffer haben" },
         { "id": "spacesNotAllowed", "description": "Dieses Feld darf keine Leerzeichen enthalten" },
         { "id": "remainingCharacters", "description": "Sie können bis zu xx weitere Zeichen eingeben" },
         { "id": "passwordsNoMatch", "description": "Neues Passwort und Bestätigung des neuen Passworts stimmen nicht überein" },

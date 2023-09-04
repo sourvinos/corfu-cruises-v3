@@ -27,6 +27,11 @@ export class ValidationService {
         return pattern.test(control.value) ? null : { doesNotContainLowerCase: true }
     }
 
+    static doesNotContainDigits(control: AbstractControl): { [key: string]: any } {
+        const pattern = /[0-9]/
+        return pattern.test(control.value) ? null : { doesNotContainDigits: true }
+    }
+
     static doesNotContainSymbol(control: AbstractControl): { [key: string]: any } {
         const pattern = /[!@#$%^&*()]/
         return pattern.test(control.value) ? null : { doesNotContainSymbol: true }
