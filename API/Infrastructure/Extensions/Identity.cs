@@ -26,6 +26,10 @@ namespace API.Infrastructure.Extensions {
                 })
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
+            services
+                .Configure<DataProtectionTokenProviderOptions>(options => {
+                    options.TokenLifespan = TimeSpan.FromMinutes(5);
+                });
         }
 
         public static string GetConnectedUserId(IHttpContextAccessor httpContextAccessor) {
