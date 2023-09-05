@@ -1,4 +1,5 @@
-﻿using API.Infrastructure.Interfaces;
+﻿using System;
+using API.Infrastructure.Interfaces;
 
 namespace API.Features.Customers {
 
@@ -19,6 +20,8 @@ namespace API.Features.Customers {
         public string PostUser { get; set; }
         public string PutAt { get; set; }
         public string PutUser { get; set; }
+        // RowVersion
+        public string RowVersion { get; set; }
 
     }
 

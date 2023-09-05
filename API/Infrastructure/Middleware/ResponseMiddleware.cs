@@ -6,6 +6,7 @@ using API.Infrastructure.Helpers;
 using API.Infrastructure.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Serilog;
 
@@ -24,9 +25,14 @@ namespace API.Infrastructure.Middleware {
         public async Task InvokeAsync(HttpContext httpContext, RequestDelegate next) {
             try {
                 await next(httpContext);
-            } catch (CustomException exception) {
+            }
+            catch (CustomException exception) {
                 await CreateCustomErrorResponse(httpContext, exception);
-            } catch (Exception exception) {
+            }
+            catch (DbUpdateConcurrencyException exception) {
+                await CreateConcurencyErrorResponse(httpContext, exception);
+            }
+            catch (Exception exception) {
                 LogError(exception, httpContextAccessor, userManager);
                 await CreateServerErrorResponse(httpContext, exception);
             }
@@ -40,6 +46,18 @@ namespace API.Infrastructure.Middleware {
                 Icon = Icons.Error.ToString(),
                 Id = null,
                 Message = GetErrorMessage(e.ResponseCode)
+            });
+            return httpContext.Response.WriteAsync(result);
+        }
+
+        private static Task CreateConcurencyErrorResponse(HttpContext httpContext, Exception e) {
+            httpContext.Response.StatusCode = 415;
+            httpContext.Response.ContentType = "application/json";
+            var result = JsonConvert.SerializeObject(new Response {
+                Code = 415,
+                Icon = Icons.Error.ToString(),
+                Id = null,
+                Message = GetErrorMessage(httpContext.Response.StatusCode)
             });
             return httpContext.Response.WriteAsync(result);
         }
@@ -67,6 +85,7 @@ namespace API.Infrastructure.Middleware {
                 412 => ApiMessages.InvalidAccountFields(),
                 413 => ApiMessages.CustomerIdDoesNotMatchConnectedSimpleUserCustomerId(),
                 414 => ApiMessages.DuplicateRefNo(),
+                415 => ApiMessages.ConcurrencyError(),
                 431 => ApiMessages.SimpleUserCanNotAddReservationAfterDepartureTime(),
                 433 => ApiMessages.PortHasNoFreeSeats(),
                 449 => ApiMessages.InvalidShipOwner(),

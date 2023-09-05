@@ -35,6 +35,10 @@
                 "message": "The RefNo already exists. Please try again."
             },
             {
+                "error": 415,
+                "message": "This record has already been updated by another user!"
+            },
+            {
                 "error": 431,
                 "message": "It's not possible to add or change a reservation after the ship's departure."
             },

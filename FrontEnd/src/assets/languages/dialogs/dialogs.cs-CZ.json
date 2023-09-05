@@ -35,6 +35,10 @@
                 "message": "RefNo již existuje. Zkuste to prosím znovu."
             },
             {
+                "error": 415,
+                "message": "Tento záznam byl již aktualizován jiným uživatelem!"
+            },
+            {
                 "error": 431,
                 "message": "Po odjezdu lodi není možné rezervaci přidat nebo změnit."
             },

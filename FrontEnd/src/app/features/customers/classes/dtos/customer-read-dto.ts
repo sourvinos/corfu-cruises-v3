@@ -10,5 +10,6 @@ export interface CustomerReadDto extends Metadata {
     personInCharge: string
     email: string
     isActive: boolean
+    rowVersion: string
 
 }

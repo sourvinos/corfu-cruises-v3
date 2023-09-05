@@ -8,5 +8,6 @@ export interface CustomerWriteDto {
     personInCharge: string
     email: string
     isActive: boolean
+    rowVersion: string
 
 }

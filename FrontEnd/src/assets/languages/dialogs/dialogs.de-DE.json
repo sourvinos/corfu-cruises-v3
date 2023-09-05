@@ -35,6 +35,10 @@
                 "message": "RefNo existiert bereits. Bitte versuchen Sie es erneut."
             },
             {
+                "error": 415,
+                "message": "Dieser Datensatz wurde bereits von einem anderen Benutzer aktualisiert!"
+            },
+            {
                 "error": 431,
                 "message": "Es ist nicht möglich, eine Reservierung nach der Abfahrt des Schiffes zu ändern oder zu ergänzen."
             },

@@ -35,6 +35,10 @@
                 "message": "RefNo existe déjà. Veuillez réessayer."
             },
             {
+                "error": 415,
+                "message": "Cet enregistrement a déjà été mis à jour par un autre utilisateur !"
+            },
+            {
                 "error": 431,
                 "message": "Il n'est pas possible d'ajouter ou de modifier une réservation après le départ du navire."
             },
