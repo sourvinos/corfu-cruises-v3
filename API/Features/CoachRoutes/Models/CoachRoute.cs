@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using API.Features.PickupPoints;
 using API.Features.Ports;
@@ -21,6 +22,8 @@ namespace API.Features.CoachRoutes {
         public string PostUser { get; set; }
         public string PutAt { get; set; }
         public string PutUser { get; set; }
+        // RowVersion
+        public DateTime RowVersion { get; set; }
         // Navigation
         public Port Port { get; set; }
         public List<PickupPoint> PickupPoints { get; set; }

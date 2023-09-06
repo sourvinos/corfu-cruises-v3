@@ -1,15 +1,14 @@
-export class ScheduleWriteVM {
+export interface ScheduleWriteVM {
 
-    constructor(
-
-        public id: number,
-        public destinationId: number,
-        public portId: number,
-        public date: string,
-        public maxPax: number,
-        public time: string,
-        public isActive: boolean
-
-    ) { }
+    // PK
+    id: number,
+    // FKs
+    destinationId: number,
+    portId: number,
+    // Fields
+    date: string,
+    maxPax: number,
+    time: string,
+    isActive: boolean
 
 }

@@ -14,6 +14,8 @@ namespace API.Features.Genders {
         public string PostUser { get; set; }
         public string PutAt { get; set; }
         public string PutUser { get; set; }
+        // RowVersion
+        public string RowVersion { get; set; }
 
     }
 

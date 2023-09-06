@@ -1,3 +1,4 @@
+using System;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.CoachRoutes {
@@ -18,6 +19,8 @@ namespace API.Features.CoachRoutes {
         public string PostUser { get; set; }
         public string PutAt { get; set; }
         public string PutUser { get; set; }
+        // RowVersion
+        public DateTime RowVersion { get; set; }
 
     }
 

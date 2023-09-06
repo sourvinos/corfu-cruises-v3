@@ -3,8 +3,11 @@ import { ShipAutoCompleteVM } from '../../../ships/classes/view-models/ship-auto
 
 export interface RegistrarReadDto extends Metadata {
 
+    // PK
     id: number
+    // Object fields
     ship: ShipAutoCompleteVM
+    // Fields
     fullname: string
     phones: string
     email: string
@@ -12,7 +15,12 @@ export interface RegistrarReadDto extends Metadata {
     address: string
     isPrimary: boolean
     isActive: boolean
-    user: string
-    lastUpdate: string
+    // Metadata
+    postAt: string
+    postUser: string
+    putAt: string
+    putUser: string
+    // Rowversion
+    rowVersion: string
 
 }

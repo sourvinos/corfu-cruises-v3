@@ -16,12 +16,15 @@ namespace API.Features.PickupPoints {
             entity.Property(x => x.Time).HasMaxLength(5).IsRequired(true);
             entity.Property(x => x.Remarks).HasMaxLength(2048);
             entity.Property(x => x.IsActive);
+            // Metadata
             entity.Property(x => x.PostAt).HasMaxLength(19).IsRequired(true);
             entity.Property(x => x.PostUser).HasMaxLength(255).IsRequired(true);
             entity.Property(x => x.PutAt).HasMaxLength(19);
             entity.Property(x => x.PutUser).HasMaxLength(255);
             // FK Constraints
             entity.HasOne(x => x.CoachRoute).WithMany(x => x.PickupPoints).HasForeignKey(x => x.CoachRouteId).OnDelete(DeleteBehavior.Restrict);
+            // RowVersion
+            entity.Property(x => x.RowVersion).IsRowVersion();
         }
 
     }

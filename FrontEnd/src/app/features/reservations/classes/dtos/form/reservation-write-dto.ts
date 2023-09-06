@@ -4,11 +4,16 @@ import { PassengerWriteDto } from './passenger-write-dto'
 
 export interface ReservationWriteDto {
 
+    // PK
     reservationId: Guid
+    // FKs
     customerId: number
     destinationId: number
+    driverId?: number
     pickupPointId: number
     portId: number
+    shipId?: number
+    // Fields
     date: string
     refNo: string
     ticketNo: string
@@ -19,7 +24,7 @@ export interface ReservationWriteDto {
     free: number
     remarks: string
     passengers: PassengerWriteDto[]
-    driverId?: number
-    shipId?: number
+    // Rowversion
+    rowVersion: string
 
 }

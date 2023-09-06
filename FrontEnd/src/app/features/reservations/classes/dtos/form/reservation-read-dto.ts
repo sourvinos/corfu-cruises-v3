@@ -7,13 +7,16 @@ import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
 export interface ReservationReadDto extends Metadata {
 
+    // PK
     reservationId: Guid
+    // Object fields
     customer: SimpleEntity
     destination: SimpleEntity
     driver: SimpleEntity
     pickupPoint: PickupPointAutoCompleteVM
     port: SimpleEntity
     ship: SimpleEntity
+    // Fields
     date: string
     refNo: string
     email: string
@@ -25,6 +28,13 @@ export interface ReservationReadDto extends Metadata {
     totalPax: number
     ticketNo: string
     passengers: PassengerReadDto
+    // Metadata
+    postAt: string
+    postUser: string
+    putAt: string
+    putUser: string
+    // Rowversion
+    rowVersion: string
 
 }
 

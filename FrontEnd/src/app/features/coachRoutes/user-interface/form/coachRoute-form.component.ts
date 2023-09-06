@@ -131,6 +131,7 @@ export class CoachRouteFormComponent {
             description: this.form.value.description,
             hasTransfer: this.form.value.hasTransfer,
             isActive: this.form.value.isActive,
+            rowVersion: this.form.value.rowVersion
         }
     }
 
@@ -170,7 +171,8 @@ export class CoachRouteFormComponent {
             postAt: [''],
             postUser: [''],
             putAt: [''],
-            putUser: ['']
+            putUser: [''],
+            rowVersion: ['']
         })
     }
 
@@ -197,7 +199,8 @@ export class CoachRouteFormComponent {
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
                 putAt: this.record.putAt,
-                putUser: this.record.putUser
+                putUser: this.record.putUser,
+                rowVersion: this.record.rowVersion
             })
         }
     }

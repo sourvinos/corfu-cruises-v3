@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using API.Features.CoachRoutes;
 using API.Features.Reservations;
@@ -20,6 +21,8 @@ namespace API.Features.Ports {
         public string PostUser { get; set; }
         public string PutAt { get; set; }
         public string PutUser { get; set; }
+        // RowVersion
+        public DateTime RowVersion { get; set; }
         // Navigation
         public List<Reservation> Reservations { get; set; }
         public List<CoachRoute> CoachRoutes { get; set; }

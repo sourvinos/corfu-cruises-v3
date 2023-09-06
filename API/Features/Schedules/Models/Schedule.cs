@@ -22,6 +22,8 @@ namespace API.Features.Schedules {
         public string PostUser { get; set; }
         public string PutAt { get; set; }
         public string PutUser { get; set; }
+        // RowVersion
+        public DateTime RowVersion { get; set; }
         // Navigation
         public Destination Destination { get; set; }
         public Port Port { get; set; }

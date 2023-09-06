@@ -132,7 +132,8 @@ export class RegistrarFormComponent {
             fax: this.form.value.fax,
             address: this.form.value.address,
             isPrimary: this.form.value.isPrimary,
-            isActive: this.form.value.isActive
+            isActive: this.form.value.isActive,
+            rowVersion: this.form.value.rowVersion
         }
     }
 
@@ -175,7 +176,8 @@ export class RegistrarFormComponent {
             postAt: [''],
             postUser: [''],
             putAt: [''],
-            putUser: ['']
+            putUser: [''],
+            rowVersion: ['']
         })
     }
 
@@ -205,7 +207,8 @@ export class RegistrarFormComponent {
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
                 putAt: this.record.putAt,
-                putUser: this.record.putUser
+                putUser: this.record.putUser,
+                rowVersion: this.record.rowVersion
             })
         }
     }

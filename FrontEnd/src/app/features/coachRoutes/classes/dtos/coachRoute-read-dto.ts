@@ -3,15 +3,21 @@ import { Metadata } from 'src/app/shared/classes/metadata'
 
 export interface CoachRouteReadDto extends Metadata {
 
+    // PK
     id: number
-    port: PortAutoCompleteVM
+    // Fields
     abbreviation: string
     description: string
     hasTransfer: boolean
     isActive: boolean
+    // Object fields
+    port: PortAutoCompleteVM
+    // Metadata
     postAt: string
     postUser: string
     putAt: string
     putUser: string
+    // Rowversion
+    rowVersion: string
 
 }

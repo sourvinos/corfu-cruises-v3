@@ -135,7 +135,8 @@ export class PickupPointFormComponent {
             exactPoint: this.form.value.exactPoint,
             time: this.form.value.time,
             remarks: this.form.value.remarks,
-            isActive: this.form.value.isActive
+            isActive: this.form.value.isActive,
+            rowVersion: this.form.value.rowVersion
         }
     }
 
@@ -176,7 +177,8 @@ export class PickupPointFormComponent {
             postAt: [''],
             postUser: [''],
             putAt: [''],
-            putUser: ['']
+            putUser: [''],
+            rowVersion: ['']
         })
     }
 
@@ -204,7 +206,8 @@ export class PickupPointFormComponent {
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
                 putAt: this.record.putAt,
-                putUser: this.record.putUser
+                putUser: this.record.putUser,
+                rowVersion: this.record.rowVersion
             })
         }
     }

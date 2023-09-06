@@ -63,7 +63,8 @@ namespace API.Features.Reservations {
                     }
                 })))
                 .ForMember(x => x.PutAt, x => x.MapFrom(x => x.PutAt ?? ""))
-                .ForMember(x => x.PutUser, x => x.MapFrom(x => x.PutUser ?? ""));
+                .ForMember(x => x.PutUser, x => x.MapFrom(x => x.PutUser ?? ""))
+                .ForMember(x => x.RowVersion, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(x.RowVersion)));
             // Read passenger
             CreateMap<Passenger, PassengerReadDto>()
                 .ForMember(x => x.Birthdate, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Birthdate)))

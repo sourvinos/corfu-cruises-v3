@@ -3,14 +3,22 @@ import { Metadata } from 'src/app/shared/classes/metadata'
 
 export interface PickupPointReadDto extends Metadata {
 
+    // PK
     id: number
-    description: string
+    // Object fields
     coachRoute: CoachRouteAutoCompleteVM
+    // Fields
+    description: string
     exactPoint: string
     time: string
     remarks: string
     isActive: boolean
-    user: string
-    lastUpdate: string
+    // Metadata
+    postAt: string
+    postUser: string
+    putAt: string
+    putUser: string
+    // Rowversion
+    rowVersion: string
 
 }

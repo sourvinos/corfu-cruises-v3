@@ -92,7 +92,8 @@ export class PortFormComponent {
             abbreviation: this.form.value.abbreviation,
             description: this.form.value.description,
             stopOrder: this.form.value.stopOrder,
-            isActive: this.form.value.isActive
+            isActive: this.form.value.isActive,
+            rowVersion: this.form.value.rowVersion
         }
     }
 
@@ -131,7 +132,8 @@ export class PortFormComponent {
             postAt: [''],
             postUser: [''],
             putAt: [''],
-            putUser: ['']
+            putUser: [''],
+            rowVersion: ['']
         })
     }
 
@@ -146,7 +148,8 @@ export class PortFormComponent {
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
                 putAt: this.record.putAt,
-                putUser: this.record.putUser
+                putUser: this.record.putUser,
+                rowVersion: this.record.rowVersion
             })
         }
     }

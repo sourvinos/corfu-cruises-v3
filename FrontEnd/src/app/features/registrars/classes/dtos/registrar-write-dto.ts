@@ -1,7 +1,10 @@
 export interface RegistrarWriteDto {
 
+    // PK
     id: number
+    // FKs
     shipId: number
+    // Fields
     fullname: string
     phones: string
     email: string
@@ -9,5 +12,7 @@ export interface RegistrarWriteDto {
     address: string
     isPrimary: boolean
     isActive: boolean
+    // Rowversion
+    rowVersion: string
 
 }

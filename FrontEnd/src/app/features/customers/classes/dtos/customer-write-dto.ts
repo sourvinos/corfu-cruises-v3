@@ -1,6 +1,8 @@
 export interface CustomerWriteDto {
 
+    // PK
     id: number
+    // Fields
     description: string
     profession: string
     address: string
@@ -8,6 +10,7 @@ export interface CustomerWriteDto {
     personInCharge: string
     email: string
     isActive: boolean
+    // Rowversion
     rowVersion: string
 
 }

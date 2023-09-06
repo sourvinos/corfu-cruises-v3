@@ -30,7 +30,7 @@ namespace API.Infrastructure.Middleware {
                 await CreateCustomErrorResponse(httpContext, exception);
             }
             catch (DbUpdateConcurrencyException exception) {
-                await CreateConcurencyErrorResponse(httpContext, exception);
+                await CreateConcurrencyErrorResponse(httpContext, exception);
             }
             catch (Exception exception) {
                 LogError(exception, httpContextAccessor, userManager);
@@ -50,7 +50,7 @@ namespace API.Infrastructure.Middleware {
             return httpContext.Response.WriteAsync(result);
         }
 
-        private static Task CreateConcurencyErrorResponse(HttpContext httpContext, Exception e) {
+        private static Task CreateConcurrencyErrorResponse(HttpContext httpContext, DbUpdateConcurrencyException exception) {
             httpContext.Response.StatusCode = 415;
             httpContext.Response.ContentType = "application/json";
             var result = JsonConvert.SerializeObject(new Response {
