@@ -1,0 +1,20 @@
+<div class="group-input-field hide-hint">
+    <form [formGroup]="form" id="form">
+        <!-- Users -->
+        <mat-form-field>
+            <mat-label>{{ getLabel('post') }}</mat-label>
+            <div class="multiple-inputs">
+                <input formControlName="postUser" matInput readonly>
+                <input class="right" formControlName="postAt" matInput readonly>
+            </div>
+        </mat-form-field>
+        <!-- Updates -->
+        <mat-form-field>
+            <mat-label>{{ getLabel('put') }}</mat-label>
+            <div class="multiple-inputs">
+                <input formControlName="putUser" matInput readonly>
+                <input class="right" formControlName="putAt" matInput readonly>
+            </div>
+        </mat-form-field>
+    </form>
+</div>

@@ -58,9 +58,9 @@ export class CustomerFormComponent {
         return this.messageHintService.getDescription(id, minmax)
     }
 
-    public getLabel(id: string): string {
-        return this.messageLabelService.getDescription(this.feature, id)
-    }
+        public getLabel(id: string): string {
+            return this.messageLabelService.getDescription(this.feature, id)
+        }
 
     public onDelete(): void {
         this.dialogService.open(this.messageDialogService.confirmDelete(), 'warning', ['abort', 'ok']).subscribe(response => {

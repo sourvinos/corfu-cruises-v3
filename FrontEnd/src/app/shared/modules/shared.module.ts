@@ -20,13 +20,14 @@ import { LoadingSpinnerComponent } from '../components/loading-spinner/loading-s
 import { LogoComponent } from '../components/top-bar-wrapper/logo/logo.component'
 import { MainFooterComponent } from '../components/home/main-footer.component'
 import { MaterialModule } from './material.module'
+import { MetadataPanelComponent } from '../components/metadata-panel/metadata-panel.component'
 import { ModalDialogComponent } from '../components/modal-dialog/modal-dialog.component'
 import { MonthSelectorComponent } from '../components/month-selector/month-selector.component'
 import { PadNumberPipe } from '../pipes/pad-number.pipe'
+import { ParametersMenuComponent } from '../components/top-bar-wrapper/parameters-menu/parameters-menu.component'
 import { PrettyPrintPipe } from '../pipes/json-pretty.pipe'
 import { ReplaceZeroPipe } from '../pipes/replace-zero.pipe'
 import { SafeStylePipe } from '../pipes/safe-style.pipe'
-import { ParametersMenuComponent } from '../components/top-bar-wrapper/parameters-menu/parameters-menu.component'
 import { TableTotalFilteredRecordsComponent } from '../components/table-total-filtered-records/table-total-filtered-records.component'
 import { ThemeGroupSelectorComponent } from '../components/top-bar-wrapper/theme-group-selector/theme-group-selector.component'
 import { ThemeMenuComponent } from './../components/top-bar-wrapper/theme-menu/theme-menu.component'
@@ -49,13 +50,14 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         LoadingSpinnerComponent,
         LogoComponent,
         MainFooterComponent,
+        MetadataPanelComponent,
         ModalDialogComponent,
         MonthSelectorComponent,
         PadNumberPipe,
+        ParametersMenuComponent,
         PrettyPrintPipe,
         ReplaceZeroPipe,
         SafeStylePipe,
-        ParametersMenuComponent,
         TableTotalFilteredRecordsComponent,
         ThemeGroupSelectorComponent,
         ThemeMenuComponent,
@@ -89,15 +91,16 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         LogoComponent,
         MainFooterComponent,
         MaterialModule,
+        MetadataPanelComponent,
         MonthSelectorComponent,
         PadNumberPipe,
+        ParametersMenuComponent,
         PrettyPrintPipe,
         PrimeNgModule,
         ReactiveFormsModule,
         ReplaceZeroPipe,
         RouterModule,
         RouterModule,
-        ParametersMenuComponent,
         TableTotalFilteredRecordsComponent,
         ThemeGroupSelectorComponent,
         ThemeMenuComponent,
