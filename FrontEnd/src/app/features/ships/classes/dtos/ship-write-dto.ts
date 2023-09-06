@@ -1,7 +1,10 @@
 export interface ShipWriteDto {
 
+    // PK
     id: number
+    // FKs
     shipOwnerId: number
+    // Fields
     description: string
     abbreviation: string
     imo: string
@@ -11,5 +14,7 @@ export interface ShipWriteDto {
     managerInGreece: string
     agent: string
     isActive: boolean
+    // Rowversion
+    rowVersion: string
 
 }

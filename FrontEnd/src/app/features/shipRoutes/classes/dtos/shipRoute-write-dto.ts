@@ -1,6 +1,8 @@
 export interface ShipRouteWriteDto {
 
+    // PK
     id: number
+    // Fields
     description: string
     fromPort: string
     fromTime: string
@@ -9,5 +11,7 @@ export interface ShipRouteWriteDto {
     toPort: string
     toTime: string
     isActive: boolean
+    // Rowversion
+    rowVersion: string
 
 }

@@ -1,6 +1,8 @@
 export interface ShipOwnerWriteDto {
 
+    // PK
     id: number
+    // Fields
     description: string
     profession: string
     address: string
@@ -9,5 +11,7 @@ export interface ShipOwnerWriteDto {
     phones: string
     email: string
     isActive: boolean
+    // Rowversion
+    rowVersion: string
 
 }

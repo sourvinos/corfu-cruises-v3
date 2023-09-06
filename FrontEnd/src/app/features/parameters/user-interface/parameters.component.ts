@@ -73,7 +73,8 @@ export class ParametersComponent {
             id: this.form.value.id,
             closingTime: this.form.value.closingTime,
             phones: this.form.value.phones,
-            email: this.form.value.email
+            email: this.form.value.email,
+            rowVersion: this.form.value.rowVersion
         }
     }
 
@@ -109,7 +110,8 @@ export class ParametersComponent {
             postAt: [''],
             postUser: [''],
             putAt: [''],
-            putUser: ['']
+            putUser: [''],
+            rowVersion: ['']
         })
     }
 
@@ -123,7 +125,8 @@ export class ParametersComponent {
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
                 putAt: this.record.putAt,
-                putUser: this.record.putUser
+                putUser: this.record.putUser,
+                rowVersion: this.record.rowVersion
             })
         }
     }

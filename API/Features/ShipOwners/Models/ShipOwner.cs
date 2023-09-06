@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using API.Features.Ships;
 using API.Infrastructure.Interfaces;
@@ -22,6 +23,8 @@ namespace API.Features.ShipOwners {
         public string PostUser { get; set; }
         public string PutAt { get; set; }
         public string PutUser { get; set; }
+        // RowVersion
+        public DateTime RowVersion { get; set; }
         // Navigation
         public List<Ship> Ships { get; set; }
 

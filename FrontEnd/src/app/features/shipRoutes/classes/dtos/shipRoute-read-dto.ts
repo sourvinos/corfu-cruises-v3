@@ -2,7 +2,9 @@ import { Metadata } from 'src/app/shared/classes/metadata'
 
 export interface ShipRouteReadDto extends Metadata {
 
+    // PK
     id: number
+    // Fields
     description: string
     fromPort: string
     fromTime: string
@@ -11,5 +13,7 @@ export interface ShipRouteReadDto extends Metadata {
     toPort: string
     toTime: string
     isActive: boolean
+    // Rowversion
+    rowVersion: string
 
 }

@@ -135,7 +135,8 @@ export class ShipFormComponent {
             manager: this.form.value.manager,
             managerInGreece: this.form.value.managerInGreece,
             agent: this.form.value.agent,
-            isActive: this.form.value.isActive
+            isActive: this.form.value.isActive,
+            rowVersion: this.form.value.rowVersion
         }
     }
 
@@ -180,7 +181,8 @@ export class ShipFormComponent {
             postAt: [''],
             postUser: [''],
             putAt: [''],
-            putUser: ['']
+            putUser: [''],
+            rowVersion: ['']
         })
     }
 
@@ -212,7 +214,8 @@ export class ShipFormComponent {
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
                 putAt: this.record.putAt,
-                putUser: this.record.putUser
+                putUser: this.record.putUser,
+                rowVersion: this.record.rowVersion
             })
         }
     }

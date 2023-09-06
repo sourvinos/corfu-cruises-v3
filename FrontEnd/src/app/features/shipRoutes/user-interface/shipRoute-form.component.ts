@@ -97,7 +97,8 @@ export class ShipRouteFormComponent {
             viaTime: this.form.value.viaTime,
             toPort: this.form.value.toPort,
             toTime: this.form.value.toTime,
-            isActive: this.form.value.isActive
+            isActive: this.form.value.isActive,
+            rowVersion: this.form.value.rowVersion
         }
     }
 
@@ -137,7 +138,8 @@ export class ShipRouteFormComponent {
             postAt: [''],
             postUser: [''],
             putAt: [''],
-            putUser: ['']
+            putUser: [''],
+            rowVersion: ['']
         })
     }
 
@@ -153,7 +155,8 @@ export class ShipRouteFormComponent {
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
                 putAt: this.record.putAt,
-                putUser: this.record.putUser
+                putUser: this.record.putUser,
+                rowVersion: this.record.rowVersion
             })
         }
     }

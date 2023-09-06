@@ -2,7 +2,9 @@ import { Metadata } from 'src/app/shared/classes/metadata'
 
 export interface ShipOwnerReadDto extends Metadata {
 
+    // PK
     id: number
+    // Fields
     description: string
     profession: string
     address: string
@@ -11,7 +13,7 @@ export interface ShipOwnerReadDto extends Metadata {
     phones: string
     email: string
     isActive: boolean
-    user: string
-    lastUpdate: string
+    // Rowversion
+    rowVersion: string
 
 }

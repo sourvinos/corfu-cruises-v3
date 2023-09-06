@@ -2,8 +2,12 @@ import { ShipOwnerAutoCompleteVM } from 'src/app/features/shipOwners/classes/vie
 import { Metadata } from 'src/app/shared/classes/metadata'
 
 export interface ShipReadDto extends Metadata {
+
+    // PK
     id: number
+    // Object fields
     shipOwner: ShipOwnerAutoCompleteVM
+    // Fields
     description: string
     abbreviation: string
     imo: string
@@ -13,5 +17,7 @@ export interface ShipReadDto extends Metadata {
     managerInGreece: string
     agent: string
     isActive: boolean
+    // Rowversion
+    rowVersion: string
 
 }
