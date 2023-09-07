@@ -65,23 +65,9 @@
                     <span>{{ getLabel("isActive") }}</span>
                 </mat-checkbox>
             </div>
-            <div class="align-bottom group-input-field hide-hint">
-                <!-- Users -->
-                <mat-form-field>
-                    <mat-label>{{ getLabel('post') }}</mat-label>
-                    <div class="multiple-inputs">
-                        <input formControlName="postUser" matInput readonly>
-                        <input class="right" formControlName="postAt" matInput readonly>
-                    </div>
-                </mat-form-field>
-                <!-- Updates -->
-                <mat-form-field>
-                    <mat-label>{{ getLabel('put') }}</mat-label>
-                    <div class="multiple-inputs">
-                        <input formControlName="putUser" matInput readonly>
-                        <input class="right" formControlName="putAt" matInput readonly>
-                    </div>
-                </mat-form-field>
+            <div class="align-bottom">
+                <!-- Metadata -->
+                <metadata-panel [feature]="feature" [postAt]="form.value.postAt" [postUser]="form.value.postUser" [putAt]="form.value.putAt" [putUser]="form.value.putUser"></metadata-panel>
             </div>
         </form>
     </div>

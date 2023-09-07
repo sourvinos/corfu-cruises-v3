@@ -11,6 +11,8 @@ import { MessageLabelService } from '../../services/message-label.service'
 
 export class MetadataPanelComponent {
 
+    //#region variables
+
     @Input() feature: string
     @Input() postUser: string
     @Input() postAt: string
@@ -19,16 +21,28 @@ export class MetadataPanelComponent {
 
     public form: FormGroup
 
+    //#endregion
+
     constructor(private formBuilder: FormBuilder, private messageLabelService: MessageLabelService) { }
+
+    //#region lifecycle hooks
 
     ngOnInit(): void {
         this.initForm()
         this.populateFields()
     }
 
+    //#endregion
+
+    //#region public methods
+
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
     }
+
+    //#endregion
+
+    //#region private methods
 
     private initForm(): void {
         this.form = this.formBuilder.group({
@@ -47,5 +61,7 @@ export class MetadataPanelComponent {
             putUser: this.putUser
         })
     }
+
+    //#endregion
 
 }

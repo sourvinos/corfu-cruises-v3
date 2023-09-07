@@ -1,6 +1,6 @@
 <div class="group-input-field hide-hint">
     <form [formGroup]="form" id="form">
-        <!-- Users -->
+        <!-- Post -->
         <mat-form-field>
             <mat-label>{{ getLabel('post') }}</mat-label>
             <div class="multiple-inputs">
@@ -8,7 +8,10 @@
                 <input class="right" formControlName="postAt" matInput readonly>
             </div>
         </mat-form-field>
-        <!-- Updates -->
+        <!-- Comparison -->
+        <span *ngIf="postAt==putAt" id="comparison">=</span>
+        <span *ngIf="postAt!=putAt" id="comparison">≠</span>
+        <!-- Put -->
         <mat-form-field>
             <mat-label>{{ getLabel('put') }}</mat-label>
             <div class="multiple-inputs">
