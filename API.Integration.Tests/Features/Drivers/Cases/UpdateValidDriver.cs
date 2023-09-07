@@ -16,7 +16,8 @@ namespace Drivers {
             return new object[] {
                 new TestDriver {
                     Id = 1,
-                    Description = Helpers.CreateRandomString(128)
+                    Description = Helpers.CreateRandomString(128),
+                    RowVersion = "2023-09-07 09:52:57"
                 }
             };
         }

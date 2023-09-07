@@ -17,7 +17,8 @@ namespace Destinations {
                 new TestDestination {
                     Id = 1,
                     Description = Helpers.CreateRandomString(128),
-                    Abbreviation = Helpers.CreateRandomString(5)
+                    Abbreviation = Helpers.CreateRandomString(5),
+                    RowVersion = "2023-09-07 09:52:40"
                 }
             };
         }

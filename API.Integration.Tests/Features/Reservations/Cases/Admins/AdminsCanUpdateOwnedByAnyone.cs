@@ -24,7 +24,8 @@ namespace Reservations {
                     PickupPointId = 248,
                     RefNo = "PA175",
                     TicketNo = "21",
-                    Adults = 2
+                    Adults = 2,
+                    RowVersion = "2023-09-07 09:55:16"
                 }
             };
         }
@@ -37,7 +38,8 @@ namespace Reservations {
                     CustomerId = 2,
                     DestinationId = 1,
                     PickupPointId = 266,
-                    TicketNo = "23"
+                    TicketNo = "23",
+                    RowVersion = "2023-09-07 09:55:16"
                 }
             };
         }
@@ -51,7 +53,8 @@ namespace Reservations {
                     DestinationId = 1,
                     PickupPointId = 129,
                     RefNo = "PA623",
-                    TicketNo = "1258"
+                    TicketNo = "1258",
+                    RowVersion = "2023-09-07 09:55:16"
                 }
             };
         }

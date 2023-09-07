@@ -21,7 +21,8 @@ namespace API.IntegrationTests.ShipCrews {
                     ShipId = 6,
                     Lastname = Helpers.CreateRandomString(128),
                     Firstname = Helpers.CreateRandomString(128),
-                    Birthdate = "1970-01-01"
+                    Birthdate = "1970-01-01",
+                    RowVersion = "2023-09-07 09:55:49"
                 }
             };
         }

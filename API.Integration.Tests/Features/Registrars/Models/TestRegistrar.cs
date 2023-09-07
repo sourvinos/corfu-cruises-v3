@@ -9,6 +9,7 @@ namespace Registrars {
         public int Id { get; set; }
         public int ShipId { get; set; }
         public string Fullname { get; set; }
+        public string RowVersion { get; set; }
 
     }
 

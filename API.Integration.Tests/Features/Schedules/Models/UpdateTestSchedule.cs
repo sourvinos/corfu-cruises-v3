@@ -12,6 +12,7 @@ namespace Schedules {
         public string Date { get; set; }
         public string Time { get; set; }
         public int MaxPax { get; set; }
+        public string RowVersion { get; set; }
 
     }
 

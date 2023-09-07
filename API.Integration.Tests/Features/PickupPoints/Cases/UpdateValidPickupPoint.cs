@@ -21,7 +21,8 @@ namespace API.IntegrationTests.PickupPoints {
                     ExactPoint = Helpers.CreateRandomString(128),
                     Time = "08:00",
                     Coordinates = Helpers.CreateRandomString(128),
-                    IsActive = true
+                    IsActive = true,
+                    RowVersion = "2023-09-07 09:54:23"
                 }
             };
         }

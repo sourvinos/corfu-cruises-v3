@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Infrastructure;
@@ -18,7 +19,8 @@ namespace CoachRoutes {
                     Id = 1,
                     PortId = 1,
                     Description = Helpers.CreateRandomString(128),
-                    Abbreviation = Helpers.CreateRandomString(10)
+                    Abbreviation = Helpers.CreateRandomString(10),
+                    RowVersion = "2023-09-07 09:52:02"
                 }
             };
         }

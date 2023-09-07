@@ -17,7 +17,8 @@ namespace Nationalities {
                 new TestNationality {
                     Id = 1,
                     Description = Helpers.CreateRandomString(128),
-                    Code = Helpers.CreateRandomString(10)
+                    Code = Helpers.CreateRandomString(10),
+                    RowVersion = "2023-09-07 09:53:32"
                 }
             };
         }

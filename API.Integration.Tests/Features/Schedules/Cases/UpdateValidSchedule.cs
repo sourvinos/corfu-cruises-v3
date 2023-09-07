@@ -20,7 +20,8 @@ namespace Schedules {
                     PortId = 1,
                     Date = "2022-12-04",
                     Time = "08:00",
-                    MaxPax = 185
+                    MaxPax = 185,
+                    RowVersion = "2023-09-07 09:55:33"
                 }
             };
         }

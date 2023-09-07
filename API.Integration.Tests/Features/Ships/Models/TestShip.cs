@@ -10,6 +10,7 @@ namespace Ships {
         public int ShipOwnerId { get; set; }
         public string Description { get; set; }
         public string Abbreviation { get; set; }
+        public string RowVersion { get; set; }
 
     }
 

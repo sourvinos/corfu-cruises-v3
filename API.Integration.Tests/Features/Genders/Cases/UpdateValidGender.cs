@@ -16,7 +16,8 @@ namespace Genders {
             return new object[] {
                 new TestGender {
                     Id = 1,
-                    Description = Helpers.CreateRandomString(128)
+                    Description = Helpers.CreateRandomString(128),
+                    RowVersion = "2023-09-07 09:53:15"
                 }
             };
         }

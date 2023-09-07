@@ -16,7 +16,8 @@ namespace API.IntegrationTests.ShipOwners {
             return new object[] {
                 new TestShipOwner {
                     Id = 5,
-                    Description = Helpers.CreateRandomString(128)
+                    Description = Helpers.CreateRandomString(128),
+                    RowVersion = "2023-09-07 09:56:05"
                 }
             };
         }

@@ -2,11 +2,12 @@ using Infrastructure;
 
 namespace Nationalities {
 
-    public class TestNationality:ITestEntity {
+    public class TestNationality : ITestEntity {
 
         public int Id { get; set; }
         public string Description { get; set; }
         public string Code { get; set; }
+        public string RowVersion { get; set; }
 
     }
 
