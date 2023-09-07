@@ -11,8 +11,6 @@ namespace API.Features.Ships {
             CreateMap<Ship, ShipAutoCompleteVM>();
             CreateMap<Ship, ShipReadDto>()
                 .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new SimpleEntity { Id = x.ShipOwner.Id, Description = x.ShipOwner.Description }))
-                .ForMember(x => x.PutAt, x => x.MapFrom(x => x.PutAt ?? ""))
-                .ForMember(x => x.PutUser, x => x.MapFrom(x => x.PutUser ?? ""))
                 .ForMember(x => x.RowVersion, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(x.RowVersion)));
             CreateMap<ShipWriteDto, Ship>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))

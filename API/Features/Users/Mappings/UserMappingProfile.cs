@@ -16,9 +16,7 @@ namespace API.Features.Users {
             CreateMap<UserExtended, UserReadDto>()
                 .ForMember(x => x.Customer, x => x.MapFrom(x => x.Customer == null
                     ? new SimpleEntity { Id = 0, Description = "(EMPTY)" }
-                    : new SimpleEntity { Id = x.Customer.Id, Description = x.Customer.Description }))
-               .ForMember(x => x.PutAt, x => x.MapFrom(x => x.PutAt ?? ""))
-               .ForMember(x => x.PutUser, x => x.MapFrom(x => x.PutUser ?? ""));
+                    : new SimpleEntity { Id = x.Customer.Id, Description = x.Customer.Description }));
         }
 
     }

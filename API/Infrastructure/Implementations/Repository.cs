@@ -78,6 +78,8 @@ namespace API.Infrastructure.Implementations {
         public IMetadata AttachMetadataToPostDto(IMetadata entity) {
             entity.PostAt = DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime());
             entity.PostUser = Identity.GetConnectedUserDetails(userManager, Identity.GetConnectedUserId(httpContextAccessor)).UserName;
+            entity.PutAt = entity.PostAt;
+            entity.PutUser = entity.PostUser;
             return entity;
         }
 

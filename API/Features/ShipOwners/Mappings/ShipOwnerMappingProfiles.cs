@@ -9,8 +9,6 @@ namespace API.Features.ShipOwners {
             CreateMap<ShipOwner, ShipOwnerListVM>();
             CreateMap<ShipOwner, ShipOwnerAutoCompleteVM>();
             CreateMap<ShipOwner, ShipOwnerReadDto>()
-                .ForMember(x => x.PutAt, x => x.MapFrom(x => x.PutAt ?? ""))
-                .ForMember(x => x.PutUser, x => x.MapFrom(x => x.PutUser ?? ""))
                 .ForMember(x => x.RowVersion, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(x.RowVersion)));
             CreateMap<ShipOwnerWriteDto, ShipOwner>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))

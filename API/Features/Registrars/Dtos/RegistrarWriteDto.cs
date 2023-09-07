@@ -1,3 +1,4 @@
+using System;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.Registrars {
@@ -22,7 +23,7 @@ namespace API.Features.Registrars {
         public string PutAt { get; set; }
         public string PutUser { get; set; }
         // RowVersion
-        public string RowVersion { get; set; }
+        public DateTime RowVersion { get; set; }
 
     }
 

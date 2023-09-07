@@ -12,8 +12,6 @@ namespace API.Features.Registrars {
             CreateMap<Registrar, RegistrarAutoCompleteVM>();
             CreateMap<Registrar, RegistrarReadDto>()
                 .ForMember(x => x.Ship, x => x.MapFrom(x => new SimpleEntity { Id = x.Ship.Id, Description = x.Ship.Description }))
-                .ForMember(x => x.PutAt, x => x.MapFrom(x => x.PutAt ?? ""))
-                .ForMember(x => x.PutUser, x => x.MapFrom(x => x.PutUser ?? ""))
                 .ForMember(x => x.RowVersion, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(x.RowVersion)));
             CreateMap<RegistrarWriteDto, Registrar>()
                 .ForMember(x => x.Fullname, x => x.MapFrom(x => x.Fullname.Trim()))

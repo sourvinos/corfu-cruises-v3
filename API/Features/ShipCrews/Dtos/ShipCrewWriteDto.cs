@@ -1,3 +1,4 @@
+using System;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.ShipCrews {
@@ -21,7 +22,7 @@ namespace API.Features.ShipCrews {
         public string PutAt { get; set; }
         public string PutUser { get; set; }
         // RowVersion
-        public string RowVersion { get; set; }
+        public DateTime RowVersion { get; set; }
 
     }
 

@@ -17,8 +17,6 @@ namespace API.Features.PickupPoints {
                 .ForMember(x => x.Port, x => x.MapFrom(x => new SimpleEntity { Id = x.CoachRoute.Port.Id, Description = x.CoachRoute.Port.Description }));
             CreateMap<PickupPoint, PickupPointReadDto>()
                 .ForMember(x => x.CoachRoute, x => x.MapFrom(x => new CoachRouteAutoCompleteVM { Id = x.CoachRoute.Id, Abbreviation = x.CoachRoute.Abbreviation }))
-                .ForMember(x => x.PutAt, x => x.MapFrom(x => x.PutAt ?? ""))
-                .ForMember(x => x.PutUser, x => x.MapFrom(x => x.PutUser ?? ""))
                 .ForMember(x => x.RowVersion, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(x.RowVersion)));
             CreateMap<PickupPointWriteDto, PickupPoint>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
