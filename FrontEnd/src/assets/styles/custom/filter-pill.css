@@ -29,6 +29,7 @@
 .filter-pill .pill {
     align-items: center;
     border-radius: 0.3125rem;
+    color: var(--color-button-text) !important;
     display: flex;
     flex-direction: row;
     gap: 0.8rem;
