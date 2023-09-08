@@ -108,10 +108,6 @@ export class ReservationsMenuComponent {
         })
     }
 
-    public isLoggedIn(): boolean {
-        return this.sessionStorageService.getItem('userId') ? true : false
-    }
-
     //#endregion
 
 }

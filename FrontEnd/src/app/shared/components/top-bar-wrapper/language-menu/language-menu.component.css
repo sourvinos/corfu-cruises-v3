@@ -1,0 +1,25 @@
+.drop-down-menu > button {
+    background-color: transparent !important;
+    padding: 0.3125rem 0 0 1.125rem !important;
+}
+
+.sub-menu {
+    width: min-content !important;
+}
+
+.drop-down-menu:hover .sub-menu {
+    display: flex;
+    row-gap: 0.125rem;
+}
+
+.sub-menu button {
+    background-color: var(--color-accent) !important;
+    border-radius: 50% !important;
+    border: 0.0625rem solid color-mix(in srgb, var(--color-text) 20%, transparent);
+    padding: 1rem 0.9375rem !important;
+    transition: background-color 0.2s;
+}
+
+.sub-menu button img {
+    border: 0.0625rem solid #ffffff;
+}

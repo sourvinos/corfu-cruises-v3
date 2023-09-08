@@ -10,7 +10,7 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 @Component({
     selector: 'language-menu',
     templateUrl: './language-menu.component.html',
-    styleUrls: ['../../../../../assets/styles/custom/dropdown-menu.css']
+    styleUrls: ['../../../../../assets/styles/custom/dropdown-menu.css', './language-menu.component.css']
 })
 
 export class LanguageMenuComponent {

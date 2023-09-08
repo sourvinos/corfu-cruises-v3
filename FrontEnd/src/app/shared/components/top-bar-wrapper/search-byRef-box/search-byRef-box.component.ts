@@ -2,9 +2,7 @@ import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 // Custom
-import { AccountService } from './../../../services/account.service'
 import { MessageLabelService } from '../../../services/message-label.service'
-import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 
 @Component({
     selector: 'search-byRef-box',
@@ -21,7 +19,7 @@ export class SearchByRefBoxComponent {
 
     //#endregion
 
-    constructor(private accountService: AccountService, private formBuilder: FormBuilder, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private formBuilder: FormBuilder, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -35,10 +33,6 @@ export class SearchByRefBoxComponent {
 
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
-    }
-
-    public isLoggedIn(): boolean {
-        return this.sessionStorageService.getItem('userId') ? true : false
     }
 
     public onSearchByRefNo(): void {
