@@ -9,9 +9,9 @@
 }
 
 #content {
-    backdrop-filter: blur(var(--blur));
     background-color: var(--color-background);
     border-radius: 0.5rem;
+    border: 1px solid color-mix(in srgb, var(--color-primary) 50%, transparent);
     display: flex;
     flex-direction: column;
     gap: 0.9375rem;

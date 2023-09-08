@@ -6,9 +6,9 @@
 }
 
 #content {
-    backdrop-filter: blur(var(--blur));
     background-color: var(--color-background);
     border-radius: 0.5rem;
+    border: 1px solid color-mix(in srgb, var(--color-primary) 50%, transparent);
     display: flex;
     flex-direction: column;
     gap: 0.9375rem !important;
@@ -16,8 +16,8 @@
     margin: 0 auto;
     overflow-y: hidden;
     padding: 1rem 1.6rem 1rem 2rem;
-    width: 100%;
     transition: background-color var(--theme-delay);
+    width: 100%;
 }
 
 #header {

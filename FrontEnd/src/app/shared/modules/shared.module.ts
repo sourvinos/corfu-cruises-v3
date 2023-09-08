@@ -29,8 +29,7 @@ import { PrettyPrintPipe } from '../pipes/json-pretty.pipe'
 import { ReplaceZeroPipe } from '../pipes/replace-zero.pipe'
 import { SafeStylePipe } from '../pipes/safe-style.pipe'
 import { TableTotalFilteredRecordsComponent } from '../components/table-total-filtered-records/table-total-filtered-records.component'
-import { ThemeGroupSelectorComponent } from '../components/top-bar-wrapper/theme-group-selector/theme-group-selector.component'
-import { ThemeMenuComponent } from './../components/top-bar-wrapper/theme-menu/theme-menu.component'
+import { ThemeSelectorComponent } from '../components/top-bar-wrapper/theme-selector/theme-selector.component'
 import { TrimStringPipe } from './../pipes/string-trim.pipe'
 import { YearSelectorComponent } from '../components/year-selector/year-selector.component'
 
@@ -59,8 +58,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         ReplaceZeroPipe,
         SafeStylePipe,
         TableTotalFilteredRecordsComponent,
-        ThemeGroupSelectorComponent,
-        ThemeMenuComponent,
+        ThemeSelectorComponent,
         TrimStringPipe,
         YearSelectorComponent
     ],
@@ -102,8 +100,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         RouterModule,
         RouterModule,
         TableTotalFilteredRecordsComponent,
-        ThemeGroupSelectorComponent,
-        ThemeMenuComponent,
+        ThemeSelectorComponent,
         TrimStringPipe,
         YearSelectorComponent,
         ZXingScannerModule,

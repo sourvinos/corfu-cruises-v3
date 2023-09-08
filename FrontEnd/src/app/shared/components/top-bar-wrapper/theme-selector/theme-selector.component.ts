@@ -1,24 +1,23 @@
 import { Component, Inject } from '@angular/core'
 import { DOCUMENT } from '@angular/common'
 // Common
-import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 
 @Component({
-    selector: 'theme-group-selector',
-    templateUrl: './theme-group-selector.component.html'
+    selector: 'theme-selector',
+    templateUrl: './theme-selector.component.html'
 })
 
-export class ThemeGroupSelectorComponent {
+export class ThemeSelectorComponent {
 
     //#region variables
 
-    public defaultThemeGroup = 'light'
+    public defaultTheme = 'light'
     public imgIsLoaded = false
 
     //#endregion
 
-    constructor(@Inject(DOCUMENT) private document: Document, private interactionService: InteractionService, private localStorageService: LocalStorageService) { }
+    constructor(@Inject(DOCUMENT) private document: Document, private localStorageService: LocalStorageService) { }
 
     //#region lifecycle hooks
 
@@ -31,11 +30,11 @@ export class ThemeGroupSelectorComponent {
     //#region public methods
 
     public getIconColor(): string {
-        return this.localStorageService.getItem('theme-group') == 'light' ? 'black' : 'white'
+        return this.localStorageService.getItem('theme') == 'light' ? 'black' : 'white'
     }
 
-    public getThemeGroupThumbnail(): string {
-        return this.localStorageService.getItem('theme-group') == '' ? this.defaultThemeGroup : this.localStorageService.getItem('theme-group')
+    public getThemeThumbnail(): string {
+        return this.localStorageService.getItem('theme') == '' ? this.defaultTheme : this.localStorageService.getItem('theme')
     }
 
     public imageIsLoading(): any {
@@ -46,11 +45,10 @@ export class ThemeGroupSelectorComponent {
         this.imgIsLoaded = true
     }
 
-    public onChangeThemeGroup(): void {
+    public onChangeTheme(): void {
         this.swapTheme()
         this.updateVariables()
         this.attachStylesheetToHead()
-        this.refreshBackgroundImage()
     }
 
     public onHideMenu(): void {
@@ -66,27 +64,22 @@ export class ThemeGroupSelectorComponent {
     private applyTheme(): void {
         this.updateVariables()
         this.attachStylesheetToHead()
-        this.refreshBackgroundImage()
     }
 
     private attachStylesheetToHead(): void {
         const headElement = this.document.getElementsByTagName('head')[0]
         const newLinkElement = this.document.createElement('link')
         newLinkElement.rel = 'stylesheet'
-        newLinkElement.href = this.defaultThemeGroup + '-' + this.localStorageService.getItem('theme') + '.css'
+        newLinkElement.href = this.defaultTheme + '.css'
         headElement.appendChild(newLinkElement)
     }
 
-    private refreshBackgroundImage(): void {
-        this.interactionService.mustRefreshBackgroundImage()
-    }
-
     private swapTheme(): void {
-        this.localStorageService.saveItem('theme-group', this.localStorageService.getItem('theme-group') == 'light' ? 'dark' : 'light')
+        this.localStorageService.saveItem('theme', this.localStorageService.getItem('theme') == 'light' ? 'dark' : 'light')
     }
 
     private updateVariables(): void {
-        this.defaultThemeGroup = this.localStorageService.getItem('theme-group') || this.defaultThemeGroup
+        this.defaultTheme = this.localStorageService.getItem('theme') || this.defaultTheme
     }
 
     //#endregion

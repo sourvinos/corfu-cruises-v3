@@ -23,7 +23,7 @@ export class LogoComponent {
     }
 
     public doLogoTasks(color: string): any {
-        this.updateThemeGroup()
+        this.updateTheme()
         this.setLogoVisibility()
         return this.getLogo(color)
     }
@@ -37,13 +37,13 @@ export class LogoComponent {
     }
 
     private setLogoVisibility(): void {
-        document.getElementById('dark').style.opacity = this.localStorageService.getItem('theme-group') == 'dark' ? '1' : '0'
-        document.getElementById('light').style.opacity = this.localStorageService.getItem('theme-group') == 'light' ? '1' : '0'
+        document.getElementById('dark').style.opacity = this.localStorageService.getItem('theme') == 'dark' ? '1' : '0'
+        document.getElementById('light').style.opacity = this.localStorageService.getItem('theme') == 'light' ? '1' : '0'
     }
 
-    private updateThemeGroup(): void {
-        if (this.localStorageService.getItem('theme-group') == '') {
-            this.localStorageService.saveItem('theme-group', 'light')
+    private updateTheme(): void {
+        if (this.localStorageService.getItem('theme') == '') {
+            this.localStorageService.saveItem('theme', 'light')
         }
     }
 
