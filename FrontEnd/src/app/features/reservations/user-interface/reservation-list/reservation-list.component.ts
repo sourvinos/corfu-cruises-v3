@@ -202,8 +202,8 @@ export class ReservationListComponent {
         }
     }
 
-    public unHighlightAllRows(): void {
-        this.helperService.unHighlightAllRows()
+    public highlightRow(id: any): void {
+        this.helperService.highlightRow(id)
     }
 
     //#endregion

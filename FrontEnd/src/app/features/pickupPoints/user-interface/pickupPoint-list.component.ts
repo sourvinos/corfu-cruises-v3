@@ -96,16 +96,16 @@ export class PickupPointListComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
+    public highlightRow(id: any): void {
+        this.helperService.highlightRow(id)
+    }
+
     public newRecord(): void {
         this.router.navigate([this.url + '/new'])
     }
 
     public resetTableFilters(): void {
         this.helperService.clearTableTextFilters(this.table, ['description', 'exactPoint', 'time'])
-    }
-
-    public unHighlightAllRows(): void {
-        this.helperService.unHighlightAllRows()
     }
 
     //#endregion

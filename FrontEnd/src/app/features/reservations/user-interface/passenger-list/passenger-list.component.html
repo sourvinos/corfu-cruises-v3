@@ -19,7 +19,7 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-record>
-                <tr (click)="unHighlightAllRows()" (dblclick)="editRecord(record)" [attr.id]="record.id" [pSelectableRow]="record" style="height: 32px;">
+                <tr (click)="highlightRow(record.id)" (dblclick)="editRecord(record)" [attr.id]="record.id" [pSelectableRow]="record" style="height: 32px;">
                     <td class="center width-4">
                         <span>{{ getEmbarkationStatusIcon(record.isBoarded) }}</span>
                     </td>

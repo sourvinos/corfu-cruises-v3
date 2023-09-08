@@ -101,6 +101,10 @@ export class ShipCrewListComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
+    public highlightRow(id: any): void {
+        this.helperService.highlightRow(id)
+    }
+
     public newRecord(): void {
         this.router.navigate([this.url + '/new'])
     }
@@ -108,10 +112,6 @@ export class ShipCrewListComponent {
     public resetTableFilters(): void {
         this.filterDate = ''
         this.helperService.clearTableTextFilters(this.table, ['lastname', 'firstname', 'birthdate'])
-    }
-
-    public unHighlightAllRows(): void {
-        this.helperService.unHighlightAllRows()
     }
 
     //#endregion

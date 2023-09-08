@@ -128,7 +128,7 @@
                     </tr>
                 </ng-template>
                 <ng-template let-reservation pTemplate="body">
-                    <tr (click)="unHighlightAllRows()" (dblclick)="showPassengers(reservation)" [attr.id]=reservation.refNo [pSelectableRow]="reservation" style="height:2rem">
+                    <tr (click)="highlightRow(reservation.refNo)" (dblclick)="showPassengers(reservation)" [attr.id]=reservation.refNo style="height: 32px;">
                         <td class="center width-4">
                             <span>{{ getEmbarkationStatusIcon(reservation.embarkationStatus) }}</span>
                             <span class="no-display">{{ reservation.embarkationStatus.description }}</span>

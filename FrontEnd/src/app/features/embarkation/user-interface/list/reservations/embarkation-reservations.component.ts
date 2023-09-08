@@ -133,12 +133,20 @@ export class EmbarkationReservationsComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
+    public getRemarksRowVisibility(): boolean {
+        return this.remarksRowVisibility
+    }
+
     public goBack(): void {
         this.router.navigate([this.parentUrl])
     }
 
     public hasRemarks(remarks: string): boolean {
         return remarks.length > 0 ? true : false
+    }
+
+    public highlightRow(id: any): void {
+        this.helperService.highlightRow(id)
     }
 
     public resetTableFilters(): void {
@@ -156,16 +164,8 @@ export class EmbarkationReservationsComponent {
         this.dialogService.open(remarks, 'info', ['ok'])
     }
 
-    public getRemarksRowVisibility(): boolean {
-        return this.remarksRowVisibility
-    }
-
     public toggleRemarksRowVisibility(): void {
         this.sessionStorageService.saveItem('remarksRowVisibility', this.remarksRowVisibility ? '1' : '0')
-    }
-
-    public unHighlightAllRows(): void {
-        this.helperService.unHighlightAllRows()
     }
 
     //#endregion

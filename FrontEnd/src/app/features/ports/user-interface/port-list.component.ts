@@ -86,16 +86,16 @@ export class PortListComponent {
         return environment.stopOrdersIconDirectory + stopOrder + '.svg'
     }
 
+    public highlightRow(id: any): void {
+        this.helperService.highlightRow(id)
+    }
+
     public newRecord(): void {
         this.router.navigate([this.url + '/new'])
     }
 
     public resetTableFilters(): void {
         this.helperService.clearTableTextFilters(this.table, ['stopOrder', 'description'])
-    }
-
-    public unHighlightAllRows(): void {
-        this.helperService.unHighlightAllRows()
     }
 
     //#endregion

@@ -70,12 +70,12 @@ export class PassengerListComponent {
         }
     }
 
-    public newRow(): void {
-        this.showPassengerForm()
+    public highlightRow(id: any): void {
+        this.helperService.highlightRow(id)
     }
 
-    public unHighlightAllRows(): void {
-        this.helperService.unHighlightAllRows()
+    public newRow(): void {
+        this.showPassengerForm()
     }
 
     //#endregion

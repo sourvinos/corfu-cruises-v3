@@ -178,6 +178,15 @@ export class HelperService {
         return true
     }
 
+    public highlightRow(id: any): void {
+        const allRows = document.querySelectorAll('.p-highlight')
+        allRows.forEach(row => {
+            row.classList.remove('p-highlight')
+        })
+        const selectedRow = document.getElementById(id)
+        selectedRow.classList.add('p-highlight')
+    }
+
     public highlightSavedRow(feature: string): void {
         setTimeout(() => {
             const x = document.getElementById(this.sessionStorageService.getItem(feature + '-' + 'id'))
@@ -185,13 +194,6 @@ export class HelperService {
                 x.classList.add('p-highlight')
             }
         }, 500)
-    }
-
-    public unHighlightAllRows(): void {
-        const x = document.querySelectorAll('.p-highlight')
-        x.forEach(row => {
-            row.classList.remove('p-highlight')
-        })
     }
 
     public clearTableCheckboxes(): void {
