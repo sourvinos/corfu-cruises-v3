@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Cases;
@@ -18,6 +19,7 @@ namespace Nationalities {
         private readonly string _actionVerb = "put";
         private readonly string _baseUrl;
         private readonly string _url = "/nationalities";
+        private readonly string _notFoundUrl = "/nationalities/999";
 
         #endregion
 
@@ -49,6 +51,18 @@ namespace Nationalities {
         [ClassData(typeof(UpdateValidNationality))]
         public async Task Simple_Users_Can_Not_Update(TestNationality record) {
             await Forbidden.Action(_httpClient, _baseUrl, _url, _actionVerb, "simpleuser", "1234567890", record);
+        }
+
+        [Fact]
+        public async Task Admins_Can_Not_Update_When_Not_Found() {
+            await RecordNotFound.Action(_httpClient, _baseUrl, _notFoundUrl, "john", "ec11fc8c16db");
+        }
+
+        [Theory]
+        [ClassData(typeof(UpdateInvalidNationality))]
+        public async Task Admins_Can_Not_Update_When_Invalid(TestNationality record) {
+            var actionResponse = await RecordInvalidNotSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "ec11fc8c16db", record);
+            Assert.Equal((HttpStatusCode)record.StatusCode, actionResponse.StatusCode);
         }
 
         [Theory]

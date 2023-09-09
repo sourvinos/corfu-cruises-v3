@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Infrastructure;
 
-namespace API.IntegrationTests.PickupPoints {
+namespace PickupPoints {
 
     public class CreateInvalidPickupPoint : IEnumerable<object[]> {
 

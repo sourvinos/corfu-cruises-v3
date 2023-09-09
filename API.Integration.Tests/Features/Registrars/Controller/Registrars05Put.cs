@@ -19,6 +19,7 @@ namespace Registrars {
         private readonly string _actionVerb = "put";
         private readonly string _baseUrl;
         private readonly string _url = "/registrars";
+        private readonly string _notFoundUrl = "/registrars/999";
 
         #endregion
 
@@ -50,6 +51,11 @@ namespace Registrars {
         [ClassData(typeof(UpdateValidRegistrar))]
         public async Task Simple_Users_Can_Not_Update(TestRegistrar record) {
             await Forbidden.Action(_httpClient, _baseUrl, _url, _actionVerb, "simpleuser", "1234567890", record);
+        }
+
+        [Fact]
+        public async Task Admins_Can_Not_Update_When_Not_Found() {
+            await RecordNotFound.Action(_httpClient, _baseUrl, _notFoundUrl, "john", "ec11fc8c16db");
         }
 
         [Theory]

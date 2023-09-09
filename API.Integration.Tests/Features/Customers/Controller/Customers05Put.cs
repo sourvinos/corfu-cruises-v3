@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Cases;
@@ -55,6 +56,13 @@ namespace Customers {
         [Fact]
         public async Task Admins_Can_Not_Update_When_Not_Found() {
             await RecordNotFound.Action(_httpClient, _baseUrl, _notFoundUrl, "john", "ec11fc8c16db");
+        }
+
+        [Theory]
+        [ClassData(typeof(UpdateInvalidCustomer))]
+        public async Task Admins_Can_Not_Update_When_Invalid(TestCustomer record) {
+            var actionResponse = await RecordInvalidNotSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "ec11fc8c16db", record);
+            Assert.Equal((HttpStatusCode)record.StatusCode, actionResponse.StatusCode);
         }
 
         [Theory]

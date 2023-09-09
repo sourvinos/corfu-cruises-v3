@@ -2,7 +2,6 @@ using Infrastructure;
 using Responses;
 using System.Net.Http;
 using System.Threading.Tasks;
-using API.IntegrationTests.ShipOwners;
 using Xunit;
 using Cases;
 

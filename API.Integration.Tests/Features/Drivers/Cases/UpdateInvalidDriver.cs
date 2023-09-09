@@ -9,14 +9,16 @@ namespace Drivers {
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public IEnumerator<object[]> GetEnumerator() {
-            yield return NotFound();
+            yield return Driver_Must_Not_Be_Already_Updated();
         }
 
-        private static object[] NotFound() {
+        private static object[] Driver_Must_Not_Be_Already_Updated() {
             return new object[] {
                 new TestDriver {
-                    Id = 9999,
-                    Description = Helpers.CreateRandomString(128)
+                    StatusCode = 415,
+                    Id = 1,
+                    Description = Helpers.CreateRandomString(128),
+                    RowVersion = "2023-09-07 09:55:22"
                 }
             };
         }

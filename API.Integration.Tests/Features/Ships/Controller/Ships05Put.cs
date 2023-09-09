@@ -19,6 +19,7 @@ namespace Ships {
         private readonly string _actionVerb = "put";
         private readonly string _baseUrl;
         private readonly string _url = "/ships";
+        private readonly string _notFoundUrl = "/ships/999";
 
         #endregion
 
@@ -50,6 +51,11 @@ namespace Ships {
         [ClassData(typeof(UpdateValidShip))]
         public async Task Simple_Users_Can_Not_Update(TestShip record) {
             await Forbidden.Action(_httpClient, _baseUrl, _url, _actionVerb, "simpleuser", "1234567890", record);
+        }
+
+        [Fact]
+        public async Task Admins_Can_Not_Update_When_Not_Found() {
+            await RecordNotFound.Action(_httpClient, _baseUrl, _notFoundUrl, "john", "ec11fc8c16db");
         }
 
         [Theory]

@@ -10,6 +10,7 @@ namespace Schedules {
         public IEnumerator<object[]> GetEnumerator() {
             yield return Destination_Must_Exist();
             yield return Port_Must_Exist();
+            yield return Schedule_Must_Not_Be_Already_Updated();
         }
 
         private static object[] Destination_Must_Exist() {
@@ -37,6 +38,21 @@ namespace Schedules {
                     Time = "08:00",
                     MaxPax = 185
                 },
+            };
+        }
+
+        private static object[] Schedule_Must_Not_Be_Already_Updated() {
+            return new object[] {
+                new UpdateTestSchedule {
+                    StatusCode = 415,
+                    Id = 677,
+                    DestinationId = 1,
+                    PortId = 1,
+                    Date = "2022-12-04",
+                    Time = "08:00",
+                    MaxPax = 185,
+                    RowVersion = "2023-09-07 09:54:22"
+                }
             };
         }
 

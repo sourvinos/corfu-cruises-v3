@@ -1,6 +1,6 @@
 using Infrastructure;
 
-namespace API.IntegrationTests.ShipCrews {
+namespace ShipCrews {
 
     public class TestCrew : ITestEntity {
 

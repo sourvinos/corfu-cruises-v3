@@ -9,14 +9,16 @@ namespace Customers {
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public IEnumerator<object[]> GetEnumerator() {
-            yield return NotFound();
+            yield return Customer_Must_Not_Be_Already_Updated();
         }
 
-        private static object[] NotFound() {
+        private static object[] Customer_Must_Not_Be_Already_Updated(){
             return new object[] {
                 new TestCustomer {
-                    Id = 9999,
-                    Description = Helpers.CreateRandomString(128)
+                    StatusCode = 415,
+                    Id = 1,
+                    Description = Helpers.CreateRandomString(128),
+                    RowVersion = "2023-09-07 09:55:22"
                 }
             };
         }

@@ -2,9 +2,9 @@ using Infrastructure;
 using Responses;
 using System.Net.Http;
 using System.Threading.Tasks;
-using API.IntegrationTests.ShipRoutes;
 using Xunit;
 using Cases;
+using System.Net;
 
 namespace ShipRoutes {
 
@@ -19,6 +19,7 @@ namespace ShipRoutes {
         private readonly string _actionVerb = "put";
         private readonly string _baseUrl;
         private readonly string _url = "/shipRoutes";
+        private readonly string _notFoundUrl = "/shipRoutes/999";
 
         #endregion
 
@@ -50,6 +51,18 @@ namespace ShipRoutes {
         [ClassData(typeof(UpdateValidShipRoute))]
         public async Task Simple_Users_Can_Not_Update(TestShipRoute record) {
             await Forbidden.Action(_httpClient, _baseUrl, _url, _actionVerb, "simpleuser", "1234567890", record);
+        }
+
+        [Fact]
+        public async Task Admins_Can_Not_Update_When_Not_Found() {
+            await RecordNotFound.Action(_httpClient, _baseUrl, _notFoundUrl, "john", "ec11fc8c16db");
+        }
+
+        [Theory]
+        [ClassData(typeof(UpdateInvalidShipRoute))]
+        public async Task Admins_Can_Not_Update_When_Invalid(TestShipRoute record) {
+            var actionResponse = await RecordInvalidNotSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "ec11fc8c16db", record);
+            Assert.Equal((HttpStatusCode)record.StatusCode, actionResponse.StatusCode);
         }
 
         [Theory]

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Infrastructure;
 
-namespace API.IntegrationTests.PickupPoints {
+namespace PickupPoints {
 
     public class UpdateInvalidPickupPoint : IEnumerable<object[]> {
 
@@ -10,6 +10,7 @@ namespace API.IntegrationTests.PickupPoints {
 
         public IEnumerator<object[]> GetEnumerator() {
             yield return Route_Must_Exist();
+            yield return PickupPoint_Must_Not_Be_Already_Updated();
         }
 
         private static object[] Route_Must_Exist() {
@@ -21,8 +22,21 @@ namespace API.IntegrationTests.PickupPoints {
                     Description = Helpers.CreateRandomString(128),
                     ExactPoint = Helpers.CreateRandomString(128),
                     Time = "08:00",
-                    Coordinates = Helpers.CreateRandomString(128),
                     IsActive = true
+                }
+            };
+        }
+
+        private static object[] PickupPoint_Must_Not_Be_Already_Updated() {
+            return new object[] {
+                new TestPickupPoint {
+                    StatusCode = 415,
+                    Id = 1,
+                    CoachRouteId = 4,
+                    Description = Helpers.CreateRandomString(128),
+                    ExactPoint = Helpers.CreateRandomString(128),
+                    Time = "08:00",
+                    RowVersion = "2023-09-07 09:55:22"
                 }
             };
         }

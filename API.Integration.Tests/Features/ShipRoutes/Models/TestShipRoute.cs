@@ -1,8 +1,10 @@
 using Infrastructure;
 
-namespace API.IntegrationTests.ShipRoutes {
+namespace ShipRoutes {
 
     public class TestShipRoute : ITestEntity {
+
+        public int StatusCode { get; set; }
 
         public int Id { get; set; }
         public string Description { get; set; }

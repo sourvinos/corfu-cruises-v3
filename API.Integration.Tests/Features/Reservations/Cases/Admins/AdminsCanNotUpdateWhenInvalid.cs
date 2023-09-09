@@ -21,6 +21,7 @@ namespace Reservations {
             yield return Nationality_Must_Exist();
             yield return PickupPoint_Must_Exist();
             yield return Ship_Must_Exist();
+            yield return Reservation_Must_Not_Be_Already_Updated();
         }
 
         private static object[] Nothing_For_This_Day() {
@@ -270,6 +271,23 @@ namespace Reservations {
                     Adults = 2,
                     Free = 1
             }};
+        }
+
+        private static object[] Reservation_Must_Not_Be_Already_Updated() {
+            return new object[] {
+                new TestUpdateReservation {
+                    StatusCode = 415,
+                    ReservationId = Guid.Parse("08da2863-15d9-4338-81fa-637a52371163"),
+                    CustomerId = 2,
+                    DestinationId = 1,
+                    Date = "2022-05-01",
+                    PickupPointId = 248,
+                    RefNo = "PA175",
+                    TicketNo = "21",
+                    Adults = 2,
+                    RowVersion = "2023-09-07 09:56:16"
+                }
+            };
         }
 
     }

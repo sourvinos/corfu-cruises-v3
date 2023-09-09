@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Infrastructure;
 
-namespace API.IntegrationTests.ShipCrews {
+namespace ShipCrews {
 
     public class CreateInvalidCrew : IEnumerable<object[]> {
 

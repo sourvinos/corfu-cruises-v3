@@ -1,7 +1,6 @@
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using API.IntegrationTests.PickupPoints;
 using Cases;
 using Infrastructure;
 using Responses;
@@ -20,6 +19,7 @@ namespace PickupPoints {
         private readonly string _actionVerb = "put";
         private readonly string _baseUrl;
         private readonly string _url = "/pickupPoints";
+        private readonly string _notFoundUrl = "/pickupPoints/999";
 
         #endregion
 
@@ -51,6 +51,11 @@ namespace PickupPoints {
         [ClassData(typeof(UpdateValidPickupPoint))]
         public async Task Simple_Users_Can_Not_Update(TestPickupPoint record) {
             await Forbidden.Action(_httpClient, _baseUrl, _url, _actionVerb, "simpleuser", "1234567890", record);
+        }
+
+        [Fact]
+        public async Task Admins_Can_Not_Update_When_Not_Found() {
+            await RecordNotFound.Action(_httpClient, _baseUrl, _notFoundUrl, "john", "ec11fc8c16db");
         }
 
         [Theory]

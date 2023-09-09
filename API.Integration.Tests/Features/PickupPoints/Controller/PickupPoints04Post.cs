@@ -1,7 +1,6 @@
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using API.IntegrationTests.PickupPoints;
 using Cases;
 using Infrastructure;
 using Responses;

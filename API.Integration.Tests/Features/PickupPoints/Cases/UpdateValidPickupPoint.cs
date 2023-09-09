@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Infrastructure;
 
-namespace API.IntegrationTests.PickupPoints {
+namespace PickupPoints {
 
     public class UpdateValidPickupPoint : IEnumerable<object[]> {
 
@@ -20,7 +20,6 @@ namespace API.IntegrationTests.PickupPoints {
                     Description = Helpers.CreateRandomString(128),
                     ExactPoint = Helpers.CreateRandomString(128),
                     Time = "08:00",
-                    Coordinates = Helpers.CreateRandomString(128),
                     IsActive = true,
                     RowVersion = "2023-09-07 09:54:23"
                 }

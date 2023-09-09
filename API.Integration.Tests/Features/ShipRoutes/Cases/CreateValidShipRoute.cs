@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Infrastructure;
 
-namespace API.IntegrationTests.ShipRoutes {
+namespace ShipRoutes {
 
     public class CreateValidShipRoute : IEnumerable<object[]> {
 

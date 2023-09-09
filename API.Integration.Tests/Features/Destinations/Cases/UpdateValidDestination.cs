@@ -16,8 +16,8 @@ namespace Destinations {
             return new object[] {
                 new TestDestination {
                     Id = 1,
-                    Description = Helpers.CreateRandomString(128),
                     Abbreviation = Helpers.CreateRandomString(5),
+                    Description = Helpers.CreateRandomString(128),
                     RowVersion = "2023-09-07 09:52:40"
                 }
             };

@@ -1,6 +1,6 @@
 using Infrastructure;
 
-namespace API.IntegrationTests.PickupPoints {
+namespace PickupPoints {
 
     public class TestPickupPoint : ITestEntity {
 
@@ -11,7 +11,6 @@ namespace API.IntegrationTests.PickupPoints {
         public int CoachRouteId { get; set; }
         public string ExactPoint { get; set; }
         public string Time { get; set; }
-        public string Coordinates { get; set; }
         public bool IsActive { get; set; }
         public string RowVersion { get; set; }
 

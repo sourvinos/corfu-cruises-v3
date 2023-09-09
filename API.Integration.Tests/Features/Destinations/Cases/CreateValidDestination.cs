@@ -15,8 +15,8 @@ namespace Destinations {
         private static object[] ValidRecord() {
             return new object[] {
                 new TestDestination {
-                    Description = Helpers.CreateRandomString(128),
-                    Abbreviation = Helpers.CreateRandomString(5)
+                    Abbreviation = Helpers.CreateRandomString(5),
+                    Description = Helpers.CreateRandomString(128)
                 }
             };
         }

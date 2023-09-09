@@ -4,20 +4,21 @@ using Infrastructure;
 
 namespace ShipOwners {
 
-    public class UpdateValidShipOwner : IEnumerable<object[]> {
+    public class UpdateInvalidShipOwner : IEnumerable<object[]> {
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public IEnumerator<object[]> GetEnumerator() {
-            yield return ValidRecord();
+            yield return ShipOwner_Must_Not_Be_Already_Updated();
         }
 
-        private static object[] ValidRecord() {
+        private static object[] ShipOwner_Must_Not_Be_Already_Updated() {
             return new object[] {
                 new TestShipOwner {
+                    StatusCode = 415,
                     Id = 5,
                     Description = Helpers.CreateRandomString(128),
-                    RowVersion = "2023-09-07 09:56:05"
+                    RowVersion = "2023-09-07 09:57:05"
                 }
             };
         }

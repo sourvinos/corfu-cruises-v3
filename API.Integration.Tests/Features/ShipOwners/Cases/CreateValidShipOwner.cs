@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Infrastructure;
 
-namespace API.IntegrationTests.ShipOwners {
+namespace ShipOwners {
 
     public class CreateValidShipOwner : IEnumerable<object[]> {
 
