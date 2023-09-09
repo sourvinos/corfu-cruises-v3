@@ -17,9 +17,9 @@ namespace Customers {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "delete";
         private readonly string _baseUrl;
+        private readonly string _url = "/customers/247";
         private readonly string _inUseUrl = "/customers/2";
         private readonly string _notFoundUrl = "/customers/999";
-        private readonly string _url = "/customers/247";
 
         #endregion
 

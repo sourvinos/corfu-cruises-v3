@@ -17,9 +17,9 @@ namespace Drivers {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "delete";
         private readonly string _baseUrl;
+        private readonly string _url = "/drivers/4";
         private readonly string _inUseUrl = "/drivers/1";
         private readonly string _notFoundUrl = "/drivers/999";
-        private readonly string _url = "/drivers/4";
 
         #endregion
 

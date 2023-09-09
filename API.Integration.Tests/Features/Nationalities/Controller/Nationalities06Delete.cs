@@ -17,9 +17,9 @@ namespace Nationalities {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "delete";
         private readonly string _baseUrl;
+        private readonly string _url = "/nationalities/255";
         private readonly string _inUseUrl = "/nationalities/1";
         private readonly string _notFoundUrl = "/nationalities/999";
-        private readonly string _url = "/nationalities/255";
 
         #endregion
 

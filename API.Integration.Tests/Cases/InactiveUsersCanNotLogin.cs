@@ -9,11 +9,11 @@ namespace Cases {
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public IEnumerator<object[]> GetEnumerator() {
-            yield return InSimple_Users_Can_Not_Login();
-            yield return InAdmins_Can_Not_Login();
+            yield return Inactive_Simple_Users_Can_Not_Login();
+            yield return Inactive_Admins_Can_Not_Login();
         }
 
-        private static object[] InSimple_Users_Can_Not_Login() {
+        private static object[] Inactive_Simple_Users_Can_Not_Login() {
             return new object[] {
                 new Login {
                     Username = "marios",
@@ -22,7 +22,7 @@ namespace Cases {
             };
         }
 
-        private static object[] InAdmins_Can_Not_Login() {
+        private static object[] Inactive_Admins_Can_Not_Login() {
             return new object[] {
                 new Login {
                     Username = "nikoleta",

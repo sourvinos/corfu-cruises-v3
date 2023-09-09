@@ -17,8 +17,8 @@ namespace PickupPoints {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
-        private readonly string _notFoundUrl = "/pickupPoints/999";
         private readonly string _url = "/pickupPoints/1";
+        private readonly string _notFoundUrl = "/pickupPoints/999";
 
         #endregion
 

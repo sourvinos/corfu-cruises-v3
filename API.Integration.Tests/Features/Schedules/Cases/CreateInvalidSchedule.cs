@@ -19,14 +19,14 @@ namespace Schedules {
                 new NewTestSchedule {
                     StatusCode = 451,
                     TestScheduleBody = new List<TestScheduleBody>() {
-                        new TestScheduleBody {
+                        new() {
                             DestinationId = 1, // Exists
                             PortId = 1,
                             Date = "2022-02-01",
                             Time = "08:00",
                             MaxPax = 185
                         },
-                        new TestScheduleBody {
+                        new() {
                             DestinationId = 2, // Does not exist
                             PortId = 1,
                             Date = "2021-10-02",
@@ -43,14 +43,14 @@ namespace Schedules {
                 new NewTestSchedule {
                     StatusCode = 451,
                     TestScheduleBody = new List<TestScheduleBody>() {
-                        new TestScheduleBody {
+                        new() {
                             DestinationId = 10, // Is not active
                             PortId = 1,
                             Date = "2022-02-01",
                             Time = "08:00",
                             MaxPax = 185
                         },
-                        new TestScheduleBody {
+                        new() {
                             DestinationId = 1, // Is active
                             PortId = 1,
                             Date = "2021-10-02",
@@ -67,14 +67,14 @@ namespace Schedules {
                 new NewTestSchedule {
                     StatusCode = 411,
                     TestScheduleBody = new List<TestScheduleBody>() {
-                        new TestScheduleBody {
+                        new() {
                             DestinationId = 1,
                             PortId = 3, // Does not exist
                             Date = "2022-02-01",
                             Time = "08:00",
                             MaxPax = 185
                         },
-                        new TestScheduleBody {
+                        new() {
                             DestinationId = 1,
                             PortId = 1, // Exists
                             Date = "2021-10-02",
@@ -91,14 +91,14 @@ namespace Schedules {
                 new NewTestSchedule {
                     StatusCode = 411,
                     TestScheduleBody = new List<TestScheduleBody>() {
-                        new TestScheduleBody {
+                        new () {
                             DestinationId = 1,
                             PortId = 1, // Is active
                             Date = "2022-02-01",
                             Time = "08:00",
                             MaxPax = 185
                         },
-                        new TestScheduleBody {
+                        new () {
                             DestinationId = 1,
                             PortId = 17, // Not active
                             Time = "08:00",

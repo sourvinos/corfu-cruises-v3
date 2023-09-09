@@ -15,14 +15,14 @@ namespace Schedules {
             return new object[] {
                 new NewTestSchedule {
                     TestScheduleBody = new List<TestScheduleBody>() {
-                        new TestScheduleBody {
+                        new () {
                             DestinationId = 1,
                             PortId = 1,
                             Date = "2022-02-01",
                             Time = "08:00",
                             MaxPax = 0
                         },
-                        new TestScheduleBody {
+                        new () {
                             DestinationId = 1,
                             PortId = 1,
                             Date = "2021-10-02",

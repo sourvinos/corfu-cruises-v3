@@ -19,7 +19,7 @@ namespace Schedules {
         private readonly string _actionVerb = "put";
         private readonly string _baseUrl;
         private readonly string _url = "/schedules";
-        private readonly string _notFoundUrl = "/schedules/999";
+        private readonly string _notFoundUrl = "/schedules/9999";
 
         #endregion
 

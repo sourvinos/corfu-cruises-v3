@@ -17,8 +17,8 @@ namespace ShipOwners {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
-        private readonly string _notFoundUrl = "/shipOwners/999";
         private readonly string _url = "/shipOwners/4";
+        private readonly string _notFoundUrl = "/shipOwners/999";
 
         #endregion
 

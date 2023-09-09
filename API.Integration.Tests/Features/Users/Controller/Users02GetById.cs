@@ -17,9 +17,9 @@ namespace Users {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
-        private readonly string _notFoundUrl = "/users/582ea0d8-3938-4098-a381-4721d560b141";
         private readonly string _url = "/users/eae03de1-6742-4015-9d52-102dba5d7365";
         private readonly string _simpleUserUrl_not_owned = "/users/582ea0d8-3938-4098-a381-4721d560b145";
+        private readonly string _notFoundUrl = "/users/582ea0d8-3938-4098-a381-4721d560b141";
 
         #endregion
 

@@ -8,8 +8,8 @@ namespace Infrastructure {
         public string BaseUrl;
 
         public BaseFixture(AppSettingsFixture appSettings) {
-            this.AppSettingsFixture = appSettings;
-            this.BaseUrl = AppSettingsFixture.Configuration.GetSection("TestingEnvironment").GetSection("BaseUrl").Value;
+            AppSettingsFixture = appSettings;
+            BaseUrl = AppSettingsFixture.Configuration.GetSection("TestingEnvironment").GetSection("BaseUrl").Value;
         }
 
     }

@@ -17,8 +17,8 @@ namespace Schedules {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
-        private readonly string _notFoundUrl = "/schedules/9999";
         private readonly string _url = "/schedules/677";
+        private readonly string _notFoundUrl = "/schedules/9999";
 
         #endregion
 

@@ -17,9 +17,9 @@ namespace CoachRoutes {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "delete";
         private readonly string _baseUrl;
+        private readonly string _url = "/coachRoutes/9";
         private readonly string _inUseUrl = "/coachRoutes/1";
         private readonly string _notFoundUrl = "/coachRoutes/999";
-        private readonly string _url = "/coachRoutes/9";
 
         #endregion
 
