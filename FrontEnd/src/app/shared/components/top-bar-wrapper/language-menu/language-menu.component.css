@@ -1,6 +1,7 @@
 .drop-down-menu > button {
     background-color: transparent !important;
-    padding: 0.3125rem 0 0 1.125rem !important;
+    margin: 0 0 0 0.8rem !important;
+    padding: 0 0 0 0 !important;
 }
 
 .sub-menu {
@@ -13,10 +14,10 @@
 }
 
 .sub-menu button {
-    background-color: var(--color-accent) !important;
+    background-color: var(--color-primary) !important;
     border-radius: 50% !important;
     border: 0.0625rem solid color-mix(in srgb, var(--color-text) 20%, transparent);
-    padding: 1rem 0.9375rem !important;
+    padding: 0.625rem 0.5625rem !important;
     transition: background-color 0.2s;
 }
 
