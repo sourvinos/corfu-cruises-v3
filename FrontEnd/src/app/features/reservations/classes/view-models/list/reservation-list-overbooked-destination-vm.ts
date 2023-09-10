@@ -1,6 +1,6 @@
 export interface ReservationListOverbookedDestinationVM {
 
     description: string
-    isOverbooked: boolean
+    overbookedPax: number
 
 }

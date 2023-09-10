@@ -7,7 +7,7 @@ namespace API.Features.Reservations {
         bool IsUserOwner(int customerId);
         bool IsKeyUnique(ReservationWriteDto reservation);
         int GetPortIdFromPickupPointId(ReservationWriteDto reservation);
-        bool IsOverbooked(string date, int destinationId);
+        int OverbookedPax(string date, int destinationId);
         int IsValid(ReservationWriteDto reservation, IScheduleRepository scheduleRepo);
 
     }

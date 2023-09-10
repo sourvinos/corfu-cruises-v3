@@ -5,6 +5,7 @@ import { PrimeNgModule } from './primeng.module'
 import { RouterModule } from '@angular/router'
 import { ZXingScannerModule } from '@zxing/ngx-scanner'
 // Custom
+import { AbsPipe } from '../pipes/abs.pipe'
 import { CriteriaFieldsetCheckboxesComponent } from '../components/criteria-fieldset-checkboxes/criteria-fieldset-checkboxes.component'
 import { CriteriaFieldsetRadiosComponent } from '../components/criteria-fieldset-radios/criteria-fieldset-radios.component'
 import { CriteriaFieldsetWeekdaysComponent } from '../components/criteria-fieldset-weekdays/criteria-fieldset-weekdays.component'
@@ -35,6 +36,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
 
 @NgModule({
     declarations: [
+        AbsPipe,
         CriteriaFieldsetCheckboxesComponent,
         CriteriaFieldsetRadiosComponent,
         CriteriaFieldsetWeekdaysComponent,
@@ -72,6 +74,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         ZXingScannerModule,
     ],
     exports: [
+        AbsPipe,
         CommonModule,
         CriteriaFieldsetCheckboxesComponent,
         CriteriaFieldsetRadiosComponent,

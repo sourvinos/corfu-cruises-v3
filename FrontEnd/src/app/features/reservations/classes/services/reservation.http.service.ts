@@ -61,8 +61,8 @@ export class ReservationHttpService extends HttpDataService {
         return this.http.patch(this.url + '/assignToShip?', null, { params: params })
     }
 
-    public isDestinationOverbooked(date: string, destinationId: number): Observable<boolean> {
-        return this.http.get<boolean>(this.url + '/isOverbooked/date/' + date + '/destinationid/' + destinationId)
+    public isDestinationOverbooked(date: string, destinationId: number): Observable<number> {
+        return this.http.get<number>(this.url + '/overbookedPax/date/' + date + '/destinationid/' + destinationId)
     }
 
 }

@@ -63,7 +63,7 @@ namespace API.Features.Reservations {
             return pickupPoint != null ? pickupPoint.CoachRoute.PortId : 0;
         }
 
-        public bool IsOverbooked(string date, int destinationId) {
+        public int OverbookedPax(string date, int destinationId) {
             int maxPassengersForAllPorts = context.Schedules
                 .AsNoTracking()
                 .Where(x => x.Date == Convert.ToDateTime(date) && x.DestinationId == destinationId)
@@ -72,7 +72,7 @@ namespace API.Features.Reservations {
                 .AsNoTracking()
                 .Where(x => x.Date == Convert.ToDateTime(date) && x.DestinationId == destinationId)
                 .Sum(x => x.TotalPax);
-            return totalPaxFromAllPorts > maxPassengersForAllPorts;
+            return maxPassengersForAllPorts - totalPaxFromAllPorts;
         }
 
         public int IsValid(ReservationWriteDto reservation, IScheduleRepository scheduleRepo) {

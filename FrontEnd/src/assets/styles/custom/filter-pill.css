@@ -7,10 +7,6 @@
     width: auto !important;
 }
 
-.filter-pill .overbooked {
-    width: auto !important;
-}
-
 .filter-pill .pill .description {
     align-items: center;
     color: var(--color-button-text);
@@ -32,27 +28,31 @@
     color: var(--color-button-text) !important;
     display: flex;
     flex-direction: row;
-    gap: 0.8rem;
     min-width: 5rem;
     padding: 0.5rem;
 }
 
 .filter-pill .pill:nth-child(1) {
-    background-color: var(--color-criteria-a) !important;
+    background-color: var(--color-criteria-a);
 }
 
 .filter-pill .pill:nth-child(2) {
-    background-color: var(--color-criteria-b) !important;
+    background-color: var(--color-criteria-b);
 }
 
 .filter-pill .pill:nth-child(3) {
-    background-color: var(--color-criteria-c) !important;
+    background-color: var(--color-criteria-c);
 }
 
 .filter-pill .pill:nth-child(4) {
-    background-color: var(--color-criteria-d) !important;
+    background-color: var(--color-criteria-d);
 }
 
 .reset-table-filter:hover {
     cursor: pointer;
+}
+
+.overbooked {
+    background-color: var(--color-button-delete) !important;
+    width: auto !important;
 }

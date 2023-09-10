@@ -189,10 +189,10 @@ namespace API.Features.Reservations {
             };
         }
 
-        [HttpGet("isOverbooked/date/{date}/destinationId/{destinationId}")]
+        [HttpGet("overbookedPax/date/{date}/destinationId/{destinationId}")]
         [Authorize(Roles = "user, admin")]
-        public bool IsOverbooked([FromRoute] string date, int destinationId) {
-            return validReservation.IsOverbooked(date, destinationId);
+        public int OverbookedPax([FromRoute] string date, int destinationId) {
+            return validReservation.OverbookedPax(date, destinationId);
         }
 
         [HttpGet("boardingPass/{reservationId}")]

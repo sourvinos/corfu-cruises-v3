@@ -5,12 +5,14 @@
         <div id="header">
             <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
             <div class="filter-pill">
-                <div *ngFor="let x of overbookedDestinations" class="overbooked pill">
-                    <img [src]="getIcon(x.isOverbooked == true ? 'error' : 'ok')">
-                    <div class="description">{{ x.description }}</div>
+                <div *ngFor="let x of overbookedDestinations">
+                    <div *ngIf="x.overbookedPax < 0" class="overbooked pill">
+                        <mat-icon class="material-symbols-outlined">release_alert</mat-icon>
+                        <div class="description">{{ x.description }} +{{ x.overbookedPax | abs }}</div>
+                    </div>
                 </div>
                 <div class="pill date">
-                    <img [src]="getIcon('calendar')">
+                    <mat-icon class="material-symbols-outlined">calendar_month</mat-icon>
                     <div class="description">{{ formatDateToLocale(getDateFromStorage(), true, true) }}</div>
                 </div>
             </div>

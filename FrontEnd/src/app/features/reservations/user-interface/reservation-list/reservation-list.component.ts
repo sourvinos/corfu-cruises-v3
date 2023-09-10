@@ -218,7 +218,7 @@ export class ReservationListComponent {
                 this.reservationService.isDestinationOverbooked(this.sessionStorageService.getItem('date'), destination.id).subscribe((response) => {
                     this.overbookedDestinations.push({
                         description: destination.abbreviation,
-                        isOverbooked: response
+                        overbookedPax: response
                     })
                 })
             })
