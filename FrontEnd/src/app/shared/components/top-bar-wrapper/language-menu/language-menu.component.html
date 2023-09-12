@@ -3,10 +3,10 @@
         <img (load)="loadImage()" [ngClass]="imageIsLoading()" src="/assets/images/languages/{{ getStoredLanguage() }}.svg" style="height: 1.5625rem; width: 1.5625rem">
     </button>
     <ul (click)="hideMenu()" class="sub-menu">
-        <button class="hoverable" (click)="doLanguageTasks('el-GR')"><img src="/assets/images/languages/el-GR.svg"></button>
-        <button class="hoverable" (click)="doLanguageTasks('en-GB')"><img src="/assets/images/languages/en-GB.svg"></button>
-        <button class="hoverable" (click)="doLanguageTasks('de-DE')"><img src="/assets/images/languages/de-DE.svg"></button>
-        <button class="hoverable" (click)="doLanguageTasks('cs-CZ')"><img src="/assets/images/languages/cs-CZ.svg"></button>
-        <button class="hoverable" (click)="doLanguageTasks('fr-FR')"><img src="/assets/images/languages/fr-FR.svg"></button>
+        <button (click)="doLanguageTasks('el-GR')"><img src="/assets/images/languages/el-GR.svg"></button>
+        <button (click)="doLanguageTasks('en-GB')"><img src="/assets/images/languages/en-GB.svg"></button>
+        <button (click)="doLanguageTasks('de-DE')"><img src="/assets/images/languages/de-DE.svg"></button>
+        <button (click)="doLanguageTasks('cs-CZ')"><img src="/assets/images/languages/cs-CZ.svg"></button>
+        <button (click)="doLanguageTasks('fr-FR')"><img src="/assets/images/languages/fr-FR.svg"></button>
     </ul>
 </div>

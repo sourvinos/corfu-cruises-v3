@@ -24,7 +24,6 @@ export class EmbarkationPDFService {
         this.setFonts()
         const dd = {
             background: this.setBackgroundImage(),
-            info: this.setPageInfo(),
             pageOrientation: 'portrait',
             pageSize: 'A4',
             content: [
@@ -166,14 +165,6 @@ export class EmbarkationPDFService {
             }
         ]
         return backgroundImage
-    }
-
-    private setPageInfo(): any {
-        const pageInfo = {
-            title: 'Embarkation',
-            filename: 'Boos.pdf'
-        }
-        return pageInfo
     }
 
     private setTitle(criteriaFromStorage: any): any {

@@ -46,9 +46,6 @@ export class LedgerPDFService {
                     },
                 }
             ],
-            info: {
-                title: 'Customer ledgers'
-            },
             styles: {
                 AkaAcidCanterBold: {
                     font: 'AkaAcidCanterBold',
@@ -199,7 +196,7 @@ export class LedgerPDFService {
             { text: 'Actual', alignment: 'center', fillColor: '#deecf5' },
             { text: 'N/S', alignment: 'center', fillColor: '#deecf5' },
             { text: 'Transfer', fillColor: '#deecf5' },
-            { text: 'Remarks' }
+            { text: 'Remarks', alignment: 'center' }
         ])
         return row
     }

@@ -106,7 +106,6 @@
 }
 
 .p-column-filter-menu-button, .p-column-filter-clear-button::after {
-    color: var(--color-accent);
     content: "❌";
     padding: 0 0 0 0.875rem;
 }

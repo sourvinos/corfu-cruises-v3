@@ -5,7 +5,7 @@
             <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
         </button>
         <ul (click)="hideMenu()" class="sub-menu">
-            <button *ngFor="let year of years" (click)="selectYear(year)" class="hoverable">
+            <button *ngFor="let year of years" (click)="selectYear(year)">
                 <img [src]="getIcon('availability')" style="height: 1.5625rem; width: 1.5625rem">
                 <span>{{ year }}</span>
             </button>

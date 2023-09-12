@@ -1,9 +1,9 @@
 @import url("https://fonts.cdnfonts.com/css/asty-cf-std");
+@import url('https://fonts.cdnfonts.com/css/fira-sans-extra-condensed');
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Material+Icons+Outlined");
 @import url("https://fonts.googleapis.com/css?family=Material+Symbols+Outlined");
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto+Condensed:wght@300&family=Roboto:wght@300&display=swap');
 
 @import url("../custom/common-colors.css");
 
@@ -77,7 +77,7 @@ ul {
 }
 
 .accent {
-    color: var(--color-accent);
+    color: var(--color-accent) !important;
 }
 
 .hidden {

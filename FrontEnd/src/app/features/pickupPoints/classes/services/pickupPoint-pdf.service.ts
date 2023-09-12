@@ -28,7 +28,6 @@ export class PickupPointPdfService {
         this.setFonts()
         const dd = {
             background: this.setBackgroundImage(),
-            info: this.pageMetadata(),
             pageOrientation: 'portrait',
             pageSize: 'A4',
             content:
@@ -135,13 +134,6 @@ export class PickupPointPdfService {
             pickupPoint.coachRouteAbbreviation = coachRoute.abbreviation
         })
         return pickupPoints
-    }
-
-    private pageMetadata(): any {
-        const pageInfo = {
-            title: 'Pickup Points'
-        }
-        return pageInfo
     }
 
     private createPdf(document: any): void {

@@ -6,14 +6,15 @@
             <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
             <div class="filter-pill">
                 <div class="pill date">
+                    <mat-icon class="material-symbols-outlined">calendar_month</mat-icon>
                     <div class="description">{{ formatDateToLocale(criteriaPanels.fromDate, true, true) }} - {{ formatDateToLocale(criteriaPanels.toDate, true, true) }}</div>
                 </div>
-                <button (click)="expandAll()" class="accent prime-icon" mat-flat-button>
+                <div (click)="expandAll()" class="clickable no-margin pill">
                     <mat-icon class="material-icons-outlined">keyboard_double_arrow_down</mat-icon>
-                </button>
-                <button (click)="collapseAll()" class="accent prime-icon" mat-flat-button>
+                </div>
+                <div (click)="collapseAll()" class="accent clickable no-margin pill">
                     <mat-icon class="material-icons-outlined">keyboard_double_arrow_up</mat-icon>
-                </button>
+                </div>
             </div>
         </div>
 
@@ -46,7 +47,7 @@
             <ng-container *ngTemplateOutlet="contextMenu"></ng-container>
         </mat-menu>
         <table-total-filtered-records [filteredRecordCount]="records.length" [recordCount]="records.length" [showFilteredCount]="false"></table-total-filtered-records>
-        <div id="button-align-right">
+        <div id="align-right">
             <button [disabled]="records.length==0" (click)="exportAll()" class="primary" mat-flat-button>
                 <mat-icon *ngIf="records.length==0" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("createPdfButton") | uppercase }}</span>

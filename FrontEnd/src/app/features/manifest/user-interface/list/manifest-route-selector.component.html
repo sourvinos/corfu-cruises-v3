@@ -1,8 +1,8 @@
 <div id="dialog">
 
     <div id="dialog-header">
-        <h1>{{ getLabel('headerRouteSelector') }}</h1>
-        <h6>{{ getLabel('subHeaderRouteSelector') }}</h6>
+        <h1>{{ getLabel('header') }}</h1>
+        <h6>{{ getLabel('subHeader') }}</h6>
     </div>
 
     <div id="dialog-content">
@@ -17,16 +17,14 @@
     </div>
 
     <div id="dialog-footer">
-        <div id="button-align-right">
-            <mat-dialog-actions>
-                <button (click)="close()" class="transparent" mat-flat-button tabindex="-1">
-                    <span>{{ getLabel("cancelButton") | uppercase }}</span>
-                </button>
-                <button (click)="continue()" [disabled]="!form.valid" class="primary" mat-flat-button>
-                    <mat-icon *ngIf="!form.valid" class="material-icons-outlined">lock</mat-icon>
-                    <span>{{ getLabel("okButton") | uppercase }}</span>
-                </button>
-            </mat-dialog-actions>
+        <div id="align-right">
+            <button (click)="close()" class="transparent" mat-flat-button tabindex="-1">
+                <span>{{ getLabel("cancelButton") | uppercase }}</span>
+            </button>
+            <button (click)="continue()" [disabled]="!form.valid" class="primary" mat-flat-button>
+                <mat-icon *ngIf="!form.valid" class="material-icons-outlined">lock</mat-icon>
+                <span>{{ getLabel("okButton") | uppercase }}</span>
+            </button>
         </div>
     </div>
 

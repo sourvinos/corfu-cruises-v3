@@ -89,7 +89,7 @@ export class ReservationListComponent {
                 data: ['drivers', 'assignToDriver'],
                 height: '36.0625rem',
                 panelClass: 'dialog',
-                width: '31rem',
+                width: '32rem',
             })
             dialogRef.afterClosed().subscribe(result => {
                 if (result !== undefined) {
@@ -112,7 +112,7 @@ export class ReservationListComponent {
                 data: ['ships', 'assignToShip'],
                 height: '36.0625rem',
                 panelClass: 'dialog',
-                width: '31rem',
+                width: '32rem',
             })
             dialogRef.afterClosed().subscribe(result => {
                 if (result !== undefined) {

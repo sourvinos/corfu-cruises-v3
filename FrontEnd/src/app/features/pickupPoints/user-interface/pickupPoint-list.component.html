@@ -53,7 +53,7 @@
 
     <div id="footer">
         <table-total-filtered-records (resetTableFilters)="resetTableFilters()" [filteredRecordCount]="recordsFilteredCount" [recordCount]="records.length"></table-total-filtered-records>
-        <div id="button-align-right">
+        <div id="align-right">
             <button (click)="createPdf()" [disabled]="recordsFilteredCount==0" class="secondary" mat-flat-button>
                 <mat-icon *ngIf="recordsFilteredCount==0" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("createPdf") | uppercase }}</span>

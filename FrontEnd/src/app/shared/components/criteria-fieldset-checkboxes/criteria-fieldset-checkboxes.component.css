@@ -1,4 +1,5 @@
 .fieldset {
+    border-radius: 0.625rem;
     border: 0.0625rem solid var(--color-primary);
     display: flex;
     height: 100%;

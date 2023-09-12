@@ -4,7 +4,7 @@
     flex-direction: column;
     height: 100%;
     overflow: hidden;
-    padding: 2rem 2rem 1rem 2rem;
+    padding: 2rem 2rem 2rem 2rem;
 }
 
 #dialog-header {
@@ -31,8 +31,16 @@
 }
 
 #dialog-footer {
-    margin-left: auto;
+    display: flex;
+    margin: 0 1rem 0 1rem;
 }
+
+#dialog-footer #align-right {
+    column-gap: 0.5rem;
+    display: flex;
+    margin: 0 0 0 auto;
+}
+
 
 .option {
     border-radius: 0.25rem;
@@ -55,7 +63,6 @@
 
 .option-label:hover {
     cursor: pointer;
-    background-color: color-mix(in srgb, var(--color-secondary) var(--hover-transparency), transparent);
 }
 
 .option-label span {

@@ -16,7 +16,7 @@ export class ManifestRouteSelectorComponent {
 
     //#region variables
 
-    private feature = 'manifestCriteria'
+    private feature = 'manifestShipRouteSelector'
     public form: FormGroup
     public shipRoutes: ShipRouteAutoCompleteVM[] = []
 

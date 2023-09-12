@@ -38,7 +38,7 @@
     </div>
 
     <div id="footer">
-        <div id="button-align-right">
+        <div id="align-right">
             <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
                 <mat-icon *ngIf="!form.valid" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("saveButton") | uppercase }}</span>

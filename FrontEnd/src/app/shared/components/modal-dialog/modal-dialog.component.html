@@ -30,7 +30,7 @@
             <button mat-flat-button class="primary" id="ok" tabindex="-1" mat-dialog-close="true">{{ getLabel('okButton') | uppercase }}</button>
         </mat-dialog-actions>
         <mat-dialog-actions *ngIf="data.actions.length == 2">
-            <button mat-flat-button class="transparent" id="abort" tabindex="-1" (click)="onClose()">{{ getLabel('noButton') | uppercase }}</button>
+            <button mat-flat-button class="transparent" id="abort" tabindex="-1" (click)="onClose()">{{ getLabel('cancelButton') | uppercase }}</button>
             <button mat-flat-button class="primary" id="ok" tabindex="-1" mat-dialog-close="true">{{ getLabel('okButton') | uppercase }}</button>
         </mat-dialog-actions>
     </div>

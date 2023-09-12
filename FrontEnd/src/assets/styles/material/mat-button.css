@@ -6,12 +6,16 @@
 }
 
 .mdc-button .mdc-button__label {
-    margin-top: 0.22rem !important;
-    transform: scale(0.8, 1.4);
+    font-family: var(--font-family-fira-sans-condensed) !important;
+    font-size: var(--font-size-button) !important;
+    font-weight: 300 !important;
+    margin-top: 0.25rem !important;
+    transform: scale(1, 1.4);
 }
 
 .mat-mdc-icon-button {
     --mat-mdc-button-persistent-ripple-color: transparent !important;
+    width: auto !important;
 }
 
 button {
@@ -19,15 +23,13 @@ button {
     border: none;
     box-shadow: none !important;
     color: var(--color-button-text) !important;
+    column-gap: 0.5rem;
     cursor: default !important;
-    display: inline-flex !important;
-    font-family: var(--font-family-asty) !important;
-    font-size: var(--font-size-button) !important;
-    font-weight: 300 !important;
+    display: flex !important;
     justify-content: center;
     min-width: 0 !important;
     outline: 0 !important;
-    padding: 0 1rem 0.125rem 1rem !important;
+    padding: 0 1.5rem 0.125rem 1.5rem !important;
 }
 
 button.fab {

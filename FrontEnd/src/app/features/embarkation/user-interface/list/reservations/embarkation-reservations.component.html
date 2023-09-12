@@ -6,7 +6,7 @@
             <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
             <div class="filter-pill">
                 <div class="pill date">
-                    <img [src]="getIcon('calendar')">
+                    <mat-icon class="material-symbols-outlined">calendar_month</mat-icon>
                     <div class="description">{{ formatDateToLocale(criteriaPanels.date, true, true) }}</div>
                 </div>
             </div>
@@ -167,35 +167,35 @@
         </mat-menu>
         <div class="filter-pill">
             <div class="pill">
-                <img [src]="getIcon('total')">
+                <mat-icon class="material-icons-outlined">functions</mat-icon>
                 <div class="right description">
                     <span>{{ totals[0] | padNumber : 3 : ' ' }}</span>
                 </div>
-                <img [src]="getIcon('boarded')">
+                <mat-icon class="material-symbols-outlined">download</mat-icon>
                 <div class="right description">
                     <span>{{ totals[1] | padNumber : 3 : ' ' }}</span>
                 </div>
-                <img [src]="getIcon('pending')">
+                <mat-icon class="material-symbols-outlined">pace</mat-icon>
                 <div class="right description">
                     <span>{{ totals[2] | padNumber : 3 : ' ' }}</span>
                 </div>
             </div>
             <div (click)="resetTableFilters()" class="pill reset-table-filter">
-                <img [src]="getIcon('filter')">
+                <mat-icon class="material-icons-outlined">filter_alt</mat-icon>
                 <div class="right description">
                     <span>{{ totalsFiltered[0] | padNumber : 3 : ' ' }}</span>
                 </div>
-                <img [src]="getIcon('boarded')">
+                <mat-icon class="material-symbols-outlined">download</mat-icon>
                 <div class="right description">
                     <span>{{ totalsFiltered[1] | padNumber : 3 : ' ' }}</span>
                 </div>
-                <img [src]="getIcon('pending')">
+                <mat-icon class="material-symbols-outlined">pace</mat-icon>
                 <div class="right description">
                     <span>{{ totalsFiltered[2] | padNumber : 3 : ' ' }}</span>
                 </div>
             </div>
         </div>
-        <div id="button-align-right">
+        <div id="align-right">
             <button (click)="createPdf()" [disabled]="records.reservations.length == 0" class="primary" mat-flat-button>
                 <mat-icon *ngIf="records.reservations.length==0" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("createPDF") | uppercase }}</span>

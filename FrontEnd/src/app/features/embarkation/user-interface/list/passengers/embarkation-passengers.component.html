@@ -1,10 +1,8 @@
 <div id="form-wrapper">
 
     <div id="form-header">
-        <h1>
-            <span style="color: var(--color-accent);">{{ getLabel('headerRefNo') }}: </span><span style="color: var(--color-text)">{{ reservation.refNo }}</span>&nbsp;&nbsp;
-            <span style="color: var(--color-accent);">{{ getLabel('headerTicketNo') }}: </span><span style="color: var(--color-text)">{{ reservation.ticketNo }}</span>
-        </h1>
+        <span style="color: var(--color-accent);">{{ getLabel('headerRefNo') }}: </span><span style="color: var(--color-text)">{{ reservation.refNo }}</span>&nbsp;&nbsp;
+        <span style="color: var(--color-accent);">{{ getLabel('headerTicketNo') }}: </span><span style="color: var(--color-text)">{{ reservation.ticketNo }}</span>
     </div>
 
     <div id="dialog-content">
@@ -15,7 +13,7 @@
                         <th class="width-10" pSortableColumn="lastname">{{ getLabel('headerLastname')}}</th>
                         <th class="width-10" pSortableColumn="firstname">{{ getLabel('headerFirstname') }}</th>
                         <th class="width-10" pSortableColumn="nationalityDescription">{{ getLabel('headerCountry') }}</th>
-                        <th class="width-5" pSortableColumn="isBoarded">{{ getLabel('headerStatus') }}</th>
+                        <th class="width-5" pSortableColumn="isBoarded">{{ getLabel('headerEmbarkationStatus') }}</th>
                     </tr>
                     <tr>
                         <th class="width-10"><input (input)="table.filter($event.target.value, 'lastname', 'contains')" [disabled]="isFilterDisabled()" [value]="$any(table).filters['lastname']?.value" class="p-inputtext"></th>
@@ -40,7 +38,7 @@
                     <tr style="height:2rem">
                         <td class="width-10">{{ passenger.lastname }}</td>
                         <td class="width-10">{{ passenger.firstname }}</td>
-                        <td class="align-vertical width-10">
+                        <td class="align-vertical">
                             <img [src]="getNationalityIcon(passenger.nationality.code)" class="flag-with-border" />
                             <span>&nbsp;&nbsp;&nbsp;&nbsp;{{ passenger.nationality.description }}</span>
                         </td>
@@ -60,14 +58,12 @@
             <span *ngIf="countMissingPassengers() == 1">{{ getLabel("missingPassenger") }}</span>
             <span *ngIf="countMissingPassengers() > 1">{{ getLabel("missingPassengers", countMissingPassengers().toString()) }}</span>
         </div>
-        <div id="button-align-right">
-            <mat-dialog-actions>
-                <button (click)="doEmbarkation(true, reservation.passengers)" [disabled]="isEmbarkAllAllowed()" class="secondary" mat-flat-button>
-                    <mat-icon *ngIf="isEmbarkAllAllowed()" class="material-icons-outlined">lock</mat-icon>
-                    <span>{{ getLabel('embarkAllPassengers') }}</span>
-                </button>
-                <button (click)="close()" class="primary" mat-flat-button>{{ getLabel('okButton') }}</button>
-            </mat-dialog-actions>
+        <div id="align-right">
+            <button (click)="doEmbarkation(true, reservation.passengers)" [disabled]="isEmbarkAllAllowed()" class="secondary" mat-flat-button>
+                <mat-icon *ngIf="isEmbarkAllAllowed()" class="material-icons-outlined">lock</mat-icon>
+                <span>{{ getLabel('embarkAllPassengers') }}</span>
+            </button>
+            <button (click)="close()" class="primary" mat-flat-button>{{ getLabel('okButton') }}</button>
         </div>
     </div>
 

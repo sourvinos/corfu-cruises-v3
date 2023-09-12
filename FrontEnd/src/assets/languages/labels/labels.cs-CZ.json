@@ -864,7 +864,7 @@
                 "description": "OK"
             },
             {
-                "id": "noButton",
+                "id": "cancelButton",
                 "description": "Zrušit"
             }
         ]
@@ -885,7 +885,7 @@
                 "description": "OK"
             },
             {
-                "id": "noButton",
+                "id": "cancelButton",
                 "description": "Zrušit"
             }
         ]
@@ -906,7 +906,7 @@
                 "description": "OK"
             },
             {
-                "id": "noButton",
+                "id": "cancelButton",
                 "description": "ZRUŠIT"
             }
         ]
@@ -1212,7 +1212,7 @@
             },
             {
                 "id": "headerEmbarkationStatus",
-                "description": ""
+                "description": "S"
             },
             {
                 "id": "headerRefNo",
@@ -1484,11 +1484,11 @@
             },
             {
                 "id": "countPassengers",
-                "description": "c"
+                "description": "P"
             },
             {
                 "id": "countCrew",
-                "description": "p"
+                "description": "P"
             },
             {
                 "id": "createPdf",

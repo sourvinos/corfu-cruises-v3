@@ -187,7 +187,7 @@
     </div>
 
     <div id="footer">
-        <div id="button-align-right">
+        <div id="align-right">
             <button *ngIf="form.value.reservationId != ''" (click)="onDelete()" [disabled]="!isAdmin()" class="delete" mat-flat-button>
                 <mat-icon *ngIf="!isAdmin()" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel('deleteButton') | uppercase }}</span>

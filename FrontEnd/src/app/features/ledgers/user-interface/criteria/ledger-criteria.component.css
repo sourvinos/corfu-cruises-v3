@@ -37,7 +37,6 @@
 #form {
     display: flex;
     flex-direction: column !important;
-    row-gap: 0.5rem;
 }
 
 #form .group-input-field > date-picker {

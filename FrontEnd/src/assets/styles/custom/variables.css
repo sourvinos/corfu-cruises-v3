@@ -4,11 +4,12 @@
     --font-family-logo: "Aka-Acid-CanterBold";
     --font-family-roboto: "Roboto";
     --font-family-ubuntu: "Ubuntu Mono";
+    --font-family-fira-sans-condensed: "Fira Sans Extra Condensed";
     /* Font weights */
     --font-weight-dialog-content: 300 !important;
     --font-weight-logo: 400;
     /* Sizes */
-    --font-size-button: 1rem;
+    --font-size-button: 1.125rem;
     --font-size-dropdown-menu-button: 0.8125rem;
     --font-size-dialog-text: 1rem;
     --font-size-dialog: 1.5rem;
