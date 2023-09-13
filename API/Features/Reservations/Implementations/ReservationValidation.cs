@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Org.BouncyCastle.Math.EC.Rfc7748;
 
 namespace API.Features.Reservations {
 
@@ -47,6 +48,10 @@ namespace API.Features.Reservations {
                     string.Equals(x.TicketNo, reservation.TicketNo, StringComparison.OrdinalIgnoreCase));
         }
 
+        public bool IsAlreadyUpdated(Reservation z, ReservationWriteDto reservation) {
+            return z != null && z.PutAt != reservation.PutAt;
+        }
+
         public bool IsRefNoUnique(ReservationWriteDto reservation) {
             return !context.Reservations
                 .AsNoTracking()
@@ -75,7 +80,7 @@ namespace API.Features.Reservations {
             return maxPassengersForAllPorts - totalPaxFromAllPorts;
         }
 
-        public int IsValid(ReservationWriteDto reservation, IScheduleRepository scheduleRepo) {
+        public int IsValid(Reservation z, ReservationWriteDto reservation, IScheduleRepository scheduleRepo) {
             return true switch {
                 var x when x == !IsKeyUnique(reservation) => 409,
                 var x when x == !IsRefNoUnique(reservation) => 414,
@@ -92,6 +97,7 @@ namespace API.Features.Reservations {
                 var x when x == IsSimpleUserCausingOverbooking(reservation) => 433,
                 var x when x == SimpleUserHasNightRestrictions(reservation) => 459,
                 var x when x == SimpleUserCanNotAddReservationAfterDeparture(reservation) => 431,
+                var x when x == IsAlreadyUpdated(z, reservation) => 415,
                 _ => 200,
             };
         }

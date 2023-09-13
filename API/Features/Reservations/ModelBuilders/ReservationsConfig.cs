@@ -28,8 +28,6 @@ namespace API.Features.Reservations {
             entity.Property(x => x.PostUser).HasMaxLength(255).IsRequired(true);
             entity.Property(x => x.PutAt).HasMaxLength(19);
             entity.Property(x => x.PutUser).HasMaxLength(255);
-            // RowVersion
-            entity.Property(x => x.RowVersion).IsRowVersion();
             // FK Constraints
             entity.HasOne(x => x.Customer).WithMany(x => x.Reservations).HasForeignKey(x => x.CustomerId).OnDelete(DeleteBehavior.Restrict);
             entity.HasOne(x => x.Destination).WithMany(x => x.Reservations).HasForeignKey(x => x.DestinationId).OnDelete(DeleteBehavior.Restrict);

@@ -8,7 +8,7 @@ namespace API.Features.Reservations {
         bool IsKeyUnique(ReservationWriteDto reservation);
         int GetPortIdFromPickupPointId(ReservationWriteDto reservation);
         int OverbookedPax(string date, int destinationId);
-        int IsValid(ReservationWriteDto reservation, IScheduleRepository scheduleRepo);
+        int IsValid(Reservation x, ReservationWriteDto reservation, IScheduleRepository scheduleRepo);
 
     }
 

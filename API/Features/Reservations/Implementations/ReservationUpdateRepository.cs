@@ -9,6 +9,7 @@ using API.Infrastructure.Implementations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Options;
 
 namespace API.Features.Reservations {
@@ -23,7 +24,7 @@ namespace API.Features.Reservations {
             this.testingEnvironment = testingEnvironment.Value;
         }
 
-        public void Update(Guid reservationId, Reservation reservation) {
+        public Reservation Update(Guid reservationId, Reservation reservation) {
             using var transaction = context.Database.BeginTransaction();
             if (Identity.IsUserAdmin(httpContext)) {
                 UpdateReservation(reservation);
@@ -34,11 +35,8 @@ namespace API.Features.Reservations {
                 DeletePassengers(reservationId, reservation.Passengers);
             }
             context.SaveChanges();
-            if (testingEnvironment.IsTesting) {
-                transaction.Dispose();
-            } else {
-                transaction.Commit();
-            }
+            DisposeOrCommit(transaction);
+            return reservation;
         }
 
         public void AssignToDriver(int driverId, string[] ids) {
@@ -71,6 +69,14 @@ namespace API.Features.Reservations {
 
         public string AssignRefNoToNewDto(ReservationWriteDto reservation) {
             return GetDestinationAbbreviation(reservation) + DateHelpers.GetTrimmedUnixTime();
+        }
+
+        private void DisposeOrCommit(IDbContextTransaction transaction) {
+            if (testingEnvironment.IsTesting) {
+                transaction.Dispose();
+            } else {
+                transaction.Commit();
+            }
         }
 
         private string GetDestinationAbbreviation(ReservationWriteDto reservation) {

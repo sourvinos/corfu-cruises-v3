@@ -22,20 +22,20 @@ namespace API.Features.Reservations {
         private readonly IReservationReadRepository reservationReadRepo;
         private readonly IReservationSendToEmail reservationSendToEmail;
         private readonly IReservationUpdateRepository reservationUpdateRepo;
-        private readonly IReservationValidation validReservation;
+        private readonly IReservationValidation reservationValidation;
         private readonly IScheduleRepository scheduleRepo;
 
         #endregion
 
-        public ReservationsController(IHttpContextAccessor httpContext, IMapper mapper, IReservationCalendar reservationCalendar, IReservationReadRepository reservationReadRepo, IReservationSendToEmail reservationSendToEmail, IReservationUpdateRepository reservationUpdateRepo, IReservationValidation validReservation, IScheduleRepository scheduleRepo) {
+        public ReservationsController(IHttpContextAccessor httpContext, IMapper mapper, IReservationCalendar reservationCalendar, IReservationReadRepository reservationReadRepo, IReservationSendToEmail reservationSendToEmail, IReservationUpdateRepository reservationUpdateRepo, IReservationValidation reservationValidation, IScheduleRepository scheduleRepo) {
             this.httpContext = httpContext;
             this.mapper = mapper;
             this.reservationCalendar = reservationCalendar;
             this.reservationReadRepo = reservationReadRepo;
             this.reservationSendToEmail = reservationSendToEmail;
             this.reservationUpdateRepo = reservationUpdateRepo;
+            this.reservationValidation = reservationValidation;
             this.scheduleRepo = scheduleRepo;
-            this.validReservation = validReservation;
         }
 
         [HttpGet("fromDate/{fromDate}/toDate/{toDate}")]
@@ -67,7 +67,7 @@ namespace API.Features.Reservations {
         public async Task<ResponseWithBody> GetByIdAsync(string reservationId) {
             var x = await reservationReadRepo.GetByIdAsync(reservationId, true);
             if (x != null) {
-                if (Identity.IsUserAdmin(httpContext) || validReservation.IsUserOwner(x.CustomerId)) {
+                if (Identity.IsUserAdmin(httpContext) || reservationValidation.IsUserOwner(x.CustomerId)) {
                     return new ResponseWithBody {
                         Code = 200,
                         Icon = Icons.Info.ToString(),
@@ -89,23 +89,24 @@ namespace API.Features.Reservations {
         [HttpPost]
         [Authorize(Roles = "user, admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public Task<Response> Post([FromBody] ReservationWriteDto reservation) {
+        public async Task<ResponseWithBody> Post([FromBody] ReservationWriteDto reservation) {
             AttachPortIdToDto(reservation);
             UpdateDriverIdWithNull(reservation);
             UpdateShipIdWithNull(reservation);
             AttachNewRefNoToDto(reservation);
-            var x = validReservation.IsValid(reservation, scheduleRepo);
-            if (x == 200) {
-                var z = reservationUpdateRepo.Create(mapper.Map<ReservationWriteDto, Reservation>((ReservationWriteDto)reservationUpdateRepo.AttachMetadataToPostDto(reservation)));
-                return Task.FromResult(new Response {
+            var z = reservationValidation.IsValid(null, reservation, scheduleRepo);
+            if (z == 200) {
+                var x = reservationUpdateRepo.Create(mapper.Map<ReservationWriteDto, Reservation>((ReservationWriteDto)reservationUpdateRepo.AttachMetadataToPostDto(reservation)));
+                var i = await reservationReadRepo.GetByIdAsync(x.ReservationId.ToString(), true);
+                return new ResponseWithBody {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = z.ReservationId.ToString(),
+                    Body = mapper.Map<Reservation, ReservationReadDto>(i),
                     Message = reservation.RefNo
-                });
+                };
             } else {
                 throw new CustomException() {
-                    ResponseCode = x
+                    ResponseCode = z
                 };
             }
         }
@@ -113,20 +114,21 @@ namespace API.Features.Reservations {
         [HttpPut]
         [Authorize(Roles = "user, admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<Response> Put([FromBody] ReservationWriteDto reservation) {
+        public async Task<ResponseWithBody> Put([FromBody] ReservationWriteDto reservation) {
             var x = await reservationReadRepo.GetByIdAsync(reservation.ReservationId.ToString(), false);
             if (x != null) {
-                if (Identity.IsUserAdmin(httpContext) || validReservation.IsUserOwner(x.CustomerId)) {
+                if (Identity.IsUserAdmin(httpContext) || reservationValidation.IsUserOwner(x.CustomerId)) {
                     AttachPortIdToDto(reservation);
                     UpdateDriverIdWithNull(reservation);
                     UpdateShipIdWithNull(reservation);
-                    var z = validReservation.IsValid(reservation, scheduleRepo);
+                    var z = reservationValidation.IsValid(x, reservation, scheduleRepo);
                     if (z == 200) {
                         reservationUpdateRepo.Update(reservation.ReservationId, mapper.Map<ReservationWriteDto, Reservation>((ReservationWriteDto)reservationUpdateRepo.AttachMetadataToPutDto(x, reservation)));
-                        return new Response {
+                        var i = await reservationReadRepo.GetByIdAsync(reservation.ReservationId.ToString(), true);
+                        return new ResponseWithBody {
                             Code = 200,
                             Icon = Icons.Success.ToString(),
-                            Id = reservation.ReservationId.ToString(),
+                            Body = mapper.Map<Reservation, ReservationReadDto>(i),
                             Message = reservation.RefNo
                         };
                     } else {
@@ -192,7 +194,7 @@ namespace API.Features.Reservations {
         [HttpGet("overbookedPax/date/{date}/destinationId/{destinationId}")]
         [Authorize(Roles = "user, admin")]
         public int OverbookedPax([FromRoute] string date, int destinationId) {
-            return validReservation.OverbookedPax(date, destinationId);
+            return reservationValidation.OverbookedPax(date, destinationId);
         }
 
         [HttpGet("boardingPass/{reservationId}")]
@@ -200,7 +202,7 @@ namespace API.Features.Reservations {
         public async Task<Response> SendBoardingPassToEmailAsync(string reservationId) {
             var x = await reservationReadRepo.GetByIdAsync(reservationId, true);
             if (x != null) {
-                if (Identity.IsUserAdmin(httpContext) || validReservation.IsUserOwner(x.CustomerId)) {
+                if (Identity.IsUserAdmin(httpContext) || reservationValidation.IsUserOwner(x.CustomerId)) {
                     await reservationSendToEmail.SendReservationToEmail(mapper.Map<Reservation, BoardingPassReservationVM>(x));
                     return new Response {
                         Code = 200,
@@ -222,7 +224,7 @@ namespace API.Features.Reservations {
         }
 
         private ReservationWriteDto AttachPortIdToDto(ReservationWriteDto reservation) {
-            reservation.PortId = validReservation.GetPortIdFromPickupPointId(reservation);
+            reservation.PortId = reservationValidation.GetPortIdFromPickupPointId(reservation);
             return reservation;
         }
 
@@ -238,6 +240,11 @@ namespace API.Features.Reservations {
 
         private static ReservationWriteDto UpdateShipIdWithNull(ReservationWriteDto reservation) {
             if (reservation.ShipId == 0) reservation.ShipId = null;
+            return reservation;
+        }
+
+        private ReservationWriteDto UpdateMetadata(Reservation x, ReservationWriteDto reservation) {
+            reservationUpdateRepo.AttachMetadataToPutDto(x, reservation);
             return reservation;
         }
 
