@@ -60,7 +60,7 @@ namespace API.Features.ShipCrews {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] ShipCrewWriteDto shipCrew) {
-            var x = shipCrewValidation.IsValid(shipCrew);
+            var x = shipCrewValidation.IsValid(null, shipCrew);
             if (x == 200) {
                 var z = shipCrewRepo.Create(mapper.Map<ShipCrewWriteDto, ShipCrew>((ShipCrewWriteDto)shipCrewRepo.AttachMetadataToPostDto(shipCrew)));
                 return new Response {
@@ -82,7 +82,7 @@ namespace API.Features.ShipCrews {
         public async Task<Response> Put([FromBody] ShipCrewWriteDto shipCrew) {
             var x = await shipCrewRepo.GetByIdAsync(shipCrew.Id, false);
             if (x != null) {
-                var z = shipCrewValidation.IsValid(shipCrew);
+                var z = shipCrewValidation.IsValid(x, shipCrew);
                 if (z == 200) {
                     shipCrewRepo.Update(mapper.Map<ShipCrewWriteDto, ShipCrew>((ShipCrewWriteDto)shipCrewRepo.AttachMetadataToPutDto(x, shipCrew)));
                     return new Response {

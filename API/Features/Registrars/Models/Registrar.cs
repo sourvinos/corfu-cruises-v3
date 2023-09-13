@@ -1,4 +1,3 @@
-using System;
 using API.Features.Ships;
 using API.Infrastructure.Interfaces;
 
@@ -23,8 +22,6 @@ namespace API.Features.Registrars {
         public string PostUser { get; set; }
         public string PutAt { get; set; }
         public string PutUser { get; set; }
-        // RowVersion
-        public DateTime RowVersion { get; set; }
         // Navigation
         public Ship Ship { get; set; }
 

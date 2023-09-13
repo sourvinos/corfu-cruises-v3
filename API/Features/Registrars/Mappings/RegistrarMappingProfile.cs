@@ -1,5 +1,4 @@
 using API.Infrastructure.Classes;
-using API.Infrastructure.Helpers;
 using AutoMapper;
 
 namespace API.Features.Registrars {
@@ -11,8 +10,7 @@ namespace API.Features.Registrars {
                 .ForMember(x => x.Ship, x => x.MapFrom(x => new SimpleEntity { Id = x.Ship.Id, Description = x.Ship.Description }));
             CreateMap<Registrar, RegistrarAutoCompleteVM>();
             CreateMap<Registrar, RegistrarReadDto>()
-                .ForMember(x => x.Ship, x => x.MapFrom(x => new SimpleEntity { Id = x.Ship.Id, Description = x.Ship.Description }))
-                .ForMember(x => x.RowVersion, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(x.RowVersion)));
+                .ForMember(x => x.Ship, x => x.MapFrom(x => new SimpleEntity { Id = x.Ship.Id, Description = x.Ship.Description }));
             CreateMap<RegistrarWriteDto, Registrar>()
                 .ForMember(x => x.Fullname, x => x.MapFrom(x => x.Fullname.Trim()))
                 .ForMember(x => x.Phones, x => x.MapFrom(x => x.Phones.Trim()))

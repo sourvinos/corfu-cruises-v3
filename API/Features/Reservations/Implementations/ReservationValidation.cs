@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using Org.BouncyCastle.Math.EC.Rfc7748;
 
 namespace API.Features.Reservations {
 
@@ -48,7 +47,7 @@ namespace API.Features.Reservations {
                     string.Equals(x.TicketNo, reservation.TicketNo, StringComparison.OrdinalIgnoreCase));
         }
 
-        public bool IsAlreadyUpdated(Reservation z, ReservationWriteDto reservation) {
+        private static bool IsAlreadyUpdated(Reservation z, ReservationWriteDto reservation) {
             return z != null && z.PutAt != reservation.PutAt;
         }
 

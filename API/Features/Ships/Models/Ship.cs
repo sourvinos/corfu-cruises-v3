@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using API.Features.Registrars;
 using API.Features.Reservations;
@@ -29,8 +28,6 @@ namespace API.Features.Ships {
         public string PostUser { get; set; }
         public string PutAt { get; set; }
         public string PutUser { get; set; }
-        // RowVersion
-        public DateTime RowVersion { get; set; }
         // Navigation
         public ShipOwner ShipOwner { get; set; }
         public List<ShipCrew> ShipCrews { get; set; }

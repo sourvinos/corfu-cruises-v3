@@ -60,7 +60,7 @@ namespace API.Features.PickupPoints {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] PickupPointWriteDto pickupPoint) {
-            var x = pickupPointValidation.IsValid(pickupPoint);
+            var x = pickupPointValidation.IsValid(null, pickupPoint);
             if (x == 200) {
                 var z = pickupPointRepo.Create(mapper.Map<PickupPointWriteDto, PickupPoint>((PickupPointWriteDto)pickupPointRepo.AttachMetadataToPostDto(pickupPoint)));
                 return new Response {
@@ -82,7 +82,7 @@ namespace API.Features.PickupPoints {
         public async Task<Response> Put([FromBody] PickupPointWriteDto pickupPoint) {
             var x = await pickupPointRepo.GetByIdAsync(pickupPoint.Id, false);
             if (x != null) {
-                var z = pickupPointValidation.IsValid(pickupPoint);
+                var z = pickupPointValidation.IsValid(x, pickupPoint);
                 if (z == 200) {
                     pickupPointRepo.Update(mapper.Map<PickupPointWriteDto, PickupPoint>((PickupPointWriteDto)pickupPointRepo.AttachMetadataToPutDto(x, pickupPoint)));
                     return new Response {

@@ -1,6 +1,5 @@
 using System;
 using API.Infrastructure.Interfaces;
-using API.Infrastructure.Responses;
 
 namespace API.Features.Reservations {
 
@@ -10,7 +9,7 @@ namespace API.Features.Reservations {
         void AssignToDriver(int driverId, string[] ids);
         void AssignToShip(int shipId, string[] ids);
         string AssignRefNoToNewDto(ReservationWriteDto reservation);
- 
+
     }
 
 }

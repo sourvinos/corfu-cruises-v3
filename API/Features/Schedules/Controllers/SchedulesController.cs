@@ -76,7 +76,7 @@ namespace API.Features.Schedules {
         public async Task<Response> Put([FromBody] ScheduleWriteDto schedule) {
             var x = await scheduleRepo.GetByIdAsync(schedule.Id, false);
             if (x != null) {
-                var z = scheduleValidation.IsValidOnUpdate(schedule);
+                var z = scheduleValidation.IsValidOnUpdate(x, schedule);
                 if (z == 200) {
                     scheduleRepo.Update(mapper.Map<ScheduleWriteDto, Schedule>((ScheduleWriteDto)scheduleRepo.AttachMetadataToPutDto(x, schedule)));
                     return new Response {

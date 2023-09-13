@@ -22,10 +22,11 @@ namespace API.Features.Schedules {
             };
         }
 
-        public int IsValidOnUpdate(ScheduleWriteDto schedule) {
+        public int IsValidOnUpdate(Schedule z, ScheduleWriteDto schedule) {
             return true switch {
                 var x when x == !IsValidDestinationOnUpdate(schedule) => 451,
                 var x when x == !IsValidPortOnUpdate(schedule) => 411,
+                var x when x == IsAlreadyUpdated(z, schedule) => 415,
                 _ => 200,
             };
         }
@@ -62,6 +63,10 @@ namespace API.Features.Schedules {
             return context.Ports
                 .AsNoTracking()
                 .SingleOrDefault(x => x.Id == schedule.PortId) != null;
+        }
+
+        private static bool IsAlreadyUpdated(Schedule z, ScheduleWriteDto schedule) {
+            return z != null && z.PutAt != schedule.PutAt;
         }
 
     }

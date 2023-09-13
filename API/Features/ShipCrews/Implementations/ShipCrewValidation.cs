@@ -13,11 +13,12 @@ namespace API.Features.ShipCrews {
 
         public ShipCrewValidation(AppDbContext appDbContext, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, settings, userManager) { }
 
-        public int IsValid(ShipCrewWriteDto shipCrew) {
+        public int IsValid(ShipCrew z, ShipCrewWriteDto shipCrew) {
             return true switch {
                 var x when x == !IsValidGender(shipCrew) => 457,
                 var x when x == !IsValidNationality(shipCrew) => 456,
                 var x when x == !IsValidShip(shipCrew) => 454,
+                var x when x == IsAlreadyUpdated(z, shipCrew) => 415,
                 _ => 200,
             };
         }
@@ -50,6 +51,10 @@ namespace API.Features.ShipCrews {
                 : context.Ships
                     .AsNoTracking()
                     .SingleOrDefault(x => x.Id == shipCrew.ShipId) != null;
+        }
+
+        private static bool IsAlreadyUpdated(ShipCrew z, ShipCrewWriteDto shipCrew) {
+            return z != null && z.PutAt != shipCrew.PutAt;
         }
 
     }

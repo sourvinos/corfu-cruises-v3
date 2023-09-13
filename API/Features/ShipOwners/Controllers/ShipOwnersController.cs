@@ -16,12 +16,14 @@ namespace API.Features.ShipOwners {
 
         private readonly IMapper mapper;
         private readonly IShipOwnerRepository shipOwnerRepo;
+        private readonly IShipOwnerValidation shipOwnerValidation;
 
         #endregion
 
-        public ShipOwnersController(IMapper mapper, IShipOwnerRepository shipOwnerRepo) {
+        public ShipOwnersController(IMapper mapper, IShipOwnerRepository shipOwnerRepo, IShipOwnerValidation shipOwnerValidation) {
             this.mapper = mapper;
             this.shipOwnerRepo = shipOwnerRepo;
+            this.shipOwnerValidation = shipOwnerValidation;
         }
 
         [HttpGet]
@@ -58,13 +60,20 @@ namespace API.Features.ShipOwners {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] ShipOwnerWriteDto shipOwner) {
-            var x = shipOwnerRepo.Create(mapper.Map<ShipOwnerWriteDto, ShipOwner>((ShipOwnerWriteDto)shipOwnerRepo.AttachMetadataToPostDto(shipOwner)));
-            return new Response {
-                Code = 200,
-                Icon = Icons.Success.ToString(),
-                Id = x.Id.ToString(),
-                Message = ApiMessages.OK()
-            };
+            var x = shipOwnerValidation.IsValid(null, shipOwner);
+            if (x == 200) {
+                var z = shipOwnerRepo.Create(mapper.Map<ShipOwnerWriteDto, ShipOwner>((ShipOwnerWriteDto)shipOwnerRepo.AttachMetadataToPostDto(shipOwner)));
+                return new Response {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Id = z.Id.ToString(),
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = x
+                };
+            }
         }
 
         [HttpPut]
@@ -73,13 +82,20 @@ namespace API.Features.ShipOwners {
         public async Task<Response> Put([FromBody] ShipOwnerWriteDto shipOwner) {
             var x = await shipOwnerRepo.GetByIdAsync(shipOwner.Id);
             if (x != null) {
-                shipOwnerRepo.Update(mapper.Map<ShipOwnerWriteDto, ShipOwner>((ShipOwnerWriteDto)shipOwnerRepo.AttachMetadataToPutDto(x, shipOwner)));
-                return new Response {
-                    Code = 200,
-                    Icon = Icons.Success.ToString(),
-                    Id = x.Id.ToString(),
-                    Message = ApiMessages.OK()
-                };
+                var z = shipOwnerValidation.IsValid(x, shipOwner);
+                if (z == 200) {
+                    shipOwnerRepo.Update(mapper.Map<ShipOwnerWriteDto, ShipOwner>((ShipOwnerWriteDto)shipOwnerRepo.AttachMetadataToPutDto(x, shipOwner)));
+                    return new Response {
+                        Code = 200,
+                        Icon = Icons.Success.ToString(),
+                        Id = x.Id.ToString(),
+                        Message = ApiMessages.OK()
+                    };
+                } else {
+                    throw new CustomException() {
+                        ResponseCode = z
+                    };
+                }
             } else {
                 throw new CustomException() {
                     ResponseCode = 404

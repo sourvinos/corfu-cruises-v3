@@ -1,4 +1,3 @@
-using System;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.ShipRoutes {
@@ -21,8 +20,6 @@ namespace API.Features.ShipRoutes {
         public string PostUser { get; set; }
         public string PutAt { get; set; }
         public string PutUser { get; set; }
-        // RowVersion
-        public DateTime RowVersion { get; set; }
 
     }
 

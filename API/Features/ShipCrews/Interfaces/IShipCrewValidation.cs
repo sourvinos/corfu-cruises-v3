@@ -4,7 +4,7 @@ namespace API.Features.ShipCrews {
 
     public interface IShipCrewValidation : IRepository<ShipCrew> {
 
-        int IsValid(ShipCrewWriteDto shipCrew);
+        int IsValid(ShipCrew x, ShipCrewWriteDto shipCrew);
 
     }
 

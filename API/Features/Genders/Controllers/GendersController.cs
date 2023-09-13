@@ -15,13 +15,15 @@ namespace API.Features.Genders {
         #region variables
 
         private readonly IGenderRepository genderRepo;
+        private readonly IGenderValidation genderValidation;
         private readonly IMapper mapper;
 
         #endregion
 
-        public GendersController(IGenderRepository genderRepo, IMapper mapper) {
+        public GendersController(IGenderRepository genderRepo, IGenderValidation genderValidation, IMapper mapper) {
             this.mapper = mapper;
             this.genderRepo = genderRepo;
+            this.genderValidation = genderValidation;
         }
 
         [HttpGet]
@@ -58,13 +60,20 @@ namespace API.Features.Genders {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] GenderWriteDto gender) {
-            var x = genderRepo.Create(mapper.Map<GenderWriteDto, Gender>((GenderWriteDto)genderRepo.AttachMetadataToPostDto(gender)));
-            return new Response {
-                Code = 200,
-                Icon = Icons.Success.ToString(),
-                Id = x.Id.ToString(),
-                Message = ApiMessages.OK()
-            };
+            var x = genderValidation.IsValid(null, gender);
+            if (x == 200) {
+                var z = genderRepo.Create(mapper.Map<GenderWriteDto, Gender>((GenderWriteDto)genderRepo.AttachMetadataToPostDto(gender)));
+                return new Response {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Id = z.Id.ToString(),
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = x
+                };
+            }
         }
 
         [HttpPut]
@@ -73,13 +82,20 @@ namespace API.Features.Genders {
         public async Task<Response> Put([FromBody] GenderWriteDto gender) {
             var x = await genderRepo.GetByIdAsync(gender.Id);
             if (x != null) {
-                genderRepo.Update(mapper.Map<GenderWriteDto, Gender>((GenderWriteDto)genderRepo.AttachMetadataToPutDto(x, gender)));
-                return new Response {
-                    Code = 200,
-                    Icon = Icons.Success.ToString(),
-                    Id = x.Id.ToString(),
-                    Message = ApiMessages.OK()
-                };
+                var z = genderValidation.IsValid(x, gender);
+                if (z == 200) {
+                    genderRepo.Update(mapper.Map<GenderWriteDto, Gender>((GenderWriteDto)genderRepo.AttachMetadataToPutDto(x, gender)));
+                    return new Response {
+                        Code = 200,
+                        Icon = Icons.Success.ToString(),
+                        Id = x.Id.ToString(),
+                        Message = ApiMessages.OK()
+                    };
+                } else {
+                    throw new CustomException() {
+                        ResponseCode = z
+                    };
+                }
             } else {
                 throw new CustomException() {
                     ResponseCode = 404

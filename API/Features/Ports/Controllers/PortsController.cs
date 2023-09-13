@@ -60,7 +60,7 @@ namespace API.Features.Ports {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] PortWriteDto port) {
-            var x = portValidation.IsValid(port);
+            var x = portValidation.IsValid(null, port);
             if (x == 200) {
                 var z = portRepo.Create(mapper.Map<PortWriteDto, Port>((PortWriteDto)portRepo.AttachMetadataToPostDto(port)));
                 return new Response {
@@ -82,7 +82,7 @@ namespace API.Features.Ports {
         public async Task<Response> Put([FromBody] PortWriteDto port) {
             var x = await portRepo.GetByIdAsync(port.Id);
             if (x != null) {
-                var z = portValidation.IsValid(port);
+                var z = portValidation.IsValid(x, port);
                 if (z == 200) {
                     portRepo.Update(mapper.Map<PortWriteDto, Port>((PortWriteDto)portRepo.AttachMetadataToPutDto(x, port)));
                     return new Response {

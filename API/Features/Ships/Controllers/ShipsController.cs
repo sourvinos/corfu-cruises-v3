@@ -60,7 +60,7 @@ namespace API.Features.Ships {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] ShipWriteDto ship) {
-            var x = shipValidation.IsValid(ship);
+            var x = shipValidation.IsValid(null, ship);
             if (x == 200) {
                 var z = shipRepo.Create(mapper.Map<ShipWriteDto, Ship>((ShipWriteDto)shipRepo.AttachMetadataToPostDto(ship)));
                 return new Response {
@@ -82,7 +82,7 @@ namespace API.Features.Ships {
         public async Task<Response> Put([FromBody] ShipWriteDto ship) {
             var x = await shipRepo.GetByIdAsync(ship.Id, false);
             if (x != null) {
-                var z = shipValidation.IsValid(ship);
+                var z = shipValidation.IsValid(x, ship);
                 if (z == 200) {
                     shipRepo.Update(mapper.Map<ShipWriteDto, Ship>((ShipWriteDto)shipRepo.AttachMetadataToPutDto(x, ship)));
                     return new Response {

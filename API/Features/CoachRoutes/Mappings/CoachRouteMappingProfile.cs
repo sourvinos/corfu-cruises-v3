@@ -1,5 +1,4 @@
 using API.Infrastructure.Classes;
-using API.Infrastructure.Helpers;
 using AutoMapper;
 
 namespace API.Features.CoachRoutes {
@@ -10,8 +9,7 @@ namespace API.Features.CoachRoutes {
             CreateMap<CoachRoute, CoachRouteListVM>();
             CreateMap<CoachRoute, CoachRouteAutoCompleteVM>();
             CreateMap<CoachRoute, CoachRouteReadDto>()
-                .ForMember(x => x.Port, x => x.MapFrom(x => new SimpleEntity { Id = x.Port.Id, Description = x.Port.Description }))
-                .ForMember(x => x.RowVersion, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(x.RowVersion))); ;
+                .ForMember(x => x.Port, x => x.MapFrom(x => new SimpleEntity { Id = x.Port.Id, Description = x.Port.Description }));
             CreateMap<CoachRouteWriteDto, CoachRoute>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
                 .ForMember(x => x.Abbreviation, x => x.MapFrom(x => x.Abbreviation.Trim()));

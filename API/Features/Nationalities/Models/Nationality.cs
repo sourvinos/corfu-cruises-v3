@@ -19,8 +19,6 @@ namespace API.Features.Nationalities {
         public string PostUser { get; set; }
         public string PutAt { get; set; }
         public string PutUser { get; set; }
-        // RowVersion
-        public DateTime RowVersion { get; set; }
         // Navigation
         public List<ShipCrew> ShipCrews { get; set; }
         public List<Passenger> Passengers { get; set; }

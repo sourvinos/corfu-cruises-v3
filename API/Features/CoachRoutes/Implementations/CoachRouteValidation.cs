@@ -13,9 +13,10 @@ namespace API.Features.CoachRoutes {
 
         public CoachRouteValidation(AppDbContext context, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(context, httpContext, settings, userManager) { }
 
-        public int IsValid(CoachRouteWriteDto coachRoute) {
+        public int IsValid(CoachRoute z, CoachRouteWriteDto coachRoute) {
             return true switch {
                 var x when x == !IsValidPort(coachRoute) => 450,
+                var x when x == IsAlreadyUpdated(z, coachRoute) => 415,
                 _ => 200,
             };
         }
@@ -28,6 +29,10 @@ namespace API.Features.CoachRoutes {
                 : context.Ports
                     .AsNoTracking()
                     .SingleOrDefault(x => x.Id == coachRoute.PortId) != null;
+        }
+
+        private static bool IsAlreadyUpdated(CoachRoute z, CoachRouteWriteDto coachRoute) {
+            return z != null && z.PutAt != coachRoute.PutAt;
         }
 
     }

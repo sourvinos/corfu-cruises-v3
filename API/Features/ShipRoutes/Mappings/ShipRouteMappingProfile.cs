@@ -1,4 +1,3 @@
-using API.Infrastructure.Helpers;
 using AutoMapper;
 
 namespace API.Features.ShipRoutes {
@@ -8,8 +7,7 @@ namespace API.Features.ShipRoutes {
         public ShipRouteMappingProfile() {
             CreateMap<ShipRoute, ShipRouteListVM>();
             CreateMap<ShipRoute, ShipRouteAutoCompleteVM>();
-            CreateMap<ShipRoute, ShipRouteReadDto>()
-                .ForMember(x => x.RowVersion, x => x.MapFrom(x => DateHelpers.DateTimeToISOString(x.RowVersion)));
+            CreateMap<ShipRoute, ShipRouteReadDto>();
             CreateMap<ShipRouteWriteDto, ShipRoute>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
                 .ForMember(x => x.FromPort, x => x.MapFrom(x => x.FromPort.Trim()))

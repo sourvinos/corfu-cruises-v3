@@ -4,7 +4,7 @@ namespace API.Features.PickupPoints {
 
     public interface IPickupPointValidation : IRepository<PickupPoint> {
 
-        int IsValid(PickupPointWriteDto pickupPoint);
+        int IsValid(PickupPoint x, PickupPointWriteDto pickupPoint);
 
     }
 

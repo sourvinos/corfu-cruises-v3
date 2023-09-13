@@ -63,7 +63,7 @@ namespace API.Features.Registrars {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] RegistrarWriteDto registrar) {
-            var x = registrarValidation.IsValid(registrar);
+            var x = registrarValidation.IsValid(null, registrar);
             if (x == 200) {
                 var z = registrarRepo.Create(mapper.Map<RegistrarWriteDto, Registrar>((RegistrarWriteDto)registrarRepo.AttachMetadataToPostDto(registrar)));
                 return new Response {
@@ -85,7 +85,7 @@ namespace API.Features.Registrars {
         public async Task<Response> Put([FromBody] RegistrarWriteDto registrar) {
             var x = await registrarRepo.GetByIdAsync(registrar.Id, false);
             if (x != null) {
-                var z = registrarValidation.IsValid(registrar);
+                var z = registrarValidation.IsValid(x, registrar);
                 if (z == 200) {
                     registrarRepo.Update(mapper.Map<RegistrarWriteDto, Registrar>((RegistrarWriteDto)registrarRepo.AttachMetadataToPutDto(x, registrar)));
                     return new Response {

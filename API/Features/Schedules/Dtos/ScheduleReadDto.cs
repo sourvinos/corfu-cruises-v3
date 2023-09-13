@@ -17,8 +17,6 @@ namespace API.Features.Schedules {
         public string PostUser { get; set; }
         public string PutAt { get; set; }
         public string PutUser { get; set; }
-        // RowVersion
-        public string RowVersion { get; set; }
         // Navigation
         public SimpleEntity Destination { get; set; }
         public SimpleEntity Port { get; set; }

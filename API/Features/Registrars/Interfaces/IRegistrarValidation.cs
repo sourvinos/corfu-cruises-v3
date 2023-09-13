@@ -1,12 +1,10 @@
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Registrars
-{
+namespace API.Features.Registrars {
 
-    public interface IRegistrarValidation : IRepository<Registrar>
-    {
+    public interface IRegistrarValidation : IRepository<Registrar> {
 
-        int IsValid(RegistrarWriteDto registrar);
+        int IsValid(Registrar x, RegistrarWriteDto registrar);
 
     }
 

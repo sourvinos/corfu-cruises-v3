@@ -13,10 +13,11 @@ namespace API.Features.Ports {
 
         public PortValidation(AppDbContext appDbContext, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, settings, userManager) { }
 
-        public int IsValid(PortWriteDto port) {
+        public int IsValid(Port z, PortWriteDto port) {
             return true switch {
                 var x when x == NewRecordAndPortStopOrderExists(port) => 493,
                 var x when x == EditRecordAndPortStopOrderExists(port) => 493,
+                var x when x == IsAlreadyUpdated(z, port) => 415,
                 _ => 200,
             };
         }
@@ -33,6 +34,10 @@ namespace API.Features.Ports {
                 .AsNoTracking()
                 .Where(x => x.StopOrder == port.StopOrder && x.Id != port.Id)
                 .FirstOrDefaultAsync().Result != null;
+        }
+
+        private static bool IsAlreadyUpdated(Port z, PortWriteDto port) {
+            return z != null && z.PutAt != port.PutAt;
         }
 
     }

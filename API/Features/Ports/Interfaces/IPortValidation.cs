@@ -4,7 +4,7 @@ namespace API.Features.Ports {
 
     public interface IPortValidation : IRepository<Port> {
 
-        int IsValid(PortWriteDto port);
+        int IsValid(Port x, PortWriteDto port);
 
     }
 

@@ -4,7 +4,7 @@ namespace API.Features.CoachRoutes {
 
     public interface ICoachRouteValidation : IRepository<CoachRoute> {
 
-        int IsValid(CoachRouteWriteDto coachRoute);
+        int IsValid(CoachRoute x, CoachRouteWriteDto coachRoute);
 
     }
 

@@ -22,8 +22,6 @@ namespace API.Features.CoachRoutes {
             entity.Property(x => x.PutUser).HasMaxLength(255);
             // FK Constraints
             entity.HasOne(x => x.Port).WithMany(x => x.CoachRoutes).HasForeignKey(x => x.PortId).OnDelete(DeleteBehavior.Restrict);
-            // RowVersion
-            entity.Property(x => x.RowVersion).IsRowVersion();
         }
 
     }

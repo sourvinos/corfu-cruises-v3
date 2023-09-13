@@ -16,12 +16,14 @@ namespace API.Features.Nationalities {
 
         private readonly IMapper mapper;
         private readonly INationalityRepository nationalityRepo;
+        private readonly INationalityValidation nationalityValidation;
 
         #endregion
 
-        public NationalitiesController(IMapper mapper, INationalityRepository nationalityRepo) {
+        public NationalitiesController(IMapper mapper, INationalityRepository nationalityRepo, INationalityValidation nationalityValidation) {
             this.mapper = mapper;
             this.nationalityRepo = nationalityRepo;
+            this.nationalityValidation = nationalityValidation;
         }
 
         [HttpGet]
@@ -58,13 +60,20 @@ namespace API.Features.Nationalities {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] NationalityWriteDto nationality) {
-            var x = nationalityRepo.Create(mapper.Map<NationalityWriteDto, Nationality>((NationalityWriteDto)nationalityRepo.AttachMetadataToPostDto(nationality)));
-            return new Response {
-                Code = 200,
-                Icon = Icons.Success.ToString(),
-                Id = x.Id.ToString(),
-                Message = ApiMessages.OK()
-            };
+            var x = nationalityValidation.IsValid(null, nationality);
+            if (x == 200) {
+                var z = nationalityRepo.Create(mapper.Map<NationalityWriteDto, Nationality>((NationalityWriteDto)nationalityRepo.AttachMetadataToPostDto(nationality)));
+                return new Response {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Id = z.Id.ToString(),
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = x
+                };
+            }
         }
 
         [HttpPut]
@@ -73,13 +82,20 @@ namespace API.Features.Nationalities {
         public async Task<Response> Put([FromBody] NationalityWriteDto nationality) {
             var x = await nationalityRepo.GetByIdAsync(nationality.Id);
             if (x != null) {
-                nationalityRepo.Update(mapper.Map<NationalityWriteDto, Nationality>((NationalityWriteDto)nationalityRepo.AttachMetadataToPutDto(x, nationality)));
-                return new Response {
-                    Code = 200,
-                    Icon = Icons.Success.ToString(),
-                    Id = x.Id.ToString(),
-                    Message = ApiMessages.OK()
-                };
+                var z = nationalityValidation.IsValid(x, nationality);
+                if (z == 200) {
+                    nationalityRepo.Update(mapper.Map<NationalityWriteDto, Nationality>((NationalityWriteDto)nationalityRepo.AttachMetadataToPutDto(x, nationality)));
+                    return new Response {
+                        Code = 200,
+                        Icon = Icons.Success.ToString(),
+                        Id = x.Id.ToString(),
+                        Message = ApiMessages.OK()
+                    };
+                } else {
+                    throw new CustomException() {
+                        ResponseCode = z
+                    };
+                }
             } else {
                 throw new CustomException() {
                     ResponseCode = 404

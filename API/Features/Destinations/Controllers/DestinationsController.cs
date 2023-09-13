@@ -15,12 +15,14 @@ namespace API.Features.Destinations {
         #region variables
 
         private readonly IDestinationRepository destinationRepo;
+        private readonly IDestinationValidation destinationValidation;
         private readonly IMapper mapper;
 
         #endregion
 
-        public DestinationsController(IDestinationRepository destinationRepo, IMapper mapper) {
+        public DestinationsController(IDestinationRepository destinationRepo, IDestinationValidation destinationValidation, IMapper mapper) {
             this.destinationRepo = destinationRepo;
+            this.destinationValidation = destinationValidation;
             this.mapper = mapper;
         }
 
@@ -58,13 +60,20 @@ namespace API.Features.Destinations {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] DestinationWriteDto destination) {
-            var x = destinationRepo.Create(mapper.Map<DestinationWriteDto, Destination>((DestinationWriteDto)destinationRepo.AttachMetadataToPostDto(destination)));
-            return new Response {
-                Code = 200,
-                Icon = Icons.Success.ToString(),
-                Id = x.Id.ToString(),
-                Message = ApiMessages.OK()
-            };
+            var x = destinationValidation.IsValid(null, destination);
+            if (x == 200) {
+                var z = destinationRepo.Create(mapper.Map<DestinationWriteDto, Destination>((DestinationWriteDto)destinationRepo.AttachMetadataToPostDto(destination)));
+                return new Response {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Id = z.Id.ToString(),
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = x
+                };
+            }
         }
 
         [HttpPut]
@@ -73,13 +82,20 @@ namespace API.Features.Destinations {
         public async Task<Response> Put([FromBody] DestinationWriteDto destination) {
             var x = await destinationRepo.GetByIdAsync(destination.Id);
             if (x != null) {
-                destinationRepo.Update(mapper.Map<DestinationWriteDto, Destination>((DestinationWriteDto)destinationRepo.AttachMetadataToPutDto(x, destination)));
-                return new Response {
-                    Code = 200,
-                    Icon = Icons.Success.ToString(),
-                    Id = x.Id.ToString(),
-                    Message = ApiMessages.OK()
-                };
+                var z = destinationValidation.IsValid(x, destination);
+                if (z == 200) {
+                    destinationRepo.Update(mapper.Map<DestinationWriteDto, Destination>((DestinationWriteDto)destinationRepo.AttachMetadataToPutDto(x, destination)));
+                    return new Response {
+                        Code = 200,
+                        Icon = Icons.Success.ToString(),
+                        Id = x.Id.ToString(),
+                        Message = ApiMessages.OK()
+                    };
+                } else {
+                    throw new CustomException() {
+                        ResponseCode = z
+                    };
+                }
             } else {
                 throw new CustomException() {
                     ResponseCode = 404

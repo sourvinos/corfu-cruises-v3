@@ -60,7 +60,7 @@ namespace API.Features.CoachRoutes {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] CoachRouteWriteDto coachRoute) {
-            var x = coachRouteValidation.IsValid(coachRoute);
+            var x = coachRouteValidation.IsValid(null, coachRoute);
             if (x == 200) {
                 var z = coachRouteRepo.Create(mapper.Map<CoachRouteWriteDto, CoachRoute>((CoachRouteWriteDto)coachRouteRepo.AttachMetadataToPostDto(coachRoute)));
                 return new Response {
@@ -82,7 +82,7 @@ namespace API.Features.CoachRoutes {
         public async Task<Response> Put([FromBody] CoachRouteWriteDto coachRoute) {
             var x = await coachRouteRepo.GetByIdAsync(coachRoute.Id, false);
             if (x != null) {
-                var z = coachRouteValidation.IsValid(coachRoute);
+                var z = coachRouteValidation.IsValid(x, coachRoute);
                 if (z == 200) {
                     coachRouteRepo.Update(mapper.Map<CoachRouteWriteDto, CoachRoute>((CoachRouteWriteDto)coachRouteRepo.AttachMetadataToPutDto(x, coachRoute)));
                     return new Response {

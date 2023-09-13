@@ -13,9 +13,10 @@ namespace API.Features.PickupPoints {
 
         public PickupPointValidation(AppDbContext appDbContext, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, settings, userManager) { }
 
-        public int IsValid(PickupPointWriteDto pickupPoint) {
+        public int IsValid(PickupPoint z, PickupPointWriteDto pickupPoint) {
             return true switch {
                 var x when x == !IsValidRoute(pickupPoint) => 408,
+                var x when x == IsAlreadyUpdated(z, pickupPoint) => 415,
                 _ => 200,
             };
         }
@@ -28,6 +29,10 @@ namespace API.Features.PickupPoints {
                 : context.CoachRoutes
                     .AsNoTracking()
                     .SingleOrDefault(x => x.Id == pickupPoint.CoachRouteId) != null;
+        }
+
+        private static bool IsAlreadyUpdated(PickupPoint z, PickupPointWriteDto pickupPoint) {
+            return z != null && z.PutAt != pickupPoint.PutAt;
         }
 
     }

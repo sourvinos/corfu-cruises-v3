@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using API.Features.Reservations;
 using API.Infrastructure.Interfaces;
@@ -18,8 +17,6 @@ namespace API.Features.Drivers {
         public string PostUser { get; set; }
         public string PutAt { get; set; }
         public string PutUser { get; set; }
-        // RowVersion
-        public DateTime RowVersion { get; set; }
         // Navigation
         public List<Reservation> Reservations { get; set; }
 

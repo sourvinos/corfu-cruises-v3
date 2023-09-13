@@ -15,12 +15,14 @@ namespace API.Features.Customers {
         #region variables
 
         private readonly ICustomerRepository customerRepo;
+        private readonly ICustomerValidation customerValidation;
         private readonly IMapper mapper;
 
         #endregion
 
-        public CustomersController(ICustomerRepository customerRepo, IMapper mapper) {
+        public CustomersController(ICustomerRepository customerRepo, ICustomerValidation customerValidation, IMapper mapper) {
             this.customerRepo = customerRepo;
+            this.customerValidation = customerValidation;
             this.mapper = mapper;
         }
 
@@ -58,13 +60,20 @@ namespace API.Features.Customers {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] CustomerWriteDto customer) {
-            var x = customerRepo.Create(mapper.Map<CustomerWriteDto, Customer>((CustomerWriteDto)customerRepo.AttachMetadataToPostDto(customer)));
-            return new Response {
-                Code = 200,
-                Icon = Icons.Success.ToString(),
-                Id = x.Id.ToString(),
-                Message = ApiMessages.OK()
-            };
+            var x = customerValidation.IsValid(null, customer);
+            if (x == 200) {
+                var z = customerRepo.Create(mapper.Map<CustomerWriteDto, Customer>((CustomerWriteDto)customerRepo.AttachMetadataToPostDto(customer)));
+                return new Response {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Id = z.Id.ToString(),
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = x
+                };
+            }
         }
 
         [HttpPut]
@@ -73,13 +82,20 @@ namespace API.Features.Customers {
         public async Task<Response> Put([FromBody] CustomerWriteDto customer) {
             var x = await customerRepo.GetByIdAsync(customer.Id);
             if (x != null) {
-                customerRepo.Update(mapper.Map<CustomerWriteDto, Customer>((CustomerWriteDto)customerRepo.AttachMetadataToPutDto(x, customer)));
-                return new Response {
-                    Code = 200,
-                    Icon = Icons.Success.ToString(),
-                    Id = x.Id.ToString(),
-                    Message = ApiMessages.OK()
-                };
+                var z = customerValidation.IsValid(x, customer);
+                if (z == 200) {
+                    customerRepo.Update(mapper.Map<CustomerWriteDto, Customer>((CustomerWriteDto)customerRepo.AttachMetadataToPutDto(x, customer)));
+                    return new Response {
+                        Code = 200,
+                        Icon = Icons.Success.ToString(),
+                        Id = x.Id.ToString(),
+                        Message = ApiMessages.OK()
+                    };
+                } else {
+                    throw new CustomException() {
+                        ResponseCode = z
+                    };
+                }
             } else {
                 throw new CustomException() {
                     ResponseCode = 404

@@ -15,12 +15,14 @@ namespace API.Features.Drivers {
         #region variables
 
         private readonly IDriverRepository driverRepo;
+        private readonly IDriverValidation driverValidation;
         private readonly IMapper mapper;
 
         #endregion
 
-        public DriversController(IDriverRepository driverRepo, IMapper mapper) {
+        public DriversController(IDriverRepository driverRepo, IDriverValidation driverValidation, IMapper mapper) {
             this.driverRepo = driverRepo;
+            this.driverValidation = driverValidation;
             this.mapper = mapper;
         }
 
@@ -58,13 +60,20 @@ namespace API.Features.Drivers {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] DriverWriteDto driver) {
-            var x = driverRepo.Create(mapper.Map<DriverWriteDto, Driver>((DriverWriteDto)driverRepo.AttachMetadataToPostDto(driver)));
-            return new Response {
-                Code = 200,
-                Icon = Icons.Success.ToString(),
-                Id = x.Id.ToString(),
-                Message = ApiMessages.OK()
-            };
+            var x = driverValidation.IsValid(null, driver);
+            if (x == 200) {
+                var z = driverRepo.Create(mapper.Map<DriverWriteDto, Driver>((DriverWriteDto)driverRepo.AttachMetadataToPostDto(driver)));
+                return new Response {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Id = z.Id.ToString(),
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = x
+                };
+            }
         }
 
         [HttpPut]
@@ -73,13 +82,20 @@ namespace API.Features.Drivers {
         public async Task<Response> Put([FromBody] DriverWriteDto driver) {
             var x = await driverRepo.GetByIdAsync(driver.Id);
             if (x != null) {
-                driverRepo.Update(mapper.Map<DriverWriteDto, Driver>((DriverWriteDto)driverRepo.AttachMetadataToPutDto(x, driver)));
-                return new Response {
-                    Code = 200,
-                    Icon = Icons.Success.ToString(),
-                    Id = x.Id.ToString(),
-                    Message = ApiMessages.OK()
-                };
+                var z = driverValidation.IsValid(x, driver);
+                if (z == 200) {
+                    driverRepo.Update(mapper.Map<DriverWriteDto, Driver>((DriverWriteDto)driverRepo.AttachMetadataToPutDto(x, driver)));
+                    return new Response {
+                        Code = 200,
+                        Icon = Icons.Success.ToString(),
+                        Id = x.Id.ToString(),
+                        Message = ApiMessages.OK()
+                    };
+                } else {
+                    throw new CustomException() {
+                        ResponseCode = z
+                    };
+                }
             } else {
                 throw new CustomException() {
                     ResponseCode = 404

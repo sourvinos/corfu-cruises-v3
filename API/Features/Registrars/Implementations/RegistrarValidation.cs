@@ -13,9 +13,10 @@ namespace API.Features.Registrars {
 
         public RegistrarValidation(AppDbContext appDbContext, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, settings, userManager) { }
 
-        public int IsValid(RegistrarWriteDto registrar) {
+        public int IsValid(Registrar z, RegistrarWriteDto registrar) {
             return true switch {
                 var x when x == !IsValidShip(registrar) => 454,
+                var x when x == IsAlreadyUpdated(z, registrar) => 415,
                 _ => 200,
             };
         }
@@ -28,6 +29,10 @@ namespace API.Features.Registrars {
                 : context.Ships
                     .AsNoTracking()
                     .SingleOrDefault(x => x.Id == registrar.ShipId) != null;
+        }
+
+        private static bool IsAlreadyUpdated(Registrar z, RegistrarWriteDto registrar) {
+            return z != null && z.PutAt != registrar.PutAt;
         }
 
     }
