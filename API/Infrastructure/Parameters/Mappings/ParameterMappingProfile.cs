@@ -2,9 +2,9 @@ using AutoMapper;
 
 namespace API.Infrastructure.Parameters {
 
-    public class SettingMappingProfile : Profile {
+    public class ParameterMappingProfile : Profile {
 
-        public SettingMappingProfile() {
+        public ParameterMappingProfile() {
             CreateMap<Parameter, ParameterReadDto>();
             CreateMap<ParameterWriteDto, Parameter>()
                 .ForMember(x => x.ClosingTime, x => x.MapFrom(x => x.ClosingTime))

@@ -13,10 +13,12 @@ namespace API.Infrastructure.Parameters {
 
         private readonly IMapper mapper;
         private readonly IParametersRepository parametersRepo;
+        private readonly IParameterValidation parameterValidation;
 
-        public ParametersController(IMapper mapper, IParametersRepository parametersRepo) {
+        public ParametersController(IMapper mapper, IParametersRepository parametersRepo, IParameterValidation parameterValidation) {
             this.mapper = mapper;
             this.parametersRepo = parametersRepo;
+            this.parameterValidation = parameterValidation;
         }
 
         [HttpGet]
@@ -34,16 +36,23 @@ namespace API.Infrastructure.Parameters {
         [HttpPut]
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<Response> Put([FromBody] ParameterWriteDto parameters) {
+        public async Task<Response> Put([FromBody] ParameterWriteDto parameter) {
             var x = await parametersRepo.GetAsync();
             if (x != null) {
-                parametersRepo.Update(mapper.Map<ParameterWriteDto, Parameter>((ParameterWriteDto)parametersRepo.AttachMetadataToPutDto(x, parameters)));
-                return new Response {
-                    Code = 200,
-                    Icon = Icons.Success.ToString(),
-                    Id = null,
-                    Message = ApiMessages.OK()
-                };
+                var z = parameterValidation.IsValid(x, parameter);
+                if (z == 200) {
+                    parametersRepo.Update(mapper.Map<ParameterWriteDto, Parameter>((ParameterWriteDto)parametersRepo.AttachMetadataToPutDto(x, parameter)));
+                    return new Response {
+                        Code = 200,
+                        Icon = Icons.Success.ToString(),
+                        Id = x.Id.ToString(),
+                        Message = ApiMessages.OK()
+                    };
+                } else {
+                    throw new CustomException() {
+                        ResponseCode = z
+                    };
+                }
             } else {
                 throw new CustomException() {
                     ResponseCode = 404
