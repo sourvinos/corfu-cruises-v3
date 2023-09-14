@@ -265,8 +265,8 @@ export class ReservationFormComponent {
             exactPoint: value.exactPoint,
             time: value.time,
             port: {
-                'id': value.port.id,
-                'description': value.port.description
+                id: value.port.id,
+                description: value.port.description
             }
         })
     }
@@ -281,7 +281,9 @@ export class ReservationFormComponent {
 
     private calculateTotalPax(): void {
         const totalPax = parseInt(this.form.value.adults, 10) + parseInt(this.form.value.kids, 10) + parseInt(this.form.value.free, 10)
-        this.form.patchValue({ totalPax: Number(totalPax) ? totalPax : 0 })
+        this.form.patchValue({
+            totalPax: Number(totalPax) ? totalPax : 0
+        })
     }
 
     private cleanup(): void {
@@ -366,7 +368,7 @@ export class ReservationFormComponent {
         if (this.sessionStorageService.getItem('date') != '') {
             const x = this.sessionStorageService.getItem('date')
             this.form.patchValue({
-                'date': x
+                date: x
             })
         }
     }
@@ -375,9 +377,9 @@ export class ReservationFormComponent {
         if (this.sessionStorageService.getItem('destination') != '') {
             const x = JSON.parse(this.sessionStorageService.getItem('destination'))
             this.form.patchValue({
-                'destination': {
-                    'id': x.id,
-                    'description': x.description
+                destination: {
+                    id: x.id,
+                    description: x.description
                 }
             })
         }
@@ -423,7 +425,9 @@ export class ReservationFormComponent {
     }
 
     private patchFormWithPassengers(passengers: any): void {
-        this.form.patchValue({ passengers: passengers })
+        this.form.patchValue({
+            passengers: passengers
+        })
     }
 
     private populateDropdowns(): void {
@@ -480,8 +484,7 @@ export class ReservationFormComponent {
                 this.parentUrl = '/reservations/date/' + date
                 this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'success', this.parentUrl, this.mustGoBackAfterSave)
                 this.form.patchValue({
-                    reservationId: response.id,
-                    refNo: response.message
+                    putAt: response.body.putAt
                 })
                 this.mirrorRecord = this.form.value
                 this.localStorageService.deleteItems([{ 'item': 'reservation', 'when': 'always' },])

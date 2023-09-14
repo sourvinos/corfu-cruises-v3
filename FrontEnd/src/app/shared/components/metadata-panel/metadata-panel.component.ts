@@ -32,6 +32,11 @@ export class MetadataPanelComponent {
         this.populateFields()
     }
 
+    ngOnChanges(): void {
+        if (this.form != undefined)
+            this.populateFields()
+    }
+
     //#endregion
 
     //#region public methods

@@ -151,9 +151,12 @@
 
 /* Hint with error */
 .mat-mdc-form-field-error {
+    background-color: var(--color-background) !important;
     color: var(--color-input-error) !important;
     font-family: var(--font-family-asty) !important;
     font-weight: 300;
+    padding: 0 0.5rem !important;
+    transition: background-color var(--theme-delay);
 }
 
 /* Hint with error */
