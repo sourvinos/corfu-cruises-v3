@@ -10,6 +10,6 @@ export interface CoachRouteWriteDto {
     hasTransfer: boolean
     isActive: boolean
     // Rowversion
-    rowVersion: string
+    putAt: string
 
 }

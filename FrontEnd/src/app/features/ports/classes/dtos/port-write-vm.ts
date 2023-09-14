@@ -8,6 +8,6 @@ export interface PortWriteDto {
     stopOrder: number
     isActive: boolean
     // Rowversion
-    rowVersion: string
+    putAt: string
 
 }

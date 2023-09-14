@@ -25,6 +25,6 @@ export interface ReservationWriteDto {
     remarks: string
     passengers: PassengerWriteDto[]
     // Rowversion
-    rowVersion: string
+    putAt: string
 
 }

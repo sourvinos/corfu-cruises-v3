@@ -418,8 +418,7 @@ export class ReservationFormComponent {
             postAt: [''],
             postUser: [''],
             putAt: [''],
-            putUser: [''],
-            rowVersion: ['']
+            putUser: ['']
         })
     }
 
@@ -469,8 +468,7 @@ export class ReservationFormComponent {
             postAt: this.record.postAt,
             postUser: this.record.postUser,
             putAt: this.record.putAt,
-            putUser: this.record.putUser,
-            rowVersion: this.record.rowVersion
+            putUser: this.record.putUser
         })
     }
 

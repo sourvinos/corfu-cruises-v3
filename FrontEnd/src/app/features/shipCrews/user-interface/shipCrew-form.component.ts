@@ -158,7 +158,7 @@ export class ShipCrewFormComponent {
             firstname: this.form.value.firstname,
             birthdate: this.dateHelperService.formatDateToIso(new Date(this.form.value.birthdate)),
             isActive: this.form.value.isActive,
-            rowVersion: this.form.value.rowVersion
+            putAt: this.form.value.putAt
         }
     }
 
@@ -200,8 +200,7 @@ export class ShipCrewFormComponent {
             postAt: [''],
             postUser: [''],
             putAt: [''],
-            putUser: [''],
-            rowVersion: ['']
+            putUser: ['']
         })
     }
 
@@ -232,8 +231,7 @@ export class ShipCrewFormComponent {
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
                 putAt: this.record.putAt,
-                putUser: this.record.putUser,
-                rowVersion: this.record.rowVersion
+                putUser: this.record.putUser
             })
         }
     }

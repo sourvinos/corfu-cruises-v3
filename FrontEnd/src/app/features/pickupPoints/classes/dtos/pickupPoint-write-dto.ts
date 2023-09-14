@@ -11,6 +11,6 @@ export interface PickupPointWriteDto {
     remarks: string
     isActive: boolean
     // Rowversion
-    rowVersion: string
+    putAt: string
 
 }

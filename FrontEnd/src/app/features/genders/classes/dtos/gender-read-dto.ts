@@ -12,7 +12,5 @@ export interface GenderReadDto extends Metadata {
     postUser: string
     putAt: string
     putUser: string
-    // Rowversion
-    rowVersion: string
 
 }

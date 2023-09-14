@@ -6,6 +6,6 @@ export interface GenderWriteDto {
     description: string
     isActive: boolean
     // Rowversion
-    rowVersion: string
+    putAt: string
 
 }

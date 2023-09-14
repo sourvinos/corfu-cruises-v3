@@ -7,6 +7,6 @@ export interface ParametersWriteDto {
     phones: string
     email: string
     // Rowversion
-    rowVersion: string
+    putAt: string
 
 }

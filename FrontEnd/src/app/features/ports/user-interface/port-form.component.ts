@@ -93,7 +93,7 @@ export class PortFormComponent {
             description: this.form.value.description,
             stopOrder: this.form.value.stopOrder,
             isActive: this.form.value.isActive,
-            rowVersion: this.form.value.rowVersion
+            putAt: this.form.value.putAt
         }
     }
 
@@ -132,8 +132,7 @@ export class PortFormComponent {
             postAt: [''],
             postUser: [''],
             putAt: [''],
-            putUser: [''],
-            rowVersion: ['']
+            putUser: ['']
         })
     }
 
@@ -148,8 +147,7 @@ export class PortFormComponent {
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
                 putAt: this.record.putAt,
-                putUser: this.record.putUser,
-                rowVersion: this.record.rowVersion
+                putUser: this.record.putUser
             })
         }
     }

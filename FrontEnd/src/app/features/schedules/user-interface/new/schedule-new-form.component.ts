@@ -10,7 +10,7 @@ import { MessageDialogService } from 'src/app/shared/services/message-dialog.ser
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { ScheduleService } from '../../classes/services/schedule.service'
-import { ScheduleWriteVM } from '../../classes/form/schedule-write-vm'
+import { ScheduleWriteDto } from '../../classes/form/schedule-write-dto'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
 
@@ -121,18 +121,19 @@ export class ScheduleNewFormComponent {
         return period
     }
 
-    private buildSchedule(): ScheduleWriteVM[] {
+    private buildSchedule(): ScheduleWriteDto[] {
         const formValue = this.form.value
-        const objects: ScheduleWriteVM[] = []
+        const objects: ScheduleWriteDto[] = []
         this.form.value.daysToInsert.forEach((day: any) => {
-            const x: ScheduleWriteVM = {
+            const x: ScheduleWriteDto = {
                 id: formValue.id,
                 destinationId: formValue.selectedDestinations[0].id,
                 portId: formValue.selectedPorts[0].id,
                 date: day,
                 maxPax: formValue.maxPax,
                 time: formValue.time,
-                isActive: true
+                isActive: true,
+                putAt: ''
             }
             objects.push(x)
         })

@@ -92,7 +92,7 @@ export class DestinationFormComponent {
             abbreviation: this.form.value.abbreviation,
             description: this.form.value.description,
             isActive: this.form.value.isActive,
-            rowVersion: this.form.value.rowVersion
+            putAt: this.form.value.putAt
         }
     }
 
@@ -130,8 +130,7 @@ export class DestinationFormComponent {
             postAt: [''],
             postUser: [''],
             putAt: [''],
-            putUser: [''],
-            rowVersion: ['']
+            putUser: ['']
         })
     }
 
@@ -145,8 +144,7 @@ export class DestinationFormComponent {
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
                 putAt: this.record.putAt,
-                putUser: this.record.putUser,
-                rowVersion: this.record.rowVersion
+                putUser: this.record.putUser
             })
         }
     }

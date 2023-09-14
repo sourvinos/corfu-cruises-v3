@@ -91,7 +91,7 @@ export class GenderFormComponent {
             id: this.form.value.id,
             description: this.form.value.description,
             isActive: this.form.value.isActive,
-            rowVersion: this.form.value.rowVersion
+            putAt: this.form.value.putAt
         }
     }
 
@@ -128,8 +128,7 @@ export class GenderFormComponent {
             postAt: [''],
             postUser: [''],
             putAt: [''],
-            putUser: [''],
-            rowVersion: ['']
+            putUser: ['']
         })
     }
 
@@ -142,8 +141,7 @@ export class GenderFormComponent {
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
                 putAt: this.record.putAt,
-                putUser: this.record.putUser,
-                rowVersion: this.record.rowVersion
+                putUser: this.record.putUser
             })
         }
     }

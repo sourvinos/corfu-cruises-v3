@@ -12,6 +12,6 @@ export interface ShipOwnerWriteDto {
     email: string
     isActive: boolean
     // Rowversion
-    rowVersion: string
+    putAt: string
 
 }

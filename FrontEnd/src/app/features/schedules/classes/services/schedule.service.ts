@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 // Custom
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
-import { ScheduleWriteVM } from '../form/schedule-write-vm'
+import { ScheduleWriteDto } from '../form/schedule-write-dto'
 import { environment } from 'src/environments/environment'
 
 @Injectable({ providedIn: 'root' })
@@ -16,7 +16,7 @@ export class ScheduleService extends HttpDataService {
 
     //#region public methods
 
-    public addRange(scheduleObjects: ScheduleWriteVM[]): Observable<any[]> {
+    public addRange(scheduleObjects: ScheduleWriteDto[]): Observable<any[]> {
         return this.http.post<any[]>(this.url, scheduleObjects)
     }
 

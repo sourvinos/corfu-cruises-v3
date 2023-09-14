@@ -133,7 +133,7 @@ export class RegistrarFormComponent {
             address: this.form.value.address,
             isPrimary: this.form.value.isPrimary,
             isActive: this.form.value.isActive,
-            rowVersion: this.form.value.rowVersion
+            putAt: this.form.value.putAt
         }
     }
 
@@ -176,8 +176,7 @@ export class RegistrarFormComponent {
             postAt: [''],
             postUser: [''],
             putAt: [''],
-            putUser: [''],
-            rowVersion: ['']
+            putUser: ['']
         })
     }
 
@@ -207,8 +206,7 @@ export class RegistrarFormComponent {
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
                 putAt: this.record.putAt,
-                putUser: this.record.putUser,
-                rowVersion: this.record.rowVersion
+                putUser: this.record.putUser
             })
         }
     }

@@ -13,6 +13,6 @@ export interface RegistrarWriteDto {
     isPrimary: boolean
     isActive: boolean
     // Rowversion
-    rowVersion: string
+    putAt: string
 
 }

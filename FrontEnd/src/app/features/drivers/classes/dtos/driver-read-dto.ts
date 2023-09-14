@@ -8,7 +8,5 @@ export interface DriverReadDto extends Metadata {
     description: string
     phones: string
     isActive: boolean
-    // Rowversion
-    rowVersion: string
 
 }

@@ -13,7 +13,5 @@ export interface ShipRouteReadDto extends Metadata {
     toPort: string
     toTime: string
     isActive: boolean
-    // Rowversion
-    rowVersion: string
 
 }

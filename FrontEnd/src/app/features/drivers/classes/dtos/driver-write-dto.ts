@@ -7,6 +7,6 @@ export interface DriverWriteDto {
     phones: string
     isActive: boolean
     // Rowversion
-    rowVersion: string
+    putAt: string
 
 }

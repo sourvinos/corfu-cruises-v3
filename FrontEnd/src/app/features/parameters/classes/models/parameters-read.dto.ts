@@ -8,7 +8,5 @@ export interface ParametersReadDto extends Metadata {
     closingTime: string
     phones: string
     email: string
-    // Rowversion
-    rowVersion: string
 
 }

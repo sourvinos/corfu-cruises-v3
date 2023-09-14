@@ -74,7 +74,7 @@ export class ParametersComponent {
             closingTime: this.form.value.closingTime,
             phones: this.form.value.phones,
             email: this.form.value.email,
-            rowVersion: this.form.value.rowVersion
+            putAt: this.form.value.putAt
         }
     }
 
@@ -110,8 +110,7 @@ export class ParametersComponent {
             postAt: [''],
             postUser: [''],
             putAt: [''],
-            putUser: [''],
-            rowVersion: ['']
+            putUser: ['']
         })
     }
 
@@ -125,8 +124,7 @@ export class ParametersComponent {
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
                 putAt: this.record.putAt,
-                putUser: this.record.putUser,
-                rowVersion: this.record.rowVersion
+                putUser: this.record.putUser
             })
         }
     }

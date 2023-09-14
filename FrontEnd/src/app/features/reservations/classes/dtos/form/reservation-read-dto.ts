@@ -28,13 +28,6 @@ export interface ReservationReadDto extends Metadata {
     totalPax: number
     ticketNo: string
     passengers: PassengerReadDto
-    // Metadata
-    postAt: string
-    postUser: string
-    putAt: string
-    putUser: string
-    // Rowversion
-    rowVersion: string
 
 }
 

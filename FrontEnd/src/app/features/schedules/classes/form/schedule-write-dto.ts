@@ -1,4 +1,4 @@
-export interface ScheduleWriteVM {
+export interface ScheduleWriteDto {
 
     // PK
     id: number,
@@ -10,5 +10,7 @@ export interface ScheduleWriteVM {
     maxPax: number,
     time: string,
     isActive: boolean
+    // Rowversion
+    putAt: string
 
 }

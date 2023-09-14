@@ -13,7 +13,5 @@ export interface ShipOwnerReadDto extends Metadata {
     phones: string
     email: string
     isActive: boolean
-    // Rowversion
-    rowVersion: string
 
 }

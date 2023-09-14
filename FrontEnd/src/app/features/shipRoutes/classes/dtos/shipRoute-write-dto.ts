@@ -12,6 +12,6 @@ export interface ShipRouteWriteDto {
     toTime: string
     isActive: boolean
     // Rowversion
-    rowVersion: string
+    putAt: string
 
 }

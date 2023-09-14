@@ -15,12 +15,5 @@ export interface RegistrarReadDto extends Metadata {
     address: string
     isPrimary: boolean
     isActive: boolean
-    // Metadata
-    postAt: string
-    postUser: string
-    putAt: string
-    putUser: string
-    // Rowversion
-    rowVersion: string
 
 }

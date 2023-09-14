@@ -13,12 +13,5 @@ export interface PickupPointReadDto extends Metadata {
     time: string
     remarks: string
     isActive: boolean
-    // Metadata
-    postAt: string
-    postUser: string
-    putAt: string
-    putUser: string
-    // Rowversion
-    rowVersion: string
 
 }

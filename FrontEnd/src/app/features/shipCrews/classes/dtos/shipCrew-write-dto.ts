@@ -12,6 +12,6 @@ export interface ShipCrewWriteDto {
     birthdate: string
     isActive: boolean
     // Rowversion
-    rowVersion: string
+    putAt: string
 
 }

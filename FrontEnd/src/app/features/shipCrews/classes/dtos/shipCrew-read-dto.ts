@@ -16,7 +16,5 @@ export interface ShipCrewReadDto extends Metadata {
     firstname: string
     birthdate: string
     isActive: boolean
-    // Rowversion
-    rowVersion: string
 
 }

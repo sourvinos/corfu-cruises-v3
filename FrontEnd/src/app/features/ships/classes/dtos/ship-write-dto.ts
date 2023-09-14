@@ -15,6 +15,6 @@ export interface ShipWriteDto {
     agent: string
     isActive: boolean
     // Rowversion
-    rowVersion: string
+    putAt: string
 
 }

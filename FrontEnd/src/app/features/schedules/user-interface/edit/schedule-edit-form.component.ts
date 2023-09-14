@@ -19,9 +19,9 @@ import { MessageDialogService } from 'src/app/shared/services/message-dialog.ser
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { PortAutoCompleteVM } from 'src/app/features/ports/classes/view-models/port-autocomplete-vm'
-import { ScheduleReadDto } from '../../classes/form/schedule-read-vm'
+import { ScheduleReadDto } from '../../classes/form/schedule-read-dto'
 import { ScheduleService } from '../../classes/services/schedule.service'
-import { ScheduleWriteVM } from '../../classes/form/schedule-write-vm'
+import { ScheduleWriteDto } from '../../classes/form/schedule-write-dto'
 import { ValidationService } from 'src/app/shared/services/validation.service'
 
 @Component({
@@ -140,7 +140,7 @@ export class ScheduleEditFormComponent {
         }
     }
 
-    private flattenForm(): ScheduleWriteVM {
+    private flattenForm(): ScheduleWriteDto {
         return {
             id: this.form.value.id,
             date: this.form.value.date,
@@ -148,7 +148,8 @@ export class ScheduleEditFormComponent {
             portId: this.form.value.port.id,
             maxPax: this.form.value.maxPax,
             time: this.form.value.time,
-            isActive: this.form.value.isActive
+            isActive: this.form.value.isActive,
+            putAt: this.form.value.putAt
         }
     }
 
@@ -231,7 +232,7 @@ export class ScheduleEditFormComponent {
         this.form.reset()
     }
 
-    private saveRecord(schedule: ScheduleWriteVM): void {
+    private saveRecord(schedule: ScheduleWriteDto): void {
         this.scheduleService.save(schedule).subscribe({
             complete: () => {
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, true)

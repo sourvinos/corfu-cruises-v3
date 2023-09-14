@@ -12,12 +12,5 @@ export interface CoachRouteReadDto extends Metadata {
     isActive: boolean
     // Object fields
     port: PortAutoCompleteVM
-    // Metadata
-    postAt: string
-    postUser: string
-    putAt: string
-    putUser: string
-    // Rowversion
-    rowVersion: string
 
 }

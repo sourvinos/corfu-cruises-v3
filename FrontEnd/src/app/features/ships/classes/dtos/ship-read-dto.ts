@@ -17,7 +17,5 @@ export interface ShipReadDto extends Metadata {
     managerInGreece: string
     agent: string
     isActive: boolean
-    // Rowversion
-    rowVersion: string
 
 }

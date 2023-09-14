@@ -6,6 +6,6 @@ export interface DestinationWriteDto {
     description: string
     isActive: boolean
     // Rowversion
-    rowVersion: string
+    putAt: string
 
 }

@@ -11,6 +11,6 @@ export interface CustomerWriteDto {
     email: string
     isActive: boolean
     // Rowversion
-    rowVersion: string
+    putAt: string
 
 }

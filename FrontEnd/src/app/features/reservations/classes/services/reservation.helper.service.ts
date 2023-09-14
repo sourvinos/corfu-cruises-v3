@@ -50,7 +50,7 @@ export class ReservationHelperService {
             kids: form.kids,
             free: form.free,
             remarks: form.remarks,
-            rowVersion: form.rowVersion,
+            putAt: form.putAt,
             passengers: this.mapPassengers(form)
         }
     }
@@ -114,8 +114,7 @@ export class ReservationHelperService {
             postAt: form.postAt,
             postUser: form.postUser,
             putAt: form.putAt,
-            putUser: form.putUser,
-            rowVersion: form.rowVersion
+            putUser: form.putUser
         }
     }
 

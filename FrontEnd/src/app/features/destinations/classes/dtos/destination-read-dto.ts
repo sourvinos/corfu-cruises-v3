@@ -8,7 +8,5 @@ export interface DestinationReadDto extends Metadata {
     abbreviation: string
     description: string
     isActive: boolean
-    // Rowversion
-    rowVersion: string
 
 }

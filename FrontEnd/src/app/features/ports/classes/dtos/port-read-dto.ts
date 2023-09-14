@@ -9,12 +9,5 @@ export interface PortReadDto extends Metadata {
     description: string
     stopOrder: number
     isActive: boolean
-    // Metadata
-    postAt: string
-    postUser: string
-    putAt: string
-    putUser: string
-    // Rowversion
-    rowVersion: string
 
 }
