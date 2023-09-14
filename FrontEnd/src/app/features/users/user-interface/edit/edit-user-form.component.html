@@ -80,6 +80,9 @@
 
     <div id="footer">
         <div id="align-right">
+            <button (click)="onChangePassword()" class="secondary" mat-flat-button>
+                <span>{{ getLabel("changePasswordButton") | uppercase }}</span>
+            </button>
             <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
                 <mat-icon *ngIf="!form.valid" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("saveButton") | uppercase }}</span>
@@ -96,9 +99,6 @@
 </mat-autocomplete>
 
 <ng-template #contextMenu xPosition="before">
-    <button (click)="onChangePassword()" mat-menu-item>
-        <span>{{ getLabel("changePasswordButton") }}</span>
-    </button>
     <button (click)="onEmailUserDetais()" mat-menu-item>
         <span>{{ getLabel('emailUserDetails') }}</span>
     </button>
