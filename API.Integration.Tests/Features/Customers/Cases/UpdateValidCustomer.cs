@@ -17,7 +17,7 @@ namespace Customers {
                 new TestCustomer {
                     Id = 1,
                     Description = Helpers.CreateRandomString(128),
-                    RowVersion = "2023-09-07 09:52:22"
+                    PutAt = "2023-09-07 09:52:22"
                 }
             };
         }

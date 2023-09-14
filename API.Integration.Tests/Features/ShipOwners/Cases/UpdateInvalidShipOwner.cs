@@ -18,7 +18,7 @@ namespace ShipOwners {
                     StatusCode = 415,
                     Id = 5,
                     Description = Helpers.CreateRandomString(128),
-                    RowVersion = "2023-09-07 09:57:05"
+                    PutAt = "2023-09-07 09:57:05"
                 }
             };
         }

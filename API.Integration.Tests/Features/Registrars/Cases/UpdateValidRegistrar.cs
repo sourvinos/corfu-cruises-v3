@@ -18,7 +18,7 @@ namespace Registrars {
                     Id = 1,
                     ShipId = 7,
                     Fullname = Helpers.CreateRandomString(128),
-                    RowVersion = "2023-09-07 09:54:56"
+                    PutAt = "2023-09-07 09:54:56"
                 }
             };
         }

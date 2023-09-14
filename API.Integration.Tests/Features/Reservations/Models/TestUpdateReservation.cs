@@ -26,7 +26,7 @@ namespace Reservations {
         public int Kids { get; set; }
         public int Free { get; set; }
         public string Remarks { get; set; }
-        public string RowVersion { get; set; }
+        public string PutAt { get; set; }
 
         public List<TestPassenger> Passengers { get; set; }
 

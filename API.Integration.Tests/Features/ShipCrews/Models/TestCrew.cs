@@ -13,7 +13,7 @@ namespace ShipCrews {
         public string Lastname { get; set; }
         public string Firstname { get; set; }
         public string Birthdate { get; set; }
-        public string RowVersion { get; set; }
+        public string PutAt { get; set; }
 
     }
 

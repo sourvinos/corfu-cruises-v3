@@ -33,7 +33,7 @@ namespace Ports {
                     Abbreviation = Helpers.CreateRandomString(5),
                     Description = Helpers.CreateRandomString(128),
                     StopOrder = 1,
-                    RowVersion = "2023-09-07 09:55:22"
+                    PutAt = "2023-09-07 09:55:22"
                 }
             };
         }

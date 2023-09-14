@@ -21,7 +21,7 @@ namespace PickupPoints {
                     ExactPoint = Helpers.CreateRandomString(128),
                     Time = "08:00",
                     IsActive = true,
-                    RowVersion = "2023-09-07 09:54:23"
+                    PutAt = "2023-09-07 09:54:23"
                 }
             };
         }

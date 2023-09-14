@@ -12,7 +12,7 @@ namespace ShipRoutes {
         public string FromTime { get; set; }
         public string ToPort { get; set; }
         public string ToTime { get; set; }
-        public string RowVersion { get; set; }
+        public string PutAt { get; set; }
 
     }
 

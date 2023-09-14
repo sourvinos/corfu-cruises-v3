@@ -22,7 +22,7 @@ namespace ShipRoutes {
                     FromTime = "08:00",
                     ToPort =  Helpers.CreateRandomString(128),
                     ToTime = "10:00",
-                    RowVersion = "2023-09-07 09:57:05"
+                    PutAt = "2023-09-07 09:57:05"
                 }
             };
         }

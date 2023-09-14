@@ -16,8 +16,6 @@ namespace API.Infrastructure.Parameters {
         public string PostUser { get; set; }
         public string PutAt { get; set; }
         public string PutUser { get; set; }
-        // RowVersion
-        public DateTime RowVersion { get; set; }
 
     }
 

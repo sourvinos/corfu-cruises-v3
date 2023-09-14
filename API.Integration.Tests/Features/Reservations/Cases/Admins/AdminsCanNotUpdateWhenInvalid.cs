@@ -285,7 +285,7 @@ namespace Reservations {
                     RefNo = "PA175",
                     TicketNo = "21",
                     Adults = 2,
-                    RowVersion = "2023-09-07 09:56:16"
+                    PutAt = "2023-09-07 09:56:16"
                 }
             };
         }

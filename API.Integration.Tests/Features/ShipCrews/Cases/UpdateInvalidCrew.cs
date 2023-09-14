@@ -71,7 +71,7 @@ namespace ShipCrews {
                     Lastname = Helpers.CreateRandomString(128),
                     Firstname = Helpers.CreateRandomString(128),
                     Birthdate = "1970-01-01",
-                    RowVersion = "2023-09-07 09:54:22"
+                    PutAt = "2023-09-07 09:54:22"
                 }
             };
         }

@@ -18,7 +18,7 @@ namespace Nationalities {
                     Id = 1,
                     Description = Helpers.CreateRandomString(128),
                     Code = Helpers.CreateRandomString(10),
-                    RowVersion = "2023-09-07 09:53:32"
+                    PutAt = "2023-09-07 09:53:32"
                 }
             };
         }

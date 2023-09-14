@@ -33,7 +33,7 @@ namespace Ships {
                     ShipOwnerId = 5,
                     Description = Helpers.CreateRandomString(15),
                     Abbreviation = Helpers.CreateRandomString(5),
-                    RowVersion= "2023-09-07 09:57:41"
+                    PutAt= "2023-09-07 09:57:41"
                 }
             };
         }

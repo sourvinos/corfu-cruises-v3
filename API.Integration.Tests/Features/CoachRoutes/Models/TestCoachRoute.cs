@@ -11,7 +11,7 @@ namespace CoachRoutes {
         public string Description { get; set; }
         public string Abbreviation { get; set; }
         public bool IsActive { get; set; }
-        public string RowVersion { get; set; }
+        public string PutAt { get; set; }
 
     }
 
