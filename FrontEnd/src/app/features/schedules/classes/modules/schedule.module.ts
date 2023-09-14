@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core'
-import { NgxMatTimepickerModule } from 'ngx-mat-timepicker'
 // Custom
 import { ScheduleEditFormComponent } from '../../user-interface/edit/schedule-edit-form.component'
 import { ScheduleListComponent } from '../../user-interface/list/schedule-list.component'
@@ -14,7 +13,6 @@ import { SharedModule } from '../../../../shared/modules/shared.module'
         ScheduleNewFormComponent
     ],
     imports: [
-        NgxMatTimepickerModule,
         ScheduleRoutingModule,
         SharedModule,
     ]

@@ -43,16 +43,10 @@
             <!-- Time -->
             <mat-form-field>
                 <mat-label>{{ getLabel('time') }}</mat-label>
-                <input [format]=24 [inputTabStop]="input" [ngxMatTimepicker]="timePicker" dataTabIndex="5" formControlName="time" matInput readonly />
-                <div matSuffix style="display:flex">
-                    <button (click)="timePicker.open()" mat-icon-button type="button">
-                        <mat-icon class="input-suffix material-icons-outlined extra-top-margin small">watch_later</mat-icon>
-                    </button>
-                </div>
+                <input [inputTabStop]="input" dataTabIndex="5" formControlName="time" matInput />
                 <mat-error *ngIf="time.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="!time.hasError('required') && !time.hasError('time')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>
-            <ngx-mat-timepicker #timePicker></ngx-mat-timepicker>
             <div class="stacked-checkboxes">
                 <!-- Active -->
                 <mat-checkbox formControlName="isActive">

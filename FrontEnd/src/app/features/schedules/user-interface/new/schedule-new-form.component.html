@@ -9,6 +9,7 @@
         <div id="form-wrapper">
             <form [formGroup]="form" id="form">
                 <div class="group-input-field">
+                    <!-- Date range -->
                     <date-range-picker [parentDateRange]="getDateRange()" [readOnly]=true [showHint]=false (outputValues)="doDateTasks($event)"></date-range-picker>
                     <mat-form-field>
                         <mat-label>{{ getLabel('maxPax') }}</mat-label>
@@ -16,22 +17,20 @@
                         <mat-error *ngIf="maxPax.hasError('required')">{{ getHint("required") }}</mat-error>
                         <mat-error *ngIf="!maxPax.hasError('required') && maxPax.hasError('min') || maxPax.hasError('max')">{{ getHint("invalid") }}</mat-error>
                     </mat-form-field>
+                    <!-- Time -->
                     <mat-form-field>
                         <mat-label>{{ getLabel('time') }}</mat-label>
-                        <input [format]=24 [ngxMatTimepicker]="timePicker" [readonly]=true formControlName="time" matInput />
-                        <div matSuffix style="display:flex">
-                            <button (click)="timePicker.open()" mat-icon-button type="button">
-                                <mat-icon class="input-suffix material-icons-outlined extra-top-margin small">watch_later</mat-icon>
-                            </button>
-                        </div>
+                        <input formControlName="time" matInput />
                         <mat-error *ngIf="time.hasError('required')">{{ getHint("required") }}</mat-error>
                         <mat-error *ngIf="!time.hasError('required') && !time.hasError('time')">{{ getHint("invalid") }}</mat-error>
-                        <ngx-mat-timepicker #timePicker></ngx-mat-timepicker>
                     </mat-form-field>
                 </div>
                 <div class="group-input-field">
+                    <!-- Destinations -->
                     <criteria-fieldset-radios (outputSelected)="doArrayTasks($event,'selectedDestinations')" [array]="destinations" [caption]="'destination'" [feature]="feature" [selected]="selectedDestinations"></criteria-fieldset-radios>
+                    <!-- Ports -->
                     <criteria-fieldset-radios (outputSelected)="doArrayTasks($event,'selectedPorts')" [array]="ports" [caption]="'port'" [feature]="feature" [selected]="selectedPorts"></criteria-fieldset-radios>
+                    <!-- Weekdays -->
                     <criteria-fieldset-weekdays (outputSelected)="doArrayTasks($event,'selectedWeekdays')" [caption]="'weekdays'" [feature]="feature" [selected]="selectedWeekdays"></criteria-fieldset-weekdays>
                 </div>
             </form>

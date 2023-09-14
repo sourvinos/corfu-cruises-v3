@@ -26,8 +26,6 @@
         "dexie": "3.2.4",
         "guid-typescript": "1.0.9",
         "jwt-decode": "3.1.2",
-        "luxon": "3.4.3",
-        "ngx-mat-timepicker": "16.0.3",
         "pdfmake": "0.2.7",
         "pretty-print-json": "2.0.3",
         "primeng": "16.3.1",
