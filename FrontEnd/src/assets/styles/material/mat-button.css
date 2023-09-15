@@ -6,6 +6,7 @@
 }
 
 .mdc-button .mdc-button__label {
+    color: var(--color-button-text) !important;
     font-family: var(--font-family-fira-sans-condensed) !important;
     font-size: var(--font-size-button) !important;
     font-weight: 300 !important;

@@ -126,6 +126,11 @@
     font-size: 1rem !important;
 }
 
+/* Button icon for date picker */
+.mat-datepicker-toggle button {
+    margin-right: 5px;
+}
+
 /* Hint */
 .mat-mdc-form-field-hint {
     color: var(--color-text);
