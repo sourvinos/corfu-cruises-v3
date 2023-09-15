@@ -47,7 +47,7 @@
 
 .mat-datepicker-toggle .mat-mdc-icon-button svg {
     color: var(--color-text);
-    width: 20px;
+    width: 1.25rem;
 }
 
 .mat-calendar-body-selected {

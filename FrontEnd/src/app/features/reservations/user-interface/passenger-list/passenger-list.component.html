@@ -20,17 +20,23 @@
             </ng-template>
             <ng-template pTemplate="body" let-record>
                 <tr (click)="highlightRow(record.id)" (dblclick)="editRecord(record)" [attr.id]="record.id" [pSelectableRow]="record" style="height: 32px;">
-                    <td class="center width-4">
-                        <span>{{ getEmbarkationStatusIcon(record.isBoarded) }}</span>
+                    <td class="width-4">
+                        <span class="center">
+                            <span>{{ getEmbarkationStatusIcon(record.isBoarded) }}</span>
+                        </span>
                     </td>
-                    <td class="width-20">{{ record.lastname }}</td>
-                    <td class="width-20">{{ record.firstname }}</td>
+                    <td class="width-20"><span>{{ record.lastname }}</span></td>
+                    <td class="width-20"><span>{{ record.firstname }}</span></td>
                     <td class="align-vertical width-10">
-                        <img [src]="getNationalityIcon(record.nationality.code)" class="flag-with-border" />
-                        <span>&nbsp;&nbsp;&nbsp;&nbsp;{{ record.nationality.description }}</span>
+                        <span style="width: 100%;">
+                            <img [src]="getNationalityIcon(record.nationality.code)" class="flag-with-border" />
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;{{ record.nationality.description }}</span>
+                        </span>
                     </td>
-                    <td class="center width-5">
-                        <span (click)="deleteRow(record)">{{ getEmoji('error') }}</span>
+                    <td class="width-5">
+                        <span class="center">
+                            <span (click)="deleteRow(record)">{{ getEmoji('error') }}</span>
+                        </span>
                     </td>
                 </tr>
             </ng-template>

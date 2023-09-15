@@ -37,13 +37,11 @@
                 </ng-template>
                 <ng-template let-record pTemplate="body">
                     <tr (click)="highlightRow(record.id)" (dblclick)="editRecord(record.id)" [attr.id]=record.id style="height: 32px;">
-                        <td class="center width-5">
-                            <span>{{ getEmoji(record.isActive) }}</span>
-                        </td>
-                        <td class="center width-8">{{ record.coachRoute.abbreviation }}</td>
-                        <td class="width-18">{{ record.description }}</td>
-                        <td class="width-18">{{ record.exactPoint }}</td>
-                        <td class="center width-5">{{ record.time }}</td>
+                        <td class="width-5"><span class="center">{{ getEmoji(record.isActive) }}</span></td>
+                        <td class="width-8"><span class="center">{{ record.coachRoute.abbreviation }}</span></td>
+                        <td class="width-18"><span>{{ record.description }}</span></td>
+                        <td class="width-18"><span>{{ record.exactPoint }}</span></td>
+                        <td class="width-5"><span class="center">{{ record.time }}</span></td>
                     </tr>
                 </ng-template>
             </p-table>

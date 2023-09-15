@@ -17,7 +17,7 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 @Component({
     selector: 'parameters',
     templateUrl: './parameters.component.html',
-    styleUrls: ['../../../../assets/styles/custom/forms.css', './parameters.component.css']
+    styleUrls: ['../../../../assets/styles/custom/forms.css']
 })
 
 export class ParametersComponent {

@@ -27,7 +27,7 @@
                     <ng-template matExpansionPanelContent>
                         <ledger-customer-reservations [customer]="customer" [remarksRowVisibility]="getRemarksRowVisibility()"></ledger-customer-reservations>
                         <ledger-customer-summary [portGroup]="customer.ports"></ledger-customer-summary>
-                        <div class="right">
+                        <div id="align-right" style="padding: 0 0.5rem 0 0 !important;">
                             <button (click)="exportSelected(customer)" class="secondary" mat-flat-button>
                                 <span>{{ getLabel("createPdfButton") | uppercase }}</span>
                             </button>

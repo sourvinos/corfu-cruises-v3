@@ -22,11 +22,9 @@
                 </ng-template>
                 <ng-template let-record pTemplate="body">
                     <tr (click)="highlightRow(record.id)" (dblclick)="editRecord(record.id)" [attr.id]=record.id style="height: 32px;">
-                        <td class="center width-5">
-                            <span>{{ getEmoji(record.isActive) }}</span>
-                        </td>
-                        <td class="center width-5">{{ record.abbreviation }}</td>
-                        <td class="width-49">{{ record.description }}</td>
+                        <td class="width-5"><span class="center">{{ getEmoji(record.isActive) }}</span></td>
+                        <td class="width-5"><span class="center">{{ record.abbreviation }}</span></td>
+                        <td class="width-49"><span> {{ record.description }}</span></td>
                     </tr>
                 </ng-template>
             </p-table>

@@ -63,16 +63,14 @@ ul {
 }
 
 .center {
+    justify-content: center !important;
+    padding: 0 0 0 0 !important;
     text-align: center !important;
 }
 
 .right {
     justify-content: flex-end !important;
     text-align: end !important;
-}
-
-.center-buttons {
-    margin: 0 auto;
 }
 
 .accent {

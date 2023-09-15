@@ -138,22 +138,24 @@
                 </ng-template>
                 <ng-template let-reservation pTemplate="body">
                     <tr (click)="highlightRow(reservation.reservationId)" (dblclick)="editRecord(reservation.reservationId)" [attr.id]=reservation.reservationId style="height: 32px;">
-                        <td class="center width-3"><p-tableCheckbox (click)="calculateSelectedPax()" [value]="reservation"></p-tableCheckbox></td>
-                        <td class="center width-5">{{ reservation.refNo }}</td>
-                        <td class="width-8">{{ reservation.ticketNo }}</td>
-                        <td class="width-5">{{ reservation.customer.description }}</td>
-                        <td class="center width-6">{{ reservation.destination.abbreviation }}</td>
-                        <td class="center width-5">{{ reservation.coachRoute.abbreviation }}</td>
-                        <td class="width-8">{{ reservation.pickupPoint.description }}</td>
-                        <td class="center width-3">{{ reservation.pickupPoint.time }}</td>
-                        <td class="right width-2">{{ reservation.totalPax }}</td>
-                        <td class="right width-4">
-                            <span>{{ reservation.passengerCount }} ({{ reservation.passengerDifference }})</span>
-                            <span>&nbsp;&nbsp;{{ showEmoji(reservation.passengerDifference) }}</span>
+                        <td class="width-3"><span class="center"><p-tableCheckbox (click)="calculateSelectedPax()" [value]="reservation"></p-tableCheckbox></span></td>
+                        <td class="width-5"><span class="center">{{ reservation.refNo }}</span></td>
+                        <td class="width-8"><span>{{ reservation.ticketNo }}</span></td>
+                        <td class="width-5"><span>{{ reservation.customer.description }}</span></td>
+                        <td class="width-6"><span class="center">{{ reservation.destination.abbreviation }}</span></td>
+                        <td class="width-5"><span class="center">{{ reservation.coachRoute.abbreviation }}</span></td>
+                        <td class="width-8"><span>{{ reservation.pickupPoint.description }}</span></td>
+                        <td class="width-3"><span class="center">{{ reservation.pickupPoint.time }}</span></td>
+                        <td class="width-2"><span class="right">{{ reservation.totalPax }}</span></td>
+                        <td class="width-4">
+                            <span class="right">
+                                <span>{{ reservation.passengerCount }} ({{ reservation.passengerDifference }})</span>
+                                <span>&nbsp;&nbsp;{{ showEmoji(reservation.passengerDifference) }}</span>
+                            </span>
                         </td>
-                        <td [class]="reservation.driver.id == 0 ? 'center' : null" class="width-5">{{ reservation.driver.description == "(EMPTY)" ? getEmoji('null'): reservation.driver.description }}</td>
-                        <td class="center width-5">{{ reservation.port.abbreviation }}</td>
-                        <td class="center width-5">{{ reservation.ship.abbreviation == "(EMPTY)" ? getEmoji('null'): reservation.ship.abbreviation }}</td>
+                        <td class="width-5"><span [class]="reservation.driver.id == 0 ? 'center' : null">{{ reservation.driver.description == "(EMPTY)" ? getEmoji('null'): reservation.driver.description }}</span></td>
+                        <td class="width-5"><span class="center">{{ reservation.port.abbreviation }}</span></td>
+                        <td class="width-5"><span class="center">{{ reservation.ship.abbreviation == "(EMPTY)" ? getEmoji('null'): reservation.ship.abbreviation }}</span></td>
                     </tr>
                 </ng-template>
             </p-table>

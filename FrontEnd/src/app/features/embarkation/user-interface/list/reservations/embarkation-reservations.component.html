@@ -129,28 +129,40 @@
                 </ng-template>
                 <ng-template let-reservation pTemplate="body">
                     <tr (click)="highlightRow(reservation.refNo)" (dblclick)="showPassengers(reservation)" [attr.id]=reservation.refNo style="height: 32px;">
-                        <td class="center width-4">
-                            <span>{{ getEmbarkationStatusIcon(reservation.embarkationStatus) }}</span>
-                            <span class="no-display">{{ reservation.embarkationStatus.description }}</span>
+                        <td class="width-4">
+                            <span class="center">
+                                <span>{{ getEmbarkationStatusIcon(reservation.embarkationStatus) }}</span>
+                                <span class="no-display">{{ reservation.embarkationStatus.description }}</span>
+                            </span>
                         </td>
-                        <td class="center width-5">{{ reservation.refNo }}</td>
-                        <td class="width-8">{{ reservation.ticketNo }}</td>
-                        <td class="width-6">{{ reservation.customer.description }}</td>
-                        <td class="center width-6">{{ reservation.destination.abbreviation }}</td>
-                        <td class="width-8">{{ reservation.pickupPoint.description }}</td>
-                        <td [class]="reservation.driver.description == '(EMPTY)' ? 'center' :''" class="width-5">{{ reservation.driver.description == "(EMPTY)" ? getEmoji('null') : reservation.driver.description }}</td>
-                        <td class="center width-5">{{ reservation.port.abbreviation }}</td>
-                        <td class="center width-5">{{ reservation.ship.abbreviation == "(EMPTY)" ? getEmoji('null') : reservation.ship.abbreviation }}</td>
-                        <td class="right width-3">
-                            <span>{{ reservation.totalPax | replaceZero }}&nbsp;&nbsp;</span>
-                            <span *ngIf="reservation.totalPax - reservation.passengers.length == 0" class="">{{ getEmoji('green-circle') }}</span>
-                            <span *ngIf="reservation.totalPax - reservation.passengers.length != 0" class="">{{ getEmoji('red-circle') }}</span>
+                        <td class="width-5"><span class="center">{{ reservation.refNo }}</span></td>
+                        <td class="width-8"><span>{{ reservation.ticketNo }}</span></td>
+                        <td class="width-6"><span>{{ reservation.customer.description }}</span></td>
+                        <td class="width-6"><span class="center">{{ reservation.destination.abbreviation }}</span></td>
+                        <td class="width-8"><span>{{ reservation.pickupPoint.description }}</span></td>
+                        <td class="width-5">
+                            <span [class]="reservation.driver.description == '(EMPTY)' ? 'center' :''">
+                                {{ reservation.driver.description == "(EMPTY)" ? getEmoji('null') : reservation.driver.description }}
+                            </span>
                         </td>
-                        <td class="center width-2"><span (click)="showRemarks(reservation.remarks)" [ngClass]="hasRemarks(reservation.remarks)?'clickable':''" *ngIf="hasRemarks(reservation.remarks)">{{ getEmoji('remarks') }}</span></td>
+                        <td class="center width-5"><span class="center">{{ reservation.port.abbreviation }}</span></td>
+                        <td class="center width-5"><span class="center">{{ reservation.ship.abbreviation == "(EMPTY)" ? getEmoji('null') : reservation.ship.abbreviation }}</span></td>
+                        <td class="width-3">
+                            <span class="right">
+                                <span>{{ reservation.totalPax | replaceZero }}&nbsp;&nbsp;</span>
+                                <span *ngIf="reservation.totalPax - reservation.passengers.length == 0" class="">{{ getEmoji('green-circle') }}</span>
+                                <span *ngIf="reservation.totalPax - reservation.passengers.length != 0" class="">{{ getEmoji('red-circle') }}</span>
+                            </span>
+                        </td>
+                        <td class="width-2">
+                            <span class="center">
+                                <span (click)="showRemarks(reservation.remarks)" [ngClass]="hasRemarks(reservation.remarks)?'clickable':''" *ngIf="hasRemarks(reservation.remarks)">{{ getEmoji('remarks') }}</span>
+                            </span>
+                        </td>
                     </tr>
-                    <tr *ngIf="hasRemarks(reservation.remarks)" [ngClass]="getRemarksRowVisibility() ? '' : 'no-display'">
-                        <td class="right" colspan="10">{{ reservation.remarks }}</td>
-                        <td class="width-2"></td>
+                    <tr *ngIf="hasRemarks(reservation.remarks)" [ngClass]="getRemarksRowVisibility() ? '' : 'no-display'" style="height: 32px;">
+                        <td colspan="10"><span class="right">{{ reservation.remarks }}</span></td>
+                        <td class="width-2"><span></span></td>
                     </tr>
                 </ng-template>
             </p-table>

@@ -70,15 +70,17 @@
                 </ng-template>
                 <ng-template let-i="rowIndex + 1" let-passenger pTemplate="body">
                     <tr [attr.id]=passenger.id [pSelectableRow]="passenger" style="height: 32px">
-                        <td class="right width-3" style="font-family: 'Ubuntu Mono' !important">{{ i }}</td>
-                        <td class="width-20">{{ passenger.lastname }}</td>
-                        <td class="width-20">{{ passenger.firstname }}</td>
+                        <td class="width-3" style="font-family: 'Ubuntu Mono' !important;"><span class="right" style="padding: 0 0.5rem 0 0;">{{ i }}</span></td>
+                        <td class="width-20"><span>{{ passenger.lastname }}</span></td>
+                        <td class="width-20"><span>{{ passenger.firstname }}</span></td>
                         <td class="align-vertical width-10">
-                            <img [src]="getNationalityIcon(passenger.nationality.code)" class="flag-with-border" />
-                            <span>&nbsp;&nbsp;&nbsp;&nbsp;{{ passenger.nationality.description }}</span>
+                            <span style="width: 100%;">
+                                <img [src]="getNationalityIcon(passenger.nationality.code)" class="flag-with-border" />
+                                <span>&nbsp;&nbsp;&nbsp;&nbsp;{{ passenger.nationality.description }}</span>
+                            </span>
                         </td>
-                        <td class="width-10">{{ passenger.gender.description }}</td>
-                        <td class="width-10">{{ passenger.occupant.description }}</td>
+                        <td class="width-10"><span>{{ passenger.gender.description }}</span></td>
+                        <td class="width-10"><span>{{ passenger.occupant.description }}</span></td>
                     </tr>
                 </ng-template>
             </p-table>

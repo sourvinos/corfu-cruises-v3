@@ -77,12 +77,12 @@ namespace API.Features.Manifest {
                 }))
                 .ForMember(x => x.Passengers, x => x.MapFrom(source => source.Passengers.Select(passenger => new ManifestFinalPassengerVM {
                     Id = passenger.Id,
-                    Lastname = passenger.Lastname.ToUpper(),
-                    Firstname = passenger.Firstname.ToUpper(),
+                    Lastname = passenger.Lastname.Trim().ToUpper(),
+                    Firstname = passenger.Firstname.Trim().ToUpper(),
                     Birthdate = DateHelpers.DateToISOString(passenger.Birthdate),
-                    Phones = passenger.Reservation.Phones,
-                    Remarks = passenger.Remarks,
-                    SpecialCare = passenger.SpecialCare,
+                    Phones = passenger.Reservation.Phones.Trim(),
+                    Remarks = passenger.Remarks.Trim(),
+                    SpecialCare = passenger.SpecialCare.Trim(),
                     Gender = new SimpleEntity {
                         Id = passenger.Gender.Id,
                         Description = passenger.Gender.Description
