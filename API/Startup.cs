@@ -1,4 +1,5 @@
 using System;
+using API.Infrastructure.Announcements;
 using API.Infrastructure.Auth;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Extensions;
@@ -68,6 +69,7 @@ namespace API {
             services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<AppDbContext>();
             services.AddScoped<ModelValidationAttribute>();
+            services.AddSignalR();
             services.AddControllersWithViews()
                     .AddNewtonsoftJson(options => {
                         options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
@@ -89,6 +91,7 @@ namespace API {
             Configure(app);
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
+                endpoints.MapHub<MessageHub>("/customers");
             });
         }
 
@@ -111,6 +114,7 @@ namespace API {
             Configure(app);
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
+                endpoints.MapHub<MessageHub>("/customers");
             });
         }
 

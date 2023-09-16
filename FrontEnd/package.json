@@ -19,6 +19,8 @@
         "@angular/platform-browser": "16.2.4",
         "@angular/platform-browser-dynamic": "16.2.4",
         "@angular/router": "16.2.4",
+        "@microsoft/signalr":"7.0.11",
+        "@microsoft/signalr-protocol-msgpack":"7.0.11",
         "@zxing/browser": "0.1.4",
         "@zxing/library": "0.20.0",
         "@zxing/ngx-scanner": "16.0.1",
