@@ -1,4 +1,6 @@
 * {
+    /* Top and bottom ribbons */
+    --color-ribbons: #a2ddf729;
     /*  Buttons */
     --color-button-text: #ffffff;
     --color-button-primary: #7cabe1;
@@ -10,10 +12,6 @@
     --color-criteria-b: #e37328;
     --color-criteria-c: #698984;
     --color-criteria-d: #ca874c;
-    /* Date picker */
-    --color-range-between: #ffeb3b;
-    --color-day-selected: #ffc107;
-    --color-range: #000000;
     /* Custom calendar */
     --color-background-saturday: #f29c6b;
     --color-background-sunday: #f26513;

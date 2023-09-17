@@ -80,8 +80,11 @@ button.tab:first-child {
 button.transparent {
     background-color: transparent !important;
     border-radius: 3.125rem !important;
-    color: var(--color-text) !important;
     transition: color var(--theme-delay) !important;
+}
+
+button.transparent > .mdc-button__label {
+    color: var(--color-transparent-button) !important;
 }
 
 button:disabled {

@@ -228,7 +228,7 @@ export class HelperService {
 
     public calculateDayCount(): number {
         const elementWidth = document.getElementById('content').clientWidth
-        const dayCount = Math.trunc(elementWidth / 123.315)
+        const dayCount = Math.trunc(elementWidth / 123.315) - 1
         return dayCount
     }
 

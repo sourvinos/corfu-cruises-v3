@@ -1,9 +1,18 @@
 #wrapper {
     background-color: var(--color-background);
-    background-position: bottom;
-    background-size: cover;
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: contain;
     height: 100%;
     transition: background-color var(--theme-delay);
+}
+
+#top {
+    background-color: var(--color-ribbons);
+    height: 120px;
+    mask: conic-gradient(from -45deg at bottom, #00000001, #000000 1deg 89deg, #00000001 90deg) 50%/10.00px 100%;
+    position: absolute;
+    width: 100%;
 }
 
 #main {
@@ -13,10 +22,22 @@
     margin: 0 auto;
     max-width: 1280px;
     padding: 0 0.5rem 0 0.5rem;
+    position: sticky;
+    z-index: 1;
+}
+
+#bottom {
+    background-color: var(--color-ribbons);
+    bottom: 0;
+    height: 150px;
+    mask: conic-gradient(from 135deg at top, #00000001, #000000 1deg 89deg, #00000001 90deg) 50%/10.00px 100%;
+    position: absolute;
+    width: 100%;
 }
 
 #outer-content {
     height: 100%;
     min-height: 0;
     overflow: hidden;
+    width: 100%;
 }
