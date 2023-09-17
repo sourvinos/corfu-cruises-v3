@@ -1,10 +1,8 @@
 import { ChangeDetectorRef, Component, HostListener } from '@angular/core'
 import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router'
-import * as signalR from '@microsoft/signalr'
 // Custom
 import { AccountService } from '../shared/services/account.service'
 import { CryptoService } from '../shared/services/crypto.service'
-import { SignalrService } from '../shared/services/signalr.service'
 import { LoadingSpinnerService } from '../shared/services/loading-spinner.service'
 import { SessionStorageService } from '../shared/services/session-storage.service'
 import { environment } from 'src/environments/environment'
@@ -22,11 +20,10 @@ export class AppComponent {
     //#region variables
 
     public isLoading = true
-    private connection = new signalR.HubConnectionBuilder().withUrl(environment.url + '/customers').build()
 
     //#endregion
 
-    constructor(private accountService: AccountService, private changeDetector: ChangeDetectorRef, private cryptoService: CryptoService, private loadingSpinnerService: LoadingSpinnerService, private router: Router, private sessionStorageService: SessionStorageService, private signalrService: SignalrService) {
+    constructor(private accountService: AccountService, private changeDetector: ChangeDetectorRef, private cryptoService: CryptoService, private loadingSpinnerService: LoadingSpinnerService, private router: Router, private sessionStorageService: SessionStorageService) {
         this.router.events.subscribe((routerEvent) => {
             if (routerEvent instanceof NavigationStart) {
                 this.isLoading = true
@@ -53,7 +50,6 @@ export class AppComponent {
         this.setBackgroundImage()
         this.openBroadcastChannel()
         this.isUserConnected()
-        this.startSignalrService()
     }
 
     //#endregion
@@ -83,14 +79,6 @@ export class AppComponent {
 
     private setUserSelect(): void {
         document.getElementById('main').style.userSelect = environment.cssUserSelect
-    }
-
-    private startSignalrService(): void {
-        // this.signalrService.startConnection()
-        this.connection.on('MessageReceived', (message) => {
-            console.log(message)
-        })
-        this.connection.start()
     }
 
     //#endregion

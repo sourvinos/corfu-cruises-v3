@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using API.Infrastructure.Announcements;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Responses;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SignalR;
 
 namespace API.Features.Customers {
 
@@ -19,21 +17,18 @@ namespace API.Features.Customers {
         private readonly ICustomerRepository customerRepo;
         private readonly ICustomerValidation customerValidation;
         private readonly IMapper mapper;
-        private readonly IHubContext<MessageHub> hubContext;
 
         #endregion
 
-        public CustomersController(ICustomerRepository customerRepo, IHubContext<MessageHub> hubContext, ICustomerValidation customerValidation, IMapper mapper) {
+        public CustomersController(ICustomerRepository customerRepo, ICustomerValidation customerValidation, IMapper mapper) {
             this.customerRepo = customerRepo;
             this.customerValidation = customerValidation;
             this.mapper = mapper;
-            this.hubContext = hubContext;
         }
 
         [HttpGet]
         [Authorize(Roles = "admin")]
         public async Task<IEnumerable<CustomerListVM>> GetAsync() {
-            await hubContext.Clients.All.SendAsync("MessageReceived", "Yoohoo!");
             return await customerRepo.GetAsync();
         }
 

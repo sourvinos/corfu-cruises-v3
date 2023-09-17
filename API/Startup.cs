@@ -1,5 +1,4 @@
 using System;
-using API.Infrastructure.Announcements;
 using API.Infrastructure.Auth;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Extensions;
@@ -91,7 +90,6 @@ namespace API {
             Configure(app);
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
-                endpoints.MapHub<MessageHub>("/customers");
             });
         }
 
@@ -114,7 +112,6 @@ namespace API {
             Configure(app);
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
-                endpoints.MapHub<MessageHub>("/customers");
             });
         }
 
