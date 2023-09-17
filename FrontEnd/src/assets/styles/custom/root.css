@@ -122,6 +122,10 @@ ul {
     transition: all var(--theme-delay);
 }
 
+::-ms-reveal {
+    display: none;
+}
+
 p {
     color: var(--color-text) !important;
     font-family: var(--font-family-ubuntu);
