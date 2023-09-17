@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using API.Features.Users;
 using API.Infrastructure.Classes;
+using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Implementations;
 using Microsoft.AspNetCore.Http;
@@ -14,7 +15,13 @@ namespace API.Features.Reservations {
 
     public class ReservationCalendar : Repository<Reservation>, IReservationCalendar {
 
-        public ReservationCalendar(AppDbContext context, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> testingEnvironment, UserManager<UserExtended> userManager) : base(context, httpContext, testingEnvironment, userManager) { }
+        private readonly UserManager<UserExtended> userManager;
+        private readonly IHttpContextAccessor httpContext;
+
+        public ReservationCalendar(AppDbContext context, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> testingEnvironment, UserManager<UserExtended> userManager) : base(context, httpContext, testingEnvironment, userManager) {
+            this.httpContext = httpContext;
+            this.userManager = userManager;
+        }
 
         public IEnumerable<ReservationCalendarGroupVM> GetForCalendar(string fromDate, string toDate) {
             return CreateCalendar(GetSchedules(fromDate, toDate), GetReservations(fromDate, toDate));
@@ -53,15 +60,9 @@ namespace API.Features.Reservations {
         ///     A list of ReservationVM objects
         /// </returns>
         private IList<ReservationVM> GetReservations(string fromDate, string toDate) {
-            return context.Reservations
-                .Where(x => x.Date >= DateTime.Parse(fromDate) && x.Date <= DateTime.Parse(toDate))
-                .GroupBy(x => new { x.Date, x.DestinationId, x.Destination.Description, x.Destination.Abbreviation })
-                .OrderBy(x => x.Key.Date).ThenBy(x => x.Key.DestinationId)
-                .Select(x => new ReservationVM {
-                    Date = DateHelpers.DateToISOString(x.Key.Date),
-                    DestinationId = x.Key.DestinationId,
-                    Pax = x.Sum(x => x.TotalPax)
-                }).ToList();
+            return Identity.IsUserAdmin(httpContext)
+                ? GetReservationsFromAllUsers(fromDate, toDate)
+                : GetReservationsFromConnectedSimpleUser(fromDate, toDate);
         }
 
         /// <summary>
@@ -87,6 +88,48 @@ namespace API.Features.Reservations {
                 }),
                 Pax = x.Sum(x => x.Pax)
             });
+        }
+
+        /// <summary>
+        ///     Gets the reservations of all users for a selected period
+        /// </summary>
+        /// <param name="schedules"></param>
+        /// <param name="reservations"></param>
+        /// <returns>
+        ///     A list of ReservationVM objects
+        /// </returns>
+        private IList<ReservationVM> GetReservationsFromAllUsers(string fromDate, string toDate) {
+            return context.Reservations
+            .Where(x => x.Date >= DateTime.Parse(fromDate) && x.Date <= DateTime.Parse(toDate))
+            .GroupBy(x => new { x.Date, x.DestinationId, x.Destination.Description, x.Destination.Abbreviation })
+            .OrderBy(x => x.Key.Date).ThenBy(x => x.Key.DestinationId)
+            .Select(x => new ReservationVM {
+                Date = DateHelpers.DateToISOString(x.Key.Date),
+                DestinationId = x.Key.DestinationId,
+                Pax = x.Sum(x => x.TotalPax)
+            }).ToList();
+        }
+
+        /// <summary>
+        ///     Gets the reservations of the connected simple user for a selected period
+        /// </summary>
+        /// <param name="schedules"></param>
+        /// <param name="reservations"></param>
+        /// <returns>
+        ///     A list of ReservationVM objects
+        /// </returns>
+        private IList<ReservationVM> GetReservationsFromConnectedSimpleUser(string fromDate, string toDate) {
+            var simpleUser = Identity.GetConnectedUserId(httpContext);
+            var connectedUserDetails = Identity.GetConnectedUserDetails(userManager, simpleUser);
+            return context.Reservations
+                .Where(x => x.Date >= DateTime.Parse(fromDate) && x.Date <= DateTime.Parse(toDate) && x.CustomerId == connectedUserDetails.CustomerId)
+                .GroupBy(x => new { x.Date, x.DestinationId, x.Destination.Description, x.Destination.Abbreviation })
+                .OrderBy(x => x.Key.Date).ThenBy(x => x.Key.DestinationId)
+                .Select(x => new ReservationVM {
+                    Date = DateHelpers.DateToISOString(x.Key.Date),
+                    DestinationId = x.Key.DestinationId,
+                    Pax = x.Sum(x => x.TotalPax)
+                }).ToList();
         }
 
     }
