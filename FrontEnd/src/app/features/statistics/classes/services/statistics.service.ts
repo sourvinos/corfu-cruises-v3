@@ -24,6 +24,10 @@ export class StatisticsService extends HttpDataService {
         return this.http.get<StatisticsVM>(environment.apiUrl + '/statistics/destinations/year/' + year)
     }
 
+    public getPorts(year: number): Observable<StatisticsVM> {
+        return this.http.get<StatisticsVM>(environment.apiUrl + '/statistics/ports/year/' + year)
+    }
+
     //#endregion
 
 }

@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card" id="destinations">
+            <!-- <div class="card" id="destinations">
                 <span class="header">
                     <img [src]="getIcon('destinations')" style="height: 1.5625rem; width: 1.5625rem">
                     <span>Destinations</span>
@@ -52,7 +52,32 @@
                         <span class="no-show">{{ destination.pax - destination.actualPax }}</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
+            <!-- <div class="card" id="ports">
+                <span class="header">
+                    <img [src]="getIcon('ports')" style="height: 1.5625rem; width: 1.5625rem">
+                    <span>Ports</span>
+                </span>
+                <div *ngFor="let port of ports" class="content">
+                    <div class="text row">
+                        <span class="text">{{ port.description }}</span>
+                    </div>
+                    <div class="row pax">
+                        <span class="text">Pax</span>
+                        <span class="pax">{{ port.pax }}</span>
+                    </div>
+                    <div class="row actual-pax">
+                        <span class="text">Actual</span>
+                        <span class="actual-pax">{{ port.actualPax }}</span>
+                    </div>
+                    <div class="row no-show">
+                        <span class="text">N/S</span>
+                        <span class="no-show">{{ port.pax - port.actualPax }}</span>
+                    </div>
+                </div>
+            </div> -->
+            <card [array]="destinations" [header]="destinationsFeature"></card>
+            <card [array]="ports" [header]="portsFeature"></card>
         </div>
 
     </div>

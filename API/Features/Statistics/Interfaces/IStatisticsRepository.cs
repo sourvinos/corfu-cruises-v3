@@ -8,6 +8,10 @@ namespace API.Features.Statistics {
 
         IEnumerable<StatisticsVM> Get(int year);
         IEnumerable<StatisticsVM> GetPerDestination(int year);
+        IEnumerable<StatisticsVM> GetPerPort(int year);
+        IEnumerable<StatisticsVM> GetPerShip(int year);
+        IEnumerable<StatisticsVM> GetPerDriver(int year);
+        IEnumerable<StatisticsVM> GetPerCustomer(int year);
 
     }
 

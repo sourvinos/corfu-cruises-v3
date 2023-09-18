@@ -2141,6 +2141,14 @@
             {
                 "id": "okButton",
                 "description": "OK"
+            },
+            {
+                "id": "destinations",
+                "description": "Προορισμοί"
+            },
+            {
+                "id": "ports",
+                "description": "Λιμάνια"
             }
         ]
     }

@@ -25,6 +25,9 @@ export class StatisticsComponent {
 
     public ytd: StatisticsVM
     public destinations: StatisticsVM[]
+    public destinationsFeature: 'destinations'
+    public ports: StatisticsVM[]
+    public portsFeature: 'ports'
     public feature = 'statistics'
     public featureIcon = 'statistics'
     public form: FormGroup
@@ -41,6 +44,7 @@ export class StatisticsComponent {
     ngOnInit(): void {
         this.getYTD()
         this.getDestinations()
+        this.getPorts()
     }
 
     ngAfterViewInit(): void {
@@ -95,6 +99,20 @@ export class StatisticsComponent {
             if (listResolved.error == null) {
                 this.destinations = listResolved.list
                 resolve(this.destinations)
+            } else {
+                this.dialogService.open(this.messageDialogService.filterResponse(listResolved.error), 'error', ['ok']).subscribe(() => {
+                    this.goBack()
+                })
+            }
+        })
+    }
+
+    private getPorts(): Promise<any> {
+        return new Promise((resolve) => {
+            const listResolved: ListResolved = this.activatedRoute.snapshot.data['ports']
+            if (listResolved.error == null) {
+                this.ports = listResolved.list
+                resolve(this.ports)
             } else {
                 this.dialogService.open(this.messageDialogService.filterResponse(listResolved.error), 'error', ['ok']).subscribe(() => {
                     this.goBack()

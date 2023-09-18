@@ -26,7 +26,8 @@ namespace API.Infrastructure.Helpers {
         }
 
         public static DateTime GetLocalDateTime() {
-            return TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, "E. Europe Standard Time");
+            var x = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, "E. Europe Standard Time");
+            return x;
         }
 
         public static string GetTrimmedUnixTime() {
