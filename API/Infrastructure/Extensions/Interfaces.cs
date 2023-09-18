@@ -17,6 +17,7 @@ using API.Features.ShipCrews;
 using API.Features.ShipOwners;
 using API.Features.ShipRoutes;
 using API.Features.Ships;
+using API.Features.Statistics;
 using API.Features.Users;
 using API.Infrastructure.Auth;
 using API.Infrastructure.Parameters;
@@ -77,6 +78,8 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IParametersRepository, ParametersRepository>();
             // Emails
             services.AddTransient<IEmailSender, EmailSender>();
+            // Statistics
+            services.AddTransient<IStatisticsRepository, StatisticsRepository>();
         }
 
     }

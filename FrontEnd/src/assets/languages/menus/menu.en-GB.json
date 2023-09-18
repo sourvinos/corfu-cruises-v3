@@ -24,6 +24,10 @@
         "description": "Customer Ledgers"
     },
     {
+        "id": "tasks-statistics",
+        "description": "Statistics"
+    },
+    {
         "id": "tables-coachRoutes",
         "description": "Coach routes"
     },

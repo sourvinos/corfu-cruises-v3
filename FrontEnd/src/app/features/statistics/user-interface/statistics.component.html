@@ -1,0 +1,68 @@
+<div id="form-wrapper">
+
+    <div id="content">
+
+        <div id="header">
+            <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
+        </div>
+
+        <div id="grid-wrapper">
+            <div class="card" id="ytd">
+                <span class="header">
+                    <img [src]="getIcon('schedules')" style="height: 1.5625rem; width: 1.5625rem">
+                    <span>YTD</span>
+                </span>
+                <div class="content">
+                    <div class="text row">
+                        <span class="text">ALL</span>
+                    </div>
+                    <div class="row">
+                        <span class="text">Pax</span>
+                        <span class="pax">{{ ytd.pax }}</span>
+                    </div>
+                    <div class="row">
+                        <span class="text">Actual</span>
+                        <span class="actual-pax">{{ ytd.actualPax }}</span>
+                    </div>
+                    <div class="row">
+                        <span class="text">N/S</span>
+                        <span class="no-show">{{ ytd.pax - ytd.actualPax }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card" id="destinations">
+                <span class="header">
+                    <img [src]="getIcon('destinations')" style="height: 1.5625rem; width: 1.5625rem">
+                    <span>Destinations</span>
+                </span>
+                <div *ngFor="let destination of destinations" class="content">
+                    <div class="text row">
+                        <span class="text">{{ destination.description }}</span>
+                    </div>
+                    <div class="row pax">
+                        <span class="text">Pax</span>
+                        <span class="pax">{{ destination.pax }}</span>
+                    </div>
+                    <div class="row actual-pax">
+                        <span class="text">Actual</span>
+                        <span class="actual-pax">{{ destination.actualPax }}</span>
+                    </div>
+                    <div class="row no-show">
+                        <span class="text">N/S</span>
+                        <span class="no-show">{{ destination.pax - destination.actualPax }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="footer">
+        <div id="align-right">
+            <button (click)="onClose()" class="primary" mat-flat-button>
+                <span>{{ getLabel("okButton") | uppercase }}</span>
+            </button>
+        </div>
+    </div>
+
+</div>

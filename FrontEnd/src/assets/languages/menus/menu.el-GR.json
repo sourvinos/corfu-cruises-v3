@@ -24,6 +24,10 @@
         "description": "Καρτέλες πελατών"
     },
     {
+        "id": "tasks-statistics",
+        "description": "Στατιστικά"
+    },
+    {
         "id": "tables-coachRoutes",
         "description": "Δρομολόγια λεωφορείων"
     },

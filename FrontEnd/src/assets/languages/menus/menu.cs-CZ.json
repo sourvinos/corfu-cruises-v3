@@ -24,6 +24,10 @@
         "description": "Knihy zákazníků"
     },
     {
+        "id": "tasks-statistics",
+        "description": "Statistika"
+    },
+    {
         "id": "tables-coachRoutes",
         "description": "Trasy autobusů"
     },

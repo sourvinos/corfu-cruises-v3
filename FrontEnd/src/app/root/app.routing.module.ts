@@ -27,6 +27,7 @@ const appRoutes: Routes = [
     { path: 'ledgers', loadChildren: () => import('../features/ledgers/classes/modules/ledger.module').then(m => m.LedgerModule) },
     { path: 'embarkation', loadChildren: () => import('../features/embarkation/classes/modules/embarkation.module').then(m => m.EmbarkationModule) },
     { path: 'manifest', loadChildren: () => import('../features/manifest/classes/modules/manifest.module').then(m => m.ManifestModule) },
+    { path: 'statistics', loadChildren: () => import('../features/statistics/classes/modules/statistics.module').then(m => m.StatisticsModule) },
     // Tables menu
     { path: 'coachRoutes', loadChildren: () => import('../features/coachRoutes/classes/modules/coachRoute.module').then(m => m.CoachRouteModule) },
     { path: 'customers', loadChildren: () => import('../features/customers/classes/modules/customer.module').then(m => m.CustomerModule) },

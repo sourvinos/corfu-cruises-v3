@@ -24,6 +24,10 @@
         "description": "Registres des clients"
     },
     {
+        "id": "tasks-statistics",
+        "description": "Statistiques"
+    },
+    {
         "id": "tables-coachRoutes",
         "description": "Routes de bus"
     },

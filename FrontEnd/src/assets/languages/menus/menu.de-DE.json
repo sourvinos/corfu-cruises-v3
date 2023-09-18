@@ -24,6 +24,10 @@
         "description": "Kundenbücher"
     },
     {
+        "id": "tasks-statistics",
+        "description": "Statistiken"
+    },
+    {
         "id": "tables-coachRoutes",
         "description": "Busrouten"
     },
