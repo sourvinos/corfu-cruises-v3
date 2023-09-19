@@ -5,6 +5,7 @@ import { AuthGuardService } from 'src/app/shared/services/auth-guard.service'
 import { CustomersResolver } from '../resolvers/customers-resolver'
 import { DestinationsResolver } from '../resolvers/destinations-resolver'
 import { DriversResolver } from '../resolvers/drivers-resolver'
+import { NationalitiesResolver } from '../resolvers/nationalities-resolver'
 import { PortsResolver } from '../resolvers/ports-resolver'
 import { ShipsResolver } from '../resolvers/ships-resolver'
 import { StatisticsComponent } from '../../user-interface/statistics.component'
@@ -18,7 +19,8 @@ const routes: Routes = [
             destinations: DestinationsResolver,
             drivers: DriversResolver,
             ports: PortsResolver,
-            ships: ShipsResolver
+            ships: ShipsResolver,
+            nationalities:NationalitiesResolver
         }
     }
 ]

@@ -142,6 +142,28 @@ namespace API.Features.Statistics {
             return x;
         }
 
+        public IEnumerable<StatisticsNationalityVM> GetPerNationality(int year) {
+            var x = context.Reservations
+                .AsNoTracking()
+                .Include(x => x.Passengers)
+                .Where(x => x.Date >= new DateTime(year, 1, 1) && x.Date <= new DateTime(year, DateHelpers.GetLocalDateTime().Month, DateHelpers.GetLocalDateTime().Day))
+                .SelectMany(x => x.Passengers)
+                .GroupBy(x => new { x.NationalityId, x.Nationality.Code, x.Nationality.Description })
+                .Select(x => new StatisticsNationalityVM {
+                    Id = x.Key.NationalityId,
+                    Code = x.Key.Code,
+                    Description = x.Key.Description,
+                    Pax = x.Count(),
+                    ActualPax = x.Count(x => x.IsBoarded),
+                }).ToList();
+            x.Add(new StatisticsNationalityVM {
+                Description = "TOTALS",
+                Pax = x.Sum(x => x.Pax),
+                ActualPax = x.Sum(x => x.ActualPax)
+            });
+            return x;
+        }
+
     }
 
 }

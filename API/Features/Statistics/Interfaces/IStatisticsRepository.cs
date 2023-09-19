@@ -12,6 +12,7 @@ namespace API.Features.Statistics {
         IEnumerable<StatisticsVM> GetPerShip(int year);
         IEnumerable<StatisticsVM> GetPerDriver(int year);
         IEnumerable<StatisticsVM> GetPerCustomer(int year);
+        IEnumerable<StatisticsNationalityVM> GetPerNationality(int year);
 
     }
 

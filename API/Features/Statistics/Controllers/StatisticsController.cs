@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using API.Features.Reservations;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -52,6 +51,12 @@ namespace API.Features.Statistics {
         [Authorize(Roles = "admin")]
         public IEnumerable<StatisticsVM> GetPerShip([FromRoute] int year) {
             return statisticsRepo.GetPerShip(year);
+        }
+
+        [HttpGet("nationalities/year/{year}")]
+        [Authorize(Roles = "admin")]
+        public IEnumerable<StatisticsVM> GetPerNationality([FromRoute] int year) {
+            return statisticsRepo.GetPerNationality(year);
         }
 
     }
