@@ -7,12 +7,12 @@ import { StatisticsService } from '../services/statistics.service'
 
 @Injectable({ providedIn: 'root' })
 
-export class PortsResolver {
+export class DriversResolver {
 
     constructor(private statisticsService: StatisticsService) { }
 
     resolve(): Observable<ListResolved> {
-        return this.statisticsService.getStatistics(2023, 'ports').pipe(
+        return this.statisticsService.getStatistics(2023, 'drivers').pipe(
             map((statistics) => new ListResolved(statistics)),
             catchError((err: any) => of(new ListResolved(null, err)))
         )

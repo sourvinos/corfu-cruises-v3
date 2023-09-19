@@ -38,6 +38,7 @@ namespace API.Features.Statistics {
                 .Include(x => x.Passengers)
                 .Where(x => x.Date >= new DateTime(year, 1, 1) && x.Date <= new DateTime(year, DateHelpers.GetLocalDateTime().Month, DateHelpers.GetLocalDateTime().Day))
                 .GroupBy(x => new { x.Date.Year, x.Destination.Id, x.Destination.Description })
+                .OrderBy(x => x.Key.Description)
                 .Select(x => new StatisticsVM {
                     Year = x.Key.Year,
                     Id = x.Key.Id,
@@ -53,6 +54,7 @@ namespace API.Features.Statistics {
                 .Include(x => x.Passengers)
                 .Where(x => x.Date >= new DateTime(year, 1, 1) && x.Date <= new DateTime(year, DateHelpers.GetLocalDateTime().Month, DateHelpers.GetLocalDateTime().Day))
                 .GroupBy(x => new { x.Date.Year, x.Port.Id, x.Port.Description })
+                .OrderBy(x => x.Key.Description)
                 .Select(x => new StatisticsVM {
                     Year = x.Key.Year,
                     Id = x.Key.Id,
@@ -68,6 +70,7 @@ namespace API.Features.Statistics {
                 .Include(x => x.Passengers)
                 .Where(x => x.Date >= new DateTime(year, 1, 1) && x.Date <= new DateTime(year, DateHelpers.GetLocalDateTime().Month, DateHelpers.GetLocalDateTime().Day) && x.ShipId != null)
                 .GroupBy(x => new { x.Date.Year, x.Ship.Id, x.Ship.Description })
+                .OrderBy(x => x.Key.Description)
                 .Select(x => new StatisticsVM {
                     Year = x.Key.Year,
                     Id = x.Key.Id,
@@ -83,6 +86,7 @@ namespace API.Features.Statistics {
                 .Include(x => x.Passengers)
                 .Where(x => x.Date >= new DateTime(year, 1, 1) && x.Date <= new DateTime(year, DateHelpers.GetLocalDateTime().Month, DateHelpers.GetLocalDateTime().Day) && x.DriverId != null)
                 .GroupBy(x => new { x.Date.Year, x.Driver.Id, x.Driver.Description })
+                .OrderBy(x => x.Key.Description)
                 .Select(x => new StatisticsVM {
                     Year = x.Key.Year,
                     Id = x.Key.Id,
@@ -98,6 +102,7 @@ namespace API.Features.Statistics {
                 .Include(x => x.Passengers)
                 .Where(x => x.Date >= new DateTime(year, 1, 1) && x.Date <= new DateTime(year, DateHelpers.GetLocalDateTime().Month, DateHelpers.GetLocalDateTime().Day))
                 .GroupBy(x => new { x.Date.Year, x.Customer.Id, x.Customer.Description })
+                .OrderBy(x => x.Key.Description)
                 .Select(x => new StatisticsVM {
                     Year = x.Key.Year,
                     Id = x.Key.Id,

@@ -1497,6 +1497,27 @@
         ]
     },
     {
+        "feature": "manifestShipRouteSelector",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Δρομολόγιο πλοίου"
+            },
+            {
+                "id": "subHeader",
+                "description": "Επιλέξτε ποια διαδρομή θα ακολουθήσει το πλοίο"
+            },
+            {
+                "id": "okButton",
+                "description": "OK"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Ακυρο"
+            }
+        ]
+    },
+    {
         "feature": "shipOwnerList",
         "labels": [
             {
@@ -2120,6 +2141,46 @@
             {
                 "id": "okButton",
                 "description": "OK"
+            },
+            {
+                "id": "ytd",
+                "description": "YTD"
+            },
+            {
+                "id": "destinations",
+                "description": "Destinations"
+            },
+            {
+                "id": "customers",
+                "description": "Clients"
+            },
+            {
+                "id": "ports",
+                "description": "Ports"
+            },
+            {
+                "id": "drivers",
+                "description": "Conducteurs"
+            },
+            {
+                "id": "ships",
+                "description": "Navires"
+            },
+            {
+                "id": "description",
+                "description": "Description "
+            },
+            {
+                "id": "pax",
+                "description": "Pax"
+            },
+            {
+                "id": "actual-pax",
+                "description": "Actual pax"
+            },
+            {
+                "id": "no-show",
+                "description": "N/S"
             }
         ]
     }

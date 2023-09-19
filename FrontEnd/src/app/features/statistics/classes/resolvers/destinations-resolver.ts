@@ -12,7 +12,7 @@ export class DestinationsResolver {
     constructor(private statisticsService: StatisticsService) { }
 
     resolve(): Observable<ListResolved> {
-        return this.statisticsService.getDestinations(2023).pipe(
+        return this.statisticsService.getStatistics(2023, 'destinations').pipe(
             map((statistics) => new ListResolved(statistics)),
             catchError((err: any) => of(new ListResolved(null, err)))
         )

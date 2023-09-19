@@ -1,4 +1,4 @@
-<div id="form-wrapper">
+<div id="list-wrapper">
 
     <div id="content">
 
@@ -7,77 +7,32 @@
         </div>
 
         <div id="grid-wrapper">
-            <div class="card" id="ytd">
-                <span class="header">
-                    <img [src]="getIcon('schedules')" style="height: 1.5625rem; width: 1.5625rem">
-                    <span>YTD</span>
-                </span>
-                <div class="content">
-                    <div class="text row">
-                        <span class="text">ALL</span>
-                    </div>
-                    <div class="row">
-                        <span class="text">Pax</span>
-                        <span class="pax">{{ ytd.pax }}</span>
-                    </div>
-                    <div class="row">
-                        <span class="text">Actual</span>
-                        <span class="actual-pax">{{ ytd.actualPax }}</span>
-                    </div>
-                    <div class="row">
-                        <span class="text">N/S</span>
-                        <span class="no-show">{{ ytd.pax - ytd.actualPax }}</span>
-                    </div>
-                </div>
-            </div>
-            <!-- <div class="card" id="destinations">
-                <span class="header">
-                    <img [src]="getIcon('destinations')" style="height: 1.5625rem; width: 1.5625rem">
-                    <span>Destinations</span>
-                </span>
-                <div *ngFor="let destination of destinations" class="content">
-                    <div class="text row">
-                        <span class="text">{{ destination.description }}</span>
-                    </div>
-                    <div class="row pax">
-                        <span class="text">Pax</span>
-                        <span class="pax">{{ destination.pax }}</span>
-                    </div>
-                    <div class="row actual-pax">
-                        <span class="text">Actual</span>
-                        <span class="actual-pax">{{ destination.actualPax }}</span>
-                    </div>
-                    <div class="row no-show">
-                        <span class="text">N/S</span>
-                        <span class="no-show">{{ destination.pax - destination.actualPax }}</span>
-                    </div>
-                </div>
-            </div> -->
-            <!-- <div class="card" id="ports">
-                <span class="header">
-                    <img [src]="getIcon('ports')" style="height: 1.5625rem; width: 1.5625rem">
-                    <span>Ports</span>
-                </span>
-                <div *ngFor="let port of ports" class="content">
-                    <div class="text row">
-                        <span class="text">{{ port.description }}</span>
-                    </div>
-                    <div class="row pax">
-                        <span class="text">Pax</span>
-                        <span class="pax">{{ port.pax }}</span>
-                    </div>
-                    <div class="row actual-pax">
-                        <span class="text">Actual</span>
-                        <span class="actual-pax">{{ port.actualPax }}</span>
-                    </div>
-                    <div class="row no-show">
-                        <span class="text">N/S</span>
-                        <span class="no-show">{{ port.pax - port.actualPax }}</span>
-                    </div>
-                </div>
-            </div> -->
-            <card [array]="destinations" [header]="destinationsFeature"></card>
-            <card [array]="ports" [header]="portsFeature"></card>
+            <mat-tab-group>
+                <mat-tab>
+                    <ng-template mat-tab-label>{{ getLabel('ytd') }}</ng-template>
+                    <table [array]="ytd"></table>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>{{ getLabel('destinations') }}</ng-template>
+                    <table [array]="destinations"></table>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>{{ getLabel('customers') }}</ng-template>
+                    <table [array]="customers"></table>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>{{ getLabel('drivers') }}</ng-template>
+                    <table [array]="drivers"></table>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>{{ getLabel('ports') }}</ng-template>
+                    <table [array]="ports"></table>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>{{ getLabel('ships') }}</ng-template>
+                    <table [array]="ships"></table>
+                </mat-tab>
+            </mat-tab-group>
         </div>
 
     </div>

@@ -12,7 +12,7 @@ export class YTDResolver {
     constructor(private statisticsService: StatisticsService) { }
 
     resolve(): Observable<ListResolved> {
-        return this.statisticsService.getYTD(2023).pipe(
+        return this.statisticsService.getStatistics(2023, 'ytd').pipe(
             map((statistics) => new ListResolved(statistics)),
             catchError((err: any) => of(new ListResolved(null, err)))
         )

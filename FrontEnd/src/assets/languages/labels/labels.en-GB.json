@@ -1497,6 +1497,27 @@
         ]
     },
     {
+        "feature": "manifestShipRouteSelector",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Ship routes"
+            },
+            {
+                "id": "subHeader",
+                "description": "Select which route the ship will follow"
+            },
+            {
+                "id": "okButton",
+                "description": "OK"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Ακυρο"
+            }
+        ]
+    },
+    {
         "feature": "shipOwnerList",
         "labels": [
             {
@@ -2120,6 +2141,46 @@
             {
                 "id": "okButton",
                 "description": "OK"
+            },
+            {
+                "id": "ytd",
+                "description": "YTD"
+            },
+            {
+                "id": "destinations",
+                "description": "Destinations"
+            },
+            {
+                "id": "customers",
+                "description": "Customers"
+            },
+            {
+                "id": "ports",
+                "description": "Ports"
+            },
+            {
+                "id": "drivers",
+                "description": "Drivers"
+            },
+            {
+                "id": "ships",
+                "description": "Ships"
+            },
+            {
+                "id": "description",
+                "description": "Description"
+            },
+            {
+                "id": "pax",
+                "description": "Pax"
+            },
+            {
+                "id": "actual-pax",
+                "description": "Actual pax"
+            },
+            {
+                "id": "no-show",
+                "description": "N/S"
             }
         ]
     }

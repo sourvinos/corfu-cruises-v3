@@ -14,20 +14,8 @@ export class StatisticsService extends HttpDataService {
         super(httpClient, environment.apiUrl + '/statistics')
     }
 
-    //#region public methods
-
-    public getYTD(year: number): Observable<StatisticsVM> {
-        return this.http.get<StatisticsVM>(environment.apiUrl + '/statistics/ytd/year/' + year)
+    public getStatistics(year: number, table: string): Observable<StatisticsVM> {
+        return this.http.get<StatisticsVM>(environment.apiUrl + '/statistics/' + table + '/year/' + year)
     }
-
-    public getDestinations(year: number): Observable<StatisticsVM> {
-        return this.http.get<StatisticsVM>(environment.apiUrl + '/statistics/destinations/year/' + year)
-    }
-
-    public getPorts(year: number): Observable<StatisticsVM> {
-        return this.http.get<StatisticsVM>(environment.apiUrl + '/statistics/ports/year/' + year)
-    }
-
-    //#endregion
 
 }

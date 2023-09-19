@@ -1,67 +1,51 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component } from '@angular/core'
-import { FormBuilder, FormGroup } from '@angular/forms'
 // Custom
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
-import { HelperService } from 'src/app/shared/services/helper.service'
-import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
-import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
-import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
-import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { StatisticsService } from '../classes/services/statistics.service'
-import { StatisticsVM } from '../classes/view-models/statistics-vm'
 import { ListResolved } from 'src/app/shared/classes/list-resolved'
-import { environment } from 'src/environments/environment'
+import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
+import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { StatisticsVM } from '../classes/view-models/statistics-vm'
 
 @Component({
     selector: 'statistics',
     templateUrl: './statistics.component.html',
-    styleUrls: ['../../../../assets/styles/custom/forms.css', './statistics.component.css']
+    styleUrls: ['../../../../assets/styles/custom/lists.css', './statistics.component.css']
 })
 
 export class StatisticsComponent {
 
-    //#region common #8
+    //#region variables
 
-    public ytd: StatisticsVM
+    public ytd: StatisticsVM[]
+    public customers: StatisticsVM[]
     public destinations: StatisticsVM[]
-    public destinationsFeature: 'destinations'
+    public drivers: StatisticsVM[]
     public ports: StatisticsVM[]
-    public portsFeature: 'ports'
+    public ships: StatisticsVM[]
     public feature = 'statistics'
     public featureIcon = 'statistics'
-    public form: FormGroup
     public icon = 'arrow_back'
-    public input: InputTabStopDirective
     public parentUrl = '/home'
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private statisticsService: StatisticsService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private dialogService: DialogService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
-        this.getYTD()
-        this.getDestinations()
-        this.getPorts()
-    }
-
-    ngAfterViewInit(): void {
-        this.focusOnField()
+        this.getRecords('ytd')
+        this.getRecords('customers')
+        this.getRecords('destinations')
+        this.getRecords('drivers')
+        this.getRecords('ports')
+        this.getRecords('ships')
     }
 
     //#endregion
 
     //#region public methods
-
-    public getHint(id: string, minmax = 0): string {
-        return this.messageHintService.getDescription(id, minmax)
-    }
-
-    public getIcon(filename: string): string {
-        return environment.menuDropdownIconDirectory + filename + '.svg'
-    }
 
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
@@ -75,44 +59,12 @@ export class StatisticsComponent {
 
     //#region private methods
 
-    private focusOnField(): void {
-        this.helperService.focusOnField()
-    }
-
-    private getYTD(): Promise<any> {
+    private getRecords(array: string): Promise<any> {
         return new Promise((resolve) => {
-            const listResolved: ListResolved = this.activatedRoute.snapshot.data['ytd']
+            const listResolved: ListResolved = this.activatedRoute.snapshot.data[array]
             if (listResolved.error == null) {
-                this.ytd = listResolved.list[0]
-                resolve(this.ytd)
-            } else {
-                this.dialogService.open(this.messageDialogService.filterResponse(listResolved.error), 'error', ['ok']).subscribe(() => {
-                    this.goBack()
-                })
-            }
-        })
-    }
-
-    private getDestinations(): Promise<any> {
-        return new Promise((resolve) => {
-            const listResolved: ListResolved = this.activatedRoute.snapshot.data['destinations']
-            if (listResolved.error == null) {
-                this.destinations = listResolved.list
-                resolve(this.destinations)
-            } else {
-                this.dialogService.open(this.messageDialogService.filterResponse(listResolved.error), 'error', ['ok']).subscribe(() => {
-                    this.goBack()
-                })
-            }
-        })
-    }
-
-    private getPorts(): Promise<any> {
-        return new Promise((resolve) => {
-            const listResolved: ListResolved = this.activatedRoute.snapshot.data['ports']
-            if (listResolved.error == null) {
-                this.ports = listResolved.list
-                resolve(this.ports)
+                this[array] = listResolved.list
+                resolve([array])
             } else {
                 this.dialogService.open(this.messageDialogService.filterResponse(listResolved.error), 'error', ['ok']).subscribe(() => {
                     this.goBack()

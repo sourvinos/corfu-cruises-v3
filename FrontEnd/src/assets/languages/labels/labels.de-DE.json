@@ -1497,6 +1497,27 @@
         ]
     },
     {
+        "feature": "manifestShipRouteSelector",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Δρομολόγιο πλοίου"
+            },
+            {
+                "id": "subHeader",
+                "description": "Επιλέξτε ποια διαδρομή θα ακολουθήσει το πλοίο"
+            },
+            {
+                "id": "okButton",
+                "description": "OK"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Ακυρο"
+            }
+        ]
+    },
+    {
         "feature": "shipOwnerList",
         "labels": [
             {
@@ -2115,11 +2136,51 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Statistiken"
+                "description": "Statistik"
             },
             {
                 "id": "okButton",
                 "description": "OK"
+            },
+            {
+                "id": "ytd",
+                "description": "YTD"
+            },
+            {
+                "id": "destinations",
+                "description": "Reiseziele"
+            },
+            {
+                "id": "customers",
+                "description": "Kunden"
+            },
+            {
+                "id": "ports",
+                "description": "Häfen"
+            },
+            {
+                "id": "drivers",
+                "description": "Fahrer"
+            },
+            {
+                "id": "ships",
+                "description": "Schiffe"
+            },
+            {
+                "id": "description",
+                "description": "Beschreibung"
+            },
+            {
+                "id": "pax",
+                "description": "Pax"
+            },
+            {
+                "id": "actual-pax",
+                "description": "Actual pax"
+            },
+            {
+                "id": "no-show",
+                "description": "N/S"
             }
         ]
     }

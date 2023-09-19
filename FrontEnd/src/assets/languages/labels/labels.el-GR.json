@@ -2143,12 +2143,44 @@
                 "description": "OK"
             },
             {
+                "id": "ytd",
+                "description": "YTD"
+            },
+            {
                 "id": "destinations",
                 "description": "Προορισμοί"
             },
             {
+                "id": "customers",
+                "description": "Πελάτες"
+            },
+            {
                 "id": "ports",
                 "description": "Λιμάνια"
+            },
+            {
+                "id": "drivers",
+                "description": "Οδηγοί"
+            },
+            {
+                "id": "ships",
+                "description": "Πλοία"
+            },
+            {
+                "id": "description",
+                "description": "Περιγραφή"
+            },
+            {
+                "id": "pax",
+                "description": "Pax"
+            },
+            {
+                "id": "actual-pax",
+                "description": "Actual pax"
+            },
+            {
+                "id": "no-show",
+                "description": "N/S"
             }
         ]
     }
