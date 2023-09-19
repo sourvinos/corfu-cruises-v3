@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using API.Features.Reservations;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
