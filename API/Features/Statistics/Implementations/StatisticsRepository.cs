@@ -149,6 +149,7 @@ namespace API.Features.Statistics {
                 .Where(x => x.Date >= new DateTime(year, 1, 1) && x.Date <= new DateTime(year, DateHelpers.GetLocalDateTime().Month, DateHelpers.GetLocalDateTime().Day))
                 .SelectMany(x => x.Passengers)
                 .GroupBy(x => new { x.NationalityId, x.Nationality.Code, x.Nationality.Description })
+                .OrderByDescending(x => x.Count())
                 .Select(x => new StatisticsNationalityVM {
                     Id = x.Key.NationalityId,
                     Code = x.Key.Code,

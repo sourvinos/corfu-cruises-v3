@@ -11,6 +11,7 @@ import { MessageLabelService } from './message-label.service'
 import { DialogService } from './modal-dialog.service'
 import { SessionStorageService } from './session-storage.service'
 import { environment } from 'src/environments/environment'
+import { LocalStorageService } from './local-storage.service'
 
 export function prepare<T>(callback: () => void): (source: Observable<T>) => Observable<T> {
     return (source: Observable<T>): Observable<T> => defer(() => {
@@ -36,7 +37,7 @@ export class HelperService {
 
     //#endregion
 
-    constructor(private dialogService: DialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService, private titleService: Title) { }
+    constructor(private localStorageService: LocalStorageService, private dialogService: DialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService, private titleService: Title) { }
 
     //#region public methods
 
@@ -247,6 +248,16 @@ export class HelperService {
         }, 1000)
     }
 
+    public formatNumberToLocale(x: number): string {
+        return x.toString()
+            .split('')
+            .reverse()
+            .join('')
+            .match(/.{1,3}/g)
+            .join(this.getNumberLocaleSeperator()).split('')
+            .reduce((acc, char) => char + acc, '')
+    }
+
     //#endregion
 
     //#region private methods
@@ -269,6 +280,16 @@ export class HelperService {
         elements.forEach(element => {
             element.classList.remove('invisible')
         })
+    }
+
+    private getNumberLocaleSeperator(): string {
+        switch (this.localStorageService.getLanguage()) {
+            case 'cs-CZ': return ' '
+            case 'de-DE': return '.'
+            case 'el-GR': return '.'
+            case 'en-GB': return ','
+            case 'fr-FR': return ' '
+        }
     }
 
     //#endregion

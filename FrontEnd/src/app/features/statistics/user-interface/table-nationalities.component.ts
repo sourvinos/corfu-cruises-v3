@@ -1,19 +1,19 @@
 import { Component, Input } from '@angular/core'
 // Custom
-import { StatisticsVM } from '../classes/view-models/statistics-vm'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { StatisticsNationalitiesVM } from '../classes/view-models/statistics-nationalities-vm'
+import { environment } from 'src/environments/environment'
 import { HelperService } from 'src/app/shared/services/helper.service'
 
 @Component({
-    selector: 'table',
-    templateUrl: './table.component.html',
-    styleUrls: ['./table.component.css']
+    selector: 'table-nationalities',
+    templateUrl: './table-nationalities.component.html',
+    styleUrls: ['./table-nationalities.component.css']
 })
 
-export class TableComponent {
+export class TableNationalitiesComponent {
 
-    @Input() array: StatisticsVM[] | StatisticsNationalitiesVM[]
+    @Input() array: StatisticsNationalitiesVM[]
 
     public feature = 'statistics'
 
@@ -21,6 +21,12 @@ export class TableComponent {
 
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
+    }
+
+    public getNationalityIcon(nationalityCode: string): any {
+        if (nationalityCode != undefined) {
+            return environment.nationalitiesIconDirectory + nationalityCode.toLowerCase() + '.png'
+        }
     }
 
     public getTableHeight(): string {

@@ -133,8 +133,13 @@
     height: 1.6875rem;
     padding: 0 0 0 0.3125rem;
 }
+
 .p-datatable .p-datatable-tbody > tr > td > span.with-right-padding {
     padding: 0 0.5rem 0 0;
+}
+
+.p-datatable .p-datatable-tbody > tr > td.monotype {
+    font-family: var(--font-family-ubuntu) !important;
 }
 
 .p-datatable .p-datatable-tbody > tr > td > .p-element > .p-component > .p-checkbox-box {

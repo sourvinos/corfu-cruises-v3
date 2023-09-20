@@ -2167,6 +2167,10 @@
                 "description": "Navires"
             },
             {
+                "id": "nationalities",
+                "description": "Nationalités"
+            },
+            {
                 "id": "description",
                 "description": "Description "
             },

@@ -6,6 +6,7 @@ import { ListResolved } from 'src/app/shared/classes/list-resolved'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { StatisticsVM } from '../classes/view-models/statistics-vm'
+import { StatisticsNationalitiesVM } from '../classes/view-models/statistics-nationalities-vm'
 
 @Component({
     selector: 'statistics',
@@ -23,6 +24,7 @@ export class StatisticsComponent {
     public drivers: StatisticsVM[]
     public ports: StatisticsVM[]
     public ships: StatisticsVM[]
+    public nationalities: StatisticsNationalitiesVM[]
     public feature = 'statistics'
     public featureIcon = 'statistics'
     public icon = 'arrow_back'
@@ -41,6 +43,7 @@ export class StatisticsComponent {
         this.getRecords('drivers')
         this.getRecords('ports')
         this.getRecords('ships')
+        this.getRecords('nationalities')
     }
 
     //#endregion

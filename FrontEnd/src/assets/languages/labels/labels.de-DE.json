@@ -2167,6 +2167,10 @@
                 "description": "Schiffe"
             },
             {
+                "id": "nationalities",
+                "description": "Nationalitäten"
+            },
+            {
                 "id": "description",
                 "description": "Beschreibung"
             },

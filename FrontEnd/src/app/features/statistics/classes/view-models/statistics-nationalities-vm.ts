@@ -1,9 +1,7 @@
-export interface StatisticsVM {
+import { StatisticsVM } from './statistics-vm'
 
-    year: number
-    id: number
-    description: string
-    pax: number
-    actualPax: number
+export interface StatisticsNationalitiesVM extends StatisticsVM {
+
+    code: string
 
 }

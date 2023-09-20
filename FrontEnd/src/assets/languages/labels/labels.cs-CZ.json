@@ -2167,6 +2167,10 @@
                 "description": "Lodě"
             },
             {
+                "id": "nationalities",
+                "description": "Národnosti"
+            },
+            {
                 "id": "description",
                 "description": "Popis"
             },

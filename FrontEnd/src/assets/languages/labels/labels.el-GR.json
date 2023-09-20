@@ -2167,6 +2167,10 @@
                 "description": "Πλοία"
             },
             {
+                "id": "nationalities",
+                "description": "Εθνικότητες"
+            },
+            {
                 "id": "description",
                 "description": "Περιγραφή"
             },

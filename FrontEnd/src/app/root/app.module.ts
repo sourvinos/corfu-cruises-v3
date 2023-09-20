@@ -48,10 +48,8 @@ import { InterceptorService } from '../shared/services/interceptor.service'
         SharedModule
     ],
     providers: [
-        Title,
-        {
-            provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true
-        }
+        Title, { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+
     ],
     bootstrap: [AppComponent]
 })
