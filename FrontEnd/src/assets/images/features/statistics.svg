@@ -8,7 +8,7 @@
    id="Layer_1"
    viewBox="0 0 15.36 15.360001"
    xml:space="preserve"
-   sodipodi:docname="stats-line-chart-svgrepo-com.svg"
+   sodipodi:docname="statistics.svg"
    inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -26,7 +26,7 @@
    showgrid="false"
    inkscape:zoom="33.916664"
    inkscape:cx="12.000001"
-   inkscape:cy="12.000001"
+   inkscape:cy="12.029485"
    inkscape:window-width="1920"
    inkscape:window-height="1017"
    inkscape:window-x="-8"
@@ -36,23 +36,22 @@
 
 
 
-<g
-   id="g636"
-   transform="scale(0.03,0.0334099)"><polyline
-     style="fill:#666666"
-     points="160,441.6 160,386.928 352,386.928 352,435.2 "
-     id="polyline487"
-     transform="translate(0,-26.128)" /><path
-     d="M 378.672,459.744 H 133.328 C 119.392,459.744 108,448.352 108,434.416 v 0 c 0,-13.936 11.392,-25.328 25.328,-25.328 h 245.328 c 13.936,0 25.328,11.392 25.328,25.328 v 0 c 0.016,13.92 -11.376,25.328 -25.312,25.328 z"
-     id="path489" /><path
-     style="fill:#e04f5f"
-     d="M 480,320 H 32 C 14.4,320 0,305.6 0,288 V 32 C 0,14.4 14.4,0 32,0 h 448 c 17.6,0 32,14.4 32,32 v 256 c 0,17.6 -14.4,32 -32,32 z"
-     id="path491" /><g
-     id="g503"
-     transform="translate(0,-26.128)">
+<polyline
+   style="fill:#000000;fill-opacity:1"
+   points="160,441.6 160,386.928 352,386.928 352,435.2 "
+   id="polyline487"
+   transform="matrix(0.03,0,0,0.0334099,0,-0.87293387)" /><path
+   d="M 11.36016,15.360001 H 3.99984 C 3.58176,15.360001 3.24,14.979395 3.24,14.513795 v 0 c 0,-0.4656 0.34176,-0.846206 0.75984,-0.846206 h 7.35984 c 0.41808,0 0.75984,0.380606 0.75984,0.846206 v 0 c 4.8e-4,0.465066 -0.34128,0.846206 -0.75936,0.846206 z"
+   id="path489"
+   style="stroke-width:0.0316591" /><path
+   style="fill:#e04f5f;stroke-width:0.0316591"
+   d="M 14.4,10.691168 H 0.96 C 0.432,10.691168 0,10.210065 0,9.6220512 V 1.0691168 C 0,0.48110256 0.432,0 0.96,0 H 14.4 c 0.528,0 0.96,0.48110256 0.96,1.0691168 v 8.5529344 c 0,0.5880138 -0.432,1.0691168 -0.96,1.0691168 z"
+   id="path491" /><g
+   id="g503"
+   transform="matrix(0.03,0,0,0.0334099,0,-0.87293387)">
 	<polygon
    style="fill:#ffffff"
-   points="312.576,228.464 182.24,157.376 103.088,236.496 91.776,225.184 179.392,137.584 311.04,209.408 414.096,129.264 423.904,141.888 "
+   points="103.088,236.496 91.776,225.184 179.392,137.584 311.04,209.408 414.096,129.264 423.904,141.888 312.576,228.464 182.24,157.376 "
    id="polygon493" />
 	<circle
    style="fill:#ffffff"
@@ -78,5 +77,5 @@
    cy="217.424"
    r="24.176001"
    id="circle501" />
-</g></g>
+</g>
 </svg>

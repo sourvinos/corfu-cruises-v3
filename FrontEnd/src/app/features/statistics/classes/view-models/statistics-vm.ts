@@ -5,5 +5,7 @@ export interface StatisticsVM {
     description: string
     pax: number
     actualPax: number
+    percentage: string
+    noShow: number
 
 }

@@ -138,7 +138,11 @@
     padding: 0 0.5rem 0 0;
 }
 
-.p-datatable .p-datatable-tbody > tr > td.monotype {
+.p-datatable .p-datatable-tbody > tr > td > span.monotype {
+    font-family: var(--font-family-ubuntu) !important;
+}
+
+.p-datatable .p-datatable-tfoot > tr > td > span.monotype {
     font-family: var(--font-family-ubuntu) !important;
 }
 
@@ -167,7 +171,6 @@
 
 .p-datatable .p-datatable-tbody > tr:hover > td > span {
     background-color: color-mix(in srgb, var(--color-secondary) var(--hover-transparency), transparent) !important;
-    /* background-color: green !important; */
     cursor: pointer !important;
 }
 
