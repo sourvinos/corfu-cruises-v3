@@ -1,26 +1,5 @@
-.drop-down-menu > button {
-    background-color: transparent !important;
-    margin: 0 0 0 0.8rem !important;
-    padding: 0 0 0 0 !important;
-}
-
-.sub-menu {
-    width: min-content !important;
-}
-
-.drop-down-menu:hover .sub-menu {
+button .content {
+    align-items: center;
+    column-gap: 1rem;
     display: flex;
-    row-gap: 0.125rem;
-}
-
-.sub-menu button {
-    background-color: var(--color-primary) !important;
-    border-radius: 50% !important;
-    border: 0.0625rem solid color-mix(in srgb, var(--color-text) 20%, transparent);
-    padding: 0.625rem 0.5625rem !important;
-    transition: background-color 0.2s;
-}
-
-.sub-menu button img {
-    border: 0.0625rem solid #ffffff;
 }

@@ -1,12 +1,39 @@
-<div class="drop-down-menu">
-    <button class="drop-down-menu-trigger">
-        <img (load)="loadImage()" [ngClass]="imageIsLoading()" src="/assets/images/languages/{{ getStoredLanguage() }}.svg" style="height: 1.5625rem; width: 1.5625rem">
+<button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" style="color: var(--color-text-reverse) !important" mat-icon-button>
+    <img (load)="loadImage()" [ngClass]="imageIsLoading()" src="/assets/images/languages/{{ getStoredLanguage() }}.svg" style="height: 1.5625rem; width: 1.5625rem">
+</button>
+<mat-menu #menu="matMenu" class="primary">
+    <ng-container *ngTemplateOutlet="contextMenu"></ng-container>
+</mat-menu>
+
+<ng-template #contextMenu>
+    <button (click)="doLanguageTasks('el-GR')" mat-menu-item>
+        <div class="content">
+            <img src="/assets/images/languages/el-GR.svg">
+            <span>Ελληνικά</span>
+        </div>
     </button>
-    <ul (click)="hideMenu()" class="sub-menu">
-        <button (click)="doLanguageTasks('el-GR')"><img src="/assets/images/languages/el-GR.svg"></button>
-        <button (click)="doLanguageTasks('en-GB')"><img src="/assets/images/languages/en-GB.svg"></button>
-        <button (click)="doLanguageTasks('de-DE')"><img src="/assets/images/languages/de-DE.svg"></button>
-        <button (click)="doLanguageTasks('cs-CZ')"><img src="/assets/images/languages/cs-CZ.svg"></button>
-        <button (click)="doLanguageTasks('fr-FR')"><img src="/assets/images/languages/fr-FR.svg"></button>
-    </ul>
-</div>
+    <button (click)="doLanguageTasks('en-GB')" mat-menu-item>
+        <div class="content">
+            <img src="/assets/images/languages/en-GB.svg">
+            <span>English</span>
+        </div>
+    </button>
+    <button (click)="doLanguageTasks('de-DE')" mat-menu-item>
+        <div class="content">
+            <img src="/assets/images/languages/de-DE.svg">
+            <span>Deutsch</span>
+        </div>
+    </button>
+    <button (click)="doLanguageTasks('cs-CZ')" mat-menu-item>
+        <div class="content">
+            <img src="/assets/images/languages/cs-CZ.svg">
+            <span>Česky</span>
+        </div>
+    </button>
+    <button (click)="doLanguageTasks('fr-FR')" mat-menu-item>
+        <div class="content">
+            <img src="/assets/images/languages/fr-FR.svg">
+            <span>Française</span>
+        </div>
+    </button>
+</ng-template>
