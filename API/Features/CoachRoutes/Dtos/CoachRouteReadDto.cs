@@ -1,4 +1,3 @@
-using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.CoachRoutes {
@@ -12,8 +11,6 @@ namespace API.Features.CoachRoutes {
         public string Abbreviation { get; set; }
         public bool HasTransfer { get; set; }
         public bool IsActive { get; set; }
-        // Object fields
-        public SimpleEntity Port { get; set; }
         // Metadata
         public string PostAt { get; set; }
         public string PostUser { get; set; }

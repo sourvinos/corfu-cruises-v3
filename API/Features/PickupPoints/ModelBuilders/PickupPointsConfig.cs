@@ -9,6 +9,7 @@ namespace API.Features.PickupPoints {
             // PK
             entity.Property(x => x.Id).ValueGeneratedOnAdd();
             // FKs
+            entity.Property(x => x.PortId).IsRequired(true);
             entity.Property(x => x.CoachRouteId).IsRequired(true);
             // Fields
             entity.Property(x => x.Description).HasMaxLength(128).IsRequired(true);

@@ -8,8 +8,6 @@ namespace API.Features.CoachRoutes {
         public void Configure(EntityTypeBuilder<CoachRoute> entity) {
             // PK
             entity.Property(x => x.Id).ValueGeneratedOnAdd();
-            // FKs
-            entity.Property(x => x.PortId).IsRequired(true);
             // Fields
             entity.Property(x => x.Description).HasMaxLength(128).IsRequired(true);
             entity.Property(x => x.Abbreviation).HasMaxLength(10).IsRequired(true);
@@ -20,8 +18,6 @@ namespace API.Features.CoachRoutes {
             entity.Property(x => x.PostUser).HasMaxLength(255).IsRequired(true);
             entity.Property(x => x.PutAt).HasMaxLength(19);
             entity.Property(x => x.PutUser).HasMaxLength(255);
-            // FK Constraints
-            entity.HasOne(x => x.Port).WithMany(x => x.CoachRoutes).HasForeignKey(x => x.PortId).OnDelete(DeleteBehavior.Restrict);
         }
 
     }

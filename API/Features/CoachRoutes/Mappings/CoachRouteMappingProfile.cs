@@ -8,8 +8,7 @@ namespace API.Features.CoachRoutes {
         public CoachRouteMappingProfile() {
             CreateMap<CoachRoute, CoachRouteListVM>();
             CreateMap<CoachRoute, CoachRouteAutoCompleteVM>();
-            CreateMap<CoachRoute, CoachRouteReadDto>()
-                .ForMember(x => x.Port, x => x.MapFrom(x => new SimpleEntity { Id = x.Port.Id, Description = x.Port.Description }));
+            CreateMap<CoachRoute, CoachRouteReadDto>();
             CreateMap<CoachRouteWriteDto, CoachRoute>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
                 .ForMember(x => x.Abbreviation, x => x.MapFrom(x => x.Abbreviation.Trim()));

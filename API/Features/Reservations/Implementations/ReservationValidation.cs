@@ -64,7 +64,7 @@ namespace API.Features.Reservations {
                 .AsNoTracking()
                 .Include(x => x.CoachRoute)
                 .SingleOrDefault(x => x.Id == reservation.PickupPointId);
-            return pickupPoint != null ? pickupPoint.CoachRoute.PortId : 0;
+            return pickupPoint != null ? pickupPoint.PortId : 0;
         }
 
         public int OverbookedPax(string date, int destinationId) {

@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using API.Features.PickupPoints;
-using API.Features.Ports;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.CoachRoutes {
@@ -10,8 +8,6 @@ namespace API.Features.CoachRoutes {
 
         // PK
         public int Id { get; set; }
-        // FKs
-        public int PortId { get; set; }
         // Fields
         public string Description { get; set; }
         public string Abbreviation { get; set; }
@@ -23,7 +19,6 @@ namespace API.Features.CoachRoutes {
         public string PutAt { get; set; }
         public string PutUser { get; set; }
         // Navigation
-        public Port Port { get; set; }
         public List<PickupPoint> PickupPoints { get; set; }
 
     }

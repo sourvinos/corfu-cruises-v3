@@ -36,15 +36,10 @@ namespace API.Features.CoachRoutes {
             return mapper.Map<IEnumerable<CoachRoute>, IEnumerable<CoachRouteAutoCompleteVM>>(coachRoutes);
         }
 
-        public async Task<CoachRoute> GetByIdAsync(int id, bool includeTables) {
-            return includeTables
-                ? await context.CoachRoutes
-                    .AsNoTracking()
-                    .Include(x => x.Port)
-                    .SingleOrDefaultAsync(x => x.Id == id)
-                : await context.CoachRoutes
-                    .AsNoTracking()
-                    .SingleOrDefaultAsync(x => x.Id == id);
+        public async Task<CoachRoute> GetByIdAsync(int id) {
+            return await context.CoachRoutes
+                .AsNoTracking()
+                .SingleOrDefaultAsync(x => x.Id == id);
         }
 
     }

@@ -41,7 +41,7 @@ namespace API.Features.Manifest {
                     .Where(x => x.Reservation.Date.ToString() == date
                         && x.Reservation.DestinationId == destinationId
                         && x.Reservation.ShipId == shipId
-                        && portIds.Contains(x.Reservation.PickupPoint.CoachRoute.PortId)
+                        && portIds.Contains(x.Reservation.PickupPoint.PortId)
                         && x.IsBoarded)
                     .ToList()
             };

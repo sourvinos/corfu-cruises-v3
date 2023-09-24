@@ -39,8 +39,8 @@ namespace API.Features.Reservations {
                     ExactPoint = r.PickupPoint.ExactPoint,
                     Time = r.PickupPoint.Time,
                     Port = new SimpleEntity {
-                        Id = r.PickupPoint.CoachRoute.Port.Id,
-                        Description = r.PickupPoint.CoachRoute.Port.Description
+                        Id = r.PickupPoint.PortId,
+                        Description = r.PickupPoint.Port.Description
                     }
                 }))
                 .ForMember(x => x.Passengers, x => x.MapFrom(x => x.Passengers.Select(passenger => new PassengerReadDto {

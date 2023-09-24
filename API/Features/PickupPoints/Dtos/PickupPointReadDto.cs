@@ -1,4 +1,5 @@
 using API.Features.CoachRoutes;
+using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.PickupPoints {
@@ -7,6 +8,9 @@ namespace API.Features.PickupPoints {
 
         // PK
         public int Id { get; set; }
+        // FKs
+        public int CoachRouteId { get; set; }
+        public int PortId { get; set; }
         // Fields
         public string Description { get; set; }
         public string ExactPoint { get; set; }
@@ -20,6 +24,7 @@ namespace API.Features.PickupPoints {
         public string PutUser { get; set; }
         // Navigation
         public CoachRouteAutoCompleteVM CoachRoute { get; set; }
+        public SimpleEntity Port { get; set; }
 
     }
 
