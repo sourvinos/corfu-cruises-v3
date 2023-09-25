@@ -25,9 +25,8 @@ namespace API.Features.PickupPoints {
                 .AsNoTracking()
                 .Include(x => x.CoachRoute)
                 .Include(x => x.Port)
-                // .OrderBy(x => x.CoachRoute.Abbreviation).ThenBy(x => x.Time).ThenBy(x => x.Description)
+                .OrderBy(x => x.CoachRoute.Abbreviation).ThenBy(x => x.Time).ThenBy(x => x.Description)
                 .ToListAsync();
-            // return pickupPoints;
             return mapper.Map<IEnumerable<PickupPoint>, IEnumerable<PickupPointListVM>>(pickupPoints);
         }
 

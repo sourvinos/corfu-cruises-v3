@@ -9,8 +9,8 @@ namespace API.Features.CoachRoutes {
             // PK
             entity.Property(x => x.Id).ValueGeneratedOnAdd();
             // Fields
-            entity.Property(x => x.Description).HasMaxLength(128).IsRequired(true);
             entity.Property(x => x.Abbreviation).HasMaxLength(10).IsRequired(true);
+            entity.Property(x => x.Description).HasMaxLength(128).IsRequired(true);
             entity.Property(x => x.HasTransfer);
             entity.Property(x => x.IsActive);
             // Metadata

@@ -1,4 +1,3 @@
-using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Cases;
@@ -50,13 +49,6 @@ namespace CoachRoutes {
         [ClassData(typeof(CreateValidCoachRoute))]
         public async Task Simple_Users_Can_Not_Create(TestCoachRoute record) {
             await RecordInvalidNotSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "simpleuser", "1234567890", record);
-        }
-
-        [Theory]
-        [ClassData(typeof(CreateInvalidRoute))]
-        public async Task Admins_Can_Not_Create_When_Invalid(TestCoachRoute record) {
-            var actionResponse = await RecordInvalidNotSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "ec11fc8c16db", record);
-            Assert.Equal((HttpStatusCode)record.StatusCode, actionResponse.StatusCode);
         }
 
         [Theory]

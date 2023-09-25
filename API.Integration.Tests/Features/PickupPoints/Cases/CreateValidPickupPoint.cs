@@ -16,6 +16,7 @@ namespace PickupPoints {
             return new object[] {
                 new TestPickupPoint {
                     CoachRouteId = 1,
+                    PortId = 1,
                     Description = Helpers.CreateRandomString(128),
                     ExactPoint = Helpers.CreateRandomString(128),
                     Time = "08:00"

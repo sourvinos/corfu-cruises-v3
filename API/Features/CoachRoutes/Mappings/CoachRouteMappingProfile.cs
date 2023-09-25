@@ -1,4 +1,3 @@
-using API.Infrastructure.Classes;
 using AutoMapper;
 
 namespace API.Features.CoachRoutes {

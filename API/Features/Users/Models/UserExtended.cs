@@ -1,8 +1,6 @@
 using API.Features.Customers;
-using API.Infrastructure.Auth;
 using API.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Identity;
-using System.Collections.Generic;
 
 namespace API.Features.Users {
 
@@ -22,7 +20,6 @@ namespace API.Features.Users {
         public string PutUser { get; set; }
         // Navigation
         public Customer Customer { get; set; }
-        public List<Token> Tokens { get; set; }
 
     }
 

@@ -15,7 +15,6 @@ namespace CoachRoutes {
         private static object[] ValidRecord() {
             return new object[] {
                 new TestCoachRoute {
-                    PortId = 1,
                     Description = Helpers.CreateRandomString(128),
                     Abbreviation = Helpers.CreateRandomString(10)
                 }

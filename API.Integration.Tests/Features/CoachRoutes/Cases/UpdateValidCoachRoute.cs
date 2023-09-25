@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Infrastructure;
@@ -17,7 +16,6 @@ namespace CoachRoutes {
             return new object[] {
                 new TestCoachRoute {
                     Id = 1,
-                    PortId = 1,
                     Description = Helpers.CreateRandomString(128),
                     Abbreviation = Helpers.CreateRandomString(10),
                     PutAt = "2023-09-07 09:52:02"
