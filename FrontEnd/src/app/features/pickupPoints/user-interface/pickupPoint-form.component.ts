@@ -18,6 +18,7 @@ import { PickupPointReadDto } from '../classes/dtos/pickupPoint-read-dto'
 import { PickupPointService } from '../classes/services/pickupPoint.service'
 import { PickupPointWriteDto } from '../classes/dtos/pickupPoint-write-dto'
 import { ValidationService } from '../../../shared/services/validation.service'
+import { PortAutoCompleteVM } from '../../ports/classes/view-models/port-autocomplete-vm'
 
 @Component({
     selector: 'pickuppoint-form',
@@ -43,7 +44,8 @@ export class PickupPointFormComponent {
     //#region autocompletes #2
 
     public isAutoCompleteDisabled = true
-    public dropdownRoutes: Observable<CoachRouteAutoCompleteVM[]>
+    public dropdownCoachRoutes: Observable<CoachRouteAutoCompleteVM[]>
+    public dropdownPorts: Observable<PortAutoCompleteVM[]>
 
     //#endregion
 
@@ -131,6 +133,7 @@ export class PickupPointFormComponent {
         return {
             id: this.form.value.id,
             coachRouteId: this.form.value.coachRoute.id,
+            portId: this.form.value.port.id,
             description: this.form.value.description,
             exactPoint: this.form.value.exactPoint,
             time: this.form.value.time,
@@ -169,6 +172,7 @@ export class PickupPointFormComponent {
         this.form = this.formBuilder.group({
             id: 0,
             coachRoute: ['', [Validators.required, ValidationService.RequireAutocomplete]],
+            port: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
             exactPoint: ['', [Validators.required, Validators.maxLength(128)]],
             time: ['', [Validators.required, ValidationService.isTime]],
@@ -182,7 +186,8 @@ export class PickupPointFormComponent {
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('coachRoutes', 'dropdownRoutes', 'coachRoute', 'abbreviation', 'abbreviation')
+        this.populateDropdownFromDexieDB('coachRoutes', 'dropdownCoachRoutes', 'coachRoute', 'abbreviation', 'abbreviation')
+        this.populateDropdownFromDexieDB('ports', 'dropdownPorts', 'port', 'abbreviation', 'abbreviation')
     }
 
     private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
@@ -197,6 +202,7 @@ export class PickupPointFormComponent {
             this.form.setValue({
                 id: this.record.id,
                 coachRoute: { 'id': this.record.coachRoute.id, 'abbreviation': this.record.coachRoute.abbreviation },
+                port: { 'id': this.record.port.id, 'abbreviation': this.record.port.abbreviation },
                 description: this.record.description,
                 exactPoint: this.record.exactPoint,
                 time: this.record.time,
@@ -238,6 +244,10 @@ export class PickupPointFormComponent {
 
     get coachRoute(): AbstractControl {
         return this.form.get('coachRoute')
+    }
+
+    get port(): AbstractControl {
+        return this.form.get('port')
     }
 
     get description(): AbstractControl {

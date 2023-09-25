@@ -38,7 +38,8 @@ export class PickupPointListComponent {
 
     //#region dropdown filters
 
-    public dropdownRoutes = []
+    public dropdownCoachRoutes = []
+    public dropdownPorts = []
 
     //#endregion
 
@@ -136,6 +137,7 @@ export class PickupPointListComponent {
             setTimeout(() => {
                 this.filterColumn(filters.isActive, 'isActive', 'contains')
                 this.filterColumn(filters.coachRoute, 'coachRoute', 'in')
+                this.filterColumn(filters.port, 'port', 'in')
                 this.filterColumn(filters.description, 'description', 'contains')
                 this.filterColumn(filters.exactPoint, 'exactPoint', 'contains')
                 this.filterColumn(filters.time, 'time', 'contains')
@@ -202,7 +204,8 @@ export class PickupPointListComponent {
     //#region private specific methods #1
 
     private populateDropdownFilters(): void {
-        this.dropdownRoutes = this.helperService.getDistinctRecords(this.records, 'coachRoute', 'abbreviation')
+        this.dropdownCoachRoutes = this.helperService.getDistinctRecords(this.records, 'coachRoute', 'abbreviation')
+        this.dropdownPorts = this.helperService.getDistinctRecords(this.records, 'port', 'abbreviation')
     }
 
     //#endregion

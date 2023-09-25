@@ -262,6 +262,10 @@
                 "description": "Διαδρομή"
             },
             {
+                "id": "headerPortAbbreviation",
+                "description": "Λιμάνι"
+            },
+            {
                 "id": "headerDescription",
                 "description": "Περιγραφή"
             },
@@ -293,6 +297,10 @@
             {
                 "id": "coachRoute",
                 "description": "Διαδρομή"
+            },
+            {
+                "id": "port",
+                "description": "Λιμάνι"
             },
             {
                 "id": "description",

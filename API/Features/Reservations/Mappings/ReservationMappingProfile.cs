@@ -1,5 +1,6 @@
 using System.Linq;
 using API.Features.PickupPoints;
+using API.Features.Ports;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Helpers;
 using AutoMapper;
@@ -38,8 +39,9 @@ namespace API.Features.Reservations {
                     Description = r.PickupPoint.Description,
                     ExactPoint = r.PickupPoint.ExactPoint,
                     Time = r.PickupPoint.Time,
-                    Port = new SimpleEntity {
+                    Port = new PortAutoCompleteVM {
                         Id = r.PickupPoint.PortId,
+                        Abbreviation = r.PickupPoint.Port.Abbreviation,
                         Description = r.PickupPoint.Port.Description
                     }
                 }))

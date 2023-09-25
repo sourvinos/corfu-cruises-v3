@@ -262,6 +262,10 @@
                 "description": "Trasa"
             },
             {
+                "id": "headerPortAbbreviation",
+                "description": "Přístav"
+            },
+            {
                 "id": "headerDescription",
                 "description": "Popis"
             },
@@ -293,6 +297,10 @@
             {
                 "id": "coachRoute",
                 "description": "Trasa"
+            },
+            {
+                "id": "port",
+                "description": "Přístav"
             },
             {
                 "id": "description",

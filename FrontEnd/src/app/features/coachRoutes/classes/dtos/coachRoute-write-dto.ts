@@ -2,8 +2,6 @@ export interface CoachRouteWriteDto {
 
     // PK
     id: number
-    // FKs
-    portId: number
     // Fields
     abbreviation: string
     description: string

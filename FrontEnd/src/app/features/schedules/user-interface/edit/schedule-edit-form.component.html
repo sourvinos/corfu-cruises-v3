@@ -81,6 +81,6 @@
 
 <mat-autocomplete #ports="matAutocomplete" [displayWith]="autocompleteFields" autoActiveFirstOption>
     <mat-option *ngFor="let option of dropdownPorts | async" [value]="option">
-        {{ option.description }}
+        {{ option.abbreviation }}
     </mat-option>
 </mat-autocomplete>

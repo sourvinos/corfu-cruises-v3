@@ -1,4 +1,3 @@
-import { PortAutoCompleteVM } from 'src/app/features/ports/classes/view-models/port-autocomplete-vm'
 import { Metadata } from 'src/app/shared/classes/metadata'
 
 export interface CoachRouteReadDto extends Metadata {
@@ -10,7 +9,5 @@ export interface CoachRouteReadDto extends Metadata {
     description: string
     hasTransfer: boolean
     isActive: boolean
-    // Object fields
-    port: PortAutoCompleteVM
 
 }

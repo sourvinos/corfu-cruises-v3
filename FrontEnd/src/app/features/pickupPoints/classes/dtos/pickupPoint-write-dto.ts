@@ -4,6 +4,7 @@ export interface PickupPointWriteDto {
     id: number
     // FKs
     coachRouteId: number
+    portId: number
     // Fields
     description: string
     exactPoint: string

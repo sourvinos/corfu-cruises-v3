@@ -262,6 +262,10 @@
                 "description": "Route"
             },
             {
+                "id": "headerPortAbbreviation",
+                "description": "Hafen"
+            },
+            {
                 "id": "headerDescription",
                 "description": "Beschreibung"
             },
@@ -293,6 +297,10 @@
             {
                 "id": "coachRoute",
                 "description": "Busroute"
+            },
+            {
+                "id": "port",
+                "description": "Hafen"
             },
             {
                 "id": "description",

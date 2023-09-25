@@ -1,5 +1,6 @@
 import { CoachRouteAutoCompleteVM } from 'src/app/features/coachRoutes/classes/view-models/coachRoute-autocomplete-vm'
 import { Metadata } from 'src/app/shared/classes/metadata'
+import { PortAutoCompleteVM } from 'src/app/features/ports/classes/view-models/port-autocomplete-vm'
 
 export interface PickupPointReadDto extends Metadata {
 
@@ -7,6 +8,7 @@ export interface PickupPointReadDto extends Metadata {
     id: number
     // Object fields
     coachRoute: CoachRouteAutoCompleteVM
+    port: PortAutoCompleteVM
     // Fields
     description: string
     exactPoint: string

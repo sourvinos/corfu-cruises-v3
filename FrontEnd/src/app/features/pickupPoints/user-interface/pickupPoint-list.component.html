@@ -12,8 +12,9 @@
                     <tr>
                         <th class="width-5" pSortableColumn="isActive">{{ getLabel("headerIsActive") }}</th>
                         <th class="width-8" pSortableColumn="coachRoute.abbreviation">{{ getLabel("headerRouteAbbreviation") }}</th>
+                        <th class="width-8" pSortableColumn="port.abbreviation">{{ getLabel("headerPortAbbreviation") }}</th>
                         <th class="width-18" pSortableColumn="description">{{ getLabel("headerDescription") }}</th>
-                        <th class="width-18" pSortableColumn="exactPoint">{{ getLabel("headerExactPoint") }}</th>
+                        <th class="width-10" pSortableColumn="exactPoint">{{ getLabel("headerExactPoint") }}</th>
                         <th class="width-5" pSortableColumn="time">{{ getLabel("headerTime") }}</th>
                     </tr>
                     <tr>
@@ -21,7 +22,7 @@
                         <th class="width-8">
                             <p-columnFilter [showMenu]="false" field="coachRoute" matchMode="in">
                                 <ng-template let-filter="filterCallback" let-value pTemplate="filter">
-                                    <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="dropdownRoutes" [placeholder]="getEmoji('wildcard')" optionLabel="abbreviation">
+                                    <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="dropdownCoachRoutes" [placeholder]="getEmoji('wildcard')" optionLabel="abbreviation">
                                         <ng-template let-option pTemplate="item">
                                             <div class="p-multiselect-option">
                                                 <span>{{ option.abbreviation }}</span>
@@ -30,8 +31,22 @@
                                     </p-multiSelect>
                                 </ng-template>
                             </p-columnFilter>
+                        </th>
+                        <th class="width-8">
+                            <p-columnFilter [showMenu]="false" field="port" matchMode="in">
+                                <ng-template let-filter="filterCallback" let-value pTemplate="filter">
+                                    <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="dropdownPorts" [placeholder]="getEmoji('wildcard')" optionLabel="description">
+                                        <ng-template let-option pTemplate="item">
+                                            <div class="p-multiselect-option">
+                                                <span>{{ option.description }}</span>
+                                            </div>
+                                        </ng-template>
+                                    </p-multiSelect>
+                                </ng-template>
+                            </p-columnFilter>
+                        </th>
                         <th class="width-18"><input (input)="table.filter($event.target.value, 'description', 'contains')" [value]="$any(table).filters['description']?.value" class="p-inputtext"></th>
-                        <th class="width-18"><input (input)="table.filter($event.target.value, 'exactPoint', 'contains')" [value]="$any(table).filters['exactPoint']?.value" class="p-inputtext"></th>
+                        <th class="width-10"><input (input)="table.filter($event.target.value, 'exactPoint', 'contains')" [value]="$any(table).filters['exactPoint']?.value" class="p-inputtext"></th>
                         <th class="width-5"><input (input)="table.filter($event.target.value, 'time', 'contains')" [value]="$any(table).filters['time']?.value" class="p-inputtext center"></th>
                     </tr>
                 </ng-template>
@@ -39,8 +54,9 @@
                     <tr (click)="highlightRow(record.id)" (dblclick)="editRecord(record.id)" [attr.id]=record.id style="height: 32px;">
                         <td class="width-5"><span class="center">{{ getEmoji(record.isActive) }}</span></td>
                         <td class="width-8"><span class="center">{{ record.coachRoute.abbreviation }}</span></td>
+                        <td class="width-8"><span class="center">{{ record.port.abbreviation }}</span></td>
                         <td class="width-18"><span>{{ record.description }}</span></td>
-                        <td class="width-18"><span>{{ record.exactPoint }}</span></td>
+                        <td class="width-10"><span>{{ record.exactPoint }}</span></td>
                         <td class="width-5"><span class="center">{{ record.time }}</span></td>
                     </tr>
                 </ng-template>

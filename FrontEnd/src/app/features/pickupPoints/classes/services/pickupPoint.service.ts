@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 // Custom
@@ -16,11 +16,6 @@ export class PickupPointService extends HttpDataService {
 
     getAutoComplete(): Observable<any[]> {
         return this.http.get<PickupPointAutoCompleteVM[]>(environment.apiUrl + '/pickupPoints/getAutoComplete')
-    }
-
-    updateCoordinates(pickupPointId: string, coordinates: string): Observable<any> {
-        const params = new HttpParams().set('pickupPointId', pickupPointId).set('coordinates', coordinates)
-        return this.http.patch(this.url + '/updateCoordinates?', null, { params: params })
     }
 
 }
