@@ -16,7 +16,7 @@ export class DexieService extends Dexie {
             genders: 'id, description, isActive',
             nationalities: 'id, description, isActive',
             pickupPoints: 'id, description, isActive',
-            ports: 'id, description, isActive',
+            ports: 'id, abbreviation, description, isActive',
             shipOwners: 'id, description, isActive',
             shipRoutes: 'id, description, isActive',
             ships: 'id, description, isActive'

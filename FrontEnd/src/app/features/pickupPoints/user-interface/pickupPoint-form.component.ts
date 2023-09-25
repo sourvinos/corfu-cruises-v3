@@ -69,7 +69,7 @@ export class PickupPointFormComponent {
 
     //#region public methods
 
-    public autocompleteFields(subject: { abbreviation: any }): any {
+    public autocompleteFields(subject: any,3): any {
         return subject ? subject.abbreviation : undefined
     }
 
@@ -187,7 +187,7 @@ export class PickupPointFormComponent {
 
     private populateDropdowns(): void {
         this.populateDropdownFromDexieDB('coachRoutes', 'dropdownCoachRoutes', 'coachRoute', 'abbreviation', 'abbreviation')
-        this.populateDropdownFromDexieDB('ports', 'dropdownPorts', 'port', 'abbreviation', 'abbreviation')
+        this.populateDropdownFromDexieDB('ports', 'dropdownPorts', 'port', 'description', 'description')
     }
 
     private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
@@ -202,7 +202,7 @@ export class PickupPointFormComponent {
             this.form.setValue({
                 id: this.record.id,
                 coachRoute: { 'id': this.record.coachRoute.id, 'abbreviation': this.record.coachRoute.abbreviation },
-                port: { 'id': this.record.port.id, 'abbreviation': this.record.port.abbreviation },
+                port: { 'id': this.record.port.id, 'abbreviation': this.record.port.abbreviation, 'description': this.record.port.description },
                 description: this.record.description,
                 exactPoint: this.record.exactPoint,
                 time: this.record.time,

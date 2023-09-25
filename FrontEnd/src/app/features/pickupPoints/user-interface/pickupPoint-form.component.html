@@ -6,6 +6,8 @@
             <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
         </div>
 
+        {{ form.value | json }}
+
         <form [formGroup]="form" id="form">
             <!-- CoachRoute -->
             <mat-form-field>
@@ -91,6 +93,6 @@
 
 <mat-autocomplete #ports="matAutocomplete" [displayWith]="autocompleteFields" autoActiveFirstOption>
     <mat-option *ngFor="let option of dropdownPorts | async" [value]="option">
-        {{ option.abbreviation }}
+        {{ option.description }}
     </mat-option>
 </mat-autocomplete>

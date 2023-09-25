@@ -6,6 +6,8 @@
             <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
         </div>
 
+        {{ form.value | json }}
+
         <form [formGroup]="form" id="form">
             <!-- Date -->
             <date-picker (outputValue)="patchFormWithSelectedDate($event)" [dataTabIndex]="1" [isAdminOrNewRecord]=true [label]="getLabel('date')" [parentDate]="getDate()" [readOnly]=false [showHint]=false></date-picker>
@@ -81,6 +83,6 @@
 
 <mat-autocomplete #ports="matAutocomplete" [displayWith]="autocompleteFields" autoActiveFirstOption>
     <mat-option *ngFor="let option of dropdownPorts | async" [value]="option">
-        {{ option.abbreviation }}
+        {{ option.description }}
     </mat-option>
 </mat-autocomplete>
