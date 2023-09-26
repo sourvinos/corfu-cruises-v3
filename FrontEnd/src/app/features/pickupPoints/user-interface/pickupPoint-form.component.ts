@@ -17,8 +17,8 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 import { PickupPointReadDto } from '../classes/dtos/pickupPoint-read-dto'
 import { PickupPointService } from '../classes/services/pickupPoint.service'
 import { PickupPointWriteDto } from '../classes/dtos/pickupPoint-write-dto'
-import { ValidationService } from '../../../shared/services/validation.service'
 import { PortAutoCompleteVM } from '../../ports/classes/view-models/port-autocomplete-vm'
+import { ValidationService } from '../../../shared/services/validation.service'
 
 @Component({
     selector: 'pickuppoint-form',
@@ -69,8 +69,8 @@ export class PickupPointFormComponent {
 
     //#region public methods
 
-    public autocompleteFields(subject: any,3): any {
-        return subject ? subject.abbreviation : undefined
+    public autocompleteFields(fieldName: any, object: any): any {
+        return object ? object[fieldName] : undefined
     }
 
     public checkForEmptyAutoComplete(event: { target: { value: any } }): void {

@@ -55,10 +55,6 @@ export class CoachRouteFormComponent {
 
     //#region public methods
 
-    public autocompleteFields(subject: { description: any }): any {
-        return subject ? subject.description : undefined
-    }
-
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
     }

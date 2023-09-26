@@ -68,7 +68,7 @@ namespace API.Features.Reservations {
                 ? await context.Reservations
                     .AsNoTracking()
                     .Include(x => x.Customer)
-                    .Include(x => x.PickupPoint).ThenInclude(y => y.CoachRoute)
+                    .Include(x => x.PickupPoint).ThenInclude(x => x.Port)
                     .Include(x => x.Destination)
                     .Include(x => x.Driver)
                     .Include(x => x.Port)

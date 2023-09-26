@@ -104,8 +104,8 @@ export class ReservationFormComponent {
 
     //#region public methods
 
-    public autocompleteFields(subject: { description: any }): any {
-        return subject ? subject.description : undefined
+    public autocompleteFields(fieldName: any, object: any): any {
+        return object ? object[fieldName] : undefined
     }
 
     public checkForDifferenceBetweenTotalPaxAndPassengers(element?: any): boolean {

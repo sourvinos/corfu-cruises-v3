@@ -72,8 +72,8 @@ export class PassengerFormComponent {
 
     //#region public methods
 
-    public autocompleteFields(subject: { description: any }): any {
-        return subject ? subject.description : undefined
+    public autocompleteFields(fieldName: any, object: any): any {
+        return object ? object[fieldName] : undefined
     }
 
     public checkForEmptyAutoComplete(event: { target: { value: any } }): void {

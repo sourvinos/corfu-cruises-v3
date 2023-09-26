@@ -84,13 +84,13 @@
 
 </div>
 
-<mat-autocomplete #genders="matAutocomplete" [displayWith]="autocompleteFields" autoActiveFirstOption>
+<mat-autocomplete #genders="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
     <mat-option *ngFor="let option of dropdownGenders | async" [value]="option">
         {{ option.description }}
     </mat-option>
 </mat-autocomplete>
 
-<mat-autocomplete #nationalities="matAutocomplete" [displayWith]="autocompleteFields" (optionSelected)="updateFieldsAfterNationalitySelection($event.option.value)" autoActiveFirstOption>
+<mat-autocomplete #nationalities="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" (optionSelected)="updateFieldsAfterNationalitySelection($event.option.value)" autoActiveFirstOption>
     <mat-option *ngFor="let option of dropdownNationalities | async" [value]="option">
         {{ option.description }}
     </mat-option>

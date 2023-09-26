@@ -219,7 +219,6 @@ export class HelperService {
     }
 
     public openOrCloseAutocomplete(form: FormGroup<any>, element: any, trigger: MatAutocompleteTrigger): void {
-        form.get(element).patchValue('')
         trigger.panelOpen ? trigger.closePanel() : trigger.openPanel()
     }
 
