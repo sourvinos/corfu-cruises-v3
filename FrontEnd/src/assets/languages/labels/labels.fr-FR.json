@@ -656,6 +656,10 @@
                 "description": "Affectation des passagers a un conducteur"
             },
             {
+                "id": "assignToPortButton",
+                "description": "Changer de port de départ"
+            },
+            {
                 "id": "assignToShipButton",
                 "description": "Créer une liste de pré-embarquement"
             },
@@ -887,6 +891,27 @@
             {
                 "id": "subHeader",
                 "description": "Sélectionnez le chauffeur qui transférera les passagers au port."
+            },
+            {
+                "id": "okButton",
+                "description": "OK"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Annuler"
+            }
+        ]
+    },
+    {
+        "feature": "assignToPort",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Changer de port de départ"
+            },
+            {
+                "id": "subHeader",
+                "description": "Sélectionner le nouveau port de départ"
             },
             {
                 "id": "okButton",

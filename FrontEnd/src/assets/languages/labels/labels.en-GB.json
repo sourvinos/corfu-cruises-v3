@@ -656,6 +656,10 @@
                 "description": "Assign passengers to driver"
             },
             {
+                "id": "assignToPortButton",
+                "description": "Change departure port"
+            },
+            {
                 "id": "assignToShipButton",
                 "description": "Create pre-boarding list"
             },
@@ -887,6 +891,27 @@
             {
                 "id": "subHeader",
                 "description": "Select which driver will transfer the passengers to the port."
+            },
+            {
+                "id": "okButton",
+                "description": "OK"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Cancel"
+            }
+        ]
+    },
+    {
+        "feature": "assignToPort",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Change departure port"
+            },
+            {
+                "id": "subHeader",
+                "description": "Select which will be the new departure port"
             },
             {
                 "id": "okButton",

@@ -51,6 +51,16 @@ export class ReservationHttpService extends HttpDataService {
         return this.http.patch(this.url + '/assignToDriver?', null, { params: params })
     }
 
+    public assignToPort(portId: string, records: any[]): Observable<any> {
+        let params = new HttpParams().set('portId', portId).set('id', records[0].reservationId)
+        records.forEach((element, index) => {
+            if (index > 0) {
+                params = params.append('id', element.reservationId)
+            }
+        })
+        return this.http.patch(this.url + '/assignToPort?', null, { params: params })
+    }
+
     public assignToShip(shipId: string, records: any[]): Observable<any> {
         let params = new HttpParams().set('shipId', shipId).set('id', records[0].reservationId)
         records.forEach((element, index) => {

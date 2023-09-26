@@ -146,9 +146,9 @@
                         <td class="width-5"><span class="center">{{ reservation.coachRoute.abbreviation }}</span></td>
                         <td class="width-8"><span>{{ reservation.pickupPoint.description }}</span></td>
                         <td class="width-3"><span class="center">{{ reservation.pickupPoint.time }}</span></td>
-                        <td class="width-2"><span class="right">{{ reservation.totalPax }}</span></td>
+                        <td class="width-2"><span class="right with-right-padding">{{ reservation.totalPax }}</span></td>
                         <td class="width-4">
-                            <span class="right">
+                            <span class="right with-right-padding">
                                 <span>{{ reservation.passengerCount }} ({{ reservation.passengerDifference }})</span>
                                 <span>&nbsp;&nbsp;{{ showEmoji(reservation.passengerDifference) }}</span>
                             </span>
@@ -178,7 +178,8 @@
                 </div>
             </div>
             <div class="pill number">
-                <mat-icon class="material-icons-outlined">filter_alt</mat-icon>
+                <mat-icon *ngIf="totalPax[0]==totalPax[1]"class="material-icons-outlined">filter_alt</mat-icon>
+                <mat-icon *ngIf="totalPax[0]!=totalPax[1]"class="material-icons-outlined">filter_alt_off</mat-icon>
                 <div class="description number">
                     <span>{{ totalPax[1] | padNumber : 3 : ' ' }}</span>
                 </div>
@@ -201,6 +202,10 @@
     <button (click)="assignToDriver()" [disabled]="!isAdmin()" mat-menu-item>
         <mat-icon *ngIf="!isAdmin()" class="button-icon no-right-margin">lock</mat-icon>
         <span>{{ getLabel('assignToDriverButton') }}</span>
+    </button>
+    <button (click)="assignToPort()" [disabled]="!isAdmin()" mat-menu-item>
+        <mat-icon *ngIf="!isAdmin()" class="button-icon no-right-margin">lock</mat-icon>
+        <span>{{ getLabel('assignToPortButton') }}</span>
     </button>
     <button (click)="assignToShip()" [disabled]="!isAdmin()" mat-menu-item>
         <mat-icon *ngIf="!isAdmin()" class="button-icon no-right-margin">lock</mat-icon>

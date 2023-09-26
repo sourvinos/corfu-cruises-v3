@@ -34,15 +34,14 @@ namespace API.Features.Reservations {
                 .ForMember(x => x.Destination, x => x.MapFrom(x => new SimpleEntity { Id = x.Destination.Id, Description = x.Destination.Description }))
                 .ForMember(x => x.Driver, x => x.MapFrom(x => x.Driver == null ? new SimpleEntity { Id = 0, Description = "(EMPTY)" } : new SimpleEntity { Id = x.Driver.Id, Description = x.Driver.Description }))
                 .ForMember(x => x.Ship, x => x.MapFrom(x => x.Ship == null ? new SimpleEntity { Id = 0, Description = "(EMPTY)" } : new SimpleEntity { Id = x.Ship.Id, Description = x.Ship.Description }))
-                .ForMember(x => x.PickupPoint, x => x.MapFrom(r => new PickupPointAutoCompleteVM {
-                    Id = r.PickupPoint.Id,
-                    Description = r.PickupPoint.Description,
-                    ExactPoint = r.PickupPoint.ExactPoint,
-                    Time = r.PickupPoint.Time,
+                .ForMember(x => x.PickupPoint, x => x.MapFrom(x => new PickupPointAutoCompleteVM {
+                    Id = x.PickupPoint.Id,
+                    Description = x.PickupPoint.Description,
+                    ExactPoint = x.PickupPoint.ExactPoint,
+                    Time = x.PickupPoint.Time,
                     Port = new PortAutoCompleteVM {
-                        Id = r.PickupPoint.PortId,
-                        Abbreviation = r.PickupPoint.Port.Abbreviation,
-                        Description = r.PickupPoint.Port.Description
+                        Id = x.Port.Id,
+                        Description = x.Port.Description
                     }
                 }))
                 .ForMember(x => x.Passengers, x => x.MapFrom(x => x.Passengers.Select(passenger => new PassengerReadDto {

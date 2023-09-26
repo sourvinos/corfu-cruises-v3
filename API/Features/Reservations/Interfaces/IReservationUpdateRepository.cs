@@ -7,6 +7,7 @@ namespace API.Features.Reservations {
 
         Reservation Update(Guid reservationId, Reservation reservation);
         void AssignToDriver(int driverId, string[] ids);
+        void AssignToPort(int portId, string[] ids);
         void AssignToShip(int shipId, string[] ids);
         string AssignRefNoToNewDto(ReservationWriteDto reservation);
 

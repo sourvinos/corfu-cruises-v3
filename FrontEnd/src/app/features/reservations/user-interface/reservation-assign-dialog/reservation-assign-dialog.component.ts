@@ -8,12 +8,12 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
 @Component({
-    selector: 'reservation-to-driver-or-ship-form',
-    templateUrl: './reservation-to-driver-or-ship-form.component.html',
-    styleUrls: ['./reservation-to-driver-or-ship-form.component.css']
+    selector: 'reservation-assign-dialog',
+    templateUrl: './reservation-assign-dialog.component.html',
+    styleUrls: ['./reservation-assign-dialog.component.css']
 })
 
-export class ReservationToDriverOrShipComponent {
+export class ReservationAssignDialogComponet {
 
     //#region variables
 
@@ -24,7 +24,7 @@ export class ReservationToDriverOrShipComponent {
 
     //#endregion
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dexieService: DexieService, private dialogRef: MatDialogRef<ReservationToDriverOrShipComponent>, private formBuilder: FormBuilder, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private ngZone: NgZone) {
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dexieService: DexieService, private dialogRef: MatDialogRef<ReservationAssignDialogComponet>, private formBuilder: FormBuilder, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private ngZone: NgZone) {
         this.table = data[0]
         this.feature = data[1]
     }

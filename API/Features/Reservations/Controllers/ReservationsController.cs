@@ -118,7 +118,6 @@ namespace API.Features.Reservations {
             var x = await reservationReadRepo.GetByIdAsync(reservation.ReservationId.ToString(), false);
             if (x != null) {
                 if (Identity.IsUserAdmin(httpContext) || reservationValidation.IsUserOwner(x.CustomerId)) {
-                    AttachPortIdToDto(reservation);
                     UpdateDriverIdWithNull(reservation);
                     UpdateShipIdWithNull(reservation);
                     var z = reservationValidation.IsValid(x, reservation, scheduleRepo);
@@ -171,6 +170,18 @@ namespace API.Features.Reservations {
         [Authorize(Roles = "admin")]
         public Response AssignToDriver(int driverId, [FromQuery(Name = "id")] string[] ids) {
             reservationUpdateRepo.AssignToDriver(driverId, ids);
+            return new Response {
+                Code = 200,
+                Icon = Icons.Success.ToString(),
+                Id = null,
+                Message = ApiMessages.OK()
+            };
+        }
+
+        [HttpPatch("assignToPort")]
+        [Authorize(Roles = "admin")]
+        public Response AssignToPort(int portId, [FromQuery(Name = "id")] string[] ids) {
+            reservationUpdateRepo.AssignToPort(portId, ids);
             return new Response {
                 Code = 200,
                 Icon = Icons.Success.ToString(),

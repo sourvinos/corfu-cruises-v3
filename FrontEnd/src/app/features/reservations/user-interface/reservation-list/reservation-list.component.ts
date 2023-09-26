@@ -14,11 +14,11 @@ import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { ListResolved } from 'src/app/shared/classes/list-resolved'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { ReservationAssignDialogComponet } from '../reservation-assign-dialog/reservation-assign-dialog.component'
 import { ReservationHttpService } from '../../classes/services/reservation.http.service'
 import { ReservationListDestinationVM } from 'src/app/features/reservations/classes/view-models/list/reservation-list-destination-vm'
 import { ReservationListOverbookedDestinationVM } from '../../classes/view-models/list/reservation-list-overbooked-destination-vm'
 import { ReservationListVM } from '../../classes/view-models/list/reservation-list-vm'
-import { ReservationToDriverOrShipComponent } from '../reservation-to-driver-or-ship/reservation-to-driver-or-ship-form.component'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { environment } from 'src/environments/environment'
@@ -85,7 +85,7 @@ export class ReservationListComponent {
     public assignToDriver(): void {
         if (this.isAnyRowSelected()) {
             this.saveSelectedIds()
-            const dialogRef = this.dialog.open(ReservationToDriverOrShipComponent, {
+            const dialogRef = this.dialog.open(ReservationAssignDialogComponet, {
                 data: ['drivers', 'assignToDriver'],
                 height: '36.0625rem',
                 panelClass: 'dialog',
@@ -105,10 +105,33 @@ export class ReservationListComponent {
         }
     }
 
+    public assignToPort(): void {
+        if (this.isAnyRowSelected()) {
+            this.saveSelectedIds()
+            const dialogRef = this.dialog.open(ReservationAssignDialogComponet, {
+                data: ['ports', 'assignToPort'],
+                height: '36.0625rem',
+                panelClass: 'dialog',
+                width: '32rem',
+            })
+            dialogRef.afterClosed().subscribe(result => {
+                if (result !== undefined) {
+                    this.reservationService.assignToPort(result.record.id, this.selectedRecords).subscribe(() => {
+                        this.dialogService.open(this.messageDialogService.success(), 'success', ['ok']).subscribe(() => {
+                            this.clearSelectedRecords()
+                            this.resetTableFilters()
+                            this.refreshList()
+                        })
+                    })
+                }
+            })
+        }
+    }
+
     public assignToShip(): void {
         if (this.isAnyRowSelected()) {
             this.saveSelectedIds()
-            const dialogRef = this.dialog.open(ReservationToDriverOrShipComponent, {
+            const dialogRef = this.dialog.open(ReservationAssignDialogComponet, {
                 data: ['ships', 'assignToShip'],
                 height: '36.0625rem',
                 panelClass: 'dialog',

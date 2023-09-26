@@ -24,10 +24,15 @@
 }
 
 #dialog-content {
+    background-color: #7fffd420;
     height: 100%;
     margin: 1rem 0 2rem 0 !important;
     overflow-y: scroll;
     width: 100%;
+}
+
+#dialog-content #form {
+    margin: 0.5rem 0.5rem 0.5rem 0.5rem;
 }
 
 #dialog-footer {

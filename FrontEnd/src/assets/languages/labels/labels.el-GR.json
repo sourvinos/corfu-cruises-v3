@@ -656,6 +656,10 @@
                 "description": "Ανάθεση επιβατών σε οδηγό"
             },
             {
+                "id": "assignToPortButton",
+                "description": "Αλλαγή λιμανιού αναχώρησης"
+            },
+            {
                 "id": "assignToShipButton",
                 "description": "Δημιουργία λίστας προ-επιβίβασης"
             },
@@ -887,6 +891,27 @@
             {
                 "id": "subHeader",
                 "description": "Επιλέξτε ποιος οδηγός θα μεταφέρει τους επιβάτες στο λιμάνι."
+            },
+            {
+                "id": "okButton",
+                "description": "OK"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Ακυρο"
+            }
+        ]
+    },
+    {
+        "feature": "assignToPort",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Αλλαγή λιμανιού αναχώρησης"
+            },
+            {
+                "id": "subHeader",
+                "description": "Επιλέξτε ποιο θα είναι το νέο λιμάνι αναχώρησης."
             },
             {
                 "id": "okButton",

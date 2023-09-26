@@ -656,6 +656,10 @@
                 "description": "Fahrgäste in den Bus einteilen"
             },
             {
+                "id": "assignToPortButton",
+                "description": "Abfahrtshafen ändern"
+            },
+            {
                 "id": "assignToShipButton",
                 "description": "Pre-Boarding-Liste erstellen"
             },
@@ -887,6 +891,27 @@
             {
                 "id": "subHeader",
                 "description": "Wählen Sie den Fahrer, der die Passagiere zum Hafen bringt."
+            },
+            {
+                "id": "okButton",
+                "description": "OK"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Abbrechen"
+            }
+        ]
+    },
+    {
+        "feature": "assignToPort",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Abfahrtshafen ändern"
+            },
+            {
+                "id": "subHeader",
+                "description": "Wählen Sie den neuen Abfahrtshafen"
             },
             {
                 "id": "okButton",

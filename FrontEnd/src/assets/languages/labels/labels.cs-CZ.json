@@ -656,6 +656,10 @@
                 "description": "Přiřaďte cestující řidiči"
             },
             {
+                "id": "assignToPortButton",
+                "description": "Změna výchozího přístavu"
+            },
+            {
                 "id": "assignToShipButton",
                 "description": "Vytvoření seznamu před nástupem do letadla"
             },
@@ -887,6 +891,27 @@
             {
                 "id": "subHeader",
                 "description": "Vyberte řidiče, který přepraví cestující do přístavu."
+            },
+            {
+                "id": "okButton",
+                "description": "OK"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Zrušit"
+            }
+        ]
+    },
+    {
+        "feature": "assignToPort",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Změna výchozího přístavu"
+            },
+            {
+                "id": "subHeader",
+                "description": "Vyberte, který bude nový přístav odjezdu"
             },
             {
                 "id": "okButton",

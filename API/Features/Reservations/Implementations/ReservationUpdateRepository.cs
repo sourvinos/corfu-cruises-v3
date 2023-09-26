@@ -53,6 +53,20 @@ namespace API.Features.Reservations {
             }
         }
 
+        public void AssignToPort(int portId, string[] ids) {
+            using var transaction = context.Database.BeginTransaction();
+            var reservations = context.Reservations
+                .Where(x => ids.Contains(x.ReservationId.ToString()))
+                .ToList();
+            reservations.ForEach(a => a.PortId = portId);
+            context.SaveChanges();
+            if (testingEnvironment.IsTesting) {
+                transaction.Dispose();
+            } else {
+                transaction.Commit();
+            }
+        }
+
         public void AssignToShip(int shipId, string[] ids) {
             using var transaction = context.Database.BeginTransaction();
             var reservations = context.Reservations
