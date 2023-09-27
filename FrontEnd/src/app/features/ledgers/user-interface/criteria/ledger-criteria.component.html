@@ -12,10 +12,10 @@
                     <date-range-picker [parentDateRange]="getDateRange()" [readOnly]=true [showHint]=false (outputValues)="patchFormWithSelectedDateRange($event)"></date-range-picker>
                 </div>
                 <div class="group-input-field">
-                    <criteria-fieldset-checkboxes *ngIf="isAdmin()" (outputSelected)="patchFormWithSelectedArrays($event,'selectedCustomers')" [array]="customers" [caption]="'customers'" [feature]="feature" [selected]="selectedCustomers"></criteria-fieldset-checkboxes>
+                    <!-- <criteria-fieldset-checkboxes *ngIf="isAdmin()" (outputSelected)="patchFormWithSelectedArrays($event,'selectedCustomers')" [array]="customers" [caption]="'customers'" [feature]="feature" [selected]="selectedCustomers"></criteria-fieldset-checkboxes> -->
                     <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedDestinations')" [array]="destinations" [caption]="'destinations'" [feature]="feature" [selected]="selectedDestinations"></criteria-fieldset-checkboxes>
                     <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedPorts')" [array]="ports" [caption]="'ports'" [feature]="feature" [selected]="selectedPorts"></criteria-fieldset-checkboxes>
-                    <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedShips')" [array]="ships" [caption]="'ships'" [feature]="feature" [selected]="selectedShips"></criteria-fieldset-checkboxes>
+                    <!-- <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedShips')" [array]="ships" [caption]="'ships'" [feature]="feature" [selected]="selectedShips"></criteria-fieldset-checkboxes> -->
                 </div>
             </form>
         </div>

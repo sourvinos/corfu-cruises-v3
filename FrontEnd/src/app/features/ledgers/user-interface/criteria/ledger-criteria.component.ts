@@ -59,6 +59,7 @@ export class LedgerCriteriaComponent {
         this.setLocale()
         this.subscribeToInteractionService()
         this.setTabTitle()
+        this.setWrapperWidth()
     }
 
     //#endregion
@@ -182,6 +183,10 @@ export class LedgerCriteriaComponent {
 
     private setTabTitle(): void {
         this.helperService.setTabTitle(this.feature)
+    }
+
+    private setWrapperWidth(): void {
+        this.helperService.setMaxWidth('narrow')
     }
 
     private storeCriteria(): void {

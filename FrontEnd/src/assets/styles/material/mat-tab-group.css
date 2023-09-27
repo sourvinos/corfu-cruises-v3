@@ -5,7 +5,7 @@
 .mat-mdc-tab .mdc-tab__text-label {
     color: var(--color-text) !important;
     font-family: var(--font-family-asty) !important;
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: 200;
     transform: scale(1, 1.5);
 }

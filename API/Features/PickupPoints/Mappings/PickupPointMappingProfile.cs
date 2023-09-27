@@ -1,5 +1,5 @@
 using API.Features.CoachRoutes;
-using API.Features.Ports;
+using API.Infrastructure.Classes;
 using AutoMapper;
 
 namespace API.Features.PickupPoints {
@@ -23,9 +23,8 @@ namespace API.Features.PickupPoints {
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description))
                 .ForMember(x => x.ExactPoint, x => x.MapFrom(x => x.ExactPoint))
                 .ForMember(x => x.Time, x => x.MapFrom(x => x.Time))
-                .ForMember(x => x.Port, x => x.MapFrom(x => new PortAutoCompleteVM {
+                .ForMember(x => x.Port, x => x.MapFrom(x => new SimpleEntity {
                     Id = x.Port.Id,
-                    Abbreviation = x.Port.Abbreviation,
                     Description = x.Port.Description
                 }));
             // GetById
@@ -34,9 +33,8 @@ namespace API.Features.PickupPoints {
                     Id = x.CoachRoute.Id,
                     Abbreviation = x.CoachRoute.Abbreviation
                 }))
-                .ForMember(x => x.Port, x => x.MapFrom(x => new PortAutoCompleteVM {
+                .ForMember(x => x.Port, x => x.MapFrom(x => new SimpleEntity {
                     Id = x.Port.Id,
-                    Abbreviation = x.Port.Abbreviation,
                     Description = x.Port.Description
                 }));
             // Write

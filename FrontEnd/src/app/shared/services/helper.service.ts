@@ -257,6 +257,12 @@ export class HelperService {
             .reduce((acc, char) => char + acc, '')
     }
 
+    public setMaxWidth(maxWidth: string): void {
+        document.getElementById('main').style.maxWidth = maxWidth == 'narrow'
+            ? environment.maxWidthA + 'px'
+            : environment.maxWidthB + 'px'
+    }
+
     //#endregion
 
     //#region private methods

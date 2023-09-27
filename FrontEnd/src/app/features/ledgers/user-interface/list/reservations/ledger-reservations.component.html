@@ -47,8 +47,8 @@
                 <td class="width-5"><span>{{ reservation.ticketNo }}</span></td>
                 <td [ngClass]="reservation.hasTransfer ? 'has-transfer' : 'no-transfer'" class="emoji width-4">
                     <span class="center">
-                        <span *ngIf=" reservation.hasTransfer">{{ getEmoji('green-circle') }} </span>
-                        <span *ngIf="!reservation.hasTransfer">{{ getEmoji('red-circle') }}</span>
+                        <span *ngIf=" reservation.hasTransfer">{{ getEmoji('green-box') }} </span>
+                        <span *ngIf="!reservation.hasTransfer">{{ getEmoji('red-box') }}</span>
                     </span>
                 </td>
                 <td class="width-3"><span class="center">{{ reservation.adults | replaceZero }}</span></td>

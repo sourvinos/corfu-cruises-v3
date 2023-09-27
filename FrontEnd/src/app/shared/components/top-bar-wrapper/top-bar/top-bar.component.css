@@ -3,7 +3,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 0 4rem 0 4rem;
+    margin: 0 auto 0 auto;
+    width: 1152px;
 }
 
 #left {

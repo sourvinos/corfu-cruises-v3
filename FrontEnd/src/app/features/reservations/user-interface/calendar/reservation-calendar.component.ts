@@ -36,7 +36,7 @@ export class ReservationCalendarComponent {
     public toDate: Date
     public isSizeChanged = false
 
-    // #endregion 
+    // #endregion
 
     constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageCalendarService: MessageCalendarService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) {
         this.router.events.subscribe((navigation) => {
@@ -65,6 +65,7 @@ export class ReservationCalendarComponent {
         this.setLocale()
         this.subscribeToInteractionService()
         this.clearSessionStorage()
+        this.setWrapperWidth()
     }
 
     //#endregion
@@ -228,6 +229,10 @@ export class ReservationCalendarComponent {
 
     private setTabTitle(): void {
         this.helperService.setTabTitle(this.feature)
+    }
+
+    private setWrapperWidth(): void {
+        this.helperService.setMaxWidth('narrow')
     }
 
     private storeDatePeriod(): Promise<void> {

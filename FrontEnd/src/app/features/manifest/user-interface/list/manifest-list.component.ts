@@ -67,6 +67,7 @@ export class ManifestListComponent {
         })
         this.subscribeToInteractionService()
         this.setTabTitle()
+        this.setWrapperWidth()
     }
 
     //#endregion
@@ -167,6 +168,10 @@ export class ManifestListComponent {
 
     private setTabTitle(): void {
         this.helperService.setTabTitle(this.feature)
+    }
+
+    private setWrapperWidth(): void {
+        this.helperService.setMaxWidth('wide')
     }
 
     private showRouteSelectionDialog(): void {

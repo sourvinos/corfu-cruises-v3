@@ -64,6 +64,7 @@ export class ScheduleListComponent {
             this.subscribeToInteractionService()
             this.setTabTitle()
             this.setLocale()
+            this.setWrapperWidth()
         })
     }
 
@@ -94,7 +95,7 @@ export class ScheduleListComponent {
     public getEmoji(anything: any): string {
         return typeof anything == 'string'
             ? this.emojiService.getEmoji(anything)
-            : anything ? this.emojiService.getEmoji('green-circle') : this.emojiService.getEmoji('red-circle')
+            : anything ? this.emojiService.getEmoji('green-box') : this.emojiService.getEmoji('red-box')
     }
 
     public getLabel(id: string): string {
@@ -240,6 +241,10 @@ export class ScheduleListComponent {
 
     private setLocale(): void {
         this.dateAdapter.setLocale(this.localStorageService.getLanguage())
+    }
+
+    private setWrapperWidth(): void {
+        this.helperService.setMaxWidth('narrow')
     }
 
     //#endregion

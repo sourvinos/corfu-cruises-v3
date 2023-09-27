@@ -118,6 +118,7 @@ namespace API.Features.Reservations {
             var x = await reservationReadRepo.GetByIdAsync(reservation.ReservationId.ToString(), false);
             if (x != null) {
                 if (Identity.IsUserAdmin(httpContext) || reservationValidation.IsUserOwner(x.CustomerId)) {
+                    AttachPortIdToDto(reservation);
                     UpdateDriverIdWithNull(reservation);
                     UpdateShipIdWithNull(reservation);
                     var z = reservationValidation.IsValid(x, reservation, scheduleRepo);

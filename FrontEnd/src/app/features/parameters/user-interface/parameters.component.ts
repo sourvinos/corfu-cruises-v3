@@ -42,6 +42,7 @@ export class ParametersComponent {
         this.initForm()
         this.getRecord()
         this.populateFields()
+        this.setWrapperWidth()
     }
 
     ngAfterViewInit(): void {
@@ -142,6 +143,10 @@ export class ParametersComponent {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
             }
         })
+    }
+
+    private setWrapperWidth(): void {
+        this.helperService.setMaxWidth('narrow')
     }
 
     //#endregion

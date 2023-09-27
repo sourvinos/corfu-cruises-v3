@@ -44,6 +44,7 @@ export class ShipOwnerListComponent {
             this.filterTableFromStoredFilters()
             this.subscribeToInteractionService()
             this.setTabTitle()
+            this.setWrapperWidth()
         })
     }
 
@@ -74,7 +75,7 @@ export class ShipOwnerListComponent {
     public getEmoji(anything: any): string {
         return typeof anything == 'string'
             ? this.emojiService.getEmoji(anything)
-            : anything ? this.emojiService.getEmoji('green-circle') : this.emojiService.getEmoji('red-circle')
+            : anything ? this.emojiService.getEmoji('green-box') : this.emojiService.getEmoji('red-box')
     }
 
     public getLabel(id: string): string {
@@ -156,6 +157,10 @@ export class ShipOwnerListComponent {
 
     private setTabTitle(): void {
         this.helperService.setTabTitle(this.feature)
+    }
+
+    private setWrapperWidth(): void {
+        this.helperService.setMaxWidth('narrow')
     }
 
     private storeSelectedId(id: number): void {

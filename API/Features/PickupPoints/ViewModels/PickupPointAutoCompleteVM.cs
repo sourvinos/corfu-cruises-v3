@@ -1,4 +1,3 @@
-using API.Features.Ports;
 using API.Infrastructure.Classes;
 
 namespace API.Features.PickupPoints {
@@ -7,7 +6,7 @@ namespace API.Features.PickupPoints {
 
         public string ExactPoint { get; set; }
         public string Time { get; set; }
-        public PortAutoCompleteVM Port { get; set; }
+        public SimpleEntity Port { get; set; }
         public bool IsActive { get; set; }
 
     }

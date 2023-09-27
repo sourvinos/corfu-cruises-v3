@@ -2,11 +2,12 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { Component } from '@angular/core'
 // Custom
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
+import { HelperService } from 'src/app/shared/services/helper.service'
 import { ListResolved } from 'src/app/shared/classes/list-resolved'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { StatisticsVM } from '../classes/view-models/statistics-vm'
 import { StatisticsNationalitiesVM } from '../classes/view-models/statistics-nationalities-vm'
+import { StatisticsVM } from '../classes/view-models/statistics-vm'
 
 @Component({
     selector: 'statistics',
@@ -32,7 +33,7 @@ export class StatisticsComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dialogService: DialogService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private dialogService: DialogService, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -44,6 +45,7 @@ export class StatisticsComponent {
         this.getRecords('ports')
         this.getRecords('ships')
         this.getRecords('nationalities')
+        this.setWrapperWidth()
     }
 
     //#endregion
@@ -78,6 +80,10 @@ export class StatisticsComponent {
 
     private goBack(): void {
         this.router.navigate([this.parentUrl])
+    }
+
+    private setWrapperWidth(): void {
+        this.helperService.setMaxWidth('narrow')
     }
 
     //#endregion

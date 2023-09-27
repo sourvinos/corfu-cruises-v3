@@ -74,7 +74,7 @@
                         <td class="width-20"><span>{{ passenger.lastname }}</span></td>
                         <td class="width-20"><span>{{ passenger.firstname }}</span></td>
                         <td class="align-vertical width-10">
-                            <span style="width: 100%;">
+                            <span class="flag" style="width: 100%;">
                                 <img [src]="getNationalityIcon(passenger.nationality.code)" class="flag-with-border" />
                                 <span>&nbsp;&nbsp;&nbsp;&nbsp;{{ passenger.nationality.description }}</span>
                             </span>
@@ -103,7 +103,8 @@
                 </div>
             </div>
             <div (click)="resetTableFilters()" class="pill reset-table-filter">
-                <mat-icon class="material-icons-outlined">filter_alt</mat-icon>
+                <mat-icon *ngIf="totals[0]==totalsFiltered[0]" class="material-icons-outlined">filter_alt</mat-icon>
+                <mat-icon *ngIf="totals[0]!=totalsFiltered[0]" class="material-icons-outlined">filter_alt_off</mat-icon>
                 <div class="right description">
                     <span>{{ totalsFiltered[0] | padNumber : 3 : ' ' }}&nbsp;</span>
                     <span>({{ totalsFiltered[1] | padNumber : 3 : ' ' }}</span>

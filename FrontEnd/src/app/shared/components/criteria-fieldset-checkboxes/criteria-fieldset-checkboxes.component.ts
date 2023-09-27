@@ -15,10 +15,10 @@ export class CriteriaFieldsetCheckboxesComponent {
 
     //#region variables
 
-    @Input() array: SimpleEntity[] = []
+    @Input() array: SimpleEntity[]
     @Input() caption: string
     @Input() feature: string
-    @Input() selected: SimpleEntity[] = []
+    @Input() selected: SimpleEntity[]
     @Output() outputSelected = new EventEmitter()
 
     public form: FormGroup

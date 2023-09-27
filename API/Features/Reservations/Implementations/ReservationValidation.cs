@@ -62,10 +62,9 @@ namespace API.Features.Reservations {
         public int GetPortIdFromPickupPointId(ReservationWriteDto reservation) {
             PickupPoint pickupPoint = context.PickupPoints
                 .AsNoTracking()
-                .Include(x => x.CoachRoute)
                 .SingleOrDefault(x => x.Id == reservation.PickupPointId);
             return pickupPoint != null
-                ? pickupPoint.PortId != reservation.PortId ? reservation.PortId : pickupPoint.PortId
+                ? (reservation.PortId != 0 && pickupPoint.PortId != reservation.PortId) ? reservation.PortId : pickupPoint.PortId
                 : 0;
         }
 

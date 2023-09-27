@@ -67,6 +67,7 @@ export class EditUserFormComponent {
         this.populateDropdowns()
         this.updateReturnUrl()
         this.cloneRecord()
+        this.setWrapperWidth()
     }
 
     ngAfterViewInit(): void {
@@ -261,6 +262,10 @@ export class EditUserFormComponent {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
             }
         })
+    }
+
+    private setWrapperWidth(): void {
+        this.helperService.setMaxWidth('narrow')
     }
 
     private updateReturnUrl(): void {

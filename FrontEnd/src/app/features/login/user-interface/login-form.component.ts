@@ -54,6 +54,7 @@ export class LoginFormComponent {
         this.checkScreenResolution()
         this.setCurrentPeriod()
         this.setNow()
+        this.setWrapperWidth()
     }
 
     //#endregion
@@ -129,6 +130,10 @@ export class LoginFormComponent {
 
     private setWindowTitle(): void {
         this.titleService.setTitle(this.helperService.getApplicationTitle())
+    }
+
+    private setWrapperWidth(): void {
+        this.helperService.setMaxWidth('narrow')
     }
 
     private showError(error: any): void {

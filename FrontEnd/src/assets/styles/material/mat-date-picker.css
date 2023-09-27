@@ -12,7 +12,7 @@
 /* Month selector */
 .mat-calendar-period-button > .mdc-button__label {
     color: var(--color-datepicker-calendar) !important;
-    top: -3px !important;
+    top: -0.1875rem !important;
 }
 
 /* Month selector arrow */
@@ -23,7 +23,7 @@
 /* Previous - Next */
 .mat-calendar-previous-button::after, .mat-calendar-next-button::after {
     color: var(--color-table-headers) !important;
-    top: -8px !important;
+    top: -0.5rem !important;
 }
 
 /* Table */

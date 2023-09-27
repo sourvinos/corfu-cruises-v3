@@ -80,6 +80,7 @@ export class EmbarkationReservationsComponent {
         this.setTabTitle()
         this.doVirtualTableTasks()
         this.updateVariables()
+        this.setWrapperWidth()
     }
 
     //#endregion
@@ -113,11 +114,11 @@ export class EmbarkationReservationsComponent {
     public getEmbarkationStatusIcon(reservationStatus: SimpleEntity): string {
         switch (reservationStatus.id) {
             case 1:
-                return this.getEmoji('green-circle')
+                return this.getEmoji('green-box')
             case 2:
-                return this.getEmoji('red-circle')
+                return this.getEmoji('red-box')
             default:
-                return this.getEmoji('yellow-circle')
+                return this.getEmoji('yellow-box')
         }
     }
 
@@ -258,6 +259,10 @@ export class EmbarkationReservationsComponent {
 
     private setTabTitle(): void {
         this.helperService.setTabTitle(this.feature)
+    }
+
+    private setWrapperWidth(): void {
+        this.helperService.setMaxWidth('wide')
     }
 
     private showPassengersDialog(reservation: EmbarkationReservationVM): void {

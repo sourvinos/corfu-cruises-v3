@@ -72,6 +72,7 @@ export class ReservationListComponent {
         this.subscribeToInteractionService()
         this.setTabTitle()
         this.doVirtualTableTasks()
+        this.setWrapperWidth()
     }
 
     ngOnDestroy(): void {
@@ -215,13 +216,13 @@ export class ReservationListComponent {
 
     public showEmoji(passengerDifference: number): string {
         if (passengerDifference > 0) {
-            return this.emojiService.getEmoji('yellow-circle')
+            return this.emojiService.getEmoji('yellow-box')
         }
         if (passengerDifference == 0) {
-            return this.emojiService.getEmoji('green-circle')
+            return this.emojiService.getEmoji('green-box')
         }
         if (passengerDifference < 0) {
-            return this.emojiService.getEmoji('red-circle')
+            return this.emojiService.getEmoji('red-box')
         }
     }
 
@@ -360,6 +361,10 @@ export class ReservationListComponent {
 
     private setTabTitle(): void {
         this.helperService.setTabTitle(this.feature)
+    }
+
+    private setWrapperWidth(): void {
+        this.helperService.setMaxWidth('wide')
     }
 
     private storeCriteria(): void {

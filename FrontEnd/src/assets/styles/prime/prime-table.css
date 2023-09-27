@@ -29,6 +29,10 @@
     transition: all var(--theme-delay);
 }
 
+.p-datatable .p-datatable-thead > tr > th > .p-element > .p-checkbox {
+    top: 0.1875rem;
+}
+
 .p-datatable .p-datatable-thead > tr > th > .p-element > .p-checkbox > .p-checkbox-box {
     border-color: var(--color-table-headers) !important;
 }
@@ -99,6 +103,11 @@
     top: 0 !important;
 }
 
+.p-datatable .p-datatable-tbody > tr > td > span.flag {
+    display: flex;
+    padding: 0 0.5rem 0 0.5rem !important;
+}
+
 .p-datatable .p-datatable-tbody > tr > td > span > img {
     height: 1.0625rem;
     width: 1.25rem;
@@ -120,22 +129,26 @@
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-row);
     font-weight: 300;
-    overflow: hidden !important;
     padding: 0 0 0 0;
-    text-overflow: ellipsis !important;
-    white-space: nowrap !important;
     transition: all var(--theme-delay);
 }
 
 .p-datatable .p-datatable-tbody > tr > td > span {
     align-items: center;
-    display: flex;
+    display: list-item;
     height: 1.6875rem;
-    padding: 0 0 0 0.3125rem;
+    overflow: hidden !important;
+    padding: 0.5rem 0 0 0.3125rem !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
 }
 
 .p-datatable .p-datatable-tbody > tr > td > span.with-right-padding {
-    padding: 0 0.5rem 0 0;
+    padding: 0.5rem 0.5rem 0 0 !important;
+}
+
+.p-datatable .p-datatable-tbody > tr > td > span.no-left-padding {
+    padding-left: 0 !important;
 }
 
 .p-datatable .p-datatable-tbody > tr > td > span.monotype {
@@ -153,6 +166,7 @@
 
 .p-datatable .p-datatable-tbody > tr > td > span > .p-element > .p-component > .p-checkbox-box {
     border-color: var(--color-text);
+    margin: -0.3125rem 0 0 0 !important;
     transition: border-color var(--theme-delay);
 }
 

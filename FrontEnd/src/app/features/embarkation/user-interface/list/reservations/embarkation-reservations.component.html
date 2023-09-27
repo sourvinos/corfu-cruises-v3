@@ -131,7 +131,7 @@
                     <tr (click)="highlightRow(reservation.refNo)" (dblclick)="showPassengers(reservation)" [attr.id]=reservation.refNo style="height: 32px;">
                         <td class="width-4">
                             <span class="center">
-                                <span>{{ getEmbarkationStatusIcon(reservation.embarkationStatus) }}</span>
+                                <span style="font-size: 0.5rem;">{{ getEmbarkationStatusIcon(reservation.embarkationStatus) }}</span>
                                 <span class="no-display">{{ reservation.embarkationStatus.description }}</span>
                             </span>
                         </td>
@@ -150,8 +150,8 @@
                         <td class="width-3">
                             <span class="right">
                                 <span>{{ reservation.totalPax | replaceZero }}&nbsp;&nbsp;</span>
-                                <span *ngIf="reservation.totalPax - reservation.passengers.length == 0" class="">{{ getEmoji('green-circle') }}</span>
-                                <span *ngIf="reservation.totalPax - reservation.passengers.length != 0" class="">{{ getEmoji('red-circle') }}</span>
+                                <span *ngIf="reservation.totalPax - reservation.passengers.length == 0" class="" style="font-size: 0.5rem;">{{ getEmoji('green-box') }}</span>
+                                <span *ngIf="reservation.totalPax - reservation.passengers.length != 0" class="" style="font-size: 0.5rem;">{{ getEmoji('red-box') }}</span>
                             </span>
                         </td>
                         <td class="width-2">
