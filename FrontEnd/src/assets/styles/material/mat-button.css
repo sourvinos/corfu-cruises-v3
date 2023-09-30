@@ -19,6 +19,10 @@
     width: auto !important;
 }
 
+.mat-icon.gold {
+    color: #e7b53a !important;
+}
+
 button {
     align-items: center;
     background-color: transparent;

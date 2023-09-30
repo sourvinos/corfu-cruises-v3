@@ -9,11 +9,11 @@
 }
 
 .mat-mdc-autocomplete-panel, .mat-mdc-menu-panel, .mat-mdc-option.mdc-list-item {
-    background-color: var(--color-primary) !important;
-    color: var(--color-text-mat-menu) !important;
+    background-color: var(--color-background) !important;
+    color: var(--color-text) !important;
 }
 
 .mat-mdc-option.mat-mdc-option-active, .mat-mdc-menu-item:hover, .mat-mdc-option:hover {
-    background-color: var(--color-button-hover) !important;
-    color: var(--color-text-mat-menu) !important;
+    background-color: var(--color-mat-menu-background-hover) !important;
+    color: var(--color-mat-menu-text-hover) !important;
 }

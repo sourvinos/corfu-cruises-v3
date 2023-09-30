@@ -19,8 +19,8 @@
 }
 
 .p-datatable .p-datatable-thead > tr > th {
-    background-color: var(--color-secondary);
-    border-right: 0.0625rem solid var(--color-background);
+    background-color: var(--color-background);
+    border-right: 0.0625rem solid 0.0625rem solid color-mix(in srgb, var(--color-primary) 50%, transparent);
     color: var(--color-table-headers) !important;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-header) !important;
@@ -51,12 +51,12 @@
 
 .p-datatable .p-datatable-thead > tr:nth-child(1) > th {
     border-bottom: none;
-    border-top: 0.0625rem solid var(--color-background);
+    border-top: 0.0625rem solid 0.0625rem solid color-mix(in srgb, var(--color-primary) 50%, transparent);
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(1) > th:first-child {
-    border-left: 0.0625rem solid var(--color-background);
+    border-left: 0.0625rem solid 0.0625rem solid color-mix(in srgb, var(--color-primary) 50%, transparent);
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(1) > th:hover {
@@ -64,21 +64,21 @@
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(1) > th:last-child {
-    border-right: 0.0625rem solid var(--color-background);
+    border-right: 0.0625rem solid 0.0625rem solid color-mix(in srgb, var(--color-primary) 50%, transparent);
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(2) > th:not(.header-datepicker) {
-    border-bottom: 0.0625rem solid var(--color-background);
+    border-bottom: 0.0625rem solid 0.0625rem solid color-mix(in srgb, var(--color-primary) 50%, transparent);
     border-top: none;
     padding: 0 0.5rem 0.5625rem 0.5rem;
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(2) > th:first-child {
-    border-left: 0.0625rem solid var(--color-background);
+    border-left: 0.0625rem solid 0.0625rem solid color-mix(in srgb, var(--color-primary) 50%, transparent);
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(2) > th:last-child {
-    border-right: 0.0625rem solid var(--color-background) !important;
+    border-right: 0.0625rem solid red !important;
 }
 
 .p-datatable .p-sortable-column.p-highlight {

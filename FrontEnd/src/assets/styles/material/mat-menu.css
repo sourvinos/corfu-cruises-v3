@@ -1,9 +1,13 @@
 .mat-mdc-menu-content {
-    background-color: var(--color-primary) !important;
+    background-color: var(--color-background) !important;
+}
+.mat-mdc-menu-item:hover .mat-mdc-menu-item-text {
+    background-color: var(--color-mat-menu-background-hover) !important;
+    color: var(--color-mat-menu-text-hover) !important;
 }
 
 .mat-mdc-menu-item-text {
-    color: var(--color-text-mat-menu) !important;
+    color: var(--color-text) !important;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-dropdown-menu-button) !important;
     font-weight: 300 !important;

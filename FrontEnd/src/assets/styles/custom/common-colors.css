@@ -1,9 +1,12 @@
 * {
-    /* Top and bottom ribbons */
-    --color-ribbons: #a2ddf729;
+    /* Meterial icons */
+    --icons: #e7b53a;
+    /* Material menus */
+    --color-mat-menu-background-hover: #e7b53a;
+    --color-mat-menu-text-hover: #000000;
     /*  Buttons */
     --color-button-text: #ffffff;
-    --color-button-primary: #7cabe1;
+    --color-button-primary: #a1c181;
     --color-button-secondary: #ff9800;
     --color-button-delete: #cf6755;
     --color-button-fab: #ffffff;
