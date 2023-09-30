@@ -45,6 +45,7 @@ export class DriverListComponent {
             this.subscribeToInteractionService()
             this.setTabTitle()
             this.setWrapperWidth()
+            this.setSidebarsHeight()
         })
     }
 
@@ -152,6 +153,10 @@ export class DriverListComponent {
 
     private scrollToSavedPosition(): void {
         this.helperService.scrollToSavedPosition(this.virtualElement, this.feature)
+    }
+
+    private setSidebarsHeight(): void {
+        this.helperService.setSidebarsTopMargin('0')
     }
 
     private setTabTitle(): void {

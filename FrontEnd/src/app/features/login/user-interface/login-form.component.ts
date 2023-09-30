@@ -55,6 +55,7 @@ export class LoginFormComponent {
         this.setCurrentPeriod()
         this.setNow()
         this.setWrapperWidth()
+        this.setSidebarsTopMargin()
     }
 
     //#endregion
@@ -126,6 +127,10 @@ export class LoginFormComponent {
 
     private setNow(): void {
         this.sessionStorageService.saveItem('now', Date.now().toString())
+    }
+
+    private setSidebarsTopMargin(): void {
+        this.helperService.setSidebarsTopMargin('0')
     }
 
     private setWindowTitle(): void {

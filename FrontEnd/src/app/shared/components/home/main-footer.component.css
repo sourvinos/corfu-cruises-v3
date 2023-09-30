@@ -7,7 +7,7 @@
     color: var(--color-text);
     font-family: var(--font-family-asty);
     font-weight: 300;
-    margin: 1rem auto 1rem auto;
+    margin: 0 auto 0 auto;
     text-align: center;
     font-size: 0.80rem;
 }

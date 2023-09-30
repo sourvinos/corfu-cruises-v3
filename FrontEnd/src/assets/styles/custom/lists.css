@@ -34,11 +34,12 @@
 }
 
 #footer {
+    align-items: center;
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
     justify-content: space-between;
-    margin: 0 auto 1rem auto;
+    margin: 0 auto 0 auto;
     width: 1152px;
 }
 

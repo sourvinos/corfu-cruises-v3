@@ -266,6 +266,13 @@ export class HelperService {
             : environment.maxWidthB + 'px'
     }
 
+    public setSidebarsTopMargin(margin: string): void {
+        const sidebars = document.getElementsByClassName('sidebar') as HTMLCollectionOf<HTMLElement>
+        for (let i = 0; i < sidebars.length; i++) {
+            sidebars[i].style.marginTop = margin + 'rem'
+        }
+    }
+
     //#endregion
 
     //#region private methods

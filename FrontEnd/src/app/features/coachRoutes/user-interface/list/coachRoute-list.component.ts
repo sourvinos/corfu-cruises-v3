@@ -45,6 +45,7 @@ export class CoachRouteListComponent {
             this.subscribeToInteractionService()
             this.setTabTitle()
             this.setWrapperWidth()
+            this.setSidebarsHeight()
         })
     }
 
@@ -155,6 +156,10 @@ export class CoachRouteListComponent {
         this.helperService.scrollToSavedPosition(this.virtualElement, this.feature)
     }
 
+    private setSidebarsHeight(): void {
+        this.helperService.setSidebarsTopMargin('0')
+    }
+
     private setTabTitle(): void {
         this.helperService.setTabTitle(this.feature)
     }
@@ -179,4 +184,5 @@ export class CoachRouteListComponent {
 
     //#endregion
 
+    1
 }

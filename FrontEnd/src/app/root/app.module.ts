@@ -13,8 +13,9 @@ import { SharedModule } from 'src/app/shared/modules/shared.module'
 import { AppComponent } from './app.component'
 import { CardsMenuComponent } from '../shared/components/home/cards-menu.component'
 import { HomeComponent } from '../shared/components/home/home.component'
+import { LogoutComponent } from '../shared/components/top-bar-wrapper/logout/logout.component'
 import { ReservationsMenuComponent } from '../shared/components/top-bar-wrapper/reservations-menu/reservations-menu.component'
-import { SearchByRefBoxComponent } from '../shared/components/top-bar-wrapper/search-byRef-box/search-byRef-box.component'
+import { SearchByRefNoComponent } from '../shared/components/top-bar-wrapper/search-byRefNo-box/search-byRefNo..component'
 import { TablesMenuComponent } from '../shared/components/top-bar-wrapper/tables-menu/tables-menu.component'
 import { TasksMenuComponent } from '../shared/components/top-bar-wrapper/tasks-menu/tasks-menu.component'
 import { TopBarComponent } from '../shared/components/top-bar-wrapper/top-bar/top-bar.component'
@@ -28,8 +29,9 @@ import { InterceptorService } from '../shared/services/interceptor.service'
         AppComponent,
         CardsMenuComponent,
         HomeComponent,
+        LogoutComponent,
         ReservationsMenuComponent,
-        SearchByRefBoxComponent,
+        SearchByRefNoComponent,
         TablesMenuComponent,
         TasksMenuComponent,
         TopBarComponent,

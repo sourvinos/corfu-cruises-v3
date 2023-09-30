@@ -31,6 +31,7 @@ export class HomeComponent {
         this.setWindowTitle()
         this.getNgVersion()
         this.initForm()
+        this.setSidebarsHeight()
     }
 
     //#endregion
@@ -49,6 +50,10 @@ export class HomeComponent {
         this.form = this.formBuilder.group({
             date: ['', Validators.required]
         })
+    }
+
+    private setSidebarsHeight(): void {
+        this.helperService.setSidebarsTopMargin('3.25')
     }
 
     private setWindowTitle(): void {

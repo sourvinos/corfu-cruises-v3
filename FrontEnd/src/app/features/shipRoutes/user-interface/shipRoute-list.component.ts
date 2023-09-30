@@ -45,6 +45,7 @@ export class ShipRouteListComponent {
             this.subscribeToInteractionService()
             this.setTabTitle()
             this.setWrapperWidth()
+            this.setSidebarsHeight()
         })
     }
 
@@ -153,6 +154,10 @@ export class ShipRouteListComponent {
 
     private scrollToSavedPosition(): void {
         this.helperService.scrollToSavedPosition(this.virtualElement, this.feature)
+    }
+
+    private setSidebarsHeight(): void {
+        this.helperService.setSidebarsTopMargin('0')
     }
 
     private setTabTitle(): void {

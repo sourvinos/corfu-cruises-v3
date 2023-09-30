@@ -68,6 +68,7 @@ export class AvailabilityComponent {
         this.subscribeToInteractionService()
         this.clearSessionStorage()
         this.setWrapperWidth()
+        this.setSidebarsHeight()
     }
 
     //#endregion
@@ -234,6 +235,10 @@ export class AvailabilityComponent {
 
     private setLocale(): void {
         this.dateAdapter.setLocale(this.localStorageService.getLanguage())
+    }
+
+    private setSidebarsHeight(): void {
+        this.helperService.setSidebarsTopMargin('0')
     }
 
     private setTabTitle(): void {

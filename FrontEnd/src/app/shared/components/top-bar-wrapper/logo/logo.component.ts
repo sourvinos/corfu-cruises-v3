@@ -33,7 +33,7 @@ export class LogoComponent {
     //#region private methods
 
     private getLogo(color: string): any {
-        return this.logoService.getLogo(color)
+        return '../../../../../assets/images/logos/' + this.logoService.getLogo(color) + '.svg'
     }
 
     private setLogoVisibility(): void {

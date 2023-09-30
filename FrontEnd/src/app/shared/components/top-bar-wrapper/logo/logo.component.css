@@ -1,6 +1,7 @@
 #logo {
     align-items: center;
     display: flex;
+    flex-direction: column-reverse;
     gap: 0.5rem;
     outline: 0;
 }
@@ -10,10 +11,9 @@
 }
 
 .logo-image {
-    height: 3.5rem;
+    margin: 0 0 0.5rem 0;
     position: absolute;
     transition: all var(--theme-delay);
-    width: 3.5rem;
 }
 
 #logo-text {
@@ -21,9 +21,8 @@
     font-family: var(--font-family-logo);
     font-size: var(--font-size-logo-text) !important;
     font-weight: var(--font-weight-logo);
-    line-height: 2.25rem;
-    margin-left: 4rem;
     transition: color var(--theme-delay);
+    transform: rotate(-90deg);
 }
 
 #title-top, #title-bottom {

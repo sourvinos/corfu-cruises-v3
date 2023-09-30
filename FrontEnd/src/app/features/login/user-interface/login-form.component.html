@@ -32,6 +32,8 @@
             </div>
         </form>
 
+        <main-footer></main-footer>
+
     </div>
 
     <div id="footer">
@@ -40,8 +42,6 @@
             <span>{{ getLabel("loginButton") | uppercase }}</span>
         </button>
     </div>
-
-    <main-footer></main-footer>
 
     <div *ngIf="isLoading | async">
         <loading-spinner></loading-spinner>

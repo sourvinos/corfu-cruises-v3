@@ -21,7 +21,7 @@
     flex-direction: row;
     gap: 0.5rem;
     justify-content: space-between;
-    margin: 0 4rem 1rem 4rem;
+    margin: 0 4rem 0 4rem;
 }
 
 #period-scroller button span.material-icons-outlined {

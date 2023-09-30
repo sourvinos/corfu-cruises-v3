@@ -68,6 +68,7 @@ export class EditUserFormComponent {
         this.updateReturnUrl()
         this.cloneRecord()
         this.setWrapperWidth()
+        this.setSidebarsHeight()
     }
 
     ngAfterViewInit(): void {
@@ -262,6 +263,10 @@ export class EditUserFormComponent {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
             }
         })
+    }
+
+    private setSidebarsHeight(): void {
+        this.helperService.setSidebarsTopMargin('0')
     }
 
     private setWrapperWidth(): void {

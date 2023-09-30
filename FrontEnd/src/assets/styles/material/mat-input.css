@@ -37,7 +37,7 @@
 .mat-mdc-form-field-infix {
     display: flex;
     flex-direction: row;
-    padding: 1.25rem 0 0.25rem 0 !important;
+    padding: 1.25rem 0 0.25rem 0;
 }
 
 /* Label wrapper with error */
@@ -48,6 +48,11 @@
 /* Label with error */
 .mdc-text-field--invalid .mat-mdc-form-field-flex .mat-mdc-form-field-infix label {
     color: var(--color-input-error) !important;
+}
+
+/* Without label */
+.mat-mdc-form-field-infix.no-top-padding {
+    padding: 0 0 0 0 !important;
 }
 
 /* Input actual */
@@ -169,6 +174,11 @@
     font-weight: 300;
     padding: 0 0.5rem !important;
     transition: background-color var(--theme-delay);
+}
+
+/* Hide hint */
+.mat-mdc-form-field.hide-hint {
+    height: 3.5rem;
 }
 
 /* Hint with error */

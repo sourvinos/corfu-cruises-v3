@@ -73,6 +73,7 @@ export class ReservationListComponent {
         this.setTabTitle()
         this.doVirtualTableTasks()
         this.setWrapperWidth()
+        this.setSidebarsHeight()
     }
 
     ngOnDestroy(): void {
@@ -357,6 +358,10 @@ export class ReservationListComponent {
 
     private scrollToSavedPosition(): void {
         this.helperService.scrollToSavedPosition(this.virtualElement, this.feature)
+    }
+
+    private setSidebarsHeight(): void {
+        this.helperService.setSidebarsTopMargin('0')
     }
 
     private setTabTitle(): void {
