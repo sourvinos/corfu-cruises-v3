@@ -9,28 +9,27 @@ import { AbsPipe } from '../pipes/abs.pipe'
 import { CriteriaFieldsetCheckboxesComponent } from '../components/criteria-fieldset-checkboxes/criteria-fieldset-checkboxes.component'
 import { CriteriaFieldsetRadiosComponent } from '../components/criteria-fieldset-radios/criteria-fieldset-radios.component'
 import { CriteriaFieldsetWeekdaysComponent } from '../components/criteria-fieldset-weekdays/criteria-fieldset-weekdays.component'
-import { CriteriaPanelComponent } from '../components/criteria-panel/criteria-panel.component'
 import { DatePickerComponent } from '../components/date-picker/date-picker.component'
 import { DateRangePickerComponent } from '../components/date-range-picker/date-range-picker.component'
 import { EmojiDirective } from '../directives/emoji.directive'
 import { HomeButtonAndTitleComponent } from '../components/home-button-and-title/home-button-and-title.component'
 import { InputMaxLengthDirective } from '../directives/input-maxLength.directive'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
-import { LanguageMenuComponent } from '../components/top-bar-wrapper/language-menu/language-menu.component'
+import { LanguageMenuComponent } from '../components/sidebars/language-menu/language-menu.component'
 import { LoadingSpinnerComponent } from '../components/loading-spinner/loading-spinner.component'
-import { LogoComponent } from '../components/top-bar-wrapper/logo/logo.component'
+import { LogoComponent } from '../components/sidebars/logo/logo.component'
 import { MainFooterComponent } from '../components/home/main-footer.component'
 import { MaterialModule } from './material.module'
 import { MetadataPanelComponent } from '../components/metadata-panel/metadata-panel.component'
 import { ModalDialogComponent } from '../components/modal-dialog/modal-dialog.component'
 import { MonthSelectorComponent } from '../components/month-selector/month-selector.component'
 import { PadNumberPipe } from '../pipes/pad-number.pipe'
-import { ParametersMenuComponent } from '../components/top-bar-wrapper/parameters-menu/parameters-menu.component'
+import { ParametersMenuComponent } from '../components/sidebars/parameters-menu/parameters-menu.component'
 import { PrettyPrintPipe } from '../pipes/json-pretty.pipe'
 import { ReplaceZeroPipe } from '../pipes/replace-zero.pipe'
 import { SafeStylePipe } from '../pipes/safe-style.pipe'
 import { TableTotalFilteredRecordsComponent } from '../components/table-total-filtered-records/table-total-filtered-records.component'
-import { ThemeSelectorComponent } from '../components/top-bar-wrapper/theme-selector/theme-selector.component'
+import { ThemeSelectorComponent } from '../components/sidebars/theme-selector/theme-selector.component'
 import { TrimStringPipe } from './../pipes/string-trim.pipe'
 import { YearSelectorComponent } from '../components/year-selector/year-selector.component'
 
@@ -40,7 +39,6 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         CriteriaFieldsetCheckboxesComponent,
         CriteriaFieldsetRadiosComponent,
         CriteriaFieldsetWeekdaysComponent,
-        CriteriaPanelComponent,
         DatePickerComponent,
         DateRangePickerComponent,
         EmojiDirective,
@@ -79,7 +77,6 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         CriteriaFieldsetCheckboxesComponent,
         CriteriaFieldsetRadiosComponent,
         CriteriaFieldsetWeekdaysComponent,
-        CriteriaPanelComponent,
         DatePickerComponent,
         DateRangePickerComponent,
         EmojiDirective,

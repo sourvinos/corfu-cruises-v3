@@ -45,5 +45,5 @@ th {
 }
 
 input::placeholder {
-    color: var(--color-table-headers);
+    color: var(--color-text);
 }

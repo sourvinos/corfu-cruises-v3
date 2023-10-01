@@ -260,12 +260,6 @@ export class HelperService {
             .reduce((acc, char) => char + acc, '')
     }
 
-    public setMaxWidth(maxWidth: string): void {
-        document.getElementById('main').style.maxWidth = maxWidth == 'narrow'
-            ? environment.maxWidthA + 'px'
-            : environment.maxWidthB + 'px'
-    }
-
     public setSidebarsTopMargin(margin: string): void {
         const sidebars = document.getElementsByClassName('sidebar') as HTMLCollectionOf<HTMLElement>
         for (let i = 0; i < sidebars.length; i++) {

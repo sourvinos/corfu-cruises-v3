@@ -64,7 +64,6 @@ export class ScheduleListComponent {
             this.subscribeToInteractionService()
             this.setTabTitle()
             this.setLocale()
-            this.setWrapperWidth()
             this.setSidebarsHeight()
         })
     }
@@ -246,10 +245,6 @@ export class ScheduleListComponent {
 
     private setLocale(): void {
         this.dateAdapter.setLocale(this.localStorageService.getLanguage())
-    }
-
-    private setWrapperWidth(): void {
-        this.helperService.setMaxWidth('narrow')
     }
 
     //#endregion

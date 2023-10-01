@@ -80,7 +80,7 @@ export class EmbarkationReservationsComponent {
         this.setTabTitle()
         this.doVirtualTableTasks()
         this.updateVariables()
-        this.setWrapperWidth()
+
     }
 
     //#endregion
@@ -259,10 +259,6 @@ export class EmbarkationReservationsComponent {
 
     private setTabTitle(): void {
         this.helperService.setTabTitle(this.feature)
-    }
-
-    private setWrapperWidth(): void {
-        this.helperService.setMaxWidth('wide')
     }
 
     private showPassengersDialog(reservation: EmbarkationReservationVM): void {

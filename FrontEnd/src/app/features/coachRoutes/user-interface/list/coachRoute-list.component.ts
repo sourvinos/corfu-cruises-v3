@@ -44,7 +44,6 @@ export class CoachRouteListComponent {
             this.filterTableFromStoredFilters()
             this.subscribeToInteractionService()
             this.setTabTitle()
-            this.setWrapperWidth()
             this.setSidebarsHeight()
         })
     }
@@ -162,10 +161,6 @@ export class CoachRouteListComponent {
 
     private setTabTitle(): void {
         this.helperService.setTabTitle(this.feature)
-    }
-
-    private setWrapperWidth(): void {
-        this.helperService.setMaxWidth('narrow')
     }
 
     private storeSelectedId(id: number): void {

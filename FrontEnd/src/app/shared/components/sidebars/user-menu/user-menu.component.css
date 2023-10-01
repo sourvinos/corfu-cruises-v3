@@ -10,11 +10,3 @@
 #connected-user div:hover {
     cursor: pointer;
 }
-
-#display-name {
-    display: block;
-    font-family: var(--font-family-roboto);
-    font-weight: 300;
-    transform-origin: center;
-    transform: rotate(-90deg);
-}

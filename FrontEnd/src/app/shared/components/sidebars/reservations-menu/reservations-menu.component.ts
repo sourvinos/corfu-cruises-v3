@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core'
+import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 // Custom
 import { CryptoService } from 'src/app/shared/services/crypto.service'
@@ -9,31 +9,22 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 import { environment } from 'src/environments/environment'
 
 @Component({
-    selector: 'parameters-menu',
-    templateUrl: './parameters-menu.component.html',
-    styleUrls: ['../../../../../assets/styles/custom/dropdown-menu.css']
+    selector: 'reservations-menu',
+    templateUrl: './reservations-menu.component.html',
+    styleUrls: ['./reservations-menu.component.css']
 })
 
-export class ParametersMenuComponent {
+export class ReservationsMenuComponent {
 
     //#region variables
 
     public imgIsLoaded = false
+
     public menuItems: Menu[] = []
 
     //#endregion
 
     constructor(private cryptoService: CryptoService, private interactionService: InteractionService, private messageMenuService: MessageMenuService, private router: Router, private sessionStorageService: SessionStorageService) { }
-
-    //#region listeners
-
-    @HostListener('mouseenter') onMouseEnter(): void {
-        document.querySelectorAll('.sub-menu').forEach((item) => {
-            item.classList.remove('hidden')
-        })
-    }
-
-    //#endregion
 
     //#region lifecycle hooks
 
@@ -49,21 +40,11 @@ export class ParametersMenuComponent {
     //#region public methods
 
     public doNavigationTasks(feature: string): void {
-        this.router.navigate([feature.substring(11)])
+        this.router.navigate([feature])
     }
 
-    public getMenuTopIcon(filename: string): string {
-        return environment.menuTopIconDirectory + filename + '.svg'
-    }
-
-    public getMenuDropdownIcon(filename: string): string {
-        return environment.menuDropdownIconDirectory + filename + '.svg'
-    }
-
-    public hideMenu(): void {
-        document.querySelectorAll('.sub-menu').forEach((item) => {
-            item.classList.add('hidden')
-        })
+    public getIcon(filename: string): string {
+        return environment.shortcutsDirectory + filename + '.svg'
     }
 
     public imageIsLoading(): any {
@@ -85,10 +66,13 @@ export class ParametersMenuComponent {
     private createMenu(items: Menu[]): void {
         this.menuItems = []
         items.forEach(item => {
-            if (item.id.startsWith('parameters')) {
+            if (item.id.startsWith('reservations')) {
                 this.menuItems.push(item)
             }
         })
+        if (this.isAdmin) {
+            this.menuItems.pop()
+        }
     }
 
     private subscribeToInteractionService(): void {

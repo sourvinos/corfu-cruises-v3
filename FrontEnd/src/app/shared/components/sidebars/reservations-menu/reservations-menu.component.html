@@ -1,0 +1,28 @@
+<div *ngIf=isAdmin()>
+    <button (click)="doNavigationTasks('reservations')" class="fab" mat-icon-button>
+        <img (load)="loadImage()" [ngClass]="imageIsLoading()" [src]="getIcon('reservations')" style="height: 1.5625rem; width: 1.5625rem">
+    </button>
+    <button (click)="doNavigationTasks('availability')" class="fab" mat-icon-button>
+        <img (load)="loadImage()" [ngClass]="imageIsLoading()" [src]="getIcon('availability')" style="height: 1.5625rem; width: 1.5625rem">
+    </button>
+    <mat-divider inset></mat-divider>
+    <button (click)="doNavigationTasks('embarkation')" class="fab" mat-icon-button>
+        <img (load)="loadImage()" [ngClass]="imageIsLoading()" [src]="getIcon('embarkation')" style="height: 1.5625rem; width: 1.5625rem">
+    </button>
+    <button (click)="doNavigationTasks('manifest')" class="fab" mat-icon-button>
+        <img (load)="loadImage()" [ngClass]="imageIsLoading()" [src]="getIcon('manifest')" style="height: 1.5625rem; width: 1.5625rem">
+    </button>
+    <mat-divider inset></mat-divider>
+    <button (click)="doNavigationTasks('ledgers')" class="fab" mat-icon-button>
+        <img (load)="loadImage()" [ngClass]="imageIsLoading()" [src]="getIcon('ledgers')" style="height: 1.5625rem; width: 1.5625rem">
+    </button>
+    <button (click)="doNavigationTasks('statistics')" class="fab" mat-icon-button>
+        <img (load)="loadImage()" [ngClass]="imageIsLoading()" [src]="getIcon('statistics')" style="height: 1.5625rem; width: 1.5625rem">
+    </button>
+</div>
+
+<ng-template #contextMenu>
+    <button *ngFor="let item of menuItems" (click)="doNavigationTasks(item.id)" mat-menu-item>
+        <span>{{ item.description }}</span>
+    </button>
+</ng-template>

@@ -45,7 +45,7 @@ export class StatisticsComponent {
         this.getRecords('ports')
         this.getRecords('ships')
         this.getRecords('nationalities')
-        this.setWrapperWidth()
+
     }
 
     //#endregion
@@ -80,10 +80,6 @@ export class StatisticsComponent {
 
     private goBack(): void {
         this.router.navigate([this.parentUrl])
-    }
-
-    private setWrapperWidth(): void {
-        this.helperService.setMaxWidth('narrow')
     }
 
     //#endregion

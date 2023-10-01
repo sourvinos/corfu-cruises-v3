@@ -1,0 +1,6 @@
+<div *ngIf=isLoggedIn() id="connected-user">
+    <div (click)="onEditConnectedUser()">
+        <mat-icon *ngIf="isAdmin()"class="gold material-icons-outlined">admin_panel_settings</mat-icon>
+        <mat-icon *ngIf="!isAdmin()"class="gold material-icons-outlined">person</mat-icon>
+    </div>
+</div>

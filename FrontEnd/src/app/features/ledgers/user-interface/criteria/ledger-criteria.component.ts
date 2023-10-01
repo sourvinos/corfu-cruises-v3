@@ -59,7 +59,7 @@ export class LedgerCriteriaComponent {
         this.setLocale()
         this.subscribeToInteractionService()
         this.setTabTitle()
-        this.setWrapperWidth()
+        this.setSidebarsHeight()
     }
 
     //#endregion
@@ -181,12 +181,12 @@ export class LedgerCriteriaComponent {
         this.dateAdapter.setLocale(this.localStorageService.getLanguage())
     }
 
-    private setTabTitle(): void {
-        this.helperService.setTabTitle(this.feature)
+    private setSidebarsHeight(): void {
+        this.helperService.setSidebarsTopMargin('0')
     }
 
-    private setWrapperWidth(): void {
-        this.helperService.setMaxWidth('narrow')
+    private setTabTitle(): void {
+        this.helperService.setTabTitle(this.feature)
     }
 
     private storeCriteria(): void {

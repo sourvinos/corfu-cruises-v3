@@ -72,7 +72,6 @@ export class ReservationListComponent {
         this.subscribeToInteractionService()
         this.setTabTitle()
         this.doVirtualTableTasks()
-        this.setWrapperWidth()
         this.setSidebarsHeight()
     }
 
@@ -366,10 +365,6 @@ export class ReservationListComponent {
 
     private setTabTitle(): void {
         this.helperService.setTabTitle(this.feature)
-    }
-
-    private setWrapperWidth(): void {
-        this.helperService.setMaxWidth('wide')
     }
 
     private storeCriteria(): void {

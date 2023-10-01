@@ -2,7 +2,7 @@
     background-color: transparent;
     border-radius: 0;
     border: none;
-    color: var(--color-table-headers) !important;
+    color: var(--color-text) !important;
     font-family: var(--font-family-asty);
     font-size: 0.75rem !important;
     font-weight: 300;

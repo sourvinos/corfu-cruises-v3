@@ -1,0 +1,7 @@
+:host {
+    margin: 0 0 auto 0;
+}
+
+.mat-divider {
+    border-top-color: var(--icons) !important;
+}

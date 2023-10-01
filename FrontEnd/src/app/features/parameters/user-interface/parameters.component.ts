@@ -42,7 +42,7 @@ export class ParametersComponent {
         this.initForm()
         this.getRecord()
         this.populateFields()
-        this.setWrapperWidth()
+        this.setSidebarsHeight()
     }
 
     ngAfterViewInit(): void {
@@ -145,8 +145,8 @@ export class ParametersComponent {
         })
     }
 
-    private setWrapperWidth(): void {
-        this.helperService.setMaxWidth('narrow')
+    private setSidebarsHeight(): void {
+        this.helperService.setSidebarsTopMargin('0')
     }
 
     //#endregion

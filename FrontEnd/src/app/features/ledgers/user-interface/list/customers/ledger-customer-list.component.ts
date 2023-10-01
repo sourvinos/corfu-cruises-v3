@@ -50,7 +50,7 @@ export class LedgerCustomerListComponent {
         this.setTabTitle()
         this.populateCriteriaPanelsFromStorage()
         this.updateVariables()
-        this.setWrapperWidth()
+
     }
 
     //#endregion
@@ -119,10 +119,6 @@ export class LedgerCustomerListComponent {
 
     private setTabTitle(): void {
         this.helperService.setTabTitle(this.feature)
-    }
-
-    private setWrapperWidth(): void {
-        this.helperService.setMaxWidth('wide')
     }
 
     private subscribeToInteractionService(): void {

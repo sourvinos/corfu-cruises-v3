@@ -16,8 +16,8 @@ export class UserMenuComponent {
 
     //#region public methods
 
-    public getDisplayName(): any {
-        return this.cryptoService.decrypt(this.sessionStorageService.getItem('displayName'))
+    public isAdmin(): boolean {
+        return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' ? true : false
     }
 
     public isLoggedIn(): boolean {

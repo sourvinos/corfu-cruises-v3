@@ -67,7 +67,6 @@ export class EditUserFormComponent {
         this.populateDropdowns()
         this.updateReturnUrl()
         this.cloneRecord()
-        this.setWrapperWidth()
         this.setSidebarsHeight()
     }
 
@@ -267,10 +266,6 @@ export class EditUserFormComponent {
 
     private setSidebarsHeight(): void {
         this.helperService.setSidebarsTopMargin('0')
-    }
-
-    private setWrapperWidth(): void {
-        this.helperService.setMaxWidth('narrow')
     }
 
     private updateReturnUrl(): void {

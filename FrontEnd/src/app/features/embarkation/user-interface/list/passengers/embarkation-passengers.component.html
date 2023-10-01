@@ -38,14 +38,14 @@
                     <tr style="height:2rem">
                         <td (click)="toggleEmbarkationStatus(passenger)" [ngClass]="passenger.isBoarded ? 'complete' : 'pending'" class="center embarkation-status width-5">
                             <span class="center">
-                                <span *ngIf="passenger.isBoarded">{{ getEmoji('green-box') }}</span>
-                                <span *ngIf="!passenger.isBoarded">{{ getEmoji('red-box') }}</span>
+                                <span *ngIf="passenger.isBoarded" style="font-size: 0.5rem;">{{ getEmoji('green-box') }}</span>
+                                <span *ngIf="!passenger.isBoarded" style="font-size: 0.5rem;">{{ getEmoji('red-box') }}</span>
                             </span>
                         </td>
                         <td class="width-10"><span>{{ passenger.lastname }}</span></td>
                         <td class="width-10"><span>{{ passenger.firstname }}</span></td>
                         <td class="align-vertical width-10">
-                            <span style="width: 100%;">
+                            <span class="flag" style="width: 100%;">
                                 <img [src]="getNationalityIcon(passenger.nationality.code)" class="flag-with-border" />
                                 <span>&nbsp;&nbsp;&nbsp;&nbsp;{{ passenger.nationality.description }}</span>
                             </span>

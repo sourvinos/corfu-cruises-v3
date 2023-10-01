@@ -20,8 +20,8 @@
 
 .p-datatable .p-datatable-thead > tr > th {
     background-color: var(--color-background);
-    border-right: 0.0625rem solid 0.0625rem solid color-mix(in srgb, var(--color-primary) 50%, transparent);
-    color: var(--color-table-headers) !important;
+    border-right: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent);
+    color: var(--color-text) !important;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-header) !important;
     font-weight: 300 !important;
@@ -34,11 +34,11 @@
 }
 
 .p-datatable .p-datatable-thead > tr > th > .p-element > .p-checkbox > .p-checkbox-box {
-    border-color: var(--color-table-headers) !important;
+    border-color: var(--color-text);
 }
 
 .p-datatable .p-datatable-thead > tr > th > .p-element > .p-column-filter-row > .p-element > .p-element > .p-checkbox > .p-checkbox-box {
-    border-color: var(--color-table-headers) !important;
+    border-color: var(--color-text);
 }
 
 .p-datatable .p-datatable-thead > tr > th.header-datepicker {
@@ -51,12 +51,12 @@
 
 .p-datatable .p-datatable-thead > tr:nth-child(1) > th {
     border-bottom: none;
-    border-top: 0.0625rem solid 0.0625rem solid color-mix(in srgb, var(--color-primary) 50%, transparent);
+    border-top: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent);
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(1) > th:first-child {
-    border-left: 0.0625rem solid 0.0625rem solid color-mix(in srgb, var(--color-primary) 50%, transparent);
+    border-left: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent);
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(1) > th:hover {
@@ -64,21 +64,21 @@
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(1) > th:last-child {
-    border-right: 0.0625rem solid 0.0625rem solid color-mix(in srgb, var(--color-primary) 50%, transparent);
+    border-right: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent);
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(2) > th:not(.header-datepicker) {
-    border-bottom: 0.0625rem solid 0.0625rem solid color-mix(in srgb, var(--color-primary) 50%, transparent);
+    border-bottom: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent);
     border-top: none;
     padding: 0 0.5rem 0.5625rem 0.5rem;
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(2) > th:first-child {
-    border-left: 0.0625rem solid 0.0625rem solid color-mix(in srgb, var(--color-primary) 50%, transparent);
+    border-left: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent);
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(2) > th:last-child {
-    border-right: 0.0625rem solid red !important;
+    border-right: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent);
 }
 
 .p-datatable .p-sortable-column.p-highlight {
@@ -90,7 +90,7 @@
 }
 
 .p-datatable .p-datatable-thead > tr > th > .date-picker-wrapper > .mat-datepicker-toggle > .mat-mdc-icon-button > svg {
-    color: var(--color-table-headers);
+    color: var(--color-text);
     transition: color var(--theme-delay) !important;
 }
 
@@ -203,10 +203,10 @@
 /* #region footer */
 
 .p-datatable .p-datatable-tfoot > tr > td {
-    background-color: var(--color-secondary);
-    border-bottom: 0.0625rem solid var(--color-background) !important;
-    border-right: 0.0625rem solid var(--color-background) !important;
-    color: var(--color-text-reverse) !important;
+    background-color: var(--color-background);
+    border-bottom: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent);
+    border-right: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent);
+    color: var(--color-text) !important;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-row);
     font-weight: 300;
@@ -215,7 +215,7 @@
 }
 
 .p-datatable .p-datatable-tfoot > tr > td:first-child {
-    border-left: 0.0625rem solid var(--color-background) !important;
+    border-left: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent) !important;
 }
 
 .p-datatable-scrollable-footer {

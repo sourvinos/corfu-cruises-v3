@@ -15,8 +15,6 @@ export const environment = {
     nationalitiesIconDirectory: 'assets/images/nationalities/',
     cssUserSelect: 'none',
     minWidth: 1366,
-    maxWidthA: 1280,
-    maxWidthB: 1366,
     login: {
         username: 'john',
         email: 'johnsourvinos@hotmail.com',

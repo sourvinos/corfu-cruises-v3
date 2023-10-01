@@ -59,7 +59,6 @@ export class PickupPointListComponent {
             this.filterTableFromStoredFilters()
             this.subscribeToInteractionService()
             this.setTabTitle()
-            this.setWrapperWidth()
             this.setSidebarsHeight()
         })
     }
@@ -189,10 +188,6 @@ export class PickupPointListComponent {
 
     private setTabTitle(): void {
         this.helperService.setTabTitle(this.feature)
-    }
-
-    private setWrapperWidth(): void {
-        this.helperService.setMaxWidth('narrow')
     }
 
     private storeSelectedId(id: number): void {

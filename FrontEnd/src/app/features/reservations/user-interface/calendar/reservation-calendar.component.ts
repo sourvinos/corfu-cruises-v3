@@ -65,7 +65,6 @@ export class ReservationCalendarComponent {
         this.setLocale()
         this.subscribeToInteractionService()
         this.clearSessionStorage()
-        this.setWrapperWidth()
         this.setSidebarsHeight()
     }
 
@@ -234,10 +233,6 @@ export class ReservationCalendarComponent {
 
     private setTabTitle(): void {
         this.helperService.setTabTitle(this.feature)
-    }
-
-    private setWrapperWidth(): void {
-        this.helperService.setMaxWidth('narrow')
     }
 
     private storeDatePeriod(): Promise<void> {

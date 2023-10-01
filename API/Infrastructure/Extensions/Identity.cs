@@ -15,7 +15,7 @@ namespace API.Infrastructure.Extensions {
             services
                 .AddIdentity<UserExtended, IdentityRole>(options => {
                     options.Lockout.AllowedForNewUsers = true;
-                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
                     options.Lockout.MaxFailedAccessAttempts = 5;
                     options.Password.RequireDigit = true;
                     options.Password.RequireLowercase = true;

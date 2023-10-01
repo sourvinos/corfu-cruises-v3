@@ -64,7 +64,6 @@ export class ShipCrewListComponent {
             this.subscribeToInteractionService()
             this.setTabTitle()
             this.setLocale()
-            this.setWrapperWidth()
             this.setSidebarsHeight()
         })
     }
@@ -209,10 +208,6 @@ export class ShipCrewListComponent {
 
     private setTabTitle(): void {
         this.helperService.setTabTitle(this.feature)
-    }
-
-    private setWrapperWidth(): void {
-        this.helperService.setMaxWidth('narrow')
     }
 
     private storeSelectedId(id: number): void {

@@ -55,7 +55,6 @@ export class EmbarkationCriteriaComponent {
         this.setLocale()
         this.subscribeToInteractionService()
         this.setTabTitle()
-        this.setWrapperWidth()
         this.setSidebarsHeight()
     }
 
@@ -166,10 +165,6 @@ export class EmbarkationCriteriaComponent {
 
     private setTabTitle(): void {
         this.helperService.setTabTitle(this.feature)
-    }
-
-    private setWrapperWidth(): void {
-        this.helperService.setMaxWidth('narrow')
     }
 
     private storeCriteria(): void {

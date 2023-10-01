@@ -13,10 +13,9 @@ export const environment = {
     criteriaIconDirectory: 'assets/images/criteria/',
     stopOrdersIconDirectory: 'assets/images/stopOrders/',
     nationalitiesIconDirectory: 'assets/images/nationalities/',
+    shortcutsDirectory: 'assets/images/shortcuts/',
     cssUserSelect: 'none',
     minWidth: 1366,
-    maxWidthA: 1280,
-    maxWidthB: 1366,
     login: {
         username: 'john',
         email: 'johnsourvinos@hotmail.com',
