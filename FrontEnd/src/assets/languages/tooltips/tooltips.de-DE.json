@@ -1,0 +1,26 @@
+[
+    {
+        "id": "reservations",
+        "description": "Reservierung"
+    },
+    {
+        "id": "availability",
+        "description": "Verfügbarkeit"
+    },
+    {
+        "id": "embarkation",
+        "description": "Boarding"
+    },
+    {
+        "id": "manifest",
+        "description": "Manifest des Schiffes"
+    },
+    {
+        "id": "ledgers",
+        "description": "Kundenbücher"
+    },
+    {
+        "id": "statistics",
+        "description": "Statistiken"
+    }
+]

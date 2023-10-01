@@ -4,33 +4,39 @@ import { Router } from '@angular/router'
 import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { Menu } from 'src/app/shared/classes/menu'
-import { MessageMenuService } from 'src/app/shared/services/message-menu.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { environment } from 'src/environments/environment'
+import { ActionTooltipService } from 'src/app/shared/services/action-tooltip.service'
 
 @Component({
-    selector: 'reservations-menu',
-    templateUrl: './reservations-menu.component.html',
-    styleUrls: ['./reservations-menu.component.css']
+    selector: 'actions',
+    templateUrl: './actions.component.html',
+    styleUrls: ['./actions.component.css']
 })
 
-export class ReservationsMenuComponent {
+export class ActionsComponent {
 
     //#region variables
 
+    public feature = 'actions'
     public imgIsLoaded = false
-
-    public menuItems: Menu[] = []
+    public actionTooltipItems: Menu[] = []
 
     //#endregion
 
-    constructor(private cryptoService: CryptoService, private interactionService: InteractionService, private messageMenuService: MessageMenuService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(
+        private actionTooltipService: ActionTooltipService,
+        private cryptoService: CryptoService,
+        private interactionService: InteractionService,
+        private router: Router,
+        private sessionStorageService: SessionStorageService
+    ) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
-        this.messageMenuService.getMessages().then((response) => {
-            this.createMenu(response)
+        this.actionTooltipService.getMessages().then((response) => {
+            this.createTooltips(response)
             this.subscribeToInteractionService()
         })
     }
@@ -45,6 +51,10 @@ export class ReservationsMenuComponent {
 
     public getIcon(filename: string): string {
         return environment.shortcutsDirectory + filename + '.svg'
+    }
+
+    public getLabel(id: string): string {
+        return this.actionTooltipService.getDescription(this.actionTooltipItems, id)
     }
 
     public imageIsLoading(): any {
@@ -63,23 +73,18 @@ export class ReservationsMenuComponent {
 
     //#region private methods
 
-    private createMenu(items: Menu[]): void {
-        this.menuItems = []
+    private createTooltips(items: Menu[]): void {
+        this.actionTooltipItems = []
         items.forEach(item => {
-            if (item.id.startsWith('reservations')) {
-                this.menuItems.push(item)
-            }
+            this.actionTooltipItems.push(item)
         })
-        if (this.isAdmin) {
-            this.menuItems.pop()
-        }
     }
 
     private subscribeToInteractionService(): void {
         this.interactionService.refreshMenus.subscribe(() => {
-            this.messageMenuService.getMessages().then((response) => {
-                this.menuItems = response
-                this.createMenu(response)
+            this.actionTooltipService.getMessages().then((response) => {
+                this.actionTooltipItems = response
+                this.createTooltips(response)
             })
         })
     }

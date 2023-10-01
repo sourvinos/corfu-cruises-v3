@@ -11,10 +11,10 @@ import { LoginModule } from '../features/login/classes/modules/login.module'
 import { PrimeNgModule } from '../shared/modules/primeng.module'
 import { SharedModule } from 'src/app/shared/modules/shared.module'
 // Components
+import { ActionsComponent } from '../shared/components/sidebars/actions/actions.component'
 import { CardsMenuComponent } from '../shared/components/home/cards-menu.component'
 import { HomeComponent } from '../shared/components/home/home.component'
 import { LogoutComponent } from '../shared/components/sidebars/logout/logout.component'
-import { ReservationsMenuComponent } from '../shared/components/sidebars/reservations-menu/reservations-menu.component'
 import { SearchByRefNoComponent } from '../shared/components/sidebars/search-byRefNo-box/search-byRefNo..component'
 import { TablesMenuComponent } from '../shared/components/sidebars/tables-menu/tables-menu.component'
 import { UserMenuComponent } from '../shared/components/sidebars/user-menu/user-menu.component'
@@ -24,10 +24,10 @@ import { InterceptorService } from '../shared/services/interceptor.service'
 @NgModule({
     declarations: [
         AppComponent,
+        ActionsComponent,
         CardsMenuComponent,
         HomeComponent,
         LogoutComponent,
-        ReservationsMenuComponent,
         SearchByRefNoComponent,
         TablesMenuComponent,
         UserMenuComponent

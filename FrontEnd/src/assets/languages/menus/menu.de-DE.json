@@ -1,33 +1,5 @@
 [
     {
-        "id": "reservations-reservations",
-        "description": "Reservierung"
-    },
-    {
-        "id": "reservations-availability",
-        "description": "Verfügbarkeit"
-    },
-    {
-        "id": "reservations-ledgers",
-        "description": "Mein Hauptbuch"
-    },
-    {
-        "id": "tasks-embarkation",
-        "description": "Einschiffung"
-    },
-    {
-        "id": "tasks-manifest",
-        "description": "Schiffsmanifest"
-    },
-    {
-        "id": "tasks-ledgers",
-        "description": "Kundenbücher"
-    },
-    {
-        "id": "tasks-statistics",
-        "description": "Statistiken"
-    },
-    {
         "id": "tables-coachRoutes",
         "description": "Busrouten"
     },
@@ -82,17 +54,5 @@
     {
         "id": "tables-users",
         "description": "Benutzer"
-    },
-    {
-        "id": "user-account",
-        "description": "Mein Konto"
-    },
-    {
-        "id": "user-logout",
-        "description": "Ausloggen"
-    },
-    {
-        "id": "parameters-parameters",
-        "description": "Einstellungen"
     }
 ]

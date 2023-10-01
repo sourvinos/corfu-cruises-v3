@@ -1,0 +1,42 @@
+[
+    {
+        "id": "search",
+        "description": "Find a reservation"
+    },
+    {
+        "id": "reservations",
+        "description": "Κρατήσεις"
+    },
+    {
+        "id": "availability",
+        "description": "Διαθεσιμότητα"
+    },
+    {
+        "id": "embarkation",
+        "description": "Επιβίβαση"
+    },
+    {
+        "id": "manifest",
+        "description": "Κατάσταση επιβαινόντων"
+    },
+    {
+        "id": "ledgers",
+        "description": "Καρτέλες πελατών"
+    },
+    {
+        "id": "statistics",
+        "description": "Στατιστικά"
+    },
+    {
+        "id": "parameters",
+        "description": ""
+    },
+    {
+        "id": "my-account",
+        "description": ""
+    },
+    {
+        "id": "logout",
+        "description": ""
+    }
+]

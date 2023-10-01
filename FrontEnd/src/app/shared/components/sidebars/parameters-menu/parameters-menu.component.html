@@ -1,5 +1,5 @@
 <div *ngIf=isAdmin()>
-    <button (click)="doNavigationTasks()" class="fab" mat-icon-button>
+    <button (click)="doNavigationTasks()" class="fab" mat-icon-button matTooltip="{{ getLabel('parameters') }}" matTooltipPosition="before">
         <mat-icon class="gold material-symbols-outlined">settings</mat-icon>
     </button>
 </div>

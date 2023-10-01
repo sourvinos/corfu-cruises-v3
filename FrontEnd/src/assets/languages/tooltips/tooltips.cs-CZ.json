@@ -1,0 +1,26 @@
+[
+    {
+        "id": "reservations",
+        "description": "Rezervace"
+    },
+    {
+        "id": "availability",
+        "description": "Dostupnost"
+    },
+    {
+        "id": "embarkation",
+        "description": "Stravování"
+    },
+    {
+        "id": "manifest",
+        "description": "Lodní manifest"
+    },
+    {
+        "id": "ledgers",
+        "description": "Knihy zákazníků"
+    },
+    {
+        "id": "statistics",
+        "description": "Statistiky"
+    }
+]

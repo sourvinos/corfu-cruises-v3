@@ -1,5 +1,5 @@
 .mat-mdc-tooltip .mdc-tooltip__surface {
-    background-color: var(--color-secondary) !important;
+    background-color: var(--color-button-primary) !important;
     color: var(--color-tooltip-text) !important;
     font-family: var(--font-family-asty) !important;
     font-weight: 300 !important;
