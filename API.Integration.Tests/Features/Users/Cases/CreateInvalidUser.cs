@@ -9,36 +9,48 @@ namespace Users {
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public IEnumerator<object[]> GetEnumerator() {
-            yield return Customer_Must_Be_Active();
-            yield return Customer_Must_Exist();
+            yield return When_User_Is_Admin_Customer_Id_Must_Be_Null();
+            yield return When_User_Is_SimpleUser_Customer_Id_Must_Exist();
+            yield return When_User_Is_SimpleUser_Customer_Id_Must_Be_Active();
             yield return EmailAlreadyExists();
             yield return UsernameAlreadyExists();
         }
 
-        private static object[] Customer_Must_Be_Active() {
+        private static object[] When_User_Is_Admin_Customer_Id_Must_Be_Null() {
             return new object[] {
                 new TestNewUser {
-                    StatusCode = 450,
-                    CustomerId = 195,
+                    StatusCode = 416,
+                    CustomerId = 1,
                     Username = Helpers.CreateRandomString(128),
                     Displayname = Helpers.CreateRandomString(128),
                     Email = "email@server.com",
-                    Password = "abcd1234",
-                    ConfirmPassword = "abcd1234"
+                    IsAdmin = true
                 }
             };
         }
 
-        private static object[] Customer_Must_Exist() {
+        private static object[] When_User_Is_SimpleUser_Customer_Id_Must_Exist() {
             return new object[] {
                 new TestNewUser {
-                    StatusCode = 450,
-                    CustomerId = 3,
+                    StatusCode = 417,
+                    CustomerId = null,
                     Username = Helpers.CreateRandomString(128),
                     Displayname = Helpers.CreateRandomString(128),
                     Email = "email@server.com",
-                    Password = "abcd1234",
-                    ConfirmPassword = "abcd1234"
+                    IsAdmin = false
+                }
+            };
+        }
+
+        private static object[] When_User_Is_SimpleUser_Customer_Id_Must_Be_Active() {
+            return new object[] {
+                new TestNewUser {
+                    StatusCode = 418,
+                    CustomerId = 195,
+                    Username = Helpers.CreateRandomString(128),
+                    Displayname = Helpers.CreateRandomString(128),
+                    Email = "email@server.com",
+                    IsAdmin = false
                 }
             };
         }
@@ -51,8 +63,6 @@ namespace Users {
                     Displayname = "New User",
                     CustomerId = 2,
                     Email = "operations.corfucruises@gmail.com",
-                    Password = "1234567890",
-                    ConfirmPassword = "1234567890",
                     IsAdmin = false,
                     IsActive = true
                 }
@@ -67,8 +77,6 @@ namespace Users {
                     Displayname = "FOTEINI",
                     CustomerId = 2,
                     Email = "newemail@server.com",
-                    Password = "1234567890",
-                    ConfirmPassword = "1234567890",
                     IsAdmin = false,
                     IsActive = true
                 }

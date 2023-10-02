@@ -55,20 +55,20 @@ namespace Drivers {
 
         [Fact]
         public async Task Admins_Can_Not_Update_When_Not_Found() {
-            await RecordNotFound.Action(_httpClient, _baseUrl, _notFoundUrl, "john", "ec11fc8c16db");
+            await RecordNotFound.Action(_httpClient, _baseUrl, _notFoundUrl, "john", "Ec11fc8c16db#");
         }
 
         [Theory]
         [ClassData(typeof(UpdateInvalidDriver))]
         public async Task Admins_Can_Not_Update_When_Invalid(TestDriver record) {
-            var actionResponse = await RecordInvalidNotSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "ec11fc8c16db", record);
+            var actionResponse = await RecordInvalidNotSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "Ec11fc8c16db#", record);
             Assert.Equal((HttpStatusCode)record.StatusCode, actionResponse.StatusCode);
         }
 
         [Theory]
         [ClassData(typeof(UpdateValidDriver))]
         public async Task Admins_Can_Update_When_Valid(TestDriver record) {
-            await RecordSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "ec11fc8c16db", record);
+            await RecordSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "Ec11fc8c16db#", record);
         }
 
     }

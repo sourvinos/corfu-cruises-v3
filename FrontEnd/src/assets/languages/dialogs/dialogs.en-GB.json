@@ -39,6 +39,18 @@
                 "message": "This record has already been updated by another user!"
             },
             {
+                "error": 416,
+                "message": "When the user is an admin, the connected client must have an 'asterisk'"
+            },
+            {
+                "error": 417,
+                "message": "When the user is not an admin, the connected client must be given"
+            },
+            {
+                "error": 418,
+                "message": "When the user is not an admin, the connected client must be given"
+            },
+            {
                 "error": 431,
                 "message": "It's not possible to add or change a reservation after the ship's departure."
             },

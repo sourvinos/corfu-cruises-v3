@@ -106,6 +106,12 @@ export class InterceptorService {
                 return throwError(() => new Error('414')) // refNo must be unique
             case 415:
                 return throwError(() => new Error('415')) // concurrency error
+            case 416:
+                return throwError(() => new Error('416')) // update user when admin should not have customer id
+            case 417:
+                return throwError(() => new Error('417')) // update user when simple user customer id must not be null
+            case 418:
+                return throwError(() => new Error('418')) // update user when simple user customer id must be active
             case 431:
                 return throwError(() => new Error('431')) // simple users can't add a reservation in the past
             case 433:

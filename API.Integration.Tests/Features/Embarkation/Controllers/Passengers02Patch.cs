@@ -45,7 +45,7 @@ namespace Embarkation {
         [Theory]
         [ClassData(typeof(FoundSinglePassenger))]
         public async Task Admins_Can_Update(TestPassenger record) {
-            await RecordSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "ec11fc8c16db", record);
+            await RecordSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "Ec11fc8c16db#", record);
         }
 
     }

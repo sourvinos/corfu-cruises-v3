@@ -39,6 +39,18 @@
                 "message": "Dieser Datensatz wurde bereits von einem anderen Benutzer aktualisiert!"
             },
             {
+                "error": 416,
+                "message": "Wenn der Benutzer ein Admin ist, muss der verbundene Client ein 'Sternchen' haben."
+            },
+            {
+                "error": 417,
+                "message": "Wenn der Benutzer kein Administrator ist, muss der verbundene Client ein."
+            },
+            {
+                "error": 418,
+                "message": "Wenn der Benutzer kein Administrator ist, muss der verbundene Client ein."
+            },
+            {
                 "error": 431,
                 "message": "Es ist nicht möglich, eine Reservierung nach der Abfahrt des Schiffes zu ändern oder zu ergänzen."
             },

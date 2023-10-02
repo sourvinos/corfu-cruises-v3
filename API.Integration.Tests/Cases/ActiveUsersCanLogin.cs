@@ -26,7 +26,7 @@ namespace Cases {
             return new object[] {
                 new Login {
                     Username = "john",
-                    Password = "ec11fc8c16db"
+                    Password = "Ec11fc8c16db#"
                 }
             };
         }

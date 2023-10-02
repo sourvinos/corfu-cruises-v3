@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Infrastructure;
 
 namespace Users {
 
@@ -9,18 +8,28 @@ namespace Users {
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public IEnumerator<object[]> GetEnumerator() {
-            yield return ValidRecord();
+            yield return ValidAdmin();
+            yield return ValidSimpleUser();
         }
 
-        private static object[] ValidRecord() {
+        private static object[] ValidAdmin() {
             return new object[] {
                 new TestNewUser {
                     Username = "username",
                     Displayname = "Display Name",
-                    CustomerId = 1,
                     Email = "new-email@server.com",
-                    Password = "abcd1234",
-                    ConfirmPassword = "abcd1234"
+                    IsAdmin = true
+                }
+            };
+        }
+
+        private static object[] ValidSimpleUser() {
+            return new object[] {
+                new TestNewUser {
+                    Username = "username",
+                    Displayname = "Display Name",
+                    Email = "new-email@server.com",
+                    CustomerId = 1
                 }
             };
         }

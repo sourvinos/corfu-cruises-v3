@@ -15,12 +15,12 @@ namespace Users {
             return new object[] {
                 new TestUpdateUser {
                     StatusCode = 490,
-                    Id = "ce637d02-3076-4a96-b6f6-1e3a0841b81e",
-                    CustomerId = 2,
-                    Username = "foteini",
-                    Displayname = "Foteini",
-                    Email = "operations.corfucruises@gmail.com",
-                    IsAdmin = true,
+                    Id = "00a6a6d1-12ee-4f66-aea3-f79802a0ce39",
+                    CustomerId = 70,
+                    Username = "litourgis",
+                    Displayname = "LITOURGIS TRAVEL",
+                    Email = "litourgistravel@yahoo.gr",
+                    IsAdmin = false,
                     IsActive = true
                 }
             };

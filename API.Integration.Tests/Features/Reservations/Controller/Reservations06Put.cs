@@ -55,14 +55,14 @@ namespace Reservations {
         [Theory]
         [ClassData(typeof(ActiveAdminsCanNotUpdateWhenInvalid))]
         public async Task Admins_Can_Not_Update_When_Invalid(TestUpdateReservation record) {
-            var actionResponse = await RecordInvalidNotSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "ec11fc8c16db", record);
+            var actionResponse = await RecordInvalidNotSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "Ec11fc8c16db#", record);
             Assert.Equal((HttpStatusCode)record.StatusCode, actionResponse.StatusCode);
         }
 
         [Theory]
         [ClassData(typeof(ActiveAdminsCanUpdateWhenValid))]
         public async Task Admins_Can_Update_When_Valid(TestUpdateReservation record) {
-            await RecordSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "ec11fc8c16db", record);
+            await RecordSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "Ec11fc8c16db#", record);
         }
 
     }

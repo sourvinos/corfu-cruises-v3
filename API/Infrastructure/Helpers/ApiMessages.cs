@@ -47,6 +47,8 @@ namespace API.Infrastructure.Helpers {
         public static string InvalidAccountFields() { return "One or more fields are invalid."; }
         public static string CustomerIdDoesNotMatchConnectedSimpleUserCustomerId() { return "Customer Id should match the connected customer id."; }
         public static string ConcurrencyError() { return "Another user has already updated this record."; }
+        public static string NewAdminShouldNotHaveCustomerId() { return "When the new user is an admin, customer id must be null."; }
+        public static string NewSimpleUserShouldHaveCustomerId() { return "When the new user is not an admin, customer id must exist and be active."; }
 
         #endregion
 

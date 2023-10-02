@@ -108,7 +108,7 @@ namespace API.Features.Users {
                     }
                 } else {
                     throw new CustomException() {
-                        ResponseCode = 492
+                        ResponseCode = z
                     };
                 }
             } else {

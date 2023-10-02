@@ -530,7 +530,7 @@
             },
             {
                 "id": "customer",
-                "description": "Propojený zákazník"
+                "description": "Připojený zákazník"
             },
             {
                 "id": "email",

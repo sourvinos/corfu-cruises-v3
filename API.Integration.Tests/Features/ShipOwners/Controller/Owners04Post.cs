@@ -54,7 +54,7 @@ namespace ShipOwners {
         [Theory]
         [ClassData(typeof(CreateValidShipOwner))]
         public async Task Admins_Can_Create_When_Valid(TestShipOwner record) {
-            await RecordSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "ec11fc8c16db", record);
+            await RecordSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "Ec11fc8c16db#", record);
         }
 
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Infrastructure;
 
 namespace Users {
 
@@ -8,8 +9,40 @@ namespace Users {
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public IEnumerator<object[]> GetEnumerator() {
+            yield return When_User_Is_Admin_Customer_Id_Must_Be_Null();
+            yield return When_User_Is_SimpleUser_Customer_Id_Must_Exist();
             yield return UsernameAlreadyExists();
             yield return EmailAlreadyExists();
+        }
+
+        private static object[] When_User_Is_Admin_Customer_Id_Must_Be_Null() {
+            return new object[] {
+                new TestUpdateUser {
+                    StatusCode = 416,
+                    Id = "eae03de1-6742-4015-9d52-102dba5d7365",
+                    CustomerId = 2,
+                    Username = "eva",
+                    Displayname = "Eva",
+                    Email = "invoice.corfucruises@gmail.com",
+                    IsAdmin = true,
+                    IsActive = true
+                }
+            };
+        }
+
+        private static object[] When_User_Is_SimpleUser_Customer_Id_Must_Exist() {
+            return new object[] {
+                new TestUpdateUser {
+                    StatusCode = 418,
+                    Id = "eae03de1-6742-4015-9d52-102dba5d7365",
+                    CustomerId = 999,
+                    Username = "simpleuser",
+                    Displayname = "Simple User",
+                    Email = "email@server.com",
+                    IsAdmin = false,
+                    IsActive = true
+                }
+            };
         }
 
         private static object[] UsernameAlreadyExists() {

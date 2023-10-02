@@ -530,7 +530,7 @@
             },
             {
                 "id": "customer",
-                "description": "Client en connection"
+                "description": "Client connecté"
             },
             {
                 "id": "email",

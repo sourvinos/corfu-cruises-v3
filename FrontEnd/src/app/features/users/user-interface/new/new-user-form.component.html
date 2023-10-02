@@ -12,8 +12,7 @@
                 <mat-label>{{ getLabel('username') }}</mat-label>
                 <input [inputTabStop]="input" class="invisible" dataTabIndex="1" formControlName="username" matInput>
                 <mat-error *ngIf="username.hasError('required')">{{ getHint("required") }}</mat-error>
-                <mat-error *ngIf="username.hasError('maxlength')">{{ getHint("maxLength", username.errors.maxlength.requiredLength) }}</mat-error>
-                <mat-error *ngIf="!username.hasError('maxlength') && username.hasError('containsSpace')">{{ getHint("spacesNotAllowed") }}</mat-error>
+                <mat-error *ngIf="username.hasError('containsSpace')">{{ getHint("spacesNotAllowed") }}</mat-error>
             </mat-form-field>
             <!-- Display name -->
             <mat-form-field>

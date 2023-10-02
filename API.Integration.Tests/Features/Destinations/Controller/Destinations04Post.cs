@@ -54,7 +54,7 @@ namespace Destinations {
         [Theory]
         [ClassData(typeof(CreateValidDestination))]
         public async Task Admins_Can_Create_When_Valid(TestDestination record) {
-            await RecordSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "ec11fc8c16db", record);
+            await RecordSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "Ec11fc8c16db#", record);
         }
 
     }

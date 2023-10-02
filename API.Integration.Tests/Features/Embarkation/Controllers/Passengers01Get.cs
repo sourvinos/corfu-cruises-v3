@@ -55,7 +55,7 @@ namespace Embarkation {
         [Theory]
         [ClassData(typeof(CreateEmbarkationCriteria))]
         public async Task Admins_Can_List(TestEmbarkationCriteria criteria) {
-            var actionResponse = await ListByPost.Action(_httpClient, _baseUrl, _url, "john", "ec11fc8c16db", criteria);
+            var actionResponse = await ListByPost.Action(_httpClient, _baseUrl, _url, "john", "Ec11fc8c16db#", criteria);
             var records = JsonSerializer.Deserialize<EmbarkationFinalGroupVM>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             Assert.Equal(70, records.TotalPax);
             Assert.Equal(68, records.EmbarkedPassengers);

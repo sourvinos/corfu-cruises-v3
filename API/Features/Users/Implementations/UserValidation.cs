@@ -25,7 +25,9 @@ namespace API.Features.Users {
 
         public int IsValid(IUser user) {
             return true switch {
-                var x when x == !IsValidCustomer(user) => 450,
+                var x when x == !AdminShouldNotHaveCustomerId(user) => 416,
+                var x when x == !SimpleUserShouldHaveCustomerId(user) => 417,
+                var x when x == !SimpleUserShouldHaveActiveCustomerId(user) => 418,
                 _ => 200,
             };
         }
@@ -36,13 +38,38 @@ namespace API.Features.Users {
             return connectedUserDetails.Id == connectedUserId;
         }
 
-        private bool IsValidCustomer(IUser user) {
-            if (user.CustomerId == 0 || user.CustomerId == null) {
-                return true;
+        private static bool AdminShouldNotHaveCustomerId(IUser user) {
+            if (user.IsAdmin) {
+                if (user.CustomerId == null || user.CustomerId == 0) {
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
-                return context.Customers
-                    .AsNoTracking()
-                    .SingleOrDefault(x => x.Id == user.CustomerId && x.IsActive) != null;
+                return true;
+            }
+        }
+
+        private static bool SimpleUserShouldHaveCustomerId(IUser user) {
+            if (!user.IsAdmin) {
+                if (user.CustomerId == null || user.CustomerId == 0) {
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                return true;
+            }
+        }
+
+        private bool SimpleUserShouldHaveActiveCustomerId(IUser user) {
+            var customer = context.Customers
+                .AsNoTracking()
+                .SingleOrDefault(x => x.Id == user.CustomerId && x.IsActive) != null;
+            if (!user.IsAdmin && !customer) {
+                return false;
+            } else {
+                return true;
             }
         }
 

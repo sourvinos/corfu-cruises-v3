@@ -530,7 +530,7 @@
             },
             {
                 "id": "customer",
-                "description": "Linkedin-Kunde"
+                "description": "Verbundene Client"
             },
             {
                 "id": "email",

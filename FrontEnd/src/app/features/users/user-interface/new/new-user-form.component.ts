@@ -130,8 +130,8 @@ export class NewUserFormComponent {
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            username: ['', [ValidationService.containsIllegalCharacters, Validators.maxLength(32), Validators.required]],
-            displayname: ['', [ValidationService.beginsOrEndsWithSpace, Validators.maxLength(32), Validators.required]],
+            username: ['', [Validators.required, ValidationService.containsSpace, Validators.maxLength(256)]],
+            displayname: ['', [Validators.required, ValidationService.beginsOrEndsWithSpace, Validators.maxLength(32)]],
             customer: ['', ValidationService.RequireAutocomplete],
             email: ['x@x.com', [Validators.email, Validators.maxLength(128), Validators.required]],
             isFirstFieldFocused: false,

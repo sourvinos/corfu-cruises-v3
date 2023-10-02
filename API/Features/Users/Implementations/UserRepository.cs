@@ -83,6 +83,8 @@ namespace API.Features.Users {
         public IMetadata AttachMetadataToPostDto(IMetadata entity) {
             entity.PostAt = DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime());
             entity.PostUser = Identity.GetConnectedUserDetails(userManager, Identity.GetConnectedUserId(httpContextAccessor)).UserName;
+            entity.PutAt = entity.PostAt;
+            entity.PutUser = entity.PostUser;
             return entity;
         }
 
@@ -118,7 +120,6 @@ namespace API.Features.Users {
             var roles = await userManager.GetRolesAsync(entity);
             await userManager.RemoveFromRolesAsync(entity, roles);
             await userManager.AddToRoleAsync(entity, entity.IsAdmin ? "admin" : "user");
-
         }
 
         private void DisposeOrCommit(IDbContextTransaction transaction) {

@@ -39,6 +39,18 @@
                 "message": "Tento záznam byl již aktualizován jiným uživatelem!"
             },
             {
+                "error": 416,
+                "message": "Pokud je uživatel správce, musí mít připojený klient 'hvězdičku'."
+            },
+            {
+                "error": 417,
+                "message": "Pokud uživatel není správce, připojený klient musí mít 'hvězdičku'."
+            },
+            {
+                "error": 418,
+                "message": "Pokud uživatel není správce, připojený klient musí mít 'hvězdičku'."
+            },
+            {
                 "error": 431,
                 "message": "Po odjezdu lodi není možné rezervaci přidat nebo změnit."
             },
