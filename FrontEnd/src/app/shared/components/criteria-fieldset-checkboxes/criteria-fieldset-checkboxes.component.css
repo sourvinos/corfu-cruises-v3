@@ -40,6 +40,10 @@ fieldset legend span {
     width: 100%;
 }
 
+.p-datatable .p-datatable-thead > tr > th {
+    border: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent) !important;
+}
+
 input::placeholder {
     color: var(--color-text);
 }

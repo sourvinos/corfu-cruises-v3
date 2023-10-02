@@ -4,6 +4,8 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { EmojiService } from '../../services/emoji.service'
 import { MessageLabelService } from '../../services/message-label.service'
 import { SimpleEntity } from '../../classes/simple-entity'
+// Custom
+import { HelperService } from '../../services/helper.service'
 
 @Component({
     selector: 'criteria-fieldset-checkboxes',
@@ -25,7 +27,7 @@ export class CriteriaFieldsetCheckboxesComponent {
 
     //#endregion
 
-    constructor(private emojiService: EmojiService, private formBuilder: FormBuilder, private messageLabelService: MessageLabelService) { }
+    constructor(private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageLabelService: MessageLabelService) { }
 
     //#region lifecycle hooks
 
@@ -43,6 +45,10 @@ export class CriteriaFieldsetCheckboxesComponent {
 
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
+    }
+
+    public highlightRow(id: any): void {
+        this.helperService.highlightRow(id)
     }
 
     public onHeaderCheckboxToggle(event: any, formControl: string): void {
