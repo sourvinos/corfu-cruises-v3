@@ -55,7 +55,7 @@ export class ManifestCriteriaComponent {
         this.setLocale()
         this.subscribeToInteractionService()
         this.setTabTitle()
-
+        this.setSidebarsHeight()
     }
 
     //#endregion
@@ -161,6 +161,10 @@ export class ManifestCriteriaComponent {
 
     private setTabTitle(): void {
         this.helperService.setTabTitle(this.feature)
+    }
+
+    private setSidebarsHeight(): void {
+        this.helperService.setSidebarsTopMargin('0')
     }
 
     private storeCriteria(): void {

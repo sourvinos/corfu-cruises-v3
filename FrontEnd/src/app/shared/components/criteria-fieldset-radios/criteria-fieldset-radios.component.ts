@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 // Custom
 import { EmojiService } from '../../services/emoji.service'
+import { HelperService } from '../../services/helper.service'
 import { MessageLabelService } from '../../services/message-label.service'
 import { SimpleEntity } from '../../classes/simple-entity'
 
@@ -15,22 +16,24 @@ export class CriteriaFieldsetRadiosComponent {
 
     //#region variables
 
-    @Input() array: SimpleEntity[] = []
+    @Input() array: SimpleEntity[]
     @Input() caption: string
     @Input() feature: string
-    @Input() selected: SimpleEntity[] = []
+    @Input() selected: SimpleEntity[]
     @Output() outputSelected = new EventEmitter()
 
+    public localSelected: SimpleEntity[]
     public form: FormGroup
 
     //#endregion
 
-    constructor(private emojiService: EmojiService, private formBuilder: FormBuilder, private messageLabelService: MessageLabelService) { }
+    constructor(private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageLabelService: MessageLabelService) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
         this.initForm()
+        this.updateLocalSelectedFromOuterSelected()
     }
 
     //#endregion
@@ -45,33 +48,38 @@ export class CriteriaFieldsetRadiosComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
+    public highlightRow(id: any): void {
+        this.helperService.highlightRow(id)
+    }
+
     public isSelected(): boolean {
-        return typeof this.selected === 'object' && this.selected.length != 0
+        return typeof this.localSelected === 'object' && this.localSelected.length != 0
     }
 
     public onRowSelect(): void {
-        this.updateSelected()
-        this.exportSelected()
+        this.exportLocalSelected()
+    }
+
+    public onRowUnselect(): void {
+        this.exportLocalSelected()
     }
 
     //#endregion
 
     //#region private methods
 
-    private exportSelected(): void {
-        this.outputSelected.emit(new Array(1).fill(this.selected))
+    private exportLocalSelected(): void {
+        this.outputSelected.emit(new Array(1).fill(this.localSelected))
     }
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            selected: ['', Validators.required]
+            selected: this.formBuilder.array([], Validators.required)
         })
     }
 
-    private updateSelected(): void {
-        this.form.patchValue({
-            selected: this.selected
-        })
+    private updateLocalSelectedFromOuterSelected(): void {
+        this.localSelected = this.selected
     }
 
     //#endregion

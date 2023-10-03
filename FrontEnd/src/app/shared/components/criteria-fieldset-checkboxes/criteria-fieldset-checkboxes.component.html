@@ -2,12 +2,12 @@
     <legend>
         <span>{{ getLabel(caption) }}</span>
         <div class="selected">
-            <span class="selected-count">{{ getLabel("selected") }}: {{ selected.length }}</span>
-            <span class="icon">{{ getEmoji(selected.length > 0 ? 'green-box' : 'red-box') }}</span>
+            <span class="selected-count">{{ getLabel("selected") }}: {{ localSelected.length }}</span>
+            <span class="icon">{{ getEmoji(localSelected.length > 0 ? 'green-box' : 'red-box') }}</span>
         </div>
     </legend>
     <div class="table-wrapper">
-        <p-table #table (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'selected')" [(selection)]="selected" [scrollable]="true" [value]="array" [virtualScrollItemSize]="32" [virtualScroll]="true" datakey="id" scrollHeight="flex" selectionMode="multiple">
+        <p-table #table (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event,'selectedRecords')" (onRowSelect)="onRowSelect()" (onRowUnselect)="onRowUnselect()" [(selection)]="localSelected" [scrollable]="true" [value]="array" [virtualScrollItemSize]="32" [virtualScroll]="true" datakey="id" scrollHeight="flex" selectionMode="multiple">
             <ng-template pTemplate="header">
                 <tr>
                     <th class="width-2"></th>
@@ -20,7 +20,7 @@
             </ng-template>
             <ng-template let-element pTemplate="body">
                 <tr (click)="highlightRow(element.id)" [attr.id]=element.id style="height: 32px;">
-                    <td class="width-2"><span class="no-left-padding center"><p-tableCheckbox [value]="element"></p-tableCheckbox></span></td>
+                    <td class="width-2"><span class="no-left-padding center" style="padding-top: 7px !important;"><p-tableCheckbox [value]="element"></p-tableCheckbox></span></td>
                     <td class="width-5"><span>{{ element.description }}</span></td>
                 </tr>
             </ng-template>

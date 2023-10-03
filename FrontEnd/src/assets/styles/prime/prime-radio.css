@@ -12,10 +12,13 @@
     background-color: transparent !important;
 }
 
+.p-radiobutton-checked > .p-radiobutton-box {
+    background-color: var(--color-accent) !important;
+}
+
 .p-radiobutton .p-radiobutton-box .p-radiobutton-icon {
-    background-color: var(--color-accent);
-    height: 0.875rem;
-    width: 0.875rem;
+    height: 0;
+    width: 0;
 }
 
 .p-radiobutton .p-radiobutton-box:not(.p-disabled).p-focus {

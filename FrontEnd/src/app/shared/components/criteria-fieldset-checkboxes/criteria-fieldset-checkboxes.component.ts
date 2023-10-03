@@ -2,10 +2,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 // Custom
 import { EmojiService } from '../../services/emoji.service'
+import { HelperService } from '../../services/helper.service'
 import { MessageLabelService } from '../../services/message-label.service'
 import { SimpleEntity } from '../../classes/simple-entity'
-// Custom
-import { HelperService } from '../../services/helper.service'
 
 @Component({
     selector: 'criteria-fieldset-checkboxes',
@@ -23,6 +22,7 @@ export class CriteriaFieldsetCheckboxesComponent {
     @Input() selected: SimpleEntity[]
     @Output() outputSelected = new EventEmitter()
 
+    public localSelected: SimpleEntity[]
     public form: FormGroup
 
     //#endregion
@@ -33,6 +33,7 @@ export class CriteriaFieldsetCheckboxesComponent {
 
     ngOnInit(): void {
         this.initForm()
+        this.updateLocalSelectedFromOuterSelected()
     }
 
     //#endregion
@@ -53,25 +54,23 @@ export class CriteriaFieldsetCheckboxesComponent {
 
     public onHeaderCheckboxToggle(event: any, formControl: string): void {
         this.updateSelected(formControl)
-        this.exportSelected()
+        this.exportLocalSelected()
     }
 
-    public onRowSelect(event: any, formControl: string): void {
-        this.updateSelected(formControl)
-        this.exportSelected()
+    public onRowSelect(): void {
+        this.exportLocalSelected()
     }
 
-    public onRowUnselect(event: any, formControl: string): void {
-        this.updateSelected(formControl)
-        this.exportSelected()
+    public onRowUnselect(): void {
+        this.exportLocalSelected()
     }
 
     //#endregion
 
     //#region private methods
 
-    private exportSelected(): void {
-        this.outputSelected.emit(this.selected)
+    private exportLocalSelected(): void {
+        this.outputSelected.emit(this.localSelected)
     }
 
     private initForm(): void {
@@ -80,15 +79,17 @@ export class CriteriaFieldsetCheckboxesComponent {
         })
     }
 
-    private updateSelected(formControl: any): void {
-        const x = this.form.controls[formControl] as FormArray
-        this[formControl].forEach((element: any) => {
-            x.push(new FormControl({
-                'id': element.id,
-                'description': element.description,
-                'isActive': element.isActive
-            }))
-        })
+    private updateLocalSelectedFromOuterSelected(): void {
+        this.localSelected = this.selected
+    }
+
+    private updateSelected(element: any): void {
+        const x = this.form.controls['selected'] as FormArray
+        x.push(new FormControl({
+            'id': element.id,
+            'description': element.description,
+            'isActive': element.isActive
+        }))
     }
 
     //#endregion

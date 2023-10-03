@@ -1,13 +1,14 @@
 #criteria-wrapper {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
     height: 100%;
 }
 
 #content {
-    backdrop-filter: blur(var(--blur));
     background-color: var(--color-background);
     border-radius: 0.5rem;
+    border: 0.0625rem solid color-mix(in srgb, var(--color-primary) 50%, transparent);
     box-shadow: 0.125rem 0.125rem 0.3125rem #00000040;
     display: flex;
     flex-direction: column;
@@ -15,7 +16,7 @@
     margin: 0 auto;
     overflow-y: hidden;
     padding: 1rem 1.6rem 1rem 2rem;
-    row-gap: 0.9375rem;
+    row-gap: 0.5rem;
     transition: background-color var(--theme-delay);
     width: 99%;
 }
@@ -37,7 +38,6 @@
 #form {
     display: flex;
     flex-direction: column !important;
-    row-gap: 0.5rem;
 }
 
 #form .group-input-field > date-picker {
@@ -61,7 +61,7 @@
     align-items: center;
     display: flex;
     flex-direction: row;
+    gap: 0.5rem;
     justify-content: right;
-    margin-top: auto;
-    padding: 1rem 4rem 1rem 4rem;
+    margin: 0 2rem 0 auto;
 }
