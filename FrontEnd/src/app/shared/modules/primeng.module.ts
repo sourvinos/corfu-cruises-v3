@@ -5,6 +5,7 @@ import { DropdownModule } from 'primeng/dropdown'
 import { MultiSelectModule } from 'primeng/multiselect'
 import { RadioButtonModule } from 'primeng/radiobutton'
 import { TableModule } from 'primeng/table'
+import { TabViewModule } from 'primeng/tabview'
 
 @NgModule({
     exports: [
@@ -12,6 +13,7 @@ import { TableModule } from 'primeng/table'
         DropdownModule,
         MultiSelectModule,
         RadioButtonModule,
+        TabViewModule,
         TableModule
     ]
 })

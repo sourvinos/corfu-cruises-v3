@@ -1,0 +1,21 @@
+#grid-wrapper .p-element {
+    width: 100% !important;
+}
+
+.p-tabview .p-tabview-nav {
+    border: none !important;
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+    font-family: var(--font-family-asty);
+    font-weight: 300;
+    transform: scale(1, 1.5);
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus {
+    box-shadow: none;
+}
+
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    border-color: var(--color-background) !important;
+}

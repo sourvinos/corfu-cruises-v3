@@ -1,6 +1,9 @@
+#content {
+    width: 100%;
+}
+
 #grid-wrapper {
     column-gap: 0.5rem;
     display: flex;
     flex-direction: row;
-    overflow-y: scroll;
 }

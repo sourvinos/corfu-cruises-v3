@@ -7,36 +7,50 @@
         </div>
 
         <div id="grid-wrapper">
-            <mat-tab-group>
-                <mat-tab>
-                    <ng-template mat-tab-label>{{ getLabel('ytd') }}</ng-template>
+            <p-tabView>
+                <p-tabPanel>
+                    <ng-template pTemplate="header">
+                        {{ getLabel('ytd') }}
+                    </ng-template>
                     <table [array]="ytd"></table>
-                </mat-tab>
-                <mat-tab>
-                    <ng-template mat-tab-label>{{ getLabel('destinations') }}</ng-template>
+                </p-tabPanel>
+                <p-tabPanel>
+                    <ng-template pTemplate="header">
+                        {{ getLabel('destinations') }}
+                    </ng-template>
                     <table [array]="destinations"></table>
-                </mat-tab>
-                <mat-tab>
-                    <ng-template mat-tab-label>{{ getLabel('customers') }}</ng-template>
+                </p-tabPanel>
+                <p-tabPanel>
+                    <ng-template pTemplate="header">
+                        {{ getLabel('customers') }}
+                    </ng-template>
                     <table [array]="customers"></table>
-                </mat-tab>
-                <mat-tab>
-                    <ng-template mat-tab-label>{{ getLabel('drivers') }}</ng-template>
+                </p-tabPanel>
+                <p-tabPanel>
+                    <ng-template pTemplate="header">
+                        {{ getLabel('drivers') }}
+                    </ng-template>
                     <table [array]="drivers"></table>
-                </mat-tab>
-                <mat-tab>
-                    <ng-template mat-tab-label>{{ getLabel('ports') }}</ng-template>
+                </p-tabPanel>
+                <p-tabPanel>
+                    <ng-template pTemplate="header">
+                        {{ getLabel('ports') }}
+                    </ng-template>
                     <table [array]="ports"></table>
-                </mat-tab>
-                <mat-tab>
-                    <ng-template mat-tab-label>{{ getLabel('ships') }}</ng-template>
+                </p-tabPanel>
+                <p-tabPanel>
+                    <ng-template pTemplate="header">
+                        {{ getLabel('ships') }}
+                    </ng-template>
                     <table [array]="ships"></table>
-                </mat-tab>
-                <mat-tab>
-                    <ng-template mat-tab-label>{{ getLabel('nationalities') }}</ng-template>
-                    <table-nationalities [array]="nationalities"></table-nationalities>
-                </mat-tab>
-            </mat-tab-group>
+                </p-tabPanel>
+                <p-tabPanel>
+                    <ng-template pTemplate="header">
+                        {{ getLabel('nationalities') }}
+                    </ng-template>
+                    <table [array]="nationalities"></table>
+                </p-tabPanel>
+            </p-tabView>
         </div>
 
     </div>
