@@ -1,6 +1,6 @@
 <div *ngIf=isAdmin()>
     <button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" mat-icon-button>
-        <mat-icon class="gold material-icons-outlined">apps</mat-icon>
+        <mat-icon class="material-icons-outlined">apps</mat-icon>
     </button>
     <mat-menu #menu="matMenu" class="primary">
         <ng-container *ngTemplateOutlet="contextMenu"></ng-container>

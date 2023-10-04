@@ -14,8 +14,8 @@
                     <th class="width-5"></th>
                 </tr>
                 <tr>
-                    <th class="width-2"></th>
-                    <th class="width-5"><input (input)="table.filter($event.target.value, 'description', 'contains')" [value]="$any(table).filters['description']?.value" [placeholder]="getLabel('filterPlaceholder')" class="p-inputtext"></th>
+                    <th class="width-2"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+                    <th class="width-5"><input (input)="table.filter($event.target.value, 'description', 'contains')" [value]="$any(table).filters['description']?.value" class="p-inputtext"></th>
                 </tr>
             </ng-template>
             <ng-template let-element pTemplate="body">
