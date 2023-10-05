@@ -1,5 +1,13 @@
 [
     {
+        "id": "reservations-calendar",
+        "description": "Reservations"
+    },
+    {
+        "id": "reservations-availability",
+        "description": "Availability"
+    },
+    {
         "id": "tables-coachRoutes",
         "description": "Trasy autobusů"
     },
@@ -54,5 +62,9 @@
     {
         "id": "tables-users",
         "description": "Uživatelé"
+    },
+    {
+        "id": "tasks-embarkation",
+        "description": "Επιβίβαση"
     }
 ]

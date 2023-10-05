@@ -9,17 +9,17 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 import { ActionTooltipService } from 'src/app/shared/services/action-tooltip.service'
 
 @Component({
-    selector: 'tables-menu',
-    templateUrl: './tables-menu.component.html',
-    styleUrls: ['./tables-menu.component.css']
+    selector: 'reservations-menu',
+    templateUrl: './reservations-menu.component.html',
+    styleUrls: ['./reservations-menu.component.css']
 })
 
-export class TablesMenuComponent {
+export class ReservationsMenuComponent {
 
     //#region variables
 
     public actionTooltipItems: Menu[] = []
-    public feature = 'tables'
+    public feature = 'reservations'
     public menuItems: Menu[] = []
 
     //#endregion
@@ -44,7 +44,7 @@ export class TablesMenuComponent {
     //#region public methods
 
     public doNavigationTasks(feature: string): void {
-        this.router.navigate([feature.substring(7)])
+        this.router.navigate([feature.substring(13)])
     }
 
     public getLabel(id: string): string {
@@ -61,9 +61,8 @@ export class TablesMenuComponent {
 
     private createMenu(items: Menu[]): void {
         this.menuItems = []
-        items.sort((a, b) => (a.description < b.description) ? -1 : 1)
         items.forEach(item => {
-            if (item.id.startsWith('tables')) {
+            if (item.id.startsWith('reservations')) {
                 this.menuItems.push(item)
             }
         })

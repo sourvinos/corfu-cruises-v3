@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 // Custom
 import { CryptoService } from 'src/app/shared/services/crypto.service'
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 
 @Component({
@@ -12,9 +13,17 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 
 export class UserMenuComponent {
 
-    constructor(private cryptoService: CryptoService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private cryptoService: CryptoService, private localStorageService: LocalStorageService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region public methods
+
+    public getDisplayName(): any {
+        return this.cryptoService.decrypt(this.sessionStorageService.getItem('displayName'))
+    }
+
+    public getIconColor(): string {
+        return this.localStorageService.getItem('theme') == 'light' ? 'black' : 'white'
+    }
 
     public isAdmin(): boolean {
         return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' ? true : false

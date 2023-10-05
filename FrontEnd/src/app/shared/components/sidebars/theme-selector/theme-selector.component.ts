@@ -5,7 +5,8 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 
 @Component({
     selector: 'theme-selector',
-    templateUrl: './theme-selector.component.html'
+    templateUrl: './theme-selector.component.html',
+    styleUrls: ['./theme-selector.component.css']
 })
 
 export class ThemeSelectorComponent {

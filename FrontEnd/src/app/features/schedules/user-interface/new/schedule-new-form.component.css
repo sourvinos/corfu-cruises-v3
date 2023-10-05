@@ -17,7 +17,6 @@
     padding: 1rem 1.6rem 1rem 2rem;
     row-gap: 0.9375rem;
     transition: background-color var(--theme-delay);
-    width: 99%;
 }
 
 #header {

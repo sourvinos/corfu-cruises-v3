@@ -22,5 +22,9 @@
     {
         "id": "statistics",
         "description": "Statistiques"
+    },
+    {
+        "id": "logout",
+        "description": "Αποσύνδεση"
     }
 ]

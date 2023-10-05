@@ -22,5 +22,9 @@
     {
         "id": "statistics",
         "description": "Statistics"
+    },
+    {
+        "id": "logout",
+        "description": "Logout"
     }
 ]

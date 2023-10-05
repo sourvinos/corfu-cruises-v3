@@ -1,43 +1,26 @@
 #logo {
     align-items: center;
-    display: flex;
-    flex-direction: column-reverse;
-    gap: 0.5rem;
+    cursor: pointer;
     outline: 0;
+    display: flex;
 }
 
 #logo:hover {
     cursor: pointer;
 }
 
-.logo-image {
-    margin: 0 0 0.5rem 0;
-    position: absolute;
-    transition: all var(--theme-delay);
+#logo-image {
+    width: 59px;
 }
 
 #logo-text {
-    color: var(--color-text) !important;
+    color: var(--color-c) !important;
     font-family: var(--font-family-logo);
-    font-size: var(--font-size-logo-text) !important;
+    font-size: 48px !important;
     font-weight: var(--font-weight-logo);
-    transition: color var(--theme-delay);
-    transform: rotate(-90deg);
-}
-
-#title-top, #title-bottom {
-    font-family: var(--font-family-asty);
-    font-size: 0.75rem;
-    font-weight: 300;
-    text-align: center;
-}
-
-#title-top {
-    margin-bottom: -0.625rem;
-}
-
-#title-bottom {
-    margin-top: -0.75rem;
+    line-height: 2.25rem;
+    margin: 0.125rem 0 0 0;
+    transition: all var(--theme-change-delay) ease-in;
 }
 
 @keyframes fade-out {

@@ -7,11 +7,13 @@ export class InteractionService {
 
     private _refreshDateAdapter = new Subject<any>()
     private _refreshMenus = new Subject<any>()
+    private _refreshTooltips = new Subject<any>()
     private _refreshTabTitle = new Subject<any>()
     private _saveReservation = new Subject<any>()
 
     public refreshDateAdapter = this._refreshDateAdapter.asObservable()
     public refreshMenus = this._refreshMenus.asObservable()
+    public refreshTooltips = this._refreshTooltips.asObservable()
     public refreshTabTitle = this._refreshTabTitle.asObservable()
     public saveReservation = this._saveReservation.asObservable()
 
@@ -21,6 +23,10 @@ export class InteractionService {
 
     public updateMenus(): void {
         setTimeout(() => { this._refreshMenus.next(null) }, 0)
+    }
+
+    public updateTooltips(): void {
+        setTimeout(() => { this._refreshTooltips.next(null) }, 0)
     }
 
     public updateReservation(): void {

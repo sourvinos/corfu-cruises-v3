@@ -5,23 +5,34 @@ import { ActionTooltipService } from 'src/app/shared/services/action-tooltip.ser
 // Custom
 import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
+import { MessageMenuService } from 'src/app/shared/services/message-menu.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 
 @Component({
     selector: 'parameters-menu',
     templateUrl: './parameters-menu.component.html',
-    styleUrls: ['../../../../../assets/styles/custom/dropdown-menu.css']
+    styleUrls: ['./parameters-menu.component.css']
 })
 
 export class ParametersMenuComponent {
 
-    public actionTooltipItems: Menu[] = []
+    //#region variables
 
-    constructor(private interactionService: InteractionService, private actionTooltipService: ActionTooltipService, private cryptoService: CryptoService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    public actionTooltipItems: Menu[] = []
+    public feature = 'reservations'
+    public menuItems: Menu[] = []
+
+    //#endregion
+
+    constructor(private actionTooltipService: ActionTooltipService, private cryptoService: CryptoService, private interactionService: InteractionService, private messageMenuService: MessageMenuService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
+        this.messageMenuService.getMessages().then((response) => {
+            this.createMenu(response)
+            this.subscribeToInteractionService()
+        })
         this.actionTooltipService.getMessages().then((response) => {
             this.createTooltips(response)
             this.subscribeToInteractionService()
@@ -32,8 +43,8 @@ export class ParametersMenuComponent {
 
     //#region public methods
 
-    public doNavigationTasks(): void {
-        this.router.navigate(['/parameters'])
+    public doNavigationTasks(feature: string): void {
+        this.router.navigate([feature.substring(11)])
     }
 
     public getLabel(id: string): string {
@@ -48,6 +59,15 @@ export class ParametersMenuComponent {
 
     //#region private methods
 
+    private createMenu(items: Menu[]): void {
+        this.menuItems = []
+        items.forEach(item => {
+            if (item.id.startsWith('parameters')) {
+                this.menuItems.push(item)
+            }
+        })
+    }
+
     private createTooltips(items: Menu[]): void {
         this.actionTooltipItems = []
         items.forEach(item => {
@@ -57,13 +77,12 @@ export class ParametersMenuComponent {
 
     private subscribeToInteractionService(): void {
         this.interactionService.refreshMenus.subscribe(() => {
-            this.actionTooltipService.getMessages().then((response) => {
-                this.actionTooltipItems = response
-                this.createTooltips(response)
+            this.messageMenuService.getMessages().then((response) => {
+                this.menuItems = response
+                this.createMenu(response)
             })
         })
     }
-
 
     //#endregion
 

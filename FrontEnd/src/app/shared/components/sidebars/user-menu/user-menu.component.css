@@ -1,12 +1,15 @@
-#connected-user div {
+#connected-user {
     align-items: center;
     color: var(--color-text);
+    column-gap: 0.5rem;
     display: flex !important;
-    flex-direction: column;
-    row-gap: 1rem;
+    flex-direction: row;
+    font-family: var(--font-family-asty);
+    font-size: 1rem;
+    font-weight: 300;
     transition: color var(--theme-delay);
 }
 
-#connected-user div:hover {
+#connected-user:hover {
     cursor: pointer;
 }

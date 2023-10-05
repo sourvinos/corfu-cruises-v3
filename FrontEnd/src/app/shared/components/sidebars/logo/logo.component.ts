@@ -1,8 +1,7 @@
 import { Component } from '@angular/core'
 // Custom
-import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
+import { HelperService } from 'src/app/shared/services/helper.service'
 import { LogoService } from 'src/app/features/reservations/classes/services/logo.service'
-import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 
 @Component({
     selector: 'logo',
@@ -12,39 +11,27 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 
 export class LogoComponent {
 
-    public feature = 'loginForm'
+    //#region variables
 
-    constructor(private localStorageService: LocalStorageService, private logoService: LogoService, private messageLabelService: MessageLabelService) { }
+    public companyLogoText: any
 
-    //#region public methods
+    //#endregion
 
-    public getLabel(id: string): string {
-        return this.messageLabelService.getDescription(this.feature, id)
-    }
+    constructor(private helperService: HelperService, private logoService: LogoService) { }
 
-    public doLogoTasks(color: string): any {
-        this.updateTheme()
-        this.setLogoVisibility()
-        return this.getLogo(color)
+    //#region lifecycle hooks
+
+    ngOnInit(): void {
+        this.companyLogoText = this.helperService.getApplicationTitle()
     }
 
     //#endregion
 
-    //#region private methods
 
-    private getLogo(color: string): any {
-        return '../../../../../assets/images/logos/' + this.logoService.getLogo(color) + '.svg'
-    }
+    //#region public methods
 
-    private setLogoVisibility(): void {
-        document.getElementById('dark').style.opacity = this.localStorageService.getItem('theme') == 'dark' ? '1' : '0'
-        document.getElementById('light').style.opacity = this.localStorageService.getItem('theme') == 'light' ? '1' : '0'
-    }
-
-    private updateTheme(): void {
-        if (this.localStorageService.getItem('theme') == '') {
-            this.localStorageService.saveItem('theme', 'light')
-        }
+    public getLogo(): any {
+        return this.logoService.getLogo()
     }
 
     //#endregion

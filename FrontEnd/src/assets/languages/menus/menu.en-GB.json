@@ -1,5 +1,13 @@
 [
     {
+        "id": "reservations-reservations",
+        "description": "Reservations"
+    },
+    {
+        "id": "reservations-availability",
+        "description": "Availability"
+    },
+    {
         "id": "tables-coachRoutes",
         "description": "Coach routes"
     },
@@ -54,5 +62,9 @@
     {
         "id": "tables-users",
         "description": "Users"
+    },
+    {
+        "id": "tasks-embarkation",
+        "description": "Embarkation"
     }
 ]

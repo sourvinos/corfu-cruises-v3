@@ -24,7 +24,6 @@ import { MetadataPanelComponent } from '../components/metadata-panel/metadata-pa
 import { ModalDialogComponent } from '../components/modal-dialog/modal-dialog.component'
 import { MonthSelectorComponent } from '../components/month-selector/month-selector.component'
 import { PadNumberPipe } from '../pipes/pad-number.pipe'
-import { ParametersMenuComponent } from '../components/sidebars/parameters-menu/parameters-menu.component'
 import { PrettyPrintPipe } from '../pipes/json-pretty.pipe'
 import { ReplaceZeroPipe } from '../pipes/replace-zero.pipe'
 import { SafeStylePipe } from '../pipes/safe-style.pipe'
@@ -53,7 +52,6 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         ModalDialogComponent,
         MonthSelectorComponent,
         PadNumberPipe,
-        ParametersMenuComponent,
         PrettyPrintPipe,
         ReplaceZeroPipe,
         SafeStylePipe,
@@ -92,7 +90,6 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         MetadataPanelComponent,
         MonthSelectorComponent,
         PadNumberPipe,
-        ParametersMenuComponent,
         PrettyPrintPipe,
         PrimeNgModule,
         ReactiveFormsModule,

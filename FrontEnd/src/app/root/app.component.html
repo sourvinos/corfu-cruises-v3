@@ -1,28 +1,32 @@
 <div id="wrapper">
 
-    <div class="sidebar">
-        <tables-menu></tables-menu>
+    <div id="topbar">
         <logo></logo>
-        <theme-selector></theme-selector>
-        <language-menu></language-menu>
+        <!-- <search-byRefNo></search-byRefNo> -->
+        <user-menu></user-menu>
     </div>
 
-    <div id="main">
-        <div id="outer-content" [@routeAnimation]="o.isActivated?o.activatedRoute:''">
-            <router-outlet #o="outlet"></router-outlet>
+    <div id="center">
+        <div class="sidebar" id="leftbar">
+            <theme-selector></theme-selector>
+            <language-menu></language-menu>
+        </div>
+        <div id="main">
+            <div id="outer-content" [@routeAnimation]="o.isActivated?o.activatedRoute:''">
+                <router-outlet #o="outlet"></router-outlet>
+            </div>
+        </div>
+        <div class="sidebar" id="righbar">
+            <reservations-menu></reservations-menu>
+            <tables-menu></tables-menu>
+            <tasks-menu></tasks-menu>
+            <parameters-menu></parameters-menu>
+            <logout></logout>
         </div>
     </div>
 
-    <div class="sidebar">
-        <search-byRefNo></search-byRefNo>
-        <actions></actions>
-        <parameters-menu></parameters-menu>
-        <user-menu></user-menu>
-        <logout></logout>
-    </div>
+</div>
 
-    <div *ngIf="isLoading">
-        <loading-spinner></loading-spinner>
-    </div>
-
+<div *ngIf="isLoading">
+    <loading-spinner></loading-spinner>
 </div>

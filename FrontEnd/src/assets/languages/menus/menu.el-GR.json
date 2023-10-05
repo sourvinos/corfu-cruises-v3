@@ -1,5 +1,13 @@
 [
     {
+        "id": "reservations-reservations",
+        "description": "Κρατήσεις"
+    },
+    {
+        "id": "reservations-availability",
+        "description": "Διαθεσιμότητα"
+    },
+    {
         "id": "tables-coachRoutes",
         "description": "Δρομολόγια λεωφορείων"
     },
@@ -54,5 +62,25 @@
     {
         "id": "tables-users",
         "description": "Χρήστες"
+    },
+    {
+        "id": "tasks-embarkation",
+        "description": "Επιβίβαση"
+    },
+    {
+        "id": "tasks-manifest",
+        "description": "Κατάσταση πλοίου"
+    },
+    {
+        "id": "tasks-ledgers",
+        "description": "Καρτέλες πελατών"
+    },
+    {
+        "id": "tasks-statistics",
+        "description": "Στατιστικά"
+    },
+    {
+        "id": "parameters-parameters",
+        "description": "Ρυθμίσεις"
     }
 ]

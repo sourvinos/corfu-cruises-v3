@@ -15,8 +15,11 @@ import { ActionsComponent } from '../shared/components/sidebars/actions/actions.
 import { CardsMenuComponent } from '../shared/components/home/cards-menu.component'
 import { HomeComponent } from '../shared/components/home/home.component'
 import { LogoutComponent } from '../shared/components/sidebars/logout/logout.component'
+import { ParametersMenuComponent } from '../shared/components/sidebars/parameters-menu/parameters-menu.component'
+import { ReservationsMenuComponent } from '../shared/components/sidebars/reservations-menu/reservations-menu.component'
 import { SearchByRefNoComponent } from '../shared/components/sidebars/search-byRefNo-box/search-byRefNo..component'
 import { TablesMenuComponent } from '../shared/components/sidebars/tables-menu/tables-menu.component'
+import { TasksMenuComponent } from '../shared/components/sidebars/tasks-menu/tasks-menu.component'
 import { UserMenuComponent } from '../shared/components/sidebars/user-menu/user-menu.component'
 // Services
 import { InterceptorService } from '../shared/services/interceptor.service'
@@ -30,7 +33,10 @@ import { InterceptorService } from '../shared/services/interceptor.service'
         LogoutComponent,
         SearchByRefNoComponent,
         TablesMenuComponent,
-        UserMenuComponent
+        UserMenuComponent,
+        ReservationsMenuComponent,
+        ParametersMenuComponent,
+        TasksMenuComponent
     ],
     imports: [
         AppRoutingModule,

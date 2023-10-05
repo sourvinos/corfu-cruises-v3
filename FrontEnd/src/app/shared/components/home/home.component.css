@@ -1,9 +1,7 @@
-#wrapper {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+#content {
     justify-content: flex-end;
-    margin-top: auto;
-    width: 100%;
+}
+
+#fake-footer {
+    padding: 32px 0 32px 0;
 }

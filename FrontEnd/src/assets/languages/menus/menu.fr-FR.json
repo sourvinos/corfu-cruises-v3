@@ -1,5 +1,13 @@
 [
     {
+        "id": "reservations-calendar",
+        "description": "Reservations"
+    },
+    {
+        "id": "reservations-availability",
+        "description": "Availability"
+    },
+    {
         "id": "tables-coachRoutes",
         "description": "Routes de bus"
     },
@@ -54,5 +62,9 @@
     {
         "id": "tables-users",
         "description": "Utilisateurs"
+    },
+    {
+        "id": "tasks-embarkation",
+        "description": "Επιβίβαση"
     }
 ]

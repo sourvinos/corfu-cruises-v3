@@ -1,13 +1,14 @@
-<div *ngIf=isAdmin()>
-    <button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" mat-icon-button>
-        <mat-icon class="material-icons-outlined">apps</mat-icon>
+<div id="button-wrapper">
+    <button [matMenuTriggerFor]="tables" class="fab fab-with-no-background" mat-icon-button matTooltip="{{ getLabel('tables') }}" matTooltipPosition="before">
+        <mat-icon class="material-icons-outlined">list_alt</mat-icon>
     </button>
-    <mat-menu #menu="matMenu" class="primary">
-        <ng-container *ngTemplateOutlet="contextMenu"></ng-container>
-    </mat-menu>
 </div>
 
-<ng-template #contextMenu>
+<mat-menu #tables="matMenu" class="primary">
+    <ng-container *ngTemplateOutlet="tablesMenu"></ng-container>
+</mat-menu>
+
+<ng-template #tablesMenu>
     <button *ngFor="let item of menuItems" (click)="doNavigationTasks(item.id)" mat-menu-item>
         <span>{{ item.description }}</span>
     </button>
