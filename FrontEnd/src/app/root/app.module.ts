@@ -11,7 +11,6 @@ import { LoginModule } from '../features/login/classes/modules/login.module'
 import { PrimeNgModule } from '../shared/modules/primeng.module'
 import { SharedModule } from 'src/app/shared/modules/shared.module'
 // Components
-import { ActionsComponent } from '../shared/components/sidebars/actions/actions.component'
 import { CardsMenuComponent } from '../shared/components/home/cards-menu.component'
 import { HomeComponent } from '../shared/components/home/home.component'
 import { LogoutComponent } from '../shared/components/sidebars/logout/logout.component'
@@ -27,7 +26,6 @@ import { InterceptorService } from '../shared/services/interceptor.service'
 @NgModule({
     declarations: [
         AppComponent,
-        ActionsComponent,
         CardsMenuComponent,
         HomeComponent,
         LogoutComponent,

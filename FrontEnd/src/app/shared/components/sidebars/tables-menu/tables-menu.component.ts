@@ -6,7 +6,7 @@ import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { Menu } from 'src/app/shared/classes/menu'
 import { MessageMenuService } from 'src/app/shared/services/message-menu.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
-import { ActionTooltipService } from 'src/app/shared/services/action-tooltip.service'
+import { TooltipService } from 'src/app/shared/services/tooltip.service'
 
 @Component({
     selector: 'tables-menu',
@@ -18,25 +18,19 @@ export class TablesMenuComponent {
 
     //#region variables
 
-    public actionTooltipItems: Menu[] = []
+    public tooltipItems: Menu[]
     public feature = 'tables'
     public menuItems: Menu[] = []
 
     //#endregion
 
-    constructor(private actionTooltipService: ActionTooltipService, private cryptoService: CryptoService, private interactionService: InteractionService, private messageMenuService: MessageMenuService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private cryptoService: CryptoService, private interactionService: InteractionService, private messageMenuService: MessageMenuService, private router: Router, private sessionStorageService: SessionStorageService, private tooltipService: TooltipService) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
-        this.messageMenuService.getMessages().then((response) => {
-            this.createMenu(response)
-            this.subscribeToInteractionService()
-        })
-        this.actionTooltipService.getMessages().then((response) => {
-            this.createTooltips(response)
-            this.subscribeToInteractionService()
-        })
+        this.buildMenu()
+        this.buildTooltips()
     }
 
     //#endregion
@@ -48,7 +42,7 @@ export class TablesMenuComponent {
     }
 
     public getLabel(id: string): string {
-        return this.actionTooltipService.getDescription(this.actionTooltipItems, id)
+        return this.tooltipService.getDescription(this.tooltipItems, id)
     }
 
     public isAdmin(): boolean {
@@ -58,6 +52,20 @@ export class TablesMenuComponent {
     //#endregion
 
     //#region private methods
+
+    private buildMenu(): void {
+        this.messageMenuService.getMessages().then((response) => {
+            this.createMenu(response)
+            this.subscribeToMenuLanguageChanges()
+        })
+    }
+
+    private buildTooltips(): void {
+        this.tooltipService.getMessages().then((response) => {
+            this.createTooltips(response)
+            this.subscribeToTooltipLanguageChanges()
+        })
+    }
 
     private createMenu(items: Menu[]): void {
         this.menuItems = []
@@ -70,18 +78,21 @@ export class TablesMenuComponent {
     }
 
     private createTooltips(items: Menu[]): void {
-        this.actionTooltipItems = []
+        this.tooltipItems = []
         items.forEach(item => {
-            this.actionTooltipItems.push(item)
+            this.tooltipItems.push(item)
         })
     }
 
-    private subscribeToInteractionService(): void {
+    private subscribeToMenuLanguageChanges(): void {
         this.interactionService.refreshMenus.subscribe(() => {
-            this.messageMenuService.getMessages().then((response) => {
-                this.menuItems = response
-                this.createMenu(response)
-            })
+            this.buildMenu()
+        })
+    }
+
+    private subscribeToTooltipLanguageChanges(): void {
+        this.interactionService.refreshTooltips.subscribe(() => {
+            this.buildTooltips()
         })
     }
 

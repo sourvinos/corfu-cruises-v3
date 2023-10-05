@@ -71,6 +71,7 @@ export class LanguageMenuComponent {
         this.interactionService.updateDateAdapters()
         this.interactionService.updateMenus()
         this.interactionService.updateTabTitle()
+        this.interactionService.updateTooltips()
     }
 
     private saveLanguage(language: string): void {

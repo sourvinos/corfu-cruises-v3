@@ -4,27 +4,19 @@
         "description": "Réservations"
     },
     {
-        "id": "availability",
-        "description": "Disponibilité"
+        "id": "tables",
+        "description": "Tableaux"
     },
     {
-        "id": "embarkation",
-        "description": "Boarding"
+        "id": "tasks",
+        "description": "Opérations"
     },
     {
-        "id": "manifest",
-        "description": "Manifeste du navire"
-    },
-    {
-        "id": "ledgers",
-        "description": "Registres des clients"
-    },
-    {
-        "id": "statistics",
-        "description": "Statistiques"
+        "id": "parameters",
+        "description": "Paramètres"
     },
     {
         "id": "logout",
-        "description": "Αποσύνδεση"
+        "description": "Sortie"
     }
 ]

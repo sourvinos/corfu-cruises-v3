@@ -2,11 +2,10 @@ import { Component } from '@angular/core'
 import { Menu } from 'src/app/shared/classes/menu'
 // Custom
 import { AccountService } from 'src/app/shared/services/account.service'
-import { ActionTooltipService } from 'src/app/shared/services/action-tooltip.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
-import { MessageMenuService } from 'src/app/shared/services/message-menu.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
+import { TooltipService } from 'src/app/shared/services/tooltip.service'
 
 @Component({
     selector: 'logout',
@@ -16,19 +15,20 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 
 export class LogoutComponent {
 
-    public actionTooltipItems: Menu[] = []
+    //#region variables
+
+    public tooltipItems: Menu[]
     public feature = 'logout'
     public menuItems: Menu[] = []
 
-    constructor(private interactionService: InteractionService, private messageMenuService: MessageMenuService, private actionTooltipService: ActionTooltipService, private accountService: AccountService, private localStorageService: LocalStorageService, private sessionStorageService: SessionStorageService) { }
+    //#endregion
+
+    constructor(private accountService: AccountService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private sessionStorageService: SessionStorageService, private tooltipService: TooltipService,) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
-        this.actionTooltipService.getMessages().then((response) => {
-            this.createTooltips(response)
-            this.subscribeToInteractionService()
-        })
+        this.buildTooltips()
     }
 
     //#endregion
@@ -40,9 +40,8 @@ export class LogoutComponent {
     }
 
     public getLabel(id: string): string {
-        return this.actionTooltipService.getDescription(this.actionTooltipItems, id)
+        return this.tooltipService.getDescription(this.tooltipItems, id)
     }
-
 
     public isLoggedIn(): boolean {
         return this.sessionStorageService.getItem('userId') ? true : false
@@ -55,19 +54,24 @@ export class LogoutComponent {
     //#endregion
 
     //#region private methods
-    private createTooltips(items: Menu[]): void {
-        this.actionTooltipItems = []
-        items.forEach(item => {
-            this.actionTooltipItems.push(item)
+
+    private buildTooltips(): void {
+        this.tooltipService.getMessages().then((response) => {
+            this.createTooltips(response)
+            this.subscribeToTooltipLanguageChanges()
         })
     }
 
-    private subscribeToInteractionService(): void {
+    private createTooltips(items: Menu[]): void {
+        this.tooltipItems = []
+        items.forEach(item => {
+            this.tooltipItems.push(item)
+        })
+    }
+
+    private subscribeToTooltipLanguageChanges(): void {
         this.interactionService.refreshTooltips.subscribe(() => {
-            this.messageMenuService.getMessages().then((response) => {
-                this.menuItems = response
-                this.createTooltips(response)
-            })
+            this.buildTooltips()
         })
     }
 

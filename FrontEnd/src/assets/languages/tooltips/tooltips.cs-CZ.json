@@ -4,27 +4,19 @@
         "description": "Rezervace"
     },
     {
-        "id": "availability",
-        "description": "Dostupnost"
+        "id": "tables",
+        "description": "Tabulky"
     },
     {
-        "id": "embarkation",
-        "description": "Stravování"
+        "id": "tasks",
+        "description": "Tasky"
     },
     {
-        "id": "manifest",
-        "description": "Lodní manifest"
-    },
-    {
-        "id": "ledgers",
-        "description": "Knihy zákazníků"
-    },
-    {
-        "id": "statistics",
-        "description": "Statistiky"
+        "id": "parameters",
+        "description": "Parametry"
     },
     {
         "id": "logout",
-        "description": "Αποσύνδεση"
+        "description": "Logout"
     }
 ]

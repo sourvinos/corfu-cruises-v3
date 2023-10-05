@@ -1,12 +1,7 @@
 * {
-    /* Meterial icons */
-    --icons: #e7b53a;
-    /* Material menus */
-    --color-mat-menu-background-hover: #e7b53a;
-    --color-mat-menu-text-hover: #000000;
     /*  Buttons */
     --color-button-text: #ffffff;
-    --color-button-primary: #a1c181;
+    --color-button-primary: #0077B6;
     --color-button-secondary: #ff9800;
     --color-button-delete: #cf6755;
     --color-button-fab: #ffffff;
@@ -19,4 +14,7 @@
     --color-background-saturday: #f29c6b;
     --color-background-sunday: #f26513;
     --color-background-today: #8dbf8f;
+    /* Material menus */
+    --color-mat-menu-background-hover: #0077B6;
+    --color-mat-menu-text-hover: #ffffff;
 }

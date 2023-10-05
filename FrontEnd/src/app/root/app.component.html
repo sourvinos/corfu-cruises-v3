@@ -1,22 +1,22 @@
 <div id="wrapper">
 
     <div id="topbar">
+        <language-menu></language-menu>
         <logo></logo>
         <!-- <search-byRefNo></search-byRefNo> -->
         <user-menu></user-menu>
     </div>
 
     <div id="center">
-        <div class="sidebar" id="leftbar">
+        <div id="leftbar">
             <theme-selector></theme-selector>
-            <language-menu></language-menu>
         </div>
         <div id="main">
             <div id="outer-content" [@routeAnimation]="o.isActivated?o.activatedRoute:''">
                 <router-outlet #o="outlet"></router-outlet>
             </div>
         </div>
-        <div class="sidebar" id="righbar">
+        <div id="rightbar">
             <reservations-menu></reservations-menu>
             <tables-menu></tables-menu>
             <tasks-menu></tasks-menu>

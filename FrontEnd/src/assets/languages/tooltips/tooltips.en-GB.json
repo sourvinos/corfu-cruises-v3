@@ -4,24 +4,16 @@
         "description": "Reservations"
     },
     {
-        "id": "availability",
-        "description": "Availability"
+        "id": "tables",
+        "description": "Tables"
     },
     {
-        "id": "embarkation",
-        "description": "Boarding"
+        "id": "tasks",
+        "description": "Tasks"
     },
     {
-        "id": "manifest",
-        "description": "Ship's manifest"
-    },
-    {
-        "id": "ledgers",
-        "description": "Customer ledgers"
-    },
-    {
-        "id": "statistics",
-        "description": "Statistics"
+        "id": "parameters",
+        "description": "Parameters"
     },
     {
         "id": "logout",
