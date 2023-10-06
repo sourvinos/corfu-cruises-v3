@@ -18,8 +18,6 @@ export class LogoutComponent {
     //#region variables
 
     public tooltipItems: Menu[]
-    public feature = 'logout'
-    public menuItems: Menu[] = []
 
     //#endregion
 
