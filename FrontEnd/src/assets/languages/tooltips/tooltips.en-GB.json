@@ -26,5 +26,9 @@
     {
         "id": "theme",
         "description": "Toggle theme"
+    },
+    {
+        "id": "myAccount",
+        "description": "My account"
     }
 ]

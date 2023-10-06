@@ -26,5 +26,9 @@
     {
         "id": "theme",
         "description": "Thema umschalten"
+    },
+    {
+        "id": "myAccount",
+        "description": "Mein Konto"
     }
 ]

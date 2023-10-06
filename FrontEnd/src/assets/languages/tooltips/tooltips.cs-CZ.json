@@ -26,5 +26,9 @@
     {
         "id": "theme",
         "description": "Přepnout motiv"
+    },
+    {
+        "id": "myAccount",
+        "description": "Můj účet"
     }
 ]
