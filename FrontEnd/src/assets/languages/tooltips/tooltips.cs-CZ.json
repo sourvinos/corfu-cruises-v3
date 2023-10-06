@@ -22,5 +22,9 @@
     {
         "id": "language",
         "description": "Jazyk displeje"
+    },
+    {
+        "id": "theme",
+        "description": "Přepnout motiv"
     }
 ]

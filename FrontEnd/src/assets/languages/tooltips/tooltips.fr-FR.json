@@ -22,5 +22,9 @@
     {
         "id": "language",
         "description": "Langue d'affichage"
+    },
+    {
+        "id": "theme",
+        "description": "Changer de thème"
     }
 ]
