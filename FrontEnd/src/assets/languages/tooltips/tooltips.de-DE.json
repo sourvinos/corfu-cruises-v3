@@ -18,5 +18,9 @@
     {
         "id": "logout",
         "description": "Logout"
+    },
+    {
+        "id": "language",
+        "description": "Anzeigesprache"
     }
 ]

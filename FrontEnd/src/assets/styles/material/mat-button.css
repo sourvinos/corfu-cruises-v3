@@ -100,3 +100,11 @@ button:disabled {
 button:not(:disabled) {
     cursor: pointer !important;
 }
+
+button .mat-mdc-menu-item-text .content {
+    display: flex;
+}
+
+button .mat-mdc-menu-item-text .content span {
+    margin: 3px 0 0 8px;
+}

@@ -18,5 +18,9 @@
     {
         "id": "logout",
         "description": "Αποσύνδεση"
+    },
+    {
+        "id": "language",
+        "description": "Γλώσσα εμφάνισης"
     }
 ]

@@ -1,39 +1,39 @@
 <div id="button-wrapper">
-    <button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" style="color: var(--color-text-reverse) !important" mat-icon-button>
-        <img (load)="loadImage()" [ngClass]="imageIsLoading()" src="/assets/images/languages/{{ getStoredLanguage() }}.svg" style="width: 22px">
+    <button [matMenuTriggerFor]="languages" class="fab fab-with-no-background" mat-icon-button matTooltip="{{ getLabel('language') }}" matTooltipPosition="after">
+        <mat-icon class="material-symbols-outlined">g_translate</mat-icon>
     </button>
 </div>
 
-<mat-menu #menu="matMenu" class="primary">
-    <ng-container *ngTemplateOutlet="contextMenu"></ng-container>
+<mat-menu #languages="matMenu" class="primary">
+    <ng-container *ngTemplateOutlet="languagesMenu"></ng-container>
 </mat-menu>
 
-<ng-template #contextMenu>
-    <button (click)="doLanguageTasks('el-GR')" mat-menu-item>
+<ng-template #languagesMenu>
+    <button (click)="onChangelanguage('el-GR')" mat-menu-item>
         <div class="content">
             <img src="/assets/images/languages/el-GR.svg">
             <span>Ελληνικά</span>
         </div>
     </button>
-    <button (click)="doLanguageTasks('en-GB')" mat-menu-item>
+    <button (click)="onChangelanguage('en-GB')" mat-menu-item>
         <div class="content">
             <img src="/assets/images/languages/en-GB.svg">
             <span>English</span>
         </div>
     </button>
-    <button (click)="doLanguageTasks('de-DE')" mat-menu-item>
+    <button (click)="onChangelanguage('de-DE')" mat-menu-item>
         <div class="content">
             <img src="/assets/images/languages/de-DE.svg">
             <span>Deutsch</span>
         </div>
     </button>
-    <button (click)="doLanguageTasks('cs-CZ')" mat-menu-item>
+    <button (click)="onChangelanguage('cs-CZ')" mat-menu-item>
         <div class="content">
             <img src="/assets/images/languages/cs-CZ.svg">
             <span>Česky</span>
         </div>
     </button>
-    <button (click)="doLanguageTasks('fr-FR')" mat-menu-item>
+    <button (click)="onChangelanguage('fr-FR')" mat-menu-item>
         <div class="content">
             <img src="/assets/images/languages/fr-FR.svg">
             <span>Française</span>
