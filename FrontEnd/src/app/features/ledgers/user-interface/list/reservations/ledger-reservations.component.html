@@ -1,5 +1,5 @@
 <div id="table-wrapper">
-    <p-table #table [scrollable]="true" [value]="customer.reservations" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="auto" selectionMode="single" sortMode="multiple">
+    <p-table #table [scrollable]="true" [value]="customer.reservations" [virtualScrollItemSize]="32" [virtualScroll]="false" scrollHeight="flex" selectionMode="single" sortMode="multiple">
         <ng-template pTemplate="header">
             <tr>
                 <th class="width-5" pSortableColumn="date">{{ getLabel('headerDate') }}</th>
@@ -37,7 +37,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-reservation>
-            <tr [pSelectableRow]="reservation" style="height:2rem">
+            <tr [pSelectableRow]="reservation" style="height:32px">
                 <td class="width-5"><span class="center">{{ formatDateToLocale(reservation.date) }}</span></td>
                 <td class="width-6"><span class="center">{{ reservation.destination.abbreviation }}</span></td>
                 <td class="width-6"><span>{{ reservation.pickupPoint.description }}</span></td>
@@ -47,8 +47,8 @@
                 <td class="width-5"><span>{{ reservation.ticketNo }}</span></td>
                 <td [ngClass]="reservation.hasTransfer ? 'has-transfer' : 'no-transfer'" class="emoji width-4">
                     <span class="center">
-                        <span *ngIf=" reservation.hasTransfer">{{ getEmoji('green-box') }} </span>
-                        <span *ngIf="!reservation.hasTransfer">{{ getEmoji('red-box') }}</span>
+                        <span style="font-size: 0.5rem;" *ngIf=" reservation.hasTransfer">{{ getEmoji('green-box') }} </span>
+                        <span style="font-size: 0.5rem;" *ngIf="!reservation.hasTransfer">{{ getEmoji('red-box') }}</span>
                     </span>
                 </td>
                 <td class="width-3"><span class="center">{{ reservation.adults | replaceZero }}</span></td>

@@ -8,6 +8,10 @@
         "description": "Availability"
     },
     {
+        "id": "reservations-my-ledger",
+        "description": "My ledger"
+    },
+    {
         "id": "tables-coachRoutes",
         "description": "Coach routes"
     },
@@ -66,5 +70,21 @@
     {
         "id": "tasks-embarkation",
         "description": "Embarkation"
+    },
+    {
+        "id": "tasks-manifest",
+        "description": "Ship manifest"
+    },
+    {
+        "id": "tasks-ledgers",
+        "description": "Customer ledgers"
+    },
+    {
+        "id": "tasks-statistics",
+        "description": "Statistics"
+    },
+    {
+        "id": "parameters-parameters",
+        "description": "Settings"
     }
 ]

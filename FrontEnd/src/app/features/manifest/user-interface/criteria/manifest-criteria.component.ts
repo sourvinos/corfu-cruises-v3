@@ -16,7 +16,7 @@ import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 @Component({
     selector: 'manifest-criteria',
     templateUrl: './manifest-criteria.component.html',
-    styleUrls: ['./manifest-criteria.component.css']
+    styleUrls: ['../../../../../assets/styles/custom/lists.css', './manifest-criteria.component.css']
 })
 
 export class ManifestCriteriaComponent {

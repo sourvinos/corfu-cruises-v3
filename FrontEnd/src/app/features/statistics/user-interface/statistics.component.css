@@ -6,4 +6,5 @@
     column-gap: 0.5rem;
     display: flex;
     flex-direction: row;
+    height: 0;
 }

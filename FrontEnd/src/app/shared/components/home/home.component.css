@@ -1,4 +1,5 @@
 #content {
+    background-color: transparent !important;
     justify-content: flex-end;
 }
 

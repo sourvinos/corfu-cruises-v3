@@ -1,9 +1,9 @@
 import { Component } from '@angular/core'
 // Custom
-import { InteractionService } from '../../../services/interaction.service'
+import { InteractionService } from '../../services/interaction.service'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { Menu } from 'src/app/shared/classes/menu'
-import { MessageCalendarService } from '../../../services/message-calendar.service'
+import { MessageCalendarService } from '../../services/message-calendar.service'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
@@ -12,7 +12,7 @@ import { TooltipService } from 'src/app/shared/services/tooltip.service'
 @Component({
     selector: 'language-menu',
     templateUrl: './language-menu.component.html',
-    styleUrls: ['../../../../../assets/styles/custom/dropdown-menu.css', './language-menu.component.css']
+    styleUrls: ['../../../../assets/styles/custom/dropdown-menu.css', './language-menu.component.css']
 })
 
 export class LanguageMenuComponent {

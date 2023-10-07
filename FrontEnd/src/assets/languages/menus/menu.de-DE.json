@@ -8,6 +8,10 @@
         "description": "Availability"
     },
     {
+        "id": "reservations-my-ledger",
+        "description": "Mein Hauptbuch"
+    },
+    {
         "id": "tables-coachRoutes",
         "description": "Busrouten"
     },
@@ -65,6 +69,22 @@
     },
     {
         "id": "tasks-embarkation",
-        "description": "Επιβίβαση"
+        "description": "Boarding"
+    },
+    {
+        "id": "tasks-manifest",
+        "description": "Schiffsmanifest"
+    },
+    {
+        "id": "tasks-ledgers",
+        "description": "Kundenbücher"
+    },
+    {
+        "id": "tasks-statistics",
+        "description": "Statistiken"
+    },
+    {
+        "id": "parameters-parameters",
+        "description": "Einstellungen"
     }
 ]

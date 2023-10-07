@@ -2,7 +2,7 @@ import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 // Custom
-import { MessageLabelService } from '../../../services/message-label.service'
+import { MessageLabelService } from '../../services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 

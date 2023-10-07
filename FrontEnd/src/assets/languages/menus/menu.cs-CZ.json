@@ -5,7 +5,11 @@
     },
     {
         "id": "reservations-availability",
-        "description": "Availability"
+        "description": "Dostupnost"
+    },
+    {
+        "id": "reservations-my-ledger",
+        "description": "Moje účetní kniha"
     },
     {
         "id": "tables-coachRoutes",
@@ -65,6 +69,22 @@
     },
     {
         "id": "tasks-embarkation",
-        "description": "Επιβίβαση"
+        "description": "Boarding"
+    },
+    {
+        "id": "tasks-manifest",
+        "description": "Lodní manifest"
+    },
+    {
+        "id": "tasks-ledgers",
+        "description": "Knihy zákazníků"
+    },
+    {
+        "id": "tasks-statistics",
+        "description": "Statistiky"
+    },
+    {
+        "id": "parameters-parameters",
+        "description": "Nastavení"
     }
 ]

@@ -1,4 +1,4 @@
-<div id="criteria-wrapper">
+<div id="list-wrapper">
 
     <div id="content">
 
@@ -9,6 +9,9 @@
         <div id="form-wrapper">
             <form [formGroup]="form" id="form">
                 <div class="group-input-field">
+                    <div></div>
+                    <div></div>
+                    <div></div>
                     <date-range-picker [parentDateRange]="getDateRange()" [readOnly]=true [showHint]=false (outputValues)="patchFormWithSelectedDateRange($event)"></date-range-picker>
                 </div>
                 <div class="group-input-field">

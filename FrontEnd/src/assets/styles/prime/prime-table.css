@@ -123,11 +123,12 @@
     transition: border var(--theme-delay);
 }
 
-.p-datatable .p-datatable-tbody > tr:not(:last-child) > td {
-    border-bottom: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent);
+.p-datatable .p-datatable-tbody > tr:not(:first-child) > td {
+    border-top: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent);
 }
 
 .p-datatable .p-datatable-tbody > tr > td {
+    border-bottom: 0 !important;
     color: var(--color-text);
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-row);
@@ -195,10 +196,14 @@
     overflow-x: hidden !important;
 }
 
-.p-datatable-flex-scrollable .p-datatable-wrapper {
+.p-datatable-scrollable .p-datatable-scrollable-body, .p-datatable-scrollable .p-datatable-virtual-scrollable-body {
+    overflow-x: hidden !important;
+}
+
+.p-datatable-scrollable .p-datatable-wrapper {
     overflow-y: scroll !important;
-    /* overscroll-behavior: contain; */
-    /* scrollbar-gutter: stable; */
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
 }
 
 /* #endregion */
@@ -212,7 +217,7 @@
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-row);
     font-weight: 300;
-    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem !important;
     transition: all var(--theme-delay) !important;
 }
 

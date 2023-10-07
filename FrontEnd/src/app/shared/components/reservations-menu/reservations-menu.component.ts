@@ -60,6 +60,7 @@ export class ReservationsMenuComponent {
     private buildMenu(): void {
         this.messageMenuService.getMessages().then((response) => {
             this.createMenu(response)
+            this.removeLastItem()
             this.subscribeToMenuLanguageChanges()
         })
     }
@@ -85,6 +86,14 @@ export class ReservationsMenuComponent {
         items.forEach(item => {
             this.tooltipItems.push(item)
         })
+    }
+
+    private removeLastItem(): void {
+        if (this.menuItems.length > 0) {
+            if (this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true') {
+                this.menuItems.splice(2)
+            }
+        }
     }
 
     private subscribeToMenuLanguageChanges(): void {

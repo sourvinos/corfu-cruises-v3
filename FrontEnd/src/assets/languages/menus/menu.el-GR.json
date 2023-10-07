@@ -8,6 +8,10 @@
         "description": "Διαθεσιμότητα"
     },
     {
+        "id": "reservations-my-ledger",
+        "description": "Η καρτέλα μου"
+    },
+    {
         "id": "tables-coachRoutes",
         "description": "Δρομολόγια λεωφορείων"
     },
