@@ -6,6 +6,7 @@ import { InteractionService } from '../../services/interaction.service'
 import { MessageCalendarService } from '../../services/message-calendar.service'
 import { MessageLabelService } from '../../services/message-label.service'
 import { SimpleEntity } from '../../classes/simple-entity'
+import { HelperService } from '../../services/helper.service'
 
 @Component({
     selector: 'criteria-fieldset-weekdays',
@@ -27,7 +28,7 @@ export class CriteriaFieldsetWeekdaysComponent {
 
     //#endregion
 
-    constructor(private emojiService: EmojiService, private formBuilder: FormBuilder, private interactionService: InteractionService, private messageLabelService: MessageLabelService, private messageCalendarService: MessageCalendarService) { }
+    constructor(private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private messageCalendarService: MessageCalendarService, private messageLabelService: MessageLabelService,) { }
 
     //#region lifecycle hooks
 
@@ -47,6 +48,10 @@ export class CriteriaFieldsetWeekdaysComponent {
 
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
+    }
+
+    public highlightRow(id: any): void {
+        this.helperService.highlightRow(id)
     }
 
     public onHeaderCheckboxToggle(event: any, formControl: string): void {

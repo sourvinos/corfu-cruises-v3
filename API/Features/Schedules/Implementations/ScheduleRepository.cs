@@ -51,6 +51,8 @@ namespace API.Features.Schedules {
         public List<ScheduleWriteDto> AttachMetadataToPostDto(List<ScheduleWriteDto> schedules) {
             schedules.ForEach(x => x.PostAt = DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime()));
             schedules.ForEach(x => x.PostUser = Identity.GetConnectedUserDetails(userManager, Identity.GetConnectedUserId(httpContextAccessor)).UserName);
+            schedules.ForEach(x => x.PutAt = x.PostAt);
+            schedules.ForEach(x => x.PutUser = x.PostUser);
             return schedules;
         }
 

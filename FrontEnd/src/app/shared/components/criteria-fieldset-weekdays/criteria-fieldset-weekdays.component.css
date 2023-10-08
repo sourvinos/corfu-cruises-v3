@@ -1,10 +1,12 @@
+:host {
+    width: 100%;
+}
+
 .fieldset {
-    border-radius: 0.625rem;
     border: 0.0625rem solid var(--color-primary);
     display: flex;
     height: 100%;
     margin: 0;
-    width: 17rem;
 }
 
 .fieldset legend {
@@ -38,6 +40,10 @@ fieldset legend span {
 
 .table-wrapper {
     width: 100%;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+    border: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent) !important;
 }
 
 input::placeholder {
