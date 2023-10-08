@@ -20,6 +20,10 @@
         "description": "Αποσύνδεση"
     },
     {
+        "id": "search",
+        "description": "Αναζήτηση για μία κράτηση"
+    },
+    {
         "id": "language",
         "description": "Γλώσσα εμφάνισης"
     },

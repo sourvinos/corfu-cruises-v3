@@ -3,18 +3,6 @@
         "feature": "loginForm",
         "labels": [
             {
-                "id": "title-top",
-                "description": "Καλώς ήρθατε στην"
-            },
-            {
-                "id": "title-middle",
-                "description": "CORFU CRUISES"
-            },
-            {
-                "id": "title-bottom",
-                "description": "Ταξιδέψτε μαζί μας!"
-            },
-            {
                 "id": "header",
                 "description": "Είσοδος"
             },

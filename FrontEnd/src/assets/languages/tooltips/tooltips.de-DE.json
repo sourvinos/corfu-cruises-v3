@@ -20,6 +20,10 @@
         "description": "Logout"
     },
     {
+        "id": "search",
+        "description": "Suche nach einer Reservierung"
+    },
+    {
         "id": "language",
         "description": "Anzeigesprache"
     },

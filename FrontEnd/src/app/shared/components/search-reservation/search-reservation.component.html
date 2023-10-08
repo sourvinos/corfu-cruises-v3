@@ -1,0 +1,12 @@
+<div *ngIf=isLoggedIn() id="button-wrapper">
+    <button [style.color]="getIconColor()" (click)="showForm()" class="fab fab-with-no-background" mat-icon-button matTooltip="{{ getLabel('search') }}" matTooltipPosition="after">
+        <mat-icon class="input-suffix material-icons-outlined">search</mat-icon>
+    </button>
+    <form *ngIf="getFormVisibility()" [formGroup]="form" id="form" autocomplete="off">
+        <mat-icon class="input-suffix material-icons-outlined" (click)="hideForm()">close</mat-icon>
+        <mat-form-field class="hide-hint no-top-padding">
+            <input id="search-by-ref-no" formControlName="searchByRefNo" [placeholder]="getLabel('placeholder')" matInput (keyup.enter)="onSearchByRefNo()">
+        </mat-form-field>
+        <mat-icon class="input-suffix material-symbols-outlined">arrow_circle_right</mat-icon>
+    </form>
+</div>

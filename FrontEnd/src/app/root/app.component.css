@@ -11,14 +11,6 @@
     transition: background-color var(--theme-delay);
 }
 
-#leftbar {
-    margin-top: auto !important;
-}
-
-#rightbar {
-    min-width: 4rem;
-}
-
 #leftbar, #rightbar {
     display: flex;
     flex-direction: column;

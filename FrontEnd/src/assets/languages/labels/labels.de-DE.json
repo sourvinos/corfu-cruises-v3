@@ -3,18 +3,6 @@
         "feature": "loginForm",
         "labels": [
             {
-                "id": "title-top",
-                "description": "Willkommen bei"
-            },
-            {
-                "id": "title-middle",
-                "description": "CORFU CRUISES"
-            },
-            {
-                "id": "title-bottom",
-                "description": "Fahren Sie mit uns!"
-            },
-            {
                 "id": "header",
                 "description": "Anmeldung"
             },

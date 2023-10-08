@@ -21,7 +21,7 @@ export class LogoutComponent {
 
     //#endregion
 
-    constructor(private accountService: AccountService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private sessionStorageService: SessionStorageService, private tooltipService: TooltipService,) { }
+    constructor(private accountService: AccountService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private sessionStorageService: SessionStorageService, private tooltipService: TooltipService) { }
 
     //#region lifecycle hooks
 

@@ -20,6 +20,10 @@
         "description": "Sortie"
     },
     {
+        "id": "search",
+        "description": "Recherche d'une réservation"
+    },
+    {
         "id": "language",
         "description": "Langue d'affichage"
     },

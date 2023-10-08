@@ -20,6 +20,10 @@
         "description": "Logout"
     },
     {
+        "id": "search",
+        "description": "Vyhledání rezervace"
+    },
+    {
         "id": "language",
         "description": "Jazyk displeje"
     },
