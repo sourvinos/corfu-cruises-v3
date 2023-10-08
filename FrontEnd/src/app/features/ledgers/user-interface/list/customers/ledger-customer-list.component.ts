@@ -50,7 +50,7 @@ export class LedgerCustomerListComponent {
         this.setTabTitle()
         this.populateCriteriaPanelsFromStorage()
         this.updateVariables()
-
+        this.updateAccordionHeight()
     }
 
     //#endregion
@@ -129,6 +129,10 @@ export class LedgerCustomerListComponent {
 
     private updateVariables(): void {
         this.remarksRowVisibility = this.sessionStorageService.getItem('remarksRowVisibility') != '' ? (this.sessionStorageService.getItem('remarksRowVisibility') == '1' ? true : false) : false
+    }
+
+    private updateAccordionHeight(): void {
+        document.getElementById('accordion-wrapper').style.height = document.getElementById('content').offsetHeight - 100 + 'px'
     }
 
     //#endregion

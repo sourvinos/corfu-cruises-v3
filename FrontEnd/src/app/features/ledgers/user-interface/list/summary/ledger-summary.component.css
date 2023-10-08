@@ -10,36 +10,38 @@ table {
 }
 
 table > thead > tr > th {
-    background-color: var(--color-secondary);
-    border-right: 0.0625rem solid var(--color-background);
+    background-color: var(--color-background);
+    border: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent);
     color: var(--color-text) !important;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-header) !important;
     font-weight: 300 !important;
+    padding: 8px 8px 8px 8px;
     text-align: center !important;
     transition: all var(--theme-delay);
 }
 
 table > tbody > tr > td {
-    border-bottom: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent);
+    border: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent);
     color: var(--color-text);
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-row);
     font-weight: 300;
     overflow: hidden !important;
-    padding: 0.3125rem 0.5rem;
+    padding: 16px 8px 16px 8px;
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
     transition: all var(--theme-delay);
 }
 
 table > tfoot > tr > td {
-    background-color: var(--color-secondary);
-    border-right: 0.0625rem solid var(--color-background);
+    background-color: var(--color-background);
+    border: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent);
     color: var(--color-text) !important;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-header) !important;
     font-weight: 300 !important;
+    padding: 8px 8px 8px 8px;
     text-align: center !important;
     transition: all var(--theme-delay);
 }

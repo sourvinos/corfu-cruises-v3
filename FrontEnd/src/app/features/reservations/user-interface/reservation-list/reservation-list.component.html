@@ -170,7 +170,7 @@
     </div>
 
     <div id="footer">
-        <button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" mat-icon-button>
+        <button [disabled]="!isAdmin()" [matMenuTriggerFor]="menu" class="fab fab-with-no-background" mat-icon-button>
             <mat-icon class="material-icons-outlined">more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" class="primary">
@@ -206,19 +206,15 @@
 
 <ng-template #contextMenu>
     <button (click)="assignToDriver()" [disabled]="!isAdmin()" mat-menu-item>
-        <mat-icon *ngIf="!isAdmin()" class="button-icon no-right-margin">lock</mat-icon>
         <span>{{ getLabel('assignToDriverButton') }}</span>
     </button>
     <button (click)="assignToPort()" [disabled]="!isAdmin()" mat-menu-item>
-        <mat-icon *ngIf="!isAdmin()" class="button-icon no-right-margin">lock</mat-icon>
         <span>{{ getLabel('assignToPortButton') }}</span>
     </button>
     <button (click)="assignToShip()" [disabled]="!isAdmin()" mat-menu-item>
-        <mat-icon *ngIf="!isAdmin()" class="button-icon no-right-margin">lock</mat-icon>
         <span>{{ getLabel('assignToShipButton') }}</span>
     </button>
     <button (click)="createPdf()" [disabled]="!isAdmin()" mat-menu-item>
-        <mat-icon *ngIf="!isAdmin()" class="button-icon no-right-margin">lock</mat-icon>
         <span>{{ getLabel('createPdfButton') }}</span>
     </button>
 </ng-template>
