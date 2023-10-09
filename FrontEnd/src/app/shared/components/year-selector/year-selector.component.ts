@@ -1,7 +1,8 @@
-import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 // Custom
-import { SessionStorageService } from '../../services/session-storage.service'
-import { environment } from 'src/environments/environment'
+import { InteractionService } from '../../services/interaction.service'
+import { Menu } from '../../classes/menu'
+import { TooltipService } from '../../services/tooltip.service'
 
 @Component({
     selector: 'year-selector',
@@ -16,54 +17,70 @@ export class YearSelectorComponent {
     @Input() public year: string
     @Output() public yearEmitter = new EventEmitter()
 
-    public years: string[] = []
+    public menuItems: string[]
+    public tooltipItems: Menu[]
+    public years: string[]
 
     //#endregion
 
-    constructor(private sessionStorageService: SessionStorageService) { }
-
-    //#region listeners
-
-    @HostListener('mouseenter') onMouseEnter(): void {
-        document.querySelectorAll('.sub-menu').forEach((item) => {
-            item.classList.remove('hidden')
-        })
-    }
-
-    //#endregion
+    constructor(private interactionService: InteractionService, private tooltipService: TooltipService) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
         this.populateYears()
+        this.buildMenu()
+        this.buildTooltips()
     }
 
     //#endregion
 
     //#region public methods
 
-    public getIcon(filename: string): string {
-        return environment.menuDropdownIconDirectory + filename + '.svg'
-    }
-
-    public hideMenu(): void {
-        document.querySelectorAll('.sub-menu').forEach((item) => {
-            item.classList.add('hidden')
-        })
-    }
-
-    public selectYear(year: string): any {
+    public doNavigationTasks(year: string): any {
         this.yearEmitter.emit(year)
+    }
+
+    public getLabel(id: string): string {
+        return this.tooltipService.getDescription(this.tooltipItems, id)
     }
 
     //#endregion
 
     //#region private methods
 
+    private buildMenu(): void {
+        this.menuItems = []
+        this.years.forEach(item => {
+            this.menuItems.push(item)
+        })
+    }
+
+    private buildTooltips(): void {
+        this.tooltipService.getMessages().then((response) => {
+            this.createTooltips(response)
+            this.subscribeToTooltipLanguageChanges()
+        })
+    }
+
+    private createTooltips(items: Menu[]): void {
+        this.tooltipItems = []
+        items.forEach(item => {
+            this.tooltipItems.push(item)
+        })
+    }
+
     private populateYears(): void {
-        for (let year = 2022; year < 2028; year++) {
+        this.years = []
+        for (let year = 2022; year < new Date().getFullYear() + 2; year++) {
             this.years.push(year.toString())
         }
+    }
+
+    private subscribeToTooltipLanguageChanges(): void {
+        this.interactionService.refreshTooltips.subscribe(() => {
+            this.buildTooltips()
+        })
     }
 
     //#endregion

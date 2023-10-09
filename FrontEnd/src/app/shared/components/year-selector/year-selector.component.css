@@ -1,13 +1,16 @@
-.drop-down-menu-trigger {
-    background-color: transparent !important;
-    color: var(--color-text) !important;
+.mat-mdc-menu-item {
+    justify-content: center !important;
 }
 
-#selected-year {
+#button-wrapper {
+    align-items: center;
+    display: flex;
+}
+
+#year {
     color: var(--color-text);
     font-family: var(--font-family-asty);
-    font-size: 1.5rem;
-    font-weight: 100;
+    font-weight: 300;
     margin: 0.25rem 0 0 auto;
     transition: color var(--theme-delay) !important;
 }

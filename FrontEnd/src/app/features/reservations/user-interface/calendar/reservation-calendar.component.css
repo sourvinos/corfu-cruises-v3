@@ -16,7 +16,7 @@
 #goto-today-button {
     background-color: transparent !important;
     box-shadow: none;
-    padding: 0.25rem 0 0 0 !important;
+    padding: 0.125rem 0 0 0 !important;
 }
 
 #goto-today-button span {

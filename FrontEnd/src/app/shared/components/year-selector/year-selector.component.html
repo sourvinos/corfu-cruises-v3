@@ -1,14 +1,16 @@
-<div id="year-picker">
-    <div class="drop-down-menu">
-        <button class="drop-down-menu-trigger">
-            <span id="selected-year">{{ year }}</span>
-            <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
-        </button>
-        <ul (click)="hideMenu()" class="sub-menu">
-            <button *ngFor="let year of years" (click)="selectYear(year)">
-                <img [src]="getIcon('availability')" style="height: 1.5625rem; width: 1.5625rem">
-                <span>{{ year }}</span>
-            </button>
-        </ul>
-    </div>
+<div id="button-wrapper">
+    <span id="year">{{ year }}</span>
+    <button [matMenuTriggerFor]="tables" class="fab fab-with-no-background" mat-icon-button>
+        <mat-icon class="material-icons-outlined">more_vert</mat-icon>
+    </button>
 </div>
+
+<mat-menu #tables="matMenu" class="primary">
+    <ng-container *ngTemplateOutlet="yearsMenu"></ng-container>
+</mat-menu>
+
+<ng-template #yearsMenu>
+    <button *ngFor="let year of years" (click)="doNavigationTasks(year)" mat-menu-item>
+        <span>{{ year }}</span>
+    </button>
+</ng-template>
