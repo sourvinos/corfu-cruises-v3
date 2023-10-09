@@ -3,18 +3,6 @@
         "feature": "loginForm",
         "labels": [
             {
-                "id": "title-top",
-                "description": "Vítejte v"
-            },
-            {
-                "id": "title-middle",
-                "description": "CORFU CRUISES"
-            },
-            {
-                "id": "title-bottom",
-                "description": "Plavte s námi!"
-            },
-            {
                 "id": "header",
                 "description": "Přihlášení"
             },
@@ -2218,6 +2206,19 @@
             {
                 "id": "no-show",
                 "description": "N/S"
+            }
+        ]
+    },
+    {
+        "feature": "search-reservation",
+        "labels": [
+            {
+                "id": "refNo",
+                "description": "Uveďte refNo"
+            },
+            {
+                "id": "hint",
+                "description": "Stisknutím tlačítka ENTER spustíte vyhledávání"
             }
         ]
     }

@@ -1,0 +1,28 @@
+#dialog {
+    background-color: var(--color-background);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+#dialog-content {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    overflow-y: hidden;
+    width: 100%;
+}
+
+#dialog-content #form {
+    margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+    width: 100%;
+}
+
+.mat-mdc-form-field-hint {
+    margin: 0.4375rem 0 0 0.5rem !important;
+}
+
+.mat-mdc-form-field-error {
+    margin: 0.3125rem 0 0 0.5rem !important;
+}

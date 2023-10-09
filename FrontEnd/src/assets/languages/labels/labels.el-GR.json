@@ -2208,5 +2208,18 @@
                 "description": "N/S"
             }
         ]
+    },
+    {
+        "feature": "search-reservation",
+        "labels": [
+            {
+                "id": "refNo",
+                "description": "Δώστε το refNo"
+            },
+            {
+                "id": "hint",
+                "description":"Πατήστε ENTER για να ξεκινήσει η αναζήτηση"
+            }
+        ]
     }
 ]

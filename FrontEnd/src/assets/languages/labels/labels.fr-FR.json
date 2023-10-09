@@ -2208,5 +2208,18 @@
                 "description": "N/S"
             }
         ]
+    },
+    {
+        "feature": "search-reservation",
+        "labels": [
+            {
+                "id": "refNo",
+                "description": "Indiquer le refNo"
+            },
+            {
+                "id": "hint",
+                "description": "Appuyer sur ENTER pour lancer la recherche"
+            }
+        ]
     }
 ]

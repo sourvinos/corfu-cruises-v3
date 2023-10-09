@@ -21,7 +21,7 @@
     },
     {
         "id": "search",
-        "description": "Suche nach einer Reservierung"
+        "description": "Suche einer Reservierung"
     },
     {
         "id": "language",

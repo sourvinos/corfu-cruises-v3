@@ -1,38 +1,33 @@
 import { Component } from '@angular/core'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { MatDialog } from '@angular/material/dialog'
 import { Router } from '@angular/router'
 // Custom
 import { InteractionService } from '../../services/interaction.service'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { Menu } from '../../classes/menu'
-import { MessageLabelService } from '../../services/message-label.service'
+import { ReservationSearchDialogComponent } from './reservation-search-dialog.component'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { TooltipService } from '../../services/tooltip.service'
 
 @Component({
-    selector: 'search-reservation',
-    templateUrl: './search-reservation.component.html',
-    styleUrls: ['./search-reservation.component.css'],
+    selector: 'reservation-search',
+    templateUrl: './reservation-search.component.html',
+    styleUrls: ['./reservation-search.component.css'],
 })
 
-export class SearchReservationComponent {
+export class ReservationSearchComponent {
 
     //#region variables
 
-    private feature = 'searchByRefBox'
-    private isFormVisible: boolean
-    public form: FormGroup
     public tooltipItems: Menu[]
 
     //#endregion
 
-    constructor(private formBuilder: FormBuilder, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService, private tooltipService: TooltipService) { }
+    constructor(private dialog: MatDialog, private interactionService: InteractionService, private localStorageService: LocalStorageService, private router: Router, private sessionStorageService: SessionStorageService, private tooltipService: TooltipService,) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
-        this.initForm()
-        this.hideForm()
         this.buildTooltips()
     }
 
@@ -52,28 +47,18 @@ export class SearchReservationComponent {
         return this.sessionStorageService.getItem('userId') ? true : false
     }
 
-    public onSearchByRefNo(): void {
-        const refNo = this.form.value.searchByRefNo
-        this.router.navigate(['reservations/refNo', refNo])
-        this.hideForm()
-    }
+    public onOpenDialog(): void {
+        const dialogRef = this.dialog.open(ReservationSearchDialogComponent, {
+            data: ['search-reservation'],
+            panelClass: 'dialog',
+            width: '32rem',
+        })
+        dialogRef.afterClosed().subscribe(result => {
+            if (result !== undefined) {
+                this.router.navigate(['reservations/refNo', result.refNo])
+            }
+        })
 
-    public hideForm(): void {
-        document.getElementById('form').style.visibility = 'hidden'
-    }
-
-    public showForm(): void {
-        document.getElementById('form').style.visibility = 'visible'
-    }
-
-    public getFormIcon(): string {
-        return this.isFormVisible == false || this.isFormVisible == undefined
-            ? 'search'
-            : 'close'
-    }
-
-    public getFormVisibility(): boolean {
-        return this.isFormVisible
     }
 
     //#endregion
@@ -99,13 +84,6 @@ export class SearchReservationComponent {
             this.buildTooltips()
         })
     }
-
-    private initForm(): void {
-        this.form = this.formBuilder.group({
-            searchByRefNo: ['', [Validators.required]],
-        })
-    }
-
 
     //#endregion
 
