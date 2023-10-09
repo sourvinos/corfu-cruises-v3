@@ -43,7 +43,7 @@ fieldset legend span {
 }
 
 .p-datatable .p-datatable-thead > tr > th {
-    border: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent) !important;
+    border: 0.0625rem solid color-mix(in srgb, var(--color-primary) 30%, transparent) !important;
 }
 
 input::placeholder {

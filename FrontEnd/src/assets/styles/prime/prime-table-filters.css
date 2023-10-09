@@ -71,7 +71,7 @@
 }
 
 .p-multiselect-panel .p-multiselect-items .p-multiselect-item:hover {
-    background-color: color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent) !important;
+    background-color: color-mix(in srgb, var(--color-primary) 30%, transparent) !important;
 }
 
 .p-multiselect-option {

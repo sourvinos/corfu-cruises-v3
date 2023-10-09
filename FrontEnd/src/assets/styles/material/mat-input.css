@@ -220,3 +220,13 @@ input:-webkit-autofill:focus {
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     display: none;
 }
+
+/* Date range */
+.mat-date-range-input-container {
+    justify-content: center !important;
+}
+
+/* Date range */
+.mat-date-range-input-end-wrapper {
+    flex-grow: 0 !important;
+}

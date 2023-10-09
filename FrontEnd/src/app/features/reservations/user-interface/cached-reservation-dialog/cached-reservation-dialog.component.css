@@ -61,7 +61,7 @@ form {
 }
 
 .option-label:hover {
-    background-color: color-mix(in srgb, var(--color-secondary) var(--hover-transparency), transparent);
+    background-color: color-mix(in srgb, var(--color-secondary) 30%, transparent);
     cursor: pointer;
 }
 

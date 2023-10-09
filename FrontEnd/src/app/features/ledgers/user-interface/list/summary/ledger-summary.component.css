@@ -11,7 +11,7 @@ table {
 
 table > thead > tr > th {
     background-color: var(--color-background);
-    border: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent);
+    border: 0.0625rem solid color-mix(in srgb, var(--color-primary) 30%, transparent);
     color: var(--color-text) !important;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-header) !important;
@@ -22,7 +22,7 @@ table > thead > tr > th {
 }
 
 table > tbody > tr > td {
-    border: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent);
+    border: 0.0625rem solid color-mix(in srgb, var(--color-primary) 30%, transparent);
     color: var(--color-text);
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-row);
@@ -36,7 +36,7 @@ table > tbody > tr > td {
 
 table > tfoot > tr > td {
     background-color: var(--color-background);
-    border: 0.0625rem solid color-mix(in srgb, var(--color-primary) var(--hover-transparency), transparent);
+    border: 0.0625rem solid color-mix(in srgb, var(--color-primary) 30%, transparent);
     color: var(--color-text) !important;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-table-header) !important;
