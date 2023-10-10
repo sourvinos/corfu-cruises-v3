@@ -23,8 +23,8 @@
                     <td class="center">{{ transfer.totalPassengers | replaceZero }}</td>
                     <td class="center">{{ transfer.totalNoShow | replaceZero }}</td>
                     <td [ngClass]="transfer.hasTransfer ? 'has-transfer' : 'no-transfer'" class="center">
-                        <span *ngIf="transfer.hasTransfer" style="font-size: 0.5rem;">{{ getEmoji('green-box') }} </span>
-                        <span *ngIf="!transfer.hasTransfer" style="font-size: 0.5rem;">{{ getEmoji('red-box') }}</span>
+                        <span *ngIf="transfer.hasTransfer" style="font-size: 0.5rem; padding-top: 0 !important;">{{ getEmoji('green-box') }} </span>
+                        <span *ngIf="!transfer.hasTransfer" style="font-size: 0.5rem; padding-top: 0 !important;">{{ getEmoji('red-box') }}</span>
                     </td>
                 </tr>
             </tbody>

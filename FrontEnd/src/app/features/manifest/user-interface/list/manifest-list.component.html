@@ -18,7 +18,7 @@
                     <tr>
                         <th class="width-3">#</th>
                         <th class="width-20" pSortableColumn="lastname">{{ getLabel('headerLastname') }}</th>
-                        <th class="width-20" pSortableColumn="firstname">{{ getLabel('headerFirstname') }}</th>
+                        <th class="width-15" pSortableColumn="firstname">{{ getLabel('headerFirstname') }}</th>
                         <th class="width-10" pSortableColumn="nationality.description">{{ getLabel("headerCountry") }}</th>
                         <th class="width-10" pSortableColumn="gender.description">{{ getLabel("headerGender") }}</th>
                         <th class="width-10" pSortableColumn="occupant.description">{{ getLabel("headerOccupant") }}</th>
@@ -26,7 +26,7 @@
                     <tr>
                         <th class="width-3"></th>
                         <th class="width-20"><input (input)="table.filter($event.target.value, 'lastname', 'contains')" [disabled]="records.passengers.length==0" [value]="$any(table).filters['lastname']?.value" class="p-inputtext"></th>
-                        <th class="width-20"><input (input)="table.filter($event.target.value, 'firstname', 'contains')" [disabled]="records.passengers.length==0" [value]="$any(table).filters['firstname']?.value" class="p-inputtext"></th>
+                        <th class="width-15"><input (input)="table.filter($event.target.value, 'firstname', 'contains')" [disabled]="records.passengers.length==0" [value]="$any(table).filters['firstname']?.value" class="p-inputtext"></th>
                         <th class="width-10">
                             <p-columnFilter [showMenu]="false" field="nationality" matchMode="in">
                                 <ng-template let-filter="filterCallback" let-value pTemplate="filter">
@@ -72,7 +72,7 @@
                     <tr [attr.id]=passenger.id [pSelectableRow]="passenger" class="without-footer" style="height: 32px">
                         <td class="width-3" style="font-family: 'Ubuntu Mono' !important;"><span class="right" style="margin-top: 0 !important; padding: 1px 0.5rem 0 0 !important">{{ i }}</span></td>
                         <td class="width-20"><span>{{ passenger.lastname }}</span></td>
-                        <td class="width-20"><span>{{ passenger.firstname }}</span></td>
+                        <td class="width-15"><span>{{ passenger.firstname }}</span></td>
                         <td class="align-vertical width-10">
                             <span class="flag" style="width: 100%;">
                                 <img [src]="getNationalityIcon(passenger.nationality.code)" class="flag-with-border" />

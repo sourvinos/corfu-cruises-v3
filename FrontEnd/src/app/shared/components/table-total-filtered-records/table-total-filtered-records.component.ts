@@ -15,10 +15,6 @@ export class TableTotalFilteredRecordsComponent {
 
     @Output() public resetTableFilters = new EventEmitter()
 
-    public getIcon(filename: string): string {
-        return environment.criteriaIconDirectory + filename + '.svg'
-    }
-
     public mustResetTableFilters(): void {
         this.resetTableFilters.emit()
     }

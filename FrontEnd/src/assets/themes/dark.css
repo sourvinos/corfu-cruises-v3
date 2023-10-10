@@ -1,12 +1,10 @@
 * {
-    /* Base */
     --color-background: #595959;
-    /* Text */
-    --color-text: #ffffff;
-    --color-transparent-button: #ffffff;
-    /* Input */
+    --color-calendar-day: #7BB7DD;
+    --color-flag-border: #ffffff;
     --color-input-background: #636161;
     --color-input-error: #ff7878;
-    /* Flags */
-    --color-flag-border: #ffffff;
+    --color-secondary: #7BB7DD;
+    --color-text: #ffffff;
+    --color-transparent-button: #ffffff;
 }

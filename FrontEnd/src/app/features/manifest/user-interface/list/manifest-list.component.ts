@@ -95,10 +95,6 @@ export class ManifestListComponent {
         return this.emojiService.getEmoji(emoji)
     }
 
-    public getIcon(filename: string): string {
-        return environment.criteriaIconDirectory + filename + '.svg'
-    }
-
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
     }

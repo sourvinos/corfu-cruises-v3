@@ -42,15 +42,15 @@
                 <td class="width-6"><span class="center">{{ reservation.destination.abbreviation }}</span></td>
                 <td class="width-6"><span>{{ reservation.pickupPoint.description }}</span></td>
                 <td class="width-6">
-                    <span *ngIf="reservation.ship.abbreviation == '(EMPTY)'" class="center" style="font-size: 0.5rem;">{{ getEmoji('null') }}</span>
+                    <span *ngIf="reservation.ship.abbreviation == '(EMPTY)'" class="center" style="font-size: 0.5rem; padding-top: 0 !important;">{{ getEmoji('null') }}</span>
                     <span *ngIf="reservation.ship.abbreviation != '(EMPTY)'" class="center">{{ reservation.ship.abbreviation }}</span>
                 <td class="center width-6"><span class="center">{{ reservation.port.abbreviation }}</span></td>
                 <td class="center width-5"><span class="center">{{ reservation.refNo }}</span></td>
                 <td class="width-5"><span>{{ reservation.ticketNo }}</span></td>
                 <td [ngClass]="reservation.hasTransfer ? 'has-transfer' : 'no-transfer'" class="emoji width-4">
                     <span class="center">
-                        <span *ngIf=" reservation.hasTransfer" style="font-size: 0.5rem;">{{ getEmoji('green-box') }} </span>
-                        <span *ngIf="!reservation.hasTransfer" style="font-size: 0.5rem;">{{ getEmoji('red-box') }}</span>
+                        <span *ngIf=" reservation.hasTransfer" style="font-size: 0.5rem; padding-top: 0 !important;">{{ getEmoji('green-box') }} </span>
+                        <span *ngIf="!reservation.hasTransfer" style="font-size: 0.5rem; padding-top: 0 !important;">{{ getEmoji('red-box') }}</span>
                     </span>
                 </td>
                 <td class="width-3"><span class="center">{{ reservation.adults | replaceZero }}</span></td>
