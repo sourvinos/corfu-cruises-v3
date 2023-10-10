@@ -1,7 +1,6 @@
 #form-wrapper {
     height: 100%;
     margin: 0 auto 0 auto;
-    width: 80%;
 }
 
 #form {
@@ -24,4 +23,16 @@
     column-gap: 0.5rem;
     display: flex;
     height: 100%;
+}
+
+@media (width <= 1366px) {
+    #form-wrapper {
+        width: 100%
+    }
+}
+
+@media (width > 1366px) {
+    #form-wrapper {
+        width: 80%
+    }
 }
