@@ -19,8 +19,8 @@
                 </tr>
             </ng-template>
             <ng-template let-element pTemplate="body">
-                <tr (click)="highlightRow(element.id)" [attr.id]=element.id style="height: 32px;">
-                    <td class="width-2"><span class="no-left-padding center" style="padding-top: 4px !important;"><p-tableRadioButton [value]="element"></p-tableRadioButton></span></td>
+                <tr (click)="highlightRow(element.id)" [attr.id]=element.id class="without-footer" style="height: 32px;">
+                    <td class="width-2"><span class="no-left-padding center" style="padding-top: 0 !important;"><p-tableRadioButton [value]="element"></p-tableRadioButton></span></td>
                     <td class="width-5"><span>{{ element.description }}</span></td>
                 </tr>
             </ng-template>

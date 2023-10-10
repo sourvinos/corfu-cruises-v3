@@ -69,8 +69,8 @@
                     </tr>
                 </ng-template>
                 <ng-template let-i="rowIndex + 1" let-passenger pTemplate="body">
-                    <tr [attr.id]=passenger.id [pSelectableRow]="passenger" style="height: 32px">
-                        <td class="width-3" style="font-family: 'Ubuntu Mono' !important;"><span class="right" style="padding: 0 0.5rem 0 0;">{{ i }}</span></td>
+                    <tr [attr.id]=passenger.id [pSelectableRow]="passenger" class="without-footer" style="height: 32px">
+                        <td class="width-3" style="font-family: 'Ubuntu Mono' !important;"><span class="right" style="margin-top: 0 !important; padding: 1px 0.5rem 0 0 !important">{{ i }}</span></td>
                         <td class="width-20"><span>{{ passenger.lastname }}</span></td>
                         <td class="width-20"><span>{{ passenger.firstname }}</span></td>
                         <td class="align-vertical width-10">

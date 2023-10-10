@@ -23,8 +23,8 @@
                     </tr>
                 </ng-template>
                 <ng-template let-record pTemplate="body">
-                    <tr (click)="highlightRow(record.id)" (dblclick)="editRecord(record.id)" [attr.id]=record.id style="height: 32px;">
-                        <td class="width-5"><span class="center no-left-padding" style="font-size: 0.5rem;">{{ getEmoji(record.isActive) }}</span></td>
+                    <tr (click)="highlightRow(record.id)" (dblclick)="editRecord(record.id)" [attr.id]=record.id class="without-footer" style="height: 32px;">
+                        <td class="width-5"><span class="center no-left-padding" style="font-size: 0.5rem; padding-top: 0 !important;">{{ getEmoji(record.isActive) }}</span></td>
                         <td class="width-18"><span>{{ record.fromPort }}</span></td>
                         <td class="width-18"><span>{{ record.viaPort }}</span></td>
                         <td class="width-18"><span>{{ record.toPort }}</span></td>

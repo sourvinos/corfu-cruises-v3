@@ -19,9 +19,9 @@
                 </tr>
             </ng-template>
             <ng-template let-element pTemplate="body">
-                <tr (click)="highlightRow(element.id)" [attr.id]=element.id style="height: 32px;">
-                    <td class="width-2"><span class="no-left-padding center" style="padding-top: 7px !important;"><p-tableCheckbox [value]="element"></p-tableCheckbox></span></td>
-                    <td class="width-5"><span>{{ element.description }}</span></td>
+                <tr (click)="highlightRow(element.id)" [attr.id]=element.id class="without-footer" style="height: 32px;">
+                    <td class="width-2"><span class="no-left-padding center" style="padding-top: 5px !important;"><p-tableCheckbox [value]="element"></p-tableCheckbox></span></td>
+                    <td class="width-5"><span>{{ element.description | uppercase }}</span></td>
                 </tr>
             </ng-template>
         </p-table>

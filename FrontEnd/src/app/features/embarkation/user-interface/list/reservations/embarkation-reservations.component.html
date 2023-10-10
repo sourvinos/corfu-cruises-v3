@@ -128,10 +128,10 @@
                     </tr>
                 </ng-template>
                 <ng-template let-reservation pTemplate="body">
-                    <tr (click)="highlightRow(reservation.refNo)" (dblclick)="showPassengers(reservation)" [attr.id]=reservation.refNo style="height: 32px;">
+                    <tr (click)="highlightRow(reservation.refNo)" (dblclick)="showPassengers(reservation)" [attr.id]=reservation.refNo class="without-footer" style="height: 32px;">
                         <td class="width-4">
                             <span class="center">
-                                <span style="font-size: 0.5rem;">{{ getEmbarkationStatusIcon(reservation.embarkationStatus) }}</span>
+                                <span style="margin-top: -2px; font-size: 0.5rem;">{{ getEmbarkationStatusIcon(reservation.embarkationStatus) }}</span>
                                 <span class="no-display">{{ reservation.embarkationStatus.description }}</span>
                             </span>
                         </td>
@@ -141,17 +141,20 @@
                         <td class="width-6"><span class="center">{{ reservation.destination.abbreviation }}</span></td>
                         <td class="width-8"><span>{{ reservation.pickupPoint.description }}</span></td>
                         <td class="width-5">
-                            <span [class]="reservation.driver.description == '(EMPTY)' ? 'center' :''">
-                                {{ reservation.driver.description == "(EMPTY)" ? getEmoji('null') : reservation.driver.description }}
-                            </span>
+                            <span *ngIf="reservation.driver.description == '(EMPTY)'" class="center" style="font-size: 0.5rem; margin-top: 0; padding-top: 0 !important;">{{ getEmoji('null') }}</span>
+                            <span *ngIf="reservation.driver.description != '(EMPTY)'">{{ reservation.driver.description }}</span>
                         </td>
                         <td class="center width-5"><span class="center">{{ reservation.port.abbreviation }}</span></td>
-                        <td class="center width-5"><span class="center">{{ reservation.ship.abbreviation == "(EMPTY)" ? getEmoji('null') : reservation.ship.abbreviation }}</span></td>
+                        <td class="width-5">
+                            <span *ngIf="reservation.ship.description == '(EMPTY)'" class="center" style="font-size: 0.5rem; margin-top: 0; padding-top: 0 !important;">{{ getEmoji('null') }}</span>
+                            <span *ngIf="reservation.ship.description != '(EMPTY)'">{{ reservation.ship.description }}</span>
+                        </td>
+                        <!-- <td class="center width-5"><span class="center">{{ reservation.ship.abbreviation == "(EMPTY)" ? getEmoji('null') : reservation.ship.abbreviation }}</span></td> -->
                         <td class="width-3">
                             <span class="right">
                                 <span>{{ reservation.totalPax | replaceZero }}&nbsp;&nbsp;</span>
-                                <span *ngIf="reservation.totalPax - reservation.passengers.length == 0" class="" style="font-size: 0.5rem;">{{ getEmoji('green-box') }}</span>
-                                <span *ngIf="reservation.totalPax - reservation.passengers.length != 0" class="" style="font-size: 0.5rem;">{{ getEmoji('red-box') }}</span>
+                                <span *ngIf="reservation.totalPax - reservation.passengers.length == 0" class="" style="margin-top: -2px; font-size: 0.5rem;">{{ getEmoji('green-box') }}</span>
+                                <span *ngIf="reservation.totalPax - reservation.passengers.length != 0" class="" style="margin-top: -2px; font-size: 0.5rem;">{{ getEmoji('red-box') }}</span>
                             </span>
                         </td>
                         <td class="width-2">
