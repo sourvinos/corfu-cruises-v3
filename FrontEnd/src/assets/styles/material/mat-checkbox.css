@@ -48,7 +48,6 @@
     font-size: 0.8125rem;
     font-weight: 300;
     margin: 0.24rem 0 0 0;
-    transition: all var(--theme-delay) !important;
 }
 
 .mat-mdc-checkbox label .mat-icon.small {

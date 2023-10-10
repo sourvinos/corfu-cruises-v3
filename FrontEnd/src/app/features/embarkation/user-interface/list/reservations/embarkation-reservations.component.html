@@ -174,7 +174,7 @@
     </div>
 
     <div id="footer">
-        <button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" style="color: var(--color-text-reverse) !important" mat-icon-button>
+        <button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" mat-icon-button>
             <mat-icon class="material-icons-outlined">more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" class="primary">
@@ -223,7 +223,7 @@
 <ng-template #contextMenu>
     <button (click)="toggleRemarksRowVisibility()" mat-menu-item>
         <mat-checkbox [(ngModel)]="remarksRowVisibility">
-            <span class="checkbox-label">Εμφάνιση σχολίων σε ξεχωριστή γραμμή</span>
+            <span>Εμφάνιση σχολίων σε ξεχωριστή γραμμή</span>
         </mat-checkbox>
     </button>
 </ng-template>

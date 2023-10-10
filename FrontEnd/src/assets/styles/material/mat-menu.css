@@ -1,9 +1,19 @@
 .mat-mdc-menu-content {
     background-color: var(--color-background) !important;
 }
+
 .mat-mdc-menu-item:hover .mat-mdc-menu-item-text {
     background-color: var(--color-mat-menu-background-hover) !important;
     color: var(--color-mat-menu-text-hover) !important;
+}
+
+.mat-mdc-menu-item:hover .mat-mdc-menu-item-text .mat-mdc-checkbox span {
+    background-color: var(--color-mat-menu-background-hover) !important;
+    color: var(--color-mat-menu-text-hover) !important;
+}
+
+.mat-mdc-menu-item-text .mat-mdc-checkbox .mdc-form-field .mdc-checkbox .mdc-checkbox__background {
+    border-color: var(--color-text) !important;
 }
 
 .mat-mdc-menu-item-text {

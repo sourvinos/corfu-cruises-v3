@@ -12,7 +12,7 @@ import { TooltipService } from 'src/app/shared/services/tooltip.service'
 @Component({
     selector: 'language-menu',
     templateUrl: './language-menu.component.html',
-    styleUrls: ['../../../../assets/styles/custom/dropdown-menu.css', './language-menu.component.css']
+    styleUrls: ['./language-menu.component.css']
 })
 
 export class LanguageMenuComponent {
