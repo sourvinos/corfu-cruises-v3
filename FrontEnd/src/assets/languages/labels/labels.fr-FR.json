@@ -1432,6 +1432,10 @@
             {
                 "id": "createPdfButton",
                 "description": "Créer un PDF"
+            },
+            {
+                "id": "remarksOnNewLine",
+                "description": "Afficher les commentaires sur une ligne séparée"
             }
         ]
     },

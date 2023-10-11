@@ -1432,6 +1432,10 @@
             {
                 "id": "createPdfButton",
                 "description": "PDF erstellen"
+            },
+            {
+                "id": "remarksOnNewLine",
+                "description": "Kommentare in einer separaten Zeile anzeigen"
             }
         ]
     },

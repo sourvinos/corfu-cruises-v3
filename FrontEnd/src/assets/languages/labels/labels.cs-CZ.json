@@ -1432,6 +1432,10 @@
             {
                 "id": "createPdfButton",
                 "description": "Vytvořit PDF"
+            },
+            {
+                "id": "remarksOnNewLine",
+                "description": "Zobrazit komentáře na samostatném řádku"
             }
         ]
     },

@@ -1432,6 +1432,10 @@
             {
                 "id": "createPdfButton",
                 "description": "Δημιουργια PDF"
+            },
+            {
+                "id": "remarksOnNewLine",
+                "description": "Εμφάνιση σχολίων σε ξεχωριστή γραμμή"
             }
         ]
     },

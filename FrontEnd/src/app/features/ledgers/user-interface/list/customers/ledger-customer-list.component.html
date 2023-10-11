@@ -60,7 +60,7 @@
 <ng-template #contextMenu>
     <button (click)="toggleRemarksRowVisibility()" mat-menu-item>
         <mat-checkbox [(ngModel)]="remarksRowVisibility">
-            <span>Εμφάνιση σχολίων σε ξεχωριστή γραμμή</span>
+            <span>{{ getLabel('remarksOnNewLine') }}</span>
         </mat-checkbox>
     </button>
 </ng-template>
