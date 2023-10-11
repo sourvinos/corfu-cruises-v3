@@ -12,7 +12,7 @@ import { TooltipService } from '../../services/tooltip.service'
 @Component({
     selector: 'reservation-search',
     templateUrl: './reservation-search.component.html',
-    styleUrls: ['./reservation-search.component.css'],
+    styleUrls: ['./reservation-search.component.css']
 })
 
 export class ReservationSearchComponent {
