@@ -131,7 +131,7 @@
                     <tr (click)="highlightRow(reservation.refNo)" (dblclick)="showPassengers(reservation)" [attr.id]=reservation.refNo class="without-footer" style="height: 32px;">
                         <td class="width-4">
                             <span class="center">
-                                <span style="margin-top: -2px; font-size: 0.5rem;">{{ getEmbarkationStatusIcon(reservation.embarkationStatus) }}</span>
+                                <span style="margin-top: -0.125rem; font-size: 0.5rem;">{{ getEmbarkationStatusIcon(reservation.embarkationStatus) }}</span>
                                 <span class="no-display">{{ reservation.embarkationStatus.description }}</span>
                             </span>
                         </td>
@@ -152,13 +152,13 @@
                         <td class="width-3">
                             <span class="right">
                                 <span>{{ reservation.totalPax | replaceZero }}&nbsp;&nbsp;</span>
-                                <span *ngIf="reservation.totalPax - reservation.passengers.length == 0" class="" style="margin-top: -2px; font-size: 0.5rem;">{{ getEmoji('green-box') }}</span>
-                                <span *ngIf="reservation.totalPax - reservation.passengers.length != 0" class="" style="margin-top: -2px; font-size: 0.5rem;">{{ getEmoji('red-box') }}</span>
+                                <span *ngIf="reservation.totalPax - reservation.passengers.length == 0" class="" style="margin-top: -0.125rem; font-size: 0.5rem;">{{ getEmoji('green-box') }}</span>
+                                <span *ngIf="reservation.totalPax - reservation.passengers.length != 0" class="" style="margin-top: -0.125rem; font-size: 0.5rem;">{{ getEmoji('red-box') }}</span>
                             </span>
                         </td>
                         <td class="width-2">
                             <span class="center">
-                                <span *ngIf="hasRemarks(reservation.remarks)" (click)="showRemarks(reservation.remarks)" [ngClass]="hasRemarks(reservation.remarks)?'clickable':''" style="margin-top: -2px; font-size: 0.5rem;">{{ getEmoji('remarks') }}</span>
+                                <span *ngIf="hasRemarks(reservation.remarks)" (click)="showRemarks(reservation.remarks)" [ngClass]="hasRemarks(reservation.remarks)?'clickable':''" style="margin-top: -0.125rem; font-size: 0.5rem;">{{ getEmoji('remarks') }}</span>
                             </span>
                         </td>
                     </tr>

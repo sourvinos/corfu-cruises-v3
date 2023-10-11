@@ -138,7 +138,7 @@
                 </ng-template>
                 <ng-template let-reservation pTemplate="body">
                     <tr (click)="highlightRow(reservation.reservationId)" (dblclick)="editRecord(reservation.reservationId)" [attr.id]=reservation.reservationId class="without-footer" style="height: 32px;">
-                        <td class="width-3"><span class="no-left-padding center" style="padding-top: 4px !important;"><p-tableCheckbox (click)="calculateSelectedPax()" [value]="reservation"></p-tableCheckbox></span></td>
+                        <td class="width-3"><span class="no-left-padding center" style="padding-top: 0.25rem !important;"><p-tableCheckbox (click)="calculateSelectedPax()" [value]="reservation"></p-tableCheckbox></span></td>
                         <td class="width-5"><span class="center">{{ reservation.refNo }}</span></td>
                         <td class="width-8"><span>{{ reservation.ticketNo }}</span></td>
                         <td class="width-5"><span>{{ reservation.customer.description }}</span></td>
@@ -150,7 +150,7 @@
                         <td class="width-4">
                             <span class="right with-right-padding">
                                 <span>{{ reservation.passengerCount }} ({{ reservation.passengerDifference }})</span>
-                                <span style="font-size: 0.5rem; margin-top: -2px !important;">&nbsp;&nbsp;{{ showEmoji(reservation.passengerDifference) }}</span>
+                                <span style="font-size: 0.5rem; margin-top: -0.125rem !important;">&nbsp;&nbsp;{{ showEmoji(reservation.passengerDifference) }}</span>
                             </span>
                         </td>
                         <td class="width-5">

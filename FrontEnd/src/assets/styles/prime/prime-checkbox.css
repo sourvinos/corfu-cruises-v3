@@ -5,6 +5,10 @@
     margin-top: -0.3125rem;
 }
 
+.p-checkbox .p-checkbox-box:hover {
+    border-color: var(--color-text) !important;
+}
+
 .p-checkbox .p-checkbox-box .p-icon {
     color: var(--color-accent);
     transition: color var(--theme-delay);

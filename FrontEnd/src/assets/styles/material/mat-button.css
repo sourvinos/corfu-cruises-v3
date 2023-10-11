@@ -106,5 +106,5 @@ button .mat-mdc-menu-item-text .content {
 }
 
 button .mat-mdc-menu-item-text .content span {
-    margin: 3px 0 0 8px;
+    margin: 0.1875rem 0 0 0.5rem;
 }

@@ -1,0 +1,12 @@
+.mat-date-range-input-container {
+    justify-content: center !important;
+}
+
+.mat-date-range-input-end-wrapper {
+    flex-grow: 0 !important;
+}
+
+.mat-date-range-input-separator {
+    color: var(--color-text) !important;
+    transition: color var(--theme-delay) !important;
+}

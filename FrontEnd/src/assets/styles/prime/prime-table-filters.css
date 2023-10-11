@@ -41,7 +41,7 @@
 }
 
 .p-multiselect-panel {
-    background-color: var(--color-secondary);
+    background-color: var(--color-background);
     padding: 0.5rem 0.5rem 0.5rem 0 !important;
 }
 
@@ -55,15 +55,15 @@
     display: none;
 }
 
-.p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight, .p-multiselect-panel .p-multiselect-items .p-multiselect-item, .p-multiselect-panel .p-multiselect-items .p-multiselect-item:hover {
-    background-color: var(--color-secondary) !important;
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight, .p-multiselect-panel .p-multiselect-items .p-multiselect-item {
+    background-color: var(--color-background) !important;
     box-shadow: none !important;
     color: var(--color-text) !important;
     font-family: var(--font-family-asty);
     font-size: 0.75rem;
     font-size: var(--font-size-table-row);
     font-weight: 300;
-    padding: 0.375rem 0 0.375rem 0.375rem;
+    padding: 0.625rem 0.0625rem 0.375rem 0.5rem;
 }
 
 .p-multiselect-item > .p-checkbox > .p-checkbox-box {
@@ -71,11 +71,11 @@
 }
 
 .p-multiselect-panel .p-multiselect-items .p-multiselect-item:hover {
-    background-color: color-mix(in srgb, var(--color-primary) 30%, transparent) !important;
+    background-color: color-mix(in srgb, var(--color-secondary) 30%, transparent) !important;
 }
 
 .p-multiselect-option {
-    margin-top: 0.1875rem;
+    margin-top: -0.0625rem;
 }
 
 .p-multiselect-option span {
