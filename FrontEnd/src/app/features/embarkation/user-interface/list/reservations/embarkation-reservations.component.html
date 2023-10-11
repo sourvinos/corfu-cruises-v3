@@ -149,7 +149,6 @@
                             <span *ngIf="reservation.ship.description == '(EMPTY)'" class="center" style="font-size: 0.5rem; padding-top: 0 !important;">{{ getEmoji('null') }}</span>
                             <span *ngIf="reservation.ship.description != '(EMPTY)'">{{ reservation.ship.description }}</span>
                         </td>
-                        <!-- <td class="center width-5"><span class="center">{{ reservation.ship.abbreviation == "(EMPTY)" ? getEmoji('null') : reservation.ship.abbreviation }}</span></td> -->
                         <td class="width-3">
                             <span class="right">
                                 <span>{{ reservation.totalPax | replaceZero }}&nbsp;&nbsp;</span>
@@ -159,7 +158,7 @@
                         </td>
                         <td class="width-2">
                             <span class="center">
-                                <span (click)="showRemarks(reservation.remarks)" [ngClass]="hasRemarks(reservation.remarks)?'clickable':''" *ngIf="hasRemarks(reservation.remarks)">{{ getEmoji('remarks') }}</span>
+                                <span *ngIf="hasRemarks(reservation.remarks)" (click)="showRemarks(reservation.remarks)" [ngClass]="hasRemarks(reservation.remarks)?'clickable':''" style="margin-top: -2px; font-size: 0.5rem;">{{ getEmoji('remarks') }}</span>
                             </span>
                         </td>
                     </tr>
@@ -196,7 +195,8 @@
                 </div>
             </div>
             <div (click)="resetTableFilters()" class="pill reset-table-filter">
-                <mat-icon class="material-icons-outlined">filter_alt</mat-icon>
+                <mat-icon *ngIf="totalsFiltered[0]==totalsFiltered[1]" class="material-icons-outlined">filter_alt_off</mat-icon>
+                <mat-icon *ngIf="totalsFiltered[0]!=totalsFiltered[1]" class="material-icons-outlined">filter_alt</mat-icon>
                 <div class="right description">
                     <span>{{ totalsFiltered[0] | padNumber : 3 : ' ' }}</span>
                 </div>
@@ -223,7 +223,7 @@
 <ng-template #contextMenu>
     <button (click)="toggleRemarksRowVisibility()" mat-menu-item>
         <mat-checkbox [(ngModel)]="remarksRowVisibility">
-            <span>Εμφάνιση σχολίων σε ξεχωριστή γραμμή</span>
+            <span>{{ getLabel('remarksOnNewLine') }}</span>
         </mat-checkbox>
     </button>
 </ng-template>

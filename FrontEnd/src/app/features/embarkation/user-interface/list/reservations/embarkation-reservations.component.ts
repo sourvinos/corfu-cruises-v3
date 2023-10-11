@@ -23,7 +23,6 @@ import { MessageDialogService } from '../../../../../shared/services/message-dia
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
-import { environment } from 'src/environments/environment'
 
 @Component({
     selector: 'embarkation-reservations',
@@ -80,7 +79,7 @@ export class EmbarkationReservationsComponent {
         this.setTabTitle()
         this.doVirtualTableTasks()
         this.updateVariables()
-
+        this.updateTableWrapperHeight()
     }
 
     //#endregion
@@ -296,6 +295,10 @@ export class EmbarkationReservationsComponent {
         })
         x[2] = x[0] - x[1]
         this[totalsArray] = x
+    }
+
+    private updateTableWrapperHeight(): void {
+        document.getElementById('table-wrapper').style.height = document.getElementById('content').offsetHeight - 100 + 'px'
     }
 
     private updateVariables(): void {

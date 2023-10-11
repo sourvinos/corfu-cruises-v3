@@ -1192,7 +1192,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Embarkation"
+                "description": "Boarding"
             },
             {
                 "id": "filterPlaceholder",
@@ -1229,7 +1229,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Embarkation"
+                "description": "Boarding"
             },
             {
                 "id": "headerEmbarkationStatus",
@@ -1289,7 +1289,7 @@
             },
             {
                 "id": "boardedFilter",
-                "description": "EMBARKED"
+                "description": "BOARDED"
             },
             {
                 "id": "indeterminateFilter",
@@ -1313,7 +1313,7 @@
             },
             {
                 "id": "embarkAllPassengers",
-                "description": "EMBARK ALL"
+                "description": "BOARD ALL"
             },
             {
                 "id": "missingPassenger",
@@ -1326,6 +1326,10 @@
             {
                 "id": "okButton",
                 "description": "OK"
+            },
+            {
+                "id": "remarksOnNewLine",
+                "description": "Show comments on a separate line"
             }
         ]
     },
@@ -2061,11 +2065,11 @@
             },
             {
                 "id": "embarkationTitle",
-                "description": "Embarkation"
+                "description": "Boarding"
             },
             {
                 "id": "embarkationSubTitle",
-                "description": "Manage the entry of passengers on board."
+                "description": "Manage the boarding of passengers."
             },
             {
                 "id": "ledgersTitle",

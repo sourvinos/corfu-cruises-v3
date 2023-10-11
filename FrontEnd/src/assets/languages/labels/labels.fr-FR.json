@@ -1289,7 +1289,7 @@
             },
             {
                 "id": "boardedFilter",
-                "description": "EMBARQUER"
+                "description": "EMBARQUÉ"
             },
             {
                 "id": "indeterminateFilter",
@@ -1326,6 +1326,10 @@
             {
                 "id": "okButton",
                 "description": "OK"
+            },
+            {
+                "id": "remarksOnNewLine",
+                "description": "Afficher les commentaires sur une ligne séparée"
             }
         ]
     },
@@ -2065,7 +2069,7 @@
             },
             {
                 "id": "embarkationSubTitle",
-                "description": "Gérer l'entrée des passagers à bord."
+                "description": "Gérer l'embarquement des passagers."
             },
             {
                 "id": "ledgersTitle",

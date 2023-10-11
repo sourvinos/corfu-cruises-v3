@@ -1326,6 +1326,10 @@
             {
                 "id": "okButton",
                 "description": "OK"
+            },
+            {
+                "id": "remarksOnNewLine",
+                "description": "Εμφάνιση σχολίων σε ξεχωριστή γραμμή"
             }
         ]
     },
@@ -2218,7 +2222,7 @@
             },
             {
                 "id": "hint",
-                "description":"Πατήστε ENTER για να ξεκινήσει η αναζήτηση"
+                "description": "Πατήστε ENTER για να ξεκινήσει η αναζήτηση"
             }
         ]
     }
