@@ -2049,39 +2049,27 @@
         ]
     },
     {
-        "feature": "cardsMenu",
+        "feature": "honeycombMenu",
         "labels": [
             {
-                "id": "reservationsTitle",
+                "id": "reservations",
                 "description": "Reservations"
             },
             {
-                "id": "reservationsSubTitle",
-                "description": "Display the calendar and edit your reservations."
-            },
-            {
-                "id": "availabilityTitle",
+                "id": "availability",
                 "description": "Availability"
             },
             {
-                "id": "availabilitySubTitle",
-                "description": "Check the available seats for an excursion and make a new reservation."
-            },
-            {
-                "id": "embarkationTitle",
+                "id": "embarkation",
                 "description": "Boarding"
             },
             {
-                "id": "embarkationSubTitle",
-                "description": "Manage the boarding of passengers."
+                "id": "ledgers",
+                "description": "Customer ledgers"
             },
             {
-                "id": "ledgersTitle",
-                "description": "My ledger"
-            },
-            {
-                "id": "ledgersSubTitle",
-                "description": "Display your reservations for a time period."
+                "id": "schedule",
+                "description": "Schedule"
             }
         ]
     },

@@ -1,0 +1,21 @@
+:host {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.clickable {
+    outline: none !important;
+}
+
+.clickable:hover {
+    cursor: pointer;
+}
+
+.clickable > path {
+    transition: all 0.3s;
+    fill-opacity: 0.2 !important;
+}
+
+.clickable:hover > path {
+    fill-opacity: 0.9 !important;
+}

@@ -37,7 +37,7 @@ const appRoutes: Routes = [
     { path: 'pickupPoints', loadChildren: () => import('../features/pickupPoints/classes/modules/pickupPoint.module').then(m => m.PickupPointModule) },
     { path: 'ports', loadChildren: () => import('../features/ports/classes/modules/port.module').then(m => m.PortModule) },
     { path: 'registrars', loadChildren: () => import('../features/registrars/classes/modules/registrar.module').then(m => m.RegistrarModule) },
-    { path: 'schedules', loadChildren: () => import('../features/schedules/classes/modules/schedule.module').then(m => m.ScheduleModule) },
+    { path: 'schedule', loadChildren: () => import('../features/schedules/classes/modules/schedule.module').then(m => m.ScheduleModule) },
     { path: 'shipCrews', loadChildren: () => import('../features/shipCrews/classes/modules/shipCrew.module').then(m => m.ShipCrewModule) },
     { path: 'shipOwners', loadChildren: () => import('../features/shipOwners/classes/modules/shipOwner.module').then(m => m.ShipOwnerModule) },
     { path: 'shipRoutes', loadChildren: () => import('../features/shipRoutes/classes/modules/shipRoute.module').then(m => m.ShipRouteModule) },

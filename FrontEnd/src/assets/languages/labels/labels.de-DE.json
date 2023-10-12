@@ -2049,39 +2049,27 @@
         ]
     },
     {
-        "feature": "cardsMenu",
+        "feature": "honeycombMenu",
         "labels": [
             {
-                "id": "reservationsTitle",
-                "description": "Reservierung"
+                "id": "reservations",
+                "description": "Reservierungen"
             },
             {
-                "id": "reservationsSubTitle",
-                "description": "Zeigen Sie den Kalender an und bearbeiten Sie Ihre Reservierungen."
-            },
-            {
-                "id": "availabilityTitle",
+                "id": "availability",
                 "description": "Verfügbarkeit"
             },
             {
-                "id": "availabilitySubTitle",
-                "description": "Überprüfen Sie die verfügbaren Plätze und nehmen Sie eine neue Reservierung vor."
-            },
-            {
-                "id": "embarkationTitle",
+                "id": "embarkation",
                 "description": "Einschiffung"
             },
             {
-                "id": "embarkationSubTitle",
-                "description": "Verwalten Sie die Einreise von Passagieren an Bord."
+                "id": "ledgers",
+                "description": "Kundenbücher"
             },
             {
-                "id": "ledgersTitle",
-                "description": "Mein Hauptbuch"
-            },
-            {
-                "id": "ledgersSubTitle",
-                "description": "Zeigen Sie Ihre Reservierungen für einen bestimmten Zeitraum an."
+                "id": "schedule",
+                "description": "Zeitpläne"
             }
         ]
     },
