@@ -4,7 +4,7 @@ using Infrastructure;
 using Responses;
 using Xunit;
 
-namespace Embarkation {
+namespace Boarding {
 
     [Collection("Sequence")]
     public class Passengers02Put : IClassFixture<AppSettingsFixture> {
@@ -16,7 +16,7 @@ namespace Embarkation {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "patch";
         private readonly string _baseUrl;
-        private readonly string _url = "/embarkation/embarkPassengers?ignoreCurrentStatus=true&id=934&id=935";
+        private readonly string _url = "/Boarding/embarkPassengers?ignoreCurrentStatus=true&id=934&id=935";
 
         #endregion
 

@@ -25,7 +25,7 @@ const appRoutes: Routes = [
     { path: 'availability', loadChildren: () => import('../features/availability/classes/modules/availability.module').then(m => m.AvailabilityModule) },
     // Tasks menu
     { path: 'ledgers', loadChildren: () => import('../features/ledgers/classes/modules/ledger.module').then(m => m.LedgerModule) },
-    { path: 'embarkation', loadChildren: () => import('../features/embarkation/classes/modules/embarkation.module').then(m => m.EmbarkationModule) },
+    { path: 'boarding', loadChildren: () => import('../features/boarding/classes/modules/boarding.module').then(m => m.BoardingModule) },
     { path: 'manifest', loadChildren: () => import('../features/manifest/classes/modules/manifest.module').then(m => m.ManifestModule) },
     { path: 'statistics', loadChildren: () => import('../features/statistics/classes/modules/statistics.module').then(m => m.StatisticsModule) },
     // Tables menu

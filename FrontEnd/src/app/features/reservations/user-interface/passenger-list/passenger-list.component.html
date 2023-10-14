@@ -21,7 +21,7 @@
             <ng-template pTemplate="body" let-record>
                 <tr (click)="highlightRow(record.id)" (dblclick)="editRecord(record)" [attr.id]="record.id" [pSelectableRow]="record" style="height: 32px;">
                     <td class="width-4">
-                        <span class="center" style="font-size: 0.5rem; padding-top: 0 !important;">{{ getEmbarkationStatusIcon(record.isBoarded) }}</span>
+                        <span class="center" style="font-size: 0.5rem; padding-top: 0 !important;">{{ getBoardingStatusIcon(record.isBoarded) }}</span>
                     </td>
                     <td class="width-20"><span>{{ record.lastname }}</span></td>
                     <td class="width-20"><span>{{ record.firstname }}</span></td>

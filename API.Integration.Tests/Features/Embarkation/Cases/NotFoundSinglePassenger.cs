@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Embarkation {
+namespace Boarding {
 
     public class NotFoundSinglePassenger : IEnumerable<object[]> {
 

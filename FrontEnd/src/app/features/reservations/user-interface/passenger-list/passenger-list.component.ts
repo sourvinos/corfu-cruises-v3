@@ -52,7 +52,7 @@ export class PassengerListComponent {
         this.showPassengerForm(record)
     }
 
-    public getEmbarkationStatusIcon(status: boolean): string {
+    public getBoardingStatusIcon(status: boolean): string {
         return status ? this.getEmoji('green-box') : this.getEmoji('red-box')
     }
 

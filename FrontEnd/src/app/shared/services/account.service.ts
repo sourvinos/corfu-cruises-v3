@@ -67,7 +67,7 @@ export class AccountService extends HttpDataService {
             { 'item': 'toDate', 'when': 'always' },
             { 'item': 'dayCount', 'when': 'always' },
             // Criteria
-            { 'item': 'embarkation-criteria', 'when': 'production' },
+            { 'item': 'boarding-criteria', 'when': 'production' },
             { 'item': 'ledger-criteria', 'when': 'production' },
             { 'item': 'manifest-criteria', 'when': 'production' },
             // Table filters
@@ -87,7 +87,7 @@ export class AccountService extends HttpDataService {
             { 'item': 'userList-filters', 'when': 'always' }, { 'item': 'userList-id', 'when': 'always' }, { 'item': 'userList-scrollTop', 'when': 'always' },
             // Tasks filters
             { 'item': 'reservationList-filters', 'when': 'always' }, { 'item': 'reservationList-id', 'when': 'always' }, { 'item': 'reservationList-scrollTop', 'when': 'always' },
-            { 'item': 'embarkationList-filters', 'when': 'always' }, { 'item': 'embarkationList-id', 'when': 'always' }, { 'item': 'embarkationList-scrollTop', 'when': 'always' },
+            { 'item': 'boardingList-filters', 'when': 'always' }, { 'item': 'boardingList-id', 'when': 'always' }, { 'item': 'boardingList-scrollTop', 'when': 'always' },
             { 'item': 'ledgerList-filters', 'when': 'always' }, { 'item': 'ledgerList-id', 'when': 'always' }, { 'item': 'ledgerList-scrollTop', 'when': 'always' }
         ])
     }

@@ -1,9 +1,9 @@
 using API.Features.Availability;
+using API.Features.Boarding;
 using API.Features.CoachRoutes;
 using API.Features.Customers;
 using API.Features.Destinations;
 using API.Features.Drivers;
-using API.Features.Embarkation;
 using API.Features.Genders;
 using API.Features.Ledger;
 using API.Features.Manifest;
@@ -47,7 +47,7 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IShipRouteRepository, ShipRouteRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             // Tasks
-            services.AddTransient<IEmbarkationRepository, EmbarkationRepository>();
+            services.AddTransient<IBoardingRepository, BoardingRepository>();
             services.AddTransient<ILedgerRepository, LedgerRepository>();
             services.AddTransient<IManifestRepository, ManifestRepository>();
             // Reservations - Availability

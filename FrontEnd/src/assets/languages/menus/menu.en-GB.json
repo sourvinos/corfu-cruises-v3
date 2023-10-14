@@ -68,8 +68,8 @@
         "description": "Users"
     },
     {
-        "id": "tasks-embarkation",
-        "description": "Embarkation"
+        "id": "tasks-boarding",
+        "description": "Boarding"
     },
     {
         "id": "tasks-manifest",

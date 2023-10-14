@@ -1,11 +1,11 @@
 using Infrastructure;
 
-namespace Embarkation {
+namespace Boarding {
 
     public class TestPassenger : ITestEntity {
 
         public int Id { get; set; }
-        
+
     }
 
 }

@@ -1,6 +1,6 @@
-namespace Embarkation {
+namespace Boarding {
 
-    public class TestEmbarkationCriteria {
+    public class TestBoardingCriteria {
 
         public string Date { get; set; }
         public int[] DestinationIds { get; set; }

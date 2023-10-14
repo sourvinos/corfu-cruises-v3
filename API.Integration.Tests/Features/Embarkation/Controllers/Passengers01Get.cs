@@ -2,13 +2,13 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using API.Features.Embarkation;
+using API.Features.Boarding;
 using Cases;
 using Infrastructure;
 using Responses;
 using Xunit;
 
-namespace Embarkation {
+namespace Boarding {
 
     [Collection("Sequence")]
     public class Passengers01Get : IClassFixture<AppSettingsFixture> {
@@ -20,7 +20,7 @@ namespace Embarkation {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "post";
         private readonly string _baseUrl;
-        private readonly string _url = "/embarkation";
+        private readonly string _url = "/Boarding";
 
         #endregion
 
@@ -47,16 +47,16 @@ namespace Embarkation {
         }
 
         [Theory]
-        [ClassData(typeof(CreateEmbarkationCriteria))]
-        public async Task Simple_Users_Can_Not_List(TestEmbarkationCriteria criteria) {
+        [ClassData(typeof(CreateBoardingCriteria))]
+        public async Task Simple_Users_Can_Not_List(TestBoardingCriteria criteria) {
             await Forbidden.Action(_httpClient, _baseUrl, _url, _actionVerb, "simpleuser", "1234567890", criteria);
         }
 
         [Theory]
-        [ClassData(typeof(CreateEmbarkationCriteria))]
-        public async Task Admins_Can_List(TestEmbarkationCriteria criteria) {
+        [ClassData(typeof(CreateBoardingCriteria))]
+        public async Task Admins_Can_List(TestBoardingCriteria criteria) {
             var actionResponse = await ListByPost.Action(_httpClient, _baseUrl, _url, "john", "Ec11fc8c16db#", criteria);
-            var records = JsonSerializer.Deserialize<EmbarkationFinalGroupVM>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            var records = JsonSerializer.Deserialize<BoardingFinalGroupVM>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             Assert.Equal(70, records.TotalPax);
             Assert.Equal(68, records.EmbarkedPassengers);
             Assert.Equal(28, records.Reservations.Count());

@@ -1188,7 +1188,7 @@
         ]
     },
     {
-        "feature": "embarkationCriteria",
+        "feature": "boardingCriteria",
         "labels": [
             {
                 "id": "header",
@@ -1225,14 +1225,14 @@
         ]
     },
     {
-        "feature": "embarkationList",
+        "feature": "boardingList",
         "labels": [
             {
                 "id": "header",
                 "description": "Embarquement"
             },
             {
-                "id": "headerEmbarkationStatus",
+                "id": "headerBoardingStatus",
                 "description": "S"
             },
             {

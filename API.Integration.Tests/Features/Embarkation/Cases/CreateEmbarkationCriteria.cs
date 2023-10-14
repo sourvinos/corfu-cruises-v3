@@ -1,19 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Embarkation {
+namespace Boarding
+{
 
-    public class CreateEmbarkationCriteria : IEnumerable<object[]> {
+    public class CreateBoardingCriteria : IEnumerable<object[]>
+    {
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        public IEnumerator<object[]> GetEnumerator() {
+        public IEnumerator<object[]> GetEnumerator()
+        {
             yield return Criteria();
         }
 
-        private static object[] Criteria() {
+        private static object[] Criteria()
+        {
             return new object[] {
-                new TestEmbarkationCriteria {
+                new TestBoardingCriteria {
                     Date = "2022-05-01",
                     DestinationIds = new int[] {1, 2, 3},
                     PortIds = new int[] {1},
