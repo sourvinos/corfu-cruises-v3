@@ -2060,7 +2060,7 @@
                 "description": "Dostupnost"
             },
             {
-                "id": "embarkation",
+                "id": "boarding",
                 "description": "Nalodění"
             },
             {
@@ -2068,7 +2068,7 @@
                 "description": "Knihy zákazníků"
             },
             {
-                "id": "schedule",
+                "id": "schedules",
                 "description": "Rozvrhy"
             }
         ]

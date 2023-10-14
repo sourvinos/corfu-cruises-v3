@@ -2060,7 +2060,7 @@
                 "description": "Verfügbarkeit"
             },
             {
-                "id": "embarkation",
+                "id": "boarding",
                 "description": "Einschiffung"
             },
             {
@@ -2068,7 +2068,7 @@
                 "description": "Kundenbücher"
             },
             {
-                "id": "schedule",
+                "id": "schedules",
                 "description": "Zeitpläne"
             }
         ]

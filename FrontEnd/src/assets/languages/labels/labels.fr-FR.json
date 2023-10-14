@@ -2060,7 +2060,7 @@
                 "description": "Disponibilité"
             },
             {
-                "id": "embarkation",
+                "id": "boarding",
                 "description": "Embarquement"
             },
             {
@@ -2068,7 +2068,7 @@
                 "description": "Registres des clients"
             },
             {
-                "id": "schedule",
+                "id": "schedules",
                 "description": "Horaires"
             }
         ]

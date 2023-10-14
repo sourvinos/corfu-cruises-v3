@@ -2060,7 +2060,7 @@
                 "description": "Availability"
             },
             {
-                "id": "embarkation",
+                "id": "boarding",
                 "description": "Boarding"
             },
             {
@@ -2068,8 +2068,8 @@
                 "description": "Customer ledgers"
             },
             {
-                "id": "schedule",
-                "description": "Schedule"
+                "id": "schedules",
+                "description": "Schedules"
             }
         ]
     },

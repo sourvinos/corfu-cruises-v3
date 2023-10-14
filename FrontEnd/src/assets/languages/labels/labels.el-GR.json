@@ -2060,7 +2060,7 @@
                 "description": "Διαθεσιμότητα"
             },
             {
-                "id": "embarkation",
+                "id": "boarding",
                 "description": "Επιβίβαση"
             },
             {
@@ -2068,7 +2068,7 @@
                 "description": "Καρτέλες πελατών"
             },
             {
-                "id": "schedule",
+                "id": "schedules",
                 "description": "Πρόγραμμα"
             }
         ]

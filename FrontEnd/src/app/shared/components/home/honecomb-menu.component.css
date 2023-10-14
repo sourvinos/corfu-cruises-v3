@@ -3,19 +3,20 @@
     justify-content: flex-end;
 }
 
-.clickable {
-    outline: none !important;
+.honeycomb {
+    outline: 0 !important;
+}
+
+.honeycomb > path {
+    fill: var(--color-honeycomb) !important;
+    outline: 0 !important;
+    transition: fill var(--theme-delay) !important;
 }
 
 .clickable:hover {
     cursor: pointer;
 }
 
-.clickable > path {
-    transition: all 0.3s;
-    fill-opacity: 0.2 !important;
-}
-
-.clickable:hover > path {
-    fill-opacity: 0.9 !important;
+.clickable:focus {
+    outline: 0 !important;
 }
