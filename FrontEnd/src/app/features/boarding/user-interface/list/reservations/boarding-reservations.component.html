@@ -195,8 +195,8 @@
                 </div>
             </div>
             <div (click)="resetTableFilters()" class="pill reset-table-filter">
-                <mat-icon *ngIf="totalsFiltered[0]==totalsFiltered[1]" class="material-icons-outlined">filter_alt_off</mat-icon>
-                <mat-icon *ngIf="totalsFiltered[0]!=totalsFiltered[1]" class="material-icons-outlined">filter_alt</mat-icon>
+                <mat-icon *ngIf="totals[0]==totalsFiltered[0]" class="material-icons-outlined">filter_alt</mat-icon>
+                <mat-icon *ngIf="totals[0]!=totalsFiltered[0]" class="material-icons-outlined">filter_alt_off</mat-icon>
                 <div class="right description">
                     <span>{{ totalsFiltered[0] | padNumber : 3 : ' ' }}</span>
                 </div>
