@@ -1,7 +1,8 @@
-import { Component, Input, ViewChild } from '@angular/core'
+import { Component, Inject, Input, ViewChild } from '@angular/core'
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexStroke, ApexXAxis, ChartComponent } from 'ng-apexcharts'
 // Custom
 import { StatisticsVM } from '../classes/view-models/statistics-vm'
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
 
 export type chartOptions = {
     series: ApexAxisChartSeries;
@@ -29,19 +30,45 @@ export class GraphComponent {
     public feature = 'statistics'
     public totals: StatisticsVM
 
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<GraphComponent>) { }
 
+    ngOnInit(): void {
+        this.buildGraph()
+    }
 
-    constructor() {
+    private getTotals(): void {
+        this.totals = this.array[this.array.length - 1]
+    }
+
+    private removeTotalsFromArray(): void {
+        this.array.pop()
+    }
+
+    public calculateNoShowPerRow(): void {
+        this.array.forEach(element => {
+            element.noShow = element.pax - element.actualPax
+        })
+    }
+
+    private buildMe(property: any): number[] {
+        const x = []
+        this.data.forEach(element => {
+            x.push(element[property])
+        })
+        return x
+    }
+
+    private buildGraph(): void {
+        console.log(this.data)
         this.chartOptions = {
             series: [
                 {
-                    name: 'serie1',
-                    data: [44, 55, 41, 64, 22, 43, 21]
+                    name: 'actualPax',
+                    data: this.buildMe('actualPax')
                 },
                 {
-                    name: 'serie2',
-
-                    data: [53, 32, 33, 52, 13, 44, 32]
+                    name: 'noShow',
+                    data: this.buildMe('noShow')
                 }
             ],
             chart: {
@@ -70,8 +97,9 @@ export class GraphComponent {
                 colors: ['#fff']
             },
             xaxis: {
-                categories: [2001, 2002, 2003, 2004, 2005, 2006, 2007]
+                categories: this.buildMe('description')
             }
         }
     }
+
 }

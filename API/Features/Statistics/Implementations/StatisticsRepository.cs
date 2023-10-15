@@ -62,7 +62,7 @@ namespace API.Features.Statistics {
             var x = context.Reservations
                 .AsNoTracking()
                 .Include(x => x.Passengers)
-                .Where(x => x.Date >= new DateTime(year, 5, 1) && x.Date <= new DateTime(year, 5, 1) && x.DriverId != null)
+                .Where(x => x.Date >= new DateTime(year, 1, 1) && x.Date <= new DateTime(year, DateHelpers.GetLocalDateTime().Month, DateHelpers.GetLocalDateTime().Day))
                 .GroupBy(x => new { x.Customer.Id, x.Customer.Description })
                 .OrderBy(x => x.Key.Description)
                 .Select(x => new StatisticsVM {
