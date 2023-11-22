@@ -20,8 +20,8 @@ const routes: Routes = [
             drivers: DriversResolver,
             ports: PortsResolver,
             ships: ShipsResolver,
-            nationalities:NationalitiesResolver
-        }
+            nationalities: NationalitiesResolver
+        },
     }
 ]
 

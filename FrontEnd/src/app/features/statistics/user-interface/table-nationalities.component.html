@@ -17,8 +17,8 @@
     </ng-template>
     <ng-template let-record pTemplate="body">
         <tr style="height: 32px;">
-            <td class="align-vertical ">
-                <span class="flag" style="width: 100%;">
+            <td class="align-vertical">
+                <span class="flag fill" style="width: 100%; --fill: {{ record.percentage }}%;">
                     <img [src]="getNationalityIcon(record.code)" class="flag-with-border" />
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;{{ record.description }}</span>
                 </span>

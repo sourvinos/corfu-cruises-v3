@@ -17,7 +17,7 @@
     </ng-template>
     <ng-template let-record pTemplate="body">
         <tr style="height: 32px;">
-            <td class=""><span>{{ record.description }}</span></td>
+            <td><span class="fill" style="--fill: {{ record.percentage }}%;">{{ record.description }}</span></td>
             <td class=""><span class="monotype right with-right-padding">{{ formatNumberToLocale(record.pax) }}</span></td>
             <td class=""><span class="monotype right with-right-padding">{{ formatNumberToLocale(record.actualPax) }}</span></td>
             <td class=""><span class="monotype right with-right-padding">{{ record.percentage }}</span></td>
@@ -34,7 +34,3 @@
         </tr>
     </ng-template>
 </p-table>
-
-<button (click)="doTasks()" class="fab fab-with-no-background" mat-icon-button>
-    <mat-icon class="material-icons-outlined">equalizer</mat-icon>
-</button>
