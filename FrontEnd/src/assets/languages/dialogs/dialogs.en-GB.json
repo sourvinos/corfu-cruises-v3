@@ -127,6 +127,10 @@
                 "message": "Shall we delete this record?"
             },
             {
+                "id": "confirmLogout",
+                "message": "Please confirm that you want to logout!"
+            },
+            {
                 "id": "passwordCanBeChangedOnlyByAccountOwner",
                 "message": "The password can be changed only by the owner of the account."
             },

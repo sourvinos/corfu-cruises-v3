@@ -127,6 +127,10 @@
                 "message": "Να διαγράψουμε την εγγραφή;"
             },
             {
+                "id": "confirmLogout",
+                "message": "Επιβεβαιώστε ότι θέλετε να αποσυνδεθείτε!"
+            },
+            {
                 "id": "passwordCanBeChangedOnlyByAccountOwner",
                 "message": "Ο κωδικός μπορεί να αλλάξει μόνο από τον κάτοχο του λογαριασμού."
             },

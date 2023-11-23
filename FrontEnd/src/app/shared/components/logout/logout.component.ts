@@ -2,8 +2,10 @@ import { Component } from '@angular/core'
 import { Menu } from 'src/app/shared/classes/menu'
 // Custom
 import { AccountService } from 'src/app/shared/services/account.service'
+import { DialogService } from '../../services/modal-dialog.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
+import { MessageDialogService } from '../../services/message-dialog.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { TooltipService } from 'src/app/shared/services/tooltip.service'
 
@@ -21,7 +23,7 @@ export class LogoutComponent {
 
     //#endregion
 
-    constructor(private accountService: AccountService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private sessionStorageService: SessionStorageService, private tooltipService: TooltipService) { }
+    constructor(private accountService: AccountService, private dialogService: DialogService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private sessionStorageService: SessionStorageService, private tooltipService: TooltipService) { }
 
     //#region lifecycle hooks
 
@@ -45,8 +47,10 @@ export class LogoutComponent {
         return this.sessionStorageService.getItem('userId') ? true : false
     }
 
-    public onLogout(): void {
-        this.accountService.logout()
+    public onLogoutRequest(): void {
+        this.dialogService.open(this.messageDialogService.confirmLogout(), 'warning', ['abort', 'ok']).subscribe(response => {
+            response ? this.accountService.logout() : null
+        })
     }
 
     //#endregion

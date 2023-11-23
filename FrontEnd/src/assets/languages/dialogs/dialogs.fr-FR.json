@@ -127,6 +127,10 @@
                 "message": "Devons-nous supprimer cette entrée?"
             },
             {
+                "id": "confirmLogout",
+                "message": "Veuillez confirmer que vous souhaitez vous déconnecter!"
+            },
+            {
                 "id": "passwordCanBeChangedOnlyByAccountOwner",
                 "message": "Le mot de passe ne peut être modifié que par le propriétaire du compte."
             },

@@ -62,6 +62,7 @@ export class MessageDialogService {
     public featureNotAvailable(): string { return this.getDescription(this.feature, 'featureNotAvailable') }
     public success(): string { return this.getDescription(this.feature, 'success') }
     public confirmDelete(): string { return this.getDescription(this.feature, 'warning') }
+    public confirmLogout(): string { return this.getDescription(this.feature, 'confirmLogout') }
     public askToRefreshCalendar(): string { return this.getDescription(this.feature, 'askToRefreshCalendar') }
     public resolutionWarning(): string { return this.getDescription(this.feature, 'resolutionWarning') }
     public reservationNotFound(): string { return this.getDescription(this.feature, 'reservationNotFound') }

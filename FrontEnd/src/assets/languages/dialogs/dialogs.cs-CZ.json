@@ -127,6 +127,10 @@
                 "message": "Máme tento záznam smazat?"
             },
             {
+                "id": "confirmLogout",
+                "message": "Potvrďte, že se chcete odhlásit!"
+            },
+            {
                 "id": "passwordCanBeChangedOnlyByAccountOwner",
                 "message": "Heslo může změnit pouze vlastník účtu."
             },
