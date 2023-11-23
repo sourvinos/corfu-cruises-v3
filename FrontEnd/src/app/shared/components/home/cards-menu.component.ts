@@ -6,21 +6,21 @@ import { SessionStorageService } from '../../services/session-storage.service'
 import { environment } from 'src/environments/environment'
 
 @Component({
-    selector: 'honecomb-menu',
-    templateUrl: './honecomb-menu.component.html',
-    styleUrls: ['./honecomb-menu.component.css']
+    selector: 'cards-menu',
+    templateUrl: './cards-menu.component.html',
+    styleUrls: ['./cards-menu.component.css']
 })
 
-export class HonecombMenuComponent {
+export class CardsMenuComponent {
 
     //#region variables
 
-    public feature = 'honeycombMenu'
+    public feature = 'cardsMenu'
     public imgIsLoaded = false
 
     //#endregion
 
-    constructor(private sessionStorageService: SessionStorageService, private cryptoService: CryptoService, private messageLabelService: MessageLabelService) { }
+    constructor(private cryptoService: CryptoService, private messageLabelService: MessageLabelService, private sessionStorageService: SessionStorageService) { }
 
     //#region public methods
 

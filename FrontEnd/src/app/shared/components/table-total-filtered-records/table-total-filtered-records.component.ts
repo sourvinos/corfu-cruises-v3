@@ -1,6 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
-// Custom
-import { environment } from 'src/environments/environment'
 
 @Component({
     selector: 'table-total-filtered-records',

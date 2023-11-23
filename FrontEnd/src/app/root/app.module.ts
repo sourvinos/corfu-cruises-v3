@@ -11,8 +11,8 @@ import { LoginModule } from '../features/login/classes/modules/login.module'
 import { PrimeNgModule } from '../shared/modules/primeng.module'
 import { SharedModule } from 'src/app/shared/modules/shared.module'
 // Components
+import { CardsMenuComponent } from '../shared/components/home/cards-menu.component'
 import { HomeComponent } from '../shared/components/home/home.component'
-import { HonecombMenuComponent } from '../shared/components/home/honecomb-menu.component'
 import { LogoutComponent } from '../shared/components/logout/logout.component'
 import { ParametersMenuComponent } from '../shared/components/parameters-menu/parameters-menu.component'
 import { ReservationSearchComponent } from '../shared/components/reservation-search/reservation-search.component'
@@ -28,7 +28,7 @@ import { InterceptorService } from '../shared/services/interceptor.service'
     declarations: [
         AppComponent,
         HomeComponent,
-        HonecombMenuComponent,
+        CardsMenuComponent,
         LogoutComponent,
         ParametersMenuComponent,
         ReservationSearchComponent,

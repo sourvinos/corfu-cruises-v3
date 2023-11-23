@@ -21,7 +21,6 @@ import { ReservationListOverbookedDestinationVM } from '../../classes/view-model
 import { ReservationListVM } from '../../classes/view-models/list/reservation-list-vm'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
-import { environment } from 'src/environments/environment'
 
 @Component({
     selector: 'reservation-list',
