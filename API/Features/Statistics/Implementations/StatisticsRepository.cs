@@ -142,6 +142,22 @@ namespace API.Features.Statistics {
             return x;
         }
 
+        public IEnumerable<StatisticsUserVM> GetPerUser(int year) {
+            var x = context.Reservations
+                .AsNoTracking()
+                .Where(x => x.Date >= new DateTime(year, 1, 1) && x.Date <= new DateTime(year, DateHelpers.GetLocalDateTime().Month, DateHelpers.GetLocalDateTime().Day))
+                .GroupBy(x => new { x.Date.Year, x.PostUser })
+                .Select(x => new StatisticsUserVM {
+                    PostUser = x.Key.PostUser,
+                    Reservations = x.Count()
+                }).OrderByDescending(x => x.Reservations).ToList();
+            x.Add(new StatisticsUserVM {
+                PostUser = "",
+                Reservations = x.Count
+            });
+            return x;
+        }
+
         public IEnumerable<StatisticsNationalityVM> GetPerNationality(int year) {
             var x = context.Reservations
                 .AsNoTracking()

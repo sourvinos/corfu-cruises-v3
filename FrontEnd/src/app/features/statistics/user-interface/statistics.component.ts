@@ -2,6 +2,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { Component } from '@angular/core'
 // Custom
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
+import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { ListResolved } from 'src/app/shared/classes/list-resolved'
 import { Menu } from 'src/app/shared/classes/menu'
@@ -38,11 +39,13 @@ export class StatisticsComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dialogService: DialogService, private interactionService: InteractionService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService, private tooltipService: TooltipService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dialogService: DialogService, private helperService: HelperService, private interactionService: InteractionService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService, private tooltipService: TooltipService) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
+        this.setTabTitle()
+        this.subscribeToInteractionService()
         this.getRecords('ytd')
         this.getRecords('customers')
         this.getRecords('destinations')
@@ -117,6 +120,16 @@ export class StatisticsComponent {
 
     private goBack(): void {
         this.router.navigate([this.parentUrl])
+    }
+
+    private setTabTitle(): void {
+        this.helperService.setTabTitle(this.feature)
+    }
+
+    private subscribeToInteractionService(): void {
+        this.interactionService.refreshTabTitle.subscribe(() => {
+            this.setTabTitle()
+        })
     }
 
     private subscribeToTooltipLanguageChanges(): void {

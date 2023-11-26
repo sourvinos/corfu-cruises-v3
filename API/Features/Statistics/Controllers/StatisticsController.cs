@@ -59,6 +59,12 @@ namespace API.Features.Statistics {
             return statisticsRepo.GetPerNationality(year);
         }
 
+        [HttpGet("users/year/{year}")]
+        [Authorize(Roles = "admin")]
+        public IEnumerable<StatisticsUserVM> GetPerUser([FromRoute] int year) {
+            return statisticsRepo.GetPerUser(year);
+        }
+
     }
 
 }
