@@ -21,7 +21,7 @@ const routes: Routes = [
             ports: PortsResolver,
             ships: ShipsResolver,
             nationalities: NationalitiesResolver
-        },
+        }, runGuardsAndResolvers: 'always'
     }
 ]
 

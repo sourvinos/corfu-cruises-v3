@@ -34,5 +34,9 @@
     {
         "id": "myAccount",
         "description": "Můj účet"
+    },
+    {
+        "id": "gotoCurrentYear",
+        "description": "Přejít na aktuální rok"
     }
 ]

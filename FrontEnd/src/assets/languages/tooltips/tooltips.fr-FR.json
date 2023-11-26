@@ -34,5 +34,9 @@
     {
         "id": "myAccount",
         "description": "Mon compte"
+    },
+    {
+        "id": "gotoCurrentYear",
+        "description": "Aller à l'année en cours"
     }
 ]

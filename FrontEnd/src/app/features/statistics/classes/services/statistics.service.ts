@@ -13,7 +13,7 @@ export class StatisticsService extends HttpDataService {
         super(httpClient, environment.apiUrl + '/statistics')
     }
 
-    public getStatistics(year: number, table: string): Observable<any> {
+    public getStatistics(year: string, table: string): Observable<any> {
         return this.http.get<any>(environment.apiUrl + '/statistics/' + table + '/year/' + year)
     }
 

@@ -3,16 +3,17 @@ import { Observable, of } from 'rxjs'
 import { catchError, map } from 'rxjs/operators'
 // Custom
 import { ListResolved } from 'src/app/shared/classes/list-resolved'
+import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { StatisticsService } from '../services/statistics.service'
 
 @Injectable({ providedIn: 'root' })
 
 export class YTDResolver {
 
-    constructor(private statisticsService: StatisticsService) { }
+    constructor(private sessionStorageService: SessionStorageService, private statisticsService: StatisticsService) { }
 
     resolve(): Observable<ListResolved> {
-        return this.statisticsService.getStatistics(2023, 'ytd').pipe(
+        return this.statisticsService.getStatistics(this.sessionStorageService.getItem('selectedYear'), 'ytd').pipe(
             map((statistics) => new ListResolved(statistics)),
             catchError((err: any) => of(new ListResolved(null, err)))
         )

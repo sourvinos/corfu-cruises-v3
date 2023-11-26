@@ -88,7 +88,9 @@ export class AccountService extends HttpDataService {
             // Tasks filters
             { 'item': 'reservationList-filters', 'when': 'always' }, { 'item': 'reservationList-id', 'when': 'always' }, { 'item': 'reservationList-scrollTop', 'when': 'always' },
             { 'item': 'boardingList-filters', 'when': 'always' }, { 'item': 'boardingList-id', 'when': 'always' }, { 'item': 'boardingList-scrollTop', 'when': 'always' },
-            { 'item': 'ledgerList-filters', 'when': 'always' }, { 'item': 'ledgerList-id', 'when': 'always' }, { 'item': 'ledgerList-scrollTop', 'when': 'always' }
+            { 'item': 'ledgerList-filters', 'when': 'always' }, { 'item': 'ledgerList-id', 'when': 'always' }, { 'item': 'ledgerList-scrollTop', 'when': 'always' },
+            // Statistics
+            { 'item': 'selectedYear', 'when': 'always' },
         ])
     }
 
@@ -118,6 +120,7 @@ export class AccountService extends HttpDataService {
             this.setDotNetVersion(response)
             this.setAuthSettings(response)
             this.populateDexieFromAPI()
+            this.setSelectedYear()
             this.refreshMenus()
         }))
     }
@@ -168,6 +171,10 @@ export class AccountService extends HttpDataService {
 
     private setDotNetVersion(response: any): void {
         DotNetVersion.version = response.dotNetVersion
+    }
+
+    private setSelectedYear(): void {
+        this.sessionStorageService.saveItem('selectedYear', new Date().getFullYear().toString())
     }
 
     private setUserData(response: any): void {
