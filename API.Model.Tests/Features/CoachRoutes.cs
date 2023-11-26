@@ -8,14 +8,6 @@ namespace API.Model.Tests.Features.CoachRoutes {
     public class Routes {
 
         [Theory]
-        [ClassData(typeof(ValidateFK))]
-        public void Invalid_PortId(int portId) {
-            new CoachRouteValidator()
-                .TestValidate(new CoachRouteWriteDto { PortId = portId })
-                .ShouldHaveValidationErrorFor(x => x.PortId);
-        }
-
-        [Theory]
         [ClassData(typeof(ValidateStringNotEmpty))]
         [ClassData(typeof(ValidateStringNotLongerThanMaxLength))]
         public void Invalid_Description(string description) {

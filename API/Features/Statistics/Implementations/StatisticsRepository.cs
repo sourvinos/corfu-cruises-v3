@@ -28,7 +28,7 @@ namespace API.Features.Statistics {
                 .Select(x => new StatisticsVM {
                     Pax = x.Sum(x => x.TotalPax),
                     ActualPax = x.Sum(x => x.Passengers.Where(x => x.IsBoarded == true).Count()),
-                }).ToList();
+                }).OrderByDescending(x => x.ActualPax).ToList();
             x.Add(new StatisticsVM {
                 Description = "",
                 Pax = x.Sum(x => x.Pax),
@@ -49,7 +49,7 @@ namespace API.Features.Statistics {
                     Description = x.Key.Description,
                     Pax = x.Sum(x => x.TotalPax),
                     ActualPax = x.Sum(x => x.Passengers.Where(x => x.IsBoarded == true).Count()),
-                }).ToList();
+                }).OrderByDescending(x => x.ActualPax).ToList();
             x.Add(new StatisticsVM {
                 Description = "",
                 Pax = x.Sum(x => x.Pax),
@@ -70,7 +70,7 @@ namespace API.Features.Statistics {
                     Description = x.Key.Description,
                     Pax = x.Sum(x => x.TotalPax),
                     ActualPax = x.Sum(x => x.Passengers.Where(x => x.IsBoarded == true).Count())
-                }).ToList();
+                }).OrderByDescending(x => x.ActualPax).ToList();
             x.Add(new StatisticsVM {
                 Description = "",
                 Pax = x.Sum(x => x.Pax),
@@ -91,7 +91,7 @@ namespace API.Features.Statistics {
                     Description = x.Key.Description,
                     Pax = x.Sum(x => x.TotalPax),
                     ActualPax = x.Sum(x => x.Passengers.Where(x => x.IsBoarded == true).Count()),
-                }).ToList();
+                }).OrderByDescending(x => x.ActualPax).ToList();
             x.Add(new StatisticsVM {
                 Description = "",
                 Pax = x.Sum(x => x.Pax),
@@ -112,7 +112,7 @@ namespace API.Features.Statistics {
                     Description = x.Key.Description,
                     Pax = x.Sum(x => x.TotalPax),
                     ActualPax = x.Sum(x => x.Passengers.Where(x => x.IsBoarded == true).Count()),
-                }).ToList();
+                }).OrderByDescending(x => x.ActualPax).ToList();
             x.Add(new StatisticsVM {
                 Description = "",
                 Pax = x.Sum(x => x.Pax),
@@ -133,7 +133,7 @@ namespace API.Features.Statistics {
                     Description = x.Key.Description,
                     Pax = x.Sum(x => x.TotalPax),
                     ActualPax = x.Sum(x => x.Passengers.Where(x => x.IsBoarded == true).Count()),
-                }).ToList();
+                }).OrderByDescending(x => x.ActualPax).ToList();
             x.Add(new StatisticsVM {
                 Description = "",
                 Pax = x.Sum(x => x.Pax),
@@ -156,7 +156,7 @@ namespace API.Features.Statistics {
                     Description = x.Key.Description,
                     Pax = x.Count(),
                     ActualPax = x.Count(x => x.IsBoarded),
-                }).ToList();
+                }).OrderByDescending(x => x.ActualPax).ToList();
             x.Add(new StatisticsNationalityVM {
                 Description = "",
                 Pax = x.Sum(x => x.Pax),
