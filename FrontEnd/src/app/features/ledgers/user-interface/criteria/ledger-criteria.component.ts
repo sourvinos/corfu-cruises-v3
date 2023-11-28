@@ -109,6 +109,10 @@ export class LedgerCriteriaComponent {
         })
     }
 
+    public setDatepickerWidth(): any {
+        return document.getElementById('form').lastChild.childNodes.length == 5 ? 25 : 33
+    }
+
     //#endregion
 
     //#region private methods
