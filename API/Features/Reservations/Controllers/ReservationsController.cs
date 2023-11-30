@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Features.Schedules;
 using API.Infrastructure.Extensions;
@@ -165,6 +166,18 @@ namespace API.Features.Reservations {
                     ResponseCode = 404
                 };
             }
+        }
+
+        [HttpDelete("batchDelete")]
+        [Authorize(Roles = "admin")]
+        public Response BatchDelete([FromBody] string[] ids) {
+            reservationUpdateRepo.BatchDelete(ids);
+            return new Response {
+                Code = 200,
+                Icon = Icons.Success.ToString(),
+                Id = null,
+                Message = ApiMessages.OK()
+            };
         }
 
         [HttpPatch("assignToDriver")]

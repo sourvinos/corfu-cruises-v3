@@ -85,6 +85,14 @@ namespace API.Features.Reservations {
             return GetDestinationAbbreviation(reservation) + DateHelpers.GetTrimmedUnixTime();
         }
 
+        public void BatchDelete(string[] ids) {
+            context.Reservations
+                .RemoveRange(context.Reservations
+                .Where(x => ids.Contains(x.ReservationId.ToString()))
+                .ToList());
+            context.SaveChanges();
+        }
+
         private void DisposeOrCommit(IDbContextTransaction transaction) {
             if (testingEnvironment.IsTesting) {
                 transaction.Dispose();

@@ -656,6 +656,10 @@
                 "description": "Creation du fichier PDF des conducteurs"
             },
             {
+                "id": "batchDelete",
+                "description": "Effacement en masse des enregistrements"
+            },
+            {
                 "id": "newButton",
                 "description": "Nouvelle"
             },

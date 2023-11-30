@@ -656,6 +656,10 @@
                 "description": "PDF für Fahrer erstellen"
             },
             {
+                "id": "batchDelete",
+                "description": "Massenlöschen von Datensätzen"
+            },
+            {
                 "id": "newButton",
                 "description": "NEU"
             },

@@ -656,6 +656,10 @@
                 "description": "Vytvořit PDF"
             },
             {
+                "id": "batchDelete",
+                "description": "Hromadné mazání záznamů"
+            },
+            {
                 "id": "newButton",
                 "description": "Nový"
             },

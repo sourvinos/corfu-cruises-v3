@@ -5,11 +5,12 @@ namespace API.Features.Reservations {
 
     public interface IReservationUpdateRepository : IRepository<Reservation> {
 
-        Reservation Update(Guid reservationId, Reservation reservation);
+        Reservation Update(Guid id, Reservation reservation);
         void AssignToDriver(int driverId, string[] ids);
         void AssignToPort(int portId, string[] ids);
         void AssignToShip(int shipId, string[] ids);
         string AssignRefNoToNewDto(ReservationWriteDto reservation);
+        void BatchDelete(string[] ids);
 
     }
 

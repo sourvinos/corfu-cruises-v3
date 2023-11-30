@@ -44,6 +44,7 @@ export class ReservationListComponent {
 
     public overbookedDestinations: ReservationListOverbookedDestinationVM[] = []
     public selectedRecords: ReservationListVM[] = []
+    public selectedIds: string[] = []
     public totalPax = [0, 0, 0]
 
     public distinctCoachRoutes: SimpleEntity[] = []
@@ -151,6 +152,18 @@ export class ReservationListComponent {
         }
     }
 
+    public batchDelete(): void {
+        if (this.isAnyRowSelected()) {
+            this.saveSelectedIds()
+            this.reservationService.batchDelete(this.selectedIds).subscribe(() => {
+                this.dialogService.open(this.messageDialogService.success(), 'success', ['ok']).subscribe(() => {
+                    this.clearSelectedRecords()
+                    this.resetTableFilters()
+                    this.refreshList()
+                })
+            })
+        }
+    }
     public calculateSelectedPax(): void {
         this.totalPax[2] = this.selectedRecords.reduce((sum, array) => sum + array.totalPax, 0)
     }
@@ -348,6 +361,7 @@ export class ReservationListComponent {
         this.selectedRecords.forEach(record => {
             ids.push(record.reservationId)
         })
+        this.selectedIds = ids
     }
 
     private scrollToSavedPosition(): void {

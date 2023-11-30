@@ -656,6 +656,10 @@
                 "description": "Δημιουργία PDF οδηγών"
             },
             {
+                "id": "batchDelete",
+                "description": "Μαζική διαγραφή εγγραφών"
+            },
+            {
                 "id": "newButton",
                 "description": "Νεα εγγραφη"
             },

@@ -656,6 +656,10 @@
                 "description": "Create PDF for drivers"
             },
             {
+                "id": "batchDelete",
+                "description": "Bulk deletion of records"
+            },
+            {
                 "id": "newButton",
                 "description": "New record"
             },

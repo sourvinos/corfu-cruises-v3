@@ -75,4 +75,8 @@ export class ReservationHttpService extends HttpDataService {
         return this.http.get<number>(this.url + '/overbookedPax/date/' + date + '/destinationid/' + destinationId)
     }
 
+    public batchDelete(ids: string[]): Observable<any> {
+        return this.http.request<void>('delete', this.url + '/batchDelete', { body: ids })
+    }
+
 }

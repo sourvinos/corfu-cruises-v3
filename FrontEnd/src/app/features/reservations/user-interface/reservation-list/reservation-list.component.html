@@ -217,4 +217,7 @@
     <button (click)="createPdf()" [disabled]="!isAdmin()" mat-menu-item>
         <span>{{ getLabel('createPdfButton') }}</span>
     </button>
+    <button (click)="batchDelete()" [disabled]="!isAdmin()" mat-menu-item>
+        <span>{{ getLabel('batchDelete') }}</span>
+    </button>
 </ng-template>
