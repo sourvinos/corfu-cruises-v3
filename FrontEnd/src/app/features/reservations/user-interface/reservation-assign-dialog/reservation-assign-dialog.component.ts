@@ -13,7 +13,7 @@ import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
     styleUrls: ['./reservation-assign-dialog.component.css']
 })
 
-export class ReservationAssignDialogComponet {
+export class ReservationAssignDialogComponent {
 
     //#region variables
 
@@ -24,7 +24,7 @@ export class ReservationAssignDialogComponet {
 
     //#endregion
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dexieService: DexieService, private dialogRef: MatDialogRef<ReservationAssignDialogComponet>, private formBuilder: FormBuilder, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private ngZone: NgZone) {
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dexieService: DexieService, private dialogRef: MatDialogRef<ReservationAssignDialogComponent>, private formBuilder: FormBuilder, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private ngZone: NgZone) {
         this.table = data[0]
         this.feature = data[1]
     }

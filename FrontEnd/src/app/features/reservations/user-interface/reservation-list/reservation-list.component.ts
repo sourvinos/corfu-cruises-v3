@@ -14,7 +14,8 @@ import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { ListResolved } from 'src/app/shared/classes/list-resolved'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { ReservationAssignDialogComponet } from '../reservation-assign-dialog/reservation-assign-dialog.component'
+import { ReservationAssignDialogComponent } from '../reservation-assign-dialog/reservation-assign-dialog.component'
+import { ReservationConfirmDeleteRangeDialogComponent } from '../reservation-confirm-range-delete-dialog/reservation-confirm-delete-range-dialog.component'
 import { ReservationHttpService } from '../../classes/services/reservation.http.service'
 import { ReservationListDestinationVM } from 'src/app/features/reservations/classes/view-models/list/reservation-list-destination-vm'
 import { ReservationListOverbookedDestinationVM } from '../../classes/view-models/list/reservation-list-overbooked-destination-vm'
@@ -86,7 +87,7 @@ export class ReservationListComponent {
     public assignToDriver(): void {
         if (this.isAnyRowSelected()) {
             this.saveSelectedIds()
-            const dialogRef = this.dialog.open(ReservationAssignDialogComponet, {
+            const dialogRef = this.dialog.open(ReservationAssignDialogComponent, {
                 data: ['drivers', 'assignToDriver'],
                 height: '36.0625rem',
                 panelClass: 'dialog',
@@ -109,7 +110,7 @@ export class ReservationListComponent {
     public assignToPort(): void {
         if (this.isAnyRowSelected()) {
             this.saveSelectedIds()
-            const dialogRef = this.dialog.open(ReservationAssignDialogComponet, {
+            const dialogRef = this.dialog.open(ReservationAssignDialogComponent, {
                 data: ['ports', 'assignToPort'],
                 height: '36.0625rem',
                 panelClass: 'dialog',
@@ -132,7 +133,7 @@ export class ReservationListComponent {
     public assignToShip(): void {
         if (this.isAnyRowSelected()) {
             this.saveSelectedIds()
-            const dialogRef = this.dialog.open(ReservationAssignDialogComponet, {
+            const dialogRef = this.dialog.open(ReservationAssignDialogComponent, {
                 data: ['ships', 'assignToShip'],
                 height: '36.0625rem',
                 panelClass: 'dialog',
@@ -153,17 +154,28 @@ export class ReservationListComponent {
     }
 
     public batchDelete(): void {
+        // https://www.slingacademy.com/article/ways-to-generate-random-strings-in-javascript/
         if (this.isAnyRowSelected()) {
-            this.saveSelectedIds()
-            this.reservationService.batchDelete(this.selectedIds).subscribe(() => {
-                this.dialogService.open(this.messageDialogService.success(), 'success', ['ok']).subscribe(() => {
-                    this.clearSelectedRecords()
-                    this.resetTableFilters()
-                    this.refreshList()
-                })
+            const dialogRef = this.dialog.open(ReservationConfirmDeleteRangeDialogComponent, {
+                data: [''],
+                panelClass: 'dialog',
+                width: '32rem',
+            })
+            dialogRef.afterClosed().subscribe(result => {
+                if (result.randomString != '') {
+                    this.saveSelectedIds()
+                    this.reservationService.batchDelete(this.selectedIds).subscribe(() => {
+                        this.dialogService.open(this.messageDialogService.success(), 'success', ['ok']).subscribe(() => {
+                            this.clearSelectedRecords()
+                            this.resetTableFilters()
+                            this.refreshList()
+                        })
+                    })
+                }
             })
         }
     }
+
     public calculateSelectedPax(): void {
         this.totalPax[2] = this.selectedRecords.reduce((sum, array) => sum + array.totalPax, 0)
     }
@@ -263,6 +275,18 @@ export class ReservationListComponent {
 
     private cleanup(): void {
         this.subscription.unsubscribe()
+    }
+
+    private confirmDeleteRange(): any {
+        const dialogRef = this.dialog.open(ReservationConfirmDeleteRangeDialogComponent, {
+            data: [''],
+            panelClass: 'dialog',
+            width: '32rem',
+        })
+        dialogRef.afterClosed().subscribe(result => {
+            const x = result.randomString != ''
+            return x
+        })
     }
 
     private doVirtualTableTasks(): void {

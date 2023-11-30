@@ -58,7 +58,6 @@ export class ReservationSearchComponent {
                 this.router.navigate(['reservations/refNo', result.refNo])
             }
         })
-
     }
 
     //#endregion
