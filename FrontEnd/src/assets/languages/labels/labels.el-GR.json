@@ -656,8 +656,8 @@
                 "description": "Δημιουργία PDF οδηγών"
             },
             {
-                "id": "batchDelete",
-                "description": "Μαζική διαγραφή εγγραφών"
+                "id": "rangeDelete",
+                "description": "Διαγραφή επιλεγμένων εγγραφών"
             },
             {
                 "id": "newButton",
@@ -2256,6 +2256,27 @@
             {
                 "id": "ledgersSubTitle",
                 "description": "Εμφανίστε τις κρατήσεις σας για ένα ημερολογιακό διάστημα."
+            }
+        ]
+    },
+    {
+        "feature": "delete-range-reservation",
+        "labels": [
+            {
+                "id": "label",
+                "description": "Κωδικός ασφαλείας"
+            },
+            {
+                "id": "instructions",
+                "description": "Για να συνεχίσετε, πρέπει να αντιγράψετε τον παρακάτω κωδικό στο πεδίο 'Κωδικός ασφαλείας'"
+            },
+            {
+                "id": "okButton",
+                "description": "OK"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Ακυρο"
             }
         ]
     }

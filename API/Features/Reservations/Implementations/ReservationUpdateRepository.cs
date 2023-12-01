@@ -85,7 +85,7 @@ namespace API.Features.Reservations {
             return GetDestinationAbbreviation(reservation) + DateHelpers.GetTrimmedUnixTime();
         }
 
-        public void BatchDelete(string[] ids) {
+        public void DeleteRange(string[] ids) {
             context.Reservations
                 .RemoveRange(context.Reservations
                 .Where(x => ids.Contains(x.ReservationId.ToString()))

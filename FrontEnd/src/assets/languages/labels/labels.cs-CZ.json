@@ -656,8 +656,8 @@
                 "description": "Vytvořit PDF"
             },
             {
-                "id": "batchDelete",
-                "description": "Hromadné mazání záznamů"
+                "id": "rangeDelete",
+                "description": "Odstranění vybraných záznamů"
             },
             {
                 "id": "newButton",
@@ -2256,6 +2256,27 @@
             {
                 "id": "ledgersSubTitle",
                 "description": "Zobrazení rezervací na určité časové období."
+            }
+        ]
+    },
+    {
+        "feature": "delete-range-reservation",
+        "labels": [
+            {
+                "id": "label",
+                "description": "Bezpečnostní kód"
+            },
+            {
+                "id": "instructions",
+                "description": "Chcete-li pokračovat, musíte zkopírovat následující kód do pole 'Bezpečnostní kód'"
+            },
+            {
+                "id": "okButton",
+                "description": "OK"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Zrušit"
             }
         ]
     }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Features.Schedules;
 using API.Infrastructure.Extensions;
@@ -168,10 +167,10 @@ namespace API.Features.Reservations {
             }
         }
 
-        [HttpDelete("batchDelete")]
+        [HttpDelete("deleteRange")]
         [Authorize(Roles = "admin")]
-        public Response BatchDelete([FromBody] string[] ids) {
-            reservationUpdateRepo.BatchDelete(ids);
+        public Response DeleteRange([FromBody] string[] ids) {
+            reservationUpdateRepo.DeleteRange(ids);
             return new Response {
                 Code = 200,
                 Icon = Icons.Success.ToString(),

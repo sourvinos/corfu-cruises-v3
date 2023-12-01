@@ -15,7 +15,7 @@ import { ListResolved } from 'src/app/shared/classes/list-resolved'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { ReservationAssignDialogComponent } from '../reservation-assign-dialog/reservation-assign-dialog.component'
-import { ReservationConfirmDeleteRangeDialogComponent } from '../reservation-confirm-range-delete-dialog/reservation-confirm-delete-range-dialog.component'
+import { ReservationDeleteRangeDialogComponent } from '../reservation-delete-range-dialog/reservation-delete-range-dialog.component'
 import { ReservationHttpService } from '../../classes/services/reservation.http.service'
 import { ReservationListDestinationVM } from 'src/app/features/reservations/classes/view-models/list/reservation-list-destination-vm'
 import { ReservationListOverbookedDestinationVM } from '../../classes/view-models/list/reservation-list-overbooked-destination-vm'
@@ -153,18 +153,27 @@ export class ReservationListComponent {
         }
     }
 
-    public batchDelete(): void {
-        // https://www.slingacademy.com/article/ways-to-generate-random-strings-in-javascript/
+
+    public calculateSelectedPax(): void {
+        this.totalPax[2] = this.selectedRecords.reduce((sum, array) => sum + array.totalPax, 0)
+    }
+
+    public createPdf(): void {
+        this.driverReportService.doReportTasks(this.getDistinctDriverIds())
+    }
+
+    public deleteRange(): void {
         if (this.isAnyRowSelected()) {
-            const dialogRef = this.dialog.open(ReservationConfirmDeleteRangeDialogComponent, {
+            const dialogRef = this.dialog.open(ReservationDeleteRangeDialogComponent, {
                 data: [''],
                 panelClass: 'dialog',
-                width: '32rem',
+                width: '25rem',
+                height: '30rem'
             })
             dialogRef.afterClosed().subscribe(result => {
-                if (result.randomString != '') {
+                if (result != undefined) {
                     this.saveSelectedIds()
-                    this.reservationService.batchDelete(this.selectedIds).subscribe(() => {
+                    this.reservationService.rangeDelete(this.selectedIds).subscribe(() => {
                         this.dialogService.open(this.messageDialogService.success(), 'success', ['ok']).subscribe(() => {
                             this.clearSelectedRecords()
                             this.resetTableFilters()
@@ -174,14 +183,6 @@ export class ReservationListComponent {
                 }
             })
         }
-    }
-
-    public calculateSelectedPax(): void {
-        this.totalPax[2] = this.selectedRecords.reduce((sum, array) => sum + array.totalPax, 0)
-    }
-
-    public createPdf(): void {
-        this.driverReportService.doReportTasks(this.getDistinctDriverIds())
     }
 
     public editRecord(id: string): void {
@@ -218,6 +219,10 @@ export class ReservationListComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
+    public highlightRow(id: any): void {
+        this.helperService.highlightRow(id)
+    }
+
     public isAdmin(): boolean {
         return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' ? true : false
     }
@@ -246,10 +251,6 @@ export class ReservationListComponent {
         }
     }
 
-    public highlightRow(id: any): void {
-        this.helperService.highlightRow(id)
-    }
-
     //#endregion
 
     //#region private methods
@@ -275,18 +276,6 @@ export class ReservationListComponent {
 
     private cleanup(): void {
         this.subscription.unsubscribe()
-    }
-
-    private confirmDeleteRange(): any {
-        const dialogRef = this.dialog.open(ReservationConfirmDeleteRangeDialogComponent, {
-            data: [''],
-            panelClass: 'dialog',
-            width: '32rem',
-        })
-        dialogRef.afterClosed().subscribe(result => {
-            const x = result.randomString != ''
-            return x
-        })
     }
 
     private doVirtualTableTasks(): void {

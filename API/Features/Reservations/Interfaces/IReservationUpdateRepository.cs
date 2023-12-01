@@ -10,7 +10,7 @@ namespace API.Features.Reservations {
         void AssignToPort(int portId, string[] ids);
         void AssignToShip(int shipId, string[] ids);
         string AssignRefNoToNewDto(ReservationWriteDto reservation);
-        void BatchDelete(string[] ids);
+        void DeleteRange(string[] ids);
 
     }
 

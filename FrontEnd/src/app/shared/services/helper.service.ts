@@ -267,6 +267,10 @@ export class HelperService {
         }
     }
 
+    public generateRandomString(): string {
+        return Math.floor(Math.random() * Date.now()).toString(36)
+    }
+
     //#endregion
 
     //#region private methods

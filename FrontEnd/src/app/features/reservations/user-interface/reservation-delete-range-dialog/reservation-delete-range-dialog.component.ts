@@ -2,32 +2,40 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { Component, NgZone } from '@angular/core'
 import { MatDialogRef } from '@angular/material/dialog'
 // Custom
-import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { HelperService } from 'src/app/shared/services/helper.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
+import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 
 @Component({
-    selector: 'reservation-confirm-delete-range-dialog.component',
-    templateUrl: './reservation-confirm-delete-range-dialog.component.html',
-    styleUrls: ['./reservation-confirm-delete-range-dialog.component.css']
+    selector: 'reservation-delete-range-dialog.component',
+    templateUrl: './reservation-delete-range-dialog.component.html',
+    styleUrls: ['./reservation-delete-range-dialog.component.css']
 })
 
-export class ReservationConfirmDeleteRangeDialogComponent {
+export class ReservationDeleteRangeDialogComponent {
 
     //#region variables
 
     private feature = 'delete-range-reservation'
     public form: FormGroup
+    public randomString: string
 
     //#endregion
 
-    constructor(private dialogRef: MatDialogRef<ReservationConfirmDeleteRangeDialogComponent>, private formBuilder: FormBuilder, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private ngZone: NgZone) {
-        this.feature = 'search-reservation'
-    }
+    constructor(
+        private dialogRef: MatDialogRef<ReservationDeleteRangeDialogComponent>,
+        private formBuilder: FormBuilder,
+        private messageHintService: MessageInputHintService,
+        private messageLabelService: MessageLabelService,
+        private ngZone: NgZone,
+        private helperService: HelperService
+    ) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
         this.initForm()
+        this.createRandomString()
     }
 
     //#endregion
@@ -42,6 +50,10 @@ export class ReservationConfirmDeleteRangeDialogComponent {
         return this.messageHintService.getDescription(id, minmax)
     }
 
+    public onClose(): void {
+        this.dialogRef.close()
+    }
+
     public onSearch(): void {
         if (this.form.valid) {
             this.ngZone.run(() => {
@@ -54,9 +66,13 @@ export class ReservationConfirmDeleteRangeDialogComponent {
 
     //#region private methods
 
+    private createRandomString(): void {
+        this.randomString = this.helperService.generateRandomString()
+    }
+
     private initForm(): void {
         this.form = this.formBuilder.group({
-            randomString: ['', Validators.required]
+            confirmationCode: ['', Validators.required]
         })
     }
 
@@ -64,8 +80,8 @@ export class ReservationConfirmDeleteRangeDialogComponent {
 
     //#region getters
 
-    get randomString(): AbstractControl {
-        return this.form.get('randomString')
+    get confirmationCode(): AbstractControl {
+        return this.form.get('confirmationCode')
     }
 
     //#endregion

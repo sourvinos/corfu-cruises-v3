@@ -656,8 +656,8 @@
                 "description": "Create PDF for drivers"
             },
             {
-                "id": "batchDelete",
-                "description": "Bulk deletion of records"
+                "id": "rangeDelete",
+                "description": "Delete selected records"
             },
             {
                 "id": "newButton",
@@ -2256,6 +2256,27 @@
             {
                 "id": "ledgersSubTitle",
                 "description": "Display your reservations for a time period."
+            }
+        ]
+    },
+    {
+        "feature": "delete-range-reservation",
+        "labels": [
+            {
+                "id": "label",
+                "description": "Security code"
+            },
+            {
+                "id": "instructions",
+                "description": "To continue, you need to copy the following code in the 'Security code' field"
+            },
+            {
+                "id": "okButton",
+                "description": "OK"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Cancel"
             }
         ]
     }

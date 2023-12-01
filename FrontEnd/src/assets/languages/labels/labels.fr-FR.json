@@ -656,8 +656,8 @@
                 "description": "Creation du fichier PDF des conducteurs"
             },
             {
-                "id": "batchDelete",
-                "description": "Effacement en masse des enregistrements"
+                "id": "rangeDelete",
+                "description": "Suppression des enregistrements sélectionnés"
             },
             {
                 "id": "newButton",
@@ -2256,6 +2256,27 @@
             {
                 "id": "ledgersSubTitle",
                 "description": "Affichez vos réservations pour une période donnée."
+            }
+        ]
+    },
+    {
+        "feature": "delete-range-reservation",
+        "labels": [
+            {
+                "id": "label",
+                "description": "Code de sécurité"
+            },
+            {
+                "id": "instructions",
+                "description": "Pour continuer, vous devez copier le code suivant dans le champ 'Code de sécurité'"
+            },
+            {
+                "id": "okButton",
+                "description": "OK"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Annuler"
             }
         ]
     }

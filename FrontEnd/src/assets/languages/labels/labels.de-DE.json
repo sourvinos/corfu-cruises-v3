@@ -656,8 +656,8 @@
                 "description": "PDF für Fahrer erstellen"
             },
             {
-                "id": "batchDelete",
-                "description": "Massenlöschen von Datensätzen"
+                "id": "rangeDelete",
+                "description": "Löschen ausgewählter Datensätze"
             },
             {
                 "id": "newButton",
@@ -2256,6 +2256,27 @@
             {
                 "id": "ledgersSubTitle",
                 "description": "Zeigen Sie Ihre Reservierungen für einen bestimmten Zeitraum an."
+            }
+        ]
+    },
+    {
+        "feature": "delete-range-reservation",
+        "labels": [
+            {
+                "id": "label",
+                "description": "Sicherheitscode"
+            },
+            {
+                "id": "instructions",
+                "description": "Um fortzufahren, müssen Sie den folgenden Code in das Feld 'Sicherheitscode' kopieren"
+            },
+            {
+                "id": "okButton",
+                "description": "OK"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Abbrechen"
             }
         ]
     }
