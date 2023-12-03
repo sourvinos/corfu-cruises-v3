@@ -692,6 +692,18 @@
                 "description": "Pickup point"
             },
             {
+                "id": "headerAdults",
+                "description": "A"
+            },
+            {
+                "id": "headerKids",
+                "description": "K"
+            },
+            {
+                "id": "headerFree",
+                "description": "F"
+            },
+            {
                 "id": "headerTotal",
                 "description": "Pax"
             },

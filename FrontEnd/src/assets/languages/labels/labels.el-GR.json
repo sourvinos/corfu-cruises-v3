@@ -692,6 +692,18 @@
                 "description": "Σημείο παραλαβής"
             },
             {
+                "id": "headerAdults",
+                "description": "Ε"
+            },
+            {
+                "id": "headerKids",
+                "description": "Π"
+            },
+            {
+                "id": "headerFree",
+                "description": "Δ"
+            },
+            {
                 "id": "headerTotal",
                 "description": "Pax"
             },

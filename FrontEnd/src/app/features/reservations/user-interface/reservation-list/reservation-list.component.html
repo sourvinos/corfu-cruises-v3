@@ -30,6 +30,9 @@
                         <th class="width-5" pSortableColumn="coachRoute.abbreviation">{{ getLabel('headerRoute') }}</th>
                         <th class="width-8" pSortableColumn="pickupPoint.description">{{ getLabel('headerPickupPoint') }}</th>
                         <th class="width-3" pSortableColumn="pickupPoint.time">{{ getLabel('headerTime') }}</th>
+                        <th class="width-2" pSortableColumn="adults">{{ getLabel('headerAdults') }}</th>
+                        <th class="width-2" pSortableColumn="kids">{{ getLabel('headerKids') }}</th>
+                        <th class="width-2" pSortableColumn="free">{{ getLabel('headerFree') }}</th>
                         <th class="width-2" pSortableColumn="totalPax">{{ getLabel('headerTotal') }}</th>
                         <th class="width-4" pSortableColumn="passengerCount">{{ getLabel('headerTotal') }}1</th>
                         <th class="width-5" pSortableColumn="driver.description">{{ getLabel('headerDriver') }}</th>
@@ -94,6 +97,9 @@
                         </th>
                         <th class="width-3"></th>
                         <th class="width-2"></th>
+                        <th class="width-2"></th>
+                        <th class="width-2"></th>
+                        <th class="width-2"></th>
                         <th class="width-4"></th>
                         <th class="width-5">
                             <p-columnFilter [showMenu]="false" field="driver" matchMode="in">
@@ -146,6 +152,9 @@
                         <td class="width-5"><span class="center">{{ reservation.coachRoute.abbreviation }}</span></td>
                         <td class="width-8"><span>{{ reservation.pickupPoint.description }}</span></td>
                         <td class="width-3"><span class="center">{{ reservation.pickupPoint.time }}</span></td>
+                        <td class="width-2"><span class="right with-right-padding">{{ reservation.adults | replaceZero }}</span></td>
+                        <td class="width-2"><span class="right with-right-padding">{{ reservation.kids | replaceZero }}</span></td>
+                        <td class="width-2"><span class="right with-right-padding">{{ reservation.free | replaceZero }}</span></td>
                         <td class="width-2"><span class="right with-right-padding">{{ reservation.totalPax }}</span></td>
                         <td class="width-4">
                             <span class="right with-right-padding">

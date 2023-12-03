@@ -692,6 +692,18 @@
                 "description": "Místo vyzvednutí"
             },
             {
+                "id": "headerAdults",
+                "description": "D"
+            },
+            {
+                "id": "headerKids",
+                "description": "D"
+            },
+            {
+                "id": "headerFree",
+                "description": "Z"
+            },
+            {
                 "id": "headerTotal",
                 "description": "Pax"
             },

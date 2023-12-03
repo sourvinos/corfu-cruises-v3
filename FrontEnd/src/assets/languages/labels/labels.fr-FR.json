@@ -692,6 +692,18 @@
                 "description": "Point de collecte"
             },
             {
+                "id": "headerAdults",
+                "description": "A"
+            },
+            {
+                "id": "headerKids",
+                "description": "E"
+            },
+            {
+                "id": "headerFree",
+                "description": "G"
+            },
+            {
                 "id": "headerTotal",
                 "description": "Pax"
             },

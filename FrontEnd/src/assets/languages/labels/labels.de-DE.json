@@ -692,6 +692,18 @@
                 "description": "Abholpunkt"
             },
             {
+                "id": "headerAdults",
+                "description": "Ε"
+            },
+            {
+                "id": "headerKids",
+                "description": "K"
+            },
+            {
+                "id": "headerFree",
+                "description": "K"
+            },
+            {
                 "id": "headerTotal",
                 "description": "Pax"
             },
