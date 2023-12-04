@@ -84,7 +84,7 @@ export class PortListComponent {
     }
 
     public getStopOrderIcon(stopOrder: number): string {
-        return environment.stopOrdersIconDirectory + stopOrder + '.svg'
+        return environment.portStopOrdersDirectory + stopOrder + '.svg'
     }
 
     public highlightRow(id: any): void {

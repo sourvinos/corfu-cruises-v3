@@ -7,9 +7,10 @@ export const environment = {
     clientUrl: 'https://localhost:1701',
     defaultLanguage: 'en-GB',
     defaultTheme: 'icy-white',
+    dialogShieldsDirectory: 'assets/images/dialog-shields',
     featuresIconDirectory: 'assets/images/features/',
-    stopOrdersIconDirectory: 'assets/images/stopOrders/',
     nationalitiesIconDirectory: 'assets/images/nationalities/',
+    portStopOrdersDirectory: 'assets/images/port-stop-orders/',
     cssUserSelect: 'none',
     minWidth: 1280,
     login: {

@@ -7,9 +7,10 @@ export const environment = {
     clientUrl: 'http://spacetravels-001-site1.btempurl.com',
     defaultLanguage: 'en-GB',
     defaultTheme: 'icy-white',
+    dialogShieldsDirectory: 'assets/images/dialog-shields',
     featuresIconDirectory: 'assets/images/features/',
-    stopOrdersIconDirectory: 'assets/images/stopOrders/',
     nationalitiesIconDirectory: 'assets/images/nationalities/',
+    portStopOrdersDirectory: 'assets/images/port-stop-orders/',
     cssUserSelect: 'auto',
     minWidth: 1280,
     login: {
