@@ -96,7 +96,7 @@ export class ReservationListComponent {
             dialogRef.afterClosed().subscribe(result => {
                 if (result !== undefined) {
                     this.reservationService.assignToDriver(result.record.id, this.selectedRecords).subscribe(() => {
-                        this.dialogService.open(this.messageDialogService.success(), 'success', ['ok']).subscribe(() => {
+                        this.dialogService.open(this.messageDialogService.success(), 'ok', ['ok']).subscribe(() => {
                             this.clearSelectedRecords()
                             this.resetTableFilters()
                             this.refreshList()
@@ -119,7 +119,7 @@ export class ReservationListComponent {
             dialogRef.afterClosed().subscribe(result => {
                 if (result !== undefined) {
                     this.reservationService.assignToPort(result.record.id, this.selectedRecords).subscribe(() => {
-                        this.dialogService.open(this.messageDialogService.success(), 'success', ['ok']).subscribe(() => {
+                        this.dialogService.open(this.messageDialogService.success(), 'ok', ['ok']).subscribe(() => {
                             this.clearSelectedRecords()
                             this.resetTableFilters()
                             this.refreshList()
@@ -142,7 +142,7 @@ export class ReservationListComponent {
             dialogRef.afterClosed().subscribe(result => {
                 if (result !== undefined) {
                     this.reservationService.assignToShip(result.record.id, this.selectedRecords).subscribe(() => {
-                        this.dialogService.open(this.messageDialogService.success(), 'success', ['ok']).subscribe(() => {
+                        this.dialogService.open(this.messageDialogService.success(), 'ok', ['ok']).subscribe(() => {
                             this.clearSelectedRecords()
                             this.resetTableFilters()
                             this.refreshList()
@@ -174,7 +174,7 @@ export class ReservationListComponent {
                 if (result != undefined) {
                     this.saveSelectedIds()
                     this.reservationService.rangeDelete(this.selectedIds).subscribe(() => {
-                        this.dialogService.open(this.messageDialogService.success(), 'success', ['ok']).subscribe(() => {
+                        this.dialogService.open(this.messageDialogService.success(), 'ok', ['ok']).subscribe(() => {
                             this.clearSelectedRecords()
                             this.resetTableFilters()
                             this.refreshList()

@@ -184,7 +184,7 @@ export class ScheduleNewFormComponent {
     private saveRecord(): void {
         this.scheduleService.addRange(this.buildSchedule()).subscribe({
             complete: () => {
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, true)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])

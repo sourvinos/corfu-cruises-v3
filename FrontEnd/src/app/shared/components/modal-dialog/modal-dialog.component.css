@@ -4,22 +4,25 @@
 
 #dialog {
     align-items: center;
-    background-color: var(--color-background);
+    background-color: var(--color-dialog-background);
     display: flex;
     flex-direction: column;
     height: 100%;
     padding: 1rem 1.5rem 1rem 1.5rem;
 }
 
-#dialog-header {
+#dialog-content {
+    align-items: center;
     display: flex;
-    justify-content: center;
-    padding: 0;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
 }
 
-#dialog-content {
+#dialog-text {
     color: var(--color-text);
     display: flex;
+    flex-direction: row;
     font-family: var(--font-family-asty) !important;
     font-size: var(--font-size-dialog-text);
     font-weight: var(--font-weight-dialog-content) !important;
@@ -27,11 +30,21 @@
     line-height: 2rem;
     overflow: hidden;
     text-align: center;
+    width: 100%;
+}
+
+#dialog-image {
+    display: flex;
+    align-items: center;
 }
 
 #dialog-footer {
+    border-top: 0.0625rem solid var(--color-background);
+    display: flex;
     justify-content: center;
     margin-top: auto;
+    padding: 1rem 0 0 0;
+    width: 100%;
 }
 
 #dialog-json-content {

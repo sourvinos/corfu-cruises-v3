@@ -94,12 +94,12 @@ export class PickupPointFormComponent {
     }
 
     public onDelete(): void {
-        this.dialogService.open(this.messageDialogService.confirmDelete(), 'warning', ['abort', 'ok']).subscribe(response => {
+        this.dialogService.open(this.messageDialogService.confirmDelete(), 'question', ['abort', 'ok']).subscribe(response => {
             if (response) {
                 this.pickupPointService.delete(this.form.value.id).subscribe({
                     complete: () => {
                         this.dexieService.remove('pickupPoints', this.form.value.id)
-                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, true)
+                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
                     },
                     error: (errorFromInterceptor) => {
                         this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
@@ -224,7 +224,7 @@ export class PickupPointFormComponent {
         this.pickupPointService.save(pickupPoint).subscribe({
             next: (response) => {
                 this.dexieService.update('pickupPoints', { 'id': parseInt(response.id), 'description': pickupPoint.description, 'exactPoint': pickupPoint.exactPoint, 'time': pickupPoint.time, 'isActive': pickupPoint.isActive })
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, true)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])

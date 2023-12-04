@@ -63,12 +63,12 @@ export class GenderFormComponent {
     }
 
     public onDelete(): void {
-        this.dialogService.open(this.messageDialogService.confirmDelete(), 'warning', ['abort', 'ok']).subscribe(response => {
+        this.dialogService.open(this.messageDialogService.confirmDelete(), 'question', ['abort', 'ok']).subscribe(response => {
             if (response) {
                 this.genderService.delete(this.form.value.id).subscribe({
                     complete: () => {
                         this.dexieService.remove('genders', this.form.value.id)
-                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, true)
+                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
                     },
                     error: (errorFromInterceptor) => {
                         this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
@@ -154,7 +154,7 @@ export class GenderFormComponent {
         this.genderService.save(gender).subscribe({
             next: (response) => {
                 this.dexieService.update('genders', { 'id': parseInt(response.id), 'description': gender.description, 'isActive': gender.isActive })
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, true)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])

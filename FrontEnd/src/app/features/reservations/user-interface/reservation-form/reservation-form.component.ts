@@ -170,11 +170,11 @@ export class ReservationFormComponent {
     }
 
     public onDelete(): void {
-        this.dialogService.open(this.messageDialogService.confirmDelete(), 'warning', ['abort', 'ok']).subscribe(response => {
+        this.dialogService.open(this.messageDialogService.confirmDelete(), 'question', ['abort', 'ok']).subscribe(response => {
             if (response) {
                 this.reservationService.delete(this.form.value.reservationId).subscribe({
                     complete: () => {
-                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, true)
+                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
                         this.localStorageService.deleteItems([{ 'item': 'reservation', 'when': 'always' },])
                         this.sessionStorageService.deleteItems([{ 'item': 'nationality', 'when': 'always' }])
                     },

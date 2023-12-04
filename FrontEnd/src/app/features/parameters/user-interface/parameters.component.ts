@@ -137,7 +137,7 @@ export class ParametersComponent {
     private saveRecord(parameters: ParametersWriteDto): void {
         this.parametersService.save(parameters).subscribe({
             next: () => {
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, true)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])

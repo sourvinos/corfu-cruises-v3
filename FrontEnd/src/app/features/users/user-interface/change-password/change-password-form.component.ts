@@ -122,7 +122,7 @@ export class ChangePasswordFormComponent {
     private saveRecord(vm: ChangePasswordViewModel): void {
         this.accountService.changePassword(vm).subscribe({
             complete: () => {
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', '', true).then(() => {
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', '', true).then(() => {
                     this.accountService.logout()
                 })
             },

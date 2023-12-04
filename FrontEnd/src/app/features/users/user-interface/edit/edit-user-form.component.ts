@@ -123,7 +123,7 @@ export class EditUserFormComponent {
         if (this.helperService.deepEqual(this.form.value, this.mirrorRecord)) {
             this.userService.emailUserDetails(this.form.value).subscribe({
                 complete: () => {
-                    this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, true)
+                    this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
                 },
                 error: (errorFromInterceptor) => {
                     this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
@@ -256,7 +256,7 @@ export class EditUserFormComponent {
             complete: () => {
                 this.sessionStorageService.saveItem('isFirstFieldFocused', user.isFirstFieldFocused.toString())
                 this.mirrorRecord = this.form.value
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, this.mustGoBackAfterSave)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, this.mustGoBackAfterSave)
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])

@@ -88,12 +88,12 @@ export class ShipFormComponent {
     }
 
     public onDelete(): void {
-        this.dialogService.open(this.messageDialogService.confirmDelete(), 'warning', ['abort', 'ok']).subscribe(response => {
+        this.dialogService.open(this.messageDialogService.confirmDelete(), 'question', ['abort', 'ok']).subscribe(response => {
             if (response) {
                 this.shipService.delete(this.form.value.id).subscribe({
                     complete: () => {
                         this.dexieService.remove('ships', this.form.value.id)
-                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, true)
+                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
                     },
                     error: (errorFromInterceptor) => {
                         this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
@@ -226,7 +226,7 @@ export class ShipFormComponent {
         this.shipService.save(ship).subscribe({
             next: (response) => {
                 this.dexieService.update('ships', { 'id': parseInt(response.id), 'description': ship.description, 'isActive': ship.isActive })
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'success', this.parentUrl, true)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
