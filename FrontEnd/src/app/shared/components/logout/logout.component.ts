@@ -48,7 +48,7 @@ export class LogoutComponent {
     }
 
     public onLogoutRequest(): void {
-        this.dialogService.open(this.messageDialogService.confirmLogout(), 'warning', ['abort', 'ok']).subscribe(response => {
+        this.dialogService.open(this.messageDialogService.confirmLogout(), 'question', ['abort', 'ok']).subscribe(response => {
             response ? this.accountService.logout() : null
         })
     }

@@ -1,12 +1,12 @@
 <div id="dialog">
 
     <div id="dialog-content">
+        <div id="dialog-image">
+            <img [src]="getShieldIcon()" style="height: 6rem; width: 4.68rem" (load)="loadImage()" [ngClass]="imageIsLoading()" id="feature-icon">
+        </div>
         <div id="dialog-text">
             <div *ngIf="isObject()" id="dialog-json-content" [innerHTML]="content | prettyprint"></div>
             <div *ngIf="!isObject()" id="dialog-textcontent">{{ content }}</div>
-        </div>
-        <div id="dialog-image">
-            <img [src]="getShieldIcon()" style="height: 6rem; width: 4.68rem" (load)="loadImage()" [ngClass]="imageIsLoading()" id="feature-icon">
         </div>
     </div>
 

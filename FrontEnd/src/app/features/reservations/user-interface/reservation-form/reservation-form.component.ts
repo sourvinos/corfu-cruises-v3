@@ -193,7 +193,7 @@ export class ReservationFormComponent {
         } else {
             this.boardingPassService.emailBoardingPass(this.form.value.reservationId).subscribe({
                 next: () => {
-                    this.helperService.doPostSaveFormTasks(this.messageDialogService.emailSent(), 'success', this.parentUrl, false)
+                    this.helperService.doPostSaveFormTasks(this.messageDialogService.emailSent(), 'ok', this.parentUrl, false)
                     this.mustGoBackAfterSave = true
                 },
                 error: (errorFromInterceptor) => {
@@ -482,7 +482,7 @@ export class ReservationFormComponent {
                 const date = this.dateHelperService.formatDateToIso(new Date(this.form.value.date))
                 this.sessionStorageService.saveItem('date', date)
                 this.parentUrl = '/reservations/date/' + date
-                this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'success', this.parentUrl, this.mustGoBackAfterSave)
+                this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'ok', this.parentUrl, this.mustGoBackAfterSave)
                 this.form.patchValue({
                     putAt: response.body.putAt
                 })
