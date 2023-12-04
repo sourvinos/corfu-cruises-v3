@@ -165,10 +165,10 @@ export class ReservationListComponent {
     public deleteRange(): void {
         if (this.isAnyRowSelected()) {
             const dialogRef = this.dialog.open(ReservationDeleteRangeDialogComponent, {
-                data: [''],
+                data: 'question',
                 panelClass: 'dialog',
-                width: '25rem',
-                height: '30rem'
+                height: '18.75rem',
+                width: '31.25rem'
             })
             dialogRef.afterClosed().subscribe(result => {
                 if (result != undefined) {

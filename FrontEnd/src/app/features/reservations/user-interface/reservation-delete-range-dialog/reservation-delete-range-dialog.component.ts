@@ -1,10 +1,11 @@
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Component, NgZone } from '@angular/core'
-import { MatDialogRef } from '@angular/material/dialog'
+import { Component, Inject, NgZone } from '@angular/core'
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
 // Custom
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { environment } from 'src/environments/environment'
 
 @Component({
     selector: 'reservation-delete-range-dialog.component',
@@ -18,18 +19,15 @@ export class ReservationDeleteRangeDialogComponent {
 
     private feature = 'delete-range-reservation'
     public form: FormGroup
+    public shieldName: any
     public randomString: string
+    public imgIsLoaded = false
 
     //#endregion
 
-    constructor(
-        private dialogRef: MatDialogRef<ReservationDeleteRangeDialogComponent>,
-        private formBuilder: FormBuilder,
-        private messageHintService: MessageInputHintService,
-        private messageLabelService: MessageLabelService,
-        private ngZone: NgZone,
-        private helperService: HelperService
-    ) { }
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ReservationDeleteRangeDialogComponent>, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private ngZone: NgZone) {
+        this.shieldName = data
+    }
 
     //#region lifecycle hooks
 
@@ -48,6 +46,18 @@ export class ReservationDeleteRangeDialogComponent {
 
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
+    }
+
+    public getShieldIcon(): any {
+        return environment.dialogShieldsDirectory + '/shield-' + this.shieldName + '.svg'
+    }
+
+    public imageIsLoading(): any {
+        return this.imgIsLoaded ? '' : 'skeleton'
+    }
+
+    public loadImage(): void {
+        this.imgIsLoaded = true
     }
 
     public onClose(): void {
