@@ -1,7 +1,8 @@
 * {
     --color-background: #595959;
-    --color-dialog-background: #6b6b6b;
     --color-calendar-day: #7BB7DD;
+    --color-dialog-areas-seperator: #858585;
+    --color-dialog-background: #6b6b6b;
     --color-flag-border: #ffffff;
     --color-input-background: #636161;
     --color-input-error: #ff7878;
