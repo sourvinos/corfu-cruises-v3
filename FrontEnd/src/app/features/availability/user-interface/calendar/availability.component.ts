@@ -4,7 +4,8 @@ import { DateAdapter } from '@angular/material/core'
 // Custom
 import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
-import { DayVM } from '../classes/view-models/day-vm'
+import { DayVM } from '../../classes/view-models/day-vm'
+import { DebugDialogService } from '../../classes/services/debug-dialog.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
@@ -12,14 +13,14 @@ import { ListResolved } from 'src/app/shared/classes/list-resolved'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { MessageCalendarService } from 'src/app/shared/services/message-calendar.service'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
-import { MessageLabelService } from '../../../shared/services/message-label.service'
+import { MessageLabelService } from '../../../../shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
 @Component({
     selector: 'availability',
     templateUrl: './availability.component.html',
-    styleUrls: ['../../../../assets/styles/custom/lists.css', '../../../../assets/styles/custom/calendar.css', './availability.component.css']
+    styleUrls: ['../../../../../assets/styles/custom/lists.css', '../../../../../assets/styles/custom/calendar.css', './availability.component.css']
 })
 
 export class AvailabilityComponent {
@@ -40,7 +41,7 @@ export class AvailabilityComponent {
 
     // #endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageCalendarService: MessageCalendarService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) {
+    constructor(private activatedRoute: ActivatedRoute, private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private debugDialogService: DebugDialogService, private dialogService: DialogService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageCalendarService: MessageCalendarService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) {
         this.router.events.subscribe((navigation) => {
             if (navigation instanceof NavigationEnd && navigation.url == this.url) {
                 this.updateVariables()
@@ -160,7 +161,7 @@ export class AvailabilityComponent {
     }
 
     public showApiObject(day: DayVM): void {
-        this.dialogService.open(day, '', ['ok'])
+        this.debugDialogService.open(day, '', ['ok'])
     }
 
     //#endregion
