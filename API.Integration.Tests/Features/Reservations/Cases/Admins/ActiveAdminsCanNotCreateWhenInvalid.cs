@@ -16,8 +16,10 @@ namespace Reservations {
             yield return Passenger_Count_Is_Not_Correct();
             yield return Customer_Must_Exist();
             yield return Customer_Must_Be_Active();
-            yield return PickupPoint_Must_Be_Active();
             yield return PickupPoint_Must_Exist();
+            yield return PickupPoint_Must_Be_Active();
+            yield return Port_Must_Exist();
+            yield return Port_Must_Be_Active();
             yield return Gender_Must_Exist();
             yield return Gender_Must_Be_Active();
             yield return Nationality_Must_Exist();
@@ -33,6 +35,7 @@ namespace Reservations {
                     CustomerId = 1,
                     DestinationId = 1,
                     PickupPointId = 133,
+                    PortId = 1,
                     TicketNo = "D5",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
@@ -52,6 +55,7 @@ namespace Reservations {
                     CustomerId = 1,
                     DestinationId = 3,
                     PickupPointId = 133,
+                    PortId = 1,
                     TicketNo = "D5",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
@@ -71,6 +75,7 @@ namespace Reservations {
                     CustomerId = 1,
                     DestinationId = 1,
                     PickupPointId = 266,
+                    PortId = 2,
                     TicketNo = "Eagle Travel",
                     Adults = 5,
                     Passengers = new List<TestPassenger>() {
@@ -93,6 +98,7 @@ namespace Reservations {
                     CustomerId = 2,
                     DestinationId = 1,
                     PickupPointId = 129,
+                    PortId = 1,
                     RefNo = "PA74512",
                     TicketNo = "OUH74",
                     Adults = 2
@@ -109,6 +115,7 @@ namespace Reservations {
                     CustomerId = 1,
                     DestinationId = 1,
                     PickupPointId = 642,
+                    PortId = 1,
                     RefNo = "PA74512",
                     TicketNo = "xxxx",
                     Adults = 2,
@@ -130,6 +137,7 @@ namespace Reservations {
                     CustomerId = 999,
                     DestinationId = 1,
                     PickupPointId = 285,
+                    PortId = 1,
                     RefNo = "PA74512",
                     TicketNo = "xxxxxx"
                 }
@@ -145,7 +153,8 @@ namespace Reservations {
                     CustomerId = 195,
                     DestinationId = 1,
                     PickupPointId = 642,
-                    RefNo = "PA74512",                    
+                    PortId = 1,
+                    RefNo = "PA74512",
                     TicketNo = "xxxxxx"
                 }
             };
@@ -160,6 +169,7 @@ namespace Reservations {
                     CustomerId = 1,
                     DestinationId = 1,
                     PickupPointId = 12,
+                    PortId = 1,
                     RefNo = "PA74512",
                     TicketNo = "xxxx",
                     Adults = 2,
@@ -179,6 +189,7 @@ namespace Reservations {
                     CustomerId = 1,
                     DestinationId = 1,
                     PickupPointId = 12,
+                    PortId = 1,
                     RefNo = "PA74512",
                     TicketNo = "xxxx",
                     Adults = 2,
@@ -198,6 +209,7 @@ namespace Reservations {
                     CustomerId = 1,
                     DestinationId = 1,
                     PickupPointId = 12,
+                    PortId = 1,
                     RefNo = "PA74512",
                     TicketNo = "xxxx",
                     Adults = 2,
@@ -217,6 +229,7 @@ namespace Reservations {
                     CustomerId = 1,
                     DestinationId = 1,
                     PickupPointId = 12,
+                    PortId = 1,
                     RefNo = "PA74512",
                     TicketNo = "xxxx",
                     Adults = 2,
@@ -236,6 +249,7 @@ namespace Reservations {
                     CustomerId = 1,
                     DestinationId = 1,
                     PickupPointId = 23,
+                    PortId = 1,
                     Adults = 2,
                     RefNo = "PA74512",
                     TicketNo = "xxxxx"
@@ -252,6 +266,41 @@ namespace Reservations {
                     CustomerId = 1,
                     DestinationId = 1,
                     PickupPointId = 999,
+                    PortId = 1,
+                    Adults = 2,
+                    RefNo = "PA74512",
+                    TicketNo = "xxxxx"
+                }
+            };
+        }
+
+        private static object[] Port_Must_Exist() {
+            return new object[] {
+                new TestNewReservation {
+                    StatusCode = 452,
+                    Date = "2022-03-04",
+                    Now = new DateTime(2022, 4, 30, 12, 00, 00),
+                    CustomerId = 1,
+                    DestinationId = 1,
+                    PickupPointId = 23,
+                    PortId = 99,
+                    Adults = 2,
+                    RefNo = "PA74512",
+                    TicketNo = "xxxxx"
+                }
+            };
+        }
+
+        private static object[] Port_Must_Be_Active() {
+            return new object[] {
+                new TestNewReservation {
+                    StatusCode = 452,
+                    Date = "2022-03-04",
+                    Now = new DateTime(2022, 4, 30, 12, 00, 00),
+                    CustomerId = 1,
+                    DestinationId = 1,
+                    PickupPointId = 23,
+                    PortId = 3,
                     Adults = 2,
                     RefNo = "PA74512",
                     TicketNo = "xxxxx"

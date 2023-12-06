@@ -21,6 +21,7 @@ namespace Reservations {
                     CustomerId = 2,
                     DestinationId = 1,
                     PickupPointId = 129,
+                    PortId = 1,
                     RefNo = "PA74512",
                     TicketNo = "OUH74",
                     Adults = 3,

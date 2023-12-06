@@ -22,6 +22,7 @@ namespace Reservations {
                     CustomerId = 2,
                     DestinationId = 1,
                     PickupPointId = 347,
+                    PortId = 1,
                     RefNo = "PA7",
                     TicketNo = "654",
                     Adults = 2
@@ -39,6 +40,7 @@ namespace Reservations {
                     CustomerId = 2,
                     DestinationId = 1,
                     PickupPointId = 248,
+                    PortId = 2,
                     RefNo = "PA50",
                     TicketNo = "#11",
                     Adults = 2

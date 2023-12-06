@@ -87,6 +87,7 @@ namespace API.Features.Reservations {
                 var x when x == !IsValidCustomer(reservation) => 450,
                 var x when x == !IsValidDestination(reservation) => 451,
                 var x when x == !IsValidPickupPoint(reservation) => 452,
+                var x when x == !IsValidPort(reservation) => 460,
                 var x when x == !IsValidDriver(reservation) => 453,
                 var x when x == !IsValidShip(reservation) => 454,
                 var x when x == !IsValidNationality(reservation) => 456,
@@ -153,6 +154,17 @@ namespace API.Features.Reservations {
             return context.PickupPoints
                 .AsNoTracking()
                 .SingleOrDefault(x => x.Id == reservation.PickupPointId) != null;
+        }
+
+        private bool IsValidPort(ReservationWriteDto reservation) {
+            if (reservation.ReservationId == Guid.Empty) {
+                return context.Ports
+                    .AsNoTracking()
+                    .SingleOrDefault(x => x.Id == reservation.PortId && x.IsActive) != null;
+            }
+            return context.Ports
+                .AsNoTracking()
+                .SingleOrDefault(x => x.Id == reservation.PortId) != null;
         }
 
         private bool IsValidDriver(ReservationWriteDto reservation) {

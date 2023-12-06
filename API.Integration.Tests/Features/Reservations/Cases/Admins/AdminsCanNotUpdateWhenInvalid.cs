@@ -20,6 +20,7 @@ namespace Reservations {
             yield return Gender_Must_Exist();
             yield return Nationality_Must_Exist();
             yield return PickupPoint_Must_Exist();
+            yield return Port_Must_Exist();
             yield return Ship_Must_Exist();
             yield return Reservation_Must_Not_Be_Already_Updated();
         }
@@ -33,6 +34,7 @@ namespace Reservations {
                     DestinationId = 1,
                     DriverId = null,
                     PickupPointId = 133,
+                    PortId = 1,
                     ShipId = null,
                     Date = "2022-01-01",
                     RefNo = "PA776",
@@ -55,6 +57,7 @@ namespace Reservations {
                     DestinationId = 3,
                     DriverId = null,
                     PickupPointId = 133,
+                    PortId = 1,
                     ShipId = null,
                     Date = "2022-05-01",
                     RefNo = "PA776",
@@ -77,6 +80,7 @@ namespace Reservations {
                     DestinationId = 1,
                     DriverId = null,
                     PickupPointId = 266,
+                    PortId = 2,
                     ShipId = 7,
                     Date = "2022-03-01",
                     RefNo = "PA6",
@@ -100,6 +104,7 @@ namespace Reservations {
                     CustomerId = 2,
                     DestinationId = 1,
                     PickupPointId = 266,
+                    PortId = 2,
                     ShipId = 7,
                     RefNo = "PA175",
                     TicketNo = "23"
@@ -115,6 +120,7 @@ namespace Reservations {
                     CustomerId = 2,
                     DestinationId = 1,
                     PickupPointId = 248,
+                    PortId = 2,
                     ShipId = 7,
                     RefNo = "PA175",
                     Date = "2022-05-01",
@@ -138,6 +144,7 @@ namespace Reservations {
                     DestinationId = 1,
                     DriverId = 18,
                     PickupPointId = 248,
+                    PortId = 2,
                     ShipId = 7,
                     Date = "2022-05-01",
                     RefNo = "PA175",
@@ -161,6 +168,7 @@ namespace Reservations {
                     DestinationId = 99,
                     DriverId = 18,
                     PickupPointId = 248,
+                    PortId = 2,
                     ShipId = 7,
                     Date = "2022-05-01",
                     RefNo = "PA175",
@@ -179,6 +187,7 @@ namespace Reservations {
                     DestinationId = 1,
                     DriverId = 99,
                     PickupPointId = 248,
+                    PortId = 2,
                     ShipId = 7,
                     Date = "2022-05-01",
                     RefNo = "PA175",
@@ -197,6 +206,7 @@ namespace Reservations {
                     DestinationId = 1,
                     DriverId = 18,
                     PickupPointId = 248,
+                    PortId = 2,
                     ShipId = 7,
                     Date = "2022-05-01",
                     RefNo = "PA175",
@@ -221,6 +231,7 @@ namespace Reservations {
                     DestinationId = 1,
                     DriverId = 18,
                     PickupPointId = 248,
+                    PortId = 2,
                     ShipId = 7,
                     Date = "2022-05-01",
                     RefNo = "PA175",
@@ -245,7 +256,28 @@ namespace Reservations {
                     DestinationId = 1,
                     DriverId = 18,
                     PickupPointId = 999,
+                    PortId = 2,
                     ShipId = 7,
+                    Date = "2022-05-01",
+                    TicketNo = "21",
+                    RefNo = "PA175",
+                    Adults = 2,
+                    Free = 1
+                }
+            };
+        }
+
+        private static object[] Port_Must_Exist() {
+            return new object[] {
+                new TestUpdateReservation{
+                    StatusCode = 460,
+                    ReservationId = Guid.Parse("08da2863-15d9-4338-81fa-637a52371163"),
+                    CustomerId = 2,
+                    DestinationId = 1,
+                    DriverId = null,
+                    PickupPointId = 248,
+                    PortId = 999,
+                    ShipId = null,
                     Date = "2022-05-01",
                     TicketNo = "21",
                     RefNo = "PA175",
@@ -264,6 +296,7 @@ namespace Reservations {
                     DestinationId = 1,
                     DriverId = 18,
                     PickupPointId = 248,
+                    PortId = 2,
                     ShipId = 99,
                     Date = "2022-05-01",
                     RefNo = "PA175",
@@ -282,6 +315,7 @@ namespace Reservations {
                     DestinationId = 1,
                     Date = "2022-05-01",
                     PickupPointId = 248,
+                    PortId = 2,
                     RefNo = "PA175",
                     TicketNo = "21",
                     Adults = 2,

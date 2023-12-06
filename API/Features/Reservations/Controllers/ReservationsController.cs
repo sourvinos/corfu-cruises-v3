@@ -90,7 +90,6 @@ namespace API.Features.Reservations {
         [Authorize(Roles = "user, admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public async Task<ResponseWithBody> Post([FromBody] ReservationWriteDto reservation) {
-            AttachPortIdToDto(reservation);
             UpdateDriverIdWithNull(reservation);
             UpdateShipIdWithNull(reservation);
             AttachNewRefNoToDto(reservation);
@@ -118,7 +117,6 @@ namespace API.Features.Reservations {
             var x = await reservationReadRepo.GetByIdAsync(reservation.ReservationId.ToString(), false);
             if (x != null) {
                 if (Identity.IsUserAdmin(httpContext) || reservationValidation.IsUserOwner(x.CustomerId)) {
-                    AttachPortIdToDto(reservation);
                     UpdateDriverIdWithNull(reservation);
                     UpdateShipIdWithNull(reservation);
                     var z = reservationValidation.IsValid(x, reservation, scheduleRepo);
@@ -247,11 +245,6 @@ namespace API.Features.Reservations {
 
         }
 
-        private ReservationWriteDto AttachPortIdToDto(ReservationWriteDto reservation) {
-            reservation.PortId = reservationValidation.GetPortIdFromPickupPointId(reservation);
-            return reservation;
-        }
-
         private ReservationWriteDto AttachNewRefNoToDto(ReservationWriteDto reservation) {
             reservation.RefNo = reservationUpdateRepo.AssignRefNoToNewDto(reservation);
             return reservation;
@@ -264,11 +257,6 @@ namespace API.Features.Reservations {
 
         private static ReservationWriteDto UpdateShipIdWithNull(ReservationWriteDto reservation) {
             if (reservation.ShipId == 0) reservation.ShipId = null;
-            return reservation;
-        }
-
-        private ReservationWriteDto UpdateMetadata(Reservation x, ReservationWriteDto reservation) {
-            reservationUpdateRepo.AttachMetadataToPutDto(x, reservation);
             return reservation;
         }
 

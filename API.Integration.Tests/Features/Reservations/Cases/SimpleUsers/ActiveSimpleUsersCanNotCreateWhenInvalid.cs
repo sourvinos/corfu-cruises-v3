@@ -26,6 +26,7 @@ namespace Reservations {
                     CustomerId = 1,
                     DestinationId = 1,
                     PickupPointId = 12,
+                    PortId = 1,
                     TicketNo = "xxxx",
                     Adults = 3,
                     Passengers = new List<TestPassenger>()
@@ -42,6 +43,7 @@ namespace Reservations {
                     CustomerId = 2,
                     DestinationId = 1,
                     PickupPointId = 12,
+                    PortId = 1,
                     TicketNo = "xxxx",
                     Adults = 2,
                     Kids = 1
@@ -58,6 +60,7 @@ namespace Reservations {
                     CustomerId = 2,
                     DestinationId = 1,
                     PickupPointId = 12,
+                    PortId = 1,
                     TicketNo = "xxxx",
                     Adults = 2,
                     Kids = 1
@@ -74,6 +77,7 @@ namespace Reservations {
                     CustomerId = 2,
                     DestinationId = 1,
                     PickupPointId = 12,
+                    PortId = 1,
                     TicketNo = "xxxx",
                     Adults = 2,
                     Kids = 1,
@@ -95,6 +99,7 @@ namespace Reservations {
                     CustomerId = 2,
                     DestinationId = 1,
                     PickupPointId = 12,
+                    PortId = 1,
                     TicketNo = "xxxx",
                     Adults = 12,
                     Passengers = new List<TestPassenger>()
@@ -111,6 +116,7 @@ namespace Reservations {
                     CustomerId = 2,
                     DestinationId = 1,
                     PickupPointId = 687,
+                    PortId = 2,
                     TicketNo = "xxxx",
                     Adults = 30,
                     Passengers = new List<TestPassenger>()

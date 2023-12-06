@@ -10,6 +10,7 @@ namespace API.Features.Reservations {
             RuleFor(x => x.CustomerId).NotEmpty();
             RuleFor(x => x.DestinationId).NotEmpty();
             RuleFor(x => x.PickupPointId).NotEmpty();
+            RuleFor(x => x.PortId).NotEmpty();
             // Fields
             RuleFor(x => x.Date).Must(DateHelpers.BeCorrectFormat);
             RuleFor(x => x.Email).Must(EmailHelpers.BeEmptyOrValidEmailAddress).MaximumLength(128);

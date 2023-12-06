@@ -32,6 +32,14 @@ namespace API.Model.Tests.Features.Reservations {
         }
 
         [Theory]
+        [ClassData(typeof(ValidateFK))]
+        public void Invalid_PortId(int portId) {
+            new ReservationValidator()
+                .TestValidate(new ReservationWriteDto { PortId = portId })
+                .ShouldHaveValidationErrorFor(x => x.PortId);
+        }
+
+        [Theory]
         [ClassData(typeof(ValidateDate))]
         public void Invalid_Date(string date) {
             new ReservationValidator()

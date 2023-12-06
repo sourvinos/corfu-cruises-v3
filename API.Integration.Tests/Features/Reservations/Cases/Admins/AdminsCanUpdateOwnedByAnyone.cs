@@ -21,6 +21,7 @@ namespace Reservations {
                     CustomerId = 2,
                     DestinationId = 1,
                     PickupPointId = 248,
+                    PortId = 2,
                     RefNo = "PA175",
                     TicketNo = "21",
                     Adults = 2,
@@ -37,6 +38,7 @@ namespace Reservations {
                     CustomerId = 2,
                     DestinationId = 1,
                     PickupPointId = 266,
+                    PortId = 2,
                     TicketNo = "23",
                     PutAt = "2023-09-07 09:55:16"
                 }
