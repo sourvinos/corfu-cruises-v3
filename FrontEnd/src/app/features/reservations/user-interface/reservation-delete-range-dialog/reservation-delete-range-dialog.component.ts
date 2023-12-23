@@ -5,7 +5,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { environment } from 'src/environments/environment'
 
 @Component({
     selector: 'reservation-delete-range-dialog.component',
@@ -19,15 +18,11 @@ export class ReservationDeleteRangeDialogComponent {
 
     private feature = 'delete-range-reservation'
     public form: FormGroup
-    public shieldName: any
     public randomString: string
-    public imgIsLoaded = false
 
     //#endregion
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ReservationDeleteRangeDialogComponent>, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private ngZone: NgZone) {
-        this.shieldName = data
-    }
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ReservationDeleteRangeDialogComponent>, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private ngZone: NgZone) { }
 
     //#region lifecycle hooks
 
@@ -48,23 +43,11 @@ export class ReservationDeleteRangeDialogComponent {
         return this.messageHintService.getDescription(id, minmax)
     }
 
-    public getShieldIcon(): any {
-        return environment.dialogShieldsDirectory + '/shield-' + this.shieldName + '.svg'
-    }
-
-    public imageIsLoading(): any {
-        return this.imgIsLoaded ? '' : 'skeleton'
-    }
-
-    public loadImage(): void {
-        this.imgIsLoaded = true
-    }
-
     public onClose(): void {
         this.dialogRef.close()
     }
 
-    public onSearch(): void {
+    public onDelete(): void {
         if (this.form.valid) {
             this.ngZone.run(() => {
                 this.dialogRef.close(this.form.value)

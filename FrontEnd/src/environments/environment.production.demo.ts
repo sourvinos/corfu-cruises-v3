@@ -1,13 +1,11 @@
 // ng build --output-path="release" --configuration=production-demo
 
 export const environment = {
-    apiUrl: 'http://spacetravels-001-site1.btempurl.com/api',
-    url: 'http://spacetravels-001-site1.btempurl.com',
+    apiUrl: 'http://corfucruisesdemo-001-site1.atempurl.com/api',
+    url: 'https://corfucruisesdemo-001-site1.atempurl.com',
     appName: 'Corfu Cruises',
-    clientUrl: 'http://spacetravels-001-site1.btempurl.com',
+    clientUrl: 'https://corfucruisesdemo-001-site1.atempurl.com',
     defaultLanguage: 'en-GB',
-    defaultTheme: 'icy-white',
-    dialogShieldsDirectory: 'assets/images/dialog-shields',
     featuresIconDirectory: 'assets/images/features/',
     nationalitiesIconDirectory: 'assets/images/nationalities/',
     portStopOrdersDirectory: 'assets/images/port-stop-orders/',

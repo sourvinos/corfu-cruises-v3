@@ -66,9 +66,9 @@
         <div id="align-right">
             <button (click)="doBoarding(true, reservation.passengers)" [disabled]="isEmbarkAllAllowed()" class="secondary" mat-flat-button>
                 <mat-icon *ngIf="isEmbarkAllAllowed()" class="material-icons-outlined">lock</mat-icon>
-                <span>{{ getLabel('embarkAllPassengers') }}</span>
+                <span>{{ getLabel('embarkAllPassengers') | uppercase }}</span>
             </button>
-            <button (click)="close()" class="primary" mat-flat-button>{{ getLabel('okButton') }}</button>
+            <button (click)="close()" class="primary" mat-flat-button>{{ getLabel('okButton') | uppercase }}</button>
         </div>
     </div>
 

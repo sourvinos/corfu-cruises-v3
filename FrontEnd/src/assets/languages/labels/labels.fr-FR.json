@@ -1329,7 +1329,7 @@
             },
             {
                 "id": "embarkAllPassengers",
-                "description": "EMBARQUER TOUT"
+                "description": "Embarquer tout"
             },
             {
                 "id": "missingPassenger",

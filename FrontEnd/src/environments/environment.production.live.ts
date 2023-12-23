@@ -6,8 +6,6 @@ export const environment = {
     appName: 'Corfu Cruises',
     clientUrl: 'https://appcorfucruises.com',
     defaultLanguage: 'en-GB',
-    defaultTheme: 'icy-white',
-    dialogShieldsDirectory: 'assets/images/dialog-shields',
     featuresIconDirectory: 'assets/images/features/',
     nationalitiesIconDirectory: 'assets/images/nationalities/',
     portStopOrdersDirectory: 'assets/images/port-stop-orders/',
