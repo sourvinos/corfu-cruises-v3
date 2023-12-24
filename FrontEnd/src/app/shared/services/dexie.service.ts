@@ -7,7 +7,6 @@ export class DexieService extends Dexie {
 
     constructor() {
         super('DexieDB')
-        this.delete()
         this.version(1).stores({
             coachRoutes: 'id, abbreviation, isActive',
             customers: 'id, description, isActive',
@@ -26,7 +25,9 @@ export class DexieService extends Dexie {
 
     public populateTable(table: string, httpService: any): void {
         httpService.getAutoComplete().subscribe((records: any) => {
-            this.table(table).bulkAdd(records)
+            this.table(table)
+                .bulkAdd(records)
+                .catch(Dexie.BulkError, () => { })
         })
     }
 
