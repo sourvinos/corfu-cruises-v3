@@ -33,27 +33,34 @@ namespace API {
             services.AddDbContextFactory<AppDbContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("LocalDevelopment"), new MySqlServerVersion(new Version(8, 0, 19)), builder => {
                     builder.EnableStringComparisonTranslations();
+                    builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
                 }));
             ConfigureServices(services);
         }
 
         public void ConfigureLocalTestingServices(IServiceCollection services) {
             services.AddDbContextFactory<AppDbContext>(options => {
-                options.UseMySql(Configuration.GetConnectionString("LocalTesting"), new MySqlServerVersion(new Version(8, 0, 19)), builder => builder.EnableStringComparisonTranslations());
+                options.UseMySql(Configuration.GetConnectionString("LocalTesting"), new MySqlServerVersion(new Version(8, 0, 19)), builder => {
+                    builder.EnableStringComparisonTranslations();
+                    builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+                });
                 options.EnableSensitiveDataLogging();
             });
             ConfigureServices(services);
         }
 
         public void ConfigureProductionLiveServices(IServiceCollection services) {
-            services.AddDbContextFactory<AppDbContext>(options => options.UseMySql(Configuration.GetConnectionString("ProductionLive"), new MySqlServerVersion(new Version(8, 0, 19)), builder =>
-                builder.EnableStringComparisonTranslations()));
+            services.AddDbContextFactory<AppDbContext>(options => options.UseMySql(Configuration.GetConnectionString("ProductionLive"), new MySqlServerVersion(new Version(8, 0, 19)), builder => {
+                builder.EnableStringComparisonTranslations();
+                builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+            }));
             ConfigureServices(services);
         }
 
         public void ConfigureProductionDemoServices(IServiceCollection services) {
             services.AddDbContextFactory<AppDbContext>(options => options.UseMySql(Configuration.GetConnectionString("ProductionDemo"), new MySqlServerVersion(new Version(8, 0, 19)), builder => {
                 builder.EnableStringComparisonTranslations();
+                builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
             }));
             ConfigureServices(services);
         }

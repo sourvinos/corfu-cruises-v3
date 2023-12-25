@@ -73,17 +73,17 @@ namespace API.Features.Reservations {
                     .Include(x => x.Driver)
                     .Include(x => x.Port)
                     .Include(x => x.Ship)
-                    .Include(x => x.Passengers).ThenInclude(x => x.Nationality)
-                    .Include(x => x.Passengers).ThenInclude(x => x.Occupant)
                     .Include(x => x.Passengers).ThenInclude(x => x.Gender)
+                    .Include(x => x.Passengers).ThenInclude(x => x.Nationality)
                     .Where(x => x.ReservationId.ToString() == reservationId)
                     .SingleOrDefaultAsync()
-                : await context.Reservations
-                    .AsNoTracking()
-                    .Include(x => x.Passengers)
-                    .Where(x => x.ReservationId.ToString() == reservationId)
-                    .SingleOrDefaultAsync();
+               : await context.Reservations
+                  .AsNoTracking()
+                  .Include(x => x.Passengers)
+                  .Where(x => x.ReservationId.ToString() == reservationId)
+                  .SingleOrDefaultAsync();
         }
+
 
         private async Task<IEnumerable<Reservation>> GetReservationsFromAllUsersByDateAsync(string date) {
             return await context.Reservations
@@ -136,6 +136,7 @@ namespace API.Features.Reservations {
                 .Include(x => x.PickupPoint).ThenInclude(y => y.CoachRoute)
                 .Include(z => z.Port)
                 .Include(x => x.Ship)
+                .Include(x => x.Passengers)
                 .Where(x => x.RefNo == refNo && x.CustomerId == customerId)
                 .ToListAsync();
         }

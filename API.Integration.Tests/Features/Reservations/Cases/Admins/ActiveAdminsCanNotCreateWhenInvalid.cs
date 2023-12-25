@@ -39,8 +39,8 @@ namespace Reservations {
                     TicketNo = "D5",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
-                        new TestPassenger { Lastname = "TIMMINS", Firstname = "JOAN", Birthdate = "2065-08-21", NationalityId = 70, GenderId = 2 },
-                        new TestPassenger { Lastname = "TIMMINS", Firstname = "ALAN", Birthdate = "2065-07-17", NationalityId = 70, GenderId = 1 },
+                        new() { Lastname = "TIMMINS", Firstname = "JOAN", Birthdate = "2065-08-21", NationalityId = 70, GenderId = 2 },
+                        new() { Lastname = "TIMMINS", Firstname = "ALAN", Birthdate = "2065-07-17", NationalityId = 70, GenderId = 1 },
                     }
                 }
             };
@@ -59,8 +59,8 @@ namespace Reservations {
                     TicketNo = "D5",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
-                        new TestPassenger { Lastname = "TIMMINS", Firstname = "JOAN", Birthdate = "2065-08-21", NationalityId = 70, GenderId = 2 },
-                        new TestPassenger { Lastname = "TIMMINS", Firstname = "ALAN", Birthdate = "2065-07-17", NationalityId = 70, GenderId = 1 },
+                        new() { Lastname = "TIMMINS", Firstname = "JOAN", Birthdate = "2065-08-21", NationalityId = 70, GenderId = 2 },
+                        new() { Lastname = "TIMMINS", Firstname = "ALAN", Birthdate = "2065-07-17", NationalityId = 70, GenderId = 1 },
                     }
                 }
             };
@@ -79,11 +79,11 @@ namespace Reservations {
                     TicketNo = "Eagle Travel",
                     Adults = 5,
                     Passengers = new List<TestPassenger>() {
-                        new TestPassenger { Lastname = "sacomono", Firstname = "MARIECLEO", Birthdate = "1981-08-14", NationalityId = 89, GenderId = 2 },
-                        new TestPassenger { Lastname = "KAGREN", Firstname = "BIRCH", Birthdate = "1957-12-13", NationalityId = 89, GenderId = 2 },
-                        new TestPassenger { Lastname = "ANDREW", Firstname = "SUZAN", Birthdate = "1975-08-21", NationalityId = 89, GenderId = 2 },
-                        new TestPassenger { Lastname = "ADEONOJOBI", Firstname = "PETER", Birthdate = "1965-11-11", NationalityId = 89, GenderId = 1 },
-                        new TestPassenger { Lastname = "DERBY ", Firstname = "ELAINE", Birthdate = "1964-12-12", NationalityId = 89, GenderId = 2 }
+                        new() { Lastname = "sacomono", Firstname = "MARIECLEO", Birthdate = "1981-08-14", NationalityId = 89, GenderId = 2 },
+                        new() { Lastname = "KAGREN", Firstname = "BIRCH", Birthdate = "1957-12-13", NationalityId = 89, GenderId = 2 },
+                        new() { Lastname = "ANDREW", Firstname = "SUZAN", Birthdate = "1975-08-21", NationalityId = 89, GenderId = 2 },
+                        new() { Lastname = "ADEONOJOBI", Firstname = "PETER", Birthdate = "1965-11-11", NationalityId = 89, GenderId = 1 },
+                        new() { Lastname = "DERBY ", Firstname = "ELAINE", Birthdate = "1964-12-12", NationalityId = 89, GenderId = 2 }
                     }
                 }
             };
@@ -120,9 +120,9 @@ namespace Reservations {
                     TicketNo = "xxxx",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
-                        new TestPassenger { Lastname = "AEDAN", Firstname = "ZAYAS", Birthdate = "1992-06-12", NationalityId = 123, GenderId = 1 },
-                        new TestPassenger { Lastname = "ALONA", Firstname = "CUTLER", Birthdate = "1964-04-28", NationalityId = 127, GenderId = 2 },
-                        new TestPassenger { Lastname = "LYA", Firstname = "TROWBRIDGE", Birthdate = "2015-01-21", NationalityId = 211, GenderId = 1 },
+                        new() { Lastname = "AEDAN", Firstname = "ZAYAS", Birthdate = "1992-06-12", NationalityId = 123, GenderId = 1 },
+                        new() { Lastname = "ALONA", Firstname = "CUTLER", Birthdate = "1964-04-28", NationalityId = 127, GenderId = 2 },
+                        new() { Lastname = "LYA", Firstname = "TROWBRIDGE", Birthdate = "2015-01-21", NationalityId = 211, GenderId = 1 },
                     }
                 }
             };
@@ -174,7 +174,7 @@ namespace Reservations {
                     TicketNo = "xxxx",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
-                        new TestPassenger { Lastname = "AEDAN", Firstname = "ZAYAS", Birthdate = "1992-06-12", NationalityId = 1, GenderId = 5 },
+                        new() { Lastname = "AEDAN", Firstname = "ZAYAS", Birthdate = "1992-06-12", NationalityId = 1, GenderId = 5 },
                     }
                 }
             };
@@ -194,7 +194,7 @@ namespace Reservations {
                     TicketNo = "xxxx",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
-                        new TestPassenger { Lastname = "AEDAN", Firstname = "ZAYAS", Birthdate = "1992-06-12", NationalityId = 1, GenderId = 4 },
+                        new() { Lastname = "AEDAN", Firstname = "ZAYAS", Birthdate = "1992-06-12", NationalityId = 1, GenderId = 4 },
                     }
                 }
             };
@@ -214,7 +214,7 @@ namespace Reservations {
                     TicketNo = "xxxx",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
-                        new TestPassenger { Lastname = "AEDAN", Firstname = "ZAYAS", Birthdate = "1992-06-12", NationalityId = 999, GenderId = 3 },
+                        new() { Lastname = "AEDAN", Firstname = "ZAYAS", Birthdate = "1992-06-12", NationalityId = 999, GenderId = 3 },
                     }
                 }
             };
@@ -234,7 +234,7 @@ namespace Reservations {
                     TicketNo = "xxxx",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
-                        new TestPassenger { Lastname = "AEDAN", Firstname = "ZAYAS", Birthdate = "1992-06-12", NationalityId = 255, GenderId = 3 },
+                        new() { Lastname = "AEDAN", Firstname = "ZAYAS", Birthdate = "1992-06-12", NationalityId = 255, GenderId = 3 },
                     }
                 }
             };

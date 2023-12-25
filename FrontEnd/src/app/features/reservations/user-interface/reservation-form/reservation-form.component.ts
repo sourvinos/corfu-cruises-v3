@@ -477,8 +477,10 @@ export class ReservationFormComponent {
     }
 
     private saveRecord(reservation: ReservationWriteDto): void {
+        console.log(new Date())
         this.reservationService.saveReservation(reservation).subscribe({
             next: (response) => {
+                console.log(new Date())
                 const date = this.dateHelperService.formatDateToIso(new Date(this.form.value.date))
                 this.sessionStorageService.saveItem('date', date)
                 this.parentUrl = '/reservations/date/' + date

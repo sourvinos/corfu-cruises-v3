@@ -73,7 +73,7 @@ export class ReservationCalendarComponent {
     //#region public methods
 
     public askToRefreshCalendar(): void {
-        this.dialogService.open(this.messageDialogService.askToRefreshCalendar(), 'warning', ['abort', 'ok']).subscribe(response => {
+        this.dialogService.open(this.messageDialogService.askToRefreshCalendar(), 'question', ['abort', 'ok']).subscribe(response => {
             if (response) {
                 this.isSizeChanged = false
                 this.router.navigate([this.url])

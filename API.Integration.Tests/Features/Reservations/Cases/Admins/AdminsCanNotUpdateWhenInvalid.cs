@@ -41,9 +41,10 @@ namespace Reservations {
                     TicketNo = "D5",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
-                        new TestPassenger { Lastname = "TIMMINS", Firstname = "JOAN", Birthdate = "2065-08-21", NationalityId = 70, GenderId = 2 },
-                        new TestPassenger { Lastname = "TIMMINS", Firstname = "ALAN", Birthdate = "2065-07-17", NationalityId = 70, GenderId = 1 },
-                    }
+                        new() { Lastname = "TIMMINS", Firstname = "JOAN", Birthdate = "2065-08-21", NationalityId = 70, GenderId = 2 },
+                        new() { Lastname = "TIMMINS", Firstname = "ALAN", Birthdate = "2065-07-17", NationalityId = 70, GenderId = 1 },
+                    },
+                    PutAt = "2023-09-14 05:17:50"
                 }
             };
         }
@@ -64,9 +65,10 @@ namespace Reservations {
                     TicketNo = "D5",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
-                        new TestPassenger { Lastname = "TIMMINS", Firstname = "JOAN", Birthdate = "2065-08-21", NationalityId = 70, GenderId = 2 },
-                        new TestPassenger { Lastname = "TIMMINS", Firstname = "ALAN", Birthdate = "2065-07-17", NationalityId = 70, GenderId = 1 },
-                    }
+                        new() { Lastname = "TIMMINS", Firstname = "JOAN", Birthdate = "2065-08-21", NationalityId = 70, GenderId = 2 },
+                        new() { Lastname = "TIMMINS", Firstname = "ALAN", Birthdate = "2065-07-17", NationalityId = 70, GenderId = 1 },
+                    },
+                    PutAt = "2023-09-14 05:17:50"
                 }
             };
         }
@@ -87,10 +89,11 @@ namespace Reservations {
                     TicketNo = "Eagle Travel",
                     Adults = 3,
                     Passengers = new List<TestPassenger>() {
-                        new TestPassenger { Lastname = "sacomono", Firstname = "MARIECLEO", Birthdate = "1981-08-14", NationalityId = 89, GenderId = 2 },
-                        new TestPassenger { Lastname = "KAGREN", Firstname = "BIRCH", Birthdate = "1957-12-13", NationalityId = 89, GenderId = 2 },
-                        new TestPassenger { Lastname = "ANDREW", Firstname = "SUZAN", Birthdate = "1975-08-21", NationalityId = 89, GenderId = 2 }
-                    }
+                        new() { Lastname = "sacomono", Firstname = "MARIECLEO", Birthdate = "1981-08-14", NationalityId = 89, GenderId = 2 },
+                        new() { Lastname = "KAGREN", Firstname = "BIRCH", Birthdate = "1957-12-13", NationalityId = 89, GenderId = 2 },
+                        new() { Lastname = "ANDREW", Firstname = "SUZAN", Birthdate = "1975-08-21", NationalityId = 89, GenderId = 2 }
+                    },
+                    PutAt = "2023-09-14 05:17:50"
                 }
             };
         }
@@ -107,7 +110,8 @@ namespace Reservations {
                     PortId = 2,
                     ShipId = 7,
                     RefNo = "PA175",
-                    TicketNo = "23"
+                    TicketNo = "23",
+                    PutAt = "2023-09-07 09:55:16"
                 }
             };
         }
@@ -127,10 +131,11 @@ namespace Reservations {
                     TicketNo = "21",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
-                        new TestPassenger { Lastname = "AEDAN", Firstname = "ZAYAS", Birthdate = "1992-06-12", NationalityId = 123, GenderId = 1 },
-                        new TestPassenger { Lastname = "ALONA", Firstname = "CUTLER", Birthdate = "1964-04-28", NationalityId = 127, GenderId = 2 },
-                        new TestPassenger { Lastname = "LYA", Firstname = "TROWBRIDGE", Birthdate = "2015-01-21", NationalityId = 211, GenderId = 1 },
-                    }
+                        new() { Lastname = "AEDAN", Firstname = "ZAYAS", Birthdate = "1992-06-12", NationalityId = 123, GenderId = 1 },
+                        new() { Lastname = "ALONA", Firstname = "CUTLER", Birthdate = "1964-04-28", NationalityId = 127, GenderId = 2 },
+                        new() { Lastname = "LYA", Firstname = "TROWBRIDGE", Birthdate = "2015-01-21", NationalityId = 211, GenderId = 1 },
+                    },
+                    PutAt = "2023-09-07 09:55:16"
                 }
             };
         }
@@ -142,19 +147,13 @@ namespace Reservations {
                     ReservationId = Guid.Parse("08da2863-15d9-4338-81fa-637a52371163"),
                     CustomerId = 999,
                     DestinationId = 1,
-                    DriverId = 18,
                     PickupPointId = 248,
                     PortId = 2,
-                    ShipId = 7,
-                    Date = "2022-05-01",
                     RefNo = "PA175",
+                    Date = "2022-05-01",
                     TicketNo = "21",
-                    Adults = 3,
-                    Passengers = new List<TestPassenger>() {
-                        new TestPassenger { Lastname = "VOYER", Firstname = "ALESCANDRA", Birthdate = "1991-06-05", NationalityId = 233, GenderId = 2 },
-                        new TestPassenger { Lastname = "VOYER", Firstname = "ANNIE", Birthdate = "1962-12-25", NationalityId = 233, GenderId = 2 },
-                        new TestPassenger { Lastname = "VOYER", Firstname = "NATHAN", Birthdate = "2018-02-05", NationalityId = 233, GenderId = 1 }
-                    }
+                    Adults = 2,
+                    PutAt = "2023-09-07 09:55:16"
                 }
             };
         }
@@ -173,7 +172,8 @@ namespace Reservations {
                     Date = "2022-05-01",
                     RefNo = "PA175",
                     TicketNo = "21",
-                    Adults = 2
+                    Adults = 2,
+                    PutAt = "2023-09-07 09:55:16"
                 }
             };
         }
@@ -192,7 +192,8 @@ namespace Reservations {
                     Date = "2022-05-01",
                     RefNo = "PA175",
                     TicketNo = "21",
-                    Adults = 2
+                    Adults = 2,
+                    PutAt = "2023-09-07 09:55:16"
                 }
             };
         }
@@ -214,10 +215,11 @@ namespace Reservations {
                     Adults = 2,
                     Free = 1,
                     Passengers = new List<TestPassenger>() {
-                        new TestPassenger { Lastname = "VOYER", Firstname = "ALESCANDRA", Birthdate = "1991-06-05", NationalityId = 233, GenderId = 99 },
-                        new TestPassenger { Lastname = "VOYER", Firstname = "ANNIE", Birthdate = "1962-12-25", NationalityId = 233, GenderId = 99 },
-                        new TestPassenger { Lastname = "VOYER", Firstname = "NATHAN", Birthdate = "2018-02-05", NationalityId = 233, GenderId = 99 }
-                    }
+                        new() { Lastname = "VOYER", Firstname = "ALESCANDRA", Birthdate = "1991-06-05", NationalityId = 233, GenderId = 99 },
+                        new() { Lastname = "VOYER", Firstname = "ANNIE", Birthdate = "1962-12-25", NationalityId = 233, GenderId = 99 },
+                        new() { Lastname = "VOYER", Firstname = "NATHAN", Birthdate = "2018-02-05", NationalityId = 233, GenderId = 99 }
+                    },
+                    PutAt = "2023-09-07 09:55:16"
                 }
             };
         }
@@ -239,10 +241,11 @@ namespace Reservations {
                     Adults = 2,
                     Free = 1,
                     Passengers = new List<TestPassenger>() {
-                        new TestPassenger { Lastname = "VOYER", Firstname = "ALESCANDRA", Birthdate = "1991-06-05", NationalityId = 999, GenderId = 2 },
-                        new TestPassenger { Lastname = "VOYER", Firstname = "ANNIE", Birthdate = "1962-12-25", NationalityId = 999, GenderId = 2 },
-                        new TestPassenger { Lastname = "VOYER", Firstname = "NATHAN", Birthdate = "2018-02-05", NationalityId = 999, GenderId = 1 }
-                    }
+                        new() { Lastname = "VOYER", Firstname = "ALESCANDRA", Birthdate = "1991-06-05", NationalityId = 999, GenderId = 2 },
+                        new() { Lastname = "VOYER", Firstname = "ANNIE", Birthdate = "1962-12-25", NationalityId = 999, GenderId = 2 },
+                        new() { Lastname = "VOYER", Firstname = "NATHAN", Birthdate = "2018-02-05", NationalityId = 999, GenderId = 1 }
+                    },
+                    PutAt = "2023-09-07 09:55:16"
                 }
             };
         }
@@ -262,7 +265,8 @@ namespace Reservations {
                     TicketNo = "21",
                     RefNo = "PA175",
                     Adults = 2,
-                    Free = 1
+                    Free = 1,
+                    PutAt = "2023-09-07 09:55:16"
                 }
             };
         }
@@ -282,7 +286,8 @@ namespace Reservations {
                     TicketNo = "21",
                     RefNo = "PA175",
                     Adults = 2,
-                    Free = 1
+                    Free = 1,
+                    PutAt = "2023-09-07 09:55:16"
                 }
             };
         }
@@ -302,7 +307,8 @@ namespace Reservations {
                     RefNo = "PA175",
                     TicketNo = "21",
                     Adults = 2,
-                    Free = 1
+                    Free = 1,
+                    PutAt = "2023-09-07 09:55:16"
             }};
         }
 

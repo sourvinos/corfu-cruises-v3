@@ -19,13 +19,14 @@ namespace Reservations {
                     StatusCode = 490,
                     ReservationId = Guid.Parse("08da1f85-42c0-4777-8fe5-3ab3a814fa66"),
                     Date = "2022-03-02",
-                    CustomerId = 2,
+                    CustomerId = 11,
                     DestinationId = 1,
                     PickupPointId = 347,
                     PortId = 1,
                     RefNo = "PA7",
                     TicketNo = "654",
-                    Adults = 2
+                    Adults = 2,
+                    PutAt = "2023-09-14 05:17:50"
                 }
             };
         }
@@ -43,7 +44,8 @@ namespace Reservations {
                     PortId = 2,
                     RefNo = "PA50",
                     TicketNo = "#11",
-                    Adults = 2
+                    Adults = 2,
+                    PutAt = "2023-09-14 05:17:50"
                }
             };
         }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using API.Features.Schedules;
 using API.Features.Users;
 using API.Infrastructure.Classes;
@@ -17,8 +18,8 @@ namespace API.Features.Availability {
 
         public AvailabilityCalendar(AppDbContext context, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(context, httpContext, settings, userManager) { }
 
-        public IEnumerable<ReservationVM> GetReservations(string fromDate, string toDate) {
-            var reservations = context.Reservations
+        public async Task<IEnumerable<ReservationVM>> GetReservationsAsync(string fromDate, string toDate) {
+            var reservations = await context.Reservations
                 .AsNoTracking()
                 .Where(x => x.Date >= DateTime.Parse(fromDate) && x.Date <= DateTime.Parse(toDate))
                 .OrderBy(x => x.Date).ThenBy(x => x.DestinationId).ThenBy(x => x.PortId)
@@ -27,12 +28,12 @@ namespace API.Features.Availability {
                     DestinationId = x.DestinationId,
                     PortId = x.PortId,
                     TotalPax = x.TotalPax
-                }).ToList();
+                }).ToListAsync();
             return reservations;
         }
 
-        public IEnumerable<AvailabilityGroupVM> GetSchedule(string fromDate, string toDate) {
-            var schedules = context.Schedules
+        public async Task<IEnumerable<AvailabilityGroupVM>> GetScheduleAsync(string fromDate, string toDate) {
+            var schedules = await context.Schedules
                 .AsNoTracking()
                 .Where(x => x.Date >= DateTime.Parse(fromDate) && x.Date <= DateTime.Parse(toDate))
                 .GroupBy(x => x.Date)
@@ -50,7 +51,7 @@ namespace API.Features.Availability {
                             MaxPax = x.Key.MaxPax,
                         }).ToList()
                     })
-                }).ToList();
+                }).ToListAsync();
             return schedules;
         }
 

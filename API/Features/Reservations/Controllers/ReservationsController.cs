@@ -93,8 +93,8 @@ namespace API.Features.Reservations {
             UpdateDriverIdWithNull(reservation);
             UpdateShipIdWithNull(reservation);
             AttachNewRefNoToDto(reservation);
-            var z = reservationValidation.IsValid(null, reservation, scheduleRepo);
-            if (z == 200) {
+            var z = reservationValidation.IsValidAsync(null, reservation, scheduleRepo);
+            if (await z == 200) {
                 var x = reservationUpdateRepo.Create(mapper.Map<ReservationWriteDto, Reservation>((ReservationWriteDto)reservationUpdateRepo.AttachMetadataToPostDto(reservation)));
                 var i = await reservationReadRepo.GetByIdAsync(x.ReservationId.ToString(), true);
                 return new ResponseWithBody {
@@ -105,7 +105,7 @@ namespace API.Features.Reservations {
                 };
             } else {
                 throw new CustomException() {
-                    ResponseCode = z
+                    ResponseCode = await z
                 };
             }
         }
@@ -119,8 +119,8 @@ namespace API.Features.Reservations {
                 if (Identity.IsUserAdmin(httpContext) || reservationValidation.IsUserOwner(x.CustomerId)) {
                     UpdateDriverIdWithNull(reservation);
                     UpdateShipIdWithNull(reservation);
-                    var z = reservationValidation.IsValid(x, reservation, scheduleRepo);
-                    if (z == 200) {
+                    var z = reservationValidation.IsValidAsync(x, reservation, scheduleRepo);
+                    if (await z == 200) {
                         reservationUpdateRepo.Update(reservation.ReservationId, mapper.Map<ReservationWriteDto, Reservation>((ReservationWriteDto)reservationUpdateRepo.AttachMetadataToPutDto(x, reservation)));
                         var i = await reservationReadRepo.GetByIdAsync(reservation.ReservationId.ToString(), true);
                         return new ResponseWithBody {
@@ -131,7 +131,7 @@ namespace API.Features.Reservations {
                         };
                     } else {
                         throw new CustomException() {
-                            ResponseCode = z
+                            ResponseCode = await z
                         };
                     }
                 } else {

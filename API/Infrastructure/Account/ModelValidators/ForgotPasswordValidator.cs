@@ -7,7 +7,6 @@ namespace API.Infrastructure.Account {
 
         public ForgotPasswordValidator() {
             RuleFor(x => x.Email).NotEmpty().Must(EmailHelpers.BeValidEmailAddress);
-            RuleFor(x => x.Language).NotEmpty();
         }
 
     }

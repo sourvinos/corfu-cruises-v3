@@ -19,10 +19,6 @@
     width: auto !important;
 }
 
-.mat-icon.gold {
-    color: #e7b53a !important;
-}
-
 button {
     align-items: center;
     background-color: transparent;
@@ -56,22 +52,18 @@ button.fab-with-no-background {
 
 button.delete {
     background-color: var(--color-button-delete) !important;
-    border-radius: 3.125rem !important;
 }
 
 button.primary {
     background-color: var(--color-button-primary) !important;
-    border-radius: 3.125rem !important;
 }
 
 button.secondary {
     background-color: var(--color-button-secondary) !important;
-    border-radius: 3.125rem !important;
 }
 
 button.accent {
     background-color: var(--color-accent) !important;
-    border-radius: 3.125rem !important;
 }
 
 button.tab {
@@ -84,7 +76,6 @@ button.tab:first-child {
 
 button.transparent {
     background-color: transparent !important;
-    border-radius: 3.125rem !important;
     transition: color var(--theme-delay) !important;
 }
 
