@@ -7,6 +7,7 @@ using API.Features.Nationalities;
 using API.Features.Occupants;
 using API.Features.PickupPoints;
 using API.Features.Ports;
+using API.Features.Prices;
 using API.Features.Registrars;
 using API.Features.Reservations;
 using API.Features.Schedules;
@@ -27,8 +28,7 @@ namespace API.Infrastructure.Classes {
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        #region DbSets
-
+        #region DbSets - Reservations
         public DbSet<CoachRoute> CoachRoutes { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Destination> Destinations { get; set; }
@@ -51,6 +51,11 @@ namespace API.Infrastructure.Classes {
 
         #endregion
 
+        #region DbSets - Billing
+        public DbSet<Price> Prices { get; set; }
+
+        #endregion
+
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             base.OnModelCreating(modelBuilder);
             ApplyConfigurations(modelBuilder);
@@ -59,6 +64,7 @@ namespace API.Infrastructure.Classes {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
 
         private static void ApplyConfigurations(ModelBuilder modelBuilder) {
+            #region reservations
             modelBuilder.ApplyConfiguration(new CoachRoutesConfig());
             modelBuilder.ApplyConfiguration(new CustomersConfig());
             modelBuilder.ApplyConfiguration(new DestinationsConfig());
@@ -77,7 +83,13 @@ namespace API.Infrastructure.Classes {
             modelBuilder.ApplyConfiguration(new ShipOwnersConfig());
             modelBuilder.ApplyConfiguration(new ShipRoutesConfig());
             modelBuilder.ApplyConfiguration(new ShipsConfig());
+            #endregion
+            #region billing
+            modelBuilder.ApplyConfiguration(new PricesConfig());
+            #endregion
+            #region common
             modelBuilder.ApplyConfiguration(new UsersConfig());
+            #endregion
         }
 
     }

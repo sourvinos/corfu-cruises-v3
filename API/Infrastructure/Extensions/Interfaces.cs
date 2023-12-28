@@ -10,6 +10,7 @@ using API.Features.Manifest;
 using API.Features.Nationalities;
 using API.Features.PickupPoints;
 using API.Features.Ports;
+using API.Features.Prices;
 using API.Features.Registrars;
 using API.Features.Reservations;
 using API.Features.Schedules;
@@ -29,6 +30,7 @@ namespace API.Infrastructure.Extensions {
 
         public static void AddInterfaces(IServiceCollection services) {
             services.AddScoped<Token>();
+            #region reservations
             // Tables
             services.AddTransient<ICoachRouteRepository, CoachRouteRepository>();
             services.AddTransient<ICustomerRepository, CustomerRepository>();
@@ -74,12 +76,16 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IShipRouteValidation, ShipRouteValidation>();
             services.AddTransient<IShipValidation, ShipValidation>();
             services.AddTransient<IUserValidation<IUser>, UserValidation>();
-            // Parameters
             services.AddTransient<IParametersRepository, ParametersRepository>();
-            // Emails
-            services.AddTransient<IEmailSender, EmailSender>();
-            // Statistics
             services.AddTransient<IStatisticsRepository, StatisticsRepository>();
+            #endregion
+            #region billing
+            services.AddTransient<IPriceRepository, PriceRepository>();
+            services.AddTransient<IPriceValidation, PriceValidation>();
+            #endregion
+            #region common
+            services.AddTransient<IEmailSender, EmailSender>();
+            #endregion
         }
 
     }
