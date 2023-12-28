@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 // Custom
 import { HelperService } from 'src/app/shared/services/helper.service'
-import { LogoService } from 'src/app/features/reservations/classes/services/logo.service'
+import { LogoService } from 'src/app/features/reservations/reservations/classes/services/logo.service'
 
 @Component({
     selector: 'logo',

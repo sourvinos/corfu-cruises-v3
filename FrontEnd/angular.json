@@ -148,10 +148,10 @@
                         "development": {
                             "browserTarget": "FrontEnd:build:development"
                         },
-                        "production-local": {
-                            "browserTarget": "FrontEnd:build:production-local"
+                        "production-demo": {
+                            "browserTarget": "FrontEnd:build:production-demo"
                         },
-                        "production": {
+                        "production-live": {
                             "browserTarget": "FrontEnd:build:production"
                         }
                     },
