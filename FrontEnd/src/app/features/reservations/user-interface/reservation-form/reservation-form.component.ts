@@ -477,16 +477,14 @@ export class ReservationFormComponent {
     }
 
     private saveRecord(reservation: ReservationWriteDto): void {
-        console.log(new Date())
         this.reservationService.saveReservation(reservation).subscribe({
             next: (response) => {
-                console.log(new Date())
                 const date = this.dateHelperService.formatDateToIso(new Date(this.form.value.date))
                 this.sessionStorageService.saveItem('date', date)
                 this.parentUrl = '/reservations/date/' + date
                 this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'ok', this.parentUrl, this.mustGoBackAfterSave)
                 this.form.patchValue({
-                    putAt: response.body.putAt
+                    putAt: response.body
                 })
                 this.mirrorRecord = this.form.value
                 this.localStorageService.deleteItems([{ 'item': 'reservation', 'when': 'always' },])
