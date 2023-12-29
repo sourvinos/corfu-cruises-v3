@@ -43,7 +43,7 @@
                 <mat-error *ngIf="port.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="!port.hasError('required') && port.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>
-            <div class="group-input-field">
+            <div class="group-input-field" formGroupName="datePeriod">
                 <!-- From -->
                 <date-picker (outputValue)="patchFormWithSelectedFrom($event)" [dataTabIndex]="4" [isAdminOrNewRecord]=true [label]="getLabel('from')" [parentDate]="getFrom()" [showHint]=false style="width: 50% !important;"></date-picker>
                 <!-- To -->

@@ -1,6 +1,7 @@
 using System.Linq;
 using API.Features.Users;
 using API.Infrastructure.Classes;
+using API.Infrastructure.Helpers;
 using API.Infrastructure.Implementations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -18,6 +19,7 @@ namespace API.Features.Prices {
                 var x when x == !IsValidCustomer(price) => 450,
                 var x when x == !IsValidDestination(price) => 451,
                 var x when x == !IsValidPort(price) => 460,
+                var x when x == !IsValidDatePeriod(price) => 462,
                 var x when x == !PriceFieldsMustBeZeroOrGreater(price) => 461,
                 var x when x == IsAlreadyUpdated(z, price) => 415,
                 _ => 200,
@@ -52,6 +54,10 @@ namespace API.Features.Prices {
                 : context.Ports
                     .AsNoTracking()
                     .SingleOrDefault(x => x.Id == price.PortId) != null;
+        }
+
+        private static bool IsValidDatePeriod(PriceWriteDto price) {
+            return DateHelpers.StringToDate(price.To) >= DateHelpers.StringToDate(price.From);
         }
 
         private static bool PriceFieldsMustBeZeroOrGreater(PriceWriteDto price) {

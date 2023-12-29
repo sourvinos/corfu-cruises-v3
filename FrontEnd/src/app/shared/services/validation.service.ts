@@ -5,7 +5,13 @@ export class ValidationService {
     static childrenEqual: ValidatorFn = (formGroup: FormGroup) => {
         const [firstControlName, ...otherControlNames] = Object.keys(formGroup.controls || {})
         const isValid = otherControlNames.every(controlName => formGroup.get(controlName).value === formGroup.get(firstControlName).value)
-        return isValid ? null : { childrenNotEqual: true }
+        return isValid ? null : { invalid: true }
+    }
+
+    static validDatePeriod: ValidatorFn = (formGroup: FormGroup) => {
+        const [firstControlName, ...otherControlNames] = Object.keys(formGroup.controls || {})
+        const isValid = otherControlNames.every(controlName => formGroup.get(controlName).value >= formGroup.get(firstControlName).value)
+        return isValid ? null : { invalid: true }
     }
 
     static beginsOrEndsWithSpace(control: AbstractControl): { [key: string]: any } {

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { Observable } from 'rxjs'
 import { map, startWith } from 'rxjs/operators'
 // Custom
+import { DateHelperService } from '../../../../shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from '../../../../shared/services/modal-dialog.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
@@ -49,7 +50,7 @@ export class PriceFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceService: PriceService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceService: PriceService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -89,7 +90,7 @@ export class PriceFormComponent {
     }
 
     public getFrom(): string {
-        return this.form.value.from
+        return this.form.value.datePeriod.from
     }
 
     public getHint(id: string, minmax = 0): string {
@@ -105,7 +106,7 @@ export class PriceFormComponent {
     }
 
     public getTo(): string {
-        return this.form.value.to
+        return this.form.value.datePeriod.to
     }
 
     public onDelete(): void {
@@ -133,13 +134,17 @@ export class PriceFormComponent {
 
     public patchFormWithSelectedFrom(event: any): void {
         this.form.patchValue({
-            from: event.value.date
+            datePeriod: {
+                from: this.dateHelperService.formatDateToIso(new Date(event.value.date))
+            }
         })
     }
 
     public patchFormWithSelectedTo(event: any): void {
         this.form.patchValue({
-            to: event.value.date
+            datePeriod: {
+                to: this.dateHelperService.formatDateToIso(new Date(event.value.date))
+            }
         })
     }
 
@@ -161,8 +166,8 @@ export class PriceFormComponent {
             customerId: this.form.value.customer.id,
             destinationId: this.form.value.destination.id,
             portId: this.form.value.port.id,
-            from: this.form.value.from,
-            to: this.form.value.to,
+            from: this.form.value.datePeriod.from,
+            to: this.form.value.datePeriod.to,
             adultsWithTransfer: this.form.value.adultsWithTransfer,
             adultsWithoutTransfer: this.form.value.adultsWithoutTransfer,
             kidsWithTransfer: this.form.value.kidsWithTransfer,
@@ -202,8 +207,12 @@ export class PriceFormComponent {
             customer: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             destination: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             port: ['', [Validators.required, ValidationService.RequireAutocomplete]],
-            from: ['', [Validators.required, Validators.maxLength(128)]],
-            to: ['', [Validators.required, Validators.maxLength(128)]],
+            datePeriod: this.formBuilder.group({
+                from: ['', [Validators.required]],
+                to: ['', [Validators.required]],
+            }, {
+                validator: ValidationService.validDatePeriod
+            }),
             adultsWithTransfer: [0, [Validators.required, Validators.maxLength(7)]],
             adultsWithoutTransfer: [0, [Validators.required, Validators.maxLength(7)]],
             kidsWithTransfer: [0, [Validators.required, Validators.maxLength(7)]],
@@ -241,8 +250,10 @@ export class PriceFormComponent {
                 customer: { 'id': this.record.customer.id, 'description': this.record.customer.description },
                 destination: { 'id': this.record.destination.id, 'description': this.record.destination.description },
                 port: { 'id': this.record.port.id, 'description': this.record.port.description },
-                from: this.record.from,
-                to: this.record.to,
+                datePeriod: {
+                    from: this.record.from,
+                    to: this.record.to,
+                },
                 adultsWithTransfer: this.record.adultsWithTransfer.toFixed(2),
                 adultsWithoutTransfer: this.record.adultsWithoutTransfer.toFixed(2),
                 kidsWithTransfer: this.record.kidsWithTransfer.toFixed(2),
@@ -292,12 +303,16 @@ export class PriceFormComponent {
         return this.form.get('port')
     }
 
+    get datePeriod(): AbstractControl {
+        return this.form.get('datePeriod')
+    }
+
     get from(): AbstractControl {
-        return this.form.get('from')
+        return this.form.get('datePeriod.from')
     }
 
     get to(): AbstractControl {
-        return this.form.get('to')
+        return this.form.get('datePeriod.to')
     }
 
     get adultsWithTransfer(): AbstractControl {

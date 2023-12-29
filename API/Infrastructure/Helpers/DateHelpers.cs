@@ -5,6 +5,10 @@ namespace API.Infrastructure.Helpers {
 
     public static class DateHelpers {
 
+        public static DateTime StringToDate(string date) {
+            return new(int.Parse(date[..4]), int.Parse(date.Substring(5, 2)), int.Parse(date.Substring(8, 2)));
+        }
+
         public static string DateToISOString(DateTime date) {
             string day = "0" + date.Day.ToString();
             string month = "0" + date.Month.ToString();
