@@ -20,15 +20,13 @@ const appRoutes: Routes = [
     { path: 'resetPassword', component: ResetPasswordFormComponent },
     // Home
     { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] },
-    // Reservations menu
+    // Reservations
     { path: 'reservations', loadChildren: () => import('../features/reservations/reservations/classes/modules/reservation.module').then(m => m.ReservationModule) },
     { path: 'availability', loadChildren: () => import('../features/reservations/availability/classes/modules/availability.module').then(m => m.AvailabilityModule) },
-    // Tasks menu
     { path: 'ledgers', loadChildren: () => import('../features/reservations/ledgers/classes/modules/ledger.module').then(m => m.LedgerModule) },
     { path: 'boarding', loadChildren: () => import('../features/reservations/boarding/classes/modules/boarding.module').then(m => m.BoardingModule) },
     { path: 'manifest', loadChildren: () => import('../features/reservations/manifest/classes/modules/manifest.module').then(m => m.ManifestModule) },
     { path: 'statistics', loadChildren: () => import('../features/reservations/statistics/classes/modules/statistics.module').then(m => m.StatisticsModule) },
-    // Tables menu
     { path: 'coachRoutes', loadChildren: () => import('../features/reservations/coachRoutes/classes/modules/coachRoute.module').then(m => m.CoachRouteModule) },
     { path: 'customers', loadChildren: () => import('../features/reservations/customers/classes/modules/customer.module').then(m => m.CustomerModule) },
     { path: 'destinations', loadChildren: () => import('../features/reservations/destinations/classes/modules/destination.module').then(m => m.DestinationModule) },
@@ -43,8 +41,9 @@ const appRoutes: Routes = [
     { path: 'shipRoutes', loadChildren: () => import('../features/reservations/shipRoutes/classes/modules/shipRoute.module').then(m => m.ShipRouteModule) },
     { path: 'ships', loadChildren: () => import('../features/reservations/ships/classes/modules/ship.module').then(m => m.ShipModule) },
     { path: 'users', loadChildren: () => import('../features/reservations/users/classes/modules/user.module').then(m => m.UserModule) },
-    // Parameters
     { path: 'parameters', loadChildren: () => import('../features/reservations/parameters/classes/modules/parameters.module').then(m => m.ParametersModule) },
+    // Billing
+    { path: 'prices', loadChildren: () => import('../features/billing/prices/classes/modules/price.module').then(m => m.PriceModule) },
     // Empty
     { path: '**', component: EmptyPageComponent }
 ]

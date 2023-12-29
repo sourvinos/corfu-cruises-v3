@@ -2268,6 +2268,14 @@
             {
                 "id": "ledgersSubTitle",
                 "description": "Zobrazení rezervací na určité časové období."
+            },
+            {
+                "id": "pricesTitle",
+                "description": "Ceníky"
+            },
+            {
+                "id": "pricesSubTitle",
+                "description": "Spravujte poplatky svých zákazníků."
             }
         ]
     },
@@ -2289,6 +2297,100 @@
             {
                 "id": "cancelButton",
                 "description": "Zrušit"
+            }
+        ]
+    },
+    {
+        "feature": "priceList",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Τιμοκατάλογοι"
+            },
+            {
+                "id": "headerCustomerDescription",
+                "description": "Πελάτης"
+            },
+            {
+                "id": "headerDestinationDescription",
+                "description": "Προορισμός"
+            },
+            {
+                "id": "headerPortDescription",
+                "description": "Λιμάνι"
+            },
+            {
+                "id": "headerFrom",
+                "description": "Από"
+            },
+            {
+                "id": "headerTo",
+                "description": "Εως"
+            },
+            {
+                "id": "newRecord",
+                "description": "Νεα εγγραφη"
+            }
+        ]
+    },
+    {
+        "feature": "priceForm",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Τιμοκατάλογος"
+            },
+            {
+                "id": "customer",
+                "description": "Πελάτης"
+            },
+            {
+                "id": "destination",
+                "description": "Προορισμός"
+            },
+            {
+                "id": "port",
+                "description": "Λιμάνι"
+            },
+            {
+                "id": "from",
+                "description": "Από"
+            },
+            {
+                "id": "to",
+                "description": "Εως"
+            },
+            {
+                "id": "adultsWithTransfer",
+                "description": "Ενήλικες με transfer"
+            },
+            {
+                "id": "adultsWithoutTransfer",
+                "description": "Ενήλικες χωρίς transfer"
+            },
+            {
+                "id": "kidsWithTransfer",
+                "description": "Παιδιά με transfer"
+            },
+            {
+                "id": "kidsWithoutTransfer",
+                "description": "Παιδιά χωρίς transfer"
+            },
+            {
+                "id": "post",
+                "description": "Αρχική καταχώριση"
+            },
+            {
+                "id": "put",
+                "description": "Τελευταία ενημέρωση"
+            },
+            {
+                "id": "deleteButton",
+                "description": "Διαγραφη"
+            },
+            {
+                "id": "saveButton",
+                "description": "Αποθηκευση"
             }
         ]
     }
