@@ -96,6 +96,7 @@ namespace API.Infrastructure.Middleware {
                 451 => ApiMessages.InvalidDestination(),
                 452 => ApiMessages.InvalidPickupPoint(),
                 460 => ApiMessages.InvalidPort(),
+                461 => ApiMessages.PriceFieldsMustBeZeroOrGreater(),
                 453 => ApiMessages.InvalidDriver(),
                 454 => ApiMessages.InvalidShip(),
                 455 => ApiMessages.InvalidPassengerCount(),

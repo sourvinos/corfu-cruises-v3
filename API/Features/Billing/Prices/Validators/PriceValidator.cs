@@ -13,10 +13,10 @@ namespace API.Features.Prices {
             // Fields
             RuleFor(x => x.From).Must(DateHelpers.BeCorrectFormat);
             RuleFor(x => x.To).Must(DateHelpers.BeCorrectFormat);
-            RuleFor(x => x.AdultsWithTransfer).InclusiveBetween(1, 1000);
-            RuleFor(x => x.AdultsWithoutTransfer).InclusiveBetween(1, 1000);
-            RuleFor(x => x.KidsWithTransfer).InclusiveBetween(1, 1000);
-            RuleFor(x => x.KidsWithoutTransfer).InclusiveBetween(1, 1000);
+            RuleFor(x => x.AdultsWithTransfer).InclusiveBetween(0, 1000);
+            RuleFor(x => x.AdultsWithoutTransfer).InclusiveBetween(0, 1000);
+            RuleFor(x => x.KidsWithTransfer).InclusiveBetween(0, 1000);
+            RuleFor(x => x.KidsWithoutTransfer).InclusiveBetween(0, 1000);
         }
 
     }

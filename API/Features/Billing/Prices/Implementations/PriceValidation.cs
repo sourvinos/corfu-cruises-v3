@@ -18,6 +18,7 @@ namespace API.Features.Prices {
                 var x when x == !IsValidCustomer(price) => 450,
                 var x when x == !IsValidDestination(price) => 451,
                 var x when x == !IsValidPort(price) => 460,
+                var x when x == !PriceFieldsMustBeZeroOrGreater(price) => 461,
                 var x when x == IsAlreadyUpdated(z, price) => 415,
                 _ => 200,
             };
@@ -53,8 +54,12 @@ namespace API.Features.Prices {
                     .SingleOrDefault(x => x.Id == price.PortId) != null;
         }
 
-        private static bool IsAlreadyUpdated(Price z, PriceWriteDto ship) {
-            return z != null && z.PutAt != ship.PutAt;
+        private static bool PriceFieldsMustBeZeroOrGreater(PriceWriteDto price) {
+            return price.AdultsWithTransfer >= 0 && price.AdultsWithoutTransfer >= 0 && price.KidsWithTransfer >= 0 && price.KidsWithoutTransfer >= 0;
+        }
+
+        private static bool IsAlreadyUpdated(Price z, PriceWriteDto price) {
+            return z != null && z.PutAt != price.PutAt;
         }
 
     }
