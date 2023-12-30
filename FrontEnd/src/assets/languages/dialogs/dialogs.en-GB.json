@@ -99,6 +99,10 @@
                 "message": "You have not selected any records."
             },
             {
+                "id": "selectedPricesMustBelongToSameCustomer",
+                "message": "The selected records must belong to the same customer."
+            },
+            {
                 "id": "noVideoDevicesFound",
                 "message": "There are no cameras on your device."
             },

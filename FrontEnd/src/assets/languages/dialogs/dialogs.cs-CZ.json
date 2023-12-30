@@ -99,6 +99,10 @@
                 "message": "Nevybrali jste žádné záznamy."
             },
             {
+                "id": "selectedPricesMustBelongToSameCustomer",
+                "message": "Vybrané záznamy musí patřit stejnému zákazníkovi."
+            },
+            {
                 "id": "noVideoDevicesFound",
                 "message": "Na vašem zařízení nejsou žádné kamery."
             },

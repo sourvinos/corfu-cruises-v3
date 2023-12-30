@@ -16,7 +16,7 @@ import { MessageDialogService } from '../../../../../shared/services/message-dia
 import { MessageLabelService } from '../../../../../shared/services/message-label.service'
 import { PriceCloneCriteria } from './../../classes/models/price-clone-criteria'
 import { PriceListVM } from '../../classes/view-models/price-list-vm'
-import { PriceService } from '../../classes/services/price.service'
+import { PriceService } from '../../classes/services/price-http.service'
 import { SessionStorageService } from '../../../../../shared/services/session-storage.service'
 
 @Component({
@@ -27,7 +27,7 @@ import { SessionStorageService } from '../../../../../shared/services/session-st
 
 export class PriceListComponent {
 
-    //#region common #9
+    //#region common
 
     @ViewChild('table') table: Table
 
@@ -58,22 +58,7 @@ export class PriceListComponent {
 
     //#endregion
 
-    constructor(
-        private activatedRoute: ActivatedRoute,
-        private dateAdapter: DateAdapter<any>,
-        private dateHelperService: DateHelperService,
-        private dialogService: DialogService,
-        private emojiService: EmojiService,
-        private helperService: HelperService,
-        private interactionService: InteractionService,
-        private localStorageService: LocalStorageService,
-        private messageDialogService: MessageDialogService,
-        private messageLabelService: MessageLabelService,
-        private priceService: PriceService,
-        private router: Router,
-        private sessionStorageService: SessionStorageService,
-        public dialog: MatDialog,
-    ) { }
+    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private priceService: PriceService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
 
@@ -141,33 +126,35 @@ export class PriceListComponent {
 
     public onClonePrices(): void {
         if (this.isAnyRowSelected()) {
-            this.saveSelectedIds()
-            const dialogRef = this.dialog.open(ClonePricesDialogComponent, {
-                data: ['customers', 'clonePrices'],
-                height: '36.0625rem',
-                panelClass: 'dialog',
-                width: '32rem',
-            })
-            dialogRef.afterClosed().subscribe(result => {
-                if (result !== undefined) {
-                    const priceCloneCriteria: PriceCloneCriteria = {
-                        customerIds: result,
-                        priceIds: this.selectedIds
-                    }
-                    this.priceService.clonePrices(priceCloneCriteria).subscribe(() => {
-                        this.dialogService.open(this.messageDialogService.success(), 'ok', ['ok']).subscribe(() => {
-                            this.clearSelectedRecords()
-                            this.refreshList()
+            if (this.selectedPricesMustBelongToSameCustomer()) {
+                this.saveSelectedIds()
+                const dialogRef = this.dialog.open(ClonePricesDialogComponent, {
+                    data: ['customers', 'clonePrices'],
+                    height: '36.0625rem',
+                    panelClass: 'dialog',
+                    width: '32rem',
+                })
+                dialogRef.afterClosed().subscribe((result: any) => {
+                    if (result !== undefined) {
+                        const priceCloneCriteria: PriceCloneCriteria = {
+                            customerIds: result,
+                            priceIds: this.selectedIds
+                        }
+                        this.priceService.clonePrices(priceCloneCriteria).subscribe(() => {
+                            this.dialogService.open(this.messageDialogService.success(), 'ok', ['ok']).subscribe(() => {
+                                this.clearSelectedRecords()
+                                this.refreshList()
+                            })
                         })
-                    })
-                }
-            })
+                    }
+                })
+            }
         }
     }
 
     //#endregion
 
-    //#region private common methods #14
+    //#region private common methods
 
     private enableDisableFilters(): void {
         this.records.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()
@@ -287,6 +274,17 @@ export class PriceListComponent {
             ids.push(record.id)
         })
         this.selectedIds = ids
+    }
+
+    private selectedPricesMustBelongToSameCustomer(): boolean {
+        let returnValue = true
+        this.selectedRecords.forEach(record => {
+            if (this.helperService.deepEqual(record.customer, this.selectedRecords[0].customer) == false) {
+                this.dialogService.open(this.messageDialogService.selectedPricesMustBelongToSameCustomer(), 'error', ['ok'])
+                returnValue = false
+            }
+        })
+        return returnValue
     }
 
     private setLocale(): void {

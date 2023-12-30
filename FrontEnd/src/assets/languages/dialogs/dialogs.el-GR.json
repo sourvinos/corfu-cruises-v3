@@ -99,6 +99,10 @@
                 "message": "Δεν έχετε επιλέξει εγγραφές."
             },
             {
+                "id": "selectedPricesMustBelongToSameCustomer",
+                "message": "Οι επιλεγμένες εγγραφές δεν πρέπει να ανήκουν σε διαφορετικούς πελάτες."
+            },
+            {
                 "id": "noVideoDevicesFound",
                 "message": "Δεν βρέθηκαν κάμερες στη συσκευή σας."
             },

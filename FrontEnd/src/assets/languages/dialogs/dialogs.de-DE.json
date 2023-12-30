@@ -99,6 +99,10 @@
                 "message": "Sie haben keine Datensätze ausgewählt."
             },
             {
+                "id": "selectedPricesMustBelongToSameCustomer",
+                "message": "Die ausgewählten Datensätze müssen zu demselben Kunden gehören."
+            },
+            {
                 "id": "noVideoDevicesFound",
                 "message": "Es befinden sich keine Kameras auf Ihrem Gerät."
             },

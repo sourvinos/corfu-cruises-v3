@@ -54,6 +54,7 @@ export class MessageDialogService {
     public formIsDirty(): string { return this.getDescription(this.feature, 'formIsDirty') }
     public noVideoDevicesFound(): string { return this.getDescription(this.feature, 'noVideoDevicesFound') }
     public noRecordsSelected(): string { return this.getDescription(this.feature, 'noRecordsSelected') }
+    public selectedPricesMustBelongToSameCustomer(): string { return this.getDescription(this.feature, 'selectedPricesMustBelongToSameCustomer') }
     public reservationCreated(): string { return this.getDescription(this.feature, 'reservationCreated') }
     public unableToResetPassword(): string { return this.getDescription(this.feature, 'unableToResetPassword') }
     public invalidModel(): string { return this.getDescription(this.feature, 'invalidModel') }

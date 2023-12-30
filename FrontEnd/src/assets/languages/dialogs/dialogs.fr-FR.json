@@ -99,6 +99,10 @@
                 "message": "Vous n'avez pas sélectionné d'inscriptions."
             },
             {
+                "id": "selectedPricesMustBelongToSameCustomer",
+                "message": "Les enregistrements sélectionnés doivent appartenir au même client."
+            },
+            {
                 "id": "noVideoDevicesFound",
                 "message": "Aucune caméra trouvée sur votre appareil."
             },

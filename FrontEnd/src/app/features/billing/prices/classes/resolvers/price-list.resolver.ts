@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs'
 import { catchError, map } from 'rxjs/operators'
 // Custom
 import { ListResolved } from '../../../../../shared/classes/list-resolved'
-import { PriceService } from '../services/price.service'
+import { PriceService } from '../services/price-http.service'
 
 @Injectable({ providedIn: 'root' })
 

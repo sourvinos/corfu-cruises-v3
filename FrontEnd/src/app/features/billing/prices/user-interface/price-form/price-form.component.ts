@@ -15,7 +15,7 @@ import { MessageDialogService } from 'src/app/shared/services/message-dialog.ser
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { PriceReadDto } from '../../classes/dtos/price-read-dto'
-import { PriceService } from '../../classes/services/price.service'
+import { PriceService } from '../../classes/services/price-http.service'
 import { PriceWriteDto } from '../../classes/dtos/price-write-dto'
 import { SimpleEntity } from '../../../../../shared/classes/simple-entity'
 import { ValidationService } from '../../../../../shared/services/validation.service'
