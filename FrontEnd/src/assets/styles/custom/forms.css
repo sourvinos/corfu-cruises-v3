@@ -10,7 +10,7 @@
 
 #content {
     background-color: var(--color-background);
-    border: 0.0625rem solid color-mix(in srgb, var(--color-primary) 50%, transparent);
+    border: 0.0625rem solid color-mix(in srgb, var(--color-border) 50%, transparent);
     display: flex;
     flex-direction: column;
     gap: 0.9375rem;

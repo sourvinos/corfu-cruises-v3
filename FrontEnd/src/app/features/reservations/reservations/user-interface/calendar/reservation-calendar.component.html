@@ -15,7 +15,7 @@
 
         <div id="table-wrapper">
             <div id="days">
-                <div *ngFor="let day of days" (click)="doReservationTasks(day.date)" [attr.id]="day.date" [ngClass]="{ 'saturday':isSaturday(day.date), 'sunday':isSunday(day.date), 'is-today':isToday(day.date), 'has-schedule':dayHasSchedule(day) }" class="day">
+                <div *ngFor="let day of days" (click)="doReservationTasks(day.date)" [attr.id]="day.date" [ngClass]="{ 'saturday':isSaturday(day.date), 'sunday':isSunday(day.date), 'is-today':isToday(day.date), 'has-schedule':dayHasSchedule(day), 'disabled':!dayHasSchedule(day) }" class="day">
                     <div class="day-data">
                         <div class="weekday">{{ getLocaleWeekdayName(day.date) }}</div>
                         <div class="date">{{ day.value }}</div>
