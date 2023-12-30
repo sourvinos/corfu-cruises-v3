@@ -18,7 +18,6 @@ namespace API.Infrastructure.Helpers {
         public static string UnknownError() { return "Something bad has happened."; }
         public static string EmailNotSent() { return "Email not sent."; }
         public static string NotUniqueUsernameOrEmail() { return "The username or the email are not unique"; }
-        public static string InvalidRegistrarsForManifest() { return "The registrars pair is invalid"; }
 
         #endregion
 
@@ -26,6 +25,7 @@ namespace API.Infrastructure.Helpers {
 
         public static string DuplicateRecord() { return "Duplicate records are not allowed."; }
         public static string DuplicateRefNo() { return "RefNo in not unique."; }
+        public static string InvalidRegistrarsForManifest() { return "The registrars pair is invalid"; }
         public static string InvalidDateDestinationOrPickupPoint() { return "The reservation is invalid for one of the following reasons: a) Nothing is scheduled for the selected day b) We don't go to the selected destination c) There are no departures from the selected port."; }
         public static string PortHasNoFreeSeats() { return "Overbooking in not allowed."; }
         public static string NotOwnRecord() { return "You are not the owner of this record."; }
@@ -51,6 +51,7 @@ namespace API.Infrastructure.Helpers {
         public static string ConcurrencyError() { return "Another user has already updated this record."; }
         public static string NewAdminShouldNotHaveCustomerId() { return "When the new user is an admin, customer id must be null."; }
         public static string NewSimpleUserShouldHaveCustomerId() { return "When the new user is not an admin, customer id must exist and be active."; }
+        public static string PriceCloningNotCompleted() { return "Cloning not completed. Check your pricelist table."; }
 
         #endregion
 

@@ -81,6 +81,7 @@ namespace API.Infrastructure.Extensions {
             #endregion
             #region billing
             services.AddTransient<IPriceRepository, PriceRepository>();
+            services.AddTransient<IPriceCloneRepository, PriceCloneRepository>();
             services.AddTransient<IPriceValidation, PriceValidation>();
             #endregion
             #region common

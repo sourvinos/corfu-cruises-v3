@@ -16,13 +16,15 @@ namespace API.Features.Prices {
 
         private readonly IMapper mapper;
         private readonly IPriceRepository priceRepo;
+        private readonly IPriceCloneRepository priceCloneRepo;
         private readonly IPriceValidation priceValidation;
 
         #endregion
 
-        public PricesController(IMapper mapper, IPriceRepository priceRepo, IPriceValidation priceValidation) {
+        public PricesController(IMapper mapper, IPriceRepository priceRepo, IPriceCloneRepository priceCloneRepo, IPriceValidation priceValidation) {
             this.mapper = mapper;
             this.priceRepo = priceRepo;
+            this.priceCloneRepo = priceCloneRepo;
             this.priceValidation = priceValidation;
         }
 
@@ -66,6 +68,24 @@ namespace API.Features.Prices {
             } else {
                 throw new CustomException() {
                     ResponseCode = x
+                };
+            }
+        }
+
+        [HttpPost("clonePrices")]
+        [Authorize(Roles = "admin")]
+        [ServiceFilter(typeof(ModelValidationAttribute))]
+        public async Task<Response> ClonePricesAsync([FromBody] PriceCloneCriteria criteria) {
+            if (await ProcessCriteriaAsync(criteria)) {
+                return new Response {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Id = null,
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 419
                 };
             }
         }
@@ -114,6 +134,23 @@ namespace API.Features.Prices {
                     ResponseCode = 404
                 };
             }
+        }
+
+        private async Task<bool> ProcessCriteriaAsync(PriceCloneCriteria criteria) {
+            var recordsProcessed = 0;
+            foreach (var customerId in criteria.CustomerIds) {
+                foreach (var priceId in criteria.PriceIds) {
+                    try {
+                        var z = await priceRepo.GetByIdAsync(priceId, false);
+                        var x = priceRepo.Create(mapper.Map<PriceWriteDto, Price>((PriceWriteDto)priceRepo.AttachMetadataToPostDto(priceCloneRepo.BuildPriceWriteDto(customerId, z))));
+                        recordsProcessed++;
+                    }
+                    catch (System.Exception) {
+                        break;
+                    }
+                }
+            }
+            return recordsProcessed == criteria.CustomerIds.Length * criteria.PriceIds.Length;
         }
 
     }

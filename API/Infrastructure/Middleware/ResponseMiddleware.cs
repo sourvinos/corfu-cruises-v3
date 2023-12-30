@@ -89,6 +89,7 @@ namespace API.Infrastructure.Middleware {
                 416 => ApiMessages.NewAdminShouldNotHaveCustomerId(),
                 417 => ApiMessages.NewSimpleUserShouldHaveCustomerId(),
                 418 => ApiMessages.NewSimpleUserShouldHaveCustomerId(),
+                419 => ApiMessages.PriceCloningNotCompleted(),
                 431 => ApiMessages.SimpleUserCanNotAddReservationAfterDepartureTime(),
                 433 => ApiMessages.PortHasNoFreeSeats(),
                 449 => ApiMessages.InvalidShipOwner(),
