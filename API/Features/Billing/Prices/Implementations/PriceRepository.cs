@@ -30,7 +30,7 @@ namespace API.Features.Prices {
                 .Include(x => x.Customer)
                 .Include(x => x.Destination)
                 .Include(x => x.Port)
-                .OrderBy(x => x.From).ThenBy(x => x.To).ThenBy(x => x.Customer.Description).ThenBy(x => x.Destination.Description).ThenBy(x => x.Port.Description)
+                .OrderBy(x => x.Customer.Description).ThenBy(x => x.Destination.Description).ThenBy(x => x.Port.Description).ThenBy(x => x.From).ThenBy(x => x.To)
                 .ToListAsync();
             return mapper.Map<IEnumerable<Price>, IEnumerable<PriceListVM>>(prices);
         }

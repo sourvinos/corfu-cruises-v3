@@ -4,10 +4,19 @@
 
         <div id="header">
             <home-button-and-title [featureIcon]="featureIcon" [feature]="feature" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
+            <div id="header-buttons">
+                <button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" mat-icon-button>
+                    <mat-icon class="material-icons-outlined">more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu" class="primary">
+                    <ng-container *ngTemplateOutlet="tasksMenu"></ng-container>
+                </mat-menu>
+            </div>
+
         </div>
 
         <div id="table-wrapper">
-            <p-table #table (onFilter)="filterRecords($event)" [scrollable]="true" [value]="records" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
+            <p-table #table (onFilter)="filterRecords($event)" [(selection)]="selectedRecords" [scrollable]="true" [value]="records" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
                 <ng-template pTemplate="header">
                     <tr>
                         <th class="width-3"></th>
@@ -85,3 +94,13 @@
     </div>
 
 </div>
+
+
+<ng-template #tasksMenu xPosition="before">
+    <button (click)="onClonePrices()" mat-menu-item>
+        <span>{{ getLabel('clonePrices') }}</span>
+    </button>
+    <button mat-menu-item>
+        <span>{{ getLabel('rangeDelete') }}</span>
+    </button>
+</ng-template>

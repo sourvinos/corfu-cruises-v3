@@ -1,24 +1,28 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, ViewChild } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
+import { MatDialog } from '@angular/material/dialog'
 import { Table } from 'primeng/table'
 // Custom
-import { DateHelperService } from './../../../../shared/services/date-helper.service'
-import { DialogService } from './../../../../shared/services/modal-dialog.service'
-import { EmojiService } from './../../../../shared/services/emoji.service'
-import { HelperService } from './../../../../shared/services/helper.service'
-import { InteractionService } from './../../../../shared/services/interaction.service'
-import { ListResolved } from './../../../../shared/classes/list-resolved'
-import { LocalStorageService } from './../../../../shared/services/local-storage.service'
-import { MessageDialogService } from './../../../../shared/services/message-dialog.service'
-import { MessageLabelService } from './../../../../shared/services/message-label.service'
-import { PriceListVM } from '../classes/view-models/price-list-vm'
-import { SessionStorageService } from './../../../../shared/services/session-storage.service'
+import { ClonePricesDialogComponent } from '../clone-prices-dialog/clone-prices-dialog.component'
+import { DateHelperService } from '../../../../../shared/services/date-helper.service'
+import { DialogService } from '../../../../../shared/services/modal-dialog.service'
+import { EmojiService } from '../../../../../shared/services/emoji.service'
+import { HelperService } from '../../../../../shared/services/helper.service'
+import { InteractionService } from '../../../../../shared/services/interaction.service'
+import { ListResolved } from '../../../../../shared/classes/list-resolved'
+import { LocalStorageService } from '../../../../../shared/services/local-storage.service'
+import { MessageDialogService } from '../../../../../shared/services/message-dialog.service'
+import { MessageLabelService } from '../../../../../shared/services/message-label.service'
+import { PriceCloneCriteria } from './../../classes/models/price-clone-criteria'
+import { PriceListVM } from '../../classes/view-models/price-list-vm'
+import { PriceService } from '../../classes/services/price.service'
+import { SessionStorageService } from '../../../../../shared/services/session-storage.service'
 
 @Component({
     selector: 'price-list',
     templateUrl: './price-list.component.html',
-    styleUrls: ['../../../../../assets/styles/custom/lists.css']
+    styleUrls: ['../../../../../../assets/styles/custom/lists.css']
 })
 
 export class PriceListComponent {
@@ -49,23 +53,39 @@ export class PriceListComponent {
     //#region specific
 
     public recordsFiltered: PriceListVM[]
+    public selectedRecords: PriceListVM[] = []
+    public selectedIds: number[] = []
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(
+        private activatedRoute: ActivatedRoute,
+        private dateAdapter: DateAdapter<any>,
+        private dateHelperService: DateHelperService,
+        private dialogService: DialogService,
+        private emojiService: EmojiService,
+        private helperService: HelperService,
+        private interactionService: InteractionService,
+        private localStorageService: LocalStorageService,
+        private messageDialogService: MessageDialogService,
+        private messageLabelService: MessageLabelService,
+        private priceService: PriceService,
+        private router: Router,
+        private sessionStorageService: SessionStorageService,
+        public dialog: MatDialog,
+    ) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
-        this.loadRecords().then(() => {
-            this.populateDropdownFilters()
-            this.filterTableFromStoredFilters()
-            this.formatDatesToLocale()
-            this.subscribeToInteractionService()
-            this.setTabTitle()
-            this.setLocale()
-            this.setSidebarsHeight()
-        })
+        this.loadRecords()
+        this.populateDropdownFilters()
+        this.filterTableFromStoredFilters()
+        this.formatDatesToLocale()
+        this.subscribeToInteractionService()
+        this.setTabTitle()
+        this.setLocale()
+        this.setSidebarsHeight()
     }
 
     ngAfterViewInit(): void {
@@ -79,7 +99,7 @@ export class PriceListComponent {
 
     //#endregion
 
-    //#region public common methods #7
+    //#region public common methods
 
     public editRecord(id: number): void {
         this.storeScrollTop()
@@ -112,7 +132,37 @@ export class PriceListComponent {
     }
 
     public resetTableFilters(): void {
-        this.helperService.clearTableTextFilters(this.table, ['description', 'exactPoint', 'time'])
+        this.helperService.clearTableTextFilters(this.table, ['customer', 'destination', 'port'])
+    }
+
+    //#endregion
+
+    //#region public specific methods
+
+    public onClonePrices(): void {
+        if (this.isAnyRowSelected()) {
+            this.saveSelectedIds()
+            const dialogRef = this.dialog.open(ClonePricesDialogComponent, {
+                data: ['customers', 'clonePrices'],
+                height: '36.0625rem',
+                panelClass: 'dialog',
+                width: '32rem',
+            })
+            dialogRef.afterClosed().subscribe(result => {
+                if (result !== undefined) {
+                    const priceCloneCriteria: PriceCloneCriteria = {
+                        customerIds: result,
+                        priceIds: this.selectedIds
+                    }
+                    this.priceService.clonePrices(priceCloneCriteria).subscribe(() => {
+                        this.dialogService.open(this.messageDialogService.success(), 'ok', ['ok']).subscribe(() => {
+                            this.clearSelectedRecords()
+                            this.refreshList()
+                        })
+                    })
+                }
+            })
+        }
     }
 
     //#endregion
@@ -202,6 +252,10 @@ export class PriceListComponent {
 
     //#region private specific methods
 
+    private clearSelectedRecords(): void {
+        this.selectedRecords = []
+    }
+
     private formatDatesToLocale(): void {
         this.records.forEach(record => {
             record.formattedFrom = this.dateHelperService.formatISODateToLocale(record.from)
@@ -209,10 +263,30 @@ export class PriceListComponent {
         })
     }
 
+    private isAnyRowSelected(): boolean {
+        if (this.selectedRecords.length == 0) {
+            this.dialogService.open(this.messageDialogService.noRecordsSelected(), 'error', ['ok'])
+            return false
+        }
+        return true
+    }
+
     private populateDropdownFilters(): void {
         this.dropdownCustomers = this.helperService.getDistinctRecords(this.records, 'customer', 'description')
         this.dropdownDestinations = this.helperService.getDistinctRecords(this.records, 'destination', 'description')
         this.dropdownPorts = this.helperService.getDistinctRecords(this.records, 'port', 'description')
+    }
+
+    private refreshList(): void {
+        this.router.navigateByUrl(this.router.url)
+    }
+
+    private saveSelectedIds(): void {
+        const ids = []
+        this.selectedRecords.forEach(record => {
+            ids.push(record.id)
+        })
+        this.selectedIds = ids
     }
 
     private setLocale(): void {

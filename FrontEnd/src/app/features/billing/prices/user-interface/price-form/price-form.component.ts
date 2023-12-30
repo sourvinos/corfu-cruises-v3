@@ -4,9 +4,9 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { Observable } from 'rxjs'
 import { map, startWith } from 'rxjs/operators'
 // Custom
-import { DateHelperService } from '../../../../shared/services/date-helper.service'
+import { DateHelperService } from '../../../../../shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
-import { DialogService } from '../../../../shared/services/modal-dialog.service'
+import { DialogService } from '../../../../../shared/services/modal-dialog.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -14,16 +14,16 @@ import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { PriceReadDto } from '../classes/dtos/price-read-dto'
-import { PriceService } from '../classes/services/price.service'
-import { PriceWriteDto } from '../classes/dtos/price-write-dto'
-import { SimpleEntity } from './../../../../shared/classes/simple-entity'
-import { ValidationService } from '../../../../shared/services/validation.service'
+import { PriceReadDto } from '../../classes/dtos/price-read-dto'
+import { PriceService } from '../../classes/services/price.service'
+import { PriceWriteDto } from '../../classes/dtos/price-write-dto'
+import { SimpleEntity } from '../../../../../shared/classes/simple-entity'
+import { ValidationService } from '../../../../../shared/services/validation.service'
 
 @Component({
     selector: 'price-form',
     templateUrl: './price-form.component.html',
-    styleUrls: ['../../../../../assets/styles/custom/forms.css', './price-form.component.css']
+    styleUrls: ['../../../../../../assets/styles/custom/forms.css', './price-form.component.css']
 })
 
 export class PriceFormComponent {

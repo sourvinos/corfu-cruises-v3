@@ -2308,6 +2308,14 @@
                 "description": "Τιμοκατάλογοι"
             },
             {
+                "id": "clonePrices",
+                "description": "Αντιγραφή σε πελάτες"
+            },
+            {
+                "id": "rangeDelete",
+                "description": "Διαγραφή επιλεγμένων εγγραφών"
+            },
+            {
                 "id": "headerCustomerDescription",
                 "description": "Πελάτης"
             },
@@ -2391,6 +2399,27 @@
             {
                 "id": "saveButton",
                 "description": "Αποθηκευση"
+            }
+        ]
+    },
+    {
+        "feature": "clonePrices",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Επιλογή πελατών"
+            },
+            {
+                "id": "subHeader",
+                "description": "Επιλέξτε σε ποιούς πελάτες θα κλωνοποιηθούν οι επιλεγμένοι τιμοκατάλογοι."
+            },
+            {
+                "id": "okButton",
+                "description": "OK"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Ακυρο"
             }
         ]
     }
