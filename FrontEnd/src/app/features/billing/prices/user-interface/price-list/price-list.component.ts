@@ -6,6 +6,7 @@ import { Table } from 'primeng/table'
 // Custom
 import { ClonePricesDialogComponent } from '../clone-prices-dialog/clone-prices-dialog.component'
 import { DateHelperService } from '../../../../../shared/services/date-helper.service'
+import { DeleteRangeDialogComponent } from './../../../../../shared/components/delete-range-dialog/delete-range-dialog.component'
 import { DialogService } from '../../../../../shared/services/modal-dialog.service'
 import { EmojiService } from '../../../../../shared/services/emoji.service'
 import { HelperService } from '../../../../../shared/services/helper.service'
@@ -117,19 +118,42 @@ export class PriceListComponent {
     }
 
     public resetTableFilters(): void {
-        this.helperService.clearTableTextFilters(this.table, ['customer', 'destination', 'port'])
+        this.helperService.clearTableTextFilters(this.table, [''])
     }
 
     //#endregion
 
     //#region public specific methods
 
+    public onDeleteRange(): void {
+        if (this.isAnyRowSelected()) {
+            const dialogRef = this.dialog.open(DeleteRangeDialogComponent, {
+                data: 'question',
+                panelClass: 'dialog',
+                height: '18.75rem',
+                width: '31.25rem'
+            })
+            dialogRef.afterClosed().subscribe(result => {
+                if (result != undefined) {
+                    this.saveSelectedIds()
+                    this.priceService.deleteRange(this.selectedIds).subscribe(() => {
+                        this.dialogService.open(this.messageDialogService.success(), 'ok', ['ok']).subscribe(() => {
+                            this.clearSelectedRecords()
+                            this.resetTableFilters()
+                            this.refreshList()
+                        })
+                    })
+                }
+            })
+        }
+    }
+
     public onClonePrices(): void {
         if (this.isAnyRowSelected()) {
-            if (this.selectedPricesMustBelongToSameCustomer()) {
+            if (this.selectedRowsMustBelongToSameCustomer()) {
                 this.saveSelectedIds()
                 const dialogRef = this.dialog.open(ClonePricesDialogComponent, {
-                    data: ['customers', 'clonePrices'],
+                    data: ['customers', 'clonePrices', this.selectedRecords[0].customer],
                     height: '36.0625rem',
                     panelClass: 'dialog',
                     width: '32rem',
@@ -276,7 +300,7 @@ export class PriceListComponent {
         this.selectedIds = ids
     }
 
-    private selectedPricesMustBelongToSameCustomer(): boolean {
+    private selectedRowsMustBelongToSameCustomer(): boolean {
         let returnValue = true
         this.selectedRecords.forEach(record => {
             if (this.helperService.deepEqual(record.customer, this.selectedRecords[0].customer) == false) {

@@ -48,6 +48,14 @@ namespace API.Features.Prices {
                     .SingleOrDefaultAsync(x => x.Id == id);
         }
 
+        public void DeleteRange(int[] ids) {
+            context.Prices
+                .RemoveRange(context.Prices
+                .Where(x => ids.Contains(x.Id))
+                .ToList());
+            context.SaveChanges();
+        }
+
     }
 
 }

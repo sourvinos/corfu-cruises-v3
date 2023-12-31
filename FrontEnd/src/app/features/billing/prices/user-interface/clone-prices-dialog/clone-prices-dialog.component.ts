@@ -21,6 +21,7 @@ export class ClonePricesDialogComponent {
     public form: FormGroup
     public records: SimpleEntity[]
     public selectedRecords: SimpleEntity[] = []
+    private excludedRecord: SimpleEntity
     private customerIds = []
 
     //#endregion
@@ -28,6 +29,7 @@ export class ClonePricesDialogComponent {
     constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dexieService: DexieService, private dialogRef: MatDialogRef<ClonePricesDialogComponent>, private messageLabelService: MessageLabelService, private ngZone: NgZone) {
         this.table = data[0]
         this.feature = data[1]
+        this.excludedRecord = data[2]
     }
 
     //#region lifecycle hooks
@@ -67,7 +69,7 @@ export class ClonePricesDialogComponent {
 
     private populateDropdownFromDexieDB(dexieTable: string, orderBy: string): void {
         this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
-            this.records = response.filter(x => x.isActive)
+            this.records = response.filter(x => x.description != this.excludedRecord.description)
         })
     }
 

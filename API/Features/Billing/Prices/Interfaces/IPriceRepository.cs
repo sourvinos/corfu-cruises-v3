@@ -8,6 +8,7 @@ namespace API.Features.Prices {
 
         Task<IEnumerable<PriceListVM>> GetAsync();
         Task<Price> GetByIdAsync(int id, bool includeTables);
+        void DeleteRange(int[] ids);
 
     }
 

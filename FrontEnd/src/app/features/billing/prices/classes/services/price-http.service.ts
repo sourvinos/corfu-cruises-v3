@@ -18,4 +18,8 @@ export class PriceService extends HttpDataService {
         return this.http.post<any>(this.url + '/clonePrices', criteria)
     }
 
+    public deleteRange(ids: number[]): Observable<any> {
+        return this.http.request<void>('delete', this.url + '/deleteRange', { body: ids })
+    }
+
 }

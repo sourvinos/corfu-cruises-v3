@@ -10,7 +10,7 @@ import { SharedModule } from '../../../../../shared/modules/shared.module'
     declarations: [
         PriceListComponent,
         PriceFormComponent,
-        ClonePricesDialogComponent,
+        ClonePricesDialogComponent
     ],
     imports: [
         SharedModule,

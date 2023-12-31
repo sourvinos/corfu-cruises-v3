@@ -7,22 +7,22 @@ import { MessageInputHintService } from 'src/app/shared/services/message-input-h
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 
 @Component({
-    selector: 'reservation-delete-range-dialog.component',
-    templateUrl: './reservation-delete-range-dialog.component.html',
-    styleUrls: ['./reservation-delete-range-dialog.component.css']
+    selector: 'delete-range-dialog.component',
+    templateUrl: './delete-range-dialog.component.html',
+    styleUrls: ['./delete-range-dialog.component.css']
 })
 
-export class ReservationDeleteRangeDialogComponent {
+export class DeleteRangeDialogComponent {
 
     //#region variables
 
-    private feature = 'delete-range-reservation'
+    private feature = 'delete-range'
     public form: FormGroup
     public randomString: string
 
     //#endregion
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ReservationDeleteRangeDialogComponent>, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private ngZone: NgZone) { }
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<DeleteRangeDialogComponent>, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private ngZone: NgZone) { }
 
     //#region lifecycle hooks
 

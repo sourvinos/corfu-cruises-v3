@@ -136,6 +136,18 @@ namespace API.Features.Prices {
             }
         }
 
+        [HttpDelete("deleteRange")]
+        [Authorize(Roles = "admin")]
+        public Response DeleteRange([FromBody] int[] ids) {
+            priceRepo.DeleteRange(ids);
+            return new Response {
+                Code = 200,
+                Icon = Icons.Success.ToString(),
+                Id = null,
+                Message = ApiMessages.OK()
+            };
+        }
+
         private async Task<bool> ProcessCriteriaAsync(PriceCloneCriteria criteria) {
             var recordsProcessed = 0;
             foreach (var customerId in criteria.CustomerIds) {

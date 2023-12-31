@@ -100,7 +100,7 @@
     <button (click)="onClonePrices()" mat-menu-item>
         <span>{{ getLabel('clonePrices') }}</span>
     </button>
-    <button mat-menu-item>
+    <button (click)="onDeleteRange()" mat-menu-item>
         <span>{{ getLabel('rangeDelete') }}</span>
     </button>
 </ng-template>

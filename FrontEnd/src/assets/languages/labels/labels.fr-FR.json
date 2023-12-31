@@ -2280,7 +2280,7 @@
         ]
     },
     {
-        "feature": "delete-range-reservation",
+        "feature": "delete-range",
         "labels": [
             {
                 "id": "label",

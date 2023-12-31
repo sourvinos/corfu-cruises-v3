@@ -11,6 +11,7 @@ import { CriteriaFieldsetRadiosComponent } from '../components/criteria-fieldset
 import { CriteriaFieldsetWeekdaysComponent } from '../components/criteria-fieldset-weekdays/criteria-fieldset-weekdays.component'
 import { DatePickerComponent } from '../components/date-picker/date-picker.component'
 import { DateRangePickerComponent } from '../components/date-range-picker/date-range-picker.component'
+import { DeleteRangeDialogComponent } from '../components/delete-range-dialog/delete-range-dialog.component'
 import { EmojiDirective } from '../directives/emoji.directive'
 import { HomeButtonAndTitleComponent } from '../components/home-button-and-title/home-button-and-title.component'
 import { InputMaxLengthDirective } from '../directives/input-maxLength.directive'
@@ -40,6 +41,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         CriteriaFieldsetWeekdaysComponent,
         DatePickerComponent,
         DateRangePickerComponent,
+        DeleteRangeDialogComponent,
         EmojiDirective,
         HomeButtonAndTitleComponent,
         InputMaxLengthDirective,
@@ -77,6 +79,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         CriteriaFieldsetWeekdaysComponent,
         DatePickerComponent,
         DateRangePickerComponent,
+        DeleteRangeDialogComponent,
         EmojiDirective,
         FormsModule,
         HomeButtonAndTitleComponent,

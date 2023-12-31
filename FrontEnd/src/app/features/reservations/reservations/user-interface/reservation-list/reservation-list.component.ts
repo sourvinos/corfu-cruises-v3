@@ -6,6 +6,7 @@ import { Table } from 'primeng/table'
 // Custom
 import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
+import { DeleteRangeDialogComponent } from 'src/app/shared/components/delete-range-dialog/delete-range-dialog.component'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { DriverReportService } from '../../classes/driver-report/services/driver-report.service'
 import { EmojiService } from './../../../../../shared/services/emoji.service'
@@ -15,7 +16,6 @@ import { ListResolved } from 'src/app/shared/classes/list-resolved'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { ReservationAssignDialogComponent } from '../reservation-assign-dialog/reservation-assign-dialog.component'
-import { ReservationDeleteRangeDialogComponent } from '../reservation-delete-range-dialog/reservation-delete-range-dialog.component'
 import { ReservationHttpService } from '../../classes/services/reservation.http.service'
 import { ReservationListDestinationVM } from '../../classes/view-models/list/reservation-list-destination-vm'
 import { ReservationListOverbookedDestinationVM } from '../../classes/view-models/list/reservation-list-overbooked-destination-vm'
@@ -164,7 +164,7 @@ export class ReservationListComponent {
 
     public deleteRange(): void {
         if (this.isAnyRowSelected()) {
-            const dialogRef = this.dialog.open(ReservationDeleteRangeDialogComponent, {
+            const dialogRef = this.dialog.open(DeleteRangeDialogComponent, {
                 data: 'question',
                 panelClass: 'dialog',
                 height: '18.75rem',
@@ -173,7 +173,7 @@ export class ReservationListComponent {
             dialogRef.afterClosed().subscribe(result => {
                 if (result != undefined) {
                     this.saveSelectedIds()
-                    this.reservationService.rangeDelete(this.selectedIds).subscribe(() => {
+                    this.reservationService.deleteRange(this.selectedIds).subscribe(() => {
                         this.dialogService.open(this.messageDialogService.success(), 'ok', ['ok']).subscribe(() => {
                             this.clearSelectedRecords()
                             this.resetTableFilters()
