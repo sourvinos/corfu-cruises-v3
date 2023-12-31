@@ -86,5 +86,13 @@
     {
         "id": "parameters-parameters",
         "description": "Einstellungen"
+    },
+    {
+        "id": "billing-tables-taxOffices",
+        "description": "Οικονομικές υπηρεσίες"
+    },
+    {
+        "id": "billing-tables-prices",
+        "description": "Τιμοκατάλογοι"
     }
 ]

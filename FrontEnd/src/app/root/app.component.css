@@ -18,6 +18,13 @@
     padding: 0 0.5rem 4rem 0.5rem;
 }
 
+#middle {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+}
+
 #topbar {
     align-items: center;
     display: flex;
