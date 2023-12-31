@@ -21,6 +21,7 @@ using API.Infrastructure.Parameters;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using API.Features.TaxOffices;
 
 namespace API.Infrastructure.Classes {
 
@@ -53,6 +54,7 @@ namespace API.Infrastructure.Classes {
 
         #region DbSets - Billing
         public DbSet<Price> Prices { get; set; }
+        public DbSet<TaxOffice> TaxOffices { get; set; }
 
         #endregion
 
@@ -86,6 +88,7 @@ namespace API.Infrastructure.Classes {
             #endregion
             #region billing
             modelBuilder.ApplyConfiguration(new PricesConfig());
+            modelBuilder.ApplyConfiguration(new TaxOfficesConfig());
             #endregion
             #region common
             modelBuilder.ApplyConfiguration(new UsersConfig());

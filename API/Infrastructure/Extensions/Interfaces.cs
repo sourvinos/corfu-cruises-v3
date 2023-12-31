@@ -19,6 +19,7 @@ using API.Features.ShipOwners;
 using API.Features.ShipRoutes;
 using API.Features.Ships;
 using API.Features.Statistics;
+using API.Features.TaxOffices;
 using API.Features.Users;
 using API.Infrastructure.Auth;
 using API.Infrastructure.Parameters;
@@ -83,6 +84,8 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IPriceRepository, PriceRepository>();
             services.AddTransient<IPriceCloneRepository, PriceCloneRepository>();
             services.AddTransient<IPriceValidation, PriceValidation>();
+            services.AddTransient<ITaxOfficeRepository, TaxOfficeRepository>();
+            services.AddTransient<ITaxOfficeValidation, TaxOfficeValidation>();
             #endregion
             #region common
             services.AddTransient<IEmailSender, EmailSender>();
