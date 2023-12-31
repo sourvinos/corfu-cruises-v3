@@ -54,7 +54,6 @@ export class LoginFormComponent {
         this.checkScreenResolution()
         this.setCurrentPeriod()
         this.setNow()
-
         this.setSidebarsTopMargin()
     }
 

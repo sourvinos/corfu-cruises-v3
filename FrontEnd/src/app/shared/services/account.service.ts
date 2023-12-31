@@ -23,6 +23,7 @@ import { SessionStorageService } from './session-storage.service'
 import { ShipOwnerService } from './../../features/reservations/shipOwners/classes/services/shipOwner.service'
 import { ShipRouteService } from './../../features/reservations/shipRoutes/classes/services/shipRoute.service'
 import { ShipService } from './../../features/reservations/ships/classes/services/ship.service'
+import { TaxOfficeService } from './../../features/billing/taxOffices/classes/services/taxOffice.service'
 import { environment } from '../../../environments/environment'
 
 @Injectable({ providedIn: 'root' })
@@ -38,7 +39,7 @@ export class AccountService extends HttpDataService {
 
     //#endregion
 
-    constructor(private cryptoService: CryptoService, httpClient: HttpClient, private coachRouteService: CoachRouteService, private customerService: CustomerService, private destinationService: DestinationService, private dexieService: DexieService, private driverService: DriverService, private genderService: GenderService, private interactionService: InteractionService, private nationalityService: NationalityService, private ngZone: NgZone, private pickupPointService: PickupPointService, private portService: PortService, private router: Router, private sessionStorageService: SessionStorageService, private shipOwnerService: ShipOwnerService, private shipRouteService: ShipRouteService, private shipService: ShipService) {
+    constructor(private cryptoService: CryptoService, httpClient: HttpClient, private coachRouteService: CoachRouteService, private customerService: CustomerService, private destinationService: DestinationService, private dexieService: DexieService, private driverService: DriverService, private genderService: GenderService, private interactionService: InteractionService, private nationalityService: NationalityService, private ngZone: NgZone, private pickupPointService: PickupPointService, private portService: PortService, private router: Router, private sessionStorageService: SessionStorageService, private shipOwnerService: ShipOwnerService, private shipRouteService: ShipRouteService, private shipService: ShipService, private taxOfficeService: TaxOfficeService) {
         super(httpClient, environment.apiUrl)
     }
 
@@ -78,6 +79,7 @@ export class AccountService extends HttpDataService {
             { 'item': 'genderList-filters', 'when': 'always' }, { 'item': 'genderList-id', 'when': 'always' }, { 'item': 'genderList-scrollTop', 'when': 'always' },
             { 'item': 'pickupPointList-filters', 'when': 'always' }, { 'item': 'pickupPointList-id', 'when': 'always' }, { 'item': 'pickupPointList-scrollTop', 'when': 'always' },
             { 'item': 'portList-filters', 'when': 'always' }, { 'item': 'portList-id', 'when': 'always' }, { 'item': 'portList-scrollTop', 'when': 'always' },
+            { 'item': 'priceList-filters', 'when': 'always' }, { 'item': 'priceList-id', 'when': 'always' }, { 'item': 'priceList-scrollTop', 'when': 'always' },
             { 'item': 'registrarList-filters', 'when': 'always' }, { 'item': 'registrarList-id', 'when': 'always' }, { 'item': 'registrarList-scrollTop', 'when': 'always' },
             { 'item': 'scheduleList-filters', 'when': 'always' }, { 'item': 'scheduleList-id', 'when': 'always' }, { 'item': 'scheduleList-scrollTop', 'when': 'always' },
             { 'item': 'shipCrewList-filters', 'when': 'always' }, { 'item': 'shipCrewList-id', 'when': 'always' }, { 'item': 'shipCrewList-scrollTop', 'when': 'always' },
@@ -167,6 +169,7 @@ export class AccountService extends HttpDataService {
         this.dexieService.populateTable('shipOwners', this.shipOwnerService)
         this.dexieService.populateTable('shipRoutes', this.shipRouteService)
         this.dexieService.populateTable('ships', this.shipService)
+        this.dexieService.populateTable('taxOffices', this.taxOfficeService)
     }
 
     private setDotNetVersion(response: any): void {

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using API.Features.Customers;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.TaxOffices {
@@ -17,8 +15,6 @@ namespace API.Features.TaxOffices {
         public string PostUser { get; set; }
         public string PutAt { get; set; }
         public string PutUser { get; set; }
-        // Navigation
-        public List<Customer> Customers { get; set; }
 
     }
 

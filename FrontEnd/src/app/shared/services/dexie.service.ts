@@ -18,7 +18,8 @@ export class DexieService extends Dexie {
             ports: 'id, abbreviation, description, isActive',
             shipOwners: 'id, description, isActive',
             shipRoutes: 'id, description, isActive',
-            ships: 'id, description, isActive'
+            ships: 'id, description, isActive',
+            taxOffices: 'id, description, isActive'
         })
         this.open()
     }

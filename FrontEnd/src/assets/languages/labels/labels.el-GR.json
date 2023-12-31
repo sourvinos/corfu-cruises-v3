@@ -2422,5 +2422,55 @@
                 "description": "Ακυρο"
             }
         ]
+    },
+    {
+        "feature": "taxOfficeList",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Οικονομικές υπηρεσίες"
+            },
+            {
+                "id": "headerDescription",
+                "description": "Περιγραφή"
+            },
+            {
+                "id": "newRecord",
+                "description": "Νεα εγγραφη"
+            }
+        ]
+    },
+    {
+        "feature": "taxOfficeForm",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Οικονομική υπηρεσία"
+            },
+            {
+                "id": "description",
+                "description": "Περιγραφή"
+            },
+            {
+                "id": "isActive",
+                "description": "Ενεργή"
+            },
+            {
+                "id": "post",
+                "description": "Αρχική καταχώριση"
+            },
+            {
+                "id": "put",
+                "description": "Τελευταία ενημέρωση"
+            },
+            {
+                "id": "deleteButton",
+                "description": "Διαγραφη"
+            },
+            {
+                "id": "saveButton",
+                "description": "Αποθηκευση"
+            }
+        ]
     }
 ]

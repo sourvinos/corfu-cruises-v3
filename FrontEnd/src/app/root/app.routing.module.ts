@@ -44,6 +44,7 @@ const appRoutes: Routes = [
     { path: 'parameters', loadChildren: () => import('../features/reservations/parameters/classes/modules/parameters.module').then(m => m.ParametersModule) },
     // Billing
     { path: 'prices', loadChildren: () => import('../features/billing/prices/classes/modules/price.module').then(m => m.PriceModule) },
+    { path: 'taxOffices', loadChildren: () => import('../features/billing/taxOffices/classes/modules/taxOffice.module').then(m => m.TaxOfficeModule) },
     // Empty
     { path: '**', component: EmptyPageComponent }
 ]
