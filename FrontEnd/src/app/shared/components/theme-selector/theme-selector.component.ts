@@ -26,7 +26,9 @@ export class ThemeSelectorComponent {
     //#region lifecycle hooks
 
     ngOnInit(): void {
-        this.applyTheme()
+        this.storeDefaultTheme()
+        this.setTheme()
+        this.attachStylesheetToHead()
         this.buildTooltips()
     }
 
@@ -48,18 +50,14 @@ export class ThemeSelectorComponent {
 
     public onChangeTheme(): void {
         this.toggleTheme()
-        this.updateVariables()
+        this.storeDefaultTheme()
+        this.setTheme()
         this.attachStylesheetToHead()
     }
 
     //#endregion
 
     //#region private methods
-
-    private applyTheme(): void {
-        this.updateVariables()
-        this.attachStylesheetToHead()
-    }
 
     private attachStylesheetToHead(): void {
         const headElement = this.document.getElementsByTagName('head')[0]
@@ -83,6 +81,12 @@ export class ThemeSelectorComponent {
         })
     }
 
+    private storeDefaultTheme(): void {
+        if (this.localStorageService.getItem('theme') == '') {
+            this.localStorageService.saveItem('theme', this.defaultTheme)
+        }
+    }
+
     private subscribeToTooltipLanguageChanges(): void {
         this.interactionService.refreshTooltips.subscribe(() => {
             this.buildTooltips()
@@ -93,8 +97,8 @@ export class ThemeSelectorComponent {
         this.localStorageService.saveItem('theme', this.localStorageService.getItem('theme') == 'light' ? 'dark' : 'light')
     }
 
-    private updateVariables(): void {
-        this.defaultTheme = this.localStorageService.getItem('theme') || this.defaultTheme
+    private setTheme(): void {
+        this.defaultTheme = this.localStorageService.getItem('theme')
     }
 
     //#endregion
