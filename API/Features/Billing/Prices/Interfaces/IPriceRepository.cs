@@ -7,8 +7,8 @@ namespace API.Features.Prices {
     public interface IPriceRepository : IRepository<Price> {
 
         Task<IEnumerable<PriceListVM>> GetAsync();
-        Task<Price> GetByIdAsync(int id, bool includeTables);
-        void DeleteRange(int[] ids);
+        Task<Price> GetByIdAsync(string id, bool includeTables);
+        void DeleteRange(string[] ids);
 
     }
 

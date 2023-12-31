@@ -7,7 +7,7 @@ namespace API.Features.Prices {
 
         public void Configure(EntityTypeBuilder<Price> entity) {
             // PK
-            entity.Property(x => x.Id).ValueGeneratedOnAdd();
+            entity.Property(x => x.Id).IsFixedLength().HasMaxLength(36).IsRequired(true);
             // FKs
             entity.Property(x => x.CustomerId).IsRequired(true);
             entity.Property(x => x.DestinationId).IsRequired(true);

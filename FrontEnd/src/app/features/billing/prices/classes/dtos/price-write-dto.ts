@@ -1,7 +1,9 @@
+import { Guid } from 'guid-typescript'
+
 export interface PriceWriteDto {
 
     // PK
-    id: number
+    id: Guid
     // FKs
     customerId: number
     destinationId: number

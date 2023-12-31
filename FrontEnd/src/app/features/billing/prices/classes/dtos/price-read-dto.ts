@@ -1,10 +1,12 @@
+import { Guid } from 'guid-typescript'
+// Customr
 import { Metadata } from 'src/app/shared/classes/metadata'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
 export interface PriceReadDto extends Metadata {
 
     // PK
-    id: number
+    id: Guid
     // Object fields
     customer: SimpleEntity
     destination: SimpleEntity

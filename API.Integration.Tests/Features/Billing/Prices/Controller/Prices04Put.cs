@@ -19,7 +19,7 @@ namespace Prices {
         private readonly string _actionVerb = "put";
         private readonly string _baseUrl;
         private readonly string _url = "/prices";
-        private readonly string _notFoundUrl = "/prices/999";
+        private readonly string _notFoundUrl = "/prices/2b5d1fcc-1c5a-43d3-b7aa-72fc89759ac7";
 
         #endregion
 

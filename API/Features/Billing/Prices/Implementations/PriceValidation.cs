@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using API.Features.Users;
 using API.Infrastructure.Classes;
@@ -27,7 +28,7 @@ namespace API.Features.Prices {
         }
 
         private bool IsValidCustomer(PriceWriteDto price) {
-            return price.Id == 0
+            return price.Id == Guid.Empty
                 ? context.Customers
                     .AsNoTracking()
                     .SingleOrDefault(x => x.Id == price.CustomerId && x.IsActive) != null
@@ -37,7 +38,7 @@ namespace API.Features.Prices {
         }
 
         private bool IsValidDestination(PriceWriteDto price) {
-            return price.Id == 0
+            return price.Id == Guid.Empty
                 ? context.Destinations
                     .AsNoTracking()
                     .SingleOrDefault(x => x.Id == price.DestinationId && x.IsActive) != null
@@ -47,7 +48,7 @@ namespace API.Features.Prices {
         }
 
         private bool IsValidPort(PriceWriteDto price) {
-            return price.Id == 0
+            return price.Id == Guid.Empty
                 ? context.Ports
                     .AsNoTracking()
                     .SingleOrDefault(x => x.Id == price.PortId && x.IsActive) != null

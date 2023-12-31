@@ -42,7 +42,7 @@ namespace API.Features.Prices {
             var postUser = Identity.GetConnectedUserDetails(userManager, Identity.GetConnectedUserId(httpContextAccessor)).UserName;
             foreach (var customerId in criteria.CustomerIds) {
                 foreach (var priceId in criteria.PriceIds) {
-                    var z = await context.Prices.FirstOrDefaultAsync(x => x.Id == priceId);
+                    var z = await context.Prices.FirstOrDefaultAsync(x => x.Id.ToString() == priceId);
                     var x = new PriceWriteDto {
                         CustomerId = customerId,
                         DestinationId = z.DestinationId,

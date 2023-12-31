@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -21,8 +22,8 @@ namespace Prices {
         private static object[] Customer_Must_Exist() {
             return new object[] {
                 new TestPrice {
-                    Id = 1,
                     StatusCode = 450,
+                    Id = Guid.Parse("4566b88d-ed00-4996-be85-732c93f24943"),
                     CustomerId = 9999,
                     DestinationId = 1,
                     PortId = 1,
@@ -41,6 +42,7 @@ namespace Prices {
             return new object[] {
                 new TestPrice {
                     StatusCode = 451,
+                    Id = Guid.Parse("4566b88d-ed00-4996-be85-732c93f24943"),
                     CustomerId = 1,
                     DestinationId = 9999,
                     PortId = 1,
@@ -59,6 +61,7 @@ namespace Prices {
             return new object[] {
                 new TestPrice {
                     StatusCode = 460,
+                    Id = Guid.Parse("4566b88d-ed00-4996-be85-732c93f24943"),
                     CustomerId = 1,
                     DestinationId = 1,
                     PortId = 9999,
@@ -76,7 +79,8 @@ namespace Prices {
         private static object[] AdultsWithTransferMustNotBeNegative() {
             return new object[] {
                 new TestPrice {
-                    StatusCode = 416,
+                    StatusCode = 461,
+                    Id = Guid.Parse("4566b88d-ed00-4996-be85-732c93f24943"),
                     CustomerId = 1,
                     DestinationId = 1,
                     PortId = 1,
@@ -94,7 +98,8 @@ namespace Prices {
         private static object[] AdultsWithoutTransferMustNotBeNegative() {
             return new object[] {
                 new TestPrice {
-                    StatusCode = 416,
+                    StatusCode = 461,
+                    Id = Guid.Parse("4566b88d-ed00-4996-be85-732c93f24943"),
                     CustomerId = 1,
                     DestinationId = 1,
                     PortId = 1,
@@ -112,7 +117,8 @@ namespace Prices {
         private static object[] KidsWithTransferMustNotBeNegative() {
             return new object[] {
                 new TestPrice {
-                    StatusCode = 416,
+                    StatusCode = 461,
+                    Id = Guid.Parse("4566b88d-ed00-4996-be85-732c93f24943"),
                     CustomerId = 1,
                     DestinationId = 1,
                     PortId = 1,
@@ -130,7 +136,8 @@ namespace Prices {
         private static object[] KidsWithoutTransferMustNotBeNegative() {
             return new object[] {
                 new TestPrice {
-                    StatusCode = 416,
+                    StatusCode = 461,
+                    Id = Guid.Parse("4566b88d-ed00-4996-be85-732c93f24943"),
                     CustomerId = 1,
                     DestinationId = 1,
                     PortId = 1,
@@ -149,7 +156,7 @@ namespace Prices {
             return new object[] {
                 new TestPrice {
                     StatusCode = 415,
-                    Id = 1,
+                    Id = Guid.Parse("4566b88d-ed00-4996-be85-732c93f24943"),
                     CustomerId = 1,
                     DestinationId = 1,
                     PortId = 1,

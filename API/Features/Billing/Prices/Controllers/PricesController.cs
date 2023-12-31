@@ -36,7 +36,7 @@ namespace API.Features.Prices {
 
         [HttpGet("{id}")]
         [Authorize(Roles = "admin")]
-        public async Task<ResponseWithBody> GetByIdAsync(int id) {
+        public async Task<ResponseWithBody> GetByIdAsync(string id) {
             var x = await priceRepo.GetByIdAsync(id, true);
             if (x != null) {
                 return new ResponseWithBody {
@@ -94,7 +94,7 @@ namespace API.Features.Prices {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public async Task<Response> Put([FromBody] PriceWriteDto price) {
-            var x = await priceRepo.GetByIdAsync(price.Id, false);
+            var x = await priceRepo.GetByIdAsync(price.Id.ToString(), false);
             if (x != null) {
                 var z = priceValidation.IsValid(x, price);
                 if (z == 200) {
@@ -119,7 +119,7 @@ namespace API.Features.Prices {
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "admin")]
-        public async Task<Response> Delete([FromRoute] int id) {
+        public async Task<Response> Delete([FromRoute] string id) {
             var x = await priceRepo.GetByIdAsync(id, false);
             if (x != null) {
                 priceRepo.Delete(x);
@@ -138,7 +138,7 @@ namespace API.Features.Prices {
 
         [HttpDelete("deleteRange")]
         [Authorize(Roles = "admin")]
-        public Response DeleteRange([FromBody] int[] ids) {
+        public Response DeleteRange([FromBody] string[] ids) {
             priceRepo.DeleteRange(ids);
             return new Response {
                 Code = 200,

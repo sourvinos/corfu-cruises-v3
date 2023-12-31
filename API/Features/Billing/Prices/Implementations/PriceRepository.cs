@@ -35,23 +35,23 @@ namespace API.Features.Prices {
             return mapper.Map<IEnumerable<Price>, IEnumerable<PriceListVM>>(prices);
         }
 
-        public async Task<Price> GetByIdAsync(int id, bool includeTables) {
+        public async Task<Price> GetByIdAsync(string id, bool includeTables) {
             return includeTables
                 ? await context.Prices
                     .AsNoTracking()
                     .Include(p => p.Customer)
                     .Include(p => p.Destination)
                     .Include(x => x.Port)
-                    .SingleOrDefaultAsync(x => x.Id == id)
+                    .SingleOrDefaultAsync(x => x.Id.ToString() == id)
                 : await context.Prices
                     .AsNoTracking()
-                    .SingleOrDefaultAsync(x => x.Id == id);
+                    .SingleOrDefaultAsync(x => x.Id.ToString() == id);
         }
 
-        public void DeleteRange(int[] ids) {
+        public void DeleteRange(string[] ids) {
             context.Prices
                 .RemoveRange(context.Prices
-                .Where(x => ids.Contains(x.Id))
+                .Where(x => ids.Contains(x.Id.ToString()))
                 .ToList());
             context.SaveChanges();
         }

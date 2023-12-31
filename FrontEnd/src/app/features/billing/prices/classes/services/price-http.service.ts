@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
+import { Observable } from 'rxjs'
 // Custom
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
-import { environment } from 'src/environments/environment'
 import { PriceCloneCriteria } from '../models/price-clone-criteria'
-import { Observable } from 'rxjs'
+import { environment } from 'src/environments/environment'
 
 @Injectable({ providedIn: 'root' })
 

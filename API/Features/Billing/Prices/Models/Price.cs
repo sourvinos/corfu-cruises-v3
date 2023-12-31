@@ -6,10 +6,10 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Prices {
 
-    public class Price : IBaseEntity, IMetadata {
+    public class Price : IMetadata {
 
         // PK
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         // FKs
         public int CustomerId { get; set; }
         public int DestinationId { get; set; }

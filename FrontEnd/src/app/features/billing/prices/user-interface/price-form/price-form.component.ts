@@ -162,7 +162,7 @@ export class PriceFormComponent {
 
     private flattenForm(): PriceWriteDto {
         return {
-            id: this.form.value.id,
+            id: this.form.value.id != '' ? this.form.value.id : null,
             customerId: this.form.value.customer.id,
             destinationId: this.form.value.destination.id,
             portId: this.form.value.port.id,
@@ -203,7 +203,7 @@ export class PriceFormComponent {
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            id: 0,
+            id: '',
             customer: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             destination: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             port: ['', [Validators.required, ValidationService.RequireAutocomplete]],

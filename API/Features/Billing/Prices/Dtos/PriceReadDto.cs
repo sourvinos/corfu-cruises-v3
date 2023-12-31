@@ -1,12 +1,13 @@
+using System;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.Prices {
 
-    public class PriceReadDto : IBaseEntity, IMetadata {
+    public class PriceReadDto : IMetadata {
 
         // PK
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         // Fields
         public string From { get; set; }
         public string To { get; set; }

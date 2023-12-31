@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -14,7 +15,7 @@ namespace Prices {
         private static object[] ValidRecord() {
             return new object[] {
                 new TestPrice {
-                    Id = 1,
+                    Id = Guid.Parse("4566b88d-ed00-4996-be85-732c93f24943"),
                     CustomerId = 1,
                     DestinationId = 1,
                     PortId = 1,

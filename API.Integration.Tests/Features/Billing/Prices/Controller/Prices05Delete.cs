@@ -17,8 +17,8 @@ namespace Prices {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "delete";
         private readonly string _baseUrl;
-        private readonly string _url = "/prices/1";
-        private readonly string _notFoundUrl = "/prices/999";
+        private readonly string _url = "/prices/349caac4-dc98-4dc1-a0c8-0e050dc1b14f";
+        private readonly string _notFoundUrl = "/prices/2b5d1fcc-1c5a-43d3-b7aa-72fc89759ac7";
 
         #endregion
 
