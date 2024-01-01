@@ -69,6 +69,14 @@
                 "description": "Název"
             },
             {
+                "id": "taxNo",
+                "description": "Daňové registrační číslo"
+            },
+            {
+                "id": "taxOffice",
+                "description": "Finanční úřad"
+            },
+            {
                 "id": "profession",
                 "description": "Povolání"
             },

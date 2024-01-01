@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using API.Features.Reservations;
+using API.Features.TaxOffices;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.Customers {
@@ -8,8 +10,11 @@ namespace API.Features.Customers {
 
         // PK
         public int Id { get; set; }
+        // Fks
+        public Guid TaxOfficeId { get; set; }
         // Fields
         public string Description { get; set; }
+        public string TaxNo { get; set; }
         public string Profession { get; set; }
         public string Address { get; set; }
         public string Phones { get; set; }
@@ -22,6 +27,7 @@ namespace API.Features.Customers {
         public string PutAt { get; set; }
         public string PutUser { get; set; }
         // Navigation
+        public TaxOffice TaxOffice { get; set; }
         public List<Reservation> Reservations { get; set; }
 
     }

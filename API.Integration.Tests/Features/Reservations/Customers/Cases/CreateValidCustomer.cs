@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Infrastructure;
@@ -15,7 +16,9 @@ namespace Customers {
         private static object[] ValidRecord() {
             return new object[] {
                 new TestCustomer {
-                    Description = Helpers.CreateRandomString(128)
+                    TaxOfficeId = Guid.Parse("00b19ade-546c-7351-a164-9f5eeb0b3a69"),
+                    Description = Helpers.CreateRandomString(128),
+                    TaxNo = "099999999"
                 }
             };
         }

@@ -69,6 +69,14 @@
                 "description": "Nom de compagnie"
             },
             {
+                "id": "taxNo",
+                "description": "Numéro d'enregistrement fiscal"
+            },
+            {
+                "id": "taxOffice",
+                "description": "Bureau des impôts"
+            },
+            {
                 "id": "profession",
                 "description": "Activite"
             },

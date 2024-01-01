@@ -8,8 +8,8 @@ namespace API.Features.Customers {
 
         Task<IEnumerable<CustomerListVM>> GetAsync();
         Task<IEnumerable<CustomerAutoCompleteVM>> GetAutoCompleteAsync();
-        Task<Customer> GetByIdAsync(int id);
- 
+        Task<Customer> GetByIdAsync(int id, bool includeTables);
+
     }
 
 }

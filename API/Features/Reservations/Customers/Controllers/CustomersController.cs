@@ -41,7 +41,7 @@ namespace API.Features.Customers {
         [HttpGet("{id}")]
         [Authorize(Roles = "admin")]
         public async Task<ResponseWithBody> GetByIdAsync(int id) {
-            var x = await customerRepo.GetByIdAsync(id);
+            var x = await customerRepo.GetByIdAsync(id, true);
             if (x != null) {
                 return new ResponseWithBody {
                     Code = 200,
@@ -80,7 +80,7 @@ namespace API.Features.Customers {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public async Task<Response> Put([FromBody] CustomerWriteDto customer) {
-            var x = await customerRepo.GetByIdAsync(customer.Id);
+            var x = await customerRepo.GetByIdAsync(customer.Id, false);
             if (x != null) {
                 var z = customerValidation.IsValid(x, customer);
                 if (z == 200) {
@@ -106,7 +106,7 @@ namespace API.Features.Customers {
         [HttpDelete("{id}")]
         [Authorize(Roles = "admin")]
         public async Task<Response> Delete([FromRoute] int id) {
-            var x = await customerRepo.GetByIdAsync(id);
+            var x = await customerRepo.GetByIdAsync(id, false);
             if (x != null) {
                 customerRepo.Delete(x);
                 return new Response {

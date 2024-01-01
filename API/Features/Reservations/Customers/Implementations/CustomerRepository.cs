@@ -36,10 +36,15 @@ namespace API.Features.Customers {
             return mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerAutoCompleteVM>>(customers);
         }
 
-        public async Task<Customer> GetByIdAsync(int id) {
-            return await context.Customers
-                .AsNoTracking()
-                .SingleOrDefaultAsync(x => x.Id == id);
+        public async Task<Customer> GetByIdAsync(int id, bool includeTables) {
+            return includeTables
+                ? await context.Customers
+                    .AsNoTracking()
+                    .Include(x => x.TaxOffice)
+                    .SingleOrDefaultAsync(x => x.Id == id)
+                : await context.Customers
+                    .AsNoTracking()
+                    .SingleOrDefaultAsync(x => x.Id == id);
         }
 
     }

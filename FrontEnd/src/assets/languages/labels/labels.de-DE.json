@@ -69,6 +69,14 @@
                 "description": "Name der Firma"
             },
             {
+                "id": "taxNo",
+                "description": "Steuerliche Registriernummer"
+            },
+            {
+                "id": "taxOffice",
+                "description": "Finanzamt"
+            },
+            {
                 "id": "profession",
                 "description": "Beruf"
             },

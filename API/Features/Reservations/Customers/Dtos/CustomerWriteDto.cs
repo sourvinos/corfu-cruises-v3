@@ -1,4 +1,5 @@
-﻿using API.Infrastructure.Interfaces;
+﻿using System;
+using API.Infrastructure.Interfaces;
 
 namespace API.Features.Customers {
 
@@ -6,8 +7,11 @@ namespace API.Features.Customers {
 
         // PK
         public int Id { get; set; }
+        // FKs
+        public Guid TaxOfficeId { get; set; }
         // Fields
         public string Description { get; set; }
+        public string TaxNo { get; set; }
         public string Profession { get; set; }
         public string Address { get; set; }
         public string Phones { get; set; }

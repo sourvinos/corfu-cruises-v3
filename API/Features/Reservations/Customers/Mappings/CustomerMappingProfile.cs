@@ -1,3 +1,4 @@
+using API.Infrastructure.Classes;
 using AutoMapper;
 
 namespace API.Features.Customers {
@@ -7,7 +8,8 @@ namespace API.Features.Customers {
         public CustomerMappingProfile() {
             CreateMap<Customer, CustomerListVM>();
             CreateMap<Customer, CustomerAutoCompleteVM>();
-            CreateMap<Customer, CustomerReadDto>();
+            CreateMap<Customer, CustomerReadDto>()
+                .ForMember(x => x.TaxOffice, x => x.MapFrom(x => new SimpleGuidEntity { Id = x.TaxOffice.Id, Description = x.TaxOffice.Description }));
             CreateMap<CustomerWriteDto, Customer>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
                 .ForMember(x => x.Profession, x => x.MapFrom(x => x.Profession.Trim()))

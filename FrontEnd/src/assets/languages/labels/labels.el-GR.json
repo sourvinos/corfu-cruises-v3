@@ -69,6 +69,14 @@
                 "description": "Επωνυμία"
             },
             {
+                "id": "taxNo",
+                "description": "Αριθμός φορολογικού μητρώου"
+            },
+            {
+                "id": "taxOffice",
+                "description": "Δημόσια οικονομική υπηρεσία"
+            },
+            {
                 "id": "profession",
                 "description": "Δραστηριότητα"
             },

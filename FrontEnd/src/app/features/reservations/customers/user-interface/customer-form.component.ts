@@ -10,9 +10,13 @@ import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
+import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { Observable, map, startWith } from 'rxjs'
+import { TaxOfficeAutoCompleteVM } from 'src/app/features/billing/taxOffices/classes/view-models/taxOffice-autocomplete-vm'
+import { ValidationService } from 'src/app/shared/services/validation.service'
 
 @Component({
     selector: 'customer-form',
@@ -35,6 +39,13 @@ export class CustomerFormComponent {
 
     //#endregion
 
+    //#region autocompletes #2
+
+    public isAutoCompleteDisabled = true
+    public dropdownTaxOffices: Observable<TaxOfficeAutoCompleteVM[]>
+
+    //#endregion
+
     constructor(private activatedRoute: ActivatedRoute, private customerService: CustomerService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
@@ -44,6 +55,7 @@ export class CustomerFormComponent {
         this.setRecordId()
         this.getRecord()
         this.populateFields()
+        this.populateDropdowns()
     }
 
     ngAfterViewInit(): void {
@@ -53,6 +65,18 @@ export class CustomerFormComponent {
     //#endregion
 
     //#region public methods
+
+    public autocompleteFields(fieldName: any, object: any): any {
+        return object ? object[fieldName] : undefined
+    }
+
+    public checkForEmptyAutoComplete(event: { target: { value: any } }): void {
+        if (event.target.value == '') this.isAutoCompleteDisabled = true
+    }
+
+    public enableOrDisableAutoComplete(event: any): void {
+        this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
+    }
 
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
@@ -82,13 +106,27 @@ export class CustomerFormComponent {
         this.saveRecord(this.flattenForm())
     }
 
+    public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
+        this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
+    }
+
     //#endregion
 
     //#region private methods
 
+    private filterAutocomplete(array: string, field: string, value: any): any[] {
+        if (typeof value !== 'object') {
+            const filtervalue = value.toLowerCase()
+            return this[array].filter((element: { [x: string]: string; }) =>
+                element[field].toLowerCase().startsWith(filtervalue))
+        }
+    }
+
     private flattenForm(): CustomerWriteDto {
         return {
             id: this.form.value.id,
+            taxOfficeId: this.form.value.taxOffice.id,
+            taxNo: this.form.value.taxNo,
             description: this.form.value.description,
             profession: this.form.value.profession,
             address: this.form.value.address,
@@ -128,7 +166,9 @@ export class CustomerFormComponent {
     private initForm(): void {
         this.form = this.formBuilder.group({
             id: 0,
+            taxOffice: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
+            taxNo: ['', [Validators.required, Validators.maxLength(36)]],
             profession: ['', [Validators.maxLength(128)]],
             address: ['', [Validators.maxLength(128)]],
             phones: ['', [Validators.maxLength(128)]],
@@ -142,10 +182,23 @@ export class CustomerFormComponent {
         })
     }
 
+    private populateDropdowns(): void {
+        this.populateDropdownFromDexieDB('taxOffices', 'dropdownTaxOffices', 'taxOffice', 'description', 'description')
+    }
+
+    private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
+        this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
+            this[dexieTable] = this.recordId == undefined ? response.filter(x => x.isActive) : response
+            this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
+        })
+    }
+
     private populateFields(): void {
         if (this.record != undefined) {
             this.form.setValue({
                 id: this.record.id,
+                taxOffice: { 'id': this.record.taxOffice.id, 'description': this.record.taxOffice.description },
+                taxNo: this.record.taxNo,
                 description: this.record.description,
                 profession: this.record.profession,
                 address: this.record.address,
@@ -189,6 +242,14 @@ export class CustomerFormComponent {
 
     get description(): AbstractControl {
         return this.form.get('description')
+    }
+
+    get taxOffice(): AbstractControl {
+        return this.form.get('taxOffice')
+    }
+
+    get taxNo(): AbstractControl {
+        return this.form.get('taxNo')
     }
 
     get profession(): AbstractControl {

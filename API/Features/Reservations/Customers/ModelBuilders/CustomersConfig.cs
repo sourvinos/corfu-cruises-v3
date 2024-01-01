@@ -8,6 +8,8 @@ namespace API.Features.Customers {
         public void Configure(EntityTypeBuilder<Customer> entity) {
             // PK
             entity.Property(x => x.Id).ValueGeneratedOnAdd();
+            // FKs
+            entity.Property(x => x.TaxOfficeId).IsRequired(true);
             // Fields
             entity.Property(x => x.Description).HasMaxLength(128).IsRequired(true);
             entity.Property(x => x.Profession).HasDefaultValue("").HasMaxLength(128);

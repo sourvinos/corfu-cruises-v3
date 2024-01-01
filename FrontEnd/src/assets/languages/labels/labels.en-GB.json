@@ -69,6 +69,14 @@
                 "description": "Name"
             },
             {
+                "id": "taxNo",
+                "description": "Tax registration number"
+            },
+            {
+                "id": "taxOffice",
+                "description": "Tax office"
+            },
+            {
                 "id": "profession",
                 "description": "Profession"
             },
