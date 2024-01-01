@@ -1,98 +1,126 @@
 [
     {
-        "id": "reservations-reservations",
+        "id": "reservations",
         "description": "Reservations"
     },
     {
-        "id": "reservations-availability",
+        "id": "calendar",
+        "description": "Calendar"
+    },
+    {
+        "id": "availability",
         "description": "Availability"
     },
     {
-        "id": "reservations-my-ledger",
-        "description": "My ledger"
-    },
-    {
-        "id": "tables-coachRoutes",
+        "id": "coachRoutes",
         "description": "Coach routes"
     },
     {
-        "id": "tables-customers",
+        "id": "customers",
         "description": "Customers"
     },
     {
-        "id": "tables-destinations",
+        "id": "destinations",
         "description": "Destinations"
     },
     {
-        "id": "tables-drivers",
+        "id": "drivers",
         "description": "Drivers"
     },
     {
-        "id": "tables-genders",
+        "id": "genders",
         "description": "Genders"
     },
     {
-        "id": "tables-pickupPoints",
+        "id": "pickupPoints",
         "description": "Pickup points"
     },
     {
-        "id": "tables-ports",
+        "id": "ports",
         "description": "Ports"
     },
     {
-        "id": "tables-schedules",
+        "id": "schedules",
         "description": "Schedules"
     },
     {
-        "id": "tables-ships",
+        "id": "ships",
         "description": "Ships"
     },
     {
-        "id": "tables-shipCrews",
-        "description": "Crews"
+        "id": "shipCrews",
+        "description": "Ship crews"
     },
     {
-        "id": "tables-registrars",
+        "id": "registrars",
         "description": "Passenger registrars"
     },
     {
-        "id": "tables-shipOwners",
+        "id": "shipOwners",
         "description": "Shipowners"
     },
     {
-        "id": "tables-shipRoutes",
+        "id": "shipRoutes",
         "description": "Ship routes"
     },
     {
-        "id": "tables-users",
+        "id": "users",
         "description": "Users"
     },
     {
-        "id": "tasks-boarding",
+        "id": "boarding",
         "description": "Boarding"
     },
     {
-        "id": "tasks-manifest",
+        "id": "manifest",
         "description": "Ship manifest"
     },
     {
-        "id": "tasks-ledgers",
+        "id": "ledgers",
         "description": "Customer ledgers"
     },
     {
-        "id": "tasks-statistics",
+        "id": "statistics",
         "description": "Statistics"
     },
     {
-        "id": "parameters-parameters",
-        "description": "Settings"
+        "id": "billing",
+        "description": "Billing"
     },
     {
-        "id": "billing-tables-taxOffices",
+        "id": "invoices",
+        "description": "Κινήσεις"
+    },
+    {
+        "id": "receipts",
+        "description": "Εισπράξεις"
+    },
+    {
+        "id": "taxOffices",
         "description": "Οικονομικές υπηρεσίες"
     },
     {
-        "id": "billing-tables-prices",
+        "id": "codes",
+        "description": "Παραστατικά"
+    },
+    {
+        "id": "banks",
+        "description": "Τράπεζες"
+    },
+    {
+        "id": "prices",
         "description": "Τιμοκατάλογοι"
+    },
+    {
+        "id": "paymentWays",
+        "description": "Τρόποι πληρωμής"
+    },
+    {
+        "id": "ledgers",
+        "description": "Καρτέλες πελατών"
+    },
+    {
+        "id": "balanceSheet",
+        "description": "Ισοζύγιο"
     }
 ]

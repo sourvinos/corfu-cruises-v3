@@ -1468,7 +1468,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Κατάσταση επιβαινόντων"
+                "description": "Κατάσταση πλοίου"
             },
             {
                 "id": "filterPlaceholder",

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 // Custom
-import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { Menu } from 'src/app/shared/classes/menu'
 import { MessageMenuService } from 'src/app/shared/services/message-menu.service'
@@ -19,12 +18,11 @@ export class ReservationsMenuComponent {
     //#region variables
 
     public tooltipItems: Menu[]
-    public feature = 'reservations'
     public menuItems: Menu[] = []
 
     //#endregion
 
-    constructor(private cryptoService: CryptoService, private interactionService: InteractionService, private messageMenuService: MessageMenuService, private router: Router, private sessionStorageService: SessionStorageService, private tooltipService: TooltipService) { }
+    constructor(private interactionService: InteractionService, private messageMenuService: MessageMenuService, private router: Router, private sessionStorageService: SessionStorageService, private tooltipService: TooltipService) { }
 
     //#region lifecycle hooks
 
@@ -37,16 +35,12 @@ export class ReservationsMenuComponent {
 
     //#region public methods
 
-    public doNavigationTasks(feature: string): void {
-        this.router.navigate([feature.substring(13)])
+    public doNavigation(feature: string): void {
+        this.router.navigate([feature])
     }
 
     public getLabel(id: string): string {
-        return this.tooltipService.getDescription(this.tooltipItems, id)
-    }
-
-    public isAdmin(): boolean {
-        return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' ? true : false
+        return this.messageMenuService.getDescription(this.menuItems, id)
     }
 
     public isLoggedIn(): boolean {
@@ -60,7 +54,6 @@ export class ReservationsMenuComponent {
     private buildMenu(): void {
         this.messageMenuService.getMessages().then((response) => {
             this.createMenu(response)
-            this.removeLastItem()
             this.subscribeToMenuLanguageChanges()
         })
     }
@@ -75,9 +68,7 @@ export class ReservationsMenuComponent {
     private createMenu(items: Menu[]): void {
         this.menuItems = []
         items.forEach(item => {
-            if (item.id.startsWith('reservations')) {
-                this.menuItems.push(item)
-            }
+            this.menuItems.push(item)
         })
     }
 
@@ -86,14 +77,6 @@ export class ReservationsMenuComponent {
         items.forEach(item => {
             this.tooltipItems.push(item)
         })
-    }
-
-    private removeLastItem(): void {
-        if (this.menuItems.length > 0) {
-            if (this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true') {
-                this.menuItems.splice(2)
-            }
-        }
     }
 
     private subscribeToMenuLanguageChanges(): void {

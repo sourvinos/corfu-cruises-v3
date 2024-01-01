@@ -1,98 +1,126 @@
 [
     {
-        "id": "reservations-calendar",
+        "id": "reservations",
         "description": "Reservations"
     },
     {
-        "id": "reservations-availability",
+        "id": "calendar",
+        "description": "Kalendář"
+    },
+    {
+        "id": "availability",
         "description": "Dostupnost"
     },
     {
-        "id": "reservations-my-ledger",
-        "description": "Moje účetní kniha"
-    },
-    {
-        "id": "tables-coachRoutes",
+        "id": "coachRoutes",
         "description": "Trasy autobusů"
     },
     {
-        "id": "tables-customers",
+        "id": "customers",
         "description": "Zákazníci"
     },
     {
-        "id": "tables-destinations",
+        "id": "destinations",
         "description": "Destinace"
     },
     {
-        "id": "tables-drivers",
+        "id": "drivers",
         "description": "Řidiči"
     },
     {
-        "id": "tables-genders",
+        "id": "genders",
         "description": "Pohlaví"
     },
     {
-        "id": "tables-pickupPoints",
+        "id": "pickupPoints",
         "description": "Nástupní místa"
     },
     {
-        "id": "tables-ports",
+        "id": "ports",
         "description": "Přístavy"
     },
     {
-        "id": "tables-schedules",
+        "id": "schedules",
         "description": "Rozvrh"
     },
     {
-        "id": "tables-ships",
+        "id": "ships",
         "description": "Lodě"
     },
     {
-        "id": "tables-shipCrews",
+        "id": "shipCrews",
         "description": "Posádky"
     },
     {
-        "id": "tables-registrars",
+        "id": "registrars",
         "description": "Registrátoři"
     },
     {
-        "id": "tables-shipOwners",
+        "id": "shipOwners",
         "description": "Vlastníci"
     },
     {
-        "id": "tables-shipRoutes",
+        "id": "shipRoutes",
         "description": "Trasy lodí"
     },
     {
-        "id": "tables-users",
+        "id": "users",
         "description": "Uživatelé"
     },
     {
-        "id": "tasks-boarding",
+        "id": "boarding",
         "description": "Boarding"
     },
     {
-        "id": "tasks-manifest",
+        "id": "manifest",
         "description": "Lodní manifest"
     },
     {
-        "id": "tasks-ledgers",
+        "id": "ledgers",
         "description": "Knihy zákazníků"
     },
     {
-        "id": "tasks-statistics",
+        "id": "statistics",
         "description": "Statistiky"
     },
     {
-        "id": "parameters-parameters",
-        "description": "Nastavení"
+        "id": "billing",
+        "description": "Fakturace"
     },
     {
-        "id": "billing-tables-taxOffices",
+        "id": "invoices",
+        "description": "Κινήσεις"
+    },
+    {
+        "id": "receipts",
+        "description": "Εισπράξεις"
+    },
+    {
+        "id": "taxOffices",
         "description": "Οικονομικές υπηρεσίες"
     },
     {
-        "id": "billing-tables-prices",
+        "id": "codes",
+        "description": "Παραστατικά"
+    },
+    {
+        "id": "banks",
+        "description": "Τράπεζες"
+    },
+    {
+        "id": "prices",
         "description": "Τιμοκατάλογοι"
+    },
+    {
+        "id": "paymentWays",
+        "description": "Τρόποι πληρωμής"
+    },
+    {
+        "id": "ledgers",
+        "description": "Καρτέλες πελατών"
+    },
+    {
+        "id": "balanceSheet",
+        "description": "Ισοζύγιο"
     }
 ]

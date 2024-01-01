@@ -1,98 +1,126 @@
 [
     {
-        "id": "reservations-reservations",
+        "id": "reservations",
         "description": "Κρατήσεις"
     },
     {
-        "id": "reservations-availability",
+        "id": "calendar",
+        "description": "Ημερολόγιο"
+    },
+    {
+        "id": "availability",
         "description": "Διαθεσιμότητα"
     },
     {
-        "id": "reservations-my-ledger",
-        "description": "Η καρτέλα μου"
-    },
-    {
-        "id": "tables-coachRoutes",
+        "id": "coachRoutes",
         "description": "Δρομολόγια λεωφορείων"
     },
     {
-        "id": "tables-customers",
+        "id": "customers",
         "description": "Πελάτες"
     },
     {
-        "id": "tables-destinations",
+        "id": "destinations",
         "description": "Προορισμοί"
     },
     {
-        "id": "tables-drivers",
+        "id": "drivers",
         "description": "Οδηγοί"
     },
     {
-        "id": "tables-genders",
+        "id": "genders",
         "description": "Φύλα"
     },
     {
-        "id": "tables-pickupPoints",
+        "id": "pickupPoints",
         "description": "Σημεία παραλαβής"
     },
     {
-        "id": "tables-ports",
+        "id": "ports",
         "description": "Λιμάνια"
     },
     {
-        "id": "tables-schedules",
+        "id": "schedules",
         "description": "Πρόγραμμα"
     },
     {
-        "id": "tables-ships",
+        "id": "ships",
         "description": "Πλοία"
     },
     {
-        "id": "tables-shipCrews",
+        "id": "shipCrews",
         "description": "Πληρώματα"
     },
     {
-        "id": "tables-registrars",
+        "id": "registrars",
         "description": "Καταγραφείς επιβατών"
     },
     {
-        "id": "tables-shipOwners",
+        "id": "shipOwners",
         "description": "Πλοιοκτήτες"
     },
     {
-        "id": "tables-shipRoutes",
+        "id": "shipRoutes",
         "description": "Δρομολόγια πλοίων"
     },
     {
-        "id": "tables-users",
+        "id": "users",
         "description": "Χρήστες"
     },
     {
-        "id": "tasks-boarding",
+        "id": "boarding",
         "description": "Επιβίβαση"
     },
     {
-        "id": "tasks-manifest",
+        "id": "manifest",
         "description": "Κατάσταση πλοίου"
     },
     {
-        "id": "tasks-ledgers",
+        "id": "ledgers",
         "description": "Καρτέλες πελατών"
     },
     {
-        "id": "tasks-statistics",
+        "id": "statistics",
         "description": "Στατιστικά"
     },
     {
-        "id": "parameters-parameters",
-        "description": "Ρυθμίσεις"
+        "id": "billing",
+        "description": "Τιμολόγηση"
     },
     {
-        "id": "billing-tables-taxOffices",
+        "id": "invoices",
+        "description": "Κινήσεις"
+    },
+    {
+        "id": "receipts",
+        "description": "Εισπράξεις"
+    },
+    {
+        "id": "taxOffices",
         "description": "Οικονομικές υπηρεσίες"
     },
     {
-        "id": "billing-tables-prices",
+        "id": "codes",
+        "description": "Παραστατικά"
+    },
+    {
+        "id": "banks",
+        "description": "Τράπεζες"
+    },
+    {
+        "id": "prices",
         "description": "Τιμοκατάλογοι"
+    },
+    {
+        "id": "paymentWays",
+        "description": "Τρόποι πληρωμής"
+    },
+    {
+        "id": "ledgers",
+        "description": "Καρτέλες πελατών"
+    },
+    {
+        "id": "balanceSheet",
+        "description": "Ισοζύγιο"
     }
 ]

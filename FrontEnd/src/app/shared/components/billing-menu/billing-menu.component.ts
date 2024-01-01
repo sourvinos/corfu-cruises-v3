@@ -1,7 +1,6 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 // Custom
-import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { Menu } from 'src/app/shared/classes/menu'
 import { MessageMenuService } from 'src/app/shared/services/message-menu.service'
@@ -9,22 +8,21 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 import { TooltipService } from 'src/app/shared/services/tooltip.service'
 
 @Component({
-    selector: 'billing-tables-menu',
-    templateUrl: './billing-tables-menu.component.html',
-    styleUrls: ['./billing-tables-menu.component.css']
+    selector: 'billing-menu',
+    templateUrl: './billing-menu.component.html',
+    styleUrls: ['./billing-menu.component.css']
 })
 
-export class BillingTablesMenuComponent {
+export class BillingMenuComponent {
 
     //#region variables
 
     public tooltipItems: Menu[]
-    public feature = 'billing'
     public menuItems: Menu[] = []
 
     //#endregion
 
-    constructor(private cryptoService: CryptoService, private interactionService: InteractionService, private messageMenuService: MessageMenuService, private router: Router, private sessionStorageService: SessionStorageService, private tooltipService: TooltipService) { }
+    constructor(private interactionService: InteractionService, private messageMenuService: MessageMenuService, private router: Router, private sessionStorageService: SessionStorageService, private tooltipService: TooltipService) { }
 
     //#region lifecycle hooks
 
@@ -37,16 +35,12 @@ export class BillingTablesMenuComponent {
 
     //#region public methods
 
-    public doNavigationTasks(feature: string): void {
-        this.router.navigate([feature.substring(15)])
+    public doNavigation(feature: string): void {
+        this.router.navigate([feature])
     }
 
     public getLabel(id: string): string {
-        return this.tooltipService.getDescription(this.tooltipItems, id)
-    }
-
-    public isAdmin(): boolean {
-        return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' ? true : false
+        return this.messageMenuService.getDescription(this.menuItems, id)
     }
 
     public isLoggedIn(): boolean {
@@ -60,7 +54,6 @@ export class BillingTablesMenuComponent {
     private buildMenu(): void {
         this.messageMenuService.getMessages().then((response) => {
             this.createMenu(response)
-            this.removeLastItem()
             this.subscribeToMenuLanguageChanges()
         })
     }
@@ -75,9 +68,7 @@ export class BillingTablesMenuComponent {
     private createMenu(items: Menu[]): void {
         this.menuItems = []
         items.forEach(item => {
-            if (item.id.startsWith('billing')) {
-                this.menuItems.push(item)
-            }
+            this.menuItems.push(item)
         })
     }
 
@@ -86,14 +77,6 @@ export class BillingTablesMenuComponent {
         items.forEach(item => {
             this.tooltipItems.push(item)
         })
-    }
-
-    private removeLastItem(): void {
-        if (this.menuItems.length > 0) {
-            if (this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true') {
-                this.menuItems.splice(2)
-            }
-        }
     }
 
     private subscribeToMenuLanguageChanges(): void {

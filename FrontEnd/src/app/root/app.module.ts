@@ -11,16 +11,13 @@ import { LoginModule } from '../features/reservations/login/classes/modules/logi
 import { PrimeNgModule } from '../shared/modules/primeng.module'
 import { SharedModule } from 'src/app/shared/modules/shared.module'
 // Components
-import { BillingTablesMenuComponent } from '../shared/components/billing-menu/billing-tables-menu.component'
+import { BillingMenuComponent } from '../shared/components/billing-menu/billing-menu.component'
 import { CardsMenuComponent } from '../shared/components/home/cards-menu.component'
 import { HomeComponent } from '../shared/components/home/home.component'
 import { LogoutComponent } from '../shared/components/logout/logout.component'
-import { ParametersMenuComponent } from '../shared/components/parameters-menu/parameters-menu.component'
 import { ReservationSearchComponent } from '../shared/components/reservation-search/reservation-search.component'
 import { ReservationSearchDialogComponent } from '../shared/components/reservation-search/reservation-search-dialog.component'
 import { ReservationsMenuComponent } from '../shared/components/reservations-menu/reservations-menu.component'
-import { TablesMenuComponent } from '../shared/components/tables-menu/tables-menu.component'
-import { TasksMenuComponent } from '../shared/components/tasks-menu/tasks-menu.component'
 import { UserMenuComponent } from '../shared/components/user-menu/user-menu.component'
 // Services
 import { InterceptorService } from '../shared/services/interceptor.service'
@@ -28,16 +25,13 @@ import { InterceptorService } from '../shared/services/interceptor.service'
 @NgModule({
     declarations: [
         AppComponent,
-        BillingTablesMenuComponent,
+        BillingMenuComponent,
         CardsMenuComponent,
         HomeComponent,
         LogoutComponent,
-        ParametersMenuComponent,
         ReservationSearchComponent,
         ReservationSearchDialogComponent,
         ReservationsMenuComponent,
-        TablesMenuComponent,
-        TasksMenuComponent,
         UserMenuComponent
     ],
     imports: [

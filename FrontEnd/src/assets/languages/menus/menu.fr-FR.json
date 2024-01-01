@@ -1,98 +1,126 @@
 [
     {
-        "id": "reservations-calendar",
+        "id": "reservations",
         "description": "Reservations"
     },
     {
-        "id": "reservations-availability",
+        "id": "calendar",
+        "description": "Calendrier"
+    },
+    {
+        "id": "availability",
         "description": "Availability"
     },
     {
-        "id": "reservations-my-ledger",
-        "description": "Mon registre"
-    },
-    {
-        "id": "tables-coachRoutes",
+        "id": "coachRoutes",
         "description": "Routes de bus"
     },
     {
-        "id": "tables-customers",
+        "id": "customers",
         "description": "Clients"
     },
     {
-        "id": "tables-destinations",
+        "id": "destinations",
         "description": "Destinations"
     },
     {
-        "id": "tables-drivers",
+        "id": "drivers",
         "description": "Conducteurs"
     },
     {
-        "id": "tables-genders",
+        "id": "genders",
         "description": "Genres"
     },
     {
-        "id": "tables-pickupPoints",
+        "id": "pickupPoints",
         "description": "Points de collecte"
     },
     {
-        "id": "tables-ports",
+        "id": "ports",
         "description": "Ports"
     },
     {
-        "id": "tables-schedules",
+        "id": "schedules",
         "description": "Horaires"
     },
     {
-        "id": "tables-ships",
+        "id": "ships",
         "description": "Navires"
     },
     {
-        "id": "tables-shipCrews",
+        "id": "shipCrews",
         "description": "Équipes"
     },
     {
-        "id": "tables-registrars",
+        "id": "registrars",
         "description": "Enregistreurs de passagers"
     },
     {
-        "id": "tables-shipOwners",
+        "id": "shipOwners",
         "description": "Armateurs"
     },
     {
-        "id": "tables-shipRoutes",
+        "id": "shipRoutes",
         "description": "Routes maritimes"
     },
     {
-        "id": "tables-users",
+        "id": "users",
         "description": "Utilisateurs"
     },
     {
-        "id": "tasks-boarding",
+        "id": "boarding",
         "description": "Embarquement"
     },
     {
-        "id": "tasks-manifest",
+        "id": "manifest",
         "description": "Manifeste du navire"
     },
     {
-        "id": "tasks-ledgers",
+        "id": "ledgers",
         "description": "Registres des clients"
     },
     {
-        "id": "tasks-statistics",
+        "id": "statistics",
         "description": "Statistiques"
     },
     {
-        "id": "parameters-parameters",
-        "description": "Paramètres"
+        "id": "billing",
+        "description": "Facturation"
     },
     {
-        "id": "billing-tables-taxOffices",
+        "id": "invoices",
+        "description": "Κινήσεις"
+    },
+    {
+        "id": "receipts",
+        "description": "Εισπράξεις"
+    },
+    {
+        "id": "taxOffices",
         "description": "Οικονομικές υπηρεσίες"
     },
     {
-        "id": "billing-tables-prices",
+        "id": "codes",
+        "description": "Παραστατικά"
+    },
+    {
+        "id": "banks",
+        "description": "Τράπεζες"
+    },
+    {
+        "id": "prices",
         "description": "Τιμοκατάλογοι"
+    },
+    {
+        "id": "paymentWays",
+        "description": "Τρόποι πληρωμής"
+    },
+    {
+        "id": "ledgers",
+        "description": "Καρτέλες πελατών"
+    },
+    {
+        "id": "balanceSheet",
+        "description": "Ισοζύγιο"
     }
 ]

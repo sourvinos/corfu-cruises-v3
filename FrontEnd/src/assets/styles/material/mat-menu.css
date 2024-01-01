@@ -24,3 +24,9 @@
     letter-spacing: 0 !important;
     margin: 0.1875rem 0 0 0 !important;
 }
+
+.mat-mdc-menu-submenu-icon {
+    color: var(--color-text) !important;
+    height: 0.4375rem !important;
+    right: 0.625rem !important;
+}
