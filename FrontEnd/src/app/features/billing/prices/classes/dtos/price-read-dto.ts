@@ -1,5 +1,5 @@
 import { Guid } from 'guid-typescript'
-// Customr
+// Custom
 import { Metadata } from 'src/app/shared/classes/metadata'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
