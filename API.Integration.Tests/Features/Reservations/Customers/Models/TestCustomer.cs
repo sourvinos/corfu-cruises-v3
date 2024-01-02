@@ -9,6 +9,8 @@ namespace Customers {
 
         public int Id { get; set; }
         public Guid TaxOfficeId { get; set; }
+        public Guid VatRegimeId { get; set; }
+        public int NationalityId { get; set; }
         public string Description { get; set; }
         public string TaxNo { get; set; }
         public string PutAt { get; set; }

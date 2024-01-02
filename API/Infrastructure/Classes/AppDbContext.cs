@@ -15,13 +15,14 @@ using API.Features.ShipCrews;
 using API.Features.ShipOwners;
 using API.Features.ShipRoutes;
 using API.Features.Ships;
+using API.Features.TaxOffices;
 using API.Features.Users;
+using API.Features.VatRegimes;
 using API.Infrastructure.Auth;
 using API.Infrastructure.Parameters;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using API.Features.TaxOffices;
 
 namespace API.Infrastructure.Classes {
 
@@ -30,6 +31,7 @@ namespace API.Infrastructure.Classes {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         #region DbSets - Reservations
+
         public DbSet<CoachRoute> CoachRoutes { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Destination> Destinations { get; set; }
@@ -53,8 +55,10 @@ namespace API.Infrastructure.Classes {
         #endregion
 
         #region DbSets - Billing
+
         public DbSet<Price> Prices { get; set; }
         public DbSet<TaxOffice> TaxOffices { get; set; }
+        public DbSet<VatRegime> VatRegimes { get; set; }
 
         #endregion
 
@@ -89,6 +93,7 @@ namespace API.Infrastructure.Classes {
             #region billing
             modelBuilder.ApplyConfiguration(new PricesConfig());
             modelBuilder.ApplyConfiguration(new TaxOfficesConfig());
+            modelBuilder.ApplyConfiguration(new VatRegimeConfig());
             #endregion
             #region common
             modelBuilder.ApplyConfiguration(new UsersConfig());

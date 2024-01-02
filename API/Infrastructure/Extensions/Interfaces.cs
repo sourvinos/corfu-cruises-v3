@@ -21,6 +21,7 @@ using API.Features.Ships;
 using API.Features.Statistics;
 using API.Features.TaxOffices;
 using API.Features.Users;
+using API.Features.VatRegimes;
 using API.Infrastructure.Auth;
 using API.Infrastructure.Parameters;
 using Microsoft.Extensions.DependencyInjection;
@@ -82,10 +83,12 @@ namespace API.Infrastructure.Extensions {
             #endregion
             #region billing
             services.AddTransient<IPriceRepository, PriceRepository>();
-            services.AddTransient<IPriceCloneRepository, PriceCloneRepository>();
             services.AddTransient<IPriceValidation, PriceValidation>();
+            services.AddTransient<IPriceCloneRepository, PriceCloneRepository>();
             services.AddTransient<ITaxOfficeRepository, TaxOfficeRepository>();
             services.AddTransient<ITaxOfficeValidation, TaxOfficeValidation>();
+            services.AddTransient<IVatRegimeRepository, VatRegimeRepository>();
+            services.AddTransient<IVatRegimeValidation, VatRegimeValidation>();
             #endregion
             #region common
             services.AddTransient<IEmailSender, EmailSender>();

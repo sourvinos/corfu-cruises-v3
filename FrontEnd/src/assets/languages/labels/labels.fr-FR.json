@@ -73,8 +73,16 @@
                 "description": "Numéro d'enregistrement fiscal"
             },
             {
+                "id": "nationality",
+                "description": "Pays"
+            },
+            {
                 "id": "taxOffice",
                 "description": "Bureau des impôts"
+            },
+            {
+                "id": "vatRegime",
+                "description": "Régime de TVA"
             },
             {
                 "id": "profession",
@@ -1370,7 +1378,7 @@
             },
             {
                 "id": "customers",
-                "description": "Client"
+                "description": "Clients"
             },
             {
                 "id": "destinations",
@@ -2284,6 +2292,14 @@
             {
                 "id": "pricesSubTitle",
                 "description": "Gérez les frais de vos clients."
+            },
+            {
+                "id": "customersTitle",
+                "description": "Clients"
+            },
+            {
+                "id": "customersSubTitle",
+                "description": "Créez, modifiez et supprimez vos clients."
             }
         ]
     },

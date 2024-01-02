@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators'
 import { ChangePasswordViewModel } from './../../features/reservations/users/classes/view-models/change-password-view-model'
 import { CoachRouteService } from './../../features/reservations/coachRoutes/classes/services/coachRoute.service'
 import { CryptoService } from './crypto.service'
-import { CustomerService } from './../../features/reservations/customers/classes/services/customer.service'
+import { CustomerHttpService } from '../../features/reservations/customers/classes/services/customer-http.service'
 import { DestinationService } from './../../features/reservations/destinations/classes/services/destination.service'
 import { DexieService } from './dexie.service'
 import { DotNetVersion } from '../classes/dotnet-version'
@@ -24,6 +24,7 @@ import { ShipOwnerService } from './../../features/reservations/shipOwners/class
 import { ShipRouteService } from './../../features/reservations/shipRoutes/classes/services/shipRoute.service'
 import { ShipService } from './../../features/reservations/ships/classes/services/ship.service'
 import { TaxOfficeService } from './../../features/billing/taxOffices/classes/services/taxOffice.service'
+import { VatRegimeService } from 'src/app/features/billing/vatRegimes/services/vatRegime-http.service'
 import { environment } from '../../../environments/environment'
 
 @Injectable({ providedIn: 'root' })
@@ -39,7 +40,7 @@ export class AccountService extends HttpDataService {
 
     //#endregion
 
-    constructor(private cryptoService: CryptoService, httpClient: HttpClient, private coachRouteService: CoachRouteService, private customerService: CustomerService, private destinationService: DestinationService, private dexieService: DexieService, private driverService: DriverService, private genderService: GenderService, private interactionService: InteractionService, private nationalityService: NationalityService, private ngZone: NgZone, private pickupPointService: PickupPointService, private portService: PortService, private router: Router, private sessionStorageService: SessionStorageService, private shipOwnerService: ShipOwnerService, private shipRouteService: ShipRouteService, private shipService: ShipService, private taxOfficeService: TaxOfficeService) {
+    constructor(private cryptoService: CryptoService, httpClient: HttpClient, private coachRouteService: CoachRouteService, private customerHttpService: CustomerHttpService, private destinationService: DestinationService, private dexieService: DexieService, private driverService: DriverService, private genderService: GenderService, private interactionService: InteractionService, private nationalityService: NationalityService, private ngZone: NgZone, private pickupPointService: PickupPointService, private portService: PortService, private router: Router, private sessionStorageService: SessionStorageService, private shipOwnerService: ShipOwnerService, private shipRouteService: ShipRouteService, private shipService: ShipService, private taxOfficeService: TaxOfficeService, private vatRegimeService: VatRegimeService) {
         super(httpClient, environment.apiUrl)
     }
 
@@ -159,7 +160,7 @@ export class AccountService extends HttpDataService {
 
     private populateDexieFromAPI(): void {
         this.dexieService.populateTable('coachRoutes', this.coachRouteService)
-        this.dexieService.populateTable('customers', this.customerService)
+        this.dexieService.populateTable('customers', this.customerHttpService)
         this.dexieService.populateTable('destinations', this.destinationService)
         this.dexieService.populateTable('drivers', this.driverService)
         this.dexieService.populateTable('genders', this.genderService)
@@ -170,6 +171,7 @@ export class AccountService extends HttpDataService {
         this.dexieService.populateTable('shipRoutes', this.shipRouteService)
         this.dexieService.populateTable('ships', this.shipService)
         this.dexieService.populateTable('taxOffices', this.taxOfficeService)
+        this.dexieService.populateTable('vatRegimes', this.vatRegimeService)
     }
 
     private setDotNetVersion(response: any): void {

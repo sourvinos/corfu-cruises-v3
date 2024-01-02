@@ -73,8 +73,16 @@
                 "description": "Steuerliche Registriernummer"
             },
             {
+                "id": "nationality",
+                "description": "Land"
+            },
+            {
                 "id": "taxOffice",
                 "description": "Finanzamt"
+            },
+            {
+                "id": "vatRegime",
+                "description": "MwSt.-Regelung"
             },
             {
                 "id": "profession",
@@ -2284,6 +2292,14 @@
             {
                 "id": "pricesSubTitle",
                 "description": "Verwalten Sie die Gebühren Ihrer Kunden."
+            },
+            {
+                "id": "customersTitle",
+                "description": "Kunden"
+            },
+            {
+                "id": "customersSubTitle",
+                "description": "Kunden anlegen, bearbeiten und löschen."
             }
         ]
     },

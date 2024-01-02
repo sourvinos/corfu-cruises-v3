@@ -40,7 +40,9 @@ namespace API.Features.Customers {
             return includeTables
                 ? await context.Customers
                     .AsNoTracking()
+                    .Include(x => x.Nationality)
                     .Include(x => x.TaxOffice)
+                    .Include(x => x.VatRegime)
                     .SingleOrDefaultAsync(x => x.Id == id)
                 : await context.Customers
                     .AsNoTracking()

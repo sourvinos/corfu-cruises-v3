@@ -5,7 +5,9 @@ export interface CustomerWriteDto {
     // PK
     id: number
     // FKs
+    nationalityId: number
     taxOfficeId: Guid
+    vatRegimeId: Guid
     // Fields
     description: string
     taxNo: string
@@ -15,7 +17,7 @@ export interface CustomerWriteDto {
     personInCharge: string
     email: string
     isActive: boolean
-    // Rowversion
+    // Metadata
     putAt: string
 
 }

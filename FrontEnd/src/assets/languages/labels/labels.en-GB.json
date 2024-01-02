@@ -70,11 +70,19 @@
             },
             {
                 "id": "taxNo",
-                "description": "Tax registration number"
+                "description": "Tax number"
+            },
+            {
+                "id": "nationality",
+                "description": "Country"
             },
             {
                 "id": "taxOffice",
                 "description": "Tax office"
+            },
+            {
+                "id": "vatRegime",
+                "description": "VAT regime"
             },
             {
                 "id": "profession",
@@ -2284,6 +2292,14 @@
             {
                 "id": "pricesSubTitle",
                 "description": "Manage your customers' charges."
+            },
+            {
+                "id": "customersTitle",
+                "description": "Customers"
+            },
+            {
+                "id": "customersSubTitle",
+                "description": "Create, edit and delete your customers."
             }
         ]
     },

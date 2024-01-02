@@ -9,6 +9,8 @@ namespace API.Features.Customers {
         public int Id { get; set; }
         // FKs
         public Guid TaxOfficeId { get; set; }
+        public Guid VatRegimeId { get; set; }
+        public int NationalityId { get; set; }
         // Fields
         public string Description { get; set; }
         public string TaxNo { get; set; }

@@ -7,47 +7,47 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Features.Customers {
+namespace API.Features.VatRegimes {
 
     [Route("api/[controller]")]
-    public class CustomersController : ControllerBase {
+    public class VatRegimesController : ControllerBase {
 
         #region variables
 
-        private readonly ICustomerRepository customerRepo;
-        private readonly ICustomerValidation customerValidation;
+        private readonly IVatRegimeRepository vatRegimeRepo;
+        private readonly IVatRegimeValidation vatRegimeValidation;
         private readonly IMapper mapper;
 
         #endregion
 
-        public CustomersController(ICustomerRepository customerRepo, ICustomerValidation customerValidation, IMapper mapper) {
-            this.customerRepo = customerRepo;
-            this.customerValidation = customerValidation;
+        public VatRegimesController(IVatRegimeRepository vatRegimeRepo, IVatRegimeValidation vatRegimeValidation, IMapper mapper) {
+            this.vatRegimeRepo = vatRegimeRepo;
+            this.vatRegimeValidation = vatRegimeValidation;
             this.mapper = mapper;
         }
 
         [HttpGet]
         [Authorize(Roles = "admin")]
-        public async Task<IEnumerable<CustomerListVM>> GetAsync() {
-            return await customerRepo.GetAsync();
+        public async Task<IEnumerable<VatRegimeListVM>> GetAsync() {
+            return await vatRegimeRepo.GetAsync();
         }
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<CustomerAutoCompleteVM>> GetAutoCompleteAsync() {
-            return await customerRepo.GetAutoCompleteAsync();
+        public async Task<IEnumerable<VatRegimeAutoCompleteVM>> GetAutoCompleteAsync() {
+            return await vatRegimeRepo.GetAutoCompleteAsync();
         }
 
         [HttpGet("{id}")]
         [Authorize(Roles = "admin")]
-        public async Task<ResponseWithBody> GetByIdAsync(int id) {
-            var x = await customerRepo.GetByIdAsync(id, true);
+        public async Task<ResponseWithBody> GetByIdAsync(string id) {
+            var x = await vatRegimeRepo.GetByIdAsync(id);
             if (x != null) {
                 return new ResponseWithBody {
                     Code = 200,
                     Icon = Icons.Info.ToString(),
                     Message = ApiMessages.OK(),
-                    Body = mapper.Map<Customer, CustomerReadDto>(x)
+                    Body = mapper.Map<VatRegime, VatRegimeReadDto>(x)
                 };
             } else {
                 throw new CustomException() {
@@ -59,10 +59,10 @@ namespace API.Features.Customers {
         [HttpPost]
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<Response> PostAsync([FromBody] CustomerWriteDto customer) {
-            var x = customerValidation.IsValidAsync(null, customer);
-            if (await x == 200) {
-                var z = customerRepo.Create(mapper.Map<CustomerWriteDto, Customer>((CustomerWriteDto)customerRepo.AttachMetadataToPostDto(customer)));
+        public Response Post([FromBody] VatRegimeWriteDto vatRegime) {
+            var x = vatRegimeValidation.IsValid(null, vatRegime);
+            if (x == 200) {
+                var z = vatRegimeRepo.Create(mapper.Map<VatRegimeWriteDto, VatRegime>((VatRegimeWriteDto)vatRegimeRepo.AttachMetadataToPostDto(vatRegime)));
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
@@ -71,7 +71,7 @@ namespace API.Features.Customers {
                 };
             } else {
                 throw new CustomException() {
-                    ResponseCode = await x
+                    ResponseCode = x
                 };
             }
         }
@@ -79,12 +79,12 @@ namespace API.Features.Customers {
         [HttpPut]
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<Response> Put([FromBody] CustomerWriteDto customer) {
-            var x = await customerRepo.GetByIdAsync(customer.Id, false);
+        public async Task<Response> Put([FromBody] VatRegimeWriteDto vatRegime) {
+            var x = await vatRegimeRepo.GetByIdAsync(vatRegime.Id.ToString());
             if (x != null) {
-                var z = customerValidation.IsValidAsync(x, customer);
-                if (await z == 200) {
-                    customerRepo.Update(mapper.Map<CustomerWriteDto, Customer>((CustomerWriteDto)customerRepo.AttachMetadataToPutDto(x, customer)));
+                var z = vatRegimeValidation.IsValid(x, vatRegime);
+                if (z == 200) {
+                    vatRegimeRepo.Update(mapper.Map<VatRegimeWriteDto, VatRegime>((VatRegimeWriteDto)vatRegimeRepo.AttachMetadataToPutDto(x, vatRegime)));
                     return new Response {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
@@ -93,7 +93,7 @@ namespace API.Features.Customers {
                     };
                 } else {
                     throw new CustomException() {
-                        ResponseCode = await z
+                        ResponseCode = z
                     };
                 }
             } else {
@@ -105,10 +105,10 @@ namespace API.Features.Customers {
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "admin")]
-        public async Task<Response> Delete([FromRoute] int id) {
-            var x = await customerRepo.GetByIdAsync(id, false);
+        public async Task<Response> Delete([FromRoute] string id) {
+            var x = await vatRegimeRepo.GetByIdAsync(id);
             if (x != null) {
-                customerRepo.Delete(x);
+                vatRegimeRepo.Delete(x);
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),

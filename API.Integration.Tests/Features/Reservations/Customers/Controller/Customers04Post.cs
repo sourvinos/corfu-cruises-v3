@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Cases;
@@ -49,6 +50,13 @@ namespace Customers {
         [ClassData(typeof(CreateValidCustomer))]
         public async Task Simple_Users_Can_Not_Create(TestCustomer record) {
             await Forbidden.Action(_httpClient, _baseUrl, _url, _actionVerb, "simpleuser", "1234567890", record);
+        }
+
+        [Theory]
+        [ClassData(typeof(CreateInvalidCustomer))]
+        public async Task Admins_Can_Not_Create_When_Invalid(TestCustomer record) {
+            var actionResponse = await RecordInvalidNotSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "Ec11fc8c16db#", record);
+            Assert.Equal((HttpStatusCode)record.StatusCode, actionResponse.StatusCode);
         }
 
         [Theory]

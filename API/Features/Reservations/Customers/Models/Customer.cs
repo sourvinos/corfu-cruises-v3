@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using API.Features.Nationalities;
 using API.Features.Reservations;
 using API.Features.TaxOffices;
+using API.Features.VatRegimes;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.Customers {
@@ -12,6 +14,8 @@ namespace API.Features.Customers {
         public int Id { get; set; }
         // Fks
         public Guid TaxOfficeId { get; set; }
+        public Guid VatRegimeId { get; set; }
+        public int NationalityId { get; set; }
         // Fields
         public string Description { get; set; }
         public string TaxNo { get; set; }
@@ -27,7 +31,9 @@ namespace API.Features.Customers {
         public string PutAt { get; set; }
         public string PutUser { get; set; }
         // Navigation
+        public Nationality Nationality { get; set; }
         public TaxOffice TaxOffice { get; set; }
+        public VatRegime VatRegime { get; set; }
         public List<Reservation> Reservations { get; set; }
 
     }

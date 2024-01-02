@@ -22,7 +22,9 @@ namespace API.Features.Customers {
         public string PutAt { get; set; }
         public string PutUser { get; set; }
         // Navigation
+        public SimpleEntity Nationality { get; set; }
         public SimpleGuidEntity TaxOffice { get; set; }
+        public SimpleGuidEntity VatRegime { get; set; }
 
     }
 

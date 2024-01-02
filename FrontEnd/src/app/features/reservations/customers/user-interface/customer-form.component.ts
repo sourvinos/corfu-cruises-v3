@@ -3,7 +3,7 @@ import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 // Custom
 import { CustomerReadDto } from '../classes/dtos/customer-read-dto'
-import { CustomerService } from '../classes/services/customer.service'
+import { CustomerHttpService } from '../classes/services/customer-http.service'
 import { CustomerWriteDto } from '../classes/dtos/customer-write-dto'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
@@ -17,6 +17,8 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 import { Observable, map, startWith } from 'rxjs'
 import { TaxOfficeAutoCompleteVM } from 'src/app/features/billing/taxOffices/classes/view-models/taxOffice-autocomplete-vm'
 import { ValidationService } from 'src/app/shared/services/validation.service'
+import { NationalityVM } from '../../reservations/classes/view-models/passenger/nationality-vm'
+import { VatRegimeAutoCompleteVM } from 'src/app/features/billing/vatRegimes/classes/view-models/vatRegime-autocomplete-vm'
 
 @Component({
     selector: 'customer-form',
@@ -39,14 +41,16 @@ export class CustomerFormComponent {
 
     //#endregion
 
-    //#region autocompletes #2
+    //#region autocompletes
 
     public isAutoCompleteDisabled = true
+    public dropdownNationalities: Observable<NationalityVM[]>
     public dropdownTaxOffices: Observable<TaxOfficeAutoCompleteVM[]>
+    public dropdownVatRegimes: Observable<VatRegimeAutoCompleteVM[]>
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private customerService: CustomerService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private customerHttpService: CustomerHttpService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -89,7 +93,7 @@ export class CustomerFormComponent {
     public onDelete(): void {
         this.dialogService.open(this.messageDialogService.confirmDelete(), 'question', ['abort', 'ok']).subscribe(response => {
             if (response) {
-                this.customerService.delete(this.form.value.id).subscribe({
+                this.customerHttpService.delete(this.form.value.id).subscribe({
                     complete: () => {
                         this.dexieService.remove('customers', this.form.value.id)
                         this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
@@ -125,7 +129,9 @@ export class CustomerFormComponent {
     private flattenForm(): CustomerWriteDto {
         return {
             id: this.form.value.id,
+            nationalityId: this.form.value.nationality.id,
             taxOfficeId: this.form.value.taxOffice.id,
+            vatRegimeId: this.form.value.vatRegime.id,
             taxNo: this.form.value.taxNo,
             description: this.form.value.description,
             profession: this.form.value.profession,
@@ -166,7 +172,9 @@ export class CustomerFormComponent {
     private initForm(): void {
         this.form = this.formBuilder.group({
             id: 0,
+            nationality: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             taxOffice: ['', [Validators.required, ValidationService.RequireAutocomplete]],
+            vatRegime: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
             taxNo: ['', [Validators.required, Validators.maxLength(36)]],
             profession: ['', [Validators.maxLength(128)]],
@@ -183,7 +191,9 @@ export class CustomerFormComponent {
     }
 
     private populateDropdowns(): void {
+        this.populateDropdownFromDexieDB('nationalities', 'dropdownNationalities', 'nationality', 'description', 'description')
         this.populateDropdownFromDexieDB('taxOffices', 'dropdownTaxOffices', 'taxOffice', 'description', 'description')
+        this.populateDropdownFromDexieDB('vatRegimes', 'dropdownVatRegimes', 'vatRegime', 'description', 'description')
     }
 
     private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
@@ -197,7 +207,9 @@ export class CustomerFormComponent {
         if (this.record != undefined) {
             this.form.setValue({
                 id: this.record.id,
+                nationality: { 'id': this.record.nationality.id, 'description': this.record.nationality.description },
                 taxOffice: { 'id': this.record.taxOffice.id, 'description': this.record.taxOffice.description },
+                vatRegime: { 'id': this.record.vatRegime.id, 'description': this.record.vatRegime.description },
                 taxNo: this.record.taxNo,
                 description: this.record.description,
                 profession: this.record.profession,
@@ -219,7 +231,7 @@ export class CustomerFormComponent {
     }
 
     private saveRecord(customer: CustomerWriteDto): void {
-        this.customerService.save(customer).subscribe({
+        this.customerHttpService.save(customer).subscribe({
             next: (response) => {
                 this.dexieService.update('customers', { 'id': parseInt(response.id), 'description': customer.description, 'isActive': customer.isActive })
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
@@ -244,8 +256,16 @@ export class CustomerFormComponent {
         return this.form.get('description')
     }
 
+    get nationality(): AbstractControl {
+        return this.form.get('nationality')
+    }
+
     get taxOffice(): AbstractControl {
         return this.form.get('taxOffice')
+    }
+
+    get vatRegime(): AbstractControl {
+        return this.form.get('vatRegime')
     }
 
     get taxNo(): AbstractControl {

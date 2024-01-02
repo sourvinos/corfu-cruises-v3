@@ -70,11 +70,19 @@
             },
             {
                 "id": "taxNo",
-                "description": "Αριθμός φορολογικού μητρώου"
+                "description": "ΑΦΜ"
+            },
+            {
+                "id": "nationality",
+                "description": "Χώρα"
             },
             {
                 "id": "taxOffice",
-                "description": "Δημόσια οικονομική υπηρεσία"
+                "description": "ΔΟΥ"
+            },
+            {
+                "id": "vatRegime",
+                "description": "Καθεστώς ΦΠΑ"
             },
             {
                 "id": "profession",
@@ -2284,6 +2292,14 @@
             {
                 "id": "pricesSubTitle",
                 "description": "Διαχειριστείτε τις χρεώσεις των πελατών σας."
+            },
+            {
+                "id": "customersTitle",
+                "description": "Πελάτες"
+            },
+            {
+                "id": "customersSubTitle",
+                "description": "Επεξεργαστείτε το αρχείο με τους πελάτες σας."
             }
         ]
     },

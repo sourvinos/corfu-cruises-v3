@@ -70,11 +70,19 @@
             },
             {
                 "id": "taxNo",
-                "description": "Daňové registrační číslo"
+                "description": "Daňové číslo"
+            },
+            {
+                "id": "nationality",
+                "description": "Země"
             },
             {
                 "id": "taxOffice",
                 "description": "Finanční úřad"
+            },
+            {
+                "id": "vatRegime",
+                "description": "Režim DPH"
             },
             {
                 "id": "profession",
@@ -2284,6 +2292,14 @@
             {
                 "id": "pricesSubTitle",
                 "description": "Spravujte poplatky svých zákazníků."
+            },
+            {
+                "id": "customersTitle",
+                "description": "Zákazník"
+            },
+            {
+                "id": "customersSubTitle",
+                "description": "Vytváření, úpravy a mazání zákazníků."
             }
         ]
     },
