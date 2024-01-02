@@ -12,7 +12,7 @@ namespace Customers {
         public IEnumerator<object[]> GetEnumerator() {
             yield return Nationality_Must_Exist();
             yield return TaxOffice_Must_Exist();
-            yield return VatState_Must_Exist();
+            yield return VatRegime_Must_Exist();
             yield return Customer_Must_Not_Be_Already_Updated();
         }
 
@@ -26,6 +26,7 @@ namespace Customers {
                     VatRegimeId = Guid.Parse("9735d2c5-4fdf-4549-84e7-b2ae4070ac3a"),
                     Description = Helpers.CreateRandomString(128),
                     TaxNo = "099999999",
+                    BalanceLimit = 0M,
                     PutAt = "2023-09-07 09:52:22"
                 }
             };
@@ -36,26 +37,28 @@ namespace Customers {
                 new TestCustomer {
                     StatusCode = 458,
                     Id = 1,
+                    NationalityId = 1,
                     TaxOfficeId = Guid.Parse("ea6d1494-a7b4-47f4-b7ce-a462a73ae6f3"),
                     VatRegimeId = Guid.Parse("9735d2c5-4fdf-4549-84e7-b2ae4070ac3a"),
-                    NationalityId = 1,
                     Description = Helpers.CreateRandomString(128),
                     TaxNo = "099999999",
+                    BalanceLimit = 0M,
                     PutAt = "2023-09-07 09:52:22"
                 }
             };
         }
 
-        private static object[] VatState_Must_Exist() {
+        private static object[] VatRegime_Must_Exist() {
             return new object[]{
                 new TestCustomer {
                     StatusCode = 463,
                     Id = 1,
+                    NationalityId = 1,
                     TaxOfficeId = Guid.Parse("d142adde-3d28-4095-1987-93a362297ed8"),
                     VatRegimeId = Guid.Parse("f34c709f-95e4-4c97-a76e-edb1d13b5b1c"),
-                    NationalityId = 1,
                     Description = Helpers.CreateRandomString(128),
                     TaxNo = "099999999",
+                    BalanceLimit = 0M,
                     PutAt = "2023-09-07 09:52:22"
                 }
             };
@@ -71,6 +74,7 @@ namespace Customers {
                     VatRegimeId = Guid.Parse("9735d2c5-4fdf-4549-84e7-b2ae4070ac3a"),
                     Description = Helpers.CreateRandomString(128),
                     TaxNo = "099999999",
+                    BalanceLimit = 0M,
                     PutAt = "2023-09-07 09:55:22"
                 }
             };

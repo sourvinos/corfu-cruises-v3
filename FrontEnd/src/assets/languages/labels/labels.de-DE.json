@@ -105,6 +105,10 @@
                 "description": "Email"
             },
             {
+                "id": "balanceLimit",
+                "description": "Verschuldungsgrenze"
+            },
+            {
                 "id": "isActive",
                 "description": "Aktiv"
             },

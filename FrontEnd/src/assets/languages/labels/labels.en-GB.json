@@ -105,6 +105,10 @@
                 "description": "Email"
             },
             {
+                "id": "balanceLimit",
+                "description": "Debt limit"
+            },
+            {
                 "id": "isActive",
                 "description": "Active"
             },

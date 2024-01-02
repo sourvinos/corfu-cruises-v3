@@ -18,6 +18,7 @@ namespace API.Features.Customers {
                 var x when x == !await IsValidNationality(customer) => 456,
                 var x when x == !await IsValidTaxOffice(customer) => 458,
                 var x when x == !await IsValidVatRegime(customer) => 463,
+                var x when x == !BalanceLimitMustBeZeroOrGreater(customer) => 461,
                 var x when x == IsAlreadyUpdated(z, customer) => 415,
                 _ => 200,
             };
@@ -48,7 +49,7 @@ namespace API.Features.Customers {
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == customer.TaxOfficeId) != null;
         }
- 
+
         private async Task<bool> IsValidVatRegime(CustomerWriteDto customer) {
             if (customer.Id == 0) {
                 return await context.VatRegimes
@@ -58,6 +59,10 @@ namespace API.Features.Customers {
             return await context.VatRegimes
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == customer.VatRegimeId) != null;
+        }
+
+        private static bool BalanceLimitMustBeZeroOrGreater(CustomerWriteDto customer) {
+            return customer.BalanceLimit >= 0;
         }
 
     }

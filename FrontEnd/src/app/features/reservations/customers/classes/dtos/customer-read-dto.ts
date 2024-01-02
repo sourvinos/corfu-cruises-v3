@@ -19,6 +19,7 @@ export interface CustomerReadDto extends Metadata {
     phones: string
     personInCharge: string
     email: string
+    balanceLimit: number
     isActive: boolean
     // Metadata
     postAt: string

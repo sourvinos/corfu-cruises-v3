@@ -16,6 +16,7 @@ namespace API.Features.Customers {
             RuleFor(x => x.Phones).MaximumLength(128);
             RuleFor(x => x.PersonInCharge).MaximumLength(128);
             RuleFor(x => x.Email).Must(EmailHelpers.BeEmptyOrValidEmailAddress).MaximumLength(128);
+            RuleFor(x => x.BalanceLimit).InclusiveBetween(0, 99999);
         }
 
     }

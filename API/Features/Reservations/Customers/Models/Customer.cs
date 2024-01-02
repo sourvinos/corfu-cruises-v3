@@ -24,6 +24,7 @@ namespace API.Features.Customers {
         public string Phones { get; set; }
         public string PersonInCharge { get; set; }
         public string Email { get; set; }
+        public decimal BalanceLimit { get; set; }
         public bool IsActive { get; set; }
         // Metadata
         public string PostAt { get; set; }

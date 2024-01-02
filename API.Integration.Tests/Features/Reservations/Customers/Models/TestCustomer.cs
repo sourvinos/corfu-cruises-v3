@@ -13,6 +13,7 @@ namespace Customers {
         public int NationalityId { get; set; }
         public string Description { get; set; }
         public string TaxNo { get; set; }
+        public decimal BalanceLimit { get; set; }
         public string PutAt { get; set; }
 
     }

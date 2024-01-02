@@ -105,6 +105,10 @@
                 "description": "Email"
             },
             {
+                "id": "balanceLimit",
+                "description": "Dluhový limit"
+            },
+            {
                 "id": "isActive",
                 "description": "Aktivní"
             },

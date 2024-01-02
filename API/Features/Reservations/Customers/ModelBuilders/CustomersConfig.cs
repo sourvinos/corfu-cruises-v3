@@ -19,6 +19,7 @@ namespace API.Features.Customers {
             entity.Property(x => x.Phones).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.PersonInCharge).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.Email).HasDefaultValue("").HasMaxLength(128);
+            entity.Property(x => x.BalanceLimit).HasDefaultValue(0).IsRequired(true);
             entity.Property(x => x.IsActive);
             // Metadata
             entity.Property(x => x.PostAt).HasMaxLength(19).IsRequired(true);

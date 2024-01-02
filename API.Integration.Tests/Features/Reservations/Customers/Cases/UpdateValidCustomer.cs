@@ -22,6 +22,7 @@ namespace Customers {
                     VatRegimeId =  Guid.Parse("9735d2c5-4fdf-4549-84e7-b2ae4070ac3a"),
                     Description = Helpers.CreateRandomString(128),
                     TaxNo = "099999999",
+                    BalanceLimit = 0M,
                     PutAt = "2023-09-07 09:52:22"
                 }
             };

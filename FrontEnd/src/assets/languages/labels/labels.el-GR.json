@@ -105,6 +105,10 @@
                 "description": "Email"
             },
             {
+                "id": "balanceLimit",
+                "description": "Οριο οφειλής"
+            },
+            {
                 "id": "isActive",
                 "description": "Ενεργός"
             },

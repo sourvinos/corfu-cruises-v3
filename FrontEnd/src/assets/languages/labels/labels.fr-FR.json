@@ -105,6 +105,10 @@
                 "description": "Email"
             },
             {
+                "id": "balanceLimit",
+                "description": "Limite de la dette"
+            },
+            {
                 "id": "isActive",
                 "description": "Actif"
             },

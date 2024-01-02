@@ -82,6 +82,13 @@ export class CustomerFormComponent {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
     }
 
+    public formatPriceField(fieldName: string, digits: number): void {
+        this.patchNumericFieldsWithZeroIfNullOrEmpty(fieldName, digits)
+        this.form.patchValue({
+            [fieldName]: parseFloat(this.form.value[fieldName]).toFixed(digits)
+        })
+    }
+
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
     }
@@ -139,6 +146,7 @@ export class CustomerFormComponent {
             phones: this.form.value.phones,
             personInCharge: this.form.value.personInCharge,
             email: this.form.value.email,
+            balanceLimit: this.form.value.balanceLimit,
             isActive: this.form.value.isActive,
             putAt: this.form.value.putAt
         }
@@ -182,12 +190,19 @@ export class CustomerFormComponent {
             phones: ['', [Validators.maxLength(128)]],
             personInCharge: ['', [Validators.maxLength(128)]],
             email: ['', [Validators.email, Validators.maxLength(128)]],
+            balanceLimit: [0, [Validators.required, Validators.min(0), Validators.max(99999.99)]],
             isActive: true,
             postAt: [''],
             postUser: [''],
             putAt: [''],
             putUser: ['']
         })
+    }
+
+    private patchNumericFieldsWithZeroIfNullOrEmpty(fieldName: string, digits: number): void {
+        if (this.form.controls[fieldName].value == null || this.form.controls[fieldName].value == '') {
+            this.form.patchValue({ [fieldName]: parseInt('0').toFixed(digits) })
+        }
     }
 
     private populateDropdowns(): void {
@@ -217,6 +232,7 @@ export class CustomerFormComponent {
                 phones: this.record.phones,
                 personInCharge: this.record.personInCharge,
                 email: this.record.email,
+                balanceLimit: this.record.balanceLimit.toFixed(2),
                 isActive: this.record.isActive,
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
@@ -290,6 +306,10 @@ export class CustomerFormComponent {
 
     get email(): AbstractControl {
         return this.form.get('email')
+    }
+
+    get balanceLimit(): AbstractControl {
+        return this.form.get('balanceLimit')
     }
 
     get postAt(): AbstractControl {
