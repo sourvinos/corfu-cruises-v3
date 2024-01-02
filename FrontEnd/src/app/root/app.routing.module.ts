@@ -23,7 +23,7 @@ const appRoutes: Routes = [
     // Reservations
     { path: 'reservations', loadChildren: () => import('../features/reservations/reservations/classes/modules/reservation.module').then(m => m.ReservationModule) },
     { path: 'availability', loadChildren: () => import('../features/reservations/availability/classes/modules/availability.module').then(m => m.AvailabilityModule) },
-    { path: 'ledgers', loadChildren: () => import('../features/reservations/ledgers/classes/modules/ledger.module').then(m => m.LedgerModule) },
+    { path: 'reservation-ledgers', loadChildren: () => import('../features/reservations/ledgers/classes/modules/ledger.module').then(m => m.LedgerModule) },
     { path: 'boarding', loadChildren: () => import('../features/reservations/boarding/classes/modules/boarding.module').then(m => m.BoardingModule) },
     { path: 'manifest', loadChildren: () => import('../features/reservations/manifest/classes/modules/manifest.module').then(m => m.ManifestModule) },
     { path: 'statistics', loadChildren: () => import('../features/reservations/statistics/classes/modules/statistics.module').then(m => m.StatisticsModule) },
@@ -41,7 +41,7 @@ const appRoutes: Routes = [
     { path: 'shipRoutes', loadChildren: () => import('../features/reservations/shipRoutes/classes/modules/shipRoute.module').then(m => m.ShipRouteModule) },
     { path: 'ships', loadChildren: () => import('../features/reservations/ships/classes/modules/ship.module').then(m => m.ShipModule) },
     { path: 'users', loadChildren: () => import('../features/reservations/users/classes/modules/user.module').then(m => m.UserModule) },
-    { path: 'parameters', loadChildren: () => import('../features/reservations/parameters/classes/modules/parameters.module').then(m => m.ParametersModule) },
+    { path: 'reservation-parameters', loadChildren: () => import('../features/reservations/parameters/classes/modules/parameters.module').then(m => m.ParametersModule) },
     // Billing
     { path: 'prices', loadChildren: () => import('../features/billing/prices/classes/modules/price.module').then(m => m.PriceModule) },
     { path: 'taxOffices', loadChildren: () => import('../features/billing/taxOffices/classes/modules/taxOffice.module').then(m => m.TaxOfficeModule) },

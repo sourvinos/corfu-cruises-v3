@@ -1,4 +1,6 @@
 import { Component } from '@angular/core'
+// Custom
+import { environment } from 'src/environments/environment'
 
 @Component({
     selector: 'empty-page',
@@ -6,4 +8,28 @@ import { Component } from '@angular/core'
     styleUrls: ['./empty-page.component.css']
 })
 
-export class EmptyPageComponent { }
+export class EmptyPageComponent {
+
+    //#region variables
+
+    public imgIsLoaded = false
+
+    //#endregion
+
+    //#region public methods
+
+    public getIcon(filename: string): string {
+        return environment.featuresIconDirectory + filename + '.svg'
+    }
+
+    public imageIsLoading(): any {
+        return this.imgIsLoaded ? '' : 'skeleton'
+    }
+
+    public loadImage(): void {
+        this.imgIsLoaded = true
+    }
+
+    //#endregion
+
+}

@@ -1,6 +1,6 @@
 <div *ngIf=isAdmin() id="button-wrapper">
     <button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" mat-icon-button matTooltip="{{ getLabel('reservations') }}" matTooltipPosition="before">
-        <mat-icon class="material-icons-outlined">calendar_month</mat-icon>
+        <mat-icon class="material-icons-outlined">blur_circular</mat-icon>
     </button>
     <mat-menu #menu="matMenu" class="primary">
         <ng-container *ngTemplateOutlet="reservationsMenu"></ng-container>
@@ -27,6 +27,8 @@
     <mat-divider></mat-divider>
     <button (click)="doNavigation('boarding')" mat-menu-item>{{ getLabel("boarding") }}</button>
     <button (click)="doNavigation('manifest')" mat-menu-item>{{ getLabel("manifest")}}</button>
-    <button (click)="doNavigation('ledgers')" mat-menu-item>{{ getLabel("ledgers")}}</button>
+    <button (click)="doNavigation('reservation-ledgers')" mat-menu-item>{{ getLabel("ledgers")}}</button>
     <button (click)="doNavigation('statistics')" mat-menu-item>{{ getLabel("statistics")}}</button>
+    <mat-divider></mat-divider>
+    <button (click)="doNavigation('reservation-parameters')" mat-menu-item>{{ getLabel("reservation-parameters")}}</button>
 </ng-template>

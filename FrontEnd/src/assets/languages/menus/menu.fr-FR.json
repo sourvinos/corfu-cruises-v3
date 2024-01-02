@@ -16,56 +16,52 @@
         "description": "Routes de bus"
     },
     {
-        "id": "customers",
-        "description": "Clients"
-    },
-    {
-        "id": "destinations",
-        "description": "Destinations"
-    },
-    {
-        "id": "drivers",
-        "description": "Conducteurs"
-    },
-    {
-        "id": "genders",
-        "description": "Genres"
-    },
-    {
-        "id": "pickupPoints",
-        "description": "Points de collecte"
-    },
-    {
-        "id": "ports",
-        "description": "Ports"
-    },
-    {
-        "id": "schedules",
-        "description": "Horaires"
-    },
-    {
-        "id": "ships",
-        "description": "Navires"
-    },
-    {
-        "id": "shipCrews",
-        "description": "Équipes"
+        "id": "shipRoutes",
+        "description": "Routes maritimes"
     },
     {
         "id": "registrars",
         "description": "Enregistreurs de passagers"
     },
     {
+        "id": "ports",
+        "description": "Ports"
+    },
+    {
+        "id": "drivers",
+        "description": "Conducteurs"
+    },
+    {
+        "id": "customers",
+        "description": "Clients"
+    },
+    {
+        "id": "shipCrews",
+        "description": "Équipes"
+    },
+    {
+        "id": "ships",
+        "description": "Navires"
+    },
+    {
         "id": "shipOwners",
         "description": "Armateurs"
     },
     {
-        "id": "shipRoutes",
-        "description": "Routes maritimes"
+        "id": "schedules",
+        "description": "Horaires"
     },
     {
-        "id": "users",
-        "description": "Utilisateurs"
+        "id": "destinations",
+        "description": "Destinations"
+    },
+    {
+        "id": "pickupPoints",
+        "description": "Points de collecte"
+    },
+    {
+        "id": "genders",
+        "description": "Genres"
     },
     {
         "id": "boarding",
@@ -84,43 +80,59 @@
         "description": "Statistiques"
     },
     {
+        "id": "reservation-parameters",
+        "description": "Paramètres"
+    },
+    {
+        "id": "users",
+        "description": "Utilisateurs"
+    },
+    {
         "id": "billing",
         "description": "Facturation"
     },
     {
         "id": "invoices",
-        "description": "Κινήσεις"
+        "description": "Factures"
     },
     {
         "id": "receipts",
-        "description": "Εισπράξεις"
+        "description": "Reçus"
     },
     {
         "id": "taxOffices",
-        "description": "Οικονομικές υπηρεσίες"
+        "description": "Bureaux des impôts"
     },
     {
         "id": "codes",
-        "description": "Παραστατικά"
+        "description": "Types de documents"
     },
     {
-        "id": "banks",
-        "description": "Τράπεζες"
+        "id": "customers",
+        "description": "Clients"
     },
     {
         "id": "prices",
-        "description": "Τιμοκατάλογοι"
+        "description": "Listes de prix"
+    },
+    {
+        "id": "banks",
+        "description": "Banques"
     },
     {
         "id": "paymentWays",
-        "description": "Τρόποι πληρωμής"
+        "description": "Moyens de paiement"
     },
     {
         "id": "ledgers",
-        "description": "Καρτέλες πελατών"
+        "description": "Registres des clients"
     },
     {
         "id": "balanceSheet",
-        "description": "Ισοζύγιο"
+        "description": "Bilan"
+    },
+    {
+        "id": "billing-parameters",
+        "description": "Paramètres"
     }
 ]

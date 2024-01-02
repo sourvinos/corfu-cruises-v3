@@ -16,56 +16,52 @@
         "description": "Trasy autobusů"
     },
     {
-        "id": "customers",
-        "description": "Zákazníci"
-    },
-    {
-        "id": "destinations",
-        "description": "Destinace"
-    },
-    {
-        "id": "drivers",
-        "description": "Řidiči"
-    },
-    {
-        "id": "genders",
-        "description": "Pohlaví"
-    },
-    {
-        "id": "pickupPoints",
-        "description": "Nástupní místa"
-    },
-    {
-        "id": "ports",
-        "description": "Přístavy"
-    },
-    {
-        "id": "schedules",
-        "description": "Rozvrh"
-    },
-    {
-        "id": "ships",
-        "description": "Lodě"
-    },
-    {
-        "id": "shipCrews",
-        "description": "Posádky"
+        "id": "shipRoutes",
+        "description": "Trasy lodí"
     },
     {
         "id": "registrars",
         "description": "Registrátoři"
     },
     {
+        "id": "ports",
+        "description": "Přístavy"
+    },
+    {
+        "id": "drivers",
+        "description": "Řidiči"
+    },
+    {
+        "id": "customers",
+        "description": "Zákazníci"
+    },
+    {
+        "id": "shipCrews",
+        "description": "Posádky"
+    },
+    {
+        "id": "ships",
+        "description": "Lodě"
+    },
+    {
         "id": "shipOwners",
         "description": "Vlastníci"
     },
     {
-        "id": "shipRoutes",
-        "description": "Trasy lodí"
+        "id": "schedules",
+        "description": "Rozvrh"
     },
     {
-        "id": "users",
-        "description": "Uživatelé"
+        "id": "destinations",
+        "description": "Destinace"
+    },
+    {
+        "id": "pickupPoints",
+        "description": "Nástupní místa"
+    },
+    {
+        "id": "genders",
+        "description": "Pohlaví"
     },
     {
         "id": "boarding",
@@ -84,43 +80,59 @@
         "description": "Statistiky"
     },
     {
+        "id": "reservation-parameters",
+        "description": "Parametry"
+    },
+    {
+        "id": "users",
+        "description": "Uživatelé"
+    },
+    {
         "id": "billing",
         "description": "Fakturace"
     },
     {
         "id": "invoices",
-        "description": "Κινήσεις"
+        "description": "Faktury"
     },
     {
         "id": "receipts",
-        "description": "Εισπράξεις"
+        "description": "Účtenky"
     },
     {
         "id": "taxOffices",
-        "description": "Οικονομικές υπηρεσίες"
+        "description": "Daňové úřady"
     },
     {
         "id": "codes",
-        "description": "Παραστατικά"
+        "description": "Typy dokladů"
     },
     {
-        "id": "banks",
-        "description": "Τράπεζες"
+        "id": "customers",
+        "description": "Zákazníci"
     },
     {
         "id": "prices",
-        "description": "Τιμοκατάλογοι"
+        "description": "Ceníky"
+    },
+    {
+        "id": "banks",
+        "description": "Banky"
     },
     {
         "id": "paymentWays",
-        "description": "Τρόποι πληρωμής"
+        "description": "Platební metody"
     },
     {
         "id": "ledgers",
-        "description": "Καρτέλες πελατών"
+        "description": "Zákaznická karta"
     },
     {
         "id": "balanceSheet",
-        "description": "Ισοζύγιο"
+        "description": "Bilance"
+    },
+    {
+        "id": "billing-parameters",
+        "description": "Parametry"
     }
 ]

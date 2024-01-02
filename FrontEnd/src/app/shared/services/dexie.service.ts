@@ -7,7 +7,7 @@ export class DexieService extends Dexie {
 
     constructor() {
         super('DexieDB')
-        this.version(1).stores({
+        this.version(2).stores({
             coachRoutes: 'id, abbreviation, isActive',
             customers: 'id, description, isActive',
             destinations: 'id, description, isActive',
