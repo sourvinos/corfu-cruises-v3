@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 // Custom
+import { CryptoService } from '../../services/crypto.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { Menu } from 'src/app/shared/classes/menu'
 import { MessageMenuService } from 'src/app/shared/services/message-menu.service'
@@ -22,7 +23,7 @@ export class BillingMenuComponent {
 
     //#endregion
 
-    constructor(private interactionService: InteractionService, private messageMenuService: MessageMenuService, private router: Router, private sessionStorageService: SessionStorageService, private tooltipService: TooltipService) { }
+    constructor(private cryptoService: CryptoService,private interactionService: InteractionService, private messageMenuService: MessageMenuService, private router: Router, private sessionStorageService: SessionStorageService, private tooltipService: TooltipService) { }
 
     //#region lifecycle hooks
 
@@ -43,8 +44,8 @@ export class BillingMenuComponent {
         return this.messageMenuService.getDescription(this.menuItems, id)
     }
 
-    public isLoggedIn(): boolean {
-        return this.sessionStorageService.getItem('userId') ? true : false
+    public isAdmin(): boolean {
+        return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' ? true : false
     }
 
     //#endregion
