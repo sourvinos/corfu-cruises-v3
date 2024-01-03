@@ -11,8 +11,8 @@ export class ScheduleListResolver {
 
     constructor(private scheduleService: ScheduleService) { }
 
-    resolve(year: string): Observable<ListResolved> {
-        return this.scheduleService.getYear(year).pipe(
+    resolve(): Observable<ListResolved> {
+        return this.scheduleService.getAll().pipe(
             map((scheduleList) => new ListResolved(scheduleList)),
             catchError((err: any) => of(new ListResolved(null, err)))
         )

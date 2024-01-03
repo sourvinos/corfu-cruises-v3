@@ -146,6 +146,7 @@ export class ScheduleListComponent {
     public filterByYear(event: MatDatepickerInputEvent<Date>): void {
         this.scheduleService.getYear(event.toString()).subscribe(response => {
             this.records = response
+            this.formatDatesToLocale()
         })
         this.sessionStorageService.saveItem(this.feature + '-' + 'yearFilter', event.toString())
     }

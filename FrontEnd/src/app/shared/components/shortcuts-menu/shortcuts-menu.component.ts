@@ -58,6 +58,4 @@ export class ShortcutsMenuComponent {
 
     //#endregion
 
-    //#region private methods
-
 }
