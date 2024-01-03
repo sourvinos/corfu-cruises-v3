@@ -5,7 +5,7 @@
         <div id="header">
             <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
             <div id="header-right">
-                <button (click)="doSelectedPeriodTasks()" class="transparent" id="goto-today-button" mat-mini-fab matTooltip="{{ getTooltip('gotoCurrentYear') }}" matTooltipPosition="below">
+                <button (click)="doSelectedPeriodTasks()" class="transparent" id="goto-today-button" mat-mini-fab>
                     <span class="material-symbols-outlined">today</span>
                 </button>
                 <year-selector (yearEmitter)="doTasksAfterYearSelection($event)" [year]="getSelectedYear()"></year-selector>

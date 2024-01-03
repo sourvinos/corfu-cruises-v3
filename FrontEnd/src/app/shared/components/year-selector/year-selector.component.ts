@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 // Custom
 import { InteractionService } from '../../services/interaction.service'
-import { Menu } from '../../classes/menu'
-import { TooltipService } from '../../services/tooltip.service'
 
 @Component({
     selector: 'year-selector',
@@ -18,19 +16,17 @@ export class YearSelectorComponent {
     @Output() public yearEmitter = new EventEmitter()
 
     public menuItems: string[]
-    public tooltipItems: Menu[]
     public years: string[]
 
     //#endregion
 
-    constructor(private interactionService: InteractionService, private tooltipService: TooltipService) { }
+    constructor(private interactionService: InteractionService) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
         this.populateYears()
         this.buildMenu()
-        this.buildTooltips()
     }
 
     //#endregion
@@ -39,10 +35,6 @@ export class YearSelectorComponent {
 
     public doNavigationTasks(year: string): any {
         this.yearEmitter.emit(year)
-    }
-
-    public getLabel(id: string): string {
-        return this.tooltipService.getDescription(this.tooltipItems, id)
     }
 
     //#endregion
@@ -56,31 +48,11 @@ export class YearSelectorComponent {
         })
     }
 
-    private buildTooltips(): void {
-        this.tooltipService.getMessages().then((response) => {
-            this.createTooltips(response)
-            this.subscribeToTooltipLanguageChanges()
-        })
-    }
-
-    private createTooltips(items: Menu[]): void {
-        this.tooltipItems = []
-        items.forEach(item => {
-            this.tooltipItems.push(item)
-        })
-    }
-
     private populateYears(): void {
         this.years = []
         for (let year = 2022; year < new Date().getFullYear() + 2; year++) {
             this.years.push(year.toString())
         }
-    }
-
-    private subscribeToTooltipLanguageChanges(): void {
-        this.interactionService.refreshTooltips.subscribe(() => {
-            this.buildTooltips()
-        })
     }
 
     //#endregion

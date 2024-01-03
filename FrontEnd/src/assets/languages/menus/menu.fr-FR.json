@@ -1,9 +1,5 @@
 [
     {
-        "id": "reservations",
-        "description": "Reservations"
-    },
-    {
         "id": "calendar",
         "description": "Calendrier"
     },
@@ -48,12 +44,12 @@
         "description": "Armateurs"
     },
     {
-        "id": "schedules",
-        "description": "Horaires"
-    },
-    {
         "id": "destinations",
         "description": "Destinations"
+    },
+    {
+        "id": "schedules",
+        "description": "Horaires"
     },
     {
         "id": "pickupPoints",
@@ -86,10 +82,6 @@
     {
         "id": "users",
         "description": "Utilisateurs"
-    },
-    {
-        "id": "billing",
-        "description": "Facturation"
     },
     {
         "id": "invoices",

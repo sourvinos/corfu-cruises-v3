@@ -2,7 +2,6 @@ import { Component } from '@angular/core'
 import { MenuItem } from 'primeng/api'
 // Custom
 import { CryptoService } from 'src/app/shared/services/crypto.service'
-import { MessageLabelService } from '../../services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { environment } from './../../../../environments/environment'
 
@@ -16,13 +15,12 @@ export class ShortcutsMenuComponent {
 
     //#region variables
 
-    public feature = 'shortcutsMenu'
     public imgIsLoaded = false
     public items: MenuItem[] | undefined
 
     //#endregion
 
-    constructor(private cryptoService: CryptoService, private messageLabelService: MessageLabelService, private sessionStorageService: SessionStorageService) { }
+    constructor(private cryptoService: CryptoService, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -46,10 +44,6 @@ export class ShortcutsMenuComponent {
         return environment.featuresIconDirectory + filename + '.svg'
     }
 
-    public getLabel(id: string): string {
-        return this.messageLabelService.getDescription(this.feature, id)
-    }
-
     public imageIsLoading(): any {
         return this.imgIsLoaded ? '' : 'skeleton'
     }
@@ -63,4 +57,7 @@ export class ShortcutsMenuComponent {
     }
 
     //#endregion
+
+    //#region private methods
+
 }

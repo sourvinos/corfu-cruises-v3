@@ -1,25 +1,20 @@
 <div *ngIf=isAdmin() id="button-wrapper">
-    <button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" mat-icon-button matTooltip="{{ getLabel('billing') }}" matTooltipPosition="before">
+    <button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" mat-icon-button>
         <mat-icon class="material-icons-outlined">paid</mat-icon>
     </button>
     <mat-menu #menu="matMenu" class="primary">
-        <ng-container *ngTemplateOutlet="billingMenu"></ng-container>
-    </mat-menu>
+        <button (click)="doNavigation('invoices')" mat-menu-item><span>{{ getLabel('invoices') }}</span></button>
+        <button (click)="doNavigation('receipts')" mat-menu-item> <span>{{ getLabel('receipts') }}</span></button>
+        <mat-divider></mat-divider>
+        <button (click)="doNavigation('taxOffices')" mat-menu-item>{{ getLabel("taxOffices") }}</button>
+        <button (click)="doNavigation('codes')" mat-menu-item>{{ getLabel("codes") }}</button>
+        <button (click)="doNavigation('customers')" mat-menu-item>{{ getLabel("customers") }}</button>
+        <button (click)="doNavigation('prices')" mat-menu-item>{{ getLabel("prices") }}</button>
+        <button (click)="doNavigation('banks')" mat-menu-item>{{ getLabel("banks") }}</button>
+        <button (click)="doNavigation('paymentWays')" mat-menu-item>{{ getLabel("paymentWays") }}</button>
+        <mat-divider></mat-divider>
+        <button (click)="doNavigation('billing-ledgers')" mat-menu-item>{{ getLabel("ledgers") }}</button>
+        <button (click)="doNavigation('balanceSheet')" mat-menu-item>{{ getLabel("balanceSheet")}}</button>
+        <mat-divider></mat-divider>
+        <button (click)="doNavigation('billing-parameters')" mat-menu-item>{{ getLabel("billing-parameters")}}</button></mat-menu>
 </div>
-
-<ng-template #billingMenu xPosition="before">
-    <button (click)="doNavigation('invoices')" mat-menu-item><span>{{ getLabel('invoices') }}</span></button>
-    <button (click)="doNavigation('receipts')" mat-menu-item> <span>{{ getLabel('receipts') }}</span></button>
-    <mat-divider></mat-divider>
-    <button (click)="doNavigation('taxOffices')" mat-menu-item>{{ getLabel("taxOffices") }}</button>
-    <button (click)="doNavigation('codes')" mat-menu-item>{{ getLabel("codes") }}</button>
-    <button (click)="doNavigation('customers')" mat-menu-item>{{ getLabel("customers") }}</button>
-    <button (click)="doNavigation('prices')" mat-menu-item>{{ getLabel("prices") }}</button>
-    <button (click)="doNavigation('banks')" mat-menu-item>{{ getLabel("banks") }}</button>
-    <button (click)="doNavigation('paymentWays')" mat-menu-item>{{ getLabel("paymentWays") }}</button>
-    <mat-divider></mat-divider>
-    <button (click)="doNavigation('billing-ledgers')" mat-menu-item>{{ getLabel("ledgers") }}</button>
-    <button (click)="doNavigation('balanceSheet')" mat-menu-item>{{ getLabel("balanceSheet")}}</button>
-    <mat-divider></mat-divider>
-    <button (click)="doNavigation('billing-parameters')" mat-menu-item>{{ getLabel("billing-parameters")}}</button>
-</ng-template>

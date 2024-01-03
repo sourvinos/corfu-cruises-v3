@@ -11,7 +11,6 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { StatisticsNationalitiesVM } from '../classes/view-models/statistics-nationalities-vm'
 import { StatisticsVM } from '../classes/view-models/statistics-vm'
-import { TooltipService } from 'src/app/shared/services/tooltip.service'
 
 @Component({
     selector: 'statistics',
@@ -35,11 +34,9 @@ export class StatisticsComponent {
     public icon = 'arrow_back'
     public parentUrl = '/home'
 
-    public tooltipItems: Menu[]
-
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dialogService: DialogService, private helperService: HelperService, private interactionService: InteractionService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService, private tooltipService: TooltipService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dialogService: DialogService, private helperService: HelperService, private interactionService: InteractionService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -53,7 +50,6 @@ export class StatisticsComponent {
         this.getRecords('ports')
         this.getRecords('ships')
         this.getRecords('nationalities')
-        this.buildTooltips()
     }
 
     //#endregion
@@ -78,10 +74,6 @@ export class StatisticsComponent {
         return this.sessionStorageService.getItem('selectedYear')
     }
 
-    public getTooltip(id: string): string {
-        return this.tooltipService.getDescription(this.tooltipItems, id)
-    }
-
     public onClose(): void {
         this.goBack()
     }
@@ -89,20 +81,6 @@ export class StatisticsComponent {
     //#endregion
 
     //#region private methods
-
-    private buildTooltips(): void {
-        this.tooltipService.getMessages().then((response) => {
-            this.createTooltips(response)
-            this.subscribeToTooltipLanguageChanges()
-        })
-    }
-
-    private createTooltips(items: Menu[]): void {
-        this.tooltipItems = []
-        items.forEach(item => {
-            this.tooltipItems.push(item)
-        })
-    }
 
     private getRecords(array: string): Promise<any> {
         return new Promise((resolve) => {
@@ -129,12 +107,6 @@ export class StatisticsComponent {
     private subscribeToInteractionService(): void {
         this.interactionService.refreshTabTitle.subscribe(() => {
             this.setTabTitle()
-        })
-    }
-
-    private subscribeToTooltipLanguageChanges(): void {
-        this.interactionService.refreshTooltips.subscribe(() => {
-            this.buildTooltips()
         })
     }
 

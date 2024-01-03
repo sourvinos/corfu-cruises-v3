@@ -1,9 +1,5 @@
 [
     {
-        "id": "reservations",
-        "description": "Κρατήσεις"
-    },
-    {
         "id": "calendar",
         "description": "Ημερολόγιο"
     },
@@ -48,12 +44,12 @@
         "description": "Πλοιοκτήτες"
     },
     {
-        "id": "schedules",
-        "description": "Πρόγραμμα"
-    },
-    {
         "id": "destinations",
         "description": "Προορισμοί"
+    },
+    {
+        "id": "schedules",
+        "description": "Πρόγραμμα"
     },
     {
         "id": "pickupPoints",
@@ -86,10 +82,6 @@
     {
         "id": "users",
         "description": "Χρήστες"
-    },
-    {
-        "id": "billing",
-        "description": "Τιμολόγηση"
     },
     {
         "id": "invoices",

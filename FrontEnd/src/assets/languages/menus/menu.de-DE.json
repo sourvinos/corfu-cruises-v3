@@ -1,9 +1,5 @@
 [
     {
-        "id": "reservations",
-        "description": "Reservierungen"
-    },
-    {
         "id": "calendar",
         "description": "Kalender"
     },
@@ -48,12 +44,12 @@
         "description": "Schiffseigner"
     },
     {
-        "id": "schedules",
-        "description": "Fahrplanen"
-    },
-    {
         "id": "destinations",
         "description": "Reiseziele"
+    },
+    {
+        "id": "schedules",
+        "description": "Fahrplanen"
     },
     {
         "id": "pickupPoints",
@@ -86,10 +82,6 @@
     {
         "id": "users",
         "description": "Benutzer"
-    },
-    {
-        "id": "billing",
-        "description": "Rechnungsstellung"
     },
     {
         "id": "invoices",

@@ -1,10 +1,7 @@
 import { Component, Inject } from '@angular/core'
 import { DOCUMENT } from '@angular/common'
 // Common
-import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
-import { Menu } from 'src/app/shared/classes/menu'
-import { TooltipService } from 'src/app/shared/services/tooltip.service'
 
 @Component({
     selector: 'theme-selector',
@@ -17,11 +14,10 @@ export class ThemeSelectorComponent {
     //#region variables
 
     public defaultTheme = 'light'
-    public tooltipItems: Menu[]
 
     //#endregion
 
-    constructor(@Inject(DOCUMENT) private document: Document, private interactionService: InteractionService, private localStorageService: LocalStorageService, private tooltipService: TooltipService) { }
+    constructor(@Inject(DOCUMENT) private document: Document, private localStorageService: LocalStorageService) { }
 
     //#region lifecycle hooks
 
@@ -29,7 +25,6 @@ export class ThemeSelectorComponent {
         this.storeDefaultTheme()
         this.setTheme()
         this.attachStylesheetToHead()
-        this.buildTooltips()
     }
 
     //#endregion
@@ -38,10 +33,6 @@ export class ThemeSelectorComponent {
 
     public getIconColor(): string {
         return this.localStorageService.getItem('theme') == 'light' ? 'black' : 'white'
-    }
-
-    public getLabel(id: string): string {
-        return this.tooltipService.getDescription(this.tooltipItems, id)
     }
 
     public getThemeThumbnail(): string {
@@ -67,30 +58,10 @@ export class ThemeSelectorComponent {
         headElement.appendChild(newLinkElement)
     }
 
-    private buildTooltips(): void {
-        this.tooltipService.getMessages().then((response) => {
-            this.createTooltips(response)
-            this.subscribeToTooltipLanguageChanges()
-        })
-    }
-
-    private createTooltips(items: Menu[]): void {
-        this.tooltipItems = []
-        items.forEach(item => {
-            this.tooltipItems.push(item)
-        })
-    }
-
     private storeDefaultTheme(): void {
         if (this.localStorageService.getItem('theme') == '') {
             this.localStorageService.saveItem('theme', this.defaultTheme)
         }
-    }
-
-    private subscribeToTooltipLanguageChanges(): void {
-        this.interactionService.refreshTooltips.subscribe(() => {
-            this.buildTooltips()
-        })
     }
 
     private toggleTheme(): void {

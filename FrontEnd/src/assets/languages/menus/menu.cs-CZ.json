@@ -1,9 +1,5 @@
 [
     {
-        "id": "reservations",
-        "description": "Reservations"
-    },
-    {
         "id": "calendar",
         "description": "Kalendář"
     },
@@ -48,12 +44,12 @@
         "description": "Vlastníci"
     },
     {
-        "id": "schedules",
-        "description": "Rozvrh"
-    },
-    {
         "id": "destinations",
         "description": "Destinace"
+    },
+    {
+        "id": "schedules",
+        "description": "Rozvrh"
     },
     {
         "id": "pickupPoints",
@@ -86,10 +82,6 @@
     {
         "id": "users",
         "description": "Uživatelé"
-    },
-    {
-        "id": "billing",
-        "description": "Fakturace"
     },
     {
         "id": "invoices",
