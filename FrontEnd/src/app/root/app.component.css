@@ -14,6 +14,7 @@
 #leftbar, #rightbar {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     min-width: 4rem;
     padding: 0 0.5rem 4rem 0.5rem;
 }

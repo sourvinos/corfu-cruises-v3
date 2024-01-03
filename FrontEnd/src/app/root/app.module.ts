@@ -19,6 +19,7 @@ import { LogoutComponent } from '../shared/components/logout/logout.component'
 import { ReservationSearchComponent } from '../shared/components/reservation-search/reservation-search.component'
 import { ReservationSearchDialogComponent } from '../shared/components/reservation-search/reservation-search-dialog.component'
 import { ReservationsMenuComponent } from '../shared/components/reservations-menu/reservations-menu.component'
+import { ShortcutsMenuComponent } from '../shared/components/shortcuts-menu/shortcuts-menu.component'
 import { UserMenuComponent } from '../shared/components/user-menu/user-menu.component'
 // Services
 import { InterceptorService } from '../shared/services/interceptor.service'
@@ -32,6 +33,7 @@ import { InterceptorService } from '../shared/services/interceptor.service'
         HomeComponent,
         LogoutComponent,
         ReservationSearchComponent,
+        ShortcutsMenuComponent,
         ReservationSearchDialogComponent,
         ReservationsMenuComponent,
         UserMenuComponent
