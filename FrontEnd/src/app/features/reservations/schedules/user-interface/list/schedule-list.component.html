@@ -4,6 +4,9 @@
 
         <div id="header">
             <home-button-and-title [featureIcon]="featureIcon" [feature]="feature" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
+            <div id="header-right">
+                <year-selector (yearEmitter)="filterByYear($event)"></year-selector>
+            </div>
         </div>
 
         <div id="table-wrapper">

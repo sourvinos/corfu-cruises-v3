@@ -16,6 +16,10 @@ export class ScheduleService extends HttpDataService {
 
     //#region public methods
 
+    public getYear(year: string): Observable<any[]> {
+        return this.http.get<any[]>(this.url + '/year/' + year)
+    }
+
     public addRange(scheduleObjects: ScheduleWriteDto[]): Observable<any[]> {
         return this.http.post<any[]>(this.url, scheduleObjects)
     }
