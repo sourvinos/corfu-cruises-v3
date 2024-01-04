@@ -93,6 +93,7 @@ namespace API.Infrastructure.Classes {
             modelBuilder.ApplyConfiguration(new ShipsConfig());
             #endregion
             #region billing
+            modelBuilder.ApplyConfiguration(new PaymentMethodsConfig());
             modelBuilder.ApplyConfiguration(new PricesConfig());
             modelBuilder.ApplyConfiguration(new TaxOfficesConfig());
             modelBuilder.ApplyConfiguration(new VatRegimeConfig());

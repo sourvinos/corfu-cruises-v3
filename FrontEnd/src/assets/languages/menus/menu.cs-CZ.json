@@ -112,7 +112,7 @@
         "description": "Banky"
     },
     {
-        "id": "paymentWays",
+        "id": "paymentMethods",
         "description": "Platební metody"
     },
     {

@@ -2504,5 +2504,59 @@
                 "description": "Αποθηκευση"
             }
         ]
+    },
+    {
+        "feature": "paymentMethodList",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Τρόποι πληρωμής"
+            },
+            {
+                "id": "headerDescription",
+                "description": "Περιγραφή"
+            },
+            {
+                "id": "newRecord",
+                "description": "Νεα εγγραφη"
+            }
+        ]
+    },
+    {
+        "feature": "paymentMethodForm",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Τρόπος πληρωμής"
+            },
+            {
+                "id": "description",
+                "description": "Περιγραφή"
+            },
+            {
+                "id": "isCash",
+                "description": "Μετρητά"
+            },
+            {
+                "id": "isActive",
+                "description": "Ενεργός"
+            },
+            {
+                "id": "post",
+                "description": "Αρχική καταχώριση"
+            },
+            {
+                "id": "put",
+                "description": "Τελευταία ενημέρωση"
+            },
+            {
+                "id": "deleteButton",
+                "description": "Διαγραφη"
+            },
+            {
+                "id": "saveButton",
+                "description": "Αποθηκευση"
+            }
+        ]
     }
 ]

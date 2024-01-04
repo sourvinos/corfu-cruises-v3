@@ -112,7 +112,7 @@
         "description": "Τράπεζες"
     },
     {
-        "id": "paymentWays",
+        "id": "paymentMethods",
         "description": "Τρόποι πληρωμής"
     },
     {

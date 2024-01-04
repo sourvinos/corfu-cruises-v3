@@ -112,7 +112,7 @@
         "description": "Banken"
     },
     {
-        "id": "paymentWays",
+        "id": "paymentMethods",
         "description": "Zahlungsarten"
     },
     {
