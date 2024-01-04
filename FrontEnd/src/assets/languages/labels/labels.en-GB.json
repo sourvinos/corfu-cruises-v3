@@ -1942,6 +1942,10 @@
                 "description": "Date"
             },
             {
+                "id": "headerYear",
+                "description": "Year"
+            },
+{
                 "id": "headerDestinationDescription",
                 "description": "Destination"
             },

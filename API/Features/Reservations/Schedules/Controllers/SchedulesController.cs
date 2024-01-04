@@ -32,12 +32,6 @@ namespace API.Features.Schedules {
             return await scheduleRepo.GetAsync();
         }
 
-        [HttpGet("year/{year}")]
-        [Authorize(Roles = "admin")]
-        public async Task<IEnumerable<ScheduleListVM>> GetYearAsync(string year) {
-            return await scheduleRepo.GetYearAsync(year);
-        }
-
         [HttpGet("{id}")]
         [Authorize(Roles = "admin")]
         public async Task<ResponseWithBody> GetByIdAsync(int id) {

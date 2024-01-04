@@ -4,9 +4,6 @@
 
         <div id="header">
             <home-button-and-title [featureIcon]="featureIcon" [feature]="feature" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
-            <div id="header-right">
-                <year-selector (yearEmitter)="filterByYear($event)"></year-selector>
-            </div>
         </div>
 
         <div id="table-wrapper">
@@ -14,6 +11,7 @@
                 <ng-template pTemplate="header">
                     <tr>
                         <th class="width-5" pSortableColumn="isActive">{{ getLabel("headerIsActive") }}</th>
+                        <th class="width-5" pSortableColumn="date">{{ getLabel("headerYear") }}</th>
                         <th class="width-9" pSortableColumn="date">{{ getLabel("headerDate") }}</th>
                         <th class="width-20" pSortableColumn="destination.description">{{ getLabel("headerDestinationDescription") }}</th>
                         <th class="width-20" pSortableColumn="port.description">{{ getLabel("headerPortDescription") }}</th>
@@ -21,6 +19,19 @@
                     </tr>
                     <tr>
                         <th class="width-5"><p-columnFilter field="isActive" type="boolean"></p-columnFilter></th>
+                        <th class="width-5">
+                            <p-columnFilter [showMenu]="false" field="year" matchMode="in">
+                                <ng-template let-filter="filterCallback" let-value pTemplate="filter">
+                                    <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="dropdownYears" [placeholder]="getEmoji('wildcard')" optionLabel="description">
+                                        <ng-template let-option pTemplate="item">
+                                            <div class="p-multiselect-option">
+                                                <span>{{ option.description }}</span>
+                                            </div>
+                                        </ng-template>
+                                    </p-multiSelect>
+                                </ng-template>
+                            </p-columnFilter>
+                        </th>
                         <th class="width-9">
                             <div class="date-picker-wrapper">
                                 <input (dateInput)="filterByDate($event)" [matDatepicker]="picker" [ngModel]="filterDate" class="left p-inputtext" readonly>
@@ -63,6 +74,7 @@
                 <ng-template let-record pTemplate="body">
                     <tr (click)="highlightRow(record.id)" (dblclick)="editRecord(record.id)" [attr.id]=record.id class="without-footer" style="height: 32px;">
                         <td class="width-5"><span class="center no-left-padding" style="font-size: 0.5rem; padding-top: 0 !important;">{{ getEmoji(record.isActive) }}</span></td>
+                        <td class="width-5"><span class="center">{{ record.year.description }}</span></td>
                         <td class="width-9"><span class="center">{{ record.formattedDate }}</span></td>
                         <td class="width-20"><span>{{ record.destination.description }}</span></td>
                         <td class="width-20"><span>{{ record.port.description }}</span></td>

@@ -20,7 +20,7 @@ import { MessageInputHintService } from 'src/app/shared/services/message-input-h
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { PortAutoCompleteVM } from '../../../ports/classes/view-models/port-autocomplete-vm'
 import { ScheduleReadDto } from '../../classes/form/schedule-read-dto'
-import { ScheduleService } from '../../classes/services/schedule.service'
+import { ScheduleHttpService } from '../../classes/services/schedule-http.service'
 import { ScheduleWriteDto } from '../../classes/form/schedule-write-dto'
 import { ValidationService } from 'src/app/shared/services/validation.service'
 
@@ -53,7 +53,7 @@ export class ScheduleEditFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dexieService: DexieService, private dialogService: DialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private scheduleService: ScheduleService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dexieService: DexieService, private dialogService: DialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private scheduleHttpService: ScheduleHttpService) { }
 
     //#region lifecycle hooks
 
@@ -102,7 +102,7 @@ export class ScheduleEditFormComponent {
     public onDelete(): void {
         this.dialogService.open(this.messageDialogService.confirmDelete(), 'question', ['abort', 'ok']).subscribe(response => {
             if (response) {
-                this.scheduleService.delete(this.form.value.id).subscribe({
+                this.scheduleHttpService.delete(this.form.value.id).subscribe({
                     complete: () => {
                         this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
                     },
@@ -233,7 +233,7 @@ export class ScheduleEditFormComponent {
     }
 
     private saveRecord(schedule: ScheduleWriteDto): void {
-        this.scheduleService.save(schedule).subscribe({
+        this.scheduleHttpService.save(schedule).subscribe({
             complete: () => {
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },

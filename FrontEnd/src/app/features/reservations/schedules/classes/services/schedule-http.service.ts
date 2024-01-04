@@ -8,17 +8,13 @@ import { environment } from 'src/environments/environment'
 
 @Injectable({ providedIn: 'root' })
 
-export class ScheduleService extends HttpDataService {
+export class ScheduleHttpService extends HttpDataService {
 
     constructor(httpClient: HttpClient) {
         super(httpClient, environment.apiUrl + '/schedules')
     }
 
     //#region public methods
-
-    public getYear(year: string): Observable<any[]> {
-        return this.http.get<any[]>(this.url + '/year/' + year)
-    }
 
     public addRange(scheduleObjects: ScheduleWriteDto[]): Observable<any[]> {
         return this.http.post<any[]>(this.url, scheduleObjects)

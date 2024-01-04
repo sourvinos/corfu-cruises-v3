@@ -9,7 +9,7 @@ import { HelperService } from 'src/app/shared/services/helper.service'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { ScheduleService } from '../../classes/services/schedule.service'
+import { ScheduleHttpService } from '../../classes/services/schedule-http.service'
 import { ScheduleWriteDto } from '../../classes/form/schedule-write-dto'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
@@ -45,7 +45,7 @@ export class ScheduleNewFormComponent {
 
     //#endregion
 
-    constructor(private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private scheduleService: ScheduleService) { }
+    constructor(private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private scheduleHttpService: ScheduleHttpService) { }
 
     //#region lifecycle hooks
 
@@ -182,7 +182,7 @@ export class ScheduleNewFormComponent {
     }
 
     private saveRecord(): void {
-        this.scheduleService.addRange(this.buildSchedule()).subscribe({
+        this.scheduleHttpService.addRange(this.buildSchedule()).subscribe({
             complete: () => {
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },

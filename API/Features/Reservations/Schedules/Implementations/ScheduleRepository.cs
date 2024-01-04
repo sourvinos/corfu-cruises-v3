@@ -37,17 +37,6 @@ namespace API.Features.Schedules {
             return mapper.Map<IEnumerable<Schedule>, IEnumerable<ScheduleListVM>>(schedules);
         }
 
-        public async Task<IEnumerable<ScheduleListVM>> GetYearAsync(string year) {
-            var schedules = await context.Schedules
-                .AsNoTracking()
-                .Include(x => x.Destination)
-                .Include(x => x.Port)
-                .Where(x => x.Date.Year.ToString() == year)
-                .OrderBy(x => x.Date).ThenBy(x => x.Destination.Description).ThenBy(x => x.Port.Description)
-                .ToListAsync();
-            return mapper.Map<IEnumerable<Schedule>, IEnumerable<ScheduleListVM>>(schedules);
-        }
-
         public async Task<Schedule> GetByIdAsync(int id, bool includeTables) {
             return includeTables
                 ? await context.Schedules

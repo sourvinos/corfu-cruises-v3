@@ -1,4 +1,3 @@
-import { ScheduleService } from './../../classes/services/schedule.service'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, ViewChild } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
@@ -42,6 +41,7 @@ export class ScheduleListComponent {
 
     //#region dropdown filters #2
 
+    public dropdownYears = []
     public dropdownDestinations = []
     public dropdownPorts = []
 
@@ -53,7 +53,7 @@ export class ScheduleListComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private scheduleService: ScheduleService, private sessionStorageService: SessionStorageService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -126,29 +126,11 @@ export class ScheduleListComponent {
         this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
     }
 
-    public doTasksAfterYearSelection(event: any): void {
-        // this.sessionStorageService.saveItem('fromDate', event + '-' + '01' + '-' + '01')
-        // this.sessionStorageService.saveItem('toDate', event + '-' + '01' + '-' + this.sessionStorageService.getItem('dayCount'))
-        // this.sessionStorageService.saveItem('fromDate', event + '-' + '01' + '-' + '01')
-        const x = this.records.filter(x => x.date.startsWith(event))
-        console.log(x)
-        // this.filterByDate(event)
-    }
-
-
     public filterByDate(event: MatDatepickerInputEvent<Date>): void {
         const date = this.dateHelperService.formatDateToIso(new Date(event.value), false)
         this.table.filter(date, 'date', 'equals')
         this.filterDate = date
         this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
-    }
-
-    public filterByYear(event: MatDatepickerInputEvent<Date>): void {
-        this.scheduleService.getYear(event.toString()).subscribe(response => {
-            this.records = response
-            this.formatDatesToLocale()
-        })
-        this.sessionStorageService.saveItem(this.feature + '-' + 'yearFilter', event.toString())
     }
 
     public hasDateFilter(): string {
@@ -175,6 +157,7 @@ export class ScheduleListComponent {
             setTimeout(() => {
                 this.filterColumn(filters.isActive, 'isActive', 'contains')
                 this.filterColumn(filters.date, 'date', 'equals')
+                this.filterColumn(filters.year, 'year', 'in')
                 this.filterColumn(filters.destination, 'destination', 'in')
                 this.filterColumn(filters.port, 'port', 'in')
                 this.filterColumn(filters.maxPax, 'maxPax', 'contains')
@@ -258,6 +241,7 @@ export class ScheduleListComponent {
     }
 
     private populateDropdownFilters(): void {
+        this.dropdownYears = this.helperService.getDistinctRecords(this.records, 'year', 'description')
         this.dropdownDestinations = this.helperService.getDistinctRecords(this.records, 'destination', 'description')
         this.dropdownPorts = this.helperService.getDistinctRecords(this.records, 'port', 'description')
     }

@@ -1942,6 +1942,10 @@
                 "description": "Ημερομηνία"
             },
             {
+                "id": "headerYear",
+                "description": "Ετος"
+            },
+            {
                 "id": "headerDestinationDescription",
                 "description": "Προορισμός"
             },
