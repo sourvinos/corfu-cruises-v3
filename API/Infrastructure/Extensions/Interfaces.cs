@@ -8,6 +8,7 @@ using API.Features.Genders;
 using API.Features.Ledger;
 using API.Features.Manifest;
 using API.Features.Nationalities;
+using API.Features.PaymentMethods;
 using API.Features.PickupPoints;
 using API.Features.Ports;
 using API.Features.Prices;
@@ -82,9 +83,11 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IStatisticsRepository, StatisticsRepository>();
             #endregion
             #region billing
+            services.AddTransient<IPaymentMethodRepository, PaymentMethodRepository>();
+            services.AddTransient<IPaymentMethodValidation, PaymentMethodValidation>();
+            services.AddTransient<IPriceCloneRepository, PriceCloneRepository>();
             services.AddTransient<IPriceRepository, PriceRepository>();
             services.AddTransient<IPriceValidation, PriceValidation>();
-            services.AddTransient<IPriceCloneRepository, PriceCloneRepository>();
             services.AddTransient<ITaxOfficeRepository, TaxOfficeRepository>();
             services.AddTransient<ITaxOfficeValidation, TaxOfficeValidation>();
             services.AddTransient<IVatRegimeRepository, VatRegimeRepository>();

@@ -5,6 +5,7 @@ using API.Features.Drivers;
 using API.Features.Genders;
 using API.Features.Nationalities;
 using API.Features.Occupants;
+using API.Features.PaymentMethods;
 using API.Features.PickupPoints;
 using API.Features.Ports;
 using API.Features.Prices;
@@ -59,6 +60,7 @@ namespace API.Infrastructure.Classes {
         public DbSet<Price> Prices { get; set; }
         public DbSet<TaxOffice> TaxOffices { get; set; }
         public DbSet<VatRegime> VatRegimes { get; set; }
+        public DbSet<PaymentMethod> PaymentMethods { get; set; }
 
         #endregion
 
