@@ -24,6 +24,7 @@ using API.Infrastructure.Parameters;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using API.Features.Codes;
 
 namespace API.Infrastructure.Classes {
 
@@ -57,10 +58,11 @@ namespace API.Infrastructure.Classes {
 
         #region DbSets - Billing
 
+        public DbSet<Code> Codes { get; set; }
+        public DbSet<PaymentMethod> PaymentMethods { get; set; }
         public DbSet<Price> Prices { get; set; }
         public DbSet<TaxOffice> TaxOffices { get; set; }
         public DbSet<VatRegime> VatRegimes { get; set; }
-        public DbSet<PaymentMethod> PaymentMethods { get; set; }
 
         #endregion
 
@@ -93,6 +95,7 @@ namespace API.Infrastructure.Classes {
             modelBuilder.ApplyConfiguration(new ShipsConfig());
             #endregion
             #region billing
+            modelBuilder.ApplyConfiguration(new CodesConfig());
             modelBuilder.ApplyConfiguration(new PaymentMethodsConfig());
             modelBuilder.ApplyConfiguration(new PricesConfig());
             modelBuilder.ApplyConfiguration(new TaxOfficesConfig());

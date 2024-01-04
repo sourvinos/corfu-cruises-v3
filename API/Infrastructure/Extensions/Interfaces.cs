@@ -1,6 +1,7 @@
 using API.Features.Availability;
 using API.Features.Boarding;
 using API.Features.CoachRoutes;
+using API.Features.Codes;
 using API.Features.Customers;
 using API.Features.Destinations;
 using API.Features.Drivers;
@@ -83,6 +84,8 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IStatisticsRepository, StatisticsRepository>();
             #endregion
             #region billing
+            services.AddTransient<ICodeRepository, CodeRepository>();
+            services.AddTransient<ICodeValidation, CodeValidation>();
             services.AddTransient<IPaymentMethodRepository, PaymentMethodRepository>();
             services.AddTransient<IPaymentMethodValidation, PaymentMethodValidation>();
             services.AddTransient<IPriceCloneRepository, PriceCloneRepository>();
