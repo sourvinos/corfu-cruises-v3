@@ -12,7 +12,20 @@
                 <mat-label>{{ getLabel('description') }}</mat-label>
                 <input [inputTabStop]="input" dataTabIndex="1" formControlName="description" matInput>
                 <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
-                <mat-error *ngIf="description.hasError('maxlength')">{{ getHint("maxLength", description.errors.maxlength.requiredLength) }}</mat-error>
+            </mat-form-field>
+            <!-- Batch -->
+            <mat-form-field>
+                <mat-label>{{ getLabel('batch') }}</mat-label>
+                <input [inputTabStop]="input" dataTabIndex="2" formControlName="batch" matInput>
+                <mat-error *ngIf="batch.hasError('required')">{{ getHint("required") }}</mat-error>
+            </mat-form-field>
+            <!-- Lastdate -->
+            <date-picker (outputValue)="patchFormWithSelectedDate($event)" [dataTabIndex]="3" [isAdminOrNewRecord]=true [label]="getLabel('lastDate')" [parentDate]="getLastDate()" [readOnly]=false [showHint]=false></date-picker>
+            <!-- LastNo -->
+            <mat-form-field>
+                <mat-label>{{ getLabel('lastNo') }}</mat-label>
+                <input [inputTabStop]="input" dataTabIndex="4" formControlName="lastNo" matInput type="number">
+                <mat-error *ngIf="lastNo.hasError('required')">{{ getHint("required") }}</mat-error>
             </mat-form-field>
             <!-- Active -->
             <mat-checkbox formControlName="isActive">

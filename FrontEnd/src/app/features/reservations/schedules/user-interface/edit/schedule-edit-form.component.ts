@@ -5,6 +5,7 @@ import { DateAdapter } from '@angular/material/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 import { map, startWith } from 'rxjs/operators'
 // Custom
+import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DestinationAutoCompleteVM } from '../../../destinations/classes/view-models/destination-autocomplete-vm'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
@@ -19,8 +20,8 @@ import { MessageDialogService } from 'src/app/shared/services/message-dialog.ser
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { PortAutoCompleteVM } from '../../../ports/classes/view-models/port-autocomplete-vm'
-import { ScheduleReadDto } from '../../classes/form/schedule-read-dto'
 import { ScheduleHttpService } from '../../classes/services/schedule-http.service'
+import { ScheduleReadDto } from '../../classes/form/schedule-read-dto'
 import { ScheduleWriteDto } from '../../classes/form/schedule-write-dto'
 import { ValidationService } from 'src/app/shared/services/validation.service'
 
@@ -53,7 +54,7 @@ export class ScheduleEditFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dexieService: DexieService, private dialogService: DialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private scheduleHttpService: ScheduleHttpService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: DialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private scheduleHttpService: ScheduleHttpService) { }
 
     //#region lifecycle hooks
 
@@ -143,7 +144,7 @@ export class ScheduleEditFormComponent {
     private flattenForm(): ScheduleWriteDto {
         return {
             id: this.form.value.id,
-            date: this.form.value.date,
+            date: this.dateHelperService.formatDateToIso(new Date(this.form.value.date)),
             destinationId: this.form.value.destination.id,
             portId: this.form.value.port.id,
             maxPax: this.form.value.maxPax,

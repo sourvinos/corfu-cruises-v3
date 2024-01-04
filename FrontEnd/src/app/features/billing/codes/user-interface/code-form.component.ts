@@ -1,15 +1,19 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component } from '@angular/core'
+import { DateAdapter } from '@angular/material/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 // Custom
 import { CodeHttpService } from '../classes/services/code-http.service'
 import { CodeReadDto } from '../classes/dtos/code-read-dto'
 import { CodeWriteDto } from '../classes/dtos/code-write-dto'
+import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
+import { InteractionService } from 'src/app/shared/services/interaction.service'
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
@@ -35,7 +39,7 @@ export class CodeFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private codeHttpService: CodeHttpService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private codeHttpService: CodeHttpService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -44,6 +48,8 @@ export class CodeFormComponent {
         this.setRecordId()
         this.getRecord()
         this.populateFields()
+        this.subscribeToInteractionService()
+        this.setLocale()
     }
 
     ngAfterViewInit(): void {
@@ -53,6 +59,10 @@ export class CodeFormComponent {
     //#endregion
 
     //#region public methods
+
+    public getLastDate(): string {
+        return this.form.value.lastDate
+    }
 
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
@@ -82,6 +92,12 @@ export class CodeFormComponent {
         this.saveRecord(this.flattenForm())
     }
 
+    public patchFormWithSelectedDate(event: any): void {
+        this.form.patchValue({
+            lastDate: event.value.date
+        })
+    }
+
     //#endregion
 
     //#region private methods
@@ -91,7 +107,7 @@ export class CodeFormComponent {
             id: this.form.value.id != '' ? this.form.value.id : null,
             description: this.form.value.description,
             batch: this.form.value.batch,
-            lastDate: this.form.value.lastDate,
+            lastDate: this.dateHelperService.formatDateToIso(new Date(this.form.value.lastDate)),
             lastNo: this.form.value.lastNo,
             isActive: this.form.value.isActive,
             putAt: this.form.value.putAt
@@ -128,7 +144,7 @@ export class CodeFormComponent {
             id: '',
             description: ['', [Validators.required, Validators.maxLength(128)]],
             batch: ['', [Validators.required, Validators.maxLength(5)]],
-            lastDate: ['', [Validators.required]],
+            lastDate: ['', [Validators.required, Validators.maxLength(10)]],
             lastNo: [0, [Validators.required, Validators.min(0), Validators.max(9999)]],
             isActive: true,
             postAt: [''],
@@ -171,6 +187,16 @@ export class CodeFormComponent {
         })
     }
 
+    private setLocale(): void {
+        this.dateAdapter.setLocale(this.localStorageService.getLanguage())
+    }
+
+    private subscribeToInteractionService(): void {
+        this.interactionService.refreshDateAdapter.subscribe(() => {
+            this.setLocale()
+        })
+    }
+
     private setRecordId(): void {
         this.activatedRoute.params.subscribe(x => {
             this.recordId = x.id
@@ -183,6 +209,18 @@ export class CodeFormComponent {
 
     get description(): AbstractControl {
         return this.form.get('description')
+    }
+
+    get batch(): AbstractControl {
+        return this.form.get('batch')
+    }
+
+    get lastDate(): AbstractControl {
+        return this.form.get('lastDate')
+    }
+
+    get lastNo(): AbstractControl {
+        return this.form.get('lastNo')
     }
 
     get postAt(): AbstractControl {

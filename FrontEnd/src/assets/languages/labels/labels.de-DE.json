@@ -2588,6 +2588,18 @@
                 "description": "Περιγραφή"
             },
             {
+                "id": "batch",
+                "description": "Σειρά"
+            },
+            {
+                "id": "lastDate",
+                "description": "Τελευταία ημερομηνία"
+            },
+            {
+                "id": "lastNo",
+                "description": "Τελευταίο Νο"
+            },
+            {
                 "id": "isActive",
                 "description": "Ενεργό"
             },
