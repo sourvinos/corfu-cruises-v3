@@ -43,9 +43,10 @@ const appRoutes: Routes = [
     { path: 'users', loadChildren: () => import('../features/reservations/users/classes/modules/user.module').then(m => m.UserModule) },
     { path: 'reservation-parameters', loadChildren: () => import('../features/reservations/parameters/classes/modules/parameters.module').then(m => m.ParametersModule) },
     // Billing
+    { path: 'codes', loadChildren: () => import('../features/billing/codes/classes/modules/code.module').then(m => m.CodeModule) },
+    { path: 'paymentMethods', loadChildren: () => import('../features/billing/paymentMethods/classes/modules/paymentMethod.module').then(m => m.PaymentMethodModule) },
     { path: 'prices', loadChildren: () => import('../features/billing/prices/classes/modules/price.module').then(m => m.PriceModule) },
     { path: 'taxOffices', loadChildren: () => import('../features/billing/taxOffices/classes/modules/taxOffice.module').then(m => m.TaxOfficeModule) },
-    { path: 'paymentMethods', loadChildren: () => import('../features/billing/paymentMethods/classes/modules/paymentMethod.module').then(m => m.PaymentMethodModule) },
     // Empty
     { path: '**', component: EmptyPageComponent }
 ]
