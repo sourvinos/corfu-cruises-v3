@@ -2292,22 +2292,6 @@
             {
                 "id": "ledgersSubTitle",
                 "description": "Display your reservations for a time period."
-            },
-            {
-                "id": "pricesTitle",
-                "description": "Price lists"
-            },
-            {
-                "id": "pricesSubTitle",
-                "description": "Manage your customers' charges."
-            },
-            {
-                "id": "customersTitle",
-                "description": "Customers"
-            },
-            {
-                "id": "customersSubTitle",
-                "description": "Create, edit and delete your customers."
             }
         ]
     },
@@ -2598,6 +2582,30 @@
             {
                 "id": "lastNo",
                 "description": "Τελευταίο Νο"
+            },
+            {
+                "id": "customers",
+                "description": "Πελάτες"
+            },
+            {
+                "id": "suppliers",
+                "description": "Προμηθευτές"
+            },
+            {
+                "id": "isMyData",
+                "description": "Ενημερώνει myData"
+            },
+            {
+                "id": "table8_1",
+                "description": "Πίνακας 8.1"
+            },
+            {
+                "id": "table8_8",
+                "description": "Πίνακας 8.8"
+            },
+            {
+                "id": "table8_9",
+                "description": "Πίνακας 8.9"
             },
             {
                 "id": "isActive",

@@ -1,18 +1,20 @@
 {
     "labels": [
-        { "id": "required", "description": "Toto pole je povinné" },
-        { "id": "invalid", "description": "Toto pole je neplatné" },
-        { "id": "minLength", "description": "Toto pole musí mít alespoň xx znaků" },
-        { "id": "maxLength", "description": "Toto pole může být dlouhé až xx znaků" },
         { "id": "beginsOrEndsWithSpace", "description": "Toto pole nesmí začínat ani končit mezerou" },
         { "id": "containsIllegalCharacters", "description": "Toto pole umožňuje pouze alfanumerické znaky nebo podtržítka" },
-        { "id": "doesNotContainLowerCase", "description": "Toto pole musí obsahovat alespoň jeden malý znak" },
-        { "id": "doesNotContainUpperCase", "description": "Toto pole musí obsahovat alespoň jeden velký znak" },
-        { "id": "doesNotContainSymbol", "description": "Toto pole musí obsahovat alespoň jeden symbol, tj. % nebo #." },
         { "id": "doesNotContainDigits", "description": "Toto pole musí obsahovat alespoň jednu číslici" },
-        { "id": "spacesNotAllowed", "description": "Toto pole nesmí obsahovat mezery" },
-        { "id": "remainingCharacters", "description": "Můžete uvést až xx dalších znaků" },
+        { "id": "doesNotContainLowerCase", "description": "Toto pole musí obsahovat alespoň jeden malý znak" },
+        { "id": "doesNotContainSymbol", "description": "Toto pole musí obsahovat alespoň jeden symbol, tj. % nebo #." },
+        { "id": "doesNotContainUpperCase", "description": "Toto pole musí obsahovat alespoň jeden velký znak" },
+        { "id": "invalid", "description": "Toto pole je neplatné" },
+        { "id": "invalidRange", "description": "Αυτό το πεδίο είναι εκτός ορίων" },
+        { "id": "maxLength", "description": "Toto pole může být dlouhé až xx znaků" },
+        { "id": "minLength", "description": "Toto pole musí mít alespoň xx znaků" },
+        { "id": "otherErrors", "description": "Toto pole obsahuje chyby" },
         { "id": "passwordsNoMatch", "description": "Nové heslo a potvrzení nového hesla se neshodují" },
-        { "id": "otherErrors", "description": "Toto pole obsahuje chyby" }
+        { "id": "remainingCharacters", "description": "Můžete uvést až xx dalších znaků" },
+        { "id": "required", "description": "Toto pole je povinné" },
+        { "id": "shouldBeEmptyPlusOrMinus", "description": "Toto pole může být prázdné nebo může obsahovat symbol + nebo -." },
+        { "id": "spacesNotAllowed", "description": "Toto pole nesmí obsahovat mezery" }
     ]
 }

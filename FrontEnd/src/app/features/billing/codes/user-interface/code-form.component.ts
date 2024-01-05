@@ -17,6 +17,7 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { ValidationService } from 'src/app/shared/services/validation.service'
 
 @Component({
     selector: 'code-form',
@@ -109,6 +110,12 @@ export class CodeFormComponent {
             batch: this.form.value.batch,
             lastDate: this.dateHelperService.formatDateToIso(new Date(this.form.value.lastDate)),
             lastNo: this.form.value.lastNo,
+            customers: this.form.value.customers,
+            suppliers: this.form.value.suppliers,
+            table8_1: this.form.value.table8_1,
+            table8_8: this.form.value.table8_8,
+            table8_9: this.form.value.table8_9,
+            isMyData: this.form.value.isMyData,
             isActive: this.form.value.isActive,
             putAt: this.form.value.putAt
         }
@@ -143,10 +150,16 @@ export class CodeFormComponent {
         this.form = this.formBuilder.group({
             id: '',
             description: ['', [Validators.required, Validators.maxLength(128)]],
-            batch: ['', [Validators.required, Validators.maxLength(5)]],
+            batch: ['', [Validators.maxLength(5)]],
             lastDate: ['', [Validators.required, Validators.maxLength(10)]],
             lastNo: [0, [Validators.required, Validators.min(0), Validators.max(9999)]],
             isActive: true,
+            customers: ['', [Validators.maxLength(1), ValidationService.shouldBeEmptyPlusOrMinus]],
+            suppliers: ['', [Validators.maxLength(1), ValidationService.shouldBeEmptyPlusOrMinus]],
+            isMyData: true,
+            table8_1: ['', [Validators.maxLength(32)]],
+            table8_8: ['', [Validators.maxLength(32)]],
+            table8_9: ['', [Validators.maxLength(32)]],
             postAt: [''],
             postUser: [''],
             putAt: [''],
@@ -163,6 +176,12 @@ export class CodeFormComponent {
                 lastDate: this.record.lastDate,
                 lastNo: this.record.lastNo,
                 isActive: this.record.isActive,
+                customers: this.record.customers,
+                suppliers: this.record.suppliers,
+                isMyData: this.record.isMyData,
+                table8_1: this.record.table8_1,
+                table8_8: this.record.table8_8,
+                table8_9: this.record.table8_9,
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
                 putAt: this.record.putAt,
@@ -221,6 +240,26 @@ export class CodeFormComponent {
 
     get lastNo(): AbstractControl {
         return this.form.get('lastNo')
+    }
+
+    get customers(): AbstractControl {
+        return this.form.get('customers')
+    }
+
+    get suppliers(): AbstractControl {
+        return this.form.get('suppliers')
+    }
+
+    get table8_1(): AbstractControl {
+        return this.form.get('table8_1')
+    }
+
+    get table8_8(): AbstractControl {
+        return this.form.get('table8_8')
+    }
+
+    get table8_9(): AbstractControl {
+        return this.form.get('table8_9')
     }
 
     get postAt(): AbstractControl {

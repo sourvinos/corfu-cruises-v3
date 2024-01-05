@@ -1,18 +1,20 @@
 {
     "labels": [
-        { "id": "required", "description": "Dieses Feld ist erforderlich" },
-        { "id": "invalid", "description": "Dieses Feld ist ungültig" },
-        { "id": "minLength", "description": "Dieses Feld muss mindestens xx Zeichen lang sein" },
-        { "id": "maxLength", "description": "Dieses Feld kann bis zu xx Zeichen lang sein" },
         { "id": "beginsOrEndsWithSpace", "description": "Dieses Feld darf nicht mit einem Leerzeichen beginnen oder enden" },
         { "id": "containsIllegalCharacters", "description": "Dieses Feld sind nur alphanumerische Zeichen oder Unterstriche erlaubt" },
-        { "id": "doesNotContainLowerCase", "description": "Dieses Feld muss mindestens einen Kleinbuchstaben enthalten" },
-        { "id": "doesNotContainUpperCase", "description": "Dieses Feld muss mindestens einen Großbuchstaben enthalten" },
-        { "id": "doesNotContainSymbol", "description": "Dieses Feld muss mindestens ein Symbol enthalten, z. B. % oder #" },
         { "id": "doesNotContainDigits", "description": "Dieses Feld muss mindestens eine Ziffer haben" },
-        { "id": "spacesNotAllowed", "description": "Dieses Feld darf keine Leerzeichen enthalten" },
-        { "id": "remainingCharacters", "description": "Sie können bis zu xx weitere Zeichen eingeben" },
+        { "id": "doesNotContainLowerCase", "description": "Dieses Feld muss mindestens einen Kleinbuchstaben enthalten" },
+        { "id": "doesNotContainSymbol", "description": "Dieses Feld muss mindestens ein Symbol enthalten, z. B. % oder #" },
+        { "id": "doesNotContainUpperCase", "description": "Dieses Feld muss mindestens einen Großbuchstaben enthalten" },
+        { "id": "invalid", "description": "Dieses Feld ist ungültig" },
+        { "id": "invalidRange", "description": "Αυτό το πεδίο είναι εκτός ορίων" },
+        { "id": "maxLength", "description": "Dieses Feld kann bis zu xx Zeichen lang sein" },
+        { "id": "minLength", "description": "Dieses Feld muss mindestens xx Zeichen lang sein" },
+        { "id": "otherErrors", "description": "Dieses Feld enthält Fehler" },
         { "id": "passwordsNoMatch", "description": "Neues Passwort und Bestätigung des neuen Passworts stimmen nicht überein" },
-        { "id": "otherErrors", "description": "Dieses Feld enthält Fehler" }
+        { "id": "remainingCharacters", "description": "Sie können bis zu xx weitere Zeichen eingeben" },
+        { "id": "required", "description": "Dieses Feld ist erforderlich" },
+        { "id": "shouldBeEmptyPlusOrMinus", "description": "Dieses Feld darf leer sein oder das Symbol + oder - enthalten" },
+        { "id": "spacesNotAllowed", "description": "Dieses Feld darf keine Leerzeichen enthalten" }
     ]
 }

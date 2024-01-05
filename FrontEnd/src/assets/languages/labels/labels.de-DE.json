@@ -2292,22 +2292,6 @@
             {
                 "id": "ledgersSubTitle",
                 "description": "Zeigen Sie Ihre Reservierungen für einen bestimmten Zeitraum an."
-            },
-            {
-                "id": "pricesTitle",
-                "description": "Preislisten"
-            },
-            {
-                "id": "pricesSubTitle",
-                "description": "Verwalten Sie die Gebühren Ihrer Kunden."
-            },
-            {
-                "id": "customersTitle",
-                "description": "Kunden"
-            },
-            {
-                "id": "customersSubTitle",
-                "description": "Kunden anlegen, bearbeiten und löschen."
             }
         ]
     },
@@ -2571,6 +2555,30 @@
                 "description": "Περιγραφή"
             },
             {
+                "id": "headerBatch",
+                "description": "Σειρά"
+            },
+            {
+                "id": "headerLastDate",
+                "description": "Τελευταία ημερομηνία"
+            },
+            {
+                "id": "headerLastNo",
+                "description": "Τελευταίο Νο"
+            },
+            {
+                "id": "headerTable8_1",
+                "description": "Πίνακας 8.1"
+            },
+            {
+                "id": "headerTable8_8",
+                "description": "Πίνακας 8.8"
+            },
+            {
+                "id": "headerTable8_9",
+                "description": "Πίνακας 8.9"
+            },
+            {
                 "id": "newRecord",
                 "description": "Νεα εγγραφη"
             }
@@ -2598,6 +2606,30 @@
             {
                 "id": "lastNo",
                 "description": "Τελευταίο Νο"
+            },
+            {
+                "id": "customers",
+                "description": "Πελάτες"
+            },
+            {
+                "id": "suppliers",
+                "description": "Προμηθευτές"
+            },
+            {
+                "id": "isMyData",
+                "description": "Ενημερώνει myData"
+            },
+            {
+                "id": "table8_1",
+                "description": "Πίνακας 8.1"
+            },
+            {
+                "id": "table8_8",
+                "description": "Πίνακας 8.8"
+            },
+            {
+                "id": "table8_9",
+                "description": "Πίνακας 8.9"
             },
             {
                 "id": "isActive",

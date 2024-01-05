@@ -1,13 +1,17 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, ViewChild } from '@angular/core'
+import { DateAdapter } from '@angular/material/core'
 import { Table } from 'primeng/table'
 // Custom
 import { CodeListVM } from '../classes/view-models/code-list-vm'
+import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { ListResolved } from '../../../../shared/classes/list-resolved'
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
+import { MatDatepickerInputEvent } from '@angular/material/datepicker'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
@@ -20,7 +24,7 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 
 export class CodeListComponent {
 
-    //#region common #9
+    // ^ #region common variables
 
     @ViewChild('table') table: Table
 
@@ -35,15 +39,23 @@ export class CodeListComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    // * #region specific variables
 
-    //#region lifecycle hooks
+    public filterDate = ''
+
+    //#endregion
+
+    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+
+    // & #region lifecycle hooks
 
     ngOnInit(): void {
         this.loadRecords().then(() => {
             this.filterTableFromStoredFilters()
+            this.formatDatesToLocale()
             this.subscribeToInteractionService()
             this.setTabTitle()
+            this.setLocale()
             this.setSidebarsHeight()
         })
     }
@@ -59,17 +71,29 @@ export class CodeListComponent {
 
     //#endregion
 
-    //#region public common methods #7
+    // ~ #region public methods
 
-    public editRecord(id: number): void {
+    public onEditRecord(id: number): void {
         this.storeScrollTop()
         this.storeSelectedId(id)
         this.navigateToRecord(id)
     }
 
-    public filterRecords(event: any): void {
+    public onFilterRecords(event: any): void {
         this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
         this.recordsFilteredCount = event.filteredValue.length
+    }
+
+    public onHighlightRow(id: any): void {
+        this.helperService.highlightRow(id)
+    }
+
+    public onNewRecord(): void {
+        this.router.navigate([this.url + '/new'])
+    }
+
+    public onResetTableFilters(): void {
+        this.helperService.clearTableTextFilters(this.table, ['description', 'email', 'phones'])
     }
 
     public getEmoji(anything: any): string {
@@ -82,21 +106,10 @@ export class CodeListComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public highlightRow(id: any): void {
-        this.helperService.highlightRow(id)
-    }
-
-    public newRecord(): void {
-        this.router.navigate([this.url + '/new'])
-    }
-
-    public resetTableFilters(): void {
-        this.helperService.clearTableTextFilters(this.table, ['description', 'email', 'phones'])
-    }
 
     //#endregion
 
-    //#region private common methods #13
+    // ? #region private methods
 
     private enableDisableFilters(): void {
         this.records.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()
@@ -175,6 +188,37 @@ export class CodeListComponent {
         this.interactionService.refreshTabTitle.subscribe(() => {
             this.setTabTitle()
         })
+    }
+
+    //#endregion
+
+    // * #region specific methods
+
+    public onClearDateFilter(): void {
+        this.table.filter('', 'birthdate', 'equals')
+        this.filterDate = ''
+        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
+    }
+
+    public onFilterByDate(event: MatDatepickerInputEvent<Date>): void {
+        const date = this.dateHelperService.formatDateToIso(new Date(event.value), false)
+        this.table.filter(date, 'lastDate', 'equals')
+        this.filterDate = date
+        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
+    }
+
+    public hasDateFilter(): string {
+        return this.filterDate == '' ? 'hidden' : ''
+    }
+
+    private formatDatesToLocale(): void {
+        this.records.forEach(record => {
+            record.formattedLastDate = this.dateHelperService.formatISODateToLocale(record.lastDate)
+        })
+    }
+
+    private setLocale(): void {
+        this.dateAdapter.setLocale(this.localStorageService.getLanguage())
     }
 
     //#endregion
