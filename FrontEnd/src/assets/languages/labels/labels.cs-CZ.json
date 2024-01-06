@@ -2114,7 +2114,7 @@
         ]
     },
     {
-        "feature": "parameters",
+        "feature": "reservation-parameters",
         "labels": [
             {
                 "id": "header",
@@ -2555,6 +2555,30 @@
                 "description": "Περιγραφή"
             },
             {
+                "id": "headerBatch",
+                "description": "Σειρά"
+            },
+            {
+                "id": "headerLastDate",
+                "description": "Τελευταία ημερομηνία"
+            },
+            {
+                "id": "headerLastNo",
+                "description": "Τελευταίο Νο"
+            },
+            {
+                "id": "headerTable8_1",
+                "description": "Πίνακας 8.1"
+            },
+            {
+                "id": "headerTable8_8",
+                "description": "Πίνακας 8.8"
+            },
+            {
+                "id": "headerTable8_9",
+                "description": "Πίνακας 8.9"
+            },
+            {
                 "id": "newRecord",
                 "description": "Νεα εγγραφη"
             }
@@ -2622,6 +2646,47 @@
             {
                 "id": "deleteButton",
                 "description": "Διαγραφη"
+            },
+            {
+                "id": "saveButton",
+                "description": "Αποθηκευση"
+            }
+        ]
+    },
+    {
+        "feature": "billing-parameters",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Ρυθμίσεις"
+            },
+            {
+                "id": "aadeDemoUrl",
+                "description": "Δοκιμαστικό url"
+            },
+            {
+                "id": "aadeDemoUsername",
+                "description": "Δοκιμαστικό όνομα χρήστη"
+            },
+            {
+                "id": "aadeDemoApiKey",
+                "description": "Δοκιμαστικό κλειδί"
+            },
+            {
+                "id": "aadeLiveUrl",
+                "description": "Κανονικό url"
+            },
+            {
+                "id": "aadeLiveUsername",
+                "description": "Κανονικό όνομα χρήστη"
+            },
+            {
+                "id": "aadeLiveApiKey",
+                "description": "Κανονικό κλειδί"
+            },
+            {
+                "id": "isAadeLive",
+                "description": "Κανονική λειτουργία"
             },
             {
                 "id": "saveButton",

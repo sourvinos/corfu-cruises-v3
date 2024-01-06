@@ -16,9 +16,9 @@ namespace API.Features.Reservations.Reservations {
     public class ReservationSendToEmail : IReservationSendToEmail {
 
         private readonly EmailSettings emailSettings;
-        private readonly IParametersRepository parametersRepo;
+        private readonly IReservationParametersRepository parametersRepo;
 
-        public ReservationSendToEmail(IOptions<EmailSettings> emailSettings, IParametersRepository parametersRepo) {
+        public ReservationSendToEmail(IOptions<EmailSettings> emailSettings, IReservationParametersRepository parametersRepo) {
             this.emailSettings = emailSettings.Value;
             this.parametersRepo = parametersRepo;
         }

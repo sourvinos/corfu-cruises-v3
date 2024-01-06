@@ -9,9 +9,9 @@ using Microsoft.Extensions.Options;
 
 namespace API.Features.Billing.Parameters {
 
-    public class ParametersRepository : Repository<BillingParameter>, IParametersRepository {
+    public class BillingParametersRepository : Repository<BillingParameter>, IBillingParametersRepository {
 
-        public ParametersRepository(AppDbContext appDbContext, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> boosettings, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, boosettings, userManager) { }
+        public BillingParametersRepository(AppDbContext appDbContext, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> boosettings, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, boosettings, userManager) { }
 
         public async Task<BillingParameter> GetAsync() {
             return await context.BillingParameters

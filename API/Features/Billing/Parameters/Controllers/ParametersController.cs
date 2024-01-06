@@ -9,13 +9,13 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Features.Billing.Parameters {
 
     [Route("api/[controller]")]
-    public class ParametersController : Controller {
+    public class BillingParametersController : Controller {
 
         private readonly IMapper mapper;
-        private readonly IParametersRepository parametersRepo;
-        private readonly IParameterValidation parameterValidation;
+        private readonly IBillingParametersRepository parametersRepo;
+        private readonly IBillingParameterValidation parameterValidation;
 
-        public ParametersController(IMapper mapper, IParametersRepository parametersRepo, IParameterValidation parameterValidation) {
+        public BillingParametersController(IMapper mapper, IBillingParametersRepository parametersRepo, IBillingParameterValidation parameterValidation) {
             this.mapper = mapper;
             this.parametersRepo = parametersRepo;
             this.parameterValidation = parameterValidation;

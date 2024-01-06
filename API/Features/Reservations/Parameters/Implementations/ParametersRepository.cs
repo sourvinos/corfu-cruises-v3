@@ -9,7 +9,7 @@ using Microsoft.Extensions.Options;
 
 namespace API.Features.Reservations.Parameters {
 
-    public class ParametersRepository : Repository<ReservationParameter>, IParametersRepository {
+    public class ParametersRepository : Repository<ReservationParameter>, IReservationParametersRepository {
 
         public ParametersRepository(AppDbContext appDbContext, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> boosettings, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, boosettings, userManager) { }
 

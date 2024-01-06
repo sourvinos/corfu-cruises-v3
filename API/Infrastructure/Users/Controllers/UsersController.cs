@@ -23,11 +23,11 @@ namespace API.Infrastructure.Users {
         private readonly IMapper mapper;
         private readonly IUserRepository userRepo;
         private readonly IUserValidation<IUser> userValidation;
-        private readonly IParametersRepository parametersRepo;
+        private readonly IReservationParametersRepository parametersRepo;
 
         #endregion
 
-        public UsersController(IParametersRepository parametersRepo, IEmailSender emailSender, IHttpContextAccessor httpContext, IMapper mapper, IOptions<EnvironmentSettings> environmentSettings, IUserRepository userRepo, IUserValidation<IUser> userValidation) {
+        public UsersController(IReservationParametersRepository parametersRepo, IEmailSender emailSender, IHttpContextAccessor httpContext, IMapper mapper, IOptions<EnvironmentSettings> environmentSettings, IUserRepository userRepo, IUserValidation<IUser> userValidation) {
             this.emailSender = emailSender;
             this.environmentSettings = environmentSettings.Value;
             this.httpContext = httpContext;

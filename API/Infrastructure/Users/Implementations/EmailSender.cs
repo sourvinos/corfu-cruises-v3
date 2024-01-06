@@ -13,9 +13,9 @@ namespace API.Infrastructure.Users {
     public class EmailSender : IEmailSender {
 
         private readonly EmailSettings emailSettings;
-        private readonly IParametersRepository parametersRepo;
+        private readonly IReservationParametersRepository parametersRepo;
 
-        public EmailSender(IParametersRepository parametersRepo, IOptions<EmailSettings> emailSettings) {
+        public EmailSender(IReservationParametersRepository parametersRepo, IOptions<EmailSettings> emailSettings) {
             this.emailSettings = emailSettings.Value;
             this.parametersRepo = parametersRepo;
         }

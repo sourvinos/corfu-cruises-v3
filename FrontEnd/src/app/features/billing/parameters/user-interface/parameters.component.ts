@@ -12,7 +12,6 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 import { ParametersReadDto } from '../classes/models/parameters-read.dto'
 import { ParametersService } from '../classes/services/parameters.service'
 import { ParametersWriteDto } from '../classes/models/parameters-write.dto'
-import { ValidationService } from 'src/app/shared/services/validation.service'
 
 @Component({
     selector: 'parameters',
@@ -58,7 +57,7 @@ export class ParametersComponent {
     }
 
     public getLabel(id: string): string {
-        return this.messageLabelService.getDescription('reservation-' + this.feature, id)
+        return this.messageLabelService.getDescription('billing-' + this.feature, id)
     }
 
     public onSave(): void {
@@ -72,9 +71,13 @@ export class ParametersComponent {
     private flattenForm(): ParametersWriteDto {
         return {
             id: this.form.value.id,
-            closingTime: this.form.value.closingTime,
-            phones: this.form.value.phones,
-            email: this.form.value.email,
+            isAadeLive: this.form.value.isAadeLive,
+            aadeDemoUrl: this.form.value.aadeDemoUrl,
+            aadeDemoUsername: this.form.value.aadeDemoUsername,
+            aadeDemoApiKey: this.form.value.aadeDemoApiKey,
+            aadeLiveUrl: this.form.value.aadeLiveUrl,
+            aadeLiveUsername: this.form.value.aadeLiveUsername,
+            aadeLiveApiKey: this.form.value.aadeLiveApiKey,
             putAt: this.form.value.putAt
         }
     }
@@ -105,9 +108,13 @@ export class ParametersComponent {
     private initForm(): void {
         this.form = this.formBuilder.group({
             id: [''],
-            closingTime: ['00:00', [Validators.required, ValidationService.isTime]],
-            phones: ['', [Validators.required, Validators.maxLength(128)]],
-            email: ['', [Validators.required, Validators.maxLength(128)]],
+            aadeDemoUrl: ['', [Validators.required, Validators.maxLength(128)]],
+            aadeDemoUsername: ['', [Validators.required, Validators.maxLength(128)]],
+            aadeDemoApiKey: ['', [Validators.required, Validators.maxLength(128)]],
+            aadeLiveUrl: ['', [Validators.required, Validators.maxLength(128)]],
+            aadeLiveUsername: ['', [Validators.required, Validators.maxLength(128)]],
+            aadeLiveApiKey: ['', [Validators.required, Validators.maxLength(128)]],
+            isAadeLive: true,
             postAt: [''],
             postUser: [''],
             putAt: [''],
@@ -119,9 +126,13 @@ export class ParametersComponent {
         if (this.record != undefined) {
             this.form.setValue({
                 id: this.record.id,
-                closingTime: this.record.closingTime,
-                phones: this.record.phones,
-                email: this.record.email,
+                isAadeLive: this.record.isAadeLive,
+                aadeDemoUrl: this.record.aadeDemoUrl,
+                aadeDemoUsername: this.record.aadeDemoUsername,
+                aadeDemoApiKey: this.record.aadeDemoApiKey,
+                aadeLiveUrl: this.record.aadeLiveUrl,
+                aadeLiveUsername: this.record.aadeLiveUsername,
+                aadeLiveApiKey: this.record.aadeLiveApiKey,
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
                 putAt: this.record.putAt,
@@ -153,16 +164,28 @@ export class ParametersComponent {
 
     //#region getters
 
-    get closingTime(): AbstractControl {
-        return this.form.get('closingTime')
+    get aadeDemoUrl(): AbstractControl {
+        return this.form.get('aadeDemoUrl')
     }
 
-    get phones(): AbstractControl {
-        return this.form.get('phones')
+    get aadeDemoUsername(): AbstractControl {
+        return this.form.get('aadeDemoUsername')
     }
 
-    get email(): AbstractControl {
-        return this.form.get('email')
+    get aadeDemoApiKey(): AbstractControl {
+        return this.form.get('aadeDemoApiKey')
+    }
+
+    get aadeLiveUrl(): AbstractControl {
+        return this.form.get('aadeLiveUrl')
+    }
+
+    get aadeLiveUsername(): AbstractControl {
+        return this.form.get('aadeLiveUsername')
+    }
+
+    get aadeLiveApiKey(): AbstractControl {
+        return this.form.get('aadeLiveApiKey')
     }
 
     get postAt(): AbstractControl {

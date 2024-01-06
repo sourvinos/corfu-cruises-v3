@@ -2114,7 +2114,7 @@
         ]
     },
     {
-        "feature": "parameters",
+        "feature": "reservation-parameters",
         "labels": [
             {
                 "id": "header",
@@ -2646,6 +2646,47 @@
             {
                 "id": "deleteButton",
                 "description": "Διαγραφη"
+            },
+            {
+                "id": "saveButton",
+                "description": "Αποθηκευση"
+            }
+        ]
+    },
+    {
+        "feature": "billing-parameters",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Ρυθμίσεις"
+            },
+            {
+                "id": "aadeDemoUrl",
+                "description": "Δοκιμαστικό url"
+            },
+            {
+                "id": "aadeDemoUsername",
+                "description": "Δοκιμαστικό όνομα χρήστη"
+            },
+            {
+                "id": "aadeDemoApiKey",
+                "description": "Δοκιμαστικό κλειδί"
+            },
+            {
+                "id": "aadeLiveUrl",
+                "description": "Κανονικό url"
+            },
+            {
+                "id": "aadeLiveUsername",
+                "description": "Κανονικό όνομα χρήστη"
+            },
+            {
+                "id": "aadeLiveApiKey",
+                "description": "Κανονικό κλειδί"
+            },
+            {
+                "id": "isAadeLive",
+                "description": "Κανονική λειτουργία"
             },
             {
                 "id": "saveButton",

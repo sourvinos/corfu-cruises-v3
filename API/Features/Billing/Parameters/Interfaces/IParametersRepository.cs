@@ -3,7 +3,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Billing.Parameters {
 
-    public interface IParametersRepository : IRepository<BillingParameter> {
+    public interface IBillingParametersRepository : IRepository<BillingParameter> {
 
         Task<BillingParameter> GetAsync();
 

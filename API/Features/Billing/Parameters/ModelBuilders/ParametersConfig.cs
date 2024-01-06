@@ -9,9 +9,12 @@ namespace API.Features.Billing.Parameters {
             // PK
             entity.Property(x => x.Id).ValueGeneratedOnAdd();
             // Fields
-            entity.Property(x => x.ClosingTime).HasMaxLength(5).IsRequired(true);
-            entity.Property(x => x.Phones).HasMaxLength(128).IsRequired(true);
-            entity.Property(x => x.Email).HasMaxLength(128).IsRequired(true);
+            entity.Property(x => x.AadeDemoUrl).HasMaxLength(256);
+            entity.Property(x => x.AadeDemoUsername).HasMaxLength(256);
+            entity.Property(x => x.AadeDemoApiKey).HasMaxLength(256);
+            entity.Property(x => x.AadeLiveUrl).HasMaxLength(256);
+            entity.Property(x => x.AadeLiveUsername).HasMaxLength(256);
+            entity.Property(x => x.AadeLiveApiKey).HasMaxLength(256);
             // Metadata
             entity.Property(x => x.PostAt).HasMaxLength(19).IsRequired(true);
             entity.Property(x => x.PostUser).HasMaxLength(255).IsRequired(true);

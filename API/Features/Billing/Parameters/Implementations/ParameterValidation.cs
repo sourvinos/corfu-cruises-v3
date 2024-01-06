@@ -7,9 +7,9 @@ using Microsoft.Extensions.Options;
 
 namespace API.Features.Billing.Parameters {
 
-    public class ParameterValidation : Repository<BillingParameter>, IParameterValidation {
+    public class BillingParameterValidation : Repository<BillingParameter>, IBillingParameterValidation {
 
-        public ParameterValidation(AppDbContext appDbContext, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, settings, userManager) { }
+        public BillingParameterValidation(AppDbContext appDbContext, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, settings, userManager) { }
 
         public int IsValid(BillingParameter z, ParameterWriteDto parameter) {
             return true switch {

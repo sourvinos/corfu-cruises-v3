@@ -47,6 +47,7 @@ const appRoutes: Routes = [
     { path: 'paymentMethods', loadChildren: () => import('../features/billing/paymentMethods/classes/modules/paymentMethod.module').then(m => m.PaymentMethodModule) },
     { path: 'prices', loadChildren: () => import('../features/billing/prices/classes/modules/price.module').then(m => m.PriceModule) },
     { path: 'taxOffices', loadChildren: () => import('../features/billing/taxOffices/classes/modules/taxOffice.module').then(m => m.TaxOfficeModule) },
+    { path: 'billing-parameters', loadChildren: () => import('../features/billing/parameters/classes/modules/parameters.module').then(m => m.ParametersModule) },
     // Empty
     { path: '**', component: EmptyPageComponent }
 ]

@@ -27,6 +27,7 @@ using API.Features.Billing.VatRegimes;
 using API.Infrastructure.Auth;
 using API.Infrastructure.Users;
 using Microsoft.Extensions.DependencyInjection;
+using API.Features.Billing.Parameters;
 
 namespace API.Infrastructure.Extensions {
 
@@ -69,21 +70,23 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IDriverValidation, DriverValidation>();
             services.AddTransient<IGenderValidation, GenderValidation>();
             services.AddTransient<INationalityValidation, NationalityValidation>();
+            services.AddTransient<IReservationParameterValidation, ParameterValidation>();
+            services.AddTransient<IReservationParametersRepository, ParametersRepository>();
             services.AddTransient<IPickupPointValidation, PickupPointValidation>();
             services.AddTransient<IPortValidation, PortValidation>();
             services.AddTransient<IRegistrarValidation, RegistrarValidation>();
             services.AddTransient<IReservationValidation, ReservationValidation>();
             services.AddTransient<IScheduleValidation, ScheduleValidation>();
-            services.AddTransient<IParameterValidation, ParameterValidation>();
             services.AddTransient<IShipCrewValidation, ShipCrewValidation>();
             services.AddTransient<IShipOwnerValidation, ShipOwnerValidation>();
             services.AddTransient<IShipRouteValidation, ShipRouteValidation>();
             services.AddTransient<IShipValidation, ShipValidation>();
-            services.AddTransient<IUserValidation<IUser>, UserValidation>();
-            services.AddTransient<IParametersRepository, ParametersRepository>();
             services.AddTransient<IStatisticsRepository, StatisticsRepository>();
+            services.AddTransient<IUserValidation<IUser>, UserValidation>();
             #endregion
             #region billing
+            services.AddTransient<IBillingParameterValidation, BillingParameterValidation>();
+            services.AddTransient<IBillingParametersRepository, BillingParametersRepository>();
             services.AddTransient<ICodeRepository, CodeRepository>();
             services.AddTransient<ICodeValidation, CodeValidation>();
             services.AddTransient<IPaymentMethodRepository, PaymentMethodRepository>();
@@ -94,6 +97,7 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<ITaxOfficeRepository, TaxOfficeRepository>();
             services.AddTransient<ITaxOfficeValidation, TaxOfficeValidation>();
             services.AddTransient<IVatRegimeRepository, VatRegimeRepository>();
+            services.AddTransient<IVatRegimeValidation, VatRegimeValidation>();
             services.AddTransient<IVatRegimeValidation, VatRegimeValidation>();
             #endregion
             #region common

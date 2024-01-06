@@ -12,10 +12,10 @@ namespace API.Features.Reservations.Parameters {
     public class ReservationParametersController : Controller {
 
         private readonly IMapper mapper;
-        private readonly IParametersRepository parametersRepo;
-        private readonly IParameterValidation parameterValidation;
+        private readonly IReservationParametersRepository parametersRepo;
+        private readonly IReservationParameterValidation parameterValidation;
 
-        public ReservationParametersController(IMapper mapper, IParametersRepository parametersRepo, IParameterValidation parameterValidation) {
+        public ReservationParametersController(IMapper mapper, IReservationParametersRepository parametersRepo, IReservationParameterValidation parameterValidation) {
             this.mapper = mapper;
             this.parametersRepo = parametersRepo;
             this.parameterValidation = parameterValidation;
