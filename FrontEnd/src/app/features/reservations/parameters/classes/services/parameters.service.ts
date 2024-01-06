@@ -11,13 +11,13 @@ import { environment } from 'src/environments/environment'
 export class ParametersService extends HttpDataService {
 
     constructor(httpClient: HttpClient) {
-        super(httpClient, environment.apiUrl + '/parameters')
+        super(httpClient, environment.apiUrl + '/reservationparameters')
     }
 
     //#region public methods
 
     public get(): Observable<ParametersReadDto> {
-        return this.http.get<ParametersReadDto>(environment.apiUrl + '/parameters')
+        return this.http.get<ParametersReadDto>(environment.apiUrl + '/reservationparameters')
     }
 
     //#endregion

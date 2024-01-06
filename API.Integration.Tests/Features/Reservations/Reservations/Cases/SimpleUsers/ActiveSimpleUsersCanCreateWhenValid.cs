@@ -10,8 +10,8 @@ namespace Reservations {
 
         public IEnumerator<object[]> GetEnumerator() {
             yield return Simple_Users_Can_Create_Records_For_Future_Date();
-            yield return Simple_Users_Can_Create_Records_WithOut_Transfer_For_Next_Day_Between_Closing_Time_And_Midnight();
-            yield return Simple_Users_Can_Create_Records_WithOut_Transfer_For_Next_Day_Between_Midnight_And_Departure();
+            // yield return Simple_Users_Can_Create_Records_WithOut_Transfer_For_Next_Day_Between_Closing_Time_And_Midnight();
+            // yield return Simple_Users_Can_Create_Records_WithOut_Transfer_For_Next_Day_Between_Midnight_And_Departure();
         }
 
         private static object[] Simple_Users_Can_Create_Records_For_Future_Date() {

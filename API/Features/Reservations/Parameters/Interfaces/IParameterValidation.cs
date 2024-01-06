@@ -2,9 +2,9 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations.Parameters {
 
-    public interface IParameterValidation : IRepository<Parameter> {
+    public interface IParameterValidation : IRepository<ReservationParameter> {
 
-        int IsValid(Parameter x, ParameterWriteDto parameter);
+        int IsValid(ReservationParameter x, ParameterWriteDto parameter);
 
     }
 

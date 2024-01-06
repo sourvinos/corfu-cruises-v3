@@ -7,14 +7,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace API.Features.Reservations.Parameters {
+namespace API.Features.Billing.Parameters {
 
-    public class ParametersRepository : Repository<ReservationParameter>, IParametersRepository {
+    public class ParametersRepository : Repository<BillingParameter>, IParametersRepository {
 
         public ParametersRepository(AppDbContext appDbContext, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> boosettings, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, boosettings, userManager) { }
 
-        public async Task<ReservationParameter> GetAsync() {
-            return await context.ReservationParameters
+        public async Task<BillingParameter> GetAsync() {
+            return await context.BillingParameters
                 .AsNoTracking()
                 .SingleOrDefaultAsync();
         }

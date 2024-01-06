@@ -1,9 +1,9 @@
 using API.Infrastructure.Helpers;
 using FluentValidation;
 
-namespace API.Features.Reservations.Parameters {
+namespace API.Features.Billing.Parameters {
 
-    public class ParameterValidator : AbstractValidator<ReservationParameter> {
+    public class ParameterValidator : AbstractValidator<BillingParameter> {
 
         public ParameterValidator() {
             RuleFor(x => x.ClosingTime).Must(TimeHelpers.BeValidTime);

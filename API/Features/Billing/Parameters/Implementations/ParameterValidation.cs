@@ -5,20 +5,20 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 
-namespace API.Features.Reservations.Parameters {
+namespace API.Features.Billing.Parameters {
 
-    public class ParameterValidation : Repository<ReservationParameter>, IParameterValidation {
+    public class ParameterValidation : Repository<BillingParameter>, IParameterValidation {
 
         public ParameterValidation(AppDbContext appDbContext, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, settings, userManager) { }
 
-        public int IsValid(ReservationParameter z, ParameterWriteDto parameter) {
+        public int IsValid(BillingParameter z, ParameterWriteDto parameter) {
             return true switch {
                 var x when x == IsAlreadyUpdated(z, parameter) => 415,
                 _ => 200,
             };
         }
 
-        private static bool IsAlreadyUpdated(ReservationParameter z, ParameterWriteDto parameter) {
+        private static bool IsAlreadyUpdated(BillingParameter z, ParameterWriteDto parameter) {
             return z != null && z.PutAt != parameter.PutAt;
         }
 

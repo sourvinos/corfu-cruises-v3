@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace API.Features.Reservations.Parameters {
+namespace API.Features.Billing.Parameters {
 
-    internal class ParametersConfig : IEntityTypeConfiguration<ReservationParameter> {
+    internal class BillingParametersConfig : IEntityTypeConfiguration<BillingParameter> {
 
-        public void Configure(EntityTypeBuilder<ReservationParameter> entity) {
+        public void Configure(EntityTypeBuilder<BillingParameter> entity) {
             // PK
             entity.Property(x => x.Id).ValueGeneratedOnAdd();
             // Fields

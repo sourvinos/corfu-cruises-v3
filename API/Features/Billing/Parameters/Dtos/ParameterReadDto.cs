@@ -1,9 +1,9 @@
 using System;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Reservations.Parameters {
+namespace API.Features.Billing.Parameters {
 
-    public class ReservationParameter : IMetadata {
+    public class ParameterReadDto : IMetadata {
 
         // PK
         public Guid Id { get; set; }

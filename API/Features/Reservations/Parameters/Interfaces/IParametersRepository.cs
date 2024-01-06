@@ -3,9 +3,9 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations.Parameters {
 
-    public interface IParametersRepository : IRepository<Parameter> {
+    public interface IParametersRepository : IRepository<ReservationParameter> {
 
-        Task<Parameter> GetAsync();
+        Task<ReservationParameter> GetAsync();
 
     }
 
