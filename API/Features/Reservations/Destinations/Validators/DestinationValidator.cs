@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace API.Features.Destinations {
+namespace API.Features.Reservations.Destinations {
 
     public class DestinationValidator : AbstractValidator<DestinationWriteDto> {
 

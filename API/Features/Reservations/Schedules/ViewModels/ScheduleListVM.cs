@@ -1,6 +1,6 @@
 using API.Infrastructure.Classes;
 
-namespace API.Features.Schedules {
+namespace API.Features.Reservations.Schedules {
 
     public class ScheduleListVM {
 

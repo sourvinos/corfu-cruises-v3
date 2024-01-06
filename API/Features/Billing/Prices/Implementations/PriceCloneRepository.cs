@@ -1,4 +1,4 @@
-using API.Features.Users;
+using API.Infrastructure.Users;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace API.Features.Prices {
+namespace API.Features.Billing.Prices {
 
     public class PriceCloneRepository : Repository<Price>, IPriceCloneRepository {
 

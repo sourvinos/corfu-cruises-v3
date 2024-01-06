@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace API.Features.ShipCrews {
+namespace API.Features.Reservations.ShipCrews {
 
     internal class ShipCrewsConfig : IEntityTypeConfiguration<ShipCrew> {
 

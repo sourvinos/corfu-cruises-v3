@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using API.Features.Nationalities;
+using API.Features.Reservations.Nationalities;
 using Cases;
 using Infrastructure;
 using Responses;

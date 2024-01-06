@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using API.Features.Users;
+using API.Infrastructure.Users;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Implementations;
 using AutoMapper;
@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace API.Features.CoachRoutes {
+namespace API.Features.Reservations.CoachRoutes {
 
     public class CoachRouteRepository : Repository<CoachRoute>, ICoachRouteRepository {
 

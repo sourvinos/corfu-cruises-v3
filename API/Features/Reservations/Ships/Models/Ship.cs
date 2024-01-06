@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using API.Features.Registrars;
-using API.Features.Reservations;
-using API.Features.ShipCrews;
-using API.Features.ShipOwners;
+using API.Features.Reservations.Registrars;
+using API.Features.Reservations.Reservations;
+using API.Features.Reservations.ShipCrews;
+using API.Features.Reservations.ShipOwners;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Ships {
+namespace API.Features.Reservations.Ships {
 
     public class Ship : IBaseEntity, IMetadata {
 

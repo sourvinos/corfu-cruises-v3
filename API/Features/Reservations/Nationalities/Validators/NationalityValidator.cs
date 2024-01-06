@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace API.Features.Nationalities {
+namespace API.Features.Reservations.Nationalities {
 
     public class NationalityValidator : AbstractValidator<NationalityWriteDto> {
 

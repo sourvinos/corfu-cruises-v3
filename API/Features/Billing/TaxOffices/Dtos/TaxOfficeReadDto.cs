@@ -1,7 +1,7 @@
 ﻿using System;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.TaxOffices {
+namespace API.Features.Billing.TaxOffices {
 
     public class TaxOfficeReadDto :  IMetadata {
 

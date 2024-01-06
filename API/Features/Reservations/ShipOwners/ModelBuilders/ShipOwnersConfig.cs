@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace API.Features.ShipOwners {
+namespace API.Features.Reservations.ShipOwners {
 
     internal class ShipOwnersConfig : IEntityTypeConfiguration<ShipOwner> {
 

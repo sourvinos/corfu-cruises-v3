@@ -1,6 +1,6 @@
 using API.Infrastructure.Classes;
 
-namespace API.Features.PickupPoints {
+namespace API.Features.Reservations.PickupPoints {
 
     public class PickupPointAutoCompleteVM : SimpleEntity {
 

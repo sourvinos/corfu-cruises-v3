@@ -1,6 +1,6 @@
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.ShipCrews {
+namespace API.Features.Reservations.ShipCrews {
 
     public class ShipCrewWriteDto : IBaseEntity, IMetadata {
 

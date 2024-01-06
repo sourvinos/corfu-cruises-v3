@@ -1,4 +1,4 @@
-using API.Features.Users;
+using API.Infrastructure.Users;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Responses;

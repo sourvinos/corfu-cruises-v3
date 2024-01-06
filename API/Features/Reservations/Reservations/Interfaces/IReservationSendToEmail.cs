@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace API.Features.Reservations {
+namespace API.Features.Reservations.Reservations {
 
     public interface IReservationSendToEmail {
 

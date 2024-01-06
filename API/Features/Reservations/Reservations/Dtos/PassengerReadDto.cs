@@ -2,7 +2,7 @@ using System;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Reservations {
+namespace API.Features.Reservations.Reservations {
 
     public class PassengerReadDto : IBaseEntity {
 

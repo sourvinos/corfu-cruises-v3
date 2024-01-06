@@ -1,5 +1,5 @@
 using System.Linq;
-using API.Features.Users;
+using API.Infrastructure.Users;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Implementations;
 using Microsoft.AspNetCore.Http;
@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace API.Features.PickupPoints {
+namespace API.Features.Reservations.PickupPoints {
 
     public class PickupPointValidation : Repository<PickupPoint>, IPickupPointValidation {
 

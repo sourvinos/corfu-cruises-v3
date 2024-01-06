@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Features.Manifest {
+namespace API.Features.Reservations.Manifest {
 
     [Route("api/[controller]")]
     public class ManifestController : ControllerBase {

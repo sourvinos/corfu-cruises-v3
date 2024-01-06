@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace API.Features.TaxOffices {
+namespace API.Features.Billing.TaxOffices {
 
     internal class TaxOfficesConfig : IEntityTypeConfiguration<TaxOffice> {
 

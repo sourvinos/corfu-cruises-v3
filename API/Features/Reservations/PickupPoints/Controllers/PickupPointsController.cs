@@ -7,7 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Features.PickupPoints {
+namespace API.Features.Reservations.PickupPoints {
 
     [Route("api/[controller]")]
     public class PickupPointsController : ControllerBase {

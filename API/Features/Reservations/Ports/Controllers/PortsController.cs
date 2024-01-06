@@ -7,7 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Features.Ports {
+namespace API.Features.Reservations.Ports {
 
     [Route("api/[controller]")]
     public class PortsController : ControllerBase {

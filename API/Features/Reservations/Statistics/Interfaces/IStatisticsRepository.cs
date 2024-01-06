@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using API.Features.Reservations;
+using API.Features.Reservations.Reservations;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Statistics {
+namespace API.Features.Reservations.Statistics {
 
     public interface IStatisticsRepository : IRepository<Reservation> {
 

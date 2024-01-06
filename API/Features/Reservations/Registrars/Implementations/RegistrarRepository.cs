@@ -1,4 +1,4 @@
-using API.Features.Users;
+using API.Infrastructure.Users;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Implementations;
 using AutoMapper;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace API.Features.Registrars {
+namespace API.Features.Reservations.Registrars {
 
     public class RegistrarRepository : Repository<Registrar>, IRegistrarRepository {
 

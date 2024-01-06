@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace API.Features.PaymentMethods {
+namespace API.Features.Billing.PaymentMethods {
 
     public class PaymentMethodValidator : AbstractValidator<PaymentMethodWriteDto> {
 

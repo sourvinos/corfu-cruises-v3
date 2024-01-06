@@ -1,7 +1,7 @@
 using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Ships {
+namespace API.Features.Reservations.Ships {
 
     public class ShipReadDto : IBaseEntity, IMetadata {
 

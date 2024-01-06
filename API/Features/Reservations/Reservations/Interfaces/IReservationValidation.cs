@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using API.Features.Schedules;
+using API.Features.Reservations.Schedules;
 
-namespace API.Features.Reservations {
+namespace API.Features.Reservations.Reservations {
 
     public interface IReservationValidation {
 

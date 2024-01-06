@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Features.Availability {
+namespace API.Features.Reservations.Availability {
 
     [Route("api/[controller]")]
     public class AvailabilityController : ControllerBase {

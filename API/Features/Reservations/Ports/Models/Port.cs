@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using API.Features.PickupPoints;
-using API.Features.Reservations;
-using API.Features.Schedules;
+using API.Features.Reservations.PickupPoints;
+using API.Features.Reservations.Reservations;
+using API.Features.Reservations.Schedules;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Ports {
+namespace API.Features.Reservations.Ports {
 
     public class Port : IBaseEntity, IMetadata {
 

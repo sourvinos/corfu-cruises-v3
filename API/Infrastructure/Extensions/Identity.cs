@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using System.Security.Claims;
-using API.Features.Users;
+using API.Infrastructure.Users;
 using API.Infrastructure.Classes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;

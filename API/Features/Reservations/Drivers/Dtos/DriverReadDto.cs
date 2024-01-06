@@ -1,6 +1,6 @@
 ﻿using API.Infrastructure.Interfaces;
 
-namespace API.Features.Drivers {
+namespace API.Features.Reservations.Drivers{
 
     public class DriverReadDto : IBaseEntity, IMetadata {
 

@@ -7,7 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Features.CoachRoutes {
+namespace API.Features.Reservations.CoachRoutes {
 
     [Route("api/[controller]")]
     public class CoachRoutesController : ControllerBase {

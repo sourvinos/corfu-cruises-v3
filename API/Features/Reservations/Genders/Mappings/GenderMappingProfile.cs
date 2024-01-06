@@ -1,6 +1,6 @@
 using AutoMapper;
 
-namespace API.Features.Genders {
+namespace API.Features.Reservations.Genders {
 
     public class GenderMappingProfile : Profile {
 

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace API.Features.Destinations {
+namespace API.Features.Reservations.Destinations {
 
     internal class DestinationsConfig : IEntityTypeConfiguration<Destination> {
 

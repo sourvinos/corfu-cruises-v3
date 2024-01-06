@@ -2,8 +2,7 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using API.Features.Prices;
-using API.Infrastructure.Classes;
+using API.Features.Billing.Prices;
 using Cases;
 using Infrastructure;
 using Responses;

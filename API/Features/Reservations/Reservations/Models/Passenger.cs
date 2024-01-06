@@ -1,10 +1,10 @@
 using System;
-using API.Features.Genders;
-using API.Features.Nationalities;
-using API.Features.Occupants;
+using API.Features.Reservations.Genders;
+using API.Features.Reservations.Nationalities;
+using API.Features.Reservations.Occupants;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Reservations {
+namespace API.Features.Reservations.Reservations {
 
     public class Passenger : IBaseEntity {
 

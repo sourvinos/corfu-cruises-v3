@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using API.Features.Reservations;
+using API.Features.Reservations.Reservations;
 
-namespace API.Features.Boarding {
+namespace API.Features.Reservations.Boarding {
 
     public class BoardingInitialGroupVM {
 

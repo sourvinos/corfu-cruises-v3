@@ -1,9 +1,9 @@
 using System.Linq;
-using API.Features.Reservations;
+using API.Features.Reservations.Reservations;
 using API.Infrastructure.Classes;
 using AutoMapper;
 
-namespace API.Features.Boarding {
+namespace API.Features.Reservations.Boarding {
 
     public class BoardingMappingProfile : Profile {
 

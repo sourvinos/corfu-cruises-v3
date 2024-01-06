@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Codes {
+namespace API.Features.Billing.Codes {
 
     public interface ICodeRepository : IRepository<Code> {
 

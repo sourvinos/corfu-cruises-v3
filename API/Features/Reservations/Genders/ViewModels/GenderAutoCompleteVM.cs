@@ -1,6 +1,6 @@
 using API.Infrastructure.Classes;
 
-namespace API.Features.Genders {
+namespace API.Features.Reservations.Genders {
 
     public class GenderAutoCompleteVM : SimpleEntity {
 

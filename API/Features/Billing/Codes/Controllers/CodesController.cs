@@ -7,7 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Features.Codes {
+namespace API.Features.Billing.Codes {
 
     [Route("api/[controller]")]
     public class CodesController : ControllerBase {

@@ -1,4 +1,4 @@
-namespace API.Features.Boarding {
+namespace API.Features.Reservations.Boarding {
 
     public class BoardingFinalPassengerNationalityVM {
 

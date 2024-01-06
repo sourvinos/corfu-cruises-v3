@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.CoachRoutes {
+namespace API.Features.Reservations.CoachRoutes {
 
     public interface ICoachRouteRepository : IRepository<CoachRoute> {
 

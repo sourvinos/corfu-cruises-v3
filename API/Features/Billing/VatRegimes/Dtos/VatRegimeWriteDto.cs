@@ -1,7 +1,7 @@
 ﻿using System;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.VatRegimes {
+namespace API.Features.Billing.VatRegimes {
 
     public class VatRegimeWriteDto : IMetadata {
 

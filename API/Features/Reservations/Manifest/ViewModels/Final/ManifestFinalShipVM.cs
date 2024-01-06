@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace API.Features.Manifest {
+namespace API.Features.Reservations.Manifest {
 
     public class ManifestFinalShipVM {
 

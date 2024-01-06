@@ -1,6 +1,6 @@
 using AutoMapper;
 
-namespace API.Features.Destinations {
+namespace API.Features.Reservations.Destinations {
 
     public class DestinationMappingProfile : Profile {
 

@@ -1,6 +1,6 @@
 using API.Infrastructure.Classes;
 
-namespace API.Features.Nationalities {
+namespace API.Features.Reservations.Nationalities {
 
     public class NationalityAutoCompleteVM : SimpleEntity {
 

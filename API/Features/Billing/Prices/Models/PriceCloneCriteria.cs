@@ -1,4 +1,4 @@
-namespace API.Features.Prices {
+namespace API.Features.Billing.Prices {
 
     public class PriceCloneCriteria {
 

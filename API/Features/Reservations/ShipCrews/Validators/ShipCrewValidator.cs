@@ -1,7 +1,7 @@
 using API.Infrastructure.Helpers;
 using FluentValidation;
 
-namespace API.Features.ShipCrews {
+namespace API.Features.Reservations.ShipCrews {
 
     public class ShipCrewValidator : AbstractValidator<ShipCrewWriteDto> {
 

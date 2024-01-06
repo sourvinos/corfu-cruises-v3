@@ -1,4 +1,4 @@
-namespace API.Features.Customers {
+namespace API.Features.Reservations.Customers {
 
     public class CustomerListVM {
 

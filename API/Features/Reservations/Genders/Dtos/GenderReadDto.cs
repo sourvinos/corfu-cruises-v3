@@ -1,6 +1,6 @@
 ﻿using API.Infrastructure.Interfaces;
 
-namespace API.Features.Genders {
+namespace API.Features.Reservations.Genders {
 
     public class GenderReadDto : IBaseEntity, IMetadata {
 

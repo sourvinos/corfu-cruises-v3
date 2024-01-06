@@ -1,6 +1,6 @@
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.ShipOwners {
+namespace API.Features.Reservations.ShipOwners {
 
     public interface IShipOwnerValidation : IRepository<ShipOwner> {
 

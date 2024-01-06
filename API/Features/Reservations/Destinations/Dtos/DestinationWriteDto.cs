@@ -1,6 +1,6 @@
 ﻿using API.Infrastructure.Interfaces;
 
-namespace API.Features.Destinations {
+namespace API.Features.Reservations.Destinations {
 
     public class DestinationWriteDto : IBaseEntity, IMetadata {
 

@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Infrastructure;
 using Xunit;
-using API.Features.TaxOffices;
+using API.Features.Billing.TaxOffices;
 
 namespace TaxOffices {
 

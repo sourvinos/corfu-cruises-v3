@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Schedules {
+namespace API.Features.Reservations.Schedules {
 
     public interface IScheduleValidation : IRepository<Schedule> {
 

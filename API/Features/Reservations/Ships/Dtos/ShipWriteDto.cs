@@ -1,6 +1,6 @@
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Ships {
+namespace API.Features.Reservations.Ships {
 
     public class ShipWriteDto : IBaseEntity, IMetadata {
 

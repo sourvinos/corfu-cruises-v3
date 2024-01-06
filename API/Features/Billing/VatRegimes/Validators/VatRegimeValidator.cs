@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace API.Features.VatRegimes {
+namespace API.Features.Billing.VatRegimes {
 
     public class VatRegimeValidator : AbstractValidator<VatRegimeWriteDto> {
 

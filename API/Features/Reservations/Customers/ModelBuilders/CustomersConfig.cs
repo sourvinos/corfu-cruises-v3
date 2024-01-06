@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace API.Features.Customers {
+namespace API.Features.Reservations.Customers {
 
     internal class CustomersConfig : IEntityTypeConfiguration<Customer> {
 

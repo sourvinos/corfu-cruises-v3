@@ -1,6 +1,6 @@
 using API.Infrastructure.Classes;
 
-namespace API.Features.Drivers {
+namespace API.Features.Reservations.Drivers{
 
     public class DriverAutoCompleteVM : SimpleEntity {
 

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using API.Features.Ships;
+using API.Features.Reservations.Ships;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.ShipOwners {
+namespace API.Features.Reservations.ShipOwners {
 
     public class ShipOwner : IBaseEntity, IMetadata {
 

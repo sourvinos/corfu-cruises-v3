@@ -1,6 +1,6 @@
 using API.Infrastructure.Classes;
 
-namespace API.Features.Customers {
+namespace API.Features.Reservations.Customers {
 
     public class CustomerAutoCompleteVM : SimpleEntity {
 

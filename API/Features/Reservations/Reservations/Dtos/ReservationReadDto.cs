@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using API.Features.PickupPoints;
+using API.Features.Reservations.PickupPoints;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Reservations {
+namespace API.Features.Reservations.Reservations {
 
     public class ReservationReadDto : IMetadata {
 

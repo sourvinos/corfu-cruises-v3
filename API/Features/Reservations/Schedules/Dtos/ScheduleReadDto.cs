@@ -1,7 +1,7 @@
 using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Schedules {
+namespace API.Features.Reservations.Schedules {
 
     public class ScheduleReadDto : IBaseEntity, IMetadata {
 

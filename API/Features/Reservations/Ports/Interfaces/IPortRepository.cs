@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Ports {
+namespace API.Features.Reservations.Ports {
 
     public interface IPortRepository : IRepository<Port> {
 

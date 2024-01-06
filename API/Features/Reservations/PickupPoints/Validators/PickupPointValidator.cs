@@ -1,7 +1,7 @@
 using API.Infrastructure.Helpers;
 using FluentValidation;
 
-namespace API.Features.PickupPoints {
+namespace API.Features.Reservations.PickupPoints {
 
     public class PickupPointValidator : AbstractValidator<PickupPointWriteDto> {
 

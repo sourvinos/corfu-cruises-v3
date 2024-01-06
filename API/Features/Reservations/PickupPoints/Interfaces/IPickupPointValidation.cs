@@ -1,6 +1,6 @@
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.PickupPoints {
+namespace API.Features.Reservations.PickupPoints {
 
     public interface IPickupPointValidation : IRepository<PickupPoint> {
 

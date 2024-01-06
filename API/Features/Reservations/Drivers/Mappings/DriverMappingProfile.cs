@@ -1,6 +1,6 @@
 using AutoMapper;
 
-namespace API.Features.Drivers {
+namespace API.Features.Reservations.Drivers{
 
     public class DriverMappingProfile : Profile {
 

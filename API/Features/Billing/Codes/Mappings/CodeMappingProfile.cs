@@ -1,7 +1,7 @@
 using API.Infrastructure.Helpers;
 using AutoMapper;
 
-namespace API.Features.Codes {
+namespace API.Features.Billing.Codes {
 
     public class CodeMappingProfile : Profile {
 

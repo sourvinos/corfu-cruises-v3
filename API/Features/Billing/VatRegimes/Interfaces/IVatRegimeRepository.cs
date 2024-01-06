@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.VatRegimes {
+namespace API.Features.Billing.VatRegimes {
 
     public interface IVatRegimeRepository : IRepository<VatRegime> {
 

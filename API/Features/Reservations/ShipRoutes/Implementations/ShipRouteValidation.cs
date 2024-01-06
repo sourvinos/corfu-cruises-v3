@@ -1,11 +1,11 @@
-using API.Features.Users;
+using API.Infrastructure.Users;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Implementations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 
-namespace API.Features.ShipRoutes {
+namespace API.Features.Reservations.ShipRoutes {
 
     public class ShipRouteValidation : Repository<ShipRoute>, IShipRouteValidation {
 

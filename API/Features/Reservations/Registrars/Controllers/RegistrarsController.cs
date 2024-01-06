@@ -1,4 +1,4 @@
-﻿using API.Features.Ships;
+﻿using API.Features.Reservations.Ships;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Responses;
@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace API.Features.Registrars {
+namespace API.Features.Reservations.Registrars {
 
     [Route("api/[controller]")]
     public class RegistrarsController : ControllerBase {

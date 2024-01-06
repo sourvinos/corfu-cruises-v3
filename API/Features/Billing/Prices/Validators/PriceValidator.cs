@@ -1,7 +1,7 @@
 using API.Infrastructure.Helpers;
 using FluentValidation;
 
-namespace API.Features.Prices {
+namespace API.Features.Billing.Prices {
 
     public class PriceValidator : AbstractValidator<PriceWriteDto> {
 

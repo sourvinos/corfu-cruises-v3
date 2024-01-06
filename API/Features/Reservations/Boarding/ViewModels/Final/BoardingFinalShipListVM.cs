@@ -1,6 +1,6 @@
 using API.Infrastructure.Classes;
 
-namespace API.Features.Boarding {
+namespace API.Features.Reservations.Boarding {
 
     public class BoardingFinalShipListVM : SimpleEntity {
 

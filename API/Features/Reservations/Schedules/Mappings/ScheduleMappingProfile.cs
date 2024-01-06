@@ -2,7 +2,7 @@ using API.Infrastructure.Classes;
 using API.Infrastructure.Helpers;
 using AutoMapper;
 
-namespace API.Features.Schedules {
+namespace API.Features.Reservations.Schedules {
 
     public class ScheduleMappingProfile : Profile {
 

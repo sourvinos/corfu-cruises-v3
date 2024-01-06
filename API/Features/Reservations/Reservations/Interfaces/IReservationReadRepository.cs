@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Reservations {
+namespace API.Features.Reservations.Reservations {
 
     public interface IReservationReadRepository : IRepository<Reservation> {
 

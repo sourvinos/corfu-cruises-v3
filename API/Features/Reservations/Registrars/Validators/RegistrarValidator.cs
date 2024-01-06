@@ -1,7 +1,7 @@
 using API.Infrastructure.Helpers;
 using FluentValidation;
 
-namespace API.Features.Registrars {
+namespace API.Features.Reservations.Registrars {
 
     public class RegistrarValidator : AbstractValidator<RegistrarWriteDto> {
 

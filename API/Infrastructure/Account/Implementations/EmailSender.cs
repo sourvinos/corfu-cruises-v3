@@ -1,5 +1,5 @@
+using API.Features.Reservations.Parameters;
 using API.Infrastructure.Helpers;
-using API.Infrastructure.Parameters;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
 using MimeKit;

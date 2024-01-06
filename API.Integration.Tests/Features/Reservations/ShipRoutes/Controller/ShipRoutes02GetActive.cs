@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using API.Features.ShipRoutes;
+using API.Features.Reservations.ShipRoutes;
 using Cases;
 using Infrastructure;
 using Responses;

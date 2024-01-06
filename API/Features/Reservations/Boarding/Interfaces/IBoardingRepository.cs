@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace API.Features.Boarding {
+namespace API.Features.Reservations.Boarding {
 
     public interface IBoardingRepository {
 

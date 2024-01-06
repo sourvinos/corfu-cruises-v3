@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using API.Features.Nationalities;
-using API.Features.Reservations;
-using API.Features.TaxOffices;
-using API.Features.VatRegimes;
+using API.Features.Reservations.Nationalities;
+using API.Features.Billing.TaxOffices;
+using API.Features.Billing.VatRegimes;
 using API.Infrastructure.Interfaces;
+using API.Features.Reservations.Reservations;
 
-namespace API.Features.Customers {
+namespace API.Features.Reservations.Customers {
 
     public class Customer : IBaseEntity, IMetadata {
 

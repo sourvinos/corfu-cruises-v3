@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace API.Features.Genders {
+namespace API.Features.Reservations.Genders {
 
     public class GenderValidator : AbstractValidator<GenderWriteDto> {
 

@@ -2,7 +2,7 @@ using API.Infrastructure.Classes;
 using API.Infrastructure.Helpers;
 using AutoMapper;
 
-namespace API.Features.Prices {
+namespace API.Features.Billing.Prices {
 
     public class PriceMappingProfile : Profile {
 

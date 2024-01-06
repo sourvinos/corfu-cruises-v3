@@ -7,7 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Features.Drivers {
+namespace API.Features.Reservations.Drivers{
 
     [Route("api/[controller]")]
     public class DriversController : ControllerBase {

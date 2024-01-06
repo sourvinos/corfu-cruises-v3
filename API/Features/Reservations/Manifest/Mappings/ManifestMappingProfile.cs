@@ -3,7 +3,7 @@ using API.Infrastructure.Classes;
 using API.Infrastructure.Helpers;
 using AutoMapper;
 
-namespace API.Features.Manifest {
+namespace API.Features.Reservations.Manifest {
 
     public class ManifestMappingProfile : Profile {
 

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace API.Features.PaymentMethods {
+namespace API.Features.Billing.PaymentMethods {
 
     internal class PaymentMethodsConfig : IEntityTypeConfiguration<PaymentMethod> {
 

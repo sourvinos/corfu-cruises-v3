@@ -1,4 +1,4 @@
-namespace API.Features.Availability {
+namespace API.Features.Reservations.Availability {
 
     public class MaxPaxVM {
 

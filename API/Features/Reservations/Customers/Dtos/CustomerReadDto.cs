@@ -1,7 +1,7 @@
 ﻿using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Customers {
+namespace API.Features.Reservations.Customers {
 
     public class CustomerReadDto : IBaseEntity, IMetadata {
 

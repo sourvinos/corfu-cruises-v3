@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Infrastructure;
 using Xunit;
-using API.Features.PaymentMethods;
+using API.Features.Billing.PaymentMethods;
 
 namespace PaymentMethods {
 

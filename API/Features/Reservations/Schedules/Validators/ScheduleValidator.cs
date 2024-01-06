@@ -1,7 +1,7 @@
 using API.Infrastructure.Helpers;
 using FluentValidation;
 
-namespace API.Features.Schedules {
+namespace API.Features.Reservations.Schedules {
 
     public class ScheduleValidator : AbstractValidator<ScheduleWriteDto> {
 

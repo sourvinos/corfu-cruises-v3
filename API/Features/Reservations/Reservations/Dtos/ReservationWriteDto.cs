@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Reservations {
+namespace API.Features.Reservations.Reservations {
 
     public class ReservationWriteDto : IMetadata {
 

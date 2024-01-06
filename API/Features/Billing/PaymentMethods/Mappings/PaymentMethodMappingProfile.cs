@@ -1,6 +1,6 @@
 using AutoMapper;
 
-namespace API.Features.PaymentMethods {
+namespace API.Features.Billing.PaymentMethods {
 
     public class PaymentMethodMappingProfile : Profile {
 

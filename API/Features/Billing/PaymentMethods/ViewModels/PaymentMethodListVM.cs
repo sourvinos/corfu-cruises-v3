@@ -1,6 +1,6 @@
 using System;
 
-namespace API.Features.PaymentMethods {
+namespace API.Features.Billing.PaymentMethods {
 
     public class PaymentMethodListVM {
 

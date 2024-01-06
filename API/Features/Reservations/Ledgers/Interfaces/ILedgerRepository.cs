@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace API.Features.Ledger {
+namespace API.Features.Reservations.Ledgers {
 
     public interface ILedgerRepository {
 

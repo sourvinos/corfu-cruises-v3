@@ -7,7 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Features.VatRegimes {
+namespace API.Features.Billing.VatRegimes {
 
     [Route("api/[controller]")]
     public class VatRegimesController : ControllerBase {

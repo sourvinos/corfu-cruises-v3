@@ -1,4 +1,4 @@
-namespace API.Features.ShipCrews {
+namespace API.Features.Reservations.ShipCrews {
 
     public class ShipCrewAutoCompleteVM {
 

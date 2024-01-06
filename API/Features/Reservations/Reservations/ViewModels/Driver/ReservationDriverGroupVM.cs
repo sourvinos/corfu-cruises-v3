@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace API.Features.Reservations {
+namespace API.Features.Reservations.Reservations {
 
     public class ReservationDriverGroupVM {
 

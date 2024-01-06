@@ -2,8 +2,7 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using API.Features.TaxOffices;
-using API.Infrastructure.Classes;
+using API.Features.Billing.TaxOffices;
 using Cases;
 using Infrastructure;
 using Responses;

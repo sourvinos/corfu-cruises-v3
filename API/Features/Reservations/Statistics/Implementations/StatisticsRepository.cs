@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using API.Features.Reservations;
-using API.Features.Users;
+using API.Features.Reservations.Reservations;
+using API.Infrastructure.Users;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Implementations;
@@ -11,13 +11,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace API.Features.Statistics {
+namespace API.Features.Reservations.Statistics {
 
     public class StatisticsRepository : Repository<Reservation>, IStatisticsRepository {
 
 
-        public StatisticsRepository(AppDbContext appDbContext, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, settings, userManager) {
-        }
+        public StatisticsRepository(AppDbContext appDbContext, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, settings, userManager) { }
 
         public IEnumerable<StatisticsVM> Get(int year) {
             var x = context.Reservations

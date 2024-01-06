@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using API.Features.Schedules;
+using API.Features.Reservations.Schedules;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Responses;
@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Features.Reservations {
+namespace API.Features.Reservations.Reservations {
 
     [Route("api/[controller]")]
     public class ReservationsController : ControllerBase {

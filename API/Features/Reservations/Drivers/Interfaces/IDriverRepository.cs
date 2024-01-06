@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Drivers {
+namespace API.Features.Reservations.Drivers{
 
     public interface IDriverRepository : IRepository<Driver> {
 

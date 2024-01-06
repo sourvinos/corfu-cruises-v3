@@ -1,7 +1,7 @@
 using API.Infrastructure.Helpers;
 using FluentValidation;
 
-namespace API.Features.ShipOwners {
+namespace API.Features.Reservations.ShipOwners {
 
     public class ShipOwnerValidator : AbstractValidator<ShipOwnerWriteDto> {
 

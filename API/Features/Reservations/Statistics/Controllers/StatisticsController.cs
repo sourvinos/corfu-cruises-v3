@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Features.Statistics {
+namespace API.Features.Reservations.Statistics {
 
     [Route("api/[controller]")]
     public class StatisticsController : ControllerBase {

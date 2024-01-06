@@ -7,7 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Features.PaymentMethods {
+namespace API.Features.Billing.PaymentMethods {
 
     [Route("api/[controller]")]
     public class PaymentMethodsController : ControllerBase {

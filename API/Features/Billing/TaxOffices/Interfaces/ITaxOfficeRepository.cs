@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.TaxOffices {
+namespace API.Features.Billing.TaxOffices {
 
     public interface ITaxOfficeRepository : IRepository<TaxOffice> {
 

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace API.Features.ShipRoutes {
+namespace API.Features.Reservations.ShipRoutes {
 
     internal class ShipRoutesConfig : IEntityTypeConfiguration<ShipRoute> {
 

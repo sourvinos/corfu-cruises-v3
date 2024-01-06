@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using API.Features.Reservations;
-using API.Features.Schedules;
+using API.Features.Reservations.Reservations;
+using API.Features.Reservations.Schedules;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Destinations {
+namespace API.Features.Reservations.Destinations {
 
     public class Destination : IBaseEntity, IMetadata {
 

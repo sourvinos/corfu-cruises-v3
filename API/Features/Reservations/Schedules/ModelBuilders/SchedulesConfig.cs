@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace API.Features.Schedules {
+namespace API.Features.Reservations.Schedules {
 
     internal class SchedulesConfig : IEntityTypeConfiguration<Schedule> {
 

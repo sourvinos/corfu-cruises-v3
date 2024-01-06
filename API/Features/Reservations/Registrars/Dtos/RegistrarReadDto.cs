@@ -1,7 +1,7 @@
 using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Registrars {
+namespace API.Features.Reservations.Registrars {
 
     public class RegistrarReadDto : IBaseEntity, IMetadata {
 

@@ -1,6 +1,6 @@
 using API.Infrastructure.Classes;
 
-namespace API.Features.Ships {
+namespace API.Features.Reservations.Ships {
 
     public class ShipAutoCompleteVM : SimpleEntity {
 

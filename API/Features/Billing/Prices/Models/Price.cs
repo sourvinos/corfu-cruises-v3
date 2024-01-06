@@ -1,10 +1,10 @@
 using System;
-using API.Features.Customers;
-using API.Features.Destinations;
-using API.Features.Ports;
+using API.Features.Reservations.Customers;
+using API.Features.Reservations.Destinations;
+using API.Features.Reservations.Ports;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Prices {
+namespace API.Features.Billing.Prices {
 
     public class Price : IMetadata {
 

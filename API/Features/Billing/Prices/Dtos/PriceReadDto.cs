@@ -2,7 +2,7 @@ using System;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Prices {
+namespace API.Features.Billing.Prices {
 
     public class PriceReadDto : IMetadata {
 

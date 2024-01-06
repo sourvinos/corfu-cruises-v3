@@ -1,4 +1,4 @@
-namespace API.Features.Ledger {
+namespace API.Features.Reservations.Ledgers {
 
     public class LedgerPortGroupVM {
 

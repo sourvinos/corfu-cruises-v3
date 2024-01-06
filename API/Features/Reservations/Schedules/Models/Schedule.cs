@@ -1,9 +1,9 @@
 using System;
-using API.Features.Destinations;
-using API.Features.Ports;
+using API.Features.Reservations.Destinations;
+using API.Features.Reservations.Ports;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Schedules {
+namespace API.Features.Reservations.Schedules {
 
     public class Schedule : IBaseEntity, IMetadata {
 

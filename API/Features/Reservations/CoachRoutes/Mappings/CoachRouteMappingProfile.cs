@@ -1,6 +1,6 @@
 using AutoMapper;
 
-namespace API.Features.CoachRoutes {
+namespace API.Features.Reservations.CoachRoutes {
 
     public class CoachRouteMappingProfile : Profile {
 

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using API.Features.Users;
+using API.Infrastructure.Users;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace API.Features.Reservations {
+namespace API.Features.Reservations.Reservations {
 
     public class ReservationCalendar : Repository<Reservation>, IReservationCalendar {
 

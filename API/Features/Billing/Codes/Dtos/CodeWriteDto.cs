@@ -1,7 +1,7 @@
 ﻿using System;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Codes {
+namespace API.Features.Billing.Codes {
 
     public class CodeWriteDto : IMetadata {
 

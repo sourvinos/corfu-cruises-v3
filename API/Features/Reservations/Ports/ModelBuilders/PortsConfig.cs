@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace API.Features.Ports {
+namespace API.Features.Reservations.Ports {
 
     internal class PortsConfig : IEntityTypeConfiguration<Port> {
 

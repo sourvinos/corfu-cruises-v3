@@ -2,7 +2,7 @@ using API.Infrastructure.Classes;
 using API.Infrastructure.Helpers;
 using AutoMapper;
 
-namespace API.Features.ShipCrews {
+namespace API.Features.Reservations.ShipCrews {
 
     public class ShipCrewMappingProfile : Profile {
 

@@ -1,7 +1,7 @@
 using System;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Reservations {
+namespace API.Features.Reservations.Reservations {
 
     public class PassengerWriteDto : IBaseEntity {
 

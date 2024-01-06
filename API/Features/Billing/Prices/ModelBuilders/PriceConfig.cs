@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace API.Features.Prices {
+namespace API.Features.Billing.Prices {
 
     internal class PricesConfig : IEntityTypeConfiguration<Price> {
 

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Customers {
+namespace API.Features.Reservations.Customers {
 
     public interface ICustomerRepository : IRepository<Customer> {
 

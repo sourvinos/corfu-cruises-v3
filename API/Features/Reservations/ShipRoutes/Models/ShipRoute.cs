@@ -1,6 +1,6 @@
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.ShipRoutes {
+namespace API.Features.Reservations.ShipRoutes {
 
     public class ShipRoute : IBaseEntity, IMetadata {
 

@@ -1,4 +1,4 @@
-namespace API.Features.Statistics {
+namespace API.Features.Reservations.Statistics {
 
     public class StatisticsUserVM {
 

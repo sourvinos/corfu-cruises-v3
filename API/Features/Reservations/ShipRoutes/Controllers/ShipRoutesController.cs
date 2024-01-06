@@ -7,7 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Features.ShipRoutes {
+namespace API.Features.Reservations.ShipRoutes {
 
     [Route("api/[controller]")]
     public class ShipRoutesController : ControllerBase {

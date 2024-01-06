@@ -1,7 +1,7 @@
 using System;
 using API.Infrastructure.Classes;
 
-namespace API.Features.Prices {
+namespace API.Features.Billing.Prices {
 
     public class PriceListVM {
 

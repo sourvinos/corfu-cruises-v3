@@ -1,6 +1,6 @@
 using API.Infrastructure.Classes;
 
-namespace API.Features.Ports {
+namespace API.Features.Reservations.Ports {
 
     public class PortAutoCompleteVM : SimpleEntity {
 

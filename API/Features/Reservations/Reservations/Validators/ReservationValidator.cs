@@ -1,7 +1,7 @@
 using API.Infrastructure.Helpers;
 using FluentValidation;
 
-namespace API.Features.Reservations {
+namespace API.Features.Reservations.Reservations {
 
     public class ReservationValidator : AbstractValidator<ReservationWriteDto> {
 

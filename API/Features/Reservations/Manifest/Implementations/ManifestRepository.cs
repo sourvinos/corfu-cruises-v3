@@ -1,6 +1,6 @@
 using System.Linq;
-using API.Features.Reservations;
-using API.Features.Users;
+using API.Features.Reservations.Reservations;
+using API.Infrastructure.Users;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Implementations;
 using AutoMapper;
@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace API.Features.Manifest {
+namespace API.Features.Reservations.Manifest {
 
     public class ManifestRepository : Repository<Reservation>, IManifestRepository {
 

@@ -1,6 +1,6 @@
 using System;
 
-namespace API.Features.VatRegimes {
+namespace API.Features.Billing.VatRegimes {
 
     public class VatRegimeAutoCompleteVM {
 

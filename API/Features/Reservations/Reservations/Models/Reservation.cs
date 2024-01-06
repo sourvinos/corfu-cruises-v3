@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
-using API.Features.Customers;
-using API.Features.Destinations;
-using API.Features.Drivers;
-using API.Features.PickupPoints;
-using API.Features.Ports;
-using API.Features.Ships;
+using API.Features.Reservations.Customers;
+using API.Features.Reservations.Destinations;
+using API.Features.Reservations.Drivers;
+using API.Features.Reservations.PickupPoints;
+using API.Features.Reservations.Ports;
+using API.Features.Reservations.Ships;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Reservations {
+namespace API.Features.Reservations.Reservations {
 
     public class Reservation : IMetadata {
 

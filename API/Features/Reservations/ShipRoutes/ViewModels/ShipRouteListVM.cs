@@ -1,4 +1,4 @@
-namespace API.Features.ShipRoutes {
+namespace API.Features.Reservations.ShipRoutes {
 
     public class ShipRouteListVM {
 

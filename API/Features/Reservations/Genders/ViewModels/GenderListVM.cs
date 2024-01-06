@@ -1,4 +1,4 @@
-namespace API.Features.Genders {
+namespace API.Features.Reservations.Genders {
 
     public class GenderListVM {
 

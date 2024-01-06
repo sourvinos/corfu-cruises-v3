@@ -1,7 +1,7 @@
 using API.Infrastructure.Classes;
 using AutoMapper;
 
-namespace API.Features.Registrars {
+namespace API.Features.Reservations.Registrars {
 
     public class RegistrarMappingProfile : Profile {
 

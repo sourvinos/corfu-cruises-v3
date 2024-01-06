@@ -1,7 +1,7 @@
 using API.Infrastructure.Classes;
 using AutoMapper;
 
-namespace API.Features.Customers {
+namespace API.Features.Reservations.Customers {
 
     public class CustomerMappingProfile : Profile {
 

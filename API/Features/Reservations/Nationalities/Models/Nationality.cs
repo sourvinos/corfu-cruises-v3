@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using API.Features.Reservations;
-using API.Features.ShipCrews;
+using API.Features.Reservations.Reservations;
+using API.Features.Reservations.ShipCrews;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Nationalities {
+namespace API.Features.Reservations.Nationalities {
 
     public class Nationality : IBaseEntity, IMetadata {
 

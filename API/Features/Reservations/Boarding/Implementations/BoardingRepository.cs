@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using API.Features.Reservations;
-using API.Features.Users;
+using API.Features.Reservations.Reservations;
+using API.Infrastructure.Users;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Implementations;
 using AutoMapper;
@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Options;
 
-namespace API.Features.Boarding {
+namespace API.Features.Reservations.Boarding {
 
     public class BoardingRepository : Repository<Reservation>, IBoardingRepository {
 

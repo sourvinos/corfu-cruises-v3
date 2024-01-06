@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace API.Features.Drivers {
+namespace API.Features.Reservations.Drivers{
 
     internal class DriversConfig : IEntityTypeConfiguration<Driver> {
 

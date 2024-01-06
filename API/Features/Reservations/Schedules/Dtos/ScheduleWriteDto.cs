@@ -1,6 +1,6 @@
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Schedules {
+namespace API.Features.Reservations.Schedules {
 
     public class ScheduleWriteDto : IBaseEntity, IMetadata {
 

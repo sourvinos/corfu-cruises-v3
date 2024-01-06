@@ -1,6 +1,6 @@
 using AutoMapper;
 
-namespace API.Features.TaxOffices {
+namespace API.Features.Billing.TaxOffices {
 
     public class TaxOfficeMappingProfile : Profile {
 

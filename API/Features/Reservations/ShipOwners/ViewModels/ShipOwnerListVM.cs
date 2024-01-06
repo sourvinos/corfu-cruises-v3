@@ -1,4 +1,4 @@
-namespace API.Features.ShipOwners {
+namespace API.Features.Reservations.ShipOwners {
 
     public class ShipOwnerListVM {
 

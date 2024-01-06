@@ -1,6 +1,6 @@
 using System;
 
-namespace API.Features.Codes {
+namespace API.Features.Billing.Codes {
 
     public class CodeAutoCompleteVM {
 

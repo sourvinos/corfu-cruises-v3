@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace API.Features.Availability {
+namespace API.Features.Reservations.Availability {
 
     public class AvailabilityGroupVM {
 

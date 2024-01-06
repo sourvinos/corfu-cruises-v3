@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using API.Features.Schedules;
-using API.Features.Users;
+using API.Features.Reservations.Schedules;
+using API.Infrastructure.Users;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Implementations;
@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace API.Features.Availability {
+namespace API.Features.Reservations.Availability {
 
     public class AvailabilityCalendar : Repository<Schedule>, IAvailabilityCalendar {
 

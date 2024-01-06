@@ -1,7 +1,7 @@
 using System;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Prices {
+namespace API.Features.Billing.Prices {
 
     public class PriceWriteDto : IMetadata {
 

@@ -7,7 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Features.Schedules {
+namespace API.Features.Reservations.Schedules {
 
     [Route("api/[controller]")]
     public class SchedulesController : ControllerBase {

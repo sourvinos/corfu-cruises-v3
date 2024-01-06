@@ -1,11 +1,11 @@
 using System;
-using API.Features.Genders;
-using API.Features.Nationalities;
-using API.Features.Occupants;
-using API.Features.Ships;
+using API.Features.Reservations.Genders;
+using API.Features.Reservations.Nationalities;
+using API.Features.Reservations.Occupants;
+using API.Features.Reservations.Ships;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.ShipCrews {
+namespace API.Features.Reservations.ShipCrews {
 
     public class ShipCrew : IBaseEntity, IMetadata {
 

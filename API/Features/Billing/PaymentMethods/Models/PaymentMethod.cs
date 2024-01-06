@@ -1,7 +1,7 @@
 ﻿using System;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.PaymentMethods {
+namespace API.Features.Billing.PaymentMethods {
 
     public class PaymentMethod : IMetadata {
 

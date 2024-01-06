@@ -1,6 +1,6 @@
 ﻿using API.Infrastructure.Interfaces;
 
-namespace API.Features.Nationalities {
+namespace API.Features.Reservations.Nationalities {
 
     public class NationalityWriteDto : IBaseEntity, IMetadata {
 

@@ -1,7 +1,7 @@
 using System;
 using API.Infrastructure.Classes;
 
-namespace API.Features.Ledger {
+namespace API.Features.Reservations.Ledgers {
 
     public class LedgerReservationVM {
 

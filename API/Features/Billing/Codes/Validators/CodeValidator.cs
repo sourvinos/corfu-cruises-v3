@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace API.Features.Codes {
+namespace API.Features.Billing.Codes {
 
     public class CodeValidator : AbstractValidator<CodeWriteDto> {
 

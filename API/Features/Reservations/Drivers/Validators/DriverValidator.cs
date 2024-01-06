@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace API.Features.Drivers {
+namespace API.Features.Reservations.Drivers{
 
     public class DriverValidator : AbstractValidator<DriverWriteDto> {
 

@@ -1,6 +1,6 @@
 using AutoMapper;
 
-namespace API.Features.VatRegimes {
+namespace API.Features.Billing.VatRegimes {
 
     public class VatRegimeMappingProfile : Profile {
 

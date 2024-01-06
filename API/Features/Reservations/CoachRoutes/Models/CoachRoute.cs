@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using API.Features.PickupPoints;
+using API.Features.Reservations.PickupPoints;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.CoachRoutes {
+namespace API.Features.Reservations.CoachRoutes {
 
     public class CoachRoute : IBaseEntity, IMetadata {
 

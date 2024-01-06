@@ -1,8 +1,8 @@
-using API.Features.CoachRoutes;
+using API.Features.Reservations.CoachRoutes;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.PickupPoints {
+namespace API.Features.Reservations.PickupPoints {
 
     public class PickupPointReadDto : IBaseEntity, IMetadata {
 

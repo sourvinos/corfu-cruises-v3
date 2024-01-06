@@ -1,6 +1,6 @@
 using API.Infrastructure.Classes;
 
-namespace API.Features.Destinations {
+namespace API.Features.Reservations.Destinations {
 
     public class DestinationAutoCompleteVM : SimpleEntity {
 

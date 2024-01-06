@@ -1,7 +1,7 @@
 using API.Infrastructure.Helpers;
 using FluentValidation;
 
-namespace API.Features.Customers {
+namespace API.Features.Reservations.Customers {
 
     public class CustomerValidator : AbstractValidator<CustomerWriteDto> {
 

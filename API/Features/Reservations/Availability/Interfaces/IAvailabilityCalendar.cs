@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using API.Features.Schedules;
+using API.Features.Reservations.Schedules;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Availability {
+namespace API.Features.Reservations.Availability {
 
     public interface IAvailabilityCalendar : IRepository<Schedule> {
 

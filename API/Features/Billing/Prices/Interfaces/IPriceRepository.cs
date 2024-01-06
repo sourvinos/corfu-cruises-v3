@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Prices {
+namespace API.Features.Billing.Prices {
 
     public interface IPriceRepository : IRepository<Price> {
 

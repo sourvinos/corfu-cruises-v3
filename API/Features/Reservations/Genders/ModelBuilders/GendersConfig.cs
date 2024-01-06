@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace API.Features.Genders {
+namespace API.Features.Reservations.Genders {
 
     internal class GendersConfig : IEntityTypeConfiguration<Gender> {
 

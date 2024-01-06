@@ -1,11 +1,11 @@
 using System.Linq;
-using API.Features.PickupPoints;
-using API.Features.Ports;
+using API.Features.Reservations.PickupPoints;
+using API.Features.Reservations.Ports;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Helpers;
 using AutoMapper;
 
-namespace API.Features.Reservations {
+namespace API.Features.Reservations.Reservations {
 
     public class ReservationMappingProfile : Profile {
 

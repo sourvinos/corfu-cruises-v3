@@ -1,6 +1,6 @@
 using API.Infrastructure.Classes;
 
-namespace API.Features.Registrars {
+namespace API.Features.Reservations.Registrars {
 
     public class RegistrarAutoCompleteVM : SimpleEntity {
 

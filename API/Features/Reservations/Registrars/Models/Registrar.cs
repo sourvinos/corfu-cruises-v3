@@ -1,7 +1,7 @@
-using API.Features.Ships;
+using API.Features.Reservations.Ships;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Registrars {
+namespace API.Features.Reservations.Registrars {
 
     public class Registrar : IBaseEntity, IMetadata {
 

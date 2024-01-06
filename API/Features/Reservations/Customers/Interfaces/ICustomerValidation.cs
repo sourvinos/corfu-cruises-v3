@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Customers {
+namespace API.Features.Reservations.Customers {
 
     public interface ICustomerValidation : IRepository<Customer> {
 

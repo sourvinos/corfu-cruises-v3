@@ -1,4 +1,4 @@
-namespace API.Features.Destinations {
+namespace API.Features.Reservations.Destinations {
 
     public class DestinationListVM {
 

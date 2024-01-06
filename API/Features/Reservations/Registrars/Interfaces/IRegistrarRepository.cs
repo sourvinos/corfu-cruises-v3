@@ -2,7 +2,7 @@ using API.Infrastructure.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace API.Features.Registrars {
+namespace API.Features.Reservations.Registrars {
 
     public interface IRegistrarRepository : IRepository<Registrar> {
 

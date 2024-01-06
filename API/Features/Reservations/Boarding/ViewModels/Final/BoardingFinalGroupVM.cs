@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace API.Features.Boarding {
+namespace API.Features.Reservations.Boarding {
 
     public class BoardingFinalGroupVM {
 

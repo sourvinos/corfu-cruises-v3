@@ -3,15 +3,15 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
+using API.Features.Reservations.Parameters;
 using API.Infrastructure.Helpers;
-using API.Infrastructure.Parameters;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
 using MimeKit;
 using RazorLight;
 using ZXing.QrCode;
 
-namespace API.Features.Reservations {
+namespace API.Features.Reservations.Reservations {
 
     public class ReservationSendToEmail : IReservationSendToEmail {
 
@@ -65,7 +65,7 @@ namespace API.Features.Reservations {
         }
 
         private static string LoadTemplateFromFile() {
-            string FilePath = Directory.GetCurrentDirectory() + "\\Features\\Reservations\\Templates\\BoardingPass.cshtml";
+            string FilePath = Directory.GetCurrentDirectory() + "\\Features\\Reservations\\Reservations\\Templates\\BoardingPass.cshtml";
             StreamReader str = new(FilePath);
             string template = str.ReadToEnd();
             str.Close();

@@ -1,6 +1,6 @@
 using API.Infrastructure.Classes;
 
-namespace API.Features.CoachRoutes {
+namespace API.Features.Reservations.CoachRoutes {
 
     public class CoachRouteAutoCompleteVM : SimpleEntity {
 

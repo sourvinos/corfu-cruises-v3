@@ -1,7 +1,7 @@
 using API.Infrastructure.Classes;
 using AutoMapper;
 
-namespace API.Features.Ships {
+namespace API.Features.Reservations.Ships {
 
     public class ShipMappingProfile : Profile {
 

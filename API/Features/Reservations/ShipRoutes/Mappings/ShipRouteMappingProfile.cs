@@ -1,6 +1,6 @@
 using AutoMapper;
 
-namespace API.Features.ShipRoutes {
+namespace API.Features.Reservations.ShipRoutes {
 
     public class ShipRouteMappingProfile : Profile {
 

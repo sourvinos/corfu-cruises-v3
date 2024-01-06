@@ -1,4 +1,4 @@
-namespace API.Features.PickupPoints {
+namespace API.Features.Reservations.PickupPoints {
 
     public class PickupPointListVM {
 

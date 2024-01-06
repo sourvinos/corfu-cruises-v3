@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using API.Features.Destinations;
-using API.Features.Reservations;
-using API.Features.ShipRoutes;
-using API.Features.Ships;
+using API.Features.Reservations.Destinations;
+using API.Features.Reservations.Reservations;
+using API.Features.Reservations.ShipRoutes;
+using API.Features.Reservations.Ships;
 
-namespace API.Features.Manifest {
+namespace API.Features.Reservations.Manifest {
 
     public class ManifestInitialVM {
 

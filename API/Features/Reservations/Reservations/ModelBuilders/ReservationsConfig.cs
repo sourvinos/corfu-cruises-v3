@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace API.Features.Reservations {
+namespace API.Features.Reservations.Reservations {
 
     internal class ReservationsConfig : IEntityTypeConfiguration<Reservation> {
 

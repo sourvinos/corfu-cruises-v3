@@ -7,7 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Features.TaxOffices {
+namespace API.Features.Billing.TaxOffices {
 
     [Route("api/[controller]")]
     public class TaxOfficesController : ControllerBase {

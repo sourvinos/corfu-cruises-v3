@@ -7,7 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Features.Destinations {
+namespace API.Features.Reservations.Destinations {
 
     [Route("api/[controller]")]
     public class DestinationsController : ControllerBase {

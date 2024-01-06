@@ -1,6 +1,6 @@
 using API.Infrastructure.Classes;
 
-namespace API.Features.ShipCrews {
+namespace API.Features.Reservations.ShipCrews {
 
     public class ShipCrewListVM {
 

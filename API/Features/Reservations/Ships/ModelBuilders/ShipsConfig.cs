@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace API.Features.Ships {
+namespace API.Features.Reservations.Ships {
 
     internal class ShipsConfig : IEntityTypeConfiguration<Ship> {
 

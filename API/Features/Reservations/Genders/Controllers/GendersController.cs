@@ -7,7 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Features.Genders {
+namespace API.Features.Reservations.Genders {
 
     [Route("api/[controller]")]
     public class GendersController : ControllerBase {

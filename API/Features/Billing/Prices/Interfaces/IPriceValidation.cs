@@ -1,6 +1,6 @@
 using API.Infrastructure.Interfaces;
 
-namespace API.Features.Prices {
+namespace API.Features.Billing.Prices {
 
     public interface IPriceValidation : IRepository<Price> {
 

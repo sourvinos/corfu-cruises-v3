@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace API.Features.Codes {
+namespace API.Features.Billing.Codes {
 
     internal class CodesConfig : IEntityTypeConfiguration<Code> {
 

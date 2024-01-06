@@ -4,7 +4,7 @@ using API.Infrastructure.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Features.Boarding {
+namespace API.Features.Reservations.Boarding {
 
     [Route("api/[controller]")]
     public class BoardingController : ControllerBase {
