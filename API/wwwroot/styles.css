@@ -1,65 +1,9 @@
 html {
     font-size: 14px;
-}
-
-
-html {
-    position: relative;
     min-height: 100%;
+    position: relative;
 }
 
 body {
     height: 100vh;
-}
-
-#content {
-    padding: 1rem;
-}
-
-h3 {
-    font-size: 1rem;
-}
-
-#description {
-    display: flex;
-    flex-direction: column;
-    font-family: 'Roboto Flex';
-}
-
-a.primary {
-    text-decoration: none;
-    background-color: orange;
-    color: #000000;
-    padding: 0.5rem 2.5rem;
-    font-weight: 600;
-    font-family: 'Roboto Flex';
-}
-
-#reminder {
-    display: flex;
-    flex-direction: column;
-    font-family: 'Roboto Flex';
-}
-
-#footer {
-    font-family: 'Roboto Flex';
-    display: flex;
-    flex-direction: column;
-    margin-top: 5rem;
-    text-align: center;
-}
-
-#button {
-    display: flex;
-    margin: 1rem;
-}
-
-p {
-    margin: 0;
-}
-
-img#barcode {
-    height: 150px;
-    margin: 0 auto;
-    width: 150px;
 }

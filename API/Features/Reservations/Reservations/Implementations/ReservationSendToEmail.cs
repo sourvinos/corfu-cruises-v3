@@ -65,7 +65,7 @@ namespace API.Features.Reservations.Reservations {
         }
 
         private static string LoadTemplateFromFile() {
-            string FilePath = Directory.GetCurrentDirectory() + "\\Features\\Reservations\\Reservations\\Templates\\BoardingPass.cshtml";
+            string FilePath = Directory.GetCurrentDirectory() + "\\Templates\\BoardingPass.cshtml";
             StreamReader str = new(FilePath);
             string template = str.ReadToEnd();
             str.Close();

@@ -75,6 +75,7 @@ namespace API {
             services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<AppDbContext>();
             services.AddScoped<ModelValidationAttribute>();
+            services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddSignalR();
             services.AddControllersWithViews()
                     .AddNewtonsoftJson(options => {

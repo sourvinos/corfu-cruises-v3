@@ -33,11 +33,11 @@ namespace API.Infrastructure.Account {
             message.From.Add(new MailboxAddress(emailSettings.From, emailSettings.Username));
             message.To.Add(MailboxAddress.Parse(email));
             message.Subject = subject;
-            message.Body = new BodyBuilder { HtmlBody = await BuildTemplate(username, displayname, email, returnUrl) }.ToMessageBody();
+            message.Body = new BodyBuilder { HtmlBody = await BuildTemplate(emailSettings.From, username, displayname, email, returnUrl) }.ToMessageBody();
             return message;
         }
 
-        private async Task<string> BuildTemplate(string username, string displayname, string email, string returnUrl) {
+        private async Task<string> BuildTemplate(string logo, string username, string displayname, string email, string returnUrl) {
             RazorLightEngine engine = new RazorLightEngineBuilder()
                 .UseEmbeddedResourcesProject(Assembly.GetEntryAssembly())
                 .Build();
@@ -45,17 +45,17 @@ namespace API.Infrastructure.Account {
                 "key",
                 LoadTemplateFromFile(),
                 new ForgotPasswordResponseVM {
+                    Logo = logo,
                     Username = username,
                     Displayname = displayname,
                     Email = email,
                     ReturnUrl = returnUrl,
                     CompanyPhones = this.parametersRepo.GetAsync().Result.Phones,
-                    LogoTextBase64 = SetLogoTextAsBackground()
                 });
         }
 
         private static string LoadTemplateFromFile() {
-            string FilePath = Directory.GetCurrentDirectory() + "\\Infrastructure\\Account\\Templates\\ResetPassword.cshtml";
+            string FilePath = Directory.GetCurrentDirectory() + "\\Templates\\ResetPassword.cshtml";
             StreamReader str = new(FilePath);
             string template = str.ReadToEnd();
             str.Close();

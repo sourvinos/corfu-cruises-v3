@@ -55,7 +55,7 @@ namespace API.Infrastructure.Users {
         }
 
         private static string LoadNewUserEmailTemplateFromFile() {
-            string FilePath = Directory.GetCurrentDirectory() + "\\Features\\Users\\Templates\\UserDetailsForEmail.cshtml";
+            string FilePath = Directory.GetCurrentDirectory() + "\\Templates\\UserDetailsForEmail.cshtml";
             StreamReader str = new(FilePath);
             string template = str.ReadToEnd();
             str.Close();
