@@ -28,6 +28,7 @@ using API.Infrastructure.Auth;
 using API.Infrastructure.Users;
 using Microsoft.Extensions.DependencyInjection;
 using API.Features.Billing.Parameters;
+using API.Features.Billing.Invoices;
 
 namespace API.Infrastructure.Extensions {
 
@@ -99,6 +100,7 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IVatRegimeRepository, VatRegimeRepository>();
             services.AddTransient<IVatRegimeValidation, VatRegimeValidation>();
             services.AddTransient<IVatRegimeValidation, VatRegimeValidation>();
+            services.AddTransient<IInvoiceRepository, InvoiceRepository>();
             #endregion
             #region common
             services.AddTransient<IEmailSender, EmailSender>();
