@@ -6,6 +6,7 @@ namespace API.Features.Billing.Invoices {
         public string Aa { get; set; }
         public string IssueDate { get; set; }
         public string InvoiceType { get; set; }
+        public string Currency { get; set; }
 
     }
 

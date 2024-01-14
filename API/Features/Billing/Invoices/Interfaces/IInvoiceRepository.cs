@@ -1,8 +1,12 @@
+using System.Threading.Tasks;
+using System.Xml.Linq;
+
 namespace API.Features.Billing.Invoices {
 
     public interface IInvoiceRepository {
 
-        void BuildInvoiceXML(InvoiceVM invoice);
+        XElement BuildInvoice(InvoiceVM invoice);
+        Task<string> SendInvoiceAsync(XElement invoice);
 
     }
 

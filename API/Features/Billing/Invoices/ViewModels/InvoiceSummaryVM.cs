@@ -10,6 +10,7 @@ namespace API.Features.Billing.Invoices {
         public decimal TotalOtherTaxesAmount { get; set; }
         public decimal TotalDeductionsAmount { get; set; }
         public decimal TotalGrossValue { get; set; }
+        public IncomeClassification IncomeClassification { get; set; }
 
     }
 
