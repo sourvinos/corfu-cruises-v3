@@ -12,72 +12,75 @@ namespace API.Features.Billing.Invoices {
 
         public InvoiceRepository() { }
 
-        public XElement BuildInvoice(InvoiceVM invoiceVM) {
-            XNamespace x = "http://www.aade.gr/myDATA/invoice/v1.0";
-            XNamespace xsi = "http://www.w3.org/2001/XMLSchema-instance";
-            XNamespace icls = "https://www.aade.gr/myDATA/incomeClassificaton/v1.0";
-            XNamespace schemaLocation = XNamespace.Get("http://www.aade.gr/myDATA/invoice/v1.0/InvoicesDoc-v0.6.xsd");
-            XElement root = new(x + "InvoicesDoc",
-                new XAttribute("xmlns", "http://www.aade.gr/myDATA/invoice/v1.0"),
-                new XAttribute(xsi + "schemaLocation", schemaLocation),
-                new XAttribute(XNamespace.Xmlns + "xsi", "http://www.w3.org/2001/XMLSchema-instance"),
-                new XAttribute(XNamespace.Xmlns + "icls", "https://www.aade.gr/myDATA/incomeClassificaton/v1.0"),
-                new XAttribute(XNamespace.Xmlns + "ecls", "https://www.aade.gr/myDATA/expensesClassificaton/v1.0")
-            );
-            XElement invoice = new(x + "invoice",
-                new XElement(x + "issuer",
-                    new XElement(x + "vatNumber", invoiceVM.Issuer.VatNumber),
-                    new XElement(x + "country", invoiceVM.Issuer.Country),
-                    new XElement(x + "branch", invoiceVM.Issuer.Branch)),
-                // new XElement(x + "address",
-                //     new XElement(x + "street", invoiceVM.Issuer.Address.Street),
-                //     new XElement(x + "number", invoiceVM.Issuer.Address.Number),
-                //     new XElement(x + "postalCode", invoiceVM.Issuer.Address.PostalCode),
-                //     new XElement(x + "city", invoiceVM.Issuer.Address.City)),
-                new XElement(x + "counterpart",
-                    new XElement(x + "vatNumber", invoiceVM.CounterPart.VatNumber),
-                    new XElement(x + "country", invoiceVM.CounterPart.Country),
-                    new XElement(x + "branch", invoiceVM.CounterPart.Branch),
-                        new XElement(x + "address",
-                            new XElement(x + "street", invoiceVM.CounterPart.Address.Street),
-                            new XElement(x + "number", invoiceVM.CounterPart.Address.Number),
-                            new XElement(x + "postalCode", invoiceVM.CounterPart.Address.PostalCode),
-                            new XElement(x + "city", invoiceVM.CounterPart.Address.City))),
-                new XElement(x + "invoiceHeader",
-                    new XElement(x + "series", invoiceVM.InvoiceHeader.Series),
-                    new XElement(x + "aa", invoiceVM.InvoiceHeader.Aa),
-                    new XElement(x + "issueDate", invoiceVM.InvoiceHeader.IssueDate),
-                    new XElement(x + "invoiceType", invoiceVM.InvoiceHeader.InvoiceType),
-                    new XElement(x + "currency", invoiceVM.InvoiceHeader.Currency)),
-                new XElement(x + "paymentMethods",
-                    new XElement(x + "paymentMethodDetails",
-                        new XElement(x + "type", invoiceVM.PaymentMethods[0].PaymentMethodDetails.Type),
-                        new XElement(x + "amount", invoiceVM.PaymentMethods[0].PaymentMethodDetails.Amount),
-                        new XElement(x + "paymentMethodInfo", invoiceVM.PaymentMethods[0].PaymentMethodDetails.PaymentMethodInfo))),
-                    new XElement(x + "invoiceDetails",
-                    new XElement(x + "lineNumber", invoiceVM.InvoiceDetails[0].LineNumber),
-                    new XElement(x + "netValue", invoiceVM.InvoiceDetails[0].NetValue),
-                    new XElement(x + "vatCategory", invoiceVM.InvoiceDetails[0].VatCategory),
-                    new XElement(x + "vatAmount", invoiceVM.InvoiceDetails[0].VatAmount),
-                        new XElement(x + "incomeClassification",
-                            new XElement(x + "classificationType", new XAttribute(XNamespace.Xmlns + "icls", x), invoiceVM.InvoiceSummary.IncomeClassification.ClassificationType),
-                            new XElement(x + "classificationCategory", new XAttribute(XNamespace.Xmlns + "icls", x), invoiceVM.InvoiceSummary.IncomeClassification.ClassificationCategory),
-                            new XElement(x + "amount", new XAttribute(XNamespace.Xmlns + "icls", x), invoiceVM.InvoiceSummary.IncomeClassification.Amount))),
-                new XElement(x + "invoiceSummary",
-                    new XElement(x + "totalNetValue", invoiceVM.InvoiceSummary.TotalNetValue),
-                    new XElement(x + "totalVatAmount", invoiceVM.InvoiceSummary.TotalVatAmount),
-                    new XElement(x + "totalWithheldAmount", invoiceVM.InvoiceSummary.TotalWithheldAmount),
-                    new XElement(x + "totalFeesAmount", invoiceVM.InvoiceSummary.TotalFeesAmount),
-                    new XElement(x + "totalStampDutyAmount", invoiceVM.InvoiceSummary.TotalStampDutyAmount),
-                    new XElement(x + "totalOtherTaxesAmount", invoiceVM.InvoiceSummary.TotalOtherTaxesAmount),
-                    new XElement(x + "totalDeductionsAmount", invoiceVM.InvoiceSummary.TotalDeductionsAmount),
-                    new XElement(x + "totalGrossValue", invoiceVM.InvoiceSummary.TotalGrossValue),
-                    new XElement(x + "incomeClassification",
-                        new XElement(x + "classificationType", new XAttribute(XNamespace.Xmlns + "icls", x), invoiceVM.InvoiceSummary.IncomeClassification.ClassificationType),
-                        new XElement(x + "classificationCategory", new XAttribute(XNamespace.Xmlns + "icls", x), invoiceVM.InvoiceSummary.IncomeClassification.ClassificationCategory),
-                        new XElement(x + "amount", new XAttribute(XNamespace.Xmlns + "icls", x), invoiceVM.InvoiceSummary.IncomeClassification.Amount))));
-            root.Add(invoice);
-            return root;
+        public void BuildXMLAsync(InvoiceVM invoiceVM) {
+
+            using StringWriter sw = new();
+            using XmlTextWriter xtw = new("fileName.xml", null);
+            xtw.Namespaces = false;
+            xtw.Formatting = Formatting.Indented;
+            xtw.WriteStartElement("InvoicesDoc");
+            xtw.WriteAttributeString("xmlns", "http://www.aade.gr/myDATA/invoice/v1.0");
+            xtw.WriteAttributeString("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
+            xtw.WriteAttributeString("xmlns:icls", "https://www.aade.gr/myDATA/incomeClassificaton/v1.0");
+            xtw.WriteAttributeString("xmlns:ecls", "https://www.aade.gr/myDATA/expensesClassificaton/v1.0");
+            xtw.WriteAttributeString("xsi:schemaLocation", "http://www.aade.gr/myDATA/invoice/v1.0/InvoicesDoc-v0.6.xsd");
+            xtw.WriteStartElement("invoice");
+            xtw.WriteStartElement("issuer");
+            xtw.WriteElementString("vatNumber", invoiceVM.Issuer.VatNumber);
+            xtw.WriteElementString("country", invoiceVM.Issuer.Country);
+            xtw.WriteElementString("branch", invoiceVM.Issuer.Branch.ToString());
+            xtw.WriteEndElement();
+            xtw.WriteStartElement("counterpart");
+            xtw.WriteElementString("vatNumber", invoiceVM.CounterPart.VatNumber);
+            xtw.WriteElementString("country", invoiceVM.CounterPart.Country);
+            xtw.WriteElementString("branch", invoiceVM.CounterPart.Branch.ToString());
+            xtw.WriteStartElement("address");
+            xtw.WriteElementString("postalCode", invoiceVM.CounterPart.Address.PostalCode);
+            xtw.WriteElementString("city", invoiceVM.CounterPart.Address.City);
+            xtw.WriteEndElement();
+            xtw.WriteEndElement();
+            xtw.WriteStartElement("invoiceHeader");
+            xtw.WriteElementString("series", invoiceVM.InvoiceHeader.Series);
+            xtw.WriteElementString("aa", invoiceVM.InvoiceHeader.Aa);
+            xtw.WriteElementString("issueDate", invoiceVM.InvoiceHeader.IssueDate);
+            xtw.WriteElementString("invoiceType", invoiceVM.InvoiceHeader.InvoiceType);
+            xtw.WriteElementString("currency", invoiceVM.InvoiceHeader.Currency);
+            xtw.WriteEndElement();
+            xtw.WriteStartElement("paymentMethods");
+            xtw.WriteStartElement("paymentMethodDetails");
+            xtw.WriteElementString("type", invoiceVM.PaymentMethods[0].PaymentMethodDetails.Type.ToString());
+            xtw.WriteElementString("amount", invoiceVM.PaymentMethods[0].PaymentMethodDetails.Amount.ToString());
+            xtw.WriteEndElement();
+            xtw.WriteEndElement();
+            xtw.WriteStartElement("invoiceDetails");
+            xtw.WriteElementString("lineNumber", invoiceVM.InvoiceDetails[0].LineNumber.ToString());
+            xtw.WriteElementString("netValue", invoiceVM.InvoiceDetails[0].NetValue.ToString());
+            xtw.WriteElementString("vatCategory", invoiceVM.InvoiceDetails[0].VatCategory.ToString());
+            xtw.WriteElementString("vatAmount", invoiceVM.InvoiceDetails[0].VatAmount.ToString());
+            xtw.WriteStartElement("incomeClassification");
+            xtw.WriteElementString("icls:classificationType", invoiceVM.InvoiceSummary.IncomeClassification.ClassificationType);
+            xtw.WriteElementString("icls:classificationCategory", invoiceVM.InvoiceSummary.IncomeClassification.ClassificationCategory);
+            xtw.WriteElementString("icls:amount", invoiceVM.InvoiceSummary.IncomeClassification.Amount.ToString());
+            xtw.WriteEndElement();
+            xtw.WriteEndElement();
+            xtw.WriteStartElement("invoiceSummary");
+            xtw.WriteElementString("totalNetValue", invoiceVM.InvoiceSummary.TotalNetValue.ToString());
+            xtw.WriteElementString("totalVatAmount", invoiceVM.InvoiceSummary.TotalVatAmount.ToString());
+            xtw.WriteElementString("totalWithheldAmount", invoiceVM.InvoiceSummary.TotalWithheldAmount.ToString());
+            xtw.WriteElementString("totalFeesAmount", invoiceVM.InvoiceSummary.TotalFeesAmount.ToString());
+            xtw.WriteElementString("totalStampDutyAmount", invoiceVM.InvoiceSummary.TotalStampDutyAmount.ToString());
+            xtw.WriteElementString("totalOtherTaxesAmount", invoiceVM.InvoiceSummary.TotalOtherTaxesAmount.ToString());
+            xtw.WriteElementString("totalDeductionsAmount", invoiceVM.InvoiceSummary.TotalDeductionsAmount.ToString());
+            xtw.WriteElementString("totalGrossValue", invoiceVM.InvoiceSummary.TotalGrossValue.ToString());
+            xtw.WriteStartElement("incomeClassification");
+            xtw.WriteElementString("icls:classificationType", invoiceVM.InvoiceSummary.IncomeClassification.ClassificationType);
+            xtw.WriteElementString("icls:classificationCategory", invoiceVM.InvoiceSummary.IncomeClassification.ClassificationCategory);
+            xtw.WriteElementString("icls:amount", invoiceVM.InvoiceSummary.IncomeClassification.Amount.ToString());
+            xtw.WriteEndElement();
+            xtw.WriteEndElement();
+            xtw.WriteEndElement();
+            xtw.WriteEndElement();
+            xtw.Close();
         }
 
         public async Task<string> SendInvoiceAsync(XElement invoice) {
@@ -87,7 +90,7 @@ namespace API.Features.Billing.Invoices {
             client.DefaultRequestHeaders.Add("Accept", "application/xml");
             string xml = "";
             XmlSerializer serializer = new(typeof(XElement));
-            await using (var stringWriter = new Utf8StringWriter()) {
+            await using (var stringWriter = new StringWriter()) {
                 await using XmlWriter writer = XmlWriter.Create(stringWriter, new XmlWriterSettings() { Async = true });
                 serializer.Serialize(writer, invoice);
                 xml = stringWriter.ToString();
@@ -101,11 +104,11 @@ namespace API.Features.Billing.Invoices {
             // }
         }
 
-    }
-
-    public class Utf8StringWriter : StringWriter {
-
-        public override Encoding Encoding => Encoding.UTF8;
+        public void WriteXML(XElement invoice) {
+            string docPath = Directory.GetCurrentDirectory() + "\\Output\\File.xml";
+            using StreamWriter outputFile = new(Path.Combine(docPath));
+            outputFile.WriteLine(invoice);
+        }
 
     }
 

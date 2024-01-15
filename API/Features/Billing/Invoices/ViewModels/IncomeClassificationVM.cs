@@ -4,7 +4,7 @@ namespace API.Features.Billing.Invoices {
 
         public string ClassificationType { get; set; }
         public string ClassificationCategory { get; set; }
-        public string Amount { get; set; }
+        public decimal Amount { get; set; }
 
     }
 

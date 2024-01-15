@@ -1,6 +1,4 @@
-﻿using System.IO;
-using System.Xml.Linq;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Features.Billing.Invoices {
@@ -14,22 +12,20 @@ namespace API.Features.Billing.Invoices {
 
         #endregion
 
-        public InvoicesController(IInvoiceRepository codeRepo) {
-            this.invoiceRepo = codeRepo;
+        public InvoicesController(IInvoiceRepository invoiceRepo) {
+            this.invoiceRepo = invoiceRepo;
         }
 
         [HttpPost("build")]
         [Authorize(Roles = "admin")]
-        public void BuildInvoice([FromBody] InvoiceVM document) {
-            string docPath = Directory.GetCurrentDirectory() + "\\Output\\File.xml";
-            using StreamWriter outputFile = new(Path.Combine(docPath));
-            outputFile.WriteLine(invoiceRepo.BuildInvoice(document));
+        public void BuildAndWriteInvoice([FromBody] InvoiceVM invoice) {
+            invoiceRepo.BuildXMLAsync(invoice);
         }
 
         [HttpPost("send")]
         [Authorize(Roles = "admin")]
         public void InvoiceXML([FromBody] InvoiceVM invoice) {
-            invoiceRepo.SendInvoiceAsync(invoiceRepo.BuildInvoice(invoice));
+            // invoiceRepo.SendInvoiceAsync(invoiceRepo.BuildXMLAsync(invoice));
         }
 
     }

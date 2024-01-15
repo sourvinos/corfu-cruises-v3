@@ -5,7 +5,8 @@ namespace API.Features.Billing.Invoices {
 
     public interface IInvoiceRepository {
 
-        XElement BuildInvoice(InvoiceVM invoice);
+        void BuildXMLAsync(InvoiceVM invoice);
+        void WriteXML(XElement invoice);
         Task<string> SendInvoiceAsync(XElement invoice);
 
     }
