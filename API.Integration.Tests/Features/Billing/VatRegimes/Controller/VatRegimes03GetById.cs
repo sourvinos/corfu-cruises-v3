@@ -17,8 +17,8 @@ namespace VatRegimes {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
-        private readonly string _url = "/vatRegimes/51c16717-c294-40ff-90de-b41060c85e30";
-        private readonly string _notFoundUrl = "/vatRegimes/43383848-9819-91be-21b5-2cd7fa4d2cef";
+        private readonly string _url = "/vatRegimes/1";
+        private readonly string _notFoundUrl = "/vatRegimes/9999";
 
         #endregion
 

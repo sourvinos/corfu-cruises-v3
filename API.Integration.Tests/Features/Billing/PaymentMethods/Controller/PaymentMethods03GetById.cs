@@ -17,8 +17,8 @@ namespace PaymentMethods {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
-        private readonly string _url = "/paymentMethods/0a9ff051-ad20-430e-baac-e6a2946ddfe0";
-        private readonly string _notFoundUrl = "/paymentMethods/43383848-9819-91be-21b5-2cd7fa4d2cef";
+        private readonly string _url = "/paymentMethods/4";
+        private readonly string _notFoundUrl = "/paymentMethods/5";
 
         #endregion
 

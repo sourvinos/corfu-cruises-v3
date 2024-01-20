@@ -36,10 +36,10 @@ namespace API.Features.Billing.TaxOffices {
             return mapper.Map<IEnumerable<TaxOffice>, IEnumerable<TaxOfficeAutoCompleteVM>>(taxOffices);
         }
 
-        public async Task<TaxOffice> GetByIdAsync(string id) {
+        public async Task<TaxOffice> GetByIdAsync(int id) {
             return await context.TaxOffices
                 .AsNoTracking()
-                .SingleOrDefaultAsync(x => x.Id.ToString() == id);
+                .SingleOrDefaultAsync(x => x.Id == id);
         }
 
     }

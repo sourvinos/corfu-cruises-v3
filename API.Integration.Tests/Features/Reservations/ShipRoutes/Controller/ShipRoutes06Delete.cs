@@ -17,8 +17,8 @@ namespace ShipRoutes {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "delete";
         private readonly string _baseUrl;
-        private readonly string _url = "/shipRoutes/24";
-        private readonly string _notFoundUrl = "/shipRoutes/999";
+        private readonly string _url = "/shipRoutes/6";
+        private readonly string _notFoundUrl = "/shipRoutes/9999";
 
         #endregion
 

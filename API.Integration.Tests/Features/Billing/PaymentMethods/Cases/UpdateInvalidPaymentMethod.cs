@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Infrastructure;
@@ -17,9 +16,9 @@ namespace PaymentMethods {
             return new object[] {
                 new TestPaymentMethod {
                     StatusCode = 415,
-                    Id = Guid.Parse("439e8738-31dd-42bf-9392-1fafc741a27c"),
+                    Id = 4,
                     Description = Helpers.CreateRandomString(128),
-                    PutAt = "2024-01-01 00:00:00"
+                    PutAt = "2024-01-01 10:00:00"
                 }
             };
         }

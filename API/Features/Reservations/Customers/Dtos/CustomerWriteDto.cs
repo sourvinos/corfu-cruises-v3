@@ -1,5 +1,4 @@
-﻿using System;
-using API.Infrastructure.Interfaces;
+﻿using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations.Customers {
 
@@ -8,9 +7,9 @@ namespace API.Features.Reservations.Customers {
         // PK
         public int Id { get; set; }
         // FKs
-        public Guid TaxOfficeId { get; set; }
-        public Guid VatRegimeId { get; set; }
         public int NationalityId { get; set; }
+        public int TaxOfficeId { get; set; }
+        public int VatRegimeId { get; set; }
         // Fields
         public string Description { get; set; }
         public string TaxNo { get; set; }

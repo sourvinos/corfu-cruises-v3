@@ -20,12 +20,12 @@ namespace Reservations {
                     Date = "2022-05-01",
                     CustomerId = 2,
                     DestinationId = 1,
-                    PickupPointId = 248,
+                    PickupPointId = 215,
                     PortId = 2,
                     RefNo = "PA175",
                     TicketNo = "21",
                     Adults = 2,
-                    PutAt = "2023-09-07 09:55:16"
+                    PutAt = "2024-01-19 07:44:43"
                 }
             };
         }
@@ -37,10 +37,10 @@ namespace Reservations {
                     Date = "2022-05-01",
                     CustomerId = 2,
                     DestinationId = 1,
-                    PickupPointId = 266,
-                    PortId = 2,
+                    PickupPointId = 130,
+                    PortId = 1,
                     TicketNo = "23",
-                    PutAt = "2023-09-07 09:55:16"
+                    PutAt = "2024-01-19 07:44:43"
                 }
             };
         }

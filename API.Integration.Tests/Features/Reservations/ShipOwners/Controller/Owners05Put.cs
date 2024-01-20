@@ -19,7 +19,7 @@ namespace ShipOwners {
         private readonly string _actionVerb = "put";
         private readonly string _baseUrl;
         private readonly string _url = "/shipOwners";
-        private readonly string _notFoundUrl = "/shipOwners/999";
+        private readonly string _notFoundUrl = "/shipOwners/9999";
 
         #endregion
 

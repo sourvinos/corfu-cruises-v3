@@ -9,7 +9,7 @@ namespace API.Features.Billing.Prices {
     public class Price : IMetadata {
 
         // PK
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         // FKs
         public int CustomerId { get; set; }
         public int DestinationId { get; set; }

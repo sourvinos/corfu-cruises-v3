@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Infrastructure;
@@ -16,9 +15,9 @@ namespace PaymentMethods {
         private static object[] ValidRecord() {
             return new object[] {
                 new TestPaymentMethod {
-                    Id = Guid.Parse("439e8738-31dd-42bf-9392-1fafc741a27c"),
+                    Id = 4,
                     Description = Helpers.CreateRandomString(128),
-                    PutAt = "2024-01-04 03:00:00"
+                    PutAt = "2024-01-01 00:00:00"
                 }
             };
         }

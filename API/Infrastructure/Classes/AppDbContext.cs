@@ -1,5 +1,4 @@
-﻿using API.Features.Billing.Codes;
-using API.Features.Billing.Parameters;
+﻿using API.Features.Billing.Parameters;
 using API.Features.Billing.PaymentMethods;
 using API.Features.Billing.Prices;
 using API.Features.Billing.TaxOffices;
@@ -26,6 +25,7 @@ using API.Infrastructure.Users;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using API.Features.Billing.DocumentTypes;
 
 namespace API.Infrastructure.Classes {
 
@@ -59,7 +59,7 @@ namespace API.Infrastructure.Classes {
         #region DbSets - Billing
 
         public DbSet<BillingParameter> BillingParameters { get; set; }
-        public DbSet<Code> Codes { get; set; }
+        public DbSet<DocumentType> DocumentTypes { get; set; }
         public DbSet<PaymentMethod> PaymentMethods { get; set; }
         public DbSet<Price> Prices { get; set; }
         public DbSet<TaxOffice> TaxOffices { get; set; }
@@ -102,7 +102,7 @@ namespace API.Infrastructure.Classes {
             modelBuilder.ApplyConfiguration(new ShipsConfig());
             #endregion
             #region billing
-            modelBuilder.ApplyConfiguration(new CodesConfig());
+            modelBuilder.ApplyConfiguration(new DocumentTypeConfig());
             modelBuilder.ApplyConfiguration(new PaymentMethodsConfig());
             modelBuilder.ApplyConfiguration(new PricesConfig());
             modelBuilder.ApplyConfiguration(new TaxOfficesConfig());

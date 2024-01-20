@@ -17,7 +17,7 @@ namespace Registrars {
             return new object[] {
                 new TestRegistrar {
                     StatusCode = 454,
-                    ShipId = 99,
+                    ShipId = 999,
                     Fullname = Helpers.CreateRandomString(128)
                 }
             };
@@ -27,7 +27,7 @@ namespace Registrars {
             return new object[] {
                 new TestRegistrar {
                     StatusCode = 454,
-                    ShipId = 1,
+                    ShipId = 7,
                     Fullname = Helpers.CreateRandomString(128)
                 }
             };

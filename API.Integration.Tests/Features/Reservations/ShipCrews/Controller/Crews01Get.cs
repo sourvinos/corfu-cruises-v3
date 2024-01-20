@@ -55,7 +55,7 @@ namespace ShipCrews {
         public async Task Admins_Can_List() {
             var actionResponse = await List.Action(_httpClient, _baseUrl, _url, "john", "Ec11fc8c16db#");
             var records = JsonSerializer.Deserialize<List<SimpleEntity>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            Assert.Equal(24, records.Count);
+            Assert.Equal(22, records.Count);
         }
 
     }

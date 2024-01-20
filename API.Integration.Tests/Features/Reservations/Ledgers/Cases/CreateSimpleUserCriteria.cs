@@ -19,7 +19,7 @@ namespace Ledgers {
                     CustomerIds = new int[] {2},
                     DestinationIds = new int[] {1},
                     PortIds = new int[] {2},
-                    ShipIds = new int?[] {6}
+                    ShipIds = new int?[] {1}
                 }
             };
         }

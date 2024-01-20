@@ -18,7 +18,7 @@ namespace Reservations {
                 new TestNewReservation {
                     CustomerId = 1,
                     DestinationId = 1,
-                    PickupPointId = 642,
+                    PickupPointId = 1,
                     PortId = 1,
                     Date = "2022-09-15",
                     Now = new DateTime(2022, 9, 16, 12, 00, 00),
@@ -42,7 +42,7 @@ namespace Reservations {
                 new TestNewReservation {
                     CustomerId = 1,
                     DestinationId = 1,
-                    PickupPointId = 642,
+                    PickupPointId = 1,
                     PortId = 1,
                     Date = "2022-09-15",
                     Now = new DateTime(2022, 9, 14, 12, 00, 00),
@@ -50,9 +50,9 @@ namespace Reservations {
                     Adults = 2,
                     Kids = 1,
                     Passengers = new List<TestPassenger>() {
-                        new TestPassenger { Lastname = "AEDAN", Firstname = "ZAYAS", Birthdate = "1992-06-12", NationalityId = 123, GenderId = 1 },
-                        new TestPassenger { Lastname = "ALONA", Firstname = "CUTLER", Birthdate = "1964-04-28", NationalityId = 127, GenderId = 2 },
-                        new TestPassenger { Lastname = "LYA", Firstname = "TROWBRIDGE", Birthdate = "2015-01-21", NationalityId = 211, GenderId = 1 },
+                        new() { Lastname = "AEDAN", Firstname = "ZAYAS", Birthdate = "1992-06-12", NationalityId = 123, GenderId = 1 },
+                        new() { Lastname = "ALONA", Firstname = "CUTLER", Birthdate = "1964-04-28", NationalityId = 127, GenderId = 2 },
+                        new() { Lastname = "LYA", Firstname = "TROWBRIDGE", Birthdate = "2015-01-21", NationalityId = 211, GenderId = 1 },
                     }
                 }
             };

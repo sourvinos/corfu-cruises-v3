@@ -6,6 +6,7 @@ namespace API.Features.Reservations.ShipRoutes {
     public class ShipRouteValidator : AbstractValidator<ShipRouteWriteDto> {
 
         public ShipRouteValidator() {
+            // Fields
             RuleFor(x => x.Description).NotEmpty().MaximumLength(128);
             RuleFor(x => x.FromPort).NotEmpty().MaximumLength(128);
             RuleFor(x => x.FromTime).Must(TimeHelpers.BeValidTime);

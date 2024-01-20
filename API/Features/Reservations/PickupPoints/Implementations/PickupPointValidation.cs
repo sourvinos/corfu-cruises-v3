@@ -34,10 +34,10 @@ namespace API.Features.Reservations.PickupPoints {
 
         private bool IsValidPort(PickupPointWriteDto pickupPoint) {
             return pickupPoint.Id == 0
-                ? context.CoachRoutes
+                ? context.Ports
                     .AsNoTracking()
                     .SingleOrDefault(x => x.Id == pickupPoint.PortId && x.IsActive) != null
-                : context.CoachRoutes
+                : context.Ports
                     .AsNoTracking()
                     .SingleOrDefault(x => x.Id == pickupPoint.PortId) != null;
         }

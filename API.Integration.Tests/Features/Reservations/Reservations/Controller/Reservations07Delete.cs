@@ -17,7 +17,6 @@ namespace Reservations {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "delete";
         private readonly string _baseUrl;
-        private readonly string _url = "/reservations";
         private readonly string _notFoundUrl = "/reservations/b140036a-5b03-4098-9774-8878f252fdb7";
         private readonly string _deleteUrl = "/reservations/08da32ab-8ef2-42e4-85c5-6760c02b81c1";
 
@@ -55,10 +54,9 @@ namespace Reservations {
             await Forbidden.Action(_httpClient, _baseUrl, _deleteUrl, _actionVerb, "simpleuser", "1234567890", null);
         }
 
-        [Theory]
-        [ClassData(typeof(ActiveAdminsCanDeleteOwnedByAnyone))]
-        public async Task Admins_Can_Delete(TestNewReservation record) {
-            await RecordDeleted.Action(_httpClient, _baseUrl, _url + "/" + record.ReservationId.ToString(), "john", "Ec11fc8c16db#");
+        [Fact]
+        public async Task Admins_Can_Delete() {
+            await RecordDeleted.Action(_httpClient, _baseUrl, _deleteUrl, "john", "Ec11fc8c16db#");
         }
 
     }

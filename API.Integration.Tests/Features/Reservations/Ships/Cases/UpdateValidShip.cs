@@ -15,11 +15,11 @@ namespace Ships {
         private static object[] ValidRecord() {
             return new object[] {
                 new TestShip {
-                    Id = 6,
-                    ShipOwnerId = 5,
+                    Id = 1,
+                    ShipOwnerId = 1,
                     Description = Helpers.CreateRandomString(15),
                     Abbreviation = Helpers.CreateRandomString(5),
-                    PutAt= "2023-09-07 09:56:41"
+                    PutAt= "2024-01-19 07:44:22"
                 }
             };
         }

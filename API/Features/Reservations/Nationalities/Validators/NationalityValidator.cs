@@ -5,8 +5,9 @@ namespace API.Features.Reservations.Nationalities {
     public class NationalityValidator : AbstractValidator<NationalityWriteDto> {
 
         public NationalityValidator() {
-            RuleFor(x => x.Description).NotEmpty().MaximumLength(128);
+            // Fields
             RuleFor(x => x.Code).NotEmpty().MaximumLength(10);
+            RuleFor(x => x.Description).NotEmpty().MaximumLength(128);
         }
 
     }

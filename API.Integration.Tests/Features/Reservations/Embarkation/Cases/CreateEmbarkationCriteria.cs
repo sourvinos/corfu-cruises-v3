@@ -21,7 +21,7 @@ namespace Boarding
                     Date = "2022-05-01",
                     DestinationIds = new int[] {1, 2, 3},
                     PortIds = new int[] {1},
-                    ShipIds = new int?[] {6}
+                    ShipIds = new int?[] {1}
                 }
             };
         }

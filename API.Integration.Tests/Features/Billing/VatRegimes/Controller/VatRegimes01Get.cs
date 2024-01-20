@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Infrastructure;
 using Xunit;
-using API.Features.Billing.Codes;
+using API.Features.Billing.DocumentTypes;
 
 namespace VatRegimes {
 
@@ -54,7 +54,7 @@ namespace VatRegimes {
         [Fact]
         public async Task Admins_Can_List() {
             var actionResponse = await List.Action(_httpClient, _baseUrl, _url, "john", "Ec11fc8c16db#");
-            var records = JsonSerializer.Deserialize<List<CodeListVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            var records = JsonSerializer.Deserialize<List<DocumentTypeListVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             Assert.Equal(3, records.Count);
         }
 

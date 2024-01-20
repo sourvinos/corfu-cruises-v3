@@ -16,6 +16,7 @@ using API.Infrastructure.Users;
 using API.Infrastructure.Account;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using API.Features.Billing.DocumentTypes;
 
 namespace API.Infrastructure.Extensions {
 
@@ -26,7 +27,7 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IValidator<ChangePasswordVM>, ChangePasswordValidator>();
             services.AddTransient<IValidator<ForgotPasswordRequestVM>, ForgotPasswordValidator>();
             services.AddTransient<IValidator<ResetPasswordVM>, ResetPasswordValidator>();
-            // Tables
+            // Reservations
             services.AddTransient<IValidator<CoachRouteWriteDto>, CoachRouteValidator>();
             services.AddTransient<IValidator<CustomerWriteDto>, CustomerValidator>();
             services.AddTransient<IValidator<DestinationWriteDto>, DestinationValidator>();
@@ -41,6 +42,8 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IValidator<ShipCrewWriteDto>, ShipCrewValidator>();
             services.AddTransient<IValidator<ShipRouteWriteDto>, ShipRouteValidator>();
             services.AddTransient<IValidator<ShipWriteDto>, ShipValidator>();
+            // Billing
+            services.AddTransient<IValidator<DocumentTypeWriteDto>, DocumentTypeValidator>();
             // Users
             services.AddTransient<IValidator<UserNewDto>, UserNewValidator>();
             services.AddTransient<IValidator<UserUpdateDto>, UserUpdateValidator>();

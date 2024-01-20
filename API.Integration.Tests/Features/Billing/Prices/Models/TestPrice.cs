@@ -1,12 +1,10 @@
-using System;
-
 namespace Prices {
 
     public class TestPrice {
 
         public int StatusCode { get; set; }
 
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public int CustomerId { get; set; }
         public int DestinationId { get; set; }
         public int PortId { get; set; }

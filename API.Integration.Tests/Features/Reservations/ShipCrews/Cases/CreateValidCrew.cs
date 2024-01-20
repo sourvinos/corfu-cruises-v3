@@ -17,7 +17,7 @@ namespace ShipCrews {
                 new TestCrew {
                     GenderId = 1,
                     NationalityId = 1,
-                    ShipId = 7,
+                    ShipId = 1,
                     Lastname = Helpers.CreateRandomString(128),
                     Firstname = Helpers.CreateRandomString(128),
                     Birthdate = "1970-01-01",

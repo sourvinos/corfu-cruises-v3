@@ -18,11 +18,11 @@ namespace ShipCrews {
                     Id = 22,
                     GenderId = 1,
                     NationalityId = 1,
-                    ShipId = 6,
+                    ShipId = 1,
                     Lastname = Helpers.CreateRandomString(128),
                     Firstname = Helpers.CreateRandomString(128),
                     Birthdate = "1970-01-01",
-                    PutAt = "2023-09-07 09:55:49"
+                    PutAt = "2023-09-14 05:17:56"
                 }
             };
         }

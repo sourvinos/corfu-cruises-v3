@@ -17,8 +17,8 @@ namespace TaxOffices {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
-        private readonly string _url = "/taxOffices/0c7b3828-67ea-5f27-4739-0c92526c7122";
-        private readonly string _notFoundUrl = "/taxOffices/43383848-9819-91be-21b5-2cd7fa4d2cef";
+        private readonly string _url = "/taxOffices/1";
+        private readonly string _notFoundUrl = "/taxOffices/9999";
 
         #endregion
 

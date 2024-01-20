@@ -17,9 +17,9 @@ namespace PaymentMethods {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "delete";
         private readonly string _baseUrl;
-        private readonly string _url = "/paymentMethods/439e8738-31dd-42bf-9392-1fafc741a27c";
-        private readonly string _inUseUrl = "/paymentMethods/d142adde-3d28-4095-1987-93a362297ed8";
-        private readonly string _notFoundUrl = "/paymentMethods/b7dd8249-ceeb-42d9-ab34-4b0a08ed3eb0";
+        private readonly string _url = "/paymentMethods/4";
+        private readonly string _inUseUrl = "/paymentMethods/1";
+        private readonly string _notFoundUrl = "/paymentMethods/5";
 
         #endregion
 
@@ -57,7 +57,7 @@ namespace PaymentMethods {
 
         [Fact]
         public async Task Admins_Can_Not_Delete_In_Use() {
-            // await RecordInUse.Action(_httpClient, _baseUrl, _inUseUrl, "john", "Ec11fc8c16db#");
+            await RecordInUse.Action(_httpClient, _baseUrl, _inUseUrl, "john", "Ec11fc8c16db#");
         }
 
         [Fact]

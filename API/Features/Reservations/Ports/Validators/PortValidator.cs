@@ -5,8 +5,9 @@ namespace API.Features.Reservations.Ports {
     public class PortValidator : AbstractValidator<PortWriteDto> {
 
         public PortValidator() {
-            RuleFor(x => x.Description).NotEmpty().MaximumLength(128);
+            // Fields
             RuleFor(x => x.Abbreviation).NotEmpty().MaximumLength(5);
+            RuleFor(x => x.Description).NotEmpty().MaximumLength(128);
             RuleFor(x => x.StopOrder).InclusiveBetween(1, to: 9);
         }
 

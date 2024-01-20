@@ -18,7 +18,7 @@ namespace Schedules {
                 new UpdateTestSchedule {
                     StatusCode = 451,
                     Id = 677,
-                    DestinationId = 99,
+                    DestinationId = 9999,
                     PortId = 2,
                     Date = "2022-12-04",
                     Time = "08:00",
@@ -33,7 +33,7 @@ namespace Schedules {
                     StatusCode = 411,
                     Id = 677,
                     DestinationId = 1,
-                    PortId = 99,
+                    PortId = 999,
                     Date = "2022-12-04",
                     Time = "08:00",
                     MaxPax = 185
@@ -47,10 +47,10 @@ namespace Schedules {
                     StatusCode = 415,
                     Id = 677,
                     DestinationId = 1,
-                    PortId = 1,
-                    Date = "2022-12-04",
-                    Time = "08:00",
-                    MaxPax = 185,
+                    PortId = 2,
+                    Date = "2023-06-23",
+                    Time = "09:45",
+                    MaxPax = 200,
                     PutAt = "2023-09-07 09:54:22"
                 }
             };

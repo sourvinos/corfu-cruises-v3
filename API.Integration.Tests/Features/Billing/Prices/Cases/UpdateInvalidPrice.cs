@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -23,7 +22,7 @@ namespace Prices {
             return new object[] {
                 new TestPrice {
                     StatusCode = 450,
-                    Id = Guid.Parse("4566b88d-ed00-4996-be85-732c93f24943"),
+                    Id = 1,
                     CustomerId = 9999,
                     DestinationId = 1,
                     PortId = 1,
@@ -42,7 +41,7 @@ namespace Prices {
             return new object[] {
                 new TestPrice {
                     StatusCode = 451,
-                    Id = Guid.Parse("4566b88d-ed00-4996-be85-732c93f24943"),
+                    Id = 1,
                     CustomerId = 1,
                     DestinationId = 9999,
                     PortId = 1,
@@ -61,7 +60,7 @@ namespace Prices {
             return new object[] {
                 new TestPrice {
                     StatusCode = 460,
-                    Id = Guid.Parse("4566b88d-ed00-4996-be85-732c93f24943"),
+                    Id = 1,
                     CustomerId = 1,
                     DestinationId = 1,
                     PortId = 9999,
@@ -80,7 +79,7 @@ namespace Prices {
             return new object[] {
                 new TestPrice {
                     StatusCode = 461,
-                    Id = Guid.Parse("4566b88d-ed00-4996-be85-732c93f24943"),
+                    Id = 1,
                     CustomerId = 1,
                     DestinationId = 1,
                     PortId = 1,
@@ -99,7 +98,7 @@ namespace Prices {
             return new object[] {
                 new TestPrice {
                     StatusCode = 461,
-                    Id = Guid.Parse("4566b88d-ed00-4996-be85-732c93f24943"),
+                    Id = 1,
                     CustomerId = 1,
                     DestinationId = 1,
                     PortId = 1,
@@ -118,7 +117,7 @@ namespace Prices {
             return new object[] {
                 new TestPrice {
                     StatusCode = 461,
-                    Id = Guid.Parse("4566b88d-ed00-4996-be85-732c93f24943"),
+                    Id = 1,
                     CustomerId = 1,
                     DestinationId = 1,
                     PortId = 1,
@@ -137,7 +136,7 @@ namespace Prices {
             return new object[] {
                 new TestPrice {
                     StatusCode = 461,
-                    Id = Guid.Parse("4566b88d-ed00-4996-be85-732c93f24943"),
+                    Id = 1,
                     CustomerId = 1,
                     DestinationId = 1,
                     PortId = 1,
@@ -156,7 +155,7 @@ namespace Prices {
             return new object[] {
                 new TestPrice {
                     StatusCode = 415,
-                    Id = Guid.Parse("4566b88d-ed00-4996-be85-732c93f24943"),
+                    Id = 1,
                     CustomerId = 1,
                     DestinationId = 1,
                     PortId = 1,

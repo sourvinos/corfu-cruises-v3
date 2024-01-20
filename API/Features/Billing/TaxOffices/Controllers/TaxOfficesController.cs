@@ -40,7 +40,7 @@ namespace API.Features.Billing.TaxOffices {
 
         [HttpGet("{id}")]
         [Authorize(Roles = "admin")]
-        public async Task<ResponseWithBody> GetByIdAsync(string id) {
+        public async Task<ResponseWithBody> GetByIdAsync(int id) {
             var x = await taxOfficeRepo.GetByIdAsync(id);
             if (x != null) {
                 return new ResponseWithBody {
@@ -80,7 +80,7 @@ namespace API.Features.Billing.TaxOffices {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public async Task<Response> Put([FromBody] TaxOfficeWriteDto taxOffice) {
-            var x = await taxOfficeRepo.GetByIdAsync(taxOffice.Id.ToString());
+            var x = await taxOfficeRepo.GetByIdAsync(taxOffice.Id);
             if (x != null) {
                 var z = taxOfficeValidation.IsValid(x, taxOffice);
                 if (z == 200) {
@@ -105,7 +105,7 @@ namespace API.Features.Billing.TaxOffices {
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "admin")]
-        public async Task<Response> Delete([FromRoute] string id) {
+        public async Task<Response> Delete([FromRoute] int id) {
             var x = await taxOfficeRepo.GetByIdAsync(id);
             if (x != null) {
                 taxOfficeRepo.Delete(x);

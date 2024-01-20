@@ -41,7 +41,7 @@ namespace Prices {
             return new object[] {
                 new TestPrice {
                     StatusCode = 450,
-                    CustomerId = 195,
+                    CustomerId = 200,
                     DestinationId = 1,
                     PortId = 1,
                     From = "2023-01-01",
@@ -76,7 +76,7 @@ namespace Prices {
                 new TestPrice {
                     StatusCode = 451,
                     CustomerId = 1,
-                    DestinationId = 2,
+                    DestinationId = 7,
                     PortId = 1,
                     From = "2023-01-01",
                     To = "2023-01-01",

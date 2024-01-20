@@ -6,9 +6,11 @@ namespace API.Features.Reservations.Customers {
     public class CustomerValidator : AbstractValidator<CustomerWriteDto> {
 
         public CustomerValidator() {
+            // FKs
             RuleFor(x => x.NationalityId).NotEmpty();
             RuleFor(x => x.TaxOfficeId).NotEmpty();
             RuleFor(x => x.VatRegimeId).NotEmpty();
+            // Fields
             RuleFor(x => x.Description).NotEmpty().MaximumLength(128);
             RuleFor(x => x.TaxNo).NotEmpty().MaximumLength(36);
             RuleFor(x => x.Profession).MaximumLength(128);

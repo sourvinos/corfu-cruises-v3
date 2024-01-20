@@ -24,8 +24,8 @@ namespace API.Features.Reservations.Customers {
         public string PutUser { get; set; }
         // Navigation
         public SimpleEntity Nationality { get; set; }
-        public SimpleGuidEntity TaxOffice { get; set; }
-        public SimpleGuidEntity VatRegime { get; set; }
+        public SimpleEntity TaxOffice { get; set; }
+        public SimpleEntity VatRegime { get; set; }
 
     }
 

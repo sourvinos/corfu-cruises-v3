@@ -17,9 +17,9 @@ namespace VatRegimes {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "delete";
         private readonly string _baseUrl;
-        private readonly string _url = "/vatRegimes/51c16717-c294-40ff-90de-b41060c85e30";
-        private readonly string _inUseUrl = "/vatRegimes/d142adde-3d28-4095-1987-93a362297ed8";
-        private readonly string _notFoundUrl = "/vatRegimes/43383848-9819-91be-21b5-2cd7fa4d2cef";
+        private readonly string _url = "/vatRegimes/3";
+        private readonly string _inUseUrl = "/vatRegimes/1";
+        private readonly string _notFoundUrl = "/vatRegimes/9999";
 
         #endregion
 
@@ -57,12 +57,12 @@ namespace VatRegimes {
 
         [Fact]
         public async Task Admins_Can_Not_Delete_In_Use() {
-            // await RecordInUse.Action(_httpClient, _baseUrl, _inUseUrl, "john", "Ec11fc8c16db#");
+            await RecordInUse.Action(_httpClient, _baseUrl, _inUseUrl, "john", "Ec11fc8c16db#");
         }
 
         [Fact]
         public async Task Admins_Can_Delete_Not_In_Use() {
-            // await RecordDeleted.Action(_httpClient, _baseUrl, _url, "john", "Ec11fc8c16db#");
+            await RecordDeleted.Action(_httpClient, _baseUrl, _url, "john", "Ec11fc8c16db#");
         }
 
     }

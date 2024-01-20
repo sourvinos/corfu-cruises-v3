@@ -1,5 +1,3 @@
-using System;
-
 namespace VatRegimes {
 
     public class TestVatRegime {
@@ -7,7 +5,7 @@ namespace VatRegimes {
         public int StatusCode { get; set; }
 
         // PK
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         // Fields
         public string Description { get; set; }
         public bool HasVat { get; set; }

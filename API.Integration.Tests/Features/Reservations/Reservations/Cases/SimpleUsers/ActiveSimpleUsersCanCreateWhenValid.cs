@@ -10,8 +10,8 @@ namespace Reservations {
 
         public IEnumerator<object[]> GetEnumerator() {
             yield return Simple_Users_Can_Create_Records_For_Future_Date();
-            // yield return Simple_Users_Can_Create_Records_WithOut_Transfer_For_Next_Day_Between_Closing_Time_And_Midnight();
-            // yield return Simple_Users_Can_Create_Records_WithOut_Transfer_For_Next_Day_Between_Midnight_And_Departure();
+            yield return Simple_Users_Can_Create_Records_WithOut_Transfer_For_Next_Day_Between_Closing_Time_And_Midnight();
+            yield return Simple_Users_Can_Create_Records_WithOut_Transfer_For_Next_Day_Between_Midnight_And_Departure();
         }
 
         private static object[] Simple_Users_Can_Create_Records_For_Future_Date() {
@@ -38,7 +38,7 @@ namespace Reservations {
                     CustomerId = 2,
                     DestinationId = 1,
                     DriverId = 0,
-                    PickupPointId = 507,
+                    PickupPointId = 443,
                     PortId = 1,
                     ShipId = null,
                     TicketNo = "xxxx",
@@ -56,7 +56,7 @@ namespace Reservations {
                     CustomerId = 2,
                     DestinationId = 1,
                     DriverId = 0,
-                    PickupPointId = 507,
+                    PickupPointId = 443,
                     PortId = 1,
                     ShipId = null,
                     TicketNo = "xxxx",

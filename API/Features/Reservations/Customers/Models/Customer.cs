@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using API.Features.Reservations.Nationalities;
 using API.Features.Billing.TaxOffices;
 using API.Features.Billing.VatRegimes;
@@ -13,8 +12,8 @@ namespace API.Features.Reservations.Customers {
         // PK
         public int Id { get; set; }
         // Fks
-        public Guid TaxOfficeId { get; set; }
-        public Guid VatRegimeId { get; set; }
+        public int TaxOfficeId { get; set; }
+        public int VatRegimeId { get; set; }
         public int NationalityId { get; set; }
         // Fields
         public string Description { get; set; }

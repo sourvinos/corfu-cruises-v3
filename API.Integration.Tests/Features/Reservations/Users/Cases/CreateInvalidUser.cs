@@ -46,7 +46,7 @@ namespace Users {
             return new object[] {
                 new TestNewUser {
                     StatusCode = 418,
-                    CustomerId = 195,
+                    CustomerId = 200,
                     Username = Helpers.CreateRandomString(128),
                     Displayname = Helpers.CreateRandomString(128),
                     Email = "email@server.com",

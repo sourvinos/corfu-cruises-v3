@@ -27,7 +27,7 @@ namespace Schedules {
                             MaxPax = 185
                         },
                         new() {
-                            DestinationId = 2, // Does not exist
+                            DestinationId = 8, // Does not exist
                             PortId = 1,
                             Date = "2021-10-02",
                             Time = "08:00",
@@ -44,7 +44,7 @@ namespace Schedules {
                     StatusCode = 451,
                     TestScheduleBody = new List<TestScheduleBody>() {
                         new() {
-                            DestinationId = 10, // Is not active
+                            DestinationId = 7, // Is not active
                             PortId = 1,
                             Date = "2022-02-01",
                             Time = "08:00",
@@ -69,7 +69,7 @@ namespace Schedules {
                     TestScheduleBody = new List<TestScheduleBody>() {
                         new() {
                             DestinationId = 1,
-                            PortId = 3, // Does not exist
+                            PortId = 999, // Does not exist
                             Date = "2022-02-01",
                             Time = "08:00",
                             MaxPax = 185
@@ -100,7 +100,7 @@ namespace Schedules {
                         },
                         new () {
                             DestinationId = 1,
-                            PortId = 17, // Not active
+                            PortId = 3, // Not active
                             Time = "08:00",
                             Date = "2021-10-02",
                             MaxPax = 185

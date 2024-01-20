@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Infrastructure;
@@ -23,8 +22,8 @@ namespace Customers {
                 new TestCustomer {
                     StatusCode = 456,
                     NationalityId = 9999,
-                    TaxOfficeId = Guid.Parse("00b19ade-546c-7351-a164-9f5eeb0b3a69"),
-                    VatRegimeId = Guid.Parse("9735d2c5-4fdf-4549-84e7-b2ae4070ac3a"),
+                    TaxOfficeId = 1,
+                    VatRegimeId = 1,
                     Description = Helpers.CreateRandomString(128),
                     TaxNo = "099999999",
                     BalanceLimit = 0M
@@ -36,9 +35,9 @@ namespace Customers {
             return new object[] {
                 new TestCustomer {
                     StatusCode = 456,
-                    NationalityId = 255,
-                    TaxOfficeId = Guid.Parse("00b19ade-546c-7351-a164-9f5eeb0b3a69"),
-                    VatRegimeId = Guid.Parse("9735d2c5-4fdf-4549-84e7-b2ae4070ac3a"),
+                    NationalityId = 254,
+                    TaxOfficeId = 1,
+                    VatRegimeId = 1,
                     Description = Helpers.CreateRandomString(128),
                     TaxNo = "099999999",
                     BalanceLimit = 0M
@@ -51,8 +50,8 @@ namespace Customers {
                 new TestCustomer {
                     StatusCode = 458,
                     NationalityId = 1,
-                    TaxOfficeId = Guid.Parse("ea6d1494-a7b4-47f4-b7ce-a462a73ae6f3"),
-                    VatRegimeId = Guid.Parse("9735d2c5-4fdf-4549-84e7-b2ae4070ac3a"),
+                    TaxOfficeId = 999,
+                    VatRegimeId = 1,
                     Description = Helpers.CreateRandomString(128),
                     TaxNo = "099999999",
                     BalanceLimit = 0M
@@ -65,8 +64,8 @@ namespace Customers {
                 new TestCustomer {
                     StatusCode = 458,
                     NationalityId = 1,
-                    TaxOfficeId = Guid.Parse("29c8fa5d-95f0-33d5-66e0-fbe41f368cff"),
-                    VatRegimeId = Guid.Parse("9735d2c5-4fdf-4549-84e7-b2ae4070ac3a"),
+                    TaxOfficeId = 144,
+                    VatRegimeId = 1,
                     Description = Helpers.CreateRandomString(128),
                     TaxNo = "099999999",
                     BalanceLimit = 0M
@@ -79,8 +78,8 @@ namespace Customers {
                 new TestCustomer {
                     StatusCode = 463,
                     NationalityId = 1,
-                    TaxOfficeId = Guid.Parse("00b19ade-546c-7351-a164-9f5eeb0b3a69"),
-                    VatRegimeId = Guid.Parse("f34c709f-95e4-4c97-a76e-edb1d13b5b1c"),
+                    TaxOfficeId = 1,
+                    VatRegimeId = 99,
                     Description = Helpers.CreateRandomString(128),
                     TaxNo = "099999999",
                     BalanceLimit = 0M
@@ -93,8 +92,8 @@ namespace Customers {
                 new TestCustomer {
                     StatusCode = 463,
                     NationalityId = 1,
-                    TaxOfficeId = Guid.Parse("00b19ade-546c-7351-a164-9f5eeb0b3a69"),
-                    VatRegimeId = Guid.Parse("51c16717-c294-40ff-90de-b41060c85e30"),
+                    TaxOfficeId = 1,
+                    VatRegimeId = 3,
                     Description = Helpers.CreateRandomString(128),
                     TaxNo = "099999999",
                     BalanceLimit = 0M

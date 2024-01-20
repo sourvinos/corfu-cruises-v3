@@ -1,11 +1,10 @@
-using System;
 using API.Infrastructure.Classes;
 
 namespace API.Features.Billing.Prices {
 
     public class PriceListVM {
 
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public SimpleEntity Customer { get; set; }
         public SimpleEntity Destination { get; set; }
         public SimpleEntity Port { get; set; }

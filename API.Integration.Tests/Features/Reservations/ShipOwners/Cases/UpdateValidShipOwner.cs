@@ -15,9 +15,9 @@ namespace ShipOwners {
         private static object[] ValidRecord() {
             return new object[] {
                 new TestShipOwner {
-                    Id = 5,
+                    Id = 4,
                     Description = Helpers.CreateRandomString(128),
-                    PutAt = "2023-09-07 09:56:05"
+                    PutAt = "2023-09-14 05:17:56"
                 }
             };
         }

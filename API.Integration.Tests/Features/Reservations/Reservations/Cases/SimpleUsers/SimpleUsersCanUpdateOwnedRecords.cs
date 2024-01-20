@@ -20,7 +20,7 @@ namespace Reservations {
                     Now = new DateTime(2022, 3, 2, 11, 30, 00),
                     CustomerId = 2,
                     DestinationId = 1,
-                    PickupPointId = 129,
+                    PickupPointId = 98,
                     PortId = 1,
                     RefNo = "PA74512",
                     TicketNo = "OUH74",

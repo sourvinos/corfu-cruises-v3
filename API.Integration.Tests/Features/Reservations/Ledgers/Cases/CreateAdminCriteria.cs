@@ -16,10 +16,10 @@ namespace Ledgers {
                 new TestLedgerCriteria {
                     FromDate = "2023-05-01",
                     ToDate = "2023-05-01",
-                    CustomerIds = new int[] {69, 78},
-                    DestinationIds = new int[] {3, 8, 6, 7, 1, 9},
+                    CustomerIds = new int[] {12, 40, 48},
+                    DestinationIds = new int[] {1,2,3,4,5,6},
                     PortIds = new int[] {1, 2},
-                    ShipIds = new int?[] {6}
+                    ShipIds = new int?[] {1}
                 }
             };
         }

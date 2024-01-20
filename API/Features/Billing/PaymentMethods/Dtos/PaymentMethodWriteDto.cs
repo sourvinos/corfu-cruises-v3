@@ -1,12 +1,11 @@
-﻿using System;
-using API.Infrastructure.Interfaces;
+﻿using API.Infrastructure.Interfaces;
 
 namespace API.Features.Billing.PaymentMethods {
 
     public class PaymentMethodWriteDto : IMetadata {
 
         // PK
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         // Fields
         public string Description { get; set; }
         public bool IsCash { get; set; }

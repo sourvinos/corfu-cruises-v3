@@ -17,15 +17,17 @@ namespace Reservations {
             return new object[] {
                 new TestUpdateReservation {
                     StatusCode = 490,
-                    ReservationId = Guid.Parse("08da1f85-42c0-4777-8fe5-3ab3a814fa66"),
-                    Date = "2022-03-02",
-                    CustomerId = 11,
-                    DestinationId = 1,
-                    PickupPointId = 347,
+                    ReservationId = Guid.Parse("08da3414-d27e-4393-867b-97c3c79d71d6"),
+                    Date = "2022-06-11",
+                    CustomerId = 1,
+                    DestinationId = 2,
+                    PickupPointId = 94,
                     PortId = 1,
-                    RefNo = "PA7",
-                    TicketNo = "654",
+                    ShipId = 2,
+                    RefNo = "BL983",
+                    TicketNo = "A12",
                     Adults = 2,
+                    Kids = 1,
                     PutAt = "2023-09-14 05:17:50"
                 }
             };
@@ -35,15 +37,15 @@ namespace Reservations {
             return new object[] {
                 new TestUpdateReservation {
                     StatusCode = 431,
-                    ReservationId = Guid.Parse("08da2694-67a3-416c-8f05-d8aa777c7c1a"),
-                    Date = "2022-03-02",
-                    Now = new DateTime(2022, 3, 2, 11, 30, 00),
+                    ReservationId = Guid.Parse("08da2438-f893-40c4-8ead-5bc3ed9af591"),
+                    Date = "2022-04-29",
+                    Now = new DateTime(2022, 4, 29, 11, 30, 00),
                     CustomerId = 2,
                     DestinationId = 1,
-                    PickupPointId = 248,
+                    PickupPointId = 215,
                     PortId = 2,
-                    RefNo = "PA50",
-                    TicketNo = "#11",
+                    RefNo = "PA17",
+                    TicketNo = "14",
                     Adults = 2,
                     PutAt = "2023-09-14 05:17:50"
                }

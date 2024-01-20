@@ -17,7 +17,7 @@ namespace Ships {
             return new object[] {
                 new TestShip {
                     StatusCode = 449,
-                    ShipOwnerId = 1,
+                    ShipOwnerId = 9999,
                     Description = Helpers.CreateRandomString(15),
                     Abbreviation = Helpers.CreateRandomString(5)
                 }
@@ -28,7 +28,7 @@ namespace Ships {
             return new object[] {
                 new TestShip {
                     StatusCode = 449,
-                    ShipOwnerId = 7,
+                    ShipOwnerId = 4,
                     Description = Helpers.CreateRandomString(15),
                     Abbreviation = Helpers.CreateRandomString(5)
                 }

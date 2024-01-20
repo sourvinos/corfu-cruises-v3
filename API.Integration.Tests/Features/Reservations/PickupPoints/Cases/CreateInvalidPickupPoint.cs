@@ -59,7 +59,7 @@ namespace PickupPoints {
                 new TestPickupPoint {
                     StatusCode = 411,
                     CoachRouteId = 1,
-                    PortId = 9,
+                    PortId = 3,
                     Description = Helpers.CreateRandomString(128),
                     ExactPoint = Helpers.CreateRandomString(128),
                     Time = "08:00"

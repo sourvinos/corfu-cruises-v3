@@ -19,7 +19,7 @@ namespace VatRegimes {
         private readonly string _actionVerb = "put";
         private readonly string _baseUrl;
         private readonly string _url = "/vatRegimes";
-        private readonly string _notFoundUrl = "/vatRegimes/43383848-9819-91be-21b5-2cd7fa4d2cef";
+        private readonly string _notFoundUrl = "/vatRegimes/9999";
 
         #endregion
 

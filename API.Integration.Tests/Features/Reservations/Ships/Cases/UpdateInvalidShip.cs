@@ -18,7 +18,7 @@ namespace Ships {
                 new TestShip {
                     Id = 6,
                     StatusCode = 449,
-                    ShipOwnerId = 3,
+                    ShipOwnerId = 9999,
                     Description = Helpers.CreateRandomString(15),
                     Abbreviation = Helpers.CreateRandomString(5)
                 }
@@ -29,8 +29,8 @@ namespace Ships {
             return new object[] {
                 new TestShip {
                     StatusCode = 415,
-                    Id = 6,
-                    ShipOwnerId = 5,
+                    Id = 1,
+                    ShipOwnerId = 1,
                     Description = Helpers.CreateRandomString(15),
                     Abbreviation = Helpers.CreateRandomString(5),
                     PutAt= "2023-09-07 09:57:41"

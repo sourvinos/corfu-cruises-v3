@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using API.Infrastructure.Classes;
 using Infrastructure;
 using Xunit;
+using API.Features.Reservations.Customers;
 
 namespace Customers {
 
@@ -54,7 +55,7 @@ namespace Customers {
         [Fact]
         public async Task Admins_Can_List() {
             var actionResponse = await List.Action(_httpClient, _baseUrl, _url, "john", "Ec11fc8c16db#");
-            var records = JsonSerializer.Deserialize<List<SimpleEntity>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            var records = JsonSerializer.Deserialize<List<CustomerListVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             Assert.Equal(200, records.Count);
         }
 

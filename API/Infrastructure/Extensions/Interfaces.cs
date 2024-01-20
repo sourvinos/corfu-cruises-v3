@@ -1,6 +1,13 @@
+using API.Features.Billing.DocumentTypes;
+using API.Features.Billing.Invoices;
+using API.Features.Billing.Parameters;
+using API.Features.Billing.PaymentMethods;
+using API.Features.Billing.Prices;
+using API.Features.Billing.TaxOffices;
+using API.Features.Billing.VatRegimes;
+using API.Features.Reservations.Availability;
 using API.Features.Reservations.Boarding;
 using API.Features.Reservations.CoachRoutes;
-using API.Features.Billing.Codes;
 using API.Features.Reservations.Customers;
 using API.Features.Reservations.Destinations;
 using API.Features.Reservations.Drivers;
@@ -9,12 +16,9 @@ using API.Features.Reservations.Ledgers;
 using API.Features.Reservations.Manifest;
 using API.Features.Reservations.Nationalities;
 using API.Features.Reservations.Parameters;
-using API.Features.Billing.PaymentMethods;
 using API.Features.Reservations.PickupPoints;
 using API.Features.Reservations.Ports;
-using API.Features.Billing.Prices;
 using API.Features.Reservations.Registrars;
-using API.Features.Reservations.Availability;
 using API.Features.Reservations.Reservations;
 using API.Features.Reservations.Schedules;
 using API.Features.Reservations.ShipCrews;
@@ -22,13 +26,9 @@ using API.Features.Reservations.ShipOwners;
 using API.Features.Reservations.ShipRoutes;
 using API.Features.Reservations.Ships;
 using API.Features.Reservations.Statistics;
-using API.Features.Billing.TaxOffices;
-using API.Features.Billing.VatRegimes;
 using API.Infrastructure.Auth;
 using API.Infrastructure.Users;
 using Microsoft.Extensions.DependencyInjection;
-using API.Features.Billing.Parameters;
-using API.Features.Billing.Invoices;
 
 namespace API.Infrastructure.Extensions {
 
@@ -88,8 +88,9 @@ namespace API.Infrastructure.Extensions {
             #region billing
             services.AddTransient<IBillingParameterValidation, BillingParameterValidation>();
             services.AddTransient<IBillingParametersRepository, BillingParametersRepository>();
-            services.AddTransient<ICodeRepository, CodeRepository>();
-            services.AddTransient<ICodeValidation, CodeValidation>();
+            services.AddTransient<IDocumentTypeRepository, DocumentTypeRepository>();
+            services.AddTransient<IDocumentTypeValidation, DocumentTypeValidation>();
+            services.AddTransient<IInvoiceRepository, InvoiceRepository>();
             services.AddTransient<IPaymentMethodRepository, PaymentMethodRepository>();
             services.AddTransient<IPaymentMethodValidation, PaymentMethodValidation>();
             services.AddTransient<IPriceCloneRepository, PriceCloneRepository>();
@@ -100,7 +101,6 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IVatRegimeRepository, VatRegimeRepository>();
             services.AddTransient<IVatRegimeValidation, VatRegimeValidation>();
             services.AddTransient<IVatRegimeValidation, VatRegimeValidation>();
-            services.AddTransient<IInvoiceRepository, InvoiceRepository>();
             #endregion
             #region common
             services.AddTransient<IEmailSender, EmailSender>();

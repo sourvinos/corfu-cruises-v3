@@ -17,8 +17,8 @@ namespace Registrars {
             return new object[] {
                 new TestRegistrar {
                     StatusCode = 454,
-                    Id = 8,
-                    ShipId = 99,
+                    Id = 1,
+                    ShipId = 9999,
                     Fullname = Helpers.CreateRandomString(128)
                 }
             };
@@ -29,9 +29,9 @@ namespace Registrars {
                 new TestRegistrar {
                     StatusCode = 415,
                     Id = 1,
-                    ShipId = 7,
+                    ShipId = 1,
                     Fullname = Helpers.CreateRandomString(128),
-                    PutAt = "2023-09-07 09:55:22"
+                    PutAt = "2023-09-14 04:17:49"
                 }
             };
         }

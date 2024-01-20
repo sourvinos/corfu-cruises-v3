@@ -48,13 +48,13 @@ namespace PickupPoints {
             return new object[] {
                 new TestPickupPoint {
                     StatusCode = 415,
-                    Id = 1,
-                    CoachRouteId = 4,
+                    Id = 614,
+                    CoachRouteId = 1,
                     PortId = 1,
                     Description = Helpers.CreateRandomString(128),
                     ExactPoint = Helpers.CreateRandomString(128),
                     Time = "08:00",
-                    PutAt = "2023-09-07 09:55:22"
+                    PutAt = "2023-09-14 05:17:48"
                 }
             };
         }

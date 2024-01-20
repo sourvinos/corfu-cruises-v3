@@ -15,10 +15,10 @@ namespace Nationalities {
         private static object[] ValidRecord() {
             return new object[] {
                 new TestNationality {
-                    Id = 1,
+                    Id = 254,
                     Description = Helpers.CreateRandomString(128),
                     Code = Helpers.CreateRandomString(10),
-                    PutAt = "2023-09-07 09:53:32"
+                    PutAt = "2023-09-14 05:17:46"
                 }
             };
         }

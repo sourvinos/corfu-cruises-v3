@@ -18,7 +18,7 @@ namespace Destinations {
                     Id = 1,
                     Abbreviation = Helpers.CreateRandomString(5),
                     Description = Helpers.CreateRandomString(128),
-                    PutAt = "2023-09-07 09:52:40"
+                    PutAt = "2024-01-19 07:44:58"
                 }
             };
         }

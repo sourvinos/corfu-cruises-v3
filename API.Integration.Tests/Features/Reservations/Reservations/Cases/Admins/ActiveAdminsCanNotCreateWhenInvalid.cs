@@ -114,7 +114,7 @@ namespace Reservations {
                     Now = new DateTime(2022, 3, 5, 12, 00, 00),
                     CustomerId = 1,
                     DestinationId = 1,
-                    PickupPointId = 642,
+                    PickupPointId = 233,
                     PortId = 1,
                     RefNo = "PA74512",
                     TicketNo = "xxxx",
@@ -134,7 +134,7 @@ namespace Reservations {
                     StatusCode = 450,
                     Date = "2022-03-04",
                     Now = new DateTime(2022, 4, 30, 12, 00, 00),
-                    CustomerId = 999,
+                    CustomerId = 9999,
                     DestinationId = 1,
                     PickupPointId = 285,
                     PortId = 1,
@@ -150,7 +150,7 @@ namespace Reservations {
                     StatusCode = 450,
                     Date = "2022-03-04",
                     Now = new DateTime(2022, 4, 30, 12, 00, 00),
-                    CustomerId = 195,
+                    CustomerId = 200,
                     DestinationId = 1,
                     PickupPointId = 642,
                     PortId = 1,
@@ -174,7 +174,7 @@ namespace Reservations {
                     TicketNo = "xxxx",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
-                        new() { Lastname = "AEDAN", Firstname = "ZAYAS", Birthdate = "1992-06-12", NationalityId = 1, GenderId = 5 },
+                        new() { Lastname = "AEDAN", Firstname = "ZAYAS", Birthdate = "1992-06-12", NationalityId = 1, GenderId = 9999 },
                     }
                 }
             };
@@ -214,7 +214,7 @@ namespace Reservations {
                     TicketNo = "xxxx",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
-                        new() { Lastname = "AEDAN", Firstname = "ZAYAS", Birthdate = "1992-06-12", NationalityId = 999, GenderId = 3 },
+                        new() { Lastname = "AEDAN", Firstname = "ZAYAS", Birthdate = "1992-06-12", NationalityId = 9999, GenderId = 3 },
                     }
                 }
             };
@@ -234,25 +234,8 @@ namespace Reservations {
                     TicketNo = "xxxx",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
-                        new() { Lastname = "AEDAN", Firstname = "ZAYAS", Birthdate = "1992-06-12", NationalityId = 255, GenderId = 3 },
+                        new() { Lastname = "AEDAN", Firstname = "ZAYAS", Birthdate = "1992-06-12", NationalityId = 254, GenderId = 3 },
                     }
-                }
-            };
-        }
-
-        private static object[] PickupPoint_Must_Be_Active() {
-            return new object[] {
-                new TestNewReservation {
-                    StatusCode = 452,
-                    Date = "2022-03-04",
-                    Now = new DateTime(2022, 4, 30, 12, 00, 00),
-                    CustomerId = 1,
-                    DestinationId = 1,
-                    PickupPointId = 23,
-                    PortId = 1,
-                    Adults = 2,
-                    RefNo = "PA74512",
-                    TicketNo = "xxxxx"
                 }
             };
         }
@@ -265,7 +248,24 @@ namespace Reservations {
                     Now = new DateTime(2022, 4, 30, 12, 00, 00),
                     CustomerId = 1,
                     DestinationId = 1,
-                    PickupPointId = 999,
+                    PickupPointId = 9999,
+                    PortId = 1,
+                    Adults = 2,
+                    RefNo = "PA74512",
+                    TicketNo = "xxxxx"
+                }
+            };
+        }
+
+        private static object[] PickupPoint_Must_Be_Active() {
+            return new object[] {
+                new TestNewReservation {
+                    StatusCode = 452,
+                    Date = "2022-03-04",
+                    Now = new DateTime(2022, 4, 30, 12, 00, 00),
+                    CustomerId = 1,
+                    DestinationId = 1,
+                    PickupPointId = 614,
                     PortId = 1,
                     Adults = 2,
                     RefNo = "PA74512",
@@ -283,7 +283,7 @@ namespace Reservations {
                     CustomerId = 1,
                     DestinationId = 1,
                     PickupPointId = 23,
-                    PortId = 99,
+                    PortId = 9999,
                     Adults = 2,
                     RefNo = "PA74512",
                     TicketNo = "xxxxx"

@@ -16,9 +16,9 @@ namespace Registrars {
             return new object[] {
                 new TestRegistrar {
                     Id = 1,
-                    ShipId = 7,
+                    ShipId = 1,
                     Fullname = Helpers.CreateRandomString(128),
-                    PutAt = "2023-09-07 09:54:56"
+                    PutAt = "2023-09-14 05:17:49"
                 }
             };
         }

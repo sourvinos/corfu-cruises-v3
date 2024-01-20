@@ -8,7 +8,7 @@ namespace API.Features.Billing.TaxOffices {
 
         Task<IEnumerable<TaxOfficeListVM>> GetAsync();
         Task<IEnumerable<TaxOfficeAutoCompleteVM>> GetAutoCompleteAsync();
-        Task<TaxOffice> GetByIdAsync(string id);
+        Task<TaxOffice> GetByIdAsync(int id);
  
     }
 

@@ -1,4 +1,3 @@
-using System;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.Billing.Prices {
@@ -6,7 +5,7 @@ namespace API.Features.Billing.Prices {
     public class PriceWriteDto : IMetadata {
 
         // PK
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         // FKs
         public int CustomerId { get; set; }
         public int DestinationId { get; set; }

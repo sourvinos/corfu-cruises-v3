@@ -9,9 +9,9 @@ namespace API.Features.Reservations.Customers {
             CreateMap<Customer, CustomerListVM>();
             CreateMap<Customer, CustomerAutoCompleteVM>();
             CreateMap<Customer, CustomerReadDto>()
-                .ForMember(x => x.TaxOffice, x => x.MapFrom(x => new SimpleGuidEntity { Id = x.TaxOffice.Id, Description = x.TaxOffice.Description }))
+                .ForMember(x => x.TaxOffice, x => x.MapFrom(x => new SimpleEntity { Id = x.TaxOffice.Id, Description = x.TaxOffice.Description }))
                 .ForMember(x => x.Nationality, x => x.MapFrom(x => new SimpleEntity { Id = x.Nationality.Id, Description = x.Nationality.Description }))
-                .ForMember(x => x.VatRegime, x => x.MapFrom(x => new SimpleGuidEntity { Id = x.VatRegime.Id, Description = x.VatRegime.Description }));
+                .ForMember(x => x.VatRegime, x => x.MapFrom(x => new SimpleEntity { Id = x.VatRegime.Id, Description = x.VatRegime.Description }));
             CreateMap<CustomerWriteDto, Customer>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
                 .ForMember(x => x.Profession, x => x.MapFrom(x => x.Profession.Trim()))

@@ -19,7 +19,7 @@ namespace TaxOffices {
         private readonly string _actionVerb = "put";
         private readonly string _baseUrl;
         private readonly string _url = "/taxOffices";
-        private readonly string _notFoundUrl = "/taxOffices/43383848-9819-91be-21b5-2cd7fa4d2cef";
+        private readonly string _notFoundUrl = "/taxOffices/9999";
 
         #endregion
 
