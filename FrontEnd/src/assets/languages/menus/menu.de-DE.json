@@ -96,7 +96,7 @@
         "description": "Finanzämter"
     },
     {
-        "id": "codes",
+        "id": "documentTypes",
         "description": "Dokumentenarten"
     },
     {

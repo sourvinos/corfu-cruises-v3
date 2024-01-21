@@ -7,23 +7,30 @@
         </div>
 
         <form [formGroup]="form" id="form">
+            <!-- Abbreviation -->
+            <mat-form-field>
+                <mat-label>{{ getLabel('abbreviation') }}</mat-label>
+                <input [inputTabStop]="input" dataTabIndex="1" formControlName="abbreviation" matInput>
+                <mat-error *ngIf="abbreviation.hasError('required')">{{ getHint("required") }}</mat-error>
+                <mat-error *ngIf="abbreviation.hasError('maxlength')">{{ getHint("maxLength", abbreviation.errors.maxlength.requiredLength) }}</mat-error>
+            </mat-form-field>
             <!-- Description -->
             <mat-form-field>
                 <mat-label>{{ getLabel('description') }}</mat-label>
-                <input [inputTabStop]="input" dataTabIndex="1" formControlName="description" matInput>
+                <input [inputTabStop]="input" dataTabIndex="2" formControlName="description" matInput>
                 <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
             </mat-form-field>
             <!-- Batch -->
             <mat-form-field>
                 <mat-label>{{ getLabel('batch') }}</mat-label>
-                <input [inputTabStop]="input" dataTabIndex="2" formControlName="batch" matInput>
+                <input [inputTabStop]="input" dataTabIndex="3" formControlName="batch" matInput>
             </mat-form-field>
             <!-- Lastdate -->
-            <date-picker (outputValue)="patchFormWithSelectedDate($event)" [dataTabIndex]="3" [isAdminOrNewRecord]=true [label]="getLabel('lastDate')" [parentDate]="getLastDate()" [readOnly]=false [showHint]=false></date-picker>
+            <date-picker (outputValue)="patchFormWithSelectedDate($event)" [dataTabIndex]="4" [isAdminOrNewRecord]=true [label]="getLabel('lastDate')" [parentDate]="getLastDate()" [readOnly]=false [showHint]=false></date-picker>
             <!-- LastNo -->
             <mat-form-field>
                 <mat-label>{{ getLabel('lastNo') }}</mat-label>
-                <input [inputTabStop]="input" dataTabIndex="4" formControlName="lastNo" matInput type="number">
+                <input [inputTabStop]="input" dataTabIndex="5" formControlName="lastNo" matInput type="number">
                 <mat-error *ngIf="lastNo.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="lastNo.hasError('min') || lastNo.hasError('max')">{{ getHint("invalidRange") }}</mat-error>
             </mat-form-field>
@@ -31,13 +38,13 @@
                 <!-- Customers -->
                 <mat-form-field>
                     <mat-label>{{ getLabel('customers') }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="5" formControlName="customers" matInput>
+                    <input [inputTabStop]="input" dataTabIndex="6" formControlName="customers" matInput>
                     <mat-error *ngIf="customers.hasError('shouldBeEmptyPlusOrMinus')">{{ getHint("shouldBeEmptyPlusOrMinus") }}</mat-error>
                 </mat-form-field>
                 <!-- Suppliers -->
                 <mat-form-field>
                     <mat-label>{{ getLabel('suppliers') }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="6" formControlName="suppliers" matInput>
+                    <input [inputTabStop]="input" dataTabIndex="7" formControlName="suppliers" matInput>
                     <mat-error *ngIf="suppliers.hasError('shouldBeEmptyPlusOrMinus')">{{ getHint("shouldBeEmptyPlusOrMinus") }}</mat-error>
                 </mat-form-field>
             </div>
@@ -45,19 +52,19 @@
                 <!-- Table8_1 -->
                 <mat-form-field>
                     <mat-label>{{ getLabel('table8_1') }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="7" formControlName="table8_1" matInput>
+                    <input [inputTabStop]="input" dataTabIndex="8" formControlName="table8_1" matInput>
                     <mat-error *ngIf="table8_1.hasError('required')">{{ getHint("required") }}</mat-error>
                 </mat-form-field>
                 <!-- Table8_8 -->
                 <mat-form-field>
                     <mat-label>{{ getLabel('table8_8') }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="8" formControlName="table8_8" matInput>
+                    <input [inputTabStop]="input" dataTabIndex="9" formControlName="table8_8" matInput>
                     <mat-error *ngIf="table8_8.hasError('required')">{{ getHint("required") }}</mat-error>
                 </mat-form-field>
                 <!-- Table8_9 -->
                 <mat-form-field>
                     <mat-label>{{ getLabel('table8_9') }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="9" formControlName="table8_9" matInput>
+                    <input [inputTabStop]="input" dataTabIndex="10" formControlName="table8_9" matInput>
                     <mat-error *ngIf="table8_9.hasError('required')">{{ getHint("required") }}</mat-error>
                 </mat-form-field>
             </div>

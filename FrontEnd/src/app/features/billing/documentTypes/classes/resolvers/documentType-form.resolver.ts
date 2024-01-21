@@ -2,18 +2,18 @@ import { ActivatedRouteSnapshot } from '@angular/router'
 import { Injectable } from '@angular/core'
 import { catchError, map, of } from 'rxjs'
 // Custom
-import { CodeHttpService } from '../services/code-http.service'
+import { DocumentTypeHttpService } from '../services/documentType-http.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 
 @Injectable({ providedIn: 'root' })
 
-export class CodeFormResolver {
+export class DocumentTypeFormResolver {
 
-    constructor(private codeHttpService: CodeHttpService) { }
+    constructor(private documentTypeHttpService: DocumentTypeHttpService) { }
 
     resolve(route: ActivatedRouteSnapshot): any {
-        return this.codeHttpService.getSingle(route.params.id).pipe(
-            map((codeForm) => new FormResolved(codeForm)),
+        return this.documentTypeHttpService.getSingle(route.params.id).pipe(
+            map((documentTypeForm) => new FormResolved(documentTypeForm)),
             catchError((err: any) => of(new FormResolved(null, err)))
         )
     }

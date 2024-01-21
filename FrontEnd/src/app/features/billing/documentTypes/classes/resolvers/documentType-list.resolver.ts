@@ -2,18 +2,18 @@ import { Injectable } from '@angular/core'
 import { Observable, of } from 'rxjs'
 import { catchError, map } from 'rxjs/operators'
 // Custom
+import { DocumentTypeHttpService } from '../services/documentType-http.service'
 import { ListResolved } from '../../../../../shared/classes/list-resolved'
-import { CodeHttpService } from '../services/code-http.service'
 
 @Injectable({ providedIn: 'root' })
 
-export class CodeListResolver {
+export class DocumentTypeListResolver {
 
-    constructor(private codeHttpService: CodeHttpService) { }
+    constructor(private documentTypeHttpService: DocumentTypeHttpService) { }
 
     resolve(): Observable<ListResolved> {
-        return this.codeHttpService.getAll().pipe(
-            map((codeList) => new ListResolved(codeList)),
+        return this.documentTypeHttpService.getAll().pipe(
+            map((documentTypeList) => new ListResolved(documentTypeList)),
             catchError((err: any) => of(new ListResolved(null, err)))
         )
     }

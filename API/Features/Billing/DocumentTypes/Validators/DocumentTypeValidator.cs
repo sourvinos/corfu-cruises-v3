@@ -12,8 +12,8 @@ namespace API.Features.Billing.DocumentTypes {
             RuleFor(x => x.Batch).NotNull().MaximumLength(5);
             RuleFor(x => x.LastDate).Must(DateHelpers.BeCorrectFormat);
             RuleFor(x => x.LastNo).NotNull().InclusiveBetween(0, 9999);
-            RuleFor(x => x.Customers).NotNull().MaximumLength(1).Matches("[+|-| ]");
-            RuleFor(x => x.Suppliers).NotNull().MaximumLength(1).Matches("[+|-| ]");
+            RuleFor(x => x.Customers).NotNull().MaximumLength(1).Matches(@"^[+|\-| ]*$");
+            RuleFor(x => x.Suppliers).NotNull().MaximumLength(1).Matches(@"^[+|\-| ]*$");
             RuleFor(x => x.Table8_1).NotNull().MaximumLength(32);
             RuleFor(x => x.Table8_8).NotNull().MaximumLength(32);
             RuleFor(x => x.Table8_9).NotNull().MaximumLength(32);

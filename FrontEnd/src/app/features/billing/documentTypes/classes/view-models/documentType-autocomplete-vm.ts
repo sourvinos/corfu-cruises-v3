@@ -1,6 +1,6 @@
 import { Guid } from 'guid-typescript'
 
-export interface CodeAutoCompleteVM {
+export interface DocumentTypeAutoCompleteVM {
 
     id: Guid
     description: string

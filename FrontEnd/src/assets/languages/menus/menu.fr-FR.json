@@ -96,7 +96,7 @@
         "description": "Bureaux des impôts"
     },
     {
-        "id": "codes",
+        "id": "documentTypes",
         "description": "Types de documents"
     },
     {

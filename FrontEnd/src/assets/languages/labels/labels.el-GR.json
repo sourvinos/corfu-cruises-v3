@@ -2544,11 +2544,11 @@
         ]
     },
     {
-        "feature": "codeList",
+        "feature": "documentTypeList",
         "labels": [
             {
                 "id": "header",
-                "description": "Παραστατικά"
+                "description": "Τύποι παραστατικών"
             },
             {
                 "id": "headerDescription",
@@ -2585,11 +2585,15 @@
         ]
     },
     {
-        "feature": "codeForm",
+        "feature": "documentTypeForm",
         "labels": [
             {
                 "id": "header",
-                "description": "Παραστατικό"
+                "description": "Τύπος παραστατικού"
+            },
+            {
+                "id": "abbreviation",
+                "description": "Συντ."
             },
             {
                 "id": "description",

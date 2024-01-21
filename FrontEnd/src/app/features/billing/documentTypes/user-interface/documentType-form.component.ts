@@ -3,12 +3,12 @@ import { Component } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 // Custom
-import { CodeHttpService } from '../classes/services/code-http.service'
-import { CodeReadDto } from '../classes/dtos/code-read-dto'
-import { CodeWriteDto } from '../classes/dtos/code-write-dto'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
+import { DocumentTypeHttpService } from '../classes/services/documentType-http.service'
+import { DocumentTypeReadDto } from '../classes/dtos/documentType-read-dto'
+import { DocumentTypeWriteDto } from '../classes/dtos/documentType-write-dto'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -20,27 +20,27 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 import { ValidationService } from 'src/app/shared/services/validation.service'
 
 @Component({
-    selector: 'code-form',
-    templateUrl: './code-form.component.html',
+    selector: 'documentType-form',
+    templateUrl: './documentType-form.component.html',
     styleUrls: ['../../../../../assets/styles/custom/forms.css']
 })
 
-export class CodeFormComponent {
+export class DocumentTypeFormComponent {
 
     //#region common #8
 
-    private record: CodeReadDto
+    private record: DocumentTypeReadDto
     private recordId: string
-    public feature = 'codeForm'
-    public featureIcon = 'codes'
+    public feature = 'documentTypeForm'
+    public featureIcon = 'documentTypes'
     public form: FormGroup
     public icon = 'arrow_back'
     public input: InputTabStopDirective
-    public parentUrl = '/codes'
+    public parentUrl = '/documentTypes'
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private codeHttpService: CodeHttpService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private documentTypeHttpService: DocumentTypeHttpService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -76,9 +76,9 @@ export class CodeFormComponent {
     public onDelete(): void {
         this.dialogService.open(this.messageDialogService.confirmDelete(), 'question', ['abort', 'ok']).subscribe(response => {
             if (response) {
-                this.codeHttpService.delete(this.form.value.id).subscribe({
+                this.documentTypeHttpService.delete(this.form.value.id).subscribe({
                     complete: () => {
-                        this.dexieService.remove('codes', this.form.value.id)
+                        this.dexieService.remove('documentTypes', this.form.value.id)
                         this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
                     },
                     error: (errorFromInterceptor) => {
@@ -103,9 +103,10 @@ export class CodeFormComponent {
 
     //#region private methods
 
-    private flattenForm(): CodeWriteDto {
+    private flattenForm(): DocumentTypeWriteDto {
         return {
             id: this.form.value.id != '' ? this.form.value.id : null,
+            abbreviation: this.form.value.abbreviation,
             description: this.form.value.description,
             batch: this.form.value.batch,
             lastDate: this.dateHelperService.formatDateToIso(new Date(this.form.value.lastDate)),
@@ -128,7 +129,7 @@ export class CodeFormComponent {
     private getRecord(): Promise<any> {
         if (this.recordId != undefined) {
             return new Promise((resolve) => {
-                const formResolved: FormResolved = this.activatedRoute.snapshot.data['codeForm']
+                const formResolved: FormResolved = this.activatedRoute.snapshot.data['documentTypeForm']
                 if (formResolved.error == null) {
                     this.record = formResolved.record.body
                     resolve(this.record)
@@ -149,6 +150,7 @@ export class CodeFormComponent {
     private initForm(): void {
         this.form = this.formBuilder.group({
             id: '',
+            abbreviation: ['', [Validators.required, Validators.maxLength(5)]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
             batch: ['', [Validators.maxLength(5)]],
             lastDate: ['', [Validators.required, Validators.maxLength(10)]],
@@ -171,6 +173,7 @@ export class CodeFormComponent {
         if (this.record != undefined) {
             this.form.setValue({
                 id: this.record.id,
+                abbreviation: this.record.abbreviation,
                 description: this.record.description,
                 batch: this.record.batch,
                 lastDate: this.record.lastDate,
@@ -194,10 +197,10 @@ export class CodeFormComponent {
         this.form.reset()
     }
 
-    private saveRecord(code: CodeWriteDto): void {
-        this.codeHttpService.save(code).subscribe({
+    private saveRecord(documentType: DocumentTypeWriteDto): void {
+        this.documentTypeHttpService.save(documentType).subscribe({
             next: (response) => {
-                this.dexieService.update('codes', { 'id': response.id, 'description': code.description, 'isActive': code.isActive })
+                this.dexieService.update('documentTypes', { 'id': response.id, 'abbreviation': documentType.abbreviation, 'description': documentType.description, 'isActive': documentType.isActive })
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
             error: (errorFromInterceptor) => {
@@ -225,6 +228,10 @@ export class CodeFormComponent {
     //#endregion
 
     //#region getters
+
+    get abbreviation(): AbstractControl {
+        return this.form.get('abbreviation')
+    }
 
     get description(): AbstractControl {
         return this.form.get('description')

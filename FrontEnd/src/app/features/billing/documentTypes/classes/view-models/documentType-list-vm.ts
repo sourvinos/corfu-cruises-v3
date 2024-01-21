@@ -1,8 +1,9 @@
 import { Guid } from 'guid-typescript'
 
-export interface CodeListVM {
+export interface DocumentTypeListVM {
 
     id: Guid
+    abbreviation: string
     description: string
     batch: string
     lastDate: string

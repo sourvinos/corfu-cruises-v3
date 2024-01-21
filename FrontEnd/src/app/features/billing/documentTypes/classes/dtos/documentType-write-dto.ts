@@ -1,10 +1,11 @@
 import { Guid } from 'guid-typescript'
 
-export interface CodeWriteDto {
+export interface DocumentTypeWriteDto {
 
     // PK
     id: Guid
     // Fields
+    abbreviation: string
     description: string
     batch: string
     lastDate: string

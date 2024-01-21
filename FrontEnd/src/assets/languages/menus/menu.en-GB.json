@@ -96,7 +96,7 @@
         "description": "Tax offices"
     },
     {
-        "id": "codes",
+        "id": "documentTypes",
         "description": "Documents types"
     },
     {

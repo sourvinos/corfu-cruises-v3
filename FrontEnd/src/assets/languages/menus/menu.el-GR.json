@@ -96,8 +96,8 @@
         "description": "Οικονομικές υπηρεσίες"
     },
     {
-        "id": "codes",
-        "description": "Παραστατικά"
+        "id": "documentTypes",
+        "description": "Τύποι παραστατικών"
     },
     {
         "id": "customers",

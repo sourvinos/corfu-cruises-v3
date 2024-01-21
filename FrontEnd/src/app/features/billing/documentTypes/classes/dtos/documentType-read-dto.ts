@@ -2,11 +2,12 @@ import { Guid } from 'guid-typescript'
 // Custom
 import { Metadata } from 'src/app/shared/classes/metadata'
 
-export interface CodeReadDto extends Metadata {
+export interface DocumentTypeReadDto extends Metadata {
 
     // PK
     id: Guid
     // Fields
+    abbreviation: string
     description: string
     batch: string
     lastDate: string

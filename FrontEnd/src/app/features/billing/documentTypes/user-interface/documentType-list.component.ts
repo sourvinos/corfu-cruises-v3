@@ -3,9 +3,9 @@ import { Component, ViewChild } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { Table } from 'primeng/table'
 // Custom
-import { CodeListVM } from '../classes/view-models/code-list-vm'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
+import { DocumentTypeListVM } from '../classes/view-models/documentType-list-vm'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
@@ -17,24 +17,24 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 
 @Component({
-    selector: 'code-list',
-    templateUrl: './code-list.component.html',
+    selector: 'documentType-list',
+    templateUrl: './documentType-list.component.html',
     styleUrls: ['../../../../../assets/styles/custom/lists.css']
 })
 
-export class CodeListComponent {
+export class DocumentTypeListComponent {
 
     // ^ #region common variables
 
     @ViewChild('table') table: Table
 
-    private url = 'codes'
+    private url = 'documentTypes'
     private virtualElement: any
-    public feature = 'codeList'
-    public featureIcon = 'codes'
+    public feature = 'documentTypeList'
+    public featureIcon = 'documentTypes'
     public icon = 'home'
     public parentUrl = '/home'
-    public records: CodeListVM[]
+    public records: DocumentTypeListVM[]
     public recordsFilteredCount: number
 
     //#endregion
