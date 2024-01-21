@@ -16,6 +16,7 @@ namespace DocumentTypes {
             return new object[] {
                 new TestDocumentType {
                     Id = 2,
+                    Abbreviation = Helpers.CreateRandomString(5),
                     Description = Helpers.CreateRandomString(128),
                     Batch = Helpers.CreateRandomString(5),
                     LastDate = "1970-01-01",

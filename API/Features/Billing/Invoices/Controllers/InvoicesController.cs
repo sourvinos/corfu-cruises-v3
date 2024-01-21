@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Features.Billing.Invoices {
@@ -8,24 +12,22 @@ namespace API.Features.Billing.Invoices {
 
         #region variables
 
+        private readonly IHttpContextAccessor httpContext;
         private readonly IInvoiceRepository invoiceRepo;
+        private readonly IMapper mapper;
 
         #endregion
 
-        public InvoicesController(IInvoiceRepository invoiceRepo) {
+        public InvoicesController(IHttpContextAccessor httpContext, IMapper mapper, IInvoiceRepository invoiceRepo) {
+            this.httpContext = httpContext;
+            this.mapper = mapper;
             this.invoiceRepo = invoiceRepo;
         }
 
-        [HttpPost("build")]
+        [HttpGet("from/{from}/to/{to}")]
         [Authorize(Roles = "admin")]
-        public void BuildAndWriteInvoice([FromBody] InvoiceVM invoice) {
-            invoiceRepo.BuildXMLAsync(invoice);
-        }
-
-        [HttpPost("send")]
-        [Authorize(Roles = "admin")]
-        public void InvoiceXML([FromBody] InvoiceVM invoice) {
-            // invoiceRepo.SendInvoiceAsync(invoiceRepo.BuildXMLAsync(invoice));
+        public async Task<IEnumerable<InvoiceListVM>> GetForPeriodAsync([FromRoute] string from, string to) {
+            return await invoiceRepo.GetForPeriodAsync(from, to);
         }
 
     }

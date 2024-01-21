@@ -1,5 +1,10 @@
 using System;
 using System.Collections.Generic;
+using API.Features.Billing.DocumentTypes;
+using API.Features.Billing.PaymentMethods;
+using API.Features.Reservations.Customers;
+using API.Features.Reservations.Destinations;
+using API.Features.Reservations.Ships;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.Billing.Invoices {
@@ -29,6 +34,12 @@ namespace API.Features.Billing.Invoices {
         // Child tables
         public InvoiceAade Aade { get; set; }
         public List<InvoicePort> Ports { get; set; }
+        // Navigation
+        public Customer Customer { get; set; }
+        public Destination Destination { get; set; }
+        public DocumentType DocumentType { get; set; }
+        public PaymentMethod PaymentMethod { get; set; }
+        public Ship Ship { get; set; }
         // Metadata
         public string PostAt { get; set; }
         public string PostUser { get; set; }

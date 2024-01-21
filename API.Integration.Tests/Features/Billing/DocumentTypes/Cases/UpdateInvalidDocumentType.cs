@@ -12,11 +12,12 @@ namespace DocumentTypes {
             yield return Code_Must_Not_Be_Already_Updated();
         }
 
-        private static object[] Code_Must_Not_Be_Already_Updated(){
+        private static object[] Code_Must_Not_Be_Already_Updated() {
             return new object[] {
                 new TestDocumentType {
                     StatusCode = 415,
                     Id = 3,
+                    Abbreviation = Helpers.CreateRandomString(5),
                     Description = Helpers.CreateRandomString(128),
                     Batch = Helpers.CreateRandomString(5),
                     LastDate = "1970-01-01",
@@ -27,7 +28,7 @@ namespace DocumentTypes {
                     IsMyData = true,
                     Table8_1 = "Table8_1",
                     Table8_8 ="Table8_8",
-                    Table8_9 ="Table8_9",                    
+                    Table8_9 ="Table8_9",
                     PutAt = "2022-09-07 09:55:22"
                 }
             };

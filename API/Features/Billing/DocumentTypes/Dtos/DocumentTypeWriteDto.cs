@@ -1,5 +1,4 @@
-﻿using System;
-using API.Infrastructure.Interfaces;
+﻿using API.Infrastructure.Interfaces;
 
 namespace API.Features.Billing.DocumentTypes {
 
@@ -8,6 +7,7 @@ namespace API.Features.Billing.DocumentTypes {
         // PK
         public int Id { get; set; }
         // Fields
+        public string Abbreviation { get; set; }
         public string Description { get; set; }
         public string Batch { get; set; }
         public string LastDate { get; set; }

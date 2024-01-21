@@ -1,13 +1,12 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Xml.Linq;
+using API.Infrastructure.Interfaces;
 
 namespace API.Features.Billing.Invoices {
 
-    public interface IInvoiceRepository {
+    public interface IInvoiceRepository : IRepository<Invoice> {
 
-        void BuildXMLAsync(InvoiceVM invoice);
-        void WriteXML(XElement invoice);
-        Task<string> SendInvoiceAsync(XElement invoice);
+        Task<IEnumerable<InvoiceListVM>> GetForPeriodAsync(string from, string to);
 
     }
 

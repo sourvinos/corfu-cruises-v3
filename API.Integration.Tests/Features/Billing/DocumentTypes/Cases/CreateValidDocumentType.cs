@@ -15,6 +15,7 @@ namespace DocumentTypes {
         private static object[] ValidRecord() {
             return new object[] {
                 new TestDocumentType {
+                    Abbreviation = Helpers.CreateRandomString(5),
                     Description = Helpers.CreateRandomString(128),
                     Batch = Helpers.CreateRandomString(5),
                     LastDate = "1970-01-01",

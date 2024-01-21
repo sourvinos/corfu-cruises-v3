@@ -26,6 +26,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using API.Features.Billing.DocumentTypes;
+using API.Features.Billing.Invoices;
 
 namespace API.Infrastructure.Classes {
 
@@ -60,6 +61,7 @@ namespace API.Infrastructure.Classes {
 
         public DbSet<BillingParameter> BillingParameters { get; set; }
         public DbSet<DocumentType> DocumentTypes { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
         public DbSet<PaymentMethod> PaymentMethods { get; set; }
         public DbSet<Price> Prices { get; set; }
         public DbSet<TaxOffice> TaxOffices { get; set; }
@@ -103,11 +105,12 @@ namespace API.Infrastructure.Classes {
             #endregion
             #region billing
             modelBuilder.ApplyConfiguration(new DocumentTypeConfig());
+            modelBuilder.ApplyConfiguration(new InvoicesConfig());
+            modelBuilder.ApplyConfiguration(new ParametersConfig());
             modelBuilder.ApplyConfiguration(new PaymentMethodsConfig());
             modelBuilder.ApplyConfiguration(new PricesConfig());
             modelBuilder.ApplyConfiguration(new TaxOfficesConfig());
             modelBuilder.ApplyConfiguration(new VatRegimeConfig());
-            modelBuilder.ApplyConfiguration(new ParametersConfig());
             #endregion
             #region common
             modelBuilder.ApplyConfiguration(new UsersConfig());

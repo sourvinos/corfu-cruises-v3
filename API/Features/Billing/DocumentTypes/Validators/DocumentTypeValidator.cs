@@ -7,6 +7,7 @@ namespace API.Features.Billing.DocumentTypes {
 
         public DocumentTypeValidator() {
             // Fields
+            RuleFor(x => x.Abbreviation).NotEmpty().MaximumLength(5);
             RuleFor(x => x.Description).NotEmpty().MaximumLength(128);
             RuleFor(x => x.Batch).NotNull().MaximumLength(5);
             RuleFor(x => x.LastDate).Must(DateHelpers.BeCorrectFormat);

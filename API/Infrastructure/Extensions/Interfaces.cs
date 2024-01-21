@@ -90,6 +90,7 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IBillingParametersRepository, BillingParametersRepository>();
             services.AddTransient<IDocumentTypeRepository, DocumentTypeRepository>();
             services.AddTransient<IDocumentTypeValidation, DocumentTypeValidation>();
+            services.AddTransient<IInvoiceAadeRepository, InvoiceAadeRepository>();
             services.AddTransient<IInvoiceRepository, InvoiceRepository>();
             services.AddTransient<IPaymentMethodRepository, PaymentMethodRepository>();
             services.AddTransient<IPaymentMethodValidation, PaymentMethodValidation>();
