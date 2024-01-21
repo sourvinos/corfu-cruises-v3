@@ -85,7 +85,7 @@
     },
     {
         "id": "invoices",
-        "description": "Faktury"
+        "description": "Prodej"
     },
     {
         "id": "receipts",

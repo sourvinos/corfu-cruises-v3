@@ -85,7 +85,7 @@
     },
     {
         "id": "invoices",
-        "description": "Invoices"
+        "description": "Sales"
     },
     {
         "id": "receipts",

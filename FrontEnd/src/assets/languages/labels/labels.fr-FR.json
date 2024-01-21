@@ -2551,6 +2551,10 @@
                 "description": "Τύποι παραστατικών"
             },
             {
+                "id": "headerIsActive",
+                "description": "Ενεργό"
+            },
+            {
                 "id": "headerDescription",
                 "description": "Περιγραφή"
             },
@@ -2621,7 +2625,7 @@
             },
             {
                 "id": "isMyData",
-                "description": "Ενημερώνει myData"
+                "description": "Ενημερώνει myDATA"
             },
             {
                 "id": "table8_1",
@@ -2695,6 +2699,51 @@
             {
                 "id": "saveButton",
                 "description": "Αποθηκευση"
+            }
+        ]
+    },
+    {
+        "feature": "invoiceList",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Πωλήσεις"
+            },
+            {
+                "id": "headerDate",
+                "description": "Ημερομηνία"
+            },
+            {
+                "id": "headerCustomerDescription",
+                "description": "Πελάτης"
+            },
+            {
+                "id": "headerDestinationDescription",
+                "description": "Προορισμός"
+            },
+            {
+                "id": "headerShipDescription",
+                "description": "Πλοίο"
+            },
+            {
+                "id": "headerDocumentTypeDescription",
+                "description": "Τύπος παραστατικού"
+            },
+            {
+                "id": "headerNo",
+                "description": "Νο"
+            },
+            {
+                "id": "headerTotalPax",
+                "description": "Pax"
+            },
+            {
+                "id": "headerGrossAmount",
+                "description": "Αξία"
+            },
+            {
+                "id": "newRecord",
+                "description": "Νεα εγγραφη"
             }
         ]
     }

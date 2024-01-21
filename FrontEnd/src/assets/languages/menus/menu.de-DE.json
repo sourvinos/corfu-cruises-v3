@@ -85,7 +85,7 @@
     },
     {
         "id": "invoices",
-        "description": "Rechnungen"
+        "description": "Verkäufe"
     },
     {
         "id": "receipts",

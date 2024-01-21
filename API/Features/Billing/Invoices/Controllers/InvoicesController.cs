@@ -24,6 +24,12 @@ namespace API.Features.Billing.Invoices {
             this.invoiceRepo = invoiceRepo;
         }
 
+        [HttpGet]
+        [Authorize(Roles = "admin")]
+        public async Task<IEnumerable<InvoiceListVM>> Get() {
+            return await invoiceRepo.GetAsync();
+        }
+
         [HttpGet("from/{from}/to/{to}")]
         [Authorize(Roles = "admin")]
         public async Task<IEnumerable<InvoiceListVM>> GetForPeriodAsync([FromRoute] string from, string to) {

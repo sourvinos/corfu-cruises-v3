@@ -30,8 +30,8 @@ export class CustomerListComponent {
     public featureIcon = 'customers'
     public icon = 'home'
     public parentUrl = '/home'
-    public records: CustomerListVM[]
-    public recordsFilteredCount: number
+    public records: CustomerListVM[] = []
+    public recordsFilteredCount = 0
 
     //#endregion
 

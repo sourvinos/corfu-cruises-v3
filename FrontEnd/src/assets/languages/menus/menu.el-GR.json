@@ -85,7 +85,7 @@
     },
     {
         "id": "invoices",
-        "description": "Κινήσεις"
+        "description": "Πωλήσεις"
     },
     {
         "id": "receipts",

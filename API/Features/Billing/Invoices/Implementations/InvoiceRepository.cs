@@ -25,6 +25,18 @@ namespace API.Features.Billing.Invoices {
             this.userManager = userManager;
         }
 
+        public async Task<IEnumerable<InvoiceListVM>> GetAsync() {
+            var invoices = await context.Invoices
+                .AsNoTracking()
+                .Include(x => x.Customer)
+                .Include(x => x.Destination)
+                .Include(x => x.DocumentType)
+                .Include(x => x.Ship)
+                .OrderBy(x => x.Date)
+                .ToListAsync();
+            return mapper.Map<IEnumerable<Invoice>, IEnumerable<InvoiceListVM>>(invoices);
+        }
+
         public async Task<IEnumerable<InvoiceListVM>> GetForPeriodAsync(string from, string to) {
             var invoices = await context.Invoices
                 .AsNoTracking()

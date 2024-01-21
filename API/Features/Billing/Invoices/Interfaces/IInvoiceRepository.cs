@@ -6,6 +6,7 @@ namespace API.Features.Billing.Invoices {
 
     public interface IInvoiceRepository : IRepository<Invoice> {
 
+        Task<IEnumerable<InvoiceListVM>> GetAsync();
         Task<IEnumerable<InvoiceListVM>> GetForPeriodAsync(string from, string to);
 
     }
