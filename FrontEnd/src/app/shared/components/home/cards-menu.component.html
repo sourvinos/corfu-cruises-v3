@@ -11,6 +11,12 @@
         <mat-divider inset></mat-divider>
         <mat-card-subtitle>{{ getLabel("availabilitySubTitle") }}</mat-card-subtitle>
     </mat-card>
+    <mat-card *ngIf="isAdmin()" routerLink="/invoices">
+        <img (load)="loadImage()" [ngClass]="imageIsLoading()" [src]="getIcon('invoices')" style="height: 6.25rem; margin-left: 1rem; width: 6.25rem">
+        <mat-card-title>{{ getLabel("invoicesTitle") }}</mat-card-title>
+        <mat-divider inset></mat-divider>
+        <mat-card-subtitle>{{ getLabel("invoicesSubTitle") }}</mat-card-subtitle>
+    </mat-card>
     <mat-card *ngIf="isAdmin()" routerLink="/boarding">
         <img (load)="loadImage()" [ngClass]="imageIsLoading()" [src]="getIcon('boarding')" style="height: 6.25rem; margin-left: 1rem; width: 6.25rem">
         <mat-card-title>{{ getLabel("boardingTitle") }}</mat-card-title>

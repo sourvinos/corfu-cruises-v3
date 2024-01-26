@@ -1,0 +1,21 @@
+#content {
+    border: none !important;
+    padding: 0 0 0 0 !important;
+}
+
+#form {
+    width: 100% !important;
+}
+
+.group-input-field {
+    justify-content: space-between;
+    width: 100% !important;
+}
+
+.group-input-field:last-child {
+    margin-top: auto;
+}
+
+.group-input-field.hide-hint {
+    height: 3.5rem;
+}

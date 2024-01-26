@@ -50,6 +50,25 @@ namespace API.Features.Billing.Invoices {
             return mapper.Map<IEnumerable<Invoice>, IEnumerable<InvoiceListVM>>(invoices);
         }
 
+        public async Task<Invoice> GetByIdAsync(string invoiceId, bool includeTables) {
+            return includeTables
+                ? await context.Invoices
+                    .AsNoTracking()
+                    .Include(x => x.Customer)
+                    .Include(x => x.Destination)
+                    .Include(x => x.Ship)
+                    .Include(x => x.DocumentType)
+                    .Include(x => x.PaymentMethod)
+                    .Include(x => x.Aade)
+                    .Include(x => x.Ports).ThenInclude(x => x.Port)
+                    .Where(x => x.InvoiceId.ToString() == invoiceId)
+                    .SingleOrDefaultAsync()
+               : await context.Invoices
+                    .AsNoTracking()
+                    .Where(x => x.InvoiceId.ToString() == invoiceId)
+                    .SingleOrDefaultAsync();
+        }
+
     }
 
 }

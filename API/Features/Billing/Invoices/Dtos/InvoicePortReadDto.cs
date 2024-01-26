@@ -1,15 +1,14 @@
 using System;
-using API.Features.Reservations.Ports;
+using API.Infrastructure.Classes;
 
 namespace API.Features.Billing.Invoices {
 
-    public class InvoicePort {
+    public class InvoicePortReadDto {
 
         // PK
         public int Id { get; set; }
         // FKs
         public Guid InvoiceId { get; set; }
-        public int PortId { get; set; }
         // Fields
         public int AdultsWithTransfer { get; set; }
         public decimal AdultsPriceWithTransfer { get; set; }
@@ -24,7 +23,7 @@ namespace API.Features.Billing.Invoices {
         public int TotalPax { get; set; }
         public decimal TotalAmount { get; set; }
         // Navigation
-        public Port Port { get; set; }
+        public SimpleEntity Port { get; set; }
 
     }
 

@@ -2278,6 +2278,14 @@
                 "description": "Überprüfen Sie die verfügbaren Plätze und nehmen Sie eine neue Reservierung vor."
             },
             {
+                "id": "invoicesTitle",
+                "description": "Verkauf"
+            },
+            {
+                "id": "invoicesSubTitle",
+                "description": "Verwalten Sie die Verkäufe Ihrer Dienstleistungen und stellen Sie Rechnungen aus."
+            },
+            {
                 "id": "boardingTitle",
                 "description": "Einschiffung"
             },
@@ -2386,19 +2394,19 @@
             },
             {
                 "id": "adultsWithTransfer",
-                "description": "Ενήλικες με transfer"
+                "description": "Ενήλικες w/ transfer"
             },
             {
                 "id": "adultsWithoutTransfer",
-                "description": "Ενήλικες χωρίς transfer"
+                "description": "Ενήλικες w/o transfer"
             },
             {
                 "id": "kidsWithTransfer",
-                "description": "Παιδιά με transfer"
+                "description": "Παιδιά w/ transfer"
             },
             {
                 "id": "kidsWithoutTransfer",
-                "description": "Παιδιά χωρίς transfer"
+                "description": "Παιδιά w/o transfer"
             },
             {
                 "id": "post",
@@ -2744,6 +2752,160 @@
             {
                 "id": "newRecord",
                 "description": "Νεα εγγραφη"
+            }
+        ]
+    },
+    {
+        "feature": "invoiceForm",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Παραστατικό πώλησης"
+            },
+            {
+                "id": "date",
+                "description": "Ημερομηνία"
+            },
+            {
+                "id": "documentType",
+                "description": "Τύπος παραστατικού"
+            },
+            {
+                "id": "no",
+                "description": "Νο"
+            },
+            {
+                "id": "paymentMethod",
+                "description": "Τρόπος πληρωμής"
+            },
+            {
+                "id": "customer",
+                "description": "Πελάτης"
+            },
+            {
+                "id": "taxNo",
+                "description": "ΑΦΜ"
+            },
+            {
+                "id": "email",
+                "description": "Email"
+            },
+            {
+                "id": "destination",
+                "description": "Προορισμός"
+            },
+            {
+                "id": "ship",
+                "description": "Πλοίο"
+            },
+            {
+                "id": "netAmount",
+                "description": "Καθαρή αξία"
+            },
+            {
+                "id": "vatPercent",
+                "description": "Ποσοστό ΦΠΑ"
+            },
+            {
+                "id": "vatAmount",
+                "description": "Αξία ΦΠΑ"
+            },
+            {
+                "id": "grossAmount",
+                "description": "Σύνολο"
+            },
+            {
+                "id": "remarks",
+                "description": "Σχόλια"
+            },
+            {
+                "id": "post",
+                "description": "Αρχική καταχώριση"
+            },
+            {
+                "id": "put",
+                "description": "Τελευταία ενημέρωση"
+            },
+            {
+                "id": "toggleButtonGeneral",
+                "description": "Γενικα"
+            },
+            {
+                "id": "toggleButtonAnalysis",
+                "description": "Αναλυση"
+            },
+            {
+                "id": "deleteButton",
+                "description": "Διαγραφη"
+            },
+            {
+                "id": "saveButton",
+                "description": "Αποθηκευση"
+            },
+            {
+                "id": "printInvoice",
+                "description": "Εκτύπωση"
+            },
+            {
+                "id": "emailInvoice",
+                "description": "Αποστολή σε email"
+            },
+            {
+                "id": "submitInvoice",
+                "description": "Επανυποβολή"
+            },
+            {
+                "id": "cancelInvoice",
+                "description": "Ακύρωση"
+            }
+        ]
+    },
+    {
+        "feature": "invoicePortForm",
+        "labels": [
+            {
+                "id": "port",
+                "description": "Λιμάνι"
+            },
+            {
+                "id": "adultsWithTransfer",
+                "description": "Ενήλικες w/ transfer"
+            },
+            {
+                "id": "adultsWithoutTransfer",
+                "description": "Ενήλικες w/o transfer"
+            },
+            {
+                "id": "kidsWithTransfer",
+                "description": "Παιδιά w/ transfer"
+            },
+            {
+                "id": "kidsWithoutTransfer",
+                "description": "Παιδιά w/o transfer"
+            },
+            {
+                "id": "freeWithTransfer",
+                "description": "Δωρεάν w/ transfer"
+            },
+            {
+                "id": "freeWithoutTransfer",
+                "description": "Δωρεάν w/o transfer"
+            },
+            {
+                "id": "price",
+                "description": "Χρέωση"
+            },
+            {
+                "id": "total",
+                "description": "Σύνολο"
+            },
+            {
+                "id": "totalAmount",
+                "description": "Σύνολο αξίας"
+            },
+            {
+                "id": "portTotals",
+                "description": "Σύνολα λιμανιών"
             }
         ]
     }

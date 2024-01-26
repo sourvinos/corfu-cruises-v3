@@ -8,7 +8,8 @@ import { MessageLabelService } from '../../services/message-label.service'
 
 @Component({
     selector: 'date-picker',
-    templateUrl: './date-picker.component.html'
+    templateUrl: './date-picker.component.html',
+    styleUrls: ['./date-picker.component.css']
 })
 
 export class DatePickerComponent {

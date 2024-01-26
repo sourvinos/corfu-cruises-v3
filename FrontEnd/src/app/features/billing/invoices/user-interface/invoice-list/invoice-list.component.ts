@@ -101,7 +101,7 @@ export class InvoiceListComponent {
 
     //#region public common methods
 
-    public editRecord(id: number): void {
+    public editRecord(id: string): void {
         this.storeScrollTop()
         this.storeSelectedId(id)
         this.navigateToRecord(id)
@@ -226,7 +226,7 @@ export class InvoiceListComponent {
         this.helperService.setTabTitle(this.feature)
     }
 
-    private storeSelectedId(id: number): void {
+    private storeSelectedId(id: string): void {
         this.sessionStorageService.saveItem(this.feature + '-id', id.toString())
     }
 

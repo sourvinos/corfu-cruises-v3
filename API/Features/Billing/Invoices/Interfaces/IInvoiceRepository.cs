@@ -8,6 +8,7 @@ namespace API.Features.Billing.Invoices {
 
         Task<IEnumerable<InvoiceListVM>> GetAsync();
         Task<IEnumerable<InvoiceListVM>> GetForPeriodAsync(string from, string to);
+        Task<Invoice> GetByIdAsync(string reservationId, bool includeTables);
 
     }
 

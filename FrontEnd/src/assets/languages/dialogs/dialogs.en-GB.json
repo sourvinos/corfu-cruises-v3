@@ -116,7 +116,7 @@
             },
             {
                 "id": "featureNotAvailable",
-                "message": "The option requires a higher level of authorisation."
+                "message": "This option is not yet available."
             },
             {
                 "id": "reservationCreated",

@@ -1,4 +1,6 @@
-﻿using API.Features.Billing.Parameters;
+﻿using API.Features.Billing.DocumentTypes;
+using API.Features.Billing.Invoices;
+using API.Features.Billing.Parameters;
 using API.Features.Billing.PaymentMethods;
 using API.Features.Billing.Prices;
 using API.Features.Billing.TaxOffices;
@@ -25,8 +27,6 @@ using API.Infrastructure.Users;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using API.Features.Billing.DocumentTypes;
-using API.Features.Billing.Invoices;
 
 namespace API.Infrastructure.Classes {
 
@@ -62,6 +62,8 @@ namespace API.Infrastructure.Classes {
         public DbSet<BillingParameter> BillingParameters { get; set; }
         public DbSet<DocumentType> DocumentTypes { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<InvoiceAade> InvoicesAade { get; set; }
+        public DbSet<InvoicePort> InvoicesPorts { get; set; }
         public DbSet<PaymentMethod> PaymentMethods { get; set; }
         public DbSet<Price> Prices { get; set; }
         public DbSet<TaxOffice> TaxOffices { get; set; }

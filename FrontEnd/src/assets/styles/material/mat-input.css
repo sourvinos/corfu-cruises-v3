@@ -100,7 +100,6 @@
     display: flex;
     font-size: 1.0625rem;
     justify-content: center;
-    margin-top: 0.1875rem;
     transition: color var(--theme-delay) !important;
 }
 
@@ -221,3 +220,17 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     display: none;
 }
 
+/* Invoice person fields */
+.person {
+    width: 10rem !important;
+}
+
+/* Invoice price fields */
+.price {
+    width: 5rem !important;
+}
+
+/* Invoice total fields */
+.total {
+    width: 6rem !important;
+}
