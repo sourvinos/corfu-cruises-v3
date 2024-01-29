@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 // Custom
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -17,7 +17,8 @@ export class InvoicePortFormComponent {
     //#region common #8
 
     @Input() port: PortReadDto
-
+    @Input() portIndex: number
+    @Output() outputPort = new EventEmitter()
     public feature = 'invoicePortForm'
     public featureIcon = 'ports'
     public form: FormGroup
@@ -48,6 +49,11 @@ export class InvoicePortFormComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
+    public onDoTasks(): void {
+        this.doCalculations()
+        this.emitFormValues()
+    }
+
     //#endregion
 
     //#region private methods
@@ -56,10 +62,7 @@ export class InvoicePortFormComponent {
         this.form = this.formBuilder.group({
             id: 0,
             invoiceId: '',
-            port: this.formBuilder.group({
-                id: this.port.port.id,
-                description: this.port.port.description
-            }),
+            port: this.formBuilder.group({ id: this.port.port.id, description: this.port.port.description }),
             adultsWithTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
             adultsPriceWithTransfer: [0, [Validators.required, Validators.min(0), Validators.max(9999)]],
             adultsAmountWithTransfer: [0],
@@ -74,9 +77,30 @@ export class InvoicePortFormComponent {
             kidsAmountWithoutTransfer: [0],
             freeWithTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
             freeWithoutTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
-            totalPax: 0,
-            totalAmount: 0
+            pax: 0,
+            amount: 0
         })
+    }
+
+    private doCalculations(): void {
+        const adultsAmountWithTransfer = this.form.value.adultsWithTransfer * this.form.value.adultsPriceWithTransfer
+        const adultsAmountWithoutTransfer = this.form.value.adultsWithoutTransfer * this.form.value.adultsPriceWithoutTransfer
+        const kidsAmountWithTransfer = this.form.value.kidsWithTransfer * this.form.value.kidsPriceWithTransfer
+        const kidsAmountWithoutTransfer = this.form.value.kidsWithoutTransfer * this.form.value.kidsPriceWithoutTransfer
+        const pax = this.form.value.adultsWithTransfer + this.form.value.adultsWithoutTransfer + this.form.value.kidsWithTransfer + this.form.value.kidsWithoutTransfer + this.form.value.freeWithTransfer + this.form.value.freeWithoutTransfer
+        const amount = adultsAmountWithTransfer + adultsAmountWithoutTransfer + kidsAmountWithTransfer + kidsAmountWithoutTransfer
+        this.form.patchValue({
+            adultsAmountWithTransfer: adultsAmountWithTransfer,
+            adultsAmountWithoutTransfer: adultsAmountWithoutTransfer,
+            kidsAmountWithTransfer: kidsAmountWithTransfer,
+            kidsAmountWithoutTransfer: kidsAmountWithoutTransfer,
+            pax: pax,
+            amount: amount
+        })
+    }
+
+    private emitFormValues(): void {
+        this.outputPort.emit(this.form.value)
     }
 
     private populateFields(): void {
@@ -88,16 +112,20 @@ export class InvoicePortFormComponent {
             },
             adultsWithTransfer: this.port.adultsWithTransfer,
             adultsPriceWithTransfer: this.port.adultsPriceWithTransfer,
+            adultsAmountWithTransfer: this.port.adultsWithTransfer * this.port.adultsPriceWithTransfer,
             adultsWithoutTransfer: this.port.adultsWithoutTransfer,
             adultsPriceWithoutTransfer: this.port.adultsPriceWithoutTransfer,
+            adultsAmountWithoutTransfer: this.port.adultsWithoutTransfer * this.port.adultsPriceWithoutTransfer,
             kidsWithTransfer: this.port.kidsWithTransfer,
             kidsPriceWithTransfer: this.port.kidsPriceWithTransfer,
+            kidsAmountWithTransfer: this.port.kidsWithTransfer * this.port.kidsPriceWithTransfer,
             kidsWithoutTransfer: this.port.kidsWithoutTransfer,
             kidsPriceWithoutTransfer: this.port.kidsPriceWithoutTransfer,
+            kidsAmountWithoutTransfer: this.port.kidsWithoutTransfer * this.port.kidsPriceWithoutTransfer,
             freeWithTransfer: this.port.freeWithTransfer,
             freeWithoutTransfer: this.port.freeWithoutTransfer,
-            totalPax: this.port.totalPax,
-            totalAmount: this.port.totalAmount
+            pax: this.port.adultsWithTransfer + this.port.adultsWithoutTransfer + this.port.kidsWithTransfer + this.port.kidsWithoutTransfer + this.port.freeWithTransfer + this.port.freeWithoutTransfer,
+            amount: this.port.amount
         })
     }
 
@@ -105,7 +133,7 @@ export class InvoicePortFormComponent {
 
     //#region getters
 
-    get portDescription(): AbstractControl {
+    get description(): AbstractControl {
         return this.form.get('port.description')
     }
 
@@ -165,12 +193,12 @@ export class InvoicePortFormComponent {
         return this.form.get('freeWithoutTransfer')
     }
 
-    get totalPax(): AbstractControl {
-        return this.form.get('totalPax')
+    get pax(): AbstractControl {
+        return this.form.get('pax')
     }
 
-    get totalAmount(): AbstractControl {
-        return this.form.get('totalAmount')
+    get amount(): AbstractControl {
+        return this.form.get('amount')
     }
 
     //#endregion

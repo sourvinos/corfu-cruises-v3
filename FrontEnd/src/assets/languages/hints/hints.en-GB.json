@@ -7,7 +7,7 @@
         { "id": "doesNotContainSymbol", "description": "This field must have at least one symbol i.e. % or #" },
         { "id": "doesNotContainUpperCase", "description": "This field must have at least one uppercase character" },
         { "id": "invalid", "description": "This field is invalid" },
-        { "id": "invalidRange", "description": "Αυτό το πεδίο είναι εκτός ορίων" },
+        { "id": "invalidRange", "description": "This field is outside the permitted range" },
         { "id": "maxLength", "description": "This field can be up to xx characters long" },
         { "id": "minLength", "description": "This field must be at least xx characters long" },
         { "id": "otherErrors", "description": "This field has errors" },
@@ -15,6 +15,8 @@
         { "id": "remainingCharacters", "description": "You can give up to xx more characters" },
         { "id": "required", "description": "This field is required" },
         { "id": "shouldBeEmptyPlusOrMinus", "description": "This field may be blank or have the + or - symbol" },
-        { "id": "spacesNotAllowed", "description": "This field can't contain spaces" }
+        { "id": "spacesNotAllowed", "description": "This field can't contain spaces" },
+        { "id": "requiredShort", "description": "Required field" },
+        { "id": "invalidShort", "description": "Invalid field" }
     ]
 }

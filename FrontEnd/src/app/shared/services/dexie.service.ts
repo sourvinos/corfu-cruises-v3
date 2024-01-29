@@ -43,6 +43,14 @@ export class DexieService extends Dexie {
         })
     }
 
+    public getByKey(table: string, id: any): Promise<any> {
+        return new Promise((resolve) => {
+            this.table(table).get(id).then(response => {
+                resolve(response)
+            })
+        })
+    }
+
     public update(table: string, item: any): void {
         this.table(table).put(item)
     }

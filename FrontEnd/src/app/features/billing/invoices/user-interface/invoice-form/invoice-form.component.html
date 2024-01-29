@@ -113,19 +113,19 @@
                     <!-- Net Amount -->
                     <mat-form-field>
                         <mat-label>{{ getLabel('netAmount') }}</mat-label>
-                        <input (keyup)="doPaxCalculations()" [inputTabStop]="input" class="right" dataTabIndex="7" formControlName="netAmount" matInput type="number">
+                        <input (keyup)="onDoPaxCalculations()" [inputTabStop]="input" class="right" dataTabIndex="7" formControlName="netAmount" matInput type="number">
                         <mat-error *ngIf="netAmount.hasError('required')">{{ getHint("required") }}</mat-error>
                         <mat-error *ngIf="!netAmount.hasError('required') && netAmount.hasError('min') || netAmount.hasError('max')">{{ getHint("invalid") }}</mat-error>
                     </mat-form-field>
                     <!-- Vat Percent -->
                     <mat-form-field>
                         <mat-label>{{ getLabel('vatPercent') }}</mat-label>
-                        <input (keyup)="doPaxCalculations()" [inputTabStop]="input" class="right" formControlName="vatPercent" matInput type="number" readonly>
+                        <input (keyup)="onDoPaxCalculations()" [inputTabStop]="input" class="right" formControlName="vatPercent" matInput type="number" readonly>
                     </mat-form-field>
                     <!-- Vat Amount -->
                     <mat-form-field>
                         <mat-label>{{ getLabel('vatAmount') }}</mat-label>
-                        <input (keyup)="doPaxCalculations()" [inputTabStop]="input" class="right" dataTabIndex="8" formControlName="vatAmount" matInput type="number">
+                        <input (keyup)="onDoPaxCalculations()" [inputTabStop]="input" class="right" dataTabIndex="8" formControlName="vatAmount" matInput type="number">
                     </mat-form-field>
                     <!-- Gross Amount -->
                     <mat-form-field>
@@ -144,9 +144,9 @@
                 </div>
             </div>
             <div *ngIf="isPortsTabVisible" id="ports-tab">
-                <invoice-port-form [port]="form.value.ports[0]"></invoice-port-form>
-                <invoice-port-form [port]="form.value.ports[1]"></invoice-port-form>
-                <!-- <invoice-port-totals-form></invoice-port-totals-form> -->
+                <invoice-port-form [port]="form.value.ports[0]" (outputPort)="updateInvoice($event,0)"></invoice-port-form>
+                <invoice-port-form [port]="form.value.ports[1]" (outputPort)="updateInvoice($event,1)"></invoice-port-form>
+                <invoice-port-totals-form [ports]="form.value.ports"></invoice-port-totals-form>
             </div>
         </form>
 

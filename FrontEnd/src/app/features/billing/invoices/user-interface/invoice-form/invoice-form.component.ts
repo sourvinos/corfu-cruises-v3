@@ -9,7 +9,6 @@ import { DestinationAutoCompleteVM } from 'src/app/features/reservations/destina
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { DocumentTypeVM } from '../../classes/view-models/documentType-vm'
-import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -18,8 +17,8 @@ import { MessageDialogService } from 'src/app/shared/services/message-dialog.ser
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { PortAutoCompleteVM } from 'src/app/features/reservations/ports/classes/view-models/port-autocomplete-vm'
-import { PortReadDto } from '../../classes/dtos/port-read-dto'
 import { ShipAutoCompleteVM } from './../../../../reservations/ships/classes/view-models/ship-autocomplete-vm'
+import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
 
 @Component({
@@ -63,7 +62,7 @@ export class InvoiceFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private helperService: HelperService, private dialogService: DialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router,) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private helperService: HelperService, private dialogService: DialogService, private formBuilder: FormBuilder, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router,) { }
 
     //#region lifecycle hooks
 
@@ -80,32 +79,42 @@ export class InvoiceFormComponent {
 
     //#region public methods
 
-    public getLabel(id: string): string {
-        return this.messageLabelService.getDescription(this.feature, id)
+    public addPorts(): void {
+        if (this.recordId == undefined) {
+            setTimeout(() => {
+                const ports = this.form.get('ports') as FormArray
+                let x = 0
+                for (let index = 0; index < 2; index++) {
+                    this.dexieService.getByKey('ports', ++x).then((port) => {
+                        ports.push(this.createPort(port))
+                    })
+                }
+            }, 1000)
+        }
     }
 
-    public getPort(index: number): PortReadDto {
-        return this.record.ports[index]
+    public autocompleteFields(fieldName: any, object: any): any {
+        return object ? object[fieldName] : undefined
     }
 
-    public onShowPortsTab(): void {
-        this.isInvoiceTabVisible = false
-        this.isPortsTabVisible = true
+    public checkForEmptyAutoComplete(event: { target: { value: any } }): void {
+        if (event.target.value == '') this.isAutoCompleteDisabled = true
     }
 
-    public onShowInvoiceTab(): void {
-        this.isInvoiceTabVisible = true
-        this.isPortsTabVisible = false
-    }
-
-    public patchFormWithSelectedDate(event: any): void {
-        this.form.patchValue({
-            date: event.value.date
-        })
+    public enableOrDisableAutoComplete(event: any): void {
+        this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
     }
 
     public getDate(): string {
         return this.form.value.date
+    }
+
+    public getHint(id: string, minmax = 0): string {
+        return this.messageHintService.getDescription(id, minmax)
+    }
+
+    public getLabel(id: string): string {
+        return this.messageLabelService.getDescription(this.feature, id)
     }
 
     public onDelete(): void {
@@ -125,47 +134,48 @@ export class InvoiceFormComponent {
         })
     }
 
+    public onDoNothing(): void {
+        this.dialogService.open(this.messageDialogService.featureNotAvailable(), 'error', ['ok'])
+    }
+
+    public onDoPaxCalculations(): void {
+        // TODO
+    }
+
     public onSave(): void {
         // this.saveRecord(this.flattenForm())
     }
 
-    public enableOrDisableAutoComplete(event: any): void {
-        this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
+    public onShowPortsTab(): void {
+        this.isInvoiceTabVisible = false
+        this.isPortsTabVisible = true
+    }
+
+    public onShowInvoiceTab(): void {
+        this.isInvoiceTabVisible = true
+        this.isPortsTabVisible = false
     }
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
         this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
     }
 
-    public getHint(id: string, minmax = 0): string {
-        return this.messageHintService.getDescription(id, minmax)
+    public patchFormWithSelectedDate(event: any): void {
+        this.form.patchValue({
+            date: event.value.date
+        })
     }
 
-    public checkForEmptyAutoComplete(event: { target: { value: any } }): void {
-        if (event.target.value == '') this.isAutoCompleteDisabled = true
-    }
-
-    public autocompleteFields(fieldName: any, object: any): any {
-        return object ? object[fieldName] : undefined
-    }
-
-    public doPaxCalculations(): void {
-        // this.calculateTotalPax()
+    public updateInvoice(port: any, portIndex: number): void {
+        this.record.ports[portIndex] = port
+        this.form.patchValue({
+            ports: this.record.ports
+        })
     }
 
     //#endregion
 
     //#region private methods
-
-    private doNewOrEditTasks(): void {
-        if (this.isNewRecord) {
-            // this.addPorts()
-        } else {
-            this.getRecord().then(() => {
-                this.populateFields()
-            })
-        }
-    }
 
     private getRecord(): Promise<any> {
         if (this.recordId != undefined) {
@@ -217,20 +227,14 @@ export class InvoiceFormComponent {
         })
     }
 
-    public addPorts(): void {
-        if (this.recordId == undefined) {
-            setTimeout(() => {
-                const ports = this.form.get('ports') as FormArray
-                for (let index = 0; index < 2; index++) {
-                    ports.push(this.createPort())
-                }
-            }, 1000)
-        }
-    }
-
-    private createPort(): FormGroup {
-        const port = this.formBuilder.group({
-            port: [''],
+    private createPort(port: SimpleEntity): FormGroup {
+        const x = this.formBuilder.group({
+            id: 0,
+            invoiceId: '',
+            port: this.formBuilder.group({
+                id: port.id,
+                description: port.description
+            }),
             adultsWithTransfer: [0, [Validators.required, Validators.maxLength(3)]],
             adultsAmountWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
             adultsWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
@@ -239,11 +243,12 @@ export class InvoiceFormComponent {
             kidsAmountWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
             kidsWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
             kidsAmountWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-            free: [0, [Validators.required, Validators.maxLength(4)]],
+            freeWithTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
+            freeWithoutTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
             total: [0],
             totalAmount: [0]
         })
-        return port
+        return x
     }
 
     private populateDropdowns(): void {
@@ -311,10 +316,6 @@ export class InvoiceFormComponent {
         }
     }
 
-    public onDoNothing(): void {
-        this.dialogService.open(this.messageDialogService.featureNotAvailable(), 'error', ['ok'])
-    }
-
     private populatePorts(): void {
         const x = this.form.controls['ports'] as FormArray
         this.record.ports.forEach((port: any) => {
@@ -335,8 +336,8 @@ export class InvoiceFormComponent {
                 kidsPriceWithoutTransfer: port.kidsPriceWithoutTransfer,
                 freeWithTransfer: port.freeWithTransfer,
                 freeWithoutTransfer: port.freeWithoutTransfer,
-                totalPax: port.totalPax,
-                totalAmount: port.totalAmount
+                pax: port.totalPax,
+                amount: port.totalAmount
             }))
         })
     }
@@ -392,10 +393,6 @@ export class InvoiceFormComponent {
     get remarks(): AbstractControl {
         return this.form.get('remarks')
     }
-
-    // get ports(): FormArray {
-    //     return this.form.get('ports') as FormArray
-    // }
 
     //#endregion
 

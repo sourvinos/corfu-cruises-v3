@@ -2,6 +2,8 @@
 
     <div id="content">
 
+        <!-- <span style="color: var(--color-text); font-size: 12px;">{{ ports | json }}</span> -->
+
         <form [formGroup]="form" id="form">
             <!-- Port -->
             <mat-form-field>
@@ -68,13 +70,26 @@
                     <mat-error *ngIf="!kidsAmountWithoutTransfer.hasError('required') && kidsAmountWithoutTransfer.hasError('min') || kidsAmountWithoutTransfer.hasError('max')">{{ getHint("invalid") }}</mat-error>
                 </mat-form-field>
             </div>
-            <!-- Free -->
+            <!-- Free with transfer-->
             <div class="group-input-field">
                 <mat-form-field class="person">
-                    <mat-label>{{ getLabel('free') }}</mat-label>
-                    <input [inputTabStop]="input" class="right" formControlName="free" matInput type="number">
-                    <mat-error *ngIf="free.hasError('required')">{{ getHint("required") }}</mat-error>
-                    <mat-error *ngIf="!free.hasError('required') && free.hasError('min') || free.hasError('max')">{{ getHint("invalid") }}</mat-error>
+                    <mat-label>{{ getLabel('freeWithTransfer') }}</mat-label>
+                    <input [inputTabStop]="input" class="right" formControlName="freeWithTransfer" matInput type="number">
+                    <mat-error *ngIf="freeWithTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
+                    <mat-error *ngIf="!freeWithTransfer.hasError('required') && freeWithTransfer.hasError('min') || freeWithTransfer.hasError('max')">{{ getHint("invalid") }}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="total">
+                    <mat-label>{{ getLabel('total') }}</mat-label>
+                    <input class="right" matInput type="number" readonly value="0">
+                </mat-form-field>
+            </div>
+            <!-- Free without transfer-->
+            <div class="group-input-field">
+                <mat-form-field class="person">
+                    <mat-label>{{ getLabel('freeWithoutTransfer') }}</mat-label>
+                    <input [inputTabStop]="input" class="right" formControlName="freeWithoutTransfer" matInput type="number">
+                    <mat-error *ngIf="freeWithoutTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
+                    <mat-error *ngIf="!freeWithoutTransfer.hasError('required') && freeWithoutTransfer.hasError('min') || freeWithoutTransfer.hasError('max')">{{ getHint("invalid") }}</mat-error>
                 </mat-form-field>
                 <mat-form-field class="total">
                     <mat-label>{{ getLabel('total') }}</mat-label>
@@ -85,11 +100,11 @@
             <div class="group-input-field hide-hint total">
                 <mat-form-field class="person">
                     <mat-label>{{ getLabel('total') }}</mat-label>
-                    <input class="right" formControlName="total" matInput readonly type="number">
+                    <input class="right" formControlName="pax" matInput readonly type="number">
                 </mat-form-field>
                 <mat-form-field class="total">
                     <mat-label>{{ getLabel('total') }}</mat-label>
-                    <input class="right" formControlName="totalAmount" matInput readonly type="number">
+                    <input class="right" formControlName="amount" matInput readonly type="number">
                 </mat-form-field>
             </div>
         </form>

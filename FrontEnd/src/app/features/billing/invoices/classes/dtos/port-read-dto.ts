@@ -17,7 +17,7 @@ export interface PortReadDto {
     kidsPriceWithoutTransfer: number
     freeWithTransfer: number
     freeWithoutTransfer: number
-    totalPax: number
-    totalAmount: number
+    pax: number
+    amount: number
 
 }
