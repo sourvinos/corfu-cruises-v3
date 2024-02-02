@@ -1,3 +1,7 @@
+.mat-divider {
+    background-color: color-mix(in srgb, var(--color-border) 50%, transparent) !important;
+}
+
 #shortcuts-menu {
     display: flex;
     flex-direction: column;

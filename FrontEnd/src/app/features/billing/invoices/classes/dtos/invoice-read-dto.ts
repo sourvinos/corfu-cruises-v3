@@ -21,7 +21,7 @@ export interface InvoiceReadDto extends Metadata {
     paymentMethod: SimpleEntity
     ship: SimpleEntity
     aade: AadeVM
-    ports: PortReadDto[]
+    invoicesPorts: PortReadDto[]
     // Fields
     remarks: string
     // Persons

@@ -12,7 +12,10 @@ import { DocumentTypeVM } from '../../classes/view-models/documentType-vm'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
+import { InvoiceHelperService } from '../../classes/services/invoice.helper.service'
+import { InvoiceHttpService } from '../../classes/services/invoice-http.service'
 import { InvoiceReadDto } from '../../classes/dtos/invoice-read-dto'
+import { InvoiceWriteDto } from '../../classes/dtos/invoice-write-dto'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
@@ -56,13 +59,13 @@ export class InvoiceFormComponent {
     public dropdownCustomers: Observable<CustomerAutoCompleteVM[]>
     public dropdownDestinations: Observable<DestinationAutoCompleteVM[]>
     public dropdownDocumentTypes: Observable<DocumentTypeVM[]>
-    public dropdownPaymentMethods: Observable<DocumentTypeVM[]>
+    public dropdownPaymentMethods: Observable<SimpleEntity[]>
     public dropdownPorts: Observable<PortAutoCompleteVM[]>
     public dropdownShips: Observable<ShipAutoCompleteVM[]>
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private helperService: HelperService, private dialogService: DialogService, private formBuilder: FormBuilder, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router,) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -89,7 +92,7 @@ export class InvoiceFormComponent {
                         ports.push(this.createPort(port))
                     })
                 }
-            }, 1000)
+            }, 500)
         }
     }
 
@@ -143,7 +146,7 @@ export class InvoiceFormComponent {
     }
 
     public onSave(): void {
-        // this.saveRecord(this.flattenForm())
+        this.saveRecord(this.flattenForm())
     }
 
     public onShowPortsTab(): void {
@@ -167,15 +170,16 @@ export class InvoiceFormComponent {
     }
 
     public updateInvoice(port: any, portIndex: number): void {
-        this.record.ports[portIndex] = port
-        this.form.patchValue({
-            ports: this.record.ports
-        })
+        this.form.value.invoicesPorts[portIndex] = port
     }
 
     //#endregion
 
     //#region private methods
+
+    private flattenForm(): InvoiceWriteDto {
+        return this.invoiceHelperService.flattenForm(this.form.value)
+    }
 
     private getRecord(): Promise<any> {
         if (this.recordId != undefined) {
@@ -202,24 +206,20 @@ export class InvoiceFormComponent {
         this.form = this.formBuilder.group({
             invoiceId: '',
             date: ['', [Validators.required]],
-            no: '',
             customer: ['', [Validators.required, ValidationService.RequireAutocomplete]],
-            taxNo: '',
-            email: '',
             destination: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             documentType: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             paymentMethod: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             ship: ['', [Validators.required, ValidationService.RequireAutocomplete]],
-            adults: [0, [Validators.required, Validators.maxLength(3)]],
-            kids: [0, [Validators.required, Validators.maxLength(3)]],
-            free: [0, [Validators.required, Validators.maxLength(3)]],
-            totalPax: [0, ValidationService.isGreaterThanZero],
-            remarks: ['', Validators.maxLength(128)],
+            no: '',
+            taxNo: '',
+            email: '',
             netAmount: [0, ValidationService.isGreaterThanZero],
             vatPercent: [0, ValidationService.isGreaterThanZero],
             vatAmount: [0, ValidationService.isGreaterThanZero],
-            grossAmount: [0, ValidationService.isGreaterThanZero],
-            ports: this.formBuilder.array([]),
+            grossAmount: [0, [Validators.required, Validators.min(1), Validators.max(99999)]],
+            invoicesPorts: this.formBuilder.array([]),
+            remarks: ['', Validators.maxLength(128)],
             postAt: [''],
             postUser: [''],
             putAt: [''],
@@ -236,12 +236,16 @@ export class InvoiceFormComponent {
                 description: port.description
             }),
             adultsWithTransfer: [0, [Validators.required, Validators.maxLength(3)]],
+            adultsPriceWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
             adultsAmountWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
             adultsWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+            adultsPriceWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
             adultsAmountWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
             kidsWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+            kidsPriceWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
             kidsAmountWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
             kidsWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+            kidsPriceWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
             kidsAmountWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
             freeWithTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
             freeWithoutTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
@@ -293,13 +297,24 @@ export class InvoiceFormComponent {
                 postUser: this.record.postUser,
                 putAt: this.record.putAt,
                 putUser: this.record.putUser,
-                ports: this.populatePorts()
+                invoicesPorts: this.populatePorts()
             })
         }
     }
 
     private resetForm(): void {
         this.form.reset()
+    }
+
+    private saveRecord(invoice: InvoiceWriteDto): void {
+        this.invoiceHttpService.saveInvoice(invoice).subscribe({
+            next: (response) => {
+                this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'ok', this.parentUrl, true)
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
+        })
     }
 
     private setRecordId(): void {
@@ -317,8 +332,8 @@ export class InvoiceFormComponent {
     }
 
     private populatePorts(): void {
-        const x = this.form.controls['ports'] as FormArray
-        this.record.ports.forEach((port: any) => {
+        const x = this.form.controls['invoicesPorts'] as FormArray
+        this.record.invoicesPorts.forEach((port: any) => {
             x.push(new FormControl({
                 id: port.id,
                 invoiceId: port.invoiceId,

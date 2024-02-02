@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { FormBuilder, FormGroup, AbstractControl } from '@angular/forms'
 // Custom
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -14,7 +14,7 @@ import { PortReadDto } from '../../classes/dtos/port-read-dto'
 
 export class InvoicePortTotalsFormComponent {
 
-    //#region common #8
+    //#region common
 
     @Input() ports: PortReadDto[]
     public feature = 'invoicePortForm'
@@ -35,7 +35,7 @@ export class InvoicePortTotalsFormComponent {
         this.doCalculations()
     }
 
-    ngOnChanges(changes: SimpleChanges): void {
+    ngDoCheck(): void {
         let adultsWithTransfer = 0
         let adultsAmountWithTransfer = 0
         let adultsWithoutTransfer = 0
@@ -48,39 +48,34 @@ export class InvoicePortTotalsFormComponent {
         let freeWithoutTransfer = 0
         let pax = 0
         let amount = 0
-        for (const property in changes) {
-            const x = changes[property]
-            if (x.previousValue != undefined) {
-                x.currentValue.forEach((port: PortReadDto) => {
-                    adultsWithTransfer += port.adultsWithTransfer
-                    adultsAmountWithTransfer += port.adultsWithTransfer * port.adultsPriceWithTransfer
-                    adultsWithoutTransfer += port.adultsWithoutTransfer
-                    adultsAmountWithoutTransfer += port.adultsWithoutTransfer * port.adultsPriceWithoutTransfer
-                    kidsWithTransfer += port.kidsWithTransfer
-                    kidsAmountWithTransfer += port.kidsWithTransfer * port.kidsPriceWithTransfer
-                    kidsWithoutTransfer += port.kidsWithoutTransfer
-                    kidsAmountWithoutTransfer += port.kidsWithoutTransfer * port.kidsPriceWithoutTransfer
-                    freeWithTransfer += port.freeWithTransfer
-                    freeWithoutTransfer += port.freeWithoutTransfer
-                    pax += port.adultsWithTransfer + port.adultsWithoutTransfer + port.kidsWithTransfer + port.kidsWithoutTransfer + port.freeWithTransfer + port.freeWithoutTransfer
-                    amount += (port.adultsWithTransfer * port.adultsPriceWithTransfer) + (port.adultsWithoutTransfer * port.adultsPriceWithoutTransfer) + (port.kidsWithTransfer * port.kidsPriceWithTransfer) + (port.kidsWithoutTransfer * port.kidsPriceWithoutTransfer)
-                })
-                this.form.patchValue({
-                    adultsWithTransfer: adultsWithTransfer,
-                    adultsAmountWithTransfer: adultsAmountWithTransfer,
-                    adultsWithoutTransfer: adultsWithoutTransfer,
-                    adultsAmountWithoutTransfer: adultsAmountWithoutTransfer,
-                    kidsWithTransfer: kidsWithTransfer,
-                    kidsAmountWithTransfer: kidsAmountWithTransfer,
-                    kidsWithoutTransfer: kidsWithoutTransfer,
-                    kidsAmountWithoutTransfer: kidsAmountWithoutTransfer,
-                    freeWithTransfer: freeWithTransfer,
-                    freeWithoutTransfer: freeWithoutTransfer,
-                    pax: pax,
-                    amount: amount
-                })
-            }
-        }
+        this.ports.forEach(port => {
+            adultsWithTransfer += port.adultsWithTransfer
+            adultsAmountWithTransfer += port.adultsWithTransfer * port.adultsPriceWithTransfer
+            adultsWithoutTransfer += port.adultsWithoutTransfer
+            adultsAmountWithoutTransfer += port.adultsWithoutTransfer * port.adultsPriceWithoutTransfer
+            kidsWithTransfer += port.kidsWithTransfer
+            kidsAmountWithTransfer += port.kidsWithTransfer * port.kidsPriceWithTransfer
+            kidsWithoutTransfer += port.kidsWithoutTransfer
+            kidsAmountWithoutTransfer += port.kidsWithoutTransfer * port.kidsPriceWithoutTransfer
+            freeWithTransfer += port.freeWithTransfer
+            freeWithoutTransfer += port.freeWithoutTransfer
+            pax += port.adultsWithTransfer + port.adultsWithoutTransfer + port.kidsWithTransfer + port.kidsWithoutTransfer + port.freeWithTransfer + port.freeWithoutTransfer
+            amount += (port.adultsWithTransfer * port.adultsPriceWithTransfer) + (port.adultsWithoutTransfer * port.adultsPriceWithoutTransfer) + (port.kidsWithTransfer * port.kidsPriceWithTransfer) + (port.kidsWithoutTransfer * port.kidsPriceWithoutTransfer)
+        })
+        this.form.patchValue({
+            adultsWithTransfer: adultsWithTransfer,
+            adultsAmountWithTransfer: adultsAmountWithTransfer,
+            adultsWithoutTransfer: adultsWithoutTransfer,
+            adultsAmountWithoutTransfer: adultsAmountWithoutTransfer,
+            kidsWithTransfer: kidsWithTransfer,
+            kidsAmountWithTransfer: kidsAmountWithTransfer,
+            kidsWithoutTransfer: kidsWithoutTransfer,
+            kidsAmountWithoutTransfer: kidsAmountWithoutTransfer,
+            freeWithTransfer: freeWithTransfer,
+            freeWithoutTransfer: freeWithoutTransfer,
+            pax: pax,
+            amount: amount
+        })
     }
 
     //#endregion

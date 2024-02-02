@@ -108,6 +108,7 @@ namespace API.Infrastructure.Classes {
             #region billing
             modelBuilder.ApplyConfiguration(new DocumentTypeConfig());
             modelBuilder.ApplyConfiguration(new InvoicesConfig());
+            modelBuilder.ApplyConfiguration(new InvoicesPortsConfig());
             modelBuilder.ApplyConfiguration(new ParametersConfig());
             modelBuilder.ApplyConfiguration(new PaymentMethodsConfig());
             modelBuilder.ApplyConfiguration(new PricesConfig());

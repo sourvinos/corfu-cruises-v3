@@ -4,7 +4,7 @@
 }
 
 #form {
-    width: auto !important;
+    width: 100% !important;
 }
 
 #refresh-button {
@@ -24,3 +24,15 @@
 .group-input-field.hide-hint {
     height: 3.5rem;
 }
+
+/* .person {
+    width: 10rem !important;
+} */
+
+/* .price {
+    width: 5rem !important;
+} */
+
+/* .total {
+    width: auto !important;
+} */

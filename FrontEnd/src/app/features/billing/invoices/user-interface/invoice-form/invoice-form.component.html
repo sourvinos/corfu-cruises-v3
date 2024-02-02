@@ -42,7 +42,7 @@
                         <mat-form-field style="width: 213%;">
                             <mat-icon class="material-icons-outlined small">lock</mat-icon>
                             <mat-label>{{ getLabel('no') }}</mat-label>
-                            <input [inputTabStop]="input" class="right" formControlName="no" matInput type="number" readonly>
+                            <input [inputTabStop]="input" class="right" formControlName="no" matInput type="number">
                         </mat-form-field>
                     </div>
                 </div>
@@ -113,30 +113,32 @@
                     <!-- Net Amount -->
                     <mat-form-field>
                         <mat-label>{{ getLabel('netAmount') }}</mat-label>
-                        <input (keyup)="onDoPaxCalculations()" [inputTabStop]="input" class="right" dataTabIndex="7" formControlName="netAmount" matInput type="number">
+                        <input class="right" formControlName="netAmount" matInput type="number">
                         <mat-error *ngIf="netAmount.hasError('required')">{{ getHint("required") }}</mat-error>
                         <mat-error *ngIf="!netAmount.hasError('required') && netAmount.hasError('min') || netAmount.hasError('max')">{{ getHint("invalid") }}</mat-error>
                     </mat-form-field>
                     <!-- Vat Percent -->
                     <mat-form-field>
                         <mat-label>{{ getLabel('vatPercent') }}</mat-label>
-                        <input (keyup)="onDoPaxCalculations()" [inputTabStop]="input" class="right" formControlName="vatPercent" matInput type="number" readonly>
+                        <input class="right" formControlName="vatPercent" matInput type="number">
                     </mat-form-field>
                     <!-- Vat Amount -->
                     <mat-form-field>
                         <mat-label>{{ getLabel('vatAmount') }}</mat-label>
-                        <input (keyup)="onDoPaxCalculations()" [inputTabStop]="input" class="right" dataTabIndex="8" formControlName="vatAmount" matInput type="number">
+                        <input class="right" formControlName="vatAmount" matInput type="number">
                     </mat-form-field>
                     <!-- Gross Amount -->
                     <mat-form-field>
                         <mat-label>{{ getLabel('grossAmount') }}</mat-label>
-                        <input class="right" dataTabIndex="9" formControlName="grossAmount" matInput readonly>
+                        <input [inputTabStop]="input" class="right" dataTabIndex="7" formControlName="grossAmount" matInput type="number">
+                        <mat-error *ngIf="grossAmount.hasError('required')">{{ getHint("required") }}</mat-error>
+                        <mat-error *ngIf="!grossAmount.hasError('required') && grossAmount.hasError('min') || grossAmount.hasError('max')">{{ getHint("invalid") }}</mat-error>
                     </mat-form-field>
                 </div>
                 <!-- Remarks -->
                 <mat-form-field>
                     <mat-label>{{ getLabel("remarks") }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="10" formControlName="remarks" matInput>
+                    <input [inputTabStop]="input" dataTabIndex="8" formControlName="remarks" matInput>
                 </mat-form-field>
                 <div class="align-bottom">
                     <!-- Metadata -->
@@ -144,9 +146,9 @@
                 </div>
             </div>
             <div *ngIf="isPortsTabVisible" id="ports-tab">
-                <invoice-port-form [port]="form.value.ports[0]" (outputPort)="updateInvoice($event,0)"></invoice-port-form>
-                <invoice-port-form [port]="form.value.ports[1]" (outputPort)="updateInvoice($event,1)"></invoice-port-form>
-                <invoice-port-totals-form [ports]="form.value.ports"></invoice-port-totals-form>
+                <invoice-port-form [port]="form.value.invoicesPorts[0]" (outputPort)="updateInvoice($event,0)"></invoice-port-form>
+                <invoice-port-form [port]="form.value.invoicesPorts[1]" (outputPort)="updateInvoice($event,1)"></invoice-port-form>
+                <invoice-port-totals-form [ports]="form.value.invoicesPorts"></invoice-port-totals-form>
             </div>
         </form>
 

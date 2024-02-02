@@ -13,10 +13,6 @@
                         <input formControlName="description" matInput readonly>
                     </mat-form-field>
                 </div>
-                <!-- Refresh button -->
-                <button (click)="onDoTasks()" class="fab fab-with-no-background" id="refresh-button" mat-icon-button>
-                    <mat-icon class="big material-symbols-outlined">cached</mat-icon>
-                </button>
             </div>
             <!-- Adults with transfer -->
             <div class="group-input-field">
@@ -136,6 +132,10 @@
                     <input class="right" matInput type="number" readonly value="0">
                 </mat-form-field>
             </div>
+            <!-- Refresh button -->
+            <button (click)="onDoTasks()" class="fab fab-with-no-background" id="refresh-button" mat-icon-button>
+                <mat-icon class="big material-symbols-outlined">cached</mat-icon>
+            </button>
             <!-- Totals -->
             <div class="group-input-field hide-hint total">
                 <mat-form-field class="person">

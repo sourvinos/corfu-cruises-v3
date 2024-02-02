@@ -1,5 +1,8 @@
+import { Guid } from 'guid-typescript'
+
 export interface PortWriteDto {
 
+    invoiceId: Guid
     portId: number
     adultsWithTransfer: number
     adultsPriceWithTransfer: number
@@ -11,6 +14,5 @@ export interface PortWriteDto {
     kidsPriceWithoutTransfer: number
     freeWithTransfer: number
     freeWithoutTransfer: number
-    totalAmount: number
 
 }

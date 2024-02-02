@@ -22,18 +22,14 @@ namespace API.Features.Billing.Invoices {
         // Fields
         public DateTime Date { get; set; }
         public int No { get; set; }
-        public int Adults { get; set; }
-        public int Kids { get; set; }
-        public int Free { get; set; }
-        public int TotalPax { get; set; }
         public decimal NetAmount { get; set; }
         public decimal VatPercent { get; set; }
         public decimal VatAmount { get; set; }
         public decimal GrossAmount { get; set; }
         public string Remarks { get; set; }
         // Child tables
-        public InvoiceAade Aade { get; set; }
-        public List<InvoicePort> Ports { get; set; }
+        // public InvoiceAade Aade { get; set; }
+        public List<InvoicePort> InvoicesPorts { get; set; }
         // Navigation
         public Customer Customer { get; set; }
         public Destination Destination { get; set; }

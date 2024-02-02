@@ -219,18 +219,3 @@ input:-webkit-autofill:focus {
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     display: none;
 }
-
-/* Invoice person fields */
-.person {
-    width: 10rem !important;
-}
-
-/* Invoice price fields */
-.price {
-    width: 5rem !important;
-}
-
-/* Invoice total fields */
-.total {
-    width: 6rem !important;
-}

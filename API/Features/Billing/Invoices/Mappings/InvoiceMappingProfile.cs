@@ -42,19 +42,19 @@ namespace API.Features.Billing.Invoices {
                     Id = x.PaymentMethod.Id,
                     Description = x.PaymentMethod.Description
                 }))
-                .ForMember(x => x.Aade, x => x.MapFrom(x => new InvoiceReadAadeDto {
-                    Id = x.Aade.Id,
-                    InvoiceId = x.Aade.InvoiceId,
-                    Uid = x.Aade.Uid,
-                    Mark = x.Aade.Mark,
-                    MarkCancel = x.Aade.MarkCancel,
-                    QrUrl = x.Aade.QrUrl
-                }))
-                .ForMember(x => x.Ports, x => x.MapFrom(x => x.Ports.Select(port => new InvoicePortReadDto {
+                // .ForMember(x => x.Aade, x => x.MapFrom(x => new InvoiceReadAadeDto {
+                //     Id = x.Aade.Id,
+                //     InvoiceId = x.Aade.InvoiceId,
+                //     Uid = x.Aade.Uid,
+                //     Mark = x.Aade.Mark,
+                //     MarkCancel = x.Aade.MarkCancel,
+                //     QrUrl = x.Aade.QrUrl
+                // }))
+                .ForMember(x => x.InvoicesPorts, x => x.MapFrom(x => x.InvoicesPorts.Select(port => new InvoicePortReadDto {
                     Id = port.Id,
                     InvoiceId = port.InvoiceId,
                     Port = new SimpleEntity {
-                        Id = port.Id,
+                        Id = port.Port.Id,
                         Description = port.Port.Description
                     },
                     AdultsWithTransfer = port.AdultsWithTransfer,
@@ -70,6 +70,11 @@ namespace API.Features.Billing.Invoices {
                     TotalPax = port.TotalPax,
                     TotalAmount = port.TotalAmount
                 })));
+            // Write invoice
+            CreateMap<InvoiceWriteDto, Invoice>()
+                .ForMember(x => x.Remarks, x => x.MapFrom(x => x.Remarks.Trim()));
+            // Write port
+            CreateMap<InvoicePortWriteDto, InvoicePort>();
         }
 
     }
