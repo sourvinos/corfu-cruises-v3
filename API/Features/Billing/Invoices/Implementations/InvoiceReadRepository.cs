@@ -59,7 +59,7 @@ namespace API.Features.Billing.Invoices {
                     .Include(x => x.Ship)
                     .Include(x => x.DocumentType)
                     .Include(x => x.PaymentMethod)
-                    // .Include(x => x.Aade)
+                    .Include(x => x.Aade)
                     .Include(x => x.InvoicesPorts).ThenInclude(x => x.Port)
                     .Where(x => x.InvoiceId.ToString() == invoiceId)
                     .SingleOrDefaultAsync()

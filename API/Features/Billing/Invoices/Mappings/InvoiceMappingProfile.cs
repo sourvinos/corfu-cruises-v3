@@ -42,14 +42,14 @@ namespace API.Features.Billing.Invoices {
                     Id = x.PaymentMethod.Id,
                     Description = x.PaymentMethod.Description
                 }))
-                // .ForMember(x => x.Aade, x => x.MapFrom(x => new InvoiceReadAadeDto {
-                //     Id = x.Aade.Id,
-                //     InvoiceId = x.Aade.InvoiceId,
-                //     Uid = x.Aade.Uid,
-                //     Mark = x.Aade.Mark,
-                //     MarkCancel = x.Aade.MarkCancel,
-                //     QrUrl = x.Aade.QrUrl
-                // }))
+                .ForMember(x => x.Aade, x => x.MapFrom(x => new InvoiceReadAadeDto {
+                    Id = x.Aade.Id,
+                    InvoiceId = x.Aade.InvoiceId,
+                    Uid = x.Aade.Uid,
+                    Mark = x.Aade.Mark,
+                    MarkCancel = x.Aade.MarkCancel,
+                    QrUrl = x.Aade.QrUrl
+                }))
                 .ForMember(x => x.InvoicesPorts, x => x.MapFrom(x => x.InvoicesPorts.Select(port => new InvoicePortReadDto {
                     Id = port.Id,
                     InvoiceId = port.InvoiceId,

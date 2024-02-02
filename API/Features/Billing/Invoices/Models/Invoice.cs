@@ -28,7 +28,7 @@ namespace API.Features.Billing.Invoices {
         public decimal GrossAmount { get; set; }
         public string Remarks { get; set; }
         // Child tables
-        // public InvoiceAade Aade { get; set; }
+        public InvoiceAade Aade { get; set; }
         public List<InvoicePort> InvoicesPorts { get; set; }
         // Navigation
         public Customer Customer { get; set; }
