@@ -40,8 +40,8 @@
                 "description": "Aktivní"
             },
             {
-                "id": "headerName",
-                "description": "Název"
+                "id": "headerAbbreviation",
+                "description": "Zkr."
             },
             {
                 "id": "headerPhones",
@@ -65,6 +65,10 @@
                 "description": "Zákazník"
             },
             {
+                "id": "abbreviation",
+                "description": "Zkr."
+            },
+            {
                 "id": "description",
                 "description": "Název"
             },
@@ -73,16 +77,8 @@
                 "description": "Daňové číslo"
             },
             {
-                "id": "nationality",
-                "description": "Země"
-            },
-            {
-                "id": "taxOffice",
-                "description": "Finanční úřad"
-            },
-            {
-                "id": "vatRegime",
-                "description": "Režim DPH"
+                "id": "branch",
+                "description": "Číslo pobočky"
             },
             {
                 "id": "profession",
@@ -91,6 +87,14 @@
             {
                 "id": "address",
                 "description": "Adresa"
+            },
+            {
+                "id": "postalCode",
+                "description": "Poštovní kód"
+            },
+            {
+                "id": "city",
+                "description": "Město"
             },
             {
                 "id": "phones",
@@ -107,6 +111,18 @@
             {
                 "id": "balanceLimit",
                 "description": "Dluhový limit"
+            },
+            {
+                "id": "nationality",
+                "description": "Země"
+            },
+            {
+                "id": "taxOffice",
+                "description": "Finanční úřad"
+            },
+            {
+                "id": "vatRegime",
+                "description": "Režim DPH"
             },
             {
                 "id": "isActive",

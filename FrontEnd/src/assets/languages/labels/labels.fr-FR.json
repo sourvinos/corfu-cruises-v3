@@ -40,8 +40,8 @@
                 "description": "Actif"
             },
             {
-                "id": "headerName",
-                "description": "Nom de compagnie"
+                "id": "headerAbbreviation",
+                "description": "Abr."
             },
             {
                 "id": "headerPhones",
@@ -65,6 +65,10 @@
                 "description": "Client"
             },
             {
+                "id": "abbreviation",
+                "description": "Abr."
+            },
+            {
                 "id": "description",
                 "description": "Nom de compagnie"
             },
@@ -73,16 +77,8 @@
                 "description": "Numéro d'enregistrement fiscal"
             },
             {
-                "id": "nationality",
-                "description": "Pays"
-            },
-            {
-                "id": "taxOffice",
-                "description": "Bureau des impôts"
-            },
-            {
-                "id": "vatRegime",
-                "description": "Régime de TVA"
+                "id": "branch",
+                "description": "Numéro de branche"
             },
             {
                 "id": "profession",
@@ -91,6 +87,14 @@
             {
                 "id": "address",
                 "description": "Adresse"
+            },
+            {
+                "id": "postalCode",
+                "description": "Code postal"
+            },
+            {
+                "id": "city",
+                "description": "Ville"
             },
             {
                 "id": "phones",
@@ -107,6 +111,18 @@
             {
                 "id": "balanceLimit",
                 "description": "Limite de la dette"
+            },
+            {
+                "id": "nationality",
+                "description": "Pays"
+            },
+            {
+                "id": "taxOffice",
+                "description": "Bureau des impôts"
+            },
+            {
+                "id": "vatRegime",
+                "description": "Régime de TVA"
             },
             {
                 "id": "isActive",

@@ -40,8 +40,8 @@
                 "description": "Ενεργός"
             },
             {
-                "id": "headerName",
-                "description": "Επωνυμία"
+                "id": "headerAbbreviation",
+                "description": "Συντ."
             },
             {
                 "id": "headerPhones",
@@ -65,6 +65,10 @@
                 "description": "Πελάτης"
             },
             {
+                "id": "abbreviation",
+                "description": "Συντ."
+            },
+            {
                 "id": "description",
                 "description": "Επωνυμία"
             },
@@ -73,16 +77,8 @@
                 "description": "ΑΦΜ"
             },
             {
-                "id": "nationality",
-                "description": "Χώρα"
-            },
-            {
-                "id": "taxOffice",
-                "description": "ΔΟΥ"
-            },
-            {
-                "id": "vatRegime",
-                "description": "Καθεστώς ΦΠΑ"
+                "id": "branch",
+                "description": "Αρ. εγκατάστασης"
             },
             {
                 "id": "profession",
@@ -91,6 +87,14 @@
             {
                 "id": "address",
                 "description": "Διεύθυνση"
+            },
+            {
+                "id": "postalCode",
+                "description": "ΤΚ"
+            },
+            {
+                "id": "city",
+                "description": "Πόλη"
             },
             {
                 "id": "phones",
@@ -107,6 +111,18 @@
             {
                 "id": "balanceLimit",
                 "description": "Οριο οφειλής"
+            },
+            {
+                "id": "nationality",
+                "description": "Χώρα"
+            },
+            {
+                "id": "taxOffice",
+                "description": "ΔΟΥ"
+            },
+            {
+                "id": "vatRegime",
+                "description": "Καθεστώς ΦΠΑ"
             },
             {
                 "id": "isActive",

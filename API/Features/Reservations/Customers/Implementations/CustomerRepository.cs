@@ -23,7 +23,7 @@ namespace API.Features.Reservations.Customers {
         public async Task<IEnumerable<CustomerListVM>> GetAsync() {
             var customers = await context.Customers
                 .AsNoTracking()
-                .OrderBy(x => x.Description)
+                .OrderBy(x => x.Abbreviation)
                 .ToListAsync();
             return mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerListVM>>(customers);
         }

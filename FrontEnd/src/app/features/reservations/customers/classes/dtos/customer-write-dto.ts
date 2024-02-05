@@ -9,10 +9,14 @@ export interface CustomerWriteDto {
     taxOfficeId: Guid
     vatRegimeId: Guid
     // Fields
+    abbreviation: string
     description: string
     taxNo: string
+    branch: number
     profession: string
     address: string
+    postalCode: string
+    city: string
     phones: string
     personInCharge: string
     email: string

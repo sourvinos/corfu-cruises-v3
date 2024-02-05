@@ -14,6 +14,7 @@ namespace API.Features.Billing.Invoices {
 
         #region variables
 
+        private readonly IInvoiceAadeRepository invoiceAadeRepo;
         private readonly IInvoiceReadRepository invoiceReadRepo;
         private readonly IInvoiceUpdateRepository invoiceUpdateRepo;
         private readonly IInvoiceValidation invoiceValidation;
@@ -21,7 +22,8 @@ namespace API.Features.Billing.Invoices {
 
         #endregion
 
-        public InvoicesController(IMapper mapper, IInvoiceReadRepository invoiceReadRepo, IInvoiceUpdateRepository invoiceUpdateRepo, IInvoiceValidation invoiceValidation) {
+        public InvoicesController(IInvoiceAadeRepository invoiceAadeRepo, IMapper mapper, IInvoiceReadRepository invoiceReadRepo, IInvoiceUpdateRepository invoiceUpdateRepo, IInvoiceValidation invoiceValidation) {
+            this.invoiceAadeRepo = invoiceAadeRepo;
             this.invoiceReadRepo = invoiceReadRepo;
             this.invoiceUpdateRepo = invoiceUpdateRepo;
             this.invoiceValidation = invoiceValidation;

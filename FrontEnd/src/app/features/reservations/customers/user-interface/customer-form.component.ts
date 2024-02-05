@@ -139,10 +139,14 @@ export class CustomerFormComponent {
             nationalityId: this.form.value.nationality.id,
             taxOfficeId: this.form.value.taxOffice.id,
             vatRegimeId: this.form.value.vatRegime.id,
-            taxNo: this.form.value.taxNo,
+            abbreviation: this.form.value.abbreviation,
             description: this.form.value.description,
+            taxNo: this.form.value.taxNo,
+            branch: this.form.value.branch,
             profession: this.form.value.profession,
             address: this.form.value.address,
+            postalCode: this.form.value.postalCode,
+            city: this.form.value.city,
             phones: this.form.value.phones,
             personInCharge: this.form.value.personInCharge,
             email: this.form.value.email,
@@ -183,10 +187,14 @@ export class CustomerFormComponent {
             nationality: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             taxOffice: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             vatRegime: ['', [Validators.required, ValidationService.RequireAutocomplete]],
-            description: ['', [Validators.required, Validators.maxLength(128)]],
+            abbreviation: ['', [Validators.required, Validators.maxLength(128)]],
+            description: ['', [Validators.required, Validators.maxLength(512)]],
             taxNo: ['', [Validators.required, Validators.maxLength(36)]],
+            branch: [0, [Validators.required, Validators.min(0), Validators.max(10)]],
             profession: ['', [Validators.maxLength(128)]],
-            address: ['', [Validators.maxLength(128)]],
+            address: ['', [Validators.required, Validators.maxLength(128)]],
+            postalCode: ['', [Validators.required, Validators.maxLength(10)]],
+            city: ['', [Validators.required, Validators.maxLength(128)]],
             phones: ['', [Validators.maxLength(128)]],
             personInCharge: ['', [Validators.maxLength(128)]],
             email: ['', [Validators.email, Validators.maxLength(128)]],
@@ -225,10 +233,14 @@ export class CustomerFormComponent {
                 nationality: { 'id': this.record.nationality.id, 'description': this.record.nationality.description },
                 taxOffice: { 'id': this.record.taxOffice.id, 'description': this.record.taxOffice.description },
                 vatRegime: { 'id': this.record.vatRegime.id, 'description': this.record.vatRegime.description },
-                taxNo: this.record.taxNo,
+                abbreviation: this.record.abbreviation,
                 description: this.record.description,
+                taxNo: this.record.taxNo,
+                branch: this.record.branch,
                 profession: this.record.profession,
                 address: this.record.address,
+                postalCode: this.record.postalCode,
+                city: this.record.city,
                 phones: this.record.phones,
                 personInCharge: this.record.personInCharge,
                 email: this.record.email,
@@ -268,10 +280,6 @@ export class CustomerFormComponent {
 
     //#region getters
 
-    get description(): AbstractControl {
-        return this.form.get('description')
-    }
-
     get nationality(): AbstractControl {
         return this.form.get('nationality')
     }
@@ -284,8 +292,20 @@ export class CustomerFormComponent {
         return this.form.get('vatRegime')
     }
 
+    get abbreviation(): AbstractControl {
+        return this.form.get('abbreviation')
+    }
+
+    get description(): AbstractControl {
+        return this.form.get('description')
+    }
+
     get taxNo(): AbstractControl {
         return this.form.get('taxNo')
+    }
+
+    get branch(): AbstractControl {
+        return this.form.get('branch')
     }
 
     get profession(): AbstractControl {
@@ -294,6 +314,14 @@ export class CustomerFormComponent {
 
     get address(): AbstractControl {
         return this.form.get('address')
+    }
+
+    get postalCode(): AbstractControl {
+        return this.form.get('postalCode')
+    }
+
+    get city(): AbstractControl {
+        return this.form.get('city')
     }
 
     get phones(): AbstractControl {

@@ -12,10 +12,14 @@ export interface CustomerReadDto extends Metadata {
     taxOffice: TaxOfficeAutoCompleteVM
     vatRegime: VatRegimeAutoCompleteVM
     // Fields
-    taxNo: string
+    abbreviation: string
     description: string
+    taxNo: string
+    branch: number
     profession: string
     address: string
+    postalCode: string
+    city: string
     phones: string
     personInCharge: string
     email: string

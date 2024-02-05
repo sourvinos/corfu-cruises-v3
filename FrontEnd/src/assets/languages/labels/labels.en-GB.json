@@ -40,8 +40,8 @@
                 "description": "Active"
             },
             {
-                "id": "headerName",
-                "description": "Name"
+                "id": "headerAbbreviation",
+                "description": "Abbr."
             },
             {
                 "id": "headerPhones",
@@ -65,6 +65,10 @@
                 "description": "Customer"
             },
             {
+                "id": "abbreviation",
+                "description": "Abbr."
+            },
+            {
                 "id": "description",
                 "description": "Name"
             },
@@ -73,16 +77,8 @@
                 "description": "Tax number"
             },
             {
-                "id": "nationality",
-                "description": "Country"
-            },
-            {
-                "id": "taxOffice",
-                "description": "Tax office"
-            },
-            {
-                "id": "vatRegime",
-                "description": "VAT regime"
+                "id": "branch",
+                "description": "Branch number"
             },
             {
                 "id": "profession",
@@ -91,6 +87,14 @@
             {
                 "id": "address",
                 "description": "Address"
+            },
+            {
+                "id": "postalCode",
+                "description": "Postal code"
+            },
+            {
+                "id": "city",
+                "description": "City"
             },
             {
                 "id": "phones",
@@ -107,6 +111,18 @@
             {
                 "id": "balanceLimit",
                 "description": "Debt limit"
+            },
+            {
+                "id": "nationality",
+                "description": "Country"
+            },
+            {
+                "id": "taxOffice",
+                "description": "Tax office"
+            },
+            {
+                "id": "vatRegime",
+                "description": "VAT regime"
             },
             {
                 "id": "isActive",

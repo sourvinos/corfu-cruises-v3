@@ -40,8 +40,8 @@
                 "description": "Aktiv"
             },
             {
-                "id": "headerName",
-                "description": "Name"
+                "id": "headerAbbreviation",
+                "description": "Abk."
             },
             {
                 "id": "headerPhones",
@@ -65,6 +65,10 @@
                 "description": "Kunde"
             },
             {
+                "id": "abbreviation",
+                "description": "Abk."
+            },
+            {
                 "id": "description",
                 "description": "Name der Firma"
             },
@@ -73,16 +77,8 @@
                 "description": "Steuerliche Registriernummer"
             },
             {
-                "id": "nationality",
-                "description": "Land"
-            },
-            {
-                "id": "taxOffice",
-                "description": "Finanzamt"
-            },
-            {
-                "id": "vatRegime",
-                "description": "MwSt.-Regelung"
+                "id": "branch",
+                "description": "Nummer der Filiale"
             },
             {
                 "id": "profession",
@@ -91,6 +87,14 @@
             {
                 "id": "address",
                 "description": "Adresse"
+            },
+            {
+                "id": "postalCode",
+                "description": "PLZ"
+            },
+            {
+                "id": "city",
+                "description": "Stadt"
             },
             {
                 "id": "phones",
@@ -107,6 +111,18 @@
             {
                 "id": "balanceLimit",
                 "description": "Verschuldungsgrenze"
+            },
+            {
+                "id": "nationality",
+                "description": "Land"
+            },
+            {
+                "id": "taxOffice",
+                "description": "Finanzamt"
+            },
+            {
+                "id": "vatRegime",
+                "description": "MwSt.-Regelung"
             },
             {
                 "id": "isActive",

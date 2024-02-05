@@ -18,8 +18,13 @@ namespace Customers {
                     TaxOfficeId = 1,
                     VatRegimeId = 1,
                     NationalityId = 1,
-                    Description = Helpers.CreateRandomString(128),
-                    TaxNo = "099999999",
+                    Abbreviation = Helpers.CreateRandomString(128),
+                    Description = Helpers.CreateRandomString(512),
+                    TaxNo = Helpers.CreateRandomString(36),
+                    Branch = 0,
+                    Address = Helpers.CreateRandomString(128),
+                    PostalCode = Helpers.CreateRandomString(10),
+                    City = Helpers.CreateRandomString(128),
                     BalanceLimit = 0M
                 }
             };
