@@ -13,6 +13,7 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 import { ShipOwnerReadDto } from '../classes/dtos/shipOwner-read-dto'
 import { ShipOwnerService } from '../classes/services/shipOwner.service'
 import { ShipOwnerWriteDto } from '../classes/dtos/shipOwner-write-dto'
+import { ValidationService } from 'src/app/shared/services/validation.service'
 
 @Component({
     selector: 'ship-owner-form',
@@ -89,10 +90,12 @@ export class ShipOwnerFormComponent {
     private flattenForm(): ShipOwnerWriteDto {
         return {
             id: this.form.value.id,
+            nationalityId: this.form.value.nationality.id,
             description: this.form.value.description,
             profession: this.form.value.profession,
             address: this.form.value.address,
             taxNo: this.form.value.taxNo,
+            branch: this.form.value.branch,
             city: this.form.value.city,
             phones: this.form.value.phones,
             email: this.form.value.email,
@@ -129,10 +132,12 @@ export class ShipOwnerFormComponent {
     private initForm(): void {
         this.form = this.formBuilder.group({
             id: 0,
+            nationality: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
             profession: ['', [Validators.maxLength(128)]],
             address: ['', [Validators.maxLength(128)]],
             taxNo: ['', [Validators.maxLength(128)]],
+            branch: [0, [Validators.required, Validators.min(0), Validators.max(10)]],
             city: ['', [Validators.maxLength(128)]],
             phones: ['', [Validators.maxLength(128)]],
             email: ['', [Validators.email, Validators.maxLength(128)]],
@@ -148,10 +153,12 @@ export class ShipOwnerFormComponent {
         if (this.recordId != undefined) {
             this.form.setValue({
                 id: this.record.id,
+                nationality: { 'id': this.record.nationality.id, 'code': this.record.nationality.code, 'description': this.record.nationality.description },
                 description: this.record.description,
                 profession: this.record.profession,
                 address: this.record.address,
                 taxNo: this.record.taxNo,
+                branch: this.record.branch,
                 city: this.record.city,
                 phones: this.record.phones,
                 email: this.record.email,
@@ -190,6 +197,10 @@ export class ShipOwnerFormComponent {
 
     //#region getters
 
+    get nationality(): AbstractControl {
+        return this.form.get('nationality')
+    }
+
     get description(): AbstractControl {
         return this.form.get('description')
     }
@@ -204,6 +215,10 @@ export class ShipOwnerFormComponent {
 
     get taxNo(): AbstractControl {
         return this.form.get('taxNo')
+    }
+
+    get branch(): AbstractControl {
+        return this.form.get('branch')
     }
 
     get city(): AbstractControl {

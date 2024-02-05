@@ -31,6 +31,7 @@ namespace API.Features.Reservations.ShipOwners {
         public async Task<IEnumerable<ShipOwnerAutoCompleteVM>> GetAutoCompleteAsync() {
             var shipOwners = await context.ShipOwners
                 .AsNoTracking()
+                .Include(x => x.Nationality)
                 .OrderBy(x => x.Description)
                 .ToListAsync();
             return mapper.Map<IEnumerable<ShipOwner>, IEnumerable<ShipOwnerAutoCompleteVM>>(shipOwners);
@@ -39,6 +40,7 @@ namespace API.Features.Reservations.ShipOwners {
         public async Task<ShipOwner> GetByIdAsync(int id) {
             return await context.ShipOwners
                 .AsNoTracking()
+                .Include(x => x.Nationality)
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
 

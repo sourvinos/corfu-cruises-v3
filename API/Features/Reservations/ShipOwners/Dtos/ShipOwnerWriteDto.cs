@@ -6,6 +6,8 @@ namespace API.Features.Reservations.ShipOwners {
 
         // PK
         public int Id { get; set; }
+        // FKs
+        public int NationalityId { get; set; }
         // Fields
         public string Description { get; set; }
         public string Profession { get; set; }

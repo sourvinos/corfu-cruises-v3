@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using API.Features.Reservations.Ships;
+using API.Features.Reservations.Nationalities;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations.ShipOwners {
@@ -8,11 +7,14 @@ namespace API.Features.Reservations.ShipOwners {
 
         // PK
         public int Id { get; set; }
+        // FKs
+        public int NationalityId { get; set; }
         // Fields
         public string Description { get; set; }
         public string Profession { get; set; }
         public string Address { get; set; }
         public string TaxNo { get; set; }
+        public int Branch { get; set; }
         public string City { get; set; }
         public string Phones { get; set; }
         public string Email { get; set; }
@@ -23,8 +25,9 @@ namespace API.Features.Reservations.ShipOwners {
         public string PutAt { get; set; }
         public string PutUser { get; set; }
         // Navigation
-        public List<Ship> Ships { get; set; }
+        public Nationality Nationality { get; set; }
 
     }
+
 
 }

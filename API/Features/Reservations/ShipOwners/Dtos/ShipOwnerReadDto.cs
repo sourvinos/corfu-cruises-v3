@@ -11,6 +11,7 @@ namespace API.Features.Reservations.ShipOwners {
         public string Profession { get; set; }
         public string Address { get; set; }
         public string TaxNo { get; set; }
+        public int Branch { get; set; }
         public string City { get; set; }
         public string Phones { get; set; }
         public string Email { get; set; }
@@ -20,6 +21,8 @@ namespace API.Features.Reservations.ShipOwners {
         public string PostUser { get; set; }
         public string PutAt { get; set; }
         public string PutUser { get; set; }
+        // Navigation
+        public NationalityReadDto Nationality { get; set; }
 
     }
 

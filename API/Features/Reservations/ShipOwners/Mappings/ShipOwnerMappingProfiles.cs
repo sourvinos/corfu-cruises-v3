@@ -6,8 +6,18 @@ namespace API.Features.Reservations.ShipOwners {
 
         public ShipOwnerMappingProfile() {
             CreateMap<ShipOwner, ShipOwnerListVM>();
-            CreateMap<ShipOwner, ShipOwnerAutoCompleteVM>();
-            CreateMap<ShipOwner, ShipOwnerReadDto>();
+            CreateMap<ShipOwner, ShipOwnerAutoCompleteVM>()
+                .ForMember(x => x.Nationality, x => x.MapFrom(x => new NationalityReadDto {
+                    Id = x.Nationality.Id,
+                    Description = x.Nationality.Description,
+                    Code = x.Nationality.Code
+                }));
+            CreateMap<ShipOwner, ShipOwnerReadDto>()
+                .ForMember(x => x.Nationality, x => x.MapFrom(x => new NationalityReadDto {
+                    Id = x.Nationality.Id,
+                    Description = x.Nationality.Description,
+                    Code = x.Nationality.Code
+                }));
             CreateMap<ShipOwnerWriteDto, ShipOwner>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
                 .ForMember(x => x.Profession, x => x.MapFrom(x => x.Profession.Trim()))

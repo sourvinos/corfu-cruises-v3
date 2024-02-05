@@ -1,14 +1,13 @@
-import { InvoiceXmlCounterPartDto } from './invoice-xml-partyType-dto'
 import { InvoiceXmlHeaderDto } from './invoice-xml-header-dto'
-import { InvoiceXmlIssuerDto } from './invoice-xml-issuer-dto'
+import { InvoiceXmlPartyTypeDto } from './invoice-xml-partyType-dto'
 import { InvoiceXmlPaymentMethodDto } from './invoice-xml-paymentMethod-dto'
 import { InvoiceXmlRowDto } from './invoice-xml-row-dto'
 import { InvoiceXmlSummaryDto } from './invoice-xml-summary-dto'
 
 export interface InvoiceXmlDto {
 
-    issuer: InvoiceXmlIssuerDto
-    counterPart: InvoiceXmlCounterPartDto
+    issuer: InvoiceXmlPartyTypeDto
+    counterPart: InvoiceXmlPartyTypeDto
     invoiceHeader: InvoiceXmlHeaderDto
     paymentMethod: InvoiceXmlPaymentMethodDto
     invoiceRow: InvoiceXmlRowDto
