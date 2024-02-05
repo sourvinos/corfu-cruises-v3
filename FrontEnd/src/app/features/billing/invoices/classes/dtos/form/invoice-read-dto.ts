@@ -1,11 +1,12 @@
 import { Guid } from 'guid-typescript'
 // Custom
-import { AadeVM } from '../view-models/aade-vm'
-import { CustomerVM } from '../view-models/customer-vm'
-import { DocumentTypeVM } from '../view-models/documentType-vm'
+import { AadeVM } from '../../view-models/aade-vm'
+import { CustomerVM } from '../../view-models/customer-vm'
+import { DocumentTypeVM } from '../../view-models/documentType-vm'
 import { Metadata } from 'src/app/shared/classes/metadata'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { PortReadDto } from './port-read-dto'
+import { InvoiceXmlPartyTypeDto } from '../xml/invoice-xml-partyType-dto'
 
 export interface InvoiceReadDto extends Metadata {
 
@@ -21,6 +22,8 @@ export interface InvoiceReadDto extends Metadata {
     paymentMethod: SimpleEntity
     ship: SimpleEntity
     aade: AadeVM
+    issuer: InvoiceXmlPartyTypeDto
+    counterPart: InvoiceXmlPartyTypeDto
     invoicesPorts: PortReadDto[]
     // Fields
     remarks: string

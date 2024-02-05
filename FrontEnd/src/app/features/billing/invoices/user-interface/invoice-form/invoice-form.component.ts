@@ -14,8 +14,8 @@ import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
 import { InvoiceHelperService } from '../../classes/services/invoice.helper.service'
 import { InvoiceHttpService } from '../../classes/services/invoice-http.service'
-import { InvoiceReadDto } from '../../classes/dtos/invoice-read-dto'
-import { InvoiceWriteDto } from '../../classes/dtos/invoice-write-dto'
+import { InvoiceReadDto } from '../../classes/dtos/form/invoice-read-dto'
+import { InvoiceWriteDto } from '../../classes/dtos/form/invoice-write-dto'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
@@ -157,6 +157,12 @@ export class InvoiceFormComponent {
     public onShowInvoiceTab(): void {
         this.isInvoiceTabVisible = true
         this.isPortsTabVisible = false
+    }
+
+    public onBuildXMLModel(): void {
+        this.invoiceHelperService.buildXmlViewModel(this.record).then((response) => {
+            this.invoiceHttpService.submit(response)
+        })
     }
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
@@ -307,9 +313,9 @@ export class InvoiceFormComponent {
     }
 
     private saveRecord(invoice: InvoiceWriteDto): void {
-        this.invoiceHttpService.saveInvoice(invoice).subscribe({
-            next: (response) => {
-                this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'ok', this.parentUrl, true)
+        this.invoiceHttpService.save(invoice).subscribe({
+            next: () => {
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])

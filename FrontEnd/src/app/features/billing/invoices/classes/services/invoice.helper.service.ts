@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
-import { InvoiceWriteDto } from '../dtos/invoice-write-dto'
-import { PortWriteDto } from '../dtos/port-write-dto'
+import { InvoiceReadDto } from '../dtos/form/invoice-read-dto'
+import { InvoiceWriteDto } from '../dtos/form/invoice-write-dto'
+import { InvoiceXmlDto } from '../dtos/xml/invoice-xml-dto'
+import { InvoiceXmlPartyTypeDto } from '../dtos/xml/invoice-xml-partyType-dto'
+import { PortWriteDto } from '../dtos/form/port-write-dto'
+import { InvoiceXmlHeaderDto } from '../dtos/xml/invoice-xml-header-dto'
 
 @Injectable({ providedIn: 'root' })
 
@@ -32,6 +36,45 @@ export class InvoiceHelperService {
         }
     }
 
+    public buildXmlViewModel(invoice: InvoiceReadDto): Promise<InvoiceXmlDto> {
+        return new Promise((resolve) => {
+            const x: InvoiceXmlDto = {
+                issuer: this.buildParty(invoice.issuer),
+                counterPart: this.buildParty(invoice.counterPart),
+                invoiceHeader: this.buildHeader(invoice),
+                paymentMethod: {
+                    type: 0,
+                    amount: 0,
+                    paymentMethodInfo: ''
+                },
+                invoiceRow: {
+                    lineNumber: 0,
+                    netValue: 0,
+                    vatCategory: 0,
+                    vatAmount: 0
+                },
+                invoiceSummary: {
+                    totalNetValue: 0,
+                    totalVatAmount: 0,
+                    totalWithheldAmount: 0,
+                    totalFeesAmount: 0,
+                    totalStampDutyAmount: 0,
+                    totalOtherTaxesAmount: 0,
+                    totalDeductionsAmount: 0,
+                    totalGrossValue: 0,
+                    incomeClassification: {
+                        classificationType: '',
+                        classificationCategory: '',
+                        amount: 0
+                    }
+
+                }
+
+            }
+            resolve(x)
+        })
+    }
+
     //#endregion
 
     //#region private methods
@@ -56,6 +99,30 @@ export class InvoiceHelperService {
             ports.push(x)
         })
         return ports
+    }
+
+    private buildParty(party: InvoiceXmlPartyTypeDto): InvoiceXmlPartyTypeDto {
+        return {
+            vatNumber: party.vatNumber,
+            country: party.country,
+            branch: party.branch,
+            address: {
+                street: party.address.street,
+                number: party.address.number,
+                postalCode: party.address.postalCode,
+                city: party.address.city
+            }
+        }
+    }
+
+    private buildHeader(invoice: InvoiceReadDto): InvoiceXmlHeaderDto {
+        return {
+            series: '',
+            aa: invoice.no,
+            issueDate: invoice.date,
+            invoiceType: '',
+            currency: ''
+        }
     }
 
     //#endregion

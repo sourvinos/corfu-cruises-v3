@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, AbstractControl } from '@angular/forms'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { PortReadDto } from '../../classes/dtos/port-read-dto'
+import { PortReadDto } from '../../classes/dtos/form/port-read-dto'
 
 @Component({
     selector: 'invoice-port-totals-form',

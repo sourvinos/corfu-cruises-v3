@@ -13,10 +13,8 @@ export class InvoiceHttpService extends HttpDataService {
         super(httpClient, environment.apiUrl + '/invoices')
     }
 
-    public saveInvoice(formData: any): Observable<any> {
-        return formData.invoiceId == null
-            ? this.http.post<any>(this.url, formData)
-            : this.http.put<any>(this.url, formData)
+    public submit(formData: any): Observable<any> {
+        return this.http.post<any>(this.url + '/build', formData)
     }
 
 }
