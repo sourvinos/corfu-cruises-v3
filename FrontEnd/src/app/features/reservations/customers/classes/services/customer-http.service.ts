@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 // Custom
-import { CustomerAutoCompleteVM } from '../view-models/customer-autocomplete-vm'
+import { CustomerBrowserStorageVM } from '../view-models/customer-browser-storage-vm'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { environment } from 'src/environments/environment'
 
@@ -16,8 +16,8 @@ export class CustomerHttpService extends HttpDataService {
 
     //#region public methods
 
-    public getAutoComplete(): Observable<CustomerAutoCompleteVM[]> {
-        return this.http.get<CustomerAutoCompleteVM[]>(environment.apiUrl + '/customers/getAutoComplete')
+    public getBrowserStorage(): Observable<CustomerBrowserStorageVM[]> {
+        return this.http.get<CustomerBrowserStorageVM[]>(environment.apiUrl + '/customers/getForBrowserStorage')
     }
 
     //#endregion

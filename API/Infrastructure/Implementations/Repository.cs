@@ -42,11 +42,12 @@ namespace API.Infrastructure.Implementations {
             DisposeOrCommit(transaction);
         }
 
-        public void Update(T entity) {
+        public T Update(T entity) {
             using var transaction = context.Database.BeginTransaction();
             context.Set<T>().Update(entity);
             context.SaveChanges();
             DisposeOrCommit(transaction);
+            return entity;
         }
 
         public void Delete(T entity) {

@@ -34,8 +34,8 @@ namespace API.Features.Reservations.Customers {
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<CustomerAutoCompleteVM>> GetAutoCompleteAsync() {
-            return await customerRepo.GetAutoCompleteAsync();
+        public async Task<IEnumerable<CustomerBrowserStorageVM>> GetForBrowserStorageAsync() {
+            return await customerRepo.GetForBrowserStorageAsync();
         }
 
         [HttpGet("{id}")]
@@ -59,14 +59,14 @@ namespace API.Features.Reservations.Customers {
         [HttpPost]
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<Response> PostAsync([FromBody] CustomerWriteDto customer) {
+        public async Task<ResponseWithBody> PostAsync([FromBody] CustomerWriteDto customer) {
             var x = customerValidation.IsValidAsync(null, customer);
             if (await x == 200) {
                 var z = customerRepo.Create(mapper.Map<CustomerWriteDto, Customer>((CustomerWriteDto)customerRepo.AttachMetadataToPostDto(customer)));
-                return new Response {
+                return new ResponseWithBody {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = z.Id.ToString(),
+                    Body = customerRepo.UpdateBrowserStorageAsync(z.Id).Result,
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -79,16 +79,16 @@ namespace API.Features.Reservations.Customers {
         [HttpPut]
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<Response> Put([FromBody] CustomerWriteDto customer) {
+        public async Task<ResponseWithBody> PutAsync([FromBody] CustomerWriteDto customer) {
             var x = await customerRepo.GetByIdAsync(customer.Id, false);
             if (x != null) {
                 var z = customerValidation.IsValidAsync(x, customer);
                 if (await z == 200) {
                     customerRepo.Update(mapper.Map<CustomerWriteDto, Customer>((CustomerWriteDto)customerRepo.AttachMetadataToPutDto(x, customer)));
-                    return new Response {
+                    return new ResponseWithBody {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
-                        Id = x.Id.ToString(),
+                        Body = customerRepo.UpdateBrowserStorageAsync(customer.Id).Result,
                         Message = ApiMessages.OK()
                     };
                 } else {

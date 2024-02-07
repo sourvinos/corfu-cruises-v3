@@ -18,8 +18,8 @@ export interface CustomerReadDto extends Metadata {
     branch: number
     profession: string
     address: string
-    postalCode: string
     city: string
+    postalCode: string
     phones: string
     personInCharge: string
     email: string

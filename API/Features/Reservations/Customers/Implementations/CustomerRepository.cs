@@ -28,12 +28,22 @@ namespace API.Features.Reservations.Customers {
             return mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerListVM>>(customers);
         }
 
-        public async Task<IEnumerable<CustomerAutoCompleteVM>> GetAutoCompleteAsync() {
+        public async Task<IEnumerable<CustomerBrowserStorageVM>> GetForBrowserStorageAsync() {
             var customers = await context.Customers
                 .AsNoTracking()
+                .Include(x => x.Nationality)
                 .OrderBy(x => x.Description)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerAutoCompleteVM>>(customers);
+            return mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerBrowserStorageVM>>(customers);
+        }
+
+        public async Task<CustomerBrowserStorageVM> UpdateBrowserStorageAsync(int id) {
+            var customer = await context.Customers
+                .AsNoTracking()
+                .Include(x => x.Nationality)
+                .OrderBy(x => x.Description)
+                .SingleOrDefaultAsync(x => x.Id == id);
+            return mapper.Map<Customer, CustomerBrowserStorageVM>(customer);
         }
 
         public async Task<Customer> GetByIdAsync(int id, bool includeTables) {

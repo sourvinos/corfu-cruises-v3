@@ -148,7 +148,7 @@ export class LedgerCriteriaComponent {
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('customers', 'description')
+        this.populateDropdownFromDexieDB('customers', 'abbreviation')
         this.populateDropdownFromDexieDB('destinations', 'description')
         this.populateDropdownFromDexieDB('ports', 'description')
         this.populateDropdownFromDexieDB('ships', 'description')

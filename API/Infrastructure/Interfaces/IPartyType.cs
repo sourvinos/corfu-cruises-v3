@@ -7,7 +7,6 @@ namespace API.Infrastructure.Interfaces {
         public int TaxOfficeId { get; set; }
         public int VatRegimeId { get; set; }
         // Fields
-        public string Description { get; set; }
         public string TaxNo { get; set; }
         public int Branch { get; set; }
         public string Profession { get; set; }
@@ -18,7 +17,7 @@ namespace API.Infrastructure.Interfaces {
         public string PersonInCharge { get; set; }
         public string Email { get; set; }
         public bool IsActive { get; set; }
- 
+
     }
 
 }

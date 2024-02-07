@@ -2,8 +2,9 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 // Custom
-import { CustomerReadDto } from '../classes/dtos/customer-read-dto'
+import { CustomerHelperService } from '../classes/services/customer-helper.service'
 import { CustomerHttpService } from '../classes/services/customer-http.service'
+import { CustomerReadDto } from '../classes/dtos/customer-read-dto'
 import { CustomerWriteDto } from '../classes/dtos/customer-write-dto'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
@@ -14,10 +15,10 @@ import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { NationalityVM } from '../../reservations/classes/view-models/passenger/nationality-vm'
 import { Observable, map, startWith } from 'rxjs'
 import { TaxOfficeAutoCompleteVM } from 'src/app/features/billing/taxOffices/classes/view-models/taxOffice-autocomplete-vm'
 import { ValidationService } from 'src/app/shared/services/validation.service'
-import { NationalityVM } from '../../reservations/classes/view-models/passenger/nationality-vm'
 import { VatRegimeAutoCompleteVM } from 'src/app/features/billing/vatRegimes/classes/view-models/vatRegime-autocomplete-vm'
 
 @Component({
@@ -50,7 +51,7 @@ export class CustomerFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private customerHttpService: CustomerHttpService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private customerHelperService: CustomerHelperService, private customerHttpService: CustomerHttpService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -260,8 +261,8 @@ export class CustomerFormComponent {
 
     private saveRecord(customer: CustomerWriteDto): void {
         this.customerHttpService.save(customer).subscribe({
-            next: (response) => {
-                this.dexieService.update('customers', { 'id': parseInt(response.id), 'description': customer.description, 'isActive': customer.isActive })
+            next: (response: any) => {
+                this.customerHelperService.updateBrowserStorageAfterApiUpdate(response)
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
             error: (errorFromInterceptor) => {

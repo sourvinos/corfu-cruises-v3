@@ -1,9 +1,8 @@
 using System;
-using API.Infrastructure.Interfaces;
 
 namespace API.Features.Billing.Invoices {
 
-    public class InvoicePortWriteDto : IBaseEntity {
+    public class InvoicePortWriteDto {
 
         // PK
         public int Id { get; set; }
@@ -21,7 +20,6 @@ namespace API.Features.Billing.Invoices {
         public decimal KidsPriceWithoutTransfer { get; set; }
         public int FreeWithTransfer { get; set; }
         public int FreeWithoutTransfer { get; set; }
-
     }
 
 }

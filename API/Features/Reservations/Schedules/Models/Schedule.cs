@@ -5,7 +5,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations.Schedules {
 
-    public class Schedule : IBaseEntity, IMetadata {
+    public class Schedule : IMetadata {
 
         // PK
         public int Id { get; set; }

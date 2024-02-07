@@ -11,7 +11,7 @@ using Xunit;
 namespace Customers {
 
     [Collection("Sequence")]
-    public class Customers02GetActive : IClassFixture<AppSettingsFixture> {
+    public class Customers02GetForStorage : IClassFixture<AppSettingsFixture> {
 
         #region variables
 
@@ -20,11 +20,11 @@ namespace Customers {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
-        private readonly string _url = "/customers/getAutoComplete";
+        private readonly string _url = "/customers/getForBrowserStorage";
 
         #endregion
 
-        public Customers02GetActive(AppSettingsFixture appsettings) {
+        public Customers02GetForStorage(AppSettingsFixture appsettings) {
             _appSettingsFixture = appsettings;
             _baseUrl = _appSettingsFixture.Configuration.GetSection("TestingEnvironment").GetSection("BaseUrl").Value;
             _httpClient = _testHostFixture.Client;
@@ -50,7 +50,7 @@ namespace Customers {
         [ClassData(typeof(ActiveUsersCanLogin))]
         public async Task Active_Users_Can_Get_Active(Login login) {
             var actionResponse = await List.Action(_httpClient, _baseUrl, _url, login.Username, login.Password);
-            var records = JsonSerializer.Deserialize<List<CustomerAutoCompleteVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            var records = JsonSerializer.Deserialize<List<CustomerBrowserStorageVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             Assert.Equal(200, records.Count);
         }
 

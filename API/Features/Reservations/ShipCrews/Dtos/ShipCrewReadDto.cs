@@ -3,7 +3,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations.ShipCrews {
 
-    public class ShipCrewReadDto : IBaseEntity, IMetadata {
+    public class ShipCrewReadDto : IMetadata {
 
         // PK
         public int Id { get; set; }

@@ -170,7 +170,7 @@
 
 <mat-autocomplete #customers="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
     <mat-option *ngFor="let option of dropdownCustomers | async" [value]="option">
-        {{ option.description }}
+        {{ option.abbreviation }}
     </mat-option>
 </mat-autocomplete>
 

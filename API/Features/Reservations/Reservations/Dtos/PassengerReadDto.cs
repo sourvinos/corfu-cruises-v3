@@ -1,11 +1,10 @@
 using System;
 using API.Features.Reservations.Nationalities;
 using API.Infrastructure.Classes;
-using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations.Reservations {
 
-    public class PassengerReadDto : IBaseEntity {
+    public class PassengerReadDto {
 
         // PK
         public int Id { get; set; }
@@ -23,5 +22,5 @@ namespace API.Features.Reservations.Reservations {
         public SimpleEntity Gender { get; set; }
 
     }
- 
+
 }

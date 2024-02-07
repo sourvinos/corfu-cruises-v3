@@ -1,7 +1,6 @@
-import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
+export interface CustomerAutoCompleteVM {
 
-export interface CustomerAutoCompleteVM extends SimpleEntity {
+    id: number
+    abbreviation: string
 
-    isActive: boolean
-    
 }

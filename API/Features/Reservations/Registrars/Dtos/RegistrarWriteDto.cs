@@ -2,7 +2,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations.Registrars {
 
-    public class RegistrarWriteDto : IBaseEntity, IMetadata {
+    public class RegistrarWriteDto : IMetadata {
 
         // PK
         public int Id { get; set; }

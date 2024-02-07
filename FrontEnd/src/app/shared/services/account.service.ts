@@ -42,7 +42,29 @@ export class AccountService extends HttpDataService {
 
     //#endregion
 
-    constructor(private cryptoService: CryptoService, httpClient: HttpClient, private coachRouteService: CoachRouteService, private documentTypeHttpService: DocumentTypeHttpService, private customerHttpService: CustomerHttpService, private destinationService: DestinationService, private dexieService: DexieService, private driverService: DriverService, private genderService: GenderService, private interactionService: InteractionService, private nationalityService: NationalityService, private ngZone: NgZone, private paymentMethodService: PaymentMethodHttpService, private pickupPointService: PickupPointService, private portService: PortService, private router: Router, private sessionStorageService: SessionStorageService, private shipOwnerService: ShipOwnerService, private shipRouteService: ShipRouteService, private shipService: ShipService, private taxOfficeService: TaxOfficeService, private vatRegimeService: VatRegimeService) {
+    constructor(
+        private cryptoService: CryptoService,
+        httpClient: HttpClient,
+        private coachRouteService: CoachRouteService,
+        private documentTypeHttpService: DocumentTypeHttpService,
+        private customerHttpService: CustomerHttpService,
+        private destinationService: DestinationService,
+        private dexieService: DexieService,
+        private driverService: DriverService,
+        private genderService: GenderService,
+        private interactionService: InteractionService,
+        private nationalityService: NationalityService,
+        private ngZone: NgZone,
+        private paymentMethodService: PaymentMethodHttpService,
+        private pickupPointService: PickupPointService,
+        private portService: PortService,
+        private router: Router,
+        private sessionStorageService: SessionStorageService,
+        private shipOwnerService: ShipOwnerService,
+        private shipRouteService: ShipRouteService,
+        private shipService: ShipService,
+        private taxOfficeService: TaxOfficeService,
+        private vatRegimeService: VatRegimeService) {
         super(httpClient, environment.apiUrl)
     }
 
@@ -162,7 +184,7 @@ export class AccountService extends HttpDataService {
 
     private populateDexieFromAPI(): void {
         this.dexieService.populateTable('coachRoutes', this.coachRouteService)
-        this.dexieService.populateTable('customers', this.customerHttpService)
+        this.dexieService.populateNewTable('customers', this.customerHttpService)
         this.dexieService.populateTable('destinations', this.destinationService)
         this.dexieService.populateTable('documentTypes', this.documentTypeHttpService)
         this.dexieService.populateTable('drivers', this.driverService)

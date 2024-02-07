@@ -1,9 +1,8 @@
 using System;
-using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations.Reservations {
 
-    public class PassengerWriteDto : IBaseEntity {
+    public class PassengerWriteDto {
 
         // PK
         public int Id { get; set; }

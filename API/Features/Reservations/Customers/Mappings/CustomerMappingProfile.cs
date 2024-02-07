@@ -1,3 +1,4 @@
+using API.Features.Reservations.Nationalities;
 using API.Infrastructure.Classes;
 using AutoMapper;
 
@@ -7,7 +8,13 @@ namespace API.Features.Reservations.Customers {
 
         public CustomerMappingProfile() {
             CreateMap<Customer, CustomerListVM>();
-            CreateMap<Customer, CustomerAutoCompleteVM>();
+            CreateMap<Customer, CustomerBrowserStorageVM>()
+                .ForMember(x => x.Nationality, x => x.MapFrom(x => new NationalityAutoCompleteVM {
+                    Id = x.Nationality.Id,
+                    Code = x.Nationality.Code,
+                    Description = x.Nationality.Description,
+                    IsActive = x.Nationality.IsActive
+                }));
             CreateMap<Customer, CustomerReadDto>()
                 .ForMember(x => x.TaxOffice, x => x.MapFrom(x => new SimpleEntity { Id = x.TaxOffice.Id, Description = x.TaxOffice.Description }))
                 .ForMember(x => x.Nationality, x => x.MapFrom(x => new SimpleEntity { Id = x.Nationality.Id, Description = x.Nationality.Description }))

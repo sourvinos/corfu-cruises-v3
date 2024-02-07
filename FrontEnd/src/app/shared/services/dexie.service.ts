@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
 import Dexie from 'dexie'
+import { CustomerHttpService } from 'src/app/features/reservations/customers/classes/services/customer-http.service'
 
 @Injectable({ providedIn: 'root' })
 
@@ -7,9 +8,9 @@ export class DexieService extends Dexie {
 
     constructor() {
         super('DexieDB')
-        this.version(12).stores({
+        this.version(15).stores({
             coachRoutes: 'id, abbreviation, isActive',
-            customers: 'id, description, isActive',
+            customers: 'id, abbreviation, description, isActive',
             destinations: 'id, description, isActive',
             documentTypes: 'id, description, isActive',
             drivers: 'id, description, isActive',
@@ -29,6 +30,14 @@ export class DexieService extends Dexie {
 
     public populateTable(table: string, httpService: any): void {
         httpService.getAutoComplete().subscribe((records: any) => {
+            this.table(table)
+                .bulkAdd(records)
+                .catch(Dexie.BulkError, () => { })
+        })
+    }
+
+    public populateNewTable(table: string, customerHttpService: CustomerHttpService): void {
+        customerHttpService.getBrowserStorage().subscribe((records: any) => {
             this.table(table)
                 .bulkAdd(records)
                 .catch(Dexie.BulkError, () => { })

@@ -2,11 +2,10 @@ using System;
 using API.Features.Reservations.Genders;
 using API.Features.Reservations.Nationalities;
 using API.Features.Reservations.Occupants;
-using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations.Reservations {
 
-    public class Passenger : IBaseEntity {
+    public class Passenger {
 
         // PK
         public int Id { get; set; }

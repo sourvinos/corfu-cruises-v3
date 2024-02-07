@@ -3,7 +3,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations.Schedules {
 
-    public class ScheduleReadDto : IBaseEntity, IMetadata {
+    public class ScheduleReadDto : IMetadata {
 
         // PK
         public int Id { get; set; }
