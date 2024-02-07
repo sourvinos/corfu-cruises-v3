@@ -1,9 +1,9 @@
+using API.Infrastructure.Classes;
+
 namespace API.Features.Billing.TaxOffices {
 
-    public class TaxOfficeAutoCompleteVM {
+    public class TaxOfficeAutoCompleteVM : SimpleEntity {
 
-        public int Id { get; set; }
-        public string Description { get; set; }
         public bool IsActive { get; set; }
 
     }

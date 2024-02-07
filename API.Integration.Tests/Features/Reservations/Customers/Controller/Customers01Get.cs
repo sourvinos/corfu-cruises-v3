@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using API.Infrastructure.Classes;
 using Infrastructure;
 using Xunit;
 using API.Features.Reservations.Customers;

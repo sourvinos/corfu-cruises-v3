@@ -2,7 +2,7 @@ using Infrastructure;
 
 namespace Customers {
 
-    public class TestCustomer : ITestEntity {
+    public class TestCustomer : IPartyType {
 
         public int StatusCode { get; set; }
 
@@ -22,8 +22,9 @@ namespace Customers {
         public string PersonInCharge { get; set; }
         public string Email { get; set; }
         public decimal BalanceLimit { get; set; }
+        public bool IsActive { get; set; }
         public string PutAt { get; set; }
-
+ 
     }
 
 }

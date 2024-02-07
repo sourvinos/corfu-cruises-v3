@@ -59,9 +59,9 @@ namespace API.Features.Reservations.ShipOwners {
         [HttpPost]
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public Response Post([FromBody] ShipOwnerWriteDto shipOwner) {
-            var x = shipOwnerValidation.IsValid(null, shipOwner);
-            if (x == 200) {
+        public async Task<Response> Post([FromBody] ShipOwnerWriteDto shipOwner) {
+            var x = shipOwnerValidation.IsValidAsync(null, shipOwner);
+            if (await x == 200) {
                 var z = shipOwnerRepo.Create(mapper.Map<ShipOwnerWriteDto, ShipOwner>((ShipOwnerWriteDto)shipOwnerRepo.AttachMetadataToPostDto(shipOwner)));
                 return new Response {
                     Code = 200,
@@ -71,7 +71,7 @@ namespace API.Features.Reservations.ShipOwners {
                 };
             } else {
                 throw new CustomException() {
-                    ResponseCode = x
+                    ResponseCode = await x
                 };
             }
         }
@@ -82,8 +82,8 @@ namespace API.Features.Reservations.ShipOwners {
         public async Task<Response> Put([FromBody] ShipOwnerWriteDto shipOwner) {
             var x = await shipOwnerRepo.GetByIdAsync(shipOwner.Id);
             if (x != null) {
-                var z = shipOwnerValidation.IsValid(x, shipOwner);
-                if (z == 200) {
+                var z = shipOwnerValidation.IsValidAsync(x, shipOwner);
+                if (await z == 200) {
                     shipOwnerRepo.Update(mapper.Map<ShipOwnerWriteDto, ShipOwner>((ShipOwnerWriteDto)shipOwnerRepo.AttachMetadataToPutDto(x, shipOwner)));
                     return new Response {
                         Code = 200,
@@ -93,7 +93,7 @@ namespace API.Features.Reservations.ShipOwners {
                     };
                 } else {
                     throw new CustomException() {
-                        ResponseCode = z
+                        ResponseCode = await z
                     };
                 }
             } else {

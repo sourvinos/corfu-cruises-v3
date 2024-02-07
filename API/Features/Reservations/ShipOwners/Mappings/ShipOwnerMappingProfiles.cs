@@ -1,3 +1,5 @@
+using API.Features.Reservations.Nationalities;
+using API.Infrastructure.Classes;
 using AutoMapper;
 
 namespace API.Features.Reservations.ShipOwners {
@@ -7,17 +9,15 @@ namespace API.Features.Reservations.ShipOwners {
         public ShipOwnerMappingProfile() {
             CreateMap<ShipOwner, ShipOwnerListVM>();
             CreateMap<ShipOwner, ShipOwnerAutoCompleteVM>()
-                .ForMember(x => x.Nationality, x => x.MapFrom(x => new NationalityReadDto {
+                .ForMember(x => x.Nationality, x => x.MapFrom(x => new NationalityAutoCompleteVM {
                     Id = x.Nationality.Id,
-                    Description = x.Nationality.Description,
-                    Code = x.Nationality.Code
+                    Code = x.Nationality.Code,
+                    Description = x.Nationality.Description
                 }));
             CreateMap<ShipOwner, ShipOwnerReadDto>()
-                .ForMember(x => x.Nationality, x => x.MapFrom(x => new NationalityReadDto {
-                    Id = x.Nationality.Id,
-                    Description = x.Nationality.Description,
-                    Code = x.Nationality.Code
-                }));
+                .ForMember(x => x.TaxOffice, x => x.MapFrom(x => new SimpleEntity { Id = x.TaxOffice.Id, Description = x.TaxOffice.Description }))
+                .ForMember(x => x.Nationality, x => x.MapFrom(x => new SimpleEntity { Id = x.Nationality.Id, Description = x.Nationality.Description }))
+                .ForMember(x => x.VatRegime, x => x.MapFrom(x => new SimpleEntity { Id = x.VatRegime.Id, Description = x.VatRegime.Description }));
             CreateMap<ShipOwnerWriteDto, ShipOwner>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
                 .ForMember(x => x.Profession, x => x.MapFrom(x => x.Profession.Trim()))

@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 using Cases;
+using System.Net;
 
 namespace ShipOwners {
 
@@ -49,6 +50,13 @@ namespace ShipOwners {
         [ClassData(typeof(CreateValidShipOwner))]
         public async Task Simple_Users_Can_Not_Create(TestShipOwner record) {
             await Forbidden.Action(_httpClient, _baseUrl, _url, _actionVerb, "simpleuser", "1234567890", record);
+        }
+
+        [Theory]
+        [ClassData(typeof(CreateInvalidShipOwner))]
+        public async Task Admins_Can_Not_Create_When_Invalid(TestShipOwner record) {
+            var actionResponse = await RecordInvalidNotSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "Ec11fc8c16db#", record);
+            Assert.Equal((HttpStatusCode)record.StatusCode, actionResponse.StatusCode);
         }
 
         [Theory]

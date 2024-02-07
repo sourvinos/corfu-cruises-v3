@@ -1639,16 +1639,24 @@
                 "description": "Επωνυμία"
             },
             {
+                "id": "taxNo",
+                "description": "ΑΦΜ"
+            },
+            {
+                "id": "postalCode",
+                "description": "ΤΚ"
+            },
+            {
+                "id": "branch",
+                "description": "Αρ. εγκατάστασης"
+            },
+            {
                 "id": "profession",
                 "description": "Δραστηριότητα"
             },
             {
                 "id": "address",
                 "description": "Διεύθυνση"
-            },
-            {
-                "id": "taxNo",
-                "description": "ΑΦΜ"
             },
             {
                 "id": "city",

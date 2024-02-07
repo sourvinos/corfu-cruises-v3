@@ -1,20 +1,24 @@
 import { Metadata } from 'src/app/shared/classes/metadata'
-import { NationalityDropdownVM } from '../../../nationalities/classes/view-models/nationality-autocomplete-vm'
+import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
 export interface ShipOwnerReadDto extends Metadata {
 
     // PK
     id: number
     // Object fields
-    nationality: NationalityDropdownVM
+    nationality: SimpleEntity
+    taxOffice: SimpleEntity
+    vatRegime: SimpleEntity
     // Fields
     description: string
-    profession: string
-    address: string
     taxNo: string
     branch: number
+    profession: string
+    address: string
+    postalCode: string
     city: string
     phones: string
+    personInCharge: string
     email: string
     isActive: boolean
 

@@ -41,6 +41,8 @@ namespace API.Features.Reservations.ShipOwners {
             return await context.ShipOwners
                 .AsNoTracking()
                 .Include(x => x.Nationality)
+                .Include(x => x.TaxOffice)
+                .Include(x => x.VatRegime)
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
 

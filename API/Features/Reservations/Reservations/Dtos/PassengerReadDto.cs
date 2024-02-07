@@ -1,4 +1,5 @@
 using System;
+using API.Features.Reservations.Nationalities;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
@@ -18,15 +19,9 @@ namespace API.Features.Reservations.Reservations {
         public string SpecialCare { get; set; }
         public bool IsBoarded { get; set; }
         // Navigation
-        public NationalityDto Nationality { get; set; }
+        public NationalityAutoCompleteVM Nationality { get; set; }
         public SimpleEntity Gender { get; set; }
 
     }
-
-    public class NationalityDto : SimpleEntity {
-
-        public string Code { get; set; }
-
-    }
-
+ 
 }

@@ -4,6 +4,8 @@ using API.Infrastructure.Implementations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace API.Features.Reservations.ShipOwners {
 
@@ -11,11 +13,47 @@ namespace API.Features.Reservations.ShipOwners {
 
         public ShipOwnerValidation(AppDbContext appDbContext, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, settings, userManager) { }
 
-        public int IsValid(ShipOwner z, ShipOwnerWriteDto shipOwner) {
+        public async Task<int> IsValidAsync(ShipOwner z, ShipOwnerWriteDto shipOwner) {
             return true switch {
+                var x when x == !await IsValidNationality(shipOwner) => 456,
+                var x when x == !await IsValidTaxOffice(shipOwner) => 458,
+                var x when x == !await IsValidVatRegime(shipOwner) => 463,
                 var x when x == IsAlreadyUpdated(z, shipOwner) => 415,
                 _ => 200,
             };
+        }
+
+        private async Task<bool> IsValidNationality(ShipOwnerWriteDto shipOwner) {
+            if (shipOwner.Id == 0) {
+                return await context.Nationalities
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(x => x.Id == shipOwner.NationalityId && x.IsActive) != null;
+            }
+            return await context.Nationalities
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == shipOwner.NationalityId) != null;
+        }
+
+        private async Task<bool> IsValidTaxOffice(ShipOwnerWriteDto shipOwner) {
+            if (shipOwner.Id == 0) {
+                return await context.TaxOffices
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(x => x.Id == shipOwner.TaxOfficeId && x.IsActive) != null;
+            }
+            return await context.TaxOffices
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == shipOwner.TaxOfficeId) != null;
+        }
+
+        private async Task<bool> IsValidVatRegime(ShipOwnerWriteDto shipOwner) {
+            if (shipOwner.Id == 0) {
+                return await context.VatRegimes
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(x => x.Id == shipOwner.VatRegimeId && x.IsActive) != null;
+            }
+            return await context.VatRegimes
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == shipOwner.VatRegimeId) != null;
         }
 
         private static bool IsAlreadyUpdated(ShipOwner z, ShipOwnerWriteDto ship) {

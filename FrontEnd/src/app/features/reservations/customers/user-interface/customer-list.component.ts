@@ -39,6 +39,7 @@ export class CustomerListComponent {
 
     //#region lifecycle hooks
 
+
     ngOnInit(): void {
         this.loadRecords().then(() => {
             this.filterTableFromStoredFilters()
@@ -176,6 +177,7 @@ export class CustomerListComponent {
             this.setTabTitle()
         })
     }
+
 
     //#endregion
 

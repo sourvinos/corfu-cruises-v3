@@ -2,12 +2,12 @@
 using API.Features.Reservations.Nationalities;
 using API.Features.Billing.TaxOffices;
 using API.Features.Billing.VatRegimes;
-using API.Infrastructure.Interfaces;
 using API.Features.Reservations.Reservations;
+using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations.Customers {
 
-    public class Customer : IBaseEntity, IMetadata {
+    public class Customer : IPartyType {
 
         // PK
         public int Id { get; set; }

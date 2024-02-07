@@ -1,4 +1,5 @@
 using System.Linq;
+using API.Features.Reservations.Nationalities;
 using API.Features.Reservations.PickupPoints;
 using API.Features.Reservations.Ports;
 using API.Infrastructure.Classes;
@@ -53,7 +54,7 @@ namespace API.Features.Reservations.Reservations {
                     Remarks = passenger.Remarks,
                     SpecialCare = passenger.SpecialCare,
                     IsBoarded = passenger.IsBoarded,
-                    Nationality = new NationalityDto {
+                    Nationality = new NationalityAutoCompleteVM {
                         Id = passenger.Nationality.Id,
                         Code = passenger.Nationality.Code,
                         Description = passenger.Nationality.Description
@@ -66,7 +67,7 @@ namespace API.Features.Reservations.Reservations {
             // Read passenger
             CreateMap<Passenger, PassengerReadDto>()
                 .ForMember(x => x.Birthdate, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Birthdate)))
-                .ForMember(x => x.Nationality, x => x.MapFrom(x => new NationalityDto {
+                .ForMember(x => x.Nationality, x => x.MapFrom(x => new NationalityAutoCompleteVM {
                     Id = x.Nationality.Id,
                     Description = x.Nationality.Description,
                     Code = x.Nationality.Code

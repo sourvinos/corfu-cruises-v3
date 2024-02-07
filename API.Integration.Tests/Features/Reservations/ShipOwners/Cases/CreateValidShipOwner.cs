@@ -15,7 +15,15 @@ namespace ShipOwners {
         private static object[] ValidRecord() {
             return new object[] {
                 new TestShipOwner {
-                    Description = Helpers.CreateRandomString(128)
+                    NationalityId = 1,
+                    TaxOfficeId = 1,
+                    VatRegimeId = 1,
+                    Description = Helpers.CreateRandomString(512),
+                    TaxNo = Helpers.CreateRandomString(36),
+                    Branch = 0,
+                    Address = Helpers.CreateRandomString(128),
+                    PostalCode = Helpers.CreateRandomString(10),
+                    City = Helpers.CreateRandomString(128)
                 }
             };
         }

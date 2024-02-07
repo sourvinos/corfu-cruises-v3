@@ -12,45 +12,104 @@
                 <mat-label>{{ getLabel('description') }}</mat-label>
                 <input [inputTabStop]="input" dataTabIndex="1" formControlName="description" matInput>
                 <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
-                <mat-error *ngIf="description.hasError('maxlength')">{{ getHint("maxLength", description.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
+            <div class="group-input-field">
+                <!-- Tax No -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('taxNo') }}</mat-label>
+                    <input [inputTabStop]="input" dataTabIndex="2" formControlName="taxNo" matInput>
+                    <mat-error *ngIf="taxNo.hasError('maxlength')">{{ getHint("maxLength", taxNo.errors.maxlength.requiredLength) }}</mat-error>
+                </mat-form-field>
+                <!-- TaxOffice -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('taxOffice') }}</mat-label>
+                    <input #inputAutoComplete #triggerTaxOffice="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="taxOffices" dataTabIndex="3" formControlName="taxOffice" matInput>
+                    <div matSuffix style="display:flex">
+                        <button (click)="openOrCloseAutoComplete(triggerTaxOffice, 'taxOffice')" mat-icon-button type="button">
+                            <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
+                        </button>
+                    </div>
+                    <mat-error *ngIf="taxOffice.hasError('required')">{{ getHint("required") }}</mat-error>
+                    <mat-error *ngIf="!taxOffice.hasError('required') && taxOffice.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="group-input-field">
+                <!-- VatRegime -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('vatRegime') }}</mat-label>
+                    <input #inputAutoComplete #triggerVatRegime="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="vatRegimes" dataTabIndex="4" formControlName="vatRegime" matInput>
+                    <div matSuffix style="display:flex">
+                        <button (click)="openOrCloseAutoComplete(triggerVatRegime, 'vatRegime')" mat-icon-button type="button">
+                            <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
+                        </button>
+                    </div>
+                    <mat-error *ngIf="vatRegime.hasError('required')">{{ getHint("required") }}</mat-error>
+                    <mat-error *ngIf="!vatRegime.hasError('required') && vatRegime.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
+                </mat-form-field>
+                <!-- Branch -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('branch') }}</mat-label>
+                    <input [inputTabStop]="input" dataTabIndex="5" formControlName="branch" matInput type="number">
+                    <mat-error *ngIf="branch.hasError('required')">{{ getHint("required") }}</mat-error>
+                    <mat-error *ngIf="branch.hasError('min') || branch.hasError('max')">{{ getHint("invalidRange") }}</mat-error>
+                </mat-form-field>
+            </div>
             <!-- Profession -->
             <mat-form-field>
                 <mat-label>{{ getLabel('profession') }}</mat-label>
-                <input [inputTabStop]="input" dataTabIndex="2" formControlName="profession" matInput>
-                <mat-error *ngIf="profession.hasError('maxlength')">{{ getHint("maxLength", profession.errors.maxlength.requiredLength) }}</mat-error>
+                <input [inputTabStop]="input" dataTabIndex="6" formControlName="profession" matInput>
+                <mat-error *ngIf="profession.hasError('required')">{{ getHint("required") }}</mat-error>
             </mat-form-field>
-            <!-- Address -->
-            <mat-form-field>
-                <mat-label>{{ getLabel('address') }}</mat-label>
-                <input [inputTabStop]="input" dataTabIndex="3" formControlName="address" matInput>
-                <mat-error *ngIf="address.hasError('maxlength')">{{ getHint("maxLength", address.errors.maxlength.requiredLength) }}</mat-error>
-            </mat-form-field>
-            <!-- Tax No -->
-            <mat-form-field>
-                <mat-label>{{ getLabel('taxNo') }}</mat-label>
-                <input [inputTabStop]="input" dataTabIndex="4" formControlName="taxNo" matInput>
-                <mat-error *ngIf="taxNo.hasError('maxlength')">{{ getHint("maxLength", taxNo.errors.maxlength.requiredLength) }}</mat-error>
-            </mat-form-field>
-            <!-- Phones -->
-            <mat-form-field>
-                <mat-label>{{ getLabel('phones') }}</mat-label>
-                <input [inputTabStop]="input" dataTabIndex="5" formControlName="phones" matInput>
-                <mat-error *ngIf="phones.hasError('maxlength')">{{ getHint("maxLength", phones.errors.maxlength.requiredLength) }}</mat-error>
-            </mat-form-field>
-            <!-- City -->
-            <mat-form-field>
-                <mat-label>{{ getLabel('city') }}</mat-label>
-                <input [inputTabStop]="input" dataTabIndex="6" formControlName="city" matInput>
-                <mat-error *ngIf="city.hasError('maxlength')">{{ getHint("maxLength", city.errors.maxlength.requiredLength) }}</mat-error>
-            </mat-form-field>
-            <!-- Email -->
-            <mat-form-field>
-                <mat-label>{{ getLabel('email') }}</mat-label>
-                <input [inputTabStop]="input" dataTabIndex="7" formControlName="email" matInput>
-                <mat-error *ngIf="email.hasError('maxlength')">{{ getHint("maxLength", email.errors.maxlength.requiredLength) }}</mat-error>
-                <mat-error *ngIf="!email.hasError('maxlength') && email.hasError('email')">{{ getHint("invalid") }}</mat-error>
-            </mat-form-field>
+            <div class="group-input-field">
+                <!-- Address -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('address') }}</mat-label>
+                    <input [inputTabStop]="input" dataTabIndex="7" formControlName="address" matInput>
+                    <mat-error *ngIf="address.hasError('required')">{{ getHint("required") }}</mat-error>
+                </mat-form-field>
+                <!-- City -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('city') }}</mat-label>
+                    <input [inputTabStop]="input" dataTabIndex="8" formControlName="city" matInput>
+                    <mat-error *ngIf="city.hasError('required')">{{ getHint("required") }}</mat-error>
+                </mat-form-field>
+                <!-- Postal code -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('postalCode') }}</mat-label>
+                    <input [inputTabStop]="input" dataTabIndex="9" formControlName="postalCode" matInput>
+                    <mat-error *ngIf="postalCode.hasError('required')">{{ getHint("required") }}</mat-error>
+                </mat-form-field>
+                <!-- Nationality -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('nationality') }}</mat-label>
+                    <input #inputAutoComplete #triggerNationality="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="nationalities" dataTabIndex="10" formControlName="nationality" matInput>
+                    <div matSuffix style="display:flex">
+                        <button (click)="openOrCloseAutoComplete(triggerNationality, 'nationality')" mat-icon-button type="button">
+                            <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
+                        </button>
+                    </div>
+                    <mat-error *ngIf="nationality.hasError('required')">{{ getHint("required") }}</mat-error>
+                    <mat-error *ngIf="!nationality.hasError('required') && nationality.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="group-input-field">
+                <!-- Phones -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('phones') }}</mat-label>
+                    <input [inputTabStop]="input" dataTabIndex="11" formControlName="phones" matInput>
+                </mat-form-field>
+                <!-- Person in charge -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('personInCharge') }}</mat-label>
+                    <input [inputTabStop]="input" dataTabIndex="12" formControlName="personInCharge" matInput>
+                </mat-form-field>
+                <!-- Email -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('email') }}</mat-label>
+                    <input [inputTabStop]="input" dataTabIndex="13" formControlName="email" matInput>
+                    <mat-error *ngIf="email.hasError('email')">{{ getHint("invalid") }}</mat-error>
+                </mat-form-field>
+            </div>
             <!-- Active -->
             <mat-checkbox formControlName="isActive">
                 <span>{{ getLabel("isActive") }}</span>
@@ -74,3 +133,21 @@
     </div>
 
 </div>
+
+<mat-autocomplete #nationalities="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
+    <mat-option *ngFor="let option of dropdownNationalities | async" [value]="option">
+        {{ option.description }}
+    </mat-option>
+</mat-autocomplete>
+
+<mat-autocomplete #taxOffices="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
+    <mat-option *ngFor="let option of dropdownTaxOffices | async" [value]="option">
+        {{ option.description }}
+    </mat-option>
+</mat-autocomplete>
+
+<mat-autocomplete #vatRegimes="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
+    <mat-option *ngFor="let option of dropdownVatRegimes | async" [value]="option">
+        {{ option.description }}
+    </mat-option>
+</mat-autocomplete>

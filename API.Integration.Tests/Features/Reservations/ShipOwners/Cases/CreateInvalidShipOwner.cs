@@ -4,22 +4,23 @@ using Infrastructure;
 
 namespace ShipOwners {
 
-    public class UpdateInvalidShipOwner : IEnumerable<object[]> {
+    public class CreateInvalidShipOwner : IEnumerable<object[]> {
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public IEnumerator<object[]> GetEnumerator() {
             yield return Nationality_Must_Exist();
+            yield return Nationality_Must_Be_Active();
             yield return TaxOffice_Must_Exist();
+            yield return TaxOffice_Must_Be_Active();
             yield return VatRegime_Must_Exist();
-            yield return ShipOwner_Must_Not_Be_Already_Updated();
+            yield return VatRegime_Must_Be_Active();
         }
 
         private static object[] Nationality_Must_Exist() {
             return new object[] {
                 new TestShipOwner {
                     StatusCode = 456,
-                    Id = 1,
                     NationalityId = 9999,
                     TaxOfficeId = 1,
                     VatRegimeId = 1,
@@ -28,8 +29,24 @@ namespace ShipOwners {
                     Branch = 0,
                     Address = Helpers.CreateRandomString(128),
                     PostalCode = Helpers.CreateRandomString(10),
-                    City = Helpers.CreateRandomString(128),
-                    PutAt = "2023-04-08 00:00:00"
+                    City = Helpers.CreateRandomString(128)
+                }
+            };
+        }
+
+        private static object[] Nationality_Must_Be_Active() {
+            return new object[] {
+                new TestShipOwner {
+                    StatusCode = 456,
+                    NationalityId = 254,
+                    TaxOfficeId = 1,
+                    VatRegimeId = 1,
+                    Description = Helpers.CreateRandomString(512),
+                    TaxNo = Helpers.CreateRandomString(36),
+                    Branch = 0,
+                    Address = Helpers.CreateRandomString(128),
+                    PostalCode = Helpers.CreateRandomString(10),
+                    City = Helpers.CreateRandomString(128)
                 }
             };
         }
@@ -38,7 +55,6 @@ namespace ShipOwners {
             return new object[] {
                 new TestShipOwner {
                     StatusCode = 458,
-                    Id = 1,
                     NationalityId = 1,
                     TaxOfficeId = 999,
                     VatRegimeId = 1,
@@ -47,8 +63,24 @@ namespace ShipOwners {
                     Branch = 0,
                     Address = Helpers.CreateRandomString(128),
                     PostalCode = Helpers.CreateRandomString(10),
-                    City = Helpers.CreateRandomString(128),
-                    PutAt = "2023-04-08 00:00:00"
+                    City = Helpers.CreateRandomString(128)
+                }
+            };
+        }
+
+        private static object[] TaxOffice_Must_Be_Active() {
+            return new object[] {
+                new TestShipOwner {
+                    StatusCode = 458,
+                    NationalityId = 1,
+                    TaxOfficeId = 144,
+                    VatRegimeId = 1,
+                    Description = Helpers.CreateRandomString(512),
+                    TaxNo = Helpers.CreateRandomString(36),
+                    Branch = 0,
+                    Address = Helpers.CreateRandomString(128),
+                    PostalCode = Helpers.CreateRandomString(10),
+                    City = Helpers.CreateRandomString(128)
                 }
             };
         }
@@ -57,36 +89,32 @@ namespace ShipOwners {
             return new object[]{
                 new TestShipOwner {
                     StatusCode = 463,
-                    Id = 1,
                     NationalityId = 1,
                     TaxOfficeId = 1,
-                    VatRegimeId = 999,
+                    VatRegimeId = 99,
                     Description = Helpers.CreateRandomString(512),
                     TaxNo = Helpers.CreateRandomString(36),
                     Branch = 0,
                     Address = Helpers.CreateRandomString(128),
                     PostalCode = Helpers.CreateRandomString(10),
-                    City = Helpers.CreateRandomString(128),
-                    PutAt = "2023-04-08 00:00:00"
+                    City = Helpers.CreateRandomString(128)
                 }
             };
         }
 
-        private static object[] ShipOwner_Must_Not_Be_Already_Updated() {
+        private static object[] VatRegime_Must_Be_Active() {
             return new object[] {
                 new TestShipOwner {
-                    StatusCode = 415,
-                    Id = 1,
+                    StatusCode = 463,
                     NationalityId = 1,
                     TaxOfficeId = 1,
-                    VatRegimeId = 1,
+                    VatRegimeId = 3,
                     Description = Helpers.CreateRandomString(512),
                     TaxNo = Helpers.CreateRandomString(36),
                     Branch = 0,
                     Address = Helpers.CreateRandomString(128),
                     PostalCode = Helpers.CreateRandomString(10),
-                    City = Helpers.CreateRandomString(128),
-                    PutAt = "2023-09-07 09:57:05"
+                    City = Helpers.CreateRandomString(128)
                 }
             };
         }

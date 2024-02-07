@@ -31,6 +31,7 @@ namespace API.Features.Reservations.Ships {
         public async Task<IEnumerable<ShipAutoCompleteVM>> GetAutoCompleteAsync() {
             var ships = await context.Ships
                 .AsNoTracking()
+                .Include(x => x.ShipOwner).ThenInclude(x => x.Nationality)
                 .OrderBy(x => x.Description)
                 .ToListAsync();
             return mapper.Map<IEnumerable<Ship>, IEnumerable<ShipAutoCompleteVM>>(ships);
