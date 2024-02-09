@@ -2,7 +2,7 @@ using System;
 
 namespace API.Features.Billing.Invoices {
 
-    public class InvoiceReadAadeDto {
+    public class AadeVM {
 
         // PK
         public int Id { get; set; }

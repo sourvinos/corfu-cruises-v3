@@ -10,7 +10,7 @@ import { EmojiService } from '../../../../../shared/services/emoji.service'
 import { HelperService } from '../../../../../shared/services/helper.service'
 import { InteractionService } from '../../../../../shared/services/interaction.service'
 import { InvoiceHttpService } from '../../classes/services/invoice-http.service'
-import { InvoiceListVM } from '../../classes/view-models/invoice-list-vm'
+import { InvoiceListVM } from '../../classes/view-models/list/invoice-list-vm'
 import { ListResolved } from '../../../../../shared/classes/list-resolved'
 import { LocalStorageService } from '../../../../../shared/services/local-storage.service'
 import { MatDatepickerInputEvent } from '@angular/material/datepicker'
@@ -255,9 +255,9 @@ export class InvoiceListComponent {
     }
 
     private populateDropdownFilters(): void {
-        this.dropdownCustomers = this.helperService.getDistinctRecords(this.records, 'customer', 'description')
+        this.dropdownCustomers = this.helperService.getDistinctRecords(this.records, 'customer', 'abbreviation')
         this.dropdownDestinations = this.helperService.getDistinctRecords(this.records, 'destination', 'description')
-        this.dropdownDocumentTypes = this.helperService.getDistinctRecords(this.records, 'documentType', 'abbreviation')
+        this.dropdownDocumentTypes = this.helperService.getDistinctRecords(this.records, 'documentType', 'description')
         this.dropdownShips = this.helperService.getDistinctRecords(this.records, 'ship', 'description')
     }
 

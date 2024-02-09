@@ -27,7 +27,7 @@ namespace API.Features.Billing.Invoices {
         public string PostUser { get; set; }
         public string PutAt { get; set; }
         public string PutUser { get; set; }
-        // Navigation
+        // Child tables
         public List<InvoicePortWriteDto> InvoicesPorts { get; set; }
 
     }

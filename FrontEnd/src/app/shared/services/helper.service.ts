@@ -7,11 +7,11 @@ import { Router } from '@angular/router'
 import { Table } from 'primeng/table'
 import { Title } from '@angular/platform-browser'
 // Custom
-import { MessageLabelService } from './message-label.service'
 import { DialogService } from './modal-dialog.service'
+import { LocalStorageService } from './local-storage.service'
+import { MessageLabelService } from './message-label.service'
 import { SessionStorageService } from './session-storage.service'
 import { environment } from 'src/environments/environment'
-import { LocalStorageService } from './local-storage.service'
 
 export function prepare<T>(callback: () => void): (source: Observable<T>) => Observable<T> {
     return (source: Observable<T>): Observable<T> => defer(() => {
@@ -59,7 +59,7 @@ export class HelperService {
         return this.appName
     }
 
-    public getDistinctRecords(records: any[], object: string, orderField = 'description'): any[] {
+    public getDistinctRecords(records: any[], object: string, orderField: string): any[] {
         const distinctRecords = (Object.values(records.reduce(function (x, item) {
             if (!x[item[object].id]) {
                 x[item[object].id] = item[object]

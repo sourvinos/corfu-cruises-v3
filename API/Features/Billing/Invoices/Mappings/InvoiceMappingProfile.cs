@@ -11,24 +11,22 @@ namespace API.Features.Billing.Invoices {
             // List
             CreateMap<Invoice, InvoiceListVM>()
                 .ForMember(x => x.Date, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Date)))
-                .ForMember(x => x.Customer, x => x.MapFrom(x => new SimpleEntity { Id = x.Customer.Id, Description = x.Customer.Description }))
+                .ForMember(x => x.Customer, x => x.MapFrom(x => new CustomerVM { Id = x.Customer.Id, Abbreviation = x.Customer.Abbreviation }))
                 .ForMember(x => x.Destination, x => x.MapFrom(x => new SimpleEntity { Id = x.Destination.Id, Description = x.Destination.Description }))
-                .ForMember(x => x.DocumentType, x => x.MapFrom(x => new DocumentTypeVM { Id = x.DocumentType.Id, Abbreviation = x.DocumentType.Abbreviation, Batch = x.DocumentType.Batch }))
+                .ForMember(x => x.DocumentType, x => x.MapFrom(x => new DocumentTypeVM { Id = x.DocumentType.Id, Description = x.DocumentType.Description, Batch = x.DocumentType.Batch }))
                 .ForMember(x => x.Ship, x => x.MapFrom(x => new SimpleEntity { Id = x.Ship.Id, Description = x.Ship.Description }));
             // GetById
             CreateMap<Invoice, InvoiceReadDto>()
                 .ForMember(x => x.Date, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Date)))
-                .ForMember(x => x.Customer, x => x.MapFrom(x => new InvoiceCustomerReadDto {
+                .ForMember(x => x.Customer, x => x.MapFrom(x => new CustomerVM {
                     Id = x.Customer.Id,
-                    Description = x.Customer.Description,
-                    TaxNo = x.Customer.TaxNo,
-                    Email = x.Customer.Email
+                    Abbreviation = x.Customer.Abbreviation
                 }))
                 .ForMember(x => x.Destination, x => x.MapFrom(x => new SimpleEntity {
                     Id = x.Destination.Id,
                     Description = x.Destination.Description
                 }))
-                .ForMember(x => x.DocumentType, x => x.MapFrom(x => new InvoiceDocumentTypeReadDto {
+                .ForMember(x => x.DocumentType, x => x.MapFrom(x => new DocumentTypeVM {
                     Id = x.DocumentType.Id,
                     Abbreviation = x.DocumentType.Abbreviation,
                     Description = x.DocumentType.Description,
@@ -42,7 +40,7 @@ namespace API.Features.Billing.Invoices {
                     Id = x.PaymentMethod.Id,
                     Description = x.PaymentMethod.Description
                 }))
-                .ForMember(x => x.Aade, x => x.MapFrom(x => new InvoiceReadAadeDto {
+                .ForMember(x => x.Aade, x => x.MapFrom(x => new AadeVM {
                     Id = x.Aade.Id,
                     InvoiceId = x.Aade.InvoiceId,
                     Uid = x.Aade.Uid,
@@ -70,11 +68,33 @@ namespace API.Features.Billing.Invoices {
                     TotalPax = port.TotalPax,
                     TotalAmount = port.TotalAmount
                 })));
-            // Write invoice
-            CreateMap<InvoiceWriteDto, Invoice>()
+            // Create invoice
+            CreateMap<InvoiceCreateDto, Invoice>()
+                .ForMember(x => x.Aade, x => x.MapFrom(x => new InvoiceAade {
+                    InvoiceId = x.InvoiceId,
+                    Uid = "",
+                    Mark = "",
+                    MarkCancel = "",
+                    QrUrl = ""
+                }))
                 .ForMember(x => x.Remarks, x => x.MapFrom(x => x.Remarks.Trim()));
+            // Update invoice
+            CreateMap<InvoiceUpdateDto, Invoice>();
             // Write port
             CreateMap<InvoicePortWriteDto, InvoicePort>();
+            // Write response
+            CreateMap<InvoiceCreateDto, InvoiceWriteResponseDto>()
+                .ForMember(x => x.Date, x => x.MapFrom(x => x.Date))
+                .ForMember(x => x.No, x => x.MapFrom(x => x.No))
+                .ForMember(x => x.ShipId, x => x.MapFrom(x => x.ShipId))
+                .ForMember(x => x.CounterPartId, x => x.MapFrom(x => x.CustomerId))
+                .ForMember(x => x.DocumentTypeId, x => x.MapFrom(x => x.DocumentTypeId))
+                .ForMember(x => x.PaymentMethodId, x => x.MapFrom(x => x.PaymentMethodId))
+                .ForMember(x => x.Currency, x => x.MapFrom(x => "EUR"))
+                .ForMember(x => x.NetAmount, x => x.MapFrom(x => x.NetAmount))
+                .ForMember(x => x.VatCategory, x => x.MapFrom(x => 1))
+                .ForMember(x => x.VatAmount, x => x.MapFrom(x => x.VatAmount))
+                .ForMember(x => x.GrossAmount, x => x.MapFrom(x => x.GrossAmount));
         }
 
     }

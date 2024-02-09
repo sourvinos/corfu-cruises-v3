@@ -37,7 +37,7 @@ namespace API.Infrastructure.Classes {
         #region DbSets - Reservations
 
         public DbSet<CoachRoute> CoachRoutes { get; set; }
-        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Features.Reservations.Customers.Customer> Customers { get; set; }
         public DbSet<Destination> Destinations { get; set; }
         public DbSet<Driver> Drivers { get; set; }
         public DbSet<Gender> Genders { get; set; }

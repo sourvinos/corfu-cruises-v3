@@ -36,12 +36,12 @@ export class InvoiceHelperService {
         }
     }
 
-    public buildXmlViewModel(invoice: InvoiceReadDto): Promise<InvoiceXmlDto> {
+    public buildXmlViewModel(formValue: any): Promise<InvoiceXmlDto> {
         return new Promise((resolve) => {
             const x: InvoiceXmlDto = {
-                issuer: this.buildParty(invoice.issuer),
-                counterPart: this.buildParty(invoice.counterPart),
-                invoiceHeader: this.buildHeader(invoice),
+                issuer: this.buildParty(formValue.ship),
+                counterPart: this.buildParty(formValue.customer),
+                invoiceHeader: this.buildHeader(formValue.invoice),
                 paymentMethod: {
                     type: 0,
                     amount: 0,

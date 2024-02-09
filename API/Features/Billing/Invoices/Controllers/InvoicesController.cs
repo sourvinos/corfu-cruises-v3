@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Responses;
@@ -63,12 +64,12 @@ namespace API.Features.Billing.Invoices {
         [HttpPost]
         [Authorize(Roles = "user, admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public ResponseWithBody Post([FromBody] InvoiceWriteDto invoice) {
-            var x = invoiceUpdateRepo.Create(mapper.Map<InvoiceWriteDto, Invoice>((InvoiceWriteDto)invoiceUpdateRepo.AttachMetadataToPostDto(invoice)));
+        public ResponseWithBody Post([FromBody] InvoiceCreateDto invoice) {
+            var x = invoiceUpdateRepo.Create(mapper.Map<InvoiceCreateDto, Invoice>((InvoiceCreateDto)invoiceUpdateRepo.AttachMetadataToPostDto(invoice)));
             return new ResponseWithBody {
                 Code = 200,
                 Icon = Icons.Success.ToString(),
-                Body = x.PutAt,
+                Body = mapper.Map<InvoiceCreateDto, InvoiceWriteResponseDto>(invoice),
                 Message = ApiMessages.OK()
             };
         }
@@ -76,14 +77,12 @@ namespace API.Features.Billing.Invoices {
         [HttpPut]
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<ResponseWithBody> Put([FromBody] InvoiceWriteDto invoice) {
+        public async Task<ResponseWithBody> Put([FromBody] InvoiceUpdateDto invoice) {
             var x = await invoiceReadRepo.GetByIdAsync(invoice.InvoiceId.ToString(), false);
             if (x != null) {
                 var z = invoiceValidation.IsValidAsync(x, invoice);
                 if (await z == 200) {
-                    var withData = invoiceUpdateRepo.AttachMetadataToPutDto(x, invoice);
-                    var mapped = mapper.Map<InvoiceWriteDto, Invoice>((InvoiceWriteDto)withData);
-                    var i = invoiceUpdateRepo.Update(invoice.InvoiceId, mapped);
+                    var i = invoiceUpdateRepo.Update(invoice.InvoiceId, mapper.Map<InvoiceUpdateDto, Invoice>((InvoiceUpdateDto)invoiceUpdateRepo.AttachMetadataToPutDto(x, invoice)));
                     return new ResponseWithBody {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
@@ -100,6 +99,36 @@ namespace API.Features.Billing.Invoices {
                     ResponseCode = 404
                 };
             }
+        }
+
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
+        public async Task<Response> Delete([FromRoute] string id) {
+            var x = await invoiceReadRepo.GetByIdAsync(id, false);
+            if (x != null) {
+                invoiceUpdateRepo.Delete(x);
+                return new Response {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Id = x.InvoiceId.ToString(),
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 404
+                };
+            }
+        }
+
+        [HttpPost("upload")]
+        [Authorize(Roles = "admin")]
+        public string Upload([FromBody] InvoiceVM invoice) {
+            invoiceAadeRepo.CreateXMLAsync(invoice);
+            return BeautifyString(invoiceAadeRepo.UploadXMLAsync(XElement.Load("Invoice.xml")).Result);
+        }
+
+        private static string BeautifyString(string x) {
+            return x.Replace("&lt;", "<").Replace("&gt;", ">");
         }
 
     }

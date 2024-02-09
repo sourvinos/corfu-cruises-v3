@@ -12,10 +12,9 @@ namespace API.Features.Billing.Invoices {
 
         public InvoiceAadeRepository() { }
 
-        public void BuildXMLAsync(InvoiceVM invoiceVM) {
-
+        public void CreateXMLAsync(InvoiceVM invoiceVM) {
             using StringWriter sw = new();
-            using XmlTextWriter xtw = new("fileName.xml", null);
+            using XmlTextWriter xtw = new("Invoice.xml", null);
             xtw.Namespaces = false;
             xtw.Formatting = Formatting.Indented;
             xtw.WriteStartElement("InvoicesDoc");
@@ -83,8 +82,8 @@ namespace API.Features.Billing.Invoices {
             xtw.Close();
         }
 
-        public async Task<string> SendInvoiceAsync(XElement invoice) {
-            using var client = new HttpClient();
+        public async Task<string> UploadXMLAsync(XElement invoice) {
+            using HttpClient client = new();
             client.DefaultRequestHeaders.Add("aade-user-id", "demo-sourvinos");
             client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "d8683e2328380a9342d7fed8cdead4f3");
             client.DefaultRequestHeaders.Add("Accept", "application/xml");
@@ -96,18 +95,8 @@ namespace API.Features.Billing.Invoices {
                 xml = stringWriter.ToString();
             }
             HttpContent body = new StringContent(xml, Encoding.UTF8, "application/xml");
-            var response = client.PostAsync("https://mydataapidev.aade.gr/SendInvoices", body).Result;
+            HttpResponseMessage response = client.PostAsync("https://mydataapidev.aade.gr/SendInvoices", body).Result;
             return await response.Content.ReadAsStringAsync();
-            // if (response.IsSuccessStatusCode) {
-            //     var content = await response.Content.ReadAsStringAsync();
-            //     return content;
-            // }
-        }
-
-        public void WriteXML(XElement invoice) {
-            string docPath = Directory.GetCurrentDirectory() + "\\Output\\File.xml";
-            using StreamWriter outputFile = new(Path.Combine(docPath));
-            outputFile.WriteLine(invoice);
         }
 
     }

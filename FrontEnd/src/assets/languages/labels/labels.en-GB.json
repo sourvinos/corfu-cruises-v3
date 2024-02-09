@@ -1639,16 +1639,24 @@
                 "description": "Description"
             },
             {
+                "id": "taxNo",
+                "description": "ΑΦΜ"
+            },
+            {
+                "id": "postalCode",
+                "description": "ΤΚ"
+            },
+            {
+                "id": "branch",
+                "description": "Αρ. εγκατάστασης"
+            },
+            {
                 "id": "profession",
                 "description": "Profession"
             },
             {
                 "id": "address",
                 "description": "Address"
-            },
-            {
-                "id": "taxNo",
-                "description": "Tax number"
             },
             {
                 "id": "city",
@@ -2754,12 +2762,12 @@
                 "description": "Τύπος παραστατικού"
             },
             {
-                "id": "headerNo",
-                "description": "Νο"
+                "id": "headerDocumentTypeBatch",
+                "description": "Σειρά"
             },
             {
-                "id": "headerTotalPax",
-                "description": "Pax"
+                "id": "headerNo",
+                "description": "Νο"
             },
             {
                 "id": "headerGrossAmount",

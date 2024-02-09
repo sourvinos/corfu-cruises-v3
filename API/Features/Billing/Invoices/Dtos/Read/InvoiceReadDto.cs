@@ -18,12 +18,12 @@ namespace API.Features.Billing.Invoices {
         public decimal GrossAmount { get; set; }
         public string Remarks { get; set; }
         // Child tables
-        public InvoiceReadAadeDto Aade { get; set; }
+        public AadeVM Aade { get; set; }
         public List<InvoicePortReadDto> InvoicesPorts { get; set; }
         // Navigation
-        public InvoiceCustomerReadDto Customer { get; set; }
+        public CustomerVM Customer { get; set; }
         public SimpleEntity Destination { get; set; }
-        public InvoiceDocumentTypeReadDto DocumentType { get; set; }
+        public DocumentTypeVM DocumentType { get; set; }
         public SimpleEntity PaymentMethod { get; set; }
         public SimpleEntity Ship { get; set; }
         // Metadata

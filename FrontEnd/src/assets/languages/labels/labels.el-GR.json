@@ -2762,12 +2762,12 @@
                 "description": "Τύπος παραστατικού"
             },
             {
-                "id": "headerNo",
-                "description": "Νο"
+                "id": "headerDocumentTypeBatch",
+                "description": "Σειρά"
             },
             {
-                "id": "headerTotalPax",
-                "description": "Pax"
+                "id": "headerNo",
+                "description": "Νο"
             },
             {
                 "id": "headerGrossAmount",

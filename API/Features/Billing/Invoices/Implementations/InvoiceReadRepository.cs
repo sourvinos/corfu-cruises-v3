@@ -15,14 +15,10 @@ namespace API.Features.Billing.Invoices {
 
     public class InvoiceReadRepository : Repository<Invoice>, IInvoiceReadRepository {
 
-        private readonly IHttpContextAccessor httpContext;
         private readonly IMapper mapper;
-        private readonly UserManager<UserExtended> userManager;
 
         public InvoiceReadRepository(AppDbContext context, IHttpContextAccessor httpContext, IMapper mapper, IOptions<TestingEnvironment> testingEnvironment, UserManager<UserExtended> userManager) : base(context, httpContext, testingEnvironment, userManager) {
-            this.httpContext = httpContext;
             this.mapper = mapper;
-            this.userManager = userManager;
         }
 
         public async Task<IEnumerable<InvoiceListVM>> GetAsync() {
@@ -65,6 +61,7 @@ namespace API.Features.Billing.Invoices {
                     .SingleOrDefaultAsync()
                : await context.Invoices
                     .AsNoTracking()
+                    .Include(x => x.Aade)
                     .Include(x => x.InvoicesPorts).ThenInclude(x => x.Port)
                     .Where(x => x.InvoiceId.ToString() == invoiceId)
                     .SingleOrDefaultAsync();

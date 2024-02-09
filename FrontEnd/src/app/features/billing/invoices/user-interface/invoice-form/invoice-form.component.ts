@@ -8,7 +8,7 @@ import { CustomerAutoCompleteVM } from 'src/app/features/reservations/customers/
 import { DestinationAutoCompleteVM } from 'src/app/features/reservations/destinations/classes/view-models/destination-autocomplete-vm'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
-import { DocumentTypeVM } from '../../classes/view-models/documentType-vm'
+import { DocumentTypeVM } from '../../classes/view-models/list/documentType-vm'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -89,7 +89,7 @@ export class InvoiceFormComponent {
                 let x = 0
                 for (let index = 0; index < 2; index++) {
                     this.dexieService.getByKey('ports', ++x).then((port) => {
-                        ports.push(this.createPort(port))
+                        ports.push(this.initPortForm(port))
                     })
                 }
             }, 1000)
@@ -160,7 +160,7 @@ export class InvoiceFormComponent {
     }
 
     public onBuildXMLModel(): void {
-        this.invoiceHelperService.buildXmlViewModel(this.record).then((response) => {
+        this.invoiceHelperService.buildXmlViewModel(this.form.value).then((response) => {
             this.invoiceHttpService.submit(response)
         })
     }
@@ -218,13 +218,19 @@ export class InvoiceFormComponent {
             paymentMethod: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             ship: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             no: '',
-            taxNo: '',
-            email: '',
             netAmount: [0, ValidationService.isGreaterThanZero],
             vatPercent: [0, ValidationService.isGreaterThanZero],
             vatAmount: [0, ValidationService.isGreaterThanZero],
             grossAmount: [0, [Validators.required, Validators.min(1), Validators.max(99999)]],
             invoicesPorts: this.formBuilder.array([]),
+            aade: this.formBuilder.group({
+                id: 0,
+                uid: '',
+                mark: '',
+                markCancel: '',
+                invoiceId: '',
+                qrUrl: '',
+            }),
             remarks: ['', Validators.maxLength(128)],
             postAt: [''],
             postUser: [''],
@@ -233,7 +239,7 @@ export class InvoiceFormComponent {
         })
     }
 
-    private createPort(port: SimpleEntity): FormGroup {
+    private initPortForm(port: SimpleEntity): FormGroup {
         const x = this.formBuilder.group({
             id: 0,
             invoiceId: '',
@@ -262,18 +268,26 @@ export class InvoiceFormComponent {
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', 'abbreviation', 'abbreviation')
-        this.populateDropdownFromDexieDB('destinations', 'dropdownDestinations', 'destination', 'description', 'description')
-        this.populateDropdownFromDexieDB('documentTypes', 'dropdownDocumentTypes', 'documentType', 'description', 'description')
-        this.populateDropdownFromDexieDB('paymentMethods', 'dropdownPaymentMethods', 'paymentMethod', 'description', 'description')
-        this.populateDropdownFromDexieDB('ports', 'dropdownPorts', 'port', 'description', 'description')
-        this.populateDropdownFromDexieDB('ships', 'dropdownShips', 'ship', 'description', 'description')
+        this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', ['id', 'abbreviation', 'isActive'], 'abbreviation', 'abbreviation')
+        this.populateDropdownFromDexieDB('destinations', 'dropdownDestinations', 'destination', ['id', 'description', 'isActive'], 'description', 'description')
+        this.populateDropdownFromDexieDB('documentTypes', 'dropdownDocumentTypes', 'documentType', ['id', 'abbreviation', 'description', 'batch', 'isActive'], 'abbreviation', 'abbreviation')
+        this.populateDropdownFromDexieDB('paymentMethods', 'dropdownPaymentMethods', 'paymentMethod', ['id', 'description', 'isActive'], 'description', 'description')
+        this.populateDropdownFromDexieDB('ships', 'dropdownShips', 'ship', ['id', 'description', 'isActive'], 'description', 'description')
     }
 
-    private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
+    private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperties: string[], orderBy: string, lookupField: string): void {
+        const x = []
+        let item = {}
         this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
-            this[dexieTable] = this.recordId == undefined ? response.filter(x => x.isActive) : response
-            this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
+            response.forEach(record => {
+                modelProperties.forEach(property => {
+                    item[property] = record[property]
+                })
+                x.push(item)
+                item = {}
+            })
+            this[dexieTable] = this.recordId == undefined ? x.filter(x => x.isActive) : x
+            this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, lookupField, value)))
         })
     }
 
@@ -283,11 +297,9 @@ export class InvoiceFormComponent {
                 invoiceId: this.record.invoiceId,
                 date: this.record.date,
                 no: this.record.no,
-                customer: { 'id': this.record.customer.id, 'description': this.record.customer.description },
-                taxNo: this.record.customer.taxNo,
-                email: this.record.customer.email,
+                customer: { 'id': this.record.customer.id, 'abbreviation': this.record.customer.abbreviation },
                 destination: { 'id': this.record.destination.id, 'description': this.record.destination.description },
-                documentType: { 'id': this.record.documentType.id, 'description': this.record.documentType.description },
+                documentType: { 'id': this.record.documentType.id, 'abbreviation': this.record.documentType.abbreviation },
                 paymentMethod: { 'id': this.record.paymentMethod.id, 'description': this.record.paymentMethod.description },
                 ship: { 'id': this.record.ship.id, 'description': this.record.ship.description },
                 adults: this.record.adults,
@@ -303,6 +315,14 @@ export class InvoiceFormComponent {
                 postUser: this.record.postUser,
                 putAt: this.record.putAt,
                 putUser: this.record.putUser,
+                aade: {
+                    id: this.record.aade.id,
+                    invoiceId: this.record.aade.invoiceId,
+                    uid: this.record.aade.uid,
+                    mark: this.record.aade.mark,
+                    markCancel: this.record.aade.markCancel,
+                    qrUrl: this.record.aade.qrUrl
+                },
                 invoicesPorts: this.populatePorts()
             })
         }
@@ -313,7 +333,7 @@ export class InvoiceFormComponent {
     }
 
     private saveRecord(invoice: InvoiceWriteDto): void {
-        this.invoiceHttpService.save(invoice).subscribe({
+        this.invoiceHttpService.saveInvoice(invoice).subscribe({
             next: () => {
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
