@@ -5,16 +5,22 @@ using System.Xml.Linq;
 using System.Net.Http;
 using System.Xml.Serialization;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
+using API.Infrastructure.Classes;
 
 namespace API.Features.Billing.Invoices {
 
     public class InvoiceAadeRepository : IInvoiceAadeRepository {
 
-        public InvoiceAadeRepository() { }
+        private readonly IOptions<FileSystemSettings> fileSystemSettings;
+
+        public InvoiceAadeRepository(IOptions<FileSystemSettings> fileSystemSettings) {
+            this.fileSystemSettings = fileSystemSettings;
+        }
 
         public void CreateXMLAsync(InvoiceVM invoiceVM) {
             using StringWriter sw = new();
-            using XmlTextWriter xtw = new("Invoice.xml", null);
+            using XmlTextWriter xtw = new(GetFullPathName(), null);
             xtw.Namespaces = false;
             xtw.Formatting = Formatting.Indented;
             xtw.WriteStartElement("InvoicesDoc");
@@ -97,6 +103,10 @@ namespace API.Features.Billing.Invoices {
             HttpContent body = new StringContent(xml, Encoding.UTF8, "application/xml");
             HttpResponseMessage response = client.PostAsync("https://mydataapidev.aade.gr/SendInvoices", body).Result;
             return await response.Content.ReadAsStringAsync();
+        }
+
+        private string GetFullPathName() {
+            return fileSystemSettings.Value.ReportsLocation + Path.DirectorySeparatorChar + fileSystemSettings.Value.InvoiceFileName;
         }
 
     }
