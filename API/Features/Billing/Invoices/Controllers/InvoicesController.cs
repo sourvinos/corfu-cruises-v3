@@ -1,15 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using API.Infrastructure.Classes;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Responses;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 
 namespace API.Features.Billing.Invoices {
 
@@ -23,16 +20,14 @@ namespace API.Features.Billing.Invoices {
         private readonly IInvoiceUpdateRepository invoiceUpdateRepo;
         private readonly IInvoiceValidation invoiceValidation;
         private readonly IMapper mapper;
-        private readonly IOptions<FileSystemSettings> fileSystemSettings;
 
         #endregion
 
-        public InvoicesController(IInvoiceAadeRepository invoiceAadeRepo, IMapper mapper, IInvoiceReadRepository invoiceReadRepo, IInvoiceUpdateRepository invoiceUpdateRepo, IInvoiceValidation invoiceValidation, IOptions<FileSystemSettings> fileSystemSettings) {
+        public InvoicesController(IInvoiceAadeRepository invoiceAadeRepo, IMapper mapper, IInvoiceReadRepository invoiceReadRepo, IInvoiceUpdateRepository invoiceUpdateRepo, IInvoiceValidation invoiceValidation) {
             this.invoiceAadeRepo = invoiceAadeRepo;
             this.invoiceReadRepo = invoiceReadRepo;
             this.invoiceUpdateRepo = invoiceUpdateRepo;
             this.invoiceValidation = invoiceValidation;
-            this.fileSystemSettings = fileSystemSettings;
             this.mapper = mapper;
         }
 
@@ -128,16 +123,10 @@ namespace API.Features.Billing.Invoices {
         [HttpPost("upload")]
         [Authorize(Roles = "admin")]
         public string Upload([FromBody] InvoiceVM invoice) {
-            invoiceAadeRepo.CreateXMLAsync(invoice);
-            return BeautifyString(invoiceAadeRepo.UploadXMLAsync(XElement.Load(GetFullPathName())).Result);
-        }
-
-        private static string BeautifyString(string x) {
-            return x.Replace("&lt;", "<").Replace("&gt;", ">");
-        }
-
-        private string GetFullPathName() {
-            return fileSystemSettings.Value.ReportsLocation + Path.DirectorySeparatorChar + fileSystemSettings.Value.InvoiceFileName;
+            var response = invoiceAadeRepo.UploadXMLAsync(XElement.Load(invoiceAadeRepo.CreateXMLAsync(invoice))).Result;
+            var prettyResponse = response.Replace("&lt;", "<").Replace("&gt;", ">");
+            invoiceAadeRepo.SaveResponse(invoice, prettyResponse);
+            return prettyResponse;
         }
 
     }

@@ -5,22 +5,16 @@ using System.Xml.Linq;
 using System.Net.Http;
 using System.Xml.Serialization;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Options;
-using API.Infrastructure.Classes;
+using API.Infrastructure.Helpers;
 
 namespace API.Features.Billing.Invoices {
 
     public class InvoiceAadeRepository : IInvoiceAadeRepository {
 
-        private readonly IOptions<FileSystemSettings> fileSystemSettings;
-
-        public InvoiceAadeRepository(IOptions<FileSystemSettings> fileSystemSettings) {
-            this.fileSystemSettings = fileSystemSettings;
-        }
-
-        public void CreateXMLAsync(InvoiceVM invoiceVM) {
+        public string CreateXMLAsync(InvoiceVM invoice) {
+            var fullpathname = FileSystemHelpers.CreateInvoiceFullPathName(invoice, "invoice");
             using StringWriter sw = new();
-            using XmlTextWriter xtw = new(GetFullPathName(), null);
+            using XmlTextWriter xtw = new(fullpathname, null);
             xtw.Namespaces = false;
             xtw.Formatting = Formatting.Indented;
             xtw.WriteStartElement("InvoicesDoc");
@@ -31,61 +25,62 @@ namespace API.Features.Billing.Invoices {
             xtw.WriteAttributeString("xsi:schemaLocation", "http://www.aade.gr/myDATA/invoice/v1.0/InvoicesDoc-v0.6.xsd");
             xtw.WriteStartElement("invoice");
             xtw.WriteStartElement("issuer");
-            xtw.WriteElementString("vatNumber", invoiceVM.Issuer.VatNumber);
-            xtw.WriteElementString("country", invoiceVM.Issuer.Country);
-            xtw.WriteElementString("branch", invoiceVM.Issuer.Branch.ToString());
+            xtw.WriteElementString("vatNumber", invoice.Issuer.VatNumber);
+            xtw.WriteElementString("country", invoice.Issuer.Country);
+            xtw.WriteElementString("branch", invoice.Issuer.Branch.ToString());
             xtw.WriteEndElement();
             xtw.WriteStartElement("counterpart");
-            xtw.WriteElementString("vatNumber", invoiceVM.CounterPart.VatNumber);
-            xtw.WriteElementString("country", invoiceVM.CounterPart.Country);
-            xtw.WriteElementString("branch", invoiceVM.CounterPart.Branch.ToString());
+            xtw.WriteElementString("vatNumber", invoice.CounterPart.VatNumber);
+            xtw.WriteElementString("country", invoice.CounterPart.Country);
+            xtw.WriteElementString("branch", invoice.CounterPart.Branch.ToString());
             xtw.WriteStartElement("address");
-            xtw.WriteElementString("postalCode", invoiceVM.CounterPart.Address.PostalCode);
-            xtw.WriteElementString("city", invoiceVM.CounterPart.Address.City);
+            xtw.WriteElementString("postalCode", invoice.CounterPart.Address.PostalCode);
+            xtw.WriteElementString("city", invoice.CounterPart.Address.City);
             xtw.WriteEndElement();
             xtw.WriteEndElement();
             xtw.WriteStartElement("invoiceHeader");
-            xtw.WriteElementString("series", invoiceVM.InvoiceHeader.Series);
-            xtw.WriteElementString("aa", invoiceVM.InvoiceHeader.Aa);
-            xtw.WriteElementString("issueDate", invoiceVM.InvoiceHeader.IssueDate);
-            xtw.WriteElementString("invoiceType", invoiceVM.InvoiceHeader.InvoiceType);
-            xtw.WriteElementString("currency", invoiceVM.InvoiceHeader.Currency);
+            xtw.WriteElementString("series", invoice.InvoiceHeader.Series);
+            xtw.WriteElementString("aa", invoice.InvoiceHeader.Aa);
+            xtw.WriteElementString("issueDate", invoice.InvoiceHeader.IssueDate);
+            xtw.WriteElementString("invoiceType", invoice.InvoiceHeader.InvoiceType);
+            xtw.WriteElementString("currency", invoice.InvoiceHeader.Currency);
             xtw.WriteEndElement();
             xtw.WriteStartElement("paymentMethods");
             xtw.WriteStartElement("paymentMethodDetails");
-            xtw.WriteElementString("type", invoiceVM.PaymentMethods[0].PaymentMethodDetails.Type.ToString());
-            xtw.WriteElementString("amount", invoiceVM.PaymentMethods[0].PaymentMethodDetails.Amount.ToString());
+            xtw.WriteElementString("type", invoice.PaymentMethods[0].PaymentMethodDetails.Type.ToString());
+            xtw.WriteElementString("amount", invoice.PaymentMethods[0].PaymentMethodDetails.Amount.ToString());
             xtw.WriteEndElement();
             xtw.WriteEndElement();
             xtw.WriteStartElement("invoiceDetails");
-            xtw.WriteElementString("lineNumber", invoiceVM.InvoiceDetails[0].LineNumber.ToString());
-            xtw.WriteElementString("netValue", invoiceVM.InvoiceDetails[0].NetValue.ToString());
-            xtw.WriteElementString("vatCategory", invoiceVM.InvoiceDetails[0].VatCategory.ToString());
-            xtw.WriteElementString("vatAmount", invoiceVM.InvoiceDetails[0].VatAmount.ToString());
+            xtw.WriteElementString("lineNumber", invoice.InvoiceDetails[0].LineNumber.ToString());
+            xtw.WriteElementString("netValue", invoice.InvoiceDetails[0].NetValue.ToString());
+            xtw.WriteElementString("vatCategory", invoice.InvoiceDetails[0].VatCategory.ToString());
+            xtw.WriteElementString("vatAmount", invoice.InvoiceDetails[0].VatAmount.ToString());
             xtw.WriteStartElement("incomeClassification");
-            xtw.WriteElementString("icls:classificationType", invoiceVM.InvoiceSummary.IncomeClassification.ClassificationType);
-            xtw.WriteElementString("icls:classificationCategory", invoiceVM.InvoiceSummary.IncomeClassification.ClassificationCategory);
-            xtw.WriteElementString("icls:amount", invoiceVM.InvoiceSummary.IncomeClassification.Amount.ToString());
+            xtw.WriteElementString("icls:classificationType", invoice.InvoiceSummary.IncomeClassification.ClassificationType);
+            xtw.WriteElementString("icls:classificationCategory", invoice.InvoiceSummary.IncomeClassification.ClassificationCategory);
+            xtw.WriteElementString("icls:amount", invoice.InvoiceSummary.IncomeClassification.Amount.ToString());
             xtw.WriteEndElement();
             xtw.WriteEndElement();
             xtw.WriteStartElement("invoiceSummary");
-            xtw.WriteElementString("totalNetValue", invoiceVM.InvoiceSummary.TotalNetValue.ToString());
-            xtw.WriteElementString("totalVatAmount", invoiceVM.InvoiceSummary.TotalVatAmount.ToString());
-            xtw.WriteElementString("totalWithheldAmount", invoiceVM.InvoiceSummary.TotalWithheldAmount.ToString());
-            xtw.WriteElementString("totalFeesAmount", invoiceVM.InvoiceSummary.TotalFeesAmount.ToString());
-            xtw.WriteElementString("totalStampDutyAmount", invoiceVM.InvoiceSummary.TotalStampDutyAmount.ToString());
-            xtw.WriteElementString("totalOtherTaxesAmount", invoiceVM.InvoiceSummary.TotalOtherTaxesAmount.ToString());
-            xtw.WriteElementString("totalDeductionsAmount", invoiceVM.InvoiceSummary.TotalDeductionsAmount.ToString());
-            xtw.WriteElementString("totalGrossValue", invoiceVM.InvoiceSummary.TotalGrossValue.ToString());
+            xtw.WriteElementString("totalNetValue", invoice.InvoiceSummary.TotalNetValue.ToString());
+            xtw.WriteElementString("totalVatAmount", invoice.InvoiceSummary.TotalVatAmount.ToString());
+            xtw.WriteElementString("totalWithheldAmount", invoice.InvoiceSummary.TotalWithheldAmount.ToString());
+            xtw.WriteElementString("totalFeesAmount", invoice.InvoiceSummary.TotalFeesAmount.ToString());
+            xtw.WriteElementString("totalStampDutyAmount", invoice.InvoiceSummary.TotalStampDutyAmount.ToString());
+            xtw.WriteElementString("totalOtherTaxesAmount", invoice.InvoiceSummary.TotalOtherTaxesAmount.ToString());
+            xtw.WriteElementString("totalDeductionsAmount", invoice.InvoiceSummary.TotalDeductionsAmount.ToString());
+            xtw.WriteElementString("totalGrossValue", invoice.InvoiceSummary.TotalGrossValue.ToString());
             xtw.WriteStartElement("incomeClassification");
-            xtw.WriteElementString("icls:classificationType", invoiceVM.InvoiceSummary.IncomeClassification.ClassificationType);
-            xtw.WriteElementString("icls:classificationCategory", invoiceVM.InvoiceSummary.IncomeClassification.ClassificationCategory);
-            xtw.WriteElementString("icls:amount", invoiceVM.InvoiceSummary.IncomeClassification.Amount.ToString());
+            xtw.WriteElementString("icls:classificationType", invoice.InvoiceSummary.IncomeClassification.ClassificationType);
+            xtw.WriteElementString("icls:classificationCategory", invoice.InvoiceSummary.IncomeClassification.ClassificationCategory);
+            xtw.WriteElementString("icls:amount", invoice.InvoiceSummary.IncomeClassification.Amount.ToString());
             xtw.WriteEndElement();
             xtw.WriteEndElement();
             xtw.WriteEndElement();
             xtw.WriteEndElement();
             xtw.Close();
+            return fullpathname;
         }
 
         public async Task<string> UploadXMLAsync(XElement invoice) {
@@ -105,8 +100,9 @@ namespace API.Features.Billing.Invoices {
             return await response.Content.ReadAsStringAsync();
         }
 
-        private string GetFullPathName() {
-            return fileSystemSettings.Value.ReportsLocation + Path.DirectorySeparatorChar + fileSystemSettings.Value.InvoiceFileName;
+        public void SaveResponse(InvoiceVM invoice, string response) {
+            using StreamWriter outputFile = new(FileSystemHelpers.CreateInvoiceFullPathName(invoice, "response"));
+            outputFile.Write(response);
         }
 
     }
