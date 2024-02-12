@@ -19,8 +19,8 @@ export class InvoiceHttpService extends HttpDataService {
             : this.http.put<any>(this.url, formData)
     }
 
-    public submit(formData: any): Observable<any> {
-        return this.http.post<any>(this.url + '/build', formData)
+    public upload(invoice: any): Observable<any> {
+        return this.http.post<any>(this.url + '/upload', invoice)
     }
 
 }

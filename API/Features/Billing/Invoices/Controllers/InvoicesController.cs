@@ -64,14 +64,21 @@ namespace API.Features.Billing.Invoices {
         [HttpPost]
         [Authorize(Roles = "user, admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public ResponseWithBody Post([FromBody] InvoiceCreateDto invoice) {
-            var x = invoiceUpdateRepo.Create(mapper.Map<InvoiceCreateDto, Invoice>((InvoiceCreateDto)invoiceUpdateRepo.AttachMetadataToPostDto(invoice)));
-            return new ResponseWithBody {
-                Code = 200,
-                Icon = Icons.Success.ToString(),
-                Body = mapper.Map<InvoiceCreateDto, InvoiceWriteResponseDto>(invoice),
-                Message = ApiMessages.OK()
-            };
+        public async Task<Response> PostAsync([FromBody] InvoiceCreateDto invoice) {
+            var x = invoiceValidation.IsValidAsync(null, invoice);
+            if (await x == 200) {
+                var z = invoiceUpdateRepo.Create(mapper.Map<InvoiceCreateDto, Invoice>((InvoiceCreateDto)invoiceUpdateRepo.AttachMetadataToPostDto(invoice)));
+                return new Response {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Id = z.InvoiceId.ToString(),
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = await x
+                };
+            }
         }
 
         [HttpPut]
@@ -122,11 +129,18 @@ namespace API.Features.Billing.Invoices {
 
         [HttpPost("upload")]
         [Authorize(Roles = "admin")]
-        public string Upload([FromBody] InvoiceVM invoice) {
-            var response = invoiceAadeRepo.UploadXMLAsync(XElement.Load(invoiceAadeRepo.CreateXMLAsync(invoice))).Result;
-            var prettyResponse = response.Replace("&lt;", "<").Replace("&gt;", ">");
-            invoiceAadeRepo.SaveResponse(invoice, prettyResponse);
-            return prettyResponse;
+        public ResponseWithBody Upload([FromBody] InvoiceVM invoice) {
+            var response = SavePrettyResponse(invoice, invoiceAadeRepo.UploadXMLAsync(XElement.Load(invoiceAadeRepo.CreateXMLAsync(invoice))).Result);
+            return new ResponseWithBody {
+                Code = 200,
+                Icon = Icons.Success.ToString(),
+                Body = response,
+                Message = ApiMessages.OK()
+            };
+        }
+
+        private string SavePrettyResponse(InvoiceVM invoice, string response) {
+            return invoiceAadeRepo.SaveResponse(invoice, response.Replace("&lt;", "<").Replace("&gt;", ">")).ToString();
         }
 
     }

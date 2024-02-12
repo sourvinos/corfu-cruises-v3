@@ -4,7 +4,6 @@ namespace API.Features.Billing.Invoices {
 
         public int Type { get; set; }
         public decimal Amount { get; set; }
-        public string PaymentMethodInfo { get; set; }
 
     }
 

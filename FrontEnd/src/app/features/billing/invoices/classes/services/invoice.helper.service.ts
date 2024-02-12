@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
-import { InvoiceReadDto } from '../dtos/form/invoice-read-dto'
+import { DexieService } from 'src/app/shared/services/dexie.service'
 import { InvoiceWriteDto } from '../dtos/form/invoice-write-dto'
-import { InvoiceXmlDto } from '../dtos/xml/invoice-xml-dto'
+import { InvoiceXmlHeaderDto } from '../dtos/xml/invoice-xml-header-dto'
 import { InvoiceXmlPartyTypeDto } from '../dtos/xml/invoice-xml-partyType-dto'
 import { PortWriteDto } from '../dtos/form/port-write-dto'
-import { InvoiceXmlHeaderDto } from '../dtos/xml/invoice-xml-header-dto'
+import { InvoiceXmlPaymentMethodDto } from '../dtos/xml/invoice-xml-paymentMethod-dto'
+import { InvoiceXmlRowDto } from '../dtos/xml/invoice-xml-row-dto'
+import { InvoiceXmlSummaryDto } from '../dtos/xml/invoice-xml-summary-dto'
 
 @Injectable({ providedIn: 'root' })
 
 export class InvoiceHelperService {
 
-    constructor(private dateHelperService: DateHelperService) { }
+    constructor(private dateHelperService: DateHelperService, private dexieService: DexieService) { }
 
     //#region public methods
 
@@ -36,43 +38,20 @@ export class InvoiceHelperService {
         }
     }
 
-    public buildXmlViewModel(formValue: any): Promise<InvoiceXmlDto> {
-        return new Promise((resolve) => {
-            const x: InvoiceXmlDto = {
-                issuer: this.buildParty(formValue.ship),
-                counterPart: this.buildParty(formValue.customer),
-                invoiceHeader: this.buildHeader(formValue.invoice),
-                paymentMethod: {
-                    type: 0,
-                    amount: 0,
-                    paymentMethodInfo: ''
-                },
-                invoiceRow: {
-                    lineNumber: 0,
-                    netValue: 0,
-                    vatCategory: 0,
-                    vatAmount: 0
-                },
-                invoiceSummary: {
-                    totalNetValue: 0,
-                    totalVatAmount: 0,
-                    totalWithheldAmount: 0,
-                    totalFeesAmount: 0,
-                    totalStampDutyAmount: 0,
-                    totalOtherTaxesAmount: 0,
-                    totalDeductionsAmount: 0,
-                    totalGrossValue: 0,
-                    incomeClassification: {
-                        classificationType: '',
-                        classificationCategory: '',
-                        amount: 0
-                    }
-
-                }
-
-            }
-            resolve(x)
-        })
+    public async buildXmlViewModel(formValue: any): Promise<any> {
+        const issuer = await this.buildIssuer('ships', formValue.ship.id)
+        const counterPart = await this.buildCounterPart('customers', formValue.customer.id)
+        const invoiceHeader = await this.buildHeader('documentTypes', formValue.documentType.id, formValue.date)
+        const paymentMethods = await this.buildPaymentMethods('paymentMethods', formValue.paymentMethod.id, formValue.grossAmount)
+        const invoiceDetails = await this.buildInvoiceDetails('documentTypes', formValue.documentType.id, formValue.netAmount, formValue.vatAmount)
+        const invoiceSummary = await this.buildInvoiceSummary('documentTypes', formValue.documentType.id, formValue.netAmount, formValue.vatAmount, formValue.grossAmount)
+        console.log('came back issuer', issuer)
+        console.log('came back counterPart', counterPart)
+        console.log('came back invoiceHeader', invoiceHeader)
+        console.log('came back paymentMethods', paymentMethods)
+        console.log('came back invoiceDetails', invoiceDetails)
+        console.log('came back invoiceSummary', invoiceSummary)
+        return { issuer, counterPart, invoiceHeader, paymentMethods, invoiceDetails, invoiceSummary }
     }
 
     //#endregion
@@ -83,7 +62,7 @@ export class InvoiceHelperService {
         const ports = []
         form.invoicesPorts.forEach((port: any) => {
             const x: PortWriteDto = {
-                invoiceId: port.invoiceId,
+                invoiceId: port.invoiceId != '' ? port.invoiceId : null,
                 portId: port.port.id,
                 adultsWithTransfer: port.adultsWithTransfer,
                 adultsPriceWithTransfer: port.adultsPriceWithTransfer,
@@ -101,28 +80,119 @@ export class InvoiceHelperService {
         return ports
     }
 
-    private buildParty(party: InvoiceXmlPartyTypeDto): InvoiceXmlPartyTypeDto {
-        return {
-            vatNumber: party.vatNumber,
-            country: party.country,
-            branch: party.branch,
-            address: {
-                street: party.address.street,
-                number: party.address.number,
-                postalCode: party.address.postalCode,
-                city: party.address.city
-            }
-        }
+    private buildIssuer(table: string, id: number): Promise<any> {
+        return new Promise((resolve) => {
+            this.dexieService.getById(table, id).then(response => {
+                const x: InvoiceXmlPartyTypeDto = {
+                    vatNumber: response.shipOwner.taxNo,
+                    country: response.shipOwner.nationality.code,
+                    branch: response.shipOwner.branch,
+                    address: {
+                        street: response.shipOwner.address,
+                        number: 'party.address.number',
+                        postalCode: response.shipOwner.postalCode,
+                        city: response.shipOwner.city
+                    }
+                }
+                resolve(x)
+                console.log('issuer', x)
+            })
+        })
     }
 
-    private buildHeader(invoice: InvoiceReadDto): InvoiceXmlHeaderDto {
-        return {
-            series: '',
-            aa: invoice.no,
-            issueDate: invoice.date,
-            invoiceType: '',
-            currency: ''
-        }
+    private buildCounterPart(table: string, id: number): Promise<any> {
+        return new Promise((resolve) => {
+            this.dexieService.getById(table, id).then(response => {
+                const x: InvoiceXmlPartyTypeDto = {
+                    vatNumber: response.taxNo,
+                    country: response.nationality.code,
+                    branch: response.branch,
+                    address: {
+                        street: response.address,
+                        number: 'party.address.number',
+                        postalCode: response.postalCode,
+                        city: response.city
+                    }
+                }
+                resolve(x)
+                console.log('counterPart', x)
+            })
+        })
+    }
+
+    private buildHeader(table: string, id: number, date: string): Promise<any> {
+        return new Promise((resolve) => {
+            this.dexieService.getById(table, id).then(response => {
+                const x: InvoiceXmlHeaderDto = {
+                    series: response.batch,
+                    aa: ++response.lastNo,
+                    issueDate: date.substring(0, 10),
+                    invoiceType: response.table8_1,
+                    currency: 'EUR'
+                }
+                resolve(x)
+                console.log('invoiceHeader', x)
+            })
+        })
+    }
+
+    private buildPaymentMethods(table: string, id: number, amount: number): Promise<any> {
+        return new Promise((resolve) => {
+            this.dexieService.getById(table, id).then(response => {
+                const x: InvoiceXmlPaymentMethodDto[] = [{
+                    paymentMethodDetails: {
+                        type: response.myDataId,
+                        amount: amount
+                    }
+                }]
+                resolve(x)
+                console.log('paymentMethods', x)
+            })
+        })
+    }
+
+    private buildInvoiceDetails(table: string, id: number, netValue: number, vatAmount: number): Promise<any> {
+        return new Promise((resolve) => {
+            this.dexieService.getById(table, id).then(response => {
+                const x: InvoiceXmlRowDto[] = [{
+                    lineNumber: 1,
+                    netValue: netValue,
+                    vatCategory: 1,
+                    vatAmount: vatAmount,
+                    incomeClassification: {
+                        classificationType: response.table8_9,
+                        classificationCategory: response.table8_8,
+                        amount: netValue
+                    }
+                }]
+                resolve(x)
+                console.log('invoiceDetails', x)
+            })
+        })
+    }
+
+    private buildInvoiceSummary(table: string, id: number, netValue: number, vatAmount: number, totalGrossValue: number): Promise<any> {
+        return new Promise((resolve) => {
+            this.dexieService.getById(table, id).then(response => {
+                const x: InvoiceXmlSummaryDto = {
+                    totalNetValue: netValue,
+                    totalVatAmount: vatAmount,
+                    totalWithheldAmount: 0,
+                    totalFeesAmount: 0,
+                    totalStampDutyAmount: 0,
+                    totalOtherTaxesAmount: 0,
+                    totalDeductionsAmount: 0,
+                    totalGrossValue: totalGrossValue,
+                    incomeClassification: {
+                        classificationType: response.table8_9,
+                        classificationCategory: response.table8_8,
+                        amount: netValue
+                    }
+                }
+                resolve(x)
+                console.log('invoiceSummary', x)
+            })
+        })
     }
 
     //#endregion

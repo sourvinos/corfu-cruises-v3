@@ -8,15 +8,15 @@ export class DexieService extends Dexie {
 
     constructor() {
         super('DexieDB')
-        this.version(17).stores({
+        this.version(21).stores({
             coachRoutes: 'id, abbreviation, isActive',
             customers: 'id, abbreviation, description, isActive',
             destinations: 'id, description, isActive',
-            documentTypes: 'id, abbreviation, description, isActive',
+            documentTypes: 'id, abbreviation, description, batch, lastDate, lastNo, isMyData, table8_1, table8_8, table8_9, isActive',
             drivers: 'id, description, isActive',
             genders: 'id, description, isActive',
             nationalities: 'id, description, isActive',
-            paymentMethods: 'id, description, isActive',
+            paymentMethods: 'id, description, myDataId, isActive',
             pickupPoints: 'id, description, isActive',
             ports: 'id, abbreviation, description, isActive',
             shipOwners: 'id, description, taxNo, branch, isActive',
@@ -44,12 +44,8 @@ export class DexieService extends Dexie {
         })
     }
 
-    public getById(table: string, id: any): Promise<any> {
-        return new Promise((resolve) => {
-            this.table(table).where({ id: id }).first().then(response => {
-                resolve(response)
-            })
-        })
+    public async getById(table: string, id: number): Promise<any> {
+        return await this.table(table).get({ id: id })
     }
 
     public getByKey(table: string, id: any): Promise<any> {

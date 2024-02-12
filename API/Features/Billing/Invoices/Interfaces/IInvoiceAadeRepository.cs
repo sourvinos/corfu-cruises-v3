@@ -7,7 +7,7 @@ namespace API.Features.Billing.Invoices {
 
         string CreateXMLAsync(InvoiceVM invoice);
         Task<string> UploadXMLAsync(XElement invoice);
-        void SaveResponse(InvoiceVM invoice, string response);
+        string SaveResponse(InvoiceVM invoice, string response);
 
     }
 

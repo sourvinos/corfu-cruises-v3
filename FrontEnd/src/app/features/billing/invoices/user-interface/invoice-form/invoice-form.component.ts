@@ -8,7 +8,7 @@ import { CustomerAutoCompleteVM } from 'src/app/features/reservations/customers/
 import { DestinationAutoCompleteVM } from 'src/app/features/reservations/destinations/classes/view-models/destination-autocomplete-vm'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
-import { DocumentTypeVM } from '../../classes/view-models/list/documentType-vm'
+import { DocumentTypeAutoCompleteVM } from '../../../documentTypes/classes/view-models/documentType-autocomplete-vm'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -23,6 +23,7 @@ import { PortAutoCompleteVM } from 'src/app/features/reservations/ports/classes/
 import { ShipAutoCompleteVM } from './../../../../reservations/ships/classes/view-models/ship-autocomplete-vm'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
+import { InvoiceXmlDto } from '../../classes/dtos/xml/invoice-xml-dto'
 
 @Component({
     selector: 'invoice-form',
@@ -58,7 +59,7 @@ export class InvoiceFormComponent {
     public isAutoCompleteDisabled = true
     public dropdownCustomers: Observable<CustomerAutoCompleteVM[]>
     public dropdownDestinations: Observable<DestinationAutoCompleteVM[]>
-    public dropdownDocumentTypes: Observable<DocumentTypeVM[]>
+    public dropdownDocumentTypes: Observable<DocumentTypeAutoCompleteVM[]>
     public dropdownPaymentMethods: Observable<SimpleEntity[]>
     public dropdownPorts: Observable<PortAutoCompleteVM[]>
     public dropdownShips: Observable<ShipAutoCompleteVM[]>
@@ -81,20 +82,6 @@ export class InvoiceFormComponent {
     //#endregion
 
     //#region public methods
-
-    public addPorts(): void {
-        if (this.recordId == undefined) {
-            setTimeout(() => {
-                const ports = this.form.get('ports') as FormArray
-                let x = 0
-                for (let index = 0; index < 2; index++) {
-                    this.dexieService.getByKey('ports', ++x).then((port) => {
-                        ports.push(this.initPortForm(port))
-                    })
-                }
-            }, 1000)
-        }
-    }
 
     public autocompleteFields(fieldName: any, object: any): any {
         return object ? object[fieldName] : undefined
@@ -161,8 +148,28 @@ export class InvoiceFormComponent {
 
     public onBuildXMLModel(): void {
         this.invoiceHelperService.buildXmlViewModel(this.form.value).then((response) => {
-            this.invoiceHttpService.submit(response)
+            console.log('finally: ' + JSON.stringify(response))
+            const x: InvoiceXmlDto = {
+                issuer: response.issuer,
+                counterPart: response.counterPart,
+                invoiceHeader: response.invoiceHeader,
+                paymentMethods: response.paymentMethods,
+                invoiceDetails: response.invoiceDetails,
+                invoiceSummary: response.invoiceSummary
+            }
+            console.log('ready', x)
+            this.invoiceHttpService.upload(x).subscribe({
+                next: (response: any) => {
+                    console.log(response)
+                },
+                error: (errorFromInterceptor) => {
+                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                }
+            })
         })
+        // this.invoiceHelperService.buildXmlViewModel(this.form.value).then((response) => {
+        //     this.invoiceHttpService.upload(response)
+        // })
     }
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
@@ -175,6 +182,14 @@ export class InvoiceFormComponent {
         })
     }
 
+    public updateFieldsAfterDocumentTypeSelection(value: DocumentTypeAutoCompleteVM): void {
+        this.form.patchValue({
+            documentTypeDetails: {
+                batch: 'myvalue@asd.com'
+            }
+        })
+    }
+
     public updateInvoice(port: any, portIndex: number): void {
         this.form.value.invoicesPorts[portIndex] = port
     }
@@ -182,6 +197,28 @@ export class InvoiceFormComponent {
     //#endregion
 
     //#region private methods
+
+    private addPort(): void {
+        const portForm = this.formBuilder.group({
+            title: ['', Validators.required],
+            level: ['beginner', Validators.required]
+        })
+        this.invoicesPorts.push(portForm)
+    }
+
+    private addPorts(): void {
+        if (this.recordId == undefined) {
+            setTimeout(() => {
+                const ports = this.form.get('invoicesPorts') as FormArray
+                let x = 0
+                for (let index = 0; index < 2; index++) {
+                    this.dexieService.getByKey('ports', ++x).then((port) => {
+                        ports.push(this.initPortForm(port))
+                    })
+                }
+            }, 1000)
+        }
+    }
 
     private flattenForm(): InvoiceWriteDto {
         return this.invoiceHelperService.flattenForm(this.form.value)
@@ -215,9 +252,9 @@ export class InvoiceFormComponent {
             customer: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             destination: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             documentType: ['', [Validators.required, ValidationService.RequireAutocomplete]],
+            no: 22,
             paymentMethod: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             ship: ['', [Validators.required, ValidationService.RequireAutocomplete]],
-            no: '',
             netAmount: [0, ValidationService.isGreaterThanZero],
             vatPercent: [0, ValidationService.isGreaterThanZero],
             vatAmount: [0, ValidationService.isGreaterThanZero],
@@ -270,7 +307,7 @@ export class InvoiceFormComponent {
     private populateDropdowns(): void {
         this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', ['id', 'abbreviation', 'isActive'], 'abbreviation', 'abbreviation')
         this.populateDropdownFromDexieDB('destinations', 'dropdownDestinations', 'destination', ['id', 'description', 'isActive'], 'description', 'description')
-        this.populateDropdownFromDexieDB('documentTypes', 'dropdownDocumentTypes', 'documentType', ['id', 'abbreviation', 'description', 'batch', 'isActive'], 'abbreviation', 'abbreviation')
+        this.populateDropdownFromDexieDB('documentTypes', 'dropdownDocumentTypes', 'documentType', ['id', 'abbreviation', 'description', 'batch', 'lastNo', 'isActive'], 'abbreviation', 'abbreviation')
         this.populateDropdownFromDexieDB('paymentMethods', 'dropdownPaymentMethods', 'paymentMethod', ['id', 'description', 'isActive'], 'description', 'description')
         this.populateDropdownFromDexieDB('ships', 'dropdownShips', 'ship', ['id', 'description', 'isActive'], 'description', 'description')
     }
@@ -335,7 +372,16 @@ export class InvoiceFormComponent {
     private saveRecord(invoice: InvoiceWriteDto): void {
         this.invoiceHttpService.saveInvoice(invoice).subscribe({
             next: () => {
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                // .then((response) => {
+                //     this.invoiceHttpService.upload(response).subscribe({
+                //         next: () => {
+                //             this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                //         },
+                //         error: (errorFromInterceptor) => {
+                //             this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                //         }
+                //     })
+                // })
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
@@ -395,8 +441,8 @@ export class InvoiceFormComponent {
         return this.form.get('documentType')
     }
 
-    get no(): AbstractControl {
-        return this.form.get('no')
+    get lastNo(): AbstractControl {
+        return this.form.get('lastNo')
     }
 
     get paymentMethod(): AbstractControl {
@@ -433,6 +479,10 @@ export class InvoiceFormComponent {
 
     get remarks(): AbstractControl {
         return this.form.get('remarks')
+    }
+
+    get invoicesPorts(): FormArray {
+        return this.form.controls['invoicesPorts'] as FormArray
     }
 
     //#endregion

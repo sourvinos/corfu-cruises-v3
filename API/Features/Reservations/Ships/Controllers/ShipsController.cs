@@ -46,8 +46,8 @@ namespace API.Features.Reservations.Ships {
                 return new ResponseWithBody {
                     Code = 200,
                     Icon = Icons.Info.ToString(),
-                    Body = mapper.Map<Ship, ShipReadDto>(x),
                     Message = ApiMessages.OK(),
+                    Body = mapper.Map<Ship, ShipReadDto>(x),
                 };
             } else {
                 throw new CustomException() {

@@ -100,9 +100,10 @@ namespace API.Features.Billing.Invoices {
             return await response.Content.ReadAsStringAsync();
         }
 
-        public void SaveResponse(InvoiceVM invoice, string response) {
+        public string SaveResponse(InvoiceVM invoice, string response) {
             using StreamWriter outputFile = new(FileSystemHelpers.CreateInvoiceFullPathName(invoice, "response"));
             outputFile.Write(response);
+            return response;
         }
 
     }

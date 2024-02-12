@@ -9,8 +9,8 @@ export interface InvoiceXmlDto {
     issuer: InvoiceXmlPartyTypeDto
     counterPart: InvoiceXmlPartyTypeDto
     invoiceHeader: InvoiceXmlHeaderDto
-    paymentMethod: InvoiceXmlPaymentMethodDto
-    invoiceRow: InvoiceXmlRowDto
+    paymentMethods: InvoiceXmlPaymentMethodDto[]
+    invoiceDetails: InvoiceXmlRowDto[]
     invoiceSummary: InvoiceXmlSummaryDto
 
 }

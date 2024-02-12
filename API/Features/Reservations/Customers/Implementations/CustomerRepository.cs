@@ -37,7 +37,7 @@ namespace API.Features.Reservations.Customers {
             return mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerBrowserStorageVM>>(customers);
         }
 
-        public async Task<CustomerBrowserStorageVM> UpdateBrowserStorageAsync(int id) {
+        public async Task<CustomerBrowserStorageVM> GetByIdForBrowserStorageAsync(int id) {
             var customer = await context.Customers
                 .AsNoTracking()
                 .Include(x => x.Nationality)

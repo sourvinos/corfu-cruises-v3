@@ -66,7 +66,7 @@ namespace API.Features.Reservations.Customers {
                 return new ResponseWithBody {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Body = customerRepo.UpdateBrowserStorageAsync(z.Id).Result,
+                    Body = customerRepo.GetByIdForBrowserStorageAsync(z.Id).Result,
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -88,7 +88,7 @@ namespace API.Features.Reservations.Customers {
                     return new ResponseWithBody {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
-                        Body = customerRepo.UpdateBrowserStorageAsync(customer.Id).Result,
+                        Body = customerRepo.GetByIdForBrowserStorageAsync(customer.Id).Result,
                         Message = ApiMessages.OK()
                     };
                 } else {

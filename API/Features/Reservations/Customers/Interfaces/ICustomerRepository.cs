@@ -8,7 +8,7 @@ namespace API.Features.Reservations.Customers {
 
         Task<IEnumerable<CustomerListVM>> GetAsync();
         Task<IEnumerable<CustomerBrowserStorageVM>> GetForBrowserStorageAsync();
-        Task<CustomerBrowserStorageVM> UpdateBrowserStorageAsync(int id);
+        Task<CustomerBrowserStorageVM> GetByIdForBrowserStorageAsync(int id);
         Task<Customer> GetByIdAsync(int id, bool includeTables);
 
     }

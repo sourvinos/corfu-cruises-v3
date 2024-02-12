@@ -1,7 +1,7 @@
+import { InvoiceXmlPaymentMethodDetailsDto } from './invoice-xml-paymentMethodDetails-dto'
+
 export interface InvoiceXmlPaymentMethodDto {
 
-    type: number
-    amount: number
-    paymentMethodInfo: string
+    paymentMethodDetails: InvoiceXmlPaymentMethodDetailsDto
 
 }

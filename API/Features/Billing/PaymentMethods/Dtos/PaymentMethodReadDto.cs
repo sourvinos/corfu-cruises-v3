@@ -2,11 +2,12 @@
 
 namespace API.Features.Billing.PaymentMethods {
 
-    public class PaymentMethodReadDto :  IMetadata {
+    public class PaymentMethodReadDto : IMetadata {
 
         // PK
         public int Id { get; set; }
         // Fields
+        public int MyDataId { get; set; }
         public string Description { get; set; }
         public bool IsCash { get; set; }
         public bool IsActive { get; set; }
