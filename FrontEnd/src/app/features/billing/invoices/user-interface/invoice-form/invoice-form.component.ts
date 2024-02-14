@@ -4,6 +4,7 @@ import { Component } from '@angular/core'
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { Observable, map, startWith } from 'rxjs'
 // Custom
+import { AadeVM } from './../../classes/view-models/aade-vm'
 import { CustomerAutoCompleteVM } from 'src/app/features/reservations/customers/classes/view-models/customer-autocomplete-vm'
 import { DestinationAutoCompleteVM } from 'src/app/features/reservations/destinations/classes/view-models/destination-autocomplete-vm'
 import { DexieService } from 'src/app/shared/services/dexie.service'
@@ -23,7 +24,6 @@ import { PortAutoCompleteVM } from 'src/app/features/reservations/ports/classes/
 import { ShipAutoCompleteVM } from './../../../../reservations/ships/classes/view-models/ship-autocomplete-vm'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
-import { InvoiceXmlDto } from '../../classes/dtos/xml/invoice-xml-dto'
 
 @Component({
     selector: 'invoice-form',
@@ -146,30 +146,36 @@ export class InvoiceFormComponent {
         this.isPortsTabVisible = false
     }
 
-    public onBuildXMLModel(): void {
-        this.invoiceHelperService.buildXmlViewModel(this.form.value).then((response) => {
-            console.log('finally: ' + JSON.stringify(response))
-            const x: InvoiceXmlDto = {
-                issuer: response.issuer,
-                counterPart: response.counterPart,
-                invoiceHeader: response.invoiceHeader,
-                paymentMethods: response.paymentMethods,
-                invoiceDetails: response.invoiceDetails,
-                invoiceSummary: response.invoiceSummary
-            }
-            console.log('ready', x)
-            this.invoiceHttpService.upload(x).subscribe({
-                next: (response: any) => {
-                    console.log(response)
+    public onDoSubmitTasks(): void {
+        this.invoiceHelperService.createXmlInvoiceParts(this.form.value).then((response) => {
+            this.invoiceHttpService.upload(this.invoiceHelperService.createXmlInvoiceFromParts(response)).subscribe({
+                next: (response) => {
+                    const document = new DOMParser().parseFromString(response.body.response, 'text/xml')
+                    const uid = document.querySelector('invoiceUid').innerHTML
+                    const mark = document.querySelector('invoiceMark').innerHTML
+                    const qrUrl = document.querySelector('qrUrl').innerHTML
+                    const x: AadeVM = {
+                        id: '',
+                        invoiceId: response.body.invoiceId,
+                        uid: uid,
+                        mark: mark,
+                        markCancel: '',
+                        qrUrl: qrUrl
+                    }
+                    this.invoiceHttpService.updateInvoiceAade(x).subscribe({
+                        next: () => {
+                            this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                        },
+                        error: (errorFromInterceptor) => {
+                            this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                        }
+                    })
                 },
                 error: (errorFromInterceptor) => {
                     this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
                 }
             })
         })
-        // this.invoiceHelperService.buildXmlViewModel(this.form.value).then((response) => {
-        //     this.invoiceHttpService.upload(response)
-        // })
     }
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
@@ -190,7 +196,7 @@ export class InvoiceFormComponent {
         })
     }
 
-    public updateInvoice(port: any, portIndex: number): void {
+    public onUpdateInvoiceWithOutputPort(port: any, portIndex: number): void {
         this.form.value.invoicesPorts[portIndex] = port
     }
 
@@ -370,18 +376,13 @@ export class InvoiceFormComponent {
     }
 
     private saveRecord(invoice: InvoiceWriteDto): void {
-        this.invoiceHttpService.saveInvoice(invoice).subscribe({
-            next: () => {
-                // .then((response) => {
-                //     this.invoiceHttpService.upload(response).subscribe({
-                //         next: () => {
-                //             this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
-                //         },
-                //         error: (errorFromInterceptor) => {
-                //             this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                //         }
-                //     })
-                // })
+        this.invoiceHttpService.save(invoice).subscribe({
+            next: (response) => {
+                console.log(response)
+                this.form.patchValue({
+                    invoiceId: response.id
+                })
+                this.onDoSubmitTasks()
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])

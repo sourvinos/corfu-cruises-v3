@@ -80,6 +80,8 @@ namespace API.Features.Billing.Invoices {
                 .ForMember(x => x.Remarks, x => x.MapFrom(x => x.Remarks.Trim()));
             // Update invoice
             CreateMap<InvoiceUpdateDto, Invoice>();
+            // Update aade
+            CreateMap<InvoiceUpdateDto, InvoiceAade>();
             // Write port
             CreateMap<InvoicePortWriteDto, InvoicePort>();
             // Write response

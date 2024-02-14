@@ -19,6 +19,10 @@
                 "message": "Dieser Datensatz kann nicht gefunden werden."
             },
             {
+                "error": 402,
+                "message": "Η ΑΑΔΕ δεν ενημερώθηκε."
+            },
+            {
                 "error": 409,
                 "message": "Die Reservierung ist nicht eindeutig. Überprüfen Sie das Datum, den Zielort, den Kunden und die Ticketnummer."
             },

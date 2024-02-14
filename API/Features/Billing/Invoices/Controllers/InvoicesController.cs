@@ -131,16 +131,49 @@ namespace API.Features.Billing.Invoices {
         [Authorize(Roles = "admin")]
         public ResponseWithBody Upload([FromBody] InvoiceVM invoice) {
             var response = SavePrettyResponse(invoice, invoiceAadeRepo.UploadXMLAsync(XElement.Load(invoiceAadeRepo.CreateXMLAsync(invoice))).Result);
-            return new ResponseWithBody {
-                Code = 200,
-                Icon = Icons.Success.ToString(),
-                Body = response,
-                Message = ApiMessages.OK()
-            };
+            if (response.Contains("Success")) {
+                return new ResponseWithBody {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Body = new {
+                        invoice.InvoiceId,
+                        response
+                    },
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 402
+                };
+            }
+        }
+
+        [HttpPut("invoiceAade")]
+        [Authorize(Roles = "admin")]
+        [ServiceFilter(typeof(ModelValidationAttribute))]
+        public async Task<Response> Put([FromBody] InvoiceAade invoiceAade) {
+            var x = await invoiceReadRepo.GetInvoiceAadeByIdAsync(invoiceAade.InvoiceId.ToString());
+            if (x != null) {
+                invoiceUpdateRepo.UpdateInvoiceAade(x);
+                return new Response {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Id = invoiceAade.InvoiceId.ToString(),
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 404
+                };
+            }
         }
 
         private string SavePrettyResponse(InvoiceVM invoice, string response) {
-            return invoiceAadeRepo.SaveResponse(invoice, response.Replace("&lt;", "<").Replace("&gt;", ">")).ToString();
+            return invoiceAadeRepo.SaveResponse(invoice, response
+                .Replace("&lt;", "<")
+                .Replace("&gt;", ">")
+                .Replace("<string xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/\">", "")
+                .Replace("</string>", "")).ToString();
         }
 
     }

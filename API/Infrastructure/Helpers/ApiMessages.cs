@@ -53,6 +53,7 @@ namespace API.Infrastructure.Helpers {
         public static string NewAdminShouldNotHaveCustomerId() { return "When the new user is an admin, customer id must be null."; }
         public static string NewSimpleUserShouldHaveCustomerId() { return "When the new user is not an admin, customer id must exist and be active."; }
         public static string PriceCloningNotCompleted() { return "Cloning not completed. Check your pricelist table."; }
+        public static string AadeError() { return "Aade update was not completed"; }
 
         #endregion
 

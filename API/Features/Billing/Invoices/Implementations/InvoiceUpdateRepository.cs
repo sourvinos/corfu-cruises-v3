@@ -31,6 +31,14 @@ namespace API.Features.Billing.Invoices {
             return invoice;
         }
 
+        public InvoiceAade UpdateInvoiceAade(InvoiceAade invoiceAade) {
+            using var transaction = context.Database.BeginTransaction();
+            context.InvoicesAade.Update(invoiceAade);
+            context.SaveChanges();
+            DisposeOrCommit(transaction);
+            return invoiceAade;
+        }
+
         public void DeleteRange(string[] ids) {
             context.Invoices
                 .RemoveRange(context.Invoices
@@ -73,6 +81,10 @@ namespace API.Features.Billing.Invoices {
                 .Except(portsToUpdate, new PortComparerById())
                 .ToList();
             context.InvoicesPorts.RemoveRange(portsToDelete);
+        }
+
+        public void UpdateAadeTable(InvoiceAade aade) {
+            context.InvoicesAade.Update(aade);
         }
 
         private class PortComparerById : IEqualityComparer<InvoicePort> {

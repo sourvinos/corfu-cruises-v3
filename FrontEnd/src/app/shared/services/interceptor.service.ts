@@ -94,6 +94,8 @@ export class InterceptorService {
         switch (err) {
             case 400:
                 return throwError(() => new Error('400')) // invalid model
+            case 402:
+                return throwError(() => new Error('402')) // aade not updated
             case 404:
                 return throwError(() => new Error('404')) // not found
             case 409:

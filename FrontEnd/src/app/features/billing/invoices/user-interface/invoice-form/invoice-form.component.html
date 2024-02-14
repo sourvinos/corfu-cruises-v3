@@ -131,8 +131,8 @@
                 </div>
             </div>
             <div *ngIf="isPortsTabVisible" id="ports-tab">
-                <invoice-port-form [port]="form.value.invoicesPorts[0]" (outputPort)="updateInvoice($event,0)"></invoice-port-form>
-                <invoice-port-form [port]="form.value.invoicesPorts[1]" (outputPort)="updateInvoice($event,1)"></invoice-port-form>
+                <invoice-port-form [port]="form.value.invoicesPorts[0]" (outputPort)="onUpdateInvoiceWithOutputPort($event,0)"></invoice-port-form>
+                <invoice-port-form [port]="form.value.invoicesPorts[1]" (outputPort)="onUpdateInvoiceWithOutputPort($event,1)"></invoice-port-form>
                 <invoice-port-totals-form [ports]="form.value.invoicesPorts"></invoice-port-totals-form>
             </div>
         </form>
@@ -194,7 +194,7 @@
     <button (click)="onDoNothing()" mat-menu-item>
         <span>{{ getLabel('emailInvoice') }}</span>
     </button>
-    <button (click)="onBuildXMLModel()" mat-menu-item>
+    <button (click)="onDoSubmitTasks()" mat-menu-item>
         <span>{{ getLabel('submitInvoice') }}</span>
     </button>
     <button (click)="onDoNothing()" mat-menu-item>

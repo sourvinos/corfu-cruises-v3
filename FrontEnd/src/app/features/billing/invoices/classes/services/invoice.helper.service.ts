@@ -9,6 +9,7 @@ import { PortWriteDto } from '../dtos/form/port-write-dto'
 import { InvoiceXmlPaymentMethodDto } from '../dtos/xml/invoice-xml-paymentMethod-dto'
 import { InvoiceXmlRowDto } from '../dtos/xml/invoice-xml-row-dto'
 import { InvoiceXmlSummaryDto } from '../dtos/xml/invoice-xml-summary-dto'
+import { InvoiceXmlDto } from '../dtos/xml/invoice-xml-dto'
 
 @Injectable({ providedIn: 'root' })
 
@@ -38,20 +39,36 @@ export class InvoiceHelperService {
         }
     }
 
-    public async buildXmlViewModel(formValue: any): Promise<any> {
+    public async createXmlInvoiceParts(formValue: any): Promise<any> {
+        const invoiceId = formValue.invoiceId
         const issuer = await this.buildIssuer('ships', formValue.ship.id)
         const counterPart = await this.buildCounterPart('customers', formValue.customer.id)
         const invoiceHeader = await this.buildHeader('documentTypes', formValue.documentType.id, formValue.date)
         const paymentMethods = await this.buildPaymentMethods('paymentMethods', formValue.paymentMethod.id, formValue.grossAmount)
         const invoiceDetails = await this.buildInvoiceDetails('documentTypes', formValue.documentType.id, formValue.netAmount, formValue.vatAmount)
         const invoiceSummary = await this.buildInvoiceSummary('documentTypes', formValue.documentType.id, formValue.netAmount, formValue.vatAmount, formValue.grossAmount)
-        console.log('came back issuer', issuer)
-        console.log('came back counterPart', counterPart)
-        console.log('came back invoiceHeader', invoiceHeader)
-        console.log('came back paymentMethods', paymentMethods)
-        console.log('came back invoiceDetails', invoiceDetails)
-        console.log('came back invoiceSummary', invoiceSummary)
-        return { issuer, counterPart, invoiceHeader, paymentMethods, invoiceDetails, invoiceSummary }
+        return {
+            invoiceId,
+            issuer,
+            counterPart,
+            invoiceHeader,
+            paymentMethods,
+            invoiceDetails,
+            invoiceSummary
+        }
+    }
+
+    public createXmlInvoiceFromParts(response: any): InvoiceXmlDto {
+        const x: InvoiceXmlDto = {
+            invoiceId: response.invoiceId,
+            issuer: response.issuer,
+            counterPart: response.counterPart,
+            invoiceHeader: response.invoiceHeader,
+            paymentMethods: response.paymentMethods,
+            invoiceDetails: response.invoiceDetails,
+            invoiceSummary: response.invoiceSummary
+        }
+        return x
     }
 
     //#endregion
@@ -95,7 +112,6 @@ export class InvoiceHelperService {
                     }
                 }
                 resolve(x)
-                console.log('issuer', x)
             })
         })
     }
@@ -115,7 +131,6 @@ export class InvoiceHelperService {
                     }
                 }
                 resolve(x)
-                console.log('counterPart', x)
             })
         })
     }
@@ -126,12 +141,11 @@ export class InvoiceHelperService {
                 const x: InvoiceXmlHeaderDto = {
                     series: response.batch,
                     aa: ++response.lastNo,
-                    issueDate: date.substring(0, 10),
+                    issueDate: this.dateHelperService.formatDateToIso(new Date(date)),
                     invoiceType: response.table8_1,
                     currency: 'EUR'
                 }
                 resolve(x)
-                console.log('invoiceHeader', x)
             })
         })
     }
@@ -146,7 +160,6 @@ export class InvoiceHelperService {
                     }
                 }]
                 resolve(x)
-                console.log('paymentMethods', x)
             })
         })
     }
@@ -166,7 +179,6 @@ export class InvoiceHelperService {
                     }
                 }]
                 resolve(x)
-                console.log('invoiceDetails', x)
             })
         })
     }
@@ -190,7 +202,6 @@ export class InvoiceHelperService {
                     }
                 }
                 resolve(x)
-                console.log('invoiceSummary', x)
             })
         })
     }

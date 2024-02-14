@@ -1,3 +1,4 @@
+import { Guid } from 'guid-typescript'
 import { InvoiceXmlHeaderDto } from './invoice-xml-header-dto'
 import { InvoiceXmlPartyTypeDto } from './invoice-xml-partyType-dto'
 import { InvoiceXmlPaymentMethodDto } from './invoice-xml-paymentMethod-dto'
@@ -6,6 +7,7 @@ import { InvoiceXmlSummaryDto } from './invoice-xml-summary-dto'
 
 export interface InvoiceXmlDto {
 
+    invoiceId: Guid,
     issuer: InvoiceXmlPartyTypeDto
     counterPart: InvoiceXmlPartyTypeDto
     invoiceHeader: InvoiceXmlHeaderDto

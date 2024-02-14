@@ -1,6 +1,6 @@
 export interface AadeVM {
 
-    id: number
+    id: string
     invoiceId: string
     uid: string
     mark: string
