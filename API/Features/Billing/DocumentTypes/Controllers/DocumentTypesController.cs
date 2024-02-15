@@ -14,34 +14,34 @@ namespace API.Features.Billing.DocumentTypes {
 
         #region variables
 
-        private readonly IDocumentTypeRepository DocumentTypeRepo;
-        private readonly IDocumentTypeValidation DocumentTypeValidation;
+        private readonly IDocumentTypeRepository documentTypeRepo;
+        private readonly IDocumentTypeValidation documentTypeValidation;
         private readonly IMapper mapper;
 
         #endregion
 
         public DocumentTypesController(IDocumentTypeRepository DocumentTypeRepo, IDocumentTypeValidation DocumentTypeValidation, IMapper mapper) {
-            this.DocumentTypeRepo = DocumentTypeRepo;
-            this.DocumentTypeValidation = DocumentTypeValidation;
+            this.documentTypeRepo = DocumentTypeRepo;
+            this.documentTypeValidation = DocumentTypeValidation;
             this.mapper = mapper;
         }
 
         [HttpGet]
         [Authorize(Roles = "admin")]
         public async Task<IEnumerable<DocumentTypeListVM>> GetAsync() {
-            return await DocumentTypeRepo.GetAsync();
+            return await documentTypeRepo.GetAsync();
         }
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<DocumentTypeAutoCompleteVM>> GetAutoCompleteAsync() {
-            return await DocumentTypeRepo.GetAutoCompleteAsync();
+        public async Task<IEnumerable<DocumentTypeBrowserStorageVM>> GetForBrowserStorageAsync() {
+            return await documentTypeRepo.GetForBrowserStorageAsync();
         }
 
         [HttpGet("{id}")]
         [Authorize(Roles = "admin")]
         public async Task<ResponseWithBody> GetByIdAsync(int id) {
-            var x = await DocumentTypeRepo.GetByIdAsync(id);
+            var x = await documentTypeRepo.GetByIdAsync(id);
             if (x != null) {
                 return new ResponseWithBody {
                     Code = 200,
@@ -60,9 +60,9 @@ namespace API.Features.Billing.DocumentTypes {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public Response Post([FromBody] DocumentTypeWriteDto DocumentType) {
-            var x = DocumentTypeValidation.IsValid(null, DocumentType);
+            var x = documentTypeValidation.IsValid(null, DocumentType);
             if (x == 200) {
-                var z = DocumentTypeRepo.Create(mapper.Map<DocumentTypeWriteDto, DocumentType>((DocumentTypeWriteDto)DocumentTypeRepo.AttachMetadataToPostDto(DocumentType)));
+                var z = documentTypeRepo.Create(mapper.Map<DocumentTypeWriteDto, DocumentType>((DocumentTypeWriteDto)documentTypeRepo.AttachMetadataToPostDto(DocumentType)));
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
@@ -79,16 +79,16 @@ namespace API.Features.Billing.DocumentTypes {
         [HttpPut]
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<Response> Put([FromBody] DocumentTypeWriteDto DocumentType) {
-            var x = await DocumentTypeRepo.GetByIdAsync(DocumentType.Id);
+        public async Task<ResponseWithBody> Put([FromBody] DocumentTypeWriteDto documentType) {
+            var x = await documentTypeRepo.GetByIdAsync(documentType.Id);
             if (x != null) {
-                var z = DocumentTypeValidation.IsValid(x, DocumentType);
+                var z = documentTypeValidation.IsValid(x, documentType);
                 if (z == 200) {
-                    DocumentTypeRepo.Update(mapper.Map<DocumentTypeWriteDto, DocumentType>((DocumentTypeWriteDto)DocumentTypeRepo.AttachMetadataToPutDto(x, DocumentType)));
-                    return new Response {
+                    documentTypeRepo.Update(mapper.Map<DocumentTypeWriteDto, DocumentType>((DocumentTypeWriteDto)documentTypeRepo.AttachMetadataToPutDto(x, documentType)));
+                    return new ResponseWithBody {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
-                        Id = x.Id.ToString(),
+                        Body = documentTypeRepo.GetByIdForBrowserStorageAsync(documentType.Id).Result,
                         Message = ApiMessages.OK()
                     };
                 } else {
@@ -106,9 +106,9 @@ namespace API.Features.Billing.DocumentTypes {
         [HttpDelete("{id}")]
         [Authorize(Roles = "admin")]
         public async Task<Response> Delete([FromRoute] int id) {
-            var x = await DocumentTypeRepo.GetByIdAsync(id);
+            var x = await documentTypeRepo.GetByIdAsync(id);
             if (x != null) {
-                DocumentTypeRepo.Delete(x);
+                documentTypeRepo.Delete(x);
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),

@@ -38,12 +38,12 @@ namespace API.Features.Reservations.Customers {
         }
 
         public async Task<CustomerBrowserStorageVM> GetByIdForBrowserStorageAsync(int id) {
-            var customer = await context.Customers
+            var record = await context.Customers
                 .AsNoTracking()
                 .Include(x => x.Nationality)
                 .OrderBy(x => x.Description)
                 .SingleOrDefaultAsync(x => x.Id == id);
-            return mapper.Map<Customer, CustomerBrowserStorageVM>(customer);
+            return mapper.Map<Customer, CustomerBrowserStorageVM>(record);
         }
 
         public async Task<Customer> GetByIdAsync(int id, bool includeTables) {

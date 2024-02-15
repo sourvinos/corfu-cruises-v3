@@ -1,6 +1,4 @@
-import { Metadata } from 'src/app/shared/classes/metadata'
-
-export interface DocumentTypeReadDto extends Metadata {
+export interface DocumentTypeBrowserStorageVM {
 
     // PK
     id: number
@@ -19,10 +17,4 @@ export interface DocumentTypeReadDto extends Metadata {
     table8_1: string
     table8_8: string
     table8_9: string
-    // Metadata
-    postAt: string
-    postUser: string
-    putAt: string
-    putUser: string
-
 }

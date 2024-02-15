@@ -17,7 +17,7 @@ export class DocumentTypeHttpService extends HttpDataService {
     //#region public methods
 
     public getAutoComplete(): Observable<DocumentTypeAutoCompleteVM[]> {
-        return this.http.get<DocumentTypeAutoCompleteVM[]>(environment.apiUrl + '/documentTypes/getAutoComplete')
+        return this.http.get<DocumentTypeAutoCompleteVM[]>(environment.apiUrl + '/documentTypes/getForBrowserStorage')
     }
 
     //#endregion

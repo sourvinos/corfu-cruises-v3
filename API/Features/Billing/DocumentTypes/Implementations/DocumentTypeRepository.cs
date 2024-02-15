@@ -28,12 +28,20 @@ namespace API.Features.Billing.DocumentTypes {
             return mapper.Map<IEnumerable<DocumentType>, IEnumerable<DocumentTypeListVM>>(DocumentTypes);
         }
 
-        public async Task<IEnumerable<DocumentTypeAutoCompleteVM>> GetAutoCompleteAsync() {
+        public async Task<IEnumerable<DocumentTypeBrowserStorageVM>> GetForBrowserStorageAsync() {
             var DocumentTypes = await context.DocumentTypes
                 .AsNoTracking()
                 .OrderBy(x => x.Description)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<DocumentType>, IEnumerable<DocumentTypeAutoCompleteVM>>(DocumentTypes);
+            return mapper.Map<IEnumerable<DocumentType>, IEnumerable<DocumentTypeBrowserStorageVM>>(DocumentTypes);
+        }
+
+        public async Task<DocumentTypeBrowserStorageVM> GetByIdForBrowserStorageAsync(int id) {
+            var record = await context.DocumentTypes
+                .AsNoTracking()
+                .OrderBy(x => x.Description)
+                .SingleOrDefaultAsync(x => x.Id == id);
+            return mapper.Map<DocumentType, DocumentTypeBrowserStorageVM>(record);
         }
 
         public async Task<DocumentType> GetByIdAsync(int id) {

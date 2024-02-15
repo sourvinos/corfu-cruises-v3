@@ -8,7 +8,7 @@ namespace API.Features.Billing.DocumentTypes {
         public DocumentTypeMappingProfile() {
             CreateMap<DocumentType, DocumentTypeListVM>()
                 .ForMember(x => x.LastDate, x => x.MapFrom(x => DateHelpers.DateToISOString(x.LastDate)));
-            CreateMap<DocumentType, DocumentTypeAutoCompleteVM>();
+            CreateMap<DocumentType, DocumentTypeBrowserStorageVM>();
             CreateMap<DocumentType, DocumentTypeReadDto>()
                 .ForMember(x => x.LastDate, x => x.MapFrom(x => DateHelpers.DateToISOString(x.LastDate)));
             CreateMap<DocumentTypeWriteDto, DocumentType>()

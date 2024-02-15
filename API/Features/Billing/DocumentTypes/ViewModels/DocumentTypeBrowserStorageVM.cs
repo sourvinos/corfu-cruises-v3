@@ -2,7 +2,7 @@ using API.Infrastructure.Classes;
 
 namespace API.Features.Billing.DocumentTypes {
 
-    public class DocumentTypeAutoCompleteVM : SimpleEntity {
+    public class DocumentTypeBrowserStorageVM : SimpleEntity {
 
         public string Abbreviation { get; set; }
         public string Batch { get; set; }

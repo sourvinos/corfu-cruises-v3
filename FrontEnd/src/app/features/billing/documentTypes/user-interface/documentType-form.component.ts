@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
+import { DocumentTypeHelperService } from '../classes/services/docymentType-helper.service'
 import { DocumentTypeHttpService } from '../classes/services/documentType-http.service'
 import { DocumentTypeReadDto } from '../classes/dtos/documentType-read-dto'
 import { DocumentTypeWriteDto } from '../classes/dtos/documentType-write-dto'
@@ -40,7 +41,7 @@ export class DocumentTypeFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private documentTypeHttpService: DocumentTypeHttpService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private documentTypeHelperService: DocumentTypeHelperService, private documentTypeHttpService: DocumentTypeHttpService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -200,7 +201,7 @@ export class DocumentTypeFormComponent {
     private saveRecord(documentType: DocumentTypeWriteDto): void {
         this.documentTypeHttpService.save(documentType).subscribe({
             next: (response) => {
-                this.dexieService.update('documentTypes', { 'id': response.id, 'abbreviation': documentType.abbreviation, 'description': documentType.description, 'isActive': documentType.isActive })
+                this.documentTypeHelperService.updateBrowserStorageAfterApiUpdate(response)
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
             error: (errorFromInterceptor) => {
