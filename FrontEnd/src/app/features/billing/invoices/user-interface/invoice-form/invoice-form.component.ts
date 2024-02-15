@@ -199,17 +199,15 @@ export class InvoiceFormComponent {
         this.form.value.invoicesPorts[portIndex] = port
     }
 
+    public onUpdateInvoiceWithOutputPorts(ports: any): void {
+        this.form.patchValue({
+            grossAmount: ports.amount
+        })
+    }
+
     //#endregion
 
     //#region private methods
-
-    private addPort(): void {
-        const portForm = this.formBuilder.group({
-            title: ['', Validators.required],
-            level: ['beginner', Validators.required]
-        })
-        this.invoicesPorts.push(portForm)
-    }
 
     private addPorts(): void {
         if (this.recordId == undefined) {

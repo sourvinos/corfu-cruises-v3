@@ -52,13 +52,13 @@
             <div class="group-input-field">
                 <!-- Adults with transfer -->
                 <mat-form-field style="width: 50% !important;">
-                    <mat-label>{{ getLabel('adultsWithTransfer') }}</mat-label>
+                    <mat-label>{{ getLabel('withTransfer') }}</mat-label>
                     <input (blur)="formatPriceField('adultsWithTransfer',2)" [inputTabStop]="input" dataTabIndex="6" formControlName="adultsWithTransfer" inputDecimal matInput type="number">
                     <mat-error *ngIf="adultsWithTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                 </mat-form-field>
                 <!-- Adults without transfer -->
                 <mat-form-field style="width: 50% !important;">
-                    <mat-label>{{ getLabel('adultsWithoutTransfer') }}</mat-label>
+                    <mat-label>{{ getLabel('withoutTransfer') }}</mat-label>
                     <input (blur)="formatPriceField('adultsWithoutTransfer',2)" [inputTabStop]="input" dataTabIndex="7" formControlName="adultsWithoutTransfer" inputDecimal matInput type="number">
                     <mat-error *ngIf="adultsWithoutTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                 </mat-form-field>
@@ -66,7 +66,7 @@
             <div class="group-input-field">
                 <!-- Kids with transfer -->
                 <mat-form-field style="width: 50% !important;">
-                    <mat-label>{{ getLabel('kidsWithTransfer') }}</mat-label>
+                    <mat-label>{{ getLabel('withTransfer') }}</mat-label>
                     <input (blur)="formatPriceField('kidsWithTransfer',2)" [inputTabStop]="input" dataTabIndex="8" formControlName="kidsWithTransfer" inputDecimal matInput type="number">
                     <mat-error *ngIf="kidsWithTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                 </mat-form-field>

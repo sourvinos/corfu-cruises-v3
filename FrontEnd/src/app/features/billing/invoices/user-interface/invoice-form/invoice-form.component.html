@@ -2,7 +2,7 @@
 
     <div id="content">
 
-        <span style="color: var(--color-text); font-size: 12px;">{{ form.value | json }}</span>
+        <!-- <span style="color: var(--color-text); font-size: 12px;">{{ form.value | json }}</span> -->
 
         <div id="header">
             <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
@@ -133,7 +133,7 @@
             <div *ngIf="isPortsTabVisible" id="ports-tab">
                 <invoice-port-form [port]="form.value.invoicesPorts[0]" (outputPort)="onUpdateInvoiceWithOutputPort($event,0)"></invoice-port-form>
                 <invoice-port-form [port]="form.value.invoicesPorts[1]" (outputPort)="onUpdateInvoiceWithOutputPort($event,1)"></invoice-port-form>
-                <invoice-port-totals-form [ports]="form.value.invoicesPorts"></invoice-port-totals-form>
+                <invoice-port-totals-form [ports]="form.value.invoicesPorts" (outputPorts)="onUpdateInvoiceWithOutputPorts($event)"></invoice-port-totals-form>
             </div>
         </form>
 

@@ -19,3 +19,22 @@
 .group-input-field.hide-hint {
     height: 3.5rem;
 }
+
+.per-age-group {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+}
+
+.per-age-group .header {
+    color: var(--color-text);
+    font-family: var(--font-family-asty);
+    font-size: 0.75rem;
+    font-weight: 300;
+}
+
+.per-age-group .full-width {
+    width: 100%;
+
+}

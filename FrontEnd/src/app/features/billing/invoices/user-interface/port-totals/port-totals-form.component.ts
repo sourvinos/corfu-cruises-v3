@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { FormBuilder, FormGroup, AbstractControl } from '@angular/forms'
 // Custom
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -14,15 +14,33 @@ import { PortReadDto } from '../../classes/dtos/form/port-read-dto'
 
 export class InvoicePortTotalsFormComponent {
 
-    //#region common
+    //#region variables
 
     @Input() ports: PortReadDto[]
+    @Output() outputPorts = new EventEmitter()
     public feature = 'invoicePortForm'
     public featureIcon = 'ports'
     public form: FormGroup
     public icon = 'arrow_back'
     public input: InputTabStopDirective
     public parentUrl = '/invoices'
+
+    //#endregion
+
+    //#region amounts
+
+    private aWT = 0
+    private aAWT = 0
+    private aWoT = 0
+    private aAWoT = 0
+    private kWT = 0
+    private kAWT = 0
+    private kWoT = 0
+    private kAWoT = 0
+    private fWT = 0
+    private fWoT = 0
+    private p = 0
+    private a = 0
 
     //#endregion
 
@@ -33,49 +51,14 @@ export class InvoicePortTotalsFormComponent {
     ngOnInit(): void {
         this.initForm()
         this.doCalculations()
+        this.patchForm()
+        this.emitValues()
     }
 
     ngDoCheck(): void {
-        let adultsWithTransfer = 0
-        let adultsAmountWithTransfer = 0
-        let adultsWithoutTransfer = 0
-        let adultsAmountWithoutTransfer = 0
-        let kidsWithTransfer = 0
-        let kidsAmountWithTransfer = 0
-        let kidsWithoutTransfer = 0
-        let kidsAmountWithoutTransfer = 0
-        let freeWithTransfer = 0
-        let freeWithoutTransfer = 0
-        let pax = 0
-        let amount = 0
-        this.ports.forEach(port => {
-            adultsWithTransfer += port.adultsWithTransfer
-            adultsAmountWithTransfer += port.adultsWithTransfer * port.adultsPriceWithTransfer
-            adultsWithoutTransfer += port.adultsWithoutTransfer
-            adultsAmountWithoutTransfer += port.adultsWithoutTransfer * port.adultsPriceWithoutTransfer
-            kidsWithTransfer += port.kidsWithTransfer
-            kidsAmountWithTransfer += port.kidsWithTransfer * port.kidsPriceWithTransfer
-            kidsWithoutTransfer += port.kidsWithoutTransfer
-            kidsAmountWithoutTransfer += port.kidsWithoutTransfer * port.kidsPriceWithoutTransfer
-            freeWithTransfer += port.freeWithTransfer
-            freeWithoutTransfer += port.freeWithoutTransfer
-            pax += port.adultsWithTransfer + port.adultsWithoutTransfer + port.kidsWithTransfer + port.kidsWithoutTransfer + port.freeWithTransfer + port.freeWithoutTransfer
-            amount += (port.adultsWithTransfer * port.adultsPriceWithTransfer) + (port.adultsWithoutTransfer * port.adultsPriceWithoutTransfer) + (port.kidsWithTransfer * port.kidsPriceWithTransfer) + (port.kidsWithoutTransfer * port.kidsPriceWithoutTransfer)
-        })
-        this.form.patchValue({
-            adultsWithTransfer: adultsWithTransfer,
-            adultsAmountWithTransfer: adultsAmountWithTransfer,
-            adultsWithoutTransfer: adultsWithoutTransfer,
-            adultsAmountWithoutTransfer: adultsAmountWithoutTransfer,
-            kidsWithTransfer: kidsWithTransfer,
-            kidsAmountWithTransfer: kidsAmountWithTransfer,
-            kidsWithoutTransfer: kidsWithoutTransfer,
-            kidsAmountWithoutTransfer: kidsAmountWithoutTransfer,
-            freeWithTransfer: freeWithTransfer,
-            freeWithoutTransfer: freeWithoutTransfer,
-            pax: pax,
-            amount: amount
-        })
+        this.doCalculations()
+        this.patchForm()
+        this.emitValues()
     }
 
     //#endregion
@@ -95,46 +78,53 @@ export class InvoicePortTotalsFormComponent {
     //#region private methods
 
     private doCalculations(): void {
-        let adultsWithTransfer = 0
-        let adultsAmountWithTransfer = 0
-        let adultsWithoutTransfer = 0
-        let adultsAmountWithoutTransfer = 0
-        let kidsWithTransfer = 0
-        let kidsAmountWithTransfer = 0
-        let kidsWithoutTransfer = 0
-        let kidsAmountWithoutTransfer = 0
-        let freeWithTransfer = 0
-        let freeWithoutTransfer = 0
-        let pax = 0
-        let amount = 0
+        this.aWT = 0
+        this.aAWT = 0
+        this.aWoT = 0
+        this.aAWoT = 0
+        this.kWT = 0
+        this.kAWT = 0
+        this.kWoT = 0
+        this.kAWoT = 0
+        this.fWT = 0
+        this.fWoT = 0
+        this.p = 0
+        this.a = 0
         this.ports.forEach(port => {
-            adultsWithTransfer += port.adultsWithTransfer
-            adultsAmountWithTransfer += port.adultsWithTransfer * port.adultsPriceWithTransfer
-            adultsWithoutTransfer += port.adultsWithoutTransfer
-            adultsAmountWithoutTransfer += port.adultsWithoutTransfer * port.adultsPriceWithoutTransfer
-            kidsWithTransfer += port.kidsWithTransfer
-            kidsAmountWithTransfer += port.kidsWithTransfer * port.kidsPriceWithTransfer
-            kidsWithoutTransfer += port.kidsWithoutTransfer
-            kidsAmountWithoutTransfer += port.kidsWithoutTransfer * port.kidsPriceWithoutTransfer
-            freeWithTransfer += port.freeWithTransfer
-            freeWithoutTransfer += port.freeWithoutTransfer
-            pax += port.adultsWithTransfer + port.adultsWithoutTransfer + port.kidsWithTransfer + port.kidsWithoutTransfer + port.freeWithTransfer + port.freeWithoutTransfer
-            amount += (port.adultsWithTransfer * port.adultsPriceWithTransfer) + (port.adultsWithoutTransfer * port.adultsPriceWithoutTransfer) + (port.kidsWithTransfer * port.kidsPriceWithTransfer) + (port.kidsWithoutTransfer * port.kidsPriceWithoutTransfer)
+            this.aWT += port.adultsWithTransfer
+            this.aAWT += port.adultsWithTransfer * port.adultsPriceWithTransfer
+            this.aWoT += port.adultsWithoutTransfer
+            this.aAWT += port.adultsWithoutTransfer * port.adultsPriceWithoutTransfer
+            this.kWT += port.kidsWithTransfer
+            this.kAWT += port.kidsWithTransfer * port.kidsPriceWithTransfer
+            this.kWoT += port.kidsWithoutTransfer
+            this.kAWT += port.kidsWithoutTransfer * port.kidsPriceWithoutTransfer
+            this.fWT += port.freeWithTransfer
+            this.fWoT += port.freeWithoutTransfer
+            this.p += port.adultsWithTransfer + port.adultsWithoutTransfer + port.kidsWithTransfer + port.kidsWithoutTransfer + port.freeWithTransfer + port.freeWithoutTransfer
+            this.a += (port.adultsWithTransfer * port.adultsPriceWithTransfer) + (port.adultsWithoutTransfer * port.adultsPriceWithoutTransfer) + (port.kidsWithTransfer * port.kidsPriceWithTransfer) + (port.kidsWithoutTransfer * port.kidsPriceWithoutTransfer)
         })
+    }
+
+    private patchForm(): void {
         this.form.patchValue({
-            adultsWithTransfer: adultsWithTransfer,
-            adultsAmountWithTransfer: adultsAmountWithTransfer,
-            adultsWithoutTransfer: adultsWithoutTransfer,
-            adultsAmountWithoutTransfer: adultsAmountWithoutTransfer,
-            kidsWithTransfer: kidsWithTransfer,
-            kidsAmountWithTransfer: kidsAmountWithTransfer,
-            kidsWithoutTransfer: kidsWithoutTransfer,
-            kidsAmountWithoutTransfer: kidsAmountWithoutTransfer,
-            freeWithTransfer: freeWithTransfer,
-            freeWithoutTransfer: freeWithoutTransfer,
-            pax: pax,
-            amount: amount
+            adultsWithTransfer: this.aWT,
+            adultsAmountWithTransfer: this.aAWT,
+            adultsWithoutTransfer: this.aWoT,
+            adultsAmountWithoutTransfer: this.aAWoT,
+            kidsWithTransfer: this.kWT,
+            kidsAmountWithTransfer: this.kAWT,
+            kidsWithoutTransfer: this.kWoT,
+            kidsAmountWithoutTransfer: this.kAWoT,
+            freeWithTransfer: this.fWT,
+            freeWithoutTransfer: this.fWoT,
+            pax: this.p,
+            amount: this.a
         })
+    }
+
+    private emitValues(): void {
+        this.outputPorts.emit(this.form.value)
     }
 
     private initForm(): void {

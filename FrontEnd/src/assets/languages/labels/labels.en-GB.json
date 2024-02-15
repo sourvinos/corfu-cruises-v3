@@ -2417,11 +2417,11 @@
                 "description": "Εως"
             },
             {
-                "id": "adultsWithTransfer",
+                "id": "withTransfer",
                 "description": "Ενήλικες w/ transfer"
             },
             {
-                "id": "adultsWithoutTransfer",
+                "id": "withoutTransfer",
                 "description": "Ενήλικες w/o transfer"
             },
             {
@@ -2892,28 +2892,24 @@
                 "description": "Λιμάνι"
             },
             {
-                "id": "adultsWithTransfer",
-                "description": "Ενήλικες w/ transfer"
+                "id": "adults",
+                "description": "Ενήλικες"
             },
             {
-                "id": "adultsWithoutTransfer",
-                "description": "Ενήλικες w/o transfer"
+                "id": "kids",
+                "description": "Παιδιά"
             },
             {
-                "id": "kidsWithTransfer",
-                "description": "Παιδιά w/ transfer"
+                "id": "free",
+                "description": "Δωρεάν"
             },
             {
-                "id": "kidsWithoutTransfer",
-                "description": "Παιδιά w/o transfer"
+                "id": "withTransfer",
+                "description": "w/ transfer"
             },
             {
-                "id": "freeWithTransfer",
-                "description": "Δωρεάν w/ transfer"
-            },
-            {
-                "id": "freeWithoutTransfer",
-                "description": "Δωρεάν w/o transfer"
+                "id": "withoutTransfer",
+                "description": "w/o transfer"
             },
             {
                 "id": "price",

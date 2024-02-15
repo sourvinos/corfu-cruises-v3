@@ -14,17 +14,14 @@ import { PortReadDto } from '../../classes/dtos/form/port-read-dto'
 
 export class InvoicePortFormComponent {
 
-    //#region common #8
+    //#region variables
 
     @Input() port: PortReadDto
     @Input() portIndex: number
     @Output() outputPort = new EventEmitter()
     public feature = 'invoicePortForm'
-    public featureIcon = 'ports'
     public form: FormGroup
-    public icon = 'arrow_back'
     public input: InputTabStopDirective
-    public parentUrl = '/invoices'
 
     //#endregion
 
@@ -50,8 +47,8 @@ export class InvoicePortFormComponent {
     }
 
     public onDoTasks(): void {
-        this.doCalculations()
-        this.emitFormValues()
+        this.calculate()
+        this.emitValues()
     }
 
     //#endregion
@@ -82,7 +79,7 @@ export class InvoicePortFormComponent {
         })
     }
 
-    private doCalculations(): void {
+    private calculate(): void {
         const adultsAmountWithTransfer = this.form.value.adultsWithTransfer * this.form.value.adultsPriceWithTransfer
         const adultsAmountWithoutTransfer = this.form.value.adultsWithoutTransfer * this.form.value.adultsPriceWithoutTransfer
         const kidsAmountWithTransfer = this.form.value.kidsWithTransfer * this.form.value.kidsPriceWithTransfer
@@ -99,7 +96,7 @@ export class InvoicePortFormComponent {
         })
     }
 
-    private emitFormValues(): void {
+    private emitValues(): void {
         this.outputPort.emit(this.form.value)
     }
 

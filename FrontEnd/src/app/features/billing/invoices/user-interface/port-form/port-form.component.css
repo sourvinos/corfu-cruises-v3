@@ -25,14 +25,21 @@
     height: 3.5rem;
 }
 
-/* .person {
-    width: 10rem !important;
-} */
+.per-age-group {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+}
 
-/* .price {
-    width: 5rem !important;
-} */
+.per-age-group .header {
+    color: var(--color-text);
+    font-family: var(--font-family-asty);
+    font-size: 0.75rem;
+    font-weight: 300;
+}
 
-/* .total {
-    width: auto !important;
-} */
+.per-age-group .full-width {
+    width: 100%;
+
+}
