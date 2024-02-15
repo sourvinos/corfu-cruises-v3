@@ -72,6 +72,7 @@ export class InvoiceFormComponent {
 
     ngOnInit(): void {
         this.initForm()
+        this.updateFieldsAfterEmptyDocumentType()
         this.setRecordId()
         this.getRecord()
         this.populateFields()
@@ -89,6 +90,10 @@ export class InvoiceFormComponent {
 
     public checkForEmptyAutoComplete(event: { target: { value: any } }): void {
         if (event.target.value == '') this.isAutoCompleteDisabled = true
+    }
+
+    public onDoCalculationTasks(): void {
+        this.patchFormWithCalculations(this.calculate())
     }
 
     public enableOrDisableAutoComplete(event: any): void {
@@ -177,6 +182,14 @@ export class InvoiceFormComponent {
         })
     }
 
+    public updateFieldsAfterDocumentTypeSelection(value: DocumentTypeAutoCompleteVM): void {
+        this.form.patchValue({
+            documentTypeDescription: value.description,
+            no: value.lastNo,
+            batch: value.batch
+        })
+    }
+
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
         this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
     }
@@ -184,14 +197,6 @@ export class InvoiceFormComponent {
     public patchFormWithSelectedDate(event: any): void {
         this.form.patchValue({
             date: event.value.date
-        })
-    }
-
-    public updateFieldsAfterDocumentTypeSelection(value: DocumentTypeAutoCompleteVM): void {
-        this.form.patchValue({
-            documentTypeDetails: {
-                batch: 'myvalue@asd.com'
-            }
         })
     }
 
@@ -220,6 +225,13 @@ export class InvoiceFormComponent {
                     })
                 }
             }, 1000)
+        }
+    }
+
+    private calculate(): any {
+        return {
+            vatAmount: parseFloat((this.form.value.netAmount * (this.form.value.vatPercent / 100)).toFixed(2)),
+            grossAmount: parseFloat(this.form.value.netAmount + this.form.value.netAmount * (this.form.value.vatPercent / 100)).toFixed(2)
         }
     }
 
@@ -255,7 +267,9 @@ export class InvoiceFormComponent {
             customer: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             destination: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             documentType: ['', [Validators.required, ValidationService.RequireAutocomplete]],
-            no: 22,
+            documentTypeDescription: '',
+            batch: '',
+            no: 0,
             paymentMethod: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             ship: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             netAmount: [0, ValidationService.isGreaterThanZero],
@@ -307,6 +321,13 @@ export class InvoiceFormComponent {
         return x
     }
 
+    private patchFormWithCalculations(calculations: any): void {
+        this.form.patchValue({
+            vatAmount: calculations.vatAmount,
+            grossAmount: calculations.grossAmount
+        })
+    }
+
     private populateDropdowns(): void {
         this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', ['id', 'abbreviation', 'isActive'], 'abbreviation', 'abbreviation')
         this.populateDropdownFromDexieDB('destinations', 'dropdownDestinations', 'destination', ['id', 'description', 'isActive'], 'description', 'description')
@@ -336,10 +357,12 @@ export class InvoiceFormComponent {
             this.form.patchValue({
                 invoiceId: this.record.invoiceId,
                 date: this.record.date,
-                no: this.record.no,
                 customer: { 'id': this.record.customer.id, 'abbreviation': this.record.customer.abbreviation },
                 destination: { 'id': this.record.destination.id, 'description': this.record.destination.description },
                 documentType: { 'id': this.record.documentType.id, 'abbreviation': this.record.documentType.abbreviation },
+                documentTypeDescription: this.record.documentType.description,
+                no: this.record.no,
+                batch: this.record.documentType.batch,
                 paymentMethod: { 'id': this.record.paymentMethod.id, 'description': this.record.paymentMethod.description },
                 ship: { 'id': this.record.ship.id, 'description': this.record.ship.description },
                 adults: this.record.adults,
@@ -425,6 +448,19 @@ export class InvoiceFormComponent {
             }))
         })
     }
+
+    private updateFieldsAfterEmptyDocumentType(): void {
+        this.form.get('documentType').valueChanges.subscribe(value => {
+            if (value == '') {
+                this.form.patchValue({
+                    documentTypeDescription: '',
+                    no: 0,
+                    batch: ''
+                })
+            }
+        })
+    }
+
 
     //#endregion
 

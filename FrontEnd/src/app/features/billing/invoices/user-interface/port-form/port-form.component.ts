@@ -46,7 +46,7 @@ export class InvoicePortFormComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public onDoTasks(): void {
+    public onDoCalculationTasks(): any {
         this.calculate()
         this.emitValues()
     }

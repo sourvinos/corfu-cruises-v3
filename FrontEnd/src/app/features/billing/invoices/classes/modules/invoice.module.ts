@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core'
+import { CurrencyMaskModule } from 'ng2-currency-mask'
 // Custom
 import { InvoiceFormComponent } from '../../user-interface/invoice-form/invoice-form.component'
 import { InvoiceListComponent } from '../../user-interface/invoice-list/invoice-list.component'
@@ -15,6 +16,7 @@ import { SharedModule } from '../../../../../shared/modules/shared.module'
         InvoicePortTotalsFormComponent,
     ],
     imports: [
+        CurrencyMaskModule,
         SharedModule,
         InvoiceRoutingModule
     ]

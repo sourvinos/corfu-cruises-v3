@@ -53,7 +53,7 @@
 .group-input-field {
     display: flex;
     gap: 0.5rem;
-    overflow-y: initial;
+    overflow-y: hidden;
 }
 
 .checkboxes {

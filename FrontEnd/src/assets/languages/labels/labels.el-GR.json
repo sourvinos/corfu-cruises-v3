@@ -2791,12 +2791,20 @@
                 "description": "Ημερομηνία"
             },
             {
-                "id": "documentType",
-                "description": "Τύπος παραστατικού"
+                "id": "documentTypeAbbreviation",
+                "description": "Συντ. παραστατικού"
+            },
+            {
+                "id": "documentTypeDescription",
+                "description": "Περιγραφή"
             },
             {
                 "id": "no",
                 "description": "Νο"
+            },
+            {
+                "id": "batch",
+                "description": "Σειρά"
             },
             {
                 "id": "paymentMethod",
