@@ -107,6 +107,7 @@ namespace API.Infrastructure.Classes {
             #endregion
             #region billing
             modelBuilder.ApplyConfiguration(new DocumentTypeConfig());
+            modelBuilder.ApplyConfiguration(new InvoicesAadeConfig());
             modelBuilder.ApplyConfiguration(new InvoicesConfig());
             modelBuilder.ApplyConfiguration(new InvoicesPortsConfig());
             modelBuilder.ApplyConfiguration(new ParametersConfig());

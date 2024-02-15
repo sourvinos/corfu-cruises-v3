@@ -4,8 +4,6 @@ namespace API.Features.Billing.Invoices {
 
     public class InvoiceUpdateAadeDto {
 
-        // PK
-        public int Id { get; set; }
         // FKs
         public Guid InvoiceId { get; set; }
         // Fields

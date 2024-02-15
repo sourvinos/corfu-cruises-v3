@@ -41,7 +41,6 @@ namespace API.Features.Billing.Invoices {
                     Description = x.PaymentMethod.Description
                 }))
                 .ForMember(x => x.Aade, x => x.MapFrom(x => new AadeVM {
-                    Id = x.Aade.Id,
                     InvoiceId = x.Aade.InvoiceId,
                     Uid = x.Aade.Uid,
                     Mark = x.Aade.Mark,

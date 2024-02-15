@@ -84,16 +84,16 @@ namespace API.Features.Billing.Invoices {
         [HttpPut]
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<ResponseWithBody> Put([FromBody] InvoiceUpdateDto invoice) {
+        public async Task<Response> Put([FromBody] InvoiceUpdateDto invoice) {
             var x = await invoiceReadRepo.GetByIdAsync(invoice.InvoiceId.ToString(), false);
             if (x != null) {
                 var z = invoiceValidation.IsValidAsync(x, invoice);
                 if (await z == 200) {
                     var i = invoiceUpdateRepo.Update(invoice.InvoiceId, mapper.Map<InvoiceUpdateDto, Invoice>((InvoiceUpdateDto)invoiceUpdateRepo.AttachMetadataToPutDto(x, invoice)));
-                    return new ResponseWithBody {
+                    return new Response {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
-                        Body = i.PutAt,
+                        Id = i.InvoiceId.ToString(),
                         Message = ApiMessages.OK()
                     };
                 } else {
@@ -154,7 +154,7 @@ namespace API.Features.Billing.Invoices {
         public async Task<Response> Put([FromBody] InvoiceAade invoiceAade) {
             var x = await invoiceReadRepo.GetInvoiceAadeByIdAsync(invoiceAade.InvoiceId.ToString());
             if (x != null) {
-                invoiceUpdateRepo.UpdateInvoiceAade(x);
+                invoiceUpdateRepo.UpdateInvoiceAade(invoiceAade);
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),

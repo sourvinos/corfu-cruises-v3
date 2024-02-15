@@ -155,7 +155,6 @@ export class InvoiceFormComponent {
                     const mark = document.querySelector('invoiceMark').innerHTML
                     const qrUrl = document.querySelector('qrUrl').innerHTML
                     const x: AadeVM = {
-                        id: '',
                         invoiceId: response.body.invoiceId,
                         uid: uid,
                         mark: mark,
@@ -359,7 +358,6 @@ export class InvoiceFormComponent {
                 putAt: this.record.putAt,
                 putUser: this.record.putUser,
                 aade: {
-                    id: this.record.aade.id,
                     invoiceId: this.record.aade.invoiceId,
                     uid: this.record.aade.uid,
                     mark: this.record.aade.mark,

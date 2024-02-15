@@ -69,6 +69,7 @@ namespace API.Features.Billing.Invoices {
 
         public async Task<InvoiceAade> GetInvoiceAadeByIdAsync(string invoiceId) {
             return await context.InvoicesAade
+                .AsNoTracking()
                 .Where(x => x.InvoiceId.ToString() == invoiceId)
                 .SingleOrDefaultAsync();
         }
