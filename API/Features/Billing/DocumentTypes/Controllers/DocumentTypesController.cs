@@ -59,14 +59,14 @@ namespace API.Features.Billing.DocumentTypes {
         [HttpPost]
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public Response Post([FromBody] DocumentTypeWriteDto DocumentType) {
+        public ResponseWithBody Post([FromBody] DocumentTypeWriteDto DocumentType) {
             var x = documentTypeValidation.IsValid(null, DocumentType);
             if (x == 200) {
                 var z = documentTypeRepo.Create(mapper.Map<DocumentTypeWriteDto, DocumentType>((DocumentTypeWriteDto)documentTypeRepo.AttachMetadataToPostDto(DocumentType)));
-                return new Response {
+                return new ResponseWithBody {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = z.Id.ToString(),
+                    Body = documentTypeRepo.GetByIdForBrowserStorageAsync(z.Id).Result,
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -79,7 +79,7 @@ namespace API.Features.Billing.DocumentTypes {
         [HttpPut]
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<ResponseWithBody> Put([FromBody] DocumentTypeWriteDto documentType) {
+        public async Task<ResponseWithBody> PutAsync([FromBody] DocumentTypeWriteDto documentType) {
             var x = await documentTypeRepo.GetByIdAsync(documentType.Id);
             if (x != null) {
                 var z = documentTypeValidation.IsValid(x, documentType);
