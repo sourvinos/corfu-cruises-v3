@@ -17,7 +17,7 @@ import { MessageDialogService } from '../../../../../shared/services/message-dia
 import { MessageLabelService } from '../../../../../shared/services/message-label.service'
 import { PriceCloneCriteria } from './../../classes/models/price-clone-criteria'
 import { PriceListVM } from '../../classes/view-models/price-list-vm'
-import { PriceService } from '../../classes/services/price-http.service'
+import { PriceHttpService } from '../../classes/services/price-http.service'
 import { SessionStorageService } from '../../../../../shared/services/session-storage.service'
 
 @Component({
@@ -59,7 +59,7 @@ export class PriceListComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private priceService: PriceService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
+    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private priceService: PriceHttpService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
 

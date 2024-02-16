@@ -2889,6 +2889,22 @@
             {
                 "id": "cancelInvoice",
                 "description": "Ακύρωση"
+            },
+            {
+                "id": "uId",
+                "description": "UID"
+            },
+            {
+                "id": "mark",
+                "description": "ΜΑρΚ"
+            },
+            {
+                "id": "markCancel",
+                "description": "ΜΑρΚ Ακύρωσης"
+            },
+            {
+                "id": "qrUrl",
+                "description": "qrCode URL"
             }
         ]
     },

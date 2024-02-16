@@ -7,6 +7,7 @@ import { InvoicePortFormComponent } from '../../user-interface/port-form/port-fo
 import { InvoicePortTotalsFormComponent } from '../../user-interface/port-totals/port-totals-form.component'
 import { InvoiceRoutingModule } from './invoice.routing.module'
 import { SharedModule } from '../../../../../shared/modules/shared.module'
+import { AadePanelComponent } from '../../user-interface/aade-panel/aade-panel.component'
 
 @NgModule({
     declarations: [
@@ -14,6 +15,7 @@ import { SharedModule } from '../../../../../shared/modules/shared.module'
         InvoiceFormComponent,
         InvoicePortFormComponent,
         InvoicePortTotalsFormComponent,
+        AadePanelComponent
     ],
     imports: [
         CurrencyMaskModule,

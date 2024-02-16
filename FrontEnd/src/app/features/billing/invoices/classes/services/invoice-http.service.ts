@@ -4,7 +4,7 @@ import { Observable } from 'rxjs'
 // Custom
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { environment } from 'src/environments/environment'
-import { AadeVM } from '../view-models/aade-vm'
+import { AadeVM } from '../view-models/form/aade-vm'
 
 @Injectable({ providedIn: 'root' })
 

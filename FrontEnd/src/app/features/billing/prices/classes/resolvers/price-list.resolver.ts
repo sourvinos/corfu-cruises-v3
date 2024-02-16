@@ -3,13 +3,13 @@ import { Observable, of } from 'rxjs'
 import { catchError, map } from 'rxjs/operators'
 // Custom
 import { ListResolved } from '../../../../../shared/classes/list-resolved'
-import { PriceService } from '../services/price-http.service'
+import { PriceHttpService } from '../services/price-http.service'
 
 @Injectable({ providedIn: 'root' })
 
 export class PriceListResolver {
 
-    constructor(private priceService: PriceService) { }
+    constructor(private priceService: PriceHttpService) { }
 
     resolve(): Observable<ListResolved> {
         return this.priceService.getAll()

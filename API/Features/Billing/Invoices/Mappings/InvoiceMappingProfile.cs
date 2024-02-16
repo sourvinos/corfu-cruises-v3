@@ -42,7 +42,7 @@ namespace API.Features.Billing.Invoices {
                 }))
                 .ForMember(x => x.Aade, x => x.MapFrom(x => new AadeVM {
                     InvoiceId = x.Aade.InvoiceId,
-                    Uid = x.Aade.Uid,
+                    UId = x.Aade.Uid,
                     Mark = x.Aade.Mark,
                     MarkCancel = x.Aade.MarkCancel,
                     QrUrl = x.Aade.QrUrl

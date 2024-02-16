@@ -15,7 +15,7 @@ import { MessageDialogService } from 'src/app/shared/services/message-dialog.ser
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { PriceReadDto } from '../../classes/dtos/price-read-dto'
-import { PriceService } from '../../classes/services/price-http.service'
+import { PriceHttpService } from '../../classes/services/price-http.service'
 import { PriceWriteDto } from '../../classes/dtos/price-write-dto'
 import { SimpleEntity } from '../../../../../shared/classes/simple-entity'
 import { ValidationService } from '../../../../../shared/services/validation.service'
@@ -50,7 +50,7 @@ export class PriceFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceService: PriceService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceService: PriceHttpService, private router: Router) { }
 
     //#region lifecycle hooks
 

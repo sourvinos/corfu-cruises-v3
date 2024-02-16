@@ -141,6 +141,8 @@
                     <mat-label>{{ getLabel("remarks") }}</mat-label>
                     <input [inputTabStop]="input" dataTabIndex="7" formControlName="remarks" matInput>
                 </mat-form-field>
+                <!-- Aade -->
+                <aade-panel [feature]="feature" [uId]="form.value.aade.uId" [mark]="form.value.aade.mark" [markCancel]="form.value.aade.markCancel" [qrUrl]="form.value.aade.qrUrl"></aade-panel>
                 <div class="align-bottom">
                     <!-- Metadata -->
                     <metadata-panel [feature]="feature" [postAt]="form.value.postAt" [postUser]="form.value.postUser" [putAt]="form.value.putAt" [putUser]="form.value.putUser"></metadata-panel>
@@ -180,7 +182,6 @@
         <div class="autocomplete-document-type">
             <span>{{ option.abbreviation }}</span>
             <span>{{ option.batch }}</span>
-            <span>{{ option.description }}</span>
         </div>
     </mat-option>
 </mat-autocomplete>
@@ -215,5 +216,8 @@
     </button>
     <button (click)="onDoNothing()" mat-menu-item>
         <span>{{ getLabel('cancelInvoice') }}</span>
+    </button>
+    <button (click)="retrievePrices()" mat-menu-item>
+        <span>Ανάκτηση χρεώσεων</span>
     </button>
 </ng-template>

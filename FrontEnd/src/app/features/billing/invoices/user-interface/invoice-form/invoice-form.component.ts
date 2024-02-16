@@ -4,8 +4,10 @@ import { Component } from '@angular/core'
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { Observable, map, startWith } from 'rxjs'
 // Custom
-import { AadeVM } from './../../classes/view-models/aade-vm'
+import { AadeVM } from '../../classes/view-models/form/aade-vm'
+import { BillingCriteriaVM } from '../../classes/view-models/form/billing-criteria-vm'
 import { CustomerAutoCompleteVM } from 'src/app/features/reservations/customers/classes/view-models/customer-autocomplete-vm'
+import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DestinationAutoCompleteVM } from 'src/app/features/reservations/destinations/classes/view-models/destination-autocomplete-vm'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
@@ -21,6 +23,7 @@ import { MessageDialogService } from 'src/app/shared/services/message-dialog.ser
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { PortAutoCompleteVM } from 'src/app/features/reservations/ports/classes/view-models/port-autocomplete-vm'
+import { PriceHttpService } from '../../../prices/classes/services/price-http.service'
 import { ShipAutoCompleteVM } from './../../../../reservations/ships/classes/view-models/ship-autocomplete-vm'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
@@ -66,7 +69,7 @@ export class InvoiceFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
+    constructor(private dateHelperService: DateHelperService, private priceHttpService: PriceHttpService, private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -156,12 +159,12 @@ export class InvoiceFormComponent {
             this.invoiceHttpService.upload(this.invoiceHelperService.createXmlInvoiceFromParts(response)).subscribe({
                 next: (response) => {
                     const document = new DOMParser().parseFromString(response.body.response, 'text/xml')
-                    const uid = document.querySelector('invoiceUid').innerHTML
+                    const uId = document.querySelector('invoiceUid').innerHTML
                     const mark = document.querySelector('invoiceMark').innerHTML
                     const qrUrl = document.querySelector('qrUrl').innerHTML
                     const x: AadeVM = {
                         invoiceId: response.body.invoiceId,
-                        uid: uid,
+                        uId: uId,
                         mark: mark,
                         markCancel: '',
                         qrUrl: qrUrl
@@ -205,8 +208,14 @@ export class InvoiceFormComponent {
     }
 
     public onUpdateInvoiceWithOutputPorts(ports: any): void {
+        const grossAmount = ports.amount
+        const vatPercent = parseFloat(this.form.value.vatPercent) / 100
+        const netAmount = grossAmount / (1 + vatPercent)
+        const vatAmount = netAmount * vatPercent
         this.form.patchValue({
-            grossAmount: ports.amount
+            netAmount: netAmount.toFixed(2),
+            vatAmount: vatAmount.toFixed(2),
+            grossAmount: grossAmount.toFixed(2)
         })
     }
 
@@ -273,13 +282,13 @@ export class InvoiceFormComponent {
             paymentMethod: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             ship: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             netAmount: [0, ValidationService.isGreaterThanZero],
-            vatPercent: [0, ValidationService.isGreaterThanZero],
+            vatPercent: [24, ValidationService.isGreaterThanZero],
             vatAmount: [0, ValidationService.isGreaterThanZero],
             grossAmount: [0, [Validators.required, Validators.min(1), Validators.max(99999)]],
             invoicesPorts: this.formBuilder.array([]),
             aade: this.formBuilder.group({
                 id: 0,
-                uid: '',
+                uId: '',
                 mark: '',
                 markCancel: '',
                 invoiceId: '',
@@ -380,7 +389,7 @@ export class InvoiceFormComponent {
                 putUser: this.record.putUser,
                 aade: {
                     invoiceId: this.record.aade.invoiceId,
-                    uid: this.record.aade.uid,
+                    uId: this.record.aade.uId,
                     mark: this.record.aade.mark,
                     markCancel: this.record.aade.markCancel,
                     qrUrl: this.record.aade.qrUrl
@@ -397,7 +406,6 @@ export class InvoiceFormComponent {
     private saveRecord(invoice: InvoiceWriteDto): void {
         this.invoiceHttpService.save(invoice).subscribe({
             next: (response) => {
-                console.log(response)
                 this.form.patchValue({
                     invoiceId: response.id
                 })
@@ -449,6 +457,27 @@ export class InvoiceFormComponent {
         })
     }
 
+    public retrievePrices(): void {
+        const x: BillingCriteriaVM = {
+            date: this.dateHelperService.formatDateToIso(new Date(this.form.value.date)),
+            customerId: this.form.value.customer.id,
+            destinationId: this.form.value.destination.id
+        }
+        const z = this.form.controls['invoicesPorts'] as FormArray
+        this.priceHttpService.retrievePrices(x).subscribe(response => {
+            response.forEach((record, index) => {
+                z.controls[index].patchValue({
+                    adultsPriceWithTransfer: record.adultsWithTransfer,
+                    adultsPriceWithoutTransfer: record.adultsWithoutTransfer,
+                    kidsPriceWithTransfer: record.kidsWithTransfer,
+                    kidsPriceWithoutTransfer: record.kidsWithoutTransfer,
+                })
+            })
+
+        })
+    }
+
+
     private updateFieldsAfterEmptyDocumentType(): void {
         this.form.get('documentType').valueChanges.subscribe(value => {
             if (value == '') {
@@ -460,7 +489,6 @@ export class InvoiceFormComponent {
             }
         })
     }
-
 
     //#endregion
 

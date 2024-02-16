@@ -5,16 +5,21 @@ import { Observable } from 'rxjs'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { PriceCloneCriteria } from '../models/price-clone-criteria'
 import { environment } from 'src/environments/environment'
+import { BillingPricesVM } from '../../../invoices/classes/view-models/form/billing-prices-vm'
 
 @Injectable({ providedIn: 'root' })
 
-export class PriceService extends HttpDataService {
+export class PriceHttpService extends HttpDataService {
 
     constructor(httpClient: HttpClient) {
         super(httpClient, environment.apiUrl + '/prices')
     }
 
-    clonePrices(criteria: PriceCloneCriteria): Observable<any> {
+    public retrievePrices(criteria: any): Observable<BillingPricesVM[]> {
+        return this.http.request<any>('post', this.url + '/billing', { body: criteria })
+    }
+
+    public clonePrices(criteria: PriceCloneCriteria): Observable<any> {
         return this.http.post<any>(this.url + '/clonePrices', criteria)
     }
 

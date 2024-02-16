@@ -59,18 +59,13 @@
     text-overflow: ellipsis;
 }
 
-.autocomplete-document-type span:nth-child(1) {
-    width: 10%;
+ .autocomplete-document-type span:nth-child(1) {
+    width: 50%;
 }
 
 .autocomplete-document-type span:nth-child(2) {
-    width: 10%;
+    width: 50%;
 }
-
-.autocomplete-document-type span:nth-child(3) {
-    width: 80%;
-}
-
 
 @media (width <=1366px) {
     #header, #form {

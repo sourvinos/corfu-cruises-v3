@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System;
 
 namespace API.Features.Billing.Prices {
 
@@ -54,6 +55,18 @@ namespace API.Features.Billing.Prices {
                 .Where(x => ids.Contains(x.Id.ToString()))
                 .ToList());
             context.SaveChanges();
+        }
+
+        public async Task<IEnumerable<PriceListVM>> GetPricesForBillingAsync(BillingCriteriaVM criteria) {
+            var prices = await context.Prices
+               .AsNoTracking()
+               .Include(x => x.Customer)
+               .Include(x => x.Destination)
+               .Include(x => x.Port)
+               .Where(x => x.From <= Convert.ToDateTime(criteria.Date) && x.To >= Convert.ToDateTime(criteria.Date) && x.CustomerId == criteria.CustomerId && x.DestinationId == criteria.DestinationId)
+               .OrderBy(x => x.PortId)
+               .ToListAsync();
+            return mapper.Map<IEnumerable<Price>, IEnumerable<PriceListVM>>(prices);
         }
 
     }
