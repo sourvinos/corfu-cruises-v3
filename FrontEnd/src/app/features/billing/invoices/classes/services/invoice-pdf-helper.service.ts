@@ -6,6 +6,7 @@ import { InvoicePdfHeaderVM } from '../view-models/pdf/invoice-pdf-header-vm'
 import { InvoicePdfPartyTypeVM } from '../view-models/pdf/invoice-pdf-partyType-vm'
 import { InvoicePdfSummaryVM } from '../view-models/pdf/invoice-pdf-summary-vm'
 import { InvoicePdfAadeVM } from '../view-models/pdf/invoice-pdf-aade-vm'
+import { InvoicePdfPortVM } from '../view-models/pdf/invoice-pdf-port-vm'
 
 @Injectable({ providedIn: 'root' })
 
@@ -19,12 +20,14 @@ export class InvoicePdfHelperService {
         const counterPart = await this.buildCounterPart('customers', formValue.customer.id)
         const summary = await this.buildSummary(formValue)
         const aade = await this.buildAade(formValue)
+        const ports = await this.buildPorts(formValue)
         return {
             header,
             issuer,
             counterPart,
             summary,
-            aade
+            aade,
+            ports
         }
     }
 
@@ -45,15 +48,15 @@ export class InvoicePdfHelperService {
             this.dexieService.getById(table, id).then(response => {
                 const x: InvoicePdfPartyTypeVM = {
                     description: response.shipOwner.description,
-                    profession: 'profession',
-                    phones: 'phones',
-                    email: 'email',
+                    profession: response.shipOwner.profession,
+                    phones: response.shipOwner.phones,
+                    email: response.shipOwner.email,
                     vatNumber: response.shipOwner.vatNumber,
                     country: response.shipOwner.nationality.code,
                     branch: response.shipOwner.branch,
                     address: {
                         street: response.shipOwner.address,
-                        number: response.shipOwner.address.number,
+                        number: response.shipOwner.number,
                         postalCode: response.shipOwner.postalCode,
                         city: response.shipOwner.city
                     }
@@ -77,8 +80,8 @@ export class InvoicePdfHelperService {
                     address: {
                         street: response.address,
                         number: response.number,
+                        postalCode: response.postalCode,
                         city: response.city,
-                        postalCode: response.postalCode
                     }
                 }
                 resolve(x)
@@ -106,6 +109,32 @@ export class InvoicePdfHelperService {
                 markCancel: formValue.aade.markCancel,
                 qrUrl: formValue.aade.qrUrl,
             }
+            resolve(x)
+        })
+    }
+
+    private buildPorts(formValue: any): Promise<any> {
+        const x = []
+        return new Promise((resolve) => {
+            formValue.invoicesPorts.forEach((port: InvoicePdfPortVM) => {
+                const z: InvoicePdfPortVM = {
+                    adultsWithTransfer: port.adultsWithTransfer,
+                    adultsPriceWithTransfer: port.adultsPriceWithTransfer,
+                    adultsAmountWithTransfer: port.adultsWithTransfer * port.adultsPriceWithTransfer,
+                    adultsWithoutTransfer: port.adultsWithoutTransfer,
+                    adultsPriceWithoutTransfer: port.adultsPriceWithoutTransfer,
+                    adultsAmountWithoutTransfer: port.adultsWithoutTransfer * port.adultsPriceWithoutTransfer,
+                    kidsWithTransfer: port.kidsWithTransfer,
+                    kidsPriceWithTransfer: port.kidsPriceWithTransfer,
+                    kidsAmountWithTransfer: port.kidsWithTransfer * port.kidsPriceWithTransfer,
+                    kidsWithoutTransfer: port.kidsWithoutTransfer,
+                    kidsPriceWithoutTransfer: port.kidsPriceWithoutTransfer,
+                    kidsAmountWithoutTransfer: port.kidsWithoutTransfer * port.kidsPriceWithoutTransfer,
+                    freeWithTransfer: port.freeWithTransfer,
+                    freeWithoutTransfer: port.freeWithoutTransfer
+                }
+                x.push(z)
+            })
             resolve(x)
         })
     }

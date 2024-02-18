@@ -11,10 +11,11 @@ namespace API.Features.Reservations.ShipOwners {
         public string Description { get; set; }
         public string VatNumber { get; set; }
         public int Branch { get; set; }
-        public string Address { get; set; }
         public string Profession { get; set; }
-        public string City { get; set; }
+        public string Street { get; set; }
+        public string Number { get; set; }
         public string PostalCode { get; set; }
+        public string City { get; set; }
         public string Phones { get; set; }
         public string Email { get; set; }
         public bool IsActive { get; set; }

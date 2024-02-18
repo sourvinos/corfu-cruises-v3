@@ -53,7 +53,9 @@ export class InvoicePdfService {
                             widths: ['50%', '50%'],
                             body: [[
                                 {
+                                    type: 'none',
                                     ul: [
+                                        { text: 'Τα στοιχεία μας' },
                                         invoice.issuer.description,
                                         invoice.issuer.profession,
                                         invoice.issuer.phones,
@@ -67,8 +69,10 @@ export class InvoicePdfService {
                                     ]
                                 },
                                 {
+                                    type: 'none',
                                     ul: [
                                         invoice.counterPart.description,
+                                        invoice.counterPart.profession,
                                         invoice.counterPart.phones,
                                         invoice.counterPart.email,
                                         invoice.counterPart.vatNumber,
@@ -111,8 +115,50 @@ export class InvoicePdfService {
                                 }
                             ]]
                         }
+                    },
+                    {
+                        table: {
+                            widths: ['33%', '33%'],
+                            body: [[
+                                {
+                                    ul: [
+                                        invoice.ports[0].adultsWithTransfer,
+                                        invoice.ports[0].adultsPriceWithTransfer,
+                                        invoice.ports[0].adultsAmountWithTransfer,
+                                        invoice.ports[0].adultsWithoutTransfer,
+                                        invoice.ports[0].adultsPriceWithoutTransfer,
+                                        invoice.ports[0].adultsAmountWithoutTransfer,
+                                        invoice.ports[0].kidsWithTransfer,
+                                        invoice.ports[0].kidsPriceWithTransfer,
+                                        invoice.ports[0].kidsAmountWithTransfer,
+                                        invoice.ports[0].kidsWithoutTransfer,
+                                        invoice.ports[0].kidsPriceWithoutTransfer,
+                                        invoice.ports[0].kidsAmountWithoutTransfer,
+                                        invoice.ports[0].freeWithTransfer,
+                                        invoice.ports[0].freeWithoutTransfer
+                                    ]
+                                }, {
+                                    ul: [
+                                        invoice.ports[1].adultsWithTransfer,
+                                        invoice.ports[1].adultsPriceWithTransfer,
+                                        invoice.ports[1].adultsAmountWithTransfer,
+                                        invoice.ports[1].adultsWithoutTransfer,
+                                        invoice.ports[1].adultsPriceWithoutTransfer,
+                                        invoice.ports[1].adultsAmountWithoutTransfer,
+                                        invoice.ports[1].kidsWithTransfer,
+                                        invoice.ports[1].kidsPriceWithTransfer,
+                                        invoice.ports[1].kidsAmountWithTransfer,
+                                        invoice.ports[1].kidsWithoutTransfer,
+                                        invoice.ports[1].kidsPriceWithoutTransfer,
+                                        invoice.ports[1].kidsAmountWithoutTransfer,
+                                        invoice.ports[1].freeWithTransfer,
+                                        invoice.ports[1].freeWithoutTransfer
+                                    ]
+                                }
+                            ]]
+                        }
                     }
-                    // { qr: invoice.aade.qrUrl, fit: '50' }
+
                 ],
             // { qr: invoice.aade.qrUrl, fit: '50' },
             // ],
