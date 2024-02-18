@@ -23,7 +23,8 @@ export class CustomerHelperService {
             'description': vm.description,
             'vatNumber': vm.vatNumber,
             'branch': vm.branch,
-            'address': vm.address,
+            'street': vm.street,
+            'number': vm.number,
             'city': vm.city,
             'postalCode': vm.postalCode,
             'isActive': vm.isActive

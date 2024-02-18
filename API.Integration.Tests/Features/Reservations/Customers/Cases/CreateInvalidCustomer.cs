@@ -28,7 +28,6 @@ namespace Customers {
                     Description = Helpers.CreateRandomString(512),
                     VatNumber = Helpers.CreateRandomString(36),
                     Branch = 0,
-                    Address = Helpers.CreateRandomString(128),
                     PostalCode = Helpers.CreateRandomString(10),
                     City = Helpers.CreateRandomString(128),
                     BalanceLimit = 0M
@@ -47,7 +46,6 @@ namespace Customers {
                     Description = Helpers.CreateRandomString(512),
                     VatNumber = Helpers.CreateRandomString(36),
                     Branch = 0,
-                    Address = Helpers.CreateRandomString(128),
                     PostalCode = Helpers.CreateRandomString(10),
                     City = Helpers.CreateRandomString(128),
                     BalanceLimit = 0M
@@ -66,7 +64,6 @@ namespace Customers {
                     Description = Helpers.CreateRandomString(512),
                     VatNumber = Helpers.CreateRandomString(36),
                     Branch = 0,
-                    Address = Helpers.CreateRandomString(128),
                     PostalCode = Helpers.CreateRandomString(10),
                     City = Helpers.CreateRandomString(128),
                     BalanceLimit = 0M
@@ -85,7 +82,6 @@ namespace Customers {
                     Description = Helpers.CreateRandomString(512),
                     VatNumber = Helpers.CreateRandomString(36),
                     Branch = 0,
-                    Address = Helpers.CreateRandomString(128),
                     PostalCode = Helpers.CreateRandomString(10),
                     City = Helpers.CreateRandomString(128),
                     BalanceLimit = 0M
@@ -104,7 +100,6 @@ namespace Customers {
                     Description = Helpers.CreateRandomString(512),
                     VatNumber = Helpers.CreateRandomString(36),
                     Branch = 0,
-                    Address = Helpers.CreateRandomString(128),
                     PostalCode = Helpers.CreateRandomString(10),
                     City = Helpers.CreateRandomString(128),
                     BalanceLimit = 0M
@@ -123,7 +118,6 @@ namespace Customers {
                     Description = Helpers.CreateRandomString(512),
                     VatNumber = Helpers.CreateRandomString(36),
                     Branch = 0,
-                    Address = Helpers.CreateRandomString(128),
                     PostalCode = Helpers.CreateRandomString(10),
                     City = Helpers.CreateRandomString(128),
                     BalanceLimit = 0M

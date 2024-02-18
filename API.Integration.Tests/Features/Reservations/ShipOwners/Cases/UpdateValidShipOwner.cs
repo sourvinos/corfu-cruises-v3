@@ -22,7 +22,6 @@ namespace ShipOwners {
                     Description = Helpers.CreateRandomString(128),
                     VatNumber = Helpers.CreateRandomString(36),
                     Branch = 0,
-                    Address = Helpers.CreateRandomString(128),
                     PostalCode = Helpers.CreateRandomString(10),
                     City = Helpers.CreateRandomString(128),
                     PutAt = "2023-04-08 00:00:00"

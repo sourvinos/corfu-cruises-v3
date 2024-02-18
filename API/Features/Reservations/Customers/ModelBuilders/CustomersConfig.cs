@@ -18,11 +18,12 @@ namespace API.Features.Reservations.Customers {
             entity.Property(x => x.VatNumber).HasMaxLength(36).IsRequired(true);
             entity.Property(x => x.Branch).IsRequired(true);
             entity.Property(x => x.Profession).HasDefaultValue("").HasMaxLength(128);
-            entity.Property(x => x.Address).HasMaxLength(128).IsRequired();
+            entity.Property(x => x.Street).HasDefaultValue("").HasMaxLength(128);
+            entity.Property(x => x.Number).HasDefaultValue("").HasMaxLength(4);
             entity.Property(x => x.PostalCode).HasMaxLength(10).IsRequired();
             entity.Property(x => x.City).HasMaxLength(128).IsRequired();
-            entity.Property(x => x.Phones).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.PersonInCharge).HasDefaultValue("").HasMaxLength(128);
+            entity.Property(x => x.Phones).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.Email).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.BalanceLimit).IsRequired(true);
             entity.Property(x => x.IsActive);

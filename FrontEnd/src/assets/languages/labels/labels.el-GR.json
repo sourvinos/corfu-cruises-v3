@@ -77,6 +77,14 @@
                 "description": "ΑΦΜ"
             },
             {
+                "id": "taxOffice",
+                "description": "ΔΟΥ"
+            },
+            {
+                "id": "vatRegime",
+                "description": "Καθεστώς ΦΠΑ"
+            },
+            {
                 "id": "branch",
                 "description": "Αρ. εγκατάστασης"
             },
@@ -85,8 +93,12 @@
                 "description": "Δραστηριότητα"
             },
             {
-                "id": "address",
-                "description": "Διεύθυνση"
+                "id": "street",
+                "description": "Οδός"
+            },
+            {
+                "id": "number",
+                "description": "Αριθμός"
             },
             {
                 "id": "postalCode",
@@ -97,12 +109,16 @@
                 "description": "Πόλη"
             },
             {
-                "id": "phones",
-                "description": "Τηλέφωνα"
+                "id": "nationality",
+                "description": "Χώρα"
             },
             {
                 "id": "personInCharge",
                 "description": "Υπεύθυνος επικοινωνίας"
+            },
+            {
+                "id": "phones",
+                "description": "Τηλέφωνα"
             },
             {
                 "id": "email",
@@ -111,18 +127,6 @@
             {
                 "id": "balanceLimit",
                 "description": "Οριο οφειλής"
-            },
-            {
-                "id": "nationality",
-                "description": "Χώρα"
-            },
-            {
-                "id": "taxOffice",
-                "description": "ΔΟΥ"
-            },
-            {
-                "id": "vatRegime",
-                "description": "Καθεστώς ΦΠΑ"
             },
             {
                 "id": "isActive",
@@ -1643,8 +1647,12 @@
                 "description": "ΑΦΜ"
             },
             {
-                "id": "postalCode",
-                "description": "ΤΚ"
+                "id": "taxOffice",
+                "description": "ΔΟΥ"
+            },
+            {
+                "id": "vatRegime",
+                "description": "Καθεστώς ΦΠΑ"
             },
             {
                 "id": "branch",
@@ -1655,12 +1663,28 @@
                 "description": "Δραστηριότητα"
             },
             {
-                "id": "address",
-                "description": "Διεύθυνση"
+                "id": "street",
+                "description": "Οδός"
+            },
+            {
+                "id": "number",
+                "description": "Αριθμός"
             },
             {
                 "id": "city",
                 "description": "Πόλη"
+            },
+            {
+                "id": "postalCode",
+                "description": "ΤΚ"
+            },
+            {
+                "id": "nationality",
+                "description": "Χώρα"
+            },
+            {
+                "id": "personInCharge",
+                "description": "Υπεύθυνος επικοινωνίας"
             },
             {
                 "id": "phones",

@@ -135,11 +135,12 @@ export class ShipOwnerFormComponent {
             vatNumber: this.form.value.vatNumber,
             branch: this.form.value.branch,
             profession: this.form.value.profession,
-            address: this.form.value.address,
+            street: this.form.value.street,
+            number: this.form.value.number,
             postalCode: this.form.value.postalCode,
             city: this.form.value.city,
-            phones: this.form.value.phones,
             personInCharge: this.form.value.personInCharge,
+            phones: this.form.value.phones,
             email: this.form.value.email,
             isActive: this.form.value.isActive,
             putAt: this.form.value.putAt
@@ -181,11 +182,12 @@ export class ShipOwnerFormComponent {
             vatNumber: ['', [Validators.required, Validators.maxLength(36)]],
             branch: [0, [Validators.required, Validators.min(0), Validators.max(10)]],
             profession: ['', [Validators.maxLength(128)]],
-            address: ['', [Validators.required, Validators.maxLength(128)]],
+            street: ['', [Validators.maxLength(128)]],
+            number: ['', [Validators.maxLength(4)]],
             postalCode: ['', [Validators.required, Validators.maxLength(10)]],
             city: ['', [Validators.required, Validators.maxLength(128)]],
-            phones: ['', [Validators.maxLength(128)]],
             personInCharge: ['', [Validators.maxLength(128)]],
+            phones: ['', [Validators.maxLength(128)]],
             email: ['', [Validators.email, Validators.maxLength(128)]],
             isActive: true,
             postAt: [''],
@@ -219,11 +221,12 @@ export class ShipOwnerFormComponent {
                 vatNumber: this.record.vatNumber,
                 branch: this.record.branch,
                 profession: this.record.profession,
-                address: this.record.address,
+                street: this.record.street,
+                number: this.record.number,
                 postalCode: this.record.postalCode,
                 city: this.record.city,
-                phones: this.record.phones,
                 personInCharge: this.record.personInCharge,
+                phones: this.record.phones,
                 email: this.record.email,
                 isActive: this.record.isActive,
                 postAt: this.record.postAt,
@@ -288,8 +291,12 @@ export class ShipOwnerFormComponent {
         return this.form.get('profession')
     }
 
-    get address(): AbstractControl {
-        return this.form.get('address')
+    get street(): AbstractControl {
+        return this.form.get('street')
+    }
+
+    get number(): AbstractControl {
+        return this.form.get('number')
     }
 
     get postalCode(): AbstractControl {
@@ -300,12 +307,12 @@ export class ShipOwnerFormComponent {
         return this.form.get('city')
     }
 
-    get phones(): AbstractControl {
-        return this.form.get('phones')
-    }
-
     get personInCharge(): AbstractControl {
         return this.form.get('personInCharge')
+    }
+
+    get phones(): AbstractControl {
+        return this.form.get('phones')
     }
 
     get email(): AbstractControl {

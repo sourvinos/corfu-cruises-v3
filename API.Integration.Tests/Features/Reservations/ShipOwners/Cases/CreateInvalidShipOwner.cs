@@ -27,7 +27,6 @@ namespace ShipOwners {
                     Description = Helpers.CreateRandomString(512),
                     VatNumber = Helpers.CreateRandomString(36),
                     Branch = 0,
-                    Address = Helpers.CreateRandomString(128),
                     PostalCode = Helpers.CreateRandomString(10),
                     City = Helpers.CreateRandomString(128)
                 }
@@ -44,7 +43,6 @@ namespace ShipOwners {
                     Description = Helpers.CreateRandomString(512),
                     VatNumber = Helpers.CreateRandomString(36),
                     Branch = 0,
-                    Address = Helpers.CreateRandomString(128),
                     PostalCode = Helpers.CreateRandomString(10),
                     City = Helpers.CreateRandomString(128)
                 }
@@ -61,7 +59,6 @@ namespace ShipOwners {
                     Description = Helpers.CreateRandomString(512),
                     VatNumber = Helpers.CreateRandomString(36),
                     Branch = 0,
-                    Address = Helpers.CreateRandomString(128),
                     PostalCode = Helpers.CreateRandomString(10),
                     City = Helpers.CreateRandomString(128)
                 }
@@ -78,7 +75,6 @@ namespace ShipOwners {
                     Description = Helpers.CreateRandomString(512),
                     VatNumber = Helpers.CreateRandomString(36),
                     Branch = 0,
-                    Address = Helpers.CreateRandomString(128),
                     PostalCode = Helpers.CreateRandomString(10),
                     City = Helpers.CreateRandomString(128)
                 }
@@ -95,7 +91,6 @@ namespace ShipOwners {
                     Description = Helpers.CreateRandomString(512),
                     VatNumber = Helpers.CreateRandomString(36),
                     Branch = 0,
-                    Address = Helpers.CreateRandomString(128),
                     PostalCode = Helpers.CreateRandomString(10),
                     City = Helpers.CreateRandomString(128)
                 }
@@ -112,7 +107,6 @@ namespace ShipOwners {
                     Description = Helpers.CreateRandomString(512),
                     VatNumber = Helpers.CreateRandomString(36),
                     Branch = 0,
-                    Address = Helpers.CreateRandomString(128),
                     PostalCode = Helpers.CreateRandomString(10),
                     City = Helpers.CreateRandomString(128)
                 }

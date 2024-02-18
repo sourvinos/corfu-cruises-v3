@@ -77,6 +77,14 @@
                 "description": "Numéro d'enregistrement fiscal"
             },
             {
+                "id": "taxOffice",
+                "description": "Bureau des impôts"
+            },
+            {
+                "id": "vatRegime",
+                "description": "Régime de TVA"
+            },
+            {
                 "id": "branch",
                 "description": "Numéro de branche"
             },
@@ -85,8 +93,12 @@
                 "description": "Activite"
             },
             {
-                "id": "address",
-                "description": "Adresse"
+                "id": "street",
+                "description": "Rue"
+            },
+            {
+                "id": "number",
+                "description": "Numéro"
             },
             {
                 "id": "postalCode",
@@ -97,12 +109,16 @@
                 "description": "Ville"
             },
             {
-                "id": "phones",
-                "description": "Téléphone"
+                "id": "nationality",
+                "description": "Pays"
             },
             {
                 "id": "personInCharge",
                 "description": "Responable de communication"
+            },
+            {
+                "id": "phones",
+                "description": "Téléphone"
             },
             {
                 "id": "email",
@@ -111,18 +127,6 @@
             {
                 "id": "balanceLimit",
                 "description": "Limite de la dette"
-            },
-            {
-                "id": "nationality",
-                "description": "Pays"
-            },
-            {
-                "id": "taxOffice",
-                "description": "Bureau des impôts"
-            },
-            {
-                "id": "vatRegime",
-                "description": "Régime de TVA"
             },
             {
                 "id": "isActive",
@@ -1640,31 +1644,51 @@
             },
             {
                 "id": "vatNumber",
-                "description": "ΑΦΜ"
+                "description": "Numéro d'enregistrement fiscal"
             },
             {
-                "id": "postalCode",
-                "description": "ΤΚ"
+                "id": "taxOffice",
+                "description": "Bureau des impôts"
+            },
+            {
+                "id": "vatRegime",
+                "description": "Régime de TVA"
             },
             {
                 "id": "branch",
-                "description": "Αρ. εγκατάστασης"
+                "description": "Numéro de branche"
             },
             {
                 "id": "profession",
                 "description": "Activite"
             },
             {
-                "id": "address",
+                "id": "street",
                 "description": "Adresse"
             },
             {
+                "id": "number",
+                "description": "Numéro"
+            },
+            {
                 "id": "city",
-                "description": "City"
+                "description": "Ville"
+            },
+            {
+                "id": "postalCode",
+                "description": "Code postal"
+            },
+            {
+                "id": "nationality",
+                "description": "Nationalite"
+            },
+            {
+                "id": "personInCharge",
+                "description": "Responable de communication"
             },
             {
                 "id": "phones",
-                "description": "numeros de telephone"
+                "description": "Numeros de telephone"
             },
             {
                 "id": "email",
@@ -2808,7 +2832,7 @@
             },
             {
                 "id": "vatNumber",
-                "description": "ΑΦΜ"
+                "description": "Numéro d'enregistrement fiscal"
             },
             {
                 "id": "email",

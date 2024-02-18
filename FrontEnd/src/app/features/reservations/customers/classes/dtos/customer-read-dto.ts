@@ -17,11 +17,12 @@ export interface CustomerReadDto extends Metadata {
     vatNumber: string
     branch: number
     profession: string
-    address: string
-    city: string
+    street: string
+    number: string
     postalCode: string
-    phones: string
+    city: string
     personInCharge: string
+    phones: string
     email: string
     balanceLimit: number
     isActive: boolean

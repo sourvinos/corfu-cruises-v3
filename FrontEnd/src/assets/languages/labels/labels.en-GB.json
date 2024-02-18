@@ -85,8 +85,12 @@
                 "description": "Profession"
             },
             {
-                "id": "address",
-                "description": "Address"
+                "id": "street",
+                "description": "Street"
+            },
+            {
+                "id": "number",
+                "description": "Number"
             },
             {
                 "id": "postalCode",
@@ -97,12 +101,12 @@
                 "description": "City"
             },
             {
-                "id": "phones",
-                "description": "Phones"
-            },
-            {
                 "id": "personInCharge",
                 "description": "Person in charge"
+            },
+            {
+                "id": "phones",
+                "description": "Phones"
             },
             {
                 "id": "email",
@@ -1640,27 +1644,47 @@
             },
             {
                 "id": "vatNumber",
-                "description": "ΑΦΜ"
+                "description": "Tax number"
             },
             {
-                "id": "postalCode",
-                "description": "ΤΚ"
+                "id": "taxOffice",
+                "description": "Tax office"
+            },
+            {
+                "id": "vatRegime",
+                "description": "VAT regime"
             },
             {
                 "id": "branch",
-                "description": "Αρ. εγκατάστασης"
+                "description": "Branch number"
             },
             {
                 "id": "profession",
                 "description": "Profession"
             },
             {
-                "id": "address",
-                "description": "Address"
+                "id": "street",
+                "description": "Street"
+            },
+            {
+                "id": "number",
+                "description": "Number"
             },
             {
                 "id": "city",
                 "description": "City"
+            },
+            {
+                "id": "postalCode",
+                "description": "Postal code"
+            },
+            {
+                "id": "nationality",
+                "description": "Nationality"
+            },
+            {
+                "id": "personInCharge",
+                "description": "Person in charge"
             },
             {
                 "id": "phones",
@@ -2808,7 +2832,7 @@
             },
             {
                 "id": "vatNumber",
-                "description": "ΑΦΜ"
+                "description": "Tax number"
             },
             {
                 "id": "email",

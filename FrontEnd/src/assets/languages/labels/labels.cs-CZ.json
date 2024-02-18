@@ -77,6 +77,14 @@
                 "description": "Daňové číslo"
             },
             {
+                "id": "taxOffice",
+                "description": "Finanční úřad"
+            },
+            {
+                "id": "vatRegime",
+                "description": "Režim DPH"
+            },
+            {
                 "id": "branch",
                 "description": "Číslo pobočky"
             },
@@ -85,8 +93,12 @@
                 "description": "Povolání"
             },
             {
-                "id": "address",
-                "description": "Adresa"
+                "id": "street",
+                "description": "Ulice"
+            },
+            {
+                "id": "number",
+                "description": "Číslo"
             },
             {
                 "id": "postalCode",
@@ -97,12 +109,16 @@
                 "description": "Město"
             },
             {
-                "id": "phones",
-                "description": "Telefonní čísla"
+                "id": "nationality",
+                "description": "Země"
             },
             {
                 "id": "personInCharge",
                 "description": "Odpovědná osoba"
+            },
+            {
+                "id": "phones",
+                "description": "Telefonní čísla"
             },
             {
                 "id": "email",
@@ -111,18 +127,6 @@
             {
                 "id": "balanceLimit",
                 "description": "Dluhový limit"
-            },
-            {
-                "id": "nationality",
-                "description": "Země"
-            },
-            {
-                "id": "taxOffice",
-                "description": "Finanční úřad"
-            },
-            {
-                "id": "vatRegime",
-                "description": "Režim DPH"
             },
             {
                 "id": "isActive",
@@ -1640,27 +1644,47 @@
             },
             {
                 "id": "vatNumber",
-                "description": "ΑΦΜ"
+                "description": "Daňové číslo"
             },
             {
-                "id": "postalCode",
-                "description": "ΤΚ"
+                "id": "taxOffice",
+                "description": "Finanční úřad"
+            },
+            {
+                "id": "vatRegime",
+                "description": "Režim DPH"
             },
             {
                 "id": "branch",
-                "description": "Αρ. εγκατάστασης"
+                "description": "Číslo pobočky"
             },
             {
                 "id": "profession",
                 "description": "Povolání"
             },
             {
-                "id": "address",
-                "description": "Adresa"
+                "id": "street",
+                "description": "Ulice"
+            },
+            {
+                "id": "number",
+                "description": "Číslo"
             },
             {
                 "id": "city",
                 "description": "Město"
+            },
+            {
+                "id": "postalCode",
+                "description": "Poštovní kód"
+            },
+            {
+                "id": "nationality",
+                "description": "Národnost"
+            },
+            {
+                "id": "personInCharge",
+                "description": "Odpovědná osoba"
             },
             {
                 "id": "phones",
@@ -2808,7 +2832,7 @@
             },
             {
                 "id": "vatNumber",
-                "description": "ΑΦΜ"
+                "description": "Daňové číslo"
             },
             {
                 "id": "email",

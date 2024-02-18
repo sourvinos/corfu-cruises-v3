@@ -14,11 +14,12 @@ export interface CustomerWriteDto {
     vatNumber: string
     branch: number
     profession: string
-    address: string
+    street: string
+    number: string
     postalCode: string
     city: string
-    phones: string
     personInCharge: string
+    phones: string
     email: string
     balanceLimit: number
     isActive: boolean

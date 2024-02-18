@@ -16,11 +16,12 @@ namespace API.Features.Reservations.Customers {
             RuleFor(x => x.VatNumber).NotEmpty().MaximumLength(36);
             RuleFor(x => x.Branch).InclusiveBetween(0, 10);
             RuleFor(x => x.Profession).MaximumLength(128);
-            RuleFor(x => x.Address).NotEmpty().MaximumLength(128);
+            RuleFor(x => x.Street).MaximumLength(128);
+            RuleFor(x => x.Number).MaximumLength(4);
             RuleFor(x => x.PostalCode).NotEmpty().MaximumLength(10);
             RuleFor(x => x.City).NotEmpty().MaximumLength(128);
-            RuleFor(x => x.Phones).MaximumLength(128);
             RuleFor(x => x.PersonInCharge).MaximumLength(128);
+            RuleFor(x => x.Phones).MaximumLength(128);
             RuleFor(x => x.Email).Must(EmailHelpers.BeEmptyOrValidEmailAddress).MaximumLength(128);
             RuleFor(x => x.BalanceLimit).InclusiveBetween(0, 99999);
         }

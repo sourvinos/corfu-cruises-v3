@@ -26,7 +26,7 @@ namespace API.Features.Reservations.Manifest {
                     ShipOwner = new ManifestFinalShipOwnerVM {
                         Description = source.Ship.ShipOwner.Description,
                         Profession = source.Ship.ShipOwner.Profession,
-                        Address = source.Ship.ShipOwner.Address,
+                        Address = source.Ship.ShipOwner.Street,
                         City = source.Ship.ShipOwner.City,
                         Phones = source.Ship.ShipOwner.Phones,
                         VatNumber = source.Ship.ShipOwner.VatNumber

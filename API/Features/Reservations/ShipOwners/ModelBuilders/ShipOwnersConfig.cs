@@ -17,7 +17,7 @@ namespace API.Features.Reservations.ShipOwners {
             entity.Property(x => x.VatNumber).HasMaxLength(36).IsRequired(true);
             entity.Property(x => x.Branch).IsRequired(true);
             entity.Property(x => x.Profession).HasDefaultValue("").HasMaxLength(128);
-            entity.Property(x => x.Address).HasMaxLength(128).IsRequired();
+            entity.Property(x => x.Street).HasMaxLength(128).IsRequired();
             entity.Property(x => x.PostalCode).HasMaxLength(10).IsRequired();
             entity.Property(x => x.City).HasMaxLength(128).IsRequired();
             entity.Property(x => x.Phones).HasDefaultValue("").HasMaxLength(128);

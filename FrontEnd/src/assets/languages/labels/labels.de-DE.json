@@ -77,6 +77,14 @@
                 "description": "Steuerliche Registriernummer"
             },
             {
+                "id": "taxOffice",
+                "description": "Finanzamt"
+            },
+            {
+                "id": "vatRegime",
+                "description": "MwSt.-Regelung"
+            },
+            {
                 "id": "branch",
                 "description": "Nummer der Filiale"
             },
@@ -85,8 +93,12 @@
                 "description": "Beruf"
             },
             {
-                "id": "address",
-                "description": "Adresse"
+                "id": "street",
+                "description": "Straße"
+            },
+            {
+                "id": "number",
+                "description": "Nummer"
             },
             {
                 "id": "postalCode",
@@ -97,12 +109,16 @@
                 "description": "Stadt"
             },
             {
-                "id": "phones",
-                "description": "Telefone"
+                "id": "nationality",
+                "description": "Land"
             },
             {
                 "id": "personInCharge",
                 "description": "Verantwortlicher"
+            },
+            {
+                "id": "phones",
+                "description": "Telefone"
             },
             {
                 "id": "email",
@@ -111,18 +127,6 @@
             {
                 "id": "balanceLimit",
                 "description": "Verschuldungsgrenze"
-            },
-            {
-                "id": "nationality",
-                "description": "Land"
-            },
-            {
-                "id": "taxOffice",
-                "description": "Finanzamt"
-            },
-            {
-                "id": "vatRegime",
-                "description": "MwSt.-Regelung"
             },
             {
                 "id": "isActive",
@@ -1643,24 +1647,44 @@
                 "description": "ΑΦΜ"
             },
             {
-                "id": "postalCode",
-                "description": "ΤΚ"
+                "id": "taxOffice",
+                "description": "Finanzamt"
+            },
+            {
+                "id": "vatRegime",
+                "description": "MwSt.-Regelung"
             },
             {
                 "id": "branch",
-                "description": "Αρ. εγκατάστασης"
+                "description": "Nummer der Filiale"
             },
             {
                 "id": "profession",
                 "description": "Beruf"
             },
             {
-                "id": "address",
-                "description": "Adresse"
+                "id": "street",
+                "description": "Straße"
+            },
+            {
+                "id": "number",
+                "description": "Nummer"
             },
             {
                 "id": "city",
                 "description": "Stadt"
+            },
+            {
+                "id": "postalCode",
+                "description": "PLZ"
+            },
+            {
+                "id": "nationality",
+                "description": "Land"
+            },
+            {
+                "id": "personInCharge",
+                "description": "Verantwortlicher"
             },
             {
                 "id": "phones",

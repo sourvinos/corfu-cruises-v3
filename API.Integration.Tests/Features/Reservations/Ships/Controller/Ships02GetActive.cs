@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using API.Infrastructure.Classes;
 using Xunit;
+using API.Features.Reservations.Ships;
 
 namespace Ships {
 
@@ -20,7 +20,7 @@ namespace Ships {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
-        private readonly string _url = "/ships/getAutoComplete";
+        private readonly string _url = "/ships/getForBrowserStorage";
 
         #endregion
 
@@ -50,7 +50,7 @@ namespace Ships {
         [ClassData(typeof(ActiveUsersCanLogin))]
         public async Task Active_Users_Can_Get_Active(Login login) {
             var actionResponse = await List.Action(_httpClient, _baseUrl, _url, login.Username, login.Password);
-            var records = JsonSerializer.Deserialize<List<SimpleEntity>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            var records = JsonSerializer.Deserialize<List<ShipBrowserStorageVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             Assert.Equal(7, records.Count);
         }
 

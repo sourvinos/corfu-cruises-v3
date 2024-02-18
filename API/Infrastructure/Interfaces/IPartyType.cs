@@ -10,7 +10,7 @@ namespace API.Infrastructure.Interfaces {
         public string VatNumber { get; set; }
         public int Branch { get; set; }
         public string Profession { get; set; }
-        public string Address { get; set; }
+        public string Street { get; set; }
         public string PostalCode { get; set; }
         public string City { get; set; }
         public string Phones { get; set; }

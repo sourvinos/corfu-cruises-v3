@@ -9,9 +9,10 @@ export interface CustomerBrowserStorageVM {
     description: string
     vatNumber: string
     branch: number
-    address: string
-    city: string
+    street: string
+    number: string
     postalCode: string
+    city: string
     isActive: boolean
     // Navigation
     nationality: NationalityBrowserStorageVM
