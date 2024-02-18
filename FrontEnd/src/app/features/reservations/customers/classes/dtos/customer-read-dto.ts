@@ -14,7 +14,7 @@ export interface CustomerReadDto extends Metadata {
     // Fields
     abbreviation: string
     description: string
-    taxNo: string
+    vatNumber: string
     branch: number
     profession: string
     address: string

@@ -73,7 +73,7 @@
                 "description": "Επωνυμία"
             },
             {
-                "id": "taxNo",
+                "id": "vatNumber",
                 "description": "ΑΦΜ"
             },
             {
@@ -1639,7 +1639,7 @@
                 "description": "Επωνυμία"
             },
             {
-                "id": "taxNo",
+                "id": "vatNumber",
                 "description": "ΑΦΜ"
             },
             {
@@ -2815,7 +2815,7 @@
                 "description": "Πελάτης"
             },
             {
-                "id": "taxNo",
+                "id": "vatNumber",
                 "description": "ΑΦΜ"
             },
             {
@@ -2889,6 +2889,10 @@
             {
                 "id": "cancelInvoice",
                 "description": "Ακύρωση"
+            },
+            {
+                "id": "retrievePrices",
+                "description": "Ανάκτηση χρεώσεων"
             },
             {
                 "id": "uId",

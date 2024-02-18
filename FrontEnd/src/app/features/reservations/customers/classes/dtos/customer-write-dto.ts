@@ -11,7 +11,7 @@ export interface CustomerWriteDto {
     // Fields
     abbreviation: string
     description: string
-    taxNo: string
+    vatNumber: string
     branch: number
     profession: string
     address: string

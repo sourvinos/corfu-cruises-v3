@@ -2,7 +2,7 @@ import { Guid } from 'guid-typescript'
 // Custom
 import { DocumentTypeVM } from './documentType-vm'
 import { SimpleEntity } from '../../../../../../shared/classes/simple-entity'
-import { CustomerVM } from '../Shared/customer-vm'
+import { CustomerVM } from '../shared/customer-vm'
 
 export interface InvoiceListVM {
 

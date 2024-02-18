@@ -4,7 +4,7 @@ export interface ManifestShipOwnerVM {
     description: string
     profession: string
     address: string
-    taxNo: string
+    vatNumber: string
     city: string
     phones: string
     email: string

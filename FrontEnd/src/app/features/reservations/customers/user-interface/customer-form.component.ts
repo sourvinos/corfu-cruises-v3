@@ -142,7 +142,7 @@ export class CustomerFormComponent {
             vatRegimeId: this.form.value.vatRegime.id,
             abbreviation: this.form.value.abbreviation,
             description: this.form.value.description,
-            taxNo: this.form.value.taxNo,
+            vatNumber: this.form.value.vatNumber,
             branch: this.form.value.branch,
             profession: this.form.value.profession,
             address: this.form.value.address,
@@ -190,7 +190,7 @@ export class CustomerFormComponent {
             vatRegime: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             abbreviation: ['', [Validators.required, Validators.maxLength(128)]],
             description: ['', [Validators.required, Validators.maxLength(512)]],
-            taxNo: ['', [Validators.required, Validators.maxLength(36)]],
+            vatNumber: ['', [Validators.required, Validators.maxLength(36)]],
             branch: [0, [Validators.required, Validators.min(0), Validators.max(10)]],
             profession: ['', [Validators.maxLength(128)]],
             address: ['', [Validators.required, Validators.maxLength(128)]],
@@ -236,7 +236,7 @@ export class CustomerFormComponent {
                 vatRegime: { 'id': this.record.vatRegime.id, 'description': this.record.vatRegime.description },
                 abbreviation: this.record.abbreviation,
                 description: this.record.description,
-                taxNo: this.record.taxNo,
+                vatNumber: this.record.vatNumber,
                 branch: this.record.branch,
                 profession: this.record.profession,
                 address: this.record.address,
@@ -301,8 +301,8 @@ export class CustomerFormComponent {
         return this.form.get('description')
     }
 
-    get taxNo(): AbstractControl {
-        return this.form.get('taxNo')
+    get vatNumber(): AbstractControl {
+        return this.form.get('vatNumber')
     }
 
     get branch(): AbstractControl {

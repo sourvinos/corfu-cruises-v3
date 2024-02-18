@@ -3,9 +3,9 @@ using API.Infrastructure.Classes;
 
 namespace API.Features.Reservations.Ships {
 
-    public class ShipAutoCompleteVM : SimpleEntity {
+    public class ShipBrowserStorageVM : SimpleEntity {
 
-        public ShipOwnerAutoCompleteVM ShipOwner { get; set; }
+        public ShipOwnerBrowserStorageVM ShipOwner { get; set; }
         public bool IsActive { get; set; }
 
     }

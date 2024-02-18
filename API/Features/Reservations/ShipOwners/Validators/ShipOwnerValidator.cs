@@ -12,7 +12,7 @@ namespace API.Features.Reservations.ShipOwners {
             RuleFor(x => x.VatRegimeId).NotEmpty();
             // Fields
             RuleFor(x => x.Description).NotEmpty().MaximumLength(128);
-            RuleFor(x => x.TaxNo).NotEmpty().MaximumLength(36);
+            RuleFor(x => x.VatNumber).NotEmpty().MaximumLength(36);
             RuleFor(x => x.Branch).InclusiveBetween(0, 10);
             RuleFor(x => x.Profession).MaximumLength(128);
             RuleFor(x => x.Address).NotEmpty().MaximumLength(128);

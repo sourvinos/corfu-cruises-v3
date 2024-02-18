@@ -14,7 +14,7 @@ import { MessageInputHintService } from 'src/app/shared/services/message-input-h
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { NationalityVM } from '../../reservations/classes/view-models/passenger/nationality-vm'
 import { ShipOwnerReadDto } from '../classes/dtos/shipOwner-read-dto'
-import { ShipOwnerService } from '../classes/services/shipOwner.service'
+import { ShipOwnerHttpService } from '../classes/services/shipOwner-http.service'
 import { ShipOwnerWriteDto } from '../classes/dtos/shipOwner-write-dto'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
@@ -49,7 +49,7 @@ export class ShipOwnerFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private shipOwnerService: ShipOwnerService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private shipOwnerService: ShipOwnerHttpService) { }
 
     //#region lifecycle hooks
 
@@ -132,7 +132,7 @@ export class ShipOwnerFormComponent {
             taxOfficeId: this.form.value.taxOffice.id,
             vatRegimeId: this.form.value.vatRegime.id,
             description: this.form.value.description,
-            taxNo: this.form.value.taxNo,
+            vatNumber: this.form.value.vatNumber,
             branch: this.form.value.branch,
             profession: this.form.value.profession,
             address: this.form.value.address,
@@ -178,7 +178,7 @@ export class ShipOwnerFormComponent {
             taxOffice: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             vatRegime: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
-            taxNo: ['', [Validators.required, Validators.maxLength(36)]],
+            vatNumber: ['', [Validators.required, Validators.maxLength(36)]],
             branch: [0, [Validators.required, Validators.min(0), Validators.max(10)]],
             profession: ['', [Validators.maxLength(128)]],
             address: ['', [Validators.required, Validators.maxLength(128)]],
@@ -216,7 +216,7 @@ export class ShipOwnerFormComponent {
                 taxOffice: { 'id': this.record.taxOffice.id, 'description': this.record.taxOffice.description },
                 vatRegime: { 'id': this.record.vatRegime.id, 'description': this.record.vatRegime.description },
                 description: this.record.description,
-                taxNo: this.record.taxNo,
+                vatNumber: this.record.vatNumber,
                 branch: this.record.branch,
                 profession: this.record.profession,
                 address: this.record.address,
@@ -276,8 +276,8 @@ export class ShipOwnerFormComponent {
         return this.form.get('description')
     }
 
-    get taxNo(): AbstractControl {
-        return this.form.get('taxNo')
+    get vatNumber(): AbstractControl {
+        return this.form.get('vatNumber')
     }
 
     get branch(): AbstractControl {

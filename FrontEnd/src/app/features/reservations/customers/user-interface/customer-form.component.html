@@ -22,11 +22,11 @@
                 </mat-form-field>
             </div>
             <div class="group-input-field">
-                <!-- TaxNo -->
+                <!-- VatNumber -->
                 <mat-form-field>
-                    <mat-label>{{ getLabel('taxNo') }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="3" formControlName="taxNo" matInput>
-                    <mat-error *ngIf="taxNo.hasError('required')">{{ getHint("required") }}</mat-error>
+                    <mat-label>{{ getLabel('vatNumber') }}</mat-label>
+                    <input [inputTabStop]="input" dataTabIndex="3" formControlName="vatNumber" matInput>
+                    <mat-error *ngIf="vatNumber.hasError('required')">{{ getHint("required") }}</mat-error>
                 </mat-form-field>
                 <!-- TaxOffice -->
                 <mat-form-field>

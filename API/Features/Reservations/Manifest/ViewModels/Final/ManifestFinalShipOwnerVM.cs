@@ -7,7 +7,7 @@ namespace API.Features.Reservations.Manifest {
         public string Address { get; set; }
         public string City { get; set; }
         public string Phones { get; set; }
-        public string TaxNo { get; set; }
+        public string VatNumber { get; set; }
 
     }
 

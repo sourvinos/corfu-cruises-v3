@@ -19,7 +19,7 @@ export class DexieService extends Dexie {
             paymentMethods: 'id, description, myDataId, isActive',
             pickupPoints: 'id, description, isActive',
             ports: 'id, abbreviation, description, isActive',
-            shipOwners: 'id, description, taxNo, branch, isActive',
+            shipOwners: 'id, description, vatNumber, branch, isActive',
             shipRoutes: 'id, description, isActive',
             ships: 'id, description, isActive',
             taxOffices: 'id, description, isActive',

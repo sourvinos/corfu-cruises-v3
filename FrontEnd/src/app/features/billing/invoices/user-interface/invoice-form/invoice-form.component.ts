@@ -17,6 +17,8 @@ import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
 import { InvoiceHelperService } from '../../classes/services/invoice.helper.service'
 import { InvoiceHttpService } from '../../classes/services/invoice-http.service'
+import { InvoicePdfHelperService } from '../../classes/services/invoice-pdf-helper.service'
+import { InvoicePdfService } from '../../classes/services/invoice-pdf.service'
 import { InvoiceReadDto } from '../../classes/dtos/form/invoice-read-dto'
 import { InvoiceWriteDto } from '../../classes/dtos/form/invoice-write-dto'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
@@ -27,6 +29,7 @@ import { PriceHttpService } from '../../../prices/classes/services/price-http.se
 import { ShipAutoCompleteVM } from './../../../../reservations/ships/classes/view-models/ship-autocomplete-vm'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
+import { InvoiceXmlHelperService } from '../../classes/services/invoice-xml-helper.service'
 
 @Component({
     selector: 'invoice-form',
@@ -69,7 +72,7 @@ export class InvoiceFormComponent {
 
     //#endregion
 
-    constructor(private dateHelperService: DateHelperService, private priceHttpService: PriceHttpService, private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
+    constructor(private invoicePdfService: InvoicePdfService, private invoicePdfHelperService: InvoicePdfHelperService, private invoiceXmlHelperService: InvoiceXmlHelperService, private dateHelperService: DateHelperService, private priceHttpService: PriceHttpService, private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -155,8 +158,8 @@ export class InvoiceFormComponent {
     }
 
     public onDoSubmitTasks(): void {
-        this.invoiceHelperService.createXmlInvoiceParts(this.form.value).then((response) => {
-            this.invoiceHttpService.upload(this.invoiceHelperService.createXmlInvoiceFromParts(response)).subscribe({
+        this.invoiceXmlHelperService.createXmlInvoiceParts(this.form.value).then((response) => {
+            this.invoiceHttpService.upload(this.invoiceXmlHelperService.createXmlInvoiceFromParts(response)).subscribe({
                 next: (response) => {
                     const document = new DOMParser().parseFromString(response.body.response, 'text/xml')
                     const uId = document.querySelector('invoiceUid').innerHTML
@@ -477,7 +480,6 @@ export class InvoiceFormComponent {
         })
     }
 
-
     private updateFieldsAfterEmptyDocumentType(): void {
         this.form.get('documentType').valueChanges.subscribe(value => {
             if (value == '') {
@@ -547,5 +549,11 @@ export class InvoiceFormComponent {
     }
 
     //#endregion
+
+    public onCreatePdf(): void {
+        this.invoicePdfHelperService.createPdfInvoiceParts(this.form.value).then((response) => {
+            this.invoicePdfService.createReport(response)
+        })
+    }
 
 }

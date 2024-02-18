@@ -34,8 +34,8 @@ namespace API.Features.Reservations.Ships {
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<ShipAutoCompleteVM>> GetAutoCompleteAsync() {
-            return await shipRepo.GetAutoCompleteAsync();
+        public async Task<IEnumerable<ShipBrowserStorageVM>> GetForBrowserStorageAsync() {
+            return await shipRepo.GetForBrowserStorageAsync();
         }
 
         [HttpGet("{id}")]

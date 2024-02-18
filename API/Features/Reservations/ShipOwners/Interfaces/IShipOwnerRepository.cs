@@ -7,7 +7,7 @@ namespace API.Features.Reservations.ShipOwners {
     public interface IShipOwnerRepository : IRepository<ShipOwner> {
 
         Task<IEnumerable<ShipOwnerListVM>> GetAsync();
-        Task<IEnumerable<ShipOwnerAutoCompleteVM>> GetAutoCompleteAsync();
+        Task<IEnumerable<ShipOwnerBrowserStorageVM>> GetForBrowserStorageAsync();
         Task<ShipOwner> GetByIdAsync(int id);
 
     }

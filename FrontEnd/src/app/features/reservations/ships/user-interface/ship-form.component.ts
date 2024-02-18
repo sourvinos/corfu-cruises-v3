@@ -13,9 +13,9 @@ import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { ShipOwnerAutoCompleteVM } from '../../shipOwners/classes/view-models/shipOwner-autocomplete-vm'
+import { ShipOwnerBrowserStorageVM } from '../../shipOwners/classes/view-models/shipOwner-autocomplete-vm'
 import { ShipReadDto } from '../classes/dtos/ship-read-dto'
-import { ShipService } from '../classes/services/ship.service'
+import { ShipHttpService } from '../classes/services/ship-http.service'
 import { ShipWriteDto } from '../classes/dtos/ship-write-dto'
 import { ValidationService } from 'src/app/shared/services/validation.service'
 
@@ -43,11 +43,11 @@ export class ShipFormComponent {
     //#region autocompletes #2
 
     public isAutoCompleteDisabled = true
-    public dropdownShipOwners: Observable<ShipOwnerAutoCompleteVM[]>
+    public dropdownShipOwners: Observable<ShipOwnerBrowserStorageVM[]>
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private shipService: ShipService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private shipService: ShipHttpService) { }
 
     //#region lifecycle hooks
 

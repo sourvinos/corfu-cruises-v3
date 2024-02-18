@@ -73,7 +73,7 @@
                 "description": "Name"
             },
             {
-                "id": "taxNo",
+                "id": "vatNumber",
                 "description": "Tax number"
             },
             {
@@ -1639,7 +1639,7 @@
                 "description": "Description"
             },
             {
-                "id": "taxNo",
+                "id": "vatNumber",
                 "description": "ΑΦΜ"
             },
             {
@@ -2807,7 +2807,7 @@
                 "description": "Πελάτης"
             },
             {
-                "id": "taxNo",
+                "id": "vatNumber",
                 "description": "ΑΦΜ"
             },
             {

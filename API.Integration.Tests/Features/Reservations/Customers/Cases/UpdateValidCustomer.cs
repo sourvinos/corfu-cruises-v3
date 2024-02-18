@@ -21,7 +21,7 @@ namespace Customers {
                     VatRegimeId =  1,
                     Abbreviation = Helpers.CreateRandomString(128),
                     Description = Helpers.CreateRandomString(512),
-                    TaxNo = Helpers.CreateRandomString(36),
+                    VatNumber = Helpers.CreateRandomString(36),
                     Branch = 0,
                     Address = Helpers.CreateRandomString(128),
                     PostalCode = Helpers.CreateRandomString(10),

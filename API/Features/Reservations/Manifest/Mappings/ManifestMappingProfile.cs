@@ -29,7 +29,7 @@ namespace API.Features.Reservations.Manifest {
                         Address = source.Ship.ShipOwner.Address,
                         City = source.Ship.ShipOwner.City,
                         Phones = source.Ship.ShipOwner.Phones,
-                        TaxNo = source.Ship.ShipOwner.TaxNo
+                        VatNumber = source.Ship.ShipOwner.VatNumber
                     },
                     Registrars = source.Ship.Registrars
                         .ConvertAll(registrar => new ManifestFinalRegistrarVM {

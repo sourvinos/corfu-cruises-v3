@@ -109,7 +109,7 @@ export class ManifestPdfService {
                 { text: manifest.ship.shipOwner.address },
                 { text: manifest.ship.shipOwner.city },
                 { text: manifest.ship.shipOwner.phones },
-                { text: manifest.ship.shipOwner.taxNo }
+                { text: manifest.ship.shipOwner.vatNumber }
             ]
         }
     }

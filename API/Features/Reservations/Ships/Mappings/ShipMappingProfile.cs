@@ -1,5 +1,3 @@
-using API.Features.Reservations.Nationalities;
-using API.Features.Reservations.ShipOwners;
 using API.Infrastructure.Classes;
 using AutoMapper;
 
@@ -9,23 +7,7 @@ namespace API.Features.Reservations.Ships {
 
         public ShipMappingProfile() {
             CreateMap<Ship, ShipListVM>();
-            CreateMap<Ship, ShipAutoCompleteVM>()
-                .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new ShipOwnerAutoCompleteVM {
-                    Id = x.ShipOwner.Id,
-                    Description = x.ShipOwner.Description,
-                    TaxNo = x.ShipOwner.TaxNo,
-                    Branch = x.ShipOwner.Branch,
-                    Address = x.ShipOwner.Address,
-                    PostalCode = x.ShipOwner.PostalCode,
-                    City = x.ShipOwner.City,
-                    Nationality = new NationalityAutoCompleteVM {
-                        Id = x.ShipOwner.Nationality.Id,
-                        Code = x.ShipOwner.Nationality.Code,
-                        Description = x.ShipOwner.Nationality.Description,
-                        IsActive = x.ShipOwner.Nationality.IsActive
-                    },
-                    IsActive = x.ShipOwner.IsActive
-                }));
+            CreateMap<Ship, ShipBrowserStorageVM>();
             CreateMap<Ship, ShipReadDto>()
                 .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new SimpleEntity { Id = x.ShipOwner.Id, Description = x.ShipOwner.Description }));
             CreateMap<ShipWriteDto, Ship>()

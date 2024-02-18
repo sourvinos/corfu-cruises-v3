@@ -73,7 +73,7 @@
                 "description": "Nom de compagnie"
             },
             {
-                "id": "taxNo",
+                "id": "vatNumber",
                 "description": "Numéro d'enregistrement fiscal"
             },
             {
@@ -1639,7 +1639,7 @@
                 "description": "Nom de compagnie"
             },
             {
-                "id": "taxNo",
+                "id": "vatNumber",
                 "description": "ΑΦΜ"
             },
             {
@@ -2807,7 +2807,7 @@
                 "description": "Πελάτης"
             },
             {
-                "id": "taxNo",
+                "id": "vatNumber",
                 "description": "ΑΦΜ"
             },
             {

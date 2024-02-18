@@ -21,7 +21,7 @@ export class CustomerHelperService {
             },
             'abbreviation': vm.abbreviation,
             'description': vm.description,
-            'taxNo': vm.taxNo,
+            'vatNumber': vm.vatNumber,
             'branch': vm.branch,
             'address': vm.address,
             'city': vm.city,

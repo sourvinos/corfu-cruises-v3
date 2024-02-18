@@ -18,10 +18,10 @@ namespace API.Features.Reservations.Customers {
         // Fields
         public string Abbreviation { get; set; }
         public string Description { get; set; }
-        public string TaxNo { get; set; }
+        public string VatNumber { get; set; }
         public int Branch { get; set; }
-        public string Profession { get; set; }
         public string Address { get; set; }
+        public string Profession { get; set; }
         public string City { get; set; }
         public string PostalCode { get; set; }
         public string Phones { get; set; }

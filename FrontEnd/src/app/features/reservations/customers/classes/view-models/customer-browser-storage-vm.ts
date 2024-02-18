@@ -7,7 +7,7 @@ export interface CustomerBrowserStorageVM {
     // Fields
     abbreviation: string
     description: string
-    taxNo: string
+    vatNumber: string
     branch: number
     address: string
     city: string

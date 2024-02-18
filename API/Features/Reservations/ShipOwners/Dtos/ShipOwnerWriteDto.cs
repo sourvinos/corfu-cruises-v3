@@ -12,7 +12,7 @@ namespace API.Features.Reservations.ShipOwners {
         public int VatRegimeId { get; set; }
         // Fields
         public string Description { get; set; }
-        public string TaxNo { get; set; }
+        public string VatNumber { get; set; }
         public int Branch { get; set; }
         public string Profession { get; set; }
         public string Address { get; set; }

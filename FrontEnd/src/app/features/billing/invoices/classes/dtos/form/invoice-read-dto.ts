@@ -1,7 +1,7 @@
 import { Guid } from 'guid-typescript'
 // Custom
 import { AadeVM } from '../../view-models/form/aade-vm'
-import { CustomerVM } from '../../view-models/Shared/customer-vm'
+import { CustomerVM } from '../../view-models/shared/customer-vm'
 import { DocumentTypeVM } from '../../view-models/list/documentType-vm'
 import { Metadata } from 'src/app/shared/classes/metadata'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'

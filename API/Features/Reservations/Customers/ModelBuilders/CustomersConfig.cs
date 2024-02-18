@@ -15,7 +15,7 @@ namespace API.Features.Reservations.Customers {
             // Fields
             entity.Property(x => x.Abbreviation).HasMaxLength(128).IsRequired(true);
             entity.Property(x => x.Description).HasMaxLength(512).IsRequired(true);
-            entity.Property(x => x.TaxNo).HasMaxLength(36).IsRequired(true);
+            entity.Property(x => x.VatNumber).HasMaxLength(36).IsRequired(true);
             entity.Property(x => x.Branch).IsRequired(true);
             entity.Property(x => x.Profession).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.Address).HasMaxLength(128).IsRequired();

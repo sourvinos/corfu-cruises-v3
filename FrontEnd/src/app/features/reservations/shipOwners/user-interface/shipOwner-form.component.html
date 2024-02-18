@@ -16,9 +16,9 @@
             <div class="group-input-field">
                 <!-- Tax No -->
                 <mat-form-field>
-                    <mat-label>{{ getLabel('taxNo') }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="2" formControlName="taxNo" matInput>
-                    <mat-error *ngIf="taxNo.hasError('maxlength')">{{ getHint("maxLength", taxNo.errors.maxlength.requiredLength) }}</mat-error>
+                    <mat-label>{{ getLabel('vatNumber') }}</mat-label>
+                    <input [inputTabStop]="input" dataTabIndex="2" formControlName="vatNumber" matInput>
+                    <mat-error *ngIf="vatNumber.hasError('maxlength')">{{ getHint("maxLength", vatNumber.errors.maxlength.requiredLength) }}</mat-error>
                 </mat-form-field>
                 <!-- TaxOffice -->
                 <mat-form-field>

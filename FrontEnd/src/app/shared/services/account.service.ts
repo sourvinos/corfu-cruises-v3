@@ -22,9 +22,9 @@ import { PickupPointService } from './../../features/reservations/pickupPoints/c
 import { PortService } from './../../features/reservations/ports/classes/services/port.service'
 import { ResetPasswordViewModel } from './../../features/reservations/users/classes/view-models/reset-password-view-model'
 import { SessionStorageService } from './session-storage.service'
-import { ShipOwnerService } from './../../features/reservations/shipOwners/classes/services/shipOwner.service'
+import { ShipOwnerHttpService } from '../../features/reservations/shipOwners/classes/services/shipOwner-http.service'
 import { ShipRouteService } from './../../features/reservations/shipRoutes/classes/services/shipRoute.service'
-import { ShipService } from './../../features/reservations/ships/classes/services/ship.service'
+import { ShipHttpService } from '../../features/reservations/ships/classes/services/ship-http.service'
 import { TaxOfficeService } from './../../features/billing/taxOffices/classes/services/taxOffice.service'
 import { VatRegimeService } from 'src/app/features/billing/vatRegimes/services/vatRegime-http.service'
 import { environment } from '../../../environments/environment'
@@ -42,7 +42,7 @@ export class AccountService extends HttpDataService {
 
     //#endregion
 
-    constructor(httpClient: HttpClient, private coachRouteService: CoachRouteService, private cryptoService: CryptoService, private customerHttpService: CustomerHttpService, private destinationService: DestinationService, private dexieService: DexieService, private documentTypeHttpService: DocumentTypeHttpService, private driverService: DriverService, private genderService: GenderService, private interactionService: InteractionService, private nationalityService: NationalityService, private ngZone: NgZone, private paymentMethodService: PaymentMethodHttpService, private pickupPointService: PickupPointService, private portService: PortService, private router: Router, private sessionStorageService: SessionStorageService, private shipOwnerService: ShipOwnerService, private shipRouteService: ShipRouteService, private shipService: ShipService, private taxOfficeService: TaxOfficeService, private vatRegimeService: VatRegimeService) {
+    constructor(httpClient: HttpClient, private coachRouteService: CoachRouteService, private cryptoService: CryptoService, private customerHttpService: CustomerHttpService, private destinationService: DestinationService, private dexieService: DexieService, private documentTypeHttpService: DocumentTypeHttpService, private driverService: DriverService, private genderService: GenderService, private interactionService: InteractionService, private nationalityService: NationalityService, private ngZone: NgZone, private paymentMethodService: PaymentMethodHttpService, private pickupPointService: PickupPointService, private portService: PortService, private router: Router, private sessionStorageService: SessionStorageService, private shipOwnerService: ShipOwnerHttpService, private shipRouteService: ShipRouteService, private shipService: ShipHttpService, private taxOfficeService: TaxOfficeService, private vatRegimeService: VatRegimeService) {
         super(httpClient, environment.apiUrl)
     }
 

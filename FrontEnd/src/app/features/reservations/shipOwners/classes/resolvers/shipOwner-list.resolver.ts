@@ -3,13 +3,13 @@ import { Observable, of } from 'rxjs'
 import { catchError, map } from 'rxjs/operators'
 // Custom
 import { ListResolved } from 'src/app/shared/classes/list-resolved'
-import { ShipOwnerService } from '../services/shipOwner.service'
+import { ShipOwnerHttpService } from '../services/shipOwner-http.service'
 
 @Injectable({ providedIn: 'root' })
 
 export class ShipOwnerListResolver {
 
-    constructor(private shipOwnerService: ShipOwnerService) { }
+    constructor(private shipOwnerService: ShipOwnerHttpService) { }
 
     resolve(): Observable<ListResolved> {
         return this.shipOwnerService.getAll().pipe(

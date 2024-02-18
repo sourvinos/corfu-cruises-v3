@@ -11,7 +11,7 @@ export interface ShipOwnerReadDto extends Metadata {
     vatRegime: SimpleEntity
     // Fields
     description: string
-    taxNo: string
+    vatNumber: string
     branch: number
     profession: string
     address: string

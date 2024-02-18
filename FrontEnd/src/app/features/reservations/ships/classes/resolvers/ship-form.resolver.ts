@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core'
 import { catchError, map, of } from 'rxjs'
 // Custom
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
-import { ShipService } from '../services/ship.service'
+import { ShipHttpService } from '../services/ship-http.service'
 
 @Injectable({ providedIn: 'root' })
 
 export class ShipFormResolver {
 
-    constructor(private shipService: ShipService) { }
+    constructor(private shipService: ShipHttpService) { }
 
     resolve(route: ActivatedRouteSnapshot): any {
         return this.shipService.getSingle(route.params.id).pipe(
