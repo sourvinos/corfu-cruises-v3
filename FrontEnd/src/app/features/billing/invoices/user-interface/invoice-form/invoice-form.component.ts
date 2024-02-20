@@ -55,8 +55,8 @@ export class InvoiceFormComponent {
     //#region specific variables
 
     public isNewRecord: boolean
-    public isInvoiceTabVisible: boolean = true
-    public isPortsTabVisible: boolean
+    public isInvoiceTabVisible = true
+    public isPortsTabVisible = false
 
     //#endregion
 
@@ -83,7 +83,9 @@ export class InvoiceFormComponent {
         this.getRecord()
         this.populateFields()
         this.populateDropdowns()
-        this.addPorts()
+        this.isInvoiceTabVisible = true
+        this.isPortsTabVisible = false
+        // this.addPorts()
     }
 
     //#endregion
@@ -145,6 +147,14 @@ export class InvoiceFormComponent {
 
     public onSave(): void {
         this.saveRecord(this.flattenForm())
+    }
+
+    public getInvoiceTabVisibility(): boolean {
+        return this.isInvoiceTabVisible
+    }
+
+    public getPortsTabVisibility(): boolean {
+        return this.isPortsTabVisible
     }
 
     public onShowPortsTab(): void {
@@ -288,7 +298,50 @@ export class InvoiceFormComponent {
             vatPercent: [24, ValidationService.isGreaterThanZero],
             vatAmount: [0, ValidationService.isGreaterThanZero],
             grossAmount: [0, [Validators.required, Validators.min(1), Validators.max(99999)]],
-            invoicesPorts: this.formBuilder.array([]),
+            portA: this.formBuilder.group({
+                id: 0,
+                invoiceId: '',
+                portId: 0,
+                portDescription: 'CORFU PORT',
+                adultsWithTransfer: [0, [Validators.required, Validators.maxLength(3)]],
+                adultsPriceWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                adultsAmountWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                adultsWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                adultsPriceWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                adultsAmountWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kidsWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kidsPriceWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kidsAmountWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kidsWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kidsPriceWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kidsAmountWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                freeWithTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
+                freeWithoutTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
+                total: [0],
+                totalAmount: [0]
+            }),
+            portB: this.formBuilder.group({
+                id: 0,
+                invoiceId: '',
+                portId: 0,
+                portDescription: 'LEFKIMMI PORT',
+                adultsWithTransfer: [0, [Validators.required, Validators.maxLength(3)]],
+                adultsPriceWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                adultsAmountWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                adultsWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                adultsPriceWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                adultsAmountWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kidsWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kidsPriceWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kidsAmountWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kidsWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kidsPriceWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kidsAmountWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                freeWithTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
+                freeWithoutTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
+                total: [0],
+                totalAmount: [0]
+            }),
             aade: this.formBuilder.group({
                 id: 0,
                 uId: '',
@@ -546,6 +599,34 @@ export class InvoiceFormComponent {
 
     get invoicesPorts(): FormArray {
         return this.form.controls['invoicesPorts'] as FormArray
+    }
+
+    get portDescription(): AbstractControl {
+        return this.form.get('portA.portDescription')
+    }
+
+    get adultsAWithTransfer(): AbstractControl {
+        return this.form.get('portA.adultsWithTransfer')
+    }
+
+    get adultsAPriceWithTransfer(): AbstractControl {
+        return this.form.get('portA.adultsPriceWithTransfer')
+    }
+
+    get adultsAAmountWithTransfer(): AbstractControl {
+        return this.form.get('portA.adultsAmountWithTransfer')
+    }
+
+    get adultsAWithoutTransfer(): AbstractControl {
+        return this.form.get('portA.adultsWithoutTransfer')
+    }
+
+    get adultsAPriceWithoutTransfer(): AbstractControl {
+        return this.form.get('portA.adultsPriceWithoutTransfer')
+    }
+
+    get adultsBWithTransfer(): AbstractControl {
+        return this.form.get('portB.adultsWithTransfer')
     }
 
     //#endregion

@@ -71,6 +71,7 @@ export class InvoicePdfService {
                                 {
                                     type: 'none',
                                     ul: [
+                                        { text: 'Τα στοιχεία σας' },
                                         invoice.counterPart.description,
                                         invoice.counterPart.profession,
                                         invoice.counterPart.phones,
