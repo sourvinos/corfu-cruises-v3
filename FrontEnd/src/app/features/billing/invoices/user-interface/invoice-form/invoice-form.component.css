@@ -77,6 +77,12 @@
     visibility: visible;
 }
 
+.port {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 .per-age-group {
     align-items: center;
     display: flex;
@@ -95,7 +101,6 @@
     width: 100%;
 
 }
-
 
 @media (width <=1366px) {
     #header, #form {

@@ -1,4 +1,4 @@
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component } from '@angular/core'
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
@@ -81,7 +81,7 @@ export class InvoiceFormComponent {
         this.updateFieldsAfterEmptyDocumentType()
         this.setRecordId()
         this.getRecord()
-        this.populateFields()
+        // this.populateFields()
         this.populateDropdowns()
         this.isInvoiceTabVisible = true
         this.isPortsTabVisible = false
@@ -101,7 +101,10 @@ export class InvoiceFormComponent {
     }
 
     public onDoCalculationTasks(): void {
-        this.patchFormWithCalculations(this.calculate())
+        this.patchFormWithCalculations(
+            this.calculatePortA(),
+            this.calculatePortB(),
+            this.calculatePortTotals())
     }
 
     public enableOrDisableAutoComplete(event: any): void {
@@ -216,6 +219,12 @@ export class InvoiceFormComponent {
         })
     }
 
+    public onCreatePdf(): void {
+        this.invoicePdfHelperService.createPdfInvoiceParts(this.form.value).then((response) => {
+            this.invoicePdfService.createReport(response)
+        })
+    }
+
     public onUpdateInvoiceWithOutputPort(port: any, portIndex: number): void {
         this.form.value.invoicesPorts[portIndex] = port
     }
@@ -236,24 +245,70 @@ export class InvoiceFormComponent {
 
     //#region private methods
 
-    private addPorts(): void {
-        if (this.recordId == undefined) {
-            setTimeout(() => {
-                const ports = this.form.get('invoicesPorts') as FormArray
-                let x = 0
-                for (let index = 0; index < 2; index++) {
-                    this.dexieService.getByKey('ports', ++x).then((port) => {
-                        ports.push(this.initPortForm(port))
-                    })
-                }
-            }, 1000)
+    private calculatePortA(): any {
+        const adults_A_AmountWithTransfer = this.form.value.portA.adults_A_WithTransfer * this.form.value.portA.adults_A_PriceWithTransfer
+        const adults_A_AmountWithoutTransfer = this.form.value.portA.adults_A_WithoutTransfer * this.form.value.portA.adults_A_PriceWithoutTransfer
+        const kids_A_AmountWithTransfer = this.form.value.portA.kids_A_WithTransfer * this.form.value.portA.kids_A_PriceWithTransfer
+        const kids_A_AmountWithoutTransfer = this.form.value.portA.kids_A_WithoutTransfer * this.form.value.portA.kids_A_PriceWithoutTransfer
+        const total_A_Persons = this.form.value.portA.adults_A_WithTransfer + this.form.value.portA.adults_A_WithoutTransfer + this.form.value.portA.kids_A_WithTransfer + this.form.value.portA.kids_A_WithoutTransfer + this.form.value.portA.free_A_WithTransfer + this.form.value.portA.free_A_WithoutTransfer
+        const total_A_Amount = adults_A_AmountWithTransfer + adults_A_AmountWithoutTransfer + kids_A_AmountWithTransfer + kids_A_AmountWithoutTransfer
+        return {
+            adults_A_AmountWithTransfer,
+            adults_A_AmountWithoutTransfer,
+            kids_A_AmountWithTransfer,
+            kids_A_AmountWithoutTransfer,
+            total_A_Persons,
+            total_A_Amount
         }
     }
 
-    private calculate(): any {
+    private calculatePortB(): any {
+        const adults_B_AmountWithTransfer = this.form.value.portB.adults_B_WithTransfer * this.form.value.portB.adults_B_PriceWithTransfer
+        const adults_B_AmountWithoutTransfer = this.form.value.portB.adults_B_WithoutTransfer * this.form.value.portB.adults_B_PriceWithoutTransfer
+        const kids_B_AmountWithTransfer = this.form.value.portB.kids_B_WithTransfer * this.form.value.portB.kids_B_PriceWithTransfer
+        const kids_B_AmountWithoutTransfer = this.form.value.portB.kids_B_WithoutTransfer * this.form.value.portB.kids_B_PriceWithoutTransfer
+        const total_B_Persons = this.form.value.portB.adults_B_WithTransfer + this.form.value.portB.adults_B_WithoutTransfer + this.form.value.portB.kids_B_WithTransfer + this.form.value.portB.kids_B_WithoutTransfer + this.form.value.portB.free_B_WithTransfer + this.form.value.portB.free_B_WithoutTransfer
+        const total_B_Amount = adults_B_AmountWithTransfer + adults_B_AmountWithoutTransfer + kids_B_AmountWithTransfer + kids_B_AmountWithoutTransfer
         return {
-            vatAmount: parseFloat((this.form.value.netAmount * (this.form.value.vatPercent / 100)).toFixed(2)),
-            grossAmount: parseFloat(this.form.value.netAmount + this.form.value.netAmount * (this.form.value.vatPercent / 100)).toFixed(2)
+            adults_B_AmountWithTransfer,
+            adults_B_AmountWithoutTransfer,
+            kids_B_AmountWithTransfer,
+            kids_B_AmountWithoutTransfer,
+            total_B_Persons,
+            total_B_Amount
+        }
+    }
+
+    private calculatePortTotals(): any {
+        const adultsWithTransfer = this.form.value.portA.adults_A_WithTransfer + this.form.value.portB.adults_B_WithTransfer
+        const adultsAmountWithTransfer = this.form.value.portA.adults_A_AmountWithTransfer + this.form.value.portB.adults_B_AmountWithTransfer
+        const adultsWithoutTransfer = this.form.value.portA.adults_A_WithoutTransfer + this.form.value.portB.adults_B_WithoutTransfer
+        const adultsAmountWithoutTransfer = this.form.value.portA.adults_A_AmountWithoutTransfer + this.form.value.portB.adults_B_AmountWithoutTransfer
+        const kidsWithTransfer = this.form.value.portA.kids_A_WithTransfer + this.form.value.portB.kids_B_WithTransfer
+        const kidsAmountWithTransfer = this.form.value.portA.kids_A_AmountWithTransfer + this.form.value.portB.kids_B_AmountWithTransfer
+        const kidsWithoutTransfer = this.form.value.portA.kids_A_WithoutTransfer + this.form.value.portB.kids_B_WithoutTransfer
+        const kidsAmountWithoutTransfer = this.form.value.portA.kids_A_AmountWithoutTransfer + this.form.value.portB.kids_B_AmountWithoutTransfer
+        const freeWithTransfer = this.form.value.portA.free_A_WithTransfer + this.form.value.portB.free_B_WithTransfer
+        const freeWithoutTransfer = this.form.value.portA.free_A_WithoutTransfer + this.form.value.portB.free_B_WithoutTransfer
+        const totalPersons = adultsWithTransfer + adultsWithoutTransfer + kidsWithTransfer + kidsWithoutTransfer + freeWithTransfer + freeWithoutTransfer
+        const totalAmount =
+            (this.form.value.portA.adults_A_WithTransfer * this.form.value.portA.adults_A_PriceWithTransfer) + (this.form.value.portB.adults_B_WithTransfer * this.form.value.portB.adults_B_PriceWithTransfer) +
+            (this.form.value.portA.adults_A_WithoutTransfer * this.form.value.portA.adults_A_PriceWithoutTransfer) + (this.form.value.portB.adults_B_WithoutTransfer * this.form.value.portB.adults_B_PriceWithoutTransfer) +
+            (this.form.value.portA.kids_A_WithTransfer * this.form.value.portA.kids_A_PriceWithTransfer) + (this.form.value.portB.kids_B_WithTransfer * this.form.value.portB.kids_B_PriceWithTransfer) +
+            (this.form.value.portA.kids_A_WithoutTransfer * this.form.value.portA.kids_A_PriceWithoutTransfer) + (this.form.value.portB.kids_B_WithoutTransfer * this.form.value.portB.kids_B_PriceWithoutTransfer)
+        return {
+            adultsWithTransfer,
+            adultsAmountWithTransfer,
+            adultsWithoutTransfer,
+            adultsAmountWithoutTransfer,
+            kidsWithTransfer,
+            kidsAmountWithTransfer,
+            kidsWithoutTransfer,
+            kidsAmountWithoutTransfer,
+            freeWithTransfer,
+            freeWithoutTransfer,
+            totalPersons,
+            totalAmount
         }
     }
 
@@ -301,46 +356,61 @@ export class InvoiceFormComponent {
             portA: this.formBuilder.group({
                 id: 0,
                 invoiceId: '',
-                portId: 0,
-                portDescription: 'CORFU PORT',
-                adultsWithTransfer: [0, [Validators.required, Validators.maxLength(3)]],
-                adultsPriceWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-                adultsAmountWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-                adultsWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-                adultsPriceWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-                adultsAmountWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-                kidsWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-                kidsPriceWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-                kidsAmountWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-                kidsWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-                kidsPriceWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-                kidsAmountWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-                freeWithTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
-                freeWithoutTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
-                total: [0],
-                totalAmount: [0]
+                portId: 1,
+                port_A_Description: 'CORFU PORT',
+                adults_A_WithTransfer: [0, [Validators.required, Validators.maxLength(3)]],
+                adults_A_PriceWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                adults_A_AmountWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                adults_A_WithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                adults_A_PriceWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                adults_A_AmountWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kids_A_WithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kids_A_PriceWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kids_A_AmountWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kids_A_WithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kids_A_PriceWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kids_A_AmountWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                free_A_WithTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
+                free_A_WithoutTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
+                total_A_Persons: [0],
+                total_A_Amount: [0]
             }),
             portB: this.formBuilder.group({
                 id: 0,
                 invoiceId: '',
-                portId: 0,
-                portDescription: 'LEFKIMMI PORT',
-                adultsWithTransfer: [0, [Validators.required, Validators.maxLength(3)]],
-                adultsPriceWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-                adultsAmountWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-                adultsWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-                adultsPriceWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-                adultsAmountWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-                kidsWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-                kidsPriceWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-                kidsAmountWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-                kidsWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-                kidsPriceWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-                kidsAmountWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-                freeWithTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
-                freeWithoutTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
-                total: [0],
-                totalAmount: [0]
+                portId: 2,
+                port_B_Description: 'LEFKIMMI PORT',
+                adults_B_WithTransfer: [0, [Validators.required, Validators.maxLength(3)]],
+                adults_B_PriceWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                adults_B_AmountWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                adults_B_WithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                adults_B_PriceWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                adults_B_AmountWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kids_B_WithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kids_B_PriceWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kids_B_AmountWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kids_B_WithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kids_B_PriceWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                kids_B_AmountWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
+                free_B_WithTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
+                free_B_WithoutTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
+                total_B_Persons: [0],
+                total_B_Amount: [0]
+            }),
+            portTotals: this.formBuilder.group({
+                port_Totals_Description: '',
+                adults_Total_WithTransfer: 0,
+                adults_TotalAmount_WithTransfer: 0,
+                adults_Total_WithoutTransfer: 0,
+                adults_TotalAmount_WithoutTransfer: 0,
+                kids_Total_WithTransfer: 0,
+                kids_TotalAmount_WithTransfer: 0,
+                kids_Total_WithoutTransfer: 0,
+                kids_TotalAmount_WithoutTransfer: 0,
+                free_Total_WithTransfer: 0,
+                free_Total_WithoutTransfer: 0,
+                total_Persons: 0,
+                total_Amount: 0
             }),
             aade: this.formBuilder.group({
                 id: 0,
@@ -358,38 +428,38 @@ export class InvoiceFormComponent {
         })
     }
 
-    private initPortForm(port: SimpleEntity): FormGroup {
-        const x = this.formBuilder.group({
-            id: 0,
-            invoiceId: '',
-            port: this.formBuilder.group({
-                id: port.id,
-                description: port.description
-            }),
-            adultsWithTransfer: [0, [Validators.required, Validators.maxLength(3)]],
-            adultsPriceWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-            adultsAmountWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-            adultsWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-            adultsPriceWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-            adultsAmountWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-            kidsWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-            kidsPriceWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-            kidsAmountWithTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-            kidsWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-            kidsPriceWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-            kidsAmountWithoutTransfer: [0, [Validators.required, Validators.maxLength(4)]],
-            freeWithTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
-            freeWithoutTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999)]],
-            total: [0],
-            totalAmount: [0]
-        })
-        return x
-    }
-
-    private patchFormWithCalculations(calculations: any): void {
+    private patchFormWithCalculations(calculationsA: any, calculationsB: any, calculationTotals: any): void {
         this.form.patchValue({
-            vatAmount: calculations.vatAmount,
-            grossAmount: calculations.grossAmount
+            portA: {
+                adults_A_AmountWithTransfer: calculationsA.adults_A_AmountWithTransfer,
+                adults_A_AmountWithoutTransfer: calculationsA.adults_A_AmountWithoutTransfer,
+                kids_A_AmountWithTransfer: calculationsA.kids_A_AmountWithTransfer,
+                kids_A_AmountWithoutTransfer: calculationsA.kids_A_AmountWithoutTransfer,
+                total_A_Persons: calculationsA.total_A_Persons,
+                total_A_Amount: calculationsA.total_A_Amount
+            },
+            portB: {
+                adults_B_AmountWithTransfer: calculationsB.adults_B_AmountWithTransfer,
+                adults_B_AmountWithoutTransfer: calculationsB.adults_B_AmountWithoutTransfer,
+                kids_B_AmountWithTransfer: calculationsB.kids_B_AmountWithTransfer,
+                kids_B_AmountWithoutTransfer: calculationsB.kids_B_AmountWithoutTransfer,
+                total_B_Persons: calculationsB.total_B_Persons,
+                total_B_Amount: calculationsB.total_B_Amount
+            },
+            portTotals: {
+                adults_Total_WithTransfer: calculationTotals.adultsWithTransfer,
+                adults_TotalAmount_WithTransfer: calculationsA.adults_A_AmountWithTransfer + calculationsB.adults_B_AmountWithTransfer,
+                adults_Total_WithoutTransfer: calculationTotals.adultsWithoutTransfer,
+                adults_TotalAmount_WithoutTransfer: calculationsA.adults_A_AmountWithoutTransfer + calculationsB.adults_B_AmountWithoutTransfer,
+                kids_Total_WithTransfer: calculationTotals.kidsWithTransfer,
+                kids_TotalAmount_WithTransfer: calculationsA.kids_A_AmountWithTransfer + calculationsB.kids_B_AmountWithTransfer,
+                kids_Total_WithoutTransfer: calculationTotals.kidsWithoutTransfer,
+                kids_TotalAmount_WithoutTransfer: calculationsA.kids_A_AmountWithoutTransfer + calculationsB.kids_B_AmountWithoutTransfer,
+                free_Total_WithTransfer: calculationTotals.freeWithTransfer,
+                free_Total_WithoutTransfer: calculationTotals.freeWithoutTransfer,
+                total_Persons: calculationTotals.totalPersons,
+                total_Amount: calculationTotals.totalAmount
+            }
         })
     }
 
@@ -487,32 +557,6 @@ export class InvoiceFormComponent {
         }
     }
 
-    private populatePorts(): void {
-        const x = this.form.controls['invoicesPorts'] as FormArray
-        this.record.invoicesPorts.forEach((port: any) => {
-            x.push(new FormControl({
-                id: port.id,
-                invoiceId: port.invoiceId,
-                port: {
-                    id: port.port.id,
-                    description: port.port.description
-                },
-                adultsWithTransfer: port.adultsWithTransfer,
-                adultsPriceWithTransfer: port.adultsPriceWithTransfer,
-                adultsWithoutTransfer: port.adultsWithoutTransfer,
-                adultsPriceWithoutTransfer: port.adultsPriceWithoutTransfer,
-                kidsWithTransfer: port.kidsWithTransfer,
-                kidsPriceWithTransfer: port.kidsPriceWithTransfer,
-                kidsWithoutTransfer: port.kidsWithoutTransfer,
-                kidsPriceWithoutTransfer: port.kidsPriceWithoutTransfer,
-                freeWithTransfer: port.freeWithTransfer,
-                freeWithoutTransfer: port.freeWithoutTransfer,
-                pax: port.totalPax,
-                amount: port.totalAmount
-            }))
-        })
-    }
-
     public retrievePrices(): void {
         const x: BillingCriteriaVM = {
             date: this.dateHelperService.formatDateToIso(new Date(this.form.value.date)),
@@ -597,44 +641,190 @@ export class InvoiceFormComponent {
         return this.form.get('remarks')
     }
 
-    get invoicesPorts(): FormArray {
-        return this.form.controls['invoicesPorts'] as FormArray
-    }
-
-    get portDescription(): AbstractControl {
+    get port_A_Description(): AbstractControl {
         return this.form.get('portA.portDescription')
     }
 
-    get adultsAWithTransfer(): AbstractControl {
-        return this.form.get('portA.adultsWithTransfer')
+    get adults_A_WithTransfer(): AbstractControl {
+        return this.form.get('portA.adults_A_WithTransfer')
     }
 
-    get adultsAPriceWithTransfer(): AbstractControl {
-        return this.form.get('portA.adultsPriceWithTransfer')
+    get adults_A_PriceWithTransfer(): AbstractControl {
+        return this.form.get('portA.adults_A_PriceWithTransfer')
     }
 
-    get adultsAAmountWithTransfer(): AbstractControl {
-        return this.form.get('portA.adultsAmountWithTransfer')
+    get adults_A_AmountWithTransfer(): AbstractControl {
+        return this.form.get('portA.adults_A_AmountWithTransfer')
     }
 
-    get adultsAWithoutTransfer(): AbstractControl {
-        return this.form.get('portA.adultsWithoutTransfer')
+    get adults_A_WithoutTransfer(): AbstractControl {
+        return this.form.get('portA.adults_A_WithoutTransfer')
     }
 
-    get adultsAPriceWithoutTransfer(): AbstractControl {
-        return this.form.get('portA.adultsPriceWithoutTransfer')
+    get adults_A_PriceWithoutTransfer(): AbstractControl {
+        return this.form.get('portA.adults_A_PriceWithoutTransfer')
     }
 
-    get adultsBWithTransfer(): AbstractControl {
-        return this.form.get('portB.adultsWithTransfer')
+    get adults_A_AmountWithoutTransfer(): AbstractControl {
+        return this.form.get('portA.adults_A_AmountWithoutTransfer')
+    }
+
+    get kids_A_WithTransfer(): AbstractControl {
+        return this.form.get('portA.kids_A_WithTransfer')
+    }
+
+    get kids_A_PriceWithTransfer(): AbstractControl {
+        return this.form.get('portA.kids_A_PriceWithTransfer')
+    }
+
+    get kids_A_AmountWithTransfer(): AbstractControl {
+        return this.form.get('portA.kids_A_AmountWithTransfer')
+    }
+
+    get kids_A_WithoutTransfer(): AbstractControl {
+        return this.form.get('portA.kids_A_WithoutTransfer')
+    }
+
+    get kids_A_PriceWithoutTransfer(): AbstractControl {
+        return this.form.get('portA.kids_A_PriceWithoutTransfer')
+    }
+
+    get kids_A_AmountWithoutTransfer(): AbstractControl {
+        return this.form.get('portA.kids_A_AmountWithoutTransfer')
+    }
+
+    get free_A_WithTransfer(): AbstractControl {
+        return this.form.get('portA.free_A_WithTransfer')
+    }
+
+    get free_A_WithoutTransfer(): AbstractControl {
+        return this.form.get('portA.free_A_WithoutTransfer')
+    }
+
+    get total_A_Persons(): AbstractControl {
+        return this.form.get('total_A_Persons')
+    }
+
+    get total_A_Amount(): AbstractControl {
+        return this.form.get('total_A_Amount')
+    }
+
+    get port_B_Description(): AbstractControl {
+        return this.form.get('portB.portDescription')
+    }
+
+    get adults_B_WithTransfer(): AbstractControl {
+        return this.form.get('portB.adults_B_WithTransfer')
+    }
+
+    get adults_B_PriceWithTransfer(): AbstractControl {
+        return this.form.get('portB.adults_B_PriceWithTransfer')
+    }
+
+    get adults_B_AmountWithTransfer(): AbstractControl {
+        return this.form.get('portB.adults_B_AmountWithTransfer')
+    }
+
+    get adults_B_WithoutTransfer(): AbstractControl {
+        return this.form.get('portB.adults_B_WithoutTransfer')
+    }
+
+    get adults_B_PriceWithoutTransfer(): AbstractControl {
+        return this.form.get('portB.adults_B_PriceWithoutTransfer')
+    }
+
+    get adults_B_AmountWithoutTransfer(): AbstractControl {
+        return this.form.get('portB.adults_B_AmountWithoutTransfer')
+    }
+
+    get kids_B_WithTransfer(): AbstractControl {
+        return this.form.get('portB.kids_B_WithTransfer')
+    }
+
+    get kids_B_PriceWithTransfer(): AbstractControl {
+        return this.form.get('portB.kids_B_PriceWithTransfer')
+    }
+
+    get kids_B_AmountWithTransfer(): AbstractControl {
+        return this.form.get('portB.kids_B_AmountWithTransfer')
+    }
+
+    get kids_B_WithoutTransfer(): AbstractControl {
+        return this.form.get('portB.kids_B_WithoutTransfer')
+    }
+
+    get kids_B_PriceWithoutTransfer(): AbstractControl {
+        return this.form.get('portB.kids_B_PriceWithoutTransfer')
+    }
+
+    get kids_B_AmountWithoutTransfer(): AbstractControl {
+        return this.form.get('portB.kids_B_AmountWithoutTransfer')
+    }
+
+    get free_B_WithTransfer(): AbstractControl {
+        return this.form.get('portB.free_B_WithTransfer')
+    }
+
+    get free_B_WithoutTransfer(): AbstractControl {
+        return this.form.get('portB.free_B_WithoutTransfer')
+    }
+
+    get total_B_Persons(): AbstractControl {
+        return this.form.get('total_B_Persons')
+    }
+
+    get total_B_Amount(): AbstractControl {
+        return this.form.get('total_B_Amount')
+    }
+
+    get adults_Total_WithTransfer(): AbstractControl {
+        return this.form.get('portTotals.adults_Total_WithTransfer')
+    }
+
+    get adults_TotalAmount_WithTransfer(): AbstractControl {
+        return this.form.get('portTotals.adults_TotalAmount_WithTransfer')
+    }
+
+    get adults_Total_WithoutTransfer(): AbstractControl {
+        return this.form.get('portTotals.adults_Total_WithoutTransfer')
+    }
+
+    get adults_TotalAmount_WithoutTransfer(): AbstractControl {
+        return this.form.get('portTotals.adults_TotalAmount_WithoutTransfer')
+    }
+
+    get kids_Total_WithTransfer(): AbstractControl {
+        return this.form.get('portTotals.kids_Total_WithTransfer')
+    }
+
+    get kids_TotalAmount_WithTransfer(): AbstractControl {
+        return this.form.get('portTotals.kids_TotalAmount_WithTransfer')
+    }
+
+    get kids_Total_WithoutTransfer(): AbstractControl {
+        return this.form.get('portTotals.kids_Total_WithoutTransfer')
+    }
+
+    get kids_TotalAmount_WithoutTransfer(): AbstractControl {
+        return this.form.get('portTotals.kids_TotalAmount_WithoutTransfer')
+    }
+
+    get free_Total_WithTransfer(): AbstractControl {
+        return this.form.get('portTotals.free_Total_WithTransfer')
+    }
+
+    get free_Total_WithoutTransfer(): AbstractControl {
+        return this.form.get('portTotals.free_Total_WithoutTransfer')
+    }
+
+    get total_Persons(): AbstractControl {
+        return this.form.get('portTotals.total_Persons')
+    }
+
+    get total_Amount(): AbstractControl {
+        return this.form.get('portTotals.total_Amount')
     }
 
     //#endregion
-
-    public onCreatePdf(): void {
-        this.invoicePdfHelperService.createPdfInvoiceParts(this.form.value).then((response) => {
-            this.invoicePdfService.createReport(response)
-        })
-    }
 
 }
