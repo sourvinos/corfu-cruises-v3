@@ -81,8 +81,9 @@ export class InvoiceFormComponent {
         this.updateFieldsAfterEmptyDocumentType()
         this.setRecordId()
         this.getRecord()
-        // this.populateFields()
+        this.populateFields()
         this.populateDropdowns()
+        this.onDoCalculations()
         this.isInvoiceTabVisible = true
         this.isPortsTabVisible = false
         // this.addPorts()
@@ -100,11 +101,11 @@ export class InvoiceFormComponent {
         if (event.target.value == '') this.isAutoCompleteDisabled = true
     }
 
-    public onDoCalculationTasks(): void {
+    public onDoCalculations(): void {
         this.patchFormWithCalculations(
-            this.calculatePortA(),
-            this.calculatePortB(),
-            this.calculatePortTotals())
+            this.invoiceHelperService.calculatePortA(this.form.value),
+            this.invoiceHelperService.calculatePortB(this.form.value),
+            this.invoiceHelperService.calculatePortTotals(this.form.value))
     }
 
     public enableOrDisableAutoComplete(event: any): void {
@@ -142,10 +143,6 @@ export class InvoiceFormComponent {
 
     public onDoNothing(): void {
         this.dialogService.open(this.messageDialogService.featureNotAvailable(), 'error', ['ok'])
-    }
-
-    public onDoPaxCalculations(): void {
-        // TODO
     }
 
     public onSave(): void {
@@ -244,73 +241,6 @@ export class InvoiceFormComponent {
     //#endregion
 
     //#region private methods
-
-    private calculatePortA(): any {
-        const adults_A_AmountWithTransfer = this.form.value.portA.adults_A_WithTransfer * this.form.value.portA.adults_A_PriceWithTransfer
-        const adults_A_AmountWithoutTransfer = this.form.value.portA.adults_A_WithoutTransfer * this.form.value.portA.adults_A_PriceWithoutTransfer
-        const kids_A_AmountWithTransfer = this.form.value.portA.kids_A_WithTransfer * this.form.value.portA.kids_A_PriceWithTransfer
-        const kids_A_AmountWithoutTransfer = this.form.value.portA.kids_A_WithoutTransfer * this.form.value.portA.kids_A_PriceWithoutTransfer
-        const total_A_Persons = this.form.value.portA.adults_A_WithTransfer + this.form.value.portA.adults_A_WithoutTransfer + this.form.value.portA.kids_A_WithTransfer + this.form.value.portA.kids_A_WithoutTransfer + this.form.value.portA.free_A_WithTransfer + this.form.value.portA.free_A_WithoutTransfer
-        const total_A_Amount = adults_A_AmountWithTransfer + adults_A_AmountWithoutTransfer + kids_A_AmountWithTransfer + kids_A_AmountWithoutTransfer
-        return {
-            adults_A_AmountWithTransfer,
-            adults_A_AmountWithoutTransfer,
-            kids_A_AmountWithTransfer,
-            kids_A_AmountWithoutTransfer,
-            total_A_Persons,
-            total_A_Amount
-        }
-    }
-
-    private calculatePortB(): any {
-        const adults_B_AmountWithTransfer = this.form.value.portB.adults_B_WithTransfer * this.form.value.portB.adults_B_PriceWithTransfer
-        const adults_B_AmountWithoutTransfer = this.form.value.portB.adults_B_WithoutTransfer * this.form.value.portB.adults_B_PriceWithoutTransfer
-        const kids_B_AmountWithTransfer = this.form.value.portB.kids_B_WithTransfer * this.form.value.portB.kids_B_PriceWithTransfer
-        const kids_B_AmountWithoutTransfer = this.form.value.portB.kids_B_WithoutTransfer * this.form.value.portB.kids_B_PriceWithoutTransfer
-        const total_B_Persons = this.form.value.portB.adults_B_WithTransfer + this.form.value.portB.adults_B_WithoutTransfer + this.form.value.portB.kids_B_WithTransfer + this.form.value.portB.kids_B_WithoutTransfer + this.form.value.portB.free_B_WithTransfer + this.form.value.portB.free_B_WithoutTransfer
-        const total_B_Amount = adults_B_AmountWithTransfer + adults_B_AmountWithoutTransfer + kids_B_AmountWithTransfer + kids_B_AmountWithoutTransfer
-        return {
-            adults_B_AmountWithTransfer,
-            adults_B_AmountWithoutTransfer,
-            kids_B_AmountWithTransfer,
-            kids_B_AmountWithoutTransfer,
-            total_B_Persons,
-            total_B_Amount
-        }
-    }
-
-    private calculatePortTotals(): any {
-        const adultsWithTransfer = this.form.value.portA.adults_A_WithTransfer + this.form.value.portB.adults_B_WithTransfer
-        const adultsAmountWithTransfer = this.form.value.portA.adults_A_AmountWithTransfer + this.form.value.portB.adults_B_AmountWithTransfer
-        const adultsWithoutTransfer = this.form.value.portA.adults_A_WithoutTransfer + this.form.value.portB.adults_B_WithoutTransfer
-        const adultsAmountWithoutTransfer = this.form.value.portA.adults_A_AmountWithoutTransfer + this.form.value.portB.adults_B_AmountWithoutTransfer
-        const kidsWithTransfer = this.form.value.portA.kids_A_WithTransfer + this.form.value.portB.kids_B_WithTransfer
-        const kidsAmountWithTransfer = this.form.value.portA.kids_A_AmountWithTransfer + this.form.value.portB.kids_B_AmountWithTransfer
-        const kidsWithoutTransfer = this.form.value.portA.kids_A_WithoutTransfer + this.form.value.portB.kids_B_WithoutTransfer
-        const kidsAmountWithoutTransfer = this.form.value.portA.kids_A_AmountWithoutTransfer + this.form.value.portB.kids_B_AmountWithoutTransfer
-        const freeWithTransfer = this.form.value.portA.free_A_WithTransfer + this.form.value.portB.free_B_WithTransfer
-        const freeWithoutTransfer = this.form.value.portA.free_A_WithoutTransfer + this.form.value.portB.free_B_WithoutTransfer
-        const totalPersons = adultsWithTransfer + adultsWithoutTransfer + kidsWithTransfer + kidsWithoutTransfer + freeWithTransfer + freeWithoutTransfer
-        const totalAmount =
-            (this.form.value.portA.adults_A_WithTransfer * this.form.value.portA.adults_A_PriceWithTransfer) + (this.form.value.portB.adults_B_WithTransfer * this.form.value.portB.adults_B_PriceWithTransfer) +
-            (this.form.value.portA.adults_A_WithoutTransfer * this.form.value.portA.adults_A_PriceWithoutTransfer) + (this.form.value.portB.adults_B_WithoutTransfer * this.form.value.portB.adults_B_PriceWithoutTransfer) +
-            (this.form.value.portA.kids_A_WithTransfer * this.form.value.portA.kids_A_PriceWithTransfer) + (this.form.value.portB.kids_B_WithTransfer * this.form.value.portB.kids_B_PriceWithTransfer) +
-            (this.form.value.portA.kids_A_WithoutTransfer * this.form.value.portA.kids_A_PriceWithoutTransfer) + (this.form.value.portB.kids_B_WithoutTransfer * this.form.value.portB.kids_B_PriceWithoutTransfer)
-        return {
-            adultsWithTransfer,
-            adultsAmountWithTransfer,
-            adultsWithoutTransfer,
-            adultsAmountWithoutTransfer,
-            kidsWithTransfer,
-            kidsAmountWithTransfer,
-            kidsWithoutTransfer,
-            kidsAmountWithoutTransfer,
-            freeWithTransfer,
-            freeWithoutTransfer,
-            totalPersons,
-            totalAmount
-        }
-    }
 
     private flattenForm(): InvoiceWriteDto {
         return this.invoiceHelperService.flattenForm(this.form.value)
@@ -520,7 +450,38 @@ export class InvoiceFormComponent {
                     markCancel: this.record.aade.markCancel,
                     qrUrl: this.record.aade.qrUrl
                 },
-                invoicesPorts: this.populatePorts()
+                portA: {
+                    id: this.record.invoicesPorts[0].id,
+                    invoiceId: this.record.invoicesPorts[0].invoiceId,
+                    portId: this.record.invoicesPorts[0].port.id,
+                    port_A_Description: this.record.invoicesPorts[0].port.description,
+                    adults_A_WithTransfer: this.record.invoicesPorts[0].adultsWithTransfer,
+                    adults_A_PriceWithTransfer: this.record.invoicesPorts[0].adultsPriceWithTransfer,
+                    adults_A_WithoutTransfer: this.record.invoicesPorts[0].adultsWithoutTransfer,
+                    adults_A_PriceWithoutTransfer: this.record.invoicesPorts[0].adultsPriceWithoutTransfer,
+                    kids_A_WithTransfer: this.record.invoicesPorts[0].kidsWithTransfer,
+                    kids_A_PriceWithTransfer: this.record.invoicesPorts[0].kidsPriceWithTransfer,
+                    kids_A_WithoutTransfer: this.record.invoicesPorts[0].kidsWithoutTransfer,
+                    kids_A_PriceWithoutTransfer: this.record.invoicesPorts[0].kidsPriceWithoutTransfer,
+                    free_A_WithTransfer: this.record.invoicesPorts[0].freeWithTransfer,
+                    free_A_WithoutTransfer: this.record.invoicesPorts[0].freeWithoutTransfer
+                },
+                portB: {
+                    id: this.record.invoicesPorts[1].id,
+                    invoiceId: this.record.invoicesPorts[1].invoiceId,
+                    portId: this.record.invoicesPorts[1].port.id,
+                    port_B_Description: this.record.invoicesPorts[1].port.description,
+                    adults_B_WithTransfer: this.record.invoicesPorts[1].adultsWithTransfer,
+                    adults_B_PriceWithTransfer: this.record.invoicesPorts[1].adultsPriceWithTransfer,
+                    adults_B_WithoutTransfer: this.record.invoicesPorts[1].adultsWithoutTransfer,
+                    adults_B_PriceWithoutTransfer: this.record.invoicesPorts[1].adultsPriceWithoutTransfer,
+                    kids_B_WithTransfer: this.record.invoicesPorts[1].kidsWithTransfer,
+                    kids_B_PriceWithTransfer: this.record.invoicesPorts[1].kidsPriceWithTransfer,
+                    kids_B_WithoutTransfer: this.record.invoicesPorts[1].kidsWithoutTransfer,
+                    kids_B_PriceWithoutTransfer: this.record.invoicesPorts[1].kidsPriceWithoutTransfer,
+                    free_B_WithTransfer: this.record.invoicesPorts[1].freeWithTransfer,
+                    free_B_WithoutTransfer: this.record.invoicesPorts[1].freeWithoutTransfer
+                }
             })
         }
     }
