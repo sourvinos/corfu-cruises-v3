@@ -1,4 +1,4 @@
-import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component } from '@angular/core'
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
@@ -21,6 +21,7 @@ import { InvoicePdfHelperService } from '../../classes/services/invoice-pdf-help
 import { InvoicePdfService } from '../../classes/services/invoice-pdf.service'
 import { InvoiceReadDto } from '../../classes/dtos/form/invoice-read-dto'
 import { InvoiceWriteDto } from '../../classes/dtos/form/invoice-write-dto'
+import { InvoiceXmlHelperService } from '../../classes/services/invoice-xml-helper.service'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
@@ -29,7 +30,6 @@ import { PriceHttpService } from '../../../prices/classes/services/price-http.se
 import { ShipAutoCompleteVM } from './../../../../reservations/ships/classes/view-models/ship-autocomplete-vm'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
-import { InvoiceXmlHelperService } from '../../classes/services/invoice-xml-helper.service'
 
 @Component({
     selector: 'invoice-form',
@@ -101,11 +101,29 @@ export class InvoiceFormComponent {
         if (event.target.value == '') this.isAutoCompleteDisabled = true
     }
 
+    public onComparePriceTotals(): boolean {
+        const x = parseFloat(this.form.value.grossAmount)
+        const z = parseFloat(this.form.value.portTotals.total_Amount)
+        return x == z
+    }
+
     public onDoCalculations(): void {
         this.patchFormWithCalculations(
             this.invoiceHelperService.calculatePortA(this.form.value),
             this.invoiceHelperService.calculatePortB(this.form.value),
             this.invoiceHelperService.calculatePortTotals(this.form.value))
+    }
+
+    public onDoInvoiceCalculations(): void {
+        const grossAmount = parseFloat(this.form.value.grossAmount)
+        const vatPercent = parseFloat(this.form.value.vatPercent) / 100
+        const netAmount = grossAmount / (1 + vatPercent)
+        const vatAmount = netAmount * vatPercent
+        this.form.patchValue({
+            netAmount: netAmount.toFixed(2),
+            vatAmount: vatAmount.toFixed(2),
+            grossAmount: grossAmount.toFixed(2)
+        })
     }
 
     public enableOrDisableAutoComplete(event: any): void {
@@ -124,19 +142,21 @@ export class InvoiceFormComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
+    public isSubmitted(): boolean {
+        return this.form.value.aade.mark != ''
+    }
+
     public onDelete(): void {
         this.dialogService.open(this.messageDialogService.confirmDelete(), 'question', ['abort', 'ok']).subscribe(response => {
             if (response) {
-                // this.reservationService.delete(this.form.value.reservationId).subscribe({
-                //     complete: () => {
-                //         this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
-                //         this.localStorageService.deleteItems([{ 'item': 'reservation', 'when': 'always' },])
-                //         this.sessionStorageService.deleteItems([{ 'item': 'nationality', 'when': 'always' }])
-                //     },
-                //     error: (errorFromInterceptor) => {
-                //         this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                //     }
-                // })
+                this.invoiceHttpService.delete(this.form.value.invoiceId).subscribe({
+                    complete: () => {
+                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                    },
+                    error: (errorFromInterceptor) => {
+                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                    }
+                })
             }
         })
     }
@@ -201,7 +221,7 @@ export class InvoiceFormComponent {
     public updateFieldsAfterDocumentTypeSelection(value: DocumentTypeAutoCompleteVM): void {
         this.form.patchValue({
             documentTypeDescription: value.description,
-            no: value.lastNo,
+            invoiceNo: value.lastNo += 1,
             batch: value.batch
         })
     }
@@ -224,18 +244,6 @@ export class InvoiceFormComponent {
 
     public onUpdateInvoiceWithOutputPort(port: any, portIndex: number): void {
         this.form.value.invoicesPorts[portIndex] = port
-    }
-
-    public onUpdateInvoiceWithOutputPorts(ports: any): void {
-        const grossAmount = ports.amount
-        const vatPercent = parseFloat(this.form.value.vatPercent) / 100
-        const netAmount = grossAmount / (1 + vatPercent)
-        const vatAmount = netAmount * vatPercent
-        this.form.patchValue({
-            netAmount: netAmount.toFixed(2),
-            vatAmount: vatAmount.toFixed(2),
-            grossAmount: grossAmount.toFixed(2)
-        })
     }
 
     //#endregion
@@ -276,7 +284,7 @@ export class InvoiceFormComponent {
             documentType: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             documentTypeDescription: '',
             batch: '',
-            no: 0,
+            invoiceNo: 0,
             paymentMethod: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             ship: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             netAmount: [0, ValidationService.isGreaterThanZero],
@@ -518,24 +526,42 @@ export class InvoiceFormComponent {
         }
     }
 
-    public retrievePrices(): void {
+    public onRetrievePrices(): void {
         const x: BillingCriteriaVM = {
             date: this.dateHelperService.formatDateToIso(new Date(this.form.value.date)),
             customerId: this.form.value.customer.id,
             destinationId: this.form.value.destination.id
         }
-        const z = this.form.controls['invoicesPorts'] as FormArray
-        this.priceHttpService.retrievePrices(x).subscribe(response => {
-            response.forEach((record, index) => {
-                z.controls[index].patchValue({
-                    adultsPriceWithTransfer: record.adultsWithTransfer,
-                    adultsPriceWithoutTransfer: record.adultsWithoutTransfer,
-                    kidsPriceWithTransfer: record.kidsWithTransfer,
-                    kidsPriceWithoutTransfer: record.kidsWithoutTransfer,
-                })
+        if (this.invoiceHelperService.validatePriceRetriever(x)) {
+            this.priceHttpService.retrievePrices(x).subscribe({
+                next: (response: any) => {
+                    if (response.body.length != 2) {
+                        this.dialogService.open(this.messageDialogService.priceRetrieverIsEmpty(), 'question', ['ok'])
+                    } else {
+                        this.form.patchValue({
+                            portA: {
+                                adults_A_PriceWithTransfer: response.body[0].adultsWithTransfer,
+                                adults_A_PriceWithoutTransfer: response.body[0].adultsWithoutTransfer,
+                                kids_A_PriceWithTransfer: response.body[0].kidsWithTransfer,
+                                kids_A_PriceWithoutTransfer: response.body[0].kidsWithoutTransfer,
+                            },
+                            portB: {
+                                adults_B_PriceWithTransfer: response.body[1].adultsWithTransfer,
+                                adults_B_PriceWithoutTransfer: response.body[1].adultsWithoutTransfer,
+                                kids_B_PriceWithTransfer: response.body[1].kidsWithTransfer,
+                                kids_B_PriceWithoutTransfer: response.body[1].kidsWithoutTransfer,
+                            },
+                        })
+                        this.dialogService.open(this.messageDialogService.priceRetrieverIsValid(), 'ok', ['ok'])
+                    }
+                },
+                error: (errorFromInterceptor) => {
+                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                }
             })
-
-        })
+        } else {
+            this.dialogService.open(this.messageDialogService.priceRetrieverHasErrors(), 'error', ['ok'])
+        }
     }
 
     private updateFieldsAfterEmptyDocumentType(): void {
@@ -543,7 +569,7 @@ export class InvoiceFormComponent {
             if (value == '') {
                 this.form.patchValue({
                     documentTypeDescription: '',
-                    no: 0,
+                    invoiceNo: 0,
                     batch: ''
                 })
             }

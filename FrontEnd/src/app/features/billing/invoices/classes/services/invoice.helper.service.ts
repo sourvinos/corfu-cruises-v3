@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { InvoiceWriteDto } from '../dtos/form/invoice-write-dto'
 import { PortWriteDto } from '../dtos/form/port-write-dto'
+import { BillingCriteriaVM } from '../view-models/form/billing-criteria-vm'
 
 @Injectable({ providedIn: 'root' })
 
@@ -11,6 +12,10 @@ export class InvoiceHelperService {
     constructor(private dateHelperService: DateHelperService) { }
 
     //#region public methods
+
+    public validatePriceRetriever(x: BillingCriteriaVM): boolean {
+        return x.date != 'NaN-NaN-NaN' && x.customerId != undefined && x.destinationId != undefined
+    }
 
     public calculatePortA(formValue: any): any {
         const adults_A_AmountWithTransfer = formValue.portA.adults_A_WithTransfer * formValue.portA.adults_A_PriceWithTransfer
@@ -79,50 +84,63 @@ export class InvoiceHelperService {
         }
     }
 
-
-    public flattenForm(form: any): InvoiceWriteDto {
-        return {
-            invoiceId: form.invoiceId != '' ? form.invoiceId : null,
-            date: this.dateHelperService.formatDateToIso(new Date(form.date)),
-            no: form.no,
-            customerId: form.customer.id,
-            destinationId: form.destination.id,
-            documentTypeId: form.documentType.id,
-            paymentMethodId: form.paymentMethod.id,
-            shipId: form.ship.id,
-            netAmount: form.netAmount,
-            vatPercent: form.vatPercent,
-            vatAmount: form.vatAmount,
-            grossAmount: form.grossAmount,
-            remarks: form.remarks,
-            putAt: form.putAt,
-            invoicesPorts: this.mapPorts(form)
+    public flattenForm(formValue: any): InvoiceWriteDto {
+        const x: InvoiceWriteDto = {
+            invoiceId: formValue.invoiceId != '' ? formValue.invoiceId : null,
+            customerId: formValue.customer.id,
+            destinationId: formValue.destination.id,
+            documentTypeId: formValue.documentType.id,
+            paymentMethodId: formValue.paymentMethod.id,
+            shipId: formValue.ship.id,
+            date: this.dateHelperService.formatDateToIso(new Date(formValue.date)),
+            no: formValue.no,
+            netAmount: formValue.netAmount,
+            vatPercent: formValue.vatPercent,
+            vatAmount: formValue.vatAmount,
+            grossAmount: formValue.grossAmount,
+            remarks: formValue.remarks,
+            putAt: formValue.putAt,
+            invoicesPorts: this.mapPorts(formValue)
         }
+        return x
     }
 
     //#endregion
 
     //#region private methods
 
-    private mapPorts(form: any): PortWriteDto[] {
+    private mapPorts(formValue: any): PortWriteDto[] {
         const ports = []
-        form.invoicesPorts.forEach((port: any) => {
-            const x: PortWriteDto = {
-                invoiceId: port.invoiceId != '' ? port.invoiceId : null,
-                portId: port.port.id,
-                adultsWithTransfer: port.adultsWithTransfer,
-                adultsPriceWithTransfer: port.adultsPriceWithTransfer,
-                adultsWithoutTransfer: port.adultsWithoutTransfer,
-                adultsPriceWithoutTransfer: port.adultsPriceWithoutTransfer,
-                kidsWithTransfer: port.kidsWithTransfer,
-                kidsPriceWithTransfer: port.kidsPriceWithTransfer,
-                kidsWithoutTransfer: port.kidsWithoutTransfer,
-                kidsPriceWithoutTransfer: port.kidsPriceWithoutTransfer,
-                freeWithTransfer: port.freeWithTransfer,
-                freeWithoutTransfer: port.freeWithoutTransfer
-            }
-            ports.push(x)
-        })
+        const x: PortWriteDto = {
+            invoiceId: formValue.portA.invoiceId != '' ? formValue.portA.invoiceId : null,
+            portId: formValue.portA.portId,
+            adultsWithTransfer: formValue.portA.adults_A_WithTransfer,
+            adultsPriceWithTransfer: formValue.portA.adults_A_PriceWithTransfer,
+            adultsWithoutTransfer: formValue.portA.adults_A_WithoutTransfer,
+            adultsPriceWithoutTransfer: formValue.portA.adults_A_PriceWithoutTransfer,
+            kidsWithTransfer: formValue.portA.kids_A_WithTransfer,
+            kidsPriceWithTransfer: formValue.portA.kids_A_PriceWithTransfer,
+            kidsWithoutTransfer: formValue.portA.kids_A_WithoutTransfer,
+            kidsPriceWithoutTransfer: formValue.portA.kids_A_PriceWithoutTransfer,
+            freeWithTransfer: formValue.portA.free_A_WithTransfer,
+            freeWithoutTransfer: formValue.portA.free_A_WithoutTransfer,
+        }
+        const z: PortWriteDto = {
+            invoiceId: formValue.portB.invoiceId != '' ? formValue.portA.invoiceId : null,
+            portId: formValue.portB.portId,
+            adultsWithTransfer: formValue.portB.adults_B_WithTransfer,
+            adultsPriceWithTransfer: formValue.portB.adults_B_PriceWithTransfer,
+            adultsWithoutTransfer: formValue.portB.adults_B_WithoutTransfer,
+            adultsPriceWithoutTransfer: formValue.portB.adults_B_PriceWithoutTransfer,
+            kidsWithTransfer: formValue.portB.kids_B_WithTransfer,
+            kidsPriceWithTransfer: formValue.portB.kids_B_PriceWithTransfer,
+            kidsWithoutTransfer: formValue.portB.kids_B_WithoutTransfer,
+            kidsPriceWithoutTransfer: formValue.portB.kids_B_PriceWithoutTransfer,
+            freeWithTransfer: formValue.portB.free_B_WithTransfer,
+            freeWithoutTransfer: formValue.portB.free_B_WithoutTransfer,
+        }
+        ports.push(x)
+        ports.push(z)
         return ports
     }
 

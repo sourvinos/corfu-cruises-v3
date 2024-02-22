@@ -2816,11 +2816,11 @@
             },
             {
                 "id": "documentTypeAbbreviation",
-                "description": "Συντ. παραστατικού"
+                "description": "Παραστατικό"
             },
             {
                 "id": "documentTypeDescription",
-                "description": "Περιγραφή"
+                "description": "Περιγραφή παραστατικού"
             },
             {
                 "id": "no",
@@ -2868,7 +2868,7 @@
             },
             {
                 "id": "grossAmount",
-                "description": "Σύνολο"
+                "description": "Σύνολο με ΦΠΑ"
             },
             {
                 "id": "remarks",

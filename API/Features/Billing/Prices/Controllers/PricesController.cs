@@ -36,8 +36,20 @@ namespace API.Features.Billing.Prices {
 
         [HttpPost("billing")]
         [Authorize(Roles = "admin")]
-        public async Task<IEnumerable<PriceListVM>> Post([FromBody] BillingCriteriaVM criteria) {
-            return await priceRepo.GetPricesForBillingAsync(criteria);
+        public async Task<ResponseWithBody> Post([FromBody] BillingCriteriaVM criteria) {
+            var x = await priceRepo.GetPricesForBillingAsync(criteria);
+            if (x != null) {
+                return new ResponseWithBody {
+                    Code = 200,
+                    Icon = Icons.Info.ToString(),
+                    Message = ApiMessages.OK(),
+                    Body = x
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 404
+                };
+            }
         }
 
         [HttpGet("{id}")]

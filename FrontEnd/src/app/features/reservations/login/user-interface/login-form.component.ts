@@ -94,7 +94,7 @@ export class LoginFormComponent {
 
     private checkScreenResolution(): void {
         if (window.screen.width < environment.minWidth || window.screen.height < 800) {
-            this.dialogService.open(this.messageDialogService.resolutionWarning(), 'warning', ['ok'])
+            this.dialogService.open(this.messageDialogService.resolutionWarning(), 'question', ['ok'])
         }
     }
 

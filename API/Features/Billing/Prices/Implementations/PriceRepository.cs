@@ -58,7 +58,7 @@ namespace API.Features.Billing.Prices {
         }
 
         public async Task<IEnumerable<PriceListVM>> GetPricesForBillingAsync(BillingCriteriaVM criteria) {
-            var prices = await context.Prices
+            var x = await context.Prices
                .AsNoTracking()
                .Include(x => x.Customer)
                .Include(x => x.Destination)
@@ -66,7 +66,7 @@ namespace API.Features.Billing.Prices {
                .Where(x => x.From <= Convert.ToDateTime(criteria.Date) && x.To >= Convert.ToDateTime(criteria.Date) && x.CustomerId == criteria.CustomerId && x.DestinationId == criteria.DestinationId)
                .OrderBy(x => x.PortId)
                .ToListAsync();
-            return mapper.Map<IEnumerable<Price>, IEnumerable<PriceListVM>>(prices);
+            return mapper.Map<IEnumerable<Price>, IEnumerable<PriceListVM>>(x);
         }
 
     }

@@ -61,6 +61,9 @@ export class MessageDialogService {
     public passwordCanBeChangedOnlyByAccountOwner(): string { return this.getDescription(this.feature, 'passwordCanBeChangedOnlyByAccountOwner') }
     public noContactWithServer(): string { return this.getDescription(this.feature, 'noContactWithServer') }
     public featureNotAvailable(): string { return this.getDescription(this.feature, 'featureNotAvailable') }
+    public priceRetrieverHasErrors(): string { return this.getDescription(this.feature, 'priceRetrieverHasErrors') }
+    public priceRetrieverIsEmpty(): string { return this.getDescription(this.feature, 'priceRetrieverIsEmpty') }
+    public priceRetrieverIsValid(): string { return this.getDescription(this.feature, 'priceRetrieverIsValid') }
     public success(): string { return this.getDescription(this.feature, 'success') }
     public confirmDelete(): string { return this.getDescription(this.feature, 'warning') }
     public confirmLogout(): string { return this.getDescription(this.feature, 'confirmLogout') }
