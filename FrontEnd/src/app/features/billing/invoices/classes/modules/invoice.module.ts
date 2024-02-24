@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core'
-import { CurrencyMaskModule } from 'ng2-currency-mask'
 // Custom
 import { InvoiceFormComponent } from '../../user-interface/invoice-form/invoice-form.component'
 import { InvoiceListComponent } from '../../user-interface/invoice-list/invoice-list.component'
@@ -14,7 +13,6 @@ import { AadePanelComponent } from '../../user-interface/aade-panel/aade-panel.c
         AadePanelComponent
     ],
     imports: [
-        CurrencyMaskModule,
         SharedModule,
         InvoiceRoutingModule
     ]
