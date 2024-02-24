@@ -37,6 +37,7 @@ const appRoutes: Routes = [
     { path: 'registrars', loadChildren: () => import('../features/reservations/registrars/classes/modules/registrar.module').then(m => m.RegistrarModule) },
     { path: 'schedules', loadChildren: () => import('../features/reservations/schedules/classes/modules/schedule.module').then(m => m.ScheduleModule) },
     { path: 'shipCrews', loadChildren: () => import('../features/reservations/shipCrews/classes/modules/shipCrew.module').then(m => m.ShipCrewModule) },
+    { path: 'crewSpecialties', loadChildren: () => import('../features/reservations/crewSpecialties/classes/modules/crewSpecialty.module').then(m => m.CrewSpecialtyModule) },
     { path: 'shipOwners', loadChildren: () => import('../features/reservations/shipOwners/classes/modules/shipOwner.module').then(m => m.ShipOwnerModule) },
     { path: 'shipRoutes', loadChildren: () => import('../features/reservations/shipRoutes/classes/modules/shipRoute.module').then(m => m.ShipRouteModule) },
     { path: 'ships', loadChildren: () => import('../features/reservations/ships/classes/modules/ship.module').then(m => m.ShipModule) },

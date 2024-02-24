@@ -28,6 +28,10 @@
         "description": "Οδηγοί"
     },
     {
+        "id": "crewSpecialties",
+        "description": "Ειδικότητες πληρωμάτων"
+    },
+    {
         "id": "customers",
         "description": "Πελάτες"
     },

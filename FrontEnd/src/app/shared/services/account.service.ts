@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators'
 // Custom
 import { ChangePasswordViewModel } from './../../features/reservations/users/classes/view-models/change-password-view-model'
 import { CoachRouteService } from './../../features/reservations/coachRoutes/classes/services/coachRoute.service'
+import { CrewSpecialtyHttpService } from './../../features/reservations/crewSpecialties/classes/services/crewSpecialty-http.service'
 import { CryptoService } from './crypto.service'
 import { CustomerHttpService } from '../../features/reservations/customers/classes/services/customer-http.service'
 import { DestinationService } from './../../features/reservations/destinations/classes/services/destination.service'
@@ -22,9 +23,9 @@ import { PickupPointService } from './../../features/reservations/pickupPoints/c
 import { PortService } from './../../features/reservations/ports/classes/services/port.service'
 import { ResetPasswordViewModel } from './../../features/reservations/users/classes/view-models/reset-password-view-model'
 import { SessionStorageService } from './session-storage.service'
+import { ShipHttpService } from '../../features/reservations/ships/classes/services/ship-http.service'
 import { ShipOwnerHttpService } from '../../features/reservations/shipOwners/classes/services/shipOwner-http.service'
 import { ShipRouteService } from './../../features/reservations/shipRoutes/classes/services/shipRoute.service'
-import { ShipHttpService } from '../../features/reservations/ships/classes/services/ship-http.service'
 import { TaxOfficeService } from './../../features/billing/taxOffices/classes/services/taxOffice.service'
 import { VatRegimeService } from 'src/app/features/billing/vatRegimes/services/vatRegime-http.service'
 import { environment } from '../../../environments/environment'
@@ -42,7 +43,7 @@ export class AccountService extends HttpDataService {
 
     //#endregion
 
-    constructor(httpClient: HttpClient, private coachRouteService: CoachRouteService, private cryptoService: CryptoService, private customerHttpService: CustomerHttpService, private destinationService: DestinationService, private dexieService: DexieService, private documentTypeHttpService: DocumentTypeHttpService, private driverService: DriverService, private genderService: GenderService, private interactionService: InteractionService, private nationalityService: NationalityService, private ngZone: NgZone, private paymentMethodService: PaymentMethodHttpService, private pickupPointService: PickupPointService, private portService: PortService, private router: Router, private sessionStorageService: SessionStorageService, private shipOwnerService: ShipOwnerHttpService, private shipRouteService: ShipRouteService, private shipService: ShipHttpService, private taxOfficeService: TaxOfficeService, private vatRegimeService: VatRegimeService) {
+    constructor(httpClient: HttpClient, private crewSpecialtyHttpService: CrewSpecialtyHttpService, private coachRouteService: CoachRouteService, private cryptoService: CryptoService, private customerHttpService: CustomerHttpService, private destinationService: DestinationService, private dexieService: DexieService, private documentTypeHttpService: DocumentTypeHttpService, private driverService: DriverService, private genderService: GenderService, private interactionService: InteractionService, private nationalityService: NationalityService, private ngZone: NgZone, private paymentMethodService: PaymentMethodHttpService, private pickupPointService: PickupPointService, private portService: PortService, private router: Router, private sessionStorageService: SessionStorageService, private shipOwnerService: ShipOwnerHttpService, private shipRouteService: ShipRouteService, private shipService: ShipHttpService, private taxOfficeService: TaxOfficeService, private vatRegimeService: VatRegimeService) {
         super(httpClient, environment.apiUrl)
     }
 
@@ -86,6 +87,7 @@ export class AccountService extends HttpDataService {
             { 'item': 'registrarList-filters', 'when': 'always' }, { 'item': 'registrarList-id', 'when': 'always' }, { 'item': 'registrarList-scrollTop', 'when': 'always' },
             { 'item': 'scheduleList-filters', 'when': 'always' }, { 'item': 'scheduleList-id', 'when': 'always' }, { 'item': 'scheduleList-scrollTop', 'when': 'always' },
             { 'item': 'shipCrewList-filters', 'when': 'always' }, { 'item': 'shipCrewList-id', 'when': 'always' }, { 'item': 'shipCrewList-scrollTop', 'when': 'always' },
+            { 'item': 'crewSpecialtyList-filters', 'when': 'always' }, { 'item': 'crewSpecialtyList-id', 'when': 'always' }, { 'item': 'crewSpecialtyList-scrollTop', 'when': 'always' },
             { 'item': 'shipList-filters', 'when': 'always' }, { 'item': 'shipList-id', 'when': 'always' }, { 'item': 'shipList-scrollTop', 'when': 'always' },
             { 'item': 'shipOwnerList-filters', 'when': 'always' }, { 'item': 'shipOwnerList-id', 'when': 'always' }, { 'item': 'shipOwnerList-scrollTop', 'when': 'always' },
             { 'item': 'shipRouteList-filters', 'when': 'always' }, { 'item': 'shipRouteList-id', 'when': 'always' }, { 'item': 'shipRouteList-scrollTop', 'when': 'always' },
@@ -161,8 +163,9 @@ export class AccountService extends HttpDataService {
     }
 
     private populateDexieFromAPI(): void {
-        this.dexieService.populateTable('coachRoutes', this.coachRouteService)
         this.dexieService.populateNewTable('customers', this.customerHttpService)
+        this.dexieService.populateTable('coachRoutes', this.coachRouteService)
+        this.dexieService.populateTable('crewSpecialties', this.crewSpecialtyHttpService)
         this.dexieService.populateTable('destinations', this.destinationService)
         this.dexieService.populateTable('documentTypes', this.documentTypeHttpService)
         this.dexieService.populateTable('drivers', this.driverService)

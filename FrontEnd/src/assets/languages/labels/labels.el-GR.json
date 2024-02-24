@@ -3012,5 +3012,59 @@
                 "description": "Σύνολα λιμανιών"
             }
         ]
+    },
+    {
+        "feature": "crewSpecialtyList",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Ειδικότητες πληρωμάτων"
+            },
+            {
+                "id": "headerIsActive",
+                "description": "Ενεργός"
+            },
+            {
+                "id": "headerDescription",
+                "description": "Περιγραφή"
+            },
+            {
+                "id": "newRecord",
+                "description": "Νεα εγγραφη"
+            }
+        ]
+    },
+    {
+        "feature": "crewSpecialtyForm",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Ειδικότητα πληρώματος"
+            },
+            {
+                "id": "description",
+                "description": "Περιγραφή"
+            },
+            {
+                "id": "isActive",
+                "description": "Ενεργός"
+            },
+            {
+                "id": "post",
+                "description": "Αρχική καταχώριση"
+            },
+            {
+                "id": "put",
+                "description": "Τελευταία ενημέρωση"
+            },
+            {
+                "id": "deleteButton",
+                "description": "Διαγραφη"
+            },
+            {
+                "id": "saveButton",
+                "description": "Αποθηκευση"
+            }
+        ]
     }
-]
+]       

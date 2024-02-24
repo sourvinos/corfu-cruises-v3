@@ -2952,5 +2952,59 @@
                 "description": "Σύνολα λιμανιών"
             }
         ]
+    },
+    {
+        "feature": "crewSpecialtyList",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Crew specialties"
+            },
+            {
+                "id": "headerIsActive",
+                "description": "Active"
+            },
+            {
+                "id": "headerDescription",
+                "description": "Description"
+            },
+            {
+                "id": "newRecord",
+                "description": "New password"
+            }
+        ]
+    },
+    {
+        "feature": "crewSpecialtyForm",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Crew specialty"
+            },
+            {
+                "id": "description",
+                "description": "Description"
+            },
+            {
+                "id": "isActive",
+                "description": "Active"
+            },
+            {
+                "id": "post",
+                "description": "Initial entry"
+            },
+            {
+                "id": "put",
+                "description": "Last update"
+            },
+            {
+                "id": "deleteButton",
+                "description": "Delete"
+            },
+            {
+                "id": "saveButton",
+                "description": "Save"
+            }
+        ]
     }
 ]

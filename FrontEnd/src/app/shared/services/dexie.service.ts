@@ -10,6 +10,7 @@ export class DexieService extends Dexie {
         super('DexieDB')
         this.version(1).stores({
             coachRoutes: 'id, abbreviation, isActive',
+            crewSpecialties: 'id, description, isActive',
             customers: 'id, abbreviation, description, isActive',
             destinations: 'id, description, isActive',
             documentTypes: 'id, abbreviation, description, batch, lastDate, lastNo, isMyData, table8_1, table8_8, table8_9, isActive',
