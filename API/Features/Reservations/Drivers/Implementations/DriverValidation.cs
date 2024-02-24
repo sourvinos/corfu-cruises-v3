@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 
-namespace API.Features.Reservations.Drivers{
+namespace API.Features.Reservations.Drivers {
 
     public class DriverValidation : Repository<Driver>, IDriverValidation {
 

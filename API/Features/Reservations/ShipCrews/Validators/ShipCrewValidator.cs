@@ -10,6 +10,7 @@ namespace API.Features.Reservations.ShipCrews {
             RuleFor(x => x.GenderId).NotEmpty();
             RuleFor(x => x.NationalityId).NotEmpty();
             RuleFor(x => x.ShipId).NotEmpty();
+            RuleFor(x => x.SpecialtyId).NotEmpty();
             // Fields
             RuleFor(x => x.Lastname).NotEmpty().MaximumLength(128);
             RuleFor(x => x.Firstname).NotEmpty().MaximumLength(128);

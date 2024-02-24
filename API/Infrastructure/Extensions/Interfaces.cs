@@ -8,6 +8,7 @@ using API.Features.Billing.VatRegimes;
 using API.Features.Reservations.Availability;
 using API.Features.Reservations.Boarding;
 using API.Features.Reservations.CoachRoutes;
+using API.Features.Reservations.CrewSpecialties;
 using API.Features.Reservations.Customers;
 using API.Features.Reservations.Destinations;
 using API.Features.Reservations.Drivers;
@@ -39,6 +40,7 @@ namespace API.Infrastructure.Extensions {
             #region reservations
             // Tables
             services.AddTransient<ICoachRouteRepository, CoachRouteRepository>();
+            services.AddTransient<ICrewSpecialtyRepository, CrewSpecialtyRepository>();
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IDestinationRepository, DestinationRepository>();
             services.AddTransient<IDriverRepository, DriverRepository>();
@@ -66,16 +68,17 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IReservationSendToEmail, ReservationSendToEmail>();
             // Validations
             services.AddTransient<ICoachRouteValidation, CoachRouteValidation>();
+            services.AddTransient<ICrewSpecialtyValidation, CrewSpecialtyValidation>();
             services.AddTransient<ICustomerValidation, CustomerValidation>();
             services.AddTransient<IDestinationValidation, DestinationValidation>();
             services.AddTransient<IDriverValidation, DriverValidation>();
             services.AddTransient<IGenderValidation, GenderValidation>();
             services.AddTransient<INationalityValidation, NationalityValidation>();
-            services.AddTransient<IReservationParameterValidation, ParameterValidation>();
-            services.AddTransient<IReservationParametersRepository, ParametersRepository>();
             services.AddTransient<IPickupPointValidation, PickupPointValidation>();
             services.AddTransient<IPortValidation, PortValidation>();
             services.AddTransient<IRegistrarValidation, RegistrarValidation>();
+            services.AddTransient<IReservationParameterValidation, ParameterValidation>();
+            services.AddTransient<IReservationParametersRepository, ParametersRepository>();
             services.AddTransient<IReservationValidation, ReservationValidation>();
             services.AddTransient<IScheduleValidation, ScheduleValidation>();
             services.AddTransient<IShipCrewValidation, ShipCrewValidation>();

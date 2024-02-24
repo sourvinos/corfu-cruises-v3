@@ -6,6 +6,7 @@ using API.Features.Billing.Prices;
 using API.Features.Billing.TaxOffices;
 using API.Features.Billing.VatRegimes;
 using API.Features.Reservations.CoachRoutes;
+using API.Features.Reservations.CrewSpecialties;
 using API.Features.Reservations.Customers;
 using API.Features.Reservations.Destinations;
 using API.Features.Reservations.Drivers;
@@ -37,7 +38,8 @@ namespace API.Infrastructure.Classes {
         #region DbSets - Reservations
 
         public DbSet<CoachRoute> CoachRoutes { get; set; }
-        public DbSet<Features.Reservations.Customers.Customer> Customers { get; set; }
+        public DbSet<CrewSpecialty> CrewSpecialties { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<Destination> Destinations { get; set; }
         public DbSet<Driver> Drivers { get; set; }
         public DbSet<Gender> Genders { get; set; }
@@ -87,6 +89,7 @@ namespace API.Infrastructure.Classes {
         private static void ApplyConfigurations(ModelBuilder modelBuilder) {
             #region reservations
             modelBuilder.ApplyConfiguration(new CoachRoutesConfig());
+            modelBuilder.ApplyConfiguration(new CrewSpecialtiesConfig());
             modelBuilder.ApplyConfiguration(new CustomersConfig());
             modelBuilder.ApplyConfiguration(new DestinationsConfig());
             modelBuilder.ApplyConfiguration(new DriversConfig());
