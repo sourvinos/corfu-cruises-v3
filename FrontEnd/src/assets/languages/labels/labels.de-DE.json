@@ -1486,6 +1486,10 @@
                 "description": "K"
             },
             {
+                "id": "createInvoiceButton",
+                "description": "Ausstellung einer Rechnung"
+            },
+            {
                 "id": "createPdfButton",
                 "description": "PDF erstellen"
             },

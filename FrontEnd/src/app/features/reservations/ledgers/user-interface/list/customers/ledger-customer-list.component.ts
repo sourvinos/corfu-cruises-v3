@@ -12,6 +12,8 @@ import { LedgerVM } from '../../../classes/view-models/list/ledger-vm'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
+import { MatDialog } from '@angular/material/dialog'
+import { InvoiceDialogComponent } from '../invoice-dialog/invoice-dialog.component'
 
 @Component({
     selector: 'ledger-customer-list',
@@ -28,19 +30,20 @@ export class LedgerCustomerListComponent {
     public feature = 'ledgerList'
     public featureIcon = 'ledgers'
     public icon = 'arrow_back'
-    public parentUrl = '/ledgers'
+    public parentUrl = '/reservation-ledgers'
     public records: LedgerVM[] = []
     public criteriaPanels: LedgerCriteriaVM
 
     //#endregion
 
-    //#region specific #1
+    //#region specific
 
     public remarksRowVisibility: boolean
+    private selectedReservations: []
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private dialogService: DialogService, private helperService: HelperService, private interactionService: InteractionService, private ledgerPdfService: LedgerPDFService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private dialogService: DialogService, private helperService: HelperService, private interactionService: InteractionService, private ledgerPdfService: LedgerPDFService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
 
@@ -57,8 +60,22 @@ export class LedgerCustomerListComponent {
 
     //#region public methods
 
+    public doStuff(ports): void {
+        this.selectedReservations = ports
+        console.log('exported', ports)
+    }
+
     public collapseAll(): void {
         this.helperService.toggleExpansionPanel(this.panels, false)
+    }
+
+    public doBillingTasks(): void {
+        this.dialog.open(InvoiceDialogComponent, {
+            data: this.selectedReservations,
+            panelClass: 'dialog',
+            height: '791px',
+            width: '1150px'
+        })
     }
 
     public exportSelected(customer: LedgerVM): void {

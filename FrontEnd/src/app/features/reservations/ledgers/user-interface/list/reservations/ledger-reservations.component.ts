@@ -1,10 +1,13 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
+import { HelperService } from 'src/app/shared/services/helper.service'
 import { LedgerVM } from '../../../classes/view-models/list/ledger-vm'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { LedgerReservationVM } from '../../../classes/view-models/list/ledger-reservation-vm'
+import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
 @Component({
     selector: 'ledger-customer-reservations',
@@ -19,11 +22,14 @@ export class LedgerCustomerReservationListComponent {
     @Input() customer: LedgerVM
     @Input() remarksRowVisibility: boolean
 
+    public selectedRecords: LedgerReservationVM[] = []
     private feature = 'ledgerList'
+    private perPort: PerPort[]
+    @Output() outputSelected = new EventEmitter()
 
     //#endregion
 
-    constructor(private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private messageLabelService: MessageLabelService) { }
+    constructor(private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private messageLabelService: MessageLabelService) { }
 
     //#region public methods
 
@@ -47,10 +53,121 @@ export class LedgerCustomerReservationListComponent {
         return remarks.length > 0 ? true : false
     }
 
+    public highlightRow(id: any): void {
+        this.helperService.highlightRow(id)
+    }
+
     public showRemarks(remarks: string): void {
         this.dialogService.open(remarks, 'info', ['ok'])
     }
 
+    public onCalculate(): void {
+        this.initPortsArray()
+        this.populatePorts()
+        this.outputSelected.emit(this.perPort)
+    }
+
     //#endregion
+
+    //#region private methods
+
+    private initPortsArray(): void {
+        this.perPort = [
+            {
+                customer: {
+                    id: this.customer.customer.id,
+                    description: this.customer.customer.description,
+                    isActive: this.customer.customer.isActive
+                },
+                destination: {
+                    id: this.selectedRecords[0].destination.id,
+                    description: this.selectedRecords[0].destination.description,
+                    isActive: true
+                },
+                port: {
+                    id: 1,
+                    description: 'CP',
+                    isActive: true
+                },
+                adultsWithTransfer: 0,
+                adultsWithoutTransfer: 0,
+                kidsWithTransfer: 0,
+                kidsWithoutTransfer: 0,
+                freeWithTransfer: 0,
+                freeWithoutTransfer: 0,
+                total: 0
+            }, {
+                customer: {
+                    id: this.customer.customer.id,
+                    description: this.customer.customer.description,
+                    isActive: this.customer.customer.isActive
+                },
+                destination: {
+                    id: 1,
+                    description: '',
+                    isActive: true
+                },
+                port: {
+                    id: 1,
+                    description: 'LP',
+                    isActive: true
+                },
+                adultsWithTransfer: 0,
+                adultsWithoutTransfer: 0,
+                kidsWithTransfer: 0,
+                kidsWithoutTransfer: 0,
+                freeWithTransfer: 0,
+                freeWithoutTransfer: 0,
+                total: 0
+            }
+        ]
+    }
+
+    private populatePorts(): void {
+        this.selectedRecords.forEach(record => {
+            if (record.port.id == 1) {
+                if (record.hasTransfer) {
+                    this.perPort[0].adultsWithTransfer += record.adults
+                    this.perPort[0].kidsWithTransfer += record.kids
+                    this.perPort[0].freeWithTransfer += record.free
+                } else {
+                    this.perPort[0].adultsWithoutTransfer += record.adults
+                    this.perPort[0].kidsWithoutTransfer += record.kids
+                    this.perPort[0].freeWithoutTransfer += record.free
+                }
+                this.perPort[0].total += record.adults + record.kids + record.free
+            }
+            if (record.port.id == 2) {
+                if (record.hasTransfer) {
+                    this.perPort[1].adultsWithTransfer += record.adults
+                    this.perPort[1].kidsWithTransfer += record.kids
+                    this.perPort[1].freeWithTransfer += record.free
+                } else {
+                    this.perPort[1].adultsWithoutTransfer += record.adults
+                    this.perPort[1].kidsWithoutTransfer += record.kids
+                    this.perPort[1].freeWithoutTransfer += record.free
+                }
+                this.perPort[1].total += record.adults + record.kids + record.free
+            }
+        })
+        console.log(this.perPort)
+    }
+
+    //#endregion
+
+}
+
+export interface PerPort {
+
+    customer: SimpleEntity
+    destination: SimpleEntity
+    port: SimpleEntity
+    adultsWithTransfer: number
+    adultsWithoutTransfer: number
+    kidsWithTransfer: number
+    kidsWithoutTransfer: number
+    freeWithTransfer: 0
+    freeWithoutTransfer: 0
+    total: 0
 
 }

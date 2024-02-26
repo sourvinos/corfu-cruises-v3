@@ -1,0 +1,92 @@
+* {
+    box-sizing: border-box !important;
+}
+
+#dialog {
+    background-color: var(--color-background);
+    padding: 1rem;
+}
+
+#dialog-content {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: 0 1rem;
+    height: 100%;
+    padding: 0 2rem 0 2rem;
+    width: 100%;
+}
+
+#dialog-footer {
+    border-top: 0.0625rem solid var(--color-dialog-areas-seperator);
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0 1rem 0;
+    width: 100%;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+}
+
+#header {
+    display: flex;
+    column-gap: 0.5rem;
+    width: fit-content;
+}
+
+#ports {
+    display: flex;
+    column-gap: 0.5rem;
+}
+
+.port {
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+}
+
+.port-totals {
+    width: 21.7%;
+}
+
+/* .per-age-group {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+} */
+
+.per-age-group .header {
+    color: var(--color-text);
+    font-family: var(--font-family-asty);
+    font-size: 0.75rem;
+    font-weight: 300;
+    margin: 0 0 0.5rem 0.5rem;
+}
+
+/* .per-age-group .full-width {
+    width: 100%;
+} */
+
+.group-input-field {
+    column-gap: 0.5rem;
+    display: flex;
+}
+
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+    opacity: 0 !important;
+}
+
+.mat-dialog-container {
+    padding: 2rem !important;
+}
+
+.mat-mdc-dialog-actions {
+    border: none;
+    justify-content: center;
+    margin: 0;
+    min-height: 0 !important;
+    padding: 0;
+}

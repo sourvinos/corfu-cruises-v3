@@ -1486,6 +1486,10 @@
                 "description": "R"
             },
             {
+                "id": "createInvoiceButton",
+                "description": "Invoice issue"
+            },
+            {
                 "id": "createPdfButton",
                 "description": "Create PDF"
             },

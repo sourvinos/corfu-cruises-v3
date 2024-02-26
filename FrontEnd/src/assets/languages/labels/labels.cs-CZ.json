@@ -1486,6 +1486,10 @@
                 "description": "K"
             },
             {
+                "id": "createInvoiceButton",
+                "description": "Vystavení faktury"
+            },
+            {
                 "id": "createPdfButton",
                 "description": "Vytvořit PDF"
             },

@@ -144,7 +144,7 @@ export class LedgerCriteriaComponent {
     }
 
     private navigateToList(): void {
-        this.router.navigate(['ledgers/list'])
+        this.router.navigate(['reservation-ledgers/list'])
     }
 
     private populateDropdowns(): void {

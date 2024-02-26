@@ -1486,6 +1486,10 @@
                 "description": "Σ"
             },
             {
+                "id": "createInvoiceButton",
+                "description": "Εκδοση τιμολογιου"
+            },
+            {
                 "id": "createPdfButton",
                 "description": "Δημιουργια PDF"
             },
@@ -3067,4 +3071,4 @@
             }
         ]
     }
-]       
+]
