@@ -14,9 +14,9 @@
                     <date-picker (outputValue)="patchFormWithSelectedDate($event)" [isAdminOrNewRecord]=true [label]="getLabel('date')" [parentDate]="getDate()" [readOnly]=false [showHint]=false></date-picker>
                 </div>
                 <div class="group-input-field">
-                    <criteria-fieldset-radios (outputSelected)="patchFormWithSelectedArrays($event,'selectedDestinations')" [array]="destinations" [caption]="'destinations'" [feature]="feature" [selected]="selectedDestinations"></criteria-fieldset-radios>
-                    <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedPorts')" [array]="ports" [caption]="'ports'" [feature]="feature" [selected]="selectedPorts"></criteria-fieldset-checkboxes>
-                    <criteria-fieldset-radios (outputSelected)="patchFormWithSelectedArrays($event,'selectedShips')" [array]="ships" [caption]="'ships'" [feature]="feature" [selected]="selectedShips"></criteria-fieldset-radios>
+                    <criteria-fieldset-radios (outputSelected)="patchFormWithSelectedArrays($event,'selectedDestinations')" [array]="destinationsCriteria" [caption]="'destinations'" [feature]="feature" [selected]="selectedDestinations"></criteria-fieldset-radios>
+                    <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedPorts')" [array]="portsCriteria" [caption]="'ports'" [feature]="feature" [selected]="selectedPorts"></criteria-fieldset-checkboxes>
+                    <criteria-fieldset-radios (outputSelected)="patchFormWithSelectedArrays($event,'selectedShips')" [array]="shipsCriteria" [caption]="'ships'" [feature]="feature" [selected]="selectedShips"></criteria-fieldset-radios>
                 </div>
             </form>
         </div>

@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core'
 import { catchError, map, of } from 'rxjs'
 // Custom
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
-import { PortService } from '../services/port.service'
+import { PortHttpService } from '../services/port-http.service'
 
 @Injectable({ providedIn: 'root' })
 
 export class PortFormResolver {
 
-    constructor(private portService: PortService) { }
+    constructor(private portService: PortHttpService) { }
 
     resolve(route: ActivatedRouteSnapshot): any {
         return this.portService.getSingle(route.params.id).pipe(

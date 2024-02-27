@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations.Ports {
@@ -8,6 +9,7 @@ namespace API.Features.Reservations.Ports {
 
         Task<IEnumerable<PortListVM>> GetAsync();
         Task<IEnumerable<PortAutoCompleteVM>> GetAutoCompleteAsync();
+        Task<IEnumerable<SimpleEntity>> GetForCriteriaAsync();
         Task<Port> GetByIdAsync(int id);
 
     }

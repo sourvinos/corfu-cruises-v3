@@ -24,13 +24,25 @@ export class DexieService extends Dexie {
             shipRoutes: 'id, description, isActive',
             ships: 'id, description, isActive',
             taxOffices: 'id, description, isActive',
-            vatRegimes: 'id, description, isActive'
+            vatRegimes: 'id, description, isActive',
+            customersCriteria: 'id, description',
+            destinationsCriteria: 'id, description',
+            portsCriteria: 'id, description',
+            shipsCriteria: 'id, description',
         })
         this.delete().then(() => this.open())
     }
 
     public populateTable(table: string, httpService: any): void {
         httpService.getAutoComplete().subscribe((records: any) => {
+            this.table(table)
+                .bulkAdd(records)
+                .catch(Dexie.BulkError, () => { })
+        })
+    }
+
+    public populateCriteria(table: string, httpService: any): void {
+        httpService.getForCriteria().subscribe((records: any) => {
             this.table(table)
                 .bulkAdd(records)
                 .catch(Dexie.BulkError, () => { })

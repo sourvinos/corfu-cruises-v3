@@ -1,3 +1,4 @@
+using API.Infrastructure.Classes;
 using AutoMapper;
 
 namespace API.Features.Reservations.Destinations {
@@ -7,6 +8,7 @@ namespace API.Features.Reservations.Destinations {
         public DestinationMappingProfile() {
             CreateMap<Destination, DestinationListVM>();
             CreateMap<Destination, DestinationAutoCompleteVM>();
+            CreateMap<Destination, SimpleEntity>();
             CreateMap<Destination, DestinationReadDto>();
             CreateMap<DestinationWriteDto, Destination>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))

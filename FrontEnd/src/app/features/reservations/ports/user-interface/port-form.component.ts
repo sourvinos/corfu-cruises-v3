@@ -11,7 +11,7 @@ import { MessageDialogService } from 'src/app/shared/services/message-dialog.ser
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { PortReadDto } from '../classes/dtos/port-read-dto'
-import { PortService } from '../classes/services/port.service'
+import { PortHttpService } from '../classes/services/port-http.service'
 import { PortWriteDto } from '../classes/dtos/port-write-vm'
 
 @Component({
@@ -35,7 +35,7 @@ export class PortFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private portService: PortService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private portService: PortHttpService, private router: Router) { }
 
     //#region lifecycle hooks
 

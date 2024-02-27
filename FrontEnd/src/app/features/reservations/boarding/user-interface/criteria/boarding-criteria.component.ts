@@ -12,6 +12,7 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
+import { SimpleCriteriaEntity } from 'src/app/shared/classes/simple-criteria-entity'
 
 @Component({
     selector: 'boarding-criteria',
@@ -34,12 +35,12 @@ export class BoardingCriteriaComponent {
 
     //#region tables
 
-    public destinations: SimpleEntity[] = []
-    public ports: SimpleEntity[] = []
-    public ships: SimpleEntity[] = []
-    public selectedDestinations: SimpleEntity[] = []
-    public selectedPorts: SimpleEntity[] = []
-    public selectedShips: SimpleEntity[] = []
+    public destinationsCriteria: SimpleCriteriaEntity[]
+    public portsCriteria: SimpleCriteriaEntity[]
+    public shipsCriteria: SimpleCriteriaEntity[]
+    public selectedDestinations: SimpleEntity[]
+    public selectedPorts: SimpleEntity[]
+    public selectedShips: SimpleEntity[]
 
     //#endregion
 
@@ -106,8 +107,7 @@ export class BoardingCriteriaComponent {
         this.criteria[arrayName].forEach((element: any) => {
             x.push(new FormControl({
                 'id': element.id,
-                'description': element.description,
-                'isActive': element.isActive
+                'description': element.description
             }))
         })
     }
@@ -126,9 +126,9 @@ export class BoardingCriteriaComponent {
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('destinations', 'description')
-        this.populateDropdownFromDexieDB('ports', 'description')
-        this.populateDropdownFromDexieDB('ships', 'description')
+        this.populateDropdownFromDexieDB('destinationsCriteria', 'description')
+        this.populateDropdownFromDexieDB('portsCriteria', 'description')
+        this.populateDropdownFromDexieDB('shipsCriteria', 'description')
     }
 
     private populateDropdownFromDexieDB(dexieTable: string, orderBy: string): void {

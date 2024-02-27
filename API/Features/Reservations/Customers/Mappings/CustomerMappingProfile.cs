@@ -15,6 +15,8 @@ namespace API.Features.Reservations.Customers {
                     Description = x.Nationality.Description,
                     IsActive = x.Nationality.IsActive
                 }));
+            CreateMap<Customer, SimpleEntity>()
+                .ForMember(x => x.Description, x => x.MapFrom(x => x.Abbreviation));
             CreateMap<Customer, CustomerReadDto>()
                 .ForMember(x => x.TaxOffice, x => x.MapFrom(x => new SimpleEntity { Id = x.TaxOffice.Id, Description = x.TaxOffice.Description }))
                 .ForMember(x => x.Nationality, x => x.MapFrom(x => new SimpleEntity { Id = x.Nationality.Id, Description = x.Nationality.Description }))

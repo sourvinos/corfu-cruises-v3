@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using API.Infrastructure.Classes;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Responses;
@@ -36,6 +37,12 @@ namespace API.Features.Reservations.Customers {
         [Authorize(Roles = "user, admin")]
         public async Task<IEnumerable<CustomerBrowserStorageVM>> GetForBrowserStorageAsync() {
             return await customerRepo.GetForBrowserStorageAsync();
+        }
+
+        [HttpGet("[action]")]
+        [Authorize(Roles = "user, admin")]
+        public async Task<IEnumerable<SimpleEntity>> GetForCriteriaAsync() {
+            return await customerRepo.GetForCriteriaAsync();
         }
 
         [HttpGet("{id}")]

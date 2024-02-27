@@ -1,3 +1,4 @@
+using API.Infrastructure.Classes;
 using AutoMapper;
 
 namespace API.Features.Reservations.Ports {
@@ -7,6 +8,7 @@ namespace API.Features.Reservations.Ports {
         public PortMappingProfile() {
             CreateMap<Port, PortListVM>();
             CreateMap<Port, PortAutoCompleteVM>();
+            CreateMap<Port, SimpleEntity>();
             CreateMap<Port, PortReadDto>();
             CreateMap<PortWriteDto, Port>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))

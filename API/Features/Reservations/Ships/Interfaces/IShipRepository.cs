@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations.Ships {
@@ -8,6 +9,7 @@ namespace API.Features.Reservations.Ships {
 
         Task<IEnumerable<ShipListVM>> GetAsync();
         Task<IEnumerable<ShipBrowserStorageVM>> GetForBrowserStorageAsync();
+        Task<IEnumerable<SimpleEntity>> GetForCriteriaAsync();
         Task<Ship> GetByIdAsync(int id, bool includeTables);
 
     }

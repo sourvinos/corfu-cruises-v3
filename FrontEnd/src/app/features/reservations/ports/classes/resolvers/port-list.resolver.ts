@@ -3,13 +3,13 @@ import { Observable, of } from 'rxjs'
 import { catchError, map } from 'rxjs/operators'
 // Custom
 import { ListResolved } from 'src/app/shared/classes/list-resolved'
-import { PortService } from '../services/port.service'
+import { PortHttpService } from '../services/port-http.service'
 
 @Injectable({ providedIn: 'root' })
 
 export class PortListResolver {
 
-    constructor(private portService: PortService) { }
+    constructor(private portService: PortHttpService) { }
 
     resolve(): Observable<ListResolved> {
         return this.portService.getAll().pipe(

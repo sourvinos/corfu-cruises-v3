@@ -154,6 +154,10 @@
     padding-left: 0 !important;
 }
 
+.p-datatable .p-datatable-tbody > tr > td > span.no-right-padding {
+    padding-right: 0 !important;
+}
+
 .p-datatable .p-datatable-tbody > tr > td > span.monotype {
     font-family: var(--font-family-ubuntu) !important;
 }

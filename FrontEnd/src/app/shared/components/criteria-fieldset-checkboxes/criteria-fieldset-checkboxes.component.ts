@@ -5,6 +5,7 @@ import { EmojiService } from '../../services/emoji.service'
 import { HelperService } from '../../services/helper.service'
 import { MessageLabelService } from '../../services/message-label.service'
 import { SimpleEntity } from '../../classes/simple-entity'
+import { SimpleCriteriaEntity } from '../../classes/simple-criteria-entity'
 
 @Component({
     selector: 'criteria-fieldset-checkboxes',
@@ -16,13 +17,13 @@ export class CriteriaFieldsetCheckboxesComponent {
 
     //#region variables
 
-    @Input() array: SimpleEntity[]
+    @Input() array: SimpleCriteriaEntity[]
     @Input() caption: string
     @Input() feature: string
     @Input() selected: SimpleEntity[]
     @Output() outputSelected = new EventEmitter()
 
-    public localSelected: SimpleEntity[]
+    public localSelected: SimpleCriteriaEntity[]
     public form: FormGroup
 
     //#endregion

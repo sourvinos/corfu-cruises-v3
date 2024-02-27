@@ -3,7 +3,7 @@ import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 // Custom
 import { DestinationReadDto } from '../classes/dtos/destination-read-dto'
-import { DestinationService } from '../classes/services/destination.service'
+import { DestinationHttpService } from '../classes/services/destination-http.service'
 import { DestinationWriteDto } from '../classes/dtos/destination-write-dto'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
@@ -35,7 +35,7 @@ export class DestinationFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private destinationService: DestinationService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private destinationService: DestinationHttpService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
 

@@ -37,6 +37,14 @@ namespace API.Features.Reservations.Customers {
             return mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerBrowserStorageVM>>(customers);
         }
 
+        public async Task<IEnumerable<SimpleEntity>> GetForCriteriaAsync() {
+            var customers = await context.Customers
+                .AsNoTracking()
+                .OrderBy(x => x.Description)
+                .ToListAsync();
+            return mapper.Map<IEnumerable<Customer>, IEnumerable<SimpleEntity>>(customers);
+        }
+
         public async Task<CustomerBrowserStorageVM> GetByIdForBrowserStorageAsync(int id) {
             var record = await context.Customers
                 .AsNoTracking()

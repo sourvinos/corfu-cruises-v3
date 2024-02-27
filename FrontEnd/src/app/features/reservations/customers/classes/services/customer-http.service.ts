@@ -4,6 +4,7 @@ import { Observable } from 'rxjs'
 // Custom
 import { CustomerBrowserStorageVM } from '../view-models/customer-browser-storage-vm'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
+import { SimpleCriteriaEntity } from 'src/app/shared/classes/simple-criteria-entity'
 import { environment } from 'src/environments/environment'
 
 @Injectable({ providedIn: 'root' })
@@ -18,6 +19,10 @@ export class CustomerHttpService extends HttpDataService {
 
     public getBrowserStorage(): Observable<CustomerBrowserStorageVM[]> {
         return this.http.get<CustomerBrowserStorageVM[]>(environment.apiUrl + '/customers/getForBrowserStorage')
+    }
+
+    public getForCriteria(): Observable<SimpleCriteriaEntity[]> {
+        return this.http.get<SimpleCriteriaEntity[]>(environment.apiUrl + '/customers/getForCriteria')
     }
 
     //#endregion

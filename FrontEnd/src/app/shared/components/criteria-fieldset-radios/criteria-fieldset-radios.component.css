@@ -49,3 +49,7 @@ fieldset legend span {
 input::placeholder {
     color: var(--color-text);
 }
+
+.extra-padding {
+    padding-top: 11px !important;
+}
