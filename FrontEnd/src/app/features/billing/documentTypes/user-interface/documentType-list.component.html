@@ -38,7 +38,7 @@
                     </tr>
                 </ng-template>
                 <ng-template let-record pTemplate="body">
-                    <tr (click)="onHighlightRow(record.id)" (dblclick)="onEditRecord(record.id)" [attr.id]=record.id class="without-footer" style="height: 32px;">
+                    <tr (click)="onHighlightRow(record.id)" (dblclick)="onEditRecord(record.id)" [attr.id]=record.id style="height: 32px;">
                         <td class="width-5"><span class="center no-left-padding" style="font-size: 0.5rem; padding-top: 0 !important;">{{ getEmoji(record.isActive) }}</span></td>
                         <td class="width-20"><span>{{ record.description }}</span></td>
                         <td class="width-5"><span class="center">{{ record.batch }}</span></td>

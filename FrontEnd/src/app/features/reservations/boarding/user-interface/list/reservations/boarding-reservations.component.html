@@ -128,7 +128,7 @@
                     </tr>
                 </ng-template>
                 <ng-template let-reservation pTemplate="body">
-                    <tr (click)="highlightRow(reservation.refNo)" (dblclick)="showPassengers(reservation)" [attr.id]=reservation.refNo class="without-footer" style="height: 32px;">
+                    <tr (click)="highlightRow(reservation.refNo)" (dblclick)="showPassengers(reservation)" [attr.id]=reservation.refNo style="height: 32px;">
                         <td class="width-4">
                             <span class="center">
                                 <span style="margin-top: -0.125rem; font-size: 0.5rem;">{{ getBoardingStatusIcon(reservation.boardingStatus) }}</span>

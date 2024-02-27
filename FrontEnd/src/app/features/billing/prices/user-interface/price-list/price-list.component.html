@@ -72,7 +72,7 @@
                     </tr>
                 </ng-template>
                 <ng-template let-record pTemplate="body">
-                    <tr (click)="highlightRow(record.id)" (dblclick)="editRecord(record.id)" [attr.id]=record.id class="without-footer" style="height: 32px;">
+                    <tr (click)="highlightRow(record.id)" (dblclick)="editRecord(record.id)" [attr.id]=record.id style="height: 32px;">
                         <td class="width-3"><span class="no-left-padding center" style="padding-top: 0.25rem !important;"><p-tableCheckbox [value]="record"></p-tableCheckbox></span></td>
                         <td class="width-15"><span>{{ record.customer.description }}</span></td>
                         <td class="width-15"><span>{{ record.destination.description }}</span></td>
