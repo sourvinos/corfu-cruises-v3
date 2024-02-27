@@ -1,27 +1,27 @@
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Component, Inject, NgZone } from '@angular/core'
+import { Component, Inject } from '@angular/core'
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
-// Custom
-import { HelperService } from 'src/app/shared/services/helper.service'
-import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
-import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { ValidationService } from 'src/app/shared/services/validation.service'
-import { CustomerAutoCompleteVM } from 'src/app/features/reservations/customers/classes/view-models/customer-autocomplete-vm'
-import { DestinationAutoCompleteVM } from 'src/app/features/reservations/destinations/classes/view-models/destination-autocomplete-vm'
-import { DocumentTypeAutoCompleteVM } from 'src/app/features/billing/documentTypes/classes/view-models/documentType-autocomplete-vm'
-import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
-import { PortAutoCompleteVM } from 'src/app/features/reservations/ports/classes/view-models/port-autocomplete-vm'
-import { ShipAutoCompleteVM } from 'src/app/features/reservations/ships/classes/view-models/ship-autocomplete-vm'
-import { Observable, map, startWith } from 'rxjs'
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
-import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
-import { DexieService } from 'src/app/shared/services/dexie.service'
-import { InvoiceHelperService } from 'src/app/features/billing/invoices/classes/services/invoice.helper.service'
+import { Observable, map, startWith } from 'rxjs'
+// Custom
+import { AadeVM } from 'src/app/features/billing/invoices/classes/view-models/form/aade-vm'
 import { BillingCriteriaVM } from 'src/app/features/billing/invoices/classes/view-models/form/billing-criteria-vm'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
-import { PriceHttpService } from 'src/app/features/billing/prices/classes/services/price-http.service'
+import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
+import { DocumentTypeAutoCompleteVM } from 'src/app/features/billing/documentTypes/classes/view-models/documentType-autocomplete-vm'
+import { HelperService } from 'src/app/shared/services/helper.service'
+import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
+import { InvoiceHelperService } from 'src/app/features/billing/invoices/classes/services/invoice.helper.service'
+import { InvoiceHttpService } from 'src/app/features/billing/invoices/classes/services/invoice-http.service'
+import { InvoiceWriteDto } from 'src/app/features/billing/invoices/classes/dtos/form/invoice-write-dto'
+import { InvoiceXmlHelperService } from 'src/app/features/billing/invoices/classes/services/invoice-xml-helper.service'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
+import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
+import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { PriceHttpService } from 'src/app/features/billing/prices/classes/services/price-http.service'
+import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
+import { ValidationService } from 'src/app/shared/services/validation.service'
 
 @Component({
     selector: 'invoice-dialog.component',
@@ -33,39 +33,24 @@ export class InvoiceDialogComponent {
 
     //#region variables
 
-    private feature = 'invoiceForm'
+    public feature = 'invoiceForm'
+    public featureIcon = 'invoices'
+    public icon = 'arrow_back'
     public form: FormGroup
     public input: InputTabStopDirective
+    public parentUrl = ''
 
     //#endregion
 
     //#region autocompletes
 
     public isAutoCompleteDisabled = true
-    public dropdownCustomers: Observable<CustomerAutoCompleteVM[]>
-    public dropdownDestinations: Observable<DestinationAutoCompleteVM[]>
     public dropdownDocumentTypes: Observable<DocumentTypeAutoCompleteVM[]>
     public dropdownPaymentMethods: Observable<SimpleEntity[]>
-    public dropdownPorts: Observable<PortAutoCompleteVM[]>
-    public dropdownShips: Observable<ShipAutoCompleteVM[]>
 
     //#endregion
 
-    constructor(
-        @Inject(MAT_DIALOG_DATA) public data: any,
-        private dexieService: DexieService,
-        private dateHelperService: DateHelperService,
-        private dialogService: DialogService,
-        private dialogRef: MatDialogRef<InvoiceDialogComponent>,
-        private formBuilder: FormBuilder,
-        private priceHttpService: PriceHttpService,
-        private helperService: HelperService,
-        private messageHintService: MessageInputHintService,
-        private messageLabelService: MessageLabelService,
-        private messageDialogService: MessageDialogService,
-        private invoiceHelperService: InvoiceHelperService,
-        private ngZone: NgZone
-    ) { }
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogRef: MatDialogRef<InvoiceDialogComponent>, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private invoiceXmlHelperService: InvoiceXmlHelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceHttpService: PriceHttpService) { }
 
     //#region lifecycle hooks
 
@@ -73,13 +58,56 @@ export class InvoiceDialogComponent {
         this.initForm()
         this.updateFieldsAfterEmptyDocumentType()
         this.populateDropdowns()
-        this.retrievePrices()
+        this.populateFields()
+        // this.retrievePrices()
         this.onDoCalculations()
     }
 
     //#endregion
 
     //#region public methods
+
+    public retrievePrices(): void {
+        const x: BillingCriteriaVM = {
+            date: this.dateHelperService.formatDateToIso(new Date()),
+            customerId: this.data[0].customer.id,
+            destinationId: this.data[0].destination.id,
+        }
+        if (this.invoiceHelperService.validatePriceRetriever(x)) {
+            this.priceHttpService.retrievePrices(x).subscribe({
+                next: (response: any) => {
+                    if (response.body.length != 2) {
+                        this.dialogService.open(this.messageDialogService.priceRetrieverIsEmpty(), 'question', ['ok'])
+                    } else {
+                        this.form.patchValue({
+                            portA: {
+                                adults_A_PriceWithTransfer: response.body[0].adultsWithTransfer,
+                                adults_A_PriceWithoutTransfer: response.body[0].adultsWithoutTransfer,
+                                kids_A_PriceWithTransfer: response.body[0].kidsWithTransfer,
+                                kids_A_PriceWithoutTransfer: response.body[0].kidsWithoutTransfer,
+                            },
+                            portB: {
+                                adults_B_PriceWithTransfer: response.body[1].adultsWithTransfer,
+                                adults_B_PriceWithoutTransfer: response.body[1].adultsWithoutTransfer,
+                                kids_B_PriceWithTransfer: response.body[1].kidsWithTransfer,
+                                kids_B_PriceWithoutTransfer: response.body[1].kidsWithoutTransfer,
+                            },
+                        })
+                        this.dialogService.open(this.messageDialogService.priceRetrieverIsValid(), 'ok', ['ok'])
+                    }
+                },
+                error: (errorFromInterceptor) => {
+                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                }
+            })
+        } else {
+            this.dialogService.open(this.messageDialogService.priceRetrieverHasErrors(), 'error', ['ok'])
+        }
+    }
+
+    public onSave(): void {
+        this.saveRecord(this.flattenForm())
+    }
 
     public autocompleteFields(fieldName: any, object: any): any {
         return object ? object[fieldName] : undefined
@@ -114,8 +142,21 @@ export class InvoiceDialogComponent {
             this.patchFormWithCalculations(
                 this.invoiceHelperService.calculatePortA(this.form.value),
                 this.invoiceHelperService.calculatePortB(this.form.value),
-                this.invoiceHelperService.calculatePortTotals(this.form.value))
+                this.invoiceHelperService.calculatePortTotals(this.form.value),
+                this.invoiceHelperService.calculateInvoiceSummary(this.form.value))
         }, 2000)
+    }
+
+    public onDoInvoiceCalculations(): void {
+        const grossAmount = parseFloat(this.form.value.portTotals.totalAmount)
+        const vatPercent = parseFloat(this.form.value.vatPercent) / 100
+        const netAmount = grossAmount / (1 + vatPercent)
+        const vatAmount = netAmount * vatPercent
+        this.form.patchValue({
+            netAmount: netAmount.toFixed(2),
+            vatAmount: vatAmount.toFixed(2),
+            grossAmount: grossAmount.toFixed(2)
+        })
     }
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
@@ -136,11 +177,46 @@ export class InvoiceDialogComponent {
         })
     }
 
+    public doSubmitTasks(): void {
+        this.invoiceXmlHelperService.createXmlInvoiceParts(this.form.value).then((response) => {
+            this.invoiceHttpService.upload(this.invoiceXmlHelperService.createXmlInvoiceFromParts(response)).subscribe({
+                next: (response) => {
+                    const document = new DOMParser().parseFromString(response.body.response, 'text/xml')
+                    const uId = document.querySelector('invoiceUid').innerHTML
+                    const mark = document.querySelector('invoiceMark').innerHTML
+                    const qrUrl = document.querySelector('qrUrl').innerHTML
+                    const x: AadeVM = {
+                        invoiceId: response.body.invoiceId,
+                        uId: uId,
+                        mark: mark,
+                        markCancel: '',
+                        qrUrl: qrUrl
+                    }
+                    this.invoiceHttpService.updateInvoiceAade(x).subscribe({
+                        next: () => {
+                            this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                        },
+                        error: (errorFromInterceptor) => {
+                            this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                        }
+                    })
+                },
+                error: (errorFromInterceptor) => {
+                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                }
+            })
+        })
+    }
+
     //#endregion
 
     //#region private methods
 
-    private patchFormWithCalculations(calculationsA: any, calculationsB: any, calculationTotals: any): void {
+    private flattenForm(): InvoiceWriteDto {
+        return this.invoiceHelperService.flattenForm(this.form.value)
+    }
+
+    private patchFormWithCalculations(calculationsA: any, calculationsB: any, calculationTotals: any, invoiceSummary: any): void {
         this.form.patchValue({
             portA: {
                 adults_A_AmountWithTransfer: calculationsA.adults_A_AmountWithTransfer,
@@ -171,16 +247,17 @@ export class InvoiceDialogComponent {
                 free_Total_WithoutTransfer: calculationTotals.freeWithoutTransfer,
                 total_Persons: calculationTotals.totalPersons,
                 total_Amount: calculationTotals.totalAmount
-            }
+            },
+            netAmount: invoiceSummary.netAmount,
+            vatPercent: invoiceSummary.vatPercent,
+            vatAmount: invoiceSummary.vatAmount,
+            grossAmount: invoiceSummary.grossAmount
         })
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', ['id', 'abbreviation', 'isActive'], 'abbreviation', 'abbreviation')
-        this.populateDropdownFromDexieDB('destinations', 'dropdownDestinations', 'destination', ['id', 'description', 'isActive'], 'description', 'description')
         this.populateDropdownFromDexieDB('documentTypes', 'dropdownDocumentTypes', 'documentType', ['id', 'abbreviation', 'description', 'batch', 'lastNo', 'isActive'], 'abbreviation', 'abbreviation')
         this.populateDropdownFromDexieDB('paymentMethods', 'dropdownPaymentMethods', 'paymentMethod', ['id', 'description', 'isActive'], 'description', 'description')
-        this.populateDropdownFromDexieDB('ships', 'dropdownShips', 'ship', ['id', 'description', 'isActive'], 'description', 'description')
     }
 
     private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperties: string[], orderBy: string, lookupField: string): void {
@@ -210,7 +287,7 @@ export class InvoiceDialogComponent {
     private initForm(): void {
         this.form = this.formBuilder.group({
             invoiceId: '',
-            date: ['', [Validators.required]],
+            date: [new Date(), [Validators.required]],
             customer: [''],
             destination: [''],
             documentType: ['', [Validators.required, ValidationService.RequireAutocomplete]],
@@ -286,42 +363,18 @@ export class InvoiceDialogComponent {
         })
     }
 
-    public retrievePrices(): void {
-        const x: BillingCriteriaVM = {
-            date: this.dateHelperService.formatDateToIso(new Date()),
-            customerId: this.data[0].customer.id,
-            destinationId: this.data[0].destination.id,
-        }
-        if (this.invoiceHelperService.validatePriceRetriever(x)) {
-            this.priceHttpService.retrievePrices(x).subscribe({
-                next: (response: any) => {
-                    if (response.body.length != 2) {
-                        this.dialogService.open(this.messageDialogService.priceRetrieverIsEmpty(), 'question', ['ok'])
-                    } else {
-                        this.form.patchValue({
-                            portA: {
-                                adults_A_PriceWithTransfer: response.body[0].adultsWithTransfer,
-                                adults_A_PriceWithoutTransfer: response.body[0].adultsWithoutTransfer,
-                                kids_A_PriceWithTransfer: response.body[0].kidsWithTransfer,
-                                kids_A_PriceWithoutTransfer: response.body[0].kidsWithoutTransfer,
-                            },
-                            portB: {
-                                adults_B_PriceWithTransfer: response.body[1].adultsWithTransfer,
-                                adults_B_PriceWithoutTransfer: response.body[1].adultsWithoutTransfer,
-                                kids_B_PriceWithTransfer: response.body[1].kidsWithTransfer,
-                                kids_B_PriceWithoutTransfer: response.body[1].kidsWithoutTransfer,
-                            },
-                        })
-                        this.dialogService.open(this.messageDialogService.priceRetrieverIsValid(), 'ok', ['ok'])
-                    }
-                },
-                error: (errorFromInterceptor) => {
-                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                }
-            })
-        } else {
-            this.dialogService.open(this.messageDialogService.priceRetrieverHasErrors(), 'error', ['ok'])
-        }
+    private saveRecord(invoice: InvoiceWriteDto): void {
+        this.invoiceHttpService.save(invoice).subscribe({
+            next: (response) => {
+                this.form.patchValue({
+                    invoiceId: response.id
+                })
+                this.doSubmitTasks()
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
+        })
     }
 
     private updateFieldsAfterEmptyDocumentType(): void {
@@ -332,6 +385,23 @@ export class InvoiceDialogComponent {
                     invoiceNo: 0,
                     batch: ''
                 })
+            }
+        })
+    }
+
+    private populateFields(): void {
+        this.form.patchValue({
+            customer: {
+                id: this.data[0].customer.id,
+                description: this.data[0].customer.description
+            },
+            destination: {
+                id: this.data[0].destination.id,
+                description: this.data[0].destination.description
+            },
+            ship: {
+                id: this.data[0].ship.id,
+                description: this.data[0].ship.description
             }
         })
     }

@@ -16,7 +16,7 @@
         { "id": "required", "description": "Dieses Feld ist erforderlich" },
         { "id": "shouldBeEmptyPlusOrMinus", "description": "Dieses Feld darf leer sein oder das Symbol + oder - enthalten" },
         { "id": "spacesNotAllowed", "description": "Dieses Feld darf keine Leerzeichen enthalten" },
-        { "id": "requiredShort", "description": "Erforderliches Feld" },
-        { "id": "invalidShort", "description": "Ungültiges Feld" }
+        { "id": "requiredShort", "description": "Erforderliches" },
+        { "id": "invalidShort", "description": "Ungültiges" }
     ]
 }

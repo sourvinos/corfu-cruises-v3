@@ -21,11 +21,11 @@ export class LedgerCustomerReservationListComponent {
 
     @Input() customer: LedgerVM
     @Input() remarksRowVisibility: boolean
+    @Output() outputSelected = new EventEmitter()
 
     public selectedRecords: LedgerReservationVM[] = []
     private feature = 'ledgerList'
     private perPort: PerPort[]
-    @Output() outputSelected = new EventEmitter()
 
     //#endregion
 
@@ -89,6 +89,11 @@ export class LedgerCustomerReservationListComponent {
                     description: 'CP',
                     isActive: true
                 },
+                ship: {
+                    id: this.selectedRecords[0].ship.id,
+                    description: this.selectedRecords[0].ship.description,
+                    isActive: true
+                },
                 adultsWithTransfer: 0,
                 adultsWithoutTransfer: 0,
                 kidsWithTransfer: 0,
@@ -103,13 +108,18 @@ export class LedgerCustomerReservationListComponent {
                     isActive: this.customer.customer.isActive
                 },
                 destination: {
-                    id: 1,
-                    description: '',
+                    id: this.selectedRecords[0].destination.id,
+                    description: this.selectedRecords[0].destination.description,
                     isActive: true
                 },
                 port: {
-                    id: 1,
+                    id: 2,
                     description: 'LP',
+                    isActive: true
+                },
+                ship: {
+                    id: this.selectedRecords[0].ship.id,
+                    description: this.selectedRecords[0].ship.description,
                     isActive: true
                 },
                 adultsWithTransfer: 0,
@@ -162,6 +172,7 @@ export interface PerPort {
     customer: SimpleEntity
     destination: SimpleEntity
     port: SimpleEntity
+    ship: SimpleEntity
     adultsWithTransfer: number
     adultsWithoutTransfer: number
     kidsWithTransfer: number

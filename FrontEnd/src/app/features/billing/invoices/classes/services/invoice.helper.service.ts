@@ -84,6 +84,19 @@ export class InvoiceHelperService {
         }
     }
 
+    public calculateInvoiceSummary(formValue: any): any {
+        const grossAmount = parseFloat(formValue.portTotals.totalAmount)
+        const vatPercent = parseFloat(formValue.vatPercent) / 100
+        const netAmount = grossAmount / (1 + vatPercent)
+        const vatAmount = netAmount * vatPercent
+        return {
+            netAmount,
+            vatPercent,
+            vatAmount,
+            grossAmount
+        }
+    }
+
     public flattenForm(formValue: any): InvoiceWriteDto {
         const x: InvoiceWriteDto = {
             invoiceId: formValue.invoiceId != '' ? formValue.invoiceId : null,

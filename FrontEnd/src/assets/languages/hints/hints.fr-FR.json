@@ -16,7 +16,7 @@
         { "id": "required", "description": "Ce champ est obligatoire" },
         { "id": "shouldBeEmptyPlusOrMinus", "description": "Ce champ peut être vide ou comporter le symbole + ou -." },
         { "id": "spacesNotAllowed", "description": "Ce champ ne peut pas contenir d'espaces" },
-        { "id": "requiredShort", "description": "Champ obligatoire" },
-        { "id": "invalidShort", "description": "Champ non valide" }
+        { "id": "requiredShort", "description": "Obligatoire" },
+        { "id": "invalidShort", "description": "Non valide" }
     ]
 }

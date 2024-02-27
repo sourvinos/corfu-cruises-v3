@@ -16,7 +16,7 @@
         { "id": "required", "description": "Toto pole je povinné" },
         { "id": "shouldBeEmptyPlusOrMinus", "description": "Toto pole může být prázdné nebo může obsahovat symbol + nebo -." },
         { "id": "spacesNotAllowed", "description": "Toto pole nesmí obsahovat mezery" },
-        { "id": "requiredShort", "description": "Povinné pole" },
-        { "id": "invalidShort", "description": "Neplatné pole" }
+        { "id": "requiredShort", "description": "Povinné" },
+        { "id": "invalidShort", "description": "Neplatné" }
     ]
 }
