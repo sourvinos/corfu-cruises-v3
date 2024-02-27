@@ -2895,6 +2895,10 @@
                 "description": "Αποθηκευση"
             },
             {
+                "id": "cancelButton",
+                "description": "Ακυρο"
+            },
+            {
                 "id": "printInvoice",
                 "description": "Εκτύπωση"
             },

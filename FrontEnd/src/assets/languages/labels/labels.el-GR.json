@@ -2895,6 +2895,10 @@
                 "description": "Αναλυση"
             },
             {
+                "id": "cancelButton",
+                "description": "Ακυρο"
+            },
+            {
                 "id": "deleteButton",
                 "description": "Διαγραφη"
             },

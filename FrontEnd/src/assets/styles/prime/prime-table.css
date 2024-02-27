@@ -128,7 +128,7 @@
     transition: all var(--theme-delay);
 }
 
-.p-datatable .p-datatable-tbody > tr.without-footer:last-child > td {
+.p-datatable .p-datatable-tbody > tr:last-child > td {
     border-bottom: 0.0625rem solid color-mix(in srgb, var(--color-primary) 30%, transparent) !important;
 }
 
@@ -137,7 +137,7 @@
     display: flex;
     height: 1.6875rem;
     overflow: hidden !important;
-    padding: 0 0.3125rem 0 0.3125rem !important;
+    padding: 0.0625rem 0.3125rem 0 0.3125rem !important;
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
 }
@@ -218,7 +218,6 @@
     border: none;
     border-bottom: 0.0625rem solid color-mix(in srgb, var(--color-primary) 30%, transparent);
     border-right: 0.0625rem solid color-mix(in srgb, var(--color-primary) 30%, transparent);
-    border-top: 0.0625rem solid color-mix(in srgb, var(--color-primary) 30%, transparent);
     border-width: 0.0625rem !important;
     color: var(--color-text) !important;
     font-family: var(--font-family-asty) !important;

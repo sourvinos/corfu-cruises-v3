@@ -10,6 +10,11 @@
     row-gap: 1rem;
 }
 
+#dialog-header {
+    display: flex;
+    justify-content: space-between;
+}
+
 #form {
     column-gap: 0.5rem;
     display: flex;
@@ -71,6 +76,7 @@
 }
 
 #dialog-footer #align-right {
+    column-gap: 0.5rem;
     display: flex;
     justify-content: flex-end;
     margin: 0 1rem 0 0;

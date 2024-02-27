@@ -42,11 +42,11 @@ namespace API.Features.Reservations.Ledgers {
                     && portIds.Contains(x.PortId)
                     && (shipIds.Contains(x.ShipId) || x.ShipId == null))
                 .AsEnumerable()
-                .GroupBy(x => new { x.Customer.Id, x.Customer.Description }).OrderBy(x => x.Key.Description)
+                .GroupBy(x => new { x.Customer.Id, x.Customer.Abbreviation }).OrderBy(x => x.Key.Abbreviation)
                 .Select(x => new LedgerVM {
                     Customer = new SimpleEntity {
                         Id = x.Key.Id,
-                        Description = x.Key.Description
+                        Description = x.Key.Abbreviation
                     },
                     Ports = x.GroupBy(x => new { x.Port.Id, x.Port.Description, x.Port.StopOrder }).OrderBy(x => x.Key.StopOrder).Select(x => new LedgerPortVM {
                         Port = new SimpleEntity {

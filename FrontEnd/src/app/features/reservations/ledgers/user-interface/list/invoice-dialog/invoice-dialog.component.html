@@ -1,9 +1,17 @@
 <div id="dialog">
 
-        <span style="color: var(--color-text); font-size: 12px;">{{ form.value | json }} {{ form.valid }} </span>
+    <!-- <span style="color: var(--color-text); font-size: 12px;">{{ form.value | json }} {{ form.valid }} </span> -->
 
     <div id="dialog-header">
         <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
+        <div id="header-buttons">
+            <button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" mat-icon-button>
+                <mat-icon class="material-icons-outlined">more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" class="primary" xPosition="before">
+                <ng-container *ngTemplateOutlet="actionsMenu"></ng-container>
+            </mat-menu>
+        </div>
     </div>
 
     <div id="dialog-content">
@@ -432,6 +440,9 @@
 
     <div id="dialog-footer">
         <div id="align-right">
+            <button (click)="onClose()" class="transparent" mat-flat-button tabindex="-1">
+                <span>{{ getLabel("cancelButton") | uppercase }}</span>
+            </button>
             <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
                 <mat-icon *ngIf="!form.valid" class=" material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("saveButton") | uppercase }}</span>
@@ -455,3 +466,9 @@
         {{ option.description }}
     </mat-option>
 </mat-autocomplete>
+
+<ng-template #actionsMenu>
+    <button (click)="onRetrievePrices()" mat-menu-item>
+        <span>{{ getLabel('retrievePrices') }}</span>
+    </button>
+</ng-template>

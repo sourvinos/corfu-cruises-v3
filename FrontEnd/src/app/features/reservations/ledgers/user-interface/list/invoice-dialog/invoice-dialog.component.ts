@@ -38,7 +38,7 @@ export class InvoiceDialogComponent {
     public icon = 'arrow_back'
     public form: FormGroup
     public input: InputTabStopDirective
-    public parentUrl = ''
+    public parentUrl = null
 
     //#endregion
 
@@ -67,7 +67,7 @@ export class InvoiceDialogComponent {
 
     //#region public methods
 
-    public retrievePrices(): void {
+    public onRetrievePrices(): void {
         const x: BillingCriteriaVM = {
             date: this.dateHelperService.formatDateToIso(new Date()),
             customerId: this.data[0].customer.id,
@@ -138,25 +138,26 @@ export class InvoiceDialogComponent {
     }
 
     public onDoCalculations(): void {
-        setTimeout(() => {
-            this.patchFormWithCalculations(
-                this.invoiceHelperService.calculatePortA(this.form.value),
-                this.invoiceHelperService.calculatePortB(this.form.value),
-                this.invoiceHelperService.calculatePortTotals(this.form.value),
-                this.invoiceHelperService.calculateInvoiceSummary(this.form.value))
-        }, 2000)
+        this.patchFormWithCalculations(
+            this.invoiceHelperService.calculatePortA(this.form.value),
+            this.invoiceHelperService.calculatePortB(this.form.value),
+            this.invoiceHelperService.calculatePortTotals(this.form.value)
+        )
+        this.calculateInvoiceSummary()
     }
 
-    public onDoInvoiceCalculations(): void {
-        const grossAmount = parseFloat(this.form.value.portTotals.totalAmount)
-        const vatPercent = parseFloat(this.form.value.vatPercent) / 100
-        const netAmount = grossAmount / (1 + vatPercent)
-        const vatAmount = netAmount * vatPercent
-        this.form.patchValue({
-            netAmount: netAmount.toFixed(2),
-            vatAmount: vatAmount.toFixed(2),
-            grossAmount: grossAmount.toFixed(2)
-        })
+    public calculateInvoiceSummary(): void {
+        setTimeout(() => {
+            const grossAmount = parseFloat(this.form.value.portTotals.total_Amount)
+            const vatPercent = parseFloat(this.form.value.vatPercent) / 100
+            const netAmount = grossAmount / (1 + vatPercent)
+            const vatAmount = netAmount * vatPercent
+            this.form.patchValue({
+                netAmount: netAmount.toFixed(2),
+                vatAmount: vatAmount.toFixed(2),
+                grossAmount: grossAmount.toFixed(2)
+            })
+        }, 1000)
     }
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
@@ -194,7 +195,9 @@ export class InvoiceDialogComponent {
                     }
                     this.invoiceHttpService.updateInvoiceAade(x).subscribe({
                         next: () => {
-                            this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                            this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false).then(() => {
+                                this.dialogRef.close()
+                            })
                         },
                         error: (errorFromInterceptor) => {
                             this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
@@ -216,7 +219,7 @@ export class InvoiceDialogComponent {
         return this.invoiceHelperService.flattenForm(this.form.value)
     }
 
-    private patchFormWithCalculations(calculationsA: any, calculationsB: any, calculationTotals: any, invoiceSummary: any): void {
+    private patchFormWithCalculations(calculationsA: any, calculationsB: any, calculationTotals: any): void {
         this.form.patchValue({
             portA: {
                 adults_A_AmountWithTransfer: calculationsA.adults_A_AmountWithTransfer,
@@ -247,11 +250,7 @@ export class InvoiceDialogComponent {
                 free_Total_WithoutTransfer: calculationTotals.freeWithoutTransfer,
                 total_Persons: calculationTotals.totalPersons,
                 total_Amount: calculationTotals.totalAmount
-            },
-            netAmount: invoiceSummary.netAmount,
-            vatPercent: invoiceSummary.vatPercent,
-            vatAmount: invoiceSummary.vatAmount,
-            grossAmount: invoiceSummary.grossAmount
+            }
         })
     }
 

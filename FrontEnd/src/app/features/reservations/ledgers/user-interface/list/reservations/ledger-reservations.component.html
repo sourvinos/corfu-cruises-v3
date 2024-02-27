@@ -40,7 +40,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-reservation>
             <tr (click)="highlightRow(reservation.reservationId)" [attr.id]=reservation.reservationId class="without-footer" style="height: 32px;">
-                <td class="width-3"><span class="center" style="padding-top: 0.25rem !important;"><p-tableCheckbox [value]="reservation" (click)="onCalculate()"></p-tableCheckbox></span></td>
+                <td class="width-3"><span class="center"><p-tableCheckbox (click)="onCalculate()" [value]="reservation"></p-tableCheckbox></span></td>
                 <td class="width-5"><span class="center">{{ formatDateToLocale(reservation.date) }}</span></td>
                 <td class="width-6"><span class="center">{{ reservation.destination.abbreviation }}</span></td>
                 <td class="width-6"><span>{{ reservation.pickupPoint.description }}</span></td>
@@ -74,7 +74,7 @@
         </ng-template>
         <ng-template pTemplate="footer" let-columns>
             <tr>
-                <td colspan="8"></td>
+                <td colspan="9"></td>
                 <td class="center">
                     <span>{{ customer.adults | replaceZero }}</span>
                 </td>
