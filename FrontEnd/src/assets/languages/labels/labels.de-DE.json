@@ -1916,6 +1916,10 @@
                 "description": "Schiff"
             },
             {
+                "id": "headerSpecialtyDescription",
+                "description": "Spezialität"
+            },
+            {
                 "id": "headerLastname",
                 "description": "Nachname"
             },
@@ -1959,6 +1963,10 @@
             {
                 "id": "nationality",
                 "description": "Nationalität"
+            },
+            {
+                "id": "specialty",
+                "description": "Spezialität"
             },
             {
                 "id": "gender",

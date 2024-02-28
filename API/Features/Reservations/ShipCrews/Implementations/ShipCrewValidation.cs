@@ -18,6 +18,7 @@ namespace API.Features.Reservations.ShipCrews {
                 var x when x == !IsValidGender(shipCrew) => 457,
                 var x when x == !IsValidNationality(shipCrew) => 456,
                 var x when x == !IsValidShip(shipCrew) => 454,
+                var x when x == !IsValidSpecialty(shipCrew) => 464,
                 var x when x == IsAlreadyUpdated(z, shipCrew) => 415,
                 _ => 200,
             };
@@ -51,6 +52,16 @@ namespace API.Features.Reservations.ShipCrews {
                 : context.Ships
                     .AsNoTracking()
                     .SingleOrDefault(x => x.Id == shipCrew.ShipId) != null;
+        }
+
+        private bool IsValidSpecialty(ShipCrewWriteDto shipCrew) {
+            return shipCrew.Id == 0
+                ? context.CrewSpecialties
+                    .AsNoTracking()
+                    .SingleOrDefault(x => x.Id == shipCrew.SpecialtyId && x.IsActive) != null
+                : context.CrewSpecialties
+                    .AsNoTracking()
+                    .SingleOrDefault(x => x.Id == shipCrew.SpecialtyId) != null;
         }
 
         private static bool IsAlreadyUpdated(ShipCrew z, ShipCrewWriteDto shipCrew) {

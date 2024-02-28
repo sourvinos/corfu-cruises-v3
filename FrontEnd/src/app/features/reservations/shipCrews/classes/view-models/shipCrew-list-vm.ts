@@ -3,6 +3,7 @@ export interface ShipCrewListVM {
 
     id: number
     ship: SimpleEntity
+    specialty: SimpleEntity
     lastname: string
     firstname: string
     birthdate: string

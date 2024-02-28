@@ -26,6 +26,7 @@ namespace API.Features.Reservations.ShipCrews {
                 .Include(x => x.Ship)
                 .Include(x => x.Gender)
                 .Include(x => x.Nationality)
+                .Include(x => x.Specialty)
                 .OrderBy(x => x.Ship.Description).ThenBy(x => x.Lastname).ThenBy(x => x.Firstname).ThenBy(x => x.Birthdate)
                 .ToListAsync();
             return mapper.Map<IEnumerable<ShipCrew>, IEnumerable<ShipCrewListVM>>(shipCrews);
@@ -46,6 +47,7 @@ namespace API.Features.Reservations.ShipCrews {
                     .Include(x => x.Ship)
                     .Include(x => x.Gender)
                     .Include(x => x.Nationality)
+                    .Include(x => x.Specialty)
                     .SingleOrDefaultAsync(x => x.Id == id)
                 : await context.ShipCrews
                     .AsNoTracking()

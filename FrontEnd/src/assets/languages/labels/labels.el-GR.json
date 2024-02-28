@@ -1916,6 +1916,10 @@
                 "description": "Πλοίο"
             },
             {
+                "id": "headerSpecialtyDescription",
+                "description": "Ειδικότητα"
+            },
+            {
                 "id": "headerLastname",
                 "description": "Επώνυμο"
             },
@@ -1959,6 +1963,10 @@
             {
                 "id": "nationality",
                 "description": "Εθνικότητα"
+            },
+            {
+                "id": "specialty",
+                "description": "Ειδικότητα"
             },
             {
                 "id": "gender",

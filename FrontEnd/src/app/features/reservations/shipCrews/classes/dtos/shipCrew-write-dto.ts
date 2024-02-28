@@ -6,6 +6,7 @@ export interface ShipCrewWriteDto {
     genderId: number
     nationalityId: number
     shipId: number
+    specialtyId: number
     // Fields
     lastname: string
     firstname: string

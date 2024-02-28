@@ -6,6 +6,7 @@ namespace API.Features.Reservations.ShipCrews {
 
         public int Id { get; set; }
         public SimpleEntity Ship { get; set; }
+        public SimpleEntity Specialty { get; set; }
         public string Lastname { get; set; }
         public string Firstname { get; set; }
         public string Birthdate { get; set; }

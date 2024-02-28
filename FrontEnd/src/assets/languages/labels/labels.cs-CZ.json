@@ -1916,6 +1916,10 @@
                 "description": "Loď"
             },
             {
+                "id": "headerSpecialtyDescription",
+                "description": "Specializace"
+            },
+            {
                 "id": "headerLastname",
                 "description": "Příjmení"
             },
@@ -1959,6 +1963,10 @@
             {
                 "id": "nationality",
                 "description": "Národnost"
+            },
+            {
+                "id": "specialty",
+                "description": "Specializace"
             },
             {
                 "id": "gender",

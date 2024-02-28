@@ -1,4 +1,5 @@
 using System;
+using API.Features.Reservations.CrewSpecialties;
 using API.Features.Reservations.Genders;
 using API.Features.Reservations.Nationalities;
 using API.Features.Reservations.Occupants;
@@ -32,6 +33,7 @@ namespace API.Features.Reservations.ShipCrews {
         public Nationality Nationality { get; set; }
         public Occupant Occupant { get; set; }
         public Ship Ship { get; set; }
+        public CrewSpecialty Specialty { get; set; }
 
     }
 

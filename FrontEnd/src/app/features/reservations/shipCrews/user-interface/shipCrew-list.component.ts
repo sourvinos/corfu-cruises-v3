@@ -25,7 +25,7 @@ import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
 export class ShipCrewListComponent {
 
-    //#region common #9
+    //#region common
 
     @ViewChild('table') table: Table
 
@@ -40,13 +40,14 @@ export class ShipCrewListComponent {
 
     //#endregion
 
-    //#region dropdown filters #1
+    //#region dropdown filters
 
     public distinctShips: SimpleEntity[] = []
+    public distinctSpecialties: SimpleEntity[] = []
 
     //#endregion
 
-    //#region specific #1
+    //#region specific
 
     public filterDate = ''
 
@@ -79,7 +80,7 @@ export class ShipCrewListComponent {
 
     //#endregion
 
-    //#region public common methods #7
+    //#region public methods
 
     public editRecord(id: number): void {
         this.storeScrollTop()
@@ -117,31 +118,16 @@ export class ShipCrewListComponent {
 
     //#endregion
 
-    //#region public specific methods #3
-
-    public clearDateFilter(): void {
-        this.table.filter('', 'birthdate', 'equals')
-        this.filterDate = ''
-        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
-    }
-
-    public filterByDate(event: MatDatepickerInputEvent<Date>): void {
-        const date = this.dateHelperService.formatDateToIso(new Date(event.value), false)
-        this.table.filter(date, 'birthdate', 'equals')
-        this.filterDate = date
-        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
-    }
-
-    public hasDateFilter(): string {
-        return this.filterDate == '' ? 'hidden' : ''
-    }
-
-    //#endregion
-
-    //#region private common list methods #13
+    //#region private methods
 
     private enableDisableFilters(): void {
         this.records.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()
+    }
+
+    private formatDatesToLocale(): void {
+        this.records.forEach(record => {
+            record.formattedBirthdate = this.dateHelperService.formatISODateToLocale(record.birthdate)
+        })
     }
 
     private filterColumn(element: { value: any }, field: string, matchMode: string): void {
@@ -156,6 +142,7 @@ export class ShipCrewListComponent {
             setTimeout(() => {
                 this.filterColumn(filters.isActive, 'isActive', 'contains')
                 this.filterColumn(filters.ship, 'ship', 'in')
+                this.filterColumn(filters.specialty, 'specialty', 'in')
                 this.filterColumn(filters.lastname, 'lastname', 'contains')
                 this.filterColumn(filters.firstname, 'firstname', 'contains')
                 this.filterColumn(filters.birthdate, 'birthdate', 'equals')
@@ -228,22 +215,30 @@ export class ShipCrewListComponent {
         })
     }
 
-    //#endregion
-
-    //#region private specific list methods #3
-
-    private formatDatesToLocale(): void {
-        this.records.forEach(record => {
-            record.formattedBirthdate = this.dateHelperService.formatISODateToLocale(record.birthdate)
-        })
-    }
-
     private populateDropdownFilters(): void {
         this.distinctShips = this.helperService.getDistinctRecords(this.records, 'ship', 'description')
+        this.distinctSpecialties = this.helperService.getDistinctRecords(this.records, 'specialty', 'description')
     }
 
     private setLocale(): void {
         this.dateAdapter.setLocale(this.localStorageService.getLanguage())
+    }
+
+    public clearDateFilter(): void {
+        this.table.filter('', 'birthdate', 'equals')
+        this.filterDate = ''
+        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
+    }
+
+    public filterByDate(event: MatDatepickerInputEvent<Date>): void {
+        const date = this.dateHelperService.formatDateToIso(new Date(event.value), false)
+        this.table.filter(date, 'birthdate', 'equals')
+        this.filterDate = date
+        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
+    }
+
+    public hasDateFilter(): string {
+        return this.filterDate == '' ? 'hidden' : ''
     }
 
     //#endregion

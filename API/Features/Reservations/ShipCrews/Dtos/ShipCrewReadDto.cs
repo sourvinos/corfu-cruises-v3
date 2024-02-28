@@ -21,6 +21,7 @@ namespace API.Features.Reservations.ShipCrews {
         public SimpleEntity Gender { get; set; }
         public SimpleEntity Nationality { get; set; }
         public SimpleEntity Ship { get; set; }
+        public SimpleEntity Specialty { get; set; }
 
     }
 

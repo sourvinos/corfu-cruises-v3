@@ -23,6 +23,7 @@ import { ShipAutoCompleteVM } from '../../ships/classes/view-models/ship-autocom
 import { ShipCrewReadDto } from '../classes/dtos/shipCrew-read-dto'
 import { ShipCrewService } from '../classes/services/shipCrew.service'
 import { ShipCrewWriteDto } from '../classes/dtos/shipCrew-write-dto'
+import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
 
 @Component({
@@ -52,6 +53,7 @@ export class ShipCrewFormComponent {
     public dropdownGenders: Observable<GenderAutoCompleteVM[]>
     public dropdownNationalities: Observable<NationalityDropdownVM[]>
     public dropdownShips: Observable<ShipAutoCompleteVM[]>
+    public dropdownSpecialties: Observable<SimpleEntity[]>
 
     //#endregion
 
@@ -151,9 +153,10 @@ export class ShipCrewFormComponent {
     private flattenForm(): ShipCrewWriteDto {
         return {
             id: this.form.value.id,
-            shipId: this.form.value.ship.id,
             genderId: this.form.value.gender.id,
             nationalityId: this.form.value.nationality.id,
+            shipId: this.form.value.ship.id,
+            specialtyId: this.form.value.specialty.id,
             lastname: this.form.value.lastname,
             firstname: this.form.value.firstname,
             birthdate: this.dateHelperService.formatDateToIso(new Date(this.form.value.birthdate)),
@@ -194,8 +197,9 @@ export class ShipCrewFormComponent {
             firstname: ['', [Validators.required, Validators.maxLength(128)]],
             birthdate: ['', [Validators.required]],
             ship: ['', [Validators.required, ValidationService.RequireAutocomplete]],
-            nationality: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             gender: ['', [Validators.required, ValidationService.RequireAutocomplete]],
+            nationality: ['', [Validators.required, ValidationService.RequireAutocomplete]],
+            specialty: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             isActive: true,
             postAt: [''],
             postUser: [''],
@@ -208,6 +212,7 @@ export class ShipCrewFormComponent {
         this.populateDropdownFromDexieDB('genders', 'dropdownGenders', 'gender', 'description', 'description')
         this.populateDropdownFromDexieDB('nationalities', 'dropdownNationalities', 'nationality', 'description', 'description')
         this.populateDropdownFromDexieDB('ships', 'dropdownShips', 'ship', 'description', 'description')
+        this.populateDropdownFromDexieDB('crewSpecialties', 'dropdownSpecialties', 'specialty', 'description', 'description')
     }
 
     private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
@@ -224,9 +229,10 @@ export class ShipCrewFormComponent {
                 lastname: this.record.lastname,
                 firstname: this.record.firstname,
                 birthdate: this.record.birthdate,
-                ship: { 'id': this.record.ship.id, 'description': this.record.ship.description },
-                nationality: { 'id': this.record.nationality.id, 'description': this.record.nationality.description },
                 gender: { 'id': this.record.gender.id, 'description': this.record.gender.description },
+                nationality: { 'id': this.record.nationality.id, 'description': this.record.nationality.description },
+                ship: { 'id': this.record.ship.id, 'description': this.record.ship.description },
+                specialty: { 'id': this.record.specialty.id, 'description': this.record.specialty.description },
                 isActive: this.record.isActive,
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
@@ -294,6 +300,10 @@ export class ShipCrewFormComponent {
 
     get gender(): AbstractControl {
         return this.form.get('gender')
+    }
+
+    get specialty(): AbstractControl {
+        return this.form.get('specialty')
     }
 
     get postAt(): AbstractControl {

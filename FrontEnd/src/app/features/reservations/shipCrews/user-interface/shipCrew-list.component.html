@@ -12,6 +12,7 @@
                     <tr>
                         <th class="width-5" pSortableColumn="isActive">{{ getLabel("headerIsActive") }}</th>
                         <th class="width-15" pSortableColumn="ship.description">{{ getLabel("headerShipDescription") }}</th>
+                        <th class="width-15" pSortableColumn="specialty.description">{{ getLabel("headerSpecialtyDescription") }}</th>
                         <th class="width-15" pSortableColumn="lastname">{{ getLabel("headerLastname") }}</th>
                         <th class="width-15" pSortableColumn="firstname">{{ getLabel("headerFirstname") }}</th>
                         <th class="width-9" pSortableColumn="birthdate">{{ getLabel("headerBirthdate") }}</th>
@@ -22,6 +23,19 @@
                             <p-columnFilter [showMenu]="false" field="ship" matchMode="in">
                                 <ng-template let-filter="filterCallback" let-value pTemplate="filter">
                                     <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="distinctShips" [placeholder]="getEmoji('wildcard')" optionLabel="description">
+                                        <ng-template let-option pTemplate="item">
+                                            <div class="p-multiselect-option">
+                                                <span>{{ option.description }}</span>
+                                            </div>
+                                        </ng-template>
+                                    </p-multiSelect>
+                                </ng-template>
+                            </p-columnFilter>
+                        </th>
+                        <th class="width-15">
+                            <p-columnFilter [showMenu]="false" field="specialty" matchMode="in">
+                                <ng-template let-filter="filterCallback" let-value pTemplate="filter">
+                                    <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="distinctSpecialties" [placeholder]="getEmoji('wildcard')" optionLabel="description">
                                         <ng-template let-option pTemplate="item">
                                             <div class="p-multiselect-option">
                                                 <span>{{ option.description }}</span>
@@ -47,6 +61,7 @@
                     <tr (click)="highlightRow(record.id)" (dblclick)="editRecord(record.id)" [attr.id]=record.id style="height: 32px;">
                         <td class="width-5"><span class="center no-left-padding" style="font-size: 0.5rem; padding-top: 0 !important;">{{ getEmoji(record.isActive) }}</span></td>
                         <td class="width-15"><span>{{ record.ship.description }}</span></td>
+                        <td class="width-15"><span>{{ record.specialty.description }}</span></td>
                         <td class="width-15"><span>{{ record.lastname }}</span></td>
                         <td class="width-15"><span>{{ record.firstname }}</span></td>
                         <td class="width-9"><span class="center">{{ record.formattedBirthdate }}</span></td>
