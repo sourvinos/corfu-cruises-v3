@@ -13,6 +13,7 @@ using API.Features.Reservations.Customers;
 using API.Features.Reservations.Destinations;
 using API.Features.Reservations.Drivers;
 using API.Features.Reservations.Genders;
+using API.Features.Reservations.IdentityDocuments;
 using API.Features.Reservations.Ledgers;
 using API.Features.Reservations.Manifest;
 using API.Features.Reservations.Nationalities;
@@ -46,6 +47,7 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IDriverRepository, DriverRepository>();
             services.AddTransient<IGenderRepository, GenderRepository>();
             services.AddTransient<IGenderRepository, GenderRepository>();
+            services.AddTransient<IIdentityDocumentRepository, IdentityDocumentRepository>();
             services.AddTransient<INationalityRepository, NationalityRepository>();
             services.AddTransient<IPickupPointRepository, PickupPointRepository>();
             services.AddTransient<IPortRepository, PortRepository>();
@@ -73,6 +75,7 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IDestinationValidation, DestinationValidation>();
             services.AddTransient<IDriverValidation, DriverValidation>();
             services.AddTransient<IGenderValidation, GenderValidation>();
+            services.AddTransient<IIdentityDocumentValidation, IdentityDocumentValidation>();
             services.AddTransient<INationalityValidation, NationalityValidation>();
             services.AddTransient<IPickupPointValidation, PickupPointValidation>();
             services.AddTransient<IPortValidation, PortValidation>();

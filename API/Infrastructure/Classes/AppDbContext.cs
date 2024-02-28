@@ -28,6 +28,7 @@ using API.Infrastructure.Users;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using API.Features.Reservations.IdentityDocuments;
 
 namespace API.Infrastructure.Classes {
 
@@ -43,6 +44,7 @@ namespace API.Infrastructure.Classes {
         public DbSet<Destination> Destinations { get; set; }
         public DbSet<Driver> Drivers { get; set; }
         public DbSet<Gender> Genders { get; set; }
+        public DbSet<IdentityDocument> IdentityDocuments { get; set; }
         public DbSet<Nationality> Nationalities { get; set; }
         public DbSet<Occupant> Occupants { get; set; }
         public DbSet<Passenger> Passengers { get; set; }
@@ -94,6 +96,7 @@ namespace API.Infrastructure.Classes {
             modelBuilder.ApplyConfiguration(new DestinationsConfig());
             modelBuilder.ApplyConfiguration(new DriversConfig());
             modelBuilder.ApplyConfiguration(new GendersConfig());
+            modelBuilder.ApplyConfiguration(new IdentityDocumentsConfig());
             modelBuilder.ApplyConfiguration(new NationalitiesConfig());
             modelBuilder.ApplyConfiguration(new ParametersConfig());
             modelBuilder.ApplyConfiguration(new PassengersConfig());
