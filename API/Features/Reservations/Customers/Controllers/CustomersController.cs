@@ -17,13 +17,15 @@ namespace API.Features.Reservations.Customers {
 
         private readonly ICustomerRepository customerRepo;
         private readonly ICustomerValidation customerValidation;
+        private readonly ICustomerLedgerRepository ledgerRepo;
         private readonly IMapper mapper;
 
         #endregion
 
-        public CustomersController(ICustomerRepository customerRepo, ICustomerValidation customerValidation, IMapper mapper) {
+        public CustomersController(ICustomerRepository customerRepo, ICustomerValidation customerValidation, ICustomerLedgerRepository ledgerRepo, IMapper mapper) {
             this.customerRepo = customerRepo;
             this.customerValidation = customerValidation;
+            this.ledgerRepo = ledgerRepo;
             this.mapper = mapper;
         }
 
@@ -61,6 +63,12 @@ namespace API.Features.Reservations.Customers {
                     ResponseCode = 404
                 };
             }
+        }
+
+        [Authorize(Roles = "admin")]
+        [HttpGet("ledger/{id}/fromDate/{date}")]
+        public async Task<CustomerLedgerVM> GetLedgerAsync(int id, string date) {
+            return ledgerRepo.BuildLedger(ledgerRepo.BuildBalance(await ledgerRepo.GetLedgerAsync(id)), date);
         }
 
         [HttpPost]

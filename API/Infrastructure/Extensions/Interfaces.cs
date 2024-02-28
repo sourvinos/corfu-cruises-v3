@@ -91,6 +91,7 @@ namespace API.Infrastructure.Extensions {
             #region billing
             services.AddTransient<IBillingParameterValidation, BillingParameterValidation>();
             services.AddTransient<IBillingParametersRepository, BillingParametersRepository>();
+            services.AddTransient<ICustomerLedgerRepository, CustomerLedgerRepository>();
             services.AddTransient<IDocumentTypeRepository, DocumentTypeRepository>();
             services.AddTransient<IDocumentTypeValidation, DocumentTypeValidation>();
             services.AddTransient<IInvoiceAadeRepository, InvoiceAadeRepository>();
