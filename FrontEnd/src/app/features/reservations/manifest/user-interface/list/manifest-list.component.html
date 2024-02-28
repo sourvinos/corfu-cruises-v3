@@ -117,11 +117,27 @@
             </div>
         </div>
         <div id="align-right">
-            <button (click)="doTasks()" [disabled]="records.passengers.length==0" class="primary" mat-flat-button>
+            <button [disabled]="records.passengers.length==0" class="no-right-border-radius primary" mat-flat-button>
                 <mat-icon *ngIf="records.passengers.length==0" class="material-icons-outlined">lock</mat-icon>
-                <span>{{ getLabel("createPdf") | uppercase }}</span>
+                <span>{{ getLabel("createFiles") | uppercase }}</span>
             </button>
+            <button [disabled]="records.passengers.length==0" [matMenuTriggerFor]="saveMenu" class="no-left-border-radius primary-darker" mat-flat-button>
+                <mat-icon class="big material-symbols-outlined">expand_less</mat-icon>
+            </button>
+            <mat-menu #saveMenu="matMenu" class="primary" xPosition="before">
+                <ng-container *ngTemplateOutlet="saveMenuTemplate"></ng-container>
+            </mat-menu>
         </div>
     </div>
+
+    <ng-template #saveMenuTemplate>
+        <button (click)="doExportTasks('passengers')" mat-menu-item>
+            <span>{{ getLabel("createFilePassengers") }}</span>
+        </button>
+        <button (click)="doExportTasks('crew')" mat-menu-item>
+            <span>{{ getLabel("createFileCrew") }}</span>
+        </button>
+    </ng-template>
+
 
 </div>

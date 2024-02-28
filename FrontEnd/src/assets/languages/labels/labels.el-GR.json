@@ -1580,8 +1580,16 @@
                 "description": "Π"
             },
             {
-                "id": "createPdf",
-                "description": "Δημιουργια PDF"
+                "id": "createFiles",
+                "description": "Δημιουργια αρχειων"
+            },
+            {
+                "id": "createFilePassengers",
+                "description": "Επιβατών"
+            },
+            {
+                "id": "createFileCrew",
+                "description": "Πληρώματος"
             }
         ]
     },

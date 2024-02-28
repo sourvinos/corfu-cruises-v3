@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
 import { Table } from 'primeng/table'
 // Custom
+import { ManifestExportCrewVM } from '../../classes/view-models/export/manifest-export-crew-vm'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
@@ -13,8 +14,11 @@ import { ManifestCriteriaPanelVM } from '../../classes/view-models/criteria/mani
 import { ManifestPdfService } from '../../classes/services/manifest-pdf.service'
 import { ManifestRouteSelectorComponent } from './manifest-route-selector.component'
 import { ManifestVM } from '../../classes/view-models/list/manifest-vm'
+import { ManifestExportCrewService } from '../../classes/services/manifest-export-crew.service'
+import { ManifestExportPassengerService } from '../../classes/services/manifest-export-passenger.service'
 import { MessageDialogService } from '../../../../../shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { ManifestExportPassengerVM } from '../../classes/view-models/export/manifest-export-passenger-vm'
 import { RegistrarService } from '../../../registrars/classes/services/registrar.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
@@ -50,9 +54,12 @@ export class ManifestListComponent {
     public distinctNationalities: SimpleEntity[]
     public distinctOccupants: SimpleEntity[]
 
+    private exportPassengers: ManifestExportPassengerVM[]
+    private exportCrew: ManifestExportCrewVM[]
+
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private manifestPdfService: ManifestPdfService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private registrarService: RegistrarService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
+    constructor(private manifestExportPassengerService: ManifestExportPassengerService, private manifestExportCrewService: ManifestExportCrewService, private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private manifestPdfService: ManifestPdfService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private registrarService: RegistrarService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
 
@@ -73,6 +80,12 @@ export class ManifestListComponent {
     //#endregion
 
     //#region public methods
+
+    public doExportTasks(occupant: string): void {
+        occupant == 'passengers'
+            ? this.manifestExportPassengerService.exportToExcel(this.manifestExportPassengerService.buildPassengers(this.records.passengers))
+            : this.manifestExportCrewService.exportToExcel(this.manifestExportCrewService.buildCrew(this.records.passengers))
+    }
 
     public async doTasks(): Promise<void> {
         this.validateRegistrarsForManifest().then((response) => {

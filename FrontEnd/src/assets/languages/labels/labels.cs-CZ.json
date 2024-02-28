@@ -1580,8 +1580,16 @@
                 "description": "P"
             },
             {
-                "id": "createPdf",
-                "description": "Vytvořit PDF"
+                "id": "createFiles",
+                "description": "Vytvořit soubory"
+            },
+            {
+                "id": "createFilePassengers",
+                "description": "Cestující"
+            },
+            {
+                "id": "createFileCrew",
+                "description": "Osádka"
             }
         ]
     },

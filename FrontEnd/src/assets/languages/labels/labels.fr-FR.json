@@ -1580,8 +1580,16 @@
                 "description": "E"
             },
             {
-                "id": "createPdf",
-                "description": "Créer un PDF"
+                "id": "createFiles",
+                "description": "Créer des fichiers"
+            },
+            {
+                "id": "createFilePassengers",
+                "description": "Passagers"
+            },
+            {
+                "id": "createFileCrew",
+                "description": "Équipage"
             }
         ]
     },
