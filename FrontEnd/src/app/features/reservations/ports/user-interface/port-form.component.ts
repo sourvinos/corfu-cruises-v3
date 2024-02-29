@@ -13,6 +13,7 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 import { PortReadDto } from '../classes/dtos/port-read-dto'
 import { PortHttpService } from '../classes/services/port-http.service'
 import { PortWriteDto } from '../classes/dtos/port-write-vm'
+import { ValidationService } from 'src/app/shared/services/validation.service'
 
 @Component({
     selector: 'port-form',
@@ -91,6 +92,7 @@ export class PortFormComponent {
             id: this.form.value.id,
             abbreviation: this.form.value.abbreviation,
             description: this.form.value.description,
+            locode: this.form.value.locode,
             stopOrder: this.form.value.stopOrder,
             isActive: this.form.value.isActive,
             putAt: this.form.value.putAt
@@ -127,6 +129,7 @@ export class PortFormComponent {
             id: 0,
             abbreviation: ['', [Validators.required, Validators.maxLength(5)]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
+            locode: ['', [Validators.required, ValidationService.shouldBeFiveCapitalLetters, Validators.minLength(5), Validators.maxLength(5)]],
             stopOrder: [0, [Validators.required, Validators.min(1), Validators.max(9)]],
             isActive: true,
             postAt: [''],
@@ -142,6 +145,7 @@ export class PortFormComponent {
                 id: this.record.id,
                 abbreviation: this.record.abbreviation,
                 description: this.record.description,
+                locode: this.record.locode,
                 stopOrder: this.record.stopOrder,
                 isActive: this.record.isActive,
                 postAt: this.record.postAt,
@@ -184,6 +188,10 @@ export class PortFormComponent {
 
     get description(): AbstractControl {
         return this.form.get('description')
+    }
+
+    get locode(): AbstractControl {
+        return this.form.get('locode')
     }
 
     get stopOrder(): AbstractControl {

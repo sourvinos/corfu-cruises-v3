@@ -9,8 +9,9 @@ namespace API.Features.Reservations.Ports {
             // PK
             entity.Property(x => x.Id).ValueGeneratedOnAdd();
             // Fields
-            entity.Property(x => x.Description).HasMaxLength(128).IsRequired(true);
             entity.Property(x => x.Abbreviation).HasMaxLength(5).IsRequired(true);
+            entity.Property(x => x.Description).HasMaxLength(128).IsRequired(true);
+            entity.Property(x => x.Locode).IsFixedLength().HasMaxLength(5).IsRequired(true);
             entity.Property(x => x.StopOrder).HasMaxLength(2).IsRequired(true);
             entity.Property(x => x.IsActive);
             // Metadata

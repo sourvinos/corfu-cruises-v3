@@ -24,6 +24,8 @@ namespace API.Features.Reservations.Manifest {
                 Date = date,
                 Destination = context.Destinations
                     .FirstOrDefault(x => x.Id == destinationId),
+                Port = context.Ports
+                    .FirstOrDefault(x => x.Id == portId),
                 Ship = context.Ships
                     .Include(x => x.ShipOwner)
                     .Include(x => x.Registrars.Where(x => x.IsActive))
@@ -31,6 +33,7 @@ namespace API.Features.Reservations.Manifest {
                     .Include(x => x.ShipCrews.Where(x => x.IsActive)).ThenInclude(x => x.Gender)
                     .Include(x => x.ShipCrews.Where(x => x.IsActive)).ThenInclude(x => x.Nationality)
                     .Include(x => x.ShipCrews.Where(x => x.IsActive)).ThenInclude(x => x.Occupant)
+                    .Include(x => x.ShipCrews.Where(x => x.IsActive)).ThenInclude(x => x.Specialty)
                     .FirstOrDefault(x => x.Id == shipId),
                 ShipRoute = null,
                 Passengers = context.Passengers

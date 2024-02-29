@@ -409,6 +409,10 @@
                 "description": "Περιγραφή"
             },
             {
+                "id": "locode",
+                "description": "UN/Locode"
+            },
+            {
                 "id": "stopOrder",
                 "description": "Σειρά προσέγγισης"
             },

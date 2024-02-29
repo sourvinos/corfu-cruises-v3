@@ -7,6 +7,7 @@ export interface PortReadDto extends Metadata {
     // Fields
     abbreviation: string
     description: string
+    locode: string
     stopOrder: number
     isActive: boolean
 

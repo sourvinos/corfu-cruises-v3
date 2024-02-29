@@ -14,6 +14,8 @@ namespace API.Features.Reservations.Manifest {
         public SimpleEntity Gender { get; set; }
         public ManifestFinalNationalityVM Nationality { get; set; }
         public SimpleEntity Occupant { get; set; }
+        public SimpleEntity Port { get; set; }
+        public SimpleEntity Specialty { get; set; }
 
     }
 

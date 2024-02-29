@@ -409,6 +409,10 @@
                 "description": "Description"
             },
             {
+                "id": "locode",
+                "description": "UN/Locode"
+            },
+            {
                 "id": "stopOrder",
                 "description": "Ordre d'approche"
             },

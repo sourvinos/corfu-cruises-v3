@@ -18,6 +18,7 @@
         { "id": "requiredShort", "description": "Povinné" },
         { "id": "shouldBeEmptyPlusOrMinus", "description": "Toto pole může být prázdné nebo může obsahovat symbol + nebo -." },
         { "id": "shouldBeCapitalLetterOrSpace", "description": "Povolena jsou pouze velká písmena latinky" },
+        { "id": "shouldBeCapitalLetter", "description": "Povolena jsou pouze velká písmena latinky" },
         { "id": "spacesNotAllowed", "description": "Toto pole nesmí obsahovat mezery" }
     ]
 }

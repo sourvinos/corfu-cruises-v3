@@ -30,7 +30,7 @@ export class ManifestExportPassengerService {
                 Passengers_Number_of_identity_document: '0',
                 Passengers_Issuing_State_of_Identity_Document: '',
                 Passengers_Expiry_Date_of_Identity_Document: '',
-                Passengers_Port_of_embarkation: 'GRCFU',
+                Passengers_Port_of_embarkation: record.port.description,
                 Passengers_Port_of_disembarkation: null,
                 Passengers_Transit: null,
                 Passengers_Visa_Residence_Permit_number: '',

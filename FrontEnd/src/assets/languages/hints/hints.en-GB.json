@@ -18,6 +18,7 @@
         { "id": "requiredShort", "description": "Required" },
         { "id": "shouldBeEmptyPlusOrMinus", "description": "This field may be blank or have the + or - symbol" },
         { "id": "shouldBeCapitalLetterOrSpace", "description": "Only Latin capital letters are allowed" },
+        { "id": "shouldBeFiveCapitalLetters", "description": "Only five (5) Latin capital letters are allowed" },
         { "id": "spacesNotAllowed", "description": "This field can't contain spaces" }
     ]
 }

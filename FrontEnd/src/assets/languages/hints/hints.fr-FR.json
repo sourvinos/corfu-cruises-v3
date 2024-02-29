@@ -18,6 +18,7 @@
         { "id": "requiredShort", "description": "Obligatoire" },
         { "id": "shouldBeEmptyPlusOrMinus", "description": "Ce champ peut être vide ou comporter le symbole + ou -." },
         { "id": "shouldBeCapitalLetterOrSpace", "description": "Seules les lettres majuscules latines sont autorisées" },
+        { "id": "shouldBeCapitalLetter", "description": "Seules les lettres majuscules latines sont autorisées" },
         { "id": "spacesNotAllowed", "description": "Ce champ ne peut pas contenir d'espaces" }
     ]
 }

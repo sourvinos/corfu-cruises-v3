@@ -409,6 +409,10 @@
                 "description": "Beschreibung"
             },
             {
+                "id": "locode",
+                "description": "UN/Locode"
+            },
+            {
                 "id": "stopOrder",
                 "description": "Annäherungsauftrag"
             },

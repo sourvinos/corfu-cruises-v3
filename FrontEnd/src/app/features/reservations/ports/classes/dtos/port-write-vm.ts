@@ -5,6 +5,7 @@ export interface PortWriteDto {
     // Fields
     abbreviation: string
     description: string
+    locode: string
     stopOrder: number
     isActive: boolean
     // Rowversion

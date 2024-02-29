@@ -21,10 +21,17 @@
                 <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="description.hasError('maxlength')">{{ getHint("maxLength", description.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
+            <!-- Locode -->
+            <mat-form-field>
+                <mat-label>{{ getLabel('locode') }}</mat-label>
+                <input [inputTabStop]="input" dataTabIndex="3" formControlName="locode" matInput>
+                <mat-error *ngIf="locode.hasError('required')">{{ getHint("required") }}</mat-error>
+                <mat-error *ngIf="!locode.hasError('required') && locode.hasError('shouldBeFiveCapitalLetters')">"{{ getHint("shouldBeFiveCapitalLetters") }}"</mat-error>
+            </mat-form-field>
             <!-- StopOrder -->
             <mat-form-field>
                 <mat-label>{{ getLabel('stopOrder') }}</mat-label>
-                <input [inputTabStop]="input" dataTabIndex="3" formControlName="stopOrder" matInput type="number">
+                <input [inputTabStop]="input" dataTabIndex="4" formControlName="stopOrder" matInput type="number">
                 <mat-error *ngIf="stopOrder.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="!stopOrder.hasError('required') && stopOrder.hasError('min') || stopOrder.hasError('max')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>

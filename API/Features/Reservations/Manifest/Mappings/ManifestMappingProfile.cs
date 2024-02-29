@@ -61,6 +61,14 @@ namespace API.Features.Reservations.Manifest {
                             Occupant = new SimpleEntity {
                                 Id = crew.Occupant.Id,
                                 Description = crew.Occupant.Description
+                            },
+                            Port = new SimpleEntity {
+                                Id = 0,
+                                Description = ""
+                            },
+                            Specialty = new SimpleEntity {
+                                Id = crew.Specialty.Id,
+                                Description = crew.Specialty.Description
                             }
                         })
                         .OrderBy(x => x.Lastname).ThenBy(x => x.Firstname)
@@ -95,6 +103,14 @@ namespace API.Features.Reservations.Manifest {
                     Occupant = new SimpleEntity {
                         Id = passenger.Occupant.Id,
                         Description = passenger.Occupant.Description
+                    },
+                    Port = new SimpleEntity {
+                        Id = passenger.Reservation.Port.Id,
+                        Description = passenger.Reservation.Port.Locode
+                    },
+                    Specialty = new SimpleEntity {
+                        Id = 0,
+                        Description = ""
                     }
                 }).OrderBy(x => x.Lastname).ThenBy(x => x.Firstname).ThenBy(x => x.Birthdate)));
         }

@@ -9,6 +9,7 @@ namespace API.Features.Reservations.Ports {
         // Fields
         public string Abbreviation { get; set; }
         public string Description { get; set; }
+        public string Locode { get; set; }
         public int StopOrder { get; set; }
         public bool IsActive { get; set; }
         // Metadata

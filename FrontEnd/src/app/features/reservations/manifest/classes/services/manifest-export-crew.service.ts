@@ -22,7 +22,7 @@ export class ManifestExportCrewService {
                 Crew_Family_name: record.lastname,
                 Crew_Given_name: record.firstname,
                 Crew_Gender: record.gender.description,
-                Crew_Duty_of_crew: 'Master',
+                Crew_Duty_of_crew: record.specialty.description,
                 Crew_Nationality: record.nationality.code,
                 Crew_Date_of_birth: this.dateHelperService.formatISODateToLocale(record.birthdate),
                 Crew_Place_of_birth: '',

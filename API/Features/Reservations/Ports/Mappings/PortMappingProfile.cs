@@ -11,8 +11,9 @@ namespace API.Features.Reservations.Ports {
             CreateMap<Port, SimpleEntity>();
             CreateMap<Port, PortReadDto>();
             CreateMap<PortWriteDto, Port>()
+                .ForMember(x => x.Abbreviation, x => x.MapFrom(x => x.Abbreviation.Trim()))
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
-                .ForMember(x => x.Abbreviation, x => x.MapFrom(x => x.Abbreviation.Trim()));
+                .ForMember(x => x.Locode, x => x.MapFrom(x => x.Locode.Trim()));
         }
 
     }

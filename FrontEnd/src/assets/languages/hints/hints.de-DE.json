@@ -18,6 +18,7 @@
         { "id": "requiredShort", "description": "Erforderliches" },
         { "id": "shouldBeEmptyPlusOrMinus", "description": "Dieses Feld darf leer sein oder das Symbol + oder - enthalten" },
         { "id": "shouldBeCapitalLetterOrSpace", "description": "Nur lateinische Großbuchstaben sind erlaubt" },
+        { "id": "shouldBeCapitalLetter", "description": "Nur lateinische Großbuchstaben sind erlaubt" },
         { "id": "spacesNotAllowed", "description": "Dieses Feld darf keine Leerzeichen enthalten" }
     ]
 }

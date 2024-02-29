@@ -409,6 +409,10 @@
                 "description": "Popis"
             },
             {
+                "id": "locode",
+                "description": "UN/Locode"
+            },
+            {
                 "id": "stopOrder",
                 "description": "Pořadí přístupu"
             },
