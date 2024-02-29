@@ -10,13 +10,15 @@
             <!-- Fullname -->
             <mat-form-field>
                 <mat-label>{{ getLabel('description') }}</mat-label>
-                <input [inputTabStop]="input" dataTabIndex="1" formControlName="description" matInput>
+                <mat-icon class="material-icons-outlined small">lock</mat-icon>
+                <input [inputTabStop]="input" dataTabIndex="1" formControlName="description" matInput readonly>
                 <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="description.hasError('maxlength')">{{ getHint("maxLength", description.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <div class="stacked-checkboxes">
                 <!-- Active -->
-                <mat-checkbox formControlName="isActive">
+                <mat-checkbox class='disabled' formControlName="isActive">
+                    <mat-icon class="material-icons-outlined small">lock</mat-icon>
                     <span>{{ getLabel("isActive") }}</span>
                 </mat-checkbox>
             </div>
@@ -30,9 +32,12 @@
 
     <div id="footer">
         <div id="align-right">
-            <button (click)="onDelete()" *ngIf="form.value.id !== 0" class="delete" mat-flat-button>{{ getLabel("deleteButton") | uppercase }}</button>
-            <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
-                <mat-icon *ngIf="!form.valid" class="material-icons-outlined">lock</mat-icon>
+            <button *ngIf="form.value.id !== 0" (click)="onDelete()" class="delete" disabled mat-flat-button>
+                <mat-icon class="material-icons-outlined">lock</mat-icon>
+                <span>{{ getLabel("deleteButton") | uppercase }}</span>
+            </button>
+            <button (click)="onSave()" class="primary" disabled mat-flat-button>
+                <mat-icon class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("saveButton") | uppercase }}</span>
             </button>
         </div>
