@@ -17,7 +17,7 @@
         { "id": "required", "description": "Αυτό το πεδίο είναι υποχρεωτικό" },
         { "id": "requiredShort", "description": "Υποχρεωτικό" },
         { "id": "shouldBeEmptyPlusOrMinus", "description": "Αυτό το πεδίο επιτρέπεται να είναι κενό ή να έχει το σύμβολο + ή -" },
-        { "id": "shouldBeLetterOrSpace", "description": "Επιτρέπονται μόνο λατινικοί χαρακτήρες με κενά ανάμεσά τους" },
+        { "id": "shouldBeCapitalLetterOrSpace", "description": "Επιτρέπονται μόνο λατινικά κεφαλαία γράμματα" },
         { "id": "spacesNotAllowed", "description": "Αυτό το πεδίο δεν μπορεί να περιέχει κενά" }
     ]
 }

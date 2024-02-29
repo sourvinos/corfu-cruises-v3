@@ -193,8 +193,8 @@ export class ShipCrewFormComponent {
     private initForm(): void {
         this.form = this.formBuilder.group({
             id: 0,
-            lastname: ['', [Validators.required, ValidationService.shouldBeLetterOrSpace, Validators.maxLength(128)]],
-            firstname: ['', [Validators.required, ValidationService.shouldBeLetterOrSpace, Validators.maxLength(128)]],
+            lastname: ['', [Validators.required, ValidationService.shouldBeCapitalLetterOrSpace, Validators.maxLength(128)]],
+            firstname: ['', [Validators.required, ValidationService.shouldBeCapitalLetterOrSpace, Validators.maxLength(128)]],
             birthdate: ['', [Validators.required]],
             ship: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             gender: ['', [Validators.required, ValidationService.RequireAutocomplete]],
