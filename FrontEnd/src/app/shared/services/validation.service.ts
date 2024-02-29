@@ -52,6 +52,11 @@ export class ValidationService {
         return control.value == 0 ? { isGreaterThanZero: false } : null
     }
 
+    static shouldBeLetterOrSpace(control: AbstractControl): { [key: string]: any } {
+        const pattern = /^[a-zA-Z]+([ a-zA-Z]+)?$/
+        return pattern.test(control.value) ? null : { shouldBeLetterOrSpace: true }
+    }
+
     static shouldBeEmptyPlusOrMinus(control: AbstractControl): { [key: string]: any } {
         if (control.value == '') {
             return null

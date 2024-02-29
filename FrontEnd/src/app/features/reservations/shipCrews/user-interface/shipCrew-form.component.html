@@ -12,14 +12,14 @@
                 <mat-label>{{ getLabel('lastname') }}</mat-label>
                 <input [inputTabStop]="input" dataTabIndex="1" formControlName="lastname" matInput>
                 <mat-error *ngIf="lastname.hasError('required')">{{ getHint("required") }}</mat-error>
-                <mat-error *ngIf="lastname.hasError('maxlength')">{{ getHint("maxLength", lastname.errors.maxlength.requiredLength) }}</mat-error>
+                <mat-error *ngIf="!lastname.hasError('required') && lastname.hasError('shouldBeLetterOrSpace')">{{ getHint("shouldBeLetterOrSpace") }}</mat-error>
             </mat-form-field>
             <!-- Firstname -->
             <mat-form-field>
                 <mat-label>{{ getLabel('firstname') }}</mat-label>
                 <input [inputTabStop]="input" dataTabIndex="2" formControlName="firstname" matInput>
                 <mat-error *ngIf="firstname.hasError('required')">{{ getHint("required") }}</mat-error>
-                <mat-error *ngIf="firstname.hasError('maxlength')">{{ getHint("maxLength", firstname.errors.maxlength.requiredLength) }}</mat-error>
+                <mat-error *ngIf="!firstname.hasError('required') && firstname.hasError('shouldBeLetterOrSpace')">{{ getHint("shouldBeLetterOrSpace") }}</mat-error>
             </mat-form-field>
             <!-- Birthdate -->
             <date-picker (outputValue)="patchFormWithSelectedDate($event)" [dataTabIndex]="3" [isAdminOrNewRecord]=true [label]="getLabel('birthdate')" [parentDate]="getDate()" [readOnly]=false [showHint]=false></date-picker>
@@ -75,7 +75,7 @@
                 <!-- Active -->
                 <mat-checkbox formControlName="isActive">
                     <span>{{ getLabel("isActive") }}</span>
-                </mat-checkbox>s
+                </mat-checkbox>
             </div>
             <div class="align-bottom">
                 <!-- Metadata -->

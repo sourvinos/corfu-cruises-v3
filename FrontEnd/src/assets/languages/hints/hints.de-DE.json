@@ -8,15 +8,16 @@
         { "id": "doesNotContainUpperCase", "description": "Dieses Feld muss mindestens einen Großbuchstaben enthalten" },
         { "id": "invalid", "description": "Dieses Feld ist ungültig" },
         { "id": "invalidRange", "description": "Dieses Feld liegt außerhalb des zulässigen Bereichs" },
+        { "id": "invalidShort", "description": "Ungültiges" },
         { "id": "maxLength", "description": "Dieses Feld kann bis zu xx Zeichen lang sein" },
         { "id": "minLength", "description": "Dieses Feld muss mindestens xx Zeichen lang sein" },
         { "id": "otherErrors", "description": "Dieses Feld enthält Fehler" },
         { "id": "passwordsNoMatch", "description": "Neues Passwort und Bestätigung des neuen Passworts stimmen nicht überein" },
         { "id": "remainingCharacters", "description": "Sie können bis zu xx weitere Zeichen eingeben" },
         { "id": "required", "description": "Dieses Feld ist erforderlich" },
-        { "id": "shouldBeEmptyPlusOrMinus", "description": "Dieses Feld darf leer sein oder das Symbol + oder - enthalten" },
-        { "id": "spacesNotAllowed", "description": "Dieses Feld darf keine Leerzeichen enthalten" },
         { "id": "requiredShort", "description": "Erforderliches" },
-        { "id": "invalidShort", "description": "Ungültiges" }
+        { "id": "shouldBeEmptyPlusOrMinus", "description": "Dieses Feld darf leer sein oder das Symbol + oder - enthalten" },
+        { "id": "shouldBeLetterOrSpace", "description": "Nur lateinische Buchstaben mit Leerzeichen dazwischen sind erlaubt" },
+        { "id": "spacesNotAllowed", "description": "Dieses Feld darf keine Leerzeichen enthalten" }
     ]
 }

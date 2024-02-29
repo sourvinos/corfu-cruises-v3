@@ -21,8 +21,8 @@ namespace API.Features.Reservations.Reservations {
             RuleForEach(x => x.Passengers).ChildRules(passenger => {
                 passenger.RuleFor(x => x.GenderId).NotEmpty();
                 passenger.RuleFor(x => x.NationalityId).NotEmpty();
-                passenger.RuleFor(x => x.Lastname).NotEmpty().MaximumLength(128);
-                passenger.RuleFor(x => x.Firstname).NotEmpty().MaximumLength(128);
+                passenger.RuleFor(x => x.Lastname).NotEmpty().Matches("^[a-zA-Z]+([ a-zA-Z]+)?$").MaximumLength(128);
+                passenger.RuleFor(x => x.Firstname).NotEmpty().Matches("^[a-zA-Z]+([ a-zA-Z]+)?$").MaximumLength(128);
                 passenger.RuleFor(x => x.Birthdate).Must(DateHelpers.BeCorrectFormat);
                 passenger.RuleFor(x => x.Remarks).MaximumLength(128);
                 passenger.RuleFor(x => x.SpecialCare).MaximumLength(128);
