@@ -18,7 +18,7 @@ namespace API.Features.Reservations.Manifest {
 
         [Authorize(Roles = "admin")]
         public ManifestFinalVM Post([FromBody] ManifestCriteriaVM criteria) {
-            return repo.Get(criteria.Date, criteria.DestinationId, criteria.PortIds, criteria.ShipId);
+            return repo.Get(criteria.Date, criteria.DestinationId, criteria.PortId, criteria.ShipId);
         }
 
     }

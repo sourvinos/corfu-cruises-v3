@@ -18,7 +18,7 @@ export class ManifestListResolver {
         const searchCriteria: ManifestSearchCriteriaVM = {
             date: storedCriteria.date,
             destinationId: storedCriteria.selectedDestinations[0].id,
-            portIds: this.buildIds(storedCriteria.selectedPorts),
+            portId: storedCriteria.selectedPorts[0].id,
             shipId: storedCriteria.selectedShips[0].id
         }
         return this.manifestService.get(searchCriteria).pipe(

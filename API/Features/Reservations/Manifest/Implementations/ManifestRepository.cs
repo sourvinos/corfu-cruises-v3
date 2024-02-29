@@ -19,7 +19,7 @@ namespace API.Features.Reservations.Manifest {
             this.mapper = mapper;
         }
 
-        public ManifestFinalVM Get(string date, int destinationId, int[] portIds, int? shipId) {
+        public ManifestFinalVM Get(string date, int destinationId, int portId, int? shipId) {
             var manifest = new ManifestInitialVM {
                 Date = date,
                 Destination = context.Destinations
@@ -41,7 +41,7 @@ namespace API.Features.Reservations.Manifest {
                     .Where(x => x.Reservation.Date.ToString() == date
                         && x.Reservation.DestinationId == destinationId
                         && x.Reservation.ShipId == shipId
-                        && portIds.Contains(x.Reservation.PickupPoint.PortId)
+                        && x.Reservation.PortId == portId
                         && x.IsBoarded)
                     .ToList()
             };
