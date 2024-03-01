@@ -1,4 +1,5 @@
 ﻿using System;
+using API.Features.Billing.Invoices;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
@@ -22,7 +23,7 @@ namespace API.Features.Billing.Transactions {
         public string Remarks { get; set; }
         // Navigation
         public SimpleEntity Customer { get; set; }
-        public SimpleEntity DocumentType { get; set; }
+        public DocumentTypeVM DocumentType { get; set; }
         public SimpleEntity PaymentMethod { get; set; }
         // Metadata
         public string PostAt { get; set; }

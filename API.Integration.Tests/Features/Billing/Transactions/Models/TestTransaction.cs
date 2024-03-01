@@ -13,7 +13,7 @@ namespace Transactions {
         public int DocumentTypeId { get; set; }
         public int PaymentMethodId { get; set; }
         // Fields
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         public int No { get; set; }
         public decimal NetAmount { get; set; }
         public decimal VatPercent { get; set; }

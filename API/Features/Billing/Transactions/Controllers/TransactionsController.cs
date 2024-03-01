@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Features.Billing.Invoices;
+using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Responses;
 using AutoMapper;
@@ -46,6 +47,26 @@ namespace API.Features.Billing.Transactions {
             } else {
                 throw new CustomException() {
                     ResponseCode = 404
+                };
+            }
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "user, admin")]
+        [ServiceFilter(typeof(ModelValidationAttribute))]
+        public async Task<Response> PostAsync([FromBody] TransactionWriteDto invoice) {
+            var x = transactionValidation.IsValidAsync(null, invoice);
+            if (await x == 200) {
+                var i = transactionRepo.Create(mapper.Map<TransactionWriteDto, Invoice>(transactionRepo.AttachMetadataToPostDto(invoice)));
+                return new Response {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Id = z.InvoiceId.ToString(),
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = await x
                 };
             }
         }

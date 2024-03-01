@@ -35,18 +35,12 @@ namespace API.Features.Billing.Transactions {
                 ? await context.Invoices
                     .AsNoTracking()
                     .Include(x => x.Customer)
-                    .Include(x => x.Destination)
-                    .Include(x => x.Ship)
                     .Include(x => x.DocumentType)
                     .Include(x => x.PaymentMethod)
-                    .Include(x => x.Aade)
-                    .Include(x => x.InvoicesPorts).ThenInclude(x => x.Port)
                     .Where(x => x.InvoiceId.ToString() == invoiceId)
                     .SingleOrDefaultAsync()
                : await context.Invoices
                     .AsNoTracking()
-                    .Include(x => x.Aade)
-                    .Include(x => x.InvoicesPorts).ThenInclude(x => x.Port)
                     .Where(x => x.InvoiceId.ToString() == invoiceId)
                     .SingleOrDefaultAsync();
         }

@@ -7,6 +7,7 @@ namespace API.Features.Billing.Invoices {
 
         Invoice Update(Guid id, Invoice invoice);
         InvoiceAade UpdateInvoiceAade(InvoiceAade invoiceAade);
+
     }
     
 }
