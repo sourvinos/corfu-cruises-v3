@@ -16,8 +16,9 @@ namespace Ports {
             return new object[] {
                 new TestPort {
                     StatusCode = 493,
-                    Description = Helpers.CreateRandomString(128),
                     Abbreviation= Helpers.CreateRandomString(5),
+                    Description = Helpers.CreateRandomString(128),
+                    Locode = "GRXXX",
                     StopOrder = 2
                 }
             };

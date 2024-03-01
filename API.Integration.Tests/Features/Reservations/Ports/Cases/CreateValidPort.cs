@@ -15,8 +15,9 @@ namespace Ports {
         private static object[] ValidRecord() {
             return new object[] {
                 new TestPort {
-                    Description = Helpers.CreateRandomString(128),
                     Abbreviation= Helpers.CreateRandomString(5),
+                    Description = Helpers.CreateRandomString(128),
+                    Locode = "GRXXX",
                     StopOrder = 5
                 }
             };

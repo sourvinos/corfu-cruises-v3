@@ -18,8 +18,9 @@ namespace Ports {
                 new TestPort {
                     StatusCode = 493,
                     Id = 1,
-                    Description = Helpers.CreateRandomString(128),
                     Abbreviation= Helpers.CreateRandomString(5),
+                    Description = Helpers.CreateRandomString(128),
+                    Locode = "GRXXX",
                     StopOrder = 2
                 }
             };
@@ -32,6 +33,7 @@ namespace Ports {
                     Id = 1,
                     Abbreviation = Helpers.CreateRandomString(5),
                     Description = Helpers.CreateRandomString(128),
+                    Locode = "GRXXX",
                     StopOrder = 1,
                     PutAt = "2023-09-07 09:55:22"
                 }

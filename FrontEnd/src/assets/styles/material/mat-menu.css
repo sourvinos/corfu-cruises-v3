@@ -1,5 +1,5 @@
 .mat-mdc-menu-content {
-    background-color: var(--color-background) !important;
+    background-color: var(--color-menu-background) !important;
 }
 
 .mat-mdc-menu-item:hover .mat-mdc-menu-item-text {

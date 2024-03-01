@@ -12,6 +12,7 @@ namespace ShipCrews {
             yield return Gender_Must_Exist();
             yield return Nationality_Must_Exist();
             yield return Ship_Must_Exist();
+            yield return Specialty_Must_Exist();
             yield return Crew_Must_Not_Be_Already_Updated();
         }
 
@@ -23,6 +24,7 @@ namespace ShipCrews {
                     GenderId = 5,
                     NationalityId = 1,
                     ShipId = 1,
+                    SpecialtyId = 1,
                     Lastname = Helpers.CreateRandomString(128),
                     Firstname = Helpers.CreateRandomString(128),
                     Birthdate = "1970-01-01",
@@ -38,6 +40,7 @@ namespace ShipCrews {
                     GenderId = 1,
                     NationalityId = 9999,
                     ShipId = 1,
+                    SpecialtyId = 1,
                     Lastname = Helpers.CreateRandomString(128),
                     Firstname = Helpers.CreateRandomString(128),
                     Birthdate = "1970-01-01",
@@ -53,6 +56,23 @@ namespace ShipCrews {
                     GenderId = 1,
                     NationalityId = 1,
                     ShipId = 9999,
+                    SpecialtyId = 1,
+                    Lastname = Helpers.CreateRandomString(128),
+                    Firstname = Helpers.CreateRandomString(128),
+                    Birthdate = "1970-01-01"
+                }
+            };
+        }
+
+        private static object[] Specialty_Must_Exist() {
+            return new object[] {
+                new TestCrew {
+                    StatusCode = 464,
+                    Id = 22,
+                    GenderId = 1,
+                    NationalityId = 1,
+                    ShipId = 1,
+                    SpecialtyId = 999,
                     Lastname = Helpers.CreateRandomString(128),
                     Firstname = Helpers.CreateRandomString(128),
                     Birthdate = "1970-01-01"
@@ -68,6 +88,7 @@ namespace ShipCrews {
                     GenderId = 1,
                     NationalityId = 1,
                     ShipId = 1,
+                    SpecialtyId = 1,
                     Lastname = Helpers.CreateRandomString(128),
                     Firstname = Helpers.CreateRandomString(128),
                     Birthdate = "1970-01-01",

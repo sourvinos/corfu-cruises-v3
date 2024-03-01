@@ -69,6 +69,7 @@ namespace API.Features.Billing.Invoices {
                 })));
             // Create invoice
             CreateMap<InvoiceCreateDto, Invoice>()
+                .ForMember(x => x.DiscriminatorId, x => x.MapFrom(x => 1))
                 .ForMember(x => x.Aade, x => x.MapFrom(x => new InvoiceAade {
                     InvoiceId = x.InvoiceId,
                     Uid = "",

@@ -24,6 +24,7 @@ namespace API.Features.Billing.Invoices {
         public async Task<IEnumerable<InvoiceListVM>> GetAsync() {
             var invoices = await context.Invoices
                 .AsNoTracking()
+                .Where(x => x.DiscriminatorId == 1)
                 .Include(x => x.Customer)
                 .Include(x => x.Destination)
                 .Include(x => x.DocumentType)
@@ -36,6 +37,7 @@ namespace API.Features.Billing.Invoices {
         public async Task<IEnumerable<InvoiceListVM>> GetForPeriodAsync(string from, string to) {
             var invoices = await context.Invoices
                 .AsNoTracking()
+                .Where(x => x.DiscriminatorId == 1)
                 .Include(x => x.Customer)
                 .Include(x => x.Destination)
                 .Include(x => x.DocumentType)

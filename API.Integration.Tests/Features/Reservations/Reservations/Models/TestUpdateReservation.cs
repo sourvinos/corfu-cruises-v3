@@ -4,11 +4,10 @@ using Infrastructure;
 
 namespace Reservations {
 
-    public class TestUpdateReservation : ITestEntity {
+    public class TestUpdateReservation {
 
         public int StatusCode { get; set; }
 
-        public int Id { get; set; }
         public Guid ReservationId { get; set; }
         public int CustomerId { get; set; }
         public int DestinationId { get; set; }

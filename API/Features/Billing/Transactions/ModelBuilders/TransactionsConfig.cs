@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace API.Features.Billing.Invoices {
+namespace API.Features.Billing.Transactions {
 
-    internal class InvoicesConfig : IEntityTypeConfiguration<Invoice> {
+    internal class TransactionsConfig : IEntityTypeConfiguration<Transaction> {
 
-        public void Configure(EntityTypeBuilder<Invoice> entity) {
+        public void Configure(EntityTypeBuilder<Transaction> entity) {
             // PK
             entity.Property(x => x.InvoiceId).IsFixedLength().HasMaxLength(36).IsRequired(true);
             // FKs

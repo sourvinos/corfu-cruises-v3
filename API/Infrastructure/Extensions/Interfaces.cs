@@ -4,6 +4,7 @@ using API.Features.Billing.Parameters;
 using API.Features.Billing.PaymentMethods;
 using API.Features.Billing.Prices;
 using API.Features.Billing.TaxOffices;
+using API.Features.Billing.Transactions;
 using API.Features.Billing.VatRegimes;
 using API.Features.Reservations.Availability;
 using API.Features.Reservations.Boarding;
@@ -108,6 +109,8 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IPriceValidation, PriceValidation>();
             services.AddTransient<ITaxOfficeRepository, TaxOfficeRepository>();
             services.AddTransient<ITaxOfficeValidation, TaxOfficeValidation>();
+            services.AddTransient<ITransactionRepository, TransactionRepository>();
+            services.AddTransient<ITransactionValidation, TransactionValidation>();
             services.AddTransient<IVatRegimeRepository, VatRegimeRepository>();
             services.AddTransient<IVatRegimeValidation, VatRegimeValidation>();
             services.AddTransient<IVatRegimeValidation, VatRegimeValidation>();

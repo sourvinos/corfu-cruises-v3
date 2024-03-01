@@ -65,7 +65,7 @@
 .p-datatable .p-datatable-thead > tr:nth-child(2) > th:not(.header-datepicker) {
     border-bottom: 0.0625rem solid color-mix(in srgb, var(--color-primary) 30%, transparent);
     border-top: none;
-    padding: 0 0.5rem 0.5625rem 0.5rem;
+    padding: 0 0.5rem 0.6875rem 0.5rem;
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(2) > th:first-child {

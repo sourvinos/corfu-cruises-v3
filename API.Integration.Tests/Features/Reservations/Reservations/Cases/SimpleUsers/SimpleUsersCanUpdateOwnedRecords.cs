@@ -28,8 +28,8 @@ namespace Reservations {
                     Kids = 0,
                     Free = 0,
                     Passengers = new List<TestPassenger>() {
-                        new() { ReservationId = Guid.Parse("5bccac1d-caa4-47b6-869a-e63979c4103d"), Id = 64400, Lastname = "KOYRI!", Firstname = "MARILENA", Birthdate = "2022-05-05", NationalityId = 243, GenderId = 2 },
-                        new() { ReservationId = Guid.Parse("5bccac1d-caa4-47b6-869a-e63979c4103d"), Id = 64401, Lastname = "KOYRI!", Firstname = "JANE", Birthdate = "2022-05-05", NationalityId = 243, GenderId = 2 },
+                        new() { ReservationId = Guid.Parse("5bccac1d-caa4-47b6-869a-e63979c4103d"), Id = 64400, GenderId = 2, NationalityId = 243, Lastname = "KOYRI", Firstname = "MARILENA", Birthdate = "2022-05-05" },
+                        new() { ReservationId = Guid.Parse("5bccac1d-caa4-47b6-869a-e63979c4103d"), Id = 64401, Lastname = "KOYRI", Firstname = "JANE", Birthdate = "2022-05-05", NationalityId = 243, GenderId = 2},
                         new() { ReservationId = Guid.Parse("5bccac1d-caa4-47b6-869a-e63979c4103d"), Id = 64402, Lastname = "NEW", Firstname = "JANE", Birthdate = "2022-05-05", NationalityId = 243, GenderId = 2 }
                     },
                     PutAt = "2023-09-14 05:17:50"
