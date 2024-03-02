@@ -3,18 +3,18 @@
         <mat-icon class="material-icons-outlined">paid</mat-icon>
     </button>
     <mat-menu #menu="matMenu" class="primary">
-        <button (click)="doNavigation('invoices')" mat-menu-item><span>{{ getLabel('invoices') }}</span></button>
-        <button (click)="doNavigation('receipts')" mat-menu-item> <span>{{ getLabel('receipts') }}</span></button>
+        <button (click)="doNavigation('invoices',false)" mat-menu-item><span>{{ getLabel('invoices') }}</span></button>
+        <button (click)="doNavigation('receipts',false)" mat-menu-item> <span>{{ getLabel('receipts') }}</span></button>
         <mat-divider></mat-divider>
-        <button (click)="doNavigation('taxOffices')" mat-menu-item>{{ getLabel("taxOffices") }}</button>
-        <button (click)="doNavigation('documentTypes')" mat-menu-item>{{ getLabel("documentTypes") }}</button>
-        <button (click)="doNavigation('customers')" mat-menu-item>{{ getLabel("customers") }}</button>
-        <button (click)="doNavigation('prices')" mat-menu-item>{{ getLabel("prices") }}</button>
-        <button (click)="doNavigation('banks')" mat-menu-item>{{ getLabel("banks") }}</button>
-        <button (click)="doNavigation('paymentMethods')" mat-menu-item>{{ getLabel("paymentMethods") }}</button>
+        <button (click)="doNavigation('taxOffices',true)" mat-menu-item>{{ getLabel("taxOffices") }}</button>
+        <button (click)="doNavigation('documentTypes',true)" mat-menu-item>{{ getLabel("documentTypes") }}</button>
+        <button (click)="doNavigation('customers',true)" mat-menu-item>{{ getLabel("customers") }}</button>
+        <button (click)="doNavigation('prices',true)" mat-menu-item>{{ getLabel("prices") }}</button>
+        <button (click)="doNavigation('banks',true)" mat-menu-item>{{ getLabel("banks") }}</button>
+        <button (click)="doNavigation('paymentMethods',true)" mat-menu-item>{{ getLabel("paymentMethods") }}</button>
         <mat-divider></mat-divider>
-        <button (click)="doNavigation('billing-ledgers')" mat-menu-item>{{ getLabel("ledgers") }}</button>
-        <button (click)="doNavigation('balanceSheet')" mat-menu-item>{{ getLabel("balanceSheet")}}</button>
+        <button (click)="doNavigation('billing-ledgers',false)" mat-menu-item>{{ getLabel("ledgers") }}</button>
+        <button (click)="doNavigation('balanceSheet',false)" mat-menu-item>{{ getLabel("balanceSheet")}}</button>
         <mat-divider></mat-divider>
-        <button (click)="doNavigation('billing-parameters')" mat-menu-item>{{ getLabel("billing-parameters")}}</button></mat-menu>
+        <button (click)="doNavigation('billing-parameters',false)" mat-menu-item>{{ getLabel("billing-parameters")}}</button></mat-menu>
 </div>

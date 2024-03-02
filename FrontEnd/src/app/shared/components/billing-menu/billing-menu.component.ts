@@ -6,6 +6,7 @@ import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { Menu } from 'src/app/shared/classes/menu'
 import { MessageMenuService } from 'src/app/shared/services/message-menu.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
+import { environment } from 'src/environments/environment'
 
 @Component({
     selector: 'billing-menu',
@@ -33,8 +34,10 @@ export class BillingMenuComponent {
 
     //#region public methods
 
-    public doNavigation(feature: string): void {
-        this.router.navigate([feature])
+    public doNavigation(feature: string, featureIsEnabled: boolean): void {
+        this.router.navigate(environment.production && featureIsEnabled == false
+            ? (['not-ready-yet'])
+            : ([feature]))
     }
 
     public getLabel(id: string): string {
