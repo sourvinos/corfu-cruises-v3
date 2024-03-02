@@ -8,12 +8,12 @@ namespace API.Features.Billing.Invoices {
 
         // PK
         public Guid InvoiceId { get; set; }
-        // Fks
+        // FKs
         public int CustomerId { get; set; }
-        public int DestinationId { get; set; }
+        public int? DestinationId { get; set; }
         public int DocumentTypeId { get; set; }
         public int PaymentMethodId { get; set; }
-        public int ShipId { get; set; }
+        public int? ShipId { get; set; }
         // Fields
         public string Date { get; set; }
         public int No { get; set; }

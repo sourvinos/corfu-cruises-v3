@@ -13,7 +13,7 @@ namespace API.Features.Billing.Transactions {
             // Fields
             RuleFor(x => x.Date).Must(DateHelpers.BeCorrectFormat);
             RuleFor(x => x.No).NotEmpty();
-            RuleFor(x => x.NetAmount).InclusiveBetween(0, 99999);
+            RuleFor(x => x.GrossAmount).InclusiveBetween(0, 99999);
             RuleFor(x => x.Remarks).MaximumLength(128);
         }
 

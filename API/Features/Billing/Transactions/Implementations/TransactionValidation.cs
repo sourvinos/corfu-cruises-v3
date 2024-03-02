@@ -1,5 +1,4 @@
 using System;
-using System.Threading.Tasks;
 using API.Infrastructure.Users;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Implementations;
@@ -7,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System.Threading.Tasks;
 
 namespace API.Features.Billing.Transactions {
 
@@ -27,12 +27,12 @@ namespace API.Features.Billing.Transactions {
         }
 
         private async Task<bool> IsValidCustomer(TransactionWriteDto transaction) {
-            if (transaction.InvoiceId == Guid.Empty) {
+            if (transaction.TransactionId == Guid.Empty) {
                 return await context.Customers
                     .AsNoTracking()
                     .FirstOrDefaultAsync(x => x.Id == transaction.CustomerId && x.IsActive) != null;
             }
-            return await context.Customers
+            return context.Customers
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == transaction.CustomerId) != null;
         }

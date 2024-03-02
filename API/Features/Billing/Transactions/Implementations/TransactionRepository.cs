@@ -9,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
 using AutoMapper;
-using API.Features.Billing.Invoices;
 
 namespace API.Features.Billing.Transactions {
 
@@ -22,26 +21,26 @@ namespace API.Features.Billing.Transactions {
         }
 
         public async Task<IEnumerable<TransactionListVM>> GetAsync() {
-            var invoice = await context.Invoices
+            var transaction = await context.Transactions
                 .AsNoTracking()
                 .Where(x => x.DiscriminatorId == 2)
                 .OrderBy(x => x.Date)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<Invoice>, IEnumerable<TransactionListVM>>(invoice);
+            return mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionListVM>>(transaction);
         }
 
-        public async Task<Invoice> GetByIdAsync(string invoiceId, bool includeTables) {
+        public async Task<Transaction> GetByIdAsync(string transactionId, bool includeTables) {
             return includeTables
-                ? await context.Invoices
+                ? await context.Transactions
                     .AsNoTracking()
                     .Include(x => x.Customer)
                     .Include(x => x.DocumentType)
                     .Include(x => x.PaymentMethod)
-                    .Where(x => x.InvoiceId.ToString() == invoiceId)
+                    .Where(x => x.TransactionId.ToString() == transactionId)
                     .SingleOrDefaultAsync()
-               : await context.Invoices
+               : await context.Transactions
                     .AsNoTracking()
-                    .Where(x => x.InvoiceId.ToString() == invoiceId)
+                    .Where(x => x.TransactionId.ToString() == transactionId)
                     .SingleOrDefaultAsync();
         }
 

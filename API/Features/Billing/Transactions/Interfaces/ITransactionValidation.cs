@@ -4,7 +4,7 @@ namespace API.Features.Billing.Transactions {
 
     public interface ITransactionValidation {
 
-        Task<int> IsValidAsync(Transaction x, TransactionWriteDto invoice);
+        Task<int> IsValidAsync(Transaction x, TransactionWriteDto transaction);
 
     }
 

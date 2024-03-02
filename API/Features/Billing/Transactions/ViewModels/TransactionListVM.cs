@@ -4,7 +4,7 @@ namespace API.Features.Billing.Transactions {
 
     public class TransactionListVM {
 
-        public string InvoiceId { get; set; }
+        public string TransactionId { get; set; }
         public string Date { get; set; }
         public int No { get; set; }
         public SimpleEntity Customer { get; set; }

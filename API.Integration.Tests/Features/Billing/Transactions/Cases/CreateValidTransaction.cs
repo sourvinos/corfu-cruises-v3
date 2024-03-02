@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Transactions;
 
 namespace Transactions {
 
@@ -20,9 +19,7 @@ namespace Transactions {
                     PaymentMethodId = 1,
                     Date = "2024-02-10",
                     No = 1,
-                    NetAmount = 100,
-                    VatAmount = 0,
-                    VatPercent = 0
+                    GrossAmount = 100
                 }
             };
         }

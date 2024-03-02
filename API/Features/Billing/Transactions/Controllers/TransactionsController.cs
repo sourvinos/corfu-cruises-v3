@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using API.Features.Billing.Invoices;
+
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Responses;
@@ -33,16 +33,16 @@ namespace API.Features.Billing.Transactions {
             return await transactionRepo.GetAsync();
         }
 
-        [HttpGet("{invoiceId}")]
+        [HttpGet("{transactionId}")]
         [Authorize(Roles = "admin")]
-        public async Task<ResponseWithBody> GetByIdAsync(string invoiceId) {
-            var x = await transactionRepo.GetByIdAsync(invoiceId, true);
+        public async Task<ResponseWithBody> GetByIdAsync(string transactionId) {
+            var x = await transactionRepo.GetByIdAsync(transactionId, true);
             if (x != null) {
                 return new ResponseWithBody {
                     Code = 200,
                     Icon = Icons.Info.ToString(),
                     Message = ApiMessages.OK(),
-                    Body = mapper.Map<Invoice, TransactionReadDto>(x)
+                    Body = mapper.Map<Transaction, TransactionReadDto>(x)
                 };
             } else {
                 throw new CustomException() {
@@ -52,16 +52,16 @@ namespace API.Features.Billing.Transactions {
         }
 
         [HttpPost]
-        [Authorize(Roles = "user, admin")]
+        [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<Response> PostAsync([FromBody] TransactionWriteDto invoice) {
-            var x = transactionValidation.IsValidAsync(null, invoice);
+        public async Task<Response> PostAsync([FromBody] TransactionWriteDto transaction) {
+            var x = transactionValidation.IsValidAsync(null, transaction);
             if (await x == 200) {
-                var i = transactionRepo.Create(mapper.Map<TransactionWriteDto, Invoice>(transactionRepo.AttachMetadataToPostDto(invoice)));
+                var z = transactionRepo.Create(mapper.Map<TransactionWriteDto, Transaction>((TransactionWriteDto)transactionRepo.AttachMetadataToPostDto(transaction)));
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = z.InvoiceId.ToString(),
+                    Id = z.TransactionId.ToString(),
                     Message = ApiMessages.OK()
                 };
             } else {

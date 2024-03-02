@@ -8,7 +8,7 @@ namespace API.Features.Billing.Transactions {
     public class TransactionReadDto : IMetadata {
 
         // PK
-        public string InvoiceId { get; set; }
+        public string TransactionId { get; set; }
         // FKs
         public int CustomerId { get; set; }
         public int DocumentTypeId { get; set; }
@@ -16,9 +16,6 @@ namespace API.Features.Billing.Transactions {
         // Fields
         public DateTime Date { get; set; }
         public int No { get; set; }
-        public decimal NetAmount { get; set; }
-        public decimal VatPercent { get; set; }
-        public decimal VatAmount { get; set; }
         public decimal GrossAmount { get; set; }
         public string Remarks { get; set; }
         // Navigation

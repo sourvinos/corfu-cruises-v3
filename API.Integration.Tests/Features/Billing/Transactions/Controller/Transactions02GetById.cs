@@ -17,7 +17,7 @@ namespace Transactions {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
-        private readonly string _url = "/transactions/1d782159-6877-4a63-a7fe-19de9cd00eaa";
+        private readonly string _url = "/transactions/31b484f5-50f8-454a-b5b8-fe4b6168b474";
         private readonly string _notFoundUrl = "/transactions/fc001424-29dd-42df-8f77-301df4790693";
 
         #endregion

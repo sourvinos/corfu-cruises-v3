@@ -4,6 +4,7 @@ using API.Features.Billing.Parameters;
 using API.Features.Billing.PaymentMethods;
 using API.Features.Billing.Prices;
 using API.Features.Billing.TaxOffices;
+using API.Features.Billing.Transactions;
 using API.Features.Billing.VatRegimes;
 using API.Features.Reservations.CoachRoutes;
 using API.Features.Reservations.CrewSpecialties;
@@ -11,6 +12,7 @@ using API.Features.Reservations.Customers;
 using API.Features.Reservations.Destinations;
 using API.Features.Reservations.Drivers;
 using API.Features.Reservations.Genders;
+using API.Features.Reservations.IdentityDocuments;
 using API.Features.Reservations.Nationalities;
 using API.Features.Reservations.Occupants;
 using API.Features.Reservations.Parameters;
@@ -28,7 +30,6 @@ using API.Infrastructure.Users;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using API.Features.Reservations.IdentityDocuments;
 
 namespace API.Infrastructure.Classes {
 
@@ -71,6 +72,7 @@ namespace API.Infrastructure.Classes {
         public DbSet<PaymentMethod> PaymentMethods { get; set; }
         public DbSet<Price> Prices { get; set; }
         public DbSet<TaxOffice> TaxOffices { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
         public DbSet<VatRegime> VatRegimes { get; set; }
 
         #endregion
@@ -120,6 +122,7 @@ namespace API.Infrastructure.Classes {
             modelBuilder.ApplyConfiguration(new PaymentMethodsConfig());
             modelBuilder.ApplyConfiguration(new PricesConfig());
             modelBuilder.ApplyConfiguration(new TaxOfficesConfig());
+            modelBuilder.ApplyConfiguration(new TransactionsConfig());
             modelBuilder.ApplyConfiguration(new VatRegimeConfig());
             #endregion
             #region common
