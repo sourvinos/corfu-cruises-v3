@@ -202,7 +202,7 @@ export class PickupPointFormComponent {
             this.form.setValue({
                 id: this.record.id,
                 coachRoute: { 'id': this.record.coachRoute.id, 'abbreviation': this.record.coachRoute.abbreviation },
-                port: { 'id': this.record.port.id, 'abbreviation': this.record.port.abbreviation, 'description': this.record.port.description },
+                port: { 'id': this.record.port.id, 'description': this.record.port.description },
                 description: this.record.description,
                 exactPoint: this.record.exactPoint,
                 time: this.record.time,

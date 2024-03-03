@@ -1,7 +1,6 @@
-import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
+export interface DriverAutoCompleteVM {
 
-export interface DriverAutoCompleteVM extends SimpleEntity {
-
-    isActive: boolean
+    id: number
+    description: string
 
 }

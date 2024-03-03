@@ -1,10 +1,10 @@
 import { ActivatedRoute, Router } from '@angular/router'
-import { Observable } from 'rxjs'
 import { Component } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { MatDialog } from '@angular/material/dialog'
+import { Observable } from 'rxjs'
 import { map, startWith } from 'rxjs/operators'
 // Custom
 import { BoardingPassService } from '../../classes/boarding-pass/services/boarding-pass.service'

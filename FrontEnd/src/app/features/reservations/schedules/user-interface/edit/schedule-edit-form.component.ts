@@ -217,7 +217,7 @@ export class ScheduleEditFormComponent {
                 id: this.record.id,
                 date: this.record.date,
                 destination: { 'id': this.record.destination.id, 'description': this.record.destination.description },
-                port: { 'id': this.record.port.id, 'abbreviation': this.record.port.abbreviation, 'description': this.record.port.description },
+                port: { 'id': this.record.port.id, 'description': this.record.port.description },
                 maxPax: this.record.maxPax,
                 time: this.record.time,
                 isActive: this.record.isActive,
