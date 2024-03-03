@@ -4,6 +4,7 @@ import { CryptoService } from '../../services/crypto.service'
 import { MessageLabelService } from '../../services/message-label.service'
 import { SessionStorageService } from '../../services/session-storage.service'
 import { environment } from 'src/environments/environment'
+import { Router } from '@angular/router'
 
 @Component({
     selector: 'cards-menu',
@@ -20,9 +21,15 @@ export class CardsMenuComponent {
 
     //#endregion
 
-    constructor(private cryptoService: CryptoService, private messageLabelService: MessageLabelService, private sessionStorageService: SessionStorageService) { }
+    constructor(private router: Router, private cryptoService: CryptoService, private messageLabelService: MessageLabelService, private sessionStorageService: SessionStorageService) { }
 
     //#region public methods
+
+    public doNavigation(feature: string, featureIsEnabled: boolean): void {
+        this.router.navigate(environment.production && featureIsEnabled == false
+            ? (['not-ready-yet'])
+            : ([feature]))
+    }
 
     public getIcon(filename: string): string {
         return environment.featuresIconDirectory + filename + '.svg'
