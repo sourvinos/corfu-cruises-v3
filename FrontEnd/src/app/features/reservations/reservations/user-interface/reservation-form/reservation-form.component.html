@@ -207,7 +207,7 @@
     </mat-option>
 </mat-autocomplete>
 
-<mat-autocomplete #customers="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
+<mat-autocomplete #customers="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'abbreviation')" autoActiveFirstOption>
     <mat-option *ngFor="let option of dropdownCustomers | async" [value]="option">
         {{ option.abbreviation }}
     </mat-option>

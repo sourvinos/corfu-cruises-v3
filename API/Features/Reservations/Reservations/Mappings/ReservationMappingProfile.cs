@@ -1,4 +1,5 @@
 using System.Linq;
+using API.Features.Reservations.Customers;
 using API.Features.Reservations.Nationalities;
 using API.Features.Reservations.PickupPoints;
 using API.Features.Reservations.Ports;
@@ -14,7 +15,7 @@ namespace API.Features.Reservations.Reservations {
             // List
             CreateMap<Reservation, ReservationListVM>()
                 .ForMember(x => x.Date, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Date)))
-                .ForMember(x => x.Customer, x => x.MapFrom(x => new SimpleEntity { Id = x.Customer.Id, Description = x.Customer.Description }))
+                .ForMember(x => x.Customer, x => x.MapFrom(x => new SimpleEntity { Id = x.Customer.Id, Description = x.Customer.Abbreviation }))
                 .ForMember(x => x.CoachRoute, x => x.MapFrom(x => new ReservationListCoachRouteVM { Id = x.PickupPoint.CoachRoute.Id, Abbreviation = x.PickupPoint.CoachRoute.Abbreviation }))
                 .ForMember(x => x.Destination, x => x.MapFrom(x => new ReservationListDestinationVM { Id = x.Destination.Id, Description = x.Destination.Description, Abbreviation = x.Destination.Abbreviation }))
                 .ForMember(x => x.PickupPoint, x => x.MapFrom(x => new ReservationListPickupPointVM { Id = x.PickupPoint.Id, Description = x.PickupPoint.Description, Time = x.PickupPoint.Time }))
@@ -31,7 +32,7 @@ namespace API.Features.Reservations.Reservations {
             // GetById
             CreateMap<Reservation, ReservationReadDto>()
                 .ForMember(x => x.Date, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Date)))
-                .ForMember(x => x.Customer, x => x.MapFrom(x => new SimpleEntity { Id = x.Customer.Id, Description = x.Customer.Description }))
+                .ForMember(x => x.Customer, x => x.MapFrom(x => new CustomerAutoCompleteVM { Id = x.Customer.Id, Abbreviation = x.Customer.Abbreviation }))
                 .ForMember(x => x.Destination, x => x.MapFrom(x => new SimpleEntity { Id = x.Destination.Id, Description = x.Destination.Description }))
                 .ForMember(x => x.Driver, x => x.MapFrom(x => x.Driver == null ? new SimpleEntity { Id = 0, Description = "(EMPTY)" } : new SimpleEntity { Id = x.Driver.Id, Description = x.Driver.Description }))
                 .ForMember(x => x.Ship, x => x.MapFrom(x => x.Ship == null ? new SimpleEntity { Id = 0, Description = "(EMPTY)" } : new SimpleEntity { Id = x.Ship.Id, Description = x.Ship.Description }))
@@ -94,7 +95,7 @@ namespace API.Features.Reservations.Reservations {
                }))
                .ForMember(x => x.Customer, x => x.MapFrom(x => new SimpleEntity {
                    Id = x.Customer.Id,
-                   Description = x.Customer.Description
+                   Description = x.Customer.Abbreviation
                }))
                .ForMember(x => x.PickupPoint, x => x.MapFrom(x => new BoardingPassPickupPointVM {
                    Description = x.PickupPoint.Description,

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using API.Features.Reservations.Customers;
 using API.Features.Reservations.PickupPoints;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
@@ -26,7 +27,7 @@ namespace API.Features.Reservations.Reservations {
         public string PutAt { get; set; }
         public string PutUser { get; set; }
         //  Navigation
-        public SimpleEntity Customer { get; set; }
+        public CustomerAutoCompleteVM Customer { get; set; }
         public SimpleEntity Destination { get; set; }
         public PickupPointAutoCompleteVM PickupPoint { get; set; }
         public SimpleEntity Driver { get; set; }

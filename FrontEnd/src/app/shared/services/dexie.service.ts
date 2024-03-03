@@ -25,7 +25,7 @@ export class DexieService extends Dexie {
             ships: 'id, description, isActive',
             taxOffices: 'id, description, isActive',
             vatRegimes: 'id, description, isActive',
-            customersCriteria: 'id, description',
+            customersCriteria: 'id, abbreviation',
             destinationsCriteria: 'id, description',
             portsCriteria: 'id, description',
             shipsCriteria: 'id, description',

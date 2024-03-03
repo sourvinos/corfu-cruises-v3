@@ -452,7 +452,7 @@ export class ReservationFormComponent {
             date: this.record.date,
             refNo: this.record.refNo,
             destination: { 'id': this.record.destination.id, 'description': this.record.destination.description },
-            customer: { 'id': this.record.customer.id, 'description': this.record.customer.description },
+            customer: { 'id': this.record.customer.id, 'abbreviation': this.record.customer.abbreviation },
             pickupPoint: { 'id': this.record.pickupPoint.id, 'description': this.record.pickupPoint.description },
             exactPoint: this.record.pickupPoint.exactPoint,
             time: this.record.pickupPoint.time,

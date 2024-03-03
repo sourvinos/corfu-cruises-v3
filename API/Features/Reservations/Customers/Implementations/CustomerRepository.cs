@@ -40,7 +40,7 @@ namespace API.Features.Reservations.Customers {
         public async Task<IEnumerable<SimpleEntity>> GetForCriteriaAsync() {
             var customers = await context.Customers
                 .AsNoTracking()
-                .OrderBy(x => x.Description)
+                .OrderBy(x => x.Abbreviation)
                 .ToListAsync();
             return mapper.Map<IEnumerable<Customer>, IEnumerable<SimpleEntity>>(customers);
         }
@@ -49,7 +49,7 @@ namespace API.Features.Reservations.Customers {
             var record = await context.Customers
                 .AsNoTracking()
                 .Include(x => x.Nationality)
-                .OrderBy(x => x.Description)
+                .OrderBy(x => x.Abbreviation)
                 .SingleOrDefaultAsync(x => x.Id == id);
             return mapper.Map<Customer, CustomerBrowserStorageVM>(record);
         }

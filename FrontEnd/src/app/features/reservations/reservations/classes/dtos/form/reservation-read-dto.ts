@@ -4,13 +4,14 @@ import { Metadata } from 'src/app/shared/classes/metadata'
 import { PassengerReadDto } from './passenger-read-dto'
 import { PickupPointAutoCompleteVM } from '../../../../pickupPoints/classes/view-models/pickupPoint-autocomplete-vm'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
+import { CustomerAutoCompleteVM } from 'src/app/features/reservations/customers/classes/view-models/customer-autocomplete-vm'
 
 export interface ReservationReadDto extends Metadata {
 
     // PK
     reservationId: Guid
     // Object fields
-    customer: SimpleEntity
+    customer: CustomerAutoCompleteVM
     destination: SimpleEntity
     driver: SimpleEntity
     pickupPoint: PickupPointAutoCompleteVM
