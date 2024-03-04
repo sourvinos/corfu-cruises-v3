@@ -18,7 +18,7 @@ namespace PaymentMethods {
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
         private readonly string _url = "/paymentMethods/4";
-        private readonly string _notFoundUrl = "/paymentMethods/5";
+        private readonly string _notFoundUrl = "/paymentMethods/9999";
 
         #endregion
 

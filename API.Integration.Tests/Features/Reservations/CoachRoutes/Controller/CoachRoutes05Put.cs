@@ -19,7 +19,7 @@ namespace CoachRoutes {
         private readonly string _actionVerb = "put";
         private readonly string _baseUrl;
         private readonly string _url = "/coachRoutes";
-        private readonly string _notFoundUrl = "/coachRoutes/999";
+        private readonly string _notFoundUrl = "/coachRoutes/9999";
 
         #endregion
 

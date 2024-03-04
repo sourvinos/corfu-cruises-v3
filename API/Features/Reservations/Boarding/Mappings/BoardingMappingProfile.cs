@@ -16,7 +16,7 @@ namespace API.Features.Reservations.Boarding {
                     RefNo = reservation.RefNo,
                     TicketNo = reservation.TicketNo,
                     Remarks = reservation.Remarks,
-                    Customer = new SimpleEntity { Id = reservation.Customer.Id, Description = reservation.Customer.Abbreviation },
+                    Customer = new SimpleEntity { Id = reservation.Customer.Id, Description = reservation.Customer.Description },
                     Destination = new BoardingFinalDestinationListVM { Id = reservation.Destination.Id, Abbreviation = reservation.Destination.Abbreviation, Description = reservation.Destination.Description },
                     Driver = new SimpleEntity {
                         Id = reservation.Driver != null ? reservation.Driver.Id : 0,

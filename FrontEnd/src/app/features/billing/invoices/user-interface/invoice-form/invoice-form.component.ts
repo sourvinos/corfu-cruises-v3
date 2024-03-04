@@ -402,7 +402,7 @@ export class InvoiceFormComponent {
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', ['id', 'abbreviation', 'isActive'], 'abbreviation', 'abbreviation')
+        this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', ['id', 'abbreviation', 'isActive'], 'description', 'description')
         this.populateDropdownFromDexieDB('destinations', 'dropdownDestinations', 'destination', ['id', 'description', 'isActive'], 'description', 'description')
         this.populateDropdownFromDexieDB('documentTypes', 'dropdownDocumentTypes', 'documentType', ['id', 'abbreviation', 'description', 'batch', 'lastNo', 'isActive'], 'abbreviation', 'abbreviation')
         this.populateDropdownFromDexieDB('paymentMethods', 'dropdownPaymentMethods', 'paymentMethod', ['id', 'description', 'isActive'], 'description', 'description')

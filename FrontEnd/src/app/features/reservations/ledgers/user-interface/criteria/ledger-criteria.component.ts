@@ -110,7 +110,12 @@ export class LedgerCriteriaComponent {
     }
 
     public setDatepickerWidth(): any {
-        return document.getElementById('form').lastChild.childNodes.length == 5 ? 25 : 33
+        setTimeout(() => {
+            const x = document.getElementById('form')
+            if (document.contains(x)) {
+                return x.lastChild.childNodes.length == 5 ? 25 : 33
+            }
+        }, 1000)
     }
 
     //#endregion

@@ -18,7 +18,7 @@ namespace DocumentTypes {
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
         private readonly string _url = "/documentTypes/1";
-        private readonly string _notFoundUrl = "/documentTypes/4";
+        private readonly string _notFoundUrl = "/documentTypes/9999";
 
         #endregion
 

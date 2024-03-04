@@ -431,7 +431,7 @@ export class ReservationFormComponent {
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', 'abbreviation', 'abbreviation')
+        this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', 'description', 'description')
         this.populateDropdownFromDexieDB('destinations', 'dropdownDestinations', 'destination', 'description', 'description')
         this.populateDropdownFromDexieDB('drivers', 'dropdownDrivers', 'driver', 'description', 'description')
         this.populateDropdownFromDexieDB('pickupPoints', 'dropdownPickupPoints', 'pickupPoint', 'description', 'description')
@@ -452,7 +452,7 @@ export class ReservationFormComponent {
             date: this.record.date,
             refNo: this.record.refNo,
             destination: { 'id': this.record.destination.id, 'description': this.record.destination.description },
-            customer: { 'id': this.record.customer.id, 'abbreviation': this.record.customer.abbreviation },
+            customer: { 'id': this.record.customer.id, 'description': this.record.customer.description },
             pickupPoint: { 'id': this.record.pickupPoint.id, 'description': this.record.pickupPoint.description },
             exactPoint: this.record.pickupPoint.exactPoint,
             time: this.record.pickupPoint.time,

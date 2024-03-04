@@ -1,4 +1,4 @@
-using API.Features.CoachRoutes;
+using API.Features.Reservations.CoachRoutes;
 using API.Model.Tests.Infrastructure;
 using FluentValidation.TestHelper;
 using Xunit;

@@ -16,14 +16,14 @@ namespace API.Features.Reservations.Customers {
                     IsActive = x.Nationality.IsActive
                 }));
             CreateMap<Customer, SimpleEntity>()
-                .ForMember(x => x.Description, x => x.MapFrom(x => x.Abbreviation));
+                .ForMember(x => x.Description, x => x.MapFrom(x => x.Description));
             CreateMap<Customer, CustomerReadDto>()
                 .ForMember(x => x.TaxOffice, x => x.MapFrom(x => new SimpleEntity { Id = x.TaxOffice.Id, Description = x.TaxOffice.Description }))
                 .ForMember(x => x.Nationality, x => x.MapFrom(x => new SimpleEntity { Id = x.Nationality.Id, Description = x.Nationality.Description }))
                 .ForMember(x => x.VatRegime, x => x.MapFrom(x => new SimpleEntity { Id = x.VatRegime.Id, Description = x.VatRegime.Description }));
             CreateMap<CustomerWriteDto, Customer>()
-                .ForMember(x => x.Abbreviation, x => x.MapFrom(x => x.Abbreviation.Trim()))
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
+                .ForMember(x => x.FullDescription, x => x.MapFrom(x => x.FullDescription.Trim()))
                 .ForMember(x => x.VatNumber, x => x.MapFrom(x => x.VatNumber.Trim()))
                 .ForMember(x => x.Profession, x => x.MapFrom(x => x.Profession.Trim()))
                 .ForMember(x => x.Street, x => x.MapFrom(x => x.Street.Trim()))

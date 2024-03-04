@@ -1,4 +1,4 @@
-using API.Features.Genders;
+using API.Features.Reservations.Genders;
 using API.Model.Tests.Infrastructure;
 using FluentValidation.TestHelper;
 using Xunit;

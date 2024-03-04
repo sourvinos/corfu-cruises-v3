@@ -19,7 +19,7 @@ namespace PickupPoints {
         private readonly string _baseUrl;
         private readonly string _url = "/pickupPoints/614";
         private readonly string _inUseUrl = "/pickupPoints/65";
-        private readonly string _notFoundUrl = "/pickupPoints/999";
+        private readonly string _notFoundUrl = "/pickupPoints/9999";
 
         #endregion
 

@@ -8,17 +8,17 @@
 
         <form [formGroup]="form" id="form">
             <div class="group-input-field">
-                <!-- Abbreviation -->
-                <mat-form-field style="width: 30%;">
-                    <mat-label>{{ getLabel('abbreviation') }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="1" formControlName="abbreviation" matInput>
-                    <mat-error *ngIf="abbreviation.hasError('required')">{{ getHint("required") }}</mat-error>
-                </mat-form-field>
                 <!-- Description -->
-                <mat-form-field>
+                <mat-form-field style="width: 30%;">
                     <mat-label>{{ getLabel('description') }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="2" formControlName="description" matInput>
+                    <input [inputTabStop]="input" dataTabIndex="1" formControlName="description" matInput>
                     <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
+                </mat-form-field>
+                <!-- fullDescription -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('fullDescription') }}</mat-label>
+                    <input [inputTabStop]="input" dataTabIndex="2" formControlName="fullDescription" matInput>
+                    <mat-error *ngIf="fullDescription.hasError('required')">{{ getHint("required") }}</mat-error>
                 </mat-form-field>
             </div>
             <div class="group-input-field">
@@ -155,13 +155,13 @@
 
 </div>
 
-<mat-autocomplete #nationalities="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
+<mat-autocomplete #nationalities="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'fullDescription')" autoActiveFirstOption>
     <mat-option *ngFor="let option of dropdownNationalities | async" [value]="option">
         {{ option.description }}
     </mat-option>
 </mat-autocomplete>
 
-<mat-autocomplete #taxOffices="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
+<mat-autocomplete #taxOffices="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'fullDescription')" autoActiveFirstOption>
     <mat-option *ngFor="let option of dropdownTaxOffices | async" [value]="option">
         {{ option.description }}
     </mat-option>

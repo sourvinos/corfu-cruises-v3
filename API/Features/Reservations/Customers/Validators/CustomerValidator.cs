@@ -11,8 +11,8 @@ namespace API.Features.Reservations.Customers {
             RuleFor(x => x.TaxOfficeId).NotEmpty();
             RuleFor(x => x.VatRegimeId).NotEmpty();
             // Fields
-            RuleFor(x => x.Abbreviation).NotEmpty().MaximumLength(128);
-            RuleFor(x => x.Description).NotEmpty().MaximumLength(512);
+            RuleFor(x => x.Description).NotEmpty().MaximumLength(128);
+            RuleFor(x => x.FullDescription).NotEmpty().MaximumLength(512);
             RuleFor(x => x.VatNumber).NotEmpty().MaximumLength(36);
             RuleFor(x => x.Branch).InclusiveBetween(0, 10);
             RuleFor(x => x.Profession).MaximumLength(128);

@@ -1,4 +1,4 @@
-using API.Features.Drivers;
+using API.Features.Reservations.Drivers;
 using API.Model.Tests.Infrastructure;
 using FluentValidation.TestHelper;
 using Xunit;

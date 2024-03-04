@@ -19,7 +19,7 @@ namespace API.Features.Billing.Transactions {
                 .ForMember(x => x.Date, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Date)))
                 .ForMember(x => x.Customer, x => x.MapFrom(x => new SimpleEntity {
                     Id = x.Customer.Id,
-                    Description = x.Customer.Abbreviation
+                    Description = x.Customer.Description
                 }))
                 .ForMember(x => x.DocumentType, x => x.MapFrom(x => new DocumentTypeVM {
                     Id = x.DocumentType.Id,

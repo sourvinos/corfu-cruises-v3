@@ -1,4 +1,4 @@
-using API.Features.PickupPoints;
+using API.Features.Reservations.PickupPoints;
 using API.Model.Tests.Infrastructure;
 using FluentValidation.TestHelper;
 using Xunit;

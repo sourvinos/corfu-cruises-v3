@@ -18,7 +18,7 @@ namespace Nationalities {
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
         private readonly string _url = "/nationalities/1";
-        private readonly string _notFoundUrl = "/nationalities/999";
+        private readonly string _notFoundUrl = "/nationalities/9999";
 
         #endregion
 

@@ -140,8 +140,8 @@ export class CustomerFormComponent {
             nationalityId: this.form.value.nationality.id,
             taxOfficeId: this.form.value.taxOffice.id,
             vatRegimeId: this.form.value.vatRegime.id,
-            abbreviation: this.form.value.abbreviation,
             description: this.form.value.description,
+            fullDescription: this.form.value.fullDescription,
             vatNumber: this.form.value.vatNumber,
             branch: this.form.value.branch,
             profession: this.form.value.profession,
@@ -189,8 +189,8 @@ export class CustomerFormComponent {
             nationality: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             taxOffice: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             vatRegime: ['', [Validators.required, ValidationService.RequireAutocomplete]],
-            abbreviation: ['', [Validators.required, Validators.maxLength(128)]],
-            description: ['', [Validators.required, Validators.maxLength(512)]],
+            description: ['', [Validators.required, Validators.maxLength(128)]],
+            fullDescription: ['', [Validators.required, Validators.maxLength(512)]],
             vatNumber: ['', [Validators.required, Validators.maxLength(36)]],
             branch: [0, [Validators.required, Validators.min(0), Validators.max(10)]],
             profession: ['', [Validators.maxLength(128)]],
@@ -236,8 +236,8 @@ export class CustomerFormComponent {
                 nationality: { 'id': this.record.nationality.id, 'description': this.record.nationality.description },
                 taxOffice: { 'id': this.record.taxOffice.id, 'description': this.record.taxOffice.description },
                 vatRegime: { 'id': this.record.vatRegime.id, 'description': this.record.vatRegime.description },
-                abbreviation: this.record.abbreviation,
                 description: this.record.description,
+                fullDescription: this.record.fullDescription,
                 vatNumber: this.record.vatNumber,
                 branch: this.record.branch,
                 profession: this.record.profession,
@@ -296,12 +296,12 @@ export class CustomerFormComponent {
         return this.form.get('vatRegime')
     }
 
-    get abbreviation(): AbstractControl {
-        return this.form.get('abbreviation')
-    }
-
     get description(): AbstractControl {
         return this.form.get('description')
+    }
+
+    get fullDescription(): AbstractControl {
+        return this.form.get('fullDescription')
     }
 
     get vatNumber(): AbstractControl {

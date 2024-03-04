@@ -1,4 +1,4 @@
-using API.Features.Schedules;
+using API.Features.Reservations.Schedules;
 using API.Model.Tests.Infrastructure;
 using FluentValidation.TestHelper;
 using Xunit;

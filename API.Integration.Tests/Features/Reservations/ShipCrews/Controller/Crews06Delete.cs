@@ -18,7 +18,7 @@ namespace ShipCrews {
         private readonly string _actionVerb = "delete";
         private readonly string _baseUrl;
         private readonly string _url = "/shipCrews/1";
-        private readonly string _notFoundUrl = "/shipCrews/999";
+        private readonly string _notFoundUrl = "/shipCrews/9999";
 
         #endregion
 

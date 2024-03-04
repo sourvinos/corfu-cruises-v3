@@ -19,7 +19,7 @@ namespace Nationalities {
         private readonly string _actionVerb = "put";
         private readonly string _baseUrl;
         private readonly string _url = "/nationalities";
-        private readonly string _notFoundUrl = "/nationalities/999";
+        private readonly string _notFoundUrl = "/nationalities/9999";
 
         #endregion
 

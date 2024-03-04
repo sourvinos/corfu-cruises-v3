@@ -88,8 +88,7 @@ export class CriteriaFieldsetCheckboxesComponent {
         const x = this.form.controls['selected'] as FormArray
         x.push(new FormControl({
             'id': element.id,
-            'description': element.description,
-            'isActive': element.isActive
+            'description': element.description
         }))
     }
 

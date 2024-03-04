@@ -1,4 +1,4 @@
-using API.Features.Registrars;
+using API.Features.Reservations.Registrars;
 using API.Model.Tests.Infrastructure;
 using FluentValidation.TestHelper;
 using Xunit;

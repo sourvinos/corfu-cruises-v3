@@ -19,7 +19,7 @@ namespace Ports {
         private readonly string _baseUrl;
         private readonly string _url = "/ports/3";
         private readonly string _inUseUrl = "/ports/1";
-        private readonly string _notFoundUrl = "/ports/999";
+        private readonly string _notFoundUrl = "/ports/9999";
 
         #endregion
 

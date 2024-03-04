@@ -1,4 +1,4 @@
-using API.Features.Ships;
+using API.Features.Reservations.Ships;
 using API.Model.Tests.Infrastructure;
 using FluentValidation.TestHelper;
 using Xunit;

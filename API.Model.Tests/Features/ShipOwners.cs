@@ -1,4 +1,4 @@
-using API.Features.ShipOwners;
+using API.Features.Reservations.ShipOwners;
 using API.Model.Tests.Infrastructure;
 using FluentValidation.TestHelper;
 using Xunit;
@@ -18,6 +18,14 @@ namespace API.Model.Tests.Features.ShipOwners {
 
         [Theory]
         [ClassData(typeof(ValidateStringNotLongerThanMaxLength))]
+        public void Invalid_VatNumber(string vatNumber) {
+            new ShipOwnerValidator()
+               .TestValidate(new ShipOwnerWriteDto { VatNumber = vatNumber })
+               .ShouldHaveValidationErrorFor(x => x.VatNumber);
+        }
+
+        [Theory]
+        [ClassData(typeof(ValidateStringNotLongerThanMaxLength))]
         public void Invalid_Profession(string profession) {
             new ShipOwnerValidator()
                 .TestValidate(new ShipOwnerWriteDto { Profession = profession })
@@ -26,18 +34,10 @@ namespace API.Model.Tests.Features.ShipOwners {
 
         [Theory]
         [ClassData(typeof(ValidateStringNotLongerThanMaxLength))]
-        public void Invalid_Address(string address) {
+        public void Invalid_Address(string street) {
             new ShipOwnerValidator()
-                .TestValidate(new ShipOwnerWriteDto { Address = address })
-                .ShouldHaveValidationErrorFor(x => x.Address);
-        }
-
-        [Theory]
-        [ClassData(typeof(ValidateStringNotLongerThanMaxLength))]
-        public void Invalid_TaxNo(string taxNo) {
-            new ShipOwnerValidator()
-                .TestValidate(new ShipOwnerWriteDto { TaxNo = taxNo })
-                .ShouldHaveValidationErrorFor(x => x.TaxNo);
+                .TestValidate(new ShipOwnerWriteDto { Street = street })
+                .ShouldHaveValidationErrorFor(x => x.Street);
         }
 
         [Theory]

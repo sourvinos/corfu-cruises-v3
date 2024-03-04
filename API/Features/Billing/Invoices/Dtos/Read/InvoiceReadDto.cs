@@ -21,7 +21,7 @@ namespace API.Features.Billing.Invoices {
         public AadeVM Aade { get; set; }
         public List<InvoicePortReadDto> InvoicesPorts { get; set; }
         // Navigation
-        public CustomerVM Customer { get; set; }
+        public SimpleEntity Customer { get; set; }
         public SimpleEntity Destination { get; set; }
         public DocumentTypeVM DocumentType { get; set; }
         public SimpleEntity PaymentMethod { get; set; }

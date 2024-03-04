@@ -65,11 +65,11 @@
                 "description": "Πελάτης"
             },
             {
-                "id": "abbreviation",
+                "id": "description",
                 "description": "Συντ."
             },
             {
-                "id": "description",
+                "id": "fullDescription",
                 "description": "Επωνυμία"
             },
             {

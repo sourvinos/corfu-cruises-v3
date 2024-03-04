@@ -19,7 +19,7 @@ namespace Genders {
         private readonly string _actionVerb = "put";
         private readonly string _baseUrl;
         private readonly string _url = "/genders";
-        private readonly string _notFoundUrl = "/genders/999";
+        private readonly string _notFoundUrl = "/genders/9999";
 
         #endregion
 

@@ -9,8 +9,8 @@ export interface CustomerWriteDto {
     taxOfficeId: Guid
     vatRegimeId: Guid
     // Fields
-    abbreviation: string
     description: string
+    fullDescription: string
     vatNumber: string
     branch: number
     profession: string

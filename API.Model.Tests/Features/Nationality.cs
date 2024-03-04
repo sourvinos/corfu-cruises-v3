@@ -1,4 +1,4 @@
-using API.Features.Nationalities;
+using API.Features.Reservations.Nationalities;
 using API.Model.Tests.Infrastructure;
 using FluentValidation.TestHelper;
 using Xunit;

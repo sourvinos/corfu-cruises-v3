@@ -235,7 +235,7 @@ export class EditUserFormComponent {
             id: this.record.id,
             username: this.record.username,
             displayname: this.record.displayname,
-            customer: { 'id': this.record.customer.id, 'description': this.record.customer.id == 0 ? this.emojiService.getEmoji('wildcard') : this.record.customer.abbreviation },
+            customer: { 'id': this.record.customer.id, 'description': this.record.customer.id == 0 ? this.emojiService.getEmoji('wildcard') : this.record.customer.description },
             email: this.record.email,
             isAdmin: this.record.isAdmin,
             isFirstFieldFocused: this.record.isFirstFieldFocused,

@@ -18,7 +18,7 @@ namespace Registrars {
         private readonly string _actionVerb = "delete";
         private readonly string _baseUrl;
         private readonly string _url = "/registrars/1";
-        private readonly string _notFoundUrl = "/registrars/999";
+        private readonly string _notFoundUrl = "/registrars/9999";
 
         #endregion
 

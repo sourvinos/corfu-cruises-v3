@@ -8,10 +8,10 @@ export class DexieService extends Dexie {
 
     constructor() {
         super('DexieDB')
-        this.version(30).stores({
+        this.version(31).stores({
             coachRoutes: 'id, abbreviation, isActive',
             crewSpecialties: 'id, description, isActive',
-            customers: 'id, abbreviation, description, isActive',
+            customers: 'id, description, fullDescription, isActive',
             destinations: 'id, description, isActive',
             documentTypes: 'id, abbreviation, description, batch, lastDate, lastNo, isMyData, table8_1, table8_8, table8_9, isActive',
             drivers: 'id, description, isActive',
@@ -25,7 +25,7 @@ export class DexieService extends Dexie {
             ships: 'id, description, isActive',
             taxOffices: 'id, description, isActive',
             vatRegimes: 'id, description, isActive',
-            customersCriteria: 'id, abbreviation',
+            customersCriteria: 'id, description',
             destinationsCriteria: 'id, description',
             portsCriteria: 'id, description',
             shipsCriteria: 'id, description',

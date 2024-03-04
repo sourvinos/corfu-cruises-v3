@@ -19,7 +19,7 @@ namespace Destinations {
         private readonly string _actionVerb = "put";
         private readonly string _baseUrl;
         private readonly string _url = "/destinations";
-        private readonly string _notFoundUrl = "/destinations/999";
+        private readonly string _notFoundUrl = "/destinations/9999";
 
         #endregion
 

@@ -19,7 +19,7 @@ namespace Customers {
         private readonly string _actionVerb = "put";
         private readonly string _baseUrl;
         private readonly string _url = "/customers";
-        private readonly string _notFoundUrl = "/customers/999";
+        private readonly string _notFoundUrl = "/customers/9999";
 
         #endregion
 

@@ -13,8 +13,8 @@ namespace API.Features.Reservations.Customers {
             entity.Property(x => x.TaxOfficeId).IsRequired(true);
             entity.Property(x => x.VatRegimeId).IsRequired(true);
             // Fields
-            entity.Property(x => x.Abbreviation).HasMaxLength(128).IsRequired(true);
-            entity.Property(x => x.Description).HasMaxLength(512).IsRequired(true);
+            entity.Property(x => x.Description).HasMaxLength(128).IsRequired(true);
+            entity.Property(x => x.FullDescription).HasMaxLength(512).IsRequired(true);
             entity.Property(x => x.VatNumber).HasMaxLength(36).IsRequired(true);
             entity.Property(x => x.Branch).IsRequired(true);
             entity.Property(x => x.Profession).HasDefaultValue("").HasMaxLength(128);
