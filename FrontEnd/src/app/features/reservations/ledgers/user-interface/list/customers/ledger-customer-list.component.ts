@@ -14,6 +14,7 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { MatDialog } from '@angular/material/dialog'
 import { InvoiceDialogComponent } from '../invoice-dialog/invoice-dialog.component'
+import { environment } from 'src/environments/environment'
 
 @Component({
     selector: 'ledger-customer-list',
@@ -59,6 +60,10 @@ export class LedgerCustomerListComponent {
     //#endregion
 
     //#region public methods
+
+    public isProduction(): boolean {
+        return environment.production
+    }
 
     public doStuff(ports): void {
         this.selectedReservations = ports

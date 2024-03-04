@@ -17,5 +17,5 @@ export const environment = {
         password: 'Aba439de-446e-4eef-8c4b-833f1b3e18aa%',
         noRobot: true
     },
-    production: true
+    production: false
 }

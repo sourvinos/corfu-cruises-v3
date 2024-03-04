@@ -3,27 +3,27 @@
         <mat-icon class="material-icons-outlined">blur_circular</mat-icon>
     </button>
     <mat-menu #menu="matMenu" class="primary">
-        <button (click)="doNavigation('reservations')" mat-menu-item><span>{{ getLabel('calendar') }}</span></button>
-        <button (click)="doNavigation('availability')" mat-menu-item> <span>{{ getLabel('availability') }}</span></button>
+        <button (click)="doNavigation('reservations',true)" mat-menu-item><span>{{ getLabel('calendar') }}</span></button>
+        <button (click)="doNavigation('availability',true)" mat-menu-item> <span>{{ getLabel('availability') }}</span></button>
         <mat-divider></mat-divider>
-        <button (click)="doNavigation('coachRoutes')" mat-menu-item>{{ getLabel("coachRoutes") }}</button>
-        <button (click)="doNavigation('ports')" mat-menu-item>{{ getLabel("ports") }}</button>
-        <button (click)="doNavigation('drivers')" mat-menu-item>{{ getLabel("drivers") }}</button>
-        <button (click)="doNavigation('customers')" mat-menu-item>{{ getLabel("customers") }}</button>
-        <button (click)="doNavigation('shipCrews')" mat-menu-item>{{ getLabel("shipCrews") }}</button>
-        <button (click)="doNavigation('crewSpecialties')" mat-menu-item>{{ getLabel("crewSpecialties") }}</button>
-        <button (click)="doNavigation('ships')" mat-menu-item>{{ getLabel("ships") }}</button>
-        <button (click)="doNavigation('shipOwners')" mat-menu-item>{{ getLabel("shipOwners") }}</button>
-        <button (click)="doNavigation('destinations')" mat-menu-item>{{ getLabel("destinations") }}</button>
-        <button (click)="doNavigation('schedules')" mat-menu-item>{{ getLabel("schedules") }}</button>
-        <button (click)="doNavigation('pickupPoints')" mat-menu-item>{{ getLabel("pickupPoints") }}</button>
-        <button (click)="doNavigation('genders')" mat-menu-item>{{ getLabel("genders") }}</button>
+        <button (click)="doNavigation('coachRoutes',true)" mat-menu-item>{{ getLabel("coachRoutes") }}</button>
+        <button (click)="doNavigation('ports',true)" mat-menu-item>{{ getLabel("ports") }}</button>
+        <button (click)="doNavigation('drivers',true)" mat-menu-item>{{ getLabel("drivers") }}</button>
+        <button (click)="doNavigation('customers',true)" mat-menu-item>{{ getLabel("customers") }}</button>
+        <button (click)="doNavigation('shipCrews',true)" mat-menu-item>{{ getLabel("shipCrews") }}</button>
+        <button (click)="doNavigation('crewSpecialties',true)" mat-menu-item>{{ getLabel("crewSpecialties") }}</button>
+        <button (click)="doNavigation('ships',true)" mat-menu-item>{{ getLabel("ships") }}</button>
+        <button (click)="doNavigation('shipOwners',true)" mat-menu-item>{{ getLabel("shipOwners") }}</button>
+        <button (click)="doNavigation('destinations',true)" mat-menu-item>{{ getLabel("destinations") }}</button>
+        <button (click)="doNavigation('schedules',true)" mat-menu-item>{{ getLabel("schedules") }}</button>
+        <button (click)="doNavigation('pickupPoints',true)" mat-menu-item>{{ getLabel("pickupPoints") }}</button>
+        <button (click)="doNavigation('genders',true)" mat-menu-item>{{ getLabel("genders") }}</button>
         <mat-divider></mat-divider>
-        <button (click)="doNavigation('boarding')" mat-menu-item>{{ getLabel("boarding") }}</button>
-        <button (click)="doNavigation('manifest')" mat-menu-item>{{ getLabel("manifest")}}</button>
-        <button (click)="doNavigation('reservation-ledgers')" mat-menu-item>{{ getLabel("ledgers")}}</button>
-        <button (click)="doNavigation('statistics')" mat-menu-item>{{ getLabel("statistics")}}</button>
+        <button (click)="doNavigation('boarding',true)" mat-menu-item>{{ getLabel("boarding") }}</button>
+        <button (click)="doNavigation('manifest',true)" mat-menu-item>{{ getLabel("manifest")}}</button>
+        <button (click)="doNavigation('reservation-ledgers',false)" mat-menu-item>{{ getLabel("ledgers")}}</button>
+        <button (click)="doNavigation('statistics',false)" mat-menu-item>{{ getLabel("statistics")}}</button>
         <mat-divider></mat-divider>
-        <button (click)="doNavigation('reservation-parameters')" mat-menu-item>{{ getLabel("reservation-parameters")}}</button>
+        <button (click)="doNavigation('reservation-parameters',true)" mat-menu-item>{{ getLabel("reservation-parameters")}}</button>
     </mat-menu>
 </div>
