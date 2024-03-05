@@ -8,7 +8,7 @@
                 <button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" mat-icon-button>
                     <mat-icon class="material-icons-outlined">more_vert</mat-icon>
                 </button>
-                <mat-menu #menu="matMenu" class="primary">
+                <mat-menu #menu="matMenu" class="primary" xPosition="before">
                     <ng-container *ngTemplateOutlet="contextMenu"></ng-container>
                 </mat-menu>
             </div>
@@ -98,8 +98,11 @@
     </mat-option>
 </mat-autocomplete>
 
-<ng-template #contextMenu xPosition="before">
+<ng-template #contextMenu>
     <button (click)="onEmailUserDetais()" mat-menu-item>
         <span>{{ getLabel('emailUserDetails') }}</span>
+    </button>
+    <button (click)="onDeleteDexieDB()" mat-menu-item>
+        <span>{{ getLabel('deleteDexieDB') }}</span>
     </button>
 </ng-template>

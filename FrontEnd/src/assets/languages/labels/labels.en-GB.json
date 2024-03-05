@@ -597,6 +597,10 @@
                 "description": "Send data to email"
             },
             {
+                "id": "deleteDexieDB",
+                "description": "Refresh browser tables"
+            },
+            {
                 "id": "saveButton",
                 "description": "Save"
             }

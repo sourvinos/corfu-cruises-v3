@@ -115,6 +115,16 @@ export class EditUserFormComponent {
         }
     }
 
+    public onDeleteDexieDB(): void {
+        this.dialogService.open(this.messageDialogService.confirmDeleteDexieDB(), 'question', ['abort', 'ok']).subscribe(response => {
+            if (response) {
+                this.dexieService.delete().then(() => {
+                    window.location.reload()
+                })
+            }
+        })
+    }
+
     public onSave(): void {
         this.saveRecord(this.flattenForm())
     }

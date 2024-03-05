@@ -597,6 +597,10 @@
                 "description": "Daten per E-Mail senden"
             },
             {
+                "id": "deleteDexieDB",
+                "description": "Browser-Tabellen aktualisieren"
+            },
+            {
                 "id": "saveButton",
                 "description": "Speichern"
             }

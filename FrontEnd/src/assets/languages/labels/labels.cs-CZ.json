@@ -597,6 +597,10 @@
                 "description": "Odesílání dat na e-mail"
             },
             {
+                "id": "deleteDexieDB",
+                "description": "Aktualizace tabulek prohlížeče"
+            },
+            {
                 "id": "saveButton",
                 "description": "Uložit"
             }

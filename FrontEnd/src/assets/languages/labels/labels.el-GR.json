@@ -597,6 +597,10 @@
                 "description": "Αποστολή στοιχείων στο email"
             },
             {
+                "id": "deleteDexieDB",
+                "description": "Ανανέωση πινάκων του browser"
+            },
+            {
                 "id": "saveButton",
                 "description": "Αποθηκευση"
             }

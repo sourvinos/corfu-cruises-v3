@@ -597,6 +597,10 @@
                 "description": "Envoi de données par e-mail"
             },
             {
+                "id": "deleteDexieDB",
+                "description": "Actualiser les tableaux du navigateur"
+            },
+            {
                 "id": "saveButton",
                 "description": "Enregistrer"
             }

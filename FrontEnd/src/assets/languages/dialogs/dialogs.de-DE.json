@@ -169,6 +169,10 @@
             {
                 "id": "errorsInRegistrars",
                 "message": "Die Fahrgastregistriereren für dieses Schiff sind nicht korrekt. Für jedes Schiff sollte es zwei aktive Fahrgastregistriereren geben, von denen einer als aktiv angegeben werden sollte."
+            },
+            {
+                "id": "confirmDeleteDexieDB",
+                "message": "Möchten Sie mit der Aktualisierung fortfahren? Wenn der Vorgang ohne Fehler abgeschlossen ist, müssen Sie sich erneut anmelden."
             }
         ]
     }
