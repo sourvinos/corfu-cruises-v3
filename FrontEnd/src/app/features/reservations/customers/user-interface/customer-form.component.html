@@ -2,6 +2,8 @@
 
     <div id="content">
 
+        <!-- <span style="color: var(--color-text); font-size: 10px;">{{ form.value | json }}</span> -->
+
         <div id="header">
             <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
         </div>
@@ -155,13 +157,13 @@
 
 </div>
 
-<mat-autocomplete #nationalities="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'fullDescription')" autoActiveFirstOption>
+<mat-autocomplete #nationalities="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
     <mat-option *ngFor="let option of dropdownNationalities | async" [value]="option">
         {{ option.description }}
     </mat-option>
 </mat-autocomplete>
 
-<mat-autocomplete #taxOffices="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'fullDescription')" autoActiveFirstOption>
+<mat-autocomplete #taxOffices="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
     <mat-option *ngFor="let option of dropdownTaxOffices | async" [value]="option">
         {{ option.description }}
     </mat-option>

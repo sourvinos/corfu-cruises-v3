@@ -30,6 +30,7 @@ import { PriceHttpService } from '../../../prices/classes/services/price-http.se
 import { ShipAutoCompleteVM } from './../../../../reservations/ships/classes/view-models/ship-autocomplete-vm'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
+import { DocumentTypeHttpService } from '../../../documentTypes/classes/services/documentType-http.service'
 
 @Component({
     selector: 'invoice-form',
@@ -72,7 +73,7 @@ export class InvoiceFormComponent {
 
     //#endregion
 
-    constructor(private invoicePdfService: InvoicePdfService, private invoicePdfHelperService: InvoicePdfHelperService, private invoiceXmlHelperService: InvoiceXmlHelperService, private dateHelperService: DateHelperService, private priceHttpService: PriceHttpService, private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
+    constructor(private documentTypeHttpService: DocumentTypeHttpService, private invoicePdfService: InvoicePdfService, private invoicePdfHelperService: InvoicePdfHelperService, private invoiceXmlHelperService: InvoiceXmlHelperService, private dateHelperService: DateHelperService, private priceHttpService: PriceHttpService, private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -86,7 +87,6 @@ export class InvoiceFormComponent {
         this.onDoCalculations()
         this.isInvoiceTabVisible = true
         this.isPortsTabVisible = false
-        // this.addPorts()
     }
 
     //#endregion
@@ -278,7 +278,7 @@ export class InvoiceFormComponent {
     private initForm(): void {
         this.form = this.formBuilder.group({
             invoiceId: '',
-            date: ['', [Validators.required]],
+            date: [new Date(), [Validators.required]],
             customer: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             destination: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             documentType: ['', [Validators.required, ValidationService.RequireAutocomplete]],
@@ -402,26 +402,17 @@ export class InvoiceFormComponent {
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', ['id', 'abbreviation', 'isActive'], 'description', 'description')
-        this.populateDropdownFromDexieDB('destinations', 'dropdownDestinations', 'destination', ['id', 'description', 'isActive'], 'description', 'description')
-        this.populateDropdownFromDexieDB('documentTypes', 'dropdownDocumentTypes', 'documentType', ['id', 'abbreviation', 'description', 'batch', 'lastNo', 'isActive'], 'abbreviation', 'abbreviation')
-        this.populateDropdownFromDexieDB('paymentMethods', 'dropdownPaymentMethods', 'paymentMethod', ['id', 'description', 'isActive'], 'description', 'description')
-        this.populateDropdownFromDexieDB('ships', 'dropdownShips', 'ship', ['id', 'description', 'isActive'], 'description', 'description')
+        this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', 'description', 'description')
+        this.populateDropdownFromDexieDB('destinations', 'dropdownDestinations', 'destination', 'description', 'description')
+        this.populateDropdownFromDexieDB('documentTypes', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation')
+        this.populateDropdownFromDexieDB('paymentMethods', 'dropdownPaymentMethods', 'paymentMethod', 'description', 'description')
+        this.populateDropdownFromDexieDB('ships', 'dropdownShips', 'ship', 'description', 'description')
     }
 
-    private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperties: string[], orderBy: string, lookupField: string): void {
-        const x = []
-        let item = {}
+    private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
         this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
-            response.forEach(record => {
-                modelProperties.forEach(property => {
-                    item[property] = record[property]
-                })
-                x.push(item)
-                item = {}
-            })
-            this[dexieTable] = this.recordId == undefined ? x.filter(x => x.isActive) : x
-            this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, lookupField, value)))
+            this[dexieTable] = this.recordId == undefined ? response.filter(x => x.isActive) : response
+            this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
         })
     }
 
@@ -434,7 +425,7 @@ export class InvoiceFormComponent {
                 destination: { 'id': this.record.destination.id, 'description': this.record.destination.description },
                 documentType: { 'id': this.record.documentType.id, 'abbreviation': this.record.documentType.abbreviation },
                 documentTypeDescription: this.record.documentType.description,
-                no: this.record.no,
+                invoiceNo: this.record.invoiceNo,
                 batch: this.record.documentType.batch,
                 paymentMethod: { 'id': this.record.paymentMethod.id, 'description': this.record.paymentMethod.description },
                 ship: { 'id': this.record.ship.id, 'description': this.record.ship.description },
@@ -501,9 +492,11 @@ export class InvoiceFormComponent {
     private saveRecord(invoice: InvoiceWriteDto): void {
         this.invoiceHttpService.save(invoice).subscribe({
             next: (response) => {
+                console.log('1. invoice saved')
                 this.form.patchValue({
                     invoiceId: response.id
                 })
+                this.updateDocumentType(invoice.documentTypeId)
                 this.onDoSubmitTasks()
             },
             error: (errorFromInterceptor) => {
@@ -572,6 +565,18 @@ export class InvoiceFormComponent {
                     invoiceNo: 0,
                     batch: ''
                 })
+            }
+        })
+    }
+
+    private updateDocumentType(id: number): void {
+        this.documentTypeHttpService.updateLastNo(id).subscribe({
+            next: (response) => {
+                console.log('2. documentType updated')
+                this.invoiceHelperService.updateBrowserStorageAfterApiUpdate(response.body)
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
             }
         })
     }

@@ -107,19 +107,16 @@ namespace API {
         }
 
         public void ConfigureProductionDemo(IApplicationBuilder app) {
+            app.UseDeveloperExceptionPage();
             app.UseHsts();
             Configure(app);
-            app.UseEndpoints(endpoints => {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
 
         public void ConfigureProductionLive(IApplicationBuilder app) {
             app.UseHsts();
             Configure(app);
-            app.UseEndpoints(endpoints => {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
 
         public virtual void Configure(IApplicationBuilder app) {

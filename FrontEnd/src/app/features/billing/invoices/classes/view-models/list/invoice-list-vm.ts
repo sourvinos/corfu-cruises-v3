@@ -2,15 +2,14 @@ import { Guid } from 'guid-typescript'
 // Custom
 import { DocumentTypeVM } from './documentType-vm'
 import { SimpleEntity } from '../../../../../../shared/classes/simple-entity'
-import { CustomerVM } from '../shared/customer-vm'
 
 export interface InvoiceListVM {
 
     id: Guid
     date: string
     formattedDate: string
-    no: number
-    customer: CustomerVM
+    invoiceNo: number
+    customer: SimpleEntity
     destination: SimpleEntity
     documentType: DocumentTypeVM
     ship: SimpleEntity

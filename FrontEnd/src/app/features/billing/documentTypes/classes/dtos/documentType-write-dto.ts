@@ -1,9 +1,8 @@
-import { Guid } from 'guid-typescript'
 
 export interface DocumentTypeWriteDto {
 
     // PK
-    id: Guid
+    id: number
     // Fields
     abbreviation: string
     description: string

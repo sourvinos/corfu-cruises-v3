@@ -22,7 +22,7 @@ namespace API.Features.Billing.Invoices {
         public int DiscriminatorId { get; set; }
         // Fields
         public DateTime Date { get; set; }
-        public int No { get; set; }
+        public int InvoiceNo { get; set; }
         public decimal NetAmount { get; set; }
         public decimal VatPercent { get; set; }
         public decimal VatAmount { get; set; }

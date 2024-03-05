@@ -14,7 +14,7 @@ export interface InvoiceReadDto extends Metadata {
     invoiceId: Guid
     // Fields
     date: string
-    no: number
+    invoiceNo: number
     // Object fields
     customer: CustomerVM
     destination: SimpleEntity

@@ -87,7 +87,7 @@ namespace API.Features.Billing.Invoices {
             // Write response
             CreateMap<InvoiceCreateDto, InvoiceWriteResponseDto>()
                 .ForMember(x => x.Date, x => x.MapFrom(x => x.Date))
-                .ForMember(x => x.No, x => x.MapFrom(x => x.No))
+                .ForMember(x => x.No, x => x.MapFrom(x => x.InvoiceNo))
                 .ForMember(x => x.ShipId, x => x.MapFrom(x => x.ShipId))
                 .ForMember(x => x.CounterPartId, x => x.MapFrom(x => x.CustomerId))
                 .ForMember(x => x.DocumentTypeId, x => x.MapFrom(x => x.DocumentTypeId))

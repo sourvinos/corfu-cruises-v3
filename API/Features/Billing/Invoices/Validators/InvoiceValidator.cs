@@ -14,7 +14,7 @@ namespace API.Features.Billing.Invoices {
             RuleFor(x => x.ShipId).NotEmpty();
             // Fields
             RuleFor(x => x.Date).Must(DateHelpers.BeCorrectFormat);
-            RuleFor(x => x.No).NotEmpty();
+            RuleFor(x => x.InvoiceNo).NotEmpty();
             RuleFor(x => x.Remarks).MaximumLength(128);
             // Ports
             RuleForEach(x => x.InvoicesPorts).ChildRules(port => {

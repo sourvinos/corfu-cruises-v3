@@ -6,7 +6,7 @@ namespace API.Features.Billing.Invoices {
 
         public string InvoiceId { get; set; }
         public string Date { get; set; }
-        public int No { get; set; }
+        public int InvoiceNo { get; set; }
         public SimpleEntity Customer { get; set; }
         public SimpleEntity Destination { get; set; }
         public DocumentTypeVM DocumentType { get; set; }

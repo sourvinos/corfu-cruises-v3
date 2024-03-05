@@ -10,7 +10,8 @@ namespace API.Features.Billing.DocumentTypes {
         Task<IEnumerable<DocumentTypeBrowserStorageVM>> GetForBrowserStorageAsync();
         Task<DocumentTypeBrowserStorageVM> GetByIdForBrowserStorageAsync(int id);
         Task<DocumentType> GetByIdAsync(int id);
- 
+        void UpdateLastNo(int id);
+
     }
 
 }

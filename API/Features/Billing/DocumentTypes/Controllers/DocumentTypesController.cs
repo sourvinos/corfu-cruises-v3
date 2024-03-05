@@ -122,6 +122,26 @@ namespace API.Features.Billing.DocumentTypes {
             }
         }
 
+        [HttpPut("updateLastNo/{id}")]
+        [Authorize(Roles = "admin")]
+        public async Task<ResponseWithBody> UpdateLastNoAsync(int id) {
+            var x = await documentTypeRepo.GetByIdAsync(id);
+            if (x != null) {
+                documentTypeRepo.UpdateLastNo(id);
+                return new ResponseWithBody {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Body = documentTypeRepo.GetByIdForBrowserStorageAsync(id).Result,
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 404
+                };
+            }
+        }
+
+
     }
 
 }

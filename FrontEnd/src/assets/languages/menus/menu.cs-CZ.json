@@ -1,130 +1,35 @@
 [
-    {
-        "id": "calendar",
-        "description": "Rezervace"
-    },
-    {
-        "id": "availability",
-        "description": "Dostupnost"
-    },
-    {
-        "id": "coachRoutes",
-        "description": "Trasy autobusů"
-    },
-    {
-        "id": "shipRoutes",
-        "description": "Trasy lodí"
-    },
-    {
-        "id": "registrars",
-        "description": "Registrátoři"
-    },
-    {
-        "id": "ports",
-        "description": "Přístavy"
-    },
-    {
-        "id": "drivers",
-        "description": "Řidiči"
-    },
-    {
-        "id": "customers",
-        "description": "Zákazníci"
-    },
-    {
-        "id": "shipCrews",
-        "description": "Posádky"
-    },
-    {
-        "id": "ships",
-        "description": "Lodě"
-    },
-    {
-        "id": "shipOwners",
-        "description": "Vlastníci"
-    },
-    {
-        "id": "destinations",
-        "description": "Destinace"
-    },
-    {
-        "id": "schedules",
-        "description": "Rozvrh"
-    },
-    {
-        "id": "pickupPoints",
-        "description": "Nástupní místa"
-    },
-    {
-        "id": "genders",
-        "description": "Pohlaví"
-    },
-    {
-        "id": "boarding",
-        "description": "Boarding"
-    },
-    {
-        "id": "manifest",
-        "description": "Lodní manifest"
-    },
-    {
-        "id": "ledgers",
-        "description": "Knihy zákazníků"
-    },
-    {
-        "id": "statistics",
-        "description": "Statistiky"
-    },
-    {
-        "id": "reservation-parameters",
-        "description": "Parametry"
-    },
-    {
-        "id": "users",
-        "description": "Uživatelé"
-    },
-    {
-        "id": "invoices",
-        "description": "Prodej"
-    },
-    {
-        "id": "receipts",
-        "description": "Účtenky"
-    },
-    {
-        "id": "taxOffices",
-        "description": "Daňové úřady"
-    },
-    {
-        "id": "documentTypes",
-        "description": "Typy dokladů"
-    },
-    {
-        "id": "customers",
-        "description": "Zákazníci"
-    },
-    {
-        "id": "prices",
-        "description": "Ceníky"
-    },
-    {
-        "id": "banks",
-        "description": "Banky"
-    },
-    {
-        "id": "paymentMethods",
-        "description": "Platební metody"
-    },
-    {
-        "id": "ledgers",
-        "description": "Zákaznická karta"
-    },
-    {
-        "id": "balanceSheet",
-        "description": "Bilance"
-    },
-    {
-        "id": "billing-parameters",
-        "description": "Parametry"
-    }
+    { "id": "calendar", "description": "Rezervace" },
+    { "id": "availability", "description": "Dostupnost" },
+    { "id": "coachRoutes", "description": "Trasy autobusů" },
+    { "id": "shipRoutes", "description": "Trasy lodí" },
+    { "id": "registrars", "description": "Registrátoři" },
+    { "id": "ports", "description": "Přístavy" },
+    { "id": "drivers", "description": "Řidiči" },
+    { "id": "crewSpecialties", "description": "Ειδικότητες πληρωμάτων" },
+    { "id": "customers", "description": "Zákazníci" },
+    { "id": "shipCrews", "description": "Posádky" },
+    { "id": "ships", "description": "Lodě" },
+    { "id": "shipOwners", "description": "Vlastníci" },
+    { "id": "destinations", "description": "Destinace" },
+    { "id": "schedules", "description": "Rozvrh" },
+    { "id": "pickupPoints", "description": "Nástupní místa" },
+    { "id": "genders", "description": "Pohlaví" },
+    { "id": "boarding", "description": "Boarding" },
+    { "id": "manifest", "description": "Lodní manifest" },
+    { "id": "ledgers", "description": "Knihy zákazníků" },
+    { "id": "statistics", "description": "Statistiky" },
+    { "id": "reservation-parameters", "description": "Parametry" },
+    { "id": "users", "description": "Uživatelé" },
+    { "id": "invoices", "description": "Prodej"   },
+    { "id": "transactions", "description": "Účtenky" },
+    { "id": "taxOffices", "description": "Daňové úřady" },
+    { "id": "documentTypes", "description": "Typy dokladů" },
+    { "id": "customers", "description": "Zákazníci" },
+    { "id": "prices", "description": "Ceníky" },
+    { "id": "banks", "description": "Banky" },
+    { "id": "paymentMethods", "description": "Platební metody" },
+    { "id": "ledgers", "description": "Zákaznická karta" },
+    { "id": "balanceSheet", "description": "Bilance" },
+    { "id": "billing-parameters", "description": "Parametry" }
 ]

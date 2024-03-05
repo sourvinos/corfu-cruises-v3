@@ -4,12 +4,15 @@ import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { InvoiceWriteDto } from '../dtos/form/invoice-write-dto'
 import { PortWriteDto } from '../dtos/form/port-write-dto'
 import { BillingCriteriaVM } from '../view-models/form/billing-criteria-vm'
+import { DocumentTypeHttpService } from '../../../documentTypes/classes/services/documentType-http.service'
+import { DexieService } from 'src/app/shared/services/dexie.service'
+import { DocumentTypeReadDto } from '../../../documentTypes/classes/dtos/documentType-read-dto'
 
 @Injectable({ providedIn: 'root' })
 
 export class InvoiceHelperService {
 
-    constructor(private dateHelperService: DateHelperService) { }
+    constructor(private dexieService: DexieService, private dateHelperService: DateHelperService, private documentTypeHttpService: DocumentTypeHttpService) { }
 
     //#region public methods
 
@@ -106,7 +109,7 @@ export class InvoiceHelperService {
             paymentMethodId: formValue.paymentMethod.id,
             shipId: formValue.ship.id,
             date: this.dateHelperService.formatDateToIso(new Date(formValue.date)),
-            no: formValue.no,
+            invoiceNo: formValue.invoiceNo,
             netAmount: formValue.netAmount,
             vatPercent: formValue.vatPercent,
             vatAmount: formValue.vatAmount,
@@ -117,6 +120,11 @@ export class InvoiceHelperService {
         }
         return x
     }
+
+    public updateBrowserStorageAfterApiUpdate(record: DocumentTypeReadDto): void {
+        this.dexieService.update('documentTypes', record)
+    }
+
 
     //#endregion
 

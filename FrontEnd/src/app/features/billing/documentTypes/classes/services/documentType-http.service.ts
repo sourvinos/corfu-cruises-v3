@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 // Custom
@@ -18,6 +18,10 @@ export class DocumentTypeHttpService extends HttpDataService {
 
     public getAutoComplete(): Observable<DocumentTypeAutoCompleteVM[]> {
         return this.http.get<DocumentTypeAutoCompleteVM[]>(environment.apiUrl + '/documentTypes/getForBrowserStorage')
+    }
+
+    public updateLastNo(id: number): Observable<any> {
+        return this.http.request('put', this.url + '/updateLastNo/' + id)
     }
 
     //#endregion

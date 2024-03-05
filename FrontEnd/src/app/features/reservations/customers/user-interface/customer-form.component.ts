@@ -15,11 +15,9 @@ import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { NationalityVM } from '../../reservations/classes/view-models/passenger/nationality-vm'
 import { Observable, map, startWith } from 'rxjs'
-import { TaxOfficeAutoCompleteVM } from 'src/app/features/billing/taxOffices/classes/view-models/taxOffice-autocomplete-vm'
+import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
-import { VatRegimeAutoCompleteVM } from 'src/app/features/billing/vatRegimes/classes/view-models/vatRegime-autocomplete-vm'
 
 @Component({
     selector: 'customer-form',
@@ -45,9 +43,9 @@ export class CustomerFormComponent {
     //#region autocompletes
 
     public isAutoCompleteDisabled = true
-    public dropdownNationalities: Observable<NationalityVM[]>
-    public dropdownTaxOffices: Observable<TaxOfficeAutoCompleteVM[]>
-    public dropdownVatRegimes: Observable<VatRegimeAutoCompleteVM[]>
+    public dropdownNationalities: Observable<SimpleEntity[]>
+    public dropdownTaxOffices: Observable<SimpleEntity[]>
+    public dropdownVatRegimes: Observable<SimpleEntity[]>
 
     //#endregion
 

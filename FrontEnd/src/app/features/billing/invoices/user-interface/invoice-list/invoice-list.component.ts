@@ -36,7 +36,7 @@ export class InvoiceListComponent {
     public featureIcon = 'invoices'
     public icon = 'home'
     public parentUrl = '/home'
-    public records: InvoiceListVM[] = []
+    public records: InvoiceListVM[]
     public recordsFilteredCount = 0
 
     //#endregion

@@ -40,7 +40,7 @@
                 "description": "Active"
             },
             {
-                "id": "headerAbbreviation",
+                "id": "headerDescription",
                 "description": "Abbr."
             },
             {

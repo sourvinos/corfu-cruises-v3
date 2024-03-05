@@ -15,9 +15,11 @@ namespace API.Features.Billing.DocumentTypes {
     public class DocumentTypeRepository : Repository<DocumentType>, IDocumentTypeRepository {
 
         private readonly IMapper mapper;
+        private readonly TestingEnvironment testingEnvironment;
 
-        public DocumentTypeRepository(AppDbContext appDbContext, IHttpContextAccessor httpContext, IMapper mapper, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, settings, userManager) {
+        public DocumentTypeRepository(AppDbContext appDbContext, IHttpContextAccessor httpContext, IMapper mapper, IOptions<TestingEnvironment> testingEnvironment, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, testingEnvironment, userManager) {
             this.mapper = mapper;
+            this.testingEnvironment = testingEnvironment.Value;
         }
 
         public async Task<IEnumerable<DocumentTypeListVM>> GetAsync() {
@@ -39,7 +41,6 @@ namespace API.Features.Billing.DocumentTypes {
         public async Task<DocumentTypeBrowserStorageVM> GetByIdForBrowserStorageAsync(int id) {
             var record = await context.DocumentTypes
                 .AsNoTracking()
-                .OrderBy(x => x.Description)
                 .SingleOrDefaultAsync(x => x.Id == id);
             return mapper.Map<DocumentType, DocumentTypeBrowserStorageVM>(record);
         }
@@ -48,6 +49,18 @@ namespace API.Features.Billing.DocumentTypes {
             return await context.DocumentTypes
                 .AsNoTracking()
                 .SingleOrDefaultAsync(x => x.Id == id);
+        }
+
+        public void UpdateLastNo(int id) {
+            using var transaction = context.Database.BeginTransaction();
+            var record = context.DocumentTypes.SingleOrDefault(x => x.Id == id);
+            record.LastNo += 1;
+            context.SaveChanges();
+            if (testingEnvironment.IsTesting) {
+                transaction.Dispose();
+            } else {
+                transaction.Commit();
+            }
         }
 
     }

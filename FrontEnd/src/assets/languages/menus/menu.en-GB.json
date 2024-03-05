@@ -1,130 +1,35 @@
 [
-    {
-        "id": "calendar",
-        "description": "Reservations"
-    },
-    {
-        "id": "availability",
-        "description": "Availability"
-    },
-    {
-        "id": "coachRoutes",
-        "description": "Coach routes"
-    },
-    {
-        "id": "shipRoutes",
-        "description": "Ship routes"
-    },
-    {
-        "id": "registrars",
-        "description": "Passenger registrars"
-    },
-    {
-        "id": "ports",
-        "description": "Ports"
-    },
-    {
-        "id": "drivers",
-        "description": "Drivers"
-    },
-    {
-        "id": "customers",
-        "description": "Customers"
-    },
-    {
-        "id": "shipCrews",
-        "description": "Ship crews"
-    },
-    {
-        "id": "ships",
-        "description": "Ships"
-    },
-    {
-        "id": "shipOwners",
-        "description": "Shipowners"
-    },
-    {
-        "id": "destinations",
-        "description": "Destinations"
-    },
-    {
-        "id": "schedules",
-        "description": "Schedules"
-    },
-    {
-        "id": "pickupPoints",
-        "description": "Pickup points"
-    },
-    {
-        "id": "genders",
-        "description": "Genders"
-    },
-    {
-        "id": "boarding",
-        "description": "Boarding"
-    },
-    {
-        "id": "manifest",
-        "description": "Ship manifest"
-    },
-    {
-        "id": "ledgers",
-        "description": "Customer ledgers"
-    },
-    {
-        "id": "statistics",
-        "description": "Statistics"
-    },
-    {
-        "id": "reservation-parameters",
-        "description": "Parameters"
-    },
-    {
-        "id": "users",
-        "description": "Users"
-    },
-    {
-        "id": "invoices",
-        "description": "Sales"
-    },
-    {
-        "id": "receipts",
-        "description": "Receipts"
-    },
-    {
-        "id": "taxOffices",
-        "description": "Tax offices"
-    },
-    {
-        "id": "documentTypes",
-        "description": "Documents types"
-    },
-    {
-        "id": "customers",
-        "description": "Customers"
-    },
-    {
-        "id": "prices",
-        "description": "Price lists"
-    },
-    {
-        "id": "banks",
-        "description": "Banks"
-    },
-    {
-        "id": "paymentMethods",
-        "description": "Payment methods"
-    },
-    {
-        "id": "ledgers",
-        "description": "Customer ledgers"
-    },
-    {
-        "id": "balanceSheet",
-        "description": "Balance sheet"
-    },
-    {
-        "id": "billing-parameters",
-        "description": "Parameters"
-    }
+    { "id": "calendar", "description": "Reservations" },
+    { "id": "availability", "description": "Availability" },
+    { "id": "coachRoutes", "description": "Coach routes" },
+    { "id": "shipRoutes", "description": "Ship routes" },
+    { "id": "registrars", "description": "Passenger registrars" },
+    { "id": "ports", "description": "Ports" },
+    { "id": "drivers", "description": "Drivers" },
+    { "id": "crewSpecialties", "description": "Crew specialties" },
+    { "id": "customers", "description": "Customers" },
+    { "id": "shipCrews", "description": "Ship crews" },
+    { "id": "ships", "description": "Ships" },
+    { "id": "shipOwners", "description": "Shipowners" },
+    { "id": "destinations", "description": "Destinations" },
+    { "id": "schedules", "description": "Schedules" },
+    { "id": "pickupPoints", "description": "Pickup points" },
+    { "id": "genders", "description": "Genders" },
+    { "id": "boarding", "description": "Boarding" },
+    { "id": "manifest", "description": "Ship manifest" },
+    { "id": "ledgers", "description": "Customer ledgers" },
+    { "id": "statistics", "description": "Statistics" },
+    { "id": "reservation-parameters", "description": "Parameters" },
+    { "id": "users", "description": "Users" },
+    { "id": "invoices", "description": "Sales" },
+    { "id": "transactions", "description": "Receipts" },
+    { "id": "taxOffices", "description": "Tax offices" },
+    { "id": "documentTypes", "description": "Documents types" },
+    { "id": "customers", "description": "Customers" },
+    { "id": "prices", "description": "Price lists" },
+    { "id": "banks", "description": "Banks" },
+    { "id": "paymentMethods", "description": "Payment methods" },
+    { "id": "ledgers", "description": "Customer ledgers" },
+    { "id": "balanceSheet", "description": "Balance sheet" },
+    { "id": "billing-parameters", "description": "Parameters"    }
 ]

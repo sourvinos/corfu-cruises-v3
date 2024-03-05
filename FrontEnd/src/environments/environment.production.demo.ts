@@ -1,10 +1,10 @@
 // ng build --output-path="release" --configuration=production-demo
 
 export const environment = {
-    apiUrl: 'http://corfucruisesdemo-001-site1.atempurl.com/api',
-    url: 'https://corfucruisesdemo-001-site1.atempurl.com',
+    apiUrl: 'https://appsourvinos.com/api',
+    url: 'https://appsourvinos.com',
     appName: 'Corfu Cruises',
-    clientUrl: 'https://corfucruisesdemo-001-site1.atempurl.com',
+    clientUrl: 'https://appsourvinos.com',
     defaultLanguage: 'en-GB',
     featuresIconDirectory: 'assets/images/features/',
     nationalitiesIconDirectory: 'assets/images/nationalities/',

@@ -85,8 +85,8 @@ namespace API.Features.Billing.Invoices {
 
         public async Task<string> UploadXMLAsync(XElement invoice) {
             using HttpClient client = new();
-            client.DefaultRequestHeaders.Add("aade-user-id", "demo-sourvinos");
-            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "d8683e2328380a9342d7fed8cdead4f3");
+            client.DefaultRequestHeaders.Add("aade-user-id", "john-sourvinos");
+            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "575673ddf99a6a012bcd2c11ee4efdbc");
             client.DefaultRequestHeaders.Add("Accept", "application/xml");
             string xml = "";
             XmlSerializer serializer = new(typeof(XElement));
