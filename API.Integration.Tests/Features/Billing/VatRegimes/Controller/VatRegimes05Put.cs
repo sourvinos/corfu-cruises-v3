@@ -55,20 +55,20 @@ namespace VatRegimes {
 
         [Fact]
         public async Task Admins_Can_Not_Update_When_Not_Found() {
-            await RecordNotFound.Action(_httpClient, _baseUrl, _notFoundUrl, "john", "Ec11fc8c16db#");
+            await RecordNotFound.Action(_httpClient, _baseUrl, _notFoundUrl, "john", "Aba439de-446e-4eef-8c4b-833f1b3e18aa%");
         }
 
         [Theory]
         [ClassData(typeof(UpdateInvalidCode))]
         public async Task Admins_Can_Not_Update_When_Invalid(TestVatRegime record) {
-            var actionResponse = await RecordInvalidNotSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "Ec11fc8c16db#", record);
+            var actionResponse = await RecordInvalidNotSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "Aba439de-446e-4eef-8c4b-833f1b3e18aa%", record);
             Assert.Equal((HttpStatusCode)record.StatusCode, actionResponse.StatusCode);
         }
 
         [Theory]
         [ClassData(typeof(UpdateValidCode))]
         public async Task Admins_Can_Update_When_Valid(TestVatRegime record) {
-            await RecordSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "Ec11fc8c16db#", record);
+            await RecordSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "Aba439de-446e-4eef-8c4b-833f1b3e18aa%", record);
         }
 
     }

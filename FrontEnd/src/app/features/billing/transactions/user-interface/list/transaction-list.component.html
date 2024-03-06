@@ -1,0 +1,85 @@
+<div id="list-wrapper">
+
+    <div id="content">
+
+        <div id="header">
+            <home-button-and-title [featureIcon]="featureIcon" [feature]="feature" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
+        </div>
+
+        <div id="table-wrapper">
+            <p-table #table (onFilter)="filterRecords($event)" [scrollable]="true" [value]="records" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th class="width-3"></th>
+                        <th class="width-4" pSortableColumn="date">{{ getLabel("headerDate") }}</th>
+                        <th class="width-15" pSortableColumn="customer.description">{{ getLabel("headerCustomerDescription") }}</th>
+                        <th class="width-12" pSortableColumn="documentType.description">{{ getLabel("headerDocumentTypeDescription") }}</th>
+                        <th class="width-4" pSortableColumn="documentType.batch">{{ getLabel("headerDocumentTypeBatch") }}</th>
+                        <th class="width-4" pSortableColumn="no">{{ getLabel("headerNo") }}</th>
+                        <th class="width-4" pSortableColumn="grossAmount">{{ getLabel("headerGrossAmount") }}</th>
+                    </tr>
+                    <tr>
+                        <th class="width-3"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+                        <th class="width-4">
+                            <div class="date-picker-wrapper">
+                                <input (dateInput)="filterByDate($event)" [matDatepicker]="picker" [ngModel]="filterDate" class="left p-inputtext" readonly>
+                                <mat-datepicker-toggle [for]="picker" class="color-table-header" matSuffix></mat-datepicker-toggle>
+                                <span (click)="clearDateFilter()" [ngClass]="hasDateFilter()" class="date-clear-icon pi pi-filter-slash"></span>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </div>
+                        </th>
+                        <th class="width-15">
+                            <p-columnFilter [showMenu]="false" field="customer" matchMode="in">
+                                <ng-template let-filter="filterCallback" let-value pTemplate="filter">
+                                    <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="dropdownCustomers" [placeholder]="getEmoji('wildcard')" optionLabel="description">
+                                        <ng-template let-option pTemplate="item">
+                                            <div class="p-multiselect-option">
+                                                <span>{{ option.description }}</span>
+                                            </div>
+                                        </ng-template>
+                                    </p-multiSelect>
+                                </ng-template>
+                            </p-columnFilter>
+                        </th>
+                        <th class="width-12">
+                            <p-columnFilter [showMenu]="false" field="documentType" matchMode="in">
+                                <ng-template let-filter="filterCallback" let-value pTemplate="filter">
+                                    <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="dropdownDocumentTypes" [placeholder]="getEmoji('wildcard')" optionLabel="description">
+                                        <ng-template let-option pTemplate="item">
+                                            <div class="p-multiselect-option">
+                                                <span>{{ option.description }}</span>
+                                            </div>
+                                        </ng-template>
+                                    </p-multiSelect>
+                                </ng-template>
+                            </p-columnFilter>
+                        </th>
+                        <th class="width-4"></th>
+                        <th class="width-4"></th>
+                        <th class="width-4"></th>
+                    </tr>
+                </ng-template>
+                <ng-template let-record pTemplate="body">
+                    <tr (click)="highlightRow(record.transactionId)" (dblclick)="editRecord(record.transactionId)" [attr.id]=record.transactionId style="height: 32px;">
+                        <td class="width-3"><span class="center" style="padding-top: 0.25rem !important;"><p-tableCheckbox [value]="record"></p-tableCheckbox></span></td>
+                        <td class="width-4"><span class="center">{{ record.formattedDate }}</span></td>
+                        <td class="width-15"><span>{{ record.customer.description }}</span></td>
+                        <td class="width-12"><span>{{ record.documentType.description }}</span></td>
+                        <td class="width-4"><span class="center">{{ record.documentType.batch }}</span></td>
+                        <td class="width-4"><span class="center">{{ record.invoiceNo }}</span></td>
+                        <td class="width-4"><span class="right with-right-padding">{{ record.grossAmount }}</span></td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+    </div>
+
+    <div id="footer">
+        <table-total-filtered-records (resetTableFilters)="resetTableFilters()" [filteredRecordCount]="recordsFilteredCount" [recordCount]="records.length"></table-total-filtered-records>
+        <div id="align-right">
+            <button (click)="newRecord()" class="primary" mat-flat-button>{{ getLabel("newRecord") | uppercase }}</button>
+        </div>
+    </div>
+
+</div>

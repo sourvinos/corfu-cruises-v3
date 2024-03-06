@@ -52,17 +52,17 @@ namespace Users {
 
         [Fact]
         public async Task Simple_Users_Can_Get_By_Id_If_Owned() {
-            await RecordFound.Action(_httpClient, _baseUrl, _url, "john", "Ec11fc8c16db#");
+            await RecordFound.Action(_httpClient, _baseUrl, _url, "john", "Aba439de-446e-4eef-8c4b-833f1b3e18aa%");
         }
 
         [Fact]
         public async Task Admins_Not_Found_When_Not_Exists() {
-            await RecordNotFound.Action(_httpClient, _baseUrl, _notFoundUrl, "john", "Ec11fc8c16db#");
+            await RecordNotFound.Action(_httpClient, _baseUrl, _notFoundUrl, "john", "Aba439de-446e-4eef-8c4b-833f1b3e18aa%");
         }
 
         [Fact]
         public async Task Admins_Can_Get_By_Id() {
-            await RecordFound.Action(_httpClient, _baseUrl, _url, "john", "Ec11fc8c16db#");
+            await RecordFound.Action(_httpClient, _baseUrl, _url, "john", "Aba439de-446e-4eef-8c4b-833f1b3e18aa%");
         }
 
     }

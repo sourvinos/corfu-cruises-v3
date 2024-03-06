@@ -15,10 +15,10 @@ namespace Transactions {
             return new object[] {
                 new TestTransaction {
                     CustomerId = 1,
-                    DocumentTypeId = 1,
+                    DocumentTypeId = 4,
                     PaymentMethodId = 1,
                     Date = "2024-02-10",
-                    No = 1,
+                    InvoiceNo = 1,
                     GrossAmount = 100
                 }
             };

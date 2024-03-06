@@ -1,3 +1,4 @@
+using API.Features.Billing.Invoices;
 using API.Infrastructure.Classes;
 
 namespace API.Features.Billing.Transactions {
@@ -6,10 +7,9 @@ namespace API.Features.Billing.Transactions {
 
         public string TransactionId { get; set; }
         public string Date { get; set; }
-        public int No { get; set; }
         public SimpleEntity Customer { get; set; }
-        public SimpleEntity DocumentType { get; set; }
-        public SimpleEntity PaymentMethod { get; set; }
+        public DocumentTypeVM DocumentType { get; set; }
+        public int InvoiceNo { get; set; }
         public decimal GrossAmount { get; set; }
 
     }

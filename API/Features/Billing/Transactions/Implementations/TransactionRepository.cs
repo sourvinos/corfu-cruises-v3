@@ -21,12 +21,14 @@ namespace API.Features.Billing.Transactions {
         }
 
         public async Task<IEnumerable<TransactionListVM>> GetAsync() {
-            var transaction = await context.Transactions
+            var transactions = await context.Transactions
                 .AsNoTracking()
+                .Include(x => x.Customer)
+                .Include(x => x.DocumentType)
                 .Where(x => x.DiscriminatorId == 2)
                 .OrderBy(x => x.Date)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionListVM>>(transaction);
+            return mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionListVM>>(transactions);
         }
 
         public async Task<Transaction> GetByIdAsync(string transactionId, bool includeTables) {

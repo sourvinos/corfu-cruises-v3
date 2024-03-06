@@ -100,6 +100,7 @@ namespace API.Infrastructure.Middleware {
                 460 => ApiMessages.InvalidPort(),
                 461 => ApiMessages.PriceFieldsMustBeZeroOrGreater(),
                 462 => ApiMessages.InvalidDatePeriod(),
+                465 => ApiMessages.InvalidDocumentType(),
                 453 => ApiMessages.InvalidDriver(),
                 454 => ApiMessages.InvalidShip(),
                 455 => ApiMessages.InvalidPassengerCount(),

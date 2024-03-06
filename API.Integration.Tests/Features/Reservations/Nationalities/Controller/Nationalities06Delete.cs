@@ -52,17 +52,17 @@ namespace Nationalities {
 
         [Fact]
         public async Task Admins_Not_Found_When_Not_Exists() {
-            await RecordNotFound.Action(_httpClient, _baseUrl, _notFoundUrl, "john", "Ec11fc8c16db#");
+            await RecordNotFound.Action(_httpClient, _baseUrl, _notFoundUrl, "john", "Aba439de-446e-4eef-8c4b-833f1b3e18aa%");
         }
 
         [Fact]
         public async Task Admins_Can_Not_Delete_In_Use() {
-            await RecordInUse.Action(_httpClient, _baseUrl, _inUseUrl, "john", "Ec11fc8c16db#");
+            await RecordInUse.Action(_httpClient, _baseUrl, _inUseUrl, "john", "Aba439de-446e-4eef-8c4b-833f1b3e18aa%");
         }
 
         [Fact]
         public async Task Admins_Can_Delete_Not_In_Use() {
-            await RecordDeleted.Action(_httpClient, _baseUrl, _url, "john", "Ec11fc8c16db#");
+            await RecordDeleted.Action(_httpClient, _baseUrl, _url, "john", "Aba439de-446e-4eef-8c4b-833f1b3e18aa%");
         }
 
     }

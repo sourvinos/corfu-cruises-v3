@@ -55,7 +55,7 @@ namespace Boarding {
         [Theory]
         [ClassData(typeof(CreateBoardingCriteria))]
         public async Task Admins_Can_List(TestBoardingCriteria criteria) {
-            var actionResponse = await ListByPost.Action(_httpClient, _baseUrl, _url, "john", "Ec11fc8c16db#", criteria);
+            var actionResponse = await ListByPost.Action(_httpClient, _baseUrl, _url, "john", "Aba439de-446e-4eef-8c4b-833f1b3e18aa%", criteria);
             var records = JsonSerializer.Deserialize<BoardingFinalGroupVM>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             Assert.Equal(70, records.TotalPax);
             Assert.Equal(68, records.EmbarkedPassengers);

@@ -2376,6 +2376,14 @@
             {
                 "id": "ledgersSubTitle",
                 "description": "Zeigen Sie Ihre Reservierungen für einen bestimmten Zeitraum an."
+            },
+            {
+                "id": "transactionsTitle",
+                "description": "Transaktionen"
+            },
+            {
+                "id": "transactionsSubTitle",
+                "description": "Geld von Kunden entgegennehmen und Quittungen ausstellen."
             }
         ]
     },

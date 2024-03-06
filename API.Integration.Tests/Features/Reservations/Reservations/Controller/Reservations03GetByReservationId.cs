@@ -48,7 +48,7 @@ namespace Reservations {
 
         [Fact]
         public async Task Active_Users_Not_Found_When_Not_Exists() {
-            await RecordNotFound.Action(_httpClient, _baseUrl, _notFoundUrl, "john", "Ec11fc8c16db#");
+            await RecordNotFound.Action(_httpClient, _baseUrl, _notFoundUrl, "john", "Aba439de-446e-4eef-8c4b-833f1b3e18aa%");
         }
 
         [Fact]
@@ -63,7 +63,7 @@ namespace Reservations {
 
         [Fact]
         public async Task Admins_Can_Get_By_Reservation_Id() {
-            await RecordFound.Action(_httpClient, _baseUrl, _adminUrl, "john", "Ec11fc8c16db#");
+            await RecordFound.Action(_httpClient, _baseUrl, _adminUrl, "john", "Aba439de-446e-4eef-8c4b-833f1b3e18aa%");
         }
 
     }

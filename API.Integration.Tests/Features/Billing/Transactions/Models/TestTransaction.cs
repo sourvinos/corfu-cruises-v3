@@ -14,7 +14,7 @@ namespace Transactions {
         public int PaymentMethodId { get; set; }
         // Fields
         public string Date { get; set; }
-        public int No { get; set; }
+        public int InvoiceNo { get; set; }
         public decimal GrossAmount { get; set; }
 
     }

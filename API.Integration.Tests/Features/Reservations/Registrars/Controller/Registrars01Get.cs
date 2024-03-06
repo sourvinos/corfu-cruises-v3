@@ -53,7 +53,7 @@ namespace Registrars {
 
         [Fact]
         public async Task Admins_Can_List() {
-            var actionResponse = await List.Action(_httpClient, _baseUrl, _url, "john", "Ec11fc8c16db#");
+            var actionResponse = await List.Action(_httpClient, _baseUrl, _url, "john", "Aba439de-446e-4eef-8c4b-833f1b3e18aa%");
             var records = JsonSerializer.Deserialize<List<RegistrarListVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             Assert.Equal(10, records.Count);
         }

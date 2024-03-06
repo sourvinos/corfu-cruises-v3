@@ -2376,6 +2376,14 @@
             {
                 "id": "ledgersSubTitle",
                 "description": "Zobrazení rezervací na určité časové období."
+            },
+            {
+                "id": "transactionsTitle",
+                "description": "Transakce"
+            },
+            {
+                "id": "transactionsSubTitle",
+                "description": "Přijímat peníze od zákazníků a vystavovat účtenky."
             }
         ]
     },

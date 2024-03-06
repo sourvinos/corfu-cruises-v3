@@ -112,7 +112,7 @@ namespace API.Features.Reservations.Reservations {
         [HttpPut]
         [Authorize(Roles = "user, admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<Response> Put([FromBody] ReservationWriteDto reservation) {
+        public async Task<Response> PutAsync([FromBody] ReservationWriteDto reservation) {
             var x = await reservationReadRepo.GetByIdAsync(reservation.ReservationId.ToString(), false);
             if (x != null) {
                 if (Identity.IsUserAdmin(httpContext) || reservationValidation.IsUserOwner(x.CustomerId)) {

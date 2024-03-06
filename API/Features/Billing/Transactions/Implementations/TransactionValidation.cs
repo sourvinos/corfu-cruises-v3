@@ -14,13 +14,10 @@ namespace API.Features.Billing.Transactions {
 
         public TransactionValidation(AppDbContext context, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> testingEnvironment, UserManager<UserExtended> userManager) : base(context, httpContext, testingEnvironment, userManager) { }
 
-        private static bool IsAlreadyUpdated(Transaction z, TransactionWriteDto transaction) {
-            return z != null && z.PutAt != transaction.PutAt;
-        }
-
         public async Task<int> IsValidAsync(Transaction z, TransactionWriteDto transaction) {
             return true switch {
                 var x when x == !await IsValidCustomer(transaction) => 450,
+                var x when x == !await IsValidDocumentType(transaction) => 465,
                 var x when x == IsAlreadyUpdated(z, transaction) => 415,
                 _ => 200,
             };
@@ -35,6 +32,21 @@ namespace API.Features.Billing.Transactions {
             return context.Customers
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == transaction.CustomerId) != null;
+        }
+
+        private async Task<bool> IsValidDocumentType(TransactionWriteDto transaction) {
+            if (transaction.TransactionId == Guid.Empty) {
+                return await context.DocumentTypes
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(x => x.Id == transaction.DocumentTypeId && x.IsActive) != null;
+            }
+            return context.DocumentTypes
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == transaction.DocumentTypeId) != null;
+        }
+
+        private static bool IsAlreadyUpdated(Transaction z, TransactionWriteDto transaction) {
+            return z != null && z.PutAt != transaction.PutAt;
         }
 
     }

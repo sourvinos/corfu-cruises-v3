@@ -46,7 +46,7 @@ namespace Reservations {
 
         [Fact]
         public async Task Admins_Not_Found_When_Not_Exists() {
-            await RecordNotFound.Action(_httpClient, _baseUrl, _notFoundUrl, "john", "Ec11fc8c16db#");
+            await RecordNotFound.Action(_httpClient, _baseUrl, _notFoundUrl, "john", "Aba439de-446e-4eef-8c4b-833f1b3e18aa%");
         }
 
         [Fact]
@@ -56,7 +56,7 @@ namespace Reservations {
 
         [Fact]
         public async Task Admins_Can_Delete() {
-            await RecordDeleted.Action(_httpClient, _baseUrl, _deleteUrl, "john", "Ec11fc8c16db#");
+            await RecordDeleted.Action(_httpClient, _baseUrl, _deleteUrl, "john", "Aba439de-446e-4eef-8c4b-833f1b3e18aa%");
         }
 
     }

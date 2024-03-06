@@ -2376,6 +2376,14 @@
             {
                 "id": "ledgersSubTitle",
                 "description": "Display your reservations for a time period."
+            },
+            {
+                "id": "transactionsTitle",
+                "description": "Transactions"
+            },
+            {
+                "id": "transactionsSubTitle",
+                "description": "Receive money from customers and issue receipts."
             }
         ]
     },

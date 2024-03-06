@@ -2376,6 +2376,14 @@
             {
                 "id": "ledgersSubTitle",
                 "description": "Affichez vos réservations pour une période donnée."
+            },
+            {
+                "id": "transactionsTitle",
+                "description": "Transactions"
+            },
+            {
+                "id": "transactionsSubTitle",
+                "description": "Recevoir de l'argent des clients et émettre des reçus."
             }
         ]
     },
