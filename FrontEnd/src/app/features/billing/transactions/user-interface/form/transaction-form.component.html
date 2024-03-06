@@ -2,8 +2,6 @@
 
     <div id="content">
 
-        <!-- <span style="color: var(--color-text); font-size: 10px;">{{ form.value | json }}</span> -->
-
         <div id="header">
             <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
             <div id="header-buttons">
@@ -17,7 +15,6 @@
         </div>
 
         <form [formGroup]="form" id="form">
-            <!-- Header -->
             <div class="group-input-field">
                 <!-- Date -->
                 <date-picker (outputValue)="patchFormWithSelectedDate($event)" [dataTabIndex]="1" [isAdminOrNewRecord]=true [label]="getLabel('date')" [parentDate]="getDate()" [readOnly]=false [showHint]=false></date-picker>

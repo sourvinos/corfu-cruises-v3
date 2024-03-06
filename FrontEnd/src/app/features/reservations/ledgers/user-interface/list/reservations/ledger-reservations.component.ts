@@ -74,6 +74,7 @@ export class LedgerCustomerReservationListComponent {
     private initPortsArray(): void {
         this.perPort = [
             {
+                date: this.selectedRecords[0].date,
                 customer: {
                     id: this.customer.customer.id,
                     description: this.customer.customer.description,
@@ -101,7 +102,9 @@ export class LedgerCustomerReservationListComponent {
                 freeWithTransfer: 0,
                 freeWithoutTransfer: 0,
                 total: 0
-            }, {
+            },
+            {
+                date: this.selectedRecords[0].date,
                 customer: {
                     id: this.customer.customer.id,
                     description: this.customer.customer.description,
@@ -169,6 +172,7 @@ export class LedgerCustomerReservationListComponent {
 
 export interface PerPort {
 
+    date: string
     customer: SimpleEntity
     destination: SimpleEntity
     port: SimpleEntity

@@ -69,7 +69,7 @@ export class InvoiceDialogComponent {
 
     public onRetrievePrices(): void {
         const x: BillingCriteriaVM = {
-            date: this.dateHelperService.formatDateToIso(new Date()),
+            date: this.data[0].date,
             customerId: this.data[0].customer.id,
             destinationId: this.data[0].destination.id,
         }
@@ -93,6 +93,7 @@ export class InvoiceDialogComponent {
                                 kids_B_PriceWithoutTransfer: response.body[1].kidsWithoutTransfer,
                             },
                         })
+                        this.onDoCalculations()
                         this.dialogService.open(this.messageDialogService.priceRetrieverIsValid(), 'ok', ['ok'])
                     }
                 },
@@ -294,7 +295,7 @@ export class InvoiceDialogComponent {
             batch: '',
             invoiceNo: 0,
             paymentMethod: ['', [Validators.required, ValidationService.RequireAutocomplete]],
-            ship: [''],
+            ship: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             netAmount: [0, ValidationService.isGreaterThanZero],
             vatPercent: [24, ValidationService.isGreaterThanZero],
             vatAmount: [0, ValidationService.isGreaterThanZero],

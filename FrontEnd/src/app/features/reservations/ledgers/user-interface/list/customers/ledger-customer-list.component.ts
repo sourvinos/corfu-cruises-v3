@@ -15,6 +15,7 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 import { MatDialog } from '@angular/material/dialog'
 import { InvoiceDialogComponent } from '../invoice-dialog/invoice-dialog.component'
 import { environment } from 'src/environments/environment'
+import { LedgerReservationVM } from '../../../classes/view-models/list/ledger-reservation-vm'
 
 @Component({
     selector: 'ledger-customer-list',
@@ -40,7 +41,8 @@ export class LedgerCustomerListComponent {
     //#region specific
 
     public remarksRowVisibility: boolean
-    private selectedReservations: []
+    private selectedRecords: LedgerReservationVM[]
+    private totalsPerPort: any[]
 
     //#endregion
 
@@ -65,9 +67,9 @@ export class LedgerCustomerListComponent {
         return environment.production
     }
 
-    public doStuff(ports): void {
-        this.selectedReservations = ports
-        console.log('exported', ports)
+    public updateSelectedRecords(emittedObject: LedgerReservationVM[]): void {
+        this.selectedRecords = emittedObject
+        console.log('exported', emittedObject)
     }
 
     public collapseAll(): void {
@@ -75,12 +77,14 @@ export class LedgerCustomerListComponent {
     }
 
     public doBillingTasks(): void {
-        this.dialog.open(InvoiceDialogComponent, {
-            data: this.selectedReservations,
-            panelClass: 'dialog',
-            height: '827px',
-            width: '1180px'
-        })
+        if (this.isAnyRecordSelected()) {
+            this.dialog.open(InvoiceDialogComponent, {
+                data: this.selectedRecords,
+                panelClass: 'dialog',
+                height: '827px',
+                width: '1180px'
+            })
+        }
     }
 
     public exportSelected(customer: LedgerVM): void {
@@ -118,6 +122,37 @@ export class LedgerCustomerListComponent {
     //#endregion
 
     //#region private methods
+
+    private isAnyRecordSelected(): boolean {
+        if (this.selectedRecords == undefined || this.selectedRecords.length == 0) {
+            this.dialogService.open(this.messageDialogService.noRecordsSelected(), 'error', ['ok'])
+            return false
+        }
+        return true
+    }
+
+    private areSelectedRecordsSameShip(): any {
+        const x = this.selectedRecords[0].ship
+        for (let index = 0; index < this.selectedRecords.length; index++) {
+            if (x != this.selectedRecords[index].ship) {
+                this.dialogService.open(this.messageDialogService.selectedReservationsMustBeSameShip(), 'error', ['ok']).subscribe(() => {
+                    console.log('error')
+                    return false
+                })
+            }
+        }
+        console.log('out')
+        return true
+        // this.selectedRecords.forEach(record => {
+        //     if (x != record.ship) {
+        //         this.dialogService.open(this.messageDialogService.selectedReservationsMustBeSameShip(), 'error', ['ok']).subscribe(() => {
+        //             console.log('error')
+        //             return false
+        //         })
+        //     }
+        // })
+        // console.log('out')
+    }
 
     private loadRecords(): Promise<any> {
         return new Promise((resolve) => {
