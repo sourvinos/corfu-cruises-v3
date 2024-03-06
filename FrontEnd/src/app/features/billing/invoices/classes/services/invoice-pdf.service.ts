@@ -14,13 +14,6 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs
 
 export class InvoicePdfService {
 
-    //#region variables
-
-    private invoice: InvoicePdfVM
-    private issuer: any
-
-    //#endregion
-
     constructor(private logoService: LogoService) { }
 
     //#region public methods
@@ -37,16 +30,18 @@ export class InvoicePdfService {
                         table: {
                             body: [[
                                 {
+                                    type: 'none',
                                     ul: [
-                                        invoice.header.date,
-                                        invoice.header.documentTypeDescription,
-                                        invoice.header.batch,
-                                        invoice.header.no
+                                        { text: 'Ημερομηνία: ' + invoice.header.date },
+                                        { text: 'Παραστατικό: ' + invoice.header.documentTypeDescription },
+                                        { text: 'Σειρά: ' + invoice.header.batch },
+                                        { text: 'Νο: ' + invoice.header.invoiceNo }
                                     ]
                                 },
 
                             ]]
-                        }
+                        },
+                        layout: 'noBorders'
                     },
                     {
                         table: {
@@ -85,84 +80,75 @@ export class InvoicePdfService {
                                     ]
                                 }
                             ]]
-                        }
+                        },
+                        layout: 'noBorders'
+                    },
+                    {
+                        table: {
+                            widths: ['50%', '50%'],
+                            body: [[
+                                {
+                                    type: 'none',
+                                    ul: [
+                                        { text: 'Αναχωρήσεις από CORFU PORT' },
+                                        { text: 'Ενήλικες' },
+                                        { text: 'Με transfer: ' + invoice.ports[0].adultsWithTransfer + ' x ' + invoice.ports[0].adultsPriceWithTransfer + ' = ' + invoice.ports[0].adultsAmountWithTransfer },
+                                        { text: 'Χωρίς transfer: ' + invoice.ports[0].adultsWithoutTransfer + ' x ' + invoice.ports[0].adultsPriceWithoutTransfer + ' = ' + invoice.ports[0].adultsAmountWithoutTransfer },
+                                        { text: 'Παιδιά' },
+                                        { text: 'Με transfer: ' + invoice.ports[0].kidsWithTransfer + ' x ' + invoice.ports[0].kidsPriceWithTransfer + ' = ' + invoice.ports[0].kidsAmountWithTransfer },
+                                        { text: 'Χωρίς transfer: ' + invoice.ports[0].kidsWithoutTransfer + ' x ' + invoice.ports[0].kidsPriceWithoutTransfer + ' = ' + invoice.ports[0].kidsAmountWithoutTransfer },
+                                        { text: 'Δωρεάν' },
+                                        { text: 'Με transfer: ' + invoice.ports[0].freeWithTransfer },
+                                        { text: 'Χωρίς transfer: ' + invoice.ports[0].freeWithoutTransfer }
+                                    ]
+                                },
+                                {
+                                    type: 'none',
+                                    ul: [
+                                        { text: 'Αναχωρήσεις από LEFKIMMI PORT' },
+                                        { text: 'Ενήλικες' },
+                                        { text: 'Με transfer: ' + invoice.ports[1].adultsWithTransfer + ' x ' + invoice.ports[1].adultsPriceWithTransfer + ' = ' + invoice.ports[1].adultsAmountWithTransfer },
+                                        { text: 'Χωρίς transfer: ' + invoice.ports[1].adultsWithoutTransfer + ' x ' + invoice.ports[1].adultsPriceWithoutTransfer + ' = ' + invoice.ports[1].adultsAmountWithoutTransfer },
+                                        { text: 'Παιδιά' },
+                                        { text: 'Με transfer: ' + invoice.ports[1].kidsWithTransfer + ' x ' + invoice.ports[1].kidsPriceWithTransfer + ' = ' + invoice.ports[1].kidsAmountWithTransfer },
+                                        { text: 'Χωρίς transfer: ' + invoice.ports[1].kidsWithoutTransfer + ' x ' + invoice.ports[1].kidsPriceWithoutTransfer + ' = ' + invoice.ports[1].kidsAmountWithoutTransfer },
+                                        { text: 'Δωρεάν' },
+                                        { text: 'Με transfer: ' + invoice.ports[1].freeWithTransfer },
+                                        { text: 'Χωρίς transfer: ' + invoice.ports[1].freeWithoutTransfer }
+
+                                    ]
+                                }
+                            ]]
+                        },
+                        layout: 'noBorders'
                     },
                     {
                         table: {
                             body: [[
                                 {
+                                    type: 'none',
                                     ul: [
-                                        invoice.summary.netValue,
-                                        invoice.summary.vatAmount,
-                                        invoice.summary.grossValue
+                                        { text: 'Καθαρή αξία ' + invoice.summary.netValue },
+                                        { text: 'ΦΠΑ 24% ' + invoice.summary.vatAmount },
+                                        { text: 'Συνολική αξία ' + invoice.summary.grossValue }
                                     ]
                                 },
                             ]]
-                        }
+                        },
+                        layout: 'noBorders'
                     },
-                    {
-                        table: {
-                            body: [[
-                                {
-                                    ul: [
-                                        invoice.aade.uId,
-                                        invoice.aade.mark,
-                                        invoice.aade.markCancel,
-                                        {
-                                            qr: invoice.aade.qrUrl,
-                                            fit: '50'
-                                        }
-                                    ]
-                                }
-                            ]]
-                        }
-                    },
-                    {
-                        table: {
-                            widths: ['33%', '33%'],
-                            body: [[
-                                {
-                                    ul: [
-                                        invoice.ports[0].adultsWithTransfer,
-                                        invoice.ports[0].adultsPriceWithTransfer,
-                                        invoice.ports[0].adultsAmountWithTransfer,
-                                        invoice.ports[0].adultsWithoutTransfer,
-                                        invoice.ports[0].adultsPriceWithoutTransfer,
-                                        invoice.ports[0].adultsAmountWithoutTransfer,
-                                        invoice.ports[0].kidsWithTransfer,
-                                        invoice.ports[0].kidsPriceWithTransfer,
-                                        invoice.ports[0].kidsAmountWithTransfer,
-                                        invoice.ports[0].kidsWithoutTransfer,
-                                        invoice.ports[0].kidsPriceWithoutTransfer,
-                                        invoice.ports[0].kidsAmountWithoutTransfer,
-                                        invoice.ports[0].freeWithTransfer,
-                                        invoice.ports[0].freeWithoutTransfer
-                                    ]
-                                }, {
-                                    ul: [
-                                        invoice.ports[1].adultsWithTransfer,
-                                        invoice.ports[1].adultsPriceWithTransfer,
-                                        invoice.ports[1].adultsAmountWithTransfer,
-                                        invoice.ports[1].adultsWithoutTransfer,
-                                        invoice.ports[1].adultsPriceWithoutTransfer,
-                                        invoice.ports[1].adultsAmountWithoutTransfer,
-                                        invoice.ports[1].kidsWithTransfer,
-                                        invoice.ports[1].kidsPriceWithTransfer,
-                                        invoice.ports[1].kidsAmountWithTransfer,
-                                        invoice.ports[1].kidsWithoutTransfer,
-                                        invoice.ports[1].kidsPriceWithoutTransfer,
-                                        invoice.ports[1].kidsAmountWithoutTransfer,
-                                        invoice.ports[1].freeWithTransfer,
-                                        invoice.ports[1].freeWithoutTransfer
-                                    ]
-                                }
-                            ]]
-                        }
-                    }
-
                 ],
-            // { qr: invoice.aade.qrUrl, fit: '50' },
-            // ],
+            footer: {
+                type: 'none',
+                ul: [
+                    {
+                        qr: invoice.aade.qrUrl,
+                        fit: '50'
+                    },
+                ],
+                margin: [40, -50, 0, -40],
+                layout: 'noBorders'
+            },
             styles: {
                 AkaAcidCanterBold: {
                     font: 'AkaAcidCanterBold',

@@ -37,7 +37,7 @@ export class InvoicePdfHelperService {
                 date: this.dateHelperService.formatISODateToLocale(formValue.date),
                 documentTypeDescription: formValue.documentTypeDescription,
                 batch: formValue.batch,
-                no: formValue.no
+                invoiceNo: formValue.invoiceNo
             }
             resolve(x)
         })
@@ -116,25 +116,40 @@ export class InvoicePdfHelperService {
     private buildPorts(formValue: any): Promise<any> {
         const x = []
         return new Promise((resolve) => {
-            formValue.invoicesPorts.forEach((port: InvoicePdfPortVM) => {
-                const z: InvoicePdfPortVM = {
-                    adultsWithTransfer: port.adultsWithTransfer,
-                    adultsPriceWithTransfer: port.adultsPriceWithTransfer,
-                    adultsAmountWithTransfer: port.adultsWithTransfer * port.adultsPriceWithTransfer,
-                    adultsWithoutTransfer: port.adultsWithoutTransfer,
-                    adultsPriceWithoutTransfer: port.adultsPriceWithoutTransfer,
-                    adultsAmountWithoutTransfer: port.adultsWithoutTransfer * port.adultsPriceWithoutTransfer,
-                    kidsWithTransfer: port.kidsWithTransfer,
-                    kidsPriceWithTransfer: port.kidsPriceWithTransfer,
-                    kidsAmountWithTransfer: port.kidsWithTransfer * port.kidsPriceWithTransfer,
-                    kidsWithoutTransfer: port.kidsWithoutTransfer,
-                    kidsPriceWithoutTransfer: port.kidsPriceWithoutTransfer,
-                    kidsAmountWithoutTransfer: port.kidsWithoutTransfer * port.kidsPriceWithoutTransfer,
-                    freeWithTransfer: port.freeWithTransfer,
-                    freeWithoutTransfer: port.freeWithoutTransfer
-                }
-                x.push(z)
-            })
+            const z: InvoicePdfPortVM = {
+                adultsWithTransfer: formValue.portA.adults_A_WithTransfer,
+                adultsPriceWithTransfer: formValue.portA.adults_A_PriceWithTransfer,
+                adultsAmountWithTransfer: formValue.portA.adults_A_WithTransfer * formValue.portA.adults_A_PriceWithTransfer,
+                adultsWithoutTransfer: formValue.portA.adults_A_WithoutTransfer,
+                adultsPriceWithoutTransfer: formValue.portA.adults_A_PriceWithoutTransfer,
+                adultsAmountWithoutTransfer: formValue.portA.adults_A_WithoutTransfer * formValue.portA.adults_A_PriceWithoutTransfer,
+                kidsWithTransfer: formValue.portA.kids_A_WithTransfer,
+                kidsPriceWithTransfer: formValue.portA.kids_A_PriceWithTransfer,
+                kidsAmountWithTransfer: formValue.portA.kids_A_WithTransfer * formValue.portA.kids_A_PriceWithTransfer,
+                kidsWithoutTransfer: formValue.portA.kids_A_WithoutTransfer,
+                kidsPriceWithoutTransfer: formValue.portA.kids_A_PriceWithoutTransfer,
+                kidsAmountWithoutTransfer: formValue.portA.kids_A_WithoutTransfer * formValue.portA.kids_A_PriceWithoutTransfer,
+                freeWithTransfer: formValue.portA.free_A_WithTransfer,
+                freeWithoutTransfer: formValue.portA.free_A_WithoutTransfer
+            }
+            x.push(z)
+            const i: InvoicePdfPortVM = {
+                adultsWithTransfer: formValue.portB.adults_B_WithTransfer,
+                adultsPriceWithTransfer: formValue.portB.adults_B_PriceWithTransfer,
+                adultsAmountWithTransfer: formValue.portB.adults_B_WithTransfer * formValue.portB.adults_B_PriceWithTransfer,
+                adultsWithoutTransfer: formValue.portB.adults_B_WithoutTransfer,
+                adultsPriceWithoutTransfer: formValue.portB.adults_B_PriceWithoutTransfer,
+                adultsAmountWithoutTransfer: formValue.portB.adults_B_WithoutTransfer * formValue.portB.adults_B_PriceWithoutTransfer,
+                kidsWithTransfer: formValue.portB.kids_B_WithTransfer,
+                kidsPriceWithTransfer: formValue.portB.kids_B_PriceWithTransfer,
+                kidsAmountWithTransfer: formValue.portB.kids_B_WithTransfer * formValue.portB.kids_B_PriceWithTransfer,
+                kidsWithoutTransfer: formValue.portB.kids_B_WithoutTransfer,
+                kidsPriceWithoutTransfer: formValue.portB.kids_B_PriceWithoutTransfer,
+                kidsAmountWithoutTransfer: formValue.portB.kids_B_WithoutTransfer * formValue.portB.kids_B_PriceWithoutTransfer,
+                freeWithTransfer: formValue.portB.free_B_WithTransfer,
+                freeWithoutTransfer: formValue.portB.free_B_WithoutTransfer
+            }
+            x.push(i)
             resolve(x)
         })
     }
