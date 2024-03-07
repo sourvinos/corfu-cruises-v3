@@ -10,10 +10,10 @@ export interface DocumentTypeReadDto extends Metadata {
     batch: string
     lastDate: string
     lastNo: number
-    isActive: boolean
-    // Plus or Minus
     customers: string
     suppliers: string
+    discriminatorId: number
+    isActive: boolean
     // myData
     isMyData: boolean
     table8_1: string

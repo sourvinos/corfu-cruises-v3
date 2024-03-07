@@ -14,6 +14,7 @@ namespace API.Features.Billing.DocumentTypes {
             entity.Property(x => x.Batch).HasMaxLength(5).IsRequired(true);
             entity.Property(x => x.LastDate).HasColumnType("date").IsRequired(true);
             entity.Property(x => x.LastNo).IsRequired(true);
+            entity.Property(x => x.DiscriminatorId).IsRequired(true);
             entity.Property(x => x.IsActive);
             // Plus or Minus
             entity.Property(x => x.Customers).HasMaxLength(1).IsRequired(true);

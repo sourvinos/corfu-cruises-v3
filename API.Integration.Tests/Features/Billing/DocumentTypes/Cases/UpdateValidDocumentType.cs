@@ -21,13 +21,14 @@ namespace DocumentTypes {
                     Batch = Helpers.CreateRandomString(5),
                     LastDate = "1970-01-01",
                     LastNo = 1,
-                    IsActive = true,
                     Customers = "+",
-                    Suppliers = " ",
+                    Suppliers = "",
+                    DiscriminatorId = 1,
                     IsMyData = true,
                     Table8_1 = "Table8_1",
                     Table8_8 ="Table8_8",
                     Table8_9 ="Table8_9",
+                    IsActive = true,
                     PutAt = "2024-01-05 09:38:02"
                 }
             };

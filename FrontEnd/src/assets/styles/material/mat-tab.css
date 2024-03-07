@@ -1,11 +1,24 @@
 .mat-mdc-tab-group {
-    row-gap: 1rem;
     --mat-tab-header-active-focus-indicator-color: var(--color-accent) !important;
     --mdc-tab-indicator-active-indicator-color: var(--color-accent) !important;
+    height: 100% !important;
+    row-gap: 1rem;
 }
 
 .mat-mdc-tab .mdc-tab__text-label {
     color: var(--color-text) !important;
     font-family: var(--font-family-asty) !important;
     font-weight: 300;
+}
+
+.mdc-form-field > label {
+    font-family: var(--font-family-asty) !important;
+    font-weight: 300 !important;
+    left: 16px !important;
+    position: relative !important;
+    top: 9px !important;
+}
+
+.mat-mdc-tab-body-content, .mat-mdc-tab-body-wrapper {
+    height: 100% !important;
 }

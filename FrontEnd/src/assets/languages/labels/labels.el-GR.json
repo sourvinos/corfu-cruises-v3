@@ -2724,6 +2724,14 @@
                 "description": "Τύπος παραστατικού"
             },
             {
+                "id": "tab1",
+                "description": "Γενικά"
+            },
+            {
+                "id": "tab2",
+                "description": "myData"
+            },
+            {
                 "id": "abbreviation",
                 "description": "Συντ."
             },
