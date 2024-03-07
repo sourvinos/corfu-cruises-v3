@@ -1,0 +1,11 @@
+.mat-mdc-tab-group {
+    row-gap: 1rem;
+    --mat-tab-header-active-focus-indicator-color: var(--color-accent) !important;
+    --mdc-tab-indicator-active-indicator-color: var(--color-accent) !important;
+}
+
+.mat-mdc-tab .mdc-tab__text-label {
+    color: var(--color-text) !important;
+    font-family: var(--font-family-asty) !important;
+    font-weight: 300;
+}

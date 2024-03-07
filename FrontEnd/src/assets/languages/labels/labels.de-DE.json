@@ -1659,6 +1659,14 @@
                 "description": "Inhaber"
             },
             {
+                "id": "tab1",
+                "description": "Allgemeine"
+            },
+            {
+                "id": "tab2",
+                "description": "myData"
+            },
+            {
                 "id": "description",
                 "description": "Beschreibung"
             },
@@ -1713,6 +1721,34 @@
             {
                 "id": "email",
                 "description": "Email"
+            },
+            {
+                "id": "demoUrl",
+                "description": "Demo url"
+            },
+            {
+                "id": "demoUsername",
+                "description": "Demo Benutzername"
+            },
+            {
+                "id": "demoPassword",
+                "description": "Demo Passwort"
+            },
+            {
+                "id": "liveUrl",
+                "description": "Live url"
+            },
+            {
+                "id": "liveUsername",
+                "description": "Live Benutzername"
+            },
+            {
+                "id": "livePassword",
+                "description": "Live Passwort"
+            },
+            {
+                "id": "isDemoMyData",
+                "description": "Demo"
             },
             {
                 "id": "isActive",

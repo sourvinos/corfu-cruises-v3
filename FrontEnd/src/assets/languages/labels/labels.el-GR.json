@@ -1659,6 +1659,14 @@
                 "description": "Πλοιοκτήτης"
             },
             {
+                "id": "tab1",
+                "description": "Γενικά"
+            },
+            {
+                "id": "tab2",
+                "description": "myData"
+            },
+            {
                 "id": "description",
                 "description": "Επωνυμία"
             },
@@ -1713,6 +1721,34 @@
             {
                 "id": "email",
                 "description": "Email"
+            },
+            {
+                "id": "demoUrl",
+                "description": "Demo url"
+            },
+            {
+                "id": "demoUsername",
+                "description": "Demo χρήστης"
+            },
+            {
+                "id": "demoPassword",
+                "description": "Demo κωδικός"
+            },
+            {
+                "id": "liveUrl",
+                "description": "Live url"
+            },
+            {
+                "id": "liveUsername",
+                "description": "Live χρήστης"
+            },
+            {
+                "id": "livePassword",
+                "description": "Live κωδικός"
+            },
+            {
+                "id": "isDemoMyData",
+                "description": "Demo"
             },
             {
                 "id": "isActive",

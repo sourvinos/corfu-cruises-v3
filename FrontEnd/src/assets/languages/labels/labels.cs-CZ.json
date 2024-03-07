@@ -1659,6 +1659,14 @@
                 "description": "Loďowner"
             },
             {
+                "id": "tab1",
+                "description": "Obecné"
+            },
+            {
+                "id": "tab2",
+                "description": "myData"
+            },
+            {
                 "id": "description",
                 "description": "Popis"
             },
@@ -1713,6 +1721,34 @@
             {
                 "id": "email",
                 "description": "Email"
+            },
+            {
+                "id": "demoUrl",
+                "description": "Demo url"
+            },
+            {
+                "id": "demoUsername",
+                "description": "Demo uživatelské jméno"
+            },
+            {
+                "id": "demoPassword",
+                "description": "Demo heslo"
+            },
+            {
+                "id": "liveUrl",
+                "description": "Live url"
+            },
+            {
+                "id": "liveUsername",
+                "description": "Live uživatelské jméno"
+            },
+            {
+                "id": "livePassword",
+                "description": "Live heslo"
+            },
+            {
+                "id": "isDemoMyData",
+                "description": "Demo"
             },
             {
                 "id": "isActive",

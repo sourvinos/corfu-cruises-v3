@@ -22,6 +22,12 @@ namespace API.Features.Reservations.ShipOwners {
             RuleFor(x => x.PersonInCharge).MaximumLength(128);
             RuleFor(x => x.Phones).MaximumLength(128);
             RuleFor(x => x.Email).Must(EmailHelpers.BeEmptyOrValidEmailAddress).MaximumLength(128);
+            RuleFor(x => x.DemoUrl).MaximumLength(256);
+            RuleFor(x => x.DemoUsername).MaximumLength(256);
+            RuleFor(x => x.DemoPassword).MaximumLength(256);
+            RuleFor(x => x.LiveUrl).MaximumLength(256);
+            RuleFor(x => x.LiveUsername).MaximumLength(256);
+            RuleFor(x => x.LivePassword).MaximumLength(256);
         }
 
     }

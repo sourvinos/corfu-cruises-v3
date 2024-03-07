@@ -26,6 +26,14 @@ namespace API.Features.Reservations.ShipOwners {
         public string Phones { get; set; }
         public string Email { get; set; }
         public bool IsActive { get; set; }
+        // myData
+        public string DemoUrl { get; set; }
+        public string DemoUsername { get; set; }
+        public string DemoPassword { get; set; }
+        public string LiveUrl { get; set; }
+        public string LiveUsername { get; set; }
+        public string LivePassword { get; set; }
+        public bool IsDemoMyData { get; set; }
         // Metadata
         public string PostAt { get; set; }
         public string PostUser { get; set; }

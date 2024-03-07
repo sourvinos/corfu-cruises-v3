@@ -18,6 +18,13 @@ export interface ShipOwnerWriteDto {
     personInCharge: string
     phones: string
     email: string
+    demoUrl: string
+    demoUsername: string
+    demoPassword: string
+    liveUrl: string
+    liveUsername: string
+    livePassword: string
+    isDemoMyData: boolean
     isActive: boolean
     // Rowversion
     putAt: string

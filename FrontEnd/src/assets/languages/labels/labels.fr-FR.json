@@ -1659,6 +1659,14 @@
                 "description": "Armateur"
             },
             {
+                "id": "tab1",
+                "description": "Générales"
+            },
+            {
+                "id": "tab2",
+                "description": "myData"
+            },
+            {
                 "id": "description",
                 "description": "Nom de compagnie"
             },
@@ -1713,6 +1721,34 @@
             {
                 "id": "email",
                 "description": "Email"
+            },
+            {
+                "id": "demoUrl",
+                "description": "Demo url"
+            },
+            {
+                "id": "demoUsername",
+                "description": "Demo utilisateur"
+            },
+            {
+                "id": "demoPassword",
+                "description": "Demo mot de passe"
+            },
+            {
+                "id": "liveUrl",
+                "description": "Live url"
+            },
+            {
+                "id": "liveUsername",
+                "description": "Live utilisateur"
+            },
+            {
+                "id": "livePassword",
+                "description": "Live mot de passe"
+            },
+            {
+                "id": "isDemoMyData",
+                "description": "Demo"
             },
             {
                 "id": "isActive",

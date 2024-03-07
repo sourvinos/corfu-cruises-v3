@@ -23,6 +23,12 @@ namespace API.Features.Reservations.ShipOwners {
             entity.Property(x => x.Phones).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.PersonInCharge).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.Email).HasDefaultValue("").HasMaxLength(128);
+            entity.Property(x => x.DemoUrl).HasDefaultValue("").HasMaxLength(256);
+            entity.Property(x => x.DemoUsername).HasDefaultValue("").HasMaxLength(256);
+            entity.Property(x => x.DemoPassword).HasDefaultValue("").HasMaxLength(256);
+            entity.Property(x => x.LiveUrl).HasDefaultValue("").HasMaxLength(256);
+            entity.Property(x => x.LiveUsername).HasDefaultValue("").HasMaxLength(256);
+            entity.Property(x => x.LivePassword).HasDefaultValue("").HasMaxLength(256);
             entity.Property(x => x.IsActive).IsRequired(true);
             // Metadata
             entity.Property(x => x.PostAt).HasMaxLength(19).IsRequired(true);

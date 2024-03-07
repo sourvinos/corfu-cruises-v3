@@ -1659,6 +1659,14 @@
                 "description": "Shipowner"
             },
             {
+                "id": "tab1",
+                "description": "General"
+            },
+            {
+                "id": "tab2",
+                "description": "myData"
+            },
+            {
                 "id": "description",
                 "description": "Description"
             },
@@ -1713,6 +1721,34 @@
             {
                 "id": "email",
                 "description": "Email"
+            },
+            {
+                "id": "demoUrl",
+                "description": "Demo url"
+            },
+            {
+                "id": "demoUsername",
+                "description": "Demo username"
+            },
+            {
+                "id": "demoPassword",
+                "description": "Demo password"
+            },
+            {
+                "id": "liveUrl",
+                "description": "Live url"
+            },
+            {
+                "id": "liveUsername",
+                "description": "Live username"
+            },
+            {
+                "id": "livePassword",
+                "description": "Live password"
+            },
+            {
+                "id": "isDemoMyData",
+                "description": "Demo"
             },
             {
                 "id": "isActive",
