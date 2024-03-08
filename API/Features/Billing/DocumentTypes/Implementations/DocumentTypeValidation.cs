@@ -14,13 +14,8 @@ namespace API.Features.Billing.DocumentTypes {
         public int IsValid(DocumentType z, DocumentTypeWriteDto documentType) {
             return true switch {
                 var x when x == IsAlreadyUpdated(z, documentType) => 415,
-                var x when x == !IsDiscriminatorValid(documentType) => 466,
                 _ => 200,
             };
-        }
-
-        private static bool IsDiscriminatorValid(DocumentTypeWriteDto documentType) {
-            return documentType.DiscriminatorId == 1 || documentType.DiscriminatorId == 2;
         }
 
         private static bool IsAlreadyUpdated(DocumentType z, DocumentTypeWriteDto DocumentType) {

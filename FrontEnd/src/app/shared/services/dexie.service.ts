@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
 import Dexie from 'dexie'
+import { DocumentTypeHttpService } from 'src/app/features/billing/documentTypes/classes/services/documentType-http.service'
 import { CustomerHttpService } from 'src/app/features/reservations/customers/classes/services/customer-http.service'
 
 @Injectable({ providedIn: 'root' })
@@ -8,12 +9,13 @@ export class DexieService extends Dexie {
 
     constructor() {
         super('DexieDB')
-        this.version(31).stores({
+        this.version(32).stores({
             coachRoutes: 'id, abbreviation, isActive',
             crewSpecialties: 'id, description, isActive',
             customers: 'id, description, fullDescription, isActive',
             destinations: 'id, description, isActive',
-            documentTypes: 'id, abbreviation, description, batch, lastDate, lastNo, isMyData, table8_1, table8_8, table8_9, isActive',
+            documentTypesInvoice: 'id, abbreviation',
+            documentTypesTransaction: 'id, abbreviation',
             drivers: 'id, description, isActive',
             genders: 'id, description, isActive',
             nationalities: 'id, description, isActive',
@@ -51,6 +53,14 @@ export class DexieService extends Dexie {
 
     public populateNewTable(table: string, customerHttpService: CustomerHttpService): void {
         customerHttpService.getBrowserStorage().subscribe((records: any) => {
+            this.table(table)
+                .bulkAdd(records)
+                .catch(Dexie.BulkError, () => { })
+        })
+    }
+
+    public populateDocumentTypesTable(table: string, documentTypeHttpService: DocumentTypeHttpService, discriminatorId: number): void {
+        documentTypeHttpService.getBrowserStorage(discriminatorId).subscribe((records: any) => {
             this.table(table)
                 .bulkAdd(records)
                 .catch(Dexie.BulkError, () => { })

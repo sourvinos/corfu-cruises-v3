@@ -59,7 +59,6 @@ export class InvoiceDialogComponent {
         this.updateFieldsAfterEmptyDocumentType()
         this.populateDropdowns()
         this.populateFields()
-        // this.retrievePrices()
         this.onDoCalculations()
     }
 
@@ -256,7 +255,7 @@ export class InvoiceDialogComponent {
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('documentTypes', 'dropdownDocumentTypes', 'documentType', ['id', 'abbreviation', 'description', 'batch', 'lastNo', 'isActive'], 'abbreviation', 'abbreviation')
+        this.populateDropdownFromDexieDB('documentTypesInvoice', 'dropdownDocumentTypes', 'documentType', ['id', 'abbreviation', 'description', 'batch', 'lastNo', 'isActive'], 'abbreviation', 'abbreviation')
         this.populateDropdownFromDexieDB('paymentMethods', 'dropdownPaymentMethods', 'paymentMethod', ['id', 'description', 'isActive'], 'description', 'description')
     }
 

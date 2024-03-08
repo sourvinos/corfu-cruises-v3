@@ -16,7 +16,10 @@ namespace API.Features.Reservations.ShipOwners {
                     Code = x.Nationality.Code,
                     Description = x.Nationality.Description,
                     IsActive = x.Nationality.IsActive
-                }));
+                }))
+                .ForMember(x => x.Url, x => x.MapFrom(x => x.IsDemoMyData ? x.DemoUrl : x.LiveUrl))
+                .ForMember(x => x.Username, x => x.MapFrom(x => x.IsDemoMyData ? x.DemoUsername : x.LiveUsername))
+                .ForMember(x => x.SubscriptionKey, x => x.MapFrom(x => x.IsDemoMyData ? x.DemoSubscriptionKey : x.LiveSubscriptionKey));
             // Form
             CreateMap<ShipOwner, ShipOwnerReadDto>()
                 .ForMember(x => x.TaxOffice, x => x.MapFrom(x => new SimpleEntity { Id = x.TaxOffice.Id, Description = x.TaxOffice.Description }))

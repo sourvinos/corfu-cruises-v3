@@ -43,7 +43,6 @@ namespace API.Infrastructure.Helpers {
         public static string InvalidCoachRoute() { return "The coach route doesn't exist or is inactive."; }
         public static string InvalidPort() { return "The port doesn't exist or is inactive."; }
         public static string InvalidDocumentType() { return "The document type doesn't exist or is inactive."; }
-        public static string InvalidDocumentTypeDiscriminator() { return "The discriminator must be either 1 or 2."; }
         public static string PriceFieldsMustBeZeroOrGreater() { return "All amounts must be zero or greater."; }
         public static string InvalidDatePeriod() { return "The date period is not correct."; }
         public static string InvalidPassengerCount() { return "Total persons must be equal or greater than the passenger count."; }

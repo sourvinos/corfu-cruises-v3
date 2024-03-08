@@ -189,7 +189,7 @@ export class TransactionFormComponent {
 
     private populateDropdowns(): void {
         this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', 'description', 'description')
-        this.populateDropdownFromDexieDB('documentTypes', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation')
+        this.populateDropdownFromDexieDB('documentTypesTransaction', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation')
         this.populateDropdownFromDexieDB('paymentMethods', 'dropdownPaymentMethods', 'paymentMethod', 'description', 'description')
     }
 

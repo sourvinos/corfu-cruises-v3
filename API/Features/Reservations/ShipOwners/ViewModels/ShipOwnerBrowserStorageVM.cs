@@ -18,6 +18,9 @@ namespace API.Features.Reservations.ShipOwners {
         public string City { get; set; }
         public string Phones { get; set; }
         public string Email { get; set; }
+        public string Url { get; set; }
+        public string Username { get; set; }
+        public string SubscriptionKey { get; set; }
         public bool IsActive { get; set; }
         public NationalityAutoCompleteVM Nationality { get; set; }
 

@@ -4,6 +4,7 @@ namespace API.Features.Billing.Invoices {
 
     public class InvoiceVM {
 
+        public CredentialsVM Credentials { get; set; }
         public Guid InvoiceId { get; set; }
         public PartyVM Issuer { get; set; }
         public PartyVM CounterPart { get; set; }

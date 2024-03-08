@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
+import { InvoiceXmlCredentialsDto } from './../dtos/xml/invoice-xml-credentials-dto'
 import { InvoiceXmlDto } from '../dtos/xml/invoice-xml-dto'
 import { InvoiceXmlHeaderDto } from '../dtos/xml/invoice-xml-header-dto'
 import { InvoiceXmlPartyTypeDto } from '../dtos/xml/invoice-xml-partyType-dto'
@@ -19,14 +20,16 @@ export class InvoiceXmlHelperService {
 
     public async createXmlInvoiceParts(formValue: any): Promise<any> {
         const invoiceId = formValue.invoiceId
+        const credentials = await this.buildCredentials('ships', formValue.ship.id)
         const issuer = await this.buildIssuer('ships', formValue.ship.id)
         const counterPart = await this.buildCounterPart('customers', formValue.customer.id)
-        const invoiceHeader = await this.buildHeader('documentTypes', formValue.documentType.id, formValue.date)
+        const invoiceHeader = await this.buildHeader('documentTypesInvoice', formValue.documentType.id, formValue.date)
         const paymentMethods = await this.buildPaymentMethods('paymentMethods', formValue.paymentMethod.id, formValue.grossAmount)
-        const invoiceDetails = await this.buildInvoiceDetails('documentTypes', formValue.documentType.id, formValue.netAmount, formValue.vatAmount)
-        const invoiceSummary = await this.buildInvoiceSummary('documentTypes', formValue.documentType.id, formValue.netAmount, formValue.vatAmount, formValue.grossAmount)
+        const invoiceDetails = await this.buildInvoiceDetails('documentTypesInvoice', formValue.documentType.id, formValue.netAmount, formValue.vatAmount)
+        const invoiceSummary = await this.buildInvoiceSummary('documentTypesInvoice', formValue.documentType.id, formValue.netAmount, formValue.vatAmount, formValue.grossAmount)
         return {
             invoiceId,
+            credentials,
             issuer,
             counterPart,
             invoiceHeader,
@@ -39,6 +42,7 @@ export class InvoiceXmlHelperService {
     public createXmlInvoiceFromParts(response: any): InvoiceXmlDto {
         const x: InvoiceXmlDto = {
             invoiceId: response.invoiceId,
+            credentials: response.credentials,
             issuer: response.issuer,
             counterPart: response.counterPart,
             invoiceHeader: response.invoiceHeader,
@@ -52,6 +56,20 @@ export class InvoiceXmlHelperService {
     //#endregion
 
     //#region private methods
+
+    private buildCredentials(table: string, id: number): Promise<any> {
+        return new Promise((resolve) => {
+            this.dexieService.getById(table, id).then(response => {
+                const x: InvoiceXmlCredentialsDto = {
+                    userId: response.shipOwner.username,
+                    subscriptionKey: response.shipOwner.subscriptionKey,
+                    url: response.shipOwner.url
+                }
+                resolve(x)
+            })
+        })
+
+    }
 
     private buildIssuer(table: string, id: number): Promise<any> {
         return new Promise((resolve) => {

@@ -53,13 +53,6 @@ namespace DocumentTypes {
         }
 
         [Theory]
-        [ClassData(typeof(CreateInvalidDocumentType))]
-        public async Task Admins_Can_Not_Create_When_Invalid(TestDocumentType record) {
-            var actionResponse = await RecordInvalidNotSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "Aba439de-446e-4eef-8c4b-833f1b3e18aa%", record);
-            Assert.Equal((HttpStatusCode)record.StatusCode, actionResponse.StatusCode);
-        }
-
-        [Theory]
         [ClassData(typeof(CreateValidDocumentType))]
         public async Task Admins_Can_Create_When_Valid(TestDocumentType record) {
             await RecordSaved.Action(_httpClient, _baseUrl, _url, _actionVerb, "john", "Aba439de-446e-4eef-8c4b-833f1b3e18aa%", record);

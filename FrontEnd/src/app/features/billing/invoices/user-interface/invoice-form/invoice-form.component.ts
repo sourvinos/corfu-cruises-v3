@@ -104,7 +104,7 @@ export class InvoiceFormComponent {
     public onComparePriceTotals(): boolean {
         const x = parseFloat(this.form.value.grossAmount)
         const z = parseFloat(this.form.value.portTotals.total_Amount)
-        return x == z
+        return x == z || z == 0
     }
 
     public onDoCalculations(): void {
@@ -404,7 +404,7 @@ export class InvoiceFormComponent {
     private populateDropdowns(): void {
         this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', 'description', 'description')
         this.populateDropdownFromDexieDB('destinations', 'dropdownDestinations', 'destination', 'description', 'description')
-        this.populateDropdownFromDexieDB('documentTypes', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation')
+        this.populateDropdownFromDexieDB('documentTypesInvoice', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation')
         this.populateDropdownFromDexieDB('paymentMethods', 'dropdownPaymentMethods', 'paymentMethod', 'description', 'description')
         this.populateDropdownFromDexieDB('ships', 'dropdownShips', 'ship', 'description', 'description')
     }

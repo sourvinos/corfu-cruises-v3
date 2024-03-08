@@ -17,7 +17,7 @@ namespace DocumentTypes {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "delete";
         private readonly string _baseUrl;
-        private readonly string _url = "/documentTypes/3";
+        private readonly string _url = "/documentTypes/5";
         private readonly string _inUseUrl = "/documentTypes/1";
         private readonly string _notFoundUrl = "/documentTypes/9999";
 

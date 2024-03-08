@@ -26,10 +26,10 @@ namespace DocumentTypes {
                     DiscriminatorId = 1,
                     IsMyData = true,
                     Table8_1 = "Table8_1",
-                    Table8_8 ="Table8_8",
-                    Table8_9 ="Table8_9",
+                    Table8_8 = "Table8_8",
+                    Table8_9 = "Table8_9",
                     IsActive = true,
-                    PutAt = "2024-01-05 09:38:02"
+                    PutAt = "2024-03-07 10:01:19"
                 }
             };
         }

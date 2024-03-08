@@ -130,7 +130,7 @@ namespace API.Features.Billing.Invoices {
         [HttpPost("upload")]
         [Authorize(Roles = "admin")]
         public ResponseWithBody Upload([FromBody] InvoiceVM invoice) {
-            var response = SavePrettyResponse(invoice, invoiceAadeRepo.UploadXMLAsync(XElement.Load(invoiceAadeRepo.CreateXMLAsync(invoice))).Result);
+            var response = SavePrettyResponse(invoice, invoiceAadeRepo.UploadXMLAsync(XElement.Load(invoiceAadeRepo.CreateXMLAsync(invoice)), invoice.Credentials).Result);
             if (response.Contains("Success")) {
                 return new ResponseWithBody {
                     Code = 200,

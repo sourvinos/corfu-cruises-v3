@@ -20,7 +20,8 @@ namespace DocumentTypes {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
-        private readonly string _url = "/documentTypes/getForBrowserStorage";
+        private readonly string _url_invoice = "/documentTypes/getForBrowserStorageInvoice";
+        private readonly string _url_transaction = "/documentTypes/getForBrowserStorageTransaction";
 
         #endregion
 
@@ -32,26 +33,34 @@ namespace DocumentTypes {
 
         [Fact]
         public async Task Unauthorized_Not_Logged_In() {
-            await InvalidCredentials.Action(_httpClient, _baseUrl, _url, _actionVerb, "", "", null);
+            await InvalidCredentials.Action(_httpClient, _baseUrl, _url_invoice, _actionVerb, "", "", null);
         }
 
         [Fact]
         public async Task Unauthorized_Invalid_Credentials() {
-            await InvalidCredentials.Action(_httpClient, _baseUrl, _url, _actionVerb, "user-does-not-exist", "not-a-valid-password", null);
+            await InvalidCredentials.Action(_httpClient, _baseUrl, _url_invoice, _actionVerb, "user-does-not-exist", "not-a-valid-password", null);
         }
 
         [Theory]
         [ClassData(typeof(InactiveUsersCanNotLogin))]
         public async Task Unauthorized_Inactive_Users(Login login) {
-            await InvalidCredentials.Action(_httpClient, _baseUrl, _url, _actionVerb, login.Username, login.Password, null);
+            await InvalidCredentials.Action(_httpClient, _baseUrl, _url_invoice, _actionVerb, login.Username, login.Password, null);
         }
 
         [Theory]
         [ClassData(typeof(ActiveUsersCanLogin))]
-        public async Task Active_Users_Can_Get_Active(Login login) {
-            var actionResponse = await List.Action(_httpClient, _baseUrl, _url, login.Username, login.Password);
+        public async Task Active_Users_Can_Get_Active_Invoice(Login login) {
+            var actionResponse = await List.Action(_httpClient, _baseUrl, _url_invoice, login.Username, login.Password);
             var records = JsonSerializer.Deserialize<List<DocumentTypeBrowserStorageVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            Assert.Equal(4, records.Count);
+            Assert.Equal(2, records.Count);
+        }
+
+        [Theory]
+        [ClassData(typeof(ActiveUsersCanLogin))]
+        public async Task Active_Users_Can_Get_Active_Transaction(Login login) {
+            var actionResponse = await List.Action(_httpClient, _baseUrl, _url_transaction, login.Username, login.Password);
+            var records = JsonSerializer.Deserialize<List<DocumentTypeBrowserStorageVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            Assert.Equal(2, records.Count);
         }
 
     }
