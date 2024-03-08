@@ -29,15 +29,17 @@
                             <input [inputTabStop]="input" dataTabIndex="3" formControlName="batch" matInput>
                         </mat-form-field>
                     </div>
-                    <!-- Lastdate -->
-                    <date-picker (outputValue)="patchFormWithSelectedDate($event)" [dataTabIndex]="4" [isAdminOrNewRecord]=true [label]="getLabel('lastDate')" [parentDate]="getLastDate()" [readOnly]=false [showHint]=false></date-picker>
-                    <!-- LastNo -->
-                    <mat-form-field>
-                        <mat-label>{{ getLabel('lastNo') }}</mat-label>
-                        <input [inputTabStop]="input" dataTabIndex="5" formControlName="lastNo" matInput type="number">
-                        <mat-error *ngIf="lastNo.hasError('required')">{{ getHint("required") }}</mat-error>
-                        <mat-error *ngIf="lastNo.hasError('min') || lastNo.hasError('max')">{{ getHint("invalidRange") }}</mat-error>
-                    </mat-form-field>
+                    <div class="group-input-field">
+                        <!-- Lastdate -->
+                        <date-picker (outputValue)="patchFormWithSelectedDate($event)" [dataTabIndex]="4" [isAdminOrNewRecord]=true [label]="getLabel('lastDate')" [parentDate]="getLastDate()" [readOnly]=false [showHint]=false></date-picker>
+                        <!-- LastNo -->
+                        <mat-form-field>
+                            <mat-label>{{ getLabel('lastNo') }}</mat-label>
+                            <input [inputTabStop]="input" dataTabIndex="5" formControlName="lastNo" matInput type="number">
+                            <mat-error *ngIf="lastNo.hasError('required')">{{ getHint("required") }}</mat-error>
+                            <mat-error *ngIf="lastNo.hasError('min') || lastNo.hasError('max')">{{ getHint("invalidRange") }}</mat-error>
+                        </mat-form-field>
+                    </div>
                     <div class="group-input-field">
                         <!-- Customers -->
                         <mat-form-field>
@@ -52,15 +54,17 @@
                             <mat-error *ngIf="suppliers.hasError('shouldBeEmptyPlusOrMinus')">{{ getHint("shouldBeEmptyPlusOrMinus") }}</mat-error>
                         </mat-form-field>
                     </div>
-                    <!-- Discriminator -->
-                    <!-- <mat-radio-group formControlName="discriminatorId">
-                        <mat-radio-button value="1">Χρεωστική & πιστωτική τιμολόγηση</mat-radio-button>
-                        <mat-radio-button value="2">Εισπράξεις & πληρωμές</mat-radio-button>
-                    </mat-radio-group> -->
-                    <!-- Active -->
-                    <mat-checkbox formControlName="isActive">
-                        <span>{{ getLabel("isActive") }}</span>
-                    </mat-checkbox>
+                    <div class="stacked-checkboxes">
+                        <!-- Discriminator -->
+                        <mat-radio-group formControlName="discriminatorId">
+                            <mat-radio-button value="1">{{ getLabel("refersToInvoice") }}</mat-radio-button>
+                            <mat-radio-button value="2">{{ getLabel("refersToTransaction") }}</mat-radio-button>
+                        </mat-radio-group>
+                        <!-- Active -->
+                        <mat-checkbox formControlName="isActive">
+                            <span>{{ getLabel("isActive") }}</span>
+                        </mat-checkbox>
+                    </div>
                 </mat-tab>
                 <mat-tab label="{{ getLabel('tab2') }}">
                     <!-- Table8_1 -->

@@ -2725,7 +2725,7 @@
             },
             {
                 "id": "tab1",
-                "description": "General"
+                "description": "Γενικά"
             },
             {
                 "id": "tab2",
@@ -2758,6 +2758,14 @@
             {
                 "id": "suppliers",
                 "description": "Προμηθευτές"
+            },
+            {
+                "id": "refersToInvoice",
+                "description": "Χρεωστική ή πιστωτική τιμολόγηση"
+            },
+            {
+                "id": "refersToTransaction",
+                "description": "Είσπραξη ή πληρωμή"
             },
             {
                 "id": "isMyData",

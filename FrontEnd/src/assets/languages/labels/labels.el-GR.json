@@ -2760,6 +2760,14 @@
                 "description": "Προμηθευτές"
             },
             {
+                "id": "refersToInvoice",
+                "description": "Χρεωστική ή πιστωτική τιμολόγηση"
+            },
+            {
+                "id": "refersToTransaction",
+                "description": "Είσπραξη ή πληρωμή"
+            },
+            {
                 "id": "isMyData",
                 "description": "Ενημερώνει myDATA"
             },

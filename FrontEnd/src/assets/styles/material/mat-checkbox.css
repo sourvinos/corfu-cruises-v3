@@ -34,6 +34,7 @@
 
 .mdc-checkbox__checkmark {
     color: var(--color-text) !important;
+    transition: color var(--theme-delay) !important;
 }
 
 .mat-mdc-checkbox label {

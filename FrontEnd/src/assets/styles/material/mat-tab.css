@@ -1,3 +1,7 @@
+.mat-mdc-tab-header-pagination {
+    display: none !important;
+}
+
 .mat-mdc-tab-group {
     --mat-tab-header-active-focus-indicator-color: var(--color-accent) !important;
     --mdc-tab-indicator-active-indicator-color: var(--color-accent) !important;
@@ -9,14 +13,19 @@
     color: var(--color-text) !important;
     font-family: var(--font-family-asty) !important;
     font-weight: 300;
+    transition: color var(--theme-delay) !important;
 }
 
 .mdc-form-field > label {
+    color: var(--color-text) !important;
     font-family: var(--font-family-asty) !important;
     font-weight: 300 !important;
     left: 16px !important;
     position: relative !important;
-    top: 9px !important;
+}
+
+.mdc-form-field > label > span {
+    transition: color var(--theme-delay) !important;
 }
 
 .mat-mdc-tab-body-content, .mat-mdc-tab-body-wrapper {
