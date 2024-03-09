@@ -11,7 +11,7 @@ export class DocumentTypeHelperService {
 
     public updateBrowserStorageAfterApiUpdate(response: any): void {
         const vm: DocumentTypeBrowserStorageVM = response.body
-        this.dexieService.update('documentTypes', {
+        this.dexieService.update('documentTypesTransaction', {
             'abbreviation': vm.abbreviation,
             'batch': vm.batch,
             'description': vm.description,

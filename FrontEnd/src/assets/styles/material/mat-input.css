@@ -219,3 +219,9 @@ input:-webkit-autofill:focus {
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     display: none;
 }
+
+/* Group inputs */
+.group-input-field {
+    display: flex;
+    column-gap: 0.5rem;
+}

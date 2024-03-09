@@ -56,8 +56,6 @@ export class InvoiceFormComponent {
     //#region specific variables
 
     public isNewRecord: boolean
-    public isInvoiceTabVisible = true
-    public isPortsTabVisible = false
 
     //#endregion
 
@@ -85,8 +83,6 @@ export class InvoiceFormComponent {
         this.populateFields()
         this.populateDropdowns()
         this.onDoCalculations()
-        this.isInvoiceTabVisible = true
-        this.isPortsTabVisible = false
     }
 
     //#endregion
@@ -167,24 +163,6 @@ export class InvoiceFormComponent {
 
     public onSave(): void {
         this.saveRecord(this.flattenForm())
-    }
-
-    public getInvoiceTabVisibility(): boolean {
-        return this.isInvoiceTabVisible
-    }
-
-    public getPortsTabVisibility(): boolean {
-        return this.isPortsTabVisible
-    }
-
-    public onShowPortsTab(): void {
-        this.isInvoiceTabVisible = false
-        this.isPortsTabVisible = true
-    }
-
-    public onShowInvoiceTab(): void {
-        this.isInvoiceTabVisible = true
-        this.isPortsTabVisible = false
     }
 
     public onDoSubmitTasks(): void {
@@ -421,7 +399,7 @@ export class InvoiceFormComponent {
             this.form.patchValue({
                 invoiceId: this.record.invoiceId,
                 date: this.record.date,
-                customer: { 'id': this.record.customer.id, 'abbreviation': this.record.customer.abbreviation },
+                customer: { 'id': this.record.customer.id, 'description': this.record.customer.description },
                 destination: { 'id': this.record.destination.id, 'description': this.record.destination.description },
                 documentType: { 'id': this.record.documentType.id, 'abbreviation': this.record.documentType.abbreviation },
                 documentTypeDescription: this.record.documentType.description,

@@ -19,7 +19,3 @@
     display: flex;
     gap: 0.5rem;
 }
-
-.group-input-field.hide-hint {
-    height: 3.5rem;
-}

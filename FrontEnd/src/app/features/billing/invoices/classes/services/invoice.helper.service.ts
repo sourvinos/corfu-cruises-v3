@@ -122,7 +122,7 @@ export class InvoiceHelperService {
     }
 
     public updateBrowserStorageAfterApiUpdate(record: DocumentTypeReadDto): void {
-        this.dexieService.update('documentTypes', record)
+        this.dexieService.update('documentTypesInvoice', record)
     }
 
 

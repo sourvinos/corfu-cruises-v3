@@ -71,10 +71,6 @@
     padding: 0;
 }
 
-.group-input-field.hide-hint {
-    height: 3.5rem;
-}
-
 #dialog-footer #align-right {
     column-gap: 0.5rem;
     display: flex;

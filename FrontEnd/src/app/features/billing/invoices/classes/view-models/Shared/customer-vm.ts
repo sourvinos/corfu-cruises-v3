@@ -1,6 +1,6 @@
 export interface CustomerVM {
 
     id: number
-    abbreviation: string
+    description: string
 
 }
