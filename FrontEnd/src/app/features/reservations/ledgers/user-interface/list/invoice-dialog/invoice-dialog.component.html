@@ -59,7 +59,7 @@
             <div id="ports">
                 <div class="port" formGroupName="portA">
                     <!-- Port A -->
-                    <mat-form-field>
+                    <mat-form-field class="hide-hint">
                         <mat-label>{{ getLabel('port') }}</mat-label>
                         <input formControlName="port_A_Description" matInput readonly>
                     </mat-form-field>
@@ -74,13 +74,13 @@
                                     <mat-error *ngIf="adults_A_WithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
                                     <mat-error *ngIf="!adults_A_WithTransfer.hasError('required') && adults_A_WithTransfer.hasError('min') || adults_A_WithTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
-                                <mat-form-field class="price">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('price') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="10" formControlName="adults_A_PriceWithTransfer" matInput type="number">
                                     <mat-error *ngIf="adults_A_PriceWithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
                                     <mat-error *ngIf="!adults_A_PriceWithTransfer.hasError('required') && adults_A_PriceWithTransfer.hasError('min') || adults_A_PriceWithTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
-                                <mat-form-field class="total">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="adults_A_AmountWithTransfer" matInput type="number" readonly>
                                     <mat-error *ngIf="adults_A_AmountWithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
@@ -88,19 +88,19 @@
                                 </mat-form-field>
                             </div>
                             <div class="group-input-field">
-                                <mat-form-field class="person">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withoutTransfer') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="11" formControlName="adults_A_WithoutTransfer" matInput type="number">
                                     <mat-error *ngIf="adults_A_WithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
                                     <mat-error *ngIf="!adults_A_WithoutTransfer.hasError('required') && adults_A_WithoutTransfer.hasError('min') || adults_A_WithoutTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
-                                <mat-form-field class="price">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('price') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="12" formControlName="adults_A_PriceWithoutTransfer" matInput type="number">
                                     <mat-error *ngIf="adults_A_PriceWithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
                                     <mat-error *ngIf="!adults_A_PriceWithoutTransfer.hasError('required') && adults_A_PriceWithoutTransfer.hasError('min') || adults_A_PriceWithoutTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
-                                <mat-form-field class="total">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="adults_A_AmountWithoutTransfer" matInput type="number" readonly>
                                     <mat-error *ngIf="adults_A_AmountWithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
@@ -114,19 +114,19 @@
                         <div class="header">{{ getLabel("kids") }}</div>
                         <div class="full-width">
                             <div class="group-input-field">
-                                <mat-form-field class="person">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withTransfer') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="13" formControlName="kids_A_WithTransfer" matInput type="number">
                                     <mat-error *ngIf="kids_A_WithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
                                     <mat-error *ngIf="!kids_A_WithTransfer.hasError('required') && kids_A_WithTransfer.hasError('min') || kids_A_WithTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
-                                <mat-form-field class="price">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('price') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="14" formControlName="kids_A_PriceWithTransfer" matInput type="number">
                                     <mat-error *ngIf="kids_A_PriceWithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
                                     <mat-error *ngIf="!kids_A_PriceWithTransfer.hasError('required') && kids_A_PriceWithTransfer.hasError('min') || kids_A_PriceWithTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
-                                <mat-form-field class="total">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="kids_A_AmountWithTransfer" matInput type="number" readonly>
                                     <mat-error *ngIf="kids_A_AmountWithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
@@ -134,19 +134,19 @@
                                 </mat-form-field>
                             </div>
                             <div class="group-input-field">
-                                <mat-form-field class="person">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withoutTransfer') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="15" formControlName="kids_A_WithoutTransfer" matInput type="number">
                                     <mat-error *ngIf="kids_A_WithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
                                     <mat-error *ngIf="!kids_A_WithoutTransfer.hasError('required') && kids_A_WithoutTransfer.hasError('min') || kids_A_WithoutTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
-                                <mat-form-field class="price">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('price') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="16" formControlName="kids_A_PriceWithoutTransfer" matInput type="number">
                                     <mat-error *ngIf="kids_A_PriceWithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
                                     <mat-error *ngIf="!kids_A_PriceWithoutTransfer.hasError('required') && kids_A_PriceWithoutTransfer.hasError('min') || kids_A_PriceWithoutTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
-                                <mat-form-field class="total">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="kids_A_AmountWithoutTransfer" matInput type="number" readonly>
                                     <mat-error *ngIf="kids_A_AmountWithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
@@ -160,7 +160,7 @@
                         <div class="header">{{ getLabel("free") }}</div>
                         <div class="full-width">
                             <div class="group-input-field">
-                                <mat-form-field class="person">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withTransfer') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="17" formControlName="free_A_WithTransfer" matInput type="number">
                                     <mat-error *ngIf="free_A_WithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
@@ -170,7 +170,7 @@
                                 <div style="width:100%"></div>
                             </div>
                             <div class="group-input-field">
-                                <mat-form-field class="person">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withoutTransfer') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="18" formControlName="free_A_WithoutTransfer" matInput type="number">
                                     <mat-error *ngIf="free_A_WithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
@@ -186,11 +186,11 @@
                         <div class="header">{{ getLabel("total") }}</div>
                         <div class="full-width">
                             <div class="group-input-field hide-hint">
-                                <mat-form-field class="person">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="total_A_Persons" matInput type="number">
                                 </mat-form-field>
-                                <mat-form-field class="person">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="total_A_Amount" matInput type="number">
                                 </mat-form-field>
@@ -200,7 +200,7 @@
                 </div>
                 <div class="port" formGroupName="portB">
                     <!-- Port B -->
-                    <mat-form-field>
+                    <mat-form-field class="hide-hint">
                         <mat-label>{{ getLabel('port') }}</mat-label>
                         <input formControlName="port_B_Description" matInput readonly>
                     </mat-form-field>
@@ -215,13 +215,13 @@
                                     <mat-error *ngIf="adults_B_WithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
                                     <mat-error *ngIf="!adults_B_WithTransfer.hasError('required') && adults_B_WithTransfer.hasError('min') || adults_B_WithTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
-                                <mat-form-field class="price">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('price') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="20" formControlName="adults_B_PriceWithTransfer" matInput type="number">
                                     <mat-error *ngIf="adults_B_PriceWithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
                                     <mat-error *ngIf="!adults_B_PriceWithTransfer.hasError('required') && adults_B_PriceWithTransfer.hasError('min') || adults_B_PriceWithTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
-                                <mat-form-field class="total">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="adults_B_AmountWithTransfer" matInput type="number" readonly>
                                     <mat-error *ngIf="adults_B_AmountWithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
@@ -229,19 +229,19 @@
                                 </mat-form-field>
                             </div>
                             <div class="group-input-field">
-                                <mat-form-field class="person">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withoutTransfer') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="21" formControlName="adults_B_WithoutTransfer" matInput type="number">
                                     <mat-error *ngIf="adults_B_WithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
                                     <mat-error *ngIf="!adults_B_WithoutTransfer.hasError('required') && adults_B_WithoutTransfer.hasError('min') || adults_B_WithoutTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
-                                <mat-form-field class="price">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('price') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="22" formControlName="adults_B_PriceWithoutTransfer" matInput type="number">
                                     <mat-error *ngIf="adults_B_PriceWithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
                                     <mat-error *ngIf="!adults_B_PriceWithoutTransfer.hasError('required') && adults_B_PriceWithoutTransfer.hasError('min') || adults_B_PriceWithoutTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
-                                <mat-form-field class="total">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="adults_B_AmountWithoutTransfer" matInput type="number" readonly>
                                     <mat-error *ngIf="adults_B_AmountWithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
@@ -255,19 +255,19 @@
                         <div class="header">{{ getLabel("kids") }}</div>
                         <div class="full-width">
                             <div class="group-input-field">
-                                <mat-form-field class="person">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withTransfer') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="23" formControlName="kids_B_WithTransfer" matInput type="number">
                                     <mat-error *ngIf="kids_B_WithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
                                     <mat-error *ngIf="!kids_B_WithTransfer.hasError('required') && kids_B_WithTransfer.hasError('min') || kids_B_WithTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
-                                <mat-form-field class="price">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('price') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="24" formControlName="kids_B_PriceWithTransfer" matInput type="number">
                                     <mat-error *ngIf="kids_B_PriceWithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
                                     <mat-error *ngIf="!kids_B_PriceWithTransfer.hasError('required') && kids_B_PriceWithTransfer.hasError('min') || kids_B_PriceWithTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
-                                <mat-form-field class="total">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="kids_B_AmountWithTransfer" matInput type="number" readonly>
                                     <mat-error *ngIf="kids_B_AmountWithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
@@ -275,19 +275,19 @@
                                 </mat-form-field>
                             </div>
                             <div class="group-input-field">
-                                <mat-form-field class="person">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withoutTransfer') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="25" formControlName="kids_B_WithoutTransfer" matInput type="number">
                                     <mat-error *ngIf="kids_B_WithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
                                     <mat-error *ngIf="!kids_B_WithoutTransfer.hasError('required') && kids_B_WithoutTransfer.hasError('min') || kids_B_WithoutTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
-                                <mat-form-field class="price">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('price') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="26" formControlName="kids_B_PriceWithoutTransfer" matInput type="number">
                                     <mat-error *ngIf="kids_B_PriceWithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
                                     <mat-error *ngIf="!kids_B_PriceWithoutTransfer.hasError('required') && kids_B_PriceWithoutTransfer.hasError('min') || kids_B_PriceWithoutTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
-                                <mat-form-field class="total">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="kids_B_AmountWithoutTransfer" matInput type="number" readonly>
                                     <mat-error *ngIf="kids_B_AmountWithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
@@ -301,7 +301,7 @@
                         <div class="header">{{ getLabel("free") }}</div>
                         <div class="full-width">
                             <div class="group-input-field">
-                                <mat-form-field class="person">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withTransfer') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="27" formControlName="free_B_WithTransfer" matInput type="number">
                                     <mat-error *ngIf="free_B_WithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
@@ -311,7 +311,7 @@
                                 <div style="width:100%"></div>
                             </div>
                             <div class="group-input-field">
-                                <mat-form-field class="person">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withoutTransfer') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="28" formControlName="free_B_WithoutTransfer" matInput type="number">
                                     <mat-error *ngIf="free_B_WithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
@@ -327,11 +327,11 @@
                         <div class="header">{{ getLabel("total") }}</div>
                         <div class="full-width">
                             <div class="group-input-field hide-hint">
-                                <mat-form-field class="person">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="total_B_Persons" matInput type="number">
                                 </mat-form-field>
-                                <mat-form-field class="person">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="total_B_Amount" matInput type="number">
                                 </mat-form-field>
@@ -341,7 +341,7 @@
                 </div>
                 <div class="port-totals" formGroupName="portTotals">
                     <!-- Port Totals -->
-                    <mat-form-field>
+                    <mat-form-field class="hide-hint">
                         <mat-label>{{ getLabel('total') }}</mat-label>
                         <input formControlName="port_Totals_Description" matInput readonly>
                     </mat-form-field>
@@ -350,21 +350,21 @@
                         <div class="header">{{ getLabel("adults") }}</div>
                         <div class="full-width">
                             <div class="group-input-field">
-                                <mat-form-field class="person">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withTransfer') }}</mat-label>
                                     <input class="right" formControlName="adults_Total_WithTransfer" matInput type="number" readonly>
                                 </mat-form-field>
-                                <mat-form-field class="total">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="adults_TotalAmount_WithTransfer" matInput type="number" readonly>
                                 </mat-form-field>
                             </div>
                             <div class="group-input-field">
-                                <mat-form-field class="person">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withoutTransfer') }}</mat-label>
                                     <input class="right" formControlName="adults_Total_WithoutTransfer" matInput type="number" readonly>
                                 </mat-form-field>
-                                <mat-form-field class="total">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="adults_TotalAmount_WithoutTransfer" matInput type="number" readonly>
                                 </mat-form-field>
@@ -376,21 +376,21 @@
                         <div class="header">{{ getLabel("kids") }}</div>
                         <div class="full-width">
                             <div class="group-input-field">
-                                <mat-form-field class="person">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withTransfer') }}</mat-label>
                                     <input class="right" formControlName="kids_Total_WithTransfer" matInput type="number" readonly>
                                 </mat-form-field>
-                                <mat-form-field class="total">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="kids_TotalAmount_WithTransfer" matInput type="number" readonly>
                                 </mat-form-field>
                             </div>
                             <div class="group-input-field">
-                                <mat-form-field class="person">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withoutTransfer') }}</mat-label>
                                     <input class="right" formControlName="kids_Total_WithoutTransfer" matInput type="number" readonly>
                                 </mat-form-field>
-                                <mat-form-field class="total">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="kids_TotalAmount_WithoutTransfer" matInput type="number" readonly>
                                 </mat-form-field>
@@ -402,14 +402,14 @@
                         <div class="header">{{ getLabel("free") }}</div>
                         <div class="full-width">
                             <div class="group-input-field">
-                                <mat-form-field class="person">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withTransfer') }}</mat-label>
                                     <input class="right" formControlName="free_Total_WithTransfer" matInput type="number">
                                 </mat-form-field>
                                 <div style="width:100%"></div>
                             </div>
                             <div class="group-input-field">
-                                <mat-form-field class="person">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withoutTransfer') }}</mat-label>
                                     <input class="right" formControlName="free_Total_WithoutTransfer" matInput type="number">
                                 </mat-form-field>
@@ -422,11 +422,11 @@
                         <div class="header">{{ getLabel("total") }}</div>
                         <div class="full-width">
                             <div class="group-input-field hide-hint">
-                                <mat-form-field class="person">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="total_Persons" matInput type="number">
                                 </mat-form-field>
-                                <mat-form-field class="person">
+                                <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="total_Amount" matInput type="number">
                                 </mat-form-field>

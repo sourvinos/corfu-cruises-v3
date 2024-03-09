@@ -81,8 +81,8 @@ export class LedgerCustomerListComponent {
             this.dialog.open(InvoiceDialogComponent, {
                 data: this.selectedRecords,
                 panelClass: 'dialog',
-                height: '827px',
-                width: '1180px'
+                height: '801px',
+                width: '1000px'
             })
         }
     }
