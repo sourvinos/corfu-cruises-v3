@@ -2907,16 +2907,28 @@
                 "description": "Αναλυτικά"
             },
             {
+                "id": "tab3",
+                "description": "myData"
+            },
+            {
                 "id": "date",
                 "description": "Ημερομηνία"
             },
             {
-                "id": "documentType",
-                "description": "Τύπος παραστατικού"
+                "id": "documentTypeAbbreviation",
+                "description": "Παραστατικό"
+            },
+            {
+                "id": "documentTypeDescription",
+                "description": "Περιγραφή παραστατικού"
             },
             {
                 "id": "no",
                 "description": "Νο"
+            },
+            {
+                "id": "batch",
+                "description": "Σειρά"
             },
             {
                 "id": "paymentMethod",
@@ -2956,7 +2968,7 @@
             },
             {
                 "id": "grossAmount",
-                "description": "Σύνολο"
+                "description": "Σύνολο με ΦΠΑ"
             },
             {
                 "id": "remarks",
@@ -2979,16 +2991,16 @@
                 "description": "Αναλυση"
             },
             {
+                "id": "cancelButton",
+                "description": "Ακυρο"
+            },
+            {
                 "id": "deleteButton",
                 "description": "Διαγραφη"
             },
             {
                 "id": "saveButton",
                 "description": "Αποθηκευση"
-            },
-            {
-                "id": "cancelButton",
-                "description": "Ακυρο"
             },
             {
                 "id": "printInvoice",
@@ -3005,6 +3017,58 @@
             {
                 "id": "cancelInvoice",
                 "description": "Ακύρωση"
+            },
+            {
+                "id": "retrievePrices",
+                "description": "Ανάκτηση χρεώσεων"
+            },
+            {
+                "id": "uId",
+                "description": "UID"
+            },
+            {
+                "id": "mark",
+                "description": "ΜΑρΚ"
+            },
+            {
+                "id": "markCancel",
+                "description": "ΜΑρΚ Ακύρωσης"
+            },
+            {
+                "id": "qrUrl",
+                "description": "qrCode URL"
+            },
+            {
+                "id": "port",
+                "description": "Λιμάνι"
+            },
+            {
+                "id": "adults",
+                "description": "Ενήλικες"
+            },
+            {
+                "id": "kids",
+                "description": "Παιδιά"
+            },
+            {
+                "id": "free",
+                "description": "Δωρεάν"
+            },
+            {
+                "id": "withTransfer",
+                "description": "w/ transfer"
+            },
+            {
+                "id": "withoutTransfer",
+                "description": "w/o transfer"
+            },
+            {
+                "id": "price",
+                "description": "Χρέωση"
+            },
+            {
+                "id": "total",
+                "description": "Σύνολο"
             }
         ]
     },

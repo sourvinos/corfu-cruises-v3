@@ -41,6 +41,11 @@ export class HelperService {
 
     //#region public methods
 
+    public leftAlignLastTab(): void {
+        const tabs = document.getElementsByClassName('mat-mdc-tab') as HTMLCollectionOf<HTMLElement>
+        tabs[tabs.length - 1].style.marginLeft = 'auto'
+    }
+
     public doPostSaveFormTasks(message: string, iconType: string, returnUrl: string, goBack: boolean): Promise<any> {
         const promise = new Promise((resolve) => {
             this.dialogService.open(message, iconType, ['ok']).subscribe(() => {

@@ -142,8 +142,6 @@
                             <mat-label>{{ getLabel("remarks") }}</mat-label>
                             <input [inputTabStop]="input" dataTabIndex="8" formControlName="remarks" matInput>
                         </mat-form-field>
-                        <!-- Aade -->
-                        <aade-panel [feature]="feature" [uId]="form.value.aade.uId" [mark]="form.value.aade.mark" [markCancel]="form.value.aade.markCancel" [qrUrl]="form.value.aade.qrUrl"></aade-panel>
                     </div>
                 </mat-tab>
                 <mat-tab label="{{ getLabel('tab2') }}">
@@ -470,6 +468,11 @@
                             </div>
 
                         </div>
+                    </div>
+                </mat-tab>
+                <mat-tab class="left-align" label="{{ getLabel('tab3') }}">
+                    <div id="aade-tab">
+                        <aade-panel [feature]="feature" [uId]="form.value.aade.uId" [mark]="form.value.aade.mark" [markCancel]="form.value.aade.markCancel" [qrUrl]="form.value.aade.qrUrl"></aade-panel>
                     </div>
                 </mat-tab>
             </mat-tab-group>

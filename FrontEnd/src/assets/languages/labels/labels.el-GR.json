@@ -2907,6 +2907,10 @@
                 "description": "Αναλυτικά"
             },
             {
+                "id": "tab3",
+                "description": "myData"
+            },
+            {
                 "id": "date",
                 "description": "Ημερομηνία"
             },

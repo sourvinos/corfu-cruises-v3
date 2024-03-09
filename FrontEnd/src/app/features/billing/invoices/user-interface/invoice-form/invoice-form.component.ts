@@ -12,6 +12,7 @@ import { DestinationAutoCompleteVM } from 'src/app/features/reservations/destina
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { DocumentTypeAutoCompleteVM } from '../../../documentTypes/classes/view-models/documentType-autocomplete-vm'
+import { DocumentTypeHttpService } from '../../../documentTypes/classes/services/documentType-http.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -30,7 +31,6 @@ import { PriceHttpService } from '../../../prices/classes/services/price-http.se
 import { ShipAutoCompleteVM } from './../../../../reservations/ships/classes/view-models/ship-autocomplete-vm'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
-import { DocumentTypeHttpService } from '../../../documentTypes/classes/services/documentType-http.service'
 
 @Component({
     selector: 'invoice-form',
@@ -83,6 +83,10 @@ export class InvoiceFormComponent {
         this.populateFields()
         this.populateDropdowns()
         this.onDoCalculations()
+    }
+
+    ngAfterViewInit(): void {
+        this.leftAlignLastTab()
     }
 
     //#endregion
@@ -557,6 +561,10 @@ export class InvoiceFormComponent {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
             }
         })
+    }
+
+    private leftAlignLastTab(): void {
+        this.helperService.leftAlignLastTab()
     }
 
     //#endregion
