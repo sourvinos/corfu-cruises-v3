@@ -1,6 +1,6 @@
 using System;
 
-namespace Transactions {
+namespace Receipts {
 
     public class TestReceipt {
 
@@ -15,6 +15,9 @@ namespace Transactions {
         // Fields
         public string Date { get; set; }
         public int InvoiceNo { get; set; }
+        public decimal NetAmount { get; set; }
+        public decimal VatPercent { get; set; }
+        public decimal VatAmount { get; set; }
         public decimal GrossAmount { get; set; }
 
     }

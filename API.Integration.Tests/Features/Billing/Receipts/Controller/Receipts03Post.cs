@@ -5,10 +5,10 @@ using Infrastructure;
 using Responses;
 using Xunit;
 
-namespace Transactions {
+namespace Receipts {
 
     [Collection("Sequence")]
-    public class Transactions03Post : IClassFixture<AppSettingsFixture> {
+    public class Receipts03Post : IClassFixture<AppSettingsFixture> {
 
         #region variables
 
@@ -17,11 +17,11 @@ namespace Transactions {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "post";
         private readonly string _baseUrl;
-        private readonly string _url = "/transactions";
+        private readonly string _url = "/receipts";
 
         #endregion
 
-        public Transactions03Post(AppSettingsFixture appsettings) {
+        public Receipts03Post(AppSettingsFixture appsettings) {
             _appSettingsFixture = appsettings;
             _baseUrl = _appSettingsFixture.Configuration.GetSection("TestingEnvironment").GetSection("BaseUrl").Value;
             _httpClient = _testHostFixture.Client;

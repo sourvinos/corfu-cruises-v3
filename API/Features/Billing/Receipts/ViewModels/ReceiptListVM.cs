@@ -5,7 +5,7 @@ namespace API.Features.Billing.Receipts {
 
     public class ReceiptListVM {
 
-        public string TransactionId { get; set; }
+        public string InvoiceId { get; set; }
         public string Date { get; set; }
         public SimpleEntity Customer { get; set; }
         public DocumentTypeVM DocumentType { get; set; }

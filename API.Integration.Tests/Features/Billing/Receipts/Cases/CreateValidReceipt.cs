@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Transactions {
+namespace Receipts {
 
     public class CreateValidTransaction : IEnumerable<object[]> {
 

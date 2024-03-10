@@ -24,7 +24,7 @@ namespace API.Features.Billing.Receipts {
         }
 
         private async Task<bool> IsValidCustomer(ReceiptWriteDto receipt) {
-            if (receipt.TransactionId == Guid.Empty) {
+            if (receipt.InvoiceId == Guid.Empty) {
                 return await context.Customers
                     .AsNoTracking()
                     .FirstOrDefaultAsync(x => x.Id == receipt.CustomerId && x.IsActive) != null;
@@ -35,7 +35,7 @@ namespace API.Features.Billing.Receipts {
         }
 
         private async Task<bool> IsValidDocumentType(ReceiptWriteDto receipt) {
-            if (receipt.TransactionId == Guid.Empty) {
+            if (receipt.InvoiceId == Guid.Empty) {
                 return await context.DocumentTypes
                     .AsNoTracking()
                     .FirstOrDefaultAsync(x => x.Id == receipt.DocumentTypeId && x.IsActive) != null;

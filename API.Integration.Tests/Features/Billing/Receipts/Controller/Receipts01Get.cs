@@ -1,19 +1,17 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using API.Features.Billing.Receipts;
-using API.Features.Billing.Transactions;
 using Cases;
 using Infrastructure;
 using Responses;
 using Xunit;
 
-namespace Transactions {
+namespace Receipts {
 
     [Collection("Sequence")]
-    public class Transactions01Get : IClassFixture<AppSettingsFixture> {
+    public class Receipts01Get : IClassFixture<AppSettingsFixture> {
 
         #region variables
 
@@ -22,11 +20,11 @@ namespace Transactions {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
-        private readonly string _url = "/invoices";
+        private readonly string _url = "/receipts";
 
         #endregion
 
-        public Transactions01Get(AppSettingsFixture appsettings) {
+        public Receipts01Get(AppSettingsFixture appsettings) {
             _appSettingsFixture = appsettings;
             _baseUrl = _appSettingsFixture.Configuration.GetSection("TestingEnvironment").GetSection("BaseUrl").Value;
             _httpClient = _testHostFixture.Client;

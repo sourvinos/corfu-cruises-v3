@@ -18,12 +18,16 @@ namespace API.Features.Billing.Transactions {
         // Fields
         public DateTime Date { get; set; }
         public int InvoiceNo { get; set; }
+        public decimal NetAmount { get; set; }
+        public decimal VatPercent { get; set; }
+        public decimal VatAmount { get; set; }
         public decimal GrossAmount { get; set; }
         public string Remarks { get; set; }
         // Navigation
         public Customer Customer { get; set; }
         public DocumentType DocumentType { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
+        // Metadata
         public string PostAt { get; set; }
         public string PostUser { get; set; }
         public string PutAt { get; set; }

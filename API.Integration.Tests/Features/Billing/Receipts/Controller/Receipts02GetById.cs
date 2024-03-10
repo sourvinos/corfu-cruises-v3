@@ -5,10 +5,10 @@ using Infrastructure;
 using Responses;
 using Xunit;
 
-namespace Transactions {
+namespace Receipts {
 
     [Collection("Sequence")]
-    public class Transactions02GetById : IClassFixture<AppSettingsFixture> {
+    public class Receipts02GetById : IClassFixture<AppSettingsFixture> {
 
         #region variables
 
@@ -17,12 +17,12 @@ namespace Transactions {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
-        private readonly string _url = "/transactions/31b484f5-50f8-454a-b5b8-fe4b6168b474";
-        private readonly string _notFoundUrl = "/transactions/fc001424-29dd-42df-8f77-301df4790693";
+        private readonly string _url = "/receipts/31b484f5-50f8-454a-b5b8-fe4b6168b474";
+        private readonly string _notFoundUrl = "/receipts/fc001424-29dd-42df-8f77-301df4790693";
 
         #endregion
 
-        public Transactions02GetById(AppSettingsFixture appsettings) {
+        public Receipts02GetById(AppSettingsFixture appsettings) {
             _appSettingsFixture = appsettings;
             _baseUrl = _appSettingsFixture.Configuration.GetSection("TestingEnvironment").GetSection("BaseUrl").Value;
             _httpClient = _testHostFixture.Client;

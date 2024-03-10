@@ -74,7 +74,7 @@ namespace API.Features.Billing.Receipts {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public async Task<Response> PutAsync([FromBody] ReceiptWriteDto Receipt) {
-            var x = await receiptRepo.GetByIdAsync(Receipt.TransactionId.ToString(), false);
+            var x = await receiptRepo.GetByIdAsync(Receipt.InvoiceId.ToString(), false);
             if (x != null) {
                 var z = receiptValidation.IsValidAsync(x, Receipt);
                 if (await z == 200) {

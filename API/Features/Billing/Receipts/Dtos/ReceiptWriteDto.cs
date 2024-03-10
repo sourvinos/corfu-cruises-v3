@@ -1,26 +1,10 @@
-﻿using System;
-using API.Infrastructure.Interfaces;
+﻿using API.Features.Billing.Transactions;
 
 namespace API.Features.Billing.Receipts {
 
-    public class ReceiptWriteDto : IMetadata {
+    public class ReceiptWriteDto : Transaction {
 
-        // PK
-        public Guid TransactionId { get; set; }
-        // FKs
-        public int CustomerId { get; set; }
-        public int DocumentTypeId { get; set; }
-        public int PaymentMethodId { get; set; }
-        // Fields
-        public string Date { get; set; }
-        public int InvoiceNo { get; set; }
-        public decimal GrossAmount { get; set; }
-        public string Remarks { get; set; }
-        // Metadata
-        public string PostAt { get; set; }
-        public string PostUser { get; set; }
-        public string PutAt { get; set; }
-        public string PutUser { get; set; }
+        // Nothing here
 
     }
 
