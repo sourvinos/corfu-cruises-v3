@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Features.Reservations.Ledgers {
+namespace API.Features.Billing.Ledgers {
 
     [Route("api/[controller]")]
-    public class LedgersReservationsController : ControllerBase {
+    public class LedgersBillingController : ControllerBase {
 
         #region variables
 
@@ -13,13 +13,13 @@ namespace API.Features.Reservations.Ledgers {
 
         #endregion
 
-        public LedgersReservationsController(ILedgerRepository repo) {
+        public LedgersBillingController(ILedgerRepository repo) {
             this.repo = repo;
         }
 
         [Authorize(Roles = "user, admin")]
         public IEnumerable<LedgerVM> Post([FromBody] LedgerCriteria criteria) {
-            return repo.Get(criteria.FromDate, criteria.ToDate, criteria.CustomerIds, criteria.DestinationIds, criteria.PortIds, criteria.ShipIds);
+            return repo.Get(criteria.FromDate, criteria.ToDate, criteria.CustomerIds);
         }
 
     }

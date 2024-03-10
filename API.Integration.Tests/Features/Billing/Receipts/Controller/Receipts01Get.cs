@@ -1,29 +1,32 @@
+﻿
+using System.Collections.Generic;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
+using API.Features.Billing.Receipts;
+using API.Features.Billing.Transactions;
 using Cases;
 using Infrastructure;
 using Responses;
 using Xunit;
 
-namespace DocumentTypes {
+namespace Transactions {
 
     [Collection("Sequence")]
-    public class Codes06Delete : IClassFixture<AppSettingsFixture> {
+    public class Transactions01Get : IClassFixture<AppSettingsFixture> {
 
         #region variables
 
         private readonly AppSettingsFixture _appSettingsFixture;
         private readonly HttpClient _httpClient;
         private readonly TestHostFixture _testHostFixture = new();
-        private readonly string _actionVerb = "delete";
+        private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
-        private readonly string _url = "/documentTypes/3";
-        private readonly string _inUseUrl = "/documentTypes/1";
-        private readonly string _notFoundUrl = "/documentTypes/9999";
+        private readonly string _url = "/invoices";
 
         #endregion
 
-        public Codes06Delete(AppSettingsFixture appsettings) {
+        public Transactions01Get(AppSettingsFixture appsettings) {
             _appSettingsFixture = appsettings;
             _baseUrl = _appSettingsFixture.Configuration.GetSection("TestingEnvironment").GetSection("BaseUrl").Value;
             _httpClient = _testHostFixture.Client;
@@ -46,23 +49,15 @@ namespace DocumentTypes {
         }
 
         [Fact]
-        public async Task Simple_Users_Can_Not_Delete() {
+        public async Task Simple_Users_Can_Not_List() {
             await Forbidden.Action(_httpClient, _baseUrl, _url, _actionVerb, "simpleuser", "1234567890", null);
         }
 
         [Fact]
-        public async Task Admins_Not_Found_When_Not_Exists() {
-            await RecordNotFound.Action(_httpClient, _baseUrl, _notFoundUrl, "john", "Aba439de-446e-4eef-8c4b-833f1b3e18aa%");
-        }
-
-        [Fact]
-        public async Task Admins_Can_Not_Delete_In_Use() {
-            await RecordInUse.Action(_httpClient, _baseUrl, _inUseUrl, "john", "Aba439de-446e-4eef-8c4b-833f1b3e18aa%");
-        }
-
-        [Fact]
-        public async Task Admins_Can_Delete_Not_In_Use() {
-            await RecordDeleted.Action(_httpClient, _baseUrl, _url, "john", "Aba439de-446e-4eef-8c4b-833f1b3e18aa%");
+        public async Task Admins_Can_List() {
+            var actionResponse = await List.Action(_httpClient, _baseUrl, _url, "john", "Aba439de-446e-4eef-8c4b-833f1b3e18aa%");
+            var records = JsonSerializer.Deserialize<List<ReceiptListVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            Assert.Equal(2, records.Count);
         }
 
     }

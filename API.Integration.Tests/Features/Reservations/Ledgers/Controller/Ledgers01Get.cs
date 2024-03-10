@@ -20,7 +20,7 @@ namespace Ledgers {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "post";
         private readonly string _baseUrl;
-        private readonly string _url = "/ledgers";
+        private readonly string _url = "/ledgersreservations";
 
         #endregion
 

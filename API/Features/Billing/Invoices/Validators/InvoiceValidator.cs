@@ -1,4 +1,3 @@
-using API.Infrastructure.Helpers;
 using FluentValidation;
 
 namespace API.Features.Billing.Invoices {
@@ -13,7 +12,7 @@ namespace API.Features.Billing.Invoices {
             RuleFor(x => x.PaymentMethodId).NotEmpty();
             RuleFor(x => x.ShipId).NotEmpty();
             // Fields
-            RuleFor(x => x.Date).Must(DateHelpers.BeCorrectFormat);
+            RuleFor(x => x.Date);
             RuleFor(x => x.InvoiceNo).NotEmpty();
             RuleFor(x => x.Remarks).MaximumLength(128);
             // Ports

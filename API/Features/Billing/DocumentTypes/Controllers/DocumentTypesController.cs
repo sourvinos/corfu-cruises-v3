@@ -40,7 +40,7 @@ namespace API.Features.Billing.DocumentTypes {
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<DocumentTypeBrowserStorageVM>> GetForBrowserStorageTransactionAsync() {
+        public async Task<IEnumerable<DocumentTypeBrowserStorageVM>> GetForBrowserStorageReceiptAsync() {
             return await documentTypeRepo.GetForBrowserStorageAsync(2);
         }
 

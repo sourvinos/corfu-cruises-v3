@@ -21,7 +21,7 @@ namespace DocumentTypes {
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
         private readonly string _url_invoice = "/documentTypes/getForBrowserStorageInvoice";
-        private readonly string _url_transaction = "/documentTypes/getForBrowserStorageTransaction";
+        private readonly string _url_transaction = "/documentTypes/getForBrowserStorageReceipt";
 
         #endregion
 
@@ -52,7 +52,7 @@ namespace DocumentTypes {
         public async Task Active_Users_Can_Get_Active_Invoice(Login login) {
             var actionResponse = await List.Action(_httpClient, _baseUrl, _url_invoice, login.Username, login.Password);
             var records = JsonSerializer.Deserialize<List<DocumentTypeBrowserStorageVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            Assert.Equal(2, records.Count);
+            Assert.Equal(3, records.Count);
         }
 
         [Theory]
@@ -60,7 +60,7 @@ namespace DocumentTypes {
         public async Task Active_Users_Can_Get_Active_Transaction(Login login) {
             var actionResponse = await List.Action(_httpClient, _baseUrl, _url_transaction, login.Username, login.Password);
             var records = JsonSerializer.Deserialize<List<DocumentTypeBrowserStorageVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            Assert.Equal(2, records.Count);
+            Assert.Single(records);
         }
 
     }

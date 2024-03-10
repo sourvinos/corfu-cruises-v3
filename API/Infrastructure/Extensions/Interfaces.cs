@@ -3,8 +3,8 @@ using API.Features.Billing.Invoices;
 using API.Features.Billing.Parameters;
 using API.Features.Billing.PaymentMethods;
 using API.Features.Billing.Prices;
+using API.Features.Billing.Receipts;
 using API.Features.Billing.TaxOffices;
-using API.Features.Billing.Transactions;
 using API.Features.Billing.VatRegimes;
 using API.Features.Reservations.Availability;
 using API.Features.Reservations.Boarding;
@@ -95,11 +95,11 @@ namespace API.Infrastructure.Extensions {
             #region billing
             services.AddTransient<IBillingParameterValidation, BillingParameterValidation>();
             services.AddTransient<IBillingParametersRepository, BillingParametersRepository>();
-            services.AddTransient<ICustomerLedgerRepository, CustomerLedgerRepository>();
             services.AddTransient<IDocumentTypeRepository, DocumentTypeRepository>();
             services.AddTransient<IDocumentTypeValidation, DocumentTypeValidation>();
             services.AddTransient<IInvoiceAadeRepository, InvoiceAadeRepository>();
             services.AddTransient<IInvoiceReadRepository, InvoiceReadRepository>();
+            services.AddTransient<IInvoiceRepository, InvoiceRepository>();
             services.AddTransient<IInvoiceUpdateRepository, InvoiceUpdateRepository>();
             services.AddTransient<IInvoiceValidation, InvoiceValidation>();
             services.AddTransient<IPaymentMethodRepository, PaymentMethodRepository>();
@@ -107,10 +107,10 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IPriceCloneRepository, PriceCloneRepository>();
             services.AddTransient<IPriceRepository, PriceRepository>();
             services.AddTransient<IPriceValidation, PriceValidation>();
+            services.AddTransient<IReceiptRepository, ReceiptRepository>();
+            services.AddTransient<IReceiptValidation, ReceiptValidation>();
             services.AddTransient<ITaxOfficeRepository, TaxOfficeRepository>();
             services.AddTransient<ITaxOfficeValidation, TaxOfficeValidation>();
-            services.AddTransient<ITransactionRepository, TransactionRepository>();
-            services.AddTransient<ITransactionValidation, TransactionValidation>();
             services.AddTransient<IVatRegimeRepository, VatRegimeRepository>();
             services.AddTransient<IVatRegimeValidation, VatRegimeValidation>();
             services.AddTransient<IVatRegimeValidation, VatRegimeValidation>();

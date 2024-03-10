@@ -3,6 +3,7 @@ using API.Features.Billing.Invoices;
 using API.Features.Billing.Parameters;
 using API.Features.Billing.PaymentMethods;
 using API.Features.Billing.Prices;
+using API.Features.Billing.Receipts;
 using API.Features.Billing.TaxOffices;
 using API.Features.Billing.Transactions;
 using API.Features.Billing.VatRegimes;
@@ -66,13 +67,13 @@ namespace API.Infrastructure.Classes {
 
         public DbSet<BillingParameter> BillingParameters { get; set; }
         public DbSet<DocumentType> DocumentTypes { get; set; }
-        public DbSet<Invoice> Invoices { get; set; }
         public DbSet<InvoiceAade> InvoicesAade { get; set; }
         public DbSet<InvoicePort> InvoicesPorts { get; set; }
         public DbSet<PaymentMethod> PaymentMethods { get; set; }
         public DbSet<Price> Prices { get; set; }
         public DbSet<TaxOffice> TaxOffices { get; set; }
-        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<Receipt> Receipts { get; set; }
         public DbSet<VatRegime> VatRegimes { get; set; }
 
         #endregion
@@ -114,6 +115,7 @@ namespace API.Infrastructure.Classes {
             modelBuilder.ApplyConfiguration(new ShipsConfig());
             #endregion
             #region billing
+            modelBuilder.ApplyConfiguration(new TransactionConfig());
             modelBuilder.ApplyConfiguration(new DocumentTypeConfig());
             modelBuilder.ApplyConfiguration(new InvoicesAadeConfig());
             modelBuilder.ApplyConfiguration(new InvoicesConfig());
@@ -122,7 +124,7 @@ namespace API.Infrastructure.Classes {
             modelBuilder.ApplyConfiguration(new PaymentMethodsConfig());
             modelBuilder.ApplyConfiguration(new PricesConfig());
             modelBuilder.ApplyConfiguration(new TaxOfficesConfig());
-            modelBuilder.ApplyConfiguration(new TransactionsConfig());
+            modelBuilder.ApplyConfiguration(new ReceiptsConfig());
             modelBuilder.ApplyConfiguration(new VatRegimeConfig());
             #endregion
             #region common
