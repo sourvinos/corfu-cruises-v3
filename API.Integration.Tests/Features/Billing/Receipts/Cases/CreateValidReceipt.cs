@@ -19,7 +19,10 @@ namespace Receipts {
                     PaymentMethodId = 1,
                     Date = "2024-02-10",
                     InvoiceNo = 1,
-                    GrossAmount = 100
+                    NetAmount = 12,
+                    VatPercent = 24,
+                    VatAmount = 2.88M,
+                    GrossAmount = 14.88M
                 }
             };
         }

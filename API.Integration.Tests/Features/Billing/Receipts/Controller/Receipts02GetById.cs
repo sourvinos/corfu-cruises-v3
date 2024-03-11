@@ -17,7 +17,7 @@ namespace Receipts {
         private readonly TestHostFixture _testHostFixture = new();
         private readonly string _actionVerb = "get";
         private readonly string _baseUrl;
-        private readonly string _url = "/receipts/31b484f5-50f8-454a-b5b8-fe4b6168b474";
+        private readonly string _url = "/receipts/08dc418b-d7c5-4134-84a1-b0d49c2e9979";
         private readonly string _notFoundUrl = "/receipts/fc001424-29dd-42df-8f77-301df4790693";
 
         #endregion

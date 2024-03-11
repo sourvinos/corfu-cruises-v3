@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace API.Features.Billing.Transactions {
 
-    internal class TransactionConfig : IEntityTypeConfiguration<Transaction> {
+    internal class TransactionConfig : IEntityTypeConfiguration<TransactionsBase> {
 
-        public void Configure(EntityTypeBuilder<Transaction> entity) {
+        public void Configure(EntityTypeBuilder<TransactionsBase> entity) {
             entity.HasKey(x => x.InvoiceId);
             entity.HasDiscriminator<int>("DiscriminatorId")
                 .HasValue<Invoice>(1)

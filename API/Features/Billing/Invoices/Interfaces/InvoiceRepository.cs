@@ -28,11 +28,11 @@ namespace API.Features.Billing.Invoices {
                 .Where(x => x.DiscriminatorId == 2)
                 .OrderBy(x => x.Date)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<Invoice>, IEnumerable<InvoiceListVM>>((IEnumerable<Invoice>)receipts);
+            return mapper.Map<IEnumerable<Invoice>, IEnumerable<InvoiceListVM>>(receipts);
         }
 
         public async Task<Invoice> GetByIdAsync(string transactionId, bool includeTables) {
-            return (Invoice)(includeTables
+            return includeTables
                 ? await context.Invoices
                     .AsNoTracking()
                     .Include(x => x.Customer)
@@ -43,7 +43,7 @@ namespace API.Features.Billing.Invoices {
                : await context.Invoices
                     .AsNoTracking()
                     .Where(x => x.InvoiceId.ToString() == transactionId)
-                    .SingleOrDefaultAsync());
+                    .SingleOrDefaultAsync();
         }
 
     }

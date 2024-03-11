@@ -3,7 +3,7 @@ using API.Features.Billing.Transactions;
 
 namespace API.Features.Billing.Invoices {
 
-    public class InvoiceWriteDto : Transaction {
+    public class InvoiceWriteDto : TransactionsBase {
 
         public int? DestinationId { get; set; }
         public int? ShipId { get; set; }
