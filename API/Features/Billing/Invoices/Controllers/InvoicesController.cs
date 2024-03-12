@@ -62,7 +62,7 @@ namespace API.Features.Billing.Invoices {
         }
 
         [HttpPost]
-        [Authorize(Roles = "user, admin")]
+        [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public async Task<Response> PostAsync([FromBody] InvoiceCreateDto invoice) {
             var x = invoiceValidation.IsValidAsync(null, invoice);
