@@ -3268,5 +3268,23 @@
                 "description": "Αποθηκευση"
             }
         ]
+    },
+    {
+        "feature": "ledgerCriteria",
+        "labels": [
+            {
+                "id": "customer",
+                "description": "Πελάτης"
+            }
+        ]
+    },
+    {
+        "feature": "billingLedger",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Καρτέλα πελάτη"
+            }
+        ]
     }
 ]

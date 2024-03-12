@@ -13,7 +13,7 @@
         <button (click)="doNavigation('banks',true)" mat-menu-item>{{ getLabel("banks") }}</button>
         <button (click)="doNavigation('paymentMethods',true)" mat-menu-item>{{ getLabel("paymentMethods") }}</button>
         <mat-divider></mat-divider>
-        <button (click)="doNavigation('billing-ledgers',false)" mat-menu-item>{{ getLabel("ledgers") }}</button>
+        <button (click)="doNavigation('billing-ledgers',true)" mat-menu-item>{{ getLabel("ledgers") }}</button>
         <button (click)="doNavigation('balanceSheet',false)" mat-menu-item>{{ getLabel("balanceSheet")}}</button>
         <mat-divider></mat-divider>
         <button (click)="doNavigation('billing-parameters',false)" mat-menu-item>{{ getLabel("billing-parameters")}}</button></mat-menu>
