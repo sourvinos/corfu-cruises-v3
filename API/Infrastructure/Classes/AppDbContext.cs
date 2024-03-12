@@ -67,6 +67,7 @@ namespace API.Infrastructure.Classes {
 
         public DbSet<BillingParameter> BillingParameters { get; set; }
         public DbSet<DocumentType> DocumentTypes { get; set; }
+        public DbSet<TransactionBase> Transactions { get; set; }
         public DbSet<InvoiceAade> InvoicesAade { get; set; }
         public DbSet<InvoicePort> InvoicesPorts { get; set; }
         public DbSet<PaymentMethod> PaymentMethods { get; set; }

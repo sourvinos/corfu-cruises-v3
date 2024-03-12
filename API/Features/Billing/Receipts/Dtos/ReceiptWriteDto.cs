@@ -2,7 +2,7 @@
 
 namespace API.Features.Billing.Receipts {
 
-    public class ReceiptWriteDto : TransactionsBase {
+    public class ReceiptWriteDto : TransactionBase {
 
         // Nothing here
 

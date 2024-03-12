@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace API.Features.Billing.Invoices {
 
-    public class Invoice : TransactionsBase {
+    public class Invoice : TransactionBase {
 
         // FKs
         public int? DestinationId { get; set; }

@@ -6,7 +6,7 @@ using API.Infrastructure.Interfaces;
 
 namespace API.Features.Billing.Transactions {
 
-    public abstract class TransactionsBase : IMetadata {
+    public abstract class TransactionBase : IMetadata {
 
         // PK
         public Guid InvoiceId { get; set; }

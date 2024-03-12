@@ -1,5 +1,6 @@
 using API.Features.Billing.DocumentTypes;
 using API.Features.Billing.Invoices;
+using API.Features.Billing.Ledgers;
 using API.Features.Billing.Parameters;
 using API.Features.Billing.PaymentMethods;
 using API.Features.Billing.Prices;
@@ -102,6 +103,7 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IInvoiceRepository, InvoiceRepository>();
             services.AddTransient<IInvoiceUpdateRepository, InvoiceUpdateRepository>();
             services.AddTransient<IInvoiceValidation, InvoiceValidation>();
+            services.AddTransient<ILedgerBillingRepository, LedgerBillingRepository>();
             services.AddTransient<IPaymentMethodRepository, PaymentMethodRepository>();
             services.AddTransient<IPaymentMethodValidation, PaymentMethodValidation>();
             services.AddTransient<IPriceCloneRepository, PriceCloneRepository>();
