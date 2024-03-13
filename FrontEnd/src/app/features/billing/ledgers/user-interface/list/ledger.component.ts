@@ -4,15 +4,16 @@ import { DateAdapter } from '@angular/material/core'
 import { Table } from 'primeng/table'
 // Custom
 import { DateHelperService } from '../../../../../shared/services/date-helper.service'
-import { DialogService } from '../../../../../shared/services/modal-dialog.service'
 import { EmojiService } from '../../../../../shared/services/emoji.service'
 import { HelperService } from '../../../../../shared/services/helper.service'
 import { InteractionService } from '../../../../../shared/services/interaction.service'
-import { LedgerVM } from '../../classes/view-models/criteria/ledger-vm'
-import { ListResolved } from '../../../../../shared/classes/list-resolved'
 import { LocalStorageService } from '../../../../../shared/services/local-storage.service'
 import { MessageDialogService } from '../../../../../shared/services/message-dialog.service'
 import { MessageLabelService } from '../../../../../shared/services/message-label.service'
+import { DialogService } from 'src/app/shared/services/modal-dialog.service'
+import { LedgerHttpService } from '../../classes/services/ledger-http.service'
+import { LedgerCriteriaVM } from '../../classes/view-models/criteria/ledger-criteria-vm'
+import { LedgerVM } from '../../classes/view-models/criteria/ledger-vm'
 
 @Component({
     selector: 'ledger',
@@ -32,23 +33,23 @@ export class LedgerBillingComponent {
     public featureIcon = 'ledgers'
     public icon = 'home'
     public parentUrl = '/home'
-    public records: LedgerVM
+    public records: LedgerVM[] = []
+    private criteria: LedgerCriteriaVM
 
     //#endregion
 
 
-    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router) { }
+    constructor(private ledgerHttpService: LedgerHttpService, private dialogService: DialogService, private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
-        // this.records.requestedPeriod = []
         // this.loadRecords().then(() => {
-        //     this.formatDatesToLocale()
-        //     this.subscribeToInteractionService()
-        //     this.setTabTitle()
-        //     this.setLocale()
-        //     this.setSidebarsHeight()
+        // this.formatDatesToLocale()
+        this.subscribeToInteractionService()
+        // this.setTabTitle()
+        this.setLocale()
+        // this.setSidebarsHeight()
         // })
     }
 
@@ -79,8 +80,8 @@ export class LedgerBillingComponent {
         this.helperService.highlightRow(id)
     }
 
-    public newRecord(): void {
-        this.router.navigate([this.url + '/new'])
+    public onPrint(): void {
+        // this.router.navigate([this.url + '/new'])
     }
 
     public resetTableFilters(): void {
@@ -89,27 +90,30 @@ export class LedgerBillingComponent {
 
     //#endregion
 
-    //#region public specific methods
+    public doTasks(event: any): void {
+        this.criteria = {
+            fromDate: event.fromDate,
+            toDate: event.toDate,
+            customerId: event.customer.id
+        }
+        this.loadRecords(this.criteria).then(() => {
+            this.formatDatesToLocale()
+            this.subscribeToInteractionService()
+            this.setTabTitle()
+            this.setLocale()
+            this.setSidebarsHeight()
+        })
+    }
 
-    //#endregion
 
     //#region private common methods
 
-    private goBack(): void {
-        this.router.navigate([this.parentUrl])
-    }
-
-    private loadRecords(): Promise<any> {
+    private loadRecords(criteria: LedgerCriteriaVM): Promise<LedgerVM[]> {
         return new Promise((resolve) => {
-            const listResolved: ListResolved = this.activatedRoute.snapshot.data[this.feature]
-            if (listResolved.error == null) {
-                this.records = listResolved.list
+            this.ledgerHttpService.get(criteria).subscribe(response => {
+                this.records = response
                 resolve(this.records)
-            } else {
-                this.dialogService.open(this.messageDialogService.filterResponse(listResolved.error), 'error', ['ok']).subscribe(() => {
-                    this.goBack()
-                })
-            }
+            })
         })
     }
 
@@ -136,8 +140,8 @@ export class LedgerBillingComponent {
     //#region private specific methods
 
     private formatDatesToLocale(): void {
-        this.records.requestedPeriod.forEach(record => {
-            record.date = this.dateHelperService.formatISODateToLocale(record.date)
+        this.records.forEach(record => {
+            record.formattedDate = this.dateHelperService.formatISODateToLocale(record.date)
         })
     }
 

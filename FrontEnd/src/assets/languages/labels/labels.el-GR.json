@@ -3275,6 +3275,10 @@
             {
                 "id": "customer",
                 "description": "Πελάτης"
+            },
+            {
+                "id": "searchButton",
+                "description": "Αναζήτηση"
             }
         ]
     },
@@ -3284,6 +3288,38 @@
             {
                 "id": "header",
                 "description": "Καρτέλα πελάτη"
+            },
+            {
+                "id": "headerDate",
+                "description": "Ημερομηνία"
+            },
+            {
+                "id": "headerDocumentTypeDescription",
+                "description": "Τύπος παραστατικού"
+            },
+            {
+                "id": "headerDocumentTypeBatch",
+                "description": "Σειρά"
+            },
+            {
+                "id": "headerInvoiceNo",
+                "description": "Νο"
+            },
+            {
+                "id": "headerDebit",
+                "description": "Χρέωση"
+            },
+            {
+                "id": "headerCredit",
+                "description": "Πίστωση"
+            },
+            {
+                "id": "headerBalance",
+                "description": "Υπόλοιπο"
+            },
+            {
+                "id": "printButton",
+                "description": "Εκτυπωση"
             }
         ]
     }

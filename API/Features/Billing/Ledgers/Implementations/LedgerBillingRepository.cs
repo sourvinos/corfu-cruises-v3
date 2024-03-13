@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using API.Features.Billing.Transactions;
 using AutoMapper;
+using API.Infrastructure.Helpers;
 
 namespace API.Features.Billing.Ledgers {
 
@@ -50,7 +51,7 @@ namespace API.Features.Billing.Ledgers {
             return records;
         }
 
-        public PreviousPeriodLedgerVM BuildPreviousBalance(IEnumerable<LedgerVM> records, string fromDate) {
+        public LedgerVM BuildPrevious(IEnumerable<LedgerVM> records, string fromDate) {
             decimal debit = 0;
             decimal credit = 0;
             decimal balance = 0;
@@ -61,29 +62,118 @@ namespace API.Features.Billing.Ledgers {
                     balance = balance + record.Debit - record.Credit;
                 }
             }
-            return new PreviousPeriodLedgerVM {
-                Debit = debit,
-                Credit = credit,
-                Balance = balance
-            };
+            var total = BuildTotalLine(debit, credit, balance, "Σύνολα προηγούμενης περιόδου");
+            return total;
+            // return new LedgerVM {
+            //     Date = "",
+            //     Customer = new SimpleEntity {
+            //         Id = 0,
+            //         Description = ""
+            //     },
+            //     DocumentType = new DocumentTypeVM {
+            //         Id = 0,
+            //         Abbreviation = "Σύνολα προηγούμενης περιόδου",
+            //         Batch = "",
+            //     },
+            //     InvoiceNo = "",
+            //     Debit = debit,
+            //     Credit = credit,
+            //     Balance = balance
+            // };
         }
 
-        public List<LedgerVM> BuildRequestedPeriod(IEnumerable<LedgerVM> records, string fromDate) {
+        public List<LedgerVM> BuildRequested(IEnumerable<LedgerVM> records, string fromDate) {
+            decimal debit = 0;
+            decimal credit = 0;
+            decimal balance = 0;
             var requestedPeriod = new List<LedgerVM> { };
             foreach (var record in records) {
                 if (Convert.ToDateTime(record.Date) >= Convert.ToDateTime(fromDate)) {
                     requestedPeriod.Add(record);
+                    debit += record.Debit;
+                    credit += record.Credit;
+                    balance += record.Debit - record.Credit;
                 }
             }
+            var total = BuildTotalLine(debit, credit, balance, "Σύνολα ζητούμενης περιόδου");
+            // var totals = new LedgerVM {
+            //     Date = "",
+            //     Customer = new SimpleEntity {
+            //         Id = 0,
+            //         Description = ""
+            //     },
+            //     DocumentType = new DocumentTypeVM {
+            //         Id = 0,
+            //         Abbreviation = "Σύνολα ζητούμενης περιόδου",
+            //         Batch = ""
+            //     },
+            //     InvoiceNo = "",
+            //     Debit = debit,
+            //     Credit = credit,
+            //     Balance = balance
+            // };
+            requestedPeriod.Add(total);
             return requestedPeriod;
         }
 
-        public FinalLedgerVM MergePreviousAndRequestedPeriods(PreviousPeriodLedgerVM previousPeriod, List<LedgerVM> requestedPeriod) {
-            var final = new FinalLedgerVM {
-                PreviousPeriod = previousPeriod,
-                RequestedPeriod = requestedPeriod
+        public LedgerVM BuildTotal(IEnumerable<LedgerVM> records) {
+            decimal debit = 0;
+            decimal credit = 0;
+            decimal balance = 0;
+            foreach (var record in records) {
+                debit += record.Debit;
+                credit += record.Credit;
+                balance += record.Debit - record.Credit;
+            }
+            var total = BuildTotalLine(debit, credit, balance, "Γενικά σύνολα");
+            // var total = new LedgerVM {
+            //     Date = "",
+            //     Customer = new SimpleEntity {
+            //         Id = 0,
+            //         Description = ""
+            //     },
+            //     DocumentType = new DocumentTypeVM {
+            //         Id = 0,
+            //         Abbreviation = "Γενικά σύνολα",
+            //         Batch = ""
+            //     },
+            //     InvoiceNo = "",
+            //     Debit = debit,
+            //     Credit = credit,
+            //     Balance = balance
+            // };
+            return total;
+        }
+
+        public List<LedgerVM> MergePreviousRequestedAndTotal(LedgerVM previousPeriod, List<LedgerVM> requestedPeriod, LedgerVM total) {
+            var final = new List<LedgerVM> {
+                previousPeriod
             };
+            foreach (var record in requestedPeriod) {
+                final.Add(record);
+            }
+            final.Add(total);
             return final;
+        }
+
+        private static LedgerVM BuildTotalLine(decimal debit, decimal credit, decimal balance, string label) {
+            var total = new LedgerVM {
+                Date = "",
+                Customer = new SimpleEntity {
+                    Id = 0,
+                    Description = ""
+                },
+                DocumentType = new DocumentTypeVM {
+                    Id = 0,
+                    Abbreviation = label,
+                    Batch = ""
+                },
+                InvoiceNo = "",
+                Debit = debit,
+                Credit = credit,
+                Balance = balance
+            };
+            return total;
         }
 
         private int? GetConnectedCustomerIdForConnectedUser() {

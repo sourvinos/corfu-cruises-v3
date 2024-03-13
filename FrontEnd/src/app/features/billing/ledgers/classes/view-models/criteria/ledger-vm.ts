@@ -1,9 +1,15 @@
-import { LedgerPreviousPeriodVM } from './ledger-previous-period-vm'
-import { LedgerRequestedPeriodVM } from './ledger-requested-period-vm'
+import { LedgerDocumentTypeVM } from './ledger-documentType-vm'
+import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
 export interface LedgerVM {
 
-    previousPeriod: LedgerPreviousPeriodVM
-    requestedPeriod: LedgerRequestedPeriodVM[]
+    date: string
+    formattedDate: string
+    customer: SimpleEntity
+    documentType: LedgerDocumentTypeVM
+    invoiceNo: string
+    debit: number
+    credit: number
+    balance: number
 
 }

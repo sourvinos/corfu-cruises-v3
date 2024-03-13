@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Features.Billing.Ledgers {
@@ -13,12 +14,12 @@ namespace API.Features.Billing.Ledgers {
         }
 
         [Authorize(Roles = "user, admin")]
-        public FinalLedgerVM Post([FromBody] LedgerCriteria criteria) {
-            var records = repo.Get(criteria.FromDate, criteria.ToDate, criteria.CustomerId);
-            records = repo.BuildBalance(records);
-            var previousPeriod = repo.BuildPreviousBalance(records, criteria.FromDate);
-            var requestedPeriod = repo.BuildRequestedPeriod(records, criteria.FromDate);
-            return repo.MergePreviousAndRequestedPeriods(previousPeriod, requestedPeriod);
+        public List<LedgerVM> Post([FromBody] LedgerCriteria criteria) {
+            var records = repo.BuildBalance(repo.Get(criteria.FromDate, criteria.ToDate, criteria.CustomerId));
+            var previous = repo.BuildPrevious(records, criteria.FromDate);
+            var requested = repo.BuildRequested(records, criteria.FromDate);
+            var total = repo.BuildTotal(records);
+            return repo.MergePreviousRequestedAndTotal(previous, requested, total);
         }
 
     }

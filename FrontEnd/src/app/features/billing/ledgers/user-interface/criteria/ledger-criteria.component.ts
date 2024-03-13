@@ -1,5 +1,5 @@
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Component } from '@angular/core'
+import { Component, EventEmitter, Output } from '@angular/core'
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { Observable, map, startWith } from 'rxjs'
 // Custom
@@ -10,6 +10,7 @@ import { MessageInputHintService } from 'src/app/shared/services/message-input-h
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
     selector: 'ledger-criteria',
@@ -27,6 +28,7 @@ export class LedgerCriteriaComponent {
     public icon = 'arrow_back'
 
     public parentUrl = '/home'
+    @Output() outputSelected = new EventEmitter()
 
     //#endregion
 
@@ -37,7 +39,7 @@ export class LedgerCriteriaComponent {
 
     //#endregion
 
-    constructor(private dateHelperService: DateHelperService, private dexieService: DexieService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private dexieService: DexieService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService) { }
 
     //#region lifecycle hooks
 
@@ -85,20 +87,24 @@ export class LedgerCriteriaComponent {
         this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
     }
 
+    public onSearch(): void {
+        this.outputSelected.emit(this.form.value)
+    }
+
     //#endregion
 
     //#region private methods
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            fromDate: ['', [Validators.required]],
-            toDate: ['', [Validators.required]],
+            fromDate: ['2024-01-01', [Validators.required]],
+            toDate: ['2024-12-31', [Validators.required]],
             customer: ['', [Validators.required, ValidationService.RequireAutocomplete]]
         })
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', 'description', 'description')
+        this.populateDropdownFromDexieDB('customersCriteria', 'dropdownCustomers', 'customer', 'description', 'description')
     }
 
     private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {

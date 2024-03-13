@@ -16,6 +16,10 @@
                 <mat-error *ngIf="customer.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="!customer.hasError('required') && customer.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>
+            <!-- Button -->
+            <button (click)="onSearch()" [disabled]="!form.valid" class="fab primary" id="search-button" mat-icon-button>
+                <mat-icon class="material-icons-outlined">arrow_forward</mat-icon>
+            </button>
         </div>
     </form>
 

@@ -7,7 +7,7 @@ import { ListResolved } from '../../../../../shared/classes/list-resolved'
 
 @Injectable({ providedIn: 'root' })
 
-export class TransactionListResolver {
+export class LedgerListResolver {
 
     constructor(private ledgerHttpService: LedgerHttpService) { }
 

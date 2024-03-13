@@ -17,9 +17,9 @@ namespace API.Features.Billing.Ledgers {
                 .ForMember(x => x.DocumentType, x => x.MapFrom(source => new DocumentTypeVM {
                     Id = source.DocumentType.Id,
                     Abbreviation = source.DocumentType.Abbreviation,
-                    Batch = source.DocumentType.Batch,
-                    InvoiceNumber = source.InvoiceNo
+                    Batch = source.DocumentType.Batch
                 }))
+                .ForMember(x => x.InvoiceNo, x => x.MapFrom(x => x.InvoiceNo.ToString()))
                 .ForMember(x => x.Debit, x => x.MapFrom(source => source.DocumentType.Customers == "+" || source.DocumentType.Suppliers == "-" ? source.GrossAmount : 0))
                 .ForMember(x => x.Credit, x => x.MapFrom(source => source.DocumentType.Customers == "-" || source.DocumentType.Suppliers == "+" ? source.GrossAmount : 0));
         }

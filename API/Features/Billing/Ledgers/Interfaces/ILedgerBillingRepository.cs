@@ -6,9 +6,10 @@ namespace API.Features.Billing.Ledgers {
 
         IEnumerable<LedgerVM> Get(string fromDate, string toDate, int customerId);
         IEnumerable<LedgerVM> BuildBalance(IEnumerable<LedgerVM> records);
-        PreviousPeriodLedgerVM BuildPreviousBalance(IEnumerable<LedgerVM> records, string fromDate);
-        List<LedgerVM> BuildRequestedPeriod(IEnumerable<LedgerVM> records, string fromDate);
-        FinalLedgerVM MergePreviousAndRequestedPeriods(PreviousPeriodLedgerVM previousPeriod, List<LedgerVM> requestedPeriod);
+        LedgerVM BuildPrevious(IEnumerable<LedgerVM> records, string fromDate);
+        List<LedgerVM> BuildRequested(IEnumerable<LedgerVM> records, string fromDate);
+        LedgerVM BuildTotal(IEnumerable<LedgerVM> records);
+        List<LedgerVM> MergePreviousRequestedAndTotal(LedgerVM previousPeriod, List<LedgerVM> requestedPeriod, LedgerVM total);
 
     }
 
