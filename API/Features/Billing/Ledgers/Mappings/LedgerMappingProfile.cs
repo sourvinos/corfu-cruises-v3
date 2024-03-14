@@ -8,7 +8,7 @@ namespace API.Features.Billing.Ledgers {
     public class LedgerMappingProfile : Profile {
 
         public LedgerMappingProfile() {
-            CreateMap<TransactionBase, LedgerVM>()
+            CreateMap<TransactionsBase, LedgerVM>()
                 .ForMember(x => x.Date, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Date)))
                 .ForMember(x => x.Customer, x => x.MapFrom(source => new SimpleEntity {
                     Id = source.Customer.Id,
