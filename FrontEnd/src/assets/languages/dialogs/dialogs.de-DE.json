@@ -171,8 +171,24 @@
                 "message": "Die Fahrgastregistriereren für dieses Schiff sind nicht korrekt. Für jedes Schiff sollte es zwei aktive Fahrgastregistriereren geben, von denen einer als aktiv angegeben werden sollte."
             },
             {
+                "id": "priceRetrieverHasErrors",
+                "message": "Δεν μπορούμε να ανακτήσουμε τις χρεώσεις επειδή πρέπει να δώσετε την ημερομηνία, τον πελάτη και τον προορισμό."
+            },
+            {
+                "id": "priceRetrieverIsEmpty",
+                "message": "Δεν βρήκαμε καμμία χρέωση για την ημερομηνία, τον πελάτη και τον προορισμό ή οι χρεώσεις δεν είναι πλήρεις."
+            },
+            {
+                "id": "priceRetrieverIsValid",
+                "message": "Οι χρεώσεις ανακτήθηκαν!"
+            },
+            {
                 "id": "confirmDeleteDexieDB",
                 "message": "Möchten Sie mit der Aktualisierung fortfahren? Wenn der Vorgang ohne Fehler abgeschlossen ist, müssen Sie sich erneut anmelden."
+            },
+            {
+                "id": "selectedReservationsMustBeSameShip",
+                "message": "Βεβαιωθείτε ότι έχετε επιλέξει κρατήσεις του ίδιου πλοίου και του ίδιου προορισμού."
             }
         ]
     }

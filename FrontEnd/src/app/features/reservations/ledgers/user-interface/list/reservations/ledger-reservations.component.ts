@@ -25,7 +25,7 @@ export class LedgerCustomerReservationListComponent {
 
     public selectedRecords: LedgerReservationVM[] = []
     private feature = 'ledgerList'
-    private perPort: PerPort[]
+    private perPort: PerPort[] = []
 
     //#endregion
 
@@ -61,10 +61,20 @@ export class LedgerCustomerReservationListComponent {
         this.dialogService.open(remarks, 'info', ['ok'])
     }
 
-    public onCalculate(): void {
-        this.initPortsArray()
-        this.populatePorts()
-        this.outputSelected.emit(this.perPort)
+    public onValidateSelection(): void {
+        if (this.selectedRecords.length >= 1) {
+            if (this.isSameShipSelected() && this.isSameDestinationSelected()) {
+                this.initPortsArray()
+                this.populatePorts()
+                this.outputSelected.emit(this.perPort)
+            } else {
+                this.perPort = []
+                this.outputSelected.emit(this.perPort)
+            }
+        } else {
+            this.perPort = []
+            this.outputSelected.emit(this.perPort)
+        }
     }
 
     //#endregion
@@ -163,7 +173,15 @@ export class LedgerCustomerReservationListComponent {
                 this.perPort[1].total += record.adults + record.kids + record.free
             }
         })
-        console.log(this.perPort)
+        // console.log(this.perPort)
+    }
+
+    private isSameShipSelected(): boolean {
+        return this.helperService.getDistinctRecords(this.selectedRecords, 'ship', 'description').length == 1
+    }
+
+    private isSameDestinationSelected(): boolean {
+        return this.helperService.getDistinctRecords(this.selectedRecords, 'destination', 'description').length == 1
     }
 
     //#endregion

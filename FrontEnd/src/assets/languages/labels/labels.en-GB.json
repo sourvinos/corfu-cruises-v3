@@ -1731,7 +1731,7 @@
                 "description": "Demo username"
             },
             {
-                "id": "demoPassword",
+                "id": "demoSubscriptionKey",
                 "description": "Demo password"
             },
             {
@@ -1743,7 +1743,7 @@
                 "description": "Live username"
             },
             {
-                "id": "livePassword",
+                "id": "liveSubscriptionKey",
                 "description": "Live password"
             },
             {

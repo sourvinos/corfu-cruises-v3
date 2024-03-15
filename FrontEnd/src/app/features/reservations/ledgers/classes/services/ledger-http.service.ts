@@ -9,10 +9,10 @@ import { environment } from 'src/environments/environment'
 
 @Injectable({ providedIn: 'root' })
 
-export class LedgerService extends HttpDataService {
+export class LedgerHttpService extends HttpDataService {
 
     constructor(httpClient: HttpClient) {
-        super(httpClient, environment.apiUrl + '/ledgers')
+        super(httpClient, environment.apiUrl + '/ledgersReservations')
     }
 
     get(criteria: LedgerSearchCriteria): Observable<LedgerVM> {

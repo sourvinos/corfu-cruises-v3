@@ -4,14 +4,14 @@ import { catchError, map } from 'rxjs/operators'
 // Custom
 import { LedgerListResolved } from './ledger-list-resolved'
 import { LedgerSearchCriteria } from '../view-models/criteria/ledger-search-criteria'
-import { LedgerService } from '../services/ledger.service'
+import { LedgerHttpService } from '../services/ledger-http.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 
 @Injectable({ providedIn: 'root' })
 
 export class LedgerListResolver {
 
-    constructor(private ledgerService: LedgerService, private sessionStorageService: SessionStorageService) { }
+    constructor(private ledgerService: LedgerHttpService, private sessionStorageService: SessionStorageService) { }
 
     resolve(): Observable<LedgerListResolved> {
         const storedCriteria = JSON.parse(this.sessionStorageService.getItem('ledger-criteria'))

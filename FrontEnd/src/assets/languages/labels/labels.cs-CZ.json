@@ -1731,7 +1731,7 @@
                 "description": "Demo uživatelské jméno"
             },
             {
-                "id": "demoPassword",
+                "id": "demoSubscriptionKey",
                 "description": "Demo heslo"
             },
             {
@@ -1743,7 +1743,7 @@
                 "description": "Live uživatelské jméno"
             },
             {
-                "id": "livePassword",
+                "id": "liveSubscriptionKey",
                 "description": "Live heslo"
             },
             {

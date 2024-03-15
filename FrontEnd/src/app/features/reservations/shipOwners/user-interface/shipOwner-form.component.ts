@@ -144,10 +144,10 @@ export class ShipOwnerFormComponent {
             email: this.form.value.email,
             demoUrl: this.form.value.demoUrl,
             demoUsername: this.form.value.demoUsername,
-            demoPassword: this.form.value.demoPassword,
+            demoSubscriptionKey: this.form.value.demoSubscriptionKey,
             liveUrl: this.form.value.liveUrl,
             liveUsername: this.form.value.liveUsername,
-            livePassword: this.form.value.livePassword,
+            liveSubscriptionKey: this.form.value.liveSubscriptionKey,
             isDemoMyData: this.form.value.isDemoMyData,
             isActive: this.form.value.isActive,
             putAt: this.form.value.putAt
@@ -198,10 +198,10 @@ export class ShipOwnerFormComponent {
             email: ['', [Validators.email, Validators.maxLength(128)]],
             demoUrl: ['', [Validators.maxLength(256)]],
             demoUsername: ['', [Validators.maxLength(256)]],
-            demoPassword: ['', [Validators.maxLength(256)]],
+            demoSubscriptionKey: ['', [Validators.maxLength(256)]],
             liveUrl: ['', [Validators.maxLength(256)]],
             liveUsername: ['', [Validators.maxLength(256)]],
-            livePassword: ['', [Validators.maxLength(256)]],
+            liveSubscriptionKey: ['', [Validators.maxLength(256)]],
             isDemoMyData: true,
             isActive: true,
             postAt: [''],
@@ -244,10 +244,10 @@ export class ShipOwnerFormComponent {
                 email: this.record.email,
                 demoUrl: this.record.demoUrl,
                 demoUsername: this.record.demoUsername,
-                demoPassword: this.record.demoPassword,
+                demoSubscriptionKey: this.record.demoSubscriptionKey,
                 liveUrl: this.record.liveUrl,
                 liveUsername: this.record.liveUsername,
-                livePassword: this.record.livePassword,
+                liveSubscriptionKey: this.record.liveSubscriptionKey,
                 isDemoMyData: this.record.isDemoMyData,
                 isActive: this.record.isActive,
                 postAt: this.record.postAt,
@@ -348,8 +348,8 @@ export class ShipOwnerFormComponent {
         return this.form.get('demoUsername')
     }
 
-    get demoPassword(): AbstractControl {
-        return this.form.get('demoPassword')
+    get demoSubscriptionKey(): AbstractControl {
+        return this.form.get('demoSubscriptionKey')
     }
 
     get liveUrl(): AbstractControl {
@@ -360,8 +360,8 @@ export class ShipOwnerFormComponent {
         return this.form.get('liveUsername')
     }
 
-    get livePassword(): AbstractControl {
-        return this.form.get('livePassword')
+    get liveSubscriptionKey(): AbstractControl {
+        return this.form.get('liveSubscriptionKey')
     }
     get postAt(): AbstractControl {
         return this.form.get('postAt')

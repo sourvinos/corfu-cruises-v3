@@ -25,11 +25,10 @@
                         <mat-panel-title>{{ customer.customer.description }}</mat-panel-title>
                     </mat-expansion-panel-header>
                     <ng-template matExpansionPanelContent>
-                        <ledger-customer-reservations [customer]="customer" [remarksRowVisibility]="getRemarksRowVisibility()" (outputSelected)="updateSelectedRecords($event)"></ledger-customer-reservations>
+                        <ledger-customer-reservations [customer]="customer" [remarksRowVisibility]="getRemarksRowVisibility()" (outputSelected)="processEmittedRecords($event)"></ledger-customer-reservations>
                         <ledger-customer-summary [portGroup]="customer.ports"></ledger-customer-summary>
                         <div id="align-right" style="padding: 0 0.5rem 0 0 !important;">
-                            <button [disabled]="records.length==0" (click)="doBillingTasks()" class="transparent" mat-flat-button>
-                                <mat-icon *ngIf="records.length==0" class="material-icons-outlined">lock</mat-icon>
+                            <button (click)="doBillingTasks()" class="transparent" mat-flat-button>
                                 <span>{{ getLabel("createInvoiceButton") | uppercase }}</span>
                             </button>
                             <button (click)="exportSelected(customer)" class="secondary" mat-flat-button>

@@ -1731,7 +1731,7 @@
                 "description": "Demo χρήστης"
             },
             {
-                "id": "demoPassword",
+                "id": "demoSubscriptionKey",
                 "description": "Demo κωδικός"
             },
             {
@@ -1743,7 +1743,7 @@
                 "description": "Live χρήστης"
             },
             {
-                "id": "livePassword",
+                "id": "liveSubscriptionKey",
                 "description": "Live κωδικός"
             },
             {
@@ -3278,7 +3278,7 @@
             },
             {
                 "id": "searchButton",
-                "description": "Αναζήτηση"
+                "description": "Αναζητηση"
             }
         ]
     },

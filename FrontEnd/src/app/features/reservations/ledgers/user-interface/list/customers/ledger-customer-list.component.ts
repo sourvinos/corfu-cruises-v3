@@ -67,7 +67,7 @@ export class LedgerCustomerListComponent {
         return environment.production
     }
 
-    public updateSelectedRecords(emittedObject: LedgerReservationVM[]): void {
+    public processEmittedRecords(emittedObject: LedgerReservationVM[]): void {
         this.selectedRecords = emittedObject
         console.log('exported', emittedObject)
     }
@@ -77,13 +77,15 @@ export class LedgerCustomerListComponent {
     }
 
     public doBillingTasks(): void {
-        if (this.isAnyRecordSelected()) {
+        if (this.selectedRecords.length == 2) {
             this.dialog.open(InvoiceDialogComponent, {
                 data: this.selectedRecords,
                 panelClass: 'dialog',
                 height: '801px',
                 width: '1000px'
             })
+        } else {
+            this.dialogService.open(this.messageDialogService.selectedReservationsMustBeSameShip(), 'error', ['ok'])
         }
     }
 
@@ -123,36 +125,17 @@ export class LedgerCustomerListComponent {
 
     //#region private methods
 
-    private isAnyRecordSelected(): boolean {
-        if (this.selectedRecords == undefined || this.selectedRecords.length == 0) {
-            this.dialogService.open(this.messageDialogService.noRecordsSelected(), 'error', ['ok'])
-            return false
-        }
-        return true
-    }
+    // private isAnyRecordSelected(): boolean {
+    //     return (this.selectedRecords == undefined || this.selectedRecords.length == 0) ? false : true
+    // }
 
-    private areSelectedRecordsSameShip(): any {
-        const x = this.selectedRecords[0].ship
-        for (let index = 0; index < this.selectedRecords.length; index++) {
-            if (x != this.selectedRecords[index].ship) {
-                this.dialogService.open(this.messageDialogService.selectedReservationsMustBeSameShip(), 'error', ['ok']).subscribe(() => {
-                    console.log('error')
-                    return false
-                })
-            }
-        }
-        console.log('out')
-        return true
-        // this.selectedRecords.forEach(record => {
-        //     if (x != record.ship) {
-        //         this.dialogService.open(this.messageDialogService.selectedReservationsMustBeSameShip(), 'error', ['ok']).subscribe(() => {
-        //             console.log('error')
-        //             return false
-        //         })
-        //     }
-        // })
-        // console.log('out')
-    }
+    // private isSameDestinationSelected(): boolean {
+    //     const destinations = this.helperService.getDistinctRecords(this.selectedRecords, 'destination', 'description')
+    //     console.log(destinations)
+    //     return true
+    // }
+
+    // const sameShip = this.helperService.getDistinctRecords(this.selectedRecords, 'ship', 'description').length == 1
 
     private loadRecords(): Promise<any> {
         return new Promise((resolve) => {

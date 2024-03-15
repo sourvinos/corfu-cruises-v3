@@ -23,10 +23,10 @@ export interface ShipOwnerReadDto extends Metadata {
     email: string
     demoUrl: string
     demoUsername: string
-    demoPassword: string
+    demoSubscriptionKey: string
     liveUrl: string
     liveUsername: string
-    livePassword: string
+    liveSubscriptionKey: string
     isDemoMyData: boolean
     isActive: boolean
 

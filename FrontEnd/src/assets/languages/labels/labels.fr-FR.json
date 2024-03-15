@@ -1731,7 +1731,7 @@
                 "description": "Demo utilisateur"
             },
             {
-                "id": "demoPassword",
+                "id": "demoSubscriptionKey",
                 "description": "Demo mot de passe"
             },
             {
@@ -1743,7 +1743,7 @@
                 "description": "Live utilisateur"
             },
             {
-                "id": "livePassword",
+                "id": "liveSubscriptionKey",
                 "description": "Live mot de passe"
             },
             {
