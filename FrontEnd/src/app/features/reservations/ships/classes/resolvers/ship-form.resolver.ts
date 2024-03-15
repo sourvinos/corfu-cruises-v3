@@ -13,7 +13,7 @@ export class ShipFormResolver {
 
     resolve(route: ActivatedRouteSnapshot): any {
         return this.shipService.getSingle(route.params.id).pipe(
-            map((customerForm) => new FormResolved(customerForm)),
+            map((shipForm) => new FormResolved(shipForm)),
             catchError((err: any) => of(new FormResolved(null, err)))
         )
     }

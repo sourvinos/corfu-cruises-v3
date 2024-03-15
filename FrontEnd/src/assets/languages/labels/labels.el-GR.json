@@ -2226,7 +2226,7 @@
         ]
     },
     {
-        "feature": "reservation-parameters",
+        "feature": "reservationparameters",
         "labels": [
             {
                 "id": "header",
@@ -2806,43 +2806,31 @@
         ]
     },
     {
-        "feature": "billing-parameters",
+        "feature": "billingparameters",
         "labels": [
             {
                 "id": "header",
                 "description": "Ρυθμίσεις"
             },
             {
-                "id": "aadeDemoUrl",
-                "description": "Δοκιμαστικό url"
+                "id": "vatPercent",
+                "description": "Ποσοστό ΦΠΑ"
             },
             {
-                "id": "aadeDemoUsername",
-                "description": "Δοκιμαστικό όνομα χρήστη"
-            },
-            {
-                "id": "aadeDemoApiKey",
-                "description": "Δοκιμαστικό κλειδί"
-            },
-            {
-                "id": "aadeLiveUrl",
-                "description": "Κανονικό url"
-            },
-            {
-                "id": "aadeLiveUsername",
-                "description": "Κανονικό όνομα χρήστη"
-            },
-            {
-                "id": "aadeLiveApiKey",
-                "description": "Κανονικό κλειδί"
-            },
-            {
-                "id": "isAadeLive",
-                "description": "Κανονική λειτουργία"
+                "id": "vatCategoryId",
+                "description": "Κατηγορία ΦΠΑ"
             },
             {
                 "id": "saveButton",
                 "description": "Αποθηκευση"
+            },
+            {
+                "id": "post",
+                "description": "Αρχική καταχώριση"
+            },
+            {
+                "id": "put",
+                "description": "Τελευταία ενημέρωση"
             }
         ]
     },

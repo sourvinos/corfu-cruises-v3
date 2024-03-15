@@ -2,6 +2,9 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component } from '@angular/core'
 // Custom
+import { BillingParametersHttpService } from '../classes/services/billing-parameters-http.service'
+import { BillingParametersReadDto } from '../classes/models/billing-parameters-read.dto'
+import { BillingParametersWriteDto } from '../classes/models/billing-parameters-write.dto'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
@@ -9,22 +12,19 @@ import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.d
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { ParametersReadDto } from '../classes/models/parameters-read.dto'
-import { ParametersService } from '../classes/services/parameters.service'
-import { ParametersWriteDto } from '../classes/models/parameters-write.dto'
 
 @Component({
-    selector: 'parameters',
-    templateUrl: './parameters.component.html',
+    selector: 'billing-parameters',
+    templateUrl: './billing-parameters.component.html',
     styleUrls: ['../../../../../assets/styles/custom/forms.css']
 })
 
-export class ParametersComponent {
+export class BillingParametersComponent {
 
     //#region common form variables
 
-    private record: ParametersReadDto
-    public feature = 'parameters'
+    private record: BillingParametersReadDto
+    public feature = 'billingparameters'
     public featureIcon = 'parameters'
     public form: FormGroup
     public icon = 'arrow_back'
@@ -33,7 +33,7 @@ export class ParametersComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private parametersService: ParametersService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private billingParametersHttpService: BillingParametersHttpService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -57,7 +57,7 @@ export class ParametersComponent {
     }
 
     public getLabel(id: string): string {
-        return this.messageLabelService.getDescription('billing-' + this.feature, id)
+        return this.messageLabelService.getDescription(this.feature, id)
     }
 
     public onSave(): void {
@@ -68,16 +68,11 @@ export class ParametersComponent {
 
     //#region private methods
 
-    private flattenForm(): ParametersWriteDto {
+    private flattenForm(): BillingParametersWriteDto {
         return {
             id: this.form.value.id,
-            isAadeLive: this.form.value.isAadeLive,
-            aadeDemoUrl: this.form.value.aadeDemoUrl,
-            aadeDemoUsername: this.form.value.aadeDemoUsername,
-            aadeDemoApiKey: this.form.value.aadeDemoApiKey,
-            aadeLiveUrl: this.form.value.aadeLiveUrl,
-            aadeLiveUsername: this.form.value.aadeLiveUsername,
-            aadeLiveApiKey: this.form.value.aadeLiveApiKey,
+            vatPercent: this.form.value.vatPercent,
+            vatCategoryId: this.form.value.vatCategoryId,
             putAt: this.form.value.putAt
         }
     }
@@ -88,7 +83,8 @@ export class ParametersComponent {
 
     private getRecord(): Promise<any> {
         return new Promise((resolve) => {
-            const formResolved: FormResolved = this.activatedRoute.snapshot.data[this.feature]
+            const x = this.feature.substring(7, 17)
+            const formResolved: FormResolved = this.activatedRoute.snapshot.data[x]
             if (formResolved.error == null) {
                 this.record = formResolved.record.body
                 resolve(this.record)
@@ -108,13 +104,8 @@ export class ParametersComponent {
     private initForm(): void {
         this.form = this.formBuilder.group({
             id: [''],
-            aadeDemoUrl: ['', [Validators.required, Validators.maxLength(128)]],
-            aadeDemoUsername: ['', [Validators.required, Validators.maxLength(128)]],
-            aadeDemoApiKey: ['', [Validators.required, Validators.maxLength(128)]],
-            aadeLiveUrl: ['', [Validators.required, Validators.maxLength(128)]],
-            aadeLiveUsername: ['', [Validators.required, Validators.maxLength(128)]],
-            aadeLiveApiKey: ['', [Validators.required, Validators.maxLength(128)]],
-            isAadeLive: true,
+            vatPercent: [0, [Validators.required, Validators.maxLength(2)]],
+            vatCategoryId: [0, [Validators.required, Validators.maxLength(1)]],
             postAt: [''],
             postUser: [''],
             putAt: [''],
@@ -126,13 +117,8 @@ export class ParametersComponent {
         if (this.record != undefined) {
             this.form.setValue({
                 id: this.record.id,
-                isAadeLive: this.record.isAadeLive,
-                aadeDemoUrl: this.record.aadeDemoUrl,
-                aadeDemoUsername: this.record.aadeDemoUsername,
-                aadeDemoApiKey: this.record.aadeDemoApiKey,
-                aadeLiveUrl: this.record.aadeLiveUrl,
-                aadeLiveUsername: this.record.aadeLiveUsername,
-                aadeLiveApiKey: this.record.aadeLiveApiKey,
+                vatPercent: this.record.vatPercent,
+                vatCategoryId: this.record.vatCategoryId,
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
                 putAt: this.record.putAt,
@@ -145,8 +131,8 @@ export class ParametersComponent {
         this.form.reset()
     }
 
-    private saveRecord(parameters: ParametersWriteDto): void {
-        this.parametersService.save(parameters).subscribe({
+    private saveRecord(parameters: BillingParametersWriteDto): void {
+        this.billingParametersHttpService.save(parameters).subscribe({
             next: () => {
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
@@ -164,28 +150,12 @@ export class ParametersComponent {
 
     //#region getters
 
-    get aadeDemoUrl(): AbstractControl {
-        return this.form.get('aadeDemoUrl')
+    get vatPercent(): AbstractControl {
+        return this.form.get('vatPercent')
     }
 
-    get aadeDemoUsername(): AbstractControl {
-        return this.form.get('aadeDemoUsername')
-    }
-
-    get aadeDemoApiKey(): AbstractControl {
-        return this.form.get('aadeDemoApiKey')
-    }
-
-    get aadeLiveUrl(): AbstractControl {
-        return this.form.get('aadeLiveUrl')
-    }
-
-    get aadeLiveUsername(): AbstractControl {
-        return this.form.get('aadeLiveUsername')
-    }
-
-    get aadeLiveApiKey(): AbstractControl {
-        return this.form.get('aadeLiveApiKey')
+    get vatCategoryId(): AbstractControl {
+        return this.form.get('vatCategoryId')
     }
 
     get postAt(): AbstractControl {

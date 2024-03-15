@@ -1,4 +1,4 @@
-export interface ParametersWriteDto {
+export interface ReservationParametersWriteDto {
 
     // PK
     id: number

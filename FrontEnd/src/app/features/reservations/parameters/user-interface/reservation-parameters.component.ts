@@ -9,23 +9,23 @@ import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.d
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { ParametersReadDto } from '../classes/models/parameters-read.dto'
-import { ParametersService } from '../classes/services/parameters.service'
-import { ParametersWriteDto } from '../classes/models/parameters-write.dto'
+import { ReservationParametersHttpService } from '../classes/services/reservation-parameters-http.service'
+import { ReservationParametersReadDto } from '../classes/models/reservation-parameters-read.dto'
+import { ReservationParametersWriteDto } from '../classes/models/reservation-parameters-write.dto'
 import { ValidationService } from 'src/app/shared/services/validation.service'
 
 @Component({
-    selector: 'parameters',
-    templateUrl: './parameters.component.html',
+    selector: 'reservation-parameters',
+    templateUrl: './reservation-parameters.component.html',
     styleUrls: ['../../../../../assets/styles/custom/forms.css']
 })
 
-export class ParametersComponent {
+export class ReservationParametersComponent {
 
     //#region common form variables
 
-    private record: ParametersReadDto
-    public feature = 'parameters'
+    private record: ReservationParametersReadDto
+    public feature = 'reservationparameters'
     public featureIcon = 'parameters'
     public form: FormGroup
     public icon = 'arrow_back'
@@ -34,7 +34,7 @@ export class ParametersComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private parametersService: ParametersService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private reservationParametersHttpService: ReservationParametersHttpService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -58,7 +58,7 @@ export class ParametersComponent {
     }
 
     public getLabel(id: string): string {
-        return this.messageLabelService.getDescription('reservation-' + this.feature, id)
+        return this.messageLabelService.getDescription(this.feature, id)
     }
 
     public onSave(): void {
@@ -69,7 +69,7 @@ export class ParametersComponent {
 
     //#region private methods
 
-    private flattenForm(): ParametersWriteDto {
+    private flattenForm(): ReservationParametersWriteDto {
         return {
             id: this.form.value.id,
             closingTime: this.form.value.closingTime,
@@ -85,7 +85,8 @@ export class ParametersComponent {
 
     private getRecord(): Promise<any> {
         return new Promise((resolve) => {
-            const formResolved: FormResolved = this.activatedRoute.snapshot.data[this.feature]
+            const x = this.feature.substring(11, 22)
+            const formResolved: FormResolved = this.activatedRoute.snapshot.data[x]
             if (formResolved.error == null) {
                 this.record = formResolved.record.body
                 resolve(this.record)
@@ -134,8 +135,8 @@ export class ParametersComponent {
         this.form.reset()
     }
 
-    private saveRecord(parameters: ParametersWriteDto): void {
-        this.parametersService.save(parameters).subscribe({
+    private saveRecord(parameters: ReservationParametersWriteDto): void {
+        this.reservationParametersHttpService.save(parameters).subscribe({
             next: () => {
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },

@@ -8,7 +8,7 @@ import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { LogoService } from '../../services/logo.service'
-import { ParametersService } from 'src/app/features/reservations/parameters/classes/services/parameters.service'
+import { ReservationParametersHttpService } from 'src/app/features/reservations/parameters/classes/services/reservation-parameters-http.service'
 import { environment } from 'src/environments/environment'
 // Fonts
 import pdfMake from 'pdfmake/build/pdfmake'
@@ -22,7 +22,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs
 
 export class BoardingPassService extends HttpDataService {
 
-    constructor(httpClient: HttpClient, private dateHelperService: DateHelperService, private helperService: HelperService, private logoService: LogoService, private parametersService: ParametersService) {
+    constructor(httpClient: HttpClient, private dateHelperService: DateHelperService, private helperService: HelperService, private logoService: LogoService, private reservationParametersHttpService: ReservationParametersHttpService) {
         super(httpClient, environment.apiUrl + '/reservations')
     }
 
@@ -179,7 +179,7 @@ export class BoardingPassService extends HttpDataService {
 
     public getCompanyData(): Promise<any> {
         return new Promise((resolve) => {
-            this.parametersService.get().subscribe((response) => {
+            this.reservationParametersHttpService.get().subscribe((response) => {
                 resolve(response)
             })
         })

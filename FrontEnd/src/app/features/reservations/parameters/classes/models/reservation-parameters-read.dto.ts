@@ -1,6 +1,6 @@
 import { Metadata } from 'src/app/shared/classes/metadata'
 
-export interface ParametersReadDto extends Metadata {
+export interface ReservationParametersReadDto extends Metadata {
 
     // PK
     id: number

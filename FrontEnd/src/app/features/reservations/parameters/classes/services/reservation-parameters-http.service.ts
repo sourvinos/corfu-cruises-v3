@@ -3,21 +3,21 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 // Custom
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
-import { ParametersReadDto } from '../models/parameters-read.dto'
+import { ReservationParametersReadDto } from '../models/reservation-parameters-read.dto'
 import { environment } from 'src/environments/environment'
 
 @Injectable({ providedIn: 'root' })
 
-export class ParametersService extends HttpDataService {
+export class ReservationParametersHttpService extends HttpDataService {
 
     constructor(httpClient: HttpClient) {
-        super(httpClient, environment.apiUrl + '/billingparameters')
+        super(httpClient, environment.apiUrl + '/reservationparameters')
     }
 
     //#region public methods
 
-    public get(): Observable<ParametersReadDto> {
-        return this.http.get<ParametersReadDto>(environment.apiUrl + '/billingparameters')
+    public get(): Observable<ReservationParametersReadDto> {
+        return this.http.get<ReservationParametersReadDto>(environment.apiUrl + '/reservationparameters')
     }
 
     //#endregion

@@ -42,16 +42,16 @@ const appRoutes: Routes = [
     { path: 'shipRoutes', loadChildren: () => import('../features/reservations/shipRoutes/classes/modules/shipRoute.module').then(m => m.ShipRouteModule) },
     { path: 'ships', loadChildren: () => import('../features/reservations/ships/classes/modules/ship.module').then(m => m.ShipModule) },
     { path: 'users', loadChildren: () => import('../features/reservations/users/classes/modules/user.module').then(m => m.UserModule) },
-    { path: 'reservation-parameters', loadChildren: () => import('../features/reservations/parameters/classes/modules/parameters.module').then(m => m.ParametersModule) },
+    { path: 'reservation-parameters', loadChildren: () => import('../features/reservations/parameters/classes/modules/reservation-parameters.module').then(m => m.ReservationParametersModule) },
     // Billing
-    { path: 'billing-parameters', loadChildren: () => import('../features/billing/parameters/classes/modules/parameters.module').then(m => m.ParametersModule) },
-    { path: 'documentTypes', loadChildren: () => import('../features/billing/documentTypes/classes/modules/documentType.module').then(m => m.DocumentTypeModule) },
     { path: 'invoices', loadChildren: () => import('../features/billing/invoices/classes/modules/invoice.module').then(m => m.InvoiceModule) },
+    { path: 'transactions', loadChildren: () => import('../features/billing/transactions/classes/modules/transaction.module').then(m => m.TransactionModule) },
+    { path: 'documentTypes', loadChildren: () => import('../features/billing/documentTypes/classes/modules/documentType.module').then(m => m.DocumentTypeModule) },
     { path: 'paymentMethods', loadChildren: () => import('../features/billing/paymentMethods/classes/modules/paymentMethod.module').then(m => m.PaymentMethodModule) },
-    { path: 'billing-ledgers', loadChildren: () => import('../features/billing/ledgers/classes/modules/ledger-billing.module').then(m => m.LedgerBillingModule) },
     { path: 'prices', loadChildren: () => import('../features/billing/prices/classes/modules/price.module').then(m => m.PriceModule) },
     { path: 'taxOffices', loadChildren: () => import('../features/billing/taxOffices/classes/modules/taxOffice.module').then(m => m.TaxOfficeModule) },
-    { path: 'transactions', loadChildren: () => import('../features/billing/transactions/classes/modules/transaction.module').then(m => m.TransactionModule) },
+    { path: 'billing-ledgers', loadChildren: () => import('../features/billing/ledgers/classes/modules/ledger-billing.module').then(m => m.LedgerBillingModule) },
+    { path: 'billing-parameters', loadChildren: () => import('../features/billing/parameters/classes/modules/billing-parameters.module').then(m => m.BillingParametersModule) },
     // Empty
     { path: '**', component: EmptyPageComponent }
 ]
