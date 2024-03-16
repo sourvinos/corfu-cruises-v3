@@ -11,7 +11,7 @@ export class BillingParametersResolver {
     constructor(private billingParametersHttpService: BillingParametersHttpService) { }
 
     resolve(): any {
-        return this.billingParametersHttpService.get().pipe(
+        return this.billingParametersHttpService.getOnlyRecord().pipe(
             map((parametersForm) => new FormResolved(parametersForm)),
             catchError((err: any) => of(new FormResolved(null, err)))
         )

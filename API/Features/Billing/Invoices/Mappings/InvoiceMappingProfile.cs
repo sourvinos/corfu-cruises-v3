@@ -94,7 +94,7 @@ namespace API.Features.Billing.Invoices {
                 .ForMember(x => x.PaymentMethodId, x => x.MapFrom(x => x.PaymentMethodId))
                 .ForMember(x => x.Currency, x => x.MapFrom(x => "EUR"))
                 .ForMember(x => x.NetAmount, x => x.MapFrom(x => x.NetAmount))
-                .ForMember(x => x.VatCategory, x => x.MapFrom(x => 1))
+                .ForMember(x => x.VatCategory, x => x.MapFrom(x => 2))
                 .ForMember(x => x.VatAmount, x => x.MapFrom(x => x.VatAmount))
                 .ForMember(x => x.GrossAmount, x => x.MapFrom(x => x.GrossAmount));
         }

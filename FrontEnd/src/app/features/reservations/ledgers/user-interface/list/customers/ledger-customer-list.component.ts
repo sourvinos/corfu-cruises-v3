@@ -41,7 +41,7 @@ export class LedgerCustomerListComponent {
     //#region specific
 
     public remarksRowVisibility: boolean
-    private selectedRecords: LedgerReservationVM[]
+    private selectedRecords: LedgerReservationVM[] = []
     private totalsPerPort: any[]
 
     //#endregion

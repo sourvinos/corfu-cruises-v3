@@ -1,15 +1,17 @@
-import { Injectable } from '@angular/core'
 import Dexie from 'dexie'
-import { DocumentTypeHttpService } from 'src/app/features/billing/documentTypes/classes/services/documentType-http.service'
+import { Injectable } from '@angular/core'
+// Custom
 import { CustomerHttpService } from 'src/app/features/reservations/customers/classes/services/customer-http.service'
+import { DocumentTypeHttpService } from 'src/app/features/billing/documentTypes/classes/services/documentType-http.service'
 
 @Injectable({ providedIn: 'root' })
 
 export class DexieService extends Dexie {
 
     constructor() {
-        super('DexieDB')
-        this.version(32).stores({
+        super('CorfuCruisesDB')
+        this.version(1).stores({
+            billingParameters: 'id',
             coachRoutes: 'id, abbreviation, isActive',
             crewSpecialties: 'id, description, isActive',
             customers: 'id, description, fullDescription, isActive',
@@ -38,32 +40,44 @@ export class DexieService extends Dexie {
     public populateTable(table: string, httpService: any): void {
         httpService.getAutoComplete().subscribe((records: any) => {
             this.table(table)
-                .bulkAdd(records)
-                .catch(Dexie.BulkError, () => { })
+                .clear().then(() => {
+                    this.table(table)
+                        .bulkAdd(records)
+                        .catch(Dexie.BulkError, () => { })
+                })
         })
     }
 
     public populateCriteria(table: string, httpService: any): void {
         httpService.getForCriteria().subscribe((records: any) => {
             this.table(table)
-                .bulkAdd(records)
-                .catch(Dexie.BulkError, () => { })
+                .clear().then(() => {
+                    this.table(table)
+                        .bulkAdd(records)
+                        .catch(Dexie.BulkError, () => { })
+                })
         })
     }
 
     public populateNewTable(table: string, customerHttpService: CustomerHttpService): void {
         customerHttpService.getBrowserStorage().subscribe((records: any) => {
             this.table(table)
-                .bulkAdd(records)
-                .catch(Dexie.BulkError, () => { })
+                .clear().then(() => {
+                    this.table(table)
+                        .bulkAdd(records)
+                        .catch(Dexie.BulkError, () => { })
+                })
         })
     }
 
     public populateDocumentTypesTable(table: string, documentTypeHttpService: DocumentTypeHttpService, discriminatorId: number): void {
         documentTypeHttpService.getBrowserStorage(discriminatorId).subscribe((records: any) => {
             this.table(table)
-                .bulkAdd(records)
-                .catch(Dexie.BulkError, () => { })
+                .clear().then(() => {
+                    this.table(table)
+                        .bulkAdd(records)
+                        .catch(Dexie.BulkError, () => { })
+                })
         })
     }
 

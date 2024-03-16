@@ -6,10 +6,10 @@ import { Observable, map, startWith } from 'rxjs'
 // Custom
 import { AadeVM } from 'src/app/features/billing/invoices/classes/view-models/form/aade-vm'
 import { BillingCriteriaVM } from 'src/app/features/billing/invoices/classes/view-models/form/billing-criteria-vm'
-import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { DocumentTypeAutoCompleteVM } from 'src/app/features/billing/documentTypes/classes/view-models/documentType-autocomplete-vm'
+import { DocumentTypeHttpService } from 'src/app/features/billing/documentTypes/classes/services/documentType-http.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
 import { InvoiceHelperService } from 'src/app/features/billing/invoices/classes/services/invoice.helper.service'
@@ -20,6 +20,7 @@ import { MessageDialogService } from 'src/app/shared/services/message-dialog.ser
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { PriceHttpService } from 'src/app/features/billing/prices/classes/services/price-http.service'
+import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
 
@@ -50,7 +51,7 @@ export class InvoiceDialogComponent {
 
     //#endregion
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogRef: MatDialogRef<InvoiceDialogComponent>, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private invoiceXmlHelperService: InvoiceXmlHelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceHttpService: PriceHttpService) { }
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dexieService: DexieService, private dialogRef: MatDialogRef<InvoiceDialogComponent>, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private invoiceXmlHelperService: InvoiceXmlHelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceHttpService: PriceHttpService, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -296,7 +297,7 @@ export class InvoiceDialogComponent {
             paymentMethod: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             ship: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             netAmount: [0, ValidationService.isGreaterThanZero],
-            vatPercent: [24, ValidationService.isGreaterThanZero],
+            vatPercent: [this.sessionStorageService.getItem('vatPercent')],
             vatAmount: [0, ValidationService.isGreaterThanZero],
             grossAmount: [0, [Validators.required, Validators.min(1), Validators.max(99999)]],
             portA: this.formBuilder.group({
@@ -365,9 +366,11 @@ export class InvoiceDialogComponent {
     private saveRecord(invoice: InvoiceWriteDto): void {
         this.invoiceHttpService.save(invoice).subscribe({
             next: (response) => {
+                console.log('1. invoice saved')
                 this.form.patchValue({
                     invoiceId: response.id
                 })
+                this.updateDocumentType(invoice.documentTypeId)
                 this.doSubmitTasks()
             },
             error: (errorFromInterceptor) => {
@@ -401,6 +404,18 @@ export class InvoiceDialogComponent {
             ship: {
                 id: this.data[0].ship.id,
                 description: this.data[0].ship.description
+            }
+        })
+    }
+
+    private updateDocumentType(id: number): void {
+        this.documentTypeHttpService.updateLastNo(id).subscribe({
+            next: (response) => {
+                console.log('2. documentType updated')
+                this.invoiceHelperService.updateBrowserStorageAfterApiUpdate(response.body)
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
             }
         })
     }

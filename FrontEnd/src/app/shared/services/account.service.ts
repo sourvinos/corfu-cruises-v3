@@ -4,6 +4,7 @@ import { Observable } from 'rxjs'
 import { Router } from '@angular/router'
 import { map } from 'rxjs/operators'
 // Custom
+import { BillingParametersHttpService } from 'src/app/features/billing/parameters/classes/services/billing-parameters-http.service'
 import { ChangePasswordViewModel } from './../../features/reservations/users/classes/view-models/change-password-view-model'
 import { CoachRouteService } from './../../features/reservations/coachRoutes/classes/services/coachRoute.service'
 import { CrewSpecialtyHttpService } from './../../features/reservations/crewSpecialties/classes/services/crewSpecialty-http.service'
@@ -43,7 +44,7 @@ export class AccountService extends HttpDataService {
 
     //#endregion
 
-    constructor(httpClient: HttpClient, private coachRouteService: CoachRouteService, private crewSpecialtyHttpService: CrewSpecialtyHttpService, private cryptoService: CryptoService, private customerHttpService: CustomerHttpService, private destinationHttpService: DestinationHttpService, private dexieService: DexieService, private documentTypeHttpService: DocumentTypeHttpService, private driverService: DriverService, private genderService: GenderService, private interactionService: InteractionService, private nationalityService: NationalityService, private ngZone: NgZone, private paymentMethodService: PaymentMethodHttpService, private pickupPointService: PickupPointService, private portHttpService: PortHttpService, private router: Router, private sessionStorageService: SessionStorageService, private shipHttpService: ShipHttpService, private shipOwnerService: ShipOwnerHttpService, private shipRouteService: ShipRouteService, private taxOfficeService: TaxOfficeService, private vatRegimeService: VatRegimeService) {
+    constructor(httpClient: HttpClient, private billingParametersHttpService: BillingParametersHttpService, private coachRouteService: CoachRouteService, private crewSpecialtyHttpService: CrewSpecialtyHttpService, private cryptoService: CryptoService, private customerHttpService: CustomerHttpService, private destinationHttpService: DestinationHttpService, private dexieService: DexieService, private documentTypeHttpService: DocumentTypeHttpService, private driverService: DriverService, private genderService: GenderService, private interactionService: InteractionService, private nationalityService: NationalityService, private ngZone: NgZone, private paymentMethodService: PaymentMethodHttpService, private pickupPointService: PickupPointService, private portHttpService: PortHttpService, private router: Router, private sessionStorageService: SessionStorageService, private shipHttpService: ShipHttpService, private shipOwnerService: ShipOwnerHttpService, private shipRouteService: ShipRouteService, private taxOfficeService: TaxOfficeService, private vatRegimeService: VatRegimeService) {
         super(httpClient, environment.apiUrl)
     }
 
@@ -65,6 +66,7 @@ export class AccountService extends HttpDataService {
             { 'item': 'returnUrl', 'when': 'always' },
             { 'item': 'userId', 'when': 'always' },
             { 'item': 'customerId', 'when': 'always' },
+            { 'item': 'isFirstFieldFocused', 'when': 'always' },
             // Reservations
             { 'item': 'date', 'when': 'always' },
             { 'item': 'destination', 'when': 'always' },
@@ -98,6 +100,9 @@ export class AccountService extends HttpDataService {
             { 'item': 'ledgerList-filters', 'when': 'always' }, { 'item': 'ledgerList-id', 'when': 'always' }, { 'item': 'ledgerList-scrollTop', 'when': 'always' },
             // Statistics
             { 'item': 'selectedYear', 'when': 'always' },
+            // VatData
+            { 'item': 'vatPercent', 'when': 'always' },
+            { 'item': 'vatCategoryId', 'when': 'always' }
         ])
     }
 
@@ -128,6 +133,7 @@ export class AccountService extends HttpDataService {
             this.setAuthSettings(response)
             this.populateDexieFromAPI()
             this.setSelectedYear()
+            this.setVatData()
             this.refreshMenus()
         }))
     }
@@ -163,22 +169,23 @@ export class AccountService extends HttpDataService {
     }
 
     private populateDexieFromAPI(): void {
-        // AutoComplete
+        // Reservations
         this.dexieService.populateNewTable('customers', this.customerHttpService)
         this.dexieService.populateTable('coachRoutes', this.coachRouteService)
         this.dexieService.populateTable('crewSpecialties', this.crewSpecialtyHttpService)
         this.dexieService.populateTable('destinations', this.destinationHttpService)
-        this.dexieService.populateDocumentTypesTable('documentTypesInvoice', this.documentTypeHttpService, 1)
-        this.dexieService.populateDocumentTypesTable('documentTypesTransaction', this.documentTypeHttpService, 2)
         this.dexieService.populateTable('drivers', this.driverService)
         this.dexieService.populateTable('genders', this.genderService)
         this.dexieService.populateTable('nationalities', this.nationalityService)
-        this.dexieService.populateTable('paymentMethods', this.paymentMethodService)
         this.dexieService.populateTable('pickupPoints', this.pickupPointService)
         this.dexieService.populateTable('ports', this.portHttpService)
         this.dexieService.populateTable('shipOwners', this.shipOwnerService)
         this.dexieService.populateTable('shipRoutes', this.shipRouteService)
         this.dexieService.populateTable('ships', this.shipHttpService)
+        // Billing
+        this.dexieService.populateDocumentTypesTable('documentTypesInvoice', this.documentTypeHttpService, 1)
+        this.dexieService.populateDocumentTypesTable('documentTypesTransaction', this.documentTypeHttpService, 2)
+        this.dexieService.populateTable('paymentMethods', this.paymentMethodService)
         this.dexieService.populateTable('taxOffices', this.taxOfficeService)
         this.dexieService.populateTable('vatRegimes', this.vatRegimeService)
         // Criteria
@@ -194,6 +201,13 @@ export class AccountService extends HttpDataService {
 
     private setSelectedYear(): void {
         this.sessionStorageService.saveItem('selectedYear', new Date().getFullYear().toString())
+    }
+
+    private setVatData(): void {
+        this.billingParametersHttpService.getOnlyRecord().subscribe(response => {
+            this.sessionStorageService.saveItem('vatPercent', response.body.vatPercent)
+            this.sessionStorageService.saveItem('vatCategoryId', response.body.vatCategoryId)
+        })
     }
 
     private setUserData(response: any): void {

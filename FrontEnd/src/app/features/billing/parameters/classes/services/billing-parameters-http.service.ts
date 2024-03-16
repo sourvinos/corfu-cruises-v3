@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 // Custom
-import { BillingParametersReadDto } from '../models/billing-parameters-read.dto'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { environment } from 'src/environments/environment'
 
@@ -14,12 +13,8 @@ export class BillingParametersHttpService extends HttpDataService {
         super(httpClient, environment.apiUrl + '/billingparameters')
     }
 
-    //#region public methods
-
-    public get(): Observable<BillingParametersReadDto> {
-        return this.http.get<BillingParametersReadDto>(environment.apiUrl + '/billingparameters')
+    public getOnlyRecord(): Observable<any> {
+        return this.http.get<any>(environment.apiUrl + '/billingparameters')
     }
-
-    //#endregion
 
 }

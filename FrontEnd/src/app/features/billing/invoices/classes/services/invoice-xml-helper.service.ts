@@ -9,12 +9,13 @@ import { InvoiceXmlPartyTypeDto } from '../dtos/xml/invoice-xml-partyType-dto'
 import { InvoiceXmlPaymentMethodDto } from '../dtos/xml/invoice-xml-paymentMethod-dto'
 import { InvoiceXmlRowDto } from '../dtos/xml/invoice-xml-row-dto'
 import { InvoiceXmlSummaryDto } from '../dtos/xml/invoice-xml-summary-dto'
+import { SessionStorageService } from './../../../../../shared/services/session-storage.service'
 
 @Injectable({ providedIn: 'root' })
 
 export class InvoiceXmlHelperService {
 
-    constructor(private dateHelperService: DateHelperService, private dexieService: DexieService) { }
+    constructor(private dateHelperService: DateHelperService, private dexieService: DexieService, private sessionStorageService: SessionStorageService) { }
 
     //#region public methods
 
@@ -144,7 +145,7 @@ export class InvoiceXmlHelperService {
                 const x: InvoiceXmlRowDto[] = [{
                     lineNumber: 1,
                     netValue: netValue,
-                    vatCategory: 1,
+                    vatCategory: parseInt(this.sessionStorageService.getItem('vatCategoryId')),
                     vatAmount: vatAmount,
                     incomeClassification: {
                         classificationType: response.table8_9,
