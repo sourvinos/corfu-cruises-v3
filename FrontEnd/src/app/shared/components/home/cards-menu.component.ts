@@ -2,9 +2,9 @@ import { Component } from '@angular/core'
 // Custom
 import { CryptoService } from '../../services/crypto.service'
 import { MessageLabelService } from '../../services/message-label.service'
+import { Router } from '@angular/router'
 import { SessionStorageService } from '../../services/session-storage.service'
 import { environment } from 'src/environments/environment'
-import { Router } from '@angular/router'
 
 @Component({
     selector: 'cards-menu',

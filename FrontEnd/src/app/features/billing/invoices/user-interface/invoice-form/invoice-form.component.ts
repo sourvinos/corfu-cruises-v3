@@ -28,6 +28,7 @@ import { MessageInputHintService } from 'src/app/shared/services/message-input-h
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { PortAutoCompleteVM } from 'src/app/features/reservations/ports/classes/view-models/port-autocomplete-vm'
 import { PriceHttpService } from '../../../prices/classes/services/price-http.service'
+import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { ShipAutoCompleteVM } from './../../../../reservations/ships/classes/view-models/ship-autocomplete-vm'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
@@ -71,7 +72,7 @@ export class InvoiceFormComponent {
 
     //#endregion
 
-    constructor(private documentTypeHttpService: DocumentTypeHttpService, private invoicePdfService: InvoicePdfService, private invoicePdfHelperService: InvoicePdfHelperService, private invoiceXmlHelperService: InvoiceXmlHelperService, private dateHelperService: DateHelperService, private priceHttpService: PriceHttpService, private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
+    constructor(private documentTypeHttpService: DocumentTypeHttpService, private invoicePdfService: InvoicePdfService, private invoicePdfHelperService: InvoicePdfHelperService, private invoiceXmlHelperService: InvoiceXmlHelperService, private dateHelperService: DateHelperService, private priceHttpService: PriceHttpService, private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -224,6 +225,18 @@ export class InvoiceFormComponent {
         })
     }
 
+    public onSendInvoiceLinkToEmail(): void {
+        this.invoiceHttpService.sendInvoiceLinkToEmail(this.form.value).subscribe({
+            complete: () => {
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
+        })
+
+    }
+
     public onUpdateInvoiceWithOutputPort(port: any, portIndex: number): void {
         this.form.value.invoicesPorts[portIndex] = port
     }
@@ -270,7 +283,7 @@ export class InvoiceFormComponent {
             paymentMethod: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             ship: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             netAmount: [0, ValidationService.isGreaterThanZero],
-            vatPercent: [24, ValidationService.isGreaterThanZero],
+            vatPercent: [this.sessionStorageService.getItem('vatPercent')],
             vatAmount: [0, ValidationService.isGreaterThanZero],
             grossAmount: [0, [Validators.required, Validators.min(1), Validators.max(99999)]],
             portA: this.formBuilder.group({

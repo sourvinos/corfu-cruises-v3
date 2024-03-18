@@ -7,6 +7,7 @@ using API.Infrastructure.Responses;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace API.Features.Billing.Invoices {
 
@@ -15,19 +16,23 @@ namespace API.Features.Billing.Invoices {
 
         #region variables
 
+        private readonly EnvironmentSettings environmentSettings;
         private readonly IInvoiceAadeRepository invoiceAadeRepo;
         private readonly IInvoiceReadRepository invoiceReadRepo;
+        private readonly IInvoiceSendToEmail invoiceSendToEmail;
         private readonly IInvoiceUpdateRepository invoiceUpdateRepo;
         private readonly IInvoiceValidation invoiceValidation;
         private readonly IMapper mapper;
 
         #endregion
 
-        public InvoicesController(IInvoiceAadeRepository invoiceAadeRepo, IMapper mapper, IInvoiceReadRepository invoiceReadRepo, IInvoiceUpdateRepository invoiceUpdateRepo, IInvoiceValidation invoiceValidation) {
+        public InvoicesController(IOptions<EnvironmentSettings> environmentSettings, IInvoiceAadeRepository invoiceAadeRepo, IInvoiceReadRepository invoiceReadRepo, IInvoiceSendToEmail invoiceSendToEmail, IInvoiceUpdateRepository invoiceUpdateRepo, IInvoiceValidation invoiceValidation, IMapper mapper) {
             this.invoiceAadeRepo = invoiceAadeRepo;
             this.invoiceReadRepo = invoiceReadRepo;
+            this.invoiceSendToEmail = invoiceSendToEmail;
             this.invoiceUpdateRepo = invoiceUpdateRepo;
             this.invoiceValidation = invoiceValidation;
+            this.environmentSettings = environmentSettings.Value;
             this.mapper = mapper;
         }
 
@@ -166,6 +171,20 @@ namespace API.Features.Billing.Invoices {
                     ResponseCode = 404
                 };
             }
+        }
+
+        [HttpPost("sendInvoiceLinkToEmail")]
+        [Authorize(Roles = "admin")]
+        public async Task<Response> Post([FromBody] InvoiceLinkVM invoiceLink) {
+            string baseUrl = environmentSettings.BaseUrl;
+            string returnUrl = Url.Content($"{baseUrl}#/invoicesViewer/{invoiceLink.InvoiceId}");
+            await invoiceSendToEmail.SendInvoiceLinkToEmail(invoiceLink, returnUrl);
+            return new Response {
+                Code = 200,
+                Icon = Icons.Success.ToString(),
+                Id = invoiceLink.InvoiceId,
+                Message = ApiMessages.OK()
+            };
         }
 
         private string SavePrettyResponse(InvoiceVM invoice, string response) {

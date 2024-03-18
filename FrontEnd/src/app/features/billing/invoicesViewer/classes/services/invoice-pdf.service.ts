@@ -50,32 +50,32 @@ export class InvoicePdfService {
                                     type: 'none',
                                     ul: [
                                         { text: 'Τα στοιχεία μας' },
-                                        invoice.issuer.description,
+                                        invoice.issuer.fullDescription,
                                         invoice.issuer.profession,
                                         invoice.issuer.phones,
                                         invoice.issuer.email,
                                         invoice.issuer.vatNumber,
                                         invoice.issuer.country,
-                                        invoice.issuer.address.street,
-                                        invoice.issuer.address.number,
-                                        invoice.issuer.address.city,
-                                        invoice.issuer.address.postalCode
+                                        invoice.issuer.street,
+                                        invoice.issuer.number,
+                                        invoice.issuer.city,
+                                        invoice.issuer.postalCode
                                     ]
                                 },
                                 {
                                     type: 'none',
                                     ul: [
                                         { text: 'Τα στοιχεία σας' },
-                                        invoice.counterPart.description,
+                                        invoice.counterPart.fullDescription,
                                         invoice.counterPart.profession,
                                         invoice.counterPart.phones,
                                         invoice.counterPart.email,
                                         invoice.counterPart.vatNumber,
                                         invoice.counterPart.country,
-                                        invoice.counterPart.address.street,
-                                        invoice.counterPart.address.number,
-                                        invoice.counterPart.address.city,
-                                        invoice.counterPart.address.postalCode
+                                        invoice.counterPart.street,
+                                        invoice.counterPart.number,
+                                        invoice.counterPart.city,
+                                        invoice.counterPart.postalCode
                                     ]
                                 }
                             ]]
@@ -175,7 +175,7 @@ export class InvoicePdfService {
     //#region private methods
 
     private createPdf(document: any): void {
-        pdfMake.createPdf(document).open()
+        pdfMake.createPdf(document).open({}, window)
     }
 
     private setBackgroundImage(): any[] {

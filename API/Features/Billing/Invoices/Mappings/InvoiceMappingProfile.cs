@@ -97,6 +97,91 @@ namespace API.Features.Billing.Invoices {
                 .ForMember(x => x.VatCategory, x => x.MapFrom(x => 2))
                 .ForMember(x => x.VatAmount, x => x.MapFrom(x => x.VatAmount))
                 .ForMember(x => x.GrossAmount, x => x.MapFrom(x => x.GrossAmount));
+            // Viewer
+            CreateMap<Invoice, InvoiceViewerVM>()
+               .ForMember(x => x.Date, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Date)))
+               .ForMember(x => x.Customer, x => x.MapFrom(x => new InvoiceViewerPartyVM {
+                   Id = x.Customer.Id,
+                   FullDescription = x.Customer.FullDescription,
+                   VatNumber = x.Customer.VatNumber,
+                   Branch = x.Customer.Branch,
+                   Profession = x.Customer.Profession,
+                   Street = x.Customer.Street,
+                   Number = x.Customer.Number,
+                   PostalCode = x.Customer.PostalCode,
+                   City = x.Customer.City,
+                   Phones = x.Customer.Phones,
+                   Email = x.Customer.Email,
+                   Nationality = new SimpleEntity {
+                       Id = x.Customer.Nationality.Id,
+                       Description = x.Customer.Nationality.Description
+                   },
+                   TaxOffice = new SimpleEntity {
+                       Id = x.Customer.TaxOffice.Id,
+                       Description = x.Customer.TaxOffice.Description
+                   }
+               }))
+               .ForMember(x => x.Destination, x => x.MapFrom(x => new SimpleEntity {
+                   Id = x.Destination.Id,
+                   Description = x.Destination.Description
+               }))
+               .ForMember(x => x.DocumentType, x => x.MapFrom(x => new InvoiceViewerDocumentTypeVM {
+                   Id = x.DocumentType.Id,
+                   Description = x.DocumentType.Description,
+                   Batch = x.DocumentType.Batch
+               }))
+               .ForMember(x => x.Issuer, x => x.MapFrom(x => new InvoiceViewerPartyVM {
+                   Id = x.Ship.ShipOwner.Id,
+                   FullDescription = x.Ship.ShipOwner.Description,
+                   VatNumber = x.Ship.ShipOwner.VatNumber,
+                   Branch = x.Ship.ShipOwner.Branch,
+                   Profession = x.Ship.ShipOwner.Profession,
+                   Street = x.Ship.ShipOwner.Street,
+                   Number = x.Ship.ShipOwner.Number,
+                   PostalCode = x.Ship.ShipOwner.PostalCode,
+                   City = x.Ship.ShipOwner.City,
+                   Phones = x.Ship.ShipOwner.Phones,
+                   Email = x.Ship.ShipOwner.Email,
+                   Nationality = new SimpleEntity {
+                       Id = x.Ship.ShipOwner.Nationality.Id,
+                       Description = x.Ship.ShipOwner.Nationality.Description
+                   },
+                   TaxOffice = new SimpleEntity {
+                       Id = x.Ship.ShipOwner.TaxOffice.Id,
+                       Description = x.Ship.ShipOwner.TaxOffice.Description
+                   }
+               }))
+               .ForMember(x => x.PaymentMethod, x => x.MapFrom(x => new SimpleEntity {
+                   Id = x.PaymentMethod.Id,
+                   Description = x.PaymentMethod.Description
+               }))
+               .ForMember(x => x.Aade, x => x.MapFrom(x => new InvoiceViewerAadeVM {
+                   InvoiceId = x.Aade.InvoiceId,
+                   UId = x.Aade.Uid,
+                   Mark = x.Aade.Mark,
+                   MarkCancel = x.Aade.MarkCancel,
+                   QrUrl = x.Aade.QrUrl
+               }))
+               .ForMember(x => x.InvoicesPorts, x => x.MapFrom(x => x.InvoicesPorts.Select(port => new InvoiceViewerPortVM {
+                   Id = port.Id,
+                   InvoiceId = port.InvoiceId,
+                   Port = new SimpleEntity {
+                       Id = port.Port.Id,
+                       Description = port.Port.Description
+                   },
+                   AdultsWithTransfer = port.AdultsWithTransfer,
+                   AdultsPriceWithTransfer = port.AdultsPriceWithTransfer,
+                   AdultsWithoutTransfer = port.AdultsWithoutTransfer,
+                   AdultsPriceWithoutTransfer = port.AdultsPriceWithoutTransfer,
+                   KidsWithTransfer = port.KidsWithTransfer,
+                   KidsPriceWithTransfer = port.KidsPriceWithTransfer,
+                   KidsWithoutTransfer = port.KidsWithoutTransfer,
+                   KidsPriceWithoutTransfer = port.KidsPriceWithoutTransfer,
+                   FreeWithTransfer = port.FreeWithTransfer,
+                   FreeWithoutTransfer = port.FreeWithoutTransfer,
+                   TotalPax = port.TotalPax,
+                   TotalAmount = port.TotalAmount
+               })));
         }
 
     }
