@@ -4,7 +4,7 @@ import { Observable } from 'rxjs'
 // Custom
 import { AadeVM } from '../view-models/form/aade-vm'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
-import { InvoiceReadDto } from '../dtos/form/invoice-read-dto'
+import { InvoiceLinkVM } from '../view-models/email/invoiceLink-vm'
 import { environment } from 'src/environments/environment'
 
 @Injectable({ providedIn: 'root' })
@@ -29,17 +29,13 @@ export class InvoiceHttpService extends HttpDataService {
         return this.http.put<any>(this.url + '/invoiceAade', aadeVM)
     }
 
-    public sendInvoiceLinkToEmail(formValue: InvoiceReadDto): Observable<any> {
+    public sendInvoiceLinkToEmail(invoiceId: string, email: string): any {
         const x: InvoiceLinkVM = {
-            email: 'johnsourvinos@hotmail.com',
-            invoiceId: formValue.invoiceId.toString()
+            email: email,
+            invoiceId: invoiceId
         }
         return this.http.post(this.url + '/sendInvoiceLinkToEmail', x)
     }
 
 }
 
-export interface InvoiceLinkVM {
-    email: string,
-    invoiceId: string
-}

@@ -226,15 +226,16 @@ export class InvoiceFormComponent {
     }
 
     public onSendInvoiceLinkToEmail(): void {
-        this.invoiceHttpService.sendInvoiceLinkToEmail(this.form.value).subscribe({
-            complete: () => {
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
-            },
-            error: (errorFromInterceptor) => {
-                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-            }
+        this.getCustomerDataFromStorage(this.form.value.customer.id).then((response) => {
+            this.invoiceHttpService.sendInvoiceLinkToEmail(this.form.value.invoiceId, response.email).subscribe({
+                complete: () => {
+                    this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                },
+                error: (errorFromInterceptor: any) => {
+                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                }
+            })
         })
-
     }
 
     public onUpdateInvoiceWithOutputPort(port: any, portIndex: number): void {
@@ -578,6 +579,10 @@ export class InvoiceFormComponent {
 
     private leftAlignLastTab(): void {
         this.helperService.leftAlignLastTab()
+    }
+
+    private getCustomerDataFromStorage(customerId: number): Promise<any> {
+        return this.dexieService.getById('customers', customerId)
     }
 
     //#endregion

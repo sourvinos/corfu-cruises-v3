@@ -26,7 +26,7 @@ export class CardsMenuComponent {
     //#region public methods
 
     public doNavigation(feature: string, featureIsEnabled: boolean): void {
-        this.router.navigate(environment.production && featureIsEnabled == false
+        this.router.navigate(featureIsEnabled == false
             ? (['not-ready-yet'])
             : ([feature]))
     }
