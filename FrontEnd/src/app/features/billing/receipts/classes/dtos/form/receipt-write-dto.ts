@@ -1,9 +1,9 @@
 import { Guid } from 'guid-typescript'
 
-export interface TransactionWriteDto {
+export interface ReceiptWriteDto {
 
     // PK
-    transactionId: Guid
+    invoiceId: Guid
     // FKs
     customerId: number
     documentTypeId: number

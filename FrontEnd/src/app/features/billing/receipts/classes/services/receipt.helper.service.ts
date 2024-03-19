@@ -3,17 +3,17 @@ import { Injectable } from '@angular/core'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DocumentTypeReadDto } from '../../../documentTypes/classes/dtos/documentType-read-dto'
-import { TransactionWriteDto } from '../dtos/form/transaction-write-dto'
+import { ReceiptWriteDto } from '../dtos/form/receipt-write-dto'
 
 @Injectable({ providedIn: 'root' })
 
-export class TransactionHelperService {
+export class ReceiptHelperService {
 
     constructor(private dexieService: DexieService, private dateHelperService: DateHelperService) { }
 
-    public flattenForm(formValue: any): TransactionWriteDto {
-        const x: TransactionWriteDto = {
-            transactionId: formValue.transactionId != '' ? formValue.transactionId : null,
+    public flattenForm(formValue: any): ReceiptWriteDto {
+        const x: ReceiptWriteDto = {
+            invoiceId: formValue.receiptId != '' ? formValue.invoiceId : null,
             customerId: formValue.customer.id,
             documentTypeId: formValue.documentType.id,
             paymentMethodId: formValue.paymentMethod.id,

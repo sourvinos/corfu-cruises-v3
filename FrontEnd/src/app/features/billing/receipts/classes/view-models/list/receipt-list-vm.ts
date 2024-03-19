@@ -3,7 +3,7 @@ import { Guid } from 'guid-typescript'
 import { DocumentTypeVM } from './documentType-vm'
 import { SimpleEntity } from '../../../../../../shared/classes/simple-entity'
 
-export interface TransactionListVM {
+export interface ReceiptListVM {
 
     id: Guid
     date: string

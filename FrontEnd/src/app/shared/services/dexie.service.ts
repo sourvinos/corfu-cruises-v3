@@ -17,7 +17,7 @@ export class DexieService extends Dexie {
             customers: 'id, description, fullDescription, isActive',
             destinations: 'id, description, isActive',
             documentTypesInvoice: 'id, abbreviation',
-            documentTypesTransaction: 'id, abbreviation',
+            documentTypesReceipt: 'id, abbreviation',
             drivers: 'id, description, isActive',
             genders: 'id, description, isActive',
             nationalities: 'id, description, isActive',

@@ -2764,7 +2764,7 @@
                 "description": "Χρεωστική ή πιστωτική τιμολόγηση"
             },
             {
-                "id": "refersToTransaction",
+                "id": "refersToReceipt",
                 "description": "Είσπραξη ή πληρωμή"
             },
             {
@@ -3160,7 +3160,7 @@
         ]
     },
     {
-        "feature": "transactionList",
+        "feature": "receiptList",
         "labels": [
             {
                 "id": "header",
@@ -3197,7 +3197,7 @@
         ]
     },
     {
-        "feature": "transactionForm",
+        "feature": "receiptForm",
         "labels": [
             {
                 "id": "header",

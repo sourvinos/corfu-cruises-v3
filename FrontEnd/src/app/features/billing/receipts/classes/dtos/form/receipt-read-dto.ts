@@ -4,10 +4,10 @@ import { DocumentTypeVM } from '../../view-models/list/documentType-vm'
 import { Metadata } from 'src/app/shared/classes/metadata'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
-export interface TransactionReadDto extends Metadata {
+export interface ReceiptReadDto extends Metadata {
 
     // PK
-    transactionId: Guid
+    invoiceId: Guid
     // Fields
     date: string
     invoiceNo: number

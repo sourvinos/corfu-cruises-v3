@@ -15,30 +15,30 @@ import { MessageDialogService } from 'src/app/shared/services/message-dialog.ser
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
-import { TransactionHelperService } from '../../classes/services/transaction.helper.service'
-import { TransactionHttpService } from '../../classes/services/transaction-http.service'
-import { TransactionReadDto } from '../../classes/dtos/form/transaction-read-dto'
-import { TransactionWriteDto } from '../../classes/dtos/form/transaction-write-dto'
+import { ReceiptHelperService } from '../../classes/services/receipt.helper.service'
+import { ReceiptHttpService } from '../../classes/services/receipt-http.service'
+import { ReceiptReadDto } from '../../classes/dtos/form/receipt-read-dto'
+import { ReceiptWriteDto } from '../../classes/dtos/form/receipt-write-dto'
 import { ValidationService } from 'src/app/shared/services/validation.service'
 
 @Component({
-    selector: 'transaction-form',
-    templateUrl: './transaction-form.component.html',
-    styleUrls: ['../../../../../../assets/styles/custom/forms.css', './transaction-form.component.css']
+    selector: 'receipt-form',
+    templateUrl: './receipt-form.component.html',
+    styleUrls: ['../../../../../../assets/styles/custom/forms.css', './receipt-form.component.css']
 })
 
-export class TransactionFormComponent {
+export class ReceiptFormComponent {
 
     //#region common variables
 
-    private record: TransactionReadDto
+    private record: ReceiptReadDto
     private recordId: string
-    public feature = 'transactionForm'
-    public featureIcon = 'transactions'
+    public feature = 'receiptForm'
+    public featureIcon = 'receipts'
     public form: FormGroup
     public icon = 'arrow_back'
     public input: InputTabStopDirective
-    public parentUrl = '/transactions'
+    public parentUrl = '/receipts'
 
     //#endregion
 
@@ -57,7 +57,7 @@ export class TransactionFormComponent {
 
     //#endregion
 
-    constructor(private documentTypeHttpService: DocumentTypeHttpService, private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private transactionHelperService: TransactionHelperService, private transactionHttpService: TransactionHttpService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
+    constructor(private documentTypeHttpService: DocumentTypeHttpService, private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private receiptHelperService: ReceiptHelperService, private receiptHttpService: ReceiptHttpService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -101,7 +101,7 @@ export class TransactionFormComponent {
     public onDelete(): void {
         this.dialogService.open(this.messageDialogService.confirmDelete(), 'question', ['abort', 'ok']).subscribe(response => {
             if (response) {
-                this.transactionHttpService.delete(this.form.value.transactionId).subscribe({
+                this.receiptHttpService.delete(this.form.value.invoiceId).subscribe({
                     complete: () => {
                         this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
                     },
@@ -135,22 +135,22 @@ export class TransactionFormComponent {
         })
     }
 
-    public onUpdateTransactionWithOutputPort(port: any, portIndex: number): void {
-        this.form.value.transactionsPorts[portIndex] = port
+    public onUpdateReceiptWithOutputPort(port: any, portIndex: number): void {
+        this.form.value.receiptsPorts[portIndex] = port
     }
 
     //#endregion
 
     //#region private methods
 
-    private flattenForm(): TransactionWriteDto {
-        return this.transactionHelperService.flattenForm(this.form.value)
+    private flattenForm(): ReceiptWriteDto {
+        return this.receiptHelperService.flattenForm(this.form.value)
     }
 
     private getRecord(): Promise<any> {
         if (this.recordId != undefined) {
             return new Promise((resolve) => {
-                const formResolved: FormResolved = this.activatedRoute.snapshot.data['transactionForm']
+                const formResolved: FormResolved = this.activatedRoute.snapshot.data['receiptForm']
                 if (formResolved.error == null) {
                     this.record = formResolved.record.body
                     resolve(this.record)
@@ -170,7 +170,7 @@ export class TransactionFormComponent {
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            transactionId: '',
+            invoiceId: '',
             date: [new Date(), [Validators.required]],
             customer: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             documentType: ['', [Validators.required, ValidationService.RequireAutocomplete]],
@@ -189,7 +189,7 @@ export class TransactionFormComponent {
 
     private populateDropdowns(): void {
         this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', 'description', 'description')
-        this.populateDropdownFromDexieDB('documentTypesTransaction', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation')
+        this.populateDropdownFromDexieDB('documentTypesReceipt', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation')
         this.populateDropdownFromDexieDB('paymentMethods', 'dropdownPaymentMethods', 'paymentMethod', 'description', 'description')
     }
 
@@ -203,7 +203,7 @@ export class TransactionFormComponent {
     private populateFields(): void {
         if (this.record != undefined) {
             this.form.patchValue({
-                transactionId: this.record.transactionId,
+                invoiceId: this.record.invoiceId,
                 date: this.record.date,
                 customer: { 'id': this.record.customer.id, 'description': this.record.customer.description },
                 documentType: { 'id': this.record.documentType.id, 'abbreviation': this.record.documentType.abbreviation },
@@ -224,8 +224,8 @@ export class TransactionFormComponent {
         this.form.reset()
     }
 
-    private saveRecord(transaction: TransactionWriteDto): void {
-        this.transactionHttpService.save(transaction).subscribe({
+    private saveRecord(receipt: ReceiptWriteDto): void {
+        this.receiptHttpService.save(receipt).subscribe({
             next: () => {
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
@@ -264,7 +264,7 @@ export class TransactionFormComponent {
     private updateDocumentType(id: number): void {
         this.documentTypeHttpService.updateLastNo(id).subscribe({
             next: (response) => {
-                this.transactionHelperService.updateBrowserStorageAfterApiUpdate(response.body)
+                this.receiptHelperService.updateBrowserStorageAfterApiUpdate(response.body)
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])

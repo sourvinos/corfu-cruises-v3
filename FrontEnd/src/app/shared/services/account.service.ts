@@ -184,7 +184,7 @@ export class AccountService extends HttpDataService {
         this.dexieService.populateTable('ships', this.shipHttpService)
         // Billing
         this.dexieService.populateDocumentTypesTable('documentTypesInvoice', this.documentTypeHttpService, 1)
-        this.dexieService.populateDocumentTypesTable('documentTypesTransaction', this.documentTypeHttpService, 2)
+        this.dexieService.populateDocumentTypesTable('documentTypesReceipt', this.documentTypeHttpService, 2)
         this.dexieService.populateTable('paymentMethods', this.paymentMethodService)
         this.dexieService.populateTable('taxOffices', this.taxOfficeService)
         this.dexieService.populateTable('vatRegimes', this.vatRegimeService)

@@ -9,34 +9,34 @@ import { DialogService } from '../../../../../shared/services/modal-dialog.servi
 import { EmojiService } from '../../../../../shared/services/emoji.service'
 import { HelperService } from '../../../../../shared/services/helper.service'
 import { InteractionService } from '../../../../../shared/services/interaction.service'
-import { TransactionHttpService } from '../../classes/services/transaction-http.service'
+import { ReceiptHttpService } from '../../classes/services/receipt-http.service'
 import { ListResolved } from '../../../../../shared/classes/list-resolved'
 import { LocalStorageService } from '../../../../../shared/services/local-storage.service'
 import { MatDatepickerInputEvent } from '@angular/material/datepicker'
 import { MessageDialogService } from '../../../../../shared/services/message-dialog.service'
 import { MessageLabelService } from '../../../../../shared/services/message-label.service'
 import { SessionStorageService } from '../../../../../shared/services/session-storage.service'
-import { TransactionListVM } from '../../classes/view-models/list/transaction-list-vm'
+import { ReceiptListVM } from '../../classes/view-models/list/receipt-list-vm'
 
 @Component({
-    selector: 'transaction-list',
-    templateUrl: './transaction-list.component.html',
+    selector: 'receipt-list',
+    templateUrl: './receipt-list.component.html',
     styleUrls: ['../../../../../../assets/styles/custom/lists.css']
 })
 
-export class TransactionListComponent {
+export class ReceiptListComponent {
 
     //#region common
 
     @ViewChild('table') table: Table
 
-    private url = 'transactions'
+    private url = 'receipts'
     private virtualElement: any
-    public feature = 'transactionList'
-    public featureIcon = 'transactions'
+    public feature = 'receiptList'
+    public featureIcon = 'receipts'
     public icon = 'home'
     public parentUrl = '/home'
-    public records: TransactionListVM[]
+    public records: ReceiptListVM[]
     public recordsFilteredCount = 0
 
     //#endregion
@@ -52,7 +52,7 @@ export class TransactionListComponent {
 
     //#region specific
 
-    public recordsFiltered: TransactionListVM[]
+    public recordsFiltered: ReceiptListVM[]
     public filterDate = ''
 
     //#endregion
@@ -65,7 +65,7 @@ export class TransactionListComponent {
         private emojiService: EmojiService,
         private helperService: HelperService,
         private interactionService: InteractionService,
-        private transactionHttpService: TransactionHttpService,
+        private receiptHttpService: ReceiptHttpService,
         private localStorageService: LocalStorageService,
         private messageDialogService: MessageDialogService,
         private messageLabelService: MessageLabelService,

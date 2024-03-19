@@ -8,7 +8,7 @@ namespace API.Features.Billing.Receipts {
     public class ReceiptReadDto : IMetadata {
 
         // PK
-        public string TransactionId { get; set; }
+        public Guid InvoiceId { get; set; }
         // FKs
         public int CustomerId { get; set; }
         public int DocumentTypeId { get; set; }

@@ -7,14 +7,14 @@ import { environment } from 'src/environments/environment'
 
 @Injectable({ providedIn: 'root' })
 
-export class TransactionHttpService extends HttpDataService {
+export class ReceiptHttpService extends HttpDataService {
 
     constructor(httpClient: HttpClient) {
-        super(httpClient, environment.apiUrl + '/transactions')
+        super(httpClient, environment.apiUrl + '/receipts')
     }
 
     public override save(formData: any): Observable<any> {
-        return formData.transactionId == null
+        return formData.invoiceId == null
             ? this.http.post<any>(this.url, formData)
             : this.http.put<any>(this.url, formData)
     }
