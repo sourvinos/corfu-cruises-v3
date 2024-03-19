@@ -84,38 +84,58 @@ export class InvoicePdfService {
                     },
                     {
                         table: {
-                            widths: ['50%', '50%'],
+                            widths: ['35%', '35%', '30%'],
                             body: [[
                                 {
-                                    type: 'none',
-                                    ul: [
-                                        { text: 'Αναχωρήσεις από CORFU PORT' },
-                                        { text: 'Ενήλικες' },
-                                        { text: 'Με transfer: ' + invoice.ports[0].adultsWithTransfer + ' x ' + invoice.ports[0].adultsPriceWithTransfer + ' = ' + invoice.ports[0].adultsAmountWithTransfer },
-                                        { text: 'Χωρίς transfer: ' + invoice.ports[0].adultsWithoutTransfer + ' x ' + invoice.ports[0].adultsPriceWithoutTransfer + ' = ' + invoice.ports[0].adultsAmountWithoutTransfer },
-                                        { text: 'Παιδιά' },
-                                        { text: 'Με transfer: ' + invoice.ports[0].kidsWithTransfer + ' x ' + invoice.ports[0].kidsPriceWithTransfer + ' = ' + invoice.ports[0].kidsAmountWithTransfer },
-                                        { text: 'Χωρίς transfer: ' + invoice.ports[0].kidsWithoutTransfer + ' x ' + invoice.ports[0].kidsPriceWithoutTransfer + ' = ' + invoice.ports[0].kidsAmountWithoutTransfer },
-                                        { text: 'Δωρεάν' },
-                                        { text: 'Με transfer: ' + invoice.ports[0].freeWithTransfer },
-                                        { text: 'Χωρίς transfer: ' + invoice.ports[0].freeWithoutTransfer }
-                                    ]
+                                    table: {
+                                        body: [
+                                            ['ΑΝΑΧΩΡΗΣΕΙΣ ΑΠΟ CORFU PORT', '', '', ''],
+                                            ['ΕΝΗΛΙΚΕΣ', '', '', ''],
+                                            ['ΜΕ TRANSFER', invoice.ports[0].adultsWithTransfer, invoice.ports[0].adultsPriceWithTransfer, invoice.ports[0].adultsAmountWithTransfer],
+                                            ['ΧΩΡΙΣ TRANSFER', invoice.ports[0].adultsWithoutTransfer, invoice.ports[0].adultsPriceWithoutTransfer, invoice.ports[0].adultsAmountWithoutTransfer],
+                                            ['ΠΑΙΔΙΑ', '', '', ''],
+                                            ['ΜΕ TRANSFER', invoice.ports[0].kidsWithTransfer, invoice.ports[0].kidsPriceWithTransfer, invoice.ports[0].kidsAmountWithTransfer],
+                                            ['ΧΩΡΙΣ TRANSFER', invoice.ports[0].kidsWithoutTransfer, invoice.ports[0].kidsPriceWithoutTransfer, invoice.ports[0].kidsAmountWithoutTransfer],
+                                            ['ΔΩΡΕΑΝ', '', '', ''],
+                                            ['ΜΕ TRANSFER', invoice.ports[0].freeWithTransfer, '', ''],
+                                            ['ΧΩΡΙΣ TRANSFER', invoice.ports[0].freeWithoutTransfer, '', ''],
+                                        ]
+                                    },
+                                    layout: 'noBorders'
                                 },
                                 {
-                                    type: 'none',
-                                    ul: [
-                                        { text: 'Αναχωρήσεις από LEFKIMMI PORT' },
-                                        { text: 'Ενήλικες' },
-                                        { text: 'Με transfer: ' + invoice.ports[1].adultsWithTransfer + ' x ' + invoice.ports[1].adultsPriceWithTransfer + ' = ' + invoice.ports[1].adultsAmountWithTransfer },
-                                        { text: 'Χωρίς transfer: ' + invoice.ports[1].adultsWithoutTransfer + ' x ' + invoice.ports[1].adultsPriceWithoutTransfer + ' = ' + invoice.ports[1].adultsAmountWithoutTransfer },
-                                        { text: 'Παιδιά' },
-                                        { text: 'Με transfer: ' + invoice.ports[1].kidsWithTransfer + ' x ' + invoice.ports[1].kidsPriceWithTransfer + ' = ' + invoice.ports[1].kidsAmountWithTransfer },
-                                        { text: 'Χωρίς transfer: ' + invoice.ports[1].kidsWithoutTransfer + ' x ' + invoice.ports[1].kidsPriceWithoutTransfer + ' = ' + invoice.ports[1].kidsAmountWithoutTransfer },
-                                        { text: 'Δωρεάν' },
-                                        { text: 'Με transfer: ' + invoice.ports[1].freeWithTransfer },
-                                        { text: 'Χωρίς transfer: ' + invoice.ports[1].freeWithoutTransfer }
-
-                                    ]
+                                    table: {
+                                        body: [
+                                            ['ΑΝΑΧΩΡΗΣΕΙΣ ΑΠΟ LEFKIMMI PORT', '', '', ''],
+                                            ['ΕΝΗΛΙΚΕΣ', '', '', ''],
+                                            ['ΜΕ TRANSFER', invoice.ports[1].adultsWithTransfer, invoice.ports[1].adultsPriceWithTransfer, invoice.ports[1].adultsAmountWithTransfer],
+                                            ['ΧΩΡΙΣ TRANSFER', invoice.ports[1].adultsWithoutTransfer, invoice.ports[1].adultsPriceWithoutTransfer, invoice.ports[1].adultsAmountWithoutTransfer],
+                                            ['ΠΑΙΔΙΑ', '', '', ''],
+                                            ['ΜΕ TRANSFER', invoice.ports[1].kidsWithTransfer, invoice.ports[1].kidsPriceWithTransfer, invoice.ports[1].kidsAmountWithTransfer],
+                                            ['ΧΩΡΙΣ TRANSFER', invoice.ports[1].kidsWithoutTransfer, invoice.ports[1].kidsPriceWithoutTransfer, invoice.ports[1].kidsAmountWithoutTransfer],
+                                            ['ΔΩΡΕΑΝ', '', '', ''],
+                                            ['ΜΕ TRANSFER', invoice.ports[1].freeWithTransfer, '', ''],
+                                            ['ΧΩΡΙΣ TRANSFER', invoice.ports[1].freeWithoutTransfer, '', ''],
+                                        ]
+                                    },
+                                    layout: 'noBorders'
+                                },
+                                {
+                                    table: {
+                                        body: [
+                                            ['ΣΥΝΟΛΟ', '', ''],
+                                            ['ΕΝΗΛΙΚΕΣ', '', ''],
+                                            ['ΜΕ TRANSFER', invoice.ports[0].adultsWithTransfer + invoice.ports[1].adultsWithTransfer, invoice.ports[0].adultsAmountWithTransfer + invoice.ports[1].adultsAmountWithTransfer],
+                                            ['ΧΩΡΙΣ TRANSFER', invoice.ports[0].adultsWithoutTransfer + invoice.ports[1].adultsWithoutTransfer, invoice.ports[0].adultsAmountWithoutTransfer + invoice.ports[1].adultsAmountWithoutTransfer],
+                                            ['ΠΑΙΔΙΑ', '', ''],
+                                            ['ΜΕ TRANSFER', invoice.ports[0].kidsWithTransfer + invoice.ports[1].kidsWithTransfer, invoice.ports[0].kidsAmountWithTransfer + invoice.ports[1].kidsAmountWithTransfer],
+                                            ['ΧΩΡΙΣ TRANSFER', invoice.ports[0].kidsWithoutTransfer + invoice.ports[0].kidsWithoutTransfer, invoice.ports[0].kidsAmountWithoutTransfer + invoice.ports[1].kidsAmountWithoutTransfer],
+                                            ['ΔΩΡΕΑΝ', '', ''],
+                                            ['ΜΕ TRANSFER', invoice.ports[0].freeWithTransfer + invoice.ports[1].freeWithTransfer, ''],
+                                            ['ΧΩΡΙΣ TRANSFER', invoice.ports[0].freeWithoutTransfer + invoice.ports[1].freeWithoutTransfer, ''],
+                                        ]
+                                    },
+                                    layout: 'noBorders'
                                 }
                             ]]
                         },
@@ -128,7 +148,7 @@ export class InvoicePdfService {
                                     type: 'none',
                                     ul: [
                                         { text: 'Καθαρή αξία ' + invoice.summary.netValue },
-                                        { text: 'ΦΠΑ 24% ' + invoice.summary.vatAmount },
+                                        { text: 'ΦΠΑ 13% ' + invoice.summary.vatAmount },
                                         { text: 'Συνολική αξία ' + invoice.summary.grossValue }
                                     ]
                                 },
