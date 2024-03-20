@@ -9,14 +9,14 @@
             <!-- Lastname -->
             <mat-form-field>
                 <mat-label>{{ getLabel('lastname') }}</mat-label>
-                <input [inputTabStop]="input" dataTabIndex="1" formControlName="lastname" matInput>
+                <input (input)="convertToUpperCase('lastname')" [inputTabStop]="input" dataTabIndex="1" formControlName="lastname" matInput>
                 <mat-error *ngIf="lastname.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="!lastname.hasError('required') && lastname.hasError('shouldBeCapitalLetterOrSpace')">{{ getHint("shouldBeCapitalLetterOrSpace") }}</mat-error>
             </mat-form-field>
             <!-- Firstname -->
             <mat-form-field>
                 <mat-label>{{ getLabel('firstname') }}</mat-label>
-                <input [inputTabStop]="input" dataTabIndex="2" formControlName="firstname" matInput>
+                <input (input)="convertToUpperCase('firstname')" [inputTabStop]="input" dataTabIndex="2" formControlName="firstname" matInput>
                 <mat-error *ngIf="firstname.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="!firstname.hasError('required') && firstname.hasError('shouldBeCapitalLetterOrSpace')">{{ getHint("shouldBeCapitalLetterOrSpace") }}</mat-error>
             </mat-form-field>

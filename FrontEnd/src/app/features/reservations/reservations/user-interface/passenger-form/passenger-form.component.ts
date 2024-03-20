@@ -80,6 +80,12 @@ export class PassengerFormComponent {
         if (event.target.value == '') this.isAutoCompleteDisabled = true
     }
 
+    public convertToUpperCase(fieldName: string): void {
+        this.form.patchValue({
+            [fieldName]: this.form.controls[fieldName].value.toUpperCase()
+        })
+    }
+
     public enableOrDisableAutoComplete(event: any): void {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
     }
