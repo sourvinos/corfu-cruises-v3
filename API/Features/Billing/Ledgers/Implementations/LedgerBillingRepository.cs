@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using API.Features.Billing.Transactions;
 using AutoMapper;
+using System.Threading.Tasks;
 
 namespace API.Features.Billing.Ledgers {
 
@@ -26,7 +27,7 @@ namespace API.Features.Billing.Ledgers {
             this.mapper = mapper;
         }
 
-        public IEnumerable<LedgerVM> Get(string fromDate, string toDate, int customerId) {
+        public IEnumerable<LedgerVM> GetForLedger(string fromDate, string toDate, int customerId) {
             var connectedCustomerId = GetConnectedCustomerIdForConnectedUser();
             var records = context.Transactions
                 .AsNoTracking()
@@ -41,7 +42,7 @@ namespace API.Features.Billing.Ledgers {
             return mapper.Map<IEnumerable<TransactionsBase>, IEnumerable<LedgerVM>>(records);
         }
 
-        public IEnumerable<LedgerVM> BuildBalance(IEnumerable<LedgerVM> records) {
+        public IEnumerable<LedgerVM> BuildBalanceForLedger(IEnumerable<LedgerVM> records) {
             decimal balance = 0;
             foreach (var record in records) {
                 balance = balance + record.Debit - record.Credit;
@@ -107,6 +108,16 @@ namespace API.Features.Billing.Ledgers {
             return final;
         }
 
+        public async Task<IEnumerable<LedgerVM>> GetForBalanceAsync(int customerId) {
+            var records = await context.Transactions
+                .AsNoTracking()
+                .Include(x => x.Customer)
+                .Include(x => x.DocumentType)
+                .Where(x => x.CustomerId == customerId)
+                .ToListAsync();
+            return mapper.Map<IEnumerable<TransactionsBase>, IEnumerable<LedgerVM>>(records);
+        }
+
         private static LedgerVM BuildTotalLine(decimal debit, decimal credit, decimal balance, string label) {
             var total = new LedgerVM {
                 Date = "",
@@ -125,6 +136,15 @@ namespace API.Features.Billing.Ledgers {
                 Balance = balance
             };
             return total;
+        }
+
+        public decimal BuildBalance(IEnumerable<LedgerVM> records) {
+            decimal balance = 0;
+            foreach (var record in records) {
+                balance = balance + record.Debit - record.Credit;
+                record.Balance = balance;
+            }
+            return balance;
         }
 
         private int? GetConnectedCustomerIdForConnectedUser() {
