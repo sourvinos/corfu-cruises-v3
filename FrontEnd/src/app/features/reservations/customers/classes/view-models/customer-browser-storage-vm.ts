@@ -4,17 +4,20 @@ export interface CustomerBrowserStorageVM {
 
     // PK
     id: number
+    // Navigation
+    nationality: NationalityBrowserStorageVM
     // Fields
-    abbreviation: string
     description: string
+    fullDescription: string
     vatNumber: string
     branch: number
+    profession: string
     street: string
     number: string
     postalCode: string
     city: string
+    phones: string
+    email: string
     isActive: boolean
-    // Navigation
-    nationality: NationalityBrowserStorageVM
 
 }

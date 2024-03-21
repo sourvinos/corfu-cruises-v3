@@ -1,15 +1,8 @@
-using System;
-using API.Infrastructure.Classes;
-
 namespace API.Features.Billing.Invoices {
 
     public class InvoiceViewerPortVM {
 
-        // PK
-        public int Id { get; set; }
-        // FKs
-        public Guid InvoiceId { get; set; }
-        // Fields
+        public string Port { get; set; }
         public int AdultsWithTransfer { get; set; }
         public decimal AdultsPriceWithTransfer { get; set; }
         public int AdultsWithoutTransfer { get; set; }
@@ -22,8 +15,6 @@ namespace API.Features.Billing.Invoices {
         public int FreeWithoutTransfer { get; set; }
         public int TotalPax { get; set; }
         public decimal TotalAmount { get; set; }
-        // Navigation
-        public SimpleEntity Port { get; set; }
 
     }
 

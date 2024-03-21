@@ -7,7 +7,7 @@ import { InvoicePdfHeaderVM } from '../view-models/pdf/invoice-pdf-header-vm'
 import { InvoicePdfPartyTypeVM } from '../view-models/pdf/invoice-pdf-partyType-vm'
 import { InvoicePdfPortVM } from '../view-models/pdf/invoice-pdf-port-vm'
 import { InvoicePdfSummaryVM } from '../view-models/pdf/invoice-pdf-summary-vm'
-import { InvoiceViewerVM } from '../view-models/viewer/invoiceViewer-vm'
+import { InvoicePdfVM } from '../view-models/pdf/invoice-pdf-vm'
 
 @Injectable({ providedIn: 'root' })
 
@@ -15,24 +15,38 @@ export class InvoicePdfHelperService {
 
     constructor(private dateHelperService: DateHelperService, private dexieService: DexieService) { }
 
-    public async createPdfInvoiceParts(formValue: InvoiceViewerVM): Promise<any> {
-        const header = await this.buildHeader(formValue)
-        const issuer = await this.buildIssuer(formValue)
-        const counterPart = await this.buildCounterPart(formValue)
-        const summary = await this.buildSummary(formValue)
-        const aade = await this.buildAade(formValue)
-        const ports = await this.buildPorts(formValue)
+    //#region public methods
+
+    public async createPdfInvoiceParts(invoice: InvoicePdfVM): Promise<any> {
+        const header = await this.buildHeader(invoice)
+        const issuer = await this.buildIssuer(invoice)
+        const counterPart = await this.buildCounterPart(invoice)
+        const summary = await this.buildSummary(invoice)
+        const aade = await this.buildAade(invoice)
+        const ports = await this.buildPorts(invoice)
+        const ship = await this.buildShip(invoice)
+        const paymentMethod = await this.buildPaymentMethod(invoice)
+        const bankAccounts = await this.buildBankAccounts()
+        const balances = await this.buildBalances()
         return {
             header,
             issuer,
             counterPart,
             summary,
             aade,
-            ports
+            ports,
+            ship,
+            paymentMethod,
+            bankAccounts,
+            balances
         }
     }
 
-    private buildHeader(formValue: InvoiceViewerVM): Promise<any> {
+    //#endregion
+
+    //#region private methods
+
+    private buildHeader(formValue: any): Promise<any> {
         return new Promise((resolve) => {
             const x: InvoicePdfHeaderVM = {
                 date: this.dateHelperService.formatISODateToLocale(formValue.date),
@@ -44,47 +58,47 @@ export class InvoicePdfHelperService {
         })
     }
 
-    private buildIssuer(formValue: InvoiceViewerVM): Promise<any> {
+    private buildIssuer(formValue: any): Promise<any> {
         return new Promise((resolve) => {
             const x: InvoicePdfPartyTypeVM = {
-                fullDescription: formValue.issuer.fullDescription,
-                profession: formValue.issuer.profession,
-                phones: formValue.issuer.phones,
-                email: formValue.issuer.email,
-                vatNumber: formValue.issuer.vatNumber,
-                country: formValue.issuer.nationality.description,
                 branch: formValue.issuer.branch,
-                street: formValue.issuer.street,
-                number: formValue.issuer.number,
-                postalCode: formValue.issuer.postalCode,
                 city: formValue.issuer.city,
-                taxOffice: formValue.issuer.taxOffice.description
+                country: formValue.issuer.nationality.description,
+                email: formValue.issuer.email,
+                fullDescription: formValue.issuer.fullDescription,
+                number: formValue.issuer.number,
+                phones: formValue.issuer.phones,
+                postalCode: formValue.issuer.postalCode,
+                profession: formValue.issuer.profession,
+                street: formValue.issuer.street,
+                taxOffice: formValue.issuer.taxOffice.description,
+                vatNumber: formValue.issuer.vatNumber,
             }
             resolve(x)
         })
     }
 
-    private buildCounterPart(formValue: InvoiceViewerVM): Promise<any> {
+    private buildCounterPart(formValue: any): Promise<any> {
         return new Promise((resolve) => {
             const x: InvoicePdfPartyTypeVM = {
-                fullDescription: formValue.customer.fullDescription,
-                profession: formValue.customer.profession,
-                phones: formValue.customer.phones,
-                email: formValue.customer.email,
-                vatNumber: formValue.customer.vatNumber,
-                country: formValue.issuer.nationality.description,
                 branch: formValue.customer.branch,
-                street: formValue.customer.street,
-                number: formValue.customer.number,
-                postalCode: formValue.customer.postalCode,
                 city: formValue.customer.city,
-                taxOffice: formValue.issuer.taxOffice.description
+                country: formValue.customer.nationality.description,
+                email: formValue.customer.email,
+                fullDescription: formValue.customer.fullDescription,
+                number: formValue.customer.number,
+                phones: formValue.customer.phones,
+                postalCode: formValue.customer.postalCode,
+                profession: formValue.customer.profession,
+                street: formValue.customer.street,
+                taxOffice: formValue.customer.taxOffice.description,
+                vatNumber: formValue.customer.vatNumber,
             }
             resolve(x)
         })
     }
 
-    private buildSummary(formValue: InvoiceViewerVM): Promise<any> {
+    private buildSummary(formValue: any): Promise<any> {
         return new Promise((resolve) => {
             const x: InvoicePdfSummaryVM = {
                 netValue: formValue.netAmount,
@@ -96,7 +110,7 @@ export class InvoicePdfHelperService {
 
     }
 
-    private buildAade(formValue: InvoiceViewerVM): Promise<any> {
+    private buildAade(formValue: any): Promise<any> {
         return new Promise((resolve) => {
             const x: InvoicePdfAadeVM = {
                 uId: formValue.aade.uId,
@@ -108,7 +122,7 @@ export class InvoicePdfHelperService {
         })
     }
 
-    private buildPorts(formValue: InvoiceViewerVM): Promise<any> {
+    private buildPorts(formValue: any): Promise<any> {
         const x = []
         return new Promise((resolve) => {
             const z: InvoicePdfPortVM = {
@@ -148,5 +162,46 @@ export class InvoicePdfHelperService {
             resolve(x)
         })
     }
+
+    private buildShip(formValue: any): Promise<any> {
+        return new Promise((resolve) => {
+            const x: string = formValue.ship
+            resolve(x)
+        })
+    }
+
+    private buildPaymentMethod(formValue: any): Promise<any> {
+        return new Promise((resolve) => {
+            const x: string = formValue.paymentMethod
+            resolve(x)
+        })
+    }
+
+    private buildBalances(): Promise<any> {
+        return new Promise((resolve) => {
+            const x: number[] = [
+                1234.56,
+                7890.56
+            ]
+            resolve(x)
+        })
+    }
+
+    private buildBankAccounts(): Promise<any> {
+        return new Promise((resolve) => {
+            const x: string[] = [
+                'ΠΕΙΡΑΙΩΣ GR17 0171 1740 0061 7413 5517 925',
+                'ALPHA BANK GR41 0140 5950 5950 0233 0002 010',
+                'EUROBANK GR53 0260 4450 0003 5020 0621 503',
+                'ΕΘΝΙΚΗ GR22 0110 8670 0000 8670 0263 444',
+                'ATTICA BANK GR43 0160 8730 0000 0008 5207 750',
+                ' '
+            ]
+            resolve(x)
+        })
+
+    }
+
+    //#endregion
 
 }

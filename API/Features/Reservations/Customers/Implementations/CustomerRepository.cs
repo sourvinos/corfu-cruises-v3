@@ -32,6 +32,7 @@ namespace API.Features.Reservations.Customers {
             var customers = await context.Customers
                 .AsNoTracking()
                 .Include(x => x.Nationality)
+                .Include(x => x.TaxOffice)
                 .OrderBy(x => x.Description)
                 .ToListAsync();
             return mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerBrowserStorageVM>>(customers);

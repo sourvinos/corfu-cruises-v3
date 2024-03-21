@@ -32,6 +32,7 @@ namespace API.Features.Reservations.Ships {
             var ships = await context.Ships
                 .AsNoTracking()
                 .Include(x => x.ShipOwner).ThenInclude(x => x.Nationality)
+                .Include(x => x.ShipOwner).ThenInclude(x => x.TaxOffice)
                 .OrderBy(x => x.Description)
                 .ToListAsync();
             return mapper.Map<IEnumerable<Ship>, IEnumerable<ShipBrowserStorageVM>>(ships);

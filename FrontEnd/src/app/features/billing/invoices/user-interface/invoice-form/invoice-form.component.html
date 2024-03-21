@@ -2,8 +2,6 @@
 
     <div id="content">
 
-        <!-- <span style="color: var(--color-text); font-size: 10px;">{{ form.value | json }}</span> -->
-
         <div id="header">
             <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
             <div id="header-buttons">
@@ -142,6 +140,10 @@
                             <mat-label>{{ getLabel("remarks") }}</mat-label>
                             <input [inputTabStop]="input" dataTabIndex="8" formControlName="remarks" matInput>
                         </mat-form-field>
+                        <div class="align-bottom">
+                            <!-- Metadata -->
+                            <metadata-panel [feature]="feature" [postAt]="form.value.postAt" [postUser]="form.value.postUser" [putAt]="form.value.putAt" [putUser]="form.value.putUser"></metadata-panel>
+                        </div>
                     </div>
                 </mat-tab>
                 <mat-tab label="{{ getLabel('tab2') }}">
@@ -476,10 +478,6 @@
                     </div>
                 </mat-tab>
             </mat-tab-group>
-            <div class="align-bottom">
-                <!-- Metadata -->
-                <metadata-panel [feature]="feature" [postAt]="form.value.postAt" [postUser]="form.value.postUser" [putAt]="form.value.putAt" [putUser]="form.value.putUser"></metadata-panel>
-            </div>
         </form>
 
     </div>

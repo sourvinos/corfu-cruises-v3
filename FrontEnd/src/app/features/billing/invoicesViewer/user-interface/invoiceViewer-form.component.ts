@@ -3,22 +3,22 @@ import { Component } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 // Custom
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
-import { InvoicePdfHelperService } from '../../classes/services/invoice-pdf-helper.service'
-import { InvoicePdfService } from '../../classes/services/invoice-pdf.service'
-import { InvoiceViewerHttpService } from '../../classes/services/invoiceViewer-http.service'
-import { InvoiceViewerVM } from '../../classes/view-models/viewer/invoiceViewer-vm'
+import { InvoicePdfHelperService } from '../../invoicesCommon/services/invoice-pdf-helper.service'
+import { InvoicePdfService } from '../../invoicesCommon/services/invoice-pdf.service'
+import { InvoicePdfVM } from '../../invoicesCommon/view-models/pdf/invoice-pdf-vm'
+import { InvoiceViewerHttpService } from '../classes/services/invoiceViewer-http.service'
 
 @Component({
     selector: 'invoiceViewer-form',
     templateUrl: './invoiceViewer-form.component.html',
-    styleUrls: ['../../../../../../assets/styles/custom/forms.css', './invoiceViewer-form.component.css']
+    styleUrls: ['../../../../../assets/styles/custom/forms.css', './invoiceViewer-form.component.css']
 })
 
 export class InvoiceViewerFormComponent {
 
     //#region common variables
 
-    public record: InvoiceViewerVM
+    public record: InvoicePdfVM
     private recordId: string
     public feature = 'invoiceForm'
     public featureIcon = 'invoices'
@@ -60,13 +60,6 @@ export class InvoiceViewerFormComponent {
                 console.log(this.record)
                 this.createPdf()
             })
-            // const formResolved: FormResolved = this.activatedRoute.snapshot.data['invoicesViewer']
-            // if (formResolved.error == null) {
-            //     this.record = formResolved.record.body
-            //     resolve(this.record)
-            // } else {
-            //     this.dialogService.open(this.messageDialogService.filterResponse(formResolved.error), 'error', ['ok']).subscribe(() => { })
-            // }
         })
     }
 

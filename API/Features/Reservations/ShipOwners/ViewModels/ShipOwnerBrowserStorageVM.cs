@@ -7,8 +7,11 @@ namespace API.Features.Reservations.ShipOwners {
 
         // PK
         public int Id { get; set; }
+        // Navigation
+        public NationalityAutoCompleteVM Nationality { get; set; }
         // Fields
         public string Description { get; set; }
+        public string TaxOffice { get; set; }
         public string VatNumber { get; set; }
         public int Branch { get; set; }
         public string Profession { get; set; }
@@ -22,7 +25,6 @@ namespace API.Features.Reservations.ShipOwners {
         public string Username { get; set; }
         public string SubscriptionKey { get; set; }
         public bool IsActive { get; set; }
-        public NationalityAutoCompleteVM Nationality { get; set; }
 
     }
 

@@ -1,17 +1,15 @@
-import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
-
-export interface InvoiceViewerPartyTypeVM {
+export interface InvoicePdfPartyTypeVM {
 
     fullDescription: string
     vatNumber: string
+    taxOffice: string
     branch: number
     profession: string
     street: string
     number: string
     postalCode: string
     city: string
-    nationality: SimpleEntity
-    taxOffice: SimpleEntity
+    country: string
     phones: string
     email: string
 
