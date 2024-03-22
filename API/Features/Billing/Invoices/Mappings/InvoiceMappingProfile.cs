@@ -99,7 +99,14 @@ namespace API.Features.Billing.Invoices {
                 .ForMember(x => x.GrossAmount, x => x.MapFrom(x => x.GrossAmount));
             // Viewer
             CreateMap<Invoice, InvoiceViewerVM>()
-               .ForMember(x => x.Date, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Date)))
+                .ForMember(x => x.Header, x => x.MapFrom(x => new InvoiceViewerHeaderVM {
+                    Date = DateHelpers.DateToISOString(x.Date),
+                    DocumentType = new InvoiceViewerDocumentTypeVM {
+                        Description = x.DocumentType.Description,
+                        Batch = x.DocumentType.Batch
+                    },
+                    InvoiceNo = x.InvoiceNo
+                }))
                .ForMember(x => x.Customer, x => x.MapFrom(x => new InvoiceViewerPartyVM {
                    FullDescription = x.Customer.FullDescription,
                    VatNumber = x.Customer.VatNumber,
@@ -115,7 +122,10 @@ namespace API.Features.Billing.Invoices {
                    TaxOffice = x.Customer.TaxOffice.Description
                }))
                .ForMember(x => x.Destination, x => x.MapFrom(x => x.Destination.Description))
-               .ForMember(x => x.Ship, x => x.MapFrom(x => x.Ship.Description))
+               .ForMember(x => x.Ship, x => x.MapFrom(x => new InvoiceViewerShipVM {
+                   Description = x.Ship.Description,
+                   RegistryNo = x.Ship.RegistryNo
+               }))
                .ForMember(x => x.DocumentType, x => x.MapFrom(x => new InvoiceViewerDocumentTypeVM {
                    Description = x.DocumentType.Description,
                    Batch = x.DocumentType.Batch
@@ -141,7 +151,7 @@ namespace API.Features.Billing.Invoices {
                    MarkCancel = x.Aade.MarkCancel,
                    QrUrl = x.Aade.QrUrl
                }))
-               .ForMember(x => x.InvoicesPorts, x => x.MapFrom(x => x.InvoicesPorts.Select(port => new InvoiceViewerPortVM {
+               .ForMember(x => x.Ports, x => x.MapFrom(x => x.InvoicesPorts.Select(port => new InvoiceViewerPortVM {
                    Port = port.Port.Description,
                    AdultsWithTransfer = port.AdultsWithTransfer,
                    AdultsPriceWithTransfer = port.AdultsPriceWithTransfer,
@@ -155,7 +165,13 @@ namespace API.Features.Billing.Invoices {
                    FreeWithoutTransfer = port.FreeWithoutTransfer,
                    TotalPax = port.TotalPax,
                    TotalAmount = port.TotalAmount
-               })));
+               })))
+               .ForMember(x => x.Summary, x => x.MapFrom(x => new InvoiceViewerSummaryVM {
+                   NetAmount = x.NetAmount,
+                   VatPercent = x.VatPercent,
+                   VatAmount = x.VatAmount,
+                   GrossAmount = x.GrossAmount
+               }));
         }
 
     }

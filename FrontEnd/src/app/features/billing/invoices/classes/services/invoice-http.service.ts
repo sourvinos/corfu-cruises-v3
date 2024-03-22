@@ -15,6 +15,10 @@ export class InvoiceHttpService extends HttpDataService {
         super(httpClient, environment.apiUrl + '/invoices')
     }
 
+    public get(invoiceId: string): Observable<any> {
+        return this.http.get(environment.apiUrl + '/invoicesViewer/invoice/' + invoiceId)
+    }
+
     public override save(formData: any): Observable<any> {
         return formData.invoiceId == null
             ? this.http.post<any>(this.url, formData)

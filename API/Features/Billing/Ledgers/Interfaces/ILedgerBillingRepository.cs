@@ -12,7 +12,6 @@ namespace API.Features.Billing.Ledgers {
         LedgerVM BuildTotal(IEnumerable<LedgerVM> records);
         List<LedgerVM> MergePreviousRequestedAndTotal(LedgerVM previousPeriod, List<LedgerVM> requestedPeriod, LedgerVM total);
         Task<IEnumerable<LedgerVM>> GetForBalanceAsync(int customerId);
-        decimal BuildBalance(IEnumerable<LedgerVM> records);
 
     }
 

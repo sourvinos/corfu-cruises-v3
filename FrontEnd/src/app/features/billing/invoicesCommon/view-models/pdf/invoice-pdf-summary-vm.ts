@@ -1,7 +1,8 @@
 export interface InvoicePdfSummaryVM {
 
-    netValue: number
-    vatAmount: number,
-    grossValue: number,
+    netAmount: number
+    vatPercent: number
+    vatAmount: number
+    grossAmount: number
 
 }

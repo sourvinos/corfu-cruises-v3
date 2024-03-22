@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
 using AutoMapper;
+using API.Features.Billing.Ledgers;
 
 namespace API.Features.Billing.Invoices {
 
@@ -44,6 +45,15 @@ namespace API.Features.Billing.Invoices {
                     .AsNoTracking()
                     .Where(x => x.InvoiceId.ToString() == transactionId)
                     .SingleOrDefaultAsync();
+        }
+
+        public decimal BuildBalance(IEnumerable<LedgerVM> records) {
+            decimal balance = 0;
+            foreach (var record in records) {
+                balance = balance + record.Debit - record.Credit;
+                record.Balance = balance;
+            }
+            return balance;
         }
 
     }

@@ -220,8 +220,10 @@ export class InvoiceFormComponent {
     }
 
     public onCreatePdf(): void {
-        this.invoicePdfHelperService.createPdfInvoiceParts(this.form.value).then((response) => {
-            this.invoicePdfService.createReport(response)
+        this.invoiceHttpService.get(this.form.value.invoiceId).subscribe(response => {
+            this.invoicePdfHelperService.createPdfInvoiceParts(response.body).then((response) => {
+                this.invoicePdfService.createReport(response)
+            })
         })
     }
 

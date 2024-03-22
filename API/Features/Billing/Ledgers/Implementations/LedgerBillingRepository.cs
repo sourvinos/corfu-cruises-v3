@@ -138,15 +138,6 @@ namespace API.Features.Billing.Ledgers {
             return total;
         }
 
-        public decimal BuildBalance(IEnumerable<LedgerVM> records) {
-            decimal balance = 0;
-            foreach (var record in records) {
-                balance = balance + record.Debit - record.Credit;
-                record.Balance = balance;
-            }
-            return balance;
-        }
-
         private int? GetConnectedCustomerIdForConnectedUser() {
             var isUserAdmin = Identity.IsUserAdmin(httpContext);
             if (!isUserAdmin) {

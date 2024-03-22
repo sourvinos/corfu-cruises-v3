@@ -1,8 +1,9 @@
+import { InvoicePdfDocumentTypeVM } from './invoice-pdf-documentType-vm'
+
 export interface InvoicePdfHeaderVM {
 
     date: string
-    documentTypeDescription: string
-    batch: number
+    documentType: InvoicePdfDocumentTypeVM
     invoiceNo: string
 
 }

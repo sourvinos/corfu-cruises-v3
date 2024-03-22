@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System;
+using API.Features.Billing.Ledgers;
+using API.Features.Billing.Transactions;
 
 namespace API.Features.Billing.Invoices {
 
@@ -83,6 +85,7 @@ namespace API.Features.Billing.Invoices {
                 .Include(x => x.Customer).ThenInclude(x => x.Nationality)
                 .Include(x => x.Customer).ThenInclude(x => x.TaxOffice)
                 .Include(x => x.Destination)
+                .Include(x => x.Ship)
                 .Include(x => x.Ship).ThenInclude(x => x.ShipOwner)
                 .Include(x => x.Ship).ThenInclude(x => x.ShipOwner).ThenInclude(x => x.Nationality)
                 .Include(x => x.Ship).ThenInclude(x => x.ShipOwner).ThenInclude(x => x.TaxOffice)
@@ -94,6 +97,31 @@ namespace API.Features.Billing.Invoices {
                 .SingleOrDefaultAsync();
             return x;
         }
+
+        public IEnumerable<LedgerVM> GetForInvoice(int customerId) {
+            var records = context.Transactions
+                .AsNoTracking()
+                .Include(x => x.Customer)
+                .Include(x => x.DocumentType)
+                .Where(x => x.CustomerId == customerId)
+                .ToList();
+            return mapper.Map<IEnumerable<TransactionsBase>, IEnumerable<LedgerVM>>(records);
+        }
+
+        public BalanceVM BuildBalanceForInvoice(IEnumerable<LedgerVM> records) {
+            var balanceVM = new BalanceVM {
+                Previous = 100,
+                New = 110
+            };
+            return balanceVM;
+            // decimal balance = 0;
+            // foreach (var record in records) {
+            //     balance = balance + record.Debit - record.Credit;
+            //     record.Balance = balance;
+            // }
+            // return records.LastOrDefault().Balance;
+        }
+
 
     }
 

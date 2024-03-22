@@ -33,8 +33,8 @@ export class InvoicePdfService {
                                     widths: ['*', 150],
                                     body: [
                                         [{ text: 'ΗΜΕΡΟΜΗΝΙΑ', alignment: 'right', borderColor: ['#ffffff', '#ffffff', '#efefef', '#ffffff'] }, { text: invoice.header.date, alignment: 'right', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
-                                        [{ text: 'ΠΑΡΑΣΤΑΤΙΚΟ', alignment: 'right', borderColor: ['#ffffff', '#ffffff', '#efefef', '#ffffff'] }, { text: invoice.header.documentTypeDescription, alignment: 'right', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
-                                        [{ text: 'ΣΕΙΡΑ', alignment: 'right', borderColor: ['#ffffff', '#ffffff', '#efefef', '#ffffff'] }, { text: invoice.header.batch, alignment: 'right', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
+                                        [{ text: 'ΠΑΡΑΣΤΑΤΙΚΟ', alignment: 'right', borderColor: ['#ffffff', '#ffffff', '#efefef', '#ffffff'] }, { text: invoice.header.documentType.description, alignment: 'right', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
+                                        [{ text: 'ΣΕΙΡΑ', alignment: 'right', borderColor: ['#ffffff', '#ffffff', '#efefef', '#ffffff'] }, { text: invoice.header.documentType.batch, alignment: 'right', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
                                         [{ text: 'ΝΟ', alignment: 'right', borderColor: ['#ffffff', '#ffffff', '#efefef', '#ffffff'] }, { text: invoice.header.invoiceNo, alignment: 'right', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
                                         [{ text: 'ΤΡΟΠΟΣ ΠΛΗΡΩΜΗΣ', alignment: 'right', borderColor: ['#ffffff', '#ffffff', '#efefef', '#ffffff'] }, { text: invoice.paymentMethod, alignment: 'right', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }]
                                     ]
@@ -86,17 +86,17 @@ export class InvoicePdfService {
                                                 widths: [50, '*'],
                                                 body: [
                                                     [{ text: 'ΣΤΟΙΧΕΙΑ ΠΕΛΑΤΗ', alignment: 'center', colSpan: 2, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, ''],
-                                                    [{ text: 'ΕΠΩΝΥΜΙΑ', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, { text: invoice.counterPart.fullDescription, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
-                                                    [{ text: 'ΔΡΑΣΤΗΡΙΟΤΗΤΑ', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, { text: invoice.counterPart.profession, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
-                                                    [{ text: 'ΑΦΜ', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, { text: invoice.counterPart.vatNumber, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
-                                                    [{ text: 'ΔΟΥ', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, { text: invoice.counterPart.taxOffice, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
-                                                    [{ text: 'ΟΔΟΣ', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, { text: invoice.counterPart.street, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
-                                                    [{ text: 'ΑΡΙΘΜΟΣ', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, { text: invoice.counterPart.number, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
-                                                    [{ text: 'ΠΟΛΗ', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, { text: invoice.counterPart.city, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
-                                                    [{ text: 'ΤΚ', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, { text: invoice.counterPart.postalCode, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
-                                                    [{ text: 'ΧΩΡΑ', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, { text: invoice.counterPart.country, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
-                                                    [{ text: 'ΤΗΛΕΦΩΝΑ', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, { text: invoice.counterPart.phones, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
-                                                    [{ text: 'EMAIL', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, { text: invoice.counterPart.email, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
+                                                    [{ text: 'ΕΠΩΝΥΜΙΑ', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, { text: invoice.customer.fullDescription, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
+                                                    [{ text: 'ΔΡΑΣΤΗΡΙΟΤΗΤΑ', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, { text: invoice.customer.profession, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
+                                                    [{ text: 'ΑΦΜ', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, { text: invoice.customer.vatNumber, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
+                                                    [{ text: 'ΔΟΥ', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, { text: invoice.customer.taxOffice, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
+                                                    [{ text: 'ΟΔΟΣ', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, { text: invoice.customer.street, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
+                                                    [{ text: 'ΑΡΙΘΜΟΣ', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, { text: invoice.customer.number, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
+                                                    [{ text: 'ΠΟΛΗ', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, { text: invoice.customer.city, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
+                                                    [{ text: 'ΤΚ', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, { text: invoice.customer.postalCode, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
+                                                    [{ text: 'ΧΩΡΑ', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, { text: invoice.customer.country, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
+                                                    [{ text: 'ΤΗΛΕΦΩΝΑ', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, { text: invoice.customer.phones, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
+                                                    [{ text: 'EMAIL', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, { text: invoice.customer.email, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
                                                 ]
                                             },
                                         },
@@ -177,9 +177,9 @@ export class InvoicePdfService {
                                 table: {
                                     widths: ['*', 150],
                                     body: [
-                                        [{ text: 'ΚΑΘΑΡΗ ΑΞΙΑ', alignment: 'right', borderColor: ['#ffffff', '#ffffff', '#efefef', '#ffffff'] }, { text: invoice.summary.netValue.toFixed(2), alignment: 'right', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
+                                        [{ text: 'ΚΑΘΑΡΗ ΑΞΙΑ', alignment: 'right', borderColor: ['#ffffff', '#ffffff', '#efefef', '#ffffff'] }, { text: invoice.summary.netAmount.toFixed(2), alignment: 'right', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
                                         [{ text: 'ΦΠΑ 13%', alignment: 'right', borderColor: ['#ffffff', '#ffffff', '#efefef', '#ffffff'] }, { text: invoice.summary.vatAmount.toFixed(2), alignment: 'right', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
-                                        [{ text: 'ΣΥΝΟΛΙΚΗ ΑΞΙΑ', alignment: 'right', borderColor: ['#ffffff', '#ffffff', '#efefef', '#ffffff'] }, { text: invoice.summary.grossValue.toFixed(2), alignment: 'right', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
+                                        [{ text: 'ΣΥΝΟΛΙΚΗ ΑΞΙΑ', alignment: 'right', borderColor: ['#ffffff', '#ffffff', '#efefef', '#ffffff'] }, { text: invoice.summary.grossAmount.toFixed(2), alignment: 'right', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
                                     ]
                                 }
                             }
@@ -255,180 +255,6 @@ export class InvoicePdfService {
         }
         this.createPdf(dd)
     }
-
-    // public async createReport(invoice: InvoicePdfVM): Promise<void> {
-    //     this.setFonts()
-    //     const dd = {
-    //         background: this.setBackgroundImage(),
-    //         pageOrientation: 'portrait',
-    //         pageSize: 'A4',
-    //         content:
-    //             [
-    //                 {
-    //                     table: {
-    //                         body: [[
-    //                             {
-    //                                 type: 'none',
-    //                                 ul: [
-    //                                     { text: 'Ημερομηνία: ' + invoice.header.date },
-    //                                     { text: 'Παραστατικό: ' + invoice.header.documentTypeDescription },
-    //                                     { text: 'Σειρά: ' + invoice.header.batch },
-    //                                     { text: 'Νο: ' + invoice.header.invoiceNo }
-    //                                 ]
-    //                             }
-    //                         ]]
-    //                     },
-    //                     layout: 'noBorders'
-    //                 },
-    //                 {
-    //                     table: {
-    //                         widths: ['50%', '50%'],
-    //                         body: [[
-    //                             {
-    //                                 type: 'none',
-    //                                 ul: [
-    //                                     { text: 'Τα στοιχεία μας' },
-    //                                     invoice.issuer.fullDescription,
-    //                                     invoice.issuer.profession,
-    //                                     invoice.issuer.phones,
-    //                                     invoice.issuer.email,
-    //                                     invoice.issuer.vatNumber,
-    //                                     invoice.issuer.country,
-    //                                     invoice.issuer.street,
-    //                                     invoice.issuer.number,
-    //                                     invoice.issuer.city,
-    //                                     invoice.issuer.postalCode
-    //                                 ]
-    //                             },
-    //                             {
-    //                                 type: 'none',
-    //                                 ul: [
-    //                                     { text: 'Τα στοιχεία σας' },
-    //                                     invoice.counterPart.fullDescription,
-    //                                     invoice.counterPart.profession,
-    //                                     invoice.counterPart.phones,
-    //                                     invoice.counterPart.email,
-    //                                     invoice.counterPart.vatNumber,
-    //                                     invoice.counterPart.country,
-    //                                     invoice.counterPart.street,
-    //                                     invoice.counterPart.number,
-    //                                     invoice.counterPart.city,
-    //                                     invoice.counterPart.postalCode
-    //                                 ]
-    //                             }
-    //                         ]]
-    //                     },
-    //                     layout: 'noBorders'
-    //                 },
-    //                 {
-    //                     table: {
-    //                         widths: ['35%', '35%', '30%'],
-    //                         body: [[
-    //                             {
-    //                                 table: {
-    //                                     body: [
-    //                                         ['ΑΝΑΧΩΡΗΣΕΙΣ ΑΠΟ CORFU PORT', '', '', ''],
-    //                                         ['ΕΝΗΛΙΚΕΣ', '', '', ''],
-    //                                         ['ΜΕ TRANSFER', invoice.ports[0].adultsWithTransfer, invoice.ports[0].adultsPriceWithTransfer, invoice.ports[0].adultsAmountWithTransfer],
-    //                                         ['ΧΩΡΙΣ TRANSFER', invoice.ports[0].adultsWithoutTransfer, invoice.ports[0].adultsPriceWithoutTransfer, invoice.ports[0].adultsAmountWithoutTransfer],
-    //                                         ['ΠΑΙΔΙΑ', '', '', ''],
-    //                                         ['ΜΕ TRANSFER', invoice.ports[0].kidsWithTransfer, invoice.ports[0].kidsPriceWithTransfer, invoice.ports[0].kidsAmountWithTransfer],
-    //                                         ['ΧΩΡΙΣ TRANSFER', invoice.ports[0].kidsWithoutTransfer, invoice.ports[0].kidsPriceWithoutTransfer, invoice.ports[0].kidsAmountWithoutTransfer],
-    //                                         ['ΔΩΡΕΑΝ', '', '', ''],
-    //                                         ['ΜΕ TRANSFER', invoice.ports[0].freeWithTransfer, '', ''],
-    //                                         ['ΧΩΡΙΣ TRANSFER', invoice.ports[0].freeWithoutTransfer, '', ''],
-    //                                     ]
-    //                                 },
-    //                                 layout: 'noBorders'
-    //                             },
-    //                             {
-    //                                 table: {
-    //                                     body: [
-    //                                         ['ΑΝΑΧΩΡΗΣΕΙΣ ΑΠΟ LEFKIMMI PORT', '', '', ''],
-    //                                         ['ΕΝΗΛΙΚΕΣ', '', '', ''],
-    //                                         ['ΜΕ TRANSFER', invoice.ports[1].adultsWithTransfer, invoice.ports[1].adultsPriceWithTransfer, invoice.ports[1].adultsAmountWithTransfer],
-    //                                         ['ΧΩΡΙΣ TRANSFER', invoice.ports[1].adultsWithoutTransfer, invoice.ports[1].adultsPriceWithoutTransfer, invoice.ports[1].adultsAmountWithoutTransfer],
-    //                                         ['ΠΑΙΔΙΑ', '', '', ''],
-    //                                         ['ΜΕ TRANSFER', invoice.ports[1].kidsWithTransfer, invoice.ports[1].kidsPriceWithTransfer, invoice.ports[1].kidsAmountWithTransfer],
-    //                                         ['ΧΩΡΙΣ TRANSFER', invoice.ports[1].kidsWithoutTransfer, invoice.ports[1].kidsPriceWithoutTransfer, invoice.ports[1].kidsAmountWithoutTransfer],
-    //                                         ['ΔΩΡΕΑΝ', '', '', ''],
-    //                                         ['ΜΕ TRANSFER', invoice.ports[1].freeWithTransfer, '', ''],
-    //                                         ['ΧΩΡΙΣ TRANSFER', invoice.ports[1].freeWithoutTransfer, '', ''],
-    //                                     ]
-    //                                 },
-    //                                 layout: 'noBorders'
-    //                             },
-    //                             {
-    //                                 table: {
-    //                                     body: [
-    //                                         ['ΣΥΝΟΛΟ', '', ''],
-    //                                         ['ΕΝΗΛΙΚΕΣ', '', ''],
-    //                                         ['ΜΕ TRANSFER', invoice.ports[0].adultsWithTransfer + invoice.ports[1].adultsWithTransfer, invoice.ports[0].adultsAmountWithTransfer + invoice.ports[1].adultsAmountWithTransfer],
-    //                                         ['ΧΩΡΙΣ TRANSFER', invoice.ports[0].adultsWithoutTransfer + invoice.ports[1].adultsWithoutTransfer, invoice.ports[0].adultsAmountWithoutTransfer + invoice.ports[1].adultsAmountWithoutTransfer],
-    //                                         ['ΠΑΙΔΙΑ', '', ''],
-    //                                         ['ΜΕ TRANSFER', invoice.ports[0].kidsWithTransfer + invoice.ports[1].kidsWithTransfer, invoice.ports[0].kidsAmountWithTransfer + invoice.ports[1].kidsAmountWithTransfer],
-    //                                         ['ΧΩΡΙΣ TRANSFER', invoice.ports[0].kidsWithoutTransfer + invoice.ports[0].kidsWithoutTransfer, invoice.ports[0].kidsAmountWithoutTransfer + invoice.ports[1].kidsAmountWithoutTransfer],
-    //                                         ['ΔΩΡΕΑΝ', '', ''],
-    //                                         ['ΜΕ TRANSFER', invoice.ports[0].freeWithTransfer + invoice.ports[1].freeWithTransfer, ''],
-    //                                         ['ΧΩΡΙΣ TRANSFER', invoice.ports[0].freeWithoutTransfer + invoice.ports[1].freeWithoutTransfer, ''],
-    //                                     ]
-    //                                 },
-    //                                 layout: 'noBorders'
-    //                             }
-    //                         ]]
-    //                     },
-    //                     layout: 'noBorders'
-    //                 },
-    //                 {
-    //                     table: {
-    //                         body: [[
-    //                             {
-    //                                 type: 'none',
-    //                                 ul: [
-    //                                     { text: 'Καθαρή αξία ' + invoice.summary.netValue },
-    //                                     { text: 'ΦΠΑ 13% ' + invoice.summary.vatAmount },
-    //                                     { text: 'Συνολική αξία ' + invoice.summary.grossValue }
-    //                                 ]
-    //                             },
-    //                         ]]
-    //                     },
-    //                     layout: 'noBorders'
-    //                 },
-    //             ],
-    //         footer: {
-    //             type: 'none',
-    //             ul: [
-    //                 {
-    //                     qr: invoice.aade.qrUrl,
-    //                     fit: '50'
-    //                 },
-    //             ],
-    //             margin: [40, -50, 0, -40],
-    //             layout: 'noBorders'
-    //         },
-    //         styles: {
-    //             AkaAcidCanterBold: {
-    //                 font: 'AkaAcidCanterBold',
-    //             },
-    //             PFHandbookPro: {
-    //                 font: 'PFHandbookPro',
-    //             },
-    //             paddingLeft: {
-    //                 margin: [40, 0, 0, 0]
-    //             },
-    //             paddingTop: {
-    //                 margin: [0, 15, 0, 0]
-    //             }
-    //         },
-    //         defaultStyle: {
-    //             font: 'PFHandbookPro',
-    //             fontSize: 7
-    //         }
-    //     }
-    //     this.createPdf(dd)
-    // }
-
-    //#endregion
 
     //#region private methods
 
