@@ -13,7 +13,7 @@ export class ReceiptHelperService {
 
     public flattenForm(formValue: any): ReceiptWriteDto {
         const x: ReceiptWriteDto = {
-            invoiceId: formValue.receiptId != '' ? formValue.invoiceId : null,
+            invoiceId: formValue.invoiceId != '' ? formValue.invoiceId : null,
             customerId: formValue.customer.id,
             documentTypeId: formValue.documentType.id,
             paymentMethodId: formValue.paymentMethod.id,

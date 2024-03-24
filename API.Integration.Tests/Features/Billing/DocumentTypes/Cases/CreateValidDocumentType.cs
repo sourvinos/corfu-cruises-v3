@@ -9,10 +9,11 @@ namespace DocumentTypes {
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public IEnumerator<object[]> GetEnumerator() {
-            yield return ValidRecord();
+            yield return ValidRecordForInvoices();
+            yield return ValidRecordForReceipts();
         }
 
-        private static object[] ValidRecord() {
+        private static object[] ValidRecordForInvoices() {
             return new object[] {
                 new TestDocumentType {
                     Abbreviation = Helpers.CreateRandomString(5),
@@ -25,8 +26,28 @@ namespace DocumentTypes {
                     DiscriminatorId = 1,
                     IsMyData = true,
                     Table8_1 = "Table8_1",
-                    Table8_8 ="Table8_8",
-                    Table8_9 ="Table8_9",
+                    Table8_8 = "Table8_8",
+                    Table8_9 = "Table8_9",
+                    IsActive = true
+                }
+            };
+        }
+
+        private static object[] ValidRecordForReceipts() {
+            return new object[] {
+                new TestDocumentType {
+                    Abbreviation = Helpers.CreateRandomString(5),
+                    Description = Helpers.CreateRandomString(128),
+                    Batch = Helpers.CreateRandomString(5),
+                    LastDate = "1970-01-01",
+                    LastNo = 1,
+                    Customers = "-",
+                    Suppliers = "",
+                    DiscriminatorId = 2,
+                    IsMyData = false,
+                    Table8_1 = "",
+                    Table8_8 = "",
+                    Table8_9 = "",
                     IsActive = true
                 }
             };
