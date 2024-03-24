@@ -15,17 +15,15 @@ export class InvoiceViewerFormComponent {
 
     //#region common variables
 
-    // public record: InvoicePdfVM
     private recordId: string
 
     //#endregion
 
-    constructor(private invoiceViewerHttpService: InvoiceViewerHttpService, private invoicePdfService: InvoicePdfService, private invoicePdfHelperService: InvoicePdfHelperService, private activatedRoute: ActivatedRoute) { }
+    constructor(private activatedRoute: ActivatedRoute, private invoicePdfHelperService: InvoicePdfHelperService, private invoicePdfService: InvoicePdfService, private invoiceViewerHttpService: InvoiceViewerHttpService,) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
-        // this.setRecordId()
         this.createPdf()
     }
 
@@ -34,40 +32,13 @@ export class InvoiceViewerFormComponent {
     //#region public methods
 
     public createPdf(): void {
-
         this.activatedRoute.params.subscribe(x => {
             this.recordId = x.id
         })
-
-        this.invoiceViewerHttpService.getMe(this.recordId).subscribe(response => {
-                this.invoicePdfHelperService.createPdfInvoiceParts(response.body).then((response) => {
-                this.invoicePdfService.createReport(response)
+        this.invoiceViewerHttpService.getInvoice(this.recordId).subscribe(response => {
+            this.invoicePdfHelperService.createPdfInvoiceParts(response.body).then((response) => {
+                this.invoicePdfService.createPdf(response)
             })
-        })
-
-        // this.invoicePdfHelperService.createPdfInvoiceParts(this.record).then((response) => {
-        //     this.invoicePdfService.createReport(response)
-        // })
-    }
-
-    //#endregion
-
-    //#region private methods
-
-    // private getRecord(): Promise<any> {
-    //     return new Promise((resolve) => {
-    //         this.invoiceViewerHttpService.getSingle(this.recordId).subscribe(response => {
-    //             this.record = response.body
-    //             resolve(this.record)
-    //             console.log(this.record)
-    //             this.createPdf()
-    //         })
-    //     })
-    // }
-
-    private setRecordId(): void {
-        this.activatedRoute.params.subscribe(x => {
-            this.recordId = x.id
         })
     }
 

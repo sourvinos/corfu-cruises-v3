@@ -21,6 +21,8 @@ namespace Invoices {
         public decimal VatPercent { get; set; }
         public decimal VatAmount { get; set; }
         public decimal GrossAmount { get; set; }
+        public decimal PreviousBalance { get; set; }
+        public decimal NewBalance { get; set; }
 
     }
 

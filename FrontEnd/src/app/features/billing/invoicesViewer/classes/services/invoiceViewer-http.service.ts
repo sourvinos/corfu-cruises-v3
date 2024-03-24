@@ -10,10 +10,10 @@ import { environment } from 'src/environments/environment'
 export class InvoiceViewerHttpService extends HttpDataService {
 
     constructor(httpClient: HttpClient) {
-        super(httpClient, environment.apiUrl + '/invoicesViewer/invoice')
+        super(httpClient, environment.apiUrl + '/invoicesViewer')
     }
 
-    public getMe(id: string | number): Observable<any> {
+    public getInvoice(id: string | number): Observable<any> {
         if (id != undefined)
             return this.http.get<any>(this.url + '/' + id)
     }

@@ -17,6 +17,7 @@ export interface InvoicePdfVM {
     paymentMethod: string
     bankAccounts: InvoicePdfBankAccountVM[]
     summary: InvoicePdfSummaryVM
-    balances: number[]
+    previousBalance: number
+    newBalance: number
 
 }

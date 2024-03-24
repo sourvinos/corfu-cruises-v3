@@ -19,9 +19,9 @@ export class InvoicePdfService {
 
     //#region public methods
 
-    public async createReport(invoice: InvoicePdfVM): Promise<void> {
+    public async createPdf(invoice: InvoicePdfVM): Promise<void> {
         this.setFonts()
-        const dd = {
+        const x = {
             pageOrientation: 'portrait',
             pageSize: 'A4',
             content:
@@ -107,8 +107,6 @@ export class InvoicePdfService {
                         margin: [0, 0, 0, 15]
                     },
                     {
-                    },
-                    {
                         table: {
                             widths: ['*', '*', '*'],
                             body: [
@@ -192,8 +190,8 @@ export class InvoicePdfService {
                                 table: {
                                     widths: ['*', 150],
                                     body: [
-                                        [{ text: 'ΠΡΟΗΓΟΥΜΕΝΟ ΥΠΟΛΟΙΠΟ', alignment: 'right', borderColor: ['#ffffff', '#ffffff', '#efefef', '#ffffff'] }, { text: invoice.balances[0].toFixed(2), alignment: 'right', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
-                                        [{ text: 'ΝΕΟ ΥΠΟΛΟΙΠΟ', alignment: 'right', borderColor: ['#ffffff', '#ffffff', '#efefef', '#ffffff'] }, { text: invoice.balances[1].toFixed(2), alignment: 'right', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }]
+                                        [{ text: 'ΠΡΟΗΓΟΥΜΕΝΟ ΥΠΟΛΟΙΠΟ', alignment: 'right', borderColor: ['#ffffff', '#ffffff', '#efefef', '#ffffff'] }, { text: invoice.previousBalance.toFixed(2), alignment: 'right', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
+                                        [{ text: 'ΝΕΟ ΥΠΟΛΟΙΠΟ', alignment: 'right', borderColor: ['#ffffff', '#ffffff', '#efefef', '#ffffff'] }, { text: invoice.newBalance.toFixed(2), alignment: 'right', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }]
                                     ]
                                 }
                             }
@@ -222,8 +220,15 @@ export class InvoicePdfService {
                                             table: {
                                                 widths: ['*', 150],
                                                 body: [
-                                                    [{ text: 'ΜΑΡΚ', alignment: 'right', borderColor: ['#ffffff', '#ffffff', '#efefef', '#ffffff'] }, { text: invoice.aade.mark, alignment: 'right', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
-                                                    [{ text: '', borderColor: ['#ffffff', '#ffffff', '#efefef', '#ffffff'] }, { qr: invoice.aade.qrUrl, fit: '50', alignment: 'right', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
+                                                    [{ text: 'ΜΑΡΚ', alignment: 'right', borderColor: ['#ffffff', '#ffffff', '#efefef', '#ffffff'] }, { text: this.getMark(invoice.aade.mark), alignment: 'right', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }],
+                                                    [
+                                                        {
+                                                            text: '', borderColor: ['#ffffff', '#ffffff', '#efefef', '#ffffff']
+                                                        },
+                                                        {
+                                                            qr: this.getQrCode(invoice.aade.qrUrl), fit: '50', alignment: 'right', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'], foreground: this.setInvisible(invoice.aade.mark)
+                                                        }
+                                                    ],
                                                     [{ text: 'UID', alignment: 'right', borderColor: ['#ffffff', '#ffffff', '#efefef', '#ffffff'] }, { text: invoice.aade.uId, alignment: 'right', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }]
                                                 ]
                                             },
@@ -234,42 +239,35 @@ export class InvoicePdfService {
                         ],
                         margin: [0, 171, 0, 0]
                     },
-                ], styles: {
-                    AkaAcidCanterBold: {
-                        font: 'AkaAcidCanterBold',
-                    },
-                    PFHandbookPro: {
-                        font: 'PFHandbookPro',
-                    },
-                    paddingLeft: {
-                        margin: [40, 0, 0, 0]
-                    },
-                    paddingTop: {
-                        margin: [0, 15, 0, 0]
-                    }
+                ],
+            styles: {
+                AkaAcidCanterBold: {
+                    font: 'AkaAcidCanterBold',
                 },
+                PFHandbookPro: {
+                    font: 'PFHandbookPro',
+                },
+                paddingLeft: {
+                    margin: [40, 0, 0, 0]
+                },
+                paddingTop: {
+                    margin: [0, 15, 0, 0]
+                }
+            },
             defaultStyle: {
                 font: 'PFHandbookPro',
                 fontSize: 7
             }
         }
-        this.createPdf(dd)
+        this.openPdf(x)
     }
+
+    //#endregion
 
     //#region private methods
 
-    private createPdf(document: any): void {
+    private openPdf(document: any): void {
         pdfMake.createPdf(document).open()
-    }
-
-    private setBackgroundImage(): any[] {
-        return [
-            {
-                image: this.logoService.getLogo('light'),
-                width: '1000',
-                opacity: 0.03
-            }
-        ]
     }
 
     private setFonts(): void {
@@ -303,6 +301,18 @@ export class InvoicePdfService {
             x += port.adultsAmountWithTransfer + port.adultsAmountWithoutTransfer + port.kidsAmountWithTransfer + port.kidsAmountWithoutTransfer
         })
         return x.toFixed(2)
+    }
+
+    private getQrCode(qrUrl: string): string {
+        return qrUrl != '' ? qrUrl : 'https://mydataapidev.aade.gr/TimologioQR/QRInfo?q=CxLHW7Fo2Cx03w9SmhSh7zOw7duCFYONQpjJXJhJcNRhkaqaQNIEtBAeOQKZTx77lfl9PXd768EYGjl5eX%2fJvSWv4EmDrRaHHqvPO%2bRLCQM%3d'
+    }
+
+    private getMark(mark: string): string {
+        return mark != '' ? mark : 'ΧΩΡΙΣ ΜΑΡΚ ΛΟΓΩ ΑΠΩΛΕΙΑΣ ΔΙΑΣΥΝΔΕΣΗΣ'
+    }
+
+    private setInvisible(mark: string): string {
+        return mark != '' ? '#000000' : '#ffffff'
     }
 
     //#endregion

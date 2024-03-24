@@ -24,7 +24,9 @@ namespace Invoices {
                     NetAmount = 12,
                     VatPercent = 24,
                     VatAmount = 2.88M,
-                    GrossAmount = 14.88M
+                    GrossAmount = 14.88M,
+                    PreviousBalance = 100M,
+                    NewBalance = 110M
                 }
             };
         }

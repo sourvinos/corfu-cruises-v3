@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using API.Infrastructure.Extensions;
+﻿using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Responses;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace API.Features.Billing.Invoices {
 
@@ -18,6 +18,7 @@ namespace API.Features.Billing.Invoices {
 
         private readonly EnvironmentSettings environmentSettings;
         private readonly IInvoiceAadeRepository invoiceAadeRepo;
+        private readonly IInvoiceCalculateBalanceRepo invoiceCalculateBalance;
         private readonly IInvoiceReadRepository invoiceReadRepo;
         private readonly IInvoiceSendToEmail invoiceSendToEmail;
         private readonly IInvoiceUpdateRepository invoiceUpdateRepo;
@@ -26,13 +27,14 @@ namespace API.Features.Billing.Invoices {
 
         #endregion
 
-        public InvoicesController(IOptions<EnvironmentSettings> environmentSettings, IInvoiceAadeRepository invoiceAadeRepo, IInvoiceReadRepository invoiceReadRepo, IInvoiceSendToEmail invoiceSendToEmail, IInvoiceUpdateRepository invoiceUpdateRepo, IInvoiceValidation invoiceValidation, IMapper mapper) {
+        public InvoicesController(IInvoiceAadeRepository invoiceAadeRepo, IInvoiceCalculateBalanceRepo invoiceCalculateBalance, IInvoiceReadRepository invoiceReadRepo, IInvoiceSendToEmail invoiceSendToEmail, IInvoiceUpdateRepository invoiceUpdateRepo, IInvoiceValidation invoiceValidation, IMapper mapper, IOptions<EnvironmentSettings> environmentSettings) {
+            this.environmentSettings = environmentSettings.Value;
             this.invoiceAadeRepo = invoiceAadeRepo;
+            this.invoiceCalculateBalance = invoiceCalculateBalance;
             this.invoiceReadRepo = invoiceReadRepo;
             this.invoiceSendToEmail = invoiceSendToEmail;
             this.invoiceUpdateRepo = invoiceUpdateRepo;
             this.invoiceValidation = invoiceValidation;
-            this.environmentSettings = environmentSettings.Value;
             this.mapper = mapper;
         }
 
@@ -72,6 +74,7 @@ namespace API.Features.Billing.Invoices {
         public async Task<Response> PostAsync([FromBody] InvoiceCreateDto invoice) {
             var x = invoiceValidation.IsValidAsync(null, invoice);
             if (await x == 200) {
+                invoice = invoiceCalculateBalance.AttachBalancesToCreateDto(invoice, invoiceCalculateBalance.CalculateBalances(invoice, invoice.CustomerId));
                 var z = invoiceUpdateRepo.Create(mapper.Map<InvoiceCreateDto, Invoice>((InvoiceCreateDto)invoiceUpdateRepo.AttachMetadataToPostDto(invoice)));
                 return new Response {
                     Code = 200,
@@ -89,7 +92,7 @@ namespace API.Features.Billing.Invoices {
         [HttpPut]
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<Response> Put([FromBody] InvoiceUpdateDto invoice) {
+        public async Task<Response> PutAsync([FromBody] InvoiceUpdateDto invoice) {
             var x = await invoiceReadRepo.GetByIdAsync(invoice.InvoiceId.ToString(), false);
             if (x != null) {
                 var z = invoiceValidation.IsValidAsync(x, invoice);

@@ -22,6 +22,8 @@ namespace API.Features.Billing.Transactions {
         public decimal VatPercent { get; set; }
         public decimal VatAmount { get; set; }
         public decimal GrossAmount { get; set; }
+        public decimal PreviousBalance { get; set; }
+        public decimal NewBalance { get; set; }
         public string Remarks { get; set; }
         // Navigation
         public Customer Customer { get; set; }

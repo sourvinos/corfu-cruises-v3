@@ -43,7 +43,7 @@ namespace API.Features.Billing.Invoices {
                 .Build();
             return await engine.CompileRenderStringAsync(
                 "key",
-                LoadTemplateFromFile(), $"{returnUrl}#/invoicesViewer/{invoiceLink.InvoiceId}");
+                LoadTemplateFromFile(), $"{returnUrl}");
         }
 
         private static string LoadTemplateFromFile() {

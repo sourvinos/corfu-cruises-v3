@@ -27,7 +27,8 @@ export class InvoicePdfHelperService {
         const ship = await this.buildShip(invoice.ship)
         const paymentMethod = await this.buildPaymentMethod(invoice.paymentMethod)
         const bankAccounts = await this.buildBankAccounts()
-        const balances = await this.buildBalances()
+        const previousBalance = invoice.previousBalance
+        const newBalance = invoice.newBalance
         return {
             header,
             issuer,
@@ -38,7 +39,8 @@ export class InvoicePdfHelperService {
             ship,
             paymentMethod,
             bankAccounts,
-            balances
+            previousBalance,
+            newBalance
         }
     }
 

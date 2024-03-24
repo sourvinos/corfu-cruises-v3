@@ -11,10 +11,7 @@
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
             "env": {
-                "ASPNETCORE_ENVIRONMENT": "LocalDevelopment"
-            },
-            "sourceFileMap": {
-                "/Views": "${workspaceFolder}/Views"
+                "ASPNETCORE_ENVIRONMENT": "LocalTesting"
             }
         }
     ]

@@ -14,11 +14,9 @@ namespace API.Features.Billing.Invoices {
 
     public class InvoiceUpdateRepository : Repository<Invoice>, IInvoiceUpdateRepository {
 
-        private readonly IHttpContextAccessor httpContext;
         private readonly TestingEnvironment testingEnvironment;
 
         public InvoiceUpdateRepository(AppDbContext context, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> testingEnvironment, UserManager<UserExtended> userManager) : base(context, httpContext, testingEnvironment, userManager) {
-            this.httpContext = httpContext;
             this.testingEnvironment = testingEnvironment.Value;
         }
 
@@ -39,14 +37,6 @@ namespace API.Features.Billing.Invoices {
             return invoiceAade;
         }
 
-        public void DeleteRange(string[] ids) {
-            context.Invoices
-                .RemoveRange(context.Invoices
-                .Where(x => ids.Contains(x.InvoiceId.ToString()))
-                .ToList());
-            context.SaveChanges();
-        }
-
         private void DisposeOrCommit(IDbContextTransaction transaction) {
             if (testingEnvironment.IsTesting) {
                 transaction.Dispose();
@@ -57,16 +47,6 @@ namespace API.Features.Billing.Invoices {
 
         private void UpdateInvoice(Invoice invoice) {
             context.Invoices.Update(invoice);
-        }
-
-        private void AddPorts(List<InvoicePort> ports) {
-            if (ports.Any(x => x.Id == 0)) {
-                context.InvoicesPorts.AddRange(ports.Where(x => x.Id == 0));
-            }
-        }
-
-        private void UpdatePorts(List<InvoicePort> ports) {
-            context.InvoicesPorts.UpdateRange(ports.Where(x => x.Id != 0));
         }
 
         private void DeletePorts(Guid invoiceId, List<InvoicePort> ports) {
@@ -81,10 +61,6 @@ namespace API.Features.Billing.Invoices {
                 .Except(portsToUpdate, new PortComparerById())
                 .ToList();
             context.InvoicesPorts.RemoveRange(portsToDelete);
-        }
-
-        public void UpdateAadeTable(InvoiceAade aade) {
-            context.InvoicesAade.Update(aade);
         }
 
         private class PortComparerById : IEqualityComparer<InvoicePort> {

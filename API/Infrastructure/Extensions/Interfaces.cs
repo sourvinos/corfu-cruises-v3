@@ -99,8 +99,8 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IDocumentTypeRepository, DocumentTypeRepository>();
             services.AddTransient<IDocumentTypeValidation, DocumentTypeValidation>();
             services.AddTransient<IInvoiceAadeRepository, InvoiceAadeRepository>();
+            services.AddTransient<IInvoiceCalculateBalanceRepo, InvoiceCalculateBalanceRepo>();
             services.AddTransient<IInvoiceReadRepository, InvoiceReadRepository>();
-            services.AddTransient<IInvoiceRepository, InvoiceRepository>();
             services.AddTransient<IInvoiceSendToEmail, InvoiceSendToEmail>();
             services.AddTransient<IInvoiceUpdateRepository, InvoiceUpdateRepository>();
             services.AddTransient<IInvoiceValidation, InvoiceValidation>();
