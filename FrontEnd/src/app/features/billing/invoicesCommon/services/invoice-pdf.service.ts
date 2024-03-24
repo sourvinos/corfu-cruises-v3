@@ -49,7 +49,7 @@ export class InvoicePdfService {
                                 table: {
                                     widths: ['*', 150],
                                     body: [
-                                        [{ text: 'ΠΛΟΙΟ', alignment: 'right', borderColor: ['#ffffff', '#ffffff', '#efefef', '#ffffff'] }, { text: invoice.ship, alignment: 'right', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }]
+                                        [{ text: 'ΠΛΟΙΟ', alignment: 'right', borderColor: ['#ffffff', '#ffffff', '#efefef', '#ffffff'] }, { text: invoice.ship.description + ' ' + invoice.ship.registryNo, alignment: 'right', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }]
                                     ]
                                 }
                             }
