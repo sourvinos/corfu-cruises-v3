@@ -52,6 +52,7 @@ export class InvoicePdfHelperService {
         return new Promise((resolve) => {
             const x: InvoicePdfHeaderVM = {
                 date: this.dateHelperService.formatISODateToLocale(invoice.header.date),
+                tripDate: this.dateHelperService.formatISODateToLocale(invoice.header.tripDate),
                 documentType: {
                     description: invoice.header.documentType.description,
                     batch: invoice.header.documentType.batch,

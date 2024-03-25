@@ -90,6 +90,10 @@ export class ReceiptFormComponent {
         return this.form.value.date
     }
 
+    public getTripDate(): string {
+        return this.form.value.tripDate
+    }
+
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
     }
@@ -135,6 +139,12 @@ export class ReceiptFormComponent {
         })
     }
 
+    public patchFormWithSelectedTripDate(event: any): void {
+        this.form.patchValue({
+            tripDate: event.value.date
+        })
+    }
+
     public onUpdateReceiptWithOutputPort(port: any, portIndex: number): void {
         this.form.value.receiptsPorts[portIndex] = port
     }
@@ -172,6 +182,7 @@ export class ReceiptFormComponent {
         this.form = this.formBuilder.group({
             invoiceId: '',
             date: [new Date(), [Validators.required]],
+            tripDate: [new Date(), [Validators.required]],
             customer: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             documentType: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             documentTypeDescription: '',
@@ -205,6 +216,7 @@ export class ReceiptFormComponent {
             this.form.patchValue({
                 invoiceId: this.record.invoiceId,
                 date: this.record.date,
+                tripDate: this.record.tripDate,
                 customer: { 'id': this.record.customer.id, 'description': this.record.customer.description },
                 documentType: { 'id': this.record.documentType.id, 'abbreviation': this.record.documentType.abbreviation },
                 documentTypeDescription: this.record.documentType.description,
@@ -278,6 +290,10 @@ export class ReceiptFormComponent {
 
     get date(): AbstractControl {
         return this.form.get('date')
+    }
+
+    get tripDate(): AbstractControl {
+        return this.form.get('tripDate')
     }
 
     get documentType(): AbstractControl {

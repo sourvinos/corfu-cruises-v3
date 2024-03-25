@@ -21,6 +21,7 @@ namespace API.Features.Billing.Receipts {
             // GetById
             CreateMap<Receipt, ReceiptReadDto>()
                 .ForMember(x => x.Date, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Date)))
+                .ForMember(x => x.TripDate, x => x.MapFrom(x => DateHelpers.DateToISOString(x.TripDate)))
                 .ForMember(x => x.Customer, x => x.MapFrom(x => new SimpleEntity {
                     Id = x.Customer.Id,
                     Description = x.Customer.Description

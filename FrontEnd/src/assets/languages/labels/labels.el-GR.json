@@ -2903,6 +2903,10 @@
                 "description": "Ημερομηνία"
             },
             {
+                "id": "tripDate",
+                "description": "Ημερομηνία εκδρομής"
+            },
+            {
                 "id": "documentTypeAbbreviation",
                 "description": "Παραστατικό"
             },
@@ -3206,6 +3210,10 @@
             {
                 "id": "date",
                 "description": "Ημερομηνία"
+            },
+            {
+                "id": "tripDate",
+                "description": "Ημερομηνία αναφοράς"
             },
             {
                 "id": "documentTypeAbbreviation",

@@ -18,6 +18,7 @@ export class ReceiptHelperService {
             documentTypeId: formValue.documentType.id,
             paymentMethodId: formValue.paymentMethod.id,
             date: this.dateHelperService.formatDateToIso(new Date(formValue.date)),
+            tripDate: this.dateHelperService.formatDateToIso(new Date(formValue.tripDate)),
             invoiceNo: formValue.invoiceNo,
             grossAmount: formValue.grossAmount,
             remarks: formValue.remarks,

@@ -10,6 +10,7 @@ export interface ReceiptReadDto extends Metadata {
     invoiceId: Guid
     // Fields
     date: string
+    tripDate: string
     invoiceNo: number
     customer: SimpleEntity
     documentType: DocumentTypeVM

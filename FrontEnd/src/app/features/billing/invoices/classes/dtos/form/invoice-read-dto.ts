@@ -14,6 +14,7 @@ export interface InvoiceReadDto extends Metadata {
     invoiceId: Guid
     // Fields
     date: string
+    tripDate: string
     invoiceNo: number
     // Object fields
     customer: CustomerVM

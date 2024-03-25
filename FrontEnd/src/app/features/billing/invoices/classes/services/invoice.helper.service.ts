@@ -109,6 +109,7 @@ export class InvoiceHelperService {
             paymentMethodId: formValue.paymentMethod.id,
             shipId: formValue.ship.id,
             date: this.dateHelperService.formatDateToIso(new Date(formValue.date)),
+            tripDate: this.dateHelperService.formatDateToIso(new Date(formValue.tripDate)),
             invoiceNo: formValue.invoiceNo,
             netAmount: formValue.netAmount,
             vatPercent: formValue.vatPercent,

@@ -16,6 +16,7 @@ namespace Invoices {
         public int ShipId { get; set; }
         // Fields
         public string Date { get; set; }
+        public string TripDate { get; set; }
         public int InvoiceNo { get; set; }
         public decimal NetAmount { get; set; }
         public decimal VatPercent { get; set; }

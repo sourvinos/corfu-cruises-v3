@@ -8,10 +8,10 @@ namespace Invoices {
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public IEnumerator<object[]> GetEnumerator() {
-            yield return ValidRecord();
+            yield return ValidInvoice();
         }
 
-        private static object[] ValidRecord() {
+        private static object[] ValidInvoice() {
             return new object[] {
                 new TestInvoice {
                     CustomerId = 1,
@@ -20,13 +20,14 @@ namespace Invoices {
                     PaymentMethodId = 1,
                     ShipId = 1,
                     Date = "2024-02-10",
+                    TripDate = "2024-02-10",
                     InvoiceNo = 1,
                     NetAmount = 12,
                     VatPercent = 24,
                     VatAmount = 2.88M,
                     GrossAmount = 14.88M,
-                    PreviousBalance = 100M,
-                    NewBalance = 110M
+                    PreviousBalance = 0,
+                    NewBalance = 0
                 }
             };
         }

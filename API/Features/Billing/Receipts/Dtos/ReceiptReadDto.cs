@@ -15,6 +15,7 @@ namespace API.Features.Billing.Receipts {
         public int PaymentMethodId { get; set; }
         // Fields
         public DateTime Date { get; set; }
+        public DateTime TripDate { get; set; }
         public int InvoiceNo { get; set; }
         public decimal GrossAmount { get; set; }
         public string Remarks { get; set; }

@@ -10,6 +10,7 @@ export interface ReceiptWriteDto {
     paymentMethodId: number
     // Fields
     date: string
+    tripDate: string
     invoiceNo: number
     grossAmount: number
     remarks: string

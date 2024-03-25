@@ -135,6 +135,10 @@ export class InvoiceFormComponent {
         return this.form.value.date
     }
 
+    public getTripDate(): string {
+        return this.form.value.tripDate
+    }
+
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
     }
@@ -219,6 +223,12 @@ export class InvoiceFormComponent {
         })
     }
 
+    public patchFormWithSelectedTripDate(event: any): void {
+        this.form.patchValue({
+            tripDate: event.value.date
+        })
+    }
+
     public onCreatePdf(): void {
         this.invoiceHttpService.get(this.form.value.invoiceId).subscribe(response => {
             this.invoicePdfHelperService.createPdfInvoiceParts(response.body).then((response) => {
@@ -277,6 +287,7 @@ export class InvoiceFormComponent {
         this.form = this.formBuilder.group({
             invoiceId: '',
             date: [new Date(), [Validators.required]],
+            tripDate: [new Date(), [Validators.required]],
             customer: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             destination: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             documentType: ['', [Validators.required, ValidationService.RequireAutocomplete]],
@@ -419,6 +430,7 @@ export class InvoiceFormComponent {
             this.form.patchValue({
                 invoiceId: this.record.invoiceId,
                 date: this.record.date,
+                tripDate: this.record.tripDate,
                 customer: { 'id': this.record.customer.id, 'description': this.record.customer.description },
                 destination: { 'id': this.record.destination.id, 'description': this.record.destination.description },
                 documentType: { 'id': this.record.documentType.id, 'abbreviation': this.record.documentType.abbreviation },
@@ -593,6 +605,10 @@ export class InvoiceFormComponent {
 
     get date(): AbstractControl {
         return this.form.get('date')
+    }
+
+    get tripDate(): AbstractControl {
+        return this.form.get('tripDate')
     }
 
     get documentType(): AbstractControl {

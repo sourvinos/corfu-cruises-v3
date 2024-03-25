@@ -18,6 +18,7 @@ namespace API.Features.Billing.Invoices {
             // GetById
             CreateMap<Invoice, InvoiceReadDto>()
                 .ForMember(x => x.Date, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Date)))
+                .ForMember(x => x.TripDate, x => x.MapFrom(x => DateHelpers.DateToISOString(x.TripDate)))
                 .ForMember(x => x.Customer, x => x.MapFrom(x => new SimpleEntity {
                     Id = x.Customer.Id,
                     Description = x.Customer.Description
@@ -101,6 +102,7 @@ namespace API.Features.Billing.Invoices {
             CreateMap<Invoice, InvoiceViewerVM>()
                 .ForMember(x => x.Header, x => x.MapFrom(x => new InvoiceViewerHeaderVM {
                     Date = DateHelpers.DateToISOString(x.Date),
+                    TripDate = DateHelpers.DateToISOString(x.TripDate),
                     DocumentType = new InvoiceViewerDocumentTypeVM {
                         Description = x.DocumentType.Description,
                         Batch = x.DocumentType.Batch

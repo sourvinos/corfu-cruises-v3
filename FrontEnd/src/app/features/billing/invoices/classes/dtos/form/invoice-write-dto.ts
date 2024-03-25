@@ -14,6 +14,7 @@ export interface InvoiceWriteDto {
     shipId: number
     // Fields
     date: string
+    tripDate: string
     invoiceNo: number
     netAmount: number
     vatPercent: number
