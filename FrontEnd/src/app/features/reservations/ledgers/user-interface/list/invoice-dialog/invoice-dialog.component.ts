@@ -126,6 +126,10 @@ export class InvoiceDialogComponent {
         return this.form.value.date
     }
 
+    public getTripDate(): string {
+        return this.form.value.tripDate
+    }
+
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
     }
@@ -197,7 +201,7 @@ export class InvoiceDialogComponent {
                     this.invoiceHttpService.updateInvoiceAade(x).subscribe({
                         next: () => {
                             this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false).then(() => {
-                                this.dialogRef.close()
+                                // this.dialogRef.close()
                             })
                         },
                         error: (errorFromInterceptor) => {
@@ -288,6 +292,7 @@ export class InvoiceDialogComponent {
         this.form = this.formBuilder.group({
             invoiceId: '',
             date: [new Date(), [Validators.required]],
+            tripDate: [new Date(), [Validators.required]],
             customer: [''],
             destination: [''],
             documentType: ['', [Validators.required, ValidationService.RequireAutocomplete]],
@@ -426,6 +431,10 @@ export class InvoiceDialogComponent {
 
     get date(): AbstractControl {
         return this.form.get('date')
+    }
+
+    get tripDate(): AbstractControl {
+        return this.form.get('tripDate')
     }
 
     get documentType(): AbstractControl {
