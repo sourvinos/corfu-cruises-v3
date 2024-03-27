@@ -39,10 +39,10 @@ namespace API.Features.Reservations.Reservations {
             return reservation;
         }
 
-        public void AssignToDriver(int driverId, string[] ids) {
+        public void AssignToDriver(int driverId, string[] reservationIds) {
             using var transaction = context.Database.BeginTransaction();
             var reservations = context.Reservations
-                .Where(x => ids.Contains(x.ReservationId.ToString()))
+                .Where(x => reservationIds.Contains(x.ReservationId.ToString()))
                 .ToList();
             reservations.ForEach(a => a.DriverId = driverId);
             context.SaveChanges();
@@ -53,10 +53,10 @@ namespace API.Features.Reservations.Reservations {
             }
         }
 
-        public void AssignToPort(int portId, string[] ids) {
+        public void AssignToPort(int portId, string[] reservationIds) {
             using var transaction = context.Database.BeginTransaction();
             var reservations = context.Reservations
-                .Where(x => ids.Contains(x.ReservationId.ToString()))
+                .Where(x => reservationIds.Contains(x.ReservationId.ToString()))
                 .ToList();
             reservations.ForEach(a => a.PortId = portId);
             context.SaveChanges();
@@ -67,10 +67,10 @@ namespace API.Features.Reservations.Reservations {
             }
         }
 
-        public void AssignToShip(int shipId, string[] ids) {
+        public void AssignToShip(int shipId, string[] reservationIds) {
             using var transaction = context.Database.BeginTransaction();
             var reservations = context.Reservations
-                .Where(x => ids.Contains(x.ReservationId.ToString()))
+                .Where(x => reservationIds.Contains(x.ReservationId.ToString()))
                 .ToList();
             reservations.ForEach(a => a.ShipId = shipId);
             context.SaveChanges();

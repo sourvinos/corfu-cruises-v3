@@ -95,7 +95,7 @@ export class ReservationListComponent {
             })
             dialogRef.afterClosed().subscribe(result => {
                 if (result !== undefined) {
-                    this.reservationService.assignToDriver(result.record.id, this.selectedRecords).subscribe(() => {
+                    this.reservationService.assignToDriver(result.record.id, this.selectedIds).subscribe(() => {
                         this.dialogService.open(this.messageDialogService.success(), 'ok', ['ok']).subscribe(() => {
                             this.clearSelectedRecords()
                             this.resetTableFilters()
@@ -118,7 +118,7 @@ export class ReservationListComponent {
             })
             dialogRef.afterClosed().subscribe(result => {
                 if (result !== undefined) {
-                    this.reservationService.assignToPort(result.record.id, this.selectedRecords).subscribe(() => {
+                    this.reservationService.assignToPort(result.record.id, this.selectedIds).subscribe(() => {
                         this.dialogService.open(this.messageDialogService.success(), 'ok', ['ok']).subscribe(() => {
                             this.clearSelectedRecords()
                             this.resetTableFilters()
@@ -141,7 +141,7 @@ export class ReservationListComponent {
             })
             dialogRef.afterClosed().subscribe(result => {
                 if (result !== undefined) {
-                    this.reservationService.assignToShip(result.record.id, this.selectedRecords).subscribe(() => {
+                    this.reservationService.assignToShip(result.record.id, this.selectedIds).subscribe(() => {
                         this.dialogService.open(this.messageDialogService.success(), 'ok', ['ok']).subscribe(() => {
                             this.clearSelectedRecords()
                             this.resetTableFilters()

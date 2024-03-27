@@ -175,10 +175,10 @@ namespace API.Features.Reservations.Reservations {
             };
         }
 
-        [HttpPatch("assignToDriver")]
+        [HttpPost("assignToDriver")]
         [Authorize(Roles = "admin")]
-        public Response AssignToDriver(int driverId, [FromQuery(Name = "id")] string[] ids) {
-            reservationUpdateRepo.AssignToDriver(driverId, ids);
+        public Response AssignToDriver([FromBody] AssignmentVM criteria) {
+            reservationUpdateRepo.AssignToDriver(criteria.Id, criteria.ReservationIds);
             return new Response {
                 Code = 200,
                 Icon = Icons.Success.ToString(),
@@ -187,10 +187,10 @@ namespace API.Features.Reservations.Reservations {
             };
         }
 
-        [HttpPatch("assignToPort")]
+        [HttpPost("assignToPort")]
         [Authorize(Roles = "admin")]
-        public Response AssignToPort(int portId, [FromQuery(Name = "id")] string[] ids) {
-            reservationUpdateRepo.AssignToPort(portId, ids);
+        public Response AssignToPort([FromBody] AssignmentVM criteria) {
+            reservationUpdateRepo.AssignToPort(criteria.Id, criteria.ReservationIds);
             return new Response {
                 Code = 200,
                 Icon = Icons.Success.ToString(),
@@ -199,10 +199,10 @@ namespace API.Features.Reservations.Reservations {
             };
         }
 
-        [HttpPatch("assignToShip")]
+        [HttpPost("assignToShip")]
         [Authorize(Roles = "admin")]
-        public Response AssignToShip(int shipId, [FromQuery(Name = "id")] string[] ids) {
-            reservationUpdateRepo.AssignToShip(shipId, ids);
+        public Response AssignToShip([FromBody] AssignmentVM criteria) {
+            reservationUpdateRepo.AssignToShip(criteria.Id, criteria.ReservationIds);
             return new Response {
                 Code = 200,
                 Icon = Icons.Success.ToString(),

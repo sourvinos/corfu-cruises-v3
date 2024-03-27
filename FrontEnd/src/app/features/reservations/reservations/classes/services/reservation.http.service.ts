@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 // Custom
+import { AssignmentVM } from '../view-models/assignments/assignment-vm'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { ReservationListVM } from '../view-models/list/reservation-list-vm'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
@@ -41,34 +42,28 @@ export class ReservationHttpService extends HttpDataService {
             : this.http.put<any>(this.url, formData)
     }
 
-    public assignToDriver(driverId: string, records: any[]): Observable<any> {
-        let params = new HttpParams().set('driverId', driverId).set('id', records[0].reservationId)
-        records.forEach((element, index) => {
-            if (index > 0) {
-                params = params.append('id', element.reservationId)
-            }
-        })
-        return this.http.patch(this.url + '/assignToDriver?', null, { params: params })
+    public assignToDriver(driverId: number, reservationIds: string[]): Observable<any> {
+        const x: AssignmentVM = {
+            id: driverId,
+            reservationIds: reservationIds
+        }
+        return this.http.post(this.url + '/assignToDriver', x)
     }
 
-    public assignToPort(portId: string, records: any[]): Observable<any> {
-        let params = new HttpParams().set('portId', portId).set('id', records[0].reservationId)
-        records.forEach((element, index) => {
-            if (index > 0) {
-                params = params.append('id', element.reservationId)
-            }
-        })
-        return this.http.patch(this.url + '/assignToPort?', null, { params: params })
+    public assignToPort(portId: number, reservationIds: string[]): Observable<any> {
+        const x: AssignmentVM = {
+            id: portId,
+            reservationIds: reservationIds
+        }
+        return this.http.post(this.url + '/assignToPort', x)
     }
 
-    public assignToShip(shipId: string, records: any[]): Observable<any> {
-        let params = new HttpParams().set('shipId', shipId).set('id', records[0].reservationId)
-        records.forEach((element, index) => {
-            if (index > 0) {
-                params = params.append('id', element.reservationId)
-            }
-        })
-        return this.http.patch(this.url + '/assignToShip?', null, { params: params })
+    public assignToShip(shipId: number, reservationIds: any[]): Observable<any> {
+        const x: AssignmentVM = {
+            id: shipId,
+            reservationIds: reservationIds
+        }
+        return this.http.post(this.url + '/assignToShip', x)
     }
 
     public isDestinationOverbooked(date: string, destinationId: number): Observable<number> {
