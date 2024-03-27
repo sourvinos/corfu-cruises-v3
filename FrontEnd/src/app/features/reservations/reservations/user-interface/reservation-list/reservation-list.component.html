@@ -37,6 +37,7 @@
                         <th class="width-4" pSortableColumn="passengerCount">{{ getLabel('headerTotal') }}1</th>
                         <th class="width-5" pSortableColumn="driver.description">{{ getLabel('headerDriver') }}</th>
                         <th class="width-5" pSortableColumn="port.description">{{ getLabel('headerPort') }}</th>
+                        <th class="width-5" pSortableColumn="portAlternate.description">{{ getLabel('headerPortAlternate') }}</th>
                         <th class="width-5" pSortableColumn="ship.description">{{ getLabel('headerShip') }}</th>
                     </tr>
                     <tr>
@@ -128,6 +129,19 @@
                             </p-columnFilter>
                         </th>
                         <th class="width-5">
+                            <p-columnFilter [showMenu]="false" field="portAlternate" matchMode="in">
+                                <ng-template let-filter="filterCallback" let-value pTemplate="filter">
+                                    <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="distinctPortsAlternate" [placeholder]="getEmoji('wildcard')" optionLabel="description">
+                                        <ng-template let-option pTemplate="item">
+                                            <div class="p-multiselect-option">
+                                                <span>{{ option.description }}</span>
+                                            </div>
+                                        </ng-template>
+                                    </p-multiSelect>
+                                </ng-template>
+                            </p-columnFilter>
+                        </th>
+                        <th class="width-5">
                             <p-columnFilter [showMenu]="false" field="ship" matchMode="in">
                                 <ng-template let-filter="filterCallback" let-value pTemplate="filter">
                                     <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="distinctShips" [placeholder]="getEmoji('wildcard')" optionLabel="description">
@@ -159,7 +173,7 @@
                         <td class="width-4">
                             <span class="right with-right-padding">
                                 <span>{{ reservation.passengerCount }} ({{ reservation.passengerDifference }})</span>
-                                <span style="font-size: 0.5rem; margin-top: -0.125rem !important;">&nbsp;&nbsp;{{ showEmoji(reservation.passengerDifference) }}</span>
+                                <span style="font-size: 0.5rem; margin-top: -0.125rem !important;">&nbsp;&nbsp;{{ showPassengerDifferenceEmoji(reservation.passengerDifference) }}</span>
                             </span>
                         </td>
                         <td class="width-5">
@@ -167,6 +181,12 @@
                             <span *ngIf="reservation.driver.id != 0">{{ reservation.driver.description }}</span>
                         </td>
                         <td class="width-5"><span class="center">{{ reservation.port.abbreviation }}</span></td>
+                        <td class="width-5">
+                            <span class="center">
+                                <span>{{ reservation.portAlternate.abbreviation }}</span>
+                                <span style="font-size: 0.5rem; margin-top: -0.125rem !important;">&nbsp;&nbsp;{{ showDifferentPortsEmoji(reservation) }}</span>
+                            </span>
+                        </td>
                         <td class="width-5">
                             <span *ngIf="reservation.ship.id == 0" class="center" style="font-size: 0.5rem; padding-top: 0 !important;">{{ getEmoji('null') }}</span>
                             <span *ngIf="reservation.ship.id != 0" class="center">{{ reservation.ship.abbreviation }}</span>

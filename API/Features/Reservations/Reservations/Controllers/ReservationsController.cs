@@ -92,6 +92,7 @@ namespace API.Features.Reservations.Reservations {
         public async Task<Response> Post([FromBody] ReservationWriteDto reservation) {
             UpdateDriverIdWithNull(reservation);
             UpdateShipIdWithNull(reservation);
+            AttachPortIdToDto(reservation);
             AttachNewRefNoToDto(reservation);
             var z = reservationValidation.IsValidAsync(null, reservation, scheduleRepo);
             if (await z == 200) {
@@ -241,6 +242,12 @@ namespace API.Features.Reservations.Reservations {
                 };
             }
 
+        }
+
+        private ReservationWriteDto AttachPortIdToDto(ReservationWriteDto reservation) {
+            reservation.PortId = reservationValidation.GetPortIdFromPickupPointId(reservation);
+            reservation.PortAlternateId = reservation.PortId;
+            return reservation;
         }
 
         private ReservationWriteDto AttachNewRefNoToDto(ReservationWriteDto reservation) {

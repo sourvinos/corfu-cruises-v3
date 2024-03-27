@@ -13,6 +13,7 @@ namespace API.Features.Reservations.Reservations {
         public int DestinationId { get; set; }
         public int PickupPointId { get; set; }
         public int PortId { get; set; }
+        public int? PortAlternateId { get; set; }
         public int? DriverId { get; set; }
         public int? ShipId { get; set; }
         // Fields

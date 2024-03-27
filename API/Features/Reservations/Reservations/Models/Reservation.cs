@@ -20,6 +20,7 @@ namespace API.Features.Reservations.Reservations {
         public int? DriverId { get; set; }
         public int PickupPointId { get; set; }
         public int PortId { get; set; }
+        public int? PortAlternateId { get; set; }
         public int? ShipId { get; set; }
         // Fields
         public DateTime Date { get; set; }
@@ -43,6 +44,7 @@ namespace API.Features.Reservations.Reservations {
         public Driver Driver { get; set; }
         public PickupPoint PickupPoint { get; set; }
         public Port Port { get; set; }
+        public Port PortAlternate { get; set; }
         public Ship Ship { get; set; }
         public List<Passenger> Passengers { get; set; }
 

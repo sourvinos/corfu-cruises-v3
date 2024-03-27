@@ -93,6 +93,7 @@ namespace API.Features.Reservations.Reservations {
                 .Include(x => x.Driver)
                 .Include(x => x.PickupPoint).ThenInclude(y => y.CoachRoute)
                 .Include(x => x.Port)
+                .Include(x => x.PortAlternate)
                 .Include(x => x.Ship)
                 .Include(x => x.Passengers)
                 .Where(x => x.Date == Convert.ToDateTime(date))

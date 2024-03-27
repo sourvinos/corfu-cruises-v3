@@ -19,13 +19,12 @@ namespace Reservations {
                     CustomerId = 1,
                     DestinationId = 1,
                     PickupPointId = 1,
-                    PortId = 1,
                     Date = "2022-09-15",
                     Now = new DateTime(2022, 9, 16, 12, 00, 00),
                     TicketNo = "xxxx",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
-                        new TestPassenger {
+                        new() {
                             Lastname = "AEDAN",
                             Firstname = "ZAYAS",
                             Birthdate = "1992-06-12",
@@ -43,7 +42,6 @@ namespace Reservations {
                     CustomerId = 1,
                     DestinationId = 1,
                     PickupPointId = 1,
-                    PortId = 1,
                     Date = "2022-09-15",
                     Now = new DateTime(2022, 9, 14, 12, 00, 00),
                     TicketNo = "xxxx",

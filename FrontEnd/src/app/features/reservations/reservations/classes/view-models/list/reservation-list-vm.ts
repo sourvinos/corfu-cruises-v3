@@ -21,6 +21,7 @@ export interface ReservationListVM {
     driver: ReservationListDriverVM
     pickupPoint: ReservationListPickupPointVM
     port: ReservationListPortVM
+    portAlternate: ReservationListPortVM
     ship: ReservationListShipVM
     user: string
 

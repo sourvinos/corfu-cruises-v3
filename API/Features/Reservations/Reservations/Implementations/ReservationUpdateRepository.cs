@@ -44,7 +44,7 @@ namespace API.Features.Reservations.Reservations {
             var reservations = context.Reservations
                 .Where(x => reservationIds.Contains(x.ReservationId.ToString()))
                 .ToList();
-            reservations.ForEach(a => a.DriverId = driverId);
+            reservations.ForEach(x => x.DriverId = driverId);
             context.SaveChanges();
             if (testingEnvironment.IsTesting) {
                 transaction.Dispose();
@@ -58,7 +58,7 @@ namespace API.Features.Reservations.Reservations {
             var reservations = context.Reservations
                 .Where(x => reservationIds.Contains(x.ReservationId.ToString()))
                 .ToList();
-            reservations.ForEach(a => a.PortId = portId);
+            reservations.ForEach(x => x.PortAlternateId = portId);
             context.SaveChanges();
             if (testingEnvironment.IsTesting) {
                 transaction.Dispose();
@@ -72,7 +72,7 @@ namespace API.Features.Reservations.Reservations {
             var reservations = context.Reservations
                 .Where(x => reservationIds.Contains(x.ReservationId.ToString()))
                 .ToList();
-            reservations.ForEach(a => a.ShipId = shipId);
+            reservations.ForEach(x => x.ShipId = shipId);
             context.SaveChanges();
             if (testingEnvironment.IsTesting) {
                 transaction.Dispose();

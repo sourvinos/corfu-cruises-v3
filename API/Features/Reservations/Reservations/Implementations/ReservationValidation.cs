@@ -64,9 +64,7 @@ namespace API.Features.Reservations.Reservations {
             PickupPoint pickupPoint = context.PickupPoints
                 .AsNoTracking()
                 .SingleOrDefault(x => x.Id == reservation.PickupPointId);
-            return pickupPoint != null
-                ? (reservation.PortId != 0 && pickupPoint.PortId != reservation.PortId) ? reservation.PortId : pickupPoint.PortId
-                : 0;
+            return pickupPoint != null ? pickupPoint.PortId : 0;
         }
 
         public int OverbookedPax(string date, int destinationId) {
@@ -87,9 +85,9 @@ namespace API.Features.Reservations.Reservations {
                 var x when x == !await IsRefNoUnique(reservation) => 414,
                 var x when x == !await IsValidCustomer(reservation) => 450,
                 var x when x == !await IsValidDestination(reservation) => 451,
-                var x when x == !await IsValidPickupPoint(reservation) => 452,
-                var x when x == !await IsValidPort(reservation) => 460,
                 var x when x == !await IsValidDriver(reservation) => 453,
+                var x when x == !await IsValidPickupPoint(reservation) => 452,
+                var x when x == !await IsValidPortAlternate(reservation) => 460,
                 var x when x == !await IsValidShip(reservation) => 454,
                 var x when x == !await IsValidNationality(reservation) => 456,
                 var x when x == !await IsValidGenderAsync(reservation) => 457,
@@ -157,15 +155,26 @@ namespace API.Features.Reservations.Reservations {
                 .FirstOrDefaultAsync(x => x.Id == reservation.PickupPointId) != null;
         }
 
-        private async Task<bool> IsValidPort(ReservationWriteDto reservation) {
-            if (reservation.ReservationId == Guid.Empty) {
+        private async Task<bool> IsValidPortAlternate(ReservationWriteDto reservation) {
+            if (reservation.PortAlternateId != null && reservation.PortAlternateId != 0) {
+                if (reservation.ReservationId == Guid.Empty) {
+                    var port = await context.Ports
+                        .AsNoTracking()
+                        .FirstOrDefaultAsync(x => x.Id == reservation.PortAlternateId && x.IsActive);
+                    if (port == null)
+                        return false;
+                } else {
+                    var port = await context.Ports
+                        .AsNoTracking()
+                        .FirstOrDefaultAsync(x => x.Id == reservation.PortAlternateId);
+                    if (port == null)
+                        return false;
+                }
                 return await context.Ports
                     .AsNoTracking()
-                    .FirstOrDefaultAsync(x => x.Id == reservation.PortId && x.IsActive) != null;
+                    .FirstOrDefaultAsync(x => x.Id == reservation.PortAlternateId) != null;
             }
-            return await context.Ports
-                .AsNoTracking()
-                .FirstOrDefaultAsync(x => x.Id == reservation.PortId) != null;
+            return true;
         }
 
         private async Task<bool> IsValidDriver(ReservationWriteDto reservation) {

@@ -18,8 +18,8 @@ namespace Reservations {
             yield return Customer_Must_Be_Active();
             yield return PickupPoint_Must_Exist();
             yield return PickupPoint_Must_Be_Active();
-            yield return Port_Must_Exist();
-            yield return Port_Must_Be_Active();
+            yield return PortAlternate_Must_Exist();
+            yield return PortAlternate_Must_Be_Active();
             yield return Gender_Must_Exist();
             yield return Gender_Must_Be_Active();
             yield return Nationality_Must_Exist();
@@ -35,7 +35,6 @@ namespace Reservations {
                     CustomerId = 1,
                     DestinationId = 1,
                     PickupPointId = 133,
-                    PortId = 1,
                     TicketNo = "D5",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
@@ -55,7 +54,6 @@ namespace Reservations {
                     CustomerId = 1,
                     DestinationId = 3,
                     PickupPointId = 133,
-                    PortId = 1,
                     TicketNo = "D5",
                     Adults = 2,
                     Passengers = new List<TestPassenger>() {
@@ -74,8 +72,7 @@ namespace Reservations {
                     Now = new DateTime(2022, 3, 2, 12, 00, 00),
                     CustomerId = 1,
                     DestinationId = 1,
-                    PickupPointId = 266,
-                    PortId = 2,
+                    PickupPointId = 123,
                     TicketNo = "Eagle Travel",
                     Adults = 5,
                     Passengers = new List<TestPassenger>() {
@@ -274,7 +271,7 @@ namespace Reservations {
             };
         }
 
-        private static object[] Port_Must_Exist() {
+        private static object[] PortAlternate_Must_Exist() {
             return new object[] {
                 new TestNewReservation {
                     StatusCode = 452,
@@ -283,7 +280,7 @@ namespace Reservations {
                     CustomerId = 1,
                     DestinationId = 1,
                     PickupPointId = 23,
-                    PortId = 9999,
+                    PortAlternateId = 9999,
                     Adults = 2,
                     RefNo = "PA74512",
                     TicketNo = "xxxxx"
@@ -291,7 +288,7 @@ namespace Reservations {
             };
         }
 
-        private static object[] Port_Must_Be_Active() {
+        private static object[] PortAlternate_Must_Be_Active() {
             return new object[] {
                 new TestNewReservation {
                     StatusCode = 452,
@@ -300,7 +297,7 @@ namespace Reservations {
                     CustomerId = 1,
                     DestinationId = 1,
                     PickupPointId = 23,
-                    PortId = 3,
+                    PortAlternateId = 3,
                     Adults = 2,
                     RefNo = "PA74512",
                     TicketNo = "xxxxx"

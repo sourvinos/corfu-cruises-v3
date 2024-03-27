@@ -761,7 +761,11 @@
             },
             {
                 "id": "headerPort",
-                "description": "Λιμάνι"
+                "description": "Λιμάνι Α"
+            },
+            {
+                "id": "headerPortAlternate",
+                "description": "Λιμάνι Β"
             },
             {
                 "id": "headerShip",

@@ -20,7 +20,7 @@ namespace Reservations {
             yield return Gender_Must_Exist();
             yield return Nationality_Must_Exist();
             yield return PickupPoint_Must_Exist();
-            yield return Port_Must_Exist();
+            yield return PortAlternate_Must_Exist();
             yield return Ship_Must_Exist();
             yield return Reservation_Must_Not_Be_Already_Updated();
         }
@@ -271,7 +271,7 @@ namespace Reservations {
             };
         }
 
-        private static object[] Port_Must_Exist() {
+        private static object[] PortAlternate_Must_Exist() {
             return new object[] {
                 new TestUpdateReservation{
                     StatusCode = 460,
@@ -280,7 +280,7 @@ namespace Reservations {
                     DestinationId = 1,
                     DriverId = null,
                     PickupPointId = 215,
-                    PortId = 999,
+                    PortAlternateId = 999,
                     ShipId = null,
                     Date = "2022-05-01",
                     TicketNo = "21",

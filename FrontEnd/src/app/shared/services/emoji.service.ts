@@ -10,9 +10,10 @@ export class EmojiService {
             case 'remarks': return '🔔'
             case 'null': return '🚫'
             case 'error': return '❌'
+            case 'blue-box': return '🟦'
             case 'green-box': return '🟩'
-            case 'yellow-box': return '🟨'
             case 'red-box': return '🟥'
+            case 'yellow-box': return '🟨'
         }
 
     }

@@ -761,7 +761,11 @@
             },
             {
                 "id": "headerPort",
-                "description": "Häfen"
+                "description": "Hafen A"
+            },
+            {
+                "id": "headerPortAlternate",
+                "description": "Hafen B"
             },
             {
                 "id": "headerShip",

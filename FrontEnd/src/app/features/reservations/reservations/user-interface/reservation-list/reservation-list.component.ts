@@ -54,6 +54,7 @@ export class ReservationListComponent {
     public distinctDrivers: SimpleEntity[] = []
     public distinctPickupPoints: SimpleEntity[] = []
     public distinctPorts: SimpleEntity[] = []
+    public distinctPortsAlternate: SimpleEntity[] = []
     public distinctShips: SimpleEntity[] = []
 
     //#endregion
@@ -239,7 +240,7 @@ export class ReservationListComponent {
         this.helperService.clearTableTextFilters(this.table, ['refNo', 'ticketNo'])
     }
 
-    public showEmoji(passengerDifference: number): string {
+    public showPassengerDifferenceEmoji(passengerDifference: number): string {
         if (passengerDifference > 0) {
             return this.emojiService.getEmoji('yellow-box')
         }
@@ -248,6 +249,14 @@ export class ReservationListComponent {
         }
         if (passengerDifference < 0) {
             return this.emojiService.getEmoji('red-box')
+        }
+    }
+
+    public showDifferentPortsEmoji(reservation: ReservationListVM): string {
+        if (reservation.port.id == reservation.portAlternate.id) {
+            return ''
+        } else {
+            return this.emojiService.getEmoji('yellow-box')
         }
     }
 
@@ -362,6 +371,7 @@ export class ReservationListComponent {
         this.distinctDrivers = this.helperService.getDistinctRecords(this.records, 'driver', 'description')
         this.distinctPickupPoints = this.helperService.getDistinctRecords(this.records, 'pickupPoint', 'description')
         this.distinctPorts = this.helperService.getDistinctRecords(this.records, 'port', 'description')
+        this.distinctPortsAlternate = this.helperService.getDistinctRecords(this.records, 'portAlternate', 'description')
         this.distinctShips = this.helperService.getDistinctRecords(this.records, 'ship', 'description')
     }
 

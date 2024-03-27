@@ -761,7 +761,11 @@
             },
             {
                 "id": "headerPort",
-                "description": "Přístav"
+                "description": "Přístav A"
+            },
+            {
+                "id": "headerPortAlternate",
+                "description": "Přístav B"
             },
             {
                 "id": "headerShip",

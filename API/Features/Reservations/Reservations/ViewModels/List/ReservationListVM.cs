@@ -21,6 +21,7 @@ namespace API.Features.Reservations.Reservations {
         public ReservationListDriverVM Driver { get; set; }
         public ReservationListPickupPointVM PickupPoint { get; set; }
         public ReservationListPortVM Port { get; set; }
+        public ReservationListPortVM PortAlternate { get; set; }
         public SimpleEntity Ship { get; set; }
 
         public int PassengerCount { get; set; }
