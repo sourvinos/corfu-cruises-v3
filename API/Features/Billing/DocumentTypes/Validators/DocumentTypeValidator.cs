@@ -6,6 +6,8 @@ namespace API.Features.Billing.DocumentTypes {
     public class DocumentTypeValidator : AbstractValidator<DocumentTypeWriteDto> {
 
         public DocumentTypeValidator() {
+            // FKs
+            RuleFor(x => x.CompanyId).NotEmpty();
             // Fields
             RuleFor(x => x.Abbreviation).NotEmpty().MaximumLength(5);
             RuleFor(x => x.Description).NotEmpty().MaximumLength(128);

@@ -1,9 +1,12 @@
 import { Metadata } from 'src/app/shared/classes/metadata'
+import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
 export interface DocumentTypeReadDto extends Metadata {
 
     // PK
     id: number
+    // FKs
+    company: SimpleEntity
     // Fields
     abbreviation: string
     description: string
@@ -13,12 +16,11 @@ export interface DocumentTypeReadDto extends Metadata {
     customers: string
     suppliers: string
     discriminatorId: number
-    isActive: boolean
-    // myData
     isMyData: boolean
     table8_1: string
     table8_8: string
     table8_9: string
+    isActive: boolean
     // Metadata
     postAt: string
     postUser: string

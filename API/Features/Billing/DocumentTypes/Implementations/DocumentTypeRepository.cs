@@ -25,6 +25,7 @@ namespace API.Features.Billing.DocumentTypes {
         public async Task<IEnumerable<DocumentTypeListVM>> GetAsync() {
             var DocumentTypes = await context.DocumentTypes
                 .AsNoTracking()
+                .Include(x => x.Company)
                 .OrderBy(x => x.Description).ThenBy(x => x.Batch)
                 .ToListAsync();
             return mapper.Map<IEnumerable<DocumentType>, IEnumerable<DocumentTypeListVM>>(DocumentTypes);
@@ -49,6 +50,7 @@ namespace API.Features.Billing.DocumentTypes {
         public async Task<DocumentType> GetByIdAsync(int id) {
             return await context.DocumentTypes
                 .AsNoTracking()
+                .Include(x => x.Company)
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
 

@@ -4,6 +4,7 @@ namespace API.Features.Billing.DocumentTypes {
 
     public class DocumentTypeBrowserStorageVM : SimpleEntity {
 
+        public int CompanyId { get; set; }
         public string Abbreviation { get; set; }
         public string Batch { get; set; }
         public string LastDate { get; set; }

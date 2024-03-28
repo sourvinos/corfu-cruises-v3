@@ -6,6 +6,8 @@ namespace API.Features.Billing.DocumentTypes {
 
         // PK
         public int Id { get; set; }
+        // FKs
+        public int CompanyId { get; set; }
         // Fields
         public string Abbreviation { get; set; }
         public string Description { get; set; }
@@ -16,7 +18,6 @@ namespace API.Features.Billing.DocumentTypes {
         public string Suppliers { get; set; }
         public int DiscriminatorId { get; set; }
         public bool IsActive { get; set; }
-        // myData
         public bool IsMyData { get; set; }
         public string Table8_1 { get; set; }
         public string Table8_8 { get; set; }

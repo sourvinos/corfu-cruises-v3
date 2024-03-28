@@ -8,6 +8,8 @@ namespace DocumentTypes
 
         // PK
         public int Id { get; set; }
+        // FKs
+        public int CompanyId { get; set; }
         // Fields
         public string Abbreviation { get; set; }
         public string Description { get; set; }

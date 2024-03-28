@@ -2691,6 +2691,10 @@
                 "description": "Ενεργό"
             },
             {
+                "id": "headerCompany",
+                "description": "Πλοιοκτήτης"
+            },
+            {
                 "id": "headerDescription",
                 "description": "Περιγραφή"
             },
@@ -2738,6 +2742,10 @@
             {
                 "id": "tab2",
                 "description": "myData"
+            },
+            {
+                "id": "company",
+                "description": "Πλοιοκτήτης"
             },
             {
                 "id": "abbreviation",

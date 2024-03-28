@@ -24,7 +24,7 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 
 export class DocumentTypeListComponent {
 
-    // ^ #region common variables
+    //#region common variables
 
     @ViewChild('table') table: Table
 
@@ -39,18 +39,25 @@ export class DocumentTypeListComponent {
 
     //#endregion
 
-    // * #region specific variables
+    //#region variables
 
     public filterDate = ''
 
     //#endregion
 
+    //#region dropdown filters
+
+    public dropdownCompanies = []
+
+    //#endregion
+
     constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
-    // & #region lifecycle hooks
+    //#region lifecycle hooks
 
     ngOnInit(): void {
         this.loadRecords().then(() => {
+            this.populateDropdownFilters()
             this.filterTableFromStoredFilters()
             this.formatDatesToLocale()
             this.subscribeToInteractionService()
@@ -71,7 +78,7 @@ export class DocumentTypeListComponent {
 
     //#endregion
 
-    // ~ #region public methods
+    //#region public methods
 
     public onEditRecord(id: number): void {
         this.storeScrollTop()
@@ -109,7 +116,7 @@ export class DocumentTypeListComponent {
 
     //#endregion
 
-    // ? #region private methods
+    //#region private methods
 
     private enableDisableFilters(): void {
         this.records.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()
@@ -192,7 +199,7 @@ export class DocumentTypeListComponent {
 
     //#endregion
 
-    // * #region specific methods
+    //#region specific methods
 
     public onClearDateFilter(): void {
         this.table.filter('', 'birthdate', 'equals')
@@ -215,6 +222,10 @@ export class DocumentTypeListComponent {
         this.records.forEach(record => {
             record.formattedLastDate = this.dateHelperService.formatISODateToLocale(record.lastDate)
         })
+    }
+
+    private populateDropdownFilters(): void {
+        this.dropdownCompanies = this.helperService.getDistinctRecords(this.records, 'company', 'description')
     }
 
     private setLocale(): void {

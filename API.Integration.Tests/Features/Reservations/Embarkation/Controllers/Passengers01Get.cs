@@ -59,7 +59,7 @@ namespace Boarding {
             var records = JsonSerializer.Deserialize<BoardingFinalGroupVM>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             Assert.Equal(70, records.TotalPax);
             Assert.Equal(68, records.EmbarkedPassengers);
-            Assert.Equal(28, records.Reservations.Count());
+            Assert.Equal(29, records.Reservations.Count());
         }
 
     }

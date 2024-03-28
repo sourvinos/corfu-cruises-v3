@@ -2,6 +2,8 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { Component } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
+import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
+import { Observable, map, startWith } from 'rxjs'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
@@ -18,6 +20,7 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
 
 @Component({
@@ -28,7 +31,7 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 
 export class DocumentTypeFormComponent {
 
-    //#region common #8
+    //#region common
 
     private record: DocumentTypeReadDto
     private recordId: string
@@ -41,6 +44,14 @@ export class DocumentTypeFormComponent {
 
     //#endregion
 
+    //#region autocompletes
+
+    public isAutoCompleteDisabled = true
+    public dropdownCompanies: Observable<SimpleEntity[]>
+
+    //#endregion
+
+
     constructor(private activatedRoute: ActivatedRoute, private documentTypeHelperService: DocumentTypeHelperService, private documentTypeHttpService: DocumentTypeHttpService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
@@ -50,6 +61,7 @@ export class DocumentTypeFormComponent {
         this.setRecordId()
         this.getRecord()
         this.populateFields()
+        this.populateDropdowns()
         this.subscribeToInteractionService()
         this.setLocale()
     }
@@ -61,6 +73,18 @@ export class DocumentTypeFormComponent {
     //#endregion
 
     //#region public methods
+
+    public autocompleteFields(fieldName: any, object: any): any {
+        return object ? object[fieldName] : undefined
+    }
+
+    public checkForEmptyAutoComplete(event: { target: { value: any } }): void {
+        if (event.target.value == '') this.isAutoCompleteDisabled = true
+    }
+
+    public enableOrDisableAutoComplete(event: any): void {
+        this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
+    }
 
     public getLastDate(): string {
         return this.form.value.lastDate
@@ -94,6 +118,10 @@ export class DocumentTypeFormComponent {
         this.saveRecord(this.flattenForm())
     }
 
+    public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
+        this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
+    }
+
     public patchFormWithSelectedDate(event: any): void {
         this.form.patchValue({
             lastDate: event.value.date
@@ -104,9 +132,18 @@ export class DocumentTypeFormComponent {
 
     //#region private methods
 
+    private filterAutocomplete(array: string, field: string, value: any): any[] {
+        if (typeof value !== 'object') {
+            const filtervalue = value.toLowerCase()
+            return this[array].filter((element: { [x: string]: string }) =>
+                element[field].toLowerCase().startsWith(filtervalue))
+        }
+    }
+
     private flattenForm(): DocumentTypeWriteDto {
         return {
             id: this.form.value.id != '' ? this.form.value.id : null,
+            companyId: this.form.value.company.id,
             abbreviation: this.form.value.abbreviation,
             description: this.form.value.description,
             batch: this.form.value.batch,
@@ -152,6 +189,7 @@ export class DocumentTypeFormComponent {
     private initForm(): void {
         this.form = this.formBuilder.group({
             id: '',
+            company: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             abbreviation: ['', [Validators.required, Validators.maxLength(5)]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
             batch: ['', [Validators.maxLength(5)]],
@@ -172,10 +210,22 @@ export class DocumentTypeFormComponent {
         })
     }
 
+    private populateDropdowns(): void {
+        this.populateDropdownFromDexieDB('shipOwners', 'dropdownCompanies', 'company', 'description', 'description')
+    }
+
+    private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
+        this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
+            this[dexieTable] = this.recordId == undefined ? response.filter(x => x.isActive) : response
+            this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
+        })
+    }
+
     private populateFields(): void {
         if (this.record != undefined) {
             this.form.setValue({
                 id: this.record.id,
+                company: { 'id': this.record.company.id, 'description': this.record.company.description },
                 abbreviation: this.record.abbreviation,
                 description: this.record.description,
                 batch: this.record.batch,
@@ -232,6 +282,10 @@ export class DocumentTypeFormComponent {
     //#endregion
 
     //#region getters
+
+    get company(): AbstractControl {
+        return this.form.get('company')
+    }
 
     get abbreviation(): AbstractControl {
         return this.form.get('abbreviation')

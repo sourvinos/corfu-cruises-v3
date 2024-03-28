@@ -9,33 +9,45 @@
         <form [formGroup]="form" id="form">
             <mat-tab-group mat-stretch-tabs="false">
                 <mat-tab label="{{ getLabel('tab1') }}">
+                    <!-- Company -->
+                    <mat-form-field>
+                        <mat-label>{{ getLabel('company') }}</mat-label>
+                        <input #inputAutoComplete #triggerCompany="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="companies" dataTabIndex="1" formControlName="company" matInput>
+                        <div matSuffix style="display:flex">
+                            <button (click)="openOrCloseAutoComplete(triggerCompany, 'company')" mat-icon-button type="button">
+                                <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
+                            </button>
+                        </div>
+                        <mat-error *ngIf="company.hasError('required')">{{ getHint("required") }}</mat-error>
+                        <mat-error *ngIf="!company.hasError('required') && company.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
+                    </mat-form-field>
                     <div class="group-input-field">
                         <!-- Abbreviation -->
                         <mat-form-field style="width: 20%;">
                             <mat-label>{{ getLabel('abbreviation') }}</mat-label>
-                            <input [inputTabStop]="input" dataTabIndex="1" formControlName="abbreviation" matInput>
+                            <input [inputTabStop]="input" dataTabIndex="2" formControlName="abbreviation" matInput>
                             <mat-error *ngIf="abbreviation.hasError('required')">{{ getHint("required") }}</mat-error>
                             <mat-error *ngIf="abbreviation.hasError('maxlength')">{{ getHint("maxLength", abbreviation.errors.maxlength.requiredLength) }}</mat-error>
                         </mat-form-field>
                         <!-- Description -->
                         <mat-form-field>
                             <mat-label>{{ getLabel('description') }}</mat-label>
-                            <input [inputTabStop]="input" dataTabIndex="2" formControlName="description" matInput>
+                            <input [inputTabStop]="input" dataTabIndex="3" formControlName="description" matInput>
                             <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
                         </mat-form-field>
                         <!-- Batch -->
                         <mat-form-field style="width:20%;">
                             <mat-label>{{ getLabel('batch') }}</mat-label>
-                            <input [inputTabStop]="input" dataTabIndex="3" formControlName="batch" matInput>
+                            <input [inputTabStop]="input" dataTabIndex="4" formControlName="batch" matInput>
                         </mat-form-field>
                     </div>
                     <div class="group-input-field">
                         <!-- Lastdate -->
-                        <date-picker (outputValue)="patchFormWithSelectedDate($event)" [dataTabIndex]="4" [isAdminOrNewRecord]=true [label]="getLabel('lastDate')" [parentDate]="getLastDate()" [readOnly]=false [showHint]=false></date-picker>
+                        <date-picker (outputValue)="patchFormWithSelectedDate($event)" [dataTabIndex]="5" [isAdminOrNewRecord]=true [label]="getLabel('lastDate')" [parentDate]="getLastDate()" [readOnly]=false [showHint]=false></date-picker>
                         <!-- LastNo -->
                         <mat-form-field>
                             <mat-label>{{ getLabel('lastNo') }}</mat-label>
-                            <input [inputTabStop]="input" dataTabIndex="5" formControlName="lastNo" matInput type="number">
+                            <input [inputTabStop]="input" dataTabIndex="6" formControlName="lastNo" matInput type="number">
                             <mat-error *ngIf="lastNo.hasError('required')">{{ getHint("required") }}</mat-error>
                             <mat-error *ngIf="lastNo.hasError('min') || lastNo.hasError('max')">{{ getHint("invalidRange") }}</mat-error>
                         </mat-form-field>
@@ -44,13 +56,13 @@
                         <!-- Customers -->
                         <mat-form-field>
                             <mat-label>{{ getLabel('customers') }}</mat-label>
-                            <input [inputTabStop]="input" dataTabIndex="6" formControlName="customers" matInput>
+                            <input [inputTabStop]="input" dataTabIndex="7" formControlName="customers" matInput>
                             <mat-error *ngIf="customers.hasError('shouldBeEmptyPlusOrMinus')">{{ getHint("shouldBeEmptyPlusOrMinus") }}</mat-error>
                         </mat-form-field>
                         <!-- Suppliers -->
                         <mat-form-field>
                             <mat-label>{{ getLabel('suppliers') }}</mat-label>
-                            <input [inputTabStop]="input" dataTabIndex="7" formControlName="suppliers" matInput>
+                            <input [inputTabStop]="input" dataTabIndex="8" formControlName="suppliers" matInput>
                             <mat-error *ngIf="suppliers.hasError('shouldBeEmptyPlusOrMinus')">{{ getHint("shouldBeEmptyPlusOrMinus") }}</mat-error>
                         </mat-form-field>
                     </div>
@@ -112,3 +124,10 @@
     </div>
 
 </div>
+
+
+<mat-autocomplete #companies="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
+    <mat-option *ngFor="let option of dropdownCompanies | async" [value]="option">
+        {{ option.description }}
+    </mat-option>
+</mat-autocomplete>

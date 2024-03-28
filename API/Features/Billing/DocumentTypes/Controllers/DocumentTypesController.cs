@@ -65,9 +65,9 @@ namespace API.Features.Billing.DocumentTypes {
         [HttpPost]
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public ResponseWithBody Post([FromBody] DocumentTypeWriteDto DocumentType) {
-            var x = documentTypeValidation.IsValid(null, DocumentType);
-            if (x == 200) {
+        public async Task<ResponseWithBody> Post([FromBody] DocumentTypeWriteDto DocumentType) {
+            var x = documentTypeValidation.IsValidAsync(null, DocumentType);
+            if (await x == 200) {
                 var z = documentTypeRepo.Create(mapper.Map<DocumentTypeWriteDto, DocumentType>((DocumentTypeWriteDto)documentTypeRepo.AttachMetadataToPostDto(DocumentType)));
                 return new ResponseWithBody {
                     Code = 200,
@@ -77,7 +77,7 @@ namespace API.Features.Billing.DocumentTypes {
                 };
             } else {
                 throw new CustomException() {
-                    ResponseCode = x
+                    ResponseCode = await x
                 };
             }
         }
@@ -88,8 +88,8 @@ namespace API.Features.Billing.DocumentTypes {
         public async Task<ResponseWithBody> PutAsync([FromBody] DocumentTypeWriteDto documentType) {
             var x = await documentTypeRepo.GetByIdAsync(documentType.Id);
             if (x != null) {
-                var z = documentTypeValidation.IsValid(x, documentType);
-                if (z == 200) {
+                var z = documentTypeValidation.IsValidAsync(x, documentType);
+                if (await z == 200) {
                     documentTypeRepo.Update(mapper.Map<DocumentTypeWriteDto, DocumentType>((DocumentTypeWriteDto)documentTypeRepo.AttachMetadataToPutDto(x, documentType)));
                     return new ResponseWithBody {
                         Code = 200,
@@ -99,7 +99,7 @@ namespace API.Features.Billing.DocumentTypes {
                     };
                 } else {
                     throw new CustomException() {
-                        ResponseCode = z
+                        ResponseCode = await z
                     };
                 }
             } else {

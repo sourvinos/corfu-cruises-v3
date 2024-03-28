@@ -1,8 +1,9 @@
-import { Guid } from 'guid-typescript'
+import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
 export interface DocumentTypeListVM {
 
-    id: Guid
+    id: number
+    company: SimpleEntity
     abbreviation: string
     description: string
     batch: string
@@ -10,10 +11,8 @@ export interface DocumentTypeListVM {
     formattedLastDate: string
     lastNo: number
     isActive: boolean
-    // Plus or Minus
     customers: string
     suppliers: string
-    // myData
     isMyData: boolean
     table8_1: string
     table8_8: string
