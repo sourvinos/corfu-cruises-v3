@@ -165,6 +165,10 @@ export class DocumentTypeFormComponent {
         this.helperService.focusOnField()
     }
 
+    private getDiscriminatorDescription(): string {
+        return this.form.value.discriminatorId == 1 ? 'documentTypesInvoice' : 'documentTypesReceipt'
+    }
+
     private getRecord(): Promise<any> {
         if (this.recordId != undefined) {
             return new Promise((resolve) => {
@@ -254,7 +258,7 @@ export class DocumentTypeFormComponent {
     private saveRecord(documentType: DocumentTypeWriteDto): void {
         this.documentTypeHttpService.save(documentType).subscribe({
             next: (response) => {
-                this.documentTypeHelperService.updateBrowserStorageAfterApiUpdate(response)
+                this.documentTypeHelperService.updateBrowserStorageAfterApiUpdate(this.getDiscriminatorDescription(), response)
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
             error: (errorFromInterceptor) => {

@@ -9,13 +9,14 @@ export class DocumentTypeHelperService {
 
     constructor(private dexieService: DexieService) { }
 
-    public updateBrowserStorageAfterApiUpdate(response: any): void {
+    public updateBrowserStorageAfterApiUpdate(table: string, response: any): void {
         const vm: DocumentTypeBrowserStorageVM = response.body
-        this.dexieService.update('documentTypesReceipt', {
-            'abbreviation': vm.abbreviation,
-            'batch': vm.batch,
-            'description': vm.description,
+        this.dexieService.update(table, {
             'id': vm.id,
+            'company': vm.companyId,
+            'abbreviation': vm.abbreviation,
+            'description': vm.description,
+            'batch': vm.batch,
             'isActive': vm.isActive,
             'isMyData': vm.isMyData,
             'lastDate': vm.lastDate,

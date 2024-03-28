@@ -2,6 +2,8 @@ export interface DocumentTypeBrowserStorageVM {
 
     // PK
     id: number
+    // FKs
+    companyId: number
     // Fields
     abbreviation: string
     description: string
@@ -9,7 +11,6 @@ export interface DocumentTypeBrowserStorageVM {
     lastDate: string
     lastNo: number
     isActive: boolean
-    // Plus or Minus
     customers: string
     suppliers: string
     // myData

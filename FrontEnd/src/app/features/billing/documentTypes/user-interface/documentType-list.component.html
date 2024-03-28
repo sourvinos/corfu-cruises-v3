@@ -23,7 +23,7 @@
                     <tr>
                         <th class="width-5"><p-columnFilter field="isActive" type="boolean"></p-columnFilter></th>
                         <th class="width-20">
-                            <p-columnFilter [showMenu]="false" field="coachRoute" matchMode="in">
+                            <p-columnFilter [showMenu]="false" field="company" matchMode="in">
                                 <ng-template let-filter="filterCallback" let-value pTemplate="filter">
                                     <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="dropdownCompanies" [placeholder]="getEmoji('wildcard')" optionLabel="description">
                                         <ng-template let-option pTemplate="item">
