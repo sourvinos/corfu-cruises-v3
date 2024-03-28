@@ -23,7 +23,7 @@ namespace API.Features.Reservations.Boarding {
                         Description = reservation.Driver != null ? reservation.Driver.Description : "(EMPTY)"
                     },
                     PickupPoint = new SimpleEntity { Id = reservation.PickupPoint.Id, Description = reservation.PickupPoint.Description },
-                    Port = new BoardingFinalPortListVM { Id = reservation.Port.Id, Abbreviation = reservation.Port.Abbreviation, Description = reservation.Port.Description },
+                    Port = new BoardingFinalPortListVM { Id = reservation.PortAlternate.Id, Abbreviation = reservation.PortAlternate.Abbreviation, Description = reservation.PortAlternate.Description },
                     Ship = new BoardingFinalShipListVM {
                         Id = reservation.Ship != null ? reservation.Ship.Id : 0,
                         Description = reservation.Ship != null ? reservation.Ship.Description : "(EMPTY)",

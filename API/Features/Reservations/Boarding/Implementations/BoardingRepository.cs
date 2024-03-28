@@ -32,12 +32,12 @@ namespace API.Features.Reservations.Boarding {
                 .Include(x => x.Destination)
                 .Include(x => x.Driver)
                 .Include(x => x.PickupPoint)
-                .Include(x => x.Port)
+                .Include(x => x.PortAlternate)
                 .Include(x => x.Ship)
                 .Include(x => x.Passengers).ThenInclude(x => x.Nationality)
                 .Where(x => x.Date == Convert.ToDateTime(date)
                     && destinationIds.Contains(x.DestinationId)
-                    && portIds.Contains(x.PortId)
+                    && portIds.Contains(x.PortAlternateId)
                     && (shipIds.Contains(x.ShipId) || x.ShipId == null))
                 .ToListAsync();
             int TotalPax = reservations.Sum(x => x.TotalPax);
