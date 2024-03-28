@@ -26,7 +26,7 @@ namespace API.Features.Reservations.Availability {
                 .Select(x => new ReservationVM {
                     Date = DateHelpers.DateToISOString(x.Date),
                     DestinationId = x.DestinationId,
-                    PortId = x.PortId,
+                    PortAlternateId = x.PortAlternateId,
                     TotalPax = x.TotalPax
                 }).ToListAsync();
             return reservations;
@@ -59,7 +59,7 @@ namespace API.Features.Reservations.Availability {
             foreach (var schedule in schedules) {
                 foreach (var destination in schedule.Destinations) {
                     foreach (var port in destination.Ports) {
-                        port.Pax = reservations.Where(x => x.Date == schedule.Date && x.DestinationId == destination.Id && x.PortId == port.Id).Sum(x => x.TotalPax);
+                        port.Pax = reservations.Where(x => x.Date == schedule.Date && x.DestinationId == destination.Id && x.PortAlternateId == port.Id).Sum(x => x.TotalPax);
                     }
                 }
             }
