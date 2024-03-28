@@ -55,7 +55,7 @@ namespace Nationalities {
         public async Task Admins_Can_List() {
             var actionResponse = await List.Action(_httpClient, _baseUrl, _url, "john", "Aba439de-446e-4eef-8c4b-833f1b3e18aa%");
             var records = JsonSerializer.Deserialize<List<NationalityListVM>>(await actionResponse.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            Assert.Equal(254, records.Count);
+            Assert.Equal(250, records.Count);
         }
 
     }
