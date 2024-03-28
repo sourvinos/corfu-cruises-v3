@@ -834,7 +834,11 @@
             },
             {
                 "id": "port",
-                "description": "Λιμάνι"
+                "description": "Λιμάνι A"
+            },
+            {
+                "id": "portAlternate",
+                "description": "Λιμάνι Β"
             },
             {
                 "id": "ship",

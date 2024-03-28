@@ -41,11 +41,9 @@ namespace API.Features.Reservations.Reservations {
                     Description = x.PickupPoint.Description,
                     ExactPoint = x.PickupPoint.ExactPoint,
                     Time = x.PickupPoint.Time,
-                    Port = new PortAutoCompleteVM {
-                        Id = x.Port.Id,
-                        Description = x.Port.Description
-                    }
+                    Port = new SimpleEntity { Id = x.Port.Id, Description = x.Port.Description }
                 }))
+                .ForMember(x => x.PortAlternate, x => x.MapFrom(x => new SimpleEntity { Id = x.PortAlternate.Id, Description = x.PortAlternate.Description }))
                 .ForMember(x => x.Passengers, x => x.MapFrom(x => x.Passengers.Select(passenger => new PassengerReadDto {
                     Id = passenger.Id,
                     ReservationId = passenger.ReservationId,

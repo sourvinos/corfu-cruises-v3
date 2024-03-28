@@ -72,6 +72,7 @@ namespace API.Features.Reservations.Reservations {
                     .Include(x => x.Destination)
                     .Include(x => x.Driver)
                     .Include(x => x.Port)
+                    .Include(x => x.PortAlternate)
                     .Include(x => x.Ship)
                     .Include(x => x.Passengers).ThenInclude(x => x.Gender)
                     .Include(x => x.Passengers).ThenInclude(x => x.Nationality)
@@ -83,7 +84,6 @@ namespace API.Features.Reservations.Reservations {
                   .Where(x => x.ReservationId.ToString() == reservationId)
                   .SingleOrDefaultAsync();
         }
-
 
         private async Task<IEnumerable<Reservation>> GetReservationsFromAllUsersByDateAsync(string date) {
             return await context.Reservations
@@ -108,6 +108,7 @@ namespace API.Features.Reservations.Reservations {
                 .Include(x => x.Driver)
                 .Include(x => x.PickupPoint).ThenInclude(y => y.CoachRoute)
                 .Include(x => x.Port)
+                .Include(x => x.PortAlternate)
                 .Include(x => x.Ship)
                 .Include(x => x.Passengers)
                 .Where(x => x.Date == Convert.ToDateTime(date) && x.CustomerId == customerId)
@@ -122,6 +123,7 @@ namespace API.Features.Reservations.Reservations {
                 .Include(x => x.Driver)
                 .Include(x => x.PickupPoint).ThenInclude(y => y.CoachRoute)
                 .Include(z => z.Port)
+                .Include(x => x.PortAlternate)
                 .Include(x => x.Ship)
                 .Include(x => x.Passengers)
                 .Where(x => x.RefNo == refNo)
@@ -136,6 +138,7 @@ namespace API.Features.Reservations.Reservations {
                 .Include(x => x.Driver)
                 .Include(x => x.PickupPoint).ThenInclude(y => y.CoachRoute)
                 .Include(z => z.Port)
+                .Include(x => x.PortAlternate)
                 .Include(x => x.Ship)
                 .Include(x => x.Passengers)
                 .Where(x => x.RefNo == refNo && x.CustomerId == customerId)

@@ -87,10 +87,17 @@
                         <input [matAutocomplete]="ports" formControlName="port" matInput readonly>
                         <mat-error *ngIf="port.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
                     </mat-form-field>
+                    <!-- PortAlternate -->
+                    <mat-form-field>
+                        <mat-icon class="material-icons-outlined small">lock</mat-icon>
+                        <mat-label>{{ getLabel("portAlternate") }}</mat-label>
+                        <input [matAutocomplete]="ports" formControlName="portAlternate" matInput readonly>
+                        <mat-error *ngIf="port.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
+                    </mat-form-field>
                 </div>
                 <div class="group-input-field">
                     <!-- Pickup Point -->
-                    <mat-form-field style="width: 50% !important;">
+                    <mat-form-field style="width: 50.6% !important;">
                         <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined small">lock</mat-icon>
                         <mat-label>{{ getLabel('pickupPoint') }}</mat-label>
                         <input #inputAutoComplete #triggerPickupPoint="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="pickupPoints" [readonly]="!isAdminOrNewRecord()" dataTabIndex="5" formControlName="pickupPoint" matInput>

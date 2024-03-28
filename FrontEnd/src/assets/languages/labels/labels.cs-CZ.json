@@ -834,7 +834,11 @@
             },
             {
                 "id": "port",
-                "description": "Přístav"
+                "description": "Přístav A"
+            },
+            {
+                "id": "portAlternate",
+                "description": "Přístav B"
             },
             {
                 "id": "ship",

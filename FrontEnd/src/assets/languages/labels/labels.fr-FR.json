@@ -834,7 +834,11 @@
             },
             {
                 "id": "port",
-                "description": "Port"
+                "description": "Port A"
+            },
+            {
+                "id": "portAlternate",
+                "description": "Port B"
             },
             {
                 "id": "ship",

@@ -16,6 +16,7 @@ export interface ReservationReadDto extends Metadata {
     driver: SimpleEntity
     pickupPoint: PickupPointAutoCompleteVM
     port: SimpleEntity
+    portAlternate: SimpleEntity
     ship: SimpleEntity
     // Fields
     date: string

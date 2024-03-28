@@ -40,6 +40,7 @@ export class ReservationHelperService {
             driverId: form.driver ? form.driver.id : null,
             pickupPointId: form.pickupPoint.id,
             portId: form.port.id,
+            portAlternateId: form.portAlternate.id,
             shipId: form.ship ? form.ship.id : null,
             date: this.dateHelperService.formatDateToIso(new Date(form.date)),
             refNo: form.refNo,
@@ -99,6 +100,7 @@ export class ReservationHelperService {
                 isActive: form.pickupPoint.isActive
             },
             port: form.port,
+            portAlternate: form.portAlternate,
             ship: form.ship,
             date: form.date,
             refNo: form.refNo,

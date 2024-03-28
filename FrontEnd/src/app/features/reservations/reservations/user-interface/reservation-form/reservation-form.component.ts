@@ -74,6 +74,7 @@ export class ReservationFormComponent {
     public dropdownDrivers: Observable<DriverAutoCompleteVM[]>
     public dropdownPickupPoints: Observable<PickupPointAutoCompleteVM[]>
     public dropdownPorts: Observable<PortAutoCompleteVM[]>
+    public dropdownPortsAlternate: Observable<PortAutoCompleteVM[]>
     public dropdownShips: Observable<DriverAutoCompleteVM[]>
 
     //#endregion
@@ -267,6 +268,10 @@ export class ReservationFormComponent {
             port: {
                 id: value.port.id,
                 description: value.port.description
+            },
+            portAlternate: {
+                id: value.port.id,
+                description: value.port.description
             }
         })
     }
@@ -410,6 +415,7 @@ export class ReservationFormComponent {
             totalPax: [0, ValidationService.isGreaterThanZero],
             driver: '',
             port: '',
+            portAlternate: '',
             ship: '',
             ticketNo: ['', [Validators.required, Validators.maxLength(128)]],
             email: ['', [Validators.maxLength(128), Validators.email]],
@@ -436,6 +442,7 @@ export class ReservationFormComponent {
         this.populateDropdownFromDexieDB('drivers', 'dropdownDrivers', 'driver', 'description', 'description')
         this.populateDropdownFromDexieDB('pickupPoints', 'dropdownPickupPoints', 'pickupPoint', 'description', 'description')
         this.populateDropdownFromDexieDB('ports', 'dropdownPorts', 'port', 'description', 'description')
+        this.populateDropdownFromDexieDB('ports', 'dropdownPorts', 'portAlternate', 'description', 'description')
         this.populateDropdownFromDexieDB('ships', 'dropdownShips', 'ship', 'description', 'description')
     }
 
@@ -459,6 +466,7 @@ export class ReservationFormComponent {
             driver: { 'id': this.record.driver.id, 'description': this.record.driver.description },
             ship: { 'id': this.record.ship.id, 'description': this.record.ship.description },
             port: { 'id': this.record.pickupPoint.port.id, 'description': this.record.pickupPoint.port.description },
+            portAlternate: { 'id': this.record.portAlternate.id, 'description': this.record.portAlternate.description },
             adults: this.record.adults,
             kids: this.record.kids,
             free: this.record.free,
@@ -546,7 +554,8 @@ export class ReservationFormComponent {
                 this.form.patchValue({
                     exactPoint: '',
                     time: '',
-                    port: ''
+                    port: '',
+                    portAlternate: ''
                 })
             }
         })
@@ -623,6 +632,10 @@ export class ReservationFormComponent {
 
     get port(): AbstractControl {
         return this.form.get('port')
+    }
+
+    get portAlternate(): AbstractControl {
+        return this.form.get('portAlternate')
     }
 
     get postAt(): AbstractControl {

@@ -12,6 +12,7 @@ export interface ReservationWriteDto {
     driverId?: number
     pickupPointId: number
     portId: number
+    portAlternateId: number
     shipId?: number
     // Fields
     date: string

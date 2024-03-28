@@ -28,8 +28,9 @@ namespace API.Features.Reservations.Reservations {
         //  Navigation
         public SimpleEntity Customer { get; set; }
         public SimpleEntity Destination { get; set; }
-        public PickupPointAutoCompleteVM PickupPoint { get; set; }
         public SimpleEntity Driver { get; set; }
+        public PickupPointAutoCompleteVM PickupPoint { get; set; }
+        public SimpleEntity PortAlternate { get; set; }
         public SimpleEntity Ship { get; set; }
         public List<PassengerReadDto> Passengers { get; set; }
 

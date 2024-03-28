@@ -256,7 +256,7 @@ export class ReservationListComponent {
         if (reservation.port.id == reservation.portAlternate.id) {
             return ''
         } else {
-            return this.emojiService.getEmoji('yellow-box')
+            return this.emojiService.getEmoji('blue-box')
         }
     }
 
