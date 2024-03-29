@@ -35,8 +35,8 @@ namespace API.Features.Reservations.Customers {
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<CustomerBrowserStorageVM>> GetForBrowserStorageAsync() {
-            return await customerRepo.GetForBrowserStorageAsync();
+        public async Task<IEnumerable<CustomerBrowserVM>> GetForBrowserAsync() {
+            return await customerRepo.GetForBrowserAsync();
         }
 
         [HttpGet("[action]")]
@@ -73,7 +73,7 @@ namespace API.Features.Reservations.Customers {
                 return new ResponseWithBody {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Body = customerRepo.GetByIdForBrowserStorageAsync(z.Id).Result,
+                    Body = customerRepo.GetByIdForBrowserAsync(z.Id).Result,
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -95,7 +95,7 @@ namespace API.Features.Reservations.Customers {
                     return new ResponseWithBody {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
-                        Body = customerRepo.GetByIdForBrowserStorageAsync(customer.Id).Result,
+                        Body = customerRepo.GetByIdForBrowserAsync(customer.Id).Result,
                         Message = ApiMessages.OK()
                     };
                 } else {

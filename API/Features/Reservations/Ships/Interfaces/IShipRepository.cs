@@ -8,7 +8,7 @@ namespace API.Features.Reservations.Ships {
     public interface IShipRepository : IRepository<Ship> {
 
         Task<IEnumerable<ShipListVM>> GetAsync();
-        Task<IEnumerable<ShipBrowserStorageVM>> GetForBrowserStorageAsync();
+        Task<IEnumerable<ShipBrowserVM>> GetForBrowserAsync();
         Task<IEnumerable<SimpleEntity>> GetForCriteriaAsync();
         Task<Ship> GetByIdAsync(int id, bool includeTables);
 

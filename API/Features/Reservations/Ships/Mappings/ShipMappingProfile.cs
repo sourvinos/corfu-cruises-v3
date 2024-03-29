@@ -7,7 +7,7 @@ namespace API.Features.Reservations.Ships {
 
         public ShipMappingProfile() {
             CreateMap<Ship, ShipListVM>();
-            CreateMap<Ship, ShipBrowserStorageVM>();
+            CreateMap<Ship, ShipBrowserVM>();
             CreateMap<Ship, SimpleEntity>();
             CreateMap<Ship, ShipReadDto>()
                 .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new SimpleEntity { Id = x.ShipOwner.Id, Description = x.ShipOwner.Description }));

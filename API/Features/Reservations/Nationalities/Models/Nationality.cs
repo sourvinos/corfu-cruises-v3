@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using API.Features.Reservations.Reservations;
-using API.Features.Reservations.ShipCrews;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations.Nationalities {
@@ -18,9 +15,6 @@ namespace API.Features.Reservations.Nationalities {
         public string PostUser { get; set; }
         public string PutAt { get; set; }
         public string PutUser { get; set; }
-        // Navigation
-        public List<ShipCrew> ShipCrews { get; set; }
-        public List<Passenger> Passengers { get; set; }
 
     }
 

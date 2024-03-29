@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using API.Features.Reservations.CoachRoutes;
+﻿using API.Features.Reservations.CoachRoutes;
 using API.Features.Reservations.Ports;
-using API.Features.Reservations.Reservations;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations.PickupPoints {
@@ -27,7 +25,6 @@ namespace API.Features.Reservations.PickupPoints {
         // Navigation
         public CoachRoute CoachRoute { get; set; }
         public Port Port { get; set; }
-        public List<Reservation> Reservations { get; set; }
 
     }
 

@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using API.Features.Reservations.Reservations;
-using API.Features.Reservations.Schedules;
-using API.Infrastructure.Interfaces;
+﻿using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations.Destinations {
 
@@ -18,9 +15,6 @@ namespace API.Features.Reservations.Destinations {
         public string PostUser { get; set; }
         public string PutAt { get; set; }
         public string PutUser { get; set; }
-        // Navigation
-        public List<Schedule> Schedules { get; set; }
-        public List<Reservation> Reservations { get; set; }
 
     }
 

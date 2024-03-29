@@ -1,6 +1,6 @@
-import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
+export interface ShipAutoCompleteVM {
 
-export interface ShipAutoCompleteVM extends SimpleEntity {
+    id: number
+    description: string
 
-    isActive: boolean
 }

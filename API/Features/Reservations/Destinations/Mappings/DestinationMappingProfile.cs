@@ -7,7 +7,7 @@ namespace API.Features.Reservations.Destinations {
 
         public DestinationMappingProfile() {
             CreateMap<Destination, DestinationListVM>();
-            CreateMap<Destination, DestinationAutoCompleteVM>();
+            CreateMap<Destination, DestinationBrowserVM>();
             CreateMap<Destination, SimpleEntity>();
             CreateMap<Destination, DestinationReadDto>();
             CreateMap<DestinationWriteDto, Destination>()

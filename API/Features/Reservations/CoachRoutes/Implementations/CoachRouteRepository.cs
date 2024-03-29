@@ -28,12 +28,12 @@ namespace API.Features.Reservations.CoachRoutes {
             return mapper.Map<IEnumerable<CoachRoute>, IEnumerable<CoachRouteListVM>>(coachRoutes);
         }
 
-        public async Task<IEnumerable<CoachRouteAutoCompleteVM>> GetAutoCompleteAsync() {
+        public async Task<IEnumerable<CoachRouteBrowserVM>> GetForBrowserAsync() {
             var coachRoutes = await context.CoachRoutes
                 .AsNoTracking()
                 .OrderBy(x => x.Abbreviation)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<CoachRoute>, IEnumerable<CoachRouteAutoCompleteVM>>(coachRoutes);
+            return mapper.Map<IEnumerable<CoachRoute>, IEnumerable<CoachRouteBrowserVM>>(coachRoutes);
         }
 
         public async Task<CoachRoute> GetByIdAsync(int id) {

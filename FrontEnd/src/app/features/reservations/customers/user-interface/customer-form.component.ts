@@ -2,7 +2,6 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 // Custom
-import { CustomerHelperService } from '../classes/services/customer-helper.service'
 import { CustomerHttpService } from '../classes/services/customer-http.service'
 import { CustomerReadDto } from '../classes/dtos/customer-read-dto'
 import { CustomerWriteDto } from '../classes/dtos/customer-write-dto'
@@ -49,7 +48,7 @@ export class CustomerFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private customerHelperService: CustomerHelperService, private customerHttpService: CustomerHttpService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private customerHttpService: CustomerHttpService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -263,7 +262,7 @@ export class CustomerFormComponent {
     private saveRecord(customer: CustomerWriteDto): void {
         this.customerHttpService.save(customer).subscribe({
             next: (response: any) => {
-                this.customerHelperService.updateBrowserStorageAfterApiUpdate(response)
+                this.dexieService.update('customers', { 'id': parseInt(response.body.id), 'description': response.body.description, 'isActive': response.body.isActive })
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
             error: (errorFromInterceptor) => {

@@ -28,12 +28,12 @@ namespace API.Features.Reservations.Drivers{
             return mapper.Map<IEnumerable<Driver>, IEnumerable<DriverListVM>>(drivers);
         }
 
-        public async Task<IEnumerable<DriverAutoCompleteVM>> GetAutoCompleteAsync() {
-            List<Driver> activeDrivers = await context.Drivers
+        public async Task<IEnumerable<DriverBrowserVM>> GetForBrowserAsync() {
+            List<Driver> drivers = await context.Drivers
                 .AsNoTracking()
                 .OrderBy(x => x.Description)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<Driver>, IEnumerable<DriverAutoCompleteVM>>(activeDrivers);
+            return mapper.Map<IEnumerable<Driver>, IEnumerable<DriverBrowserVM>>(drivers);
         }
 
         public async Task<Driver> GetByIdAsync(int id) {

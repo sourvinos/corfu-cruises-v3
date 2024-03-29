@@ -7,7 +7,6 @@ namespace API.Features.Reservations.ShipCrews {
     public interface IShipCrewRepository : IRepository<ShipCrew> {
 
         Task<IEnumerable<ShipCrewListVM>> GetAsync();
-        Task<IEnumerable<ShipCrewAutoCompleteVM>> GetAutoCompleteAsync();
         Task<ShipCrew> GetByIdAsync(int id, bool includeTables);
 
     }

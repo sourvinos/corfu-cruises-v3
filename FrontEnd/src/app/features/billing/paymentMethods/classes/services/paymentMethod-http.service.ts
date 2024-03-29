@@ -16,8 +16,8 @@ export class PaymentMethodHttpService extends HttpDataService {
 
     //#region public methods
 
-    public getAutoComplete(): Observable<PaymentMethodAutoCompleteVM[]> {
-        return this.http.get<PaymentMethodAutoCompleteVM[]>(environment.apiUrl + '/paymentMethods/getAutoComplete')
+    public getForBrowser(): Observable<PaymentMethodAutoCompleteVM[]> {
+        return this.http.get<PaymentMethodAutoCompleteVM[]>(environment.apiUrl + '/paymentMethods/getForBrowser')
     }
 
     //#endregion

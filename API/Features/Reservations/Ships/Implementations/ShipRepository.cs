@@ -28,14 +28,12 @@ namespace API.Features.Reservations.Ships {
             return mapper.Map<IEnumerable<Ship>, IEnumerable<ShipListVM>>(ships);
         }
 
-        public async Task<IEnumerable<ShipBrowserStorageVM>> GetForBrowserStorageAsync() {
+        public async Task<IEnumerable<ShipBrowserVM>> GetForBrowserAsync() {
             var ships = await context.Ships
                 .AsNoTracking()
-                .Include(x => x.ShipOwner).ThenInclude(x => x.Nationality)
-                .Include(x => x.ShipOwner).ThenInclude(x => x.TaxOffice)
                 .OrderBy(x => x.Description)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<Ship>, IEnumerable<ShipBrowserStorageVM>>(ships);
+            return mapper.Map<IEnumerable<Ship>, IEnumerable<ShipBrowserVM>>(ships);
         }
 
         public async Task<IEnumerable<SimpleEntity>> GetForCriteriaAsync() {

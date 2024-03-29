@@ -28,12 +28,12 @@ namespace API.Features.Billing.VatRegimes {
             return mapper.Map<IEnumerable<VatRegime>, IEnumerable<VatRegimeListVM>>(vatRegimes);
         }
 
-        public async Task<IEnumerable<VatRegimeAutoCompleteVM>> GetAutoCompleteAsync() {
+        public async Task<IEnumerable<VatRegimeBrowserVM>> GetForBrowserAsync() {
             var vatRegimes = await context.VatRegimes
                 .AsNoTracking()
                 .OrderBy(x => x.Description)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<VatRegime>, IEnumerable<VatRegimeAutoCompleteVM>>(vatRegimes);
+            return mapper.Map<IEnumerable<VatRegime>, IEnumerable<VatRegimeBrowserVM>>(vatRegimes);
         }
 
         public async Task<VatRegime> GetByIdAsync(string id) {

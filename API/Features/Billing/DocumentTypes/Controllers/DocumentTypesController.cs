@@ -34,14 +34,14 @@ namespace API.Features.Billing.DocumentTypes {
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<DocumentTypeBrowserStorageVM>> GetForBrowserStorageInvoiceAsync() {
-            return await documentTypeRepo.GetForBrowserStorageAsync(1);
+        public async Task<IEnumerable<DocumentTypeBrowserVM>> GetForBrowserInvoiceAsync() {
+            return await documentTypeRepo.GetForBrowserAsync(1);
         }
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<DocumentTypeBrowserStorageVM>> GetForBrowserStorageReceiptAsync() {
-            return await documentTypeRepo.GetForBrowserStorageAsync(2);
+        public async Task<IEnumerable<DocumentTypeBrowserVM>> GetForBrowserReceiptAsync() {
+            return await documentTypeRepo.GetForBrowserAsync(2);
         }
 
         [HttpGet("{id}")]
@@ -72,7 +72,7 @@ namespace API.Features.Billing.DocumentTypes {
                 return new ResponseWithBody {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Body = documentTypeRepo.GetByIdForBrowserStorageAsync(z.Id).Result,
+                    Body = documentTypeRepo.GetByIdForBrowserAsync(z.Id).Result,
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -94,7 +94,7 @@ namespace API.Features.Billing.DocumentTypes {
                     return new ResponseWithBody {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
-                        Body = documentTypeRepo.GetByIdForBrowserStorageAsync(documentType.Id).Result,
+                        Body = documentTypeRepo.GetByIdForBrowserAsync(documentType.Id).Result,
                         Message = ApiMessages.OK()
                     };
                 } else {
@@ -137,7 +137,7 @@ namespace API.Features.Billing.DocumentTypes {
                 return new ResponseWithBody {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Body = documentTypeRepo.GetByIdForBrowserStorageAsync(id).Result,
+                    Body = documentTypeRepo.GetByIdForBrowserAsync(id).Result,
                     Message = ApiMessages.OK()
                 };
             } else {

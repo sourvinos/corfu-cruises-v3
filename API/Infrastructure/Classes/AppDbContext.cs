@@ -19,12 +19,10 @@ using API.Features.Reservations.Occupants;
 using API.Features.Reservations.Parameters;
 using API.Features.Reservations.PickupPoints;
 using API.Features.Reservations.Ports;
-using API.Features.Reservations.Registrars;
 using API.Features.Reservations.Reservations;
 using API.Features.Reservations.Schedules;
 using API.Features.Reservations.ShipCrews;
 using API.Features.Reservations.ShipOwners;
-using API.Features.Reservations.ShipRoutes;
 using API.Features.Reservations.Ships;
 using API.Infrastructure.Auth;
 using API.Infrastructure.Users;
@@ -52,14 +50,12 @@ namespace API.Infrastructure.Classes {
         public DbSet<Passenger> Passengers { get; set; }
         public DbSet<PickupPoint> PickupPoints { get; set; }
         public DbSet<Port> Ports { get; set; }
-        public DbSet<Registrar> Registrars { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<ReservationParameter> ReservationParameters { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<Ship> Ships { get; set; }
         public DbSet<ShipCrew> ShipCrews { get; set; }
         public DbSet<ShipOwner> ShipOwners { get; set; }
-        public DbSet<ShipRoute> ShipRoutes { get; set; }
 
         #endregion
 
@@ -95,24 +91,19 @@ namespace API.Infrastructure.Classes {
         private static void ApplyConfigurations(ModelBuilder modelBuilder) {
             #region reservations
             modelBuilder.ApplyConfiguration(new CoachRoutesConfig());
-            modelBuilder.ApplyConfiguration(new CrewSpecialtiesConfig());
             modelBuilder.ApplyConfiguration(new CustomersConfig());
             modelBuilder.ApplyConfiguration(new DestinationsConfig());
             modelBuilder.ApplyConfiguration(new DriversConfig());
-            modelBuilder.ApplyConfiguration(new GendersConfig());
             modelBuilder.ApplyConfiguration(new IdentityDocumentsConfig());
-            modelBuilder.ApplyConfiguration(new NationalitiesConfig());
             modelBuilder.ApplyConfiguration(new ParametersConfig());
             modelBuilder.ApplyConfiguration(new PassengersConfig());
             modelBuilder.ApplyConfiguration(new PickupPointsConfig());
             modelBuilder.ApplyConfiguration(new PortsConfig());
-            modelBuilder.ApplyConfiguration(new RegistrarsConfig());
             modelBuilder.ApplyConfiguration(new ReservationsConfig());
             modelBuilder.ApplyConfiguration(new ReservationsConfig());
             modelBuilder.ApplyConfiguration(new SchedulesConfig());
             modelBuilder.ApplyConfiguration(new ShipCrewsConfig());
             modelBuilder.ApplyConfiguration(new ShipOwnersConfig());
-            modelBuilder.ApplyConfiguration(new ShipRoutesConfig());
             modelBuilder.ApplyConfiguration(new ShipsConfig());
             #endregion
             #region billing

@@ -16,8 +16,8 @@ export class TaxOfficeService extends HttpDataService {
 
     //#region public methods
 
-    public getAutoComplete(): Observable<TaxOfficeAutoCompleteVM[]> {
-        return this.http.get<TaxOfficeAutoCompleteVM[]>(environment.apiUrl + '/taxOffices/getAutoComplete')
+    public getForBrowser(): Observable<TaxOfficeAutoCompleteVM[]> {
+        return this.http.get<TaxOfficeAutoCompleteVM[]>(environment.apiUrl + '/taxOffices/getForBrowser')
     }
 
     //#endregion

@@ -31,20 +31,20 @@ namespace API.Features.Billing.DocumentTypes {
             return mapper.Map<IEnumerable<DocumentType>, IEnumerable<DocumentTypeListVM>>(DocumentTypes);
         }
 
-        public async Task<IEnumerable<DocumentTypeBrowserStorageVM>> GetForBrowserStorageAsync(int discriminatorId) {
+        public async Task<IEnumerable<DocumentTypeBrowserVM>> GetForBrowserAsync(int discriminatorId) {
             var DocumentTypes = await context.DocumentTypes
                 .AsNoTracking()
                 .Where(x => x.DiscriminatorId == discriminatorId)
                 .OrderBy(x => x.Description).ThenBy(x => x.Batch)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<DocumentType>, IEnumerable<DocumentTypeBrowserStorageVM>>(DocumentTypes);
+            return mapper.Map<IEnumerable<DocumentType>, IEnumerable<DocumentTypeBrowserVM>>(DocumentTypes);
         }
 
-        public async Task<DocumentTypeBrowserStorageVM> GetByIdForBrowserStorageAsync(int id) {
+        public async Task<DocumentTypeBrowserVM> GetByIdForBrowserAsync(int id) {
             var record = await context.DocumentTypes
                 .AsNoTracking()
                 .SingleOrDefaultAsync(x => x.Id == id);
-            return mapper.Map<DocumentType, DocumentTypeBrowserStorageVM>(record);
+            return mapper.Map<DocumentType, DocumentTypeBrowserVM>(record);
         }
 
         public async Task<DocumentType> GetByIdAsync(int id) {

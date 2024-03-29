@@ -7,7 +7,7 @@ namespace API.Features.Reservations.IdentityDocuments {
 
         public IdentityDocumentMappingProfile() {
             CreateMap<IdentityDocument, IdentityDocumentListVM>();
-            CreateMap<IdentityDocument, IdentityDocumentAutoCompleteVM>();
+            CreateMap<IdentityDocument, IdentityDocumentBrowserVM>();
             CreateMap<IdentityDocument, SimpleEntity>();
             CreateMap<IdentityDocument, IdentityDocumentReadDto>();
             CreateMap<IdentityDocumentWriteDto, IdentityDocument>()

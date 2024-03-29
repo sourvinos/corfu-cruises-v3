@@ -8,7 +8,7 @@ namespace API.Features.Reservations.Destinations {
     public interface IDestinationRepository : IRepository<Destination> {
 
         Task<IEnumerable<DestinationListVM>> GetAsync();
-        Task<IEnumerable<DestinationAutoCompleteVM>> GetAutoCompleteAsync();
+        Task<IEnumerable<DestinationBrowserVM>> GetForBrowserAsync();
         Task<IEnumerable<SimpleEntity>> GetForCriteriaAsync();
         Task<Destination> GetByIdAsync(int id);
 

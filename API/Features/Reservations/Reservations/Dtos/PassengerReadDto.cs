@@ -18,7 +18,7 @@ namespace API.Features.Reservations.Reservations {
         public string SpecialCare { get; set; }
         public bool IsBoarded { get; set; }
         // Navigation
-        public NationalityAutoCompleteVM Nationality { get; set; }
+        public NationalityBrowserVM Nationality { get; set; }
         public SimpleEntity Gender { get; set; }
 
     }

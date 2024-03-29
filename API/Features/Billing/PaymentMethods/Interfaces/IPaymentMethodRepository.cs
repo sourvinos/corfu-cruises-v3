@@ -7,7 +7,7 @@ namespace API.Features.Billing.PaymentMethods {
     public interface IPaymentMethodRepository : IRepository<PaymentMethod> {
 
         Task<IEnumerable<PaymentMethodListVM>> GetAsync();
-        Task<IEnumerable<PaymentMethodAutoCompleteVM>> GetAutoCompleteAsync();
+        Task<IEnumerable<PaymentMethodBrowserVM>> GetForBrowserAsync();
         Task<PaymentMethod> GetByIdAsync(string id);
  
     }

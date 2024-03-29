@@ -7,7 +7,7 @@ namespace API.Features.Reservations.Ports {
 
         public PortMappingProfile() {
             CreateMap<Port, PortListVM>();
-            CreateMap<Port, PortAutoCompleteVM>();
+            CreateMap<Port, PortBrowserVM>();
             CreateMap<Port, SimpleEntity>();
             CreateMap<Port, PortReadDto>();
             CreateMap<PortWriteDto, Port>()

@@ -19,23 +19,8 @@ namespace API.Features.Reservations.Manifest {
             this.mapper = mapper;
         }
 
-        public ManifestFinalVM Get(string date, int destinationId, int portId, int? shipId) {
-            var manifest = new ManifestInitialVM {
-                Date = date,
-                Destination = context.Destinations
-                    .FirstOrDefault(x => x.Id == destinationId),
-                Port = context.Ports
-                    .FirstOrDefault(x => x.Id == portId),
-                Ship = context.Ships
-                    .Include(x => x.ShipOwner)
-                    .Include(x => x.Registrars.Where(x => x.IsActive))
-                    .Include(x => x.ShipCrews.Where(x => x.IsActive))
-                    .Include(x => x.ShipCrews.Where(x => x.IsActive)).ThenInclude(x => x.Gender)
-                    .Include(x => x.ShipCrews.Where(x => x.IsActive)).ThenInclude(x => x.Nationality)
-                    .Include(x => x.ShipCrews.Where(x => x.IsActive)).ThenInclude(x => x.Occupant)
-                    .Include(x => x.ShipCrews.Where(x => x.IsActive)).ThenInclude(x => x.Specialty)
-                    .FirstOrDefault(x => x.Id == shipId),
-                ShipRoute = null,
+        public ManifestFinalVM Get(string date, int destinationId, int portId, int shipId) {
+            var manifest = new ManifestVM {
                 Passengers = context.Passengers
                     .Include(x => x.Nationality)
                     .Include(x => x.Occupant)
@@ -48,7 +33,7 @@ namespace API.Features.Reservations.Manifest {
                         && x.IsBoarded)
                     .ToList()
             };
-            return mapper.Map<ManifestInitialVM, ManifestFinalVM>(manifest);
+            return mapper.Map<ManifestVM, ManifestFinalVM>(manifest);
         }
 
     }

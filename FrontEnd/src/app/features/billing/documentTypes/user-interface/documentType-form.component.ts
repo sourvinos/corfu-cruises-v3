@@ -258,7 +258,7 @@ export class DocumentTypeFormComponent {
     private saveRecord(documentType: DocumentTypeWriteDto): void {
         this.documentTypeHttpService.save(documentType).subscribe({
             next: (response) => {
-                this.documentTypeHelperService.updateBrowserStorageAfterApiUpdate(this.getDiscriminatorDescription(), response)
+                this.documentTypeHelperService.updateBrowserStorageAfterApiUpdate(this.getDiscriminatorDescription(), response.body)
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
             error: (errorFromInterceptor) => {

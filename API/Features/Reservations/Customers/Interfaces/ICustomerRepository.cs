@@ -8,9 +8,9 @@ namespace API.Features.Reservations.Customers {
     public interface ICustomerRepository : IRepository<Customer> {
 
         Task<IEnumerable<CustomerListVM>> GetAsync();
-        Task<IEnumerable<CustomerBrowserStorageVM>> GetForBrowserStorageAsync();
+        Task<IEnumerable<CustomerBrowserVM>> GetForBrowserAsync();
         Task<IEnumerable<SimpleEntity>> GetForCriteriaAsync();
-        Task<CustomerBrowserStorageVM> GetByIdForBrowserStorageAsync(int id);
+        Task<CustomerBrowserVM> GetByIdForBrowserAsync(int id);
         Task<Customer> GetByIdAsync(int id, bool includeTables);
 
     }

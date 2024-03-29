@@ -18,7 +18,7 @@ export class CustomerHttpService extends HttpDataService {
     //#region public methods
 
     public getBrowserStorage(): Observable<CustomerBrowserStorageVM[]> {
-        return this.http.get<CustomerBrowserStorageVM[]>(environment.apiUrl + '/customers/getForBrowserStorage')
+        return this.http.get<CustomerBrowserStorageVM[]>(environment.apiUrl + '/customers/getForBrowser')
     }
 
     public getForCriteria(): Observable<SimpleCriteriaEntity[]> {

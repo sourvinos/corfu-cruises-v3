@@ -30,14 +30,14 @@ namespace API.Features.Reservations.PickupPoints {
             return mapper.Map<IEnumerable<PickupPoint>, IEnumerable<PickupPointListVM>>(pickupPoints);
         }
 
-        public async Task<IEnumerable<PickupPointAutoCompleteVM>> GetAutoCompleteAsync() {
+        public async Task<IEnumerable<PickupPointBrowserVM>> GetForBrowserAsync() {
             var pickupPoints = await context.PickupPoints
                 .AsNoTracking()
                 .Include(x => x.CoachRoute)
                 .Include(x => x.Port)
                 .OrderBy(x => x.Time).ThenBy(x => x.Description)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<PickupPoint>, IEnumerable<PickupPointAutoCompleteVM>>(pickupPoints);
+            return mapper.Map<IEnumerable<PickupPoint>, IEnumerable<PickupPointBrowserVM>>(pickupPoints);
         }
 
         public async Task<PickupPoint> GetByIdAsync(int id, bool includeTables) {

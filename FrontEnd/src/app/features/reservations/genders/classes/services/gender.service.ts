@@ -16,8 +16,8 @@ export class GenderService extends HttpDataService {
 
     //#region public methods
 
-    public getAutoComplete(): Observable<GenderAutoCompleteVM[]> {
-        return this.http.get<GenderAutoCompleteVM[]>(environment.apiUrl + '/genders/getAutoComplete')
+    public getForBrowser(): Observable<GenderAutoCompleteVM[]> {
+        return this.http.get<GenderAutoCompleteVM[]>(environment.apiUrl + '/genders/getForBrowser')
     }
 
     //#endregion

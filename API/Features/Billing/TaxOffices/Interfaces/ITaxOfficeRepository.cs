@@ -7,7 +7,7 @@ namespace API.Features.Billing.TaxOffices {
     public interface ITaxOfficeRepository : IRepository<TaxOffice> {
 
         Task<IEnumerable<TaxOfficeListVM>> GetAsync();
-        Task<IEnumerable<TaxOfficeAutoCompleteVM>> GetAutoCompleteAsync();
+        Task<IEnumerable<TaxOfficeBrowserVM>> GetForBrowserAsync();
         Task<TaxOffice> GetByIdAsync(int id);
  
     }

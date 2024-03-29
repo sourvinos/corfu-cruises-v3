@@ -23,7 +23,7 @@ namespace API.Features.Reservations.PickupPoints {
         public string PutAt { get; set; }
         public string PutUser { get; set; }
         // Navigation
-        public CoachRouteAutoCompleteVM CoachRoute { get; set; }
+        public CoachRouteBrowserVM CoachRoute { get; set; }
         public SimpleEntity Port { get; set; }
 
     }

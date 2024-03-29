@@ -34,8 +34,8 @@ namespace API.Features.Billing.PaymentMethods {
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<PaymentMethodAutoCompleteVM>> GetAutoCompleteAsync() {
-            return await paymentMethodRepo.GetAutoCompleteAsync();
+        public async Task<IEnumerable<PaymentMethodBrowserVM>> GetForBrowserAsync() {
+            return await paymentMethodRepo.GetForBrowserAsync();
         }
 
         [HttpGet("{id}")]

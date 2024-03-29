@@ -28,14 +28,12 @@ namespace API.Features.Reservations.Customers {
             return mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerListVM>>(customers);
         }
 
-        public async Task<IEnumerable<CustomerBrowserStorageVM>> GetForBrowserStorageAsync() {
+        public async Task<IEnumerable<CustomerBrowserVM>> GetForBrowserAsync() {
             var customers = await context.Customers
                 .AsNoTracking()
-                .Include(x => x.Nationality)
-                .Include(x => x.TaxOffice)
                 .OrderBy(x => x.Description)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerBrowserStorageVM>>(customers);
+            return mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerBrowserVM>>(customers);
         }
 
         public async Task<IEnumerable<SimpleEntity>> GetForCriteriaAsync() {
@@ -46,13 +44,13 @@ namespace API.Features.Reservations.Customers {
             return mapper.Map<IEnumerable<Customer>, IEnumerable<SimpleEntity>>(customers);
         }
 
-        public async Task<CustomerBrowserStorageVM> GetByIdForBrowserStorageAsync(int id) {
+        public async Task<CustomerBrowserVM> GetByIdForBrowserAsync(int id) {
             var record = await context.Customers
                 .AsNoTracking()
                 .Include(x => x.Nationality)
                 .OrderBy(x => x.Description)
                 .SingleOrDefaultAsync(x => x.Id == id);
-            return mapper.Map<Customer, CustomerBrowserStorageVM>(record);
+            return mapper.Map<Customer, CustomerBrowserVM>(record);
         }
 
         public async Task<Customer> GetByIdAsync(int id, bool includeTables) {

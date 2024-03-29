@@ -6,9 +6,7 @@ namespace API.Features.Reservations.Nationalities {
 
     public interface INationalityRepository : IRepository<Nationality> {
 
-        Task<IEnumerable<NationalityListVM>> GetAsync();
-        Task<IEnumerable<NationalityAutoCompleteVM>> GetAutoCompleteAsync();
-        Task<Nationality> GetByIdAsync(int id);
+        Task<IEnumerable<NationalityBrowserVM>> GetForBrowserAsync();
 
     }
 

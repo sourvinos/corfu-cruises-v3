@@ -28,12 +28,12 @@ namespace API.Features.Billing.TaxOffices {
             return mapper.Map<IEnumerable<TaxOffice>, IEnumerable<TaxOfficeListVM>>(taxOffices);
         }
 
-        public async Task<IEnumerable<TaxOfficeAutoCompleteVM>> GetAutoCompleteAsync() {
+        public async Task<IEnumerable<TaxOfficeBrowserVM>> GetForBrowserAsync() {
             var taxOffices = await context.TaxOffices
                 .AsNoTracking()
                 .OrderBy(x => x.Description)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<TaxOffice>, IEnumerable<TaxOfficeAutoCompleteVM>>(taxOffices);
+            return mapper.Map<IEnumerable<TaxOffice>, IEnumerable<TaxOfficeBrowserVM>>(taxOffices);
         }
 
         public async Task<TaxOffice> GetByIdAsync(int id) {

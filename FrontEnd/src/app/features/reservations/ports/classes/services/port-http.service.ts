@@ -17,8 +17,8 @@ export class PortHttpService extends HttpDataService {
 
     //#region public methods
 
-    public getAutoComplete(): Observable<PortAutoCompleteVM[]> {
-        return this.http.get<PortAutoCompleteVM[]>(environment.apiUrl + '/ports/getAutoComplete')
+    public getForBrowser(): Observable<PortAutoCompleteVM[]> {
+        return this.http.get<PortAutoCompleteVM[]>(environment.apiUrl + '/ports/getForBrowser')
     }
 
     public getForCriteria(): Observable<SimpleCriteriaEntity[]> {

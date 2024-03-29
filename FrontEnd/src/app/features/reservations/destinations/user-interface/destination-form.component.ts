@@ -156,7 +156,7 @@ export class DestinationFormComponent {
     private saveRecord(destination: DestinationWriteDto): void {
         this.destinationService.save(destination).subscribe({
             next: (response) => {
-                this.dexieService.update('destinations', { 'id': parseInt(response.id), 'description': destination.description, 'isActive': destination.isActive })
+                this.dexieService.update('destinations', { 'id': parseInt(response.id), 'abbreviation': destination.abbreviation, 'description': destination.description, 'isActive': destination.isActive })
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
             error: (errorFromInterceptor) => {

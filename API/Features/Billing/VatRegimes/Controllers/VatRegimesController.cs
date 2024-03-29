@@ -34,8 +34,8 @@ namespace API.Features.Billing.VatRegimes {
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<VatRegimeAutoCompleteVM>> GetAutoCompleteAsync() {
-            return await vatRegimeRepo.GetAutoCompleteAsync();
+        public async Task<IEnumerable<VatRegimeBrowserVM>> GetForBrowserAsync() {
+            return await vatRegimeRepo.GetForBrowserAsync();
         }
 
         [HttpGet("{id}")]

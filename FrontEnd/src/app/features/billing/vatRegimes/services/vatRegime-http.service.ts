@@ -14,8 +14,8 @@ export class VatRegimeService extends HttpDataService {
         super(httpClient, environment.apiUrl + '/vatRegimes')
     }
 
-    public getAutoComplete(): Observable<VatRegimeAutoCompleteVM[]> {
-        return this.http.get<VatRegimeAutoCompleteVM[]>(environment.apiUrl + '/vatRegimes/getAutoComplete')
+    public getForBrowser(): Observable<VatRegimeAutoCompleteVM[]> {
+        return this.http.get<VatRegimeAutoCompleteVM[]>(environment.apiUrl + '/vatRegimes/getForBrowser')
     }
 
 }

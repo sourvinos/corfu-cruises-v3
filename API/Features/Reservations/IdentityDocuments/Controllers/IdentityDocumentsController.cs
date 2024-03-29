@@ -34,8 +34,8 @@ namespace API.Features.Reservations.IdentityDocuments {
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<IdentityDocumentAutoCompleteVM>> GetForAutoCompleteAsync() {
-            return await identityDocumentRepo.GetForAutoCompleteAsync();
+        public async Task<IEnumerable<IdentityDocumentBrowserVM>> GetForBrowserAsync() {
+            return await identityDocumentRepo.GetForBrowserAsync();
         }
 
         [HttpGet("{id}")]

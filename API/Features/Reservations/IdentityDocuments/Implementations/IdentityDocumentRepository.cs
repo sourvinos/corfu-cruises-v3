@@ -27,12 +27,12 @@ namespace API.Features.Reservations.IdentityDocuments {
             return mapper.Map<IEnumerable<IdentityDocument>, IEnumerable<IdentityDocumentListVM>>(identityDocuments);
         }
 
-        public async Task<IEnumerable<IdentityDocumentAutoCompleteVM>> GetForAutoCompleteAsync() {
+        public async Task<IEnumerable<IdentityDocumentBrowserVM>> GetForBrowserAsync() {
             var identityDocuments = await context.IdentityDocuments
                 .AsNoTracking()
                 .OrderBy(x => x.Description)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<IdentityDocument>, IEnumerable<IdentityDocumentAutoCompleteVM>>(identityDocuments);
+            return mapper.Map<IEnumerable<IdentityDocument>, IEnumerable<IdentityDocumentBrowserVM>>(identityDocuments);
         }
 
         public async Task<IdentityDocument> GetByIdAsync(int id) {

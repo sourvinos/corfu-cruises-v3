@@ -21,10 +21,6 @@ namespace API.Features.Reservations.Schedules {
             entity.Property(x => x.PostUser).HasMaxLength(255).IsRequired(true);
             entity.Property(x => x.PutAt).HasMaxLength(19);
             entity.Property(x => x.PutUser).HasMaxLength(255);
-            // FK Constraints
-            entity.HasOne(x => x.Port).WithMany(x => x.Schedules).HasForeignKey(x => x.PortId).OnDelete(DeleteBehavior.Restrict);
-            entity.HasOne(x => x.Destination).WithMany(x => x.Schedules).HasForeignKey(x => x.DestinationId).OnDelete(DeleteBehavior.Restrict);
-
         }
 
     }

@@ -7,7 +7,7 @@ namespace API.Features.Reservations.CoachRoutes {
     public interface ICoachRouteRepository : IRepository<CoachRoute> {
 
         Task<IEnumerable<CoachRouteListVM>> GetAsync();
-        Task<IEnumerable<CoachRouteAutoCompleteVM>> GetAutoCompleteAsync();
+        Task<IEnumerable<CoachRouteBrowserVM>> GetForBrowserAsync();
         Task<CoachRoute> GetByIdAsync(int id);
 
     }

@@ -7,7 +7,7 @@ namespace API.Features.Reservations.Drivers{
     public interface IDriverRepository : IRepository<Driver> {
 
         Task<IEnumerable<DriverListVM>> GetAsync();
-        Task<IEnumerable<DriverAutoCompleteVM>> GetAutoCompleteAsync();
+        Task<IEnumerable<DriverBrowserVM>> GetForBrowserAsync();
         Task<Driver> GetByIdAsync(int id);
 
     }

@@ -20,26 +20,12 @@ namespace API.Features.Reservations.Nationalities {
             this.mapper = mapper;
         }
 
-        public async Task<IEnumerable<NationalityListVM>> GetAsync() {
+        public async Task<IEnumerable<NationalityBrowserVM>> GetForBrowserAsync() {
             var nationalities = await context.Nationalities
                 .AsNoTracking()
                 .OrderBy(x => x.Description)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<Nationality>, IEnumerable<NationalityListVM>>(nationalities);
-        }
-
-        public async Task<IEnumerable<NationalityAutoCompleteVM>> GetAutoCompleteAsync() {
-            var nationalities = await context.Nationalities
-                .AsNoTracking()
-                .OrderBy(x => x.Description)
-                .ToListAsync();
-            return mapper.Map<IEnumerable<Nationality>, IEnumerable<NationalityAutoCompleteVM>>(nationalities);
-        }
-
-        public async Task<Nationality> GetByIdAsync(int id) {
-            return await context.Nationalities
-                .AsNoTracking()
-                .SingleOrDefaultAsync(x => x.Id == id);
+            return mapper.Map<IEnumerable<Nationality>, IEnumerable<NationalityBrowserVM>>(nationalities);
         }
 
     }

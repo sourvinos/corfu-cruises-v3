@@ -16,8 +16,8 @@ export class NationalityService extends HttpDataService {
 
     //#region public methods
 
-    getAutoComplete(): Observable<NationalityDropdownVM[]> {
-        return this.http.get<NationalityDropdownVM[]>(environment.apiUrl + '/nationalities/getAutoComplete')
+    getForBrowser(): Observable<NationalityDropdownVM[]> {
+        return this.http.get<NationalityDropdownVM[]>(environment.apiUrl + '/nationalities/getForBrowser')
     }
 
     //#endregion

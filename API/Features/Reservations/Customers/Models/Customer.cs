@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using API.Features.Reservations.Nationalities;
+﻿using API.Features.Reservations.Nationalities;
 using API.Features.Billing.TaxOffices;
 using API.Features.Billing.VatRegimes;
-using API.Features.Reservations.Reservations;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations.Customers {
@@ -39,7 +37,6 @@ namespace API.Features.Reservations.Customers {
         public Nationality Nationality { get; set; }
         public TaxOffice TaxOffice { get; set; }
         public VatRegime VatRegime { get; set; }
-        public List<Reservation> Reservations { get; set; }
 
     }
 

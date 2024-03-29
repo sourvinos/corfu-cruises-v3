@@ -17,8 +17,8 @@ export class DestinationHttpService extends HttpDataService {
 
     //#region public methods
 
-    public getAutoComplete(): Observable<DestinationAutoCompleteVM[]> {
-        return this.http.get<DestinationAutoCompleteVM[]>(environment.apiUrl + '/destinations/getAutoComplete')
+    public getForBrowser(): Observable<DestinationAutoCompleteVM[]> {
+        return this.http.get<DestinationAutoCompleteVM[]>(environment.apiUrl + '/destinations/getForBrowser')
     }
 
     public getForCriteria(): Observable<SimpleCriteriaEntity[]> {

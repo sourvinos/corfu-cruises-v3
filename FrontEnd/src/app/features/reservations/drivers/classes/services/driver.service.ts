@@ -17,8 +17,8 @@ export class DriverService extends HttpDataService {
 
     //#region public methods
 
-    getAutoComplete(): Observable<DriverAutoCompleteVM[]> {
-        return this.http.get<DriverAutoCompleteVM[]>(environment.apiUrl + '/drivers/getAutoComplete')
+    getForBrowser(): Observable<DriverAutoCompleteVM[]> {
+        return this.http.get<DriverAutoCompleteVM[]>(environment.apiUrl + '/drivers/getForBrowser')
     }
 
     //#endregion

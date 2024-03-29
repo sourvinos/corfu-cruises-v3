@@ -34,8 +34,8 @@ namespace API.Features.Billing.TaxOffices {
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<TaxOfficeAutoCompleteVM>> GetAutoCompleteAsync() {
-            return await taxOfficeRepo.GetAutoCompleteAsync();
+        public async Task<IEnumerable<TaxOfficeBrowserVM>> GetForBrowserAsync() {
+            return await taxOfficeRepo.GetForBrowserAsync();
         }
 
         [HttpGet("{id}")]

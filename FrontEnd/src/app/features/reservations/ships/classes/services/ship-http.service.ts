@@ -17,8 +17,8 @@ export class ShipHttpService extends HttpDataService {
 
     //#region public methods
 
-    getAutoComplete(): Observable<ShipAutoCompleteVM[]> {
-        return this.http.get<ShipAutoCompleteVM[]>(environment.apiUrl + '/ships/getForBrowserStorage')
+    getForBrowser(): Observable<ShipAutoCompleteVM[]> {
+        return this.http.get<ShipAutoCompleteVM[]>(environment.apiUrl + '/ships/getForBrowser')
     }
 
     public getForCriteria(): Observable<SimpleCriteriaEntity[]> {

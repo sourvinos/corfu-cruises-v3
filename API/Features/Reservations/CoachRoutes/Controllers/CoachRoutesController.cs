@@ -34,8 +34,8 @@ namespace API.Features.Reservations.CoachRoutes {
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<CoachRouteAutoCompleteVM>> GetAutoCompleteAsync() {
-            return await coachRouteRepo.GetAutoCompleteAsync();
+        public async Task<IEnumerable<CoachRouteBrowserVM>> GetForBrowserAsync() {
+            return await coachRouteRepo.GetForBrowserAsync();
         }
 
         [HttpGet("{id}")]

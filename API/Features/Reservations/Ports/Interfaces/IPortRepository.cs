@@ -8,7 +8,7 @@ namespace API.Features.Reservations.Ports {
     public interface IPortRepository : IRepository<Port> {
 
         Task<IEnumerable<PortListVM>> GetAsync();
-        Task<IEnumerable<PortAutoCompleteVM>> GetAutoCompleteAsync();
+        Task<IEnumerable<PortBrowserVM>> GetForBrowserAsync();
         Task<IEnumerable<SimpleEntity>> GetForCriteriaAsync();
         Task<Port> GetByIdAsync(int id);
 

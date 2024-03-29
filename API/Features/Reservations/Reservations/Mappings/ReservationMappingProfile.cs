@@ -35,7 +35,7 @@ namespace API.Features.Reservations.Reservations {
                 .ForMember(x => x.Destination, x => x.MapFrom(x => new SimpleEntity { Id = x.Destination.Id, Description = x.Destination.Description }))
                 .ForMember(x => x.Driver, x => x.MapFrom(x => x.Driver == null ? new SimpleEntity { Id = 0, Description = "(EMPTY)" } : new SimpleEntity { Id = x.Driver.Id, Description = x.Driver.Description }))
                 .ForMember(x => x.Ship, x => x.MapFrom(x => x.Ship == null ? new SimpleEntity { Id = 0, Description = "(EMPTY)" } : new SimpleEntity { Id = x.Ship.Id, Description = x.Ship.Description }))
-                .ForMember(x => x.PickupPoint, x => x.MapFrom(x => new PickupPointAutoCompleteVM {
+                .ForMember(x => x.PickupPoint, x => x.MapFrom(x => new PickupPointBrowserVM {
                     Id = x.PickupPoint.Id,
                     Description = x.PickupPoint.Description,
                     ExactPoint = x.PickupPoint.ExactPoint,
@@ -52,7 +52,7 @@ namespace API.Features.Reservations.Reservations {
                     Remarks = passenger.Remarks,
                     SpecialCare = passenger.SpecialCare,
                     IsBoarded = passenger.IsBoarded,
-                    Nationality = new NationalityAutoCompleteVM {
+                    Nationality = new NationalityBrowserVM {
                         Id = passenger.Nationality.Id,
                         Code = passenger.Nationality.Code,
                         Description = passenger.Nationality.Description
@@ -65,7 +65,7 @@ namespace API.Features.Reservations.Reservations {
             // Read passenger
             CreateMap<Passenger, PassengerReadDto>()
                 .ForMember(x => x.Birthdate, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Birthdate)))
-                .ForMember(x => x.Nationality, x => x.MapFrom(x => new NationalityAutoCompleteVM {
+                .ForMember(x => x.Nationality, x => x.MapFrom(x => new NationalityBrowserVM {
                     Id = x.Nationality.Id,
                     Description = x.Nationality.Description,
                     Code = x.Nationality.Code

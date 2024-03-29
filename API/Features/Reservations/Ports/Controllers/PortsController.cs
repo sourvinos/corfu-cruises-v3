@@ -35,8 +35,8 @@ namespace API.Features.Reservations.Ports {
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<PortAutoCompleteVM>> GetAutoCompleteAsync() {
-            return await portRepo.GetAutoCompleteAsync();
+        public async Task<IEnumerable<PortBrowserVM>> GetForBrowserAsync() {
+            return await portRepo.GetForBrowserAsync();
         }
 
         [HttpGet("[action]")]

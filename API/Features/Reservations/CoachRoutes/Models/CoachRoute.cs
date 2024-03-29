@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using API.Features.Reservations.PickupPoints;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations.CoachRoutes {
@@ -18,8 +16,6 @@ namespace API.Features.Reservations.CoachRoutes {
         public string PostUser { get; set; }
         public string PutAt { get; set; }
         public string PutUser { get; set; }
-        // Navigation
-        public List<PickupPoint> PickupPoints { get; set; }
 
     }
 

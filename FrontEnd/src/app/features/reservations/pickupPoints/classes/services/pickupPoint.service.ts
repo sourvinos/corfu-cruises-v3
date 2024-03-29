@@ -14,8 +14,8 @@ export class PickupPointService extends HttpDataService {
         super(httpClient, environment.apiUrl + '/pickupPoints')
     }
 
-    getAutoComplete(): Observable<any[]> {
-        return this.http.get<PickupPointAutoCompleteVM[]>(environment.apiUrl + '/pickupPoints/getAutoComplete')
+    getForBrowser(): Observable<any[]> {
+        return this.http.get<PickupPointAutoCompleteVM[]>(environment.apiUrl + '/pickupPoints/getForBrowser')
     }
 
 }

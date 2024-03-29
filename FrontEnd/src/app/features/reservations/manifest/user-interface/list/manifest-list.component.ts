@@ -1,6 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, ViewChild } from '@angular/core'
-import { MatDialog } from '@angular/material/dialog'
 import { Table } from 'primeng/table'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
@@ -10,14 +9,11 @@ import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { ListResolved } from 'src/app/shared/classes/list-resolved'
 import { ManifestCriteriaPanelVM } from '../../classes/view-models/criteria/manifest-criteria-panel-vm'
-import { ManifestPdfService } from '../../classes/services/manifest-pdf.service'
-import { ManifestRouteSelectorComponent } from './manifest-route-selector.component'
 import { ManifestVM } from '../../classes/view-models/list/manifest-vm'
 import { ManifestExportCrewService } from '../../classes/services/manifest-export-crew.service'
 import { ManifestExportPassengerService } from '../../classes/services/manifest-export-passenger.service'
 import { MessageDialogService } from '../../../../../shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { RegistrarService } from '../../../registrars/classes/services/registrar.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { environment } from 'src/environments/environment'
@@ -54,7 +50,7 @@ export class ManifestListComponent {
 
     //#endregion
 
-    constructor(private manifestExportPassengerService: ManifestExportPassengerService, private manifestExportCrewService: ManifestExportCrewService, private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private manifestPdfService: ManifestPdfService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private registrarService: RegistrarService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
+    constructor(private manifestExportPassengerService: ManifestExportPassengerService, private manifestExportCrewService: ManifestExportCrewService, private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -80,14 +76,6 @@ export class ManifestListComponent {
         occupant == 'passengers'
             ? this.manifestExportPassengerService.exportToExcel(this.manifestExportPassengerService.buildPassengers(this.records.passengers))
             : this.manifestExportCrewService.exportToExcel(this.manifestExportCrewService.buildCrew(this.records.passengers))
-    }
-
-    public async doTasks(): Promise<void> {
-        this.validateRegistrarsForManifest().then((response) => {
-            response.code == 200
-                ? this.showRouteSelectionDialog()
-                : this.dialogService.open(this.messageDialogService.errorsInRegistrars(), 'error', ['ok'])
-        })
     }
 
     public filterRecords(event: any): void {
@@ -174,22 +162,6 @@ export class ManifestListComponent {
         this.helperService.setTabTitle(this.feature)
     }
 
-    private showRouteSelectionDialog(): void {
-        const response = this.dialog.open(ManifestRouteSelectorComponent, {
-            data: this.records,
-            disableClose: true,
-            height: '36.0625rem',
-            panelClass: 'dialog',
-            width: '31rem',
-        })
-        response.afterClosed().subscribe(result => {
-            if (result !== undefined) {
-                this.records.shipRoute = result
-                this.manifestPdfService.createReport(this.records)
-            }
-        })
-    }
-
     private storeFilters(): void {
         this.sessionStorageService.saveItem(this.feature, JSON.stringify(this.table.filters))
     }
@@ -204,14 +176,6 @@ export class ManifestListComponent {
         totals[0] = filteredVelue.length
         totals[1] = filteredVelue.filter(x => x.occupant.description == 'PASSENGER').length
         totals[2] = filteredVelue.filter(x => x.occupant.description == 'CREW').length
-    }
-
-    private validateRegistrarsForManifest(): Promise<any> {
-        return new Promise((resolve) => {
-            this.registrarService.validateRegistrarsForManifest(this.records.ship.id).then((response) => {
-                resolve(response)
-            })
-        })
     }
 
     //#endregion

@@ -16,8 +16,8 @@ export class CrewSpecialtyHttpService extends HttpDataService {
 
     //#region public methods
 
-    getAutoComplete(): Observable<CrewSpecialtyAutoCompleteVM[]> {
-        return this.http.get<CrewSpecialtyAutoCompleteVM[]>(environment.apiUrl + '/crewSpecialties/getForBrowserStorage')
+    getForBrowser(): Observable<CrewSpecialtyAutoCompleteVM[]> {
+        return this.http.get<CrewSpecialtyAutoCompleteVM[]>(environment.apiUrl + '/crewSpecialties/getForBrowser')
     }
 
     //#endregion

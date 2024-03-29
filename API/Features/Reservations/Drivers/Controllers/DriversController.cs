@@ -34,8 +34,8 @@ namespace API.Features.Reservations.Drivers{
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<DriverAutoCompleteVM>> GetAutoCompleteAsync() {
-            return await driverRepo.GetAutoCompleteAsync();
+        public async Task<IEnumerable<DriverBrowserVM>> GetForBrowserAsync() {
+            return await driverRepo.GetForBrowserAsync();
         }
 
         [HttpGet("{id}")]

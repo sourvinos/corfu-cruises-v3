@@ -192,8 +192,10 @@ export class HelperService {
         allRows.forEach(row => {
             row.classList.remove('p-highlight')
         })
-        const selectedRow = document.getElementById(id)
-        selectedRow.classList.add('p-highlight')
+        if (id != undefined) {
+            const selectedRow = document.getElementById(id)
+            selectedRow.classList.add('p-highlight')
+        }
     }
 
     public highlightSavedRow(feature: string): void {

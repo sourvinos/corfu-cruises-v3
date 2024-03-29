@@ -14,8 +14,8 @@ export class ShipOwnerHttpService extends HttpDataService {
         super(httpClient, environment.apiUrl + '/shipOwners')
     }
 
-    public getAutoComplete(): Observable<ShipOwnerBrowserStorageVM[]> {
-        return this.http.get<ShipOwnerBrowserStorageVM[]>(environment.apiUrl + '/shipOwners/getForBrowserStorage')
+    public getForBrowser(): Observable<ShipOwnerBrowserStorageVM[]> {
+        return this.http.get<ShipOwnerBrowserStorageVM[]>(environment.apiUrl + '/shipOwners/getForBrowser')
     }
 
 }

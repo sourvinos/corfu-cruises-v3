@@ -7,7 +7,7 @@ namespace API.Features.Billing.VatRegimes {
     public interface IVatRegimeRepository : IRepository<VatRegime> {
 
         Task<IEnumerable<VatRegimeListVM>> GetAsync();
-        Task<IEnumerable<VatRegimeAutoCompleteVM>> GetAutoCompleteAsync();
+        Task<IEnumerable<VatRegimeBrowserVM>> GetForBrowserAsync();
         Task<VatRegime> GetByIdAsync(string id);
  
     }

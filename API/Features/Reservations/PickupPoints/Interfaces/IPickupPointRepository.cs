@@ -7,7 +7,7 @@ namespace API.Features.Reservations.PickupPoints {
     public interface IPickupPointRepository : IRepository<PickupPoint> {
 
         Task<IEnumerable<PickupPointListVM>> GetAsync();
-        Task<IEnumerable<PickupPointAutoCompleteVM>> GetAutoCompleteAsync();
+        Task<IEnumerable<PickupPointBrowserVM>> GetForBrowserAsync();
         Task<PickupPoint> GetByIdAsync(int id, bool includeTables);
 
     }

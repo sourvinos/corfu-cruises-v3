@@ -1,7 +1,3 @@
-using System.Collections.Generic;
-using API.Features.Reservations.Registrars;
-using API.Features.Reservations.Reservations;
-using API.Features.Reservations.ShipCrews;
 using API.Features.Reservations.ShipOwners;
 using API.Infrastructure.Interfaces;
 
@@ -30,9 +26,6 @@ namespace API.Features.Reservations.Ships {
         public string PutUser { get; set; }
         // Navigation
         public ShipOwner ShipOwner { get; set; }
-        public List<ShipCrew> ShipCrews { get; set; }
-        public List<Registrar> Registrars { get; set; }
-        public List<Reservation> Reservations { get; set; }
 
     }
 

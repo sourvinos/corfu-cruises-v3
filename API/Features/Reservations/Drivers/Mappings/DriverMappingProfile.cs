@@ -6,7 +6,7 @@ namespace API.Features.Reservations.Drivers{
 
         public DriverMappingProfile() {
             CreateMap<Driver, DriverListVM>();
-            CreateMap<Driver, DriverAutoCompleteVM>();
+            CreateMap<Driver, DriverBrowserVM>();
             CreateMap<Driver, DriverReadDto>();
             CreateMap<DriverWriteDto, Driver>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))

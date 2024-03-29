@@ -20,26 +20,12 @@ namespace API.Features.Reservations.Genders {
             this.mapper = mapper;
         }
 
-        public async Task<IEnumerable<GenderListVM>> GetAsync() {
+        public async Task<IEnumerable<GenderBrowserVM>> GetForBrowserAsync() {
             var genders = await context.Genders
                 .AsNoTracking()
                 .OrderBy(x => x.Description)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<Gender>, IEnumerable<GenderListVM>>(genders);
-        }
-
-        public async Task<IEnumerable<GenderAutoCompleteVM>> GetAutoCompleteAsync() {
-            var genders = await context.Genders
-                .AsNoTracking()
-                .OrderBy(x => x.Description)
-                .ToListAsync();
-            return mapper.Map<IEnumerable<Gender>, IEnumerable<GenderAutoCompleteVM>>(genders);
-        }
-
-        public async Task<Gender> GetByIdAsync(int id) {
-            return await context.Genders
-                .AsNoTracking()
-                .SingleOrDefaultAsync(x => x.Id == id);
+            return mapper.Map<IEnumerable<Gender>, IEnumerable<GenderBrowserVM>>(genders);
         }
 
     }

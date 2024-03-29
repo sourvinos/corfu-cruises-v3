@@ -16,8 +16,8 @@ export class CoachRouteService extends HttpDataService {
 
     //#region public methods
 
-    public getAutoComplete(): Observable<any[]> {
-        return this.http.get<CoachRouteAutoCompleteVM[]>(environment.apiUrl + '/coachRoutes/getAutoComplete')
+    public getForBrowser(): Observable<any[]> {
+        return this.http.get<CoachRouteAutoCompleteVM[]>(environment.apiUrl + '/coachRoutes/getForBrowser')
     }
 
     //#endregion

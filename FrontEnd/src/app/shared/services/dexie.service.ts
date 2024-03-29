@@ -12,23 +12,23 @@ export class DexieService extends Dexie {
         super('CorfuCruisesDB')
         this.version(1).stores({
             billingParameters: 'id',
-            coachRoutes: 'id, abbreviation, isActive',
-            crewSpecialties: 'id, description, isActive',
-            customers: 'id, description, fullDescription, isActive',
-            destinations: 'id, description, isActive',
-            documentTypesInvoice: 'id',
-            documentTypesReceipt: 'id',
-            drivers: 'id, description, isActive',
-            genders: 'id, description, isActive',
-            nationalities: 'id, description, isActive',
-            paymentMethods: 'id, description, myDataId, isActive',
-            pickupPoints: 'id, description, isActive',
-            ports: 'id, abbreviation, description, isActive',
-            shipOwners: 'id, description, vatNumber, branch, isActive',
-            shipRoutes: 'id, description, isActive',
-            ships: 'id, description, isActive',
-            taxOffices: 'id, description, isActive',
-            vatRegimes: 'id, description, isActive',
+            coachRoutes: 'id, abbreviation',
+            crewSpecialties: 'id',
+            customers: 'id, description',
+            destinations: 'id, description',
+            documentTypesInvoice: 'id, abbreviation',
+            documentTypesReceipt: 'id, abbreviation',
+            drivers: 'id, description',
+            genders: 'id, description',
+            nationalities: 'id, description',
+            paymentMethods: 'id, description',
+            pickupPoints: 'id, description',
+            ports: 'id, description',
+            shipOwners: 'id, description',
+            shipRoutes: 'id',
+            ships: 'id, description',
+            taxOffices: 'id, description',
+            vatRegimes: 'id, description',
             customersCriteria: 'id, description',
             destinationsCriteria: 'id, description',
             portsCriteria: 'id, description',
@@ -38,7 +38,7 @@ export class DexieService extends Dexie {
     }
 
     public populateTable(table: string, httpService: any): void {
-        httpService.getAutoComplete().subscribe((records: any) => {
+        httpService.getForBrowser().subscribe((records: any) => {
             this.table(table)
                 .clear().then(() => {
                     this.table(table)

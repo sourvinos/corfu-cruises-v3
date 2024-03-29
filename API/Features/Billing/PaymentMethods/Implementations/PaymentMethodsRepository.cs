@@ -28,12 +28,12 @@ namespace API.Features.Billing.PaymentMethods {
             return mapper.Map<IEnumerable<PaymentMethod>, IEnumerable<PaymentMethodListVM>>(paymentMethods);
         }
 
-        public async Task<IEnumerable<PaymentMethodAutoCompleteVM>> GetAutoCompleteAsync() {
+        public async Task<IEnumerable<PaymentMethodBrowserVM>> GetForBrowserAsync() {
             var paymentMethods = await context.PaymentMethods
                 .AsNoTracking()
                 .OrderBy(x => x.Description)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<PaymentMethod>, IEnumerable<PaymentMethodAutoCompleteVM>>(paymentMethods);
+            return mapper.Map<IEnumerable<PaymentMethod>, IEnumerable<PaymentMethodBrowserVM>>(paymentMethods);
         }
 
         public async Task<PaymentMethod> GetByIdAsync(string id) {

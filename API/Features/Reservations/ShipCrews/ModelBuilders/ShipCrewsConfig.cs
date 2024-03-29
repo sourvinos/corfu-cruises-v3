@@ -24,9 +24,6 @@ namespace API.Features.Reservations.ShipCrews {
             entity.Property(x => x.PostUser).HasMaxLength(255).IsRequired(true);
             entity.Property(x => x.PutAt).HasMaxLength(19);
             entity.Property(x => x.PutUser).HasMaxLength(255);
-            // FK Constraints
-            entity.HasOne(x => x.Nationality).WithMany(x => x.ShipCrews).HasForeignKey(x => x.NationalityId).OnDelete(DeleteBehavior.Restrict);
-            entity.HasOne(x => x.Ship).WithMany(x => x.ShipCrews).HasForeignKey(x => x.ShipId).OnDelete(DeleteBehavior.Restrict);
         }
 
     }

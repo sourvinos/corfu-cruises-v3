@@ -32,12 +32,6 @@ namespace API.Features.Reservations.ShipCrews {
             return await shipCrewRepo.GetAsync();
         }
 
-        [HttpGet("[action]")]
-        [Authorize(Roles = "admin")]
-        public async Task<IEnumerable<ShipCrewAutoCompleteVM>> GetAutoCompleteAsync() {
-            return await shipCrewRepo.GetAutoCompleteAsync();
-        }
-
         [HttpGet("{id}")]
         [Authorize(Roles = "admin")]
         public async Task<ResponseWithBody> GetByIdAsync(int id) {

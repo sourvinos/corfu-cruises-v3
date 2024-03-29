@@ -6,7 +6,7 @@ namespace API.Features.Billing.PaymentMethods {
 
         public PaymentMethodMappingProfile() {
             CreateMap<PaymentMethod, PaymentMethodListVM>();
-            CreateMap<PaymentMethod, PaymentMethodAutoCompleteVM>();
+            CreateMap<PaymentMethod, PaymentMethodBrowserVM>();
             CreateMap<PaymentMethod, PaymentMethodReadDto>();
             CreateMap<PaymentMethodWriteDto, PaymentMethod>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()));

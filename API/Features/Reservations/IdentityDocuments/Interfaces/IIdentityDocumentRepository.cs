@@ -7,7 +7,7 @@ namespace API.Features.Reservations.IdentityDocuments {
     public interface IIdentityDocumentRepository : IRepository<IdentityDocument> {
 
         Task<IEnumerable<IdentityDocumentListVM>> GetAsync();
-        Task<IEnumerable<IdentityDocumentAutoCompleteVM>> GetForAutoCompleteAsync();
+        Task<IEnumerable<IdentityDocumentBrowserVM>> GetForBrowserAsync();
         Task<IdentityDocument> GetByIdAsync(int id);
 
     }
