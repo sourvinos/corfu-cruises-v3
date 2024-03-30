@@ -2,7 +2,7 @@ using API.Infrastructure.Classes;
 
 namespace API.Features.Reservations.Manifest {
 
-    public class ManifestFinalCrewVM {
+    public class ManifestPassengerVM {
 
         public int Id { get; set; }
         public string Lastname { get; set; }
@@ -12,10 +12,8 @@ namespace API.Features.Reservations.Manifest {
         public string Remarks { get; set; }
         public string SpecialCare { get; set; }
         public SimpleEntity Gender { get; set; }
-        public ManifestFinalNationalityVM Nationality { get; set; }
-        public SimpleEntity Occupant { get; set; }
-        public SimpleEntity Port { get; set; }
-        public SimpleEntity Specialty { get; set; }
+        public ManifestNationalityVM Nationality { get; set; }
+        public ManifestPortVM Port { get; set; }
 
     }
 

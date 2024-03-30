@@ -2,8 +2,8 @@ import FileSaver from 'file-saver'
 import { Injectable } from '@angular/core'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
-import { ManifestPassengerVM } from '../view-models/list/manifest-passenger-vm'
 import { ManifestExportPassengerVM } from '../view-models/export/manifest-export-passenger-vm'
+import { ManifestPassengerVM } from '../view-models/list/manifest-passenger-vm'
 
 @Injectable({ providedIn: 'root' })
 
@@ -16,7 +16,7 @@ export class ManifestExportPassengerService {
     public buildPassengers(passengers: ManifestPassengerVM[]): ManifestExportPassengerVM[] {
         let row = 0
         this.exportPassengers = []
-        passengers.filter(x => x.occupant.id == 2).forEach(record => {
+        passengers.forEach(record => {
             this.exportPassengers.push({
                 Passengers_Number: ++row,
                 Passengers_Family_name: record.lastname,
@@ -30,7 +30,7 @@ export class ManifestExportPassengerService {
                 Passengers_Number_of_identity_document: '0',
                 Passengers_Issuing_State_of_Identity_Document: '',
                 Passengers_Expiry_Date_of_Identity_Document: '',
-                Passengers_Port_of_embarkation: record.port.description,
+                Passengers_Port_of_embarkation: record.port.locode,
                 Passengers_Port_of_disembarkation: null,
                 Passengers_Transit: null,
                 Passengers_Visa_Residence_Permit_number: '',

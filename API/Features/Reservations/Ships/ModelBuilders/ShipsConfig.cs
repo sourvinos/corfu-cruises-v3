@@ -13,12 +13,7 @@ namespace API.Features.Reservations.Ships {
             // Fields
             entity.Property(x => x.Description).HasMaxLength(128).IsRequired(true);
             entity.Property(x => x.Abbreviation).HasMaxLength(5).IsRequired(true);
-            entity.Property(x => x.IMO).HasDefaultValue("").HasMaxLength(128);
-            entity.Property(x => x.Flag).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.RegistryNo).HasDefaultValue("").HasMaxLength(128);
-            entity.Property(x => x.Manager).HasDefaultValue("").HasMaxLength(128);
-            entity.Property(x => x.ManagerInGreece).HasDefaultValue("").HasMaxLength(128);
-            entity.Property(x => x.Agent).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.IsActive);
             // Metadata
             entity.Property(x => x.PostAt).HasMaxLength(19).IsRequired(true);

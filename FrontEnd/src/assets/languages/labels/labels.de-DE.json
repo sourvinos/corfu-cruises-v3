@@ -1568,8 +1568,12 @@
                 "description": "Passagiermanifest"
             },
             {
-                "id": "headerOccupant",
-                "description": "Eigentum"
+                "id": "tab1",
+                "description": "Passagiere"
+            },
+            {
+                "id": "tab2",
+                "description": "Mannschaft"
             },
             {
                 "id": "headerLastname",
@@ -1586,14 +1590,6 @@
             {
                 "id": "headerGender",
                 "description": "Geschlecht"
-            },
-            {
-                "id": "countPassengers",
-                "description": "P"
-            },
-            {
-                "id": "countCrew",
-                "description": "B"
             },
             {
                 "id": "createFiles",

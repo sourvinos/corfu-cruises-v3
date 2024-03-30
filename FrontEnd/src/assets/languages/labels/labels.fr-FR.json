@@ -1568,8 +1568,12 @@
                 "description": "Manifeste des passagers"
             },
             {
-                "id": "headerOccupant",
-                "description": "Propriété"
+                "id": "tab1",
+                "description": "Passagers"
+            },
+            {
+                "id": "tab2",
+                "description": "Équipage"
             },
             {
                 "id": "headerLastname",
@@ -1586,14 +1590,6 @@
             {
                 "id": "headerGender",
                 "description": "Genre"
-            },
-            {
-                "id": "countPassengers",
-                "description": "P"
-            },
-            {
-                "id": "countCrew",
-                "description": "E"
             },
             {
                 "id": "createFiles",

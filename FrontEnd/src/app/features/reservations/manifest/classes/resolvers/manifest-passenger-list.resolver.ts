@@ -2,18 +2,18 @@ import { Injectable } from '@angular/core'
 import { Observable, of } from 'rxjs'
 import { catchError, map } from 'rxjs/operators'
 // Custom
-import { ManifestListResolved } from './manifest-list-resolved'
+import { ManifestPassengerListResolved } from './manifest-passenger-list-resolved'
 import { ManifestSearchCriteriaVM } from '../view-models/criteria/manifest-search-criteria-vm'
-import { ManifestService } from '../services/manifest.http.service'
+import { ManifestHttpService } from '../services/manifest.http.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 
 @Injectable({ providedIn: 'root' })
 
-export class ManifestListResolver {
+export class ManifestPassengerListResolver {
 
-    constructor(private manifestService: ManifestService, private sessionStorageService: SessionStorageService) { }
+    constructor(private manifestService: ManifestHttpService, private sessionStorageService: SessionStorageService) { }
 
-    resolve(): Observable<ManifestListResolved> {
+    resolve(): Observable<ManifestPassengerListResolved> {
         const storedCriteria = JSON.parse(this.sessionStorageService.getItem('manifest-criteria'))
         const searchCriteria: ManifestSearchCriteriaVM = {
             date: storedCriteria.date,
@@ -21,18 +21,10 @@ export class ManifestListResolver {
             portId: storedCriteria.selectedPorts[0].id,
             shipId: storedCriteria.selectedShips[0].id
         }
-        return this.manifestService.get(searchCriteria).pipe(
-            map((manifestList) => new ManifestListResolved(manifestList)),
-            catchError((err: any) => of(new ManifestListResolved(null, err)))
+        return this.manifestService.getPassengers(searchCriteria).pipe(
+            map((manifestList) => new ManifestPassengerListResolved(manifestList)),
+            catchError((err: any) => of(new ManifestPassengerListResolved(null, err)))
         )
-    }
-
-    private buildIds(criteria: any): number[] {
-        const ids = []
-        criteria.forEach((element: { id: any }) => {
-            ids.push(parseInt(element.id))
-        })
-        return ids
     }
 
 }

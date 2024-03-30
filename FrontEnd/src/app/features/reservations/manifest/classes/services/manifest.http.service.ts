@@ -3,20 +3,25 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 // Custom
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
+import { ManifestCrewVM } from '../view-models/list/manifest-crew-vm'
+import { ManifestPassengerVM } from '../view-models/list/manifest-passenger-vm'
 import { ManifestSearchCriteriaVM } from '../view-models/criteria/manifest-search-criteria-vm'
 import { environment } from 'src/environments/environment'
-import { ManifestVM } from '../view-models/list/manifest-vm'
 
 @Injectable({ providedIn: 'root' })
 
-export class ManifestService extends HttpDataService {
+export class ManifestHttpService extends HttpDataService {
 
     constructor(httpClient: HttpClient) {
         super(httpClient, environment.apiUrl + '/manifest')
     }
 
-    get(criteria: ManifestSearchCriteriaVM): Observable<ManifestVM> {
-        return this.http.request<ManifestVM>('post', this.url, { body: criteria })
+    getPassengers(criteria: ManifestSearchCriteriaVM): Observable<ManifestPassengerVM> {
+        return this.http.request<ManifestPassengerVM>('post', this.url, { body: criteria })
+    }
+
+    getCrew(shipId: number): Observable<ManifestCrewVM[]> {
+        return this.http.get<ManifestCrewVM[]>(this.url + '/' + shipId)
     }
 
 }

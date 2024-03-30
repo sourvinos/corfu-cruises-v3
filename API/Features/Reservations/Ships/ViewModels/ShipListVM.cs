@@ -4,7 +4,7 @@ namespace API.Features.Reservations.Ships {
 
         public int Id { get; set; }
         public string Description { get; set; }
-        public string IMO { get; set; }
+        public string RegistryNo { get; set; }
         public bool IsActive { get; set; }
 
     }

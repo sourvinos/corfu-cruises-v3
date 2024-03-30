@@ -36,43 +36,13 @@
                 <mat-error *ngIf="!shipOwner.hasError('required') && shipOwner.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>
             <div class="group-input-field">
-                <!-- IMO -->
-                <mat-form-field>
-                    <mat-label>{{ getLabel('imo') }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="4" formControlName="imo" matInput>
-                    <mat-error *ngIf="imo.hasError('maxlength')">{{ getHint("maxLength", imo.errors.maxlength.requiredLength) }}</mat-error>
-                </mat-form-field>
-                <!-- Flag -->
-                <mat-form-field>
-                    <mat-label>{{ getLabel('flag') }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="5" formControlName="flag" matInput>
-                    <mat-error *ngIf="flag.hasError('maxlength')">{{ getHint("maxLength", flag.errors.maxlength.requiredLength) }}</mat-error>
-                </mat-form-field>
                 <!-- Registry No -->
                 <mat-form-field>
                     <mat-label>{{ getLabel('registryNo') }}</mat-label>
-                    <input [inputTabStop]="input" dataTabIndex="6" formControlName="registryNo" matInput>
+                    <input [inputTabStop]="input" dataTabIndex="4" formControlName="registryNo" matInput>
                     <mat-error *ngIf="registryNo.hasError('maxlength')">{{ getHint("maxLength", registryNo.errors.maxlength.requiredLength) }}</mat-error>
                 </mat-form-field>
             </div>
-            <!-- Manager -->
-            <mat-form-field>
-                <mat-label>{{ getLabel('manager') }}</mat-label>
-                <input [inputTabStop]="input" dataTabIndex="7" formControlName="manager" matInput>
-                <mat-error *ngIf="manager.hasError('maxlength')">{{ getHint("maxLength", manager.errors.maxlength.requiredLength) }}</mat-error>
-            </mat-form-field>
-            <!-- Manager in Greece -->
-            <mat-form-field>
-                <mat-label>{{ getLabel('managerInGreece') }}</mat-label>
-                <input [inputTabStop]="input" dataTabIndex="8" formControlName="managerInGreece" matInput>
-                <mat-error *ngIf="managerInGreece.hasError('maxlength')">{{ getHint("maxLength", managerInGreece.errors.maxlength.requiredLength) }}</mat-error>
-            </mat-form-field>
-            <!-- Agent -->
-            <mat-form-field>
-                <mat-label>{{ getLabel('agent') }}</mat-label>
-                <input [inputTabStop]="input" dataTabIndex="9" formControlName="agent" matInput>
-                <mat-error *ngIf="agent.hasError('maxlength')">{{ getHint("maxLength", agent.errors.maxlength.requiredLength) }}</mat-error>
-            </mat-form-field>
             <div class="stacked-checkboxes">
                 <!-- Active -->
                 <mat-checkbox formControlName="isActive">

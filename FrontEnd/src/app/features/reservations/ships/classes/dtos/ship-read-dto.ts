@@ -8,14 +8,9 @@ export interface ShipReadDto extends Metadata {
     // Object fields
     shipOwner: ShipOwnerBrowserStorageVM
     // Fields
-    description: string
     abbreviation: string
-    imo: string
-    flag: string
+    description: string
     registryNo: string
-    manager: string
-    managerInGreece: string
-    agent: string
     isActive: boolean
 
 }

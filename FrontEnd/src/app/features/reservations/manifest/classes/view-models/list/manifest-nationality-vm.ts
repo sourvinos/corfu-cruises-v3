@@ -1,7 +1,7 @@
-import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
+export interface ManifestNationalityVM {
 
-export interface ManifestNationalityVM extends SimpleEntity {
-
+    id: number
+    description: string
     code: string
 
 }

@@ -1,9 +1,9 @@
 import FileSaver from 'file-saver'
 import { Injectable } from '@angular/core'
 // Custom
-import { ManifestExportCrewVM } from '../view-models/export/manifest-export-crew-vm'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
-import { ManifestPassengerVM } from '../view-models/list/manifest-passenger-vm'
+import { ManifestCrewVM } from '../view-models/list/manifest-crew-vm'
+import { ManifestExportCrewVM } from '../view-models/export/manifest-export-crew-vm'
 
 @Injectable({ providedIn: 'root' })
 
@@ -13,10 +13,10 @@ export class ManifestExportCrewService {
 
     constructor(private dateHelperService: DateHelperService) { }
 
-    public buildCrew(passengers: ManifestPassengerVM[]): ManifestExportCrewVM[] {
+    public buildCrew(crew: ManifestCrewVM[]): ManifestExportCrewVM[] {
         let row = 0
         this.exportCrew = []
-        passengers.filter(x => x.occupant.id == 1).forEach(record => {
+        crew.forEach(record => {
             this.exportCrew.push({
                 Crew_Number: ++row,
                 Crew_Family_name: record.lastname,

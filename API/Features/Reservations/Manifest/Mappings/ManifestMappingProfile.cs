@@ -1,4 +1,5 @@
-using System.Linq;
+using API.Features.Reservations.Reservations;
+using API.Features.Reservations.ShipCrews;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Helpers;
 using AutoMapper;
@@ -8,21 +9,20 @@ namespace API.Features.Reservations.Manifest {
     public class ManifestMappingProfile : Profile {
 
         public ManifestMappingProfile() {
-            CreateMap<ManifestVM, ManifestFinalVM>()
-                .ForMember(x => x.Passengers, x => x.MapFrom(source => source.Passengers.Select(passenger => new ManifestFinalPassengerVM {
-                    Id = passenger.Id,
-                    Lastname = passenger.Lastname.Trim().ToUpper(),
-                    Firstname = passenger.Firstname.Trim().ToUpper(),
-                    Birthdate = DateHelpers.DateToISOString(passenger.Birthdate),
-                    Phones = passenger.Reservation.Phones.Trim(),
-                    Remarks = passenger.Remarks.Trim(),
-                    SpecialCare = passenger.SpecialCare.Trim(),
-                    Gender = new SimpleEntity { Id = passenger.Gender.Id, Description = passenger.Gender.Description },
-                    Nationality = new ManifestFinalNationalityVM { Id = passenger.Nationality.Id, Code = passenger.Nationality.Code.ToUpper(), Description = passenger.Nationality.Description },
-                    Occupant = new SimpleEntity { Id = passenger.Occupant.Id, Description = passenger.Occupant.Description },
-                    Port = new SimpleEntity { Id = passenger.Reservation.Port.Id, Description = passenger.Reservation.Port.Locode },
-                    Specialty = new SimpleEntity { Id = 0, Description = "" }
-                }).OrderBy(x => x.Lastname).ThenBy(x => x.Firstname).ThenBy(x => x.Birthdate)));
+            CreateMap<Passenger, ManifestPassengerVM>()
+                .ForMember(x => x.Birthdate, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Birthdate)))
+                .ForMember(x => x.Gender, x => x.MapFrom(x => new SimpleEntity { Id = x.Gender.Id, Description = x.Gender.Description }))
+                .ForMember(x => x.Nationality, x => x.MapFrom(x => new ManifestNationalityVM { Id = x.Nationality.Id, Code = x.Nationality.Code, Description = x.Nationality.Description, }))
+                .ForMember(x => x.Port, x => x.MapFrom(x => new ManifestPortVM {
+                    Id = x.Reservation.PortAlternate.Id,
+                    Description = x.Reservation.PortAlternate.Description,
+                    Locode = x.Reservation.PortAlternate.Locode
+                }));
+            CreateMap<ShipCrew, ManifestCrewVM>()
+                .ForMember(x => x.Birthdate, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Birthdate)))
+                .ForMember(x => x.Gender, x => x.MapFrom(x => new SimpleEntity { Id = x.Gender.Id, Description = x.Gender.Description }))
+                .ForMember(x => x.Specialty, x => x.MapFrom(x => new SimpleEntity { Id = x.Specialty.Id, Description = x.Specialty.Description }))
+                .ForMember(x => x.Nationality, x => x.MapFrom(x => new ManifestNationalityVM { Id = x.Nationality.Id, Code = x.Nationality.Code, Description = x.Nationality.Description, }));
         }
 
     }

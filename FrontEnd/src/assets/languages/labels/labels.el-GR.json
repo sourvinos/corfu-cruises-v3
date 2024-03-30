@@ -1568,8 +1568,12 @@
                 "description": "Κατάσταση επιβαινόντων"
             },
             {
-                "id": "headerOccupant",
-                "description": "Ιδιότητα"
+                "id": "tab1",
+                "description": "Επιβάτες"
+            },
+            {
+                "id": "tab2",
+                "description": "Πλήρωμα"
             },
             {
                 "id": "headerLastname",
@@ -1586,14 +1590,6 @@
             {
                 "id": "headerGender",
                 "description": "Φύλο"
-            },
-            {
-                "id": "countPassengers",
-                "description": "Ε"
-            },
-            {
-                "id": "countCrew",
-                "description": "Π"
             },
             {
                 "id": "createFiles",

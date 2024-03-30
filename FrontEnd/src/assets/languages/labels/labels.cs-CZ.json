@@ -1568,8 +1568,12 @@
                 "description": "Seznam cestujících"
             },
             {
-                "id": "headerOccupant",
-                "description": "Majetek"
+                "id": "tab1",
+                "description": "Cestující"
+            },
+            {
+                "id": "tab2",
+                "description": "Posádka"
             },
             {
                 "id": "headerLastname",
@@ -1586,14 +1590,6 @@
             {
                 "id": "headerGender",
                 "description": "Rod"
-            },
-            {
-                "id": "countPassengers",
-                "description": "P"
-            },
-            {
-                "id": "countCrew",
-                "description": "P"
             },
             {
                 "id": "createFiles",

@@ -85,7 +85,7 @@ export class PriceFormComponent {
     public formatPriceField(fieldName: string, digits: number): void {
         this.patchNumericFieldsWithZeroIfNullOrEmpty(fieldName, digits)
         this.form.patchValue({
-            [fieldName]: this.form.value[fieldName].toFixed(digits)
+            [fieldName]: parseFloat(this.form.value[fieldName]).toFixed(digits)
         })
     }
 

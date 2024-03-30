@@ -1,7 +1,7 @@
 import { ManifestNationalityVM } from './manifest-nationality-vm'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
-export interface ManifestShipCrewVM {
+export interface ManifestCrewVM {
 
     id: number
     lastname: string
@@ -10,10 +10,7 @@ export interface ManifestShipCrewVM {
     phones: string
     gender: SimpleEntity
     nationality: ManifestNationalityVM
-    occupant: SimpleEntity
     port: SimpleEntity
     specialty: SimpleEntity
-    remarks: string
-    specialCare: string
 
 }

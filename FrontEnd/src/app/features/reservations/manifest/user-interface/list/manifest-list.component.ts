@@ -8,15 +8,17 @@ import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { ListResolved } from 'src/app/shared/classes/list-resolved'
+import { ManifestCrewVM } from '../../classes/view-models/list/manifest-crew-vm'
 import { ManifestCriteriaPanelVM } from '../../classes/view-models/criteria/manifest-criteria-panel-vm'
-import { ManifestVM } from '../../classes/view-models/list/manifest-vm'
 import { ManifestExportCrewService } from '../../classes/services/manifest-export-crew.service'
 import { ManifestExportPassengerService } from '../../classes/services/manifest-export-passenger.service'
+import { ManifestPassengerVM } from '../../classes/view-models/list/manifest-passenger-vm'
 import { MessageDialogService } from '../../../../../shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { environment } from 'src/environments/environment'
+import { ManifestHttpService } from '../../classes/services/manifest.http.service'
 
 @Component({
     selector: 'manifest-list',
@@ -28,21 +30,22 @@ export class ManifestListComponent {
 
     //#region common
 
-    @ViewChild('table') table: Table
+    @ViewChild('crewTable') crewTable: Table
+    @ViewChild('passengersTable') passengersTable: Table
 
     public feature = 'manifestList'
     public featureIcon = 'manifest'
     public icon = 'arrow_back'
     public parentUrl = '/manifest'
-    public records: ManifestVM
+    public passengers: ManifestPassengerVM[] = []
+    public crew: ManifestCrewVM[] = []
+    public passengersFilteredCount: number
+    public crewFilteredCount: number
     public criteriaPanels: ManifestCriteriaPanelVM
 
     //#endregion
 
     //#region specific
-
-    public totals = [0, 0, 0]
-    public totalsFiltered = [0, 0, 0]
 
     public distinctGenders: SimpleEntity[]
     public distinctNationalities: SimpleEntity[]
@@ -50,18 +53,16 @@ export class ManifestListComponent {
 
     //#endregion
 
-    constructor(private manifestExportPassengerService: ManifestExportPassengerService, private manifestExportCrewService: ManifestExportCrewService, private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private manifestHttpService: ManifestHttpService, private manifestExportPassengerService: ManifestExportPassengerService, private manifestExportCrewService: ManifestExportCrewService, private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
         this.loadRecords().then(() => {
-            this.addCrewToList()
             this.populateDropdownFilters()
             this.enableDisableFilters()
-            this.updateTotals(this.totals, this.records.passengers)
-            this.updateTotals(this.totalsFiltered, this.records.passengers)
             this.populateCriteriaPanelsFromStorage()
+            this.loadCrew()
         })
         this.subscribeToInteractionService()
         this.setTabTitle()
@@ -74,17 +75,20 @@ export class ManifestListComponent {
 
     public doExportTasks(occupant: string): void {
         occupant == 'passengers'
-            ? this.manifestExportPassengerService.exportToExcel(this.manifestExportPassengerService.buildPassengers(this.records.passengers))
-            : this.manifestExportCrewService.exportToExcel(this.manifestExportCrewService.buildCrew(this.records.passengers))
+            ? this.manifestExportPassengerService.exportToExcel(this.manifestExportPassengerService.buildPassengers(this.passengers))
+            : this.manifestExportCrewService.exportToExcel(this.manifestExportCrewService.buildCrew(this.crew))
     }
 
-    public filterRecords(event: any): void {
-        this.updateTotals(this.totalsFiltered, event.filteredValue)
-        this.storeFilters()
+    public filterCrew(event: any): void {
+        this.crewFilteredCount = event.filteredValue.length
     }
 
-    public formatDateToLocale(date: string, showWeekday = false, showYear = false): string {
-        return this.dateHelperService.formatISODateToLocale(date, showWeekday, showYear)
+    public filterPassengers(event: any): void {
+        this.passengersFilteredCount = event.filteredValue.length
+    }
+
+    public formatDateToLocale(): string {
+        return this.criteriaPanels != undefined ? this.dateHelperService.formatISODateToLocale(this.criteriaPanels.date, true, true) : ''
     }
 
     public getEmoji(emoji: string): string {
@@ -104,27 +108,19 @@ export class ManifestListComponent {
     }
 
     public isFilterDisabled(): boolean {
-        return this.records.passengers.length == 0
+        return this.passengers.length == 0
     }
 
     public resetTableFilters(): void {
-        this.helperService.clearTableTextFilters(this.table, ['lastname', 'firstname'])
+        this.helperService.clearTableTextFilters(this.passengersTable, ['lastname', 'firstname'])
     }
 
     //#endregion
 
     //#region private methods
 
-    private addCrewToList(): void {
-        if (this.records.passengers.length > 0) {
-            this.records.ship.crew.forEach(crew => {
-                this.records.passengers.push(crew)
-            })
-        }
-    }
-
     private enableDisableFilters(): void {
-        this.records.passengers.length == 0
+        this.passengers.length == 0
             ? this.helperService.disableTableFilters()
             : this.helperService.enableTableFilters()
     }
@@ -133,8 +129,9 @@ export class ManifestListComponent {
         const promise = new Promise((resolve) => {
             const listResolved: ListResolved = this.activatedRoute.snapshot.data[this.feature]
             if (listResolved.error === null) {
-                this.records = listResolved.list
-                resolve(this.records)
+                this.passengers = listResolved.list
+                this.passengersFilteredCount = this.passengers.length
+                resolve(this.passengers)
             } else {
                 this.dialogService.open(this.messageDialogService.filterResponse(listResolved.error), 'error', ['ok']).subscribe(() => {
                     this.goBack()
@@ -150,11 +147,18 @@ export class ManifestListComponent {
         }
     }
 
+    private loadCrew(): void {
+        this.manifestHttpService.getCrew(JSON.parse(this.sessionStorageService.getItem('manifest-criteria')).selectedShips[0].id).subscribe(response => {
+            response.forEach(record => {
+                this.crew.push(record)
+            })
+        })
+    }
+
     private populateDropdownFilters(): void {
-        if (this.records.passengers.length > 0) {
-            this.distinctGenders = this.helperService.getDistinctRecords(this.records.passengers, 'gender', 'description')
-            this.distinctNationalities = this.helperService.getDistinctRecords(this.records.passengers, 'nationality', 'description')
-            this.distinctOccupants = this.helperService.getDistinctRecords(this.records.passengers, 'occupant', 'description')
+        if (this.passengers.length > 0) {
+            this.distinctGenders = this.helperService.getDistinctRecords(this.passengers, 'gender', 'description')
+            this.distinctNationalities = this.helperService.getDistinctRecords(this.passengers, 'nationality', 'description')
         }
     }
 
@@ -162,20 +166,10 @@ export class ManifestListComponent {
         this.helperService.setTabTitle(this.feature)
     }
 
-    private storeFilters(): void {
-        this.sessionStorageService.saveItem(this.feature, JSON.stringify(this.table.filters))
-    }
-
     private subscribeToInteractionService(): void {
         this.interactionService.refreshTabTitle.subscribe(() => {
             this.setTabTitle()
         })
-    }
-
-    private updateTotals(totals: number[], filteredVelue: any[]): void {
-        totals[0] = filteredVelue.length
-        totals[1] = filteredVelue.filter(x => x.occupant.description == 'PASSENGER').length
-        totals[2] = filteredVelue.filter(x => x.occupant.description == 'CREW').length
     }
 
     //#endregion

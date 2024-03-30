@@ -5,14 +5,9 @@ export interface ShipWriteDto {
     // FKs
     shipOwnerId: number
     // Fields
-    description: string
     abbreviation: string
-    imo: string
-    flag: string
+    description: string
     registryNo: string
-    manager: string
-    managerInGreece: string
-    agent: string
     isActive: boolean
     // Rowversion
     putAt: string

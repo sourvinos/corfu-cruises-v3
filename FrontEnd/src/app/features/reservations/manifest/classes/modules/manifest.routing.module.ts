@@ -4,11 +4,11 @@ import { Routes, RouterModule } from '@angular/router'
 import { AuthGuardService } from 'src/app/shared/services/auth-guard.service'
 import { ManifestCriteriaComponent } from '../../user-interface/criteria/manifest-criteria.component'
 import { ManifestListComponent } from '../../user-interface/list/manifest-list.component'
-import { ManifestListResolver } from '../resolvers/manifest-list.resolver'
+import { ManifestPassengerListResolver } from '../resolvers/manifest-passenger-list.resolver'
 
 const routes: Routes = [
     { path: '', component: ManifestCriteriaComponent, canActivate: [AuthGuardService] },
-    { path: 'list', component: ManifestListComponent, canActivate: [AuthGuardService], resolve: { manifestList: ManifestListResolver }, runGuardsAndResolvers: 'always' }
+    { path: 'list', component: ManifestListComponent, canActivate: [AuthGuardService], resolve: { manifestList: ManifestPassengerListResolver }, runGuardsAndResolvers: 'always' }
 ]
 
 @NgModule({

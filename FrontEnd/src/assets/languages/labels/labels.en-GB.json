@@ -1568,8 +1568,12 @@
                 "description": "Passengers manifest"
             },
             {
-                "id": "headerOccupant",
-                "description": "Property"
+                "id": "tab1",
+                "description": "Passengers"
+            },
+            {
+                "id": "tab2",
+                "description": "Crew"
             },
             {
                 "id": "headerLastname",
@@ -1586,14 +1590,6 @@
             {
                 "id": "headerGender",
                 "description": "Gender"
-            },
-            {
-                "id": "countPassengers",
-                "description": "P"
-            },
-            {
-                "id": "countCrew",
-                "description": "C"
             },
             {
                 "id": "createFiles",

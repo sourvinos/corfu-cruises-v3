@@ -129,12 +129,7 @@ export class ShipFormComponent {
             description: this.form.value.description,
             abbreviation: this.form.value.abbreviation,
             shipOwnerId: this.form.value.shipOwner.id,
-            imo: this.form.value.imo,
-            flag: this.form.value.flag,
             registryNo: this.form.value.registryNo,
-            manager: this.form.value.manager,
-            managerInGreece: this.form.value.managerInGreece,
-            agent: this.form.value.agent,
             isActive: this.form.value.isActive,
             putAt: this.form.value.putAt
         }
@@ -171,12 +166,7 @@ export class ShipFormComponent {
             description: ['', [Validators.required, Validators.maxLength(128)]],
             abbreviation: ['', [Validators.required, Validators.maxLength(5)]],
             shipOwner: ['', [Validators.required, ValidationService.RequireAutocomplete]],
-            imo: ['', [Validators.maxLength(128)]],
-            flag: ['', [Validators.maxLength(128)]],
             registryNo: ['', [Validators.maxLength(128)]],
-            manager: ['', [Validators.maxLength(128)]],
-            managerInGreece: ['', [Validators.maxLength(128)]],
-            agent: ['', [Validators.maxLength(128)]],
             isActive: true,
             postAt: [''],
             postUser: [''],
@@ -203,12 +193,7 @@ export class ShipFormComponent {
                 description: this.record.description,
                 abbreviation: this.record.abbreviation,
                 shipOwner: { 'id': this.record.shipOwner.id, 'description': this.record.shipOwner.description },
-                imo: this.record.imo,
-                flag: this.record.flag,
                 registryNo: this.record.registryNo,
-                manager: this.record.manager,
-                managerInGreece: this.record.managerInGreece,
-                agent: this.record.agent,
                 isActive: this.record.isActive,
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
@@ -254,26 +239,6 @@ export class ShipFormComponent {
 
     get shipOwner(): AbstractControl {
         return this.form.get('shipOwner')
-    }
-
-    get imo(): AbstractControl {
-        return this.form.get('imo')
-    }
-
-    get flag(): AbstractControl {
-        return this.form.get('flag')
-    }
-
-    get manager(): AbstractControl {
-        return this.form.get('manager')
-    }
-
-    get managerInGreece(): AbstractControl {
-        return this.form.get('managerInGreece')
-    }
-
-    get agent(): AbstractControl {
-        return this.form.get('agent')
     }
 
     get registryNo(): AbstractControl {

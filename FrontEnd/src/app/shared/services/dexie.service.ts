@@ -13,7 +13,7 @@ export class DexieService extends Dexie {
         this.version(1).stores({
             billingParameters: 'id',
             coachRoutes: 'id, abbreviation',
-            crewSpecialties: 'id',
+            crewSpecialties: 'id, description',
             customers: 'id, description',
             destinations: 'id, description',
             documentTypesInvoice: 'id, abbreviation',

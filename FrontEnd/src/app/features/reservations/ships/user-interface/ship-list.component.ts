@@ -90,7 +90,7 @@ export class ShipListComponent {
     }
 
     public resetTableFilters(): void {
-        this.helperService.clearTableTextFilters(this.table, ['description', 'imo'])
+        this.helperService.clearTableTextFilters(this.table, ['description'])
     }
 
     //#endregion
@@ -113,7 +113,6 @@ export class ShipListComponent {
             setTimeout(() => {
                 this.filterColumn(filters.isActive, 'isActive', 'contains')
                 this.filterColumn(filters.description, 'description', 'contains')
-                this.filterColumn(filters.imo, 'imo', 'contains')
             }, 500)
         }
     }
