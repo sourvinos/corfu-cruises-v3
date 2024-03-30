@@ -1,6 +1,6 @@
 namespace API.Features.Billing.Invoices {
 
-    public class InvoiceHeaderVM {
+    public class XmlInvoiceHeaderVM {
 
         public string Series { get; set; }
         public string Aa { get; set; }

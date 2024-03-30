@@ -1,6 +1,6 @@
 namespace API.Features.Billing.Invoices {
 
-    public class AddressVM {
+    public class XmlAddressVM {
 
         public string Street { get; set; }
         public string Number { get; set; }

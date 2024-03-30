@@ -1,6 +1,6 @@
 namespace API.Features.Billing.Invoices {
 
-    public class InvoiceRowVM {
+    public class XmlInvoiceRowVM {
 
         public int LineNumber { get; set; }
         public decimal NetValue { get; set; }

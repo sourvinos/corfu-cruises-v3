@@ -89,7 +89,7 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IBillingParametersRepository, BillingParametersRepository>();
             services.AddTransient<IDocumentTypeRepository, DocumentTypeRepository>();
             services.AddTransient<IDocumentTypeValidation, DocumentTypeValidation>();
-            services.AddTransient<IInvoiceAadeRepository, InvoiceAadeRepository>();
+            services.AddTransient<IInvoiceXmlRepository, InvoiceXmlRepository>();
             services.AddTransient<IInvoiceCalculateBalanceRepo, InvoiceCalculateBalanceRepo>();
             services.AddTransient<IInvoiceReadRepository, InvoiceReadRepository>();
             services.AddTransient<IInvoiceSendToEmail, InvoiceSendToEmail>();

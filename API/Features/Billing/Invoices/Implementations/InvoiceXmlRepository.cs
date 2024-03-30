@@ -9,9 +9,9 @@ using API.Infrastructure.Helpers;
 
 namespace API.Features.Billing.Invoices {
 
-    public class InvoiceAadeRepository : IInvoiceAadeRepository {
+    public class InvoiceXmlRepository : IInvoiceXmlRepository {
 
-        public string CreateXMLAsync(InvoiceVM invoice) {
+        public string CreateXMLFileAsync(XmlInvoiceVM invoice) {
             var fullpathname = FileSystemHelpers.CreateInvoiceFullPathName(invoice, "invoice");
             using StringWriter sw = new();
             using XmlTextWriter xtw = new(fullpathname, null);
@@ -83,9 +83,9 @@ namespace API.Features.Billing.Invoices {
             return fullpathname;
         }
 
-        public async Task<string> UploadXMLAsync(XElement invoice, CredentialsVM credentials) {
+        public async Task<string> UploadXMLAsync(XElement invoice, XmlCredentialsVM credentials) {
             using HttpClient client = new();
-            client.DefaultRequestHeaders.Add("aade-user-id", credentials.UserId);
+            client.DefaultRequestHeaders.Add("aade-user-id", credentials.Username);
             client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", credentials.SubscriptionKey);
             client.DefaultRequestHeaders.Add("Accept", "application/xml");
             string xml = "";
@@ -100,7 +100,7 @@ namespace API.Features.Billing.Invoices {
             return await response.Content.ReadAsStringAsync();
         }
 
-        public string SaveResponse(InvoiceVM invoice, string response) {
+        public string SaveResponse(XmlInvoiceVM invoice, string response) {
             using StreamWriter outputFile = new(FileSystemHelpers.CreateInvoiceFullPathName(invoice, "response"));
             outputFile.Write(response);
             return response;

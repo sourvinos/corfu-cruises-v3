@@ -17,7 +17,7 @@ namespace API.Features.Billing.Invoices {
         #region variables
 
         private readonly EnvironmentSettings environmentSettings;
-        private readonly IInvoiceAadeRepository invoiceAadeRepo;
+        private readonly IInvoiceXmlRepository invoiceAadeRepo;
         private readonly IInvoiceCalculateBalanceRepo invoiceCalculateBalance;
         private readonly IInvoiceReadRepository invoiceReadRepo;
         private readonly IInvoiceSendToEmail invoiceSendToEmail;
@@ -27,7 +27,7 @@ namespace API.Features.Billing.Invoices {
 
         #endregion
 
-        public InvoicesController(IInvoiceAadeRepository invoiceAadeRepo, IInvoiceCalculateBalanceRepo invoiceCalculateBalance, IInvoiceReadRepository invoiceReadRepo, IInvoiceSendToEmail invoiceSendToEmail, IInvoiceUpdateRepository invoiceUpdateRepo, IInvoiceValidation invoiceValidation, IMapper mapper, IOptions<EnvironmentSettings> environmentSettings) {
+        public InvoicesController(IInvoiceXmlRepository invoiceAadeRepo, IInvoiceCalculateBalanceRepo invoiceCalculateBalance, IInvoiceReadRepository invoiceReadRepo, IInvoiceSendToEmail invoiceSendToEmail, IInvoiceUpdateRepository invoiceUpdateRepo, IInvoiceValidation invoiceValidation, IMapper mapper, IOptions<EnvironmentSettings> environmentSettings) {
             this.environmentSettings = environmentSettings.Value;
             this.invoiceAadeRepo = invoiceAadeRepo;
             this.invoiceCalculateBalance = invoiceCalculateBalance;
@@ -137,8 +137,8 @@ namespace API.Features.Billing.Invoices {
 
         [HttpPost("upload")]
         [Authorize(Roles = "admin")]
-        public ResponseWithBody Upload([FromBody] InvoiceVM invoice) {
-            var response = SavePrettyResponse(invoice, invoiceAadeRepo.UploadXMLAsync(XElement.Load(invoiceAadeRepo.CreateXMLAsync(invoice)), invoice.Credentials).Result);
+        public ResponseWithBody Upload([FromBody] XmlInvoiceVM invoice) {
+            var response = SavePrettyResponse(invoice, invoiceAadeRepo.UploadXMLAsync(XElement.Load(invoiceAadeRepo.CreateXMLFileAsync(invoice)), invoice.Credentials).Result);
             if (response.Contains("Success")) {
                 return new ResponseWithBody {
                     Code = 200,
@@ -190,7 +190,7 @@ namespace API.Features.Billing.Invoices {
             };
         }
 
-        private string SavePrettyResponse(InvoiceVM invoice, string response) {
+        private string SavePrettyResponse(XmlInvoiceVM invoice, string response) {
             return invoiceAadeRepo.SaveResponse(invoice, response
                 .Replace("&lt;", "<")
                 .Replace("&gt;", ">")

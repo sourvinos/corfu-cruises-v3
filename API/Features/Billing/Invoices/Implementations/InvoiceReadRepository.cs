@@ -95,7 +95,18 @@ namespace API.Features.Billing.Invoices {
                 .SingleOrDefaultAsync();
             return x;
         }
- 
+
+        public async Task<Invoice> GetByIdForXmlAsync(string invoiceId) {
+            var x = await context.Invoices
+                .AsNoTracking()
+                .Include(x => x.Customer).ThenInclude(x => x.Nationality)
+                .Include(x => x.Ship).ThenInclude(x => x.ShipOwner).ThenInclude(x => x.Nationality)
+                .Include(x => x.DocumentType)
+                .Include(x => x.PaymentMethod)
+                .SingleOrDefaultAsync(x => x.InvoiceId.ToString() == invoiceId);
+            return x;
+        }
+
     }
 
 }

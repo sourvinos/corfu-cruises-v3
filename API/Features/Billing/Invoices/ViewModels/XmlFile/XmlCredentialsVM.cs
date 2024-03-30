@@ -1,8 +1,8 @@
 namespace API.Features.Billing.Invoices {
 
-    public class CredentialsVM {
+    public class XmlCredentialsVM {
 
-        public string UserId { get; set; }
+        public string Username { get; set; }
         public string SubscriptionKey { get; set; }
         public string Url { get; set; }
 

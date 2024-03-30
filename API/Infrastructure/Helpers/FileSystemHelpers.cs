@@ -5,7 +5,7 @@ namespace API.Infrastructure.Helpers {
 
     public static class FileSystemHelpers {
 
-        public static string CreateInvoiceFullPathName(InvoiceVM invoice, string prefix) {
+        public static string CreateInvoiceFullPathName(XmlInvoiceVM invoice, string prefix) {
             var date = invoice.InvoiceHeader.IssueDate.Replace("-", "");
             var aa = invoice.InvoiceHeader.Aa.PadLeft(5, '0');
             var series = invoice.InvoiceHeader.Series.PadLeft(5, '0');
