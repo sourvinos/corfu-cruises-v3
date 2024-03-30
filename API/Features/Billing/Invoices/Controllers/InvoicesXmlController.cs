@@ -34,7 +34,7 @@ namespace API.Features.Billing.Invoices {
                     Code = 200,
                     Icon = Icons.Info.ToString(),
                     Message = ApiMessages.OK(),
-                    Body = mapper.Map<Invoice, XmlBuilderInvoiceVM>(x)
+                    Body = mapper.Map<Invoice, InvoiceXmlBuilderVM>(x)
                 };
             } else {
                 throw new CustomException() {

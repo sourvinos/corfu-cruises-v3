@@ -2,7 +2,7 @@ namespace API.Features.Billing.Invoices {
 
     public class XmlPaymentMethodVM {
 
-        public XmlPaymentMethodDetailVM PaymentMethodDetails { get; set; }
+        public XmlPaymentMethodDetailVM PaymentMethodDetail { get; set; }
 
     }
 

@@ -9,8 +9,8 @@ namespace API.Features.Billing.Invoices {
         public XmlPartyVM Issuer { get; set; }
         public XmlPartyVM CounterPart { get; set; }
         public XmlInvoiceHeaderVM InvoiceHeader { get; set; }
-        public XmlPaymentMethodVM[] PaymentMethods { get; set; }
-        public XmlInvoiceRowVM[] InvoiceDetails { get; set; }
+        public XmlPaymentMethodVM PaymentMethod { get; set; }
+        public XmlInvoiceRowVM InvoiceDetail { get; set; }
         public XmlInvoiceSummaryVM InvoiceSummary { get; set; }
 
     }
