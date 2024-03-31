@@ -176,44 +176,22 @@ export class InvoiceFormComponent {
 
     public onDoSubmitTasks(): void {
         this.invoiceXmlHttpService.get(this.form.value.invoiceId).subscribe(response => {
-            console.log('1. get invoice', response)
-            this.invoiceXmlHttpService.upload(response.body).subscribe(response => {
-                console.log('2. uploaded invoice', response)
-                setTimeout(() => {
-                    this.invoiceHttpService.updateInvoiceAade(response.body.response).subscribe(response => {
-                        console.log('3. updated invoice', response)
+            this.invoiceXmlHttpService.upload(response.body).subscribe({
+                next: (response) => {
+                    this.invoiceHttpService.updateInvoiceAade(this.invoiceXmlHelperService.processSuccessResponse(response)).subscribe({
+                        next: () => {
+                            this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                        },
+                        error: (errorFromInterceptor) => {
+                            this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                        }
                     })
-                }, 5000)
+                },
+                error: (errorFromInterceptor) => {
+                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                }
             })
         })
-        // this.invoiceXmlHelperService.createXmlInvoiceParts(this.form.value).then((response) => {
-        //     this.invoiceHttpService.upload(this.invoiceXmlHelperService.createXmlInvoiceFromParts(response)).subscribe({
-        //         next: (response) => {
-        //             const document = new DOMParser().parseFromString(response.body.response, 'text/xml')
-        //             const uId = document.querySelector('invoiceUid').innerHTML
-        //             const mark = document.querySelector('invoiceMark').innerHTML
-        //             const qrUrl = document.querySelector('qrUrl').innerHTML
-        //             const x: AadeVM = {
-        //                 invoiceId: response.body.invoiceId,
-        //                 uId: uId,
-        //                 mark: mark,
-        //                 markCancel: '',
-        //                 qrUrl: qrUrl
-        //             }
-        //             this.invoiceHttpService.updateInvoiceAade(x).subscribe({
-        //                 next: () => {
-        //                     this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
-        //                 },
-        //                 error: (errorFromInterceptor) => {
-        //                     this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-        //                 }
-        //             })
-        //         },
-        //         error: (errorFromInterceptor) => {
-        //             this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-        //         }
-        //     })
-        // })
     }
 
     public updateFieldsAfterDocumentTypeSelection(value: DocumentTypeAutoCompleteVM): void {

@@ -15,21 +15,27 @@
     justify-content: space-between;
 }
 
-#form {
-    column-gap: 0.5rem;
+#dialog-content {
     display: flex;
     flex-direction: column;
 }
 
-#invoice-header {
+#form {
     column-gap: 0.5rem;
     display: flex;
     flex-direction: row;
 }
 
+#invoice-header {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
 #ports {
     display: flex;
     column-gap: 0.5rem;
+    width: 900px;
 }
 
 .port {

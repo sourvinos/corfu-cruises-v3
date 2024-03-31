@@ -4,7 +4,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { Observable, map, startWith } from 'rxjs'
 // Custom
-import { AadeVM } from 'src/app/features/billing/invoices/classes/view-models/form/aade-vm'
 import { BillingCriteriaVM } from 'src/app/features/billing/invoices/classes/view-models/form/billing-criteria-vm'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
@@ -16,6 +15,7 @@ import { InvoiceHelperService } from 'src/app/features/billing/invoices/classes/
 import { InvoiceHttpService } from 'src/app/features/billing/invoices/classes/services/invoice-http.service'
 import { InvoiceWriteDto } from 'src/app/features/billing/invoices/classes/dtos/form/invoice-write-dto'
 import { InvoiceXmlHelperService } from 'src/app/features/billing/invoices/classes/services/invoice-xml-helper.service'
+import { InvoiceXmlHttpService } from 'src/app/features/billing/invoices/classes/services/invoice-xml-http.service'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
@@ -23,6 +23,7 @@ import { PriceHttpService } from 'src/app/features/billing/prices/classes/servic
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
+import { ShipAutoCompleteVM } from 'src/app/features/reservations/ships/classes/view-models/ship-autocomplete-vm'
 
 @Component({
     selector: 'invoice-dialog.component',
@@ -48,10 +49,11 @@ export class InvoiceDialogComponent {
     public isAutoCompleteDisabled = true
     public dropdownDocumentTypes: Observable<DocumentTypeAutoCompleteVM[]>
     public dropdownPaymentMethods: Observable<SimpleEntity[]>
+    public dropdownShips: Observable<ShipAutoCompleteVM[]>
 
     //#endregion
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dexieService: DexieService, private dialogRef: MatDialogRef<InvoiceDialogComponent>, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private invoiceXmlHelperService: InvoiceXmlHelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceHttpService: PriceHttpService, private sessionStorageService: SessionStorageService) { }
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private invoiceXmlHttpService: InvoiceXmlHttpService, private dexieService: DexieService, private dialogRef: MatDialogRef<InvoiceDialogComponent>, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private invoiceXmlHelperService: InvoiceXmlHelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceHttpService: PriceHttpService, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -184,24 +186,13 @@ export class InvoiceDialogComponent {
     }
 
     public doSubmitTasks(): void {
-        this.invoiceXmlHelperService.createXmlInvoiceParts(this.form.value).then((response) => {
-            this.invoiceHttpService.upload(this.invoiceXmlHelperService.createXmlInvoiceFromParts(response)).subscribe({
+        this.invoiceXmlHttpService.get(this.form.value.invoiceId).subscribe(response => {
+            this.invoiceXmlHttpService.upload(response.body).subscribe({
                 next: (response) => {
-                    const document = new DOMParser().parseFromString(response.body.response, 'text/xml')
-                    const uId = document.querySelector('invoiceUid').innerHTML
-                    const mark = document.querySelector('invoiceMark').innerHTML
-                    const qrUrl = document.querySelector('qrUrl').innerHTML
-                    const x: AadeVM = {
-                        invoiceId: response.body.invoiceId,
-                        uId: uId,
-                        mark: mark,
-                        markCancel: '',
-                        qrUrl: qrUrl
-                    }
-                    this.invoiceHttpService.updateInvoiceAade(x).subscribe({
+                    this.invoiceHttpService.updateInvoiceAade(this.invoiceXmlHelperService.processSuccessResponse(response)).subscribe({
                         next: () => {
                             this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false).then(() => {
-                                // this.dialogRef.close()
+                                this.dialogRef.close()
                             })
                         },
                         error: (errorFromInterceptor) => {
@@ -260,23 +251,15 @@ export class InvoiceDialogComponent {
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('documentTypesInvoice', 'dropdownDocumentTypes', 'documentType', ['id', 'abbreviation', 'description', 'batch', 'lastNo', 'isActive'], 'abbreviation', 'abbreviation')
-        this.populateDropdownFromDexieDB('paymentMethods', 'dropdownPaymentMethods', 'paymentMethod', ['id', 'description', 'isActive'], 'description', 'description')
+        this.populateDropdownFromDexieDB('documentTypesInvoice', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation')
+        this.populateDropdownFromDexieDB('paymentMethods', 'dropdownPaymentMethods', 'paymentMethod', 'description', 'description')
+        this.populateDropdownFromDexieDB('ships', 'dropdownShips', 'ship', 'description', 'description')
     }
 
-    private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperties: string[], orderBy: string, lookupField: string): void {
-        const x = []
-        let item = {}
+    private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
         this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
-            response.forEach(record => {
-                modelProperties.forEach(property => {
-                    item[property] = record[property]
-                })
-                x.push(item)
-                item = {}
-            })
-            this[dexieTable] = x.filter(x => x.isActive)
-            this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, lookupField, value)))
+            this[dexieTable] = response.filter(x => x.isActive)
+            this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
         })
     }
 
@@ -371,7 +354,6 @@ export class InvoiceDialogComponent {
     private saveRecord(invoice: InvoiceWriteDto): void {
         this.invoiceHttpService.save(invoice).subscribe({
             next: (response) => {
-                console.log('1. invoice saved')
                 this.form.patchValue({
                     invoiceId: response.id
                 })
@@ -405,10 +387,6 @@ export class InvoiceDialogComponent {
             destination: {
                 id: this.data[0].destination.id,
                 description: this.data[0].destination.description
-            },
-            ship: {
-                id: this.data[0].ship.id,
-                description: this.data[0].ship.description
             }
         })
     }
@@ -416,7 +394,6 @@ export class InvoiceDialogComponent {
     private updateDocumentType(id: number): void {
         this.documentTypeHttpService.updateLastNo(id).subscribe({
             next: (response) => {
-                console.log('2. documentType updated')
                 this.invoiceHelperService.updateBrowserStorageAfterApiUpdate(response.body)
             },
             error: (errorFromInterceptor) => {
