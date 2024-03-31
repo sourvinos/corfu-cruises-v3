@@ -237,3 +237,27 @@
 }
 
 /* #endregion */
+
+/* #region context menu */
+
+.p-contextmenu {
+    background-color: var(--color-menu-background);
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.p-menuitem-link:hover {
+    background-color: var(--color-mat-menu-background-hover);
+}
+
+.p-menuitem-link:hover .p-menuitem-text {
+    color: var(--color-mat-menu-text-hover);
+}
+
+.p-menuitem-text {
+    color: var(--color-text);
+    font-family: var(--font-family-asty);
+    font-size: 0.875rem;
+    font-weight: 300;
+}
+
+/* #endregion */

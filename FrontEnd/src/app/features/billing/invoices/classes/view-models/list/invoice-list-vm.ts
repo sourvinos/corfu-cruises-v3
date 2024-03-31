@@ -5,7 +5,7 @@ import { SimpleEntity } from '../../../../../../shared/classes/simple-entity'
 
 export interface InvoiceListVM {
 
-    id: Guid
+    invoiceId: Guid
     date: string
     formattedDate: string
     invoiceNo: number

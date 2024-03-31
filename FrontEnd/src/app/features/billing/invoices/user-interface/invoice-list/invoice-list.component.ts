@@ -17,6 +17,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker'
 import { MessageDialogService } from '../../../../../shared/services/message-dialog.service'
 import { MessageLabelService } from '../../../../../shared/services/message-label.service'
 import { SessionStorageService } from '../../../../../shared/services/session-storage.service'
+import { MenuItem } from 'primeng/api'
 
 @Component({
     selector: 'invoice-list',
@@ -54,6 +55,8 @@ export class InvoiceListComponent {
 
     public recordsFiltered: InvoiceListVM[]
     public filterDate = ''
+    public menuItems!: MenuItem[]
+    selectedRecord!: InvoiceListVM
 
     //#endregion
 
@@ -65,7 +68,6 @@ export class InvoiceListComponent {
         private emojiService: EmojiService,
         private helperService: HelperService,
         private interactionService: InteractionService,
-        private invoiceHttpService: InvoiceHttpService,
         private localStorageService: LocalStorageService,
         private messageDialogService: MessageDialogService,
         private messageLabelService: MessageLabelService,
@@ -85,6 +87,7 @@ export class InvoiceListComponent {
             this.setTabTitle()
             this.setLocale()
             this.setSidebarsHeight()
+            this.initContextMenu()
         })
     }
 
@@ -160,6 +163,13 @@ export class InvoiceListComponent {
 
     //#region private common methods
 
+    private initContextMenu(): void {
+        this.menuItems = [
+            { label: 'Επεξεργασία', command: () => this.editRecord(this.selectedRecord.invoiceId.toString()) },
+            { label: 'Αποστολή email', command: () => this.editRecord(this.selectedRecord.invoiceId.toString()) }
+        ]
+    }
+    
     private enableDisableFilters(): void {
         this.records.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()
     }
