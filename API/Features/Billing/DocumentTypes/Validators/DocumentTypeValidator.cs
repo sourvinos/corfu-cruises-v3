@@ -7,7 +7,7 @@ namespace API.Features.Billing.DocumentTypes {
 
         public DocumentTypeValidator() {
             // FKs
-            RuleFor(x => x.CompanyId).NotEmpty();
+            RuleFor(x => x.ShipOwnerId).NotEmpty();
             // Fields
             RuleFor(x => x.Abbreviation).NotEmpty().MaximumLength(5);
             RuleFor(x => x.Description).NotEmpty().MaximumLength(128);

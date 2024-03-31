@@ -8,16 +8,20 @@ namespace API.Features.Billing.DocumentTypes {
 
         public DocumentTypeMappingProfile() {
             CreateMap<DocumentType, DocumentTypeListVM>()
-                .ForMember(x => x.Company, x => x.MapFrom(x => new SimpleEntity {
-                    Id = x.Company.Id,
-                    Description = x.Company.Description
+                .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new SimpleEntity {
+                    Id = x.ShipOwner.Id,
+                    Description = x.ShipOwner.Description
                 }))
                 .ForMember(x => x.LastDate, x => x.MapFrom(x => DateHelpers.DateToISOString(x.LastDate)));
-            CreateMap<DocumentType, DocumentTypeBrowserVM>();
+            CreateMap<DocumentType, DocumentTypeBrowserVM>()
+                .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new SimpleEntity {
+                    Id = x.ShipOwner.Id,
+                    Description = x.ShipOwner.Description
+                }));
             CreateMap<DocumentType, DocumentTypeReadDto>()
-                .ForMember(x => x.Company, x => x.MapFrom(x => new SimpleEntity {
-                    Id = x.Company.Id,
-                    Description = x.Company.Description
+                .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new SimpleEntity {
+                    Id = x.ShipOwner.Id,
+                    Description = x.ShipOwner.Description
                 }))
                 .ForMember(x => x.LastDate, x => x.MapFrom(x => DateHelpers.DateToISOString(x.LastDate)));
             CreateMap<DocumentTypeWriteDto, DocumentType>()

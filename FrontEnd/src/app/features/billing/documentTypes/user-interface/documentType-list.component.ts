@@ -47,7 +47,7 @@ export class DocumentTypeListComponent {
 
     //#region dropdown filters
 
-    public dropdownCompanies = []
+    public dropdownShipOwners = []
 
     //#endregion
 
@@ -225,7 +225,7 @@ export class DocumentTypeListComponent {
     }
 
     private populateDropdownFilters(): void {
-        this.dropdownCompanies = this.helperService.getDistinctRecords(this.records, 'company', 'description')
+        this.dropdownShipOwners = this.helperService.getDistinctRecords(this.records, 'shipOwner', 'description')
     }
 
     private setLocale(): void {

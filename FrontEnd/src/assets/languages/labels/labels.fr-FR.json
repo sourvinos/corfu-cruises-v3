@@ -2687,8 +2687,8 @@
                 "description": "Ενεργό"
             },
             {
-                "id": "headerCompany",
-                "description": "Propriétaire"
+                "id": "headerShipOwner",
+                "description": "Πλοιοκτήτης"
             },
             {
                 "id": "headerDescription",
@@ -2740,7 +2740,7 @@
                 "description": "myData"
             },
             {
-                "id": "company",
+                "id": "shipOwner",
                 "description": "Propriétaire"
             },
             {

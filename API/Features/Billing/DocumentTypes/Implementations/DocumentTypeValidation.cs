@@ -25,11 +25,11 @@ namespace API.Features.Billing.DocumentTypes {
             if (documentType.Id == 0) {
                 return await context.ShipOwners
                     .AsNoTracking()
-                    .FirstOrDefaultAsync(x => x.Id == documentType.CompanyId && x.IsActive) != null;
+                    .FirstOrDefaultAsync(x => x.Id == documentType.ShipOwnerId && x.IsActive) != null;
             }
             return await context.ShipOwners
                 .AsNoTracking()
-                .FirstOrDefaultAsync(x => x.Id == documentType.CompanyId) != null;
+                .FirstOrDefaultAsync(x => x.Id == documentType.ShipOwnerId) != null;
         }
 
         private static bool IsAlreadyUpdated(DocumentType z, DocumentTypeWriteDto DocumentType) {

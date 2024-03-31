@@ -4,7 +4,6 @@ import { Component } from '@angular/core'
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { Observable, map, startWith } from 'rxjs'
 // Custom
-import { AadeVM } from '../../classes/view-models/form/aade-vm'
 import { BillingCriteriaVM } from '../../classes/view-models/form/billing-criteria-vm'
 import { CustomerAutoCompleteVM } from 'src/app/features/reservations/customers/classes/view-models/customer-autocomplete-vm'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
@@ -23,6 +22,7 @@ import { InvoicePdfService } from '../../../invoicesCommon/services/invoice-pdf.
 import { InvoiceReadDto } from '../../classes/dtos/form/invoice-read-dto'
 import { InvoiceWriteDto } from '../../classes/dtos/form/invoice-write-dto'
 import { InvoiceXmlHelperService } from '../../classes/services/invoice-xml-helper.service'
+import { InvoiceXmlHttpService } from '../../classes/services/invoice-xml-http.service'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
@@ -72,7 +72,7 @@ export class InvoiceFormComponent {
 
     //#endregion
 
-    constructor(private documentTypeHttpService: DocumentTypeHttpService, private invoicePdfService: InvoicePdfService, private invoicePdfHelperService: InvoicePdfHelperService, private invoiceXmlHelperService: InvoiceXmlHelperService, private dateHelperService: DateHelperService, private priceHttpService: PriceHttpService, private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private invoiceXmlHttpService: InvoiceXmlHttpService, private documentTypeHttpService: DocumentTypeHttpService, private invoicePdfService: InvoicePdfService, private invoicePdfHelperService: InvoicePdfHelperService, private invoiceXmlHelperService: InvoiceXmlHelperService, private dateHelperService: DateHelperService, private priceHttpService: PriceHttpService, private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -175,34 +175,45 @@ export class InvoiceFormComponent {
     }
 
     public onDoSubmitTasks(): void {
-        this.invoiceXmlHelperService.createXmlInvoiceParts(this.form.value).then((response) => {
-            this.invoiceHttpService.upload(this.invoiceXmlHelperService.createXmlInvoiceFromParts(response)).subscribe({
-                next: (response) => {
-                    const document = new DOMParser().parseFromString(response.body.response, 'text/xml')
-                    const uId = document.querySelector('invoiceUid').innerHTML
-                    const mark = document.querySelector('invoiceMark').innerHTML
-                    const qrUrl = document.querySelector('qrUrl').innerHTML
-                    const x: AadeVM = {
-                        invoiceId: response.body.invoiceId,
-                        uId: uId,
-                        mark: mark,
-                        markCancel: '',
-                        qrUrl: qrUrl
-                    }
-                    this.invoiceHttpService.updateInvoiceAade(x).subscribe({
-                        next: () => {
-                            this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
-                        },
-                        error: (errorFromInterceptor) => {
-                            this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                        }
+        this.invoiceXmlHttpService.get(this.form.value.invoiceId).subscribe(response => {
+            console.log('1. get invoice', response)
+            this.invoiceXmlHttpService.upload(response.body).subscribe(response => {
+                console.log('2. uploaded invoice', response)
+                setTimeout(() => {
+                    this.invoiceHttpService.updateInvoiceAade(response.body.response).subscribe(response => {
+                        console.log('3. updated invoice', response)
                     })
-                },
-                error: (errorFromInterceptor) => {
-                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                }
+                }, 5000)
             })
         })
+        // this.invoiceXmlHelperService.createXmlInvoiceParts(this.form.value).then((response) => {
+        //     this.invoiceHttpService.upload(this.invoiceXmlHelperService.createXmlInvoiceFromParts(response)).subscribe({
+        //         next: (response) => {
+        //             const document = new DOMParser().parseFromString(response.body.response, 'text/xml')
+        //             const uId = document.querySelector('invoiceUid').innerHTML
+        //             const mark = document.querySelector('invoiceMark').innerHTML
+        //             const qrUrl = document.querySelector('qrUrl').innerHTML
+        //             const x: AadeVM = {
+        //                 invoiceId: response.body.invoiceId,
+        //                 uId: uId,
+        //                 mark: mark,
+        //                 markCancel: '',
+        //                 qrUrl: qrUrl
+        //             }
+        //             this.invoiceHttpService.updateInvoiceAade(x).subscribe({
+        //                 next: () => {
+        //                     this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+        //                 },
+        //                 error: (errorFromInterceptor) => {
+        //                     this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+        //                 }
+        //             })
+        //         },
+        //         error: (errorFromInterceptor) => {
+        //             this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+        //         }
+        //     })
+        // })
     }
 
     public updateFieldsAfterDocumentTypeSelection(value: DocumentTypeAutoCompleteVM): void {
@@ -252,6 +263,30 @@ export class InvoiceFormComponent {
 
     public onUpdateInvoiceWithOutputPort(port: any, portIndex: number): void {
         this.form.value.invoicesPorts[portIndex] = port
+    }
+
+    public updateFieldsAfterShipSelection(value: SimpleEntity): void {
+        console.log(value)
+        this.populateDropdownFromDexieDB('documentTypesInvoice', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation')
+        this.dropdownDocumentTypes.subscribe(response => {
+            response.forEach(element => {
+                if (element.shipOwner.id != value.id) {
+                    this.dexieService.remove('documentTypesInvoice', element.shipOwner.id)
+                }
+            })
+        })
+        // this.form.patchValue({
+        //     exactPoint: value.exactPoint,
+        //     time: value.time,
+        //     port: {
+        //         id: value.port.id,
+        //         description: value.port.description
+        //     },
+        //     portAlternate: {
+        //         id: value.port.id,
+        //         description: value.port.description
+        //     }
+        // })
     }
 
     //#endregion
@@ -502,7 +537,6 @@ export class InvoiceFormComponent {
     private saveRecord(invoice: InvoiceWriteDto): void {
         this.invoiceHttpService.save(invoice).subscribe({
             next: (response) => {
-                console.log('1. invoice saved')
                 this.form.patchValue({
                     invoiceId: response.id
                 })
@@ -582,7 +616,6 @@ export class InvoiceFormComponent {
     private updateDocumentType(id: number): void {
         this.documentTypeHttpService.updateLastNo(id).subscribe({
             next: (response) => {
-                console.log('2. documentType updated')
                 this.invoiceHelperService.updateBrowserStorageAfterApiUpdate(response.body)
             },
             error: (errorFromInterceptor) => {

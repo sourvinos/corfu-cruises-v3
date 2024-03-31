@@ -9,7 +9,7 @@ namespace API.Features.Billing.DocumentTypes {
             // PK
             entity.Property(x => x.Id).ValueGeneratedOnAdd();
             // FKs
-            entity.Property(x => x.CompanyId).IsRequired(true);
+            entity.Property(x => x.ShipOwnerId).IsRequired(true);
             // Fields
             entity.Property(x => x.Abbreviation).HasMaxLength(5).IsRequired(true);
             entity.Property(x => x.Description).HasMaxLength(128).IsRequired(true);

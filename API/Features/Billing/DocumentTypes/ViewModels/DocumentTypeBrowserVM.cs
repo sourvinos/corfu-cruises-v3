@@ -1,3 +1,5 @@
+using API.Infrastructure.Classes;
+
 namespace API.Features.Billing.DocumentTypes {
 
     public class DocumentTypeBrowserVM {
@@ -5,7 +7,7 @@ namespace API.Features.Billing.DocumentTypes {
         public int Id { get; set; }
         public string Abbreviation { get; set; }
         public string Description { get; set; }
-        public int CompanyId { get; set; }
+        public SimpleEntity ShipOwner { get; set; }
         public string Batch { get; set; }
         public int LastNo { get; set; }
         public bool IsActive { get; set; }

@@ -63,8 +63,8 @@ namespace API.Features.Billing.Invoices {
                     TotalDeductionsAmount = 0,
                     TotalGrossValue = x.GrossAmount,
                     IncomeClassification = new XmlIncomeClassificationVM {
-                        ClassificationType = x.DocumentType.Table8_8,
-                        ClassificationCategory = x.DocumentType.Table8_9,
+                        ClassificationType = x.DocumentType.Table8_9,
+                        ClassificationCategory = x.DocumentType.Table8_8,
                         Amount = x.NetAmount
                     }
                 }));

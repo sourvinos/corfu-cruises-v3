@@ -3,7 +3,7 @@ export interface DocumentTypeBrowserStorageVM {
     // PK
     id: number
     // FKs
-    companyId: number
+    shipOwnerId: number
     // Fields
     abbreviation: string
     description: string

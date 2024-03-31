@@ -47,7 +47,7 @@ export class DocumentTypeFormComponent {
     //#region autocompletes
 
     public isAutoCompleteDisabled = true
-    public dropdownCompanies: Observable<SimpleEntity[]>
+    public dropdownShipOwners: Observable<SimpleEntity[]>
 
     //#endregion
 
@@ -143,7 +143,7 @@ export class DocumentTypeFormComponent {
     private flattenForm(): DocumentTypeWriteDto {
         return {
             id: this.form.value.id != '' ? this.form.value.id : null,
-            companyId: this.form.value.company.id,
+            shipOwnerId: this.form.value.shipOwner.id,
             abbreviation: this.form.value.abbreviation,
             description: this.form.value.description,
             batch: this.form.value.batch,
@@ -193,7 +193,7 @@ export class DocumentTypeFormComponent {
     private initForm(): void {
         this.form = this.formBuilder.group({
             id: '',
-            company: ['', [Validators.required, ValidationService.RequireAutocomplete]],
+            shipOwner: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             abbreviation: ['', [Validators.required, Validators.maxLength(5)]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
             batch: ['', [Validators.maxLength(5)]],
@@ -215,7 +215,7 @@ export class DocumentTypeFormComponent {
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('shipOwners', 'dropdownCompanies', 'company', 'description', 'description')
+        this.populateDropdownFromDexieDB('shipOwners', 'dropdownShipOwners', 'shipOwner', 'description', 'description')
     }
 
     private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
@@ -229,7 +229,7 @@ export class DocumentTypeFormComponent {
         if (this.record != undefined) {
             this.form.setValue({
                 id: this.record.id,
-                company: { 'id': this.record.company.id, 'description': this.record.company.description },
+                shipOwner: { 'id': this.record.shipOwner.id, 'description': this.record.shipOwner.description },
                 abbreviation: this.record.abbreviation,
                 description: this.record.description,
                 batch: this.record.batch,
@@ -287,8 +287,8 @@ export class DocumentTypeFormComponent {
 
     //#region getters
 
-    get company(): AbstractControl {
-        return this.form.get('company')
+    get shipOwner(): AbstractControl {
+        return this.form.get('shipOwner')
     }
 
     get abbreviation(): AbstractControl {
