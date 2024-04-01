@@ -219,7 +219,7 @@ export class InvoiceFormComponent {
     }
 
     public onCreatePdf(): void {
-        this.invoiceHttpService.get(this.form.value.invoiceId).subscribe(response => {
+        this.invoiceHttpService.getForViewer(this.form.value.invoiceId).subscribe(response => {
             this.invoicePdfHelperService.createPdfInvoiceParts(response.body).then((response) => {
                 this.invoicePdfService.createPdf(response)
             })

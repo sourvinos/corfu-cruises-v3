@@ -19,6 +19,7 @@
         { "id": "shouldBeEmptyPlusOrMinus", "description": "Αυτό το πεδίο επιτρέπεται να είναι κενό ή να έχει το σύμβολο + ή -" },
         { "id": "shouldBeCapitalLetterOrSpace", "description": "Επιτρέπονται μόνο λατινικά κεφαλαία γράμματα" },
         { "id": "shouldBeFiveCapitalLetters", "description": "Επιτρέπονται μόνο πέντε (5) λατινικά κεφαλαία γράμματα" },
-        { "id": "spacesNotAllowed", "description": "Αυτό το πεδίο δεν μπορεί να περιέχει κενά" }
+        { "id": "spacesNotAllowed", "description": "Αυτό το πεδίο δεν μπορεί να περιέχει κενά" },
+        { "id": "customerHint", "description": "Προεραιτικά επιλέξτε τον πελάτη" }
     ]
 }

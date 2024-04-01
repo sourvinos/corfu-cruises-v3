@@ -262,7 +262,7 @@ export class CustomerFormComponent {
     private saveRecord(customer: CustomerWriteDto): void {
         this.customerHttpService.save(customer).subscribe({
             next: (response: any) => {
-                this.dexieService.update('customers', { 'id': parseInt(response.body.id), 'description': response.body.description, 'isActive': response.body.isActive })
+                this.dexieService.update('customers', { 'id': parseInt(response.body.id), 'description': response.body.description, 'email': response.body.email, 'isActive': response.body.isActive })
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
             error: (errorFromInterceptor) => {

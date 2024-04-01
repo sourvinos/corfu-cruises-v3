@@ -41,11 +41,11 @@
 .port {
     display: flex;
     flex-direction: column;
-    width: 35%;
+    width: 34.9%;
 }
 
 .port-totals {
-    width: 28.50%;
+    width: 23%;
 }
 
 .per-age-group {

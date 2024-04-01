@@ -149,7 +149,7 @@
     font-family: var(--font-family-asty);
     font-weight: 300;
     justify-content: flex-start;
-    margin: 0.1rem 0 0 1rem;
+    /* margin: 0.1rem 0 0 1rem; */
     transform: translateY(0.0625rem);
     transition: color var(--theme-delay) !important;
     width: 100%;
@@ -162,7 +162,7 @@
 
 /* Hint */
 .mat-mdc-form-field-hint-wrapper {
-    padding: 0 0.5rem 0 0.5rem !important;
+    padding: 0.4rem 0 0 1rem !important;
 }
 
 /* Hint with error */

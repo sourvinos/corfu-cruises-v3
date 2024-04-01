@@ -238,7 +238,7 @@ export class InvoicePdfService {
                                 }, layout: 'noBorders'
                             }
                         ],
-                        margin: [0, 171, 0, 0]
+                        margin: [0, 159, 0, 0]
                     },
                 ],
             styles: {

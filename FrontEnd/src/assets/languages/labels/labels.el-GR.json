@@ -2288,11 +2288,11 @@
         "labels": [
             {
                 "id": "date",
-                "description": "Εύρος ημερομηνίας"
+                "description": "Ημερομηνίες"
             },
             {
                 "id": "hint",
-                "description": "Επιλέξτε το εύρος ημερομηνίας"
+                "description": "Επιλέξτε το διάστημα από - έως"
             },
             {
                 "id": "today",
@@ -2843,6 +2843,15 @@
             {
                 "id": "put",
                 "description": "Τελευταία ενημέρωση"
+            }
+        ]
+    },
+    {
+        "feature": "invoiceListCriteria",
+        "labels": [
+            {
+                "id": "customer",
+                "description": "Πελάτης"
             }
         ]
     },

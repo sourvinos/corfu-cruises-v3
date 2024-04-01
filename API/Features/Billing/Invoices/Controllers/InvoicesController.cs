@@ -43,10 +43,10 @@ namespace API.Features.Billing.Invoices {
             return await invoiceReadRepo.GetAsync();
         }
 
-        [HttpGet("from/{from}/to/{to}")]
+        [HttpPost("{getForPeriod}")]
         [Authorize(Roles = "admin")]
-        public async Task<IEnumerable<InvoiceListVM>> GetForPeriodAsync([FromRoute] string from, string to) {
-            return await invoiceReadRepo.GetForPeriodAsync(from, to);
+        public async Task<IEnumerable<InvoiceListVM>> GetForPeriodAsync([FromBody] InvoiceListCriteriaVM criteria) {
+            return await invoiceReadRepo.GetForPeriodAsync(criteria);
         }
 
         [HttpGet("{invoiceId}")]
@@ -167,7 +167,7 @@ namespace API.Features.Billing.Invoices {
                 Message = ApiMessages.OK()
             };
         }
- 
+
     }
 
 }

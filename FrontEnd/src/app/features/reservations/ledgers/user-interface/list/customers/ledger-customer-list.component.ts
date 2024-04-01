@@ -81,8 +81,8 @@ export class LedgerCustomerListComponent {
             this.dialog.open(InvoiceDialogComponent, {
                 data: this.selectedRecords,
                 panelClass: 'dialog',
-                height: '801px',
-                width: '1000px'
+                height: '722px',
+                width: '1122px'
             })
         } else {
             this.dialogService.open(this.messageDialogService.selectedReservationsMustBeSameShip(), 'error', ['ok'])

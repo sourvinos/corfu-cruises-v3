@@ -34,7 +34,7 @@ namespace API.Features.Billing.Invoices {
             return mapper.Map<IEnumerable<Invoice>, IEnumerable<InvoiceListVM>>(invoices);
         }
 
-        public async Task<IEnumerable<InvoiceListVM>> GetForPeriodAsync(string from, string to) {
+        public async Task<IEnumerable<InvoiceListVM>> GetForPeriodAsync(InvoiceListCriteriaVM criteria) {
             var invoices = await context.Invoices
                 .AsNoTracking()
                 .Where(x => x.DiscriminatorId == 1)
@@ -42,7 +42,7 @@ namespace API.Features.Billing.Invoices {
                 .Include(x => x.Destination)
                 .Include(x => x.DocumentType)
                 .Include(x => x.Ship)
-                .Where(x => x.Date >= Convert.ToDateTime(from) && x.Date <= Convert.ToDateTime(to))
+                .Where(x => x.Date >= Convert.ToDateTime(criteria.FromDate) && x.Date <= Convert.ToDateTime(criteria.ToDate) && (criteria.CustomerId != null ? x.Customer.Id == criteria.CustomerId : true))
                 .OrderBy(x => x.Date)
                 .ToListAsync();
             return mapper.Map<IEnumerable<Invoice>, IEnumerable<InvoiceListVM>>(invoices);
