@@ -43,10 +43,10 @@ namespace API.Features.Billing.Invoices {
             }
         }
 
-        [HttpPost("upload")]
+        [HttpPost("uploadInvoice")]
         [Authorize(Roles = "admin")]
-        public ResponseWithBody Upload([FromBody] XmlInvoiceVM invoice) {
-            var response = SavePrettyResponse(invoice, invoiceAadeRepo.UploadXMLAsync(XElement.Load(invoiceAadeRepo.CreateXMLFileAsync(invoice)), invoice.Credentials).Result);
+        public ResponseWithBody UploadInvoice([FromBody] XmlInvoiceVM invoice) {
+            var response = SaveInvoicePrettyResponse(invoice.InvoiceHeader, "xmls", invoiceAadeRepo.UploadXMLAsync(XElement.Load(invoiceAadeRepo.CreateXMLFileAsync(invoice)), invoice.Credentials).Result);
             if (response.Contains("Success")) {
                 return new ResponseWithBody {
                     Code = 200,
@@ -64,14 +64,34 @@ namespace API.Features.Billing.Invoices {
             }
         }
 
-        private string SavePrettyResponse(XmlInvoiceVM invoice, string response) {
-            return invoiceAadeRepo.SaveResponse(invoice, response
+        [HttpPost("cancelInvoice")]
+        [Authorize(Roles = "admin")]
+        public ResponseWithBody CancelInvoice([FromBody] XmlInvoiceCancelVM invoice) {
+            var response = SaveInvoicePrettyResponse(invoice.InvoiceHeader, "xmlsCancelled", invoiceAadeRepo.CancelInvoiceAsync(invoice).Result);
+            if (response.Contains("Success")) {
+                return new ResponseWithBody {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Body = new {
+                        response
+                    },
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 402
+                };
+            }
+        }
+
+        private string SaveInvoicePrettyResponse(XmlInvoiceHeaderVM invoice, string subdirectory, string response) {
+            return invoiceAadeRepo.SaveInvoiceResponse(invoice, subdirectory, response
                 .Replace("&lt;", "<")
                 .Replace("&gt;", ">")
                 .Replace("<string xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/\">", "")
                 .Replace("</string>", "")).ToString();
         }
-
+ 
     }
 
 }

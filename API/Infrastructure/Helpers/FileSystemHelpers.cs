@@ -5,13 +5,13 @@ namespace API.Infrastructure.Helpers {
 
     public static class FileSystemHelpers {
 
-        public static string CreateInvoiceFullPathName(XmlInvoiceVM invoice, string prefix) {
-            var date = invoice.InvoiceHeader.IssueDate.Replace("-", "");
-            var aa = invoice.InvoiceHeader.Aa.PadLeft(5, '0');
-            var series = invoice.InvoiceHeader.Series.PadLeft(5, '0');
+        public static string CreateInvoiceFullPathName(XmlInvoiceHeaderVM invoice, string subdirectory, string prefix) {
+            var date = invoice.IssueDate.Replace("-", "");
+            var aa = invoice.Aa.PadLeft(5, '0');
+            var series = invoice.Series.PadLeft(5, '0');
             var extension = ".xml";
-            var filename = string.Concat(prefix, "·", date, "·", aa, "·", series, extension);
-            var fullpathname = Path.Combine("Reports" + Path.DirectorySeparatorChar, filename);
+            var filename = string.Concat(prefix, " ", date, " ", aa, " ", series, " ", DateHelpers.DateTimeToISOString(DateHelpers.GetLocalDateTime()).Replace(":", "-"), extension);
+            var fullpathname = Path.Combine("Reports" + Path.DirectorySeparatorChar + subdirectory, filename);
             return fullpathname;
         }
 

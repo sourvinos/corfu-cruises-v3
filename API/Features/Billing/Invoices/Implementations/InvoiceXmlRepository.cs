@@ -12,7 +12,7 @@ namespace API.Features.Billing.Invoices {
     public class InvoiceXmlRepository : IInvoiceXmlRepository {
 
         public string CreateXMLFileAsync(XmlInvoiceVM invoice) {
-            var fullpathname = FileSystemHelpers.CreateInvoiceFullPathName(invoice, "invoice");
+            var fullpathname = FileSystemHelpers.CreateInvoiceFullPathName(invoice.InvoiceHeader, "Xmls", "invoice");
             using StringWriter sw = new();
             using XmlTextWriter xtw = new(fullpathname, null);
             xtw.Namespaces = false;
@@ -100,8 +100,17 @@ namespace API.Features.Billing.Invoices {
             return await response.Content.ReadAsStringAsync();
         }
 
-        public string SaveResponse(XmlInvoiceVM invoice, string response) {
-            using StreamWriter outputFile = new(FileSystemHelpers.CreateInvoiceFullPathName(invoice, "response"));
+        public async Task<string> CancelInvoiceAsync(XmlInvoiceCancelVM invoice) {
+            using HttpClient client = new();
+            client.DefaultRequestHeaders.Add("aade-user-id", invoice.Credentials.Username);
+            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", invoice.Credentials.SubscriptionKey);
+            client.DefaultRequestHeaders.Add("Accept", "application/xml");
+            HttpResponseMessage response = await client.PostAsync(invoice.Credentials.Url + "/CancelInvoice?mark=" + invoice.Mark, null);
+            return await response.Content.ReadAsStringAsync();
+        }
+
+        public string SaveInvoiceResponse(XmlInvoiceHeaderVM invoiceHeader, string subdirectory, string response) {
+            using StreamWriter outputFile = new(FileSystemHelpers.CreateInvoiceFullPathName(invoiceHeader, subdirectory, "response"));
             outputFile.Write(response);
             return response;
         }
