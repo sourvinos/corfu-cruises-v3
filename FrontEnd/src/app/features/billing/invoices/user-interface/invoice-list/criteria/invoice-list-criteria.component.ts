@@ -37,6 +37,7 @@ export class InvoiceListCriteriaComponent {
 
     //#endregion
 
+
     constructor(private dateHelperService: DateHelperService, private dexieService: DexieService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
@@ -44,6 +45,7 @@ export class InvoiceListCriteriaComponent {
     ngOnInit(): void {
         this.initForm()
         this.populateDropdowns()
+        this.setInvoiceListCriteria()
         this.populateFieldsFromStoredVariables()
         this.emitValues()
     }
@@ -92,6 +94,13 @@ export class InvoiceListCriteriaComponent {
         this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
     }
 
+    public patchFormWithSelectedDateRange(event: any): void {
+        this.form.patchValue({
+            fromDate: this.dateHelperService.formatDateToIso(new Date(event.value.fromDate)),
+            toDate: this.dateHelperService.formatDateToIso(new Date(event.value.toDate))
+        })
+    }
+
     //#endregion
 
     //#region private methods
@@ -124,6 +133,21 @@ export class InvoiceListCriteriaComponent {
             this[dexieTable] = response
             this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
         })
+    }
+
+    private setInvoiceListCriteria(): void {
+        if (this.sessionStorageService.getItem('invoice-list-criteria') == '') {
+            const criteria: InvoiceListCriteriaVM = {
+                fromDate: this.dateHelperService.formatDateToIso(new Date()),
+                toDate: this.dateHelperService.formatDateToIso(new Date()),
+                customer: {
+                    id: null,
+                    description: null,
+                    isActive: false
+                }
+            }
+            this.sessionStorageService.saveItem('invoice-list-criteria', JSON.stringify(criteria))
+        }
     }
 
     private populateFieldsFromStoredVariables(): void {

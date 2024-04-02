@@ -16,7 +16,7 @@ namespace DocumentTypes {
         private static object[] ValidRecordForInvoices() {
             return new object[] {
                 new TestDocumentType {
-                    CompanyId = 1,
+                    ShipOwnerId = 1,
                     Abbreviation = Helpers.CreateRandomString(5),
                     Description = Helpers.CreateRandomString(128),
                     Batch = Helpers.CreateRandomString(5),
@@ -37,7 +37,7 @@ namespace DocumentTypes {
         private static object[] ValidRecordForReceipts() {
             return new object[] {
                 new TestDocumentType {
-                    CompanyId = 1,
+                    ShipOwnerId = 1,
                     Abbreviation = Helpers.CreateRandomString(5),
                     Description = Helpers.CreateRandomString(128),
                     Batch = Helpers.CreateRandomString(5),

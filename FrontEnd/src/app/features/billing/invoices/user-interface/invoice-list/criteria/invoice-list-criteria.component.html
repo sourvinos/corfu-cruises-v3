@@ -3,7 +3,7 @@
     <form [formGroup]="form" id="form">
         <div class="group-input-field">
             <!-- Date range -->
-            <date-range-picker [parentDateRange]="getDateRange()" [readOnly]=false [showHint]=true (outputValues)="doDateTasks($event)"></date-range-picker>
+            <date-range-picker [parentDateRange]="getDateRange()" [readOnly]=true [showHint]=true (outputValues)="patchFormWithSelectedDateRange($event)"></date-range-picker>
             <!-- Customer -->
             <mat-form-field>
                 <mat-label>{{ getLabel('customer') }}</mat-label>
@@ -15,6 +15,7 @@
                     </button>
                 </div>
             </mat-form-field>
+
             <!-- Button -->
             <button (click)="onSearch()" [disabled]="!form.valid" class="fab primary" id="search-button" mat-icon-button>
                 <mat-icon class="material-icons-outlined">arrow_forward</mat-icon>

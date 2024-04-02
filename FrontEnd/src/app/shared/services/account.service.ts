@@ -76,6 +76,7 @@ export class AccountService extends HttpDataService {
             { 'item': 'boarding-criteria', 'when': 'production' },
             { 'item': 'ledger-criteria', 'when': 'production' },
             { 'item': 'manifest-criteria', 'when': 'production' },
+            { 'item': 'invoice-list-criteria', 'when': 'always' },
             // Table filters
             { 'item': 'coachRouteList-filters', 'when': 'always' }, { 'item': 'coachRouteList-id', 'when': 'always' }, { 'item': 'coachRouteList-scrollTop', 'when': 'always' },
             { 'item': 'customerList-filters', 'when': 'always' }, { 'item': 'customerList-id', 'when': 'always' }, { 'item': 'customerList-scrollTop', 'when': 'always' },

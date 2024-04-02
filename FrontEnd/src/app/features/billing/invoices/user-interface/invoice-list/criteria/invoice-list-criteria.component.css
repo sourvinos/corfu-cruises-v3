@@ -1,5 +1,9 @@
 #form-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 0.5625rem 0 0;
     width: 99.5%;
+
 }
 
 #search-button {

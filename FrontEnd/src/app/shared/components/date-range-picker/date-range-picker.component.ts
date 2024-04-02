@@ -53,13 +53,7 @@ export class DateRangePickerComponent {
             fromDate: this.dateHelperService.formatDateToIso(new Date()),
             toDate: this.dateHelperService.formatDateToIso(new Date())
         })
-    }
-
-    public patchFormWithSelectedDates(fromDate: any, toDate: any): void {
-        this.form.patchValue({
-            fromDate: fromDate.value != null ? this.dateHelperService.formatDateToIso(new Date(fromDate.value)) : '',
-            toDate: toDate.value != null ? this.dateHelperService.formatDateToIso(new Date(toDate.value)) : ''
-        })
+        this.outputValues.emit(this.form)
     }
 
     //#endregion

@@ -85,19 +85,6 @@ namespace API.Features.Billing.Invoices {
             CreateMap<InvoiceUpdateDto, InvoiceAade>();
             // Write port
             CreateMap<InvoicePortWriteDto, InvoicePort>();
-            // Write response
-            CreateMap<InvoiceCreateDto, InvoiceWriteResponseDto>()
-                .ForMember(x => x.Date, x => x.MapFrom(x => x.Date))
-                .ForMember(x => x.No, x => x.MapFrom(x => x.InvoiceNo))
-                .ForMember(x => x.ShipId, x => x.MapFrom(x => x.ShipId))
-                .ForMember(x => x.CounterPartId, x => x.MapFrom(x => x.CustomerId))
-                .ForMember(x => x.DocumentTypeId, x => x.MapFrom(x => x.DocumentTypeId))
-                .ForMember(x => x.PaymentMethodId, x => x.MapFrom(x => x.PaymentMethodId))
-                .ForMember(x => x.Currency, x => x.MapFrom(x => "EUR"))
-                .ForMember(x => x.NetAmount, x => x.MapFrom(x => x.NetAmount))
-                .ForMember(x => x.VatCategory, x => x.MapFrom(x => 2))
-                .ForMember(x => x.VatAmount, x => x.MapFrom(x => x.VatAmount))
-                .ForMember(x => x.GrossAmount, x => x.MapFrom(x => x.GrossAmount));
         }
 
     }

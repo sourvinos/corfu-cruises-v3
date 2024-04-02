@@ -94,9 +94,8 @@ export class InvoiceListComponent {
     //#region public methods
 
     public doSearchTasks(event: any): void {
-        this.populateCriteria(event)
-        if (this.isCriteriaGiven()) {
-            this.loadRecords(this.criteria).then(() => {
+        if (event.fromDate != '' && event.toDate != '') {
+            this.loadRecords(event).then(() => {
                 this.filterTableFromStoredFilters()
                 this.populateDropdownFilters()
                 this.enableDisableFilters()
@@ -253,9 +252,11 @@ export class InvoiceListComponent {
     }
 
     private populateCriteria(event: any): void {
-        this.criteria.fromDate = event.fromDate
-        this.criteria.toDate = event.toDate
-        this.criteria.customer.id = event.customer.id
+        if (event.fromDate != '') {
+            this.criteria.fromDate = event.fromDate
+        }
+        // this.criteria.fromDate = event.fromDate ? event.fromDate : this.dateHelperService.formatDateToIso(new Date())
+        // this.criteria.toDate = event.toDate ? event.toDate : this.dateHelperService.formatDateToIso(new Date())
     }
 
     //#endregion
