@@ -16,7 +16,6 @@ namespace API.Features.Billing.Invoices {
         #region variables
 
         private readonly EnvironmentSettings environmentSettings;
-        private readonly IInvoiceXmlRepository invoiceAadeRepo;
         private readonly IInvoiceCalculateBalanceRepo invoiceCalculateBalance;
         private readonly IInvoiceReadRepository invoiceReadRepo;
         private readonly IInvoiceSendToEmail invoiceSendToEmail;
@@ -26,9 +25,8 @@ namespace API.Features.Billing.Invoices {
 
         #endregion
 
-        public InvoicesController(IInvoiceXmlRepository invoiceAadeRepo, IInvoiceCalculateBalanceRepo invoiceCalculateBalance, IInvoiceReadRepository invoiceReadRepo, IInvoiceSendToEmail invoiceSendToEmail, IInvoiceUpdateRepository invoiceUpdateRepo, IInvoiceValidation invoiceValidation, IMapper mapper, IOptions<EnvironmentSettings> environmentSettings) {
+        public InvoicesController(IInvoiceCalculateBalanceRepo invoiceCalculateBalance, IInvoiceReadRepository invoiceReadRepo, IInvoiceSendToEmail invoiceSendToEmail, IInvoiceUpdateRepository invoiceUpdateRepo, IInvoiceValidation invoiceValidation, IMapper mapper, IOptions<EnvironmentSettings> environmentSettings) {
             this.environmentSettings = environmentSettings.Value;
-            this.invoiceAadeRepo = invoiceAadeRepo;
             this.invoiceCalculateBalance = invoiceCalculateBalance;
             this.invoiceReadRepo = invoiceReadRepo;
             this.invoiceSendToEmail = invoiceSendToEmail;

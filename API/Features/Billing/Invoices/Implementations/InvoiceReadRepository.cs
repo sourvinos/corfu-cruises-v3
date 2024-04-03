@@ -42,7 +42,7 @@ namespace API.Features.Billing.Invoices {
                 .Include(x => x.Destination)
                 .Include(x => x.DocumentType)
                 .Include(x => x.Ship)
-                .Where(x => x.Date >= Convert.ToDateTime(criteria.FromDate) && x.Date <= Convert.ToDateTime(criteria.ToDate) && (criteria.Customer == null || x.Customer.Id == criteria.Customer.Id))
+                .Where(x => x.Date >= Convert.ToDateTime(criteria.FromDate) && x.Date <= Convert.ToDateTime(criteria.ToDate))
                 .OrderBy(x => x.Date)
                 .ToListAsync();
             return mapper.Map<IEnumerable<Invoice>, IEnumerable<InvoiceListVM>>(invoices);
