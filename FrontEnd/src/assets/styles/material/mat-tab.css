@@ -24,10 +24,6 @@
     position: relative !important;
 }
 
-.mdc-form-field > label > span {
-    transition: color var(--theme-delay) !important;
-}
-
 .mat-mdc-tab-body-content, .mat-mdc-tab-body-wrapper {
     height: 100% !important;
 }

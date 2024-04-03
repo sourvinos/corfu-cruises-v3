@@ -62,7 +62,7 @@ namespace API.Features.Billing.Ledgers {
                     balance = balance + record.Debit - record.Credit;
                 }
             }
-            var total = BuildTotalLine(debit, credit, balance, "Σύνολα προηγούμενης περιόδου");
+            var total = BuildTotalLine(debit, credit, balance, "ΣΥΝΟΛΑ ΠΡΟΗΓΟΥΜΕΝΗΣ ΠΕΡΙΟΔΟΥ");
             return total;
         }
 
@@ -79,7 +79,7 @@ namespace API.Features.Billing.Ledgers {
                     balance += record.Debit - record.Credit;
                 }
             }
-            var total = BuildTotalLine(debit, credit, balance, "Σύνολα ζητούμενης περιόδου");
+            var total = BuildTotalLine(debit, credit, balance, "ΣΥΝΟΛΑ ΖΗΤΟΥΜΕΝΗΣ ΠΕΡΙΟΔΟΥ");
             requestedPeriod.Add(total);
             return requestedPeriod;
         }
@@ -93,7 +93,7 @@ namespace API.Features.Billing.Ledgers {
                 credit += record.Credit;
                 balance += record.Debit - record.Credit;
             }
-            var total = BuildTotalLine(debit, credit, balance, "Γενικά σύνολα");
+            var total = BuildTotalLine(debit, credit, balance, "ΓΕΝΙΚΑ ΣΥΝΟΛΑ");
             return total;
         }
 

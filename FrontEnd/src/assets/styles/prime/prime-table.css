@@ -21,9 +21,9 @@
     background-color: var(--color-background) !important;
     border-right: 0.0625rem solid color-mix(in srgb, var(--color-primary) 30%, transparent);
     color: var(--color-text) !important;
-    font-family: var(--font-family-asty) !important;
+    font-family: var(--font-family-fira-sans-condensed) !important;
     font-size: var(--font-size-table-header) !important;
-    font-weight: 300 !important;
+    font-weight: 400 !important;
     text-align: center !important;
     transition: all var(--theme-delay);
 }
@@ -121,7 +121,7 @@
 .p-datatable .p-datatable-tbody > tr > td {
     border-bottom: 0 !important;
     color: var(--color-text);
-    font-family: var(--font-family-asty) !important;
+    font-family: var(--font-family-consolas) !important;
     font-size: var(--font-size-table-row);
     font-weight: 300;
     padding: 0 0 0 0;
@@ -159,12 +159,13 @@
     padding-right: 0 !important;
 }
 
-.p-datatable .p-datatable-tbody > tr > td > span.monotype {
-    font-family: var(--font-family-ubuntu) !important;
+.p-datatable .p-datatable-tbody > tr > td > span.number {
+    font-family: var(--font-family-monospace) !important;
 }
 
-.p-datatable .p-datatable-tfoot > tr > td > span.monotype {
-    font-family: var(--font-family-ubuntu) !important;
+.p-datatable .p-datatable-tfoot > tr > td > span.number {
+    font-family: var(--font-family-monospace) !important;
+    font-size: 0.75rem;
 }
 
 .p-datatable .p-datatable-tbody > tr > td > .p-element > .p-component > .p-checkbox-box {
@@ -221,7 +222,7 @@
     border-right: 0.0625rem solid color-mix(in srgb, var(--color-primary) 30%, transparent);
     border-width: 0.0625rem !important;
     color: var(--color-text) !important;
-    font-family: var(--font-family-asty) !important;
+    font-family: var(--font-family-fira-sans-condensed) !important;
     font-size: var(--font-size-table-row);
     font-weight: 300;
     padding: 0.5rem 0 0.5rem 0.3125rem !important;

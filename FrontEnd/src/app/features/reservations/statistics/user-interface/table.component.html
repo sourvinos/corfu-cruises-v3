@@ -18,19 +18,19 @@
     <ng-template let-record pTemplate="body">
         <tr style="height: 32px;">
             <td><span class="fill" style="--fill: {{ record.percentage }}%;">{{ record.description }}</span></td>
-            <td class=""><span class="monotype right with-right-padding">{{ formatNumberToLocale(record.pax) }}</span></td>
-            <td class=""><span class="monotype right with-right-padding">{{ formatNumberToLocale(record.actualPax) }}</span></td>
-            <td class=""><span class="monotype right with-right-padding">{{ record.percentage }}</span></td>
-            <td class=""><span class="monotype right with-right-padding">{{ formatNumberToLocale(record.noShow) }}</span></td>
+            <td class=""><span class="number right with-right-padding">{{ formatNumberToLocale(record.pax) }}</span></td>
+            <td class=""><span class="number right with-right-padding">{{ formatNumberToLocale(record.actualPax) }}</span></td>
+            <td class=""><span class="number right with-right-padding">{{ record.percentage }}</span></td>
+            <td class=""><span class="number right with-right-padding">{{ formatNumberToLocale(record.noShow) }}</span></td>
         </tr>
     </ng-template>
     <ng-template pTemplate="footer">
         <tr style="height: 32px;">
             <td class=""><span>{{ totals.description }}</span></td>
-            <td class="right "><span class="monotype with-right-padding">{{ formatNumberToLocale(totals.pax) }}</span></td>
-            <td class="right "><span class="monotype with-right-padding">{{ formatNumberToLocale(totals.actualPax) }}</span></td>
-            <td class="right "><span class="monotype with-right-padding">{{ totals.percentage }}</span></td>
-            <td class="right "><span class="monotype with-right-padding">{{ formatNumberToLocale(totals.noShow) }}</span></td>
+            <td class="right "><span class="number with-right-padding">{{ formatNumberToLocale(totals.pax) }}</span></td>
+            <td class="right "><span class="number with-right-padding">{{ formatNumberToLocale(totals.actualPax) }}</span></td>
+            <td class="right "><span class="number with-right-padding">{{ totals.percentage }}</span></td>
+            <td class="right "><span class="number with-right-padding">{{ formatNumberToLocale(totals.noShow) }}</span></td>
         </tr>
     </ng-template>
 </p-table>

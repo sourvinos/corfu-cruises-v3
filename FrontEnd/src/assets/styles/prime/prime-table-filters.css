@@ -59,7 +59,7 @@
     background-color: var(--color-background) !important;
     box-shadow: none !important;
     color: var(--color-text) !important;
-    font-family: var(--font-family-asty);
+    font-family: var(--font-family-consolas);
     font-size: 0.75rem;
     font-size: var(--font-size-table-row);
     font-weight: 300;
@@ -75,7 +75,7 @@
 }
 
 .p-multiselect-option {
-    margin-top: -0.0625rem;
+    margin-top: -0.3125rem;
 }
 
 .p-multiselect-option span {
@@ -88,12 +88,10 @@
 
 .p-column-filter-menu-button, .p-column-filter-clear-button {
     color: var(--color-text);
-    font-family: var(--font-family-roboto) !important;
-    font-size: 0.75rem !important;
+    font-size: 0.75rem;
     line-height: 0;
-    margin-left: -2.125rem !important;
-    margin-top: -2.625rem;
-    position: absolute !important;
+    margin: -47px 0 0 -24px;
+    position: absolute;
 }
 
 .p-column-filter-menu-button, .p-column-filter-clear-button .p-icon-wrapper svg {
@@ -107,7 +105,6 @@
 
 .p-column-filter-menu-button, .p-column-filter-clear-button::after {
     content: "❌";
-    padding: 0 0 0 0.875rem;
 }
 
 .p-multiselect .p-multiselect-trigger {
