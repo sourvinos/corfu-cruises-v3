@@ -17,8 +17,12 @@ export class InvoiceXmlHttpService extends HttpDataService {
         return this.http.get(this.url + '/' + invoiceId)
     }
 
-    public upload(invoice: any): Observable<any> {
+    public uploadInvoice(invoice: any): Observable<any> {
         return this.http.post<any>(this.url + '/uploadInvoice', invoice)
+    }
+
+    public cancelInvoice(invoice: any): Observable<any> {
+        return this.http.post<any>(this.url + '/cancelInvoice', invoice)
     }
 
 }

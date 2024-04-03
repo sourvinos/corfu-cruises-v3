@@ -66,8 +66,8 @@ namespace API.Features.Billing.Invoices {
 
         [HttpPost("cancelInvoice")]
         [Authorize(Roles = "admin")]
-        public ResponseWithBody CancelInvoice([FromBody] XmlInvoiceCancelVM invoice) {
-            var response = SaveInvoicePrettyResponse(invoice.InvoiceHeader, "xmlsCancelled", invoiceAadeRepo.CancelInvoiceAsync(invoice).Result);
+        public ResponseWithBody CancelInvoice([FromBody] XmlInvoiceVM invoice) {
+            var response = SaveInvoicePrettyResponse(invoice.InvoiceHeader, "xmlsCancelled", invoiceAadeRepo.CancelInvoiceAsync(invoice.Aade.Mark, invoice.Credentials).Result);
             if (response.Contains("Success")) {
                 return new ResponseWithBody {
                     Code = 200,
@@ -91,7 +91,7 @@ namespace API.Features.Billing.Invoices {
                 .Replace("<string xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/\">", "")
                 .Replace("</string>", "")).ToString();
         }
- 
+
     }
 
 }

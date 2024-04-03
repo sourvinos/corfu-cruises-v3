@@ -187,9 +187,9 @@ export class InvoiceDialogComponent {
 
     public doSubmitTasks(): void {
         this.invoiceXmlHttpService.get(this.form.value.invoiceId).subscribe(response => {
-            this.invoiceXmlHttpService.upload(response.body).subscribe({
+            this.invoiceXmlHttpService.uploadInvoice(response.body).subscribe({
                 next: (response) => {
-                    this.invoiceHttpService.updateInvoiceAade(this.invoiceXmlHelperService.processSuccessResponse(response)).subscribe({
+                    this.invoiceHttpService.updateInvoiceAade(this.invoiceXmlHelperService.processInvoiceSuccessResponse(response)).subscribe({
                         next: () => {
                             this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false).then(() => {
                                 this.dialogRef.close()

@@ -100,12 +100,12 @@ namespace API.Features.Billing.Invoices {
             return await response.Content.ReadAsStringAsync();
         }
 
-        public async Task<string> CancelInvoiceAsync(XmlInvoiceCancelVM invoice) {
+        public async Task<string> CancelInvoiceAsync(string mark, XmlCredentialsVM credentials) {
             using HttpClient client = new();
-            client.DefaultRequestHeaders.Add("aade-user-id", invoice.Credentials.Username);
-            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", invoice.Credentials.SubscriptionKey);
+            client.DefaultRequestHeaders.Add("aade-user-id", credentials.Username);
+            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", credentials.SubscriptionKey);
             client.DefaultRequestHeaders.Add("Accept", "application/xml");
-            HttpResponseMessage response = await client.PostAsync(invoice.Credentials.Url + "/CancelInvoice?mark=" + invoice.Mark, null);
+            HttpResponseMessage response = await client.PostAsync(credentials.Url + "/CancelInvoice?mark=" + mark, null);
             return await response.Content.ReadAsStringAsync();
         }
 

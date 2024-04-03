@@ -151,6 +151,26 @@ export class InvoiceFormComponent {
         return this.form.value.aade.mark != ''
     }
 
+    public onCancelInvoice(): void {
+        this.invoiceXmlHttpService.get(this.form.value.invoiceId).subscribe(invoice => {
+            this.invoiceXmlHttpService.cancelInvoice(invoice.body).subscribe({
+                next: (response) => {
+                    this.invoiceHttpService.updateInvoiceAade(this.invoiceXmlHelperService.processInvoiceCancelSuccessResponse(invoice.body, response)).subscribe({
+                        next: () => {
+                            this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                        },
+                        error: (errorFromInterceptor) => {
+                            this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                        }
+                    })
+                },
+                error: (errorFromInterceptor) => {
+                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                }
+            })
+        })
+    }
+
     public onDelete(): void {
         this.dialogService.open(this.messageDialogService.confirmDelete(), 'question', ['abort', 'ok']).subscribe(response => {
             if (response) {
@@ -176,9 +196,9 @@ export class InvoiceFormComponent {
 
     public onDoSubmitTasks(): void {
         this.invoiceXmlHttpService.get(this.form.value.invoiceId).subscribe(response => {
-            this.invoiceXmlHttpService.upload(response.body).subscribe({
+            this.invoiceXmlHttpService.uploadInvoice(response.body).subscribe({
                 next: (response) => {
-                    this.invoiceHttpService.updateInvoiceAade(this.invoiceXmlHelperService.processSuccessResponse(response)).subscribe({
+                    this.invoiceHttpService.updateInvoiceAade(this.invoiceXmlHelperService.processInvoiceSuccessResponse(response)).subscribe({
                         next: () => {
                             this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
                         },

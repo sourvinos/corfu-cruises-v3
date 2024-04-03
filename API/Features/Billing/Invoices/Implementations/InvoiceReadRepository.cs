@@ -103,6 +103,7 @@ namespace API.Features.Billing.Invoices {
                 .Include(x => x.Ship).ThenInclude(x => x.ShipOwner).ThenInclude(x => x.Nationality)
                 .Include(x => x.DocumentType)
                 .Include(x => x.PaymentMethod)
+                .Include(x => x.Aade)
                 .SingleOrDefaultAsync(x => x.InvoiceId.ToString() == invoiceId);
             return x;
         }

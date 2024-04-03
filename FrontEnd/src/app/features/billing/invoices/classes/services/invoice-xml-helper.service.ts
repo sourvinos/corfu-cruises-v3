@@ -6,7 +6,7 @@ import { AadeVM } from '../view-models/form/aade-vm'
 
 export class InvoiceXmlHelperService {
 
-    public processSuccessResponse(response: any): AadeVM {
+    public processInvoiceSuccessResponse(response: any): AadeVM {
         const document = new DOMParser().parseFromString(response.body.response, 'text/xml')
         const uId = document.querySelector('invoiceUid').innerHTML
         const mark = document.querySelector('invoiceMark').innerHTML
@@ -17,6 +17,19 @@ export class InvoiceXmlHelperService {
             mark: mark,
             markCancel: '',
             qrUrl: qrUrl
+        }
+        return x
+    }
+
+    public processInvoiceCancelSuccessResponse(invoice: any, response: any): AadeVM {
+        const document = new DOMParser().parseFromString(response.body.response, 'text/xml')
+        const cancellationMark = document.querySelector('cancellationMark').innerHTML
+        const x: AadeVM = {
+            invoiceId: invoice.invoiceId,
+            uId: invoice.aade.uId,
+            mark: invoice.aade.mark,
+            markCancel: cancellationMark,
+            qrUrl: invoice.aade.qrUrl
         }
         return x
     }

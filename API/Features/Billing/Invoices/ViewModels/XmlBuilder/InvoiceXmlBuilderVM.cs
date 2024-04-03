@@ -12,6 +12,7 @@ namespace API.Features.Billing.Invoices {
         public XmlPaymentMethodVM PaymentMethod { get; set; }
         public XmlInvoiceRowVM InvoiceDetail { get; set; }
         public XmlInvoiceSummaryVM InvoiceSummary { get; set; }
+        public XmlAadeVM Aade { get; set; }
 
     }
 

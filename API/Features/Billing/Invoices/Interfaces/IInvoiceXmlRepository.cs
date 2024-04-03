@@ -7,7 +7,7 @@ namespace API.Features.Billing.Invoices {
 
         string CreateXMLFileAsync(XmlInvoiceVM invoice);
         Task<string> UploadXMLAsync(XElement invoice, XmlCredentialsVM credentials);
-        Task<string> CancelInvoiceAsync(XmlInvoiceCancelVM invoice);
+        Task<string> CancelInvoiceAsync(string mark, XmlCredentialsVM credentials);
         string SaveInvoiceResponse(XmlInvoiceHeaderVM invoiceHeader, string subdirectory, string response);
 
     }

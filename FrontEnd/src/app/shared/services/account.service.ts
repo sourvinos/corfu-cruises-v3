@@ -135,6 +135,7 @@ export class AccountService extends HttpDataService {
             this.setSelectedYear()
             this.setVatData()
             this.refreshMenus()
+            this.clearConsole()
         }))
     }
 
@@ -152,6 +153,9 @@ export class AccountService extends HttpDataService {
 
     //#region private methods
 
+    private clearConsole(): void {
+        console.clear()
+    }
     private navigateToLogin(): void {
         this.ngZone.run(() => {
             this.router.navigate(['/'])

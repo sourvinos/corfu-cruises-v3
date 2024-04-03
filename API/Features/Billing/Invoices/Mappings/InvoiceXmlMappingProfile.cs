@@ -67,6 +67,13 @@ namespace API.Features.Billing.Invoices {
                         ClassificationCategory = x.DocumentType.Table8_8,
                         Amount = x.NetAmount
                     }
+                }))
+                .ForMember(x => x.Aade, x => x.MapFrom(x => new XmlAadeVM {
+                    InvoiceId = x.InvoiceId,
+                    UId = x.Aade.Uid,
+                    Mark = x.Aade.Mark,
+                    MarkCancel = x.Aade.MarkCancel,
+                    QrUrl = x.Aade.QrUrl
                 }));
         }
     }
