@@ -10,7 +10,7 @@ namespace API.Features.Billing.Invoices {
         // PK
         public Guid InvoiceId { get; set; }
         // Fields
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; }  
         public DateTime TripDate { get; set; }
         public int InvoiceNo { get; set; }
         public decimal NetAmount { get; set; }
@@ -18,6 +18,7 @@ namespace API.Features.Billing.Invoices {
         public decimal VatAmount { get; set; }
         public decimal GrossAmount { get; set; }
         public string Remarks { get; set; }
+        public bool IsEmailSent { get; set; }
         // Child tables
         public AadeVM Aade { get; set; }
         public List<InvoicePortReadDto> InvoicesPorts { get; set; }

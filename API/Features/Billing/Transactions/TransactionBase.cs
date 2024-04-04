@@ -26,6 +26,7 @@ namespace API.Features.Billing.Transactions {
         public decimal PreviousBalance { get; set; }
         public decimal NewBalance { get; set; }
         public string Remarks { get; set; }
+        public bool IsEmailSent { get; set; }
         // Navigation
         public Customer Customer { get; set; }
         public DocumentType DocumentType { get; set; }

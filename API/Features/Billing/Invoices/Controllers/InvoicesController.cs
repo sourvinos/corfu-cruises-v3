@@ -113,10 +113,10 @@ namespace API.Features.Billing.Invoices {
             }
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{invoiceId}")]
         [Authorize(Roles = "admin")]
-        public async Task<Response> Delete([FromRoute] string id) {
-            var x = await invoiceReadRepo.GetByIdAsync(id, false);
+        public async Task<Response> Delete([FromRoute] string invoiceId) {
+            var x = await invoiceReadRepo.GetByIdAsync(invoiceId, false);
             if (x != null) {
                 invoiceUpdateRepo.Delete(x);
                 return new Response {
@@ -157,13 +157,40 @@ namespace API.Features.Billing.Invoices {
         public async Task<Response> Post([FromBody] InvoiceLinkVM invoiceLink) {
             string baseUrl = environmentSettings.BaseUrl;
             string returnUrl = Url.Content($"{baseUrl}#/invoicesViewer/{invoiceLink.InvoiceId}");
-            await invoiceSendToEmail.SendInvoiceLinkToEmail(invoiceLink, returnUrl);
-            return new Response {
-                Code = 200,
-                Icon = Icons.Success.ToString(),
-                Id = invoiceLink.InvoiceId,
-                Message = ApiMessages.OK()
-            };
+            var response = invoiceSendToEmail.SendInvoiceLinkToEmail(invoiceLink, returnUrl);
+            if (response.Exception == null) {
+                return await Task.FromResult(new Response {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Message = ApiMessages.OK()
+                });
+            } else {
+                return await Task.FromResult(new Response {
+                    Code = 498,
+                    Icon = Icons.Error.ToString(),
+                    Id = null,
+                    Message = response.Exception.Message
+                });
+            }
+        }
+
+        [HttpPatch("{invoiceId}")]
+        [Authorize(Roles = "admin")]
+        public async Task<Response> Patch(string invoiceId) {
+            var x = await invoiceReadRepo.GetByIdAsync(invoiceId, false);
+            if (x != null) {
+                invoiceUpdateRepo.UpdateIsEmailSent(x, invoiceId);
+                return new Response {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Id = invoiceId.ToString(),
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 404
+                };
+            }
         }
 
     }

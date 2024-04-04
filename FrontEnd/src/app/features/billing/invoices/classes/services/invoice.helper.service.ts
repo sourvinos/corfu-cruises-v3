@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core'
 // Custom
+import { BillingCriteriaVM } from '../view-models/form/billing-criteria-vm'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
+import { DexieService } from 'src/app/shared/services/dexie.service'
+import { DocumentTypeHttpService } from '../../../documentTypes/classes/services/documentType-http.service'
+import { DocumentTypeReadDto } from '../../../documentTypes/classes/dtos/documentType-read-dto'
 import { InvoiceWriteDto } from '../dtos/form/invoice-write-dto'
 import { PortWriteDto } from '../dtos/form/port-write-dto'
-import { BillingCriteriaVM } from '../view-models/form/billing-criteria-vm'
-import { DocumentTypeHttpService } from '../../../documentTypes/classes/services/documentType-http.service'
-import { DexieService } from 'src/app/shared/services/dexie.service'
-import { DocumentTypeReadDto } from '../../../documentTypes/classes/dtos/documentType-read-dto'
 
 @Injectable({ providedIn: 'root' })
 
@@ -116,6 +116,7 @@ export class InvoiceHelperService {
             vatAmount: formValue.vatAmount,
             grossAmount: formValue.grossAmount,
             remarks: formValue.remarks,
+            isEmailSent: formValue.isEmailSent,
             putAt: formValue.putAt,
             invoicesPorts: this.mapPorts(formValue)
         }
@@ -125,7 +126,6 @@ export class InvoiceHelperService {
     public updateBrowserStorageAfterApiUpdate(record: DocumentTypeReadDto): void {
         this.dexieService.update('documentTypesInvoice', record)
     }
-
 
     //#endregion
 

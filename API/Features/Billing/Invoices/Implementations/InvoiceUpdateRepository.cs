@@ -63,6 +63,15 @@ namespace API.Features.Billing.Invoices {
             context.InvoicesPorts.RemoveRange(portsToDelete);
         }
 
+        public void UpdateIsEmailSent(Invoice invoice, string invoiceId) {
+            using var transaction = context.Database.BeginTransaction();
+            invoice.IsEmailSent = true;
+            context.Invoices.Attach(invoice);
+            context.Entry(invoice).Property(x => x.IsEmailSent).IsModified = true;
+            context.SaveChanges();
+            DisposeOrCommit(transaction);
+        }
+
         private class PortComparerById : IEqualityComparer<InvoicePort> {
             public bool Equals(InvoicePort x, InvoicePort y) {
                 return x.Id == y.Id;

@@ -28,6 +28,7 @@ export interface InvoiceReadDto extends Metadata {
     invoicesPorts: PortReadDto[]
     // Fields
     remarks: string
+    isEmailSent: boolean
     // Persons
     adults: number
     kids: number

@@ -186,10 +186,6 @@ export class InvoiceFormComponent {
         })
     }
 
-    public onDoNothing(): void {
-        this.dialogService.open(this.messageDialogService.featureNotAvailable(), 'error', ['ok'])
-    }
-
     public onSave(): void {
         this.saveRecord(this.flattenForm())
     }
@@ -249,8 +245,19 @@ export class InvoiceFormComponent {
     public onSendInvoiceLinkToEmail(): void {
         this.getCustomerDataFromStorage(this.form.value.customer.id).then((response) => {
             this.invoiceHttpService.sendInvoiceLinkToEmail(this.form.value.invoiceId, response.email).subscribe({
-                complete: () => {
-                    this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                next: () => {
+                    this.invoiceHttpService.patchInvoiceWithEmailSent(this.form.value.invoiceId).subscribe({
+                        next: () => {
+                            this.form.patchValue({
+                                isEmailSent: true
+                            })
+                            this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
+                        },
+                        error: (errorFromInterceptor) => {
+                            this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                        }
+                    }
+                    )
                 },
                 error: (errorFromInterceptor: any) => {
                     this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
@@ -401,6 +408,7 @@ export class InvoiceFormComponent {
                 qrUrl: '',
             }),
             remarks: ['', Validators.maxLength(128)],
+            isEmailSent: false,
             postAt: [''],
             postUser: [''],
             putAt: [''],
@@ -477,6 +485,7 @@ export class InvoiceFormComponent {
                 free: this.record.free,
                 totalPax: this.record.totalPax,
                 remarks: this.record.remarks,
+                isEmailSent: this.record.isEmailSent,
                 netAmount: this.record.netAmount,
                 vatPercent: this.record.vatPercent,
                 vatAmount: this.record.vatAmount,

@@ -139,6 +139,12 @@
                                 <input [inputTabStop]="input" dataTabIndex="9" formControlName="remarks" matInput>
                             </mat-form-field>
                         </div>
+                        <div class="stacked-checkboxes">
+                            <mat-checkbox class="disabled" formControlName="isEmailSent">
+                                <mat-icon class="material-icons-outlined small">lock</mat-icon>
+                                <span>{{ getLabel("isEmailSent") }}</span>
+                            </mat-checkbox>
+                        </div>
                         <div class="align-bottom">
                             <!-- Metadata -->
                             <metadata-panel [feature]="feature" [postAt]="form.value.postAt" [postUser]="form.value.postUser" [putAt]="form.value.putAt" [putUser]="form.value.putUser"></metadata-panel>

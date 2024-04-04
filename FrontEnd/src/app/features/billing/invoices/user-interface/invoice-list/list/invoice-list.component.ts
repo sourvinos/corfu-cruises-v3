@@ -117,13 +117,6 @@ export class InvoiceListComponent {
         this.recordsFilteredCount = event.filteredValue.length
     }
 
-    public getDateRange(): any[] {
-        const x = []
-        x.push(this.form.value.fromDate)
-        x.push(this.form.value.toDate)
-        return x
-    }
-
     public getEmoji(anything: any): string {
         return typeof anything == 'string'
             ? this.emojiService.getEmoji(anything)
@@ -187,12 +180,8 @@ export class InvoiceListComponent {
     private initContextMenu(): void {
         this.menuItems = [
             { label: 'Επεξεργασία', command: () => this.editRecord(this.selectedRecord.invoiceId.toString()) },
-            { label: 'Αποστολή email', command: () => this.sendInvoiceLinkToEmail(this.selectedRecord.customer.id, this.selectedRecord.invoiceId) }
+            { label: 'Αποστολή με email', command: () => this.sendInvoiceLinkToEmail(this.selectedRecord.customer.id, this.selectedRecord.invoiceId) }
         ]
-    }
-
-    private isCriteriaGiven(): boolean {
-        return this.criteria && this.criteria.fromDate != '' && this.criteria.toDate != ''
     }
 
     private loadRecords(criteria: InvoiceListCriteriaVM): Promise<InvoiceListVM[]> {
@@ -241,22 +230,24 @@ export class InvoiceListComponent {
     private sendInvoiceLinkToEmail(customerId: number, invoiceId: string): void {
         this.getCustomerDataFromStorage(customerId).then((response) => {
             this.invoiceHttpService.sendInvoiceLinkToEmail(invoiceId, response.email).subscribe({
-                complete: () => {
-                    this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
+                next: () => {
+                    this.invoiceHttpService.patchInvoiceWithEmailSent(invoiceId).subscribe({
+                        next: () => {
+                            const criteria: InvoiceListCriteriaVM = JSON.parse(this.sessionStorageService.getItem('invoice-list-criteria'))
+                            this.loadRecords(criteria)
+                            this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
+                        },
+                        error: (errorFromInterceptor) => {
+                            this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                        }
+                    }
+                    )
                 },
                 error: (errorFromInterceptor: any) => {
                     this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
                 }
             })
         })
-    }
-
-    private populateCriteria(event: any): void {
-        if (event.fromDate != '') {
-            this.criteria.fromDate = event.fromDate
-        }
-        // this.criteria.fromDate = event.fromDate ? event.fromDate : this.dateHelperService.formatDateToIso(new Date())
-        // this.criteria.toDate = event.toDate ? event.toDate : this.dateHelperService.formatDateToIso(new Date())
     }
 
     //#endregion

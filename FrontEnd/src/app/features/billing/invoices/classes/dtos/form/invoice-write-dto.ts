@@ -22,6 +22,7 @@ export interface InvoiceWriteDto {
     grossAmount: number
     invoicesPorts: PortWriteDto[]
     remarks: string
+    isEmailSent: boolean
     // Metadata
     putAt: string
 

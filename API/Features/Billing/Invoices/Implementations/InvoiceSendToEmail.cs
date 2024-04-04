@@ -32,12 +32,12 @@ namespace API.Features.Billing.Invoices {
             var message = new MimeMessage { Sender = MailboxAddress.Parse(emailSettings.Username) };
             message.From.Add(new MailboxAddress(emailSettings.From, emailSettings.Username));
             message.To.Add(MailboxAddress.Parse(invoiceLink.Email));
-            message.Subject = "Το τιμολόγιο σας είναι έτοιμο!";
-            message.Body = new BodyBuilder { HtmlBody = await BuildTemplate(invoiceLink, returnUrl) }.ToMessageBody();
+            message.Subject = "Το παραστατικό σας είναι έτοιμο!";
+            message.Body = new BodyBuilder { HtmlBody = await BuildTemplate(returnUrl) }.ToMessageBody();
             return message;
         }
 
-        private static async Task<string> BuildTemplate(InvoiceLinkVM invoiceLink, string returnUrl) {
+        private static async Task<string> BuildTemplate(string returnUrl) {
             RazorLightEngine engine = new RazorLightEngineBuilder()
                 .UseEmbeddedResourcesProject(Assembly.GetEntryAssembly())
                 .Build();

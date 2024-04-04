@@ -2979,6 +2979,10 @@
                 "description": "Σχόλια"
             },
             {
+                "id": "isEmailSent",
+                "description": "Εχει σταλεί με email"
+            },
+            {
                 "id": "post",
                 "description": "Αρχική καταχώριση"
             },
@@ -3012,7 +3016,7 @@
             },
             {
                 "id": "emailInvoice",
-                "description": "Αποστολή σε email"
+                "description": "Αποστολή με email"
             },
             {
                 "id": "submitInvoice",

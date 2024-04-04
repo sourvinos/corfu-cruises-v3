@@ -12,6 +12,7 @@ namespace API.Features.Billing.Invoices {
         public DocumentTypeVM DocumentType { get; set; }
         public SimpleEntity Ship { get; set; }
         public decimal GrossAmount { get; set; }
+        public bool IsEmailSent { get; set; }
 
     }
 

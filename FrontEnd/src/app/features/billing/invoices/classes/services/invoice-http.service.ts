@@ -43,5 +43,9 @@ export class InvoiceHttpService extends HttpDataService {
         return this.http.post(this.url + '/sendInvoiceLinkToEmail', x)
     }
 
+    public patchInvoiceWithEmailSent(invoiceId: string): Observable<any> {
+        return this.http.patch<any>(this.url + '/' + invoiceId, null)
+    }
+
 }
 
