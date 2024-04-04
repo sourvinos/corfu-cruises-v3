@@ -1,4 +1,3 @@
-import { ActivatedRoute, Router } from '@angular/router'
 import { Component, ViewChild } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { Table } from 'primeng/table'
@@ -7,13 +6,11 @@ import { DateHelperService } from '../../../../../shared/services/date-helper.se
 import { EmojiService } from '../../../../../shared/services/emoji.service'
 import { HelperService } from '../../../../../shared/services/helper.service'
 import { InteractionService } from '../../../../../shared/services/interaction.service'
-import { LocalStorageService } from '../../../../../shared/services/local-storage.service'
-import { MessageDialogService } from '../../../../../shared/services/message-dialog.service'
-import { MessageLabelService } from '../../../../../shared/services/message-label.service'
-import { DialogService } from 'src/app/shared/services/modal-dialog.service'
-import { LedgerHttpService } from '../../classes/services/ledger-http.service'
 import { LedgerCriteriaVM } from '../../classes/view-models/criteria/ledger-criteria-vm'
+import { LedgerHttpService } from '../../classes/services/ledger-http.service'
 import { LedgerVM } from '../../classes/view-models/criteria/ledger-vm'
+import { LocalStorageService } from '../../../../../shared/services/local-storage.service'
+import { MessageLabelService } from '../../../../../shared/services/message-label.service'
 
 @Component({
     selector: 'ledger',
@@ -27,8 +24,6 @@ export class LedgerBillingComponent {
 
     @ViewChild('table') table: Table
 
-    private url = 'billing-ledgers'
-    private virtualElement: any
     public feature = 'billingLedger'
     public featureIcon = 'ledgers'
     public icon = 'home'
@@ -38,33 +33,18 @@ export class LedgerBillingComponent {
 
     //#endregion
 
-
-    constructor(private ledgerHttpService: LedgerHttpService, private dialogService: DialogService, private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router) { }
+    constructor(private ledgerHttpService: LedgerHttpService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
-        // this.loadRecords().then(() => {
-        // this.formatDatesToLocale()
         this.subscribeToInteractionService()
-        // this.setTabTitle()
         this.setLocale()
-        // this.setSidebarsHeight()
-        // })
     }
-
-    // ngAfterViewInit(): void {
-    //     setTimeout(() => {
-    //         this.getVirtualElement()
-    //         this.scrollToSavedPosition()
-    //         this.hightlightSavedRow()
-    //     }, 500)
-    // }
 
     //#endregion
 
-    //#region public common methods
-
+    //#region public methods
 
     public getEmoji(anything: any): string {
         return typeof anything == 'string'
@@ -80,17 +60,7 @@ export class LedgerBillingComponent {
         this.helperService.highlightRow(id)
     }
 
-    public onPrint(): void {
-        // this.router.navigate([this.url + '/new'])
-    }
-
-    public resetTableFilters(): void {
-        this.helperService.clearTableTextFilters(this.table, [''])
-    }
-
-    //#endregion
-
-    public doTasks(event: any): void {
+    public onDoSearchTasks(event: any): void {
         this.criteria = {
             fromDate: event.fromDate,
             toDate: event.toDate,
@@ -105,8 +75,23 @@ export class LedgerBillingComponent {
         })
     }
 
+    public onPrint(): void {
+        // this.router.navigate([this.url + '/new'])
+    }
 
-    //#region private common methods
+    public resetTableFilters(): void {
+        this.helperService.clearTableTextFilters(this.table, [''])
+    }
+
+    //#endregion
+
+    //#region private methods
+
+    private formatDatesToLocale(): void {
+        this.records.forEach(record => {
+            record.formattedDate = this.dateHelperService.formatISODateToLocale(record.date)
+        })
+    }
 
     private loadRecords(criteria: LedgerCriteriaVM): Promise<LedgerVM[]> {
         return new Promise((resolve) => {
@@ -115,6 +100,10 @@ export class LedgerBillingComponent {
                 resolve(this.records)
             })
         })
+    }
+
+    private setLocale(): void {
+        this.dateAdapter.setLocale(this.localStorageService.getLanguage())
     }
 
     private setSidebarsHeight(): void {
@@ -133,20 +122,6 @@ export class LedgerBillingComponent {
         this.interactionService.refreshTabTitle.subscribe(() => {
             this.setTabTitle()
         })
-    }
-
-    //#endregion
-
-    //#region private specific methods
-
-    private formatDatesToLocale(): void {
-        this.records.forEach(record => {
-            record.formattedDate = this.dateHelperService.formatISODateToLocale(record.date)
-        })
-    }
-
-    private setLocale(): void {
-        this.dateAdapter.setLocale(this.localStorageService.getLanguage())
     }
 
     //#endregion

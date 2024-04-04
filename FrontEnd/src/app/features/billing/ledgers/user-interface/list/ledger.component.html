@@ -6,39 +6,39 @@
             <home-button-and-title [featureIcon]="featureIcon" [feature]="feature" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
         </div>
 
-        <ledger-criteria (outputSelected)="doTasks($event)"></ledger-criteria>
+        <ledger-criteria (outputSelected)="onDoSearchTasks($event)"></ledger-criteria>
 
         <div id="table-wrapper">
             <p-table #table [scrollable]="true" [virtualScrollItemSize]="32" [value]="records" [virtualScroll]="true" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
                 <ng-template pTemplate="header">
                     <tr>
-                        <th class="width-4">{{ getLabel("headerDate") }}</th>
-                        <th class="width-15">{{ getLabel("headerDocumentTypeDescription") }}</th>
+                        <th class="width-9">{{ getLabel("headerDate") }}</th>
+                        <th class="width-65">{{ getLabel("headerDocumentTypeDescription") }}</th>
                         <th class="width-4">{{ getLabel("headerDocumentTypeBatch") }}</th>
                         <th class="width-4">{{ getLabel("headerInvoiceNo") }}</th>
-                        <th class="width-4">{{ getLabel("headerDebit") }}</th>
-                        <th class="width-4">{{ getLabel("headerCredit") }}</th>
-                        <th class="width-4">{{ getLabel("headerBalance") }}</th>
+                        <th class="width-6">{{ getLabel("headerDebit") }}</th>
+                        <th class="width-6">{{ getLabel("headerCredit") }}</th>
+                        <th class="width-6">{{ getLabel("headerBalance") }}</th>
                     </tr>
                     <tr>
-                        <th class="width-4"></th>
-                        <th class="width-15"></th>
-                        <th class="width-4"></th>
-                        <th class="width-4"></th>
+                        <th class="width-9"></th>
+                        <th class="width-65"></th>
                         <th class="width-4"></th>
                         <th class="width-4"></th>
-                        <th class="width-4"></th>
+                        <th class="width-6"></th>
+                        <th class="width-6"></th>
+                        <th class="width-6"></th>
                     </tr>
                 </ng-template>
                 <ng-template let-record pTemplate="body">
                     <tr style="height: 32px;">
-                        <td class="width-4"><span class="center">{{ record.formattedDate }}</span></td>
-                        <td class="width-15"><span>{{ record.documentType.abbreviation }}</span></td>
+                        <td class="width-9"><span class="center">{{ record.formattedDate }}</span></td>
+                        <td class="width-65"><span>{{ record.documentType.abbreviation }}</span></td>
                         <td class="width-4"><span class="center">{{ record.documentType.batch }}</span></td>
                         <td class="width-4"><span class="center">{{ record.invoiceNo }}</span></td>
-                        <td class="width-4"><span class="number right with-right-padding">{{ record.debit | number:'1.2-2' }}</span></td>
-                        <td class="width-4"><span class="number right with-right-padding">{{ record.credit | number:'1.2-2' }}</span></td>
-                        <td class="width-4"><span class="number right with-right-padding">{{ record.balance | number:'1.2-2' }}</span></td>
+                        <td class="width-6"><span class="number right with-right-padding">{{ record.debit | number:'1.2-2' }}</span></td>
+                        <td class="width-6"><span class="number right with-right-padding">{{ record.credit | number:'1.2-2' }}</span></td>
+                        <td class="width-6"><span class="number right with-right-padding">{{ record.balance | number:'1.2-2' }}</span></td>
                     </tr>
                 </ng-template>
             </p-table>
