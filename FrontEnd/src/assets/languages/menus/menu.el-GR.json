@@ -2,7 +2,6 @@
     { "id": "calendar", "description": "Κρατήσεις" },
     { "id": "availability", "description": "Διαθεσιμότητα" },
     { "id": "coachRoutes", "description": "Δρομολόγια λεωφορείων" },
-    { "id": "shipRoutes", "description": "Δρομολόγια πλοίων" },
     { "id": "registrars", "description": "Καταγραφείς επιβατών" },
     { "id": "ports", "description": "Λιμάνια" },
     { "id": "drivers", "description": "Οδηγοί" },

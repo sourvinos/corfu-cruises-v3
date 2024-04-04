@@ -2,7 +2,6 @@
     { "id": "calendar", "description": "Rezervace" },
     { "id": "availability", "description": "Dostupnost" },
     { "id": "coachRoutes", "description": "Trasy autobusů" },
-    { "id": "shipRoutes", "description": "Trasy lodí" },
     { "id": "registrars", "description": "Registrátoři" },
     { "id": "ports", "description": "Přístavy" },
     { "id": "drivers", "description": "Řidiči" },

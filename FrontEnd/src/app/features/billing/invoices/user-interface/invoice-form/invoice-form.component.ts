@@ -271,7 +271,6 @@ export class InvoiceFormComponent {
     }
 
     public updateFieldsAfterShipSelection(value: SimpleEntity): void {
-        console.log(value)
         this.populateDropdownFromDexieDB('documentTypesInvoice', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation')
         this.dropdownDocumentTypes.subscribe(response => {
             response.forEach(element => {
@@ -280,18 +279,6 @@ export class InvoiceFormComponent {
                 }
             })
         })
-        // this.form.patchValue({
-        //     exactPoint: value.exactPoint,
-        //     time: value.time,
-        //     port: {
-        //         id: value.port.id,
-        //         description: value.port.description
-        //     },
-        //     portAlternate: {
-        //         id: value.port.id,
-        //         description: value.port.description
-        //     }
-        // })
     }
 
     //#endregion

@@ -2,7 +2,6 @@
     { "id": "calendar", "description": "Reservations" },
     { "id": "availability", "description": "Availability" },
     { "id": "coachRoutes", "description": "Coach routes" },
-    { "id": "shipRoutes", "description": "Ship routes" },
     { "id": "registrars", "description": "Passenger registrars" },
     { "id": "ports", "description": "Ports" },
     { "id": "drivers", "description": "Drivers" },

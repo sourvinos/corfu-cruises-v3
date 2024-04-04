@@ -22,7 +22,7 @@ namespace API.Features.Billing.Parameters {
         }
 
         [HttpGet]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "user, admin")]
         public async Task<ResponseWithBody> Get() {
             var x = await parametersRepo.GetAsync();
             return new ResponseWithBody {

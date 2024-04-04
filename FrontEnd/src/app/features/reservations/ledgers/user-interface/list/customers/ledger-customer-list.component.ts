@@ -2,20 +2,21 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { Component, QueryList, ViewChildren } from '@angular/core'
 import { MatExpansionPanel } from '@angular/material/expansion'
 // Custom
+import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
+import { InvoiceDialogComponent } from '../invoice-dialog/invoice-dialog.component'
 import { LedgerCriteriaVM } from '../../../classes/view-models/criteria/ledger-criteria-vm'
 import { LedgerPDFService } from '../../../classes/services/ledger-pdf.service'
+import { LedgerReservationVM } from '../../../classes/view-models/list/ledger-reservation-vm'
 import { LedgerVM } from '../../../classes/view-models/list/ledger-vm'
+import { MatDialog } from '@angular/material/dialog'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
-import { MatDialog } from '@angular/material/dialog'
-import { InvoiceDialogComponent } from '../invoice-dialog/invoice-dialog.component'
 import { environment } from 'src/environments/environment'
-import { LedgerReservationVM } from '../../../classes/view-models/list/ledger-reservation-vm'
 
 @Component({
     selector: 'ledger-customer-list',
@@ -46,7 +47,7 @@ export class LedgerCustomerListComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private dialogService: DialogService, private helperService: HelperService, private interactionService: InteractionService, private ledgerPdfService: LedgerPDFService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
+    constructor(private activatedRoute: ActivatedRoute, private cryptoService: CryptoService, private dateHelperService: DateHelperService, private dialogService: DialogService, private helperService: HelperService, private interactionService: InteractionService, private ledgerPdfService: LedgerPDFService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
 
@@ -63,13 +64,16 @@ export class LedgerCustomerListComponent {
 
     //#region public methods
 
+    public isAdmin(): boolean {
+        return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' ? true : false
+    }
+
     public isProduction(): boolean {
         return environment.production
     }
 
     public processEmittedRecords(emittedObject: LedgerReservationVM[]): void {
         this.selectedRecords = emittedObject
-        console.log('exported', emittedObject)
     }
 
     public collapseAll(): void {
@@ -124,18 +128,6 @@ export class LedgerCustomerListComponent {
     //#endregion
 
     //#region private methods
-
-    // private isAnyRecordSelected(): boolean {
-    //     return (this.selectedRecords == undefined || this.selectedRecords.length == 0) ? false : true
-    // }
-
-    // private isSameDestinationSelected(): boolean {
-    //     const destinations = this.helperService.getDistinctRecords(this.selectedRecords, 'destination', 'description')
-    //     console.log(destinations)
-    //     return true
-    // }
-
-    // const sameShip = this.helperService.getDistinctRecords(this.selectedRecords, 'ship', 'description').length == 1
 
     private loadRecords(): Promise<any> {
         return new Promise((resolve) => {

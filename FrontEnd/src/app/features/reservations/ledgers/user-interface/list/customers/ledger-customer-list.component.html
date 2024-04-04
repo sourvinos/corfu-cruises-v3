@@ -28,7 +28,7 @@
                         <ledger-customer-reservations [customer]="customer" [remarksRowVisibility]="getRemarksRowVisibility()" (outputSelected)="processEmittedRecords($event)"></ledger-customer-reservations>
                         <ledger-customer-summary [portGroup]="customer.ports"></ledger-customer-summary>
                         <div id="align-right" style="padding: 0 0.5rem 0 0 !important;">
-                            <button (click)="doBillingTasks()" class="transparent" mat-flat-button>
+                            <button *ngIf="isAdmin()" (click)="doBillingTasks()" class="transparent" mat-flat-button>
                                 <span>{{ getLabel("createInvoiceButton") | uppercase }}</span>
                             </button>
                             <button (click)="exportSelected(customer)" class="secondary" mat-flat-button>

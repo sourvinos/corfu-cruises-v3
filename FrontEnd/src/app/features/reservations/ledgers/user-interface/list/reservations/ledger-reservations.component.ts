@@ -173,7 +173,6 @@ export class LedgerCustomerReservationListComponent {
                 this.perPort[1].total += record.adults + record.kids + record.free
             }
         })
-        // console.log(this.perPort)
     }
 
     private isSameShipSelected(): boolean {

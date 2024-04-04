@@ -1606,27 +1606,6 @@
         ]
     },
     {
-        "feature": "manifestShipRouteSelector",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Ship routes"
-            },
-            {
-                "id": "subHeader",
-                "description": "Select which route the ship will follow"
-            },
-            {
-                "id": "okButton",
-                "description": "OK"
-            },
-            {
-                "id": "cancelButton",
-                "description": "Ακυρο"
-            }
-        ]
-    },
-    {
         "feature": "shipOwnerList",
         "labels": [
             {
@@ -2201,31 +2180,6 @@
             {
                 "id": "okButton",
                 "description": "OK"
-            }
-        ]
-    },
-    {
-        "feature": "honeycombMenu",
-        "labels": [
-            {
-                "id": "reservations",
-                "description": "Reservations"
-            },
-            {
-                "id": "availability",
-                "description": "Availability"
-            },
-            {
-                "id": "boarding",
-                "description": "Boarding"
-            },
-            {
-                "id": "ledgers",
-                "description": "Customer ledgers"
-            },
-            {
-                "id": "schedules",
-                "description": "Schedules"
             }
         ]
     },
@@ -3081,56 +3035,203 @@
         ]
     },
     {
-        "feature": "crewSpecialtyList",
+        "feature": "invoicePortForm",
         "labels": [
             {
-                "id": "header",
-                "description": "Crew specialties"
+                "id": "port",
+                "description": "Λιμάνι"
             },
             {
-                "id": "headerIsActive",
-                "description": "Active"
+                "id": "adults",
+                "description": "Ενήλικες"
             },
             {
-                "id": "headerDescription",
-                "description": "Description"
+                "id": "kids",
+                "description": "Παιδιά"
             },
             {
-                "id": "newRecord",
-                "description": "New password"
+                "id": "free",
+                "description": "Δωρεάν"
+            },
+            {
+                "id": "withTransfer",
+                "description": "w/ transfer"
+            },
+            {
+                "id": "withoutTransfer",
+                "description": "w/o transfer"
+            },
+            {
+                "id": "price",
+                "description": "Χρέωση"
+            },
+            {
+                "id": "total",
+                "description": "Σύνολο"
+            },
+            {
+                "id": "totalAmount",
+                "description": "Σύνολο αξίας"
+            },
+            {
+                "id": "portTotals",
+                "description": "Σύνολα λιμανιών"
             }
         ]
     },
     {
-        "feature": "crewSpecialtyForm",
+        "feature": "receiptList",
         "labels": [
             {
                 "id": "header",
-                "description": "Crew specialty"
+                "description": "Εισπράξεις"
             },
             {
-                "id": "description",
-                "description": "Description"
+                "id": "headerDate",
+                "description": "Ημερομηνία"
             },
             {
-                "id": "isActive",
-                "description": "Active"
+                "id": "headerCustomerDescription",
+                "description": "Πελάτης"
+            },
+            {
+                "id": "headerDocumentTypeDescription",
+                "description": "Τύπος παραστατικού"
+            },
+            {
+                "id": "headerDocumentTypeBatch",
+                "description": "Σειρά"
+            },
+            {
+                "id": "headerNo",
+                "description": "Νο"
+            },
+            {
+                "id": "headerGrossAmount",
+                "description": "Αξία"
+            },
+            {
+                "id": "newRecord",
+                "description": "Νεα εγγραφη"
+            }
+        ]
+    },
+    {
+        "feature": "receiptForm",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Είσπραξη"
+            },
+            {
+                "id": "date",
+                "description": "Ημερομηνία"
+            },
+            {
+                "id": "tripDate",
+                "description": "Ημερομηνία αναφοράς"
+            },
+            {
+                "id": "documentTypeAbbreviation",
+                "description": "Παραστατικό"
+            },
+            {
+                "id": "documentTypeDescription",
+                "description": "Περιγραφή παραστατικού"
+            },
+            {
+                "id": "no",
+                "description": "Νο"
+            },
+            {
+                "id": "batch",
+                "description": "Σειρά"
+            },
+            {
+                "id": "paymentMethod",
+                "description": "Τρόπος πληρωμής"
+            },
+            {
+                "id": "customer",
+                "description": "Πελάτης"
+            },
+            {
+                "id": "grossAmount",
+                "description": "Σύνολο αξίας"
+            },
+            {
+                "id": "remarks",
+                "description": "Σχόλια"
             },
             {
                 "id": "post",
-                "description": "Initial entry"
+                "description": "Αρχική καταχώριση"
             },
             {
                 "id": "put",
-                "description": "Last update"
+                "description": "Τελευταία ενημέρωση"
             },
             {
                 "id": "deleteButton",
-                "description": "Delete"
+                "description": "Διαγραφη"
             },
             {
                 "id": "saveButton",
-                "description": "Save"
+                "description": "Αποθηκευση"
+            }
+        ]
+    },
+    {
+        "feature": "ledgerCriteria",
+        "labels": [
+            {
+                "id": "customer",
+                "description": "Πελάτης"
+            },
+            {
+                "id": "searchButton",
+                "description": "Αναζητηση"
+            }
+        ]
+    },
+    {
+        "feature": "billingLedger",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Καρτέλα πελάτη"
+            },
+            {
+                "id": "headerDate",
+                "description": "Ημερομηνία"
+            },
+            {
+                "id": "headerDocumentTypeDescription",
+                "description": "Τύπος παραστατικού"
+            },
+            {
+                "id": "headerDocumentTypeBatch",
+                "description": "Σειρά"
+            },
+            {
+                "id": "headerInvoiceNo",
+                "description": "Νο"
+            },
+            {
+                "id": "headerDebit",
+                "description": "Χρέωση"
+            },
+            {
+                "id": "headerCredit",
+                "description": "Πίστωση"
+            },
+            {
+                "id": "headerBalance",
+                "description": "Υπόλοιπο"
+            },
+            {
+                "id": "printButton",
+                "description": "Εκτυπωση"
             }
         ]
     }

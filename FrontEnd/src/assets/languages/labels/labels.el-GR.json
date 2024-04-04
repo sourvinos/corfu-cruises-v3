@@ -1606,27 +1606,6 @@
         ]
     },
     {
-        "feature": "manifestShipRouteSelector",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Δρομολόγιο πλοίου"
-            },
-            {
-                "id": "subHeader",
-                "description": "Επιλέξτε ποια διαδρομή θα ακολουθήσει το πλοίο"
-            },
-            {
-                "id": "okButton",
-                "description": "OK"
-            },
-            {
-                "id": "cancelButton",
-                "description": "Ακυρο"
-            }
-        ]
-    },
-    {
         "feature": "shipOwnerList",
         "labels": [
             {
@@ -2201,31 +2180,6 @@
             {
                 "id": "okButton",
                 "description": "OK"
-            }
-        ]
-    },
-    {
-        "feature": "honeycombMenu",
-        "labels": [
-            {
-                "id": "reservations",
-                "description": "Κρατήσεις"
-            },
-            {
-                "id": "availability",
-                "description": "Διαθεσιμότητα"
-            },
-            {
-                "id": "boarding",
-                "description": "Επιβίβαση"
-            },
-            {
-                "id": "ledgers",
-                "description": "Καρτέλες πελατών"
-            },
-            {
-                "id": "schedules",
-                "description": "Πρόγραμμα"
             }
         ]
     },
@@ -2847,15 +2801,6 @@
         ]
     },
     {
-        "feature": "invoiceListCriteria",
-        "labels": [
-            {
-                "id": "customer",
-                "description": "Πελάτης"
-            }
-        ]
-    },
-    {
         "feature": "invoiceList",
         "labels": [
             {
@@ -3131,60 +3076,6 @@
             {
                 "id": "portTotals",
                 "description": "Σύνολα λιμανιών"
-            }
-        ]
-    },
-    {
-        "feature": "crewSpecialtyList",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Ειδικότητες πληρωμάτων"
-            },
-            {
-                "id": "headerIsActive",
-                "description": "Ενεργός"
-            },
-            {
-                "id": "headerDescription",
-                "description": "Περιγραφή"
-            },
-            {
-                "id": "newRecord",
-                "description": "Νεα εγγραφη"
-            }
-        ]
-    },
-    {
-        "feature": "crewSpecialtyForm",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Ειδικότητα πληρώματος"
-            },
-            {
-                "id": "description",
-                "description": "Περιγραφή"
-            },
-            {
-                "id": "isActive",
-                "description": "Ενεργός"
-            },
-            {
-                "id": "post",
-                "description": "Αρχική καταχώριση"
-            },
-            {
-                "id": "put",
-                "description": "Τελευταία ενημέρωση"
-            },
-            {
-                "id": "deleteButton",
-                "description": "Διαγραφη"
-            },
-            {
-                "id": "saveButton",
-                "description": "Αποθηκευση"
             }
         ]
     },

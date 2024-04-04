@@ -2,7 +2,6 @@
     { "id": "calendar", "description": "Réservations" },
     { "id": "availability", "description": "Availability" },
     { "id": "coachRoutes", "description": "Routes de bus" },
-    { "id": "shipRoutes", "description": "Routes maritimes" },
     { "id": "registrars", "description": "Enregistreurs de passagers" },
     { "id": "ports", "description": "Ports" },
     { "id": "drivers", "description": "Conducteurs" },

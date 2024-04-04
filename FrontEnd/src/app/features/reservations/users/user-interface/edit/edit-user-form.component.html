@@ -99,7 +99,7 @@
 </mat-autocomplete>
 
 <ng-template #contextMenu>
-    <button (click)="onEmailUserDetais()" mat-menu-item>
+    <button *ngIf="isAdmin()" (click)="onEmailUserDetais()" mat-menu-item>
         <span>{{ getLabel('emailUserDetails') }}</span>
     </button>
     <button (click)="onDeleteDexieDB()" mat-menu-item>
