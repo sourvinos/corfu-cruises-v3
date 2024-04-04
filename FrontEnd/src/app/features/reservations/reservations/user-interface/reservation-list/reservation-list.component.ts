@@ -59,7 +59,7 @@ export class ReservationListComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private cryptoService: CryptoService, private dateHelperService: DateHelperService, private dialogService: DialogService, private driverReportService: DriverReportService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private reservationService: ReservationHttpService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
+    constructor(private activatedRoute: ActivatedRoute, private cryptoService: CryptoService, private dateHelperService: DateHelperService, private dialogService: DialogService, private driverReportService: DriverReportService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private reservationHttpService: ReservationHttpService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
 
@@ -96,7 +96,7 @@ export class ReservationListComponent {
             })
             dialogRef.afterClosed().subscribe(result => {
                 if (result !== undefined) {
-                    this.reservationService.assignToDriver(result.record.id, this.selectedIds).subscribe(() => {
+                    this.reservationHttpService.assignToDriver(result.record.id, this.selectedIds).subscribe(() => {
                         this.dialogService.open(this.messageDialogService.success(), 'ok', ['ok']).subscribe(() => {
                             this.clearSelectedRecords()
                             this.resetTableFilters()
@@ -119,7 +119,7 @@ export class ReservationListComponent {
             })
             dialogRef.afterClosed().subscribe(result => {
                 if (result !== undefined) {
-                    this.reservationService.assignToPort(result.record.id, this.selectedIds).subscribe(() => {
+                    this.reservationHttpService.assignToPort(result.record.id, this.selectedIds).subscribe(() => {
                         this.dialogService.open(this.messageDialogService.success(), 'ok', ['ok']).subscribe(() => {
                             this.clearSelectedRecords()
                             this.resetTableFilters()
@@ -142,7 +142,7 @@ export class ReservationListComponent {
             })
             dialogRef.afterClosed().subscribe(result => {
                 if (result !== undefined) {
-                    this.reservationService.assignToShip(result.record.id, this.selectedIds).subscribe(() => {
+                    this.reservationHttpService.assignToShip(result.record.id, this.selectedIds).subscribe(() => {
                         this.dialogService.open(this.messageDialogService.success(), 'ok', ['ok']).subscribe(() => {
                             this.clearSelectedRecords()
                             this.resetTableFilters()
@@ -174,7 +174,7 @@ export class ReservationListComponent {
             dialogRef.afterClosed().subscribe(result => {
                 if (result != undefined) {
                     this.saveSelectedIds()
-                    this.reservationService.deleteRange(this.selectedIds).subscribe(() => {
+                    this.reservationHttpService.deleteRange(this.selectedIds).subscribe(() => {
                         this.dialogService.open(this.messageDialogService.success(), 'ok', ['ok']).subscribe(() => {
                             this.clearSelectedRecords()
                             this.resetTableFilters()
@@ -269,7 +269,7 @@ export class ReservationListComponent {
         if (date != '') {
             this.overbookedDestinations = []
             this.distinctDestinations.forEach((destination) => {
-                this.reservationService.isDestinationOverbooked(this.sessionStorageService.getItem('date'), destination.id).subscribe((response) => {
+                this.reservationHttpService.isDestinationOverbooked(this.sessionStorageService.getItem('date'), destination.id).subscribe((response) => {
                     this.overbookedDestinations.push({
                         description: destination.abbreviation,
                         overbookedPax: response

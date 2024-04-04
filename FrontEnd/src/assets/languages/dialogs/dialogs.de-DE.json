@@ -87,6 +87,10 @@
                 "message": "Authentifizierung fehlgeschlagen."
             },
             {
+                "id": "maximumBalanceExceeded",
+                "message": "Sie haben das maximal zulässige Kreditlimit erreicht. Bitte kontaktieren Sie einen Administrator."
+            },
+            {
                 "id": "emailSent",
                 "message": "Wir haben Ihnen gerade eine E-Mail geschickt."
             },

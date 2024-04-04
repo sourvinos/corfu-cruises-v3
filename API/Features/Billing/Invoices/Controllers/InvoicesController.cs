@@ -1,4 +1,6 @@
-﻿using API.Infrastructure.Extensions;
+﻿using API.Features.Reservations.Customers;
+using API.Infrastructure.Classes;
+using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Responses;
 using AutoMapper;
@@ -16,7 +18,8 @@ namespace API.Features.Billing.Invoices {
         #region variables
 
         private readonly EnvironmentSettings environmentSettings;
-        private readonly IInvoiceCalculateBalanceRepo invoiceCalculateBalance;
+        private readonly ICustomerRepository customerRepo;
+        private readonly IInvoiceCalculateBalanceRepo invoiceCalculateBalanceRepo;
         private readonly IInvoiceReadRepository invoiceReadRepo;
         private readonly IInvoiceSendToEmail invoiceSendToEmail;
         private readonly IInvoiceUpdateRepository invoiceUpdateRepo;
@@ -25,9 +28,10 @@ namespace API.Features.Billing.Invoices {
 
         #endregion
 
-        public InvoicesController(IInvoiceCalculateBalanceRepo invoiceCalculateBalance, IInvoiceReadRepository invoiceReadRepo, IInvoiceSendToEmail invoiceSendToEmail, IInvoiceUpdateRepository invoiceUpdateRepo, IInvoiceValidation invoiceValidation, IMapper mapper, IOptions<EnvironmentSettings> environmentSettings) {
+        public InvoicesController(ICustomerRepository customerRepo, IInvoiceCalculateBalanceRepo invoiceCalculateBalance, IInvoiceReadRepository invoiceReadRepo, IInvoiceSendToEmail invoiceSendToEmail, IInvoiceUpdateRepository invoiceUpdateRepo, IInvoiceValidation invoiceValidation, IMapper mapper, IOptions<EnvironmentSettings> environmentSettings) {
+            this.customerRepo = customerRepo;
             this.environmentSettings = environmentSettings.Value;
-            this.invoiceCalculateBalance = invoiceCalculateBalance;
+            this.invoiceCalculateBalanceRepo = invoiceCalculateBalance;
             this.invoiceReadRepo = invoiceReadRepo;
             this.invoiceSendToEmail = invoiceSendToEmail;
             this.invoiceUpdateRepo = invoiceUpdateRepo;
@@ -71,7 +75,7 @@ namespace API.Features.Billing.Invoices {
         public async Task<Response> PostAsync([FromBody] InvoiceCreateDto invoice) {
             var x = invoiceValidation.IsValidAsync(null, invoice);
             if (await x == 200) {
-                invoice = invoiceCalculateBalance.AttachBalancesToCreateDto(invoice, invoiceCalculateBalance.CalculateBalances(invoice, invoice.CustomerId));
+                invoice = invoiceCalculateBalanceRepo.AttachBalancesToCreateDto(invoice, invoiceCalculateBalanceRepo.CalculateBalances(invoice, invoice.CustomerId));
                 var z = invoiceUpdateRepo.Create(mapper.Map<InvoiceCreateDto, Invoice>((InvoiceCreateDto)invoiceUpdateRepo.AttachMetadataToPostDto(invoice)));
                 return new Response {
                     Code = 200,
@@ -123,6 +127,31 @@ namespace API.Features.Billing.Invoices {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
                     Id = x.InvoiceId.ToString(),
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 404
+                };
+            }
+        }
+
+        [HttpGet("validateBalance/{customerId}")]
+        [Authorize(Roles = "user, admin")]
+        public async Task<ResponseWithBody> ValidateBalance(int customerId) {
+            var x = await customerRepo.GetByIdAsync(customerId, false);
+            if (x != null) {
+                var balanceLimit = x.BalanceLimit;
+                var balance = invoiceCalculateBalanceRepo.CalculatePreviousBalance(customerId);
+                return new ResponseWithBody {
+                    Code = 200,
+                    Icon = Icons.Info.ToString(),
+                    Body = new InvoiceValidateBalanceVM {
+                        Customer = new SimpleEntity { Id = x.Id, Description = x.Description },
+                        BalanceLimit = balanceLimit,
+                        ActualBalance = balance,
+                        MaxAllowed = balanceLimit - balance
+                    },
                     Message = ApiMessages.OK()
                 };
             } else {

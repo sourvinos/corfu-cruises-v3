@@ -6,6 +6,7 @@ namespace API.Features.Billing.Invoices {
 
         InvoiceBalanceVM CalculateBalances(InvoiceCreateDto invoice, int customerId);
         InvoiceCreateDto AttachBalancesToCreateDto(InvoiceCreateDto invoice, InvoiceBalanceVM balances);
+        decimal CalculatePreviousBalance(int customerId);
 
     }
 

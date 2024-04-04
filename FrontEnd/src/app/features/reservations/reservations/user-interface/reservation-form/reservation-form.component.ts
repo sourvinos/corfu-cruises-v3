@@ -79,7 +79,7 @@ export class ReservationFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private boardingPassService: BoardingPassService, private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialog: MatDialog, private dialogService: DialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private reservationHelperService: ReservationHelperService, private reservationService: ReservationHttpService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private activatedRoute: ActivatedRoute, private boardingPassService: BoardingPassService, private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialog: MatDialog, private dialogService: DialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private reservationHelperService: ReservationHelperService, private reservationHttpService: ReservationHttpService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -173,7 +173,7 @@ export class ReservationFormComponent {
     public onDelete(): void {
         this.dialogService.open(this.messageDialogService.confirmDelete(), 'question', ['abort', 'ok']).subscribe(response => {
             if (response) {
-                this.reservationService.delete(this.form.value.reservationId).subscribe({
+                this.reservationHttpService.delete(this.form.value.reservationId).subscribe({
                     complete: () => {
                         this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
                         this.localStorageService.deleteItems([{ 'item': 'reservation', 'when': 'always' },])
@@ -301,9 +301,19 @@ export class ReservationFormComponent {
 
     private doNewOrEditTasks(): void {
         if (this.isNewRecord) {
-            this.getStoredDate()
-            this.getStoredDestination()
-            this.getPassengerDifferenceColor()
+            if (this.isAdmin() == false) {
+                this.reservationHttpService.validateBalance().subscribe((response: { body: { maxAllowed: number } }) => {
+                    if (response.body.maxAllowed > 0) {
+                        this.getStoredDate()
+                        this.getStoredDestination()
+                        this.getPassengerDifferenceColor()
+                    } else {
+                        this.dialogService.open(this.messageDialogService.maximumBalanceExceeded(), 'error', ['ok']).subscribe(() => {
+                            this.goBack()
+                        })
+                    }
+                })
+            }
         } else {
             this.getRecord()
             this.populateFields()
@@ -485,7 +495,7 @@ export class ReservationFormComponent {
     }
 
     private saveRecord(reservation: ReservationWriteDto): void {
-        this.reservationService.saveReservation(reservation).subscribe({
+        this.reservationHttpService.saveReservation(reservation).subscribe({
             next: (response) => {
                 const date = this.dateHelperService.formatDateToIso(new Date(this.form.value.date))
                 this.sessionStorageService.saveItem('date', date)

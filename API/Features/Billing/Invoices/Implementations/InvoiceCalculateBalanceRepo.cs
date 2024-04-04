@@ -39,7 +39,7 @@ namespace API.Features.Billing.Invoices {
             return invoice;
         }
 
-        private decimal CalculatePreviousBalance(int customerId) {
+        public decimal CalculatePreviousBalance(int customerId) {
             var records = context.Transactions
                 .AsNoTracking()
                 .Include(x => x.Customer)

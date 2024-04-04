@@ -1,8 +1,9 @@
-import { HttpClient, HttpParams } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 // Custom
 import { AssignmentVM } from '../view-models/assignments/assignment-vm'
+import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { ReservationListVM } from '../view-models/list/reservation-list-vm'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
@@ -12,9 +13,11 @@ import { environment } from 'src/environments/environment'
 
 export class ReservationHttpService extends HttpDataService {
 
-    constructor(httpClient: HttpClient, private sessionStorageService: SessionStorageService) {
+    constructor(httpClient: HttpClient, private cryptoService: CryptoService, private sessionStorageService: SessionStorageService) {
         super(httpClient, environment.apiUrl + '/reservations')
     }
+
+    //#region public methods
 
     public getForCalendar(): Observable<any> {
         const fromDate = this.sessionStorageService.getItem('fromDate')
@@ -73,5 +76,24 @@ export class ReservationHttpService extends HttpDataService {
     public deleteRange(ids: string[]): Observable<any> {
         return this.http.request<void>('delete', this.url + '/deleteRange', { body: ids })
     }
+
+    public validateBalance(): any {
+        if (this.isAdmin() == false) {
+            const customerId = parseInt(this.cryptoService.decrypt(this.sessionStorageService.getItem('customerId')))
+            return this.http.get(environment.apiUrl + '/invoices/validateBalance/' + customerId)
+        } else {
+            return true
+        }
+    }
+
+    //#endregion
+
+    //#region private methods
+
+    private isAdmin(): boolean {
+        return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' ? true : false
+    }
+
+    //#endregion
 
 }

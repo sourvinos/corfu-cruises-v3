@@ -87,6 +87,10 @@
                 "message": "Ověření se nezdařilo."
             },
             {
+                "id": "maximumBalanceExceeded",
+                "message": "Dosáhli jste maximálního povoleného úvěrového limitu. Kontaktujte prosím správce."
+            },
+            {
                 "id": "emailSent",
                 "message": "Právě jsme vám poslali email."
             },

@@ -87,6 +87,10 @@
                 "message": "Authentification échouée."
             },
             {
+                "id": "maximumBalanceExceeded",
+                "message": "Vous avez atteint la limite de crédit maximale autorisée. Veuillez contacter un administrateur."
+            },
+            {
                 "id": "emailSent",
                 "message": "Nous venons de vous envoyer un email."
             },

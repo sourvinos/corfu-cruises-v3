@@ -87,6 +87,10 @@
                 "message": "Authentication was not successful."
             },
             {
+                "id": "maximumBalanceExceeded",
+                "message": "You have reached the maximum allowed credit limit. Please contact an administrator."
+            },
+            {
                 "id": "emailSent",
                 "message": "We've just sent you an email."
             },
