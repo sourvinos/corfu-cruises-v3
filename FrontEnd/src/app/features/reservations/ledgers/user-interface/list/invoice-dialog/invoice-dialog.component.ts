@@ -69,6 +69,28 @@ export class InvoiceDialogComponent {
 
     //#region public methods
 
+    public onSubmitTasks(): void {
+        this.invoiceXmlHttpService.get(this.form.value.invoiceId).subscribe(response => {
+            this.invoiceXmlHttpService.uploadInvoice(response.body).subscribe({
+                next: (response) => {
+                    this.invoiceHttpService.updateInvoiceAade(this.invoiceXmlHelperService.processInvoiceSuccessResponse(response)).subscribe({
+                        next: () => {
+                            this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false).then(() => {
+                                this.dialogRef.close()
+                            })
+                        },
+                        error: (errorFromInterceptor) => {
+                            this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                        }
+                    })
+                },
+                error: (errorFromInterceptor) => {
+                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                }
+            })
+        })
+    }
+
     public onRetrievePrices(): void {
         const x: BillingCriteriaVM = {
             date: this.data[0].date,
@@ -177,33 +199,16 @@ export class InvoiceDialogComponent {
         })
     }
 
+    public updateDocumentTypesAfterShipSelection(value: SimpleEntity): void {
+        this.form.patchValue({ documentType: '', documentTypeDescription: '', invoiceNo: 0, batch: '' })
+        this.populateDocumentTypesAfterShipSelection('documentTypesInvoice', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation', value.id)
+    }
+
     public updateFieldsAfterDocumentTypeSelection(value: DocumentTypeAutoCompleteVM): void {
         this.form.patchValue({
             documentTypeDescription: value.description,
             invoiceNo: value.lastNo += 1,
             batch: value.batch
-        })
-    }
-
-    public doSubmitTasks(): void {
-        this.invoiceXmlHttpService.get(this.form.value.invoiceId).subscribe(response => {
-            this.invoiceXmlHttpService.uploadInvoice(response.body).subscribe({
-                next: (response) => {
-                    this.invoiceHttpService.updateInvoiceAade(this.invoiceXmlHelperService.processInvoiceSuccessResponse(response)).subscribe({
-                        next: () => {
-                            this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false).then(() => {
-                                this.dialogRef.close()
-                            })
-                        },
-                        error: (errorFromInterceptor) => {
-                            this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                        }
-                    })
-                },
-                error: (errorFromInterceptor) => {
-                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                }
-            })
         })
     }
 
@@ -251,9 +256,15 @@ export class InvoiceDialogComponent {
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('documentTypesInvoice', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation')
         this.populateDropdownFromDexieDB('paymentMethods', 'dropdownPaymentMethods', 'paymentMethod', 'description', 'description')
         this.populateDropdownFromDexieDB('ships', 'dropdownShips', 'ship', 'description', 'description')
+    }
+
+    private populateDocumentTypesAfterShipSelection(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string, shipId: number): void {
+        this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
+            this[dexieTable] = response.filter(x => x.shipOwner.id == shipId)
+            this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
+        })
     }
 
     private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
@@ -358,7 +369,7 @@ export class InvoiceDialogComponent {
                     invoiceId: response.id
                 })
                 this.updateDocumentType(invoice.documentTypeId)
-                this.doSubmitTasks()
+                this.onSubmitTasks()
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
