@@ -15,6 +15,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
+import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
 @Component({
     selector: 'documentType-list',
@@ -47,7 +48,7 @@ export class DocumentTypeListComponent {
 
     //#region dropdown filters
 
-    public dropdownShipOwners = []
+    public distinctShips: SimpleEntity[] = []
 
     //#endregion
 
@@ -133,9 +134,21 @@ export class DocumentTypeListComponent {
         if (filters != undefined) {
             setTimeout(() => {
                 this.filterColumn(filters.isActive, 'isActive', 'contains')
+                this.filterColumn(filters.ship, 'ship', 'contains')
                 this.filterColumn(filters.description, 'description', 'contains')
-                this.filterColumn(filters.email, 'email', 'contains')
-                this.filterColumn(filters.phones, 'phones', 'contains')
+                this.filterColumn(filters.batch, 'batch', 'contains')
+                this.filterColumn(filters.lastDate, 'lastDate', 'equals')
+                this.filterColumn(filters.lastNo, 'lastNo', 'equals')
+                this.filterColumn(filters.table8_1, 'table8_1', 'contains')
+                this.filterColumn(filters.table8_8, 'table8_8', 'contains')
+                this.filterColumn(filters.table8_9, 'table8_9', 'contains')
+                console.log(filters.lastDate)
+                if (filters.lastDate != undefined) {
+                    if (filters.lastDate.value != null) {
+                        const date = new Date(Date.parse(filters.lastDate.value))
+                        this.filterDate = this.dateAdapter.createDate(date.getFullYear(), date.getMonth(), parseInt(date.getDate().toLocaleString()))
+                    }
+                }
             }, 500)
         }
     }
@@ -202,7 +215,7 @@ export class DocumentTypeListComponent {
     //#region specific methods
 
     public onClearDateFilter(): void {
-        this.table.filter('', 'birthdate', 'equals')
+        this.table.filter('', 'lastDate', 'equals')
         this.filterDate = ''
         this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
     }
@@ -225,7 +238,7 @@ export class DocumentTypeListComponent {
     }
 
     private populateDropdownFilters(): void {
-        this.dropdownShipOwners = this.helperService.getDistinctRecords(this.records, 'shipOwner', 'description')
+        this.distinctShips = this.helperService.getDistinctRecords(this.records, 'ship', 'description')
     }
 
     private setLocale(): void {

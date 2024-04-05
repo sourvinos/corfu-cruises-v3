@@ -13,13 +13,15 @@ export class DocumentTypeHelperService {
         const vm: DocumentTypeBrowserStorageVM = response
         this.dexieService.update(table, {
             'id': vm.id,
-            'company': vm.shipOwnerId,
+            'ship': {
+                'id': vm.ship.id,
+                'description': vm.ship.description
+            },
             'abbreviation': vm.abbreviation,
             'description': vm.description,
             'batch': vm.batch,
             'isActive': vm.isActive,
             'lastNo': vm.lastNo
-
         })
     }
 

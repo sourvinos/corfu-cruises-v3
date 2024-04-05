@@ -9,15 +9,15 @@ namespace DocumentTypes {
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public IEnumerator<object[]> GetEnumerator() {
-            yield return Company_Must_Exist();
-            yield return Company_Must_Be_Active();
+            yield return Ship_Must_Exist();
+            yield return Ship_Must_Be_Active();
         }
 
-        private static object[] Company_Must_Exist() {
+        private static object[] Ship_Must_Exist() {
             return new object[] {
                 new TestDocumentType {
                     StatusCode = 449,
-                    ShipOwnerId = 9999,
+                    ShipId = 9999,
                     Abbreviation = Helpers.CreateRandomString(5),
                     Description = Helpers.CreateRandomString(128),
                     Batch = Helpers.CreateRandomString(5),
@@ -35,11 +35,11 @@ namespace DocumentTypes {
             };
         }
 
-        private static object[] Company_Must_Be_Active() {
+        private static object[] Ship_Must_Be_Active() {
             return new object[] {
                 new TestDocumentType {
                     StatusCode = 449,
-                    ShipOwnerId = 4,
+                    ShipId = 7,
                     Abbreviation = Helpers.CreateRandomString(5),
                     Description = Helpers.CreateRandomString(128),
                     Batch = Helpers.CreateRandomString(5),

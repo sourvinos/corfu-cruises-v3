@@ -2641,8 +2641,8 @@
                 "description": "Ενεργό"
             },
             {
-                "id": "headerShipOwner",
-                "description": "Πλοιοκτήτης"
+                "id": "headerShip",
+                "description": "Πλοίο"
             },
             {
                 "id": "headerDescription",
@@ -2654,11 +2654,11 @@
             },
             {
                 "id": "headerLastDate",
-                "description": "Τελευταία ημερομηνία"
+                "description": "Ημερομηνία"
             },
             {
                 "id": "headerLastNo",
-                "description": "Τελευταίο Νο"
+                "description": "Νο"
             },
             {
                 "id": "headerTable8_1",
@@ -2694,8 +2694,8 @@
                 "description": "myData"
             },
             {
-                "id": "shipOwner",
-                "description": "Πλοιοκτήτης"
+                "id": "ship",
+                "description": "Πλοίο"
             },
             {
                 "id": "abbreviation",

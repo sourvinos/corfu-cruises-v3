@@ -434,7 +434,7 @@ export class InvoiceFormComponent {
 
     private populateDocumentTypesAfterShipSelection(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string, shipId: number): void {
         this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
-            this[dexieTable] = response.filter(x => x.shipOwner.id == shipId)
+            this[dexieTable] = response.filter(x => x.ship.id == shipId).filter(x => x.isActive)
             this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
         })
     }

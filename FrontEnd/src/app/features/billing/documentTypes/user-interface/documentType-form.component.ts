@@ -47,7 +47,7 @@ export class DocumentTypeFormComponent {
     //#region autocompletes
 
     public isAutoCompleteDisabled = true
-    public dropdownShipOwners: Observable<SimpleEntity[]>
+    public dropdownShips: Observable<SimpleEntity[]>
 
     //#endregion
 
@@ -103,7 +103,7 @@ export class DocumentTypeFormComponent {
             if (response) {
                 this.documentTypeHttpService.delete(this.form.value.id).subscribe({
                     complete: () => {
-                        this.dexieService.remove('documentTypes', this.form.value.id)
+                        this.dexieService.remove(this.getDiscriminatorDescription(), this.form.value.id)
                         this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
                     },
                     error: (errorFromInterceptor) => {
@@ -143,7 +143,7 @@ export class DocumentTypeFormComponent {
     private flattenForm(): DocumentTypeWriteDto {
         return {
             id: this.form.value.id != '' ? this.form.value.id : null,
-            shipOwnerId: this.form.value.shipOwner.id,
+            shipId: this.form.value.ship.id,
             abbreviation: this.form.value.abbreviation,
             description: this.form.value.description,
             batch: this.form.value.batch,
@@ -193,7 +193,7 @@ export class DocumentTypeFormComponent {
     private initForm(): void {
         this.form = this.formBuilder.group({
             id: '',
-            shipOwner: ['', [Validators.required, ValidationService.RequireAutocomplete]],
+            ship: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             abbreviation: ['', [Validators.required, Validators.maxLength(5)]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
             batch: ['', [Validators.maxLength(5)]],
@@ -215,7 +215,7 @@ export class DocumentTypeFormComponent {
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('shipOwners', 'dropdownShipOwners', 'shipOwner', 'description', 'description')
+        this.populateDropdownFromDexieDB('ships', 'dropdownShips', 'ship', 'description', 'description')
     }
 
     private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
@@ -229,7 +229,7 @@ export class DocumentTypeFormComponent {
         if (this.record != undefined) {
             this.form.setValue({
                 id: this.record.id,
-                shipOwner: { 'id': this.record.shipOwner.id, 'description': this.record.shipOwner.description },
+                ship: { 'id': this.record.ship.id, 'description': this.record.ship.description },
                 abbreviation: this.record.abbreviation,
                 description: this.record.description,
                 batch: this.record.batch,
@@ -287,8 +287,8 @@ export class DocumentTypeFormComponent {
 
     //#region getters
 
-    get shipOwner(): AbstractControl {
-        return this.form.get('shipOwner')
+    get ship(): AbstractControl {
+        return this.form.get('ship')
     }
 
     get abbreviation(): AbstractControl {

@@ -1,10 +1,9 @@
+import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
+
 export interface DocumentTypeBrowserStorageVM {
 
-    // PK
     id: number
-    // FKs
-    shipOwnerId: number
-    // Fields
+    ship: SimpleEntity
     abbreviation: string
     description: string
     batch: string

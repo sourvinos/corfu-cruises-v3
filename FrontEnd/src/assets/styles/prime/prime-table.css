@@ -13,10 +13,6 @@
     overflow: visible !important;
 }
 
-.p-datatable .p-datatable-thead > tr {
-    background-color: var(--color-background) !important;
-}
-
 .p-datatable .p-datatable-thead > tr > th {
     background-color: var(--color-background) !important;
     border-right: 0.0625rem solid color-mix(in srgb, var(--color-primary) 30%, transparent);
@@ -30,6 +26,7 @@
 
 .p-datatable .p-datatable-thead > tr > th > .p-element > .p-checkbox > .p-checkbox-box {
     border-color: var(--color-text);
+    transition: border-color var(--theme-delay);
 }
 
 .p-datatable .p-datatable-thead > tr > th > .p-element > .p-column-filter-row > .p-element > .p-element > .p-checkbox > .p-checkbox-box {
@@ -82,7 +79,6 @@
 
 .p-datatable .p-datatable-thead > tr > th > .date-picker-wrapper > .mat-datepicker-toggle > .mat-mdc-icon-button > svg {
     color: var(--color-text);
-    transition: color var(--theme-delay) !important;
 }
 
 /* #endregion */
@@ -111,7 +107,7 @@
 .p-datatable .p-datatable-tbody > tr > td > span > img.flag-with-border {
     border: 0.0625rem solid var(--color-flag-border);
     margin: 0.125rem 0 0.125rem 0;
-    transition: border var(--theme-delay);
+    transition: border-color var(--theme-delay);
 }
 
 .p-datatable .p-datatable-tbody > tr:not(:first-child) > td {
@@ -125,7 +121,6 @@
     font-size: var(--font-size-table-row);
     font-weight: 300;
     padding: 0 0 0 0;
-    transition: all var(--theme-delay);
 }
 
 .p-datatable .p-datatable-tbody > tr:last-child > td {
@@ -140,6 +135,7 @@
     overflow: hidden !important;
     padding: 0.0625rem 0.3125rem 0 0.3125rem !important;
     text-overflow: ellipsis !important;
+    transition: color var(--theme-delay);
     white-space: nowrap !important;
 }
 
@@ -170,7 +166,6 @@
 
 .p-datatable .p-datatable-tbody > tr > td > .p-element > .p-component > .p-checkbox-box {
     border-color: var(--color-text);
-    transition: border-color var(--theme-delay);
 }
 
 .p-datatable .p-datatable-tbody > tr > td > span > .p-element > .p-component > .p-checkbox-box {
@@ -185,7 +180,6 @@
 
 .p-datatable .p-datatable-tbody > tr.p-highlight > td > span {
     background-color: color-mix(in srgb, var(--color-secondary), transparent) !important;
-    transition: background-color var(--theme-delay);
 }
 
 .p-datatable .p-datatable-tbody > tr:focus {
@@ -226,7 +220,6 @@
     font-size: var(--font-size-table-row);
     font-weight: 300;
     padding: 0.5rem 0 0.5rem 0.3125rem !important;
-    transition: all var(--theme-delay) !important;
 }
 
 .p-datatable .p-datatable-tfoot > tr > td:first-child {

@@ -15,21 +15,21 @@ namespace API.Features.Billing.DocumentTypes {
 
         public async Task<int> IsValidAsync(DocumentType z, DocumentTypeWriteDto documentType) {
             return true switch {
-                var x when x == !await IsValidCompany(documentType) => 449,
+                var x when x == !await IsValidShip(documentType) => 449,
                 var x when x == IsAlreadyUpdated(z, documentType) => 415,
                 _ => 200,
             };
         }
 
-        private async Task<bool> IsValidCompany(DocumentTypeWriteDto documentType) {
+        private async Task<bool> IsValidShip(DocumentTypeWriteDto documentType) {
             if (documentType.Id == 0) {
-                return await context.ShipOwners
+                return await context.Ships
                     .AsNoTracking()
-                    .FirstOrDefaultAsync(x => x.Id == documentType.ShipOwnerId && x.IsActive) != null;
+                    .FirstOrDefaultAsync(x => x.Id == documentType.ShipId && x.IsActive) != null;
             }
-            return await context.ShipOwners
+            return await context.Ships
                 .AsNoTracking()
-                .FirstOrDefaultAsync(x => x.Id == documentType.ShipOwnerId) != null;
+                .FirstOrDefaultAsync(x => x.Id == documentType.ShipId) != null;
         }
 
         private static bool IsAlreadyUpdated(DocumentType z, DocumentTypeWriteDto DocumentType) {

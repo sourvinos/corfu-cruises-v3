@@ -42,7 +42,7 @@
 
 .p-multiselect-panel {
     background-color: var(--color-background);
-    padding: 0.5rem 0.5rem 0.5rem 0 !important;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem !important;
 }
 
 .p-multiselect-panel .p-multiselect-items {

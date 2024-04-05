@@ -5,7 +5,7 @@ export interface DocumentTypeAutoCompleteVM {
     id: number
     abbreviation: string
     description: string
-    shipOwner: SimpleEntity
+    ship: SimpleEntity
     batch: string
     lastNo: number
 

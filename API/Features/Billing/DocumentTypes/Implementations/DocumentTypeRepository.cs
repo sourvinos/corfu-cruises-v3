@@ -25,8 +25,8 @@ namespace API.Features.Billing.DocumentTypes {
         public async Task<IEnumerable<DocumentTypeListVM>> GetAsync() {
             var DocumentTypes = await context.DocumentTypes
                 .AsNoTracking()
-                .Include(x => x.ShipOwner)
-                .OrderBy(x => x.Description).ThenBy(x => x.Batch)
+                .Include(x => x.Ship)
+                .OrderBy(x => x.Ship.Description).ThenBy(x => x.DiscriminatorId).ThenBy(x => x.Description).ThenBy(x => x.Batch)
                 .ToListAsync();
             return mapper.Map<IEnumerable<DocumentType>, IEnumerable<DocumentTypeListVM>>(DocumentTypes);
         }
@@ -34,9 +34,9 @@ namespace API.Features.Billing.DocumentTypes {
         public async Task<IEnumerable<DocumentTypeBrowserVM>> GetForBrowserAsync(int discriminatorId) {
             var DocumentTypes = await context.DocumentTypes
                 .AsNoTracking()
-                .Include(x => x.ShipOwner)
+                .Include(x => x.Ship)
                 .Where(x => x.DiscriminatorId == discriminatorId)
-                .OrderBy(x => x.Description).ThenBy(x => x.Batch)
+                .OrderBy(x => x.Ship.Description).ThenBy(x => x.DiscriminatorId).ThenBy(x => x.Description).ThenBy(x => x.Batch)
                 .ToListAsync();
             return mapper.Map<IEnumerable<DocumentType>, IEnumerable<DocumentTypeBrowserVM>>(DocumentTypes);
         }
@@ -44,6 +44,7 @@ namespace API.Features.Billing.DocumentTypes {
         public async Task<DocumentTypeBrowserVM> GetByIdForBrowserAsync(int id) {
             var record = await context.DocumentTypes
                 .AsNoTracking()
+                .Include(x => x.Ship)
                 .SingleOrDefaultAsync(x => x.Id == id);
             return mapper.Map<DocumentType, DocumentTypeBrowserVM>(record);
         }
@@ -51,7 +52,7 @@ namespace API.Features.Billing.DocumentTypes {
         public async Task<DocumentType> GetByIdAsync(int id) {
             return await context.DocumentTypes
                 .AsNoTracking()
-                .Include(x => x.ShipOwner)
+                .Include(x => x.Ship)
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
 
