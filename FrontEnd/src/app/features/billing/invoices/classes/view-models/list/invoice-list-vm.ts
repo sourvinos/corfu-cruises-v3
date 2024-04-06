@@ -1,17 +1,19 @@
 import { DocumentTypeVM } from './documentType-vm'
+import { InvoiceListAadeVM } from './invoice-list-aade-vm'
 import { SimpleEntity } from '../../../../../../shared/classes/simple-entity'
 
 export interface InvoiceListVM {
 
-    invoiceId: string
-    date: string
-    formattedDate: string
-    invoiceNo: number
     customer: SimpleEntity
+    date: string
     destination: SimpleEntity
     documentType: DocumentTypeVM
-    ship: SimpleEntity
-    totalPax: number
     grossAmount: number
+    invoiceId: string
+    invoiceNo: number
+    formattedDate: string
+    isEmailSent: boolean
+    ship: SimpleEntity
+    aade: InvoiceListAadeVM
 
 }

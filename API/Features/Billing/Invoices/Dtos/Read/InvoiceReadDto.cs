@@ -20,7 +20,7 @@ namespace API.Features.Billing.Invoices {
         public string Remarks { get; set; }
         public bool IsEmailSent { get; set; }
         // Child tables
-        public AadeVM Aade { get; set; }
+        public InvoiceFormAadeVM Aade { get; set; }
         public List<InvoicePortReadDto> InvoicesPorts { get; set; }
         // Navigation
         public SimpleEntity Customer { get; set; }

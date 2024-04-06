@@ -234,7 +234,12 @@ export class InvoiceListComponent {
                     this.invoiceHttpService.patchInvoiceWithEmailSent(invoiceId).subscribe({
                         next: () => {
                             const criteria: InvoiceListCriteriaVM = JSON.parse(this.sessionStorageService.getItem('invoice-list-criteria'))
-                            this.loadRecords(criteria)
+                            this.loadRecords(criteria).then(() => {
+                                this.filterTableFromStoredFilters()
+                                this.populateDropdownFilters()
+                                this.enableDisableFilters()
+                                this.formatDatesToLocale()
+                            })
                             this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
                         },
                         error: (errorFromInterceptor) => {

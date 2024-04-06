@@ -17,4 +17,8 @@
     /* Material menus */
     --color-mat-menu-background-hover: #0077B6;
     --color-mat-menu-text-hover: #ffffff;
+    /* Material icons */
+    --color-blue: #a3c6f4;
+    --color-green: #16c60c;
+    --color-red: #cf6755;
 }

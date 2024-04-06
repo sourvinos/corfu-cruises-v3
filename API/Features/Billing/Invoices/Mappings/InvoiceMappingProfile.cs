@@ -14,7 +14,11 @@ namespace API.Features.Billing.Invoices {
                 .ForMember(x => x.Customer, x => x.MapFrom(x => new SimpleEntity { Id = x.Customer.Id, Description = x.Customer.Description }))
                 .ForMember(x => x.Destination, x => x.MapFrom(x => new SimpleEntity { Id = x.Destination.Id, Description = x.Destination.Description }))
                 .ForMember(x => x.DocumentType, x => x.MapFrom(x => new DocumentTypeVM { Id = x.DocumentType.Id, Description = x.DocumentType.Description, Batch = x.DocumentType.Batch }))
-                .ForMember(x => x.Ship, x => x.MapFrom(x => new SimpleEntity { Id = x.Ship.Id, Description = x.Ship.Description }));
+                .ForMember(x => x.Ship, x => x.MapFrom(x => new SimpleEntity { Id = x.Ship.Id, Description = x.Ship.Description }))
+                .ForMember(x => x.Aade, x => x.MapFrom(x => new InvoiceListAadeVM {
+                    Mark = x.Aade.Mark,
+                    MarkCancel = x.Aade.MarkCancel
+                }));
             // GetById
             CreateMap<Invoice, InvoiceReadDto>()
                 .ForMember(x => x.Date, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Date)))
@@ -41,7 +45,7 @@ namespace API.Features.Billing.Invoices {
                     Id = x.PaymentMethod.Id,
                     Description = x.PaymentMethod.Description
                 }))
-                .ForMember(x => x.Aade, x => x.MapFrom(x => new AadeVM {
+                .ForMember(x => x.Aade, x => x.MapFrom(x => new InvoiceFormAadeVM {
                     InvoiceId = x.Aade.InvoiceId,
                     UId = x.Aade.Uid,
                     Mark = x.Aade.Mark,

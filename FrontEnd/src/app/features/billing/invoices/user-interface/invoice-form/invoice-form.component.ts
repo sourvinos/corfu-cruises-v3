@@ -152,22 +152,26 @@ export class InvoiceFormComponent {
     }
 
     public onCancelInvoice(): void {
-        this.invoiceXmlHttpService.get(this.form.value.invoiceId).subscribe(invoice => {
-            this.invoiceXmlHttpService.cancelInvoice(invoice.body).subscribe({
-                next: (response) => {
-                    this.invoiceHttpService.updateInvoiceAade(this.invoiceXmlHelperService.processInvoiceCancelSuccessResponse(invoice.body, response)).subscribe({
-                        next: () => {
-                            this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+        this.dialogService.open(this.messageDialogService.confirmCancelInvoice(), 'question', ['abort', 'ok']).subscribe(response => {
+            if (response) {
+                this.invoiceXmlHttpService.get(this.form.value.invoiceId).subscribe(invoice => {
+                    this.invoiceXmlHttpService.cancelInvoice(invoice.body).subscribe({
+                        next: (response) => {
+                            this.invoiceHttpService.updateInvoiceAade(this.invoiceXmlHelperService.processInvoiceCancelSuccessResponse(invoice.body, response)).subscribe({
+                                next: () => {
+                                    this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                                },
+                                error: (errorFromInterceptor) => {
+                                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                                }
+                            })
                         },
                         error: (errorFromInterceptor) => {
                             this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
                         }
                     })
-                },
-                error: (errorFromInterceptor) => {
-                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                }
-            })
+                })
+            }
         })
     }
 
