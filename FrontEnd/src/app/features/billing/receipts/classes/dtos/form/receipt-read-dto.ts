@@ -15,6 +15,7 @@ export interface ReceiptReadDto extends Metadata {
     customer: SimpleEntity
     documentType: DocumentTypeVM
     paymentMethod: SimpleEntity
+    shipOwner: SimpleEntity
     grossAmount: number
     // Metadata
     postAt: string

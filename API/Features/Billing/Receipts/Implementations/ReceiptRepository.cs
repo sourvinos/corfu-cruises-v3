@@ -25,6 +25,7 @@ namespace API.Features.Billing.Receipts {
                 .AsNoTracking()
                 .Include(x => x.Customer)
                 .Include(x => x.DocumentType)
+                .Include(x => x.ShipOwner)
                 .Where(x => x.DiscriminatorId == 2)
                 .OrderBy(x => x.Date)
                 .ToListAsync();
@@ -38,6 +39,7 @@ namespace API.Features.Billing.Receipts {
                     .Include(x => x.Customer)
                     .Include(x => x.DocumentType)
                     .Include(x => x.PaymentMethod)
+                    .Include(x => x.ShipOwner)
                     .Where(x => x.InvoiceId.ToString() == transactionId)
                     .SingleOrDefaultAsync()
                : await context.Receipts

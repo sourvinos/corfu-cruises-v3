@@ -16,41 +16,21 @@
 
         <form [formGroup]="form" id="form">
             <div class="group-input-field">
-                <!-- Date -->
+                <!-- Dates -->
                 <date-picker (outputValue)="patchFormWithSelectedDate($event)" [dataTabIndex]="1" [isAdminOrNewRecord]=true [label]="getLabel('date')" [parentDate]="getDate()" [readOnly]=false [showHint]=false></date-picker>
                 <date-picker (outputValue)="patchFormWithSelectedTripDate($event)" [dataTabIndex]="2" [isAdminOrNewRecord]=true [label]="getLabel('tripDate')" [parentDate]="getTripDate()" [readOnly]=false [showHint]=false></date-picker>
-                <div class="group-input-field" style="width: 247%;">
-                    <!-- Document type abbreviation-->
-                    <mat-form-field style="width: 300px;">
-                        <mat-label>{{ getLabel('documentTypeAbbreviation') }}</mat-label>
-                        <input #inputAutoComplete #triggerDocumentType="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="documentTypes" dataTabIndex="3" formControlName="documentType" matInput>
-                        <div matSuffix style="display:flex">
-                            <button (click)="openOrCloseAutoComplete(triggerDocumentType, 'documentType')" mat-icon-button type="button">
-                                <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
-                            </button>
-                        </div>
-                        <mat-error *ngIf="documentType.hasError('required')">{{ getHint("required") }}</mat-error>
-                        <mat-error *ngIf="!documentType.hasError('required') && documentType.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
-                    </mat-form-field>
-                    <!-- Document type description -->
-                    <mat-form-field>
-                        <mat-icon class="material-icons-outlined small">lock</mat-icon>
-                        <mat-label>{{ getLabel('documentTypeDescription') }}</mat-label>
-                        <input formControlName="documentTypeDescription" matInput readonly>
-                    </mat-form-field>
-                    <!-- Batch -->
-                    <mat-form-field style="width: 300px;">
-                        <mat-icon class="material-icons-outlined small">lock</mat-icon>
-                        <mat-label>{{ getLabel('batch') }}</mat-label>
-                        <input formControlName="batch" matInput readonly>
-                    </mat-form-field>
-                    <!-- No -->
-                    <mat-form-field style="width: 300px;">
-                        <mat-icon class="material-icons-outlined small">lock</mat-icon>
-                        <mat-label>{{ getLabel('no') }}</mat-label>
-                        <input class="right" formControlName="invoiceNo" matInput type="number">
-                    </mat-form-field>
-                </div>
+                <!-- ShipOwner -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('shipOwner') }}</mat-label>
+                    <input #inputAutoComplete #triggerShipOwner="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="shipOwners" dataTabIndex="3" formControlName="shipOwner" matInput>
+                    <div matSuffix style="display:flex">
+                        <button (click)="openOrCloseAutoComplete(triggerShipOwner, 'shipOwner')" mat-icon-button type="button">
+                            <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
+                        </button>
+                    </div>
+                    <mat-error *ngIf="shipOwner.hasError('required')">{{ getHint("required") }}</mat-error>
+                    <mat-error *ngIf="!shipOwner.hasError('required') && shipOwner.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
+                </mat-form-field>
             </div>
             <!-- Customer -->
             <mat-form-field>
@@ -64,29 +44,67 @@
                 <mat-error *ngIf="customer.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="!customer.hasError('required') && customer.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>
-            <!-- Gross Amount -->
-            <mat-form-field>
-                <mat-label>{{ getLabel('grossAmount') }}</mat-label>
-                <input [inputTabStop]="input" class="right" dataTabIndex="5" formControlName="grossAmount" matInput type="number">
-                <mat-error *ngIf="grossAmount.hasError('required')">{{ getHint("required") }}</mat-error>
-                <mat-error *ngIf="!grossAmount.hasError('required') && grossAmount.hasError('min') || grossAmount.hasError('max')">{{ getHint("invalid") }}</mat-error>
-            </mat-form-field>
-            <!-- Payment method -->
-            <mat-form-field>
-                <mat-label>{{ getLabel('paymentMethod') }}</mat-label>
-                <input #inputAutoComplete #triggerPaymentMethod="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="paymentMethods" dataTabIndex="6" formControlName="paymentMethod" matInput>
-                <div matSuffix style="display:flex">
-                    <button (click)="openOrCloseAutoComplete(triggerPaymentMethod, 'paymentMethod')" mat-icon-button type="button">
-                        <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
-                    </button>
+            <div class="group-input-field">
+                <!-- Document type abbreviation-->
+                <mat-form-field style="width: 300px;">
+                    <mat-label>{{ getLabel('documentTypeAbbreviation') }}</mat-label>
+                    <input #inputAutoComplete #triggerDocumentType="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="documentTypes" dataTabIndex="5" formControlName="documentType" matInput>
+                    <div matSuffix style="display:flex">
+                        <button (click)="openOrCloseAutoComplete(triggerDocumentType, 'documentType')" mat-icon-button type="button">
+                            <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
+                        </button>
+                    </div>
+                    <mat-error *ngIf="documentType.hasError('required')">{{ getHint("required") }}</mat-error>
+                    <mat-error *ngIf="!documentType.hasError('required') && documentType.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
+                </mat-form-field>
+                <!-- Document type description -->
+                <mat-form-field>
+                    <mat-icon class="material-icons-outlined small">lock</mat-icon>
+                    <mat-label>{{ getLabel('documentTypeDescription') }}</mat-label>
+                    <input formControlName="documentTypeDescription" matInput readonly>
+                </mat-form-field>
+                <!-- Batch -->
+                <mat-form-field style="width: 300px;">
+                    <mat-icon class="material-icons-outlined small">lock</mat-icon>
+                    <mat-label>{{ getLabel('batch') }}</mat-label>
+                    <input formControlName="batch" matInput readonly>
+                </mat-form-field>
+                <!-- No -->
+                <mat-form-field style="width: 300px;">
+                    <mat-icon class="material-icons-outlined small">lock</mat-icon>
+                    <mat-label>{{ getLabel('no') }}</mat-label>
+                    <input class="right" formControlName="invoiceNo" matInput type="number">
+                </mat-form-field>
+            </div>
+            <div class="group-input-field">
+                <div style="flex-basis: 10%;">
+                    <!-- Gross Amount -->
+                    <mat-form-field>
+                        <mat-label>{{ getLabel('grossAmount') }}</mat-label>
+                        <input [inputTabStop]="input" class="right" dataTabIndex="6" formControlName="grossAmount" matInput type="number">
+                        <mat-error *ngIf="grossAmount.hasError('required')">{{ getHint("required") }}</mat-error>
+                        <mat-error *ngIf="!grossAmount.hasError('required') && grossAmount.hasError('min') || grossAmount.hasError('max')">{{ getHint("invalid") }}</mat-error>
+                    </mat-form-field>
                 </div>
-                <mat-error *ngIf="paymentMethod.hasError('required')">{{ getHint("required") }}</mat-error>
-                <mat-error *ngIf="!paymentMethod.hasError('required') && paymentMethod.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
-            </mat-form-field>
+                <!-- Payment method -->
+                <div style="flex-basis: 90%;">
+                    <mat-form-field>
+                        <mat-label>{{ getLabel('paymentMethod') }}</mat-label>
+                        <input #inputAutoComplete #triggerPaymentMethod="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="paymentMethods" dataTabIndex="7" formControlName="paymentMethod" matInput>
+                        <div matSuffix style="display:flex">
+                            <button (click)="openOrCloseAutoComplete(triggerPaymentMethod, 'paymentMethod')" mat-icon-button type="button">
+                                <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
+                            </button>
+                        </div>
+                        <mat-error *ngIf="paymentMethod.hasError('required')">{{ getHint("required") }}</mat-error>
+                        <mat-error *ngIf="!paymentMethod.hasError('required') && paymentMethod.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
             <!-- Remarks -->
             <mat-form-field>
                 <mat-label>{{ getLabel("remarks") }}</mat-label>
-                <input [inputTabStop]="input" dataTabIndex="7" formControlName="remarks" matInput>
+                <input [inputTabStop]="input" dataTabIndex="8" formControlName="remarks" matInput>
             </mat-form-field>
             <div class="align-bottom">
                 <!-- Metadata -->
@@ -110,6 +128,12 @@
 
 <mat-autocomplete #customers="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
     <mat-option *ngFor="let option of dropdownCustomers | async" [value]="option">
+        {{ option.description }}
+    </mat-option>
+</mat-autocomplete>
+
+<mat-autocomplete #shipOwners="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
+    <mat-option *ngFor="let option of dropdownShipOwners | async" [value]="option">
         {{ option.description }}
     </mat-option>
 </mat-autocomplete>

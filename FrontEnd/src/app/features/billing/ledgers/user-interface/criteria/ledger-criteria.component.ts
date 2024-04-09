@@ -97,8 +97,8 @@ export class LedgerCriteriaComponent {
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            fromDate: ['2024-01-01', [Validators.required]],
-            toDate: ['2024-12-31', [Validators.required]],
+            fromDate: ['', [Validators.required]],
+            toDate: ['', [Validators.required]],
             customer: ['', [Validators.required, ValidationService.RequireAutocomplete]]
         })
     }

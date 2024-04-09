@@ -17,6 +17,7 @@ namespace Receipts {
                     CustomerId = 1,
                     DocumentTypeId = 4,
                     PaymentMethodId = 1,
+                    ShipOwnerId = 1,
                     Date = "2024-02-10",
                     InvoiceNo = 1,
                     NetAmount = 12,

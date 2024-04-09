@@ -301,7 +301,11 @@ export class ReservationFormComponent {
 
     private doNewOrEditTasks(): void {
         if (this.isNewRecord) {
-            if (this.isAdmin() == false) {
+            if (this.isAdmin()) {
+                this.getStoredDate()
+                this.getStoredDestination()
+                this.getPassengerDifferenceColor()
+            } else {
                 this.reservationHttpService.validateBalance().subscribe((response: { body: { maxAllowed: number } }) => {
                     if (response.body.maxAllowed > 0) {
                         this.getStoredDate()

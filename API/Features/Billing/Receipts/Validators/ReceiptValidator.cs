@@ -9,6 +9,7 @@ namespace API.Features.Billing.Receipts {
             RuleFor(x => x.CustomerId).NotEmpty();
             RuleFor(x => x.DocumentTypeId).NotEmpty();
             RuleFor(x => x.PaymentMethodId).NotEmpty();
+            RuleFor(x => x.ShipOwnerId).NotEmpty();
             // Fields
             RuleFor(x => x.Date).NotEmpty();
             RuleFor(x => x.InvoiceNo).NotEmpty();

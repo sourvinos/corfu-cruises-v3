@@ -1,22 +1,22 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, ViewChild } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
-import { MatDialog } from '@angular/material/dialog'
+import { MatDatepickerInputEvent } from '@angular/material/datepicker'
+import { MenuItem } from 'primeng/api'
 import { Table } from 'primeng/table'
+import { formatNumber } from '@angular/common'
 // Custom
 import { DateHelperService } from '../../../../../shared/services/date-helper.service'
 import { DialogService } from '../../../../../shared/services/modal-dialog.service'
 import { EmojiService } from '../../../../../shared/services/emoji.service'
 import { HelperService } from '../../../../../shared/services/helper.service'
 import { InteractionService } from '../../../../../shared/services/interaction.service'
-import { ReceiptHttpService } from '../../classes/services/receipt-http.service'
 import { ListResolved } from '../../../../../shared/classes/list-resolved'
 import { LocalStorageService } from '../../../../../shared/services/local-storage.service'
-import { MatDatepickerInputEvent } from '@angular/material/datepicker'
 import { MessageDialogService } from '../../../../../shared/services/message-dialog.service'
 import { MessageLabelService } from '../../../../../shared/services/message-label.service'
-import { SessionStorageService } from '../../../../../shared/services/session-storage.service'
 import { ReceiptListVM } from '../../classes/view-models/list/receipt-list-vm'
+import { SessionStorageService } from '../../../../../shared/services/session-storage.service'
 
 @Component({
     selector: 'receipt-list',
@@ -44,9 +44,17 @@ export class ReceiptListComponent {
     //#region dropdown filters
 
     public dropdownCustomers = []
+    public dropdownShipOwners = []
     public dropdownDestinations = []
     public dropdownDocumentTypes = []
     public dropdownShips = []
+
+    //#endregion
+
+    //#region context menu
+
+    public menuItems!: MenuItem[]
+    public selectedRecord!: ReceiptListVM
 
     //#endregion
 
@@ -57,22 +65,7 @@ export class ReceiptListComponent {
 
     //#endregion
 
-    constructor(
-        private activatedRoute: ActivatedRoute,
-        private dateAdapter: DateAdapter<any>,
-        private dateHelperService: DateHelperService,
-        private dialogService: DialogService,
-        private emojiService: EmojiService,
-        private helperService: HelperService,
-        private interactionService: InteractionService,
-        private receiptHttpService: ReceiptHttpService,
-        private localStorageService: LocalStorageService,
-        private messageDialogService: MessageDialogService,
-        private messageLabelService: MessageLabelService,
-        private router: Router,
-        private sessionStorageService: SessionStorageService,
-        public dialog: MatDialog
-    ) { }
+    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -85,6 +78,7 @@ export class ReceiptListComponent {
             this.setTabTitle()
             this.setLocale()
             this.setSidebarsHeight()
+            this.initContextMenu()
         })
     }
 
@@ -113,6 +107,10 @@ export class ReceiptListComponent {
         this.recordsFilteredCount = event.filteredValue.length
     }
 
+    public formatNumberToLocale(number: number, decimals = true): string {
+        return formatNumber(number, this.localStorageService.getItem('language'), decimals ? '1.2' : '1.0')
+    }
+
     public getEmoji(anything: any): string {
         return typeof anything == 'string'
             ? this.emojiService.getEmoji(anything)
@@ -137,28 +135,7 @@ export class ReceiptListComponent {
 
     //#endregion
 
-    //#region public specific methods
-
-    public clearDateFilter(): void {
-        this.table.filter('', 'date', 'equals')
-        this.filterDate = ''
-        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
-    }
-
-    public filterByDate(event: MatDatepickerInputEvent<Date>): void {
-        const date = this.dateHelperService.formatDateToIso(new Date(event.value), false)
-        this.table.filter(date, 'date', 'equals')
-        this.filterDate = date
-        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
-    }
-
-    public hasDateFilter(): string {
-        return this.filterDate == '' ? 'hidden' : ''
-    }
-
-    //#endregion
-
-    //#region private common methods
+    //#region private methods
 
     private enableDisableFilters(): void {
         this.records.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()
@@ -244,7 +221,24 @@ export class ReceiptListComponent {
 
     //#endregion
 
-    //#region private specific methods
+    //#region specific methods
+
+    public clearDateFilter(): void {
+        this.table.filter('', 'date', 'equals')
+        this.filterDate = ''
+        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
+    }
+
+    public filterByDate(event: MatDatepickerInputEvent<Date>): void {
+        const date = this.dateHelperService.formatDateToIso(new Date(event.value), false)
+        this.table.filter(date, 'date', 'equals')
+        this.filterDate = date
+        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
+    }
+
+    public hasDateFilter(): string {
+        return this.filterDate == '' ? 'hidden' : ''
+    }
 
     private formatDatesToLocale(): void {
         this.records.forEach(record => {
@@ -255,6 +249,13 @@ export class ReceiptListComponent {
     private populateDropdownFilters(): void {
         this.dropdownCustomers = this.helperService.getDistinctRecords(this.records, 'customer', 'abbreviation')
         this.dropdownDocumentTypes = this.helperService.getDistinctRecords(this.records, 'documentType', 'description')
+        this.dropdownShipOwners = this.helperService.getDistinctRecords(this.records, 'shipOwner', 'description')
+    }
+
+    private initContextMenu(): void {
+        this.menuItems = [
+            { label: 'Επεξεργασία', command: () => this.editRecord(this.selectedRecord.invoiceId.toString()) }
+        ]
     }
 
     private setLocale(): void {

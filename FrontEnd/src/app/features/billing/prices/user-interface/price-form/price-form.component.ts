@@ -23,12 +23,12 @@ import { ValidationService } from '../../../../../shared/services/validation.ser
 @Component({
     selector: 'price-form',
     templateUrl: './price-form.component.html',
-    styleUrls: ['../../../../../../assets/styles/custom/forms.css', './price-form.component.css']
+    styleUrls: ['../../../../../../assets/styles/custom/forms.css']
 })
 
 export class PriceFormComponent {
 
-    //#region common #8
+    //#region common
 
     private record: PriceReadDto
     private recordId: number

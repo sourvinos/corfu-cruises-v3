@@ -11,6 +11,7 @@ import { LedgerHttpService } from '../../classes/services/ledger-http.service'
 import { LedgerVM } from '../../classes/view-models/criteria/ledger-vm'
 import { LocalStorageService } from '../../../../../shared/services/local-storage.service'
 import { MessageLabelService } from '../../../../../shared/services/message-label.service'
+import { formatNumber } from '@angular/common'
 
 @Component({
     selector: 'ledger',
@@ -45,6 +46,10 @@ export class LedgerBillingComponent {
     //#endregion
 
     //#region public methods
+
+    public formatNumberToLocale(number: number, decimals = true): string {
+        return formatNumber(number, this.localStorageService.getItem('language'), decimals ? '1.2' : '1.0')
+    }
 
     public getEmoji(anything: any): string {
         return typeof anything == 'string'

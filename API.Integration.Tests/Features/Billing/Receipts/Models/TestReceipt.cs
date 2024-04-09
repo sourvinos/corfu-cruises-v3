@@ -12,6 +12,7 @@ namespace Receipts {
         public int CustomerId { get; set; }
         public int DocumentTypeId { get; set; }
         public int PaymentMethodId { get; set; }
+        public int ShipOwnerId { get; set; }
         // Fields
         public string Date { get; set; }
         public int InvoiceNo { get; set; }

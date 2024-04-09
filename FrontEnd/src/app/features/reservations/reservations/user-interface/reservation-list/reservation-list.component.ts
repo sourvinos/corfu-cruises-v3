@@ -154,7 +154,6 @@ export class ReservationListComponent {
         }
     }
 
-
     public calculateSelectedPax(): void {
         this.totalPax[2] = this.selectedRecords.reduce((sum, array) => sum + array.totalPax, 0)
     }

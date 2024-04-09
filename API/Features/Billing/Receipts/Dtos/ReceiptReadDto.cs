@@ -23,6 +23,7 @@ namespace API.Features.Billing.Receipts {
         public SimpleEntity Customer { get; set; }
         public DocumentTypeVM DocumentType { get; set; }
         public SimpleEntity PaymentMethod { get; set; }
+        public SimpleEntity ShipOwner { get; set; }
         // Metadata
         public string PostAt { get; set; }
         public string PostUser { get; set; }

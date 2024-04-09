@@ -2,6 +2,7 @@ using System;
 using API.Features.Billing.DocumentTypes;
 using API.Features.Billing.PaymentMethods;
 using API.Features.Reservations.Customers;
+using API.Features.Reservations.ShipOwners;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.Billing.Transactions {
@@ -14,6 +15,7 @@ namespace API.Features.Billing.Transactions {
         public int CustomerId { get; set; }
         public int DocumentTypeId { get; set; }
         public int PaymentMethodId { get; set; }
+        public int ShipOwnerId { get; set; }
         public int DiscriminatorId { get; set; }
         // Fields
         public DateTime Date { get; set; }
@@ -28,9 +30,10 @@ namespace API.Features.Billing.Transactions {
         public string Remarks { get; set; }
         public bool IsEmailSent { get; set; }
         // Navigation
-        public Customer Customer { get; set; }
         public DocumentType DocumentType { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
+        public Customer Customer { get; set; }
+        public ShipOwner ShipOwner { get; set; }
         // Metadata
         public string PostAt { get; set; }
         public string PostUser { get; set; }

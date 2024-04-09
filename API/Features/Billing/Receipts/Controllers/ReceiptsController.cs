@@ -73,16 +73,16 @@ namespace API.Features.Billing.Receipts {
         [HttpPut]
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<Response> PutAsync([FromBody] ReceiptWriteDto Receipt) {
-            var x = await receiptRepo.GetByIdAsync(Receipt.InvoiceId.ToString(), false);
+        public async Task<Response> PutAsync([FromBody] ReceiptWriteDto receipt) {
+            var x = await receiptRepo.GetByIdAsync(receipt.InvoiceId.ToString(), false);
             if (x != null) {
-                var z = receiptValidation.IsValidAsync(x, Receipt);
+                var z = receiptValidation.IsValidAsync(x, receipt);
                 if (await z == 200) {
-                    receiptRepo.Update(mapper.Map<ReceiptWriteDto, Receipt>((ReceiptWriteDto)receiptRepo.AttachMetadataToPutDto(x, Receipt)));
+                    var i = receiptRepo.Update(mapper.Map<ReceiptWriteDto, Receipt>((ReceiptWriteDto)receiptRepo.AttachMetadataToPutDto(x, receipt)));
                     return new Response {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
-                        Id = x.InvoiceId.ToString(),
+                        Id = i.InvoiceId.ToString(),
                         Message = ApiMessages.OK()
                     };
                 } else {

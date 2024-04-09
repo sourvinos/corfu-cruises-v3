@@ -75,6 +75,7 @@ namespace API.Features.Billing.Invoices {
         public async Task<Response> PostAsync([FromBody] InvoiceCreateDto invoice) {
             var x = invoiceValidation.IsValidAsync(null, invoice);
             if (await x == 200) {
+                invoice.ShipOwnerId = await invoiceUpdateRepo.AttachShipOwnerIdToInvoiceAsync(invoice);
                 invoice = invoiceCalculateBalanceRepo.AttachBalancesToCreateDto(invoice, invoiceCalculateBalanceRepo.CalculateBalances(invoice, invoice.CustomerId));
                 var z = invoiceUpdateRepo.Create(mapper.Map<InvoiceCreateDto, Invoice>((InvoiceCreateDto)invoiceUpdateRepo.AttachMetadataToPostDto(invoice)));
                 return new Response {

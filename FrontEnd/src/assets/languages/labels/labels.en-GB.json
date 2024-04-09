@@ -2471,11 +2471,11 @@
                 "description": "Εως"
             },
             {
-                "id": "withTransfer",
+                "id": "adultsWithTransfer",
                 "description": "Ενήλικες w/ transfer"
             },
             {
-                "id": "withoutTransfer",
+                "id": "adultsWithoutTransfer",
                 "description": "Ενήλικες w/o transfer"
             },
             {
@@ -3091,6 +3091,10 @@
                 "description": "Ημερομηνία"
             },
             {
+                "id": "headerShipOwner",
+                "description": "Εκδότης"
+            },
+            {
                 "id": "headerCustomerDescription",
                 "description": "Πελάτης"
             },
@@ -3130,6 +3134,10 @@
             {
                 "id": "tripDate",
                 "description": "Ημερομηνία αναφοράς"
+            },
+            {
+                "id": "shipOwner",
+                "description": "Εκδότης"
             },
             {
                 "id": "documentTypeAbbreviation",

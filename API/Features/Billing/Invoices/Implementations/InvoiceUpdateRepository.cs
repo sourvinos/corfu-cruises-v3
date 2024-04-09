@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Options;
+using System.Threading.Tasks;
 
 namespace API.Features.Billing.Invoices {
 
@@ -35,6 +36,13 @@ namespace API.Features.Billing.Invoices {
             context.SaveChanges();
             DisposeOrCommit(transaction);
             return invoiceAade;
+        }
+
+        public async Task<int> AttachShipOwnerIdToInvoiceAsync(InvoiceCreateDto invoice) {
+            var ship = await context.Ships
+                .AsNoTracking()
+                .SingleOrDefaultAsync(x => x.Id == invoice.ShipId);
+            return invoice.ShipOwnerId = ship.ShipOwnerId;
         }
 
         private void DisposeOrCommit(IDbContextTransaction transaction) {

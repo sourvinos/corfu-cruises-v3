@@ -18,6 +18,7 @@ namespace API.Features.Billing.Receipts {
             return true switch {
                 var x when x == !await IsValidCustomer(receipt) => 450,
                 var x when x == !await IsValidDocumentType(receipt) => 465,
+                var x when x == !await IsValidShipOwner(receipt) => 449,
                 var x when x == IsAlreadyUpdated(z, receipt) => 415,
                 _ => 200,
             };
@@ -43,6 +44,17 @@ namespace API.Features.Billing.Receipts {
             return context.DocumentTypes
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == receipt.DocumentTypeId) != null;
+        }
+
+        private async Task<bool> IsValidShipOwner(ReceiptWriteDto receipt) {
+            if (receipt.InvoiceId == Guid.Empty) {
+                return await context.ShipOwners
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(x => x.Id == receipt.ShipOwnerId && x.IsActive) != null;
+            }
+            return context.ShipOwners
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == receipt.ShipOwnerId) != null;
         }
 
         private static bool IsAlreadyUpdated(Receipt z, ReceiptWriteDto transaction) {

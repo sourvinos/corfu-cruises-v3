@@ -11,12 +11,19 @@ namespace API.Features.Billing.Receipts {
             // List
             CreateMap<Receipt, ReceiptListVM>()
                 .ForMember(x => x.Date, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Date)))
-                .ForMember(x => x.Customer, x => x.MapFrom(x => new SimpleEntity { Id = x.Customer.Id, Description = x.Customer.Description }))
+                .ForMember(x => x.Customer, x => x.MapFrom(x => new SimpleEntity {
+                    Id = x.Customer.Id,
+                    Description = x.Customer.Description
+                }))
                 .ForMember(x => x.DocumentType, x => x.MapFrom(x => new DocumentTypeVM {
                     Id = x.DocumentType.Id,
                     Abbreviation = x.DocumentType.Abbreviation,
                     Description = x.DocumentType.Description,
                     Batch = x.DocumentType.Batch
+                }))
+                .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new SimpleEntity {
+                    Id = x.ShipOwner.Id,
+                    Description = x.ShipOwner.Description
                 }));
             // GetById
             CreateMap<Receipt, ReceiptReadDto>()
@@ -35,6 +42,10 @@ namespace API.Features.Billing.Receipts {
                 .ForMember(x => x.PaymentMethod, x => x.MapFrom(x => new SimpleEntity {
                     Id = x.PaymentMethod.Id,
                     Description = x.PaymentMethod.Description
+                }))
+                .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new SimpleEntity {
+                    Id = x.ShipOwner.Id,
+                    Description = x.ShipOwner.Description
                 }));
             CreateMap<ReceiptWriteDto, Receipt>()
                 .ForMember(x => x.DiscriminatorId, x => x.MapFrom(x => 2))

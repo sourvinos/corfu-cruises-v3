@@ -85,6 +85,8 @@ export class AccountService extends HttpDataService {
             { 'item': 'documentTypeList-filters', 'when': 'always' }, { 'item': 'documentTypeList-id', 'when': 'always' }, { 'item': 'documentTypeList-scrollTop', 'when': 'always' },
             { 'item': 'driverList-filters', 'when': 'always' }, { 'item': 'driverList-id', 'when': 'always' }, { 'item': 'driverList-scrollTop', 'when': 'always' },
             { 'item': 'genderList-filters', 'when': 'always' }, { 'item': 'genderList-id', 'when': 'always' }, { 'item': 'genderList-scrollTop', 'when': 'always' },
+            { 'item': 'invoiceList-filters', 'when': 'always' }, { 'item': 'invoiceList-id', 'when': 'always' }, { 'item': 'invoiceList-scrollTop', 'when': 'always' },
+            { 'item': 'receiptList-filters', 'when': 'always' }, { 'item': 'receiptList-id', 'when': 'always' }, { 'item': 'receiptList-scrollTop', 'when': 'always' },
             { 'item': 'pickupPointList-filters', 'when': 'always' }, { 'item': 'pickupPointList-id', 'when': 'always' }, { 'item': 'pickupPointList-scrollTop', 'when': 'always' },
             { 'item': 'portList-filters', 'when': 'always' }, { 'item': 'portList-id', 'when': 'always' }, { 'item': 'portList-scrollTop', 'when': 'always' },
             { 'item': 'priceList-filters', 'when': 'always' }, { 'item': 'priceList-id', 'when': 'always' }, { 'item': 'priceList-scrollTop', 'when': 'always' },

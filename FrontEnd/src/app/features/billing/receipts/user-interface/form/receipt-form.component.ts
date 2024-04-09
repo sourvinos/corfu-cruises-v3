@@ -14,11 +14,11 @@ import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.d
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ReceiptHelperService } from '../../classes/services/receipt.helper.service'
 import { ReceiptHttpService } from '../../classes/services/receipt-http.service'
 import { ReceiptReadDto } from '../../classes/dtos/form/receipt-read-dto'
 import { ReceiptWriteDto } from '../../classes/dtos/form/receipt-write-dto'
+import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
 
 @Component({
@@ -54,6 +54,7 @@ export class ReceiptFormComponent {
     public dropdownCustomers: Observable<SimpleEntity[]>
     public dropdownDocumentTypes: Observable<DocumentTypeAutoCompleteVM[]>
     public dropdownPaymentMethods: Observable<SimpleEntity[]>
+    public dropdownShipOwners: Observable<SimpleEntity[]>
 
     //#endregion
 
@@ -145,10 +146,6 @@ export class ReceiptFormComponent {
         })
     }
 
-    public onUpdateReceiptWithOutputPort(port: any, portIndex: number): void {
-        this.form.value.receiptsPorts[portIndex] = port
-    }
-
     //#endregion
 
     //#region private methods
@@ -185,10 +182,11 @@ export class ReceiptFormComponent {
             tripDate: [new Date(), [Validators.required]],
             customer: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             documentType: ['', [Validators.required, ValidationService.RequireAutocomplete]],
+            paymentMethod: ['', [Validators.required, ValidationService.RequireAutocomplete]],
+            shipOwner: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             documentTypeDescription: '',
             batch: '',
             invoiceNo: 0,
-            paymentMethod: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             grossAmount: [0, [Validators.required, Validators.min(1), Validators.max(99999)]],
             remarks: ['', Validators.maxLength(128)],
             postAt: [''],
@@ -202,6 +200,7 @@ export class ReceiptFormComponent {
         this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', 'description', 'description')
         this.populateDropdownFromDexieDB('documentTypesReceipt', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation')
         this.populateDropdownFromDexieDB('paymentMethods', 'dropdownPaymentMethods', 'paymentMethod', 'description', 'description')
+        this.populateDropdownFromDexieDB('shipOwners', 'dropdownShipOwners', 'shipOwner', 'description', 'description')
     }
 
     private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
@@ -217,6 +216,7 @@ export class ReceiptFormComponent {
                 invoiceId: this.record.invoiceId,
                 date: this.record.date,
                 tripDate: this.record.tripDate,
+                shipOwner: { 'id': this.record.shipOwner.id, 'description': this.record.shipOwner.description },
                 customer: { 'id': this.record.customer.id, 'description': this.record.customer.description },
                 documentType: { 'id': this.record.documentType.id, 'abbreviation': this.record.documentType.abbreviation },
                 documentTypeDescription: this.record.documentType.description,
@@ -294,6 +294,10 @@ export class ReceiptFormComponent {
 
     get tripDate(): AbstractControl {
         return this.form.get('tripDate')
+    }
+
+    get shipOwner(): AbstractControl {
+        return this.form.get('shipOwner')
     }
 
     get documentType(): AbstractControl {

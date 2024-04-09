@@ -8,6 +8,7 @@ export interface ReceiptWriteDto {
     customerId: number
     documentTypeId: number
     paymentMethodId: number
+    shipOwnerId: number
     // Fields
     date: string
     tripDate: string
