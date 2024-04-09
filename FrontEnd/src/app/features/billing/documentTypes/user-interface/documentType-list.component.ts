@@ -1,6 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, ViewChild } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
+import { MenuItem } from 'primeng/api'
 import { Table } from 'primeng/table'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
@@ -46,6 +47,13 @@ export class DocumentTypeListComponent {
 
     //#endregion
 
+    //#region context menu
+
+    public menuItems!: MenuItem[]
+    public selectedRecord!: DocumentTypeListVM
+
+    //#endregion
+
     //#region dropdown filters
 
     public distinctShips: SimpleEntity[] = []
@@ -66,6 +74,7 @@ export class DocumentTypeListComponent {
             this.setTabTitle()
             this.setLocale()
             this.setSidebarsHeight()
+            this.initContextMenu()
         })
     }
 
@@ -115,7 +124,6 @@ export class DocumentTypeListComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-
     //#endregion
 
     //#region private methods
@@ -164,6 +172,12 @@ export class DocumentTypeListComponent {
 
     private hightlightSavedRow(): void {
         this.helperService.highlightSavedRow(this.feature)
+    }
+
+    private initContextMenu(): void {
+        this.menuItems = [
+            { label: 'Επεξεργασία', command: () => this.onEditRecord(this.selectedRecord.id) }
+        ]
     }
 
     private loadRecords(): Promise<any> {
