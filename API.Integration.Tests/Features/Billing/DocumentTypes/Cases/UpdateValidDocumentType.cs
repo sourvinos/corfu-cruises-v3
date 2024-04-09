@@ -17,6 +17,7 @@ namespace DocumentTypes {
                 new TestDocumentType {
                     Id = 2,
                     ShipId = 1,
+                    ShipOwnerId = 1,
                     Abbreviation = Helpers.CreateRandomString(5),
                     Description = Helpers.CreateRandomString(128),
                     Batch = Helpers.CreateRandomString(5),

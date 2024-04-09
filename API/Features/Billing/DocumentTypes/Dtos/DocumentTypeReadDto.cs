@@ -9,6 +9,7 @@ namespace API.Features.Billing.DocumentTypes {
         public int Id { get; set; }
         // FKs
         public SimpleEntity Ship { get; set; }
+        public SimpleEntity ShipOwner { get; set; }
         // Fields
         public string Abbreviation { get; set; }
         public string Description { get; set; }

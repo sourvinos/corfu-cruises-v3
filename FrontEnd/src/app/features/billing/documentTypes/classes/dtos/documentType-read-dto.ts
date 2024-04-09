@@ -7,6 +7,7 @@ export interface DocumentTypeReadDto extends Metadata {
     id: number
     // FKs
     ship: SimpleEntity
+    shipOwner: SimpleEntity
     // Fields
     abbreviation: string
     description: string

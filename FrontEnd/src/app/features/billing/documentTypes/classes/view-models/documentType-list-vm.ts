@@ -4,6 +4,7 @@ export interface DocumentTypeListVM {
 
     id: number
     ship: SimpleEntity
+    shipOwner: SimpleEntity
     abbreviation: string
     description: string
     batch: string

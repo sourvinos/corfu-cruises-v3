@@ -3,7 +3,8 @@ export interface DocumentTypeWriteDto {
     // PK
     id: number
     // FKs
-    shipId: number
+    shipId?: number
+    shipOwnerId: number
     // Fields
     abbreviation: string
     description: string

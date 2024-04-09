@@ -1,15 +1,14 @@
-namespace DocumentTypes
-{
+namespace DocumentTypes {
 
-    public class TestDocumentType
-    {
+    public class TestDocumentType {
 
         public int StatusCode { get; set; }
 
         // PK
         public int Id { get; set; }
         // FKs
-        public int ShipId { get; set; }
+        public int? ShipId { get; set; }
+        public int ShipOwnerId { get; set; }
         // Fields
         public string Abbreviation { get; set; }
         public string Description { get; set; }

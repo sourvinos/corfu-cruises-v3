@@ -1,4 +1,5 @@
 ﻿using System;
+using API.Features.Reservations.ShipOwners;
 using API.Features.Reservations.Ships;
 using API.Infrastructure.Interfaces;
 
@@ -9,7 +10,8 @@ namespace API.Features.Billing.DocumentTypes {
         // PK
         public int Id { get; set; }
         // FKs
-        public int ShipId { get; set; }
+        public int? ShipId { get; set; }
+        public int ShipOwnerId { get; set; }
         // Fields
         public string Abbreviation { get; set; }
         public string Description { get; set; }
@@ -26,6 +28,7 @@ namespace API.Features.Billing.DocumentTypes {
         public string Table8_9 { get; set; }
         // Navigation
         public Ship Ship { get; set; }
+        public ShipOwner ShipOwner { get; set; }
         // Metadata
         public string PostAt { get; set; }
         public string PostUser { get; set; }

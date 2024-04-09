@@ -26,7 +26,8 @@ namespace API.Features.Billing.DocumentTypes {
             var DocumentTypes = await context.DocumentTypes
                 .AsNoTracking()
                 .Include(x => x.Ship)
-                .OrderBy(x => x.Ship.Description).ThenBy(x => x.DiscriminatorId).ThenBy(x => x.Description).ThenBy(x => x.Batch)
+                .Include(x => x.ShipOwner)
+                .OrderBy(x => x.ShipOwner.Description).ThenBy(x => x.Ship.Description).ThenBy(x => x.DiscriminatorId).ThenBy(x => x.Description).ThenBy(x => x.Batch)
                 .ToListAsync();
             return mapper.Map<IEnumerable<DocumentType>, IEnumerable<DocumentTypeListVM>>(DocumentTypes);
         }
@@ -35,8 +36,9 @@ namespace API.Features.Billing.DocumentTypes {
             var DocumentTypes = await context.DocumentTypes
                 .AsNoTracking()
                 .Include(x => x.Ship)
+                .Include(x => x.ShipOwner)
                 .Where(x => x.DiscriminatorId == discriminatorId)
-                .OrderBy(x => x.Ship.Description).ThenBy(x => x.DiscriminatorId).ThenBy(x => x.Description).ThenBy(x => x.Batch)
+                .OrderBy(x => x.ShipOwner.Description).ThenBy(x => x.Ship.Description).ThenBy(x => x.DiscriminatorId).ThenBy(x => x.Description).ThenBy(x => x.Batch)
                 .ToListAsync();
             return mapper.Map<IEnumerable<DocumentType>, IEnumerable<DocumentTypeBrowserVM>>(DocumentTypes);
         }
@@ -45,6 +47,7 @@ namespace API.Features.Billing.DocumentTypes {
             var record = await context.DocumentTypes
                 .AsNoTracking()
                 .Include(x => x.Ship)
+                .Include(x => x.ShipOwner)
                 .SingleOrDefaultAsync(x => x.Id == id);
             return mapper.Map<DocumentType, DocumentTypeBrowserVM>(record);
         }
@@ -53,6 +56,7 @@ namespace API.Features.Billing.DocumentTypes {
             return await context.DocumentTypes
                 .AsNoTracking()
                 .Include(x => x.Ship)
+                .Include(x => x.ShipOwner)
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
 

@@ -12,6 +12,7 @@ import { DocumentTypeHelperService } from '../classes/services/docymentType-help
 import { DocumentTypeHttpService } from '../classes/services/documentType-http.service'
 import { DocumentTypeReadDto } from '../classes/dtos/documentType-read-dto'
 import { DocumentTypeWriteDto } from '../classes/dtos/documentType-write-dto'
+import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -48,11 +49,12 @@ export class DocumentTypeFormComponent {
 
     public isAutoCompleteDisabled = true
     public dropdownShips: Observable<SimpleEntity[]>
+    public dropdownShipOwners: Observable<SimpleEntity[]>
 
     //#endregion
 
 
-    constructor(private activatedRoute: ActivatedRoute, private documentTypeHelperService: DocumentTypeHelperService, private documentTypeHttpService: DocumentTypeHttpService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private documentTypeHelperService: DocumentTypeHelperService, private documentTypeHttpService: DocumentTypeHttpService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: DialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -143,7 +145,8 @@ export class DocumentTypeFormComponent {
     private flattenForm(): DocumentTypeWriteDto {
         return {
             id: this.form.value.id != '' ? this.form.value.id : null,
-            shipId: this.form.value.ship.id,
+            shipId: this.form.value.ship.id == 0 ? null : this.form.value.ship.id,
+            shipOwnerId: this.form.value.shipOwner.id,
             abbreviation: this.form.value.abbreviation,
             description: this.form.value.description,
             batch: this.form.value.batch,
@@ -151,7 +154,7 @@ export class DocumentTypeFormComponent {
             lastNo: this.form.value.lastNo,
             customers: this.form.value.customers,
             suppliers: this.form.value.suppliers,
-            discriminatorId: this.form.value.discriminatorId,
+            discriminatorId: parseInt(this.form.value.discriminatorId),
             table8_1: this.form.value.table8_1,
             table8_8: this.form.value.table8_8,
             table8_9: this.form.value.table8_9,
@@ -166,7 +169,7 @@ export class DocumentTypeFormComponent {
     }
 
     private getDiscriminatorDescription(): string {
-        return this.form.value.discriminatorId == 1 ? 'documentTypesInvoice' : 'documentTypesReceipt'
+        return this.form.value.discriminatorId == '1' ? 'documentTypesInvoice' : 'documentTypesReceipt'
     }
 
     private getRecord(): Promise<any> {
@@ -194,14 +197,15 @@ export class DocumentTypeFormComponent {
         this.form = this.formBuilder.group({
             id: '',
             ship: ['', [Validators.required, ValidationService.RequireAutocomplete]],
+            shipOwner: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             abbreviation: ['', [Validators.required, Validators.maxLength(5)]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
-            batch: ['', [Validators.maxLength(5)]],
+            batch: ['', [Validators.required, Validators.maxLength(5)]],
             lastDate: ['', [Validators.required, Validators.maxLength(10)]],
             lastNo: [0, [Validators.required, Validators.min(0), Validators.max(9999)]],
             customers: ['', [Validators.maxLength(1), ValidationService.shouldBeEmptyPlusOrMinus]],
             suppliers: ['', [Validators.maxLength(1), ValidationService.shouldBeEmptyPlusOrMinus]],
-            discriminatorId: [''],
+            discriminatorId: ['', [Validators.required]],
             isActive: true,
             isMyData: true,
             table8_1: ['', [Validators.maxLength(32)]],
@@ -215,13 +219,17 @@ export class DocumentTypeFormComponent {
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('ships', 'dropdownShips', 'ship', 'description', 'description')
+        this.populateDropdownFromDexieDB('ships', 'dropdownShips', 'ship', 'description', 'description', true)
+        this.populateDropdownFromDexieDB('shipOwners', 'dropdownShipOwners', 'shipOwner', 'description', 'description', false)
     }
 
-    private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
+    private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string, includeWildCard: boolean): void {
         this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
-            this[dexieTable] = this.recordId == undefined ? response.filter(x => x.isActive) : response
+            this[dexieTable] = response
+            includeWildCard ? this[dexieTable].unshift({ 'id': '0', 'description': '[' + this.emojiService.getEmoji('wildcard') + ']' }) : null
             this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
+            // this[dexieTable] = this.recordId == undefined ? response.filter(x => x.isActive) : response
+            // this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
         })
     }
 
@@ -229,7 +237,8 @@ export class DocumentTypeFormComponent {
         if (this.record != undefined) {
             this.form.setValue({
                 id: this.record.id,
-                ship: { 'id': this.record.ship.id, 'description': this.record.ship.description },
+                ship: { 'id': this.record.ship.id, 'description': this.record.ship.id == 0 ? this.emojiService.getEmoji('wildcard') : this.record.ship.description },
+                shipOwner: { 'id': this.record.shipOwner.id, 'description': this.record.shipOwner.description },
                 abbreviation: this.record.abbreviation,
                 description: this.record.description,
                 batch: this.record.batch,
@@ -289,6 +298,10 @@ export class DocumentTypeFormComponent {
 
     get ship(): AbstractControl {
         return this.form.get('ship')
+    }
+
+    get shipOwner(): AbstractControl {
+        return this.form.get('shipOwner')
     }
 
     get abbreviation(): AbstractControl {

@@ -17,6 +17,7 @@ namespace DocumentTypes {
             return new object[] {
                 new TestDocumentType {
                     ShipId = 1,
+                    ShipOwnerId = 1,
                     Abbreviation = Helpers.CreateRandomString(5),
                     Description = Helpers.CreateRandomString(128),
                     Batch = Helpers.CreateRandomString(5),
@@ -38,6 +39,7 @@ namespace DocumentTypes {
             return new object[] {
                 new TestDocumentType {
                     ShipId = 1,
+                    ShipOwnerId = 1,
                     Abbreviation = Helpers.CreateRandomString(5),
                     Description = Helpers.CreateRandomString(128),
                     Batch = Helpers.CreateRandomString(5),
