@@ -65,6 +65,14 @@
                 "description": "Zákazník"
             },
             {
+                "id": "tab1",
+                "description": "Obecné"
+            },
+            {
+                "id": "tab2",
+                "description": "Kontakt"
+            },
+            {
                 "id": "description",
                 "description": "Zkr."
             },
@@ -127,6 +135,10 @@
             {
                 "id": "balanceLimit",
                 "description": "Dluhový limit"
+            },
+            {
+                "id": "remarks",
+                "description": "Remarques"
             },
             {
                 "id": "isActive",
@@ -1610,19 +1622,19 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Majitelé lodí"
+                "description": "Πλοιοκτήτες"
             },
             {
                 "id": "headerIsActive",
-                "description": "Aktivní"
+                "description": "Ενεργός"
             },
             {
                 "id": "headerName",
-                "description": "Název společnosti"
+                "description": "Επωνυμία ή όνομα"
             },
             {
                 "id": "headerPhones",
-                "description": "Phony"
+                "description": "Τηλέφωνα"
             },
             {
                 "id": "headerEmail",
@@ -1630,7 +1642,7 @@
             },
             {
                 "id": "newRecord",
-                "description": "Nový rekord"
+                "description": "Νεα εγγραφη"
             }
         ]
     },
@@ -1639,11 +1651,11 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Loďowner"
+                "description": "Πλοιοκτήτης"
             },
             {
                 "id": "tab1",
-                "description": "Obecné"
+                "description": "Γενικά"
             },
             {
                 "id": "tab2",
@@ -1651,55 +1663,55 @@
             },
             {
                 "id": "description",
-                "description": "Popis"
+                "description": "Επωνυμία ή όνομα"
             },
             {
                 "id": "vatNumber",
-                "description": "Daňové číslo"
+                "description": "ΑΦΜ"
             },
             {
                 "id": "taxOffice",
-                "description": "Finanční úřad"
+                "description": "ΔΟΥ"
             },
             {
                 "id": "vatRegime",
-                "description": "Režim DPH"
+                "description": "Καθεστώς ΦΠΑ"
             },
             {
                 "id": "branch",
-                "description": "Číslo pobočky"
+                "description": "Αρ. εγκατάστασης"
             },
             {
                 "id": "profession",
-                "description": "Povolání"
+                "description": "Δραστηριότητα"
             },
             {
                 "id": "street",
-                "description": "Ulice"
+                "description": "Οδός"
             },
             {
                 "id": "number",
-                "description": "Číslo"
+                "description": "Αριθμός"
             },
             {
                 "id": "city",
-                "description": "Město"
+                "description": "Πόλη"
             },
             {
                 "id": "postalCode",
-                "description": "Poštovní kód"
+                "description": "ΤΚ"
             },
             {
                 "id": "nationality",
-                "description": "Národnost"
+                "description": "Χώρα"
             },
             {
                 "id": "personInCharge",
-                "description": "Odpovědná osoba"
+                "description": "Υπεύθυνος επικοινωνίας"
             },
             {
                 "id": "phones",
-                "description": "Telefony"
+                "description": "Τηλέφωνα"
             },
             {
                 "id": "email",
@@ -1711,11 +1723,11 @@
             },
             {
                 "id": "demoUsername",
-                "description": "Demo uživatelské jméno"
+                "description": "Demo χρήστης"
             },
             {
                 "id": "demoSubscriptionKey",
-                "description": "Demo heslo"
+                "description": "Demo κωδικός"
             },
             {
                 "id": "liveUrl",
@@ -1723,11 +1735,11 @@
             },
             {
                 "id": "liveUsername",
-                "description": "Live uživatelské jméno"
+                "description": "Live χρήστης"
             },
             {
                 "id": "liveSubscriptionKey",
-                "description": "Live heslo"
+                "description": "Live κωδικός"
             },
             {
                 "id": "isDemoMyData",
@@ -1735,23 +1747,23 @@
             },
             {
                 "id": "isActive",
-                "description": "Aktivní"
+                "description": "Ενεργός"
             },
             {
                 "id": "post",
-                "description": "Prvotní zadání"
+                "description": "Αρχική καταχώριση"
             },
             {
                 "id": "put",
-                "description": "Poslední aktualizace"
+                "description": "Τελευταία ενημέρωση"
             },
             {
                 "id": "deleteButton",
-                "description": "Smazat"
+                "description": "Διαγραφη"
             },
             {
                 "id": "saveButton",
-                "description": "Uložit"
+                "description": "Αποθηκευση"
             }
         ]
     },
@@ -2938,7 +2950,7 @@
             },
             {
                 "id": "remarks",
-                "description": "Σχόλια"
+                "description": "Komentáře"
             },
             {
                 "id": "isEmailSent",

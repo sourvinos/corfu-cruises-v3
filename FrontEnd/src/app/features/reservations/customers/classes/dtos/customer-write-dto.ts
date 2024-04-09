@@ -22,6 +22,7 @@ export interface CustomerWriteDto {
     phones: string
     email: string
     balanceLimit: number
+    remarks: string
     isActive: boolean
     // Metadata
     putAt: string

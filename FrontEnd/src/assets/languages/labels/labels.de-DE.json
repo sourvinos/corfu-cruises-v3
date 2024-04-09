@@ -65,6 +65,14 @@
                 "description": "Kunde"
             },
             {
+                "id": "tab1",
+                "description": "Allgemein"
+            },
+            {
+                "id": "tab2",
+                "description": "Kontakt"
+            },
+            {
                 "id": "description",
                 "description": "Abk."
             },
@@ -127,6 +135,10 @@
             {
                 "id": "balanceLimit",
                 "description": "Verschuldungsgrenze"
+            },
+            {
+                "id": "remarks",
+                "description": "Kommentare"
             },
             {
                 "id": "isActive",
@@ -874,7 +886,7 @@
             },
             {
                 "id": "toggle-button-general",
-                "description": "Allgemeine"
+                "description": "Allgemein"
             },
             {
                 "id": "toggle-button-passengers",
@@ -1610,19 +1622,19 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Schiffseigner"
+                "description": "Πλοιοκτήτες"
             },
             {
                 "id": "headerIsActive",
-                "description": "Aktiv"
+                "description": "Ενεργός"
             },
             {
                 "id": "headerName",
-                "description": "Name des Unternehmens"
+                "description": "Επωνυμία ή όνομα"
             },
             {
                 "id": "headerPhones",
-                "description": "Telefone"
+                "description": "Τηλέφωνα"
             },
             {
                 "id": "headerEmail",
@@ -1630,7 +1642,7 @@
             },
             {
                 "id": "newRecord",
-                "description": "Neuer Rekord"
+                "description": "Νεα εγγραφη"
             }
         ]
     },
@@ -1639,11 +1651,11 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Inhaber"
+                "description": "Πλοιοκτήτης"
             },
             {
                 "id": "tab1",
-                "description": "Allgemeine"
+                "description": "Γενικά"
             },
             {
                 "id": "tab2",
@@ -1651,7 +1663,7 @@
             },
             {
                 "id": "description",
-                "description": "Beschreibung"
+                "description": "Επωνυμία ή όνομα"
             },
             {
                 "id": "vatNumber",
@@ -1659,47 +1671,47 @@
             },
             {
                 "id": "taxOffice",
-                "description": "Finanzamt"
+                "description": "ΔΟΥ"
             },
             {
                 "id": "vatRegime",
-                "description": "MwSt.-Regelung"
+                "description": "Καθεστώς ΦΠΑ"
             },
             {
                 "id": "branch",
-                "description": "Nummer der Filiale"
+                "description": "Αρ. εγκατάστασης"
             },
             {
                 "id": "profession",
-                "description": "Beruf"
+                "description": "Δραστηριότητα"
             },
             {
                 "id": "street",
-                "description": "Straße"
+                "description": "Οδός"
             },
             {
                 "id": "number",
-                "description": "Nummer"
+                "description": "Αριθμός"
             },
             {
                 "id": "city",
-                "description": "Stadt"
+                "description": "Πόλη"
             },
             {
                 "id": "postalCode",
-                "description": "PLZ"
+                "description": "ΤΚ"
             },
             {
                 "id": "nationality",
-                "description": "Land"
+                "description": "Χώρα"
             },
             {
                 "id": "personInCharge",
-                "description": "Verantwortlicher"
+                "description": "Υπεύθυνος επικοινωνίας"
             },
             {
                 "id": "phones",
-                "description": "Telefone"
+                "description": "Τηλέφωνα"
             },
             {
                 "id": "email",
@@ -1711,11 +1723,11 @@
             },
             {
                 "id": "demoUsername",
-                "description": "Demo Benutzername"
+                "description": "Demo χρήστης"
             },
             {
                 "id": "demoSubscriptionKey",
-                "description": "Demo Passwort"
+                "description": "Demo κωδικός"
             },
             {
                 "id": "liveUrl",
@@ -1723,11 +1735,11 @@
             },
             {
                 "id": "liveUsername",
-                "description": "Live Benutzername"
+                "description": "Live χρήστης"
             },
             {
                 "id": "liveSubscriptionKey",
-                "description": "Live Passwort"
+                "description": "Live κωδικός"
             },
             {
                 "id": "isDemoMyData",
@@ -1735,23 +1747,23 @@
             },
             {
                 "id": "isActive",
-                "description": "Aktiv"
+                "description": "Ενεργός"
             },
             {
                 "id": "post",
-                "description": "Erstmalige Registrierung"
+                "description": "Αρχική καταχώριση"
             },
             {
                 "id": "put",
-                "description": "Letzte Aktualisierung"
+                "description": "Τελευταία ενημέρωση"
             },
             {
                 "id": "deleteButton",
-                "description": "Löschen"
+                "description": "Διαγραφη"
             },
             {
                 "id": "saveButton",
-                "description": "Speichern"
+                "description": "Αποθηκευση"
             }
         ]
     },

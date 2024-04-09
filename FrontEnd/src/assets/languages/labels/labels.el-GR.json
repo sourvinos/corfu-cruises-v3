@@ -65,6 +65,14 @@
                 "description": "Πελάτης"
             },
             {
+                "id": "tab1",
+                "description": "Γενικά"
+            },
+            {
+                "id": "tab2",
+                "description": "Επικοινωνία"
+            },
+            {
                 "id": "description",
                 "description": "Συντ."
             },
@@ -127,6 +135,10 @@
             {
                 "id": "balanceLimit",
                 "description": "Οριο οφειλής"
+            },
+            {
+                "id": "remarks",
+                "description": "Σχόλια"
             },
             {
                 "id": "isActive",
@@ -1618,7 +1630,7 @@
             },
             {
                 "id": "headerName",
-                "description": "Επωνυμία εταιρίας"
+                "description": "Επωνυμία ή όνομα"
             },
             {
                 "id": "headerPhones",
@@ -1651,7 +1663,7 @@
             },
             {
                 "id": "description",
-                "description": "Επωνυμία"
+                "description": "Επωνυμία ή όνομα"
             },
             {
                 "id": "vatNumber",

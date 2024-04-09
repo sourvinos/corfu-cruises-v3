@@ -21,7 +21,7 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 @Component({
     selector: 'customer-form',
     templateUrl: './customer-form.component.html',
-    styleUrls: ['../../../../../assets/styles/custom/forms.css']
+    styleUrls: ['../../../../../assets/styles/custom/forms.css', './customer-form.component.css']
 })
 
 export class CustomerFormComponent {
@@ -95,6 +95,10 @@ export class CustomerFormComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
+    public getRemarksLength(): any {
+        return this.form.value.remarks != null ? this.form.value.remarks.length : 0
+    }
+
     public onDelete(): void {
         this.dialogService.open(this.messageDialogService.confirmDelete(), 'question', ['abort', 'ok']).subscribe(response => {
             if (response) {
@@ -150,6 +154,7 @@ export class CustomerFormComponent {
             personInCharge: this.form.value.personInCharge,
             email: this.form.value.email,
             balanceLimit: this.form.value.balanceLimit,
+            remarks: this.form.value.remarks,
             isActive: this.form.value.isActive,
             putAt: this.form.value.putAt
         }
@@ -199,6 +204,7 @@ export class CustomerFormComponent {
             personInCharge: ['', [Validators.maxLength(128)]],
             email: ['', [Validators.email, Validators.maxLength(128)]],
             balanceLimit: [0, [Validators.required, Validators.min(0), Validators.max(99999.99)]],
+            remarks: ['', Validators.maxLength(2048)],
             isActive: true,
             postAt: [''],
             postUser: [''],
@@ -246,6 +252,7 @@ export class CustomerFormComponent {
                 phones: this.record.phones,
                 email: this.record.email,
                 balanceLimit: this.record.balanceLimit.toFixed(2),
+                remarks: this.record.remarks,
                 isActive: this.record.isActive,
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
@@ -344,6 +351,10 @@ export class CustomerFormComponent {
 
     get balanceLimit(): AbstractControl {
         return this.form.get('balanceLimit')
+    }
+
+    get remarks(): AbstractControl {
+        return this.form.get('remarks')
     }
 
     get postAt(): AbstractControl {

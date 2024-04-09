@@ -26,6 +26,7 @@ namespace API.Features.Reservations.Customers {
             entity.Property(x => x.Phones).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.Email).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.BalanceLimit).IsRequired(true);
+            entity.Property(x => x.Remarks).HasDefaultValue("").HasMaxLength(2048);
             entity.Property(x => x.IsActive);
             // Metadata
             entity.Property(x => x.PostAt).HasMaxLength(19).IsRequired(true);

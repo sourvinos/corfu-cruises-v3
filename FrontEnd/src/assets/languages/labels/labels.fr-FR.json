@@ -65,6 +65,14 @@
                 "description": "Client"
             },
             {
+                "id": "tab1",
+                "description": "Général"
+            },
+            {
+                "id": "tab2",
+                "description": "Contact"
+            },
+            {
                 "id": "description",
                 "description": "Abr."
             },
@@ -127,6 +135,10 @@
             {
                 "id": "balanceLimit",
                 "description": "Limite de la dette"
+            },
+            {
+                "id": "remarks",
+                "description": "Remarques"
             },
             {
                 "id": "isActive",
@@ -874,7 +886,7 @@
             },
             {
                 "id": "toggle-button-general",
-                "description": "Générales"
+                "description": "Général"
             },
             {
                 "id": "toggle-button-passengers",
@@ -1610,19 +1622,19 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Armateurs"
+                "description": "Πλοιοκτήτες"
             },
             {
                 "id": "headerIsActive",
-                "description": "Actif"
+                "description": "Ενεργός"
             },
             {
                 "id": "headerName",
-                "description": "Nom de la société"
+                "description": "Επωνυμία ή όνομα"
             },
             {
                 "id": "headerPhones",
-                "description": "Téléphone"
+                "description": "Τηλέφωνα"
             },
             {
                 "id": "headerEmail",
@@ -1630,7 +1642,7 @@
             },
             {
                 "id": "newRecord",
-                "description": "Nouveau record"
+                "description": "Νεα εγγραφη"
             }
         ]
     },
@@ -1639,11 +1651,11 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Armateur"
+                "description": "Πλοιοκτήτης"
             },
             {
                 "id": "tab1",
-                "description": "Générales"
+                "description": "Γενικά"
             },
             {
                 "id": "tab2",
@@ -1651,55 +1663,55 @@
             },
             {
                 "id": "description",
-                "description": "Nom de compagnie"
+                "description": "Επωνυμία ή όνομα"
             },
             {
                 "id": "vatNumber",
-                "description": "Numéro d'enregistrement fiscal"
+                "description": "ΑΦΜ"
             },
             {
                 "id": "taxOffice",
-                "description": "Bureau des impôts"
+                "description": "ΔΟΥ"
             },
             {
                 "id": "vatRegime",
-                "description": "Régime de TVA"
+                "description": "Καθεστώς ΦΠΑ"
             },
             {
                 "id": "branch",
-                "description": "Numéro de branche"
+                "description": "Αρ. εγκατάστασης"
             },
             {
                 "id": "profession",
-                "description": "Activite"
+                "description": "Δραστηριότητα"
             },
             {
                 "id": "street",
-                "description": "Adresse"
+                "description": "Οδός"
             },
             {
                 "id": "number",
-                "description": "Numéro"
+                "description": "Αριθμός"
             },
             {
                 "id": "city",
-                "description": "Ville"
+                "description": "Πόλη"
             },
             {
                 "id": "postalCode",
-                "description": "Code postal"
+                "description": "ΤΚ"
             },
             {
                 "id": "nationality",
-                "description": "Nationalite"
+                "description": "Χώρα"
             },
             {
                 "id": "personInCharge",
-                "description": "Responable de communication"
+                "description": "Υπεύθυνος επικοινωνίας"
             },
             {
                 "id": "phones",
-                "description": "Numeros de telephone"
+                "description": "Τηλέφωνα"
             },
             {
                 "id": "email",
@@ -1711,11 +1723,11 @@
             },
             {
                 "id": "demoUsername",
-                "description": "Demo utilisateur"
+                "description": "Demo χρήστης"
             },
             {
                 "id": "demoSubscriptionKey",
-                "description": "Demo mot de passe"
+                "description": "Demo κωδικός"
             },
             {
                 "id": "liveUrl",
@@ -1723,11 +1735,11 @@
             },
             {
                 "id": "liveUsername",
-                "description": "Live utilisateur"
+                "description": "Live χρήστης"
             },
             {
                 "id": "liveSubscriptionKey",
-                "description": "Live mot de passe"
+                "description": "Live κωδικός"
             },
             {
                 "id": "isDemoMyData",
@@ -1735,23 +1747,23 @@
             },
             {
                 "id": "isActive",
-                "description": "Actif"
+                "description": "Ενεργός"
             },
             {
                 "id": "post",
-                "description": "Enregistrer original"
+                "description": "Αρχική καταχώριση"
             },
             {
                 "id": "put",
-                "description": "Dernière mise à jour"
+                "description": "Τελευταία ενημέρωση"
             },
             {
                 "id": "deleteButton",
-                "description": "Supprimer"
+                "description": "Διαγραφη"
             },
             {
                 "id": "saveButton",
-                "description": "Enregistrer"
+                "description": "Αποθηκευση"
             }
         ]
     },

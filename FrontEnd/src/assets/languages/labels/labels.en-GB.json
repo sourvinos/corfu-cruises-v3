@@ -65,6 +65,14 @@
                 "description": "Customer"
             },
             {
+                "id": "tab1",
+                "description": "General"
+            },
+            {
+                "id": "tab2",
+                "description": "Contact"
+            },
+            {
                 "id": "description",
                 "description": "Abbr."
             },
@@ -1610,19 +1618,19 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Shipowners"
+                "description": "Πλοιοκτήτες"
             },
             {
                 "id": "headerIsActive",
-                "description": "Active"
+                "description": "Ενεργός"
             },
             {
                 "id": "headerName",
-                "description": "Company name"
+                "description": "Επωνυμία ή όνομα"
             },
             {
                 "id": "headerPhones",
-                "description": "Phones"
+                "description": "Τηλέφωνα"
             },
             {
                 "id": "headerEmail",
@@ -1630,7 +1638,7 @@
             },
             {
                 "id": "newRecord",
-                "description": "New record"
+                "description": "Νεα εγγραφη"
             }
         ]
     },
@@ -1639,11 +1647,11 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Shipowner"
+                "description": "Πλοιοκτήτης"
             },
             {
                 "id": "tab1",
-                "description": "General"
+                "description": "Γενικά"
             },
             {
                 "id": "tab2",
@@ -1651,55 +1659,55 @@
             },
             {
                 "id": "description",
-                "description": "Description"
+                "description": "Επωνυμία ή όνομα"
             },
             {
                 "id": "vatNumber",
-                "description": "Tax number"
+                "description": "ΑΦΜ"
             },
             {
                 "id": "taxOffice",
-                "description": "Tax office"
+                "description": "ΔΟΥ"
             },
             {
                 "id": "vatRegime",
-                "description": "VAT regime"
+                "description": "Καθεστώς ΦΠΑ"
             },
             {
                 "id": "branch",
-                "description": "Branch number"
+                "description": "Αρ. εγκατάστασης"
             },
             {
                 "id": "profession",
-                "description": "Profession"
+                "description": "Δραστηριότητα"
             },
             {
                 "id": "street",
-                "description": "Street"
+                "description": "Οδός"
             },
             {
                 "id": "number",
-                "description": "Number"
+                "description": "Αριθμός"
             },
             {
                 "id": "city",
-                "description": "City"
+                "description": "Πόλη"
             },
             {
                 "id": "postalCode",
-                "description": "Postal code"
+                "description": "ΤΚ"
             },
             {
                 "id": "nationality",
-                "description": "Nationality"
+                "description": "Χώρα"
             },
             {
                 "id": "personInCharge",
-                "description": "Person in charge"
+                "description": "Υπεύθυνος επικοινωνίας"
             },
             {
                 "id": "phones",
-                "description": "Phones"
+                "description": "Τηλέφωνα"
             },
             {
                 "id": "email",
@@ -1711,11 +1719,11 @@
             },
             {
                 "id": "demoUsername",
-                "description": "Demo username"
+                "description": "Demo χρήστης"
             },
             {
                 "id": "demoSubscriptionKey",
-                "description": "Demo password"
+                "description": "Demo κωδικός"
             },
             {
                 "id": "liveUrl",
@@ -1723,11 +1731,11 @@
             },
             {
                 "id": "liveUsername",
-                "description": "Live username"
+                "description": "Live χρήστης"
             },
             {
                 "id": "liveSubscriptionKey",
-                "description": "Live password"
+                "description": "Live κωδικός"
             },
             {
                 "id": "isDemoMyData",
@@ -1735,23 +1743,23 @@
             },
             {
                 "id": "isActive",
-                "description": "Active"
+                "description": "Ενεργός"
             },
             {
                 "id": "post",
-                "description": "Initial entry"
+                "description": "Αρχική καταχώριση"
             },
             {
                 "id": "put",
-                "description": "Last update"
+                "description": "Τελευταία ενημέρωση"
             },
             {
                 "id": "deleteButton",
-                "description": "Delete"
+                "description": "Διαγραφη"
             },
             {
                 "id": "saveButton",
-                "description": "Save"
+                "description": "Αποθηκευση"
             }
         ]
     },
