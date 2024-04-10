@@ -85,6 +85,14 @@
                 "description": "Tax number"
             },
             {
+                "id": "taxOffice",
+                "description": "Bureau des impôts"
+            },
+            {
+                "id": "vatRegime",
+                "description": "Régime de TVA"
+            },
+            {
                 "id": "branch",
                 "description": "Branch number"
             },
@@ -109,6 +117,10 @@
                 "description": "City"
             },
             {
+                "id": "nationality",
+                "description": "Country"
+            },
+            {
                 "id": "personInCharge",
                 "description": "Person in charge"
             },
@@ -125,16 +137,8 @@
                 "description": "Debt limit"
             },
             {
-                "id": "nationality",
-                "description": "Country"
-            },
-            {
-                "id": "taxOffice",
-                "description": "Tax office"
-            },
-            {
-                "id": "vatRegime",
-                "description": "VAT regime"
+                "id": "remarks",
+                "description": "Remarques"
             },
             {
                 "id": "isActive",
@@ -2444,6 +2448,30 @@
             {
                 "id": "headerTo",
                 "description": "Εως"
+            },
+            {
+                "id": "headerAdults",
+                "description": "Ενήλικες"
+            },
+            {
+                "id": "headerAdultsWithTransfer",
+                "description": "w/ transfer"
+            },
+            {
+                "id": "headerAdultsWithoutTransfer",
+                "description": "w/o transfer"
+            },
+            {
+                "id": "headerKids",
+                "description": "Παιδιά"
+            },
+            {
+                "id": "headerKidsWithTransfer",
+                "description": "w/ transfer"
+            },
+            {
+                "id": "headerKidsWithoutTransfer",
+                "description": "w/o transfer"
             },
             {
                 "id": "newRecord",

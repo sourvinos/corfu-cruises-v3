@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { MatDialog } from '@angular/material/dialog'
 import { Table } from 'primeng/table'
+import { formatNumber } from '@angular/common'
 // Custom
 import { ClonePricesDialogComponent } from '../clone-prices-dialog/clone-prices-dialog.component'
 import { DateHelperService } from '../../../../../shared/services/date-helper.service'
@@ -64,14 +65,15 @@ export class PriceListComponent {
     //#region lifecycle hooks
 
     ngOnInit(): void {
-        this.loadRecords()
-        this.populateDropdownFilters()
-        this.filterTableFromStoredFilters()
-        this.formatDatesToLocale()
-        this.subscribeToInteractionService()
-        this.setTabTitle()
-        this.setLocale()
-        this.setSidebarsHeight()
+        this.loadRecords().then(() => {
+            this.populateDropdownFilters()
+            this.filterTableFromStoredFilters()
+            this.formatDatesToLocale()
+            this.subscribeToInteractionService()
+            this.setTabTitle()
+            this.setLocale()
+            this.setSidebarsHeight()
+        })
     }
 
     ngAfterViewInit(): void {
@@ -97,6 +99,10 @@ export class PriceListComponent {
         this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
         this.recordsFiltered = event.filteredValue
         this.recordsFilteredCount = event.filteredValue.length
+    }
+
+    public formatNumberToLocale(number: number, decimals = true): string {
+        return formatNumber(number, this.localStorageService.getItem('language'), decimals ? '1.2' : '1.0')
     }
 
     public getEmoji(anything: any): string {

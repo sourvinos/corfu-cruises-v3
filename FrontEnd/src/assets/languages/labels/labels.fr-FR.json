@@ -2450,6 +2450,30 @@
                 "description": "Εως"
             },
             {
+                "id": "headerAdults",
+                "description": "Ενήλικες"
+            },
+            {
+                "id": "headerAdultsWithTransfer",
+                "description": "w/ transfer"
+            },
+            {
+                "id": "headerAdultsWithoutTransfer",
+                "description": "w/o transfer"
+            },
+            {
+                "id": "headerKids",
+                "description": "Παιδιά"
+            },
+            {
+                "id": "headerKidsWithTransfer",
+                "description": "w/ transfer"
+            },
+            {
+                "id": "headerKidsWithoutTransfer",
+                "description": "w/o transfer"
+            },
+            {
                 "id": "newRecord",
                 "description": "Νεα εγγραφη"
             }
