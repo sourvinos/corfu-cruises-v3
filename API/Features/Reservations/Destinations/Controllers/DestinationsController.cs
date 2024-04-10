@@ -34,7 +34,6 @@ namespace API.Features.Reservations.Destinations {
         }
 
         [HttpGet("[action]")]
-        [Authorize(Roles = "user, admin")]
         public async Task<IEnumerable<DestinationBrowserVM>> GetForBrowserAsync() {
             return await destinationRepo.GetForBrowserAsync();
         }
