@@ -115,6 +115,18 @@ ul {
     pointer-events: all;
 }
 
+.blue {
+    color: var(--color-blue);
+}
+
+.green {
+    color: var(--color-green);
+}
+
+.orange {
+    color: var(--color-orange);
+}
+
 ::-webkit-scrollbar {
     height: 0;
     width: 0.25rem;

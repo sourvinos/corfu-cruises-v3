@@ -333,6 +333,7 @@ export class ReservationFormComponent {
         this.setParentUrl()
         this.subscribeToInteractionService()
         this.updateTabVisibility()
+        // this.saveReservationDate()
     }
 
     private filterAutocomplete(array: string, field: string, value: any): any[] {
@@ -503,7 +504,9 @@ export class ReservationFormComponent {
             next: (response) => {
                 const date = this.dateHelperService.formatDateToIso(new Date(this.form.value.date))
                 this.sessionStorageService.saveItem('date', date)
-                this.parentUrl = '/reservations/date/' + date
+                this.parentUrl = this.sessionStorageService.getItem('returnUrl').includes('refNo')
+                    ? this.sessionStorageService.getItem('returnUrl')
+                    : '/reservations/date/' + date
                 this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'ok', this.parentUrl, this.mustGoBackAfterSave)
                 this.form.patchValue({
                     putAt: response.body
@@ -516,6 +519,10 @@ export class ReservationFormComponent {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
             }
         })
+    }
+
+    private saveReservationDate(): void {
+        this.sessionStorageService.saveItem('date', this.form.value.date)
     }
 
     private saveCachedReservation(): void {
@@ -540,6 +547,9 @@ export class ReservationFormComponent {
         }
         if (this.sessionStorageService.getItem('returnUrl') == '/availability') {
             this.parentUrl = '/availability'
+        }
+        if (this.sessionStorageService.getItem('returnUrl').includes('/reservations/refNo')) {
+            this.parentUrl = this.sessionStorageService.getItem('returnUrl')
         }
     }
 

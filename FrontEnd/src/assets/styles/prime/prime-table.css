@@ -98,6 +98,10 @@
     top: 0 !important;
 }
 
+.p-datatable .p-datatable-tbody > tr > td > span.icon {
+    font-size: 1rem;
+}
+
 .p-datatable .p-datatable-tbody > tr > td > span.flag {
     display: flex;
     padding: 0 0.5rem 0 0.5rem !important;

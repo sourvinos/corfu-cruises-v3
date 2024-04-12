@@ -2133,15 +2133,6 @@
         ]
     },
     {
-        "feature": "searchByRefBox",
-        "labels": [
-            {
-                "id": "placeholder",
-                "description": "RefNo"
-            }
-        ]
-    },
-    {
         "feature": "availabilityCalendar",
         "labels": [
             {
@@ -2331,12 +2322,24 @@
         "feature": "search-reservation",
         "labels": [
             {
-                "id": "refNo",
-                "description": "Indiquer le refNo"
+                "id": "header",
+                "description": "Trouver une réservation"
             },
             {
-                "id": "hint",
-                "description": "Appuyer sur ENTER pour lancer la recherche"
+                "id": "subHeader",
+                "description": "Par refNo ou par ticket"
+            },
+            {
+                "id": "refNo",
+                "description": "RefNo ou ticket"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Annuler"
+            },
+            {
+                "id": "okButton",
+                "description": "Rechercher"
             }
         ]
     },

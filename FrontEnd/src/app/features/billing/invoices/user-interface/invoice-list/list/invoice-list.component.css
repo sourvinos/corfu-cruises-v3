@@ -2,22 +2,6 @@
     margin: -0.625rem 0 0 0 !important;
 }
 
-.icon {
-    font-size: 1rem;
-}
-
 .icon.email {
     font-size: 0.875rem;
-}
-
-.blue {
-    color: var(--color-blue);
-}
-
-.green {
-    color: var(--color-green);
-}
-
-.red {
-    color: var(--color-red);
 }

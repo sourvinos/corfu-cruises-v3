@@ -30,6 +30,7 @@ export class ReservationSearchComponent {
         const dialogRef = this.dialog.open(ReservationSearchDialogComponent, {
             data: ['search-reservation'],
             panelClass: 'dialog',
+            height: '20rem',
             width: '32rem',
         })
         dialogRef.afterClosed().subscribe(result => {

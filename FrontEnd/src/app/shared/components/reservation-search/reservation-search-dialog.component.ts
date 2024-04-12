@@ -42,6 +42,10 @@ export class ReservationSearchDialogComponent {
         return this.messageHintService.getDescription(id, minmax)
     }
 
+    public onClose(): void {
+        this.dialogRef.close()
+    }
+
     public onSearch(): void {
         if (this.form.valid) {
             this.ngZone.run(() => {

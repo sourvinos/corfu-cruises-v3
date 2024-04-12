@@ -126,7 +126,7 @@ namespace API.Features.Reservations.Reservations {
                 .Include(x => x.PortAlternate)
                 .Include(x => x.Ship)
                 .Include(x => x.Passengers)
-                .Where(x => x.RefNo == refNo)
+                .Where(x => x.RefNo == refNo || x.TicketNo == refNo)
                 .ToListAsync();
         }
 
@@ -141,7 +141,7 @@ namespace API.Features.Reservations.Reservations {
                 .Include(x => x.PortAlternate)
                 .Include(x => x.Ship)
                 .Include(x => x.Passengers)
-                .Where(x => x.RefNo == refNo && x.CustomerId == customerId)
+                .Where(x => (x.RefNo == refNo || x.TicketNo == refNo) && x.CustomerId == customerId)
                 .ToListAsync();
         }
 

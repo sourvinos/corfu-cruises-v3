@@ -822,7 +822,7 @@
             },
             {
                 "id": "ticketNo",
-                "description": "Číslo lístku"
+                "description": "Jízdenku"
             },
             {
                 "id": "adults",
@@ -2133,15 +2133,6 @@
         ]
     },
     {
-        "feature": "searchByRefBox",
-        "labels": [
-            {
-                "id": "placeholder",
-                "description": "RefNo"
-            }
-        ]
-    },
-    {
         "feature": "availabilityCalendar",
         "labels": [
             {
@@ -2331,12 +2322,24 @@
         "feature": "search-reservation",
         "labels": [
             {
-                "id": "refNo",
-                "description": "Uveďte refNo"
+                "id": "header",
+                "description": "Vyhledání rezervace"
             },
             {
-                "id": "hint",
-                "description": "Stisknutím tlačítka ENTER spustíte vyhledávání"
+                "id": "subHeader",
+                "description": "Pomocí refNo nebo jízdenky"
+            },
+            {
+                "id": "refNo",
+                "description": "RefNo nebo jízdenku"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Zrušit"
+            },
+            {
+                "id": "okButton",
+                "description": "Vyhledávání"
             }
         ]
     },

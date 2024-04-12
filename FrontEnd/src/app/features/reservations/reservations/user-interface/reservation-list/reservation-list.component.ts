@@ -162,6 +162,10 @@ export class ReservationListComponent {
         this.driverReportService.doReportTasks(this.getDistinctDriverIds())
     }
 
+    public reservationYearIsSelectedYear(date: string): boolean {
+        return this.dateHelperService.createDateFromString(date).getFullYear() == new Date().getFullYear()
+    }
+
     public deleteRange(): void {
         if (this.isAnyRowSelected()) {
             const dialogRef = this.dialog.open(DeleteRangeDialogComponent, {
@@ -189,6 +193,7 @@ export class ReservationListComponent {
         this.storeScrollTop()
         this.storeSelectedId(id)
         this.gotoEditForm(id)
+        this.storeUrl()
     }
 
     public filterRecords(event: any): void {
@@ -399,9 +404,7 @@ export class ReservationListComponent {
     }
 
     private storeCriteria(): void {
-        if (this.records.length > 0) {
-            this.sessionStorageService.saveItem('date', this.records[0].date)
-        }
+        this.sessionStorageService.saveItem('returnUrl', '/reservations')
     }
 
     private storeScrollTop(): void {
@@ -410,6 +413,14 @@ export class ReservationListComponent {
 
     private storeSelectedId(id: string): void {
         this.sessionStorageService.saveItem(this.feature + '-id', id)
+    }
+
+    private storeUrl(): void {
+        this.activatedRoute.params.subscribe(x => {
+            if (x.refNo) {
+                this.sessionStorageService.saveItem('returnUrl', '/reservations/refNo/' + x.refNo)
+            }
+        })
     }
 
     private subscribeToInteractionService(): void {

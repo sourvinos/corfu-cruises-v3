@@ -2133,15 +2133,6 @@
         ]
     },
     {
-        "feature": "searchByRefBox",
-        "labels": [
-            {
-                "id": "placeholder",
-                "description": "RefNo"
-            }
-        ]
-    },
-    {
         "feature": "availabilityCalendar",
         "labels": [
             {
@@ -2331,12 +2322,24 @@
         "feature": "search-reservation",
         "labels": [
             {
-                "id": "refNo",
-                "description": "Δώστε το refNo"
+                "id": "header",
+                "description": "Αναζήτηση κράτησης"
             },
             {
-                "id": "hint",
-                "description": "Πατήστε ENTER για να ξεκινήσει η αναζήτηση"
+                "id": "subHeader",
+                "description": "Με βάση το refNo ή το εισιτήριο"
+            },
+            {
+                "id": "refNo",
+                "description": "RefNo ή εισιτήριο"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Ακυρο"
+            },
+            {
+                "id": "okButton",
+                "description": "Συνεχεια"
             }
         ]
     },
