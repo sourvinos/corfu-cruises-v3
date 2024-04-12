@@ -27,7 +27,7 @@ export class HelpComponent {
     }
 
     public showHelpDialog(): void {
-        this.dialogService.open(this.messageSnackbarService.helpDialog(), 'info', ['ok'])
+        this.dialogService.open(this.messageSnackbarService.helpDialog(), '', ['ok'])
     }
 
     //#endregion

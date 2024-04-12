@@ -137,8 +137,9 @@ export class SearchComponent {
     }
 
     private populateFieldsFromLocalStorage(): void {
-        const criteria = JSON.parse(this.localStorageService.getItem('criteria'))
-        if (criteria != '') {
+        const x = this.localStorageService.getItem('criteria')
+        if (x != '') {
+            const criteria = JSON.parse(this.localStorageService.getItem('criteria'))
             this.form.setValue({
                 hasRefNo: criteria.hasRefNo,
                 refNo: criteria.refNo,

@@ -3308,7 +3308,7 @@
             },
             {
                 "id": "search-header",
-                "description": "Ταυτοποιηση"
+                "description": "Ταυτοποίηση"
             },
             {
                 "id": "step-2-sub-header",
@@ -3368,7 +3368,7 @@
             },
             {
                 "id": "step-3-header",
-                "description": "Λεπτομερειες κρατησης"
+                "description": "Λεπτομέρειες κράτησης"
             },
             {
                 "id": "step-3-sub-header",
@@ -3484,7 +3484,7 @@
             },
             {
                 "id": "step-7-header",
-                "description": "Τελειωσαμε!"
+                "description": "Τελειώσαμε!"
             },
             {
                 "id": "completion-description",

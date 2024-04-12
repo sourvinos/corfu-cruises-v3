@@ -11,7 +11,7 @@
 
     <div *ngIf="checkTotalPaxAgainstPassengerCount()" id="new-passenger-button">
         <button (click)="showEmptyPassengerForm()" class="accent" mat-flat-button>
-            <span>{{ getLabel("step-4-new-passenger-button") }}</span>
+            <span>{{ getLabel("step-4-new-passenger-button") | uppercase }}</span>
         </button>
     </div>
 

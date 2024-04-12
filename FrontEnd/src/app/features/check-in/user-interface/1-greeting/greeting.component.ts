@@ -62,9 +62,9 @@ export class GreetingComponent {
     }
 
     private removeElements(): void {
-        document.getElementById('topbar').remove()
-        document.getElementById('leftbar').remove()
-        document.getElementById('rightbar').remove()
+        document.getElementById('topbar') ? document.getElementById('topbar').remove() : ''
+        document.getElementById('leftbar') ? document.getElementById('leftbar').remove() : ''
+        document.getElementById('rightbar') ? document.getElementById('rightbar').remove() : ''
     }
 
     private setLightTheme(): void {
