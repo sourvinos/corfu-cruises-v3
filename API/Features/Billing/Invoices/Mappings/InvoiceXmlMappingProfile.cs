@@ -8,9 +8,9 @@ namespace API.Features.Billing.Invoices {
         public InvoiceXmlMappingProfile() {
             CreateMap<Invoice, InvoiceXmlBuilderVM>()
                 .ForMember(x => x.Credentials, x => x.MapFrom(x => new XmlCredentialsVM {
-                    Username = x.Ship.ShipOwner.DemoUsername,
-                    SubscriptionKey = x.Ship.ShipOwner.DemoSubscriptionKey,
-                    Url = x.Ship.ShipOwner.DemoUrl
+                    Username = x.Ship.ShipOwner.IsDemoMyData ? x.Ship.ShipOwner.DemoUsername : x.Ship.ShipOwner.LiveUsername,
+                    SubscriptionKey = x.Ship.ShipOwner.IsDemoMyData ? x.Ship.ShipOwner.DemoSubscriptionKey : x.Ship.ShipOwner.LiveSubscriptionKey,
+                    Url = x.Ship.ShipOwner.IsDemoMyData ? x.Ship.ShipOwner.DemoUrl : x.Ship.ShipOwner.LiveUrl
                 }))
                 .ForMember(x => x.Issuer, x => x.MapFrom(x => new XmlPartyVM {
                     VatNumber = x.Ship.ShipOwner.VatNumber,
