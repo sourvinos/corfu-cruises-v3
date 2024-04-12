@@ -56,6 +56,7 @@ namespace API.Infrastructure.Helpers {
         public static string PriceCloningNotCompleted() { return "Cloning not completed. Check your pricelist table."; }
         public static string AadeError() { return "Aade update was not completed"; }
         public static string CheckInAfterDepartureIsNotAllowed() { return "Check-in after departure is not allowed"; }
+        public static string CustomerDataIsInvalid() { return "Customer data is invalid"; }
 
         #endregion
 

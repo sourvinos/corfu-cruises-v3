@@ -205,6 +205,10 @@
             {
                 "id": "checkInAfterDepartureIsNotAllowed",
                 "message": "Your reservation was found, but check-in after the ship's departure is not allowed"
+            },
+            {
+                "id": "customerDataIsInvalid",
+                "message": "Η τιμολόγηση δεν μπορεί να συνεχιστεί επειδή τα στοιχεία του πελάτη είναι ελλειπή ή λάθος."
             }
         ]
     }

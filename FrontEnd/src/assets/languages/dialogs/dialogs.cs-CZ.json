@@ -205,6 +205,10 @@
             {
                 "id": "checkInAfterDepartureIsNotAllowed",
                 "message": "Vaše rezervace byla nalezena, ale přihlášení po odjezdu lodi není povoleno"
+            },
+            {
+                "id": "customerDataIsInvalid",
+                "message": "Η τιμολόγηση δεν μπορεί να συνεχιστεί επειδή τα στοιχεία του πελάτη είναι ελλειπή ή λάθος."
             }
         ]
     }

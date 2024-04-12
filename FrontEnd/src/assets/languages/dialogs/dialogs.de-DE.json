@@ -205,6 +205,10 @@
             {
                 "id": "checkInAfterDepartureIsNotAllowed",
                 "message": "Ihre Reservierung wurde gefunden, aber das Einchecken nach der Abfahrt des Schiffes ist nicht erlaubt"
+            },
+            {
+                "id": "customerDataIsInvalid",
+                "message": "Η τιμολόγηση δεν μπορεί να συνεχιστεί επειδή τα στοιχεία του πελάτη είναι ελλειπή ή λάθος."
             }
         ]
     }

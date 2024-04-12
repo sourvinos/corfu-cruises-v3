@@ -191,7 +191,9 @@ export class InvoiceFormComponent {
     }
 
     public onSave(): void {
-        this.saveRecord(this.flattenForm())
+        this.isCustomerDataValid()
+            ? this.saveRecord(this.flattenForm())
+            : this.dialogService.open(this.messageDialogService.customerDataIsInvalid(), 'error', ['ok'])
     }
 
     public onDoSubmitTasks(): void {
@@ -399,6 +401,10 @@ export class InvoiceFormComponent {
             putAt: [''],
             putUser: [''],
         })
+    }
+
+    private isCustomerDataValid(): boolean {
+        return false
     }
 
     private patchFormWithCalculations(calculationsA: any, calculationsB: any, calculationTotals: any): void {

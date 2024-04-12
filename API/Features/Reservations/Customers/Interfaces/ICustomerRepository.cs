@@ -11,6 +11,7 @@ namespace API.Features.Reservations.Customers {
         Task<IEnumerable<CustomerBrowserVM>> GetForBrowserAsync();
         Task<IEnumerable<SimpleEntity>> GetForCriteriaAsync();
         Task<CustomerBrowserVM> GetByIdForBrowserAsync(int id);
+        CustomerValidVM IsDataValid(Customer x);
         Task<Customer> GetByIdAsync(int id, bool includeTables);
 
     }

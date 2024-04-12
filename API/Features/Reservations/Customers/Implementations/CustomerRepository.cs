@@ -66,6 +66,14 @@ namespace API.Features.Reservations.Customers {
                     .SingleOrDefaultAsync(x => x.Id == id);
         }
 
+        public CustomerValidVM IsDataValid(Customer x) {
+            return new CustomerValidVM {
+                Id = x.Id,
+                Description = x.Description,
+                IsValid = x.FullDescription != "" && x.VatNumber != "" && x.PostalCode != "" & x.City != ""
+            };
+        }
+
     }
 
 }

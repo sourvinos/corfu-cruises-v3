@@ -129,6 +129,24 @@ namespace API.Features.Reservations.Customers {
             }
         }
 
+        [HttpGet("[action]/{id}")]
+        [Authorize(Roles = "admin")]
+        public async Task<ResponseWithBody> GetByIdForValidationAsync(int id) {
+            var x = await customerRepo.GetByIdAsync(id, false);
+            if (x != null) {
+                return new ResponseWithBody {
+                    Code = 200,
+                    Icon = Icons.Error.ToString(),
+                    Message = ApiMessages.CustomerDataIsInvalid(),
+                    Body = customerRepo.IsDataValid(x)
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 404
+                };
+            }
+        }
+
     }
 
 }
