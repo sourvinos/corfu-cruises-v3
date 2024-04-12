@@ -3286,5 +3286,234 @@
                 "description": "Εκτυπωση"
             }
         ]
+    },
+    {
+        "feature": "check-in",
+        "labels": [
+            {
+                "id": "logo",
+                "description": "Corfu Cruises"
+            },
+            {
+                "id": "step-1-sub-header",
+                "description": "Check-in"
+            },
+            {
+                "id": "step-1-description",
+                "description": "Κάντε check-in από το κινητό τηλέφωνο ή το tablet σας και επιβιβαστείτε γρήγορα χωρίς καθυστερήσεις"
+            },
+            {
+                "id": "step-1-begin-button",
+                "description": "Ας ξεκινησουμε!"
+            },
+            {
+                "id": "search-header",
+                "description": "Ταυτοποιηση"
+            },
+            {
+                "id": "step-2-sub-header",
+                "description": "Πρέπει να βρούμε την κράτηση στο σύστημά μας"
+            },
+            {
+                "id": "step-2-sub-step-caption",
+                "description": "Έχετε το RefNo της κράτησης;"
+            },
+            {
+                "id": "step-2-yes",
+                "description": "Ναι, το έχω"
+            },
+            {
+                "id": "step-2-no",
+                "description": "Όχι, δεν το έχω"
+            },
+            {
+                "id": "step-2-refNo",
+                "description": "RefNo"
+            },
+            {
+                "id": "step-2-refNo-hint",
+                "description": "Συμπληρώστε το RefNo χωρίς κενά"
+            },
+            {
+                "id": "step-2-date",
+                "description": "Ημερομηνία"
+            },
+            {
+                "id": "step-2-date-hint",
+                "description": "Πότε είναι η εκδρομή σας"
+            },
+            {
+                "id": "step-2-destination",
+                "description": "Προορισμός"
+            },
+            {
+                "id": "step-2-destination-hint",
+                "description": "Που έχετε επιλέξει να πάτε"
+            },
+            {
+                "id": "step-2-lastname",
+                "description": "Επώνυμο"
+            },
+            {
+                "id": "step-2-lastname-hint",
+                "description": "Συμπληρώστε ένα από τα επώνυμα που έχετε δώσει"
+            },
+            {
+                "id": "step-2-firstname",
+                "description": "Ονομα"
+            },
+            {
+                "id": "step-2-firstname-hint",
+                "description": "Συμπληρώστε το όνομα του παραπάνω επώνυμου"
+            },
+            {
+                "id": "step-3-header",
+                "description": "Λεπτομερειες κρατησης"
+            },
+            {
+                "id": "step-3-sub-header",
+                "description": "Βεβαιωθείτε ότι τα στοιχεία είναι σωστά"
+            },
+            {
+                "id": "step-3-date",
+                "description": "Ημερομηνία"
+            },
+            {
+                "id": "step-3-refNo",
+                "description": "RefNo"
+            },
+            {
+                "id": "step-3-ticketNo",
+                "description": "Εισιτήριο"
+            },
+            {
+                "id": "step-3-destination",
+                "description": "Προορισμός"
+            },
+            {
+                "id": "step-3-customer",
+                "description": "Πελάτης"
+            },
+            {
+                "id": "step-3-pickupPoint",
+                "description": "Σημείο παραλαβής"
+            },
+            {
+                "id": "step-3-exactPoint",
+                "description": "Ακριβές σημείο"
+            },
+            {
+                "id": "step-3-time",
+                "description": "Ώρα"
+            },
+            {
+                "id": "step-3-adults",
+                "description": "Ενήλικες"
+            },
+            {
+                "id": "step-3-kids",
+                "description": "Παιδιά"
+            },
+            {
+                "id": "step-3-free",
+                "description": "Δωρεάν"
+            },
+            {
+                "id": "step-3-totalPax",
+                "description": "Σύνολο ατόμων"
+            },
+            {
+                "id": "step-3-phones",
+                "description": "Τηλέφωνα"
+            },
+            {
+                "id": "step-3-remarks",
+                "description": "Παρατηρήσεις"
+            },
+            {
+                "id": "step-4-header",
+                "description": "Στοιχεια επιβατων"
+            },
+            {
+                "id": "step-4-new-passenger-button",
+                "description": "Νεος επιβατης"
+            },
+            {
+                "id": "step-5-header",
+                "description": "Επιβάτης"
+            },
+            {
+                "id": "step-5-lastname",
+                "description": "Επώνυμο"
+            },
+            {
+                "id": "step-5-firstname",
+                "description": "Ονομα"
+            },
+            {
+                "id": "step-5-nationality",
+                "description": "Χώρα"
+            },
+            {
+                "id": "step-5-gender",
+                "description": "Φύλο"
+            },
+            {
+                "id": "step-5-birthdate",
+                "description": "Ημερομηνία γέννησης"
+            },
+            {
+                "id": "step-5-ok",
+                "description": "OK"
+            },
+            {
+                "id": "step-5-cancel",
+                "description": "Ακυρωση"
+            },
+            {
+                "id": "step-6-header",
+                "description": "Αποστολη email"
+            },
+            {
+                "id": "step-6-sub-header",
+                "description": "Δώστε μας ένα email στο οποίο θα στείλουμε την κάρτα επιβίβασης"
+            },
+            {
+                "id": "step-6-email",
+                "description": "Email"
+            },
+            {
+                "id": "step-7-header",
+                "description": "Τελειωσαμε!"
+            },
+            {
+                "id": "completion-description",
+                "description": "Σας ευχόμαστε ένα ευχάριστο ταξίδι και σας ευχαριστούμε που επιλέξατε την Corfu Cruises."
+            },
+            {
+                "id": "help",
+                "description": "Κάντε κλικ εδώ για βοήθεια"
+            },
+            {
+                "id": "today",
+                "description": "Σημερα"
+            },
+            {
+                "id": "ok",
+                "description": "OK"
+            },
+            {
+                "id": "cancel",
+                "description": "Ακυρο"
+            },
+            {
+                "id": "next",
+                "description": "Επομενο"
+            },
+            {
+                "id": "previous",
+                "description": "Πισω"
+            }
+        ]
     }
 ]

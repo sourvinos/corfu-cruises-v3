@@ -3,7 +3,7 @@ using API.Infrastructure.Classes;
 
 namespace API.Features.CheckIn {
 
-    public class PassengerReadDto : IBaseEntity {
+    public class PassengerReadDto {
 
         // PK
         public int Id { get; set; }
@@ -16,14 +16,8 @@ namespace API.Features.CheckIn {
         public string Remarks { get; set; }
         public string SpecialCare { get; set; }
         // Navigation
-        public NationalityDto Nationality { get; set; }
+        public SimpleEntity Nationality { get; set; }
         public SimpleEntity Gender { get; set; }
-
-    }
-
-    public class NationalityDto : SimpleEntity {
-
-        public string Code { get; set; }
 
     }
 

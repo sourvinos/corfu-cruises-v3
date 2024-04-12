@@ -3286,5 +3286,234 @@
                 "description": "Εκτυπωση"
             }
         ]
+    },
+    {
+        "feature": "check-in",
+        "labels": [
+            {
+                "id": "logo",
+                "description": "Corfu Cruises"
+            },
+            {
+                "id": "step-1-sub-header",
+                "description": "Einchecken"
+            },
+            {
+                "id": "step-1-description",
+                "description": "Einchecken über Ihr Mobiltelefon oder Tablet und schnelles Einsteigen ohne Verzögerungen"
+            },
+            {
+                "id": "step-1-begin-button",
+                "description": "Los geht's!"
+            },
+            {
+                "id": "search-header",
+                "description": "Identifizierung"
+            },
+            {
+                "id": "step-2-sub-header",
+                "description": "Wir müssen Ihre Reservierung in unserem System finden."
+            },
+            {
+                "id": "step-2-sub-step-caption",
+                "description": "Haben Sie die RefNo der Reservierung?"
+            },
+            {
+                "id": "step-2-yes",
+                "description": "Ja, ich habe eine"
+            },
+            {
+                "id": "step-2-no",
+                "description": "Nein, ich habe keine"
+            },
+            {
+                "id": "step-2-refNo",
+                "description": "RefNo"
+            },
+            {
+                "id": "step-2-refNo-hint",
+                "description": "Geben Sie die RefNo ohne Leerzeichen ein"
+            },
+            {
+                "id": "step-2-date",
+                "description": "Datum"
+            },
+            {
+                "id": "step-2-date-hint",
+                "description": "Wann findet Ihre Reise statt?"
+            },
+            {
+                "id": "step-2-destination",
+                "description": "Reiseziel"
+            },
+            {
+                "id": "step-2-destination-hint",
+                "description": "Welches Ziel haben Sie ausgewählt?"
+            },
+            {
+                "id": "step-2-lastname",
+                "description": "Nachname"
+            },
+            {
+                "id": "step-2-lastname-hint",
+                "description": "Geben Sie einen der Nachnamen ein, die Sie angegeben haben"
+            },
+            {
+                "id": "step-2-firstname",
+                "description": "Vorname"
+            },
+            {
+                "id": "step-2-firstname-hint",
+                "description": "Geben Sie den Vornamen des obigen Nachnamens ein"
+            },
+            {
+                "id": "step-3-header",
+                "description": "Angaben zur Reservierung"
+            },
+            {
+                "id": "step-3-sub-header",
+                "description": "Vergewissern Sie sich, dass alles korrekt ist"
+            },
+            {
+                "id": "step-3-date",
+                "description": "Datum"
+            },
+            {
+                "id": "step-3-refNo",
+                "description": "RefNo"
+            },
+            {
+                "id": "step-3-ticketNo",
+                "description": "Ticketnummer"
+            },
+            {
+                "id": "step-3-destination",
+                "description": "Reiseziel"
+            },
+            {
+                "id": "step-3-customer",
+                "description": "Kunde"
+            },
+            {
+                "id": "step-3-pickupPoint",
+                "description": "Abholpunkte"
+            },
+            {
+                "id": "step-3-exactPoint",
+                "description": "Genauer punkt"
+            },
+            {
+                "id": "step-3-time",
+                "description": "Uhrzeit"
+            },
+            {
+                "id": "step-3-adults",
+                "description": "Erwachsene"
+            },
+            {
+                "id": "step-3-kids",
+                "description": "Kinder"
+            },
+            {
+                "id": "step-3-free",
+                "description": "Frei"
+            },
+            {
+                "id": "step-3-totalPax",
+                "description": "Total pax"
+            },
+            {
+                "id": "step-3-phones",
+                "description": "Telefone"
+            },
+            {
+                "id": "step-3-remarks",
+                "description": "Kommentare"
+            },
+            {
+                "id": "step-4-header",
+                "description": "Passagier-Details"
+            },
+            {
+                "id": "step-4-new-passenger-button",
+                "description": "Neuer Passagier"
+            },
+            {
+                "id": "step-5-header",
+                "description": "Passagier"
+            },
+            {
+                "id": "step-5-lastname",
+                "description": "Nachname"
+            },
+            {
+                "id": "step-5-firstname",
+                "description": "Vorname"
+            },
+            {
+                "id": "step-5-nationality",
+                "description": "Nationalität"
+            },
+            {
+                "id": "step-5-gender",
+                "description": "Geschlecht"
+            },
+            {
+                "id": "step-5-birthdate",
+                "description": "Geburtsdatum"
+            },
+            {
+                "id": "step-5-ok",
+                "description": "OK"
+            },
+            {
+                "id": "step-5-cancel",
+                "description": "Abbrechen"
+            },
+            {
+                "id": "step-6-header",
+                "description": "E-Mail senden"
+            },
+            {
+                "id": "step-6-sub-header",
+                "description": "Geben Sie uns eine E-Mail an, an die wir die Bordkarte senden sollen"
+            },
+            {
+                "id": "step-6-email",
+                "description": "Email"
+            },
+            {
+                "id": "step-7-header",
+                "description": "Alles fertig!"
+            },
+            {
+                "id": "completion-description",
+                "description": "Wir wünschen Ihnen eine angenehme Reise und danken Ihnen, dass Sie sich für Corfu Cruises entschieden haben."
+            },
+            {
+                "id": "help",
+                "description": "Für Hilfe hier klicken"
+            },
+            {
+                "id": "today",
+                "description": "Heute"
+            },
+            {
+                "id": "ok",
+                "description": "OK"
+            },
+            {
+                "id": "cancel",
+                "description": "Abbrechen"
+            },
+            {
+                "id": "next",
+                "description": "Weiter"
+            },
+            {
+                "id": "previous",
+                "description": "Zurück"
+            }
+        ]
     }
 ]

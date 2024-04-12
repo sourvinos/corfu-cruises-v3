@@ -16,13 +16,21 @@ namespace API.Features.CheckIn {
             this.context = context;
         }
 
-        public int IsValid(Reservation reservation) {
+        public int IsValidOnRead(Reservation z) {
             return true switch {
-                var x when x == CheckInNotAllowedAfterDeparture(reservation) => 402,
+                var x when x == CheckInNotAllowedAfterDeparture(z) => 403,
                 _ => 200,
             };
         }
 
+        public int IsValidOnUpdate(Reservation z, ReservationWriteDto reservation) {
+            return true switch {
+                var x when x == CheckInNotAllowedAfterDeparture(z) => 403,
+                var x when x == IsAlreadyUpdated(z, reservation) => 415,
+                _ => 200,
+            };
+        }
+ 
         public int GetPortIdFromPickupPointId(Reservation reservation) {
             PickupPoint pickupPoint = context.PickupPoints
                 .AsNoTracking()
@@ -51,6 +59,10 @@ namespace API.Features.CheckIn {
             var departureTime = schedule.Date.ToString("yyyy-MM-dd") + " " + schedule.Time;
             var departureTimeAsDate = DateTime.Parse(departureTime);
             return departureTimeAsDate;
+        }
+
+        private static bool IsAlreadyUpdated(Reservation z, ReservationWriteDto reservation) {
+            return z != null && z.PutAt != reservation.PutAt;
         }
 
     }

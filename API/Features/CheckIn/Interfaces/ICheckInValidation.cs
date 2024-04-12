@@ -4,7 +4,8 @@ namespace API.Features.CheckIn {
 
     public interface ICheckInValidation {
 
-        int IsValid(Reservation reservation);
+        int IsValidOnRead(Reservation x);
+        int IsValidOnUpdate(Reservation x, ReservationWriteDto reservation);
 
     }
 

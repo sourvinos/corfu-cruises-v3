@@ -197,6 +197,14 @@
             {
                 "id": "confirmCancelInvoice",
                 "message": "Αν συνεχίσετε, το παραστατικό θα πάρει ΜΑΡΚ ακύρωσης και δεν θα εμφανίζεται στις οικονομικές καταστάσεις."
+            },
+            {
+                "id": "helpDialog",
+                "message": "Můžete se obrátit na místo, kde jste rezervaci provedli, nebo na jednoho z nás na telefonním čísle +30 26610 71150 nebo +30 26620 61400"
+            },
+            {
+                "id": "checkInAfterDepartureIsNotAllowed",
+                "message": "Vaše rezervace byla nalezena, ale přihlášení po odjezdu lodi není povoleno"
             }
         ]
     }

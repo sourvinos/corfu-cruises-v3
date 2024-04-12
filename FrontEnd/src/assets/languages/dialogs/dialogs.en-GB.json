@@ -197,6 +197,14 @@
             {
                 "id": "confirmCancelInvoice",
                 "message": "Αν συνεχίσετε, το παραστατικό θα πάρει ΜΑΡΚ ακύρωσης και δεν θα εμφανίζεται στις οικονομικές καταστάσεις."
+            },
+            {
+                "id": "helpDialog",
+                "message": "You can contact the place where you made the reservation or one of us at +30 26610 71150 or +30 26620 61400"
+            },
+            {
+                "id": "checkInAfterDepartureIsNotAllowed",
+                "message": "Your reservation was found, but check-in after the ship's departure is not allowed"
             }
         ]
     }

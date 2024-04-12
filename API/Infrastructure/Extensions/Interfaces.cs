@@ -7,6 +7,7 @@ using API.Features.Billing.Prices;
 using API.Features.Billing.Receipts;
 using API.Features.Billing.TaxOffices;
 using API.Features.Billing.VatRegimes;
+using API.Features.CheckIn;
 using API.Features.Reservations.Availability;
 using API.Features.Reservations.Boarding;
 using API.Features.Reservations.CoachRoutes;
@@ -111,6 +112,11 @@ namespace API.Infrastructure.Extensions {
             #endregion
             #region common
             services.AddTransient<IEmailSender, EmailSender>();
+            #endregion
+            #region checkIn
+            services.AddTransient<ICheckInReadRepository, CheckInReadRepository>();
+            services.AddTransient<ICheckInUpdateRepository, CheckInUpdateRepository>();
+            services.AddTransient<ICheckInValidation, CheckInValidation>();
             #endregion
         }
 

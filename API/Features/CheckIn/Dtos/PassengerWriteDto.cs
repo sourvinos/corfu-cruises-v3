@@ -2,7 +2,7 @@ using System;
 
 namespace API.Features.CheckIn {
 
-    public class PassengerWriteDto : IBaseEntity {
+    public class PassengerWriteDto {
 
         // PK
         public int Id { get; set; }

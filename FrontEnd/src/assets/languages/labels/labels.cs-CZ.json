@@ -3286,5 +3286,234 @@
                 "description": "Εκτυπωση"
             }
         ]
+    },
+    {
+        "feature": "check-in",
+        "labels": [
+            {
+                "id": "logo",
+                "description": "Corfu Cruises"
+            },
+            {
+                "id": "step-1-sub-header",
+                "description": "Check-in"
+            },
+            {
+                "id": "step-1-description",
+                "description": "Odbavení z mobilního telefonu nebo tabletu a rychlý nástup bez zpoždění"
+            },
+            {
+                "id": "step-1-begin-button",
+                "description": "Pojďme!"
+            },
+            {
+                "id": "search-header",
+                "description": "Identifikace"
+            },
+            {
+                "id": "step-2-sub-header",
+                "description": "Vaši rezervaci musíme najít v našem systému."
+            },
+            {
+                "id": "step-2-sub-step-caption",
+                "description": "Máte RefNo číslo rezervace?"
+            },
+            {
+                "id": "step-2-yes",
+                "description": "Ano, mám"
+            },
+            {
+                "id": "step-2-no",
+                "description": "Ne, nemám"
+            },
+            {
+                "id": "step-2-refNo",
+                "description": "RefNo"
+            },
+            {
+                "id": "step-2-refNo-hint",
+                "description": "Zadejte číslo RefNo bez mezer"
+            },
+            {
+                "id": "step-2-date",
+                "description": "Datum"
+            },
+            {
+                "id": "step-2-date-hint",
+                "description": "Kdy se vaše cesta koná?"
+            },
+            {
+                "id": "step-2-destination",
+                "description": "Destinace"
+            },
+            {
+                "id": "step-2-destination-hint",
+                "description": "Kam jste se rozhodli jet?"
+            },
+            {
+                "id": "step-2-lastname",
+                "description": "Příjmení"
+            },
+            {
+                "id": "step-2-lastname-hint",
+                "description": "Zadejte jedno z příjmení, které jste uvedli"
+            },
+            {
+                "id": "step-2-firstname",
+                "description": "Jméno"
+            },
+            {
+                "id": "step-2-firstname-hint",
+                "description": "Zadejte křestní jméno výše uvedeného příjmení"
+            },
+            {
+                "id": "step-3-header",
+                "description": "Údaje o rezervaci"
+            },
+            {
+                "id": "step-3-sub-header",
+                "description": "Ujistěte se, že je vše správně"
+            },
+            {
+                "id": "step-3-date",
+                "description": "Datum"
+            },
+            {
+                "id": "step-3-refNo",
+                "description": "RefNo"
+            },
+            {
+                "id": "step-3-ticketNo",
+                "description": "Vstupenka"
+            },
+            {
+                "id": "step-3-destination",
+                "description": "Destinace"
+            },
+            {
+                "id": "step-3-customer",
+                "description": "Zákazník"
+            },
+            {
+                "id": "step-3-pickupPoint",
+                "description": "Místo vyzvednutí"
+            },
+            {
+                "id": "step-3-exactPoint",
+                "description": "Přesné místo"
+            },
+            {
+                "id": "step-3-time",
+                "description": "Čas"
+            },
+            {
+                "id": "step-3-adults",
+                "description": "Dospělí"
+            },
+            {
+                "id": "step-3-kids",
+                "description": "Děti"
+            },
+            {
+                "id": "step-3-free",
+                "description": "Zdarma"
+            },
+            {
+                "id": "step-3-totalPax",
+                "description": "Total pax"
+            },
+            {
+                "id": "step-3-phones",
+                "description": "Telefony"
+            },
+            {
+                "id": "step-3-remarks",
+                "description": "Komentáře"
+            },
+            {
+                "id": "step-4-header",
+                "description": "Údaje o cestujících"
+            },
+            {
+                "id": "step-4-new-passenger-button",
+                "description": "Nový cestující"
+            },
+            {
+                "id": "step-5-header",
+                "description": "Cestující"
+            },
+            {
+                "id": "step-5-lastname",
+                "description": "Příjmení"
+            },
+            {
+                "id": "step-5-firstname",
+                "description": "Jméno"
+            },
+            {
+                "id": "step-5-nationality",
+                "description": "Národnost"
+            },
+            {
+                "id": "step-5-gender",
+                "description": "Pohlaví"
+            },
+            {
+                "id": "step-5-birthdate",
+                "description": "Datum narození"
+            },
+            {
+                "id": "step-5-ok",
+                "description": "OK"
+            },
+            {
+                "id": "step-5-cancel",
+                "description": "Zrušit"
+            },
+            {
+                "id": "step-6-header",
+                "description": "Odeslat e-mail"
+            },
+            {
+                "id": "step-6-sub-header",
+                "description": "Uveďte e-mail, na který vám zašleme palubní vstupenku"
+            },
+            {
+                "id": "step-6-email",
+                "description": "E-mail"
+            },
+            {
+                "id": "step-7-header",
+                "description": "Vše je hotovo!"
+            },
+            {
+                "id": "completion-description",
+                "description": "Přejeme vám příjemnou cestu a děkujeme, že jste si vybrali Corfu Cruises."
+            },
+            {
+                "id": "help",
+                "description": "Pro nápovědu klikněte zde"
+            },
+            {
+                "id": "today",
+                "description": "Dnes"
+            },
+            {
+                "id": "ok",
+                "description": "OK"
+            },
+            {
+                "id": "cancel",
+                "description": "Zrušit"
+            },
+            {
+                "id": "next",
+                "description": "Další"
+            },
+            {
+                "id": "previous",
+                "description": "Předchozí"
+            }
+        ]
     }
 ]

@@ -6,13 +6,14 @@ export class EmojiService {
 
     public getEmoji(emoji: string): string {
         switch (emoji) {
-            case 'wildcard': return '⭐'
-            case 'remarks': return '🔔'
-            case 'null': return '🚫'
-            case 'error': return '❌'
             case 'blue-box': return '🟦'
+            case 'edit': return '✒️'
+            case 'error': return '❌'
             case 'green-box': return '🟩'
+            case 'null': return '🚫'
             case 'red-box': return '🟥'
+            case 'remarks': return '🔔'
+            case 'wildcard': return '⭐'
             case 'yellow-box': return '🟨'
         }
 

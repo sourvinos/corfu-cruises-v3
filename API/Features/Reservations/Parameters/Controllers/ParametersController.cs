@@ -22,7 +22,7 @@ namespace API.Features.Reservations.Parameters {
         }
 
         [HttpGet]
-        [Authorize(Roles = "admin")]
+        [AllowAnonymous]
         public async Task<ResponseWithBody> Get() {
             var x = await parametersRepo.GetAsync();
             return new ResponseWithBody {
