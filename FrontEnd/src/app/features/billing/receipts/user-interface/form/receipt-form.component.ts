@@ -16,6 +16,8 @@ import { MessageInputHintService } from 'src/app/shared/services/message-input-h
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { ReceiptHelperService } from '../../classes/services/receipt.helper.service'
 import { ReceiptHttpService } from '../../classes/services/receipt-http.service'
+import { ReceiptPdfHelperService } from '../../../receiptsViewer/classes/services/receipt-pdf-helper.service'
+import { ReceiptPdfService } from '../../../receiptsViewer/classes/services/receipt-pdf.service'
 import { ReceiptReadDto } from '../../classes/dtos/form/receipt-read-dto'
 import { ReceiptWriteDto } from '../../classes/dtos/form/receipt-write-dto'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
@@ -58,7 +60,7 @@ export class ReceiptFormComponent {
 
     //#endregion
 
-    constructor(private documentTypeHttpService: DocumentTypeHttpService, private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private receiptHelperService: ReceiptHelperService, private receiptHttpService: ReceiptHttpService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private receiptHelperService: ReceiptHelperService, private receiptHttpService: ReceiptHttpService, private receiptPdfService: ReceiptPdfService, private receiptPdfHelperService: ReceiptPdfHelperService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -101,6 +103,14 @@ export class ReceiptFormComponent {
 
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
+    }
+
+    public onCreatePdf(): void {
+        this.receiptHttpService.getForViewer(this.form.value.invoiceId).subscribe(response => {
+            this.receiptPdfHelperService.createPdfReceiptParts(response.body).then((response) => {
+                this.receiptPdfService.createReport(response)
+            })
+        })
     }
 
     public onDelete(): void {

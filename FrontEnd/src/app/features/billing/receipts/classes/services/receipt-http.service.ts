@@ -19,4 +19,8 @@ export class ReceiptHttpService extends HttpDataService {
             : this.http.put<any>(this.url, formData)
     }
 
+    public getForViewer(invoiceId: string): Observable<any> {
+        return this.http.get(environment.apiUrl + '/receiptsViewer/' + invoiceId)
+    }
+
 }

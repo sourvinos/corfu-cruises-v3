@@ -47,7 +47,6 @@ export class ReceiptListComponent {
     public dropdownShipOwners = []
     public dropdownDestinations = []
     public dropdownDocumentTypes = []
-    public dropdownShips = []
 
     //#endregion
 

@@ -8,6 +8,7 @@ namespace API.Features.Billing.Receipts {
 
         Task<IEnumerable<ReceiptListVM>> GetAsync();
         Task<Receipt> GetByIdAsync(string transactionId, bool includeTables);
+        Task<Receipt> GetForViewerByIdAsync(string invoiceId);
 
     }
 

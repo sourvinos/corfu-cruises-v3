@@ -15,13 +15,15 @@ namespace API.Features.Billing.Receipts {
         #region variables
 
         private readonly IMapper mapper;
+        private readonly IReceiptCalculateBalanceRepo receiptCalculateBalanceRepo;
         private readonly IReceiptRepository receiptRepo;
         private readonly IReceiptValidation receiptValidation;
 
         #endregion
 
-        public ReceiptsController(IMapper mapper, IReceiptRepository transactionRepo, IReceiptValidation transactionValidation) {
+        public ReceiptsController(IMapper mapper, IReceiptCalculateBalanceRepo receiptCalculateBalanceRepo, IReceiptRepository transactionRepo, IReceiptValidation transactionValidation) {
             this.mapper = mapper;
+            this.receiptCalculateBalanceRepo = receiptCalculateBalanceRepo;
             this.receiptRepo = transactionRepo;
             this.receiptValidation = transactionValidation;
         }
@@ -53,10 +55,11 @@ namespace API.Features.Billing.Receipts {
         [HttpPost]
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<Response> PostAsync([FromBody] ReceiptWriteDto Receipt) {
-            var x = receiptValidation.IsValidAsync(null, Receipt);
+        public async Task<Response> PostAsync([FromBody] ReceiptWriteDto receipt) {
+            var x = receiptValidation.IsValidAsync(null, receipt);
             if (await x == 200) {
-                var z = receiptRepo.Create(mapper.Map<ReceiptWriteDto, Receipt>((ReceiptWriteDto)receiptRepo.AttachMetadataToPostDto(Receipt)));
+                receipt = receiptCalculateBalanceRepo.AttachBalancesToCreateDto(receipt, receiptCalculateBalanceRepo.CalculateBalances(receipt, receipt.CustomerId));
+                var z = receiptRepo.Create(mapper.Map<ReceiptWriteDto, Receipt>((ReceiptWriteDto)receiptRepo.AttachMetadataToPostDto(receipt)));
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
