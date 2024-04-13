@@ -229,7 +229,7 @@ export class EditUserFormComponent {
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', 'abbreviation', 'abbreviation', true)
+        this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', 'description', 'description', true)
     }
 
     private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string, includeWildCard: boolean): void {
