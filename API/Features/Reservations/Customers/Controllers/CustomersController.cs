@@ -136,9 +136,9 @@ namespace API.Features.Reservations.Customers {
             if (x != null) {
                 return new ResponseWithBody {
                     Code = 200,
-                    Icon = Icons.Error.ToString(),
+                    Icon = Icons.Info.ToString(),
                     Message = ApiMessages.CustomerDataIsInvalid(),
-                    Body = customerRepo.IsDataValid(x)
+                    Body = customerRepo.GetCustomerData(x)
                 };
             } else {
                 throw new CustomException() {

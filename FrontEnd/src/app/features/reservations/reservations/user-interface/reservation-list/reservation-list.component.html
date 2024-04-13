@@ -161,9 +161,7 @@
                 <ng-template let-reservation pTemplate="body">
                     <tr (click)="highlightRow(reservation.reservationId)" (dblclick)="editRecord(reservation.reservationId)" [attr.id]=reservation.reservationId style="height: 32px;">
                         <td><span class="center" style="padding-top: 0.25rem !important;"><p-tableCheckbox (click)="calculateSelectedPax()" [value]="reservation"></p-tableCheckbox></span></td>
-                        <td>
-                            <span [ngClass]="reservationYearIsSelectedYear(reservation.date) ? 'blue' : 'orange'" class="center icon material-symbols-outlined">device_reset</span>
-                        </td>
+                        <td><span [ngClass]="reservationYearIsSelectedYear(reservation.date) ? 'blue' : 'orange'" class="center icon material-symbols-outlined">device_reset</span></td>
                         <td><span class="center">{{ reservation.refNo }}</span></td>
                         <td><span>{{ reservation.ticketNo }}</span></td>
                         <td><span>{{ reservation.customer.description }}</span></td>

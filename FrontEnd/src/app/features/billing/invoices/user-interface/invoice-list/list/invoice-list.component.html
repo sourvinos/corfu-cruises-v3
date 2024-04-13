@@ -105,19 +105,13 @@
                         <td class="width-14"><span>{{ record.ship.description }}</span></td>
                         <td class="width-6"><span class="right with-right-padding">{{ record.grossAmount }}</span></td>
                         <td class="width-3">
-                            <span class="center">
-                                <span *ngIf="record.isEmailSent" class="icon blue email material-symbols-outlined">mail</span>
-                            </span>
+                            <span *ngIf="record.isEmailSent" class="icon center blue email material-symbols-outlined">mail</span>
                         </td>
                         <td class="width-3">
-                            <span class="center">
-                                <span *ngIf="record.aade.mark" class="icon green material-symbols-outlined">upload</span>
-                            </span>
+                            <span *ngIf="record.aade.mark" class="icon center green material-symbols-outlined">upload</span>
                         </td>
                         <td class="width-3">
-                            <span class="center">
-                                <span *ngIf="record.aade.markCancel" class="icon orange material-symbols-outlined">upload</span>
-                            </span>
+                            <span *ngIf="record.aade.markCancel" class="icon center orange material-symbols-outlined">upload</span>
                         </td>
                     </tr>
                 </ng-template>

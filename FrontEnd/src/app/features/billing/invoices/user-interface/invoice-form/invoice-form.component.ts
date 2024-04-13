@@ -191,9 +191,11 @@ export class InvoiceFormComponent {
     }
 
     public onSave(): void {
-        this.isCustomerDataValid()
-            ? this.saveRecord(this.flattenForm())
-            : this.dialogService.open(this.messageDialogService.customerDataIsInvalid(), 'error', ['ok'])
+        this.isCustomerDataValid().then((response) => {
+            response
+                ? this.saveRecord(this.flattenForm())
+                : this.dialogService.open(this.messageDialogService.customerDataIsInvalid(), 'error', ['ok'])
+        })
     }
 
     public onDoSubmitTasks(): void {
@@ -403,8 +405,17 @@ export class InvoiceFormComponent {
         })
     }
 
-    private isCustomerDataValid(): boolean {
-        return false
+    private isCustomerDataValid(): Promise<any> {
+        return new Promise((resolve) => {
+            this.invoiceHttpService.validateCustomerData(this.form.value.customer.id).subscribe({
+                next: (response) => {
+                    resolve(response.body.isValid)
+                },
+                error: (errorFromInterceptor) => {
+                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                }
+            })
+        })
     }
 
     private patchFormWithCalculations(calculationsA: any, calculationsB: any, calculationTotals: any): void {

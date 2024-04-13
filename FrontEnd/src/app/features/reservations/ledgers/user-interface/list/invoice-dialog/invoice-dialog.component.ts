@@ -131,7 +131,11 @@ export class InvoiceDialogComponent {
     }
 
     public onSave(): void {
-        this.saveRecord(this.flattenForm())
+        this.isCustomerDataValid().then((response) => {
+            response
+                ? this.saveRecord(this.flattenForm())
+                : this.dialogService.open(this.messageDialogService.customerDataIsInvalid(), 'error', ['ok'])
+        })
     }
 
     public autocompleteFields(fieldName: any, object: any): any {
@@ -262,10 +266,17 @@ export class InvoiceDialogComponent {
 
     private populateDocumentTypesAfterShipSelection(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string, shipId: number): void {
         this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
-            this[dexieTable] = response.filter(x => x.shipOwner.id == shipId)
+            this[dexieTable] = response.filter(x => x.ship.id == shipId).filter(x => x.isActive)
             this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
         })
     }
+
+    // private populateDocumentTypesAfterShipSelection(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string, shipId: number): void {
+    //     this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
+    //         this[dexieTable] = response.filter(x => x.shipOwner.id == shipId)
+    //         this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
+    //     })
+    // }
 
     private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
         this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
@@ -359,6 +370,19 @@ export class InvoiceDialogComponent {
                 total_Amount: 0
             }),
             remarks: ['', Validators.maxLength(128)]
+        })
+    }
+
+    private isCustomerDataValid(): Promise<any> {
+        return new Promise((resolve) => {
+            this.invoiceHttpService.validateCustomerData(this.form.value.customer.id).subscribe({
+                next: (response) => {
+                    resolve(response.body.isValid)
+                },
+                error: (errorFromInterceptor) => {
+                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                }
+            })
         })
     }
 
