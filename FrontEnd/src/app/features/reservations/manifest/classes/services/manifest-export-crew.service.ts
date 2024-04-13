@@ -18,20 +18,20 @@ export class ManifestExportCrewService {
         this.exportCrew = []
         crew.forEach(record => {
             this.exportCrew.push({
-                Crew_Number: ++row,
-                Crew_Family_name: record.lastname,
-                Crew_Given_name: record.firstname,
-                Crew_Gender: record.gender.description,
-                Crew_Duty_of_crew: record.specialty.description,
-                Crew_Nationality: record.nationality.code,
-                Crew_Date_of_birth: this.dateHelperService.formatISODateToLocale(record.birthdate),
-                Crew_Place_of_birth: '',
-                Crew_Country_of_birth: null,
-                Crew_Nature_of_identity_document: 'Other',
-                Crew_Number_of_identity_document: '0',
-                Crew_Issuing_State_of_Identity_Document: '',
-                Crew_Expiry_Date_of_Identity_Document: '',
-                Crew_Visa_Residence_Permit_number: ''
+                Crew_Dep_Number: ++row,
+                Crew_Dep_Family_name: record.lastname,
+                Crew_Dep_Given_name: record.firstname,
+                Crew_Dep_Gender: record.gender.description,
+                Crew_Dep_Duty_of_crew: record.specialty.description,
+                Crew_Dep_Nationality: record.nationality.code,
+                Crew_Dep_Date_of_birth: this.dateHelperService.formatISODateToLocale(record.birthdate),
+                Crew_Dep_Place_of_birth: '',
+                Crew_Dep_Country_of_birth: null,
+                Crew_Dep_Nature_of_identity_document: 'Other',
+                Crew_Dep_Number_of_identity_document: '0',
+                Crew_Dep_Issuing_State_of_Identity_Document: '',
+                Crew_Dep_Expiry_Date_of_Identity_Document: '',
+                Crew_Dep_Visa_Residence_Permit_number: ''
             })
         })
         return this.exportCrew

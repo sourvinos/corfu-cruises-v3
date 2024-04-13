@@ -18,24 +18,24 @@ export class ManifestExportPassengerService {
         this.exportPassengers = []
         passengers.forEach(record => {
             this.exportPassengers.push({
-                Passengers_Number: ++row,
-                Passengers_Family_name: record.lastname,
-                Passengers_Given_name: record.firstname,
-                Passengers_Gender: record.gender.description,
-                Passengers_Nationality: record.nationality.code,
-                Passengers_Date_of_birth: this.dateHelperService.formatISODateToLocale(record.birthdate),
-                Passengers_Place_of_birth: '',
-                Passengers_Country_of_birth: null,
-                Passengers_Nature_of_identity_document: 'Other',
-                Passengers_Number_of_identity_document: '0',
-                Passengers_Issuing_State_of_Identity_Document: '',
-                Passengers_Expiry_Date_of_Identity_Document: '',
-                Passengers_Port_of_embarkation: record.port.locode,
-                Passengers_Port_of_disembarkation: null,
-                Passengers_Transit: null,
-                Passengers_Visa_Residence_Permit_number: '',
-                Passengers_Special_Care_Or_Assistance: '',
-                Passengers_Emergency_Contact_Number: ''
+                Passengers_Dep_Number: ++row,
+                Passengers_Dep_Family_name: record.lastname,
+                Passengers_Dep_Given_name: record.firstname,
+                Passengers_Dep_Gender: record.gender.description,
+                Passengers_Dep_Nationality: record.nationality.code,
+                Passengers_Dep_Date_of_birth: this.dateHelperService.formatISODateToLocale(record.birthdate),
+                Passengers_Dep_Place_of_birth: '',
+                Passengers_Dep_Country_of_birth: null,
+                Passengers_Dep_Nature_of_identity_document: 'Other',
+                Passengers_Dep_Number_of_identity_document: '0',
+                Passengers_Dep_Issuing_State_of_Identity_Document: '',
+                Passengers_Dep_Expiry_Date_of_Identity_Document: '',
+                Passengers_Dep_Port_of_embarkation: record.port.locode,
+                Passengers_Dep_Port_of_disembarkation: null,
+                Passengers_Dep_Transit: null,
+                Passengers_Dep_Visa_Residence_Permit_number: '',
+                Passengers_Dep_Special_Care_Or_Assistance: '',
+                Passengers_Dep_Emergency_Contact_Number: ''
             })
         })
         return this.exportPassengers
