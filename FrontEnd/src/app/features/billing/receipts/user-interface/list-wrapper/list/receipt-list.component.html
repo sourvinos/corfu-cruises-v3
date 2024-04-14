@@ -96,6 +96,12 @@
     </div>
 
     <div id="footer">
+        <button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" mat-icon-button>
+            <mat-icon class="material-icons-outlined">more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" class="primary">
+            <ng-container *ngTemplateOutlet="utilityMenu"></ng-container>
+        </mat-menu>
         <table-total-filtered-records (resetTableFilters)="resetTableFilters()" [filteredRecordCount]="recordsFilteredCount" [recordCount]="records.length"></table-total-filtered-records>
         <div id="align-right">
             <button (click)="newRecord()" class="primary" mat-flat-button>{{ getLabel("newRecord") | uppercase }}</button>
@@ -103,3 +109,9 @@
     </div>
 
 </div>
+
+<ng-template #utilityMenu>
+    <button (click)="exportRecords()" mat-menu-item>
+        <span>Export to xls</span>
+    </button>
+</ng-template>

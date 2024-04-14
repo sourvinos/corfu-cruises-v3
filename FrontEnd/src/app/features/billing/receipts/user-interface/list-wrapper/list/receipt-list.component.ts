@@ -1,4 +1,4 @@
-import { ActivatedRoute, Router } from '@angular/router'
+import { Router } from '@angular/router'
 import { Component, ViewChild } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { MatDatepickerInputEvent } from '@angular/material/datepicker'
@@ -7,17 +7,16 @@ import { Table } from 'primeng/table'
 import { formatNumber } from '@angular/common'
 // Custom
 import { DateHelperService } from '../../../../../../shared/services/date-helper.service'
-import { DialogService } from '../../../../../../shared/services/modal-dialog.service'
 import { EmojiService } from '../../../../../../shared/services/emoji.service'
 import { HelperService } from '../../../../../../shared/services/helper.service'
 import { InteractionService } from '../../../../../../shared/services/interaction.service'
 import { LocalStorageService } from '../../../../../../shared/services/local-storage.service'
-import { MessageDialogService } from '../../../../../../shared/services/message-dialog.service'
 import { MessageLabelService } from '../../../../../../shared/services/message-label.service'
+import { ReceiptHttpService } from '../../../classes/services/receipt-http.service'
+import { ReceiptListCriteriaVM } from '../../../classes/view-models/criteria/receipt-list-criteria-vm'
+import { ReceiptListExportService } from '../../../classes/services/receipt-list-export.service'
 import { ReceiptListVM } from '../../../classes/view-models/list/receipt-list-vm'
 import { SessionStorageService } from '../../../../../../shared/services/session-storage.service'
-import { ReceiptListCriteriaVM } from '../../../classes/view-models/criteria/receipt-list-criteria-vm'
-import { ReceiptHttpService } from '../../../classes/services/receipt-http.service'
 
 @Component({
     selector: 'receipt-list',
@@ -65,7 +64,19 @@ export class ReceiptListComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private receiptHttpService: ReceiptHttpService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(
+        private dateAdapter: DateAdapter<any>,
+        private dateHelperService: DateHelperService,
+        private emojiService: EmojiService,
+        private helperService: HelperService,
+        private interactionService: InteractionService,
+        private localStorageService: LocalStorageService,
+        private messageLabelService: MessageLabelService,
+        private receiptHttpService: ReceiptHttpService,
+        private receiptListExportService: ReceiptListExportService,
+        private router: Router,
+        private sessionStorageService: SessionStorageService,
+    ) { }
 
     //#region lifecycle hooks
 
@@ -94,6 +105,10 @@ export class ReceiptListComponent {
         this.storeScrollTop()
         this.storeSelectedId(id)
         this.navigateToRecord(id)
+    }
+
+    public exportRecords(): void {
+        this.receiptListExportService.exportToExcel(this.receiptListExportService.buildList(this.recordsFiltered))
     }
 
     public filterRecords(event: any): void {
