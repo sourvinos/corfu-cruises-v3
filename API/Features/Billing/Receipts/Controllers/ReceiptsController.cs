@@ -34,6 +34,12 @@ namespace API.Features.Billing.Receipts {
             return await receiptRepo.GetAsync();
         }
 
+        [HttpPost("{getForPeriod}")]
+        [Authorize(Roles = "admin")]
+        public async Task<IEnumerable<ReceiptListVM>> GetForPeriodAsync([FromBody] ReceiptListCriteriaVM criteria) {
+            return await receiptRepo.GetForPeriodAsync(criteria);
+        }
+
         [HttpGet("{transactionId}")]
         [Authorize(Roles = "admin")]
         public async Task<ResponseWithBody> GetByIdAsync(string transactionId) {

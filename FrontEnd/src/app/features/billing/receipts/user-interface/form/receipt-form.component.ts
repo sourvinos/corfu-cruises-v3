@@ -18,8 +18,8 @@ import { ReceiptHelperService } from '../../classes/services/receipt.helper.serv
 import { ReceiptHttpService } from '../../classes/services/receipt-http.service'
 import { ReceiptPdfHelperService } from '../../../receiptsViewer/classes/services/receipt-pdf-helper.service'
 import { ReceiptPdfService } from '../../../receiptsViewer/classes/services/receipt-pdf.service'
-import { ReceiptReadDto } from '../../classes/dtos/form/receipt-read-dto'
-import { ReceiptWriteDto } from '../../classes/dtos/form/receipt-write-dto'
+import { ReceiptReadDto } from '../../classes/dtos/receipt-read-dto'
+import { ReceiptWriteDto } from '../../classes/dtos/receipt-write-dto'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
 

@@ -1,4 +1,3 @@
-using API.Features.Billing.Invoices;
 using API.Infrastructure.Classes;
 
 namespace API.Features.Billing.Receipts {
@@ -12,6 +11,7 @@ namespace API.Features.Billing.Receipts {
         public SimpleEntity ShipOwner { get; set; }
         public int InvoiceNo { get; set; }
         public decimal GrossAmount { get; set; }
+        public bool IsEmailSent { get; set; }
 
     }
 

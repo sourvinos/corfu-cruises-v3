@@ -6,6 +6,8 @@
             <home-button-and-title [featureIcon]="featureIcon" [feature]="feature" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
         </div>
 
+        <receipt-list-criteria (outputSelected)="doSearchTasks($event)"></receipt-list-criteria>
+
         <div id="table-wrapper">
             <p-contextMenu #contextMenu [model]="menuItems"></p-contextMenu>
             <p-table #table (onFilter)="filterRecords($event)" [(contextMenuSelection)]="selectedRecord" [contextMenu]="contextMenu" [scrollable]="true" [value]="records" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
@@ -18,6 +20,7 @@
                         <th class="width-4" pSortableColumn="documentType.batch">{{ getLabel("headerDocumentTypeBatch") }}</th>
                         <th class="width-4" pSortableColumn="no">{{ getLabel("headerNo") }}</th>
                         <th class="width-6" pSortableColumn="grossAmount">{{ getLabel("headerGrossAmount") }}</th>
+                        <th class="width-3"></th>
                     </tr>
                     <tr>
                         <th class="width-9">
@@ -70,6 +73,7 @@
                         <th class="width-4"></th>
                         <th class="width-4"></th>
                         <th class="width-6"></th>
+                        <th class="width-3"></th>
                     </tr>
                 </ng-template>
                 <ng-template let-record pTemplate="body">
@@ -81,6 +85,9 @@
                         <td class="width-4"><span class="center">{{ record.documentType.batch }}</span></td>
                         <td class="width-4"><span class="center">{{ record.invoiceNo }}</span></td>
                         <td class="width-6"><span class="right with-right-padding">{{ formatNumberToLocale(record.grossAmount) }}</span></td>
+                        <td class="width-3">
+                            <span *ngIf="record.isEmailSent" class="icon center blue email material-symbols-outlined">mail</span>
+                        </td>
                     </tr>
                 </ng-template>
             </p-table>

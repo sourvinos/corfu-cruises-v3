@@ -6,22 +6,23 @@ import { MenuItem } from 'primeng/api'
 import { Table } from 'primeng/table'
 import { formatNumber } from '@angular/common'
 // Custom
-import { DateHelperService } from '../../../../../shared/services/date-helper.service'
-import { DialogService } from '../../../../../shared/services/modal-dialog.service'
-import { EmojiService } from '../../../../../shared/services/emoji.service'
-import { HelperService } from '../../../../../shared/services/helper.service'
-import { InteractionService } from '../../../../../shared/services/interaction.service'
-import { ListResolved } from '../../../../../shared/classes/list-resolved'
-import { LocalStorageService } from '../../../../../shared/services/local-storage.service'
-import { MessageDialogService } from '../../../../../shared/services/message-dialog.service'
-import { MessageLabelService } from '../../../../../shared/services/message-label.service'
-import { ReceiptListVM } from '../../classes/view-models/list/receipt-list-vm'
-import { SessionStorageService } from '../../../../../shared/services/session-storage.service'
+import { DateHelperService } from '../../../../../../shared/services/date-helper.service'
+import { DialogService } from '../../../../../../shared/services/modal-dialog.service'
+import { EmojiService } from '../../../../../../shared/services/emoji.service'
+import { HelperService } from '../../../../../../shared/services/helper.service'
+import { InteractionService } from '../../../../../../shared/services/interaction.service'
+import { LocalStorageService } from '../../../../../../shared/services/local-storage.service'
+import { MessageDialogService } from '../../../../../../shared/services/message-dialog.service'
+import { MessageLabelService } from '../../../../../../shared/services/message-label.service'
+import { ReceiptListVM } from '../../../classes/view-models/list/receipt-list-vm'
+import { SessionStorageService } from '../../../../../../shared/services/session-storage.service'
+import { ReceiptListCriteriaVM } from '../../../classes/view-models/criteria/receipt-list-criteria-vm'
+import { ReceiptHttpService } from '../../../classes/services/receipt-http.service'
 
 @Component({
     selector: 'receipt-list',
     templateUrl: './receipt-list.component.html',
-    styleUrls: ['../../../../../../assets/styles/custom/lists.css']
+    styleUrls: ['../../../../../../../assets/styles/custom/lists.css']
 })
 
 export class ReceiptListComponent {
@@ -36,7 +37,7 @@ export class ReceiptListComponent {
     public featureIcon = 'receipts'
     public icon = 'home'
     public parentUrl = '/home'
-    public records: ReceiptListVM[]
+    public records: ReceiptListVM[] = []
     public recordsFilteredCount = 0
 
     //#endregion
@@ -64,21 +65,16 @@ export class ReceiptListComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private receiptHttpService: ReceiptHttpService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
-        this.loadRecords().then(() => {
-            this.populateDropdownFilters()
-            this.filterTableFromStoredFilters()
-            this.formatDatesToLocale()
-            this.subscribeToInteractionService()
-            this.setTabTitle()
-            this.setLocale()
-            this.setSidebarsHeight()
-            this.initContextMenu()
-        })
+        this.setTabTitle()
+        this.setLocale()
+        this.setSidebarsHeight()
+        this.initContextMenu()
+        this.enableDisableFilters()
     }
 
     ngAfterViewInit(): void {
@@ -128,6 +124,18 @@ export class ReceiptListComponent {
         this.router.navigate([this.url + '/new'])
     }
 
+    public doSearchTasks(event: any): void {
+        if (event.fromDate != '' && event.toDate != '') {
+            this.loadRecords(event).then(() => {
+                this.filterTableFromStoredFilters()
+                this.populateDropdownFilters()
+                this.enableDisableFilters()
+                this.formatDatesToLocale()
+                this.subscribeToInteractionService()
+            })
+        }
+    }
+
     public resetTableFilters(): void {
         this.helperService.clearTableTextFilters(this.table, [''])
     }
@@ -160,27 +168,16 @@ export class ReceiptListComponent {
         this.virtualElement = document.getElementsByClassName('p-scroller-inline')[0]
     }
 
-    private goBack(): void {
-        this.router.navigate([this.parentUrl])
-    }
-
     private hightlightSavedRow(): void {
         this.helperService.highlightSavedRow(this.feature)
     }
 
-    private loadRecords(): Promise<any> {
+    private loadRecords(criteria: ReceiptListCriteriaVM): Promise<ReceiptListVM[]> {
         return new Promise((resolve) => {
-            const listResolved: ListResolved = this.activatedRoute.snapshot.data[this.feature]
-            if (listResolved.error == null) {
-                this.records = listResolved.list
-                this.recordsFiltered = listResolved.list
-                this.recordsFilteredCount = this.records.length
+            this.receiptHttpService.getForList(criteria).subscribe(response => {
+                this.records = response
                 resolve(this.records)
-            } else {
-                this.dialogService.open(this.messageDialogService.filterResponse(listResolved.error), 'error', ['ok']).subscribe(() => {
-                    this.goBack()
-                })
-            }
+            })
         })
     }
 

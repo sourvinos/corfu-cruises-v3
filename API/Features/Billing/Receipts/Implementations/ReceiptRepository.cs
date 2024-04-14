@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
 using AutoMapper;
+using System;
 
 namespace API.Features.Billing.Receipts {
 
@@ -30,6 +31,20 @@ namespace API.Features.Billing.Receipts {
                 .OrderBy(x => x.Date)
                 .ToListAsync();
             return mapper.Map<IEnumerable<Receipt>, IEnumerable<ReceiptListVM>>(receipts);
+        }
+
+        public async Task<IEnumerable<ReceiptListVM>> GetForPeriodAsync(ReceiptListCriteriaVM criteria) {
+            var receipts = await context.Receipts
+                 .AsNoTracking()
+                 .Where(x => x.DiscriminatorId == 2)
+                 .Include(x => x.Customer)
+                 .Include(x => x.DocumentType)
+                 .Include(x => x.ShipOwner)
+                 .Where(x => x.Date >= Convert.ToDateTime(criteria.FromDate) && x.Date <= Convert.ToDateTime(criteria.ToDate))
+                 .OrderBy(x => x.Date)
+                 .ToListAsync();
+            return mapper.Map<IEnumerable<Receipt>, IEnumerable<ReceiptListVM>>(receipts);
+
         }
 
         public async Task<Receipt> GetByIdAsync(string transactionId, bool includeTables) {

@@ -1,4 +1,3 @@
-using System.Linq;
 using API.Infrastructure.Helpers;
 using AutoMapper;
 

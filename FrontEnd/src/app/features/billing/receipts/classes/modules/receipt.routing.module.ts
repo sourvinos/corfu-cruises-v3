@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router'
 import { AuthGuardService } from 'src/app/shared/services/auth-guard.service'
 import { ReceiptFormComponent } from '../../user-interface/form/receipt-form.component'
 import { ReceiptFormResolver } from '../resolvers/receipt-form.resolver'
-import { ReceiptListComponent } from '../../user-interface/list/receipt-list.component'
+import { ReceiptListComponent } from '../../user-interface/list-wrapper/list/receipt-list.component'
 import { ReceiptListResolver } from '../resolvers/receipt-list.resolver'
 
 const routes: Routes = [

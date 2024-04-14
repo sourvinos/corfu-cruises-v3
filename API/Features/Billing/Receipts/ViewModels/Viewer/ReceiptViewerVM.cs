@@ -8,6 +8,7 @@ namespace API.Features.Billing.Receipts {
         public ReceiptViewerHeaderVM Header { get; set; }
         public string Remarks { get; set; }
         public ReceiptViewerPartyVM Customer { get; set; }
+        public string Destination { get; set; }
         public ReceiptViewerDocumentTypeVM DocumentType { get; set; }
         public string PaymentMethod { get; set; }
         public ReceiptViewerPartyVM Issuer { get; set; }

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DocumentTypeReadDto } from '../../../documentTypes/classes/dtos/documentType-read-dto'
-import { ReceiptWriteDto } from '../dtos/form/receipt-write-dto'
+import { ReceiptWriteDto } from '../dtos/receipt-write-dto'
 
 @Injectable({ providedIn: 'root' })
 

@@ -11,5 +11,6 @@ export interface ReceiptListVM {
     shipOwner: SimpleEntity
     invoiceNo: number
     grossAmount: number
+    isEmailSent: boolean
 
 }
