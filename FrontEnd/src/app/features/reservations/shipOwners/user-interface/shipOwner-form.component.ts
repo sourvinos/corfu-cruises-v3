@@ -142,6 +142,8 @@ export class ShipOwnerFormComponent {
             personInCharge: this.form.value.personInCharge,
             phones: this.form.value.phones,
             email: this.form.value.email,
+            vatMyDataId: this.form.value.vatMyDataId,
+            vatPercent: this.form.value.vatPercent,
             demoUrl: this.form.value.demoUrl,
             demoUsername: this.form.value.demoUsername,
             demoSubscriptionKey: this.form.value.demoSubscriptionKey,
@@ -196,6 +198,8 @@ export class ShipOwnerFormComponent {
             personInCharge: ['', [Validators.maxLength(128)]],
             phones: ['', [Validators.maxLength(128)]],
             email: ['', [Validators.email, Validators.maxLength(128)]],
+            vatMyDataId: [0, [Validators.maxLength(2)]],
+            vatPercent: [0, [Validators.required, Validators.min(0), Validators.max(100)]],
             demoUrl: ['', [Validators.maxLength(256)]],
             demoUsername: ['', [Validators.maxLength(256)]],
             demoSubscriptionKey: ['', [Validators.maxLength(256)]],
@@ -338,6 +342,14 @@ export class ShipOwnerFormComponent {
 
     get email(): AbstractControl {
         return this.form.get('email')
+    }
+
+    get vatMyDataId(): AbstractControl {
+        return this.form.get('vatMyDataId')
+    }
+
+    get vatPercent(): AbstractControl {
+        return this.form.get('vatPercent')
     }
 
     get demoUrl(): AbstractControl {

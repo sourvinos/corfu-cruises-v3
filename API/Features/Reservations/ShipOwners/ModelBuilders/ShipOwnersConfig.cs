@@ -15,11 +15,12 @@ namespace API.Features.Reservations.ShipOwners {
             // Fields
             entity.Property(x => x.Description).HasMaxLength(128).IsRequired(true);
             entity.Property(x => x.VatNumber).HasDefaultValue("").HasMaxLength(36);
-            entity.Property(x => x.Branch).IsRequired(true);
+            entity.Property(x => x.VatPercent).HasDefaultValue(0).HasMaxLength(5);
             entity.Property(x => x.Profession).HasDefaultValue("").HasMaxLength(128);
-            entity.Property(x => x.Street).HasMaxLength(128).IsRequired();
-            entity.Property(x => x.PostalCode).HasMaxLength(10).IsRequired();
-            entity.Property(x => x.City).HasMaxLength(128).IsRequired();
+            entity.Property(x => x.Street).HasDefaultValue("").HasMaxLength(128).IsRequired();
+            entity.Property(x => x.Number).HasDefaultValue("").HasMaxLength(4).IsRequired();
+            entity.Property(x => x.PostalCode).HasDefaultValue("").HasMaxLength(10).IsRequired();
+            entity.Property(x => x.City).HasDefaultValue("").HasMaxLength(128).IsRequired();
             entity.Property(x => x.Phones).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.PersonInCharge).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.Email).HasDefaultValue("").HasMaxLength(128);
