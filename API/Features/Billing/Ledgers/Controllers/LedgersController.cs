@@ -19,7 +19,7 @@ namespace API.Features.Billing.Ledgers {
 
         [Authorize(Roles = "user, admin")]
         public List<LedgerVM> Post([FromBody] LedgerCriteria criteria) {
-            var records = repo.BuildBalanceForLedger(repo.GetForLedger(criteria.FromDate, criteria.ToDate, criteria.CustomerId));
+            var records = repo.BuildBalanceForLedger(repo.GetForLedger(criteria.FromDate, criteria.ToDate, criteria.CustomerId, criteria.ShipOwnerId));
             var previous = repo.BuildPrevious(records, criteria.FromDate);
             var requested = repo.BuildRequested(records, criteria.FromDate);
             var total = repo.BuildTotal(records);

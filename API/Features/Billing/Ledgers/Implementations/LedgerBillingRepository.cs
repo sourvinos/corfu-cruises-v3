@@ -27,13 +27,15 @@ namespace API.Features.Billing.Ledgers {
             this.mapper = mapper;
         }
 
-        public IEnumerable<LedgerVM> GetForLedger(string fromDate, string toDate, int customerId) {
+        public IEnumerable<LedgerVM> GetForLedger(string fromDate, string toDate, int customerId, int? shipOwnerId) {
             var connectedCustomerId = GetConnectedCustomerIdForConnectedUser();
             var records = context.Transactions
                 .AsNoTracking()
                 .Include(x => x.Customer)
                 .Include(x => x.DocumentType)
+                .Include(x => x.ShipOwner)
                 .Where(x => x.Date <= Convert.ToDateTime(toDate)
+                    && (shipOwnerId == null || x.ShipOwner.Id == shipOwnerId)
                     && (connectedCustomerId == null
                         ? x.CustomerId == customerId
                         : x.CustomerId == connectedCustomerId))

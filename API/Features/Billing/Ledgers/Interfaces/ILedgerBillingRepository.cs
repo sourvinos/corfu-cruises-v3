@@ -5,7 +5,7 @@ namespace API.Features.Billing.Ledgers {
 
     public interface ILedgerBillingRepository {
 
-        IEnumerable<LedgerVM> GetForLedger(string fromDate, string toDate, int customerId);
+        IEnumerable<LedgerVM> GetForLedger(string fromDate, string toDate, int customerId, int? shipOwnerId);
         IEnumerable<LedgerVM> BuildBalanceForLedger(IEnumerable<LedgerVM> records);
         LedgerVM BuildPrevious(IEnumerable<LedgerVM> records, string fromDate);
         List<LedgerVM> BuildRequested(IEnumerable<LedgerVM> records, string fromDate);
