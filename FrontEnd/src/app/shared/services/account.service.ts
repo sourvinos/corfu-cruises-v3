@@ -103,9 +103,6 @@ export class AccountService extends HttpDataService {
             { 'item': 'ledgerList-filters', 'when': 'always' }, { 'item': 'ledgerList-id', 'when': 'always' }, { 'item': 'ledgerList-scrollTop', 'when': 'always' },
             // Statistics
             { 'item': 'selectedYear', 'when': 'always' },
-            // VatData
-            { 'item': 'vatPercent', 'when': 'always' },
-            { 'item': 'vatCategoryId', 'when': 'always' }
         ])
     }
 
@@ -136,7 +133,6 @@ export class AccountService extends HttpDataService {
             this.setAuthSettings(response)
             this.populateDexieFromAPI()
             this.setSelectedYear()
-            this.setVatData()
             this.refreshMenus()
             this.clearConsole()
         }))
@@ -208,13 +204,6 @@ export class AccountService extends HttpDataService {
 
     private setSelectedYear(): void {
         this.sessionStorageService.saveItem('selectedYear', new Date().getFullYear().toString())
-    }
-
-    private setVatData(): void {
-        this.billingParametersHttpService.getOnlyRecord().subscribe(response => {
-            this.sessionStorageService.saveItem('vatPercent', response.body.vatPercent)
-            this.sessionStorageService.saveItem('vatCategoryId', response.body.vatCategoryId)
-        })
     }
 
     private setUserData(response: any): void {

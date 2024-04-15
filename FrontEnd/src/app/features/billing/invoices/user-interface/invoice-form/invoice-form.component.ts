@@ -279,8 +279,14 @@ export class InvoiceFormComponent {
     }
 
     public updateFieldsAfterShipSelection(value: SimpleEntity): void {
-        this.form.patchValue({ documentType: '', documentTypeDescription: '', invoiceNo: 0, batch: '' })
+        this.form.patchValue({
+            documentType: '',
+            documentTypeDescription: '',
+            invoiceNo: 0,
+            batch: ''
+        })
         this.populateDocumentTypesAfterShipSelection('documentTypesInvoice', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation', value.id)
+        this.updateVatPercentAfterShipSelection(this.form.value.ship)
     }
 
     //#endregion
@@ -326,7 +332,7 @@ export class InvoiceFormComponent {
             paymentMethod: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             ship: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             netAmount: [0, ValidationService.isGreaterThanZero],
-            vatPercent: [this.sessionStorageService.getItem('vatPercent')],
+            vatPercent: [0],
             vatAmount: [0, ValidationService.isGreaterThanZero],
             grossAmount: [0, [Validators.required, Validators.min(1), Validators.max(99999)]],
             portA: this.formBuilder.group({
@@ -645,6 +651,13 @@ export class InvoiceFormComponent {
 
     private getCustomerDataFromStorage(customerId: number): Promise<any> {
         return this.dexieService.getById('customers', customerId)
+    }
+
+    private updateVatPercentAfterShipSelection(value: any): void {
+        console.log(value)
+        this.form.patchValue({
+            vatPercent: value.shipOwner.vatPercent
+        })
     }
 
     //#endregion
