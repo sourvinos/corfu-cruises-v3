@@ -42,6 +42,7 @@ namespace API.Features.Billing.Invoices {
                 .Include(x => x.Destination)
                 .Include(x => x.DocumentType)
                 .Include(x => x.Ship)
+                .Include(x => x.ShipOwner)
                 .Include(x => x.Aade)
                 .Where(x => x.Date >= Convert.ToDateTime(criteria.FromDate) && x.Date <= Convert.ToDateTime(criteria.ToDate))
                 .OrderBy(x => x.Date)

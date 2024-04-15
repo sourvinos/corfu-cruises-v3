@@ -85,6 +85,10 @@
     border-top: 0.0625rem solid color-mix(in srgb, var(--color-primary) 30%, transparent) !important;
 }
 
+.p-datatable .p-datatable-thead > tr > th.border-bottom {
+    border-bottom: 0.0625rem solid color-mix(in srgb, var(--color-primary) 30%, transparent) !important;
+}
+
 .p-datatable .p-datatable-thead > tr > th.second-row {
     padding: 7px 0.5rem 8px 0.5rem !important;
 }

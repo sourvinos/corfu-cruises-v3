@@ -14,6 +14,7 @@ export interface InvoiceListVM {
     formattedDate: string
     isEmailSent: boolean
     ship: SimpleEntity
+    shipOwner: SimpleEntity
     aade: InvoiceListAadeVM
 
 }

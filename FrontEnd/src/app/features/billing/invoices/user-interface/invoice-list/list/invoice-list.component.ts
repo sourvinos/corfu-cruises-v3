@@ -5,6 +5,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker'
 import { MenuItem } from 'primeng/api'
 import { Router } from '@angular/router'
 import { Table } from 'primeng/table'
+import { formatNumber } from '@angular/common'
 // Custom
 import { DateHelperService } from '../../../../../../shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
@@ -48,6 +49,7 @@ export class InvoiceListComponent {
     public dropdownCustomers = []
     public dropdownDestinations = []
     public dropdownDocumentTypes = []
+    public dropdownShipOwners = []
     public dropdownShips = []
 
     //#endregion
@@ -115,6 +117,10 @@ export class InvoiceListComponent {
         this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
         this.recordsFiltered = event.filteredValue
         this.recordsFilteredCount = event.filteredValue.length
+    }
+
+    public formatNumberToLocale(number: number, decimals = true): string {
+        return formatNumber(number, this.localStorageService.getItem('language'), decimals ? '1.2' : '1.0')
     }
 
     public getEmoji(anything: any): string {
@@ -286,6 +292,7 @@ export class InvoiceListComponent {
         this.dropdownCustomers = this.helperService.getDistinctRecords(this.records, 'customer', 'abbreviation')
         this.dropdownDestinations = this.helperService.getDistinctRecords(this.records, 'destination', 'description')
         this.dropdownDocumentTypes = this.helperService.getDistinctRecords(this.records, 'documentType', 'description')
+        this.dropdownShipOwners = this.helperService.getDistinctRecords(this.records, 'shipOwner', 'description')
         this.dropdownShips = this.helperService.getDistinctRecords(this.records, 'ship', 'description')
     }
 

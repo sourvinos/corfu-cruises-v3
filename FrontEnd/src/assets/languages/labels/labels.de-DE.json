@@ -2867,6 +2867,10 @@
                 "description": "Ημερομηνία"
             },
             {
+                "id": "headerShipOwnerDescription",
+                "description": "Πλοιοκτήτης"
+            },
+            {
                 "id": "headerCustomerDescription",
                 "description": "Πελάτης"
             },
