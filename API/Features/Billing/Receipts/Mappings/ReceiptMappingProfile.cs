@@ -23,6 +23,10 @@ namespace API.Features.Billing.Receipts {
                 .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new SimpleEntity {
                     Id = x.ShipOwner.Id,
                     Description = x.ShipOwner.Description
+                }))
+                .ForMember(x => x.PaymentMethod, x => x.MapFrom(x => new SimpleEntity {
+                    Id = x.PaymentMethod.Id,
+                    Description = x.PaymentMethod.Description
                 }));
             // GetById
             CreateMap<Receipt, ReceiptReadDto>()

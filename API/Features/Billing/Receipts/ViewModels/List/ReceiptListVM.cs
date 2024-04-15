@@ -9,8 +9,10 @@ namespace API.Features.Billing.Receipts {
         public DocumentTypeVM DocumentType { get; set; }
         public SimpleEntity Customer { get; set; }
         public SimpleEntity ShipOwner { get; set; }
+        public SimpleEntity PaymentMethod { get; set; }
         public int InvoiceNo { get; set; }
         public decimal GrossAmount { get; set; }
+        public string Remarks { get; set; }
         public bool IsEmailSent { get; set; }
 
     }

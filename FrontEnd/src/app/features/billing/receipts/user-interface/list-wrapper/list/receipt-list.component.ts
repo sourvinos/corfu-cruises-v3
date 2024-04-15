@@ -64,19 +64,7 @@ export class ReceiptListComponent {
 
     //#endregion
 
-    constructor(
-        private dateAdapter: DateAdapter<any>,
-        private dateHelperService: DateHelperService,
-        private emojiService: EmojiService,
-        private helperService: HelperService,
-        private interactionService: InteractionService,
-        private localStorageService: LocalStorageService,
-        private messageLabelService: MessageLabelService,
-        private receiptHttpService: ReceiptHttpService,
-        private receiptListExportService: ReceiptListExportService,
-        private router: Router,
-        private sessionStorageService: SessionStorageService,
-    ) { }
+    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private receiptHttpService: ReceiptHttpService, private receiptListExportService: ReceiptListExportService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 

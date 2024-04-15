@@ -26,6 +26,7 @@ namespace API.Features.Billing.Receipts {
                 .AsNoTracking()
                 .Include(x => x.Customer)
                 .Include(x => x.DocumentType)
+                .Include(x => x.PaymentMethod)
                 .Include(x => x.ShipOwner)
                 .Where(x => x.DiscriminatorId == 2)
                 .OrderBy(x => x.Date)
@@ -39,12 +40,12 @@ namespace API.Features.Billing.Receipts {
                  .Where(x => x.DiscriminatorId == 2)
                  .Include(x => x.Customer)
                  .Include(x => x.DocumentType)
+                 .Include(x => x.PaymentMethod)
                  .Include(x => x.ShipOwner)
                  .Where(x => x.Date >= Convert.ToDateTime(criteria.FromDate) && x.Date <= Convert.ToDateTime(criteria.ToDate))
                  .OrderBy(x => x.Date)
                  .ToListAsync();
             return mapper.Map<IEnumerable<Receipt>, IEnumerable<ReceiptListVM>>(receipts);
-
         }
 
         public async Task<Receipt> GetByIdAsync(string transactionId, bool includeTables) {

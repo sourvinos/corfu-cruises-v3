@@ -18,11 +18,13 @@ export class ReceiptListExportService {
         records.forEach(record => {
             this.exportRecords.push({
                 date: this.dateHelperService.formatISODateToLocale(record.date),
+                shipOwner: record.shipOwner.description,
                 customer: record.customer.description,
                 documentType: record.documentType.description,
-                shipOwner: record.shipOwner.description,
                 invoiceNo: record.invoiceNo,
-                grossAmount: record.grossAmount
+                paymentMethod: record.paymentMethod.description,
+                grossAmount: record.grossAmount,
+                remarks: record.remarks,
             })
         })
         return this.exportRecords
