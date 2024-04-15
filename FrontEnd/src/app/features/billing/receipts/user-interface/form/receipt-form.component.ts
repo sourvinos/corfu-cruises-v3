@@ -234,6 +234,7 @@ export class ReceiptFormComponent {
                 batch: this.record.documentType.batch,
                 paymentMethod: { 'id': this.record.paymentMethod.id, 'description': this.record.paymentMethod.description },
                 grossAmount: this.record.grossAmount,
+                remarks: this.record.remarks,
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
                 putAt: this.record.putAt,

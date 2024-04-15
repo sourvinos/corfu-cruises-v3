@@ -17,6 +17,7 @@ export interface ReceiptReadDto extends Metadata {
     paymentMethod: SimpleEntity
     shipOwner: SimpleEntity
     grossAmount: number
+    remarks: string
     // Metadata
     postAt: string
     postUser: string
