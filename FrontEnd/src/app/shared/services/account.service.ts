@@ -4,7 +4,6 @@ import { Observable } from 'rxjs'
 import { Router } from '@angular/router'
 import { map } from 'rxjs/operators'
 // Custom
-import { BillingParametersHttpService } from 'src/app/features/billing/parameters/classes/services/billing-parameters-http.service'
 import { ChangePasswordViewModel } from './../../features/reservations/users/classes/view-models/change-password-view-model'
 import { CoachRouteService } from './../../features/reservations/coachRoutes/classes/services/coachRoute.service'
 import { CrewSpecialtyHttpService } from './../../features/reservations/crewSpecialties/classes/services/crewSpecialty-http.service'
@@ -43,7 +42,7 @@ export class AccountService extends HttpDataService {
 
     //#endregion
 
-    constructor(httpClient: HttpClient, private billingParametersHttpService: BillingParametersHttpService, private coachRouteService: CoachRouteService, private crewSpecialtyHttpService: CrewSpecialtyHttpService, private cryptoService: CryptoService, private customerHttpService: CustomerHttpService, private destinationHttpService: DestinationHttpService, private dexieService: DexieService, private documentTypeHttpService: DocumentTypeHttpService, private driverService: DriverService, private genderService: GenderService, private interactionService: InteractionService, private nationalityService: NationalityHttpService, private ngZone: NgZone, private paymentMethodService: PaymentMethodHttpService, private pickupPointService: PickupPointService, private portHttpService: PortHttpService, private router: Router, private sessionStorageService: SessionStorageService, private shipHttpService: ShipHttpService, private shipOwnerService: ShipOwnerHttpService, private taxOfficeService: TaxOfficeService, private vatRegimeService: VatRegimeService) {
+    constructor(httpClient: HttpClient, private coachRouteService: CoachRouteService, private crewSpecialtyHttpService: CrewSpecialtyHttpService, private cryptoService: CryptoService, private customerHttpService: CustomerHttpService, private destinationHttpService: DestinationHttpService, private dexieService: DexieService, private documentTypeHttpService: DocumentTypeHttpService, private driverService: DriverService, private genderService: GenderService, private interactionService: InteractionService, private nationalityService: NationalityHttpService, private ngZone: NgZone, private paymentMethodService: PaymentMethodHttpService, private pickupPointService: PickupPointService, private portHttpService: PortHttpService, private router: Router, private sessionStorageService: SessionStorageService, private shipHttpService: ShipHttpService, private shipOwnerService: ShipOwnerHttpService, private taxOfficeService: TaxOfficeService, private vatRegimeService: VatRegimeService) {
         super(httpClient, environment.apiUrl)
     }
 

@@ -654,7 +654,6 @@ export class InvoiceFormComponent {
     }
 
     private updateVatPercentAfterShipSelection(value: any): void {
-        console.log(value)
         this.form.patchValue({
             vatPercent: value.shipOwner.vatPercent
         })

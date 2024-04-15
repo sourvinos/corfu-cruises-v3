@@ -151,7 +151,6 @@ export class DocumentTypeListComponent {
                 this.filterColumn(filters.table8_1, 'table8_1', 'contains')
                 this.filterColumn(filters.table8_8, 'table8_8', 'contains')
                 this.filterColumn(filters.table8_9, 'table8_9', 'contains')
-                console.log(filters.lastDate)
                 if (filters.lastDate != undefined) {
                     if (filters.lastDate.value != null) {
                         const date = new Date(Date.parse(filters.lastDate.value))

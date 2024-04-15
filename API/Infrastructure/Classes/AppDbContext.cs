@@ -1,6 +1,5 @@
 ﻿using API.Features.Billing.DocumentTypes;
 using API.Features.Billing.Invoices;
-using API.Features.Billing.Parameters;
 using API.Features.Billing.PaymentMethods;
 using API.Features.Billing.Prices;
 using API.Features.Billing.Receipts;
@@ -61,7 +60,6 @@ namespace API.Infrastructure.Classes {
 
         #region DbSets - Billing
 
-        public DbSet<BillingParameter> BillingParameters { get; set; }
         public DbSet<DocumentType> DocumentTypes { get; set; }
         public DbSet<TransactionsBase> Transactions { get; set; }
         public DbSet<InvoiceAade> InvoicesAade { get; set; }

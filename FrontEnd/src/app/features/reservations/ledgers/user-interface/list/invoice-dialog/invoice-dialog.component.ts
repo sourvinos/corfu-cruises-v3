@@ -203,9 +203,15 @@ export class InvoiceDialogComponent {
         })
     }
 
-    public updateDocumentTypesAfterShipSelection(value: SimpleEntity): void {
-        this.form.patchValue({ documentType: '', documentTypeDescription: '', invoiceNo: 0, batch: '' })
+    public updateFieldsAfterShipSelection(value: SimpleEntity): void {
+        this.form.patchValue({
+            documentType: '',
+            documentTypeDescription: '',
+            invoiceNo: 0,
+            batch: ''
+        })
         this.populateDocumentTypesAfterShipSelection('documentTypesInvoice', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation', value.id)
+        this.updateVatPercentAfterShipSelection(this.form.value.ship)
     }
 
     public updateFieldsAfterDocumentTypeSelection(value: DocumentTypeAutoCompleteVM): void {
@@ -307,7 +313,7 @@ export class InvoiceDialogComponent {
             paymentMethod: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             ship: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             netAmount: [0, ValidationService.isGreaterThanZero],
-            vatPercent: [this.sessionStorageService.getItem('vatPercent')],
+            vatPercent: [0],
             vatAmount: [0, ValidationService.isGreaterThanZero],
             grossAmount: [0, [Validators.required, Validators.min(1), Validators.max(99999)]],
             portA: this.formBuilder.group({
@@ -434,6 +440,12 @@ export class InvoiceDialogComponent {
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
             }
+        })
+    }
+
+    private updateVatPercentAfterShipSelection(value: any): void {
+        this.form.patchValue({
+            vatPercent: value.shipOwner.vatPercent
         })
     }
 

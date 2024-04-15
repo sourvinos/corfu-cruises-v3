@@ -1,7 +1,6 @@
 using API.Features.Billing.DocumentTypes;
 using API.Features.Billing.Invoices;
 using API.Features.Billing.Ledgers;
-using API.Features.Billing.Parameters;
 using API.Features.Billing.PaymentMethods;
 using API.Features.Billing.Prices;
 using API.Features.Billing.Receipts;
@@ -86,8 +85,6 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IUserValidation<IUser>, UserValidation>();
             #endregion
             #region billing
-            services.AddTransient<IBillingParameterValidation, BillingParameterValidation>();
-            services.AddTransient<IBillingParametersRepository, BillingParametersRepository>();
             services.AddTransient<IDocumentTypeRepository, DocumentTypeRepository>();
             services.AddTransient<IDocumentTypeValidation, DocumentTypeValidation>();
             services.AddTransient<IInvoiceXmlRepository, InvoiceXmlRepository>();
