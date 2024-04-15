@@ -23,6 +23,7 @@ export interface ShipOwnerReadDto extends Metadata {
     personInCharge: string
     phones: string
     email: string
+    isGroupJP: boolean
     demoUrl: string
     demoUsername: string
     demoSubscriptionKey: string

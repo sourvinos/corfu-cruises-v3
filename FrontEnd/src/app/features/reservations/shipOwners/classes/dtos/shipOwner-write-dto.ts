@@ -20,6 +20,7 @@ export interface ShipOwnerWriteDto {
     personInCharge: string
     phones: string
     email: string
+    isGroupJP: boolean
     demoUrl: string
     demoUsername: string
     demoSubscriptionKey: string

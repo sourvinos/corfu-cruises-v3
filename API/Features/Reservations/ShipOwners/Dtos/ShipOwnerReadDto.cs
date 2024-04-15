@@ -21,6 +21,7 @@ namespace API.Features.Reservations.ShipOwners {
         public string PersonInCharge { get; set; }
         public string Phones { get; set; }
         public string Email { get; set; }
+        public bool IsGroupJP { get; set; }
         public bool IsActive { get; set; }
         // myData
         public string DemoUrl { get; set; }

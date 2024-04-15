@@ -1718,6 +1718,10 @@
                 "description": "Email"
             },
             {
+                "id": "isGroupJP",
+                "description": "Ομιλος εταιριών JP"
+            },
+            {
                 "id": "demoUrl",
                 "description": "Url δοκιμών"
             },
