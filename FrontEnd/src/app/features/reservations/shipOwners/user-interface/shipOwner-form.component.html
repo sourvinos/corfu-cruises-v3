@@ -124,48 +124,60 @@
                     </div>
                 </mat-tab>
                 <mat-tab label="{{ getLabel('tab2') }}">
-                    <!-- Vat code for myData -->
-                    <mat-form-field>
-                        <mat-label>{{ getLabel('vatMyDataId') }}</mat-label>
-                        <input [inputTabStop]="input" dataTabIndex="1" formControlName="vatMyDataId" matInput>
-                    </mat-form-field>
-                    <!-- VAT percent -->
-                    <mat-form-field>
-                        <mat-label>{{ getLabel('vatPercent') }}</mat-label>
-                        <input [inputTabStop]="input" dataTabIndex="2" formControlName="vatPercent" matInput>
-                    </mat-form-field>
-                    <!-- Demo url -->
-                    <mat-form-field>
-                        <mat-label>{{ getLabel('demoUrl') }}</mat-label>
-                        <input [inputTabStop]="input" dataTabIndex="3" formControlName="demoUrl" matInput>
-                    </mat-form-field>
-                    <!-- Demo username -->
-                    <mat-form-field>
-                        <mat-label>{{ getLabel('demoUsername') }}</mat-label>
-                        <input [inputTabStop]="input" dataTabIndex="4" formControlName="demoUsername" matInput>
-                    </mat-form-field>
-                    <!-- Demo password -->
-                    <mat-form-field>
-                        <mat-label>{{ getLabel('demoSubscriptionKey') }}</mat-label>
-                        <input [inputTabStop]="input" dataTabIndex="5" formControlName="demoSubscriptionKey" matInput>
-                    </mat-form-field>
-                    <!-- Live url -->
-                    <mat-form-field>
-                        <mat-label>{{ getLabel('liveUrl') }}</mat-label>
-                        <input [inputTabStop]="input" dataTabIndex="6" formControlName="liveUrl" matInput>
-                    </mat-form-field>
-                    <!-- Live username -->
-                    <mat-form-field>
-                        <mat-label>{{ getLabel('liveUsername') }}</mat-label>
-                        <input [inputTabStop]="input" dataTabIndex="7" formControlName="liveUsername" matInput>
-                    </mat-form-field>
-                    <!-- Live password -->
-                    <mat-form-field>
-                        <mat-label>{{ getLabel('liveSubscriptionKey') }}</mat-label>
-                        <input [inputTabStop]="input" dataTabIndex="8" formControlName="liveSubscriptionKey" matInput>
-                    </mat-form-field>
-                    <!-- IsDemo -->
+                    <div class="group-input-field">
+                        <!-- Demo url -->
+                        <mat-form-field>
+                            <mat-label>{{ getLabel('demoUrl') }}</mat-label>
+                            <input [inputTabStop]="input" dataTabIndex="1" formControlName="demoUrl" matInput>
+                        </mat-form-field>
+                        <!-- Live url -->
+                        <mat-form-field>
+                            <mat-label>{{ getLabel('liveUrl') }}</mat-label>
+                            <input [inputTabStop]="input" dataTabIndex="5" formControlName="liveUrl" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="group-input-field">
+                        <!-- Demo username -->
+                        <mat-form-field>
+                            <mat-label>{{ getLabel('demoUsername') }}</mat-label>
+                            <input [inputTabStop]="input" dataTabIndex="2" formControlName="demoUsername" matInput>
+                        </mat-form-field>
+                        <!-- Live username -->
+                        <mat-form-field>
+                            <mat-label>{{ getLabel('liveUsername') }}</mat-label>
+                            <input [inputTabStop]="input" dataTabIndex="6" formControlName="liveUsername" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="group-input-field">
+                        <!-- Demo password -->
+                        <mat-form-field>
+                            <mat-label>{{ getLabel('demoSubscriptionKey') }}</mat-label>
+                            <input [inputTabStop]="input" dataTabIndex="3" formControlName="demoSubscriptionKey" matInput>
+                        </mat-form-field>
+                        <!-- Live password -->
+                        <mat-form-field>
+                            <mat-label>{{ getLabel('liveSubscriptionKey') }}</mat-label>
+                            <input [inputTabStop]="input" dataTabIndex="7" formControlName="liveSubscriptionKey" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="group-input-field">
+                        <!-- VAT percent -->
+                        <mat-form-field>
+                            <mat-label>{{ getLabel('vatPercent') }}</mat-label>
+                            <input [inputTabStop]="input" dataTabIndex="4" formControlName="vatPercent" matInput>
+                            <mat-error *ngIf="vatPercent.hasError('required')">{{ getHint("required") }}</mat-error>
+                            <mat-error *ngIf="!vatPercent.hasError('required') && vatPercent.hasError('min') || vatPercent.hasError('max')">{{ getHint("invalid") }}</mat-error>                            
+                        </mat-form-field>
+                        <!-- Vat code for myData -->
+                        <mat-form-field>
+                            <mat-label>{{ getLabel('vatMyDataId') }}</mat-label>
+                            <input [inputTabStop]="input" dataTabIndex="8" formControlName="vatMyDataId" matInput>
+                            <mat-error *ngIf="vatMyDataId.hasError('required')">{{ getHint("required") }}</mat-error>
+                            <mat-error *ngIf="!vatMyDataId.hasError('required') && vatMyDataId.hasError('min') || vatMyDataId.hasError('max')">{{ getHint("invalid") }}</mat-error>                            
+                        </mat-form-field>
+                    </div>
                     <div class="stacked-checkboxes">
+                        <!-- IsDemo -->
                         <mat-checkbox formControlName="isDemoMyData">
                             <span>{{ getLabel("isDemoMyData") }}</span>
                         </mat-checkbox>

@@ -1719,31 +1719,39 @@
             },
             {
                 "id": "demoUrl",
-                "description": "Demo url"
+                "description": "Url δοκιμών"
             },
             {
                 "id": "demoUsername",
-                "description": "Demo χρήστης"
+                "description": "Χρήστης δοκιμών"
             },
             {
                 "id": "demoSubscriptionKey",
-                "description": "Demo κωδικός"
+                "description": "Κωδικός δοκιμών"
             },
             {
                 "id": "liveUrl",
-                "description": "Live url"
+                "description": "Url"
             },
             {
                 "id": "liveUsername",
-                "description": "Live χρήστης"
+                "description": "Χρήστης"
             },
             {
                 "id": "liveSubscriptionKey",
-                "description": "Live κωδικός"
+                "description": "Κωδικός"
             },
             {
                 "id": "isDemoMyData",
-                "description": "Demo"
+                "description": "Λειτουργία δοκιμών"
+            },
+            {
+                "id": "vatPercent",
+                "description": "Συντελεστής ΦΠΑ"
+            },
+            {
+                "id": "vatMyDataId",
+                "description": "Κατηγορία ΦΠΑ"
             },
             {
                 "id": "isActive",
@@ -3160,6 +3168,10 @@
             {
                 "id": "headerGrossAmount",
                 "description": "Αξία"
+            },
+            {
+                "id": "createFile",
+                "description": "Δημιουργία αρχείου xls"
             },
             {
                 "id": "newRecord",

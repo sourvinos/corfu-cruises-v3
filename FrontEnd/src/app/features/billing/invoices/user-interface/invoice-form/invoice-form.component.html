@@ -502,7 +502,7 @@
 
 </div>
 
-<mat-autocomplete #ships="matAutocomplete" (optionSelected)="updateDocumentTypesAfterShipSelection($event.option.value)" autoActiveFirstOption [displayWith]="autocompleteFields.bind(this, 'description')">
+<mat-autocomplete #ships="matAutocomplete" (optionSelected)="updateFieldsAfterShipSelection($event.option.value)" autoActiveFirstOption [displayWith]="autocompleteFields.bind(this, 'description')">
     <mat-option *ngFor="let option of dropdownShips | async" [value]="option">
         {{ option.description }}
     </mat-option>

@@ -46,6 +46,7 @@
     font-family: Consolas;
     src: url("/assets/fonts/Consolas.ttf");
 }
+
 * {
     box-sizing: border-box !important;
 }

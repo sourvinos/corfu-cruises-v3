@@ -278,7 +278,7 @@ export class InvoiceFormComponent {
         this.form.value.invoicesPorts[portIndex] = port
     }
 
-    public updateDocumentTypesAfterShipSelection(value: SimpleEntity): void {
+    public updateFieldsAfterShipSelection(value: SimpleEntity): void {
         this.form.patchValue({ documentType: '', documentTypeDescription: '', invoiceNo: 0, batch: '' })
         this.populateDocumentTypesAfterShipSelection('documentTypesInvoice', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation', value.id)
     }
