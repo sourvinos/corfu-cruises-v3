@@ -34,7 +34,7 @@ export class LedgerBillingComponent {
 
     //#endregion
 
-    constructor(private ledgerHttpService: LedgerHttpService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService) { }
+    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private ledgerHttpService: LedgerHttpService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService) { }
 
     //#region lifecycle hooks
 
@@ -102,7 +102,7 @@ export class LedgerBillingComponent {
         return new Promise((resolve) => {
             this.ledgerHttpService.get(criteria).subscribe(response => {
                 this.records = response
-                resolve(this.records)
+                resolve(this.records)                
             })
         })
     }

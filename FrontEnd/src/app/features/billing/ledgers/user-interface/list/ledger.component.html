@@ -13,7 +13,8 @@
                 <ng-template pTemplate="header">
                     <tr>
                         <th class="width-9">{{ getLabel("headerDate") }}</th>
-                        <th class="width-65">{{ getLabel("headerDocumentTypeDescription") }}</th>
+                        <th class="width-15">{{ getLabel("headerShipOwner") }}</th>
+                        <th class="width-50">{{ getLabel("headerDocumentTypeDescription") }}</th>
                         <th class="width-4">{{ getLabel("headerDocumentTypeBatch") }}</th>
                         <th class="width-4">{{ getLabel("headerInvoiceNo") }}</th>
                         <th class="width-6">{{ getLabel("headerDebit") }}</th>
@@ -22,7 +23,8 @@
                     </tr>
                     <tr>
                         <th class="width-9"></th>
-                        <th class="width-65"></th>
+                        <th class="width-15"></th>
+                        <th class="width-50"></th>
                         <th class="width-4"></th>
                         <th class="width-4"></th>
                         <th class="width-6"></th>
@@ -33,7 +35,8 @@
                 <ng-template let-record pTemplate="body">
                     <tr style="height: 32px;">
                         <td class="width-9"><span class="center">{{ record.formattedDate }}</span></td>
-                        <td class="width-65"><span>{{ record.documentType.abbreviation }}</span></td>
+                        <td class="width-15"><span>{{ record.shipOwner.description }}</span></td>
+                        <td class="width-50"><span>{{ record.documentType.description }}</span></td>
                         <td class="width-4"><span class="center">{{ record.documentType.batch }}</span></td>
                         <td class="width-4"><span class="center">{{ record.invoiceNo }}</span></td>
                         <td class="width-6"><span class="number right with-right-padding">{{ formatNumberToLocale(record.debit) }}</span></td>

@@ -123,13 +123,17 @@ namespace API.Features.Billing.Ledgers {
         private static LedgerVM BuildTotalLine(decimal debit, decimal credit, decimal balance, string label) {
             var total = new LedgerVM {
                 Date = "",
+                ShipOwner = new SimpleEntity {
+                    Id = 0,
+                    Description = ""
+                },
                 Customer = new SimpleEntity {
                     Id = 0,
                     Description = ""
                 },
                 DocumentType = new DocumentTypeVM {
                     Id = 0,
-                    Abbreviation = label,
+                    Description = label,
                     Batch = ""
                 },
                 InvoiceNo = "",

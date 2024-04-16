@@ -88,7 +88,7 @@
                             </p-columnFilter>
                         </th>
                         <th class="width-14">
-                            <p-columnFilter [showMenu]="false" field="ship" matchMode="in">
+                            <p-columnFilter [showMenu]="false" field="documentType" matchMode="in">
                                 <ng-template let-filter="filterCallback" let-value pTemplate="filter">
                                     <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="dropdownDocumentTypes" [placeholder]="getEmoji('wildcard')" optionLabel="description">
                                         <ng-template let-option pTemplate="item">

@@ -3289,6 +3289,10 @@
                 "description": "Ημερομηνία"
             },
             {
+                "id": "headerShipOwner",
+                "description": "Πλοιοκτήτης"
+            },
+            {
                 "id": "headerDocumentTypeDescription",
                 "description": "Τύπος παραστατικού"
             },

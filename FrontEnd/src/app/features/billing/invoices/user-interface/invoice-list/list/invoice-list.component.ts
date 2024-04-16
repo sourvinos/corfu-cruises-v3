@@ -165,8 +165,9 @@ export class InvoiceListComponent {
             setTimeout(() => {
                 this.filterColumn(filters.customer, 'customer', 'in')
                 this.filterColumn(filters.destination, 'destination', 'in')
-                this.filterColumn(filters.documentType, 'documentType', 'in')
                 this.filterColumn(filters.ship, 'ship', 'in')
+                this.filterColumn(filters.shipOwner, 'shipOwner', 'in')
+                this.filterColumn(filters.documentType, 'documentType', 'in')
             }, 500)
         }
     }

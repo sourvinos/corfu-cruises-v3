@@ -1,7 +1,7 @@
 export interface LedgerDocumentTypeVM {
 
     id: number
-    abbreviation: string
+    description: string
     batch: string
 
 }

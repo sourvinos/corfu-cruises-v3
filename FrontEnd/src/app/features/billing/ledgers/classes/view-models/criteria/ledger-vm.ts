@@ -5,6 +5,7 @@ export interface LedgerVM {
 
     date: string
     formattedDate: string
+    shipOwner: SimpleEntity
     customer: SimpleEntity
     documentType: LedgerDocumentTypeVM
     invoiceNo: string

@@ -16,7 +16,7 @@ namespace API.Features.Billing.Ledgers {
                 }))
                 .ForMember(x => x.DocumentType, x => x.MapFrom(source => new DocumentTypeVM {
                     Id = source.DocumentType.Id,
-                    Abbreviation = source.DocumentType.Abbreviation,
+                    Description = source.DocumentType.Description,
                     Batch = source.DocumentType.Batch
                 }))
                 .ForMember(x => x.ShipOwner, x => x.MapFrom(source => new SimpleEntity {
