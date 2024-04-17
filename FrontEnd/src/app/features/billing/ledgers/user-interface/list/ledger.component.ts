@@ -6,7 +6,6 @@ import { DateHelperService } from '../../../../../shared/services/date-helper.se
 import { EmojiService } from '../../../../../shared/services/emoji.service'
 import { HelperService } from '../../../../../shared/services/helper.service'
 import { InteractionService } from '../../../../../shared/services/interaction.service'
-import { LedgerCriteriaVM } from '../../classes/view-models/criteria/ledger-criteria-vm'
 import { LedgerHttpService } from '../../classes/services/ledger-http.service'
 import { LedgerVM } from '../../classes/view-models/criteria/ledger-vm'
 import { LocalStorageService } from '../../../../../shared/services/local-storage.service'
@@ -30,7 +29,10 @@ export class LedgerBillingComponent {
     public icon = 'home'
     public parentUrl = '/home'
     public records: LedgerVM[] = []
-    private criteria: LedgerCriteriaVM
+    public shipOwnerCount = 1
+    public shipOwnerRecordsA: LedgerVM[] = []
+    public shipOwnerRecordsB: LedgerVM[] = []
+    public shipOwnerTotal: LedgerVM[] = []
 
     //#endregion
 
@@ -66,18 +68,17 @@ export class LedgerBillingComponent {
     }
 
     public onDoSearchTasks(event: any): void {
-        this.criteria = {
-            fromDate: event.fromDate,
-            toDate: event.toDate,
-            customerId: event.customer.id
-        }
-        this.loadRecords(this.criteria).then(() => {
-            this.formatDatesToLocale()
-            this.subscribeToInteractionService()
-            this.setTabTitle()
-            this.setLocale()
-            this.setSidebarsHeight()
-        })
+        this.loadRecordsForShipOwner(event, 'shipOwnerRecordsA', 1)
+        this.loadRecordsForShipOwner(event, 'shipOwnerRecordsB', 2)
+        this.loadRecordsForShipOwner(event, 'shipOwnerTotal', null)
+
+        // this.loadRecords(event).then(() => {
+        //     this.formatDatesToLocale()
+        //     this.subscribeToInteractionService()
+        //     this.setTabTitle()
+        //     this.setLocale()
+        //     this.setSidebarsHeight()
+        // })
     }
 
     public onPrint(): void {
@@ -95,15 +96,6 @@ export class LedgerBillingComponent {
     private formatDatesToLocale(): void {
         this.records.forEach(record => {
             record.formattedDate = this.dateHelperService.formatISODateToLocale(record.date)
-        })
-    }
-
-    private loadRecords(criteria: LedgerCriteriaVM): Promise<LedgerVM[]> {
-        return new Promise((resolve) => {
-            this.ledgerHttpService.get(criteria).subscribe(response => {
-                this.records = response
-                resolve(this.records)                
-            })
         })
     }
 
@@ -126,6 +118,18 @@ export class LedgerBillingComponent {
         })
         this.interactionService.refreshTabTitle.subscribe(() => {
             this.setTabTitle()
+        })
+    }
+
+    private loadRecordsForShipOwner(event, shipOwnerRecords, shipOwnerId): void {
+        const criteria = {
+            fromDate: event.fromDate,
+            toDate: event.toDate,
+            shipOwnerId: shipOwnerId,
+            customerId: event.customer.id
+        }
+        this.ledgerHttpService.get(criteria).subscribe(response => {
+            this[shipOwnerRecords] = response
         })
     }
 
