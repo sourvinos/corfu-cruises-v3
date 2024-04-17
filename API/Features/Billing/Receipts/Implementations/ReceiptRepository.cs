@@ -43,7 +43,7 @@ namespace API.Features.Billing.Receipts {
                  .Include(x => x.PaymentMethod)
                  .Include(x => x.ShipOwner)
                  .Where(x => x.Date >= Convert.ToDateTime(criteria.FromDate) && x.Date <= Convert.ToDateTime(criteria.ToDate))
-                 .OrderBy(x => x.Date)
+                 .OrderBy(x => x.Date).ThenBy(x => x.ShipOwner.Description).ThenBy(x => x.DocumentType.Description).ThenBy(x => x.InvoiceNo)
                  .ToListAsync();
             return mapper.Map<IEnumerable<Receipt>, IEnumerable<ReceiptListVM>>(receipts);
         }
