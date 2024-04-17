@@ -124,6 +124,18 @@ export class ReceiptPdfService {
                         stack: [
                             {
                                 table: {
+                                    widths: [50, '*'],
+                                    body: [
+                                        [{ text: 'ΣΧΟΛΙΑ', borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }, { text: invoice.remarks, borderColor: ['#efefef', '#efefef', '#efefef', '#efefef'] }]
+                                    ]
+                                }
+                            }],
+                        margin: [0, 42, 0, 0],
+                    },
+                    {
+                        stack: [
+                            {
+                                table: {
                                     widths: ['50%', '50%'],
                                     body: [[
                                         {
@@ -142,7 +154,7 @@ export class ReceiptPdfService {
                                 }, layout: 'noBorders'
                             }
                         ],
-                        margin: [0, 360, 0, 0]
+                        margin: [0, 305, 0, 0]
                     },
                 ], styles: {
                     AkaAcidCanterBold: {

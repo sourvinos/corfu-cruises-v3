@@ -18,6 +18,7 @@ export class ReceiptPdfHelperService {
         const issuer = await this.buildIssuer(receipt.issuer)
         const customer = await this.buildCounterPart(receipt.customer)
         const paymentMethod = await this.buildPaymentMethod(receipt.paymentMethod)
+        const remarks = receipt.remarks
         const amount = receipt.amount
         const bankAccounts = await this.buildBankAccounts()
         const previousBalance = receipt.previousBalance
@@ -27,6 +28,7 @@ export class ReceiptPdfHelperService {
             issuer,
             customer,
             paymentMethod,
+            remarks,
             amount,
             bankAccounts,
             previousBalance,
@@ -96,16 +98,6 @@ export class ReceiptPdfHelperService {
     private buildPaymentMethod(paymentMethod: string): Promise<any> {
         return new Promise((resolve) => {
             const x: string = paymentMethod
-            resolve(x)
-        })
-    }
-
-    private buildBalances(): Promise<any> {
-        return new Promise((resolve) => {
-            const x: number[] = [
-                1234.56,
-                7890.56
-            ]
             resolve(x)
         })
     }

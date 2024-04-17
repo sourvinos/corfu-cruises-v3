@@ -8,6 +8,7 @@ export interface ReceiptPdfVM {
     issuer: ReceiptPdfPartyTypeVM
     customer: ReceiptPdfPartyTypeVM
     paymentMethod: string
+    remarks: string
     bankAccounts: ReceiptPdfBankAccountVM[]
     amount: number
     previousBalance: number
