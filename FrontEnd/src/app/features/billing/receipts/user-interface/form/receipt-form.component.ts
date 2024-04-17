@@ -44,12 +44,6 @@ export class ReceiptFormComponent {
 
     //#endregion
 
-    //#region specific variables
-
-    public isNewRecord: boolean
-
-    //#endregion
-
     //#region autocompletes
 
     public isAutoCompleteDisabled = true
@@ -132,6 +126,16 @@ export class ReceiptFormComponent {
         this.saveRecord(this.flattenForm())
     }
 
+    public updateFieldsAfterShipOwnerSelection(value: SimpleEntity): void {
+        this.form.patchValue({
+            documentType: '',
+            documentTypeDescription: '',
+            invoiceNo: 0,
+            batch: ''
+        })
+        this.populateDocumentTypesAfterShipOwnerSelection('documentTypesReceipt', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation', value.id)
+    }
+
     public updateFieldsAfterDocumentTypeSelection(value: DocumentTypeAutoCompleteVM): void {
         this.form.patchValue({
             documentTypeDescription: value.description,
@@ -206,9 +210,15 @@ export class ReceiptFormComponent {
         })
     }
 
+    private populateDocumentTypesAfterShipOwnerSelection(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string, shipOwnerId: number): void {
+        this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
+            this[dexieTable] = response.filter(x => x.shipOwner.id == shipOwnerId).filter(x => x.isActive)
+            this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
+        })
+    }
+
     private populateDropdowns(): void {
         this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', 'description', 'description')
-        this.populateDropdownFromDexieDB('documentTypesReceipt', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation')
         this.populateDropdownFromDexieDB('paymentMethods', 'dropdownPaymentMethods', 'paymentMethod', 'description', 'description')
         this.populateDropdownFromDexieDB('shipOwners', 'dropdownShipOwners', 'shipOwner', 'description', 'description')
     }
@@ -250,6 +260,7 @@ export class ReceiptFormComponent {
     private saveRecord(receipt: ReceiptWriteDto): void {
         this.receiptHttpService.save(receipt).subscribe({
             next: () => {
+                this.updateDocumentType(receipt.documentTypeId)
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
             error: (errorFromInterceptor: any) => {

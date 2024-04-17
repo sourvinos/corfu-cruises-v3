@@ -29,7 +29,7 @@ export class ReceiptHelperService {
     }
 
     public updateBrowserStorageAfterApiUpdate(record: DocumentTypeReadDto): void {
-        this.dexieService.update('documentTypes', record)
+        this.dexieService.update('documentTypesReceipt', record)
     }
 
 }
