@@ -232,13 +232,13 @@ export class InvoiceFormComponent {
 
     public patchFormWithSelectedDate(event: any): void {
         this.form.patchValue({
-            date: event.value.date
+            date: event.value.date.toDate()
         })
     }
 
     public patchFormWithSelectedTripDate(event: any): void {
         this.form.patchValue({
-            tripDate: event.value.date
+            tripDate: event.value.date.toDate()
         })
     }
 

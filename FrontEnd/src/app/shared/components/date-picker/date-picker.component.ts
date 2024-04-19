@@ -46,7 +46,7 @@ export class DatePickerComponent {
         this.form.patchValue({
             date: this.dateHelperService.formatDateToIso(new Date())
         })
-        this.emitFormValues()
+        // this.emitFormValues()
     }
 
     public emitFormValues(): void {

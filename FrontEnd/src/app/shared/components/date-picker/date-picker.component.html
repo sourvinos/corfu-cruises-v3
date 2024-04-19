@@ -1,3 +1,5 @@
+{{ form.value | json }}
+
 <form [formGroup]="form">
     <mat-form-field id="date-picker">
         <mat-icon *ngIf=readOnly class="material-icons-outlined small">lock</mat-icon>
@@ -6,7 +8,7 @@
         <mat-datepicker-toggle [disabled]=readOnly [for]="picker" matSuffix></mat-datepicker-toggle>
         <mat-datepicker #picker>
             <mat-datepicker-actions>
-                <button (click)="doTodayTasks()" class="accent" mat-flat-button matDatepickerApply>{{ getLabel('today') | uppercase }}</button>
+                <!-- <button (click)="doTodayTasks()" class="accent" mat-flat-button>{{ getLabel('today') | uppercase }}</button> -->
                 <button class="primary" mat-flat-button matDatepickerApply>{{ getLabel("ok") | uppercase }}</button>
             </mat-datepicker-actions>
         </mat-datepicker>

@@ -1,3 +1,4 @@
+import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Component, Inject } from '@angular/core'
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
@@ -53,7 +54,7 @@ export class InvoiceDialogComponent {
 
     //#endregion
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private invoiceXmlHttpService: InvoiceXmlHttpService, private dexieService: DexieService, private dialogRef: MatDialogRef<InvoiceDialogComponent>, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private invoiceXmlHelperService: InvoiceXmlHelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceHttpService: PriceHttpService, private sessionStorageService: SessionStorageService) { }
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dateHelperService: DateHelperService, private invoiceXmlHttpService: InvoiceXmlHttpService, private dexieService: DexieService, private dialogRef: MatDialogRef<InvoiceDialogComponent>, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private invoiceXmlHelperService: InvoiceXmlHelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceHttpService: PriceHttpService, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -199,7 +200,13 @@ export class InvoiceDialogComponent {
 
     public patchFormWithSelectedDate(event: any): void {
         this.form.patchValue({
-            date: event.value.date
+            date: event.value.date.toDate()
+        })
+    }
+
+    public patchFormWithSelectedTripDate(event: any): void {
+        this.form.patchValue({
+            tripDate: event.value.date.toDate()
         })
     }
 
