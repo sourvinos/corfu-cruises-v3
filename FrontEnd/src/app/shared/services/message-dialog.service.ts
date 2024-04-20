@@ -80,6 +80,8 @@ export class MessageDialogService {
     public errorsInRegistrars(): string { return this.getDescription(this.feature, 'errorsInRegistrars') }
     public checkInAfterDepartureIsNotAllowed(): string { return this.getDescription(this.feature, 'checkInAfterDepartureIsNotAllowed') }
     public customerDataIsInvalid(): string { return this.getDescription(this.feature, 'customerDataIsInvalid') }
+    public invoiceDateMustBeToday(): string { return this.getDescription(this.feature, 'invoiceDateMustBeToday') }
+    public tripDateTodayOrPast(): string { return this.getDescription(this.feature, 'tripDateTodayOrPast') }
 
     public filterResponse(error: any, feature = 'snackbarMessages'): string {
         let returnValue = ''

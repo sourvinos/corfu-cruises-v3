@@ -1,7 +1,5 @@
 <div id="dialog">
 
-    {{ form.value | json }}
-
     <div id="dialog-header">
         <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
         <div id="header-buttons">
@@ -18,7 +16,7 @@
         <form [formGroup]="form" id="form">
             <div id="invoice-header">
                 <!-- Dates -->
-                <date-picker (outputValue)="patchFormWithSelectedDate($event)" [dataTabIndex]="1" [isAdminOrNewRecord]=true [label]="getLabel('date')" [parentDate]="getDate()" [readOnly]=false [showHint]=false></date-picker>
+                <date-picker (outputValue)="patchFormWithSelectedDate($event)" [dataTabIndex]="1" [isAdminOrNewRecord]=true [label]="getLabel('date')" [parentDate]="getDate()" [readOnly]=true [showHint]=false></date-picker>
                 <date-picker (outputValue)="patchFormWithSelectedTripDate($event)" [dataTabIndex]="2" [isAdminOrNewRecord]=true [label]="getLabel('tripDate')" [parentDate]="getTripDate()" [readOnly]=false [showHint]=false></date-picker>
                 <!-- Ship -->
                 <mat-form-field>

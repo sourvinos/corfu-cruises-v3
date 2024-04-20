@@ -400,18 +400,20 @@ export class InvoiceDialogComponent {
     }
 
     private saveRecord(invoice: InvoiceWriteDto): void {
-        this.invoiceHttpService.save(invoice).subscribe({
-            next: (response) => {
-                this.form.patchValue({
-                    invoiceId: response.id
-                })
-                this.updateDocumentType(invoice.documentTypeId)
-                this.onSubmitTasks()
-            },
-            error: (errorFromInterceptor) => {
-                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-            }
-        })
+        if (this.checkDates(invoice)) {
+            this.invoiceHttpService.save(invoice).subscribe({
+                next: (response) => {
+                    this.form.patchValue({
+                        invoiceId: response.id
+                    })
+                    this.updateDocumentType(invoice.documentTypeId)
+                    this.onSubmitTasks()
+                },
+                error: (errorFromInterceptor) => {
+                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                }
+            })
+        }
     }
 
     private updateFieldsAfterEmptyDocumentType(): void {
@@ -454,6 +456,21 @@ export class InvoiceDialogComponent {
         this.form.patchValue({
             vatPercent: value.shipOwner.vatPercent
         })
+    }
+
+    private checkDates(invoice: InvoiceWriteDto): boolean {
+        if (this.dateHelperService.isSelectedDateToday(invoice.date) && this.dateHelperService.isTripDateTodayOrPast(invoice.tripDate)) {
+            return true
+        } else {
+            if (!this.dateHelperService.isSelectedDateToday(invoice.date)) {
+                this.dialogService.open(this.messageDialogService.invoiceDateMustBeToday(), 'error', ['ok'])
+                return false
+            }
+            if (!this.dateHelperService.isTripDateTodayOrPast(invoice.tripDate)) {
+                this.dialogService.open(this.messageDialogService.tripDateTodayOrPast(), 'error', ['ok'])
+                return false
+            }
+        }
     }
 
     //#endregion

@@ -115,6 +115,18 @@ export class DateHelperService {
         }
     }
 
+    public isSelectedDateToday(date: string): boolean {
+        const x = date
+        const z = this.formatDateToIso(new Date())
+        return x == z
+    }
+
+    public isTripDateTodayOrPast(date: string): boolean {
+        const x = date
+        const z = this.formatDateToIso(new Date())
+        return x <= z
+    }
+
     //#endregion
 
     //#region private methods

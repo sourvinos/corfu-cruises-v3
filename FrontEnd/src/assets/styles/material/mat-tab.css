@@ -26,5 +26,5 @@
 
 .mat-mdc-tab-body-content, .mat-mdc-tab-body-wrapper {
     height: 100% !important;
-    overflow: hidden;
+    overflow: hidden !important;
 }

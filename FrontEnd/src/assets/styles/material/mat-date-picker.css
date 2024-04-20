@@ -38,6 +38,8 @@
 
 .mat-calendar-body-cell-content {
     color: var(--color-datepicker-calendar) !important;
+    height: 100% !important;
+    width: 90% !important;
 }
 
 /* Today */
