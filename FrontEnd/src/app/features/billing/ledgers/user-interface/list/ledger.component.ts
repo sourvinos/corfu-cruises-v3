@@ -8,6 +8,7 @@ import { LedgerHttpService } from '../../classes/services/ledger-http.service'
 import { LedgerVM } from '../../classes/view-models/criteria/ledger-vm'
 import { LocalStorageService } from '../../../../../shared/services/local-storage.service'
 import { MessageLabelService } from '../../../../../shared/services/message-label.service'
+import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 
 @Component({
     selector: 'ledger',
@@ -31,7 +32,7 @@ export class LedgerBillingComponent {
 
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private helperService: HelperService, private ledgerHttpService: LedgerHttpService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService) { }
+    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private helperService: HelperService, private ledgerHttpService: LedgerHttpService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -49,13 +50,39 @@ export class LedgerBillingComponent {
     }
 
     public onDoSearchTasks(event: any): void {
+        this.sessionStorageService.saveItem('ledgerCriteria', JSON.stringify(event))
         this.loadRecordsForShipOwner(event, 'shipOwnerRecordsA', 1)
         this.loadRecordsForShipOwner(event, 'shipOwnerRecordsB', 2)
         this.loadRecordsForShipOwner(event, 'shipOwnerTotal', null)
     }
 
     public onPrint(): void {
-        // this.router.navigate([this.url + '/new'])
+        if (this.shipOwnerRecordsA.length > 3) {
+            const criteria = {
+                fromDate: '2024-01-01',
+                toDate: '2024-12-31',
+                shipOwnerId: this.shipOwnerRecordsA[1].shipOwner.id,
+                customerId: this.shipOwnerRecordsA[1].customer.id
+            }
+            this.ledgerHttpService.buildPdf(criteria).subscribe({
+                next: (response) => {
+                    console.log(response)
+                }
+            })
+        }
+        if (this.shipOwnerRecordsB.length > 3) {
+            const criteria = {
+                fromDate: '2024-01-01',
+                toDate: '2024-12-31',
+                shipOwnerId: this.shipOwnerRecordsB[1].shipOwner.id,
+                customerId: this.shipOwnerRecordsB[1].customer.id
+            }
+            this.ledgerHttpService.buildPdf(criteria).subscribe({
+                next: (response) => {
+                    console.log(response)
+                }
+            })
+        }
     }
 
     //#endregion

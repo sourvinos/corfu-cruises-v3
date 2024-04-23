@@ -27,9 +27,9 @@ namespace API.Features.Billing.Ledgers {
             this.mapper = mapper;
         }
 
-        public IEnumerable<LedgerVM> GetForLedger(string fromDate, string toDate, int customerId, int? shipOwnerId) {
+        public async Task<IEnumerable<LedgerVM>> GetForLedger(string fromDate, string toDate, int customerId, int? shipOwnerId) {
             var connectedCustomerId = GetConnectedCustomerIdForConnectedUser();
-            var records = context.Transactions
+            var records = await context.Transactions
                 .AsNoTracking()
                 .Include(x => x.Customer)
                 .Include(x => x.DocumentType)
@@ -40,7 +40,7 @@ namespace API.Features.Billing.Ledgers {
                         ? x.CustomerId == customerId
                         : x.CustomerId == connectedCustomerId))
                 .OrderBy(x => x.Date)
-                .ToList();
+                .ToListAsync();
             return mapper.Map<IEnumerable<TransactionsBase>, IEnumerable<LedgerVM>>(records);
         }
 
