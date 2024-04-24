@@ -9,6 +9,7 @@ import { LedgerVM } from '../../classes/view-models/criteria/ledger-vm'
 import { LocalStorageService } from '../../../../../shared/services/local-storage.service'
 import { MessageLabelService } from '../../../../../shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
+import { EmailLedgerVM } from '../../classes/view-models/email/email-ledger-vm'
 
 @Component({
     selector: 'ledger',
@@ -56,38 +57,100 @@ export class LedgerBillingComponent {
         this.loadRecordsForShipOwner(event, 'shipOwnerTotal', null)
     }
 
-    public onPrint(): void {
-        if (this.shipOwnerRecordsA.length > 3) {
-            const criteria = {
-                fromDate: '2024-01-01',
-                toDate: '2024-12-31',
-                shipOwnerId: this.shipOwnerRecordsA[1].shipOwner.id,
-                customerId: this.shipOwnerRecordsA[1].customer.id
+    public async onPrint(): Promise<void> {
+        try {
+            const values = await Promise.all([this.p1(), this.p2()])
+            console.log('All promises fulfilled' + values)
+            const criteria: EmailLedgerVM = {
+                displayname: 'John',
+                email: 'johnsourvinos@hotmail.com',
+                subject: 'Λογιστικές καρτέλες',
+                filenames: values
             }
-            this.ledgerHttpService.buildPdf(criteria).subscribe({
-                next: (response) => {
-                    console.log(response)
-                }
+            this.ledgerHttpService.emailLedger(criteria).subscribe((response) => {
+                console.log(response)
             })
-        }
-        if (this.shipOwnerRecordsB.length > 3) {
-            const criteria = {
-                fromDate: '2024-01-01',
-                toDate: '2024-12-31',
-                shipOwnerId: this.shipOwnerRecordsB[1].shipOwner.id,
-                customerId: this.shipOwnerRecordsB[1].customer.id
-            }
-            this.ledgerHttpService.buildPdf(criteria).subscribe({
-                next: (response) => {
-                    console.log(response)
-                }
-            })
+        } catch (e) {
+            console.log('A promise rejected')
         }
     }
 
     //#endregion
 
     //#region private methods
+
+    private p1(): any {
+        return new Promise((resolve) => {
+            if (this.shipOwnerRecordsA.length > 3) {
+                const criteria = {
+                    fromDate: '2024-01-01',
+                    toDate: '2024-12-31',
+                    shipOwnerId: this.shipOwnerRecordsA[1].shipOwner.id,
+                    customerId: this.shipOwnerRecordsA[1].customer.id
+                }
+                this.ledgerHttpService.buildPdf(criteria).subscribe({
+                    next: (response) => {
+                        resolve(response.body)
+                    }
+                })
+            }
+        })
+    }
+
+    private p2(): any {
+        return new Promise((resolve) => {
+            if (this.shipOwnerRecordsB.length > 3) {
+                const criteria = {
+                    fromDate: '2024-01-01',
+                    toDate: '2024-12-31',
+                    shipOwnerId: this.shipOwnerRecordsB[1].shipOwner.id,
+                    customerId: this.shipOwnerRecordsB[1].customer.id
+                }
+                this.ledgerHttpService.buildPdf(criteria).subscribe({
+                    next: (response) => {
+                        resolve(response.body)
+                    }
+                })
+            }
+        })
+    }
+
+    private createPdfFiles(): Promise<any> {
+        const files: string[] = []
+        return new Promise((resolve) => {
+            if (this.shipOwnerRecordsA.length > 3) {
+                const criteria = {
+                    fromDate: '2024-01-01',
+                    toDate: '2024-12-31',
+                    shipOwnerId: this.shipOwnerRecordsA[1].shipOwner.id,
+                    customerId: this.shipOwnerRecordsA[1].customer.id
+                }
+                this.ledgerHttpService.buildPdf(criteria).subscribe({
+                    next: (response) => {
+                        console.log('1. ' + response)
+                        files.push(response.body)
+                        resolve(files)
+                    }
+                })
+            }
+            if (this.shipOwnerRecordsB.length > 3) {
+                const criteria = {
+                    fromDate: '2024-01-01',
+                    toDate: '2024-12-31',
+                    shipOwnerId: this.shipOwnerRecordsB[1].shipOwner.id,
+                    customerId: this.shipOwnerRecordsB[1].customer.id
+                }
+                this.ledgerHttpService.buildPdf(criteria).subscribe({
+                    next: (response) => {
+                        console.log('2. ' + response)
+                        files.push(response.body)
+                        resolve(files)
+                    }
+                })
+            }
+
+        })
+    }
 
     private loadRecordsForShipOwner(event, shipOwnerRecords, shipOwnerId): void {
         const criteria = {

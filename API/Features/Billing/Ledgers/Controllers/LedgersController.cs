@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
+using API.Infrastructure.Account;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Responses;
@@ -12,9 +11,6 @@ using Microsoft.AspNetCore.Mvc;
 using PdfSharp.Drawing;
 using PdfSharp.Fonts;
 using PdfSharp.Pdf;
-using ZXing;
-using ZXing.QrCode;
-using ZXing.Windows.Compatibility;
 
 namespace API.Features.Billing.Ledgers {
 
@@ -23,22 +19,24 @@ namespace API.Features.Billing.Ledgers {
 
         #region variables
 
+        private readonly IEmailSender emailSender;
         private readonly ILedgerBillingRepository repo;
 
         #endregion
 
-        public LedgersBillingController(ILedgerBillingRepository repo) {
+        public LedgersBillingController(IEmailSender emailSender, ILedgerBillingRepository repo) {
+            this.emailSender = emailSender;
             this.repo = repo;
         }
 
         [HttpPost("buildLedger")]
-        [Authorize(Roles = "user, admin")]
+        [Authorize(Roles = "admin")]
         public Task<List<LedgerVM>> BuildLedger([FromBody] LedgerCriteria criteria) {
             return ProcessLedger(criteria);
         }
 
         [HttpPost("buildLedgerPdf")]
-        [Authorize(Roles = "user, admin")]
+        [Authorize(Roles = "admin")]
         public async Task<ResponseWithBody> BuildLedgerPdf([FromBody] LedgerCriteria criteria) {
             var ledger = await ProcessLedger(criteria);
             var locale = CultureInfo.CreateSpecificCulture("el-GR");
@@ -72,13 +70,34 @@ namespace API.Features.Billing.Ledgers {
                 gfx.DrawString(ledger[i].Balance.ToString("N2", locale), monotypeFont, XBrushes.Black, new XPoint(576 - ledger[i].Balance.ToString("N2", locale).Length * 3, verticalPosition));
             }
             var filename = criteria.CustomerId.ToString() + "-" + criteria.ShipOwnerId.ToString() + ".pdf";
-            document.Save(filename);
+            var fullpathname = Path.Combine("Reports" + Path.DirectorySeparatorChar + "Ledgers" + Path.DirectorySeparatorChar + filename);
+            document.Save(fullpathname);
             return new ResponseWithBody {
                 Code = 200,
                 Icon = Icons.Info.ToString(),
                 Message = ApiMessages.OK(),
                 Body = filename
             };
+        }
+
+        [HttpPost("[action]")]
+        [Authorize(Roles = "admin")]
+        public Response EmailLedger([FromBody] EmailLedgerVM model) {
+            var response = emailSender.SendLedgerToEmail(model);
+            if (response.Exception == null) {
+                return new Response {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                return new Response {
+                    Code = 498,
+                    Icon = Icons.Error.ToString(),
+                    Id = null,
+                    Message = response.Exception.Message
+                };
+            }
         }
 
         private async Task<List<LedgerVM>> ProcessLedger(LedgerCriteria criteria) {
