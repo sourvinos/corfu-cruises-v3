@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
-using API.Infrastructure.Account;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Responses;
@@ -19,12 +18,12 @@ namespace API.Features.Billing.Ledgers {
 
         #region variables
 
-        private readonly IEmailSender emailSender;
+        private readonly ILedgerEmailSender emailSender;
         private readonly ILedgerBillingRepository repo;
 
         #endregion
 
-        public LedgersBillingController(IEmailSender emailSender, ILedgerBillingRepository repo) {
+        public LedgersBillingController(ILedgerEmailSender emailSender, ILedgerBillingRepository repo) {
             this.emailSender = emailSender;
             this.repo = repo;
         }

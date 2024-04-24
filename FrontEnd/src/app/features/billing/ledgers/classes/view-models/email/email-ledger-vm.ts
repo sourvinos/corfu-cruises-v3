@@ -1,8 +1,6 @@
 export interface EmailLedgerVM {
 
-    displayname: string
-    email: string
-    subject: string
+    customerId: number
     filenames: string[]
 
 }

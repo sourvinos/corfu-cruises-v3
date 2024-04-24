@@ -58,21 +58,14 @@ export class LedgerBillingComponent {
     }
 
     public async onPrint(): Promise<void> {
-        try {
-            const values = await Promise.all([this.p1(), this.p2()])
-            console.log('All promises fulfilled' + values)
-            const criteria: EmailLedgerVM = {
-                displayname: 'John',
-                email: 'johnsourvinos@hotmail.com',
-                subject: 'Λογιστικές καρτέλες',
-                filenames: values
-            }
-            this.ledgerHttpService.emailLedger(criteria).subscribe((response) => {
-                console.log(response)
-            })
-        } catch (e) {
-            console.log('A promise rejected')
+        const values = await Promise.all([this.p1(), this.p2()])
+        const criteria: EmailLedgerVM = {
+            customerId: this.shipOwnerRecordsA[1].customer.id,
+            filenames: values
         }
+        this.ledgerHttpService.emailLedger(criteria).subscribe((response) => {
+            console.log(response)
+        })
     }
 
     //#endregion
@@ -112,43 +105,6 @@ export class LedgerBillingComponent {
                     }
                 })
             }
-        })
-    }
-
-    private createPdfFiles(): Promise<any> {
-        const files: string[] = []
-        return new Promise((resolve) => {
-            if (this.shipOwnerRecordsA.length > 3) {
-                const criteria = {
-                    fromDate: '2024-01-01',
-                    toDate: '2024-12-31',
-                    shipOwnerId: this.shipOwnerRecordsA[1].shipOwner.id,
-                    customerId: this.shipOwnerRecordsA[1].customer.id
-                }
-                this.ledgerHttpService.buildPdf(criteria).subscribe({
-                    next: (response) => {
-                        console.log('1. ' + response)
-                        files.push(response.body)
-                        resolve(files)
-                    }
-                })
-            }
-            if (this.shipOwnerRecordsB.length > 3) {
-                const criteria = {
-                    fromDate: '2024-01-01',
-                    toDate: '2024-12-31',
-                    shipOwnerId: this.shipOwnerRecordsB[1].shipOwner.id,
-                    customerId: this.shipOwnerRecordsB[1].customer.id
-                }
-                this.ledgerHttpService.buildPdf(criteria).subscribe({
-                    next: (response) => {
-                        console.log('2. ' + response)
-                        files.push(response.body)
-                        resolve(files)
-                    }
-                })
-            }
-
         })
     }
 

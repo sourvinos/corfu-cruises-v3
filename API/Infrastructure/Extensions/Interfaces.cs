@@ -110,6 +110,7 @@ namespace API.Infrastructure.Extensions {
             #endregion
             #region common
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<ILedgerEmailSender, LedgerEmailSender>();
             #endregion
             #region checkIn
             services.AddTransient<ICheckInReadRepository, CheckInReadRepository>();
