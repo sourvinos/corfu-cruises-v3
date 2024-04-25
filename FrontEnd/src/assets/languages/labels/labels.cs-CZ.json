@@ -3318,7 +3318,7 @@
             },
             {
                 "id": "printButton",
-                "description": "Εκτυπωση"
+                "description": "Αποστολη με email"
             }
         ]
     },

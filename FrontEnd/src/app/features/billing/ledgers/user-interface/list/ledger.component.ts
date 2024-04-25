@@ -3,13 +3,15 @@ import { DateAdapter } from '@angular/material/core'
 import { Table } from 'primeng/table'
 // Custom
 import { DateHelperService } from '../../../../../shared/services/date-helper.service'
+import { DialogService } from 'src/app/shared/services/modal-dialog.service'
+import { EmailLedgerVM } from '../../classes/view-models/email/email-ledger-vm'
 import { HelperService } from '../../../../../shared/services/helper.service'
 import { LedgerHttpService } from '../../classes/services/ledger-http.service'
 import { LedgerVM } from '../../classes/view-models/criteria/ledger-vm'
 import { LocalStorageService } from '../../../../../shared/services/local-storage.service'
+import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from '../../../../../shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
-import { EmailLedgerVM } from '../../classes/view-models/email/email-ledger-vm'
 
 @Component({
     selector: 'ledger',
@@ -33,7 +35,7 @@ export class LedgerBillingComponent {
 
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private helperService: HelperService, private ledgerHttpService: LedgerHttpService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private sessionStorageService: SessionStorageService) { }
+    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private helperService: HelperService, private ledgerHttpService: LedgerHttpService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -59,12 +61,18 @@ export class LedgerBillingComponent {
 
     public async onPrint(): Promise<void> {
         const values = await Promise.all([this.p1(), this.p2()])
+        const x = JSON.parse(this.sessionStorageService.getItem('ledgerCriteria'))
         const criteria: EmailLedgerVM = {
-            customerId: this.shipOwnerRecordsA[1].customer.id,
-            filenames: values
+            customerId: x.customer.id,
+            filenames: values.filter(x => x != null)
         }
-        this.ledgerHttpService.emailLedger(criteria).subscribe((response) => {
-            console.log(response)
+        this.ledgerHttpService.emailLedger(criteria).subscribe({
+            complete: () => {
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
         })
     }
 
@@ -86,6 +94,8 @@ export class LedgerBillingComponent {
                         resolve(response.body)
                     }
                 })
+            } else {
+                resolve(null)
             }
         })
     }
@@ -104,6 +114,8 @@ export class LedgerBillingComponent {
                         resolve(response.body)
                     }
                 })
+            } else {
+                resolve(null)
             }
         })
     }
