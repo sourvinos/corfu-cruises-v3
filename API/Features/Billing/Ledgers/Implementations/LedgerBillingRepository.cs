@@ -35,6 +35,7 @@ namespace API.Features.Billing.Ledgers {
                 .Include(x => x.DocumentType)
                 .Include(x => x.ShipOwner)
                 .Where(x => x.Date <= Convert.ToDateTime(toDate)
+                    && (!x.IsCancelled)
                     && (shipOwnerId == null || x.ShipOwner.Id == shipOwnerId)
                     && (connectedCustomerId == null
                         ? x.CustomerId == customerId
