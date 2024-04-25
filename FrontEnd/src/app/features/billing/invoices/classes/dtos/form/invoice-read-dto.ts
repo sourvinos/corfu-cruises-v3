@@ -16,7 +16,6 @@ export interface InvoiceReadDto extends Metadata {
     date: string
     tripDate: string
     invoiceNo: number
-    // Object fields
     customer: CustomerVM
     destination: SimpleEntity
     documentType: DocumentTypeVM
@@ -26,15 +25,13 @@ export interface InvoiceReadDto extends Metadata {
     issuer: InvoiceXmlPartyTypeDto
     counterPart: InvoiceXmlPartyTypeDto
     invoicesPorts: PortReadDto[]
-    // Fields
     remarks: string
     isEmailSent: boolean
-    // Persons
+    isCancelled: boolean
     adults: number
     kids: number
     free: number
     totalPax: number
-    // Amounts
     netAmount: number
     vatPercent: number
     vatAmount: number

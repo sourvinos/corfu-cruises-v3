@@ -147,6 +147,14 @@ export class InvoiceFormComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
+    public isEmailSent(): boolean {
+        return this.form.value.isEmailSent
+    }
+
+    public isCancelled(): boolean {
+        return this.form.value.isCancelled
+    }
+
     public isSubmitted(): boolean {
         return this.form.value.aade.mark != ''
     }
@@ -159,7 +167,14 @@ export class InvoiceFormComponent {
                         next: (response) => {
                             this.invoiceHttpService.updateInvoiceAade(this.invoiceXmlHelperService.processInvoiceCancelSuccessResponse(invoice.body, response)).subscribe({
                                 next: () => {
-                                    this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                                    this.invoiceHttpService.patchInvoiceWithIsCancelled(this.form.value.invoiceId).subscribe({
+                                        next: () => {
+                                            this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                                        },
+                                        error: (errorFromInterceptor) => {
+                                            this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                                        }
+                                    })
                                 },
                                 error: (errorFromInterceptor) => {
                                     this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
@@ -419,6 +434,7 @@ export class InvoiceFormComponent {
             }),
             remarks: ['', Validators.maxLength(128)],
             isEmailSent: false,
+            isCancelled: false,
             postAt: [''],
             postUser: [''],
             putAt: [''],
@@ -515,6 +531,7 @@ export class InvoiceFormComponent {
                 totalPax: this.record.totalPax,
                 remarks: this.record.remarks,
                 isEmailSent: this.record.isEmailSent,
+                isCancelled: this.record.isCancelled,
                 netAmount: this.record.netAmount,
                 vatPercent: this.record.vatPercent,
                 vatAmount: this.record.vatAmount,

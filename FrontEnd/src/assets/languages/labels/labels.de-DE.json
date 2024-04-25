@@ -2960,14 +2960,6 @@
                 "description": "Πελάτης"
             },
             {
-                "id": "vatNumber",
-                "description": "ΑΦΜ"
-            },
-            {
-                "id": "email",
-                "description": "Email"
-            },
-            {
                 "id": "destination",
                 "description": "Προορισμός"
             },
@@ -2994,10 +2986,6 @@
             {
                 "id": "remarks",
                 "description": "Σχόλια"
-            },
-            {
-                "id": "isEmailSent",
-                "description": "Εχει σταλεί με email"
             },
             {
                 "id": "post",

@@ -48,7 +48,11 @@ export class InvoiceHttpService extends HttpDataService {
     }
 
     public patchInvoiceWithEmailSent(invoiceId: string): Observable<any> {
-        return this.http.patch<any>(this.url + '/' + invoiceId, null)
+        return this.http.patch<any>(this.url + '/email/' + invoiceId, null)
+    }
+
+    public patchInvoiceWithIsCancelled(invoiceId: string): Observable<any> {
+        return this.http.patch<any>(this.url + '/isCancelled/' + invoiceId, null)
     }
 
 }

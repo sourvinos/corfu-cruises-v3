@@ -204,12 +204,31 @@ namespace API.Features.Billing.Invoices {
             }
         }
 
-        [HttpPatch("{invoiceId}")]
+        [HttpPatch("email/{invoiceId}")]
         [Authorize(Roles = "admin")]
-        public async Task<Response> Patch(string invoiceId) {
+        public async Task<Response> PatchEmail(string invoiceId) {
             var x = await invoiceReadRepo.GetByIdAsync(invoiceId, false);
             if (x != null) {
                 invoiceUpdateRepo.UpdateIsEmailSent(x, invoiceId);
+                return new Response {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Id = invoiceId.ToString(),
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 404
+                };
+            }
+        }
+
+        [HttpPatch("isCancelled/{invoiceId}")]
+        [Authorize(Roles = "admin")]
+        public async Task<Response> PatchIsCancelled(string invoiceId) {
+            var x = await invoiceReadRepo.GetByIdAsync(invoiceId, false);
+            if (x != null) {
+                invoiceUpdateRepo.UpdateIsCancelled(x, invoiceId);
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),

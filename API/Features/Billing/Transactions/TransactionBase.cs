@@ -29,6 +29,7 @@ namespace API.Features.Billing.Transactions {
         public decimal NewBalance { get; set; }
         public string Remarks { get; set; }
         public bool IsEmailSent { get; set; }
+        public bool IsCancelled { get; set; }
         // Navigation
         public DocumentType DocumentType { get; set; }
         public PaymentMethod PaymentMethod { get; set; }

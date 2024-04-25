@@ -7,13 +7,10 @@ namespace API.Features.Billing.Invoices {
 
     public class Invoice : TransactionsBase {
 
-        // FKs
         public int? DestinationId { get; set; }
         public int? ShipId { get; set; }
-        // Child Tables
         public InvoiceAade Aade { get; set; }
         public List<InvoicePort> InvoicesPorts { get; set; }
-        // Navigation
         public Destination Destination { get; set; }
         public Ship Ship { get; set; }
 

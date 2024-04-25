@@ -116,7 +116,6 @@ export class InvoiceHelperService {
             vatAmount: formValue.vatAmount,
             grossAmount: formValue.grossAmount,
             remarks: formValue.remarks,
-            isEmailSent: formValue.isEmailSent,
             putAt: formValue.putAt,
             invoicesPorts: this.mapPorts(formValue)
         }
