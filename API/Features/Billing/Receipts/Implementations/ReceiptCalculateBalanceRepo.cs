@@ -1,4 +1,3 @@
-using API.Features.Billing.Transactions;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Implementations;
 using API.Infrastructure.Users;
@@ -6,7 +5,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace API.Features.Billing.Receipts {
@@ -14,15 +12,6 @@ namespace API.Features.Billing.Receipts {
     public class ReceiptCalculateBalanceRepo : Repository<Receipt>, IReceiptCalculateBalanceRepo {
 
         public ReceiptCalculateBalanceRepo(AppDbContext appDbContext, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, settings, userManager) { }
-
-        public IEnumerable<TransactionsBase> Get(int customerId) {
-            return context.Transactions
-                .AsNoTracking()
-                .Include(x => x.DocumentType)
-                .Where(x => x.CustomerId == customerId)
-                .OrderBy(x => x.PutAt)
-                .ToList();
-        }
 
         public ReceiptBalanceVM CalculateBalances(ReceiptWriteDto invoice, int customerId) {
             decimal previousBalance = CalculatePreviousBalance(customerId);
@@ -44,7 +33,7 @@ namespace API.Features.Billing.Receipts {
                 .AsNoTracking()
                 .Include(x => x.Customer)
                 .Include(x => x.DocumentType)
-                .Where(x => x.CustomerId == customerId)
+                .Where(x => x.CustomerId == customerId && !x.IsCancelled)
                 .OrderBy(x => x.Date)
                 .ToList();
             decimal previousBalance = 0;
