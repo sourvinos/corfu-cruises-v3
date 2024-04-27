@@ -3,11 +3,12 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 // Custom
 import { AadeVM } from '../view-models/form/aade-vm'
+import { EmailInvoiceVM } from '../view-models/email/email-invoice-vm'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { InvoiceLinkVM } from '../view-models/email/invoiceLink-vm'
-import { environment } from 'src/environments/environment'
 import { InvoiceListCriteriaVM } from '../view-models/criteria/invoice-list-criteria-vm'
 import { InvoiceListVM } from '../view-models/list/invoice-list-vm'
+import { environment } from 'src/environments/environment'
 
 @Injectable({ providedIn: 'root' })
 
@@ -53,6 +54,14 @@ export class InvoiceHttpService extends HttpDataService {
 
     public patchInvoiceWithIsCancelled(invoiceId: string): Observable<any> {
         return this.http.patch<any>(this.url + '/isCancelled/' + invoiceId, null)
+    }
+
+    buildPdf(invoiceId: string): Observable<any> {
+        return this.http.request<any>('get', this.url + '/buildInvoicePdf/' + invoiceId)
+    }
+
+    emailInvoice(criteria: EmailInvoiceVM): Observable<any> {
+        return this.http.request<EmailInvoiceVM[]>('post', this.url + '/emailPdf', { body: criteria })
     }
 
 }

@@ -20,6 +20,7 @@ import { LocalStorageService } from '../../../../../../shared/services/local-sto
 import { MessageDialogService } from '../../../../../../shared/services/message-dialog.service'
 import { MessageLabelService } from '../../../../../../shared/services/message-label.service'
 import { SessionStorageService } from '../../../../../../shared/services/session-storage.service'
+import { EmailInvoiceVM } from '../../../classes/view-models/email/email-invoice-vm'
 
 @Component({
     selector: 'invoice-list',
@@ -187,7 +188,7 @@ export class InvoiceListComponent {
     private initContextMenu(): void {
         this.menuItems = [
             { label: 'Επεξεργασία', command: () => this.editRecord(this.selectedRecord.invoiceId.toString()) },
-            { label: 'Αποστολή με email', command: () => this.sendInvoiceLinkToEmail(this.selectedRecord.customer.id, this.selectedRecord.invoiceId) }
+            { label: 'Αποστολή με email', command: () => this.sendInvoiceToEmail(this.selectedRecord.invoiceId) }
         ]
     }
 
@@ -252,13 +253,50 @@ export class InvoiceListComponent {
                         error: (errorFromInterceptor) => {
                             this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
                         }
-                    }
-                    )
+                    })
                 },
                 error: (errorFromInterceptor: any) => {
                     this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
                 }
             })
+        })
+    }
+
+    private sendInvoiceToEmail(invoiceId: string): void {
+        this.invoiceHttpService.buildPdf(invoiceId).subscribe({
+            next: (response) => {
+                console.log(response)
+                const x = JSON.parse(this.sessionStorageService.getItem('ledgerCriteria'))
+                const criteria: EmailInvoiceVM = {
+                    customerId: x.customer.id,
+                    filenames: response.filter((x: null) => x != null)
+                }
+                this.invoiceHttpService.emailInvoice(criteria).subscribe({
+                    complete: () => {
+                        this.invoiceHttpService.patchInvoiceWithEmailSent(invoiceId).subscribe({
+                            next: () => {
+                                const criteria: InvoiceListCriteriaVM = JSON.parse(this.sessionStorageService.getItem('invoice-list-criteria'))
+                                this.loadRecords(criteria).then(() => {
+                                    this.filterTableFromStoredFilters()
+                                    this.populateDropdownFilters()
+                                    this.enableDisableFilters()
+                                    this.formatDatesToLocale()
+                                })
+                                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
+                            },
+                            error: (errorFromInterceptor) => {
+                                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                            }
+                        })
+                    },
+                    error: (errorFromInterceptor) => {
+                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                    }
+                })
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
         })
     }
 
