@@ -20,6 +20,7 @@ namespace API.Features.Billing.Invoices {
         private readonly EnvironmentSettings environmentSettings;
         private readonly ICustomerRepository customerRepo;
         private readonly IInvoiceCalculateBalanceRepo invoiceCalculateBalanceRepo;
+        private readonly IInvoicePdfRepository invoicePdfRepo;
         private readonly IInvoiceReadRepository invoiceReadRepo;
         private readonly IInvoiceSendToEmail invoiceSendToEmail;
         private readonly IInvoiceUpdateRepository invoiceUpdateRepo;
@@ -28,13 +29,14 @@ namespace API.Features.Billing.Invoices {
 
         #endregion
 
-        public InvoicesController(ICustomerRepository customerRepo, IInvoiceCalculateBalanceRepo invoiceCalculateBalance, IInvoiceReadRepository invoiceReadRepo, IInvoiceSendToEmail invoiceSendToEmail, IInvoiceUpdateRepository invoiceUpdateRepo, IInvoiceValidation invoiceValidation, IMapper mapper, IOptions<EnvironmentSettings> environmentSettings) {
+        public InvoicesController(ICustomerRepository customerRepo, IInvoiceCalculateBalanceRepo invoiceCalculateBalance, IInvoicePdfRepository invoicePdfRepo, IInvoiceReadRepository invoiceReadRepo, IInvoiceSendToEmail invoiceSendToEmail, IInvoiceUpdateRepository invoiceUpdateRepo, IInvoiceValidation invoiceValidation, IMapper mapper, IOptions<EnvironmentSettings> environmentSettings) {
             this.customerRepo = customerRepo;
             this.environmentSettings = environmentSettings.Value;
             this.invoiceCalculateBalanceRepo = invoiceCalculateBalance;
             this.invoiceReadRepo = invoiceReadRepo;
             this.invoiceSendToEmail = invoiceSendToEmail;
             this.invoiceUpdateRepo = invoiceUpdateRepo;
+            this.invoicePdfRepo = invoicePdfRepo;
             this.invoiceValidation = invoiceValidation;
             this.mapper = mapper;
         }
@@ -201,6 +203,25 @@ namespace API.Features.Billing.Invoices {
                     Id = null,
                     Message = response.Exception.Message
                 });
+            }
+        }
+
+        [HttpPost("buildInvoicePdf/{invoiceId}")]
+        [Authorize(Roles = "admin")]
+        public async Task<ResponseWithBody> BuildPdf(string invoiceId) {
+            var x = await invoiceReadRepo.GetByIdForPdfAsync(invoiceId);
+            if (x != null) {
+                var filename = invoicePdfRepo.BuildPdf(mapper.Map<Invoice, InvoicePdfVM>(x));
+                return new ResponseWithBody {
+                    Code = 200,
+                    Icon = Icons.Info.ToString(),
+                    Message = ApiMessages.OK(),
+                    Body = filename
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 404
+                };
             }
         }
 

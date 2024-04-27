@@ -87,21 +87,22 @@ namespace API.Infrastructure.Extensions {
             #region billing
             services.AddTransient<IDocumentTypeRepository, DocumentTypeRepository>();
             services.AddTransient<IDocumentTypeValidation, DocumentTypeValidation>();
-            services.AddTransient<IInvoiceXmlRepository, InvoiceXmlRepository>();
             services.AddTransient<IInvoiceCalculateBalanceRepo, InvoiceCalculateBalanceRepo>();
+            services.AddTransient<IInvoicePdfRepository, InvoicePdfRepository>();
             services.AddTransient<IInvoiceReadRepository, InvoiceReadRepository>();
             services.AddTransient<IInvoiceSendToEmail, InvoiceSendToEmail>();
             services.AddTransient<IInvoiceUpdateRepository, InvoiceUpdateRepository>();
             services.AddTransient<IInvoiceValidation, InvoiceValidation>();
+            services.AddTransient<IInvoiceXmlRepository, InvoiceXmlRepository>();
             services.AddTransient<ILedgerBillingRepository, LedgerBillingRepository>();
             services.AddTransient<IPaymentMethodRepository, PaymentMethodRepository>();
             services.AddTransient<IPaymentMethodValidation, PaymentMethodValidation>();
             services.AddTransient<IPriceCloneRepository, PriceCloneRepository>();
             services.AddTransient<IPriceRepository, PriceRepository>();
             services.AddTransient<IPriceValidation, PriceValidation>();
+            services.AddTransient<IReceiptCalculateBalanceRepo, ReceiptCalculateBalanceRepo>();
             services.AddTransient<IReceiptRepository, ReceiptRepository>();
             services.AddTransient<IReceiptValidation, ReceiptValidation>();
-            services.AddTransient<IReceiptCalculateBalanceRepo, ReceiptCalculateBalanceRepo>();
             services.AddTransient<ITaxOfficeRepository, TaxOfficeRepository>();
             services.AddTransient<ITaxOfficeValidation, TaxOfficeValidation>();
             services.AddTransient<IVatRegimeRepository, VatRegimeRepository>();

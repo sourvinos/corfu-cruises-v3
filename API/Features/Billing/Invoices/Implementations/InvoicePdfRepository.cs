@@ -1,0 +1,242 @@
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Globalization;
+using System.IO;
+using API.Infrastructure.Classes;
+using API.Infrastructure.Helpers;
+using PdfSharp.Drawing;
+using PdfSharp.Fonts;
+using PdfSharp.Pdf;
+using ZXing;
+using ZXing.QrCode;
+using ZXing.Windows.Compatibility;
+
+namespace API.Features.Billing.Invoices {
+
+    public class InvoicePdfRepository : IInvoicePdfRepository {
+
+        public string BuildPdf(InvoicePdfVM invoice) {
+            var locale = CultureInfo.CreateSpecificCulture("el-GR");
+            GlobalFontSettings.FontResolver = new FileFontResolver();
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+            PdfDocument document = new();
+            PdfPage page = document.AddPage();
+            XFont logoFont = new("ACCanterBold", 20);
+            XFont robotoMonoFont = new("RobotoMono", 6);
+            XFont monotypeFont = new("MonoType", 6);
+            XGraphics gfx = XGraphics.FromPdfPage(page);
+            PrintIssuer(gfx, logoFont, robotoMonoFont, invoice);
+            PrintInvoiceDetails(gfx, robotoMonoFont, invoice);
+            PrintTripDetails(gfx, robotoMonoFont, invoice);
+            PrintCounterPart(gfx, robotoMonoFont, invoice);
+            PrintFirstPort(gfx, robotoMonoFont, monotypeFont, locale, invoice);
+            PrintSecondPort(gfx, robotoMonoFont, locale, invoice);
+            PrintPortTotals(gfx, robotoMonoFont, locale, invoice);
+            PrintSummary(gfx, robotoMonoFont, monotypeFont, locale, invoice);
+            PrintBalances(gfx, robotoMonoFont, monotypeFont, invoice);
+            PrintBankAccounts(gfx, robotoMonoFont);
+            PrintAade(gfx, robotoMonoFont, invoice.Aade);
+
+            var filename = invoice.Customer.VatNumber + ".pdf";
+            var fullpathname = Path.Combine("Reports" + Path.DirectorySeparatorChar + "Invoices" + Path.DirectorySeparatorChar + filename);
+            document.Save(fullpathname);
+            return filename;
+        }
+
+        private static void PrintAade(XGraphics gfx, XFont font, InvoicePdfAadeVM aade) {
+            var bottom = 810;
+            var right = 560;
+            gfx.DrawString("MAPK " + aade.Mark, font, XBrushes.Black, new XRect(right, bottom - 70, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawImage(BuildQrCode(aade.QrUrl), 500, 749, 60, 60);
+            gfx.DrawString("UID " + aade.UId, font, XBrushes.Black, new XRect(right, bottom, 0, 0), new() { Alignment = XStringAlignment.Far });
+        }
+
+        private static void PrintIssuer(XGraphics gfx, XFont logoFont, XFont robotoMonoFont, InvoicePdfVM invoice) {
+            var top = 40;
+            var left = 40;
+            gfx.DrawString(invoice.Issuer.FullDescription, logoFont, XBrushes.Black, new XPoint(left, top));
+            gfx.DrawString(invoice.Issuer.Profession, robotoMonoFont, XBrushes.Black, new XPoint(left, top += 10));
+            gfx.DrawString("ΑΦΜ: " + invoice.Issuer.VatNumber, robotoMonoFont, XBrushes.Black, new XPoint(left, top += 10));
+            gfx.DrawString("ΔΟΥ: " + invoice.Issuer.TaxOffice, robotoMonoFont, XBrushes.Black, new XPoint(left, top += 10));
+            gfx.DrawString(invoice.Issuer.Street + " " + invoice.Issuer.Number + " " + invoice.Issuer.PostalCode, robotoMonoFont, XBrushes.Black, new XPoint(left, top += 10));
+            gfx.DrawString(invoice.Issuer.City, robotoMonoFont, XBrushes.Black, new XPoint(left, top += 10));
+            gfx.DrawString("ΤΗΛΕΦΩΝΑ: " + invoice.Issuer.Phones, robotoMonoFont, XBrushes.Black, new XPoint(left, top += 10));
+            gfx.DrawString("EMAIL: " + invoice.Issuer.Email, robotoMonoFont, XBrushes.Black, new XPoint(left, top += 10));
+        }
+
+        private static void PrintInvoiceDetails(XGraphics gfx, XFont robotoMonoFont, InvoicePdfVM invoice) {
+            var top = 43;
+            var right = 560;
+            gfx.DrawString("ΗΜΕΡΟΜΗΝΙΑ ΕΚΔΟΣΗΣ: " + DateHelpers.FormatDateStringToLocaleString(invoice.Header.Date), robotoMonoFont, XBrushes.Black, new XRect(right, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString(invoice.DocumentType.Description, robotoMonoFont, XBrushes.Black, new XRect(right, top += 10, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("ΣΕΙΡΑ: " + invoice.DocumentType.Batch, robotoMonoFont, XBrushes.Black, new XRect(right, top += 10, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("ΝΟ: " + invoice.Header.InvoiceNo, robotoMonoFont, XBrushes.Black, new XRect(right, top += 10, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("ΤΡΟΠΟΣ ΠΛΗΡΩΜΗΣ: " + invoice.PaymentMethod, robotoMonoFont, XBrushes.Black, new XRect(right, top += 10, 0, 0), new() { Alignment = XStringAlignment.Far });
+        }
+
+        private static void PrintTripDetails(XGraphics gfx, XFont robotoMonoFont, InvoicePdfVM invoice) {
+            var top = 93;
+            var right = 560;
+            gfx.DrawString("ΗΜΕΡΟΜΗΝΙΑ ΤΑΞΙΔΙΟΥ: " + DateHelpers.FormatDateStringToLocaleString(invoice.Header.Date), robotoMonoFont, XBrushes.Black, new XRect(right, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("ΠΛΟΙΟ: " + invoice.Ship.Description + " " + invoice.Ship.RegistryNo, robotoMonoFont, XBrushes.Black, new XRect(right, top += 10, 0, 0), new() { Alignment = XStringAlignment.Far });
+        }
+
+        private static void PrintCounterPart(XGraphics gfx, XFont robotoMonoFont, InvoicePdfVM invoice) {
+            var top = 130;
+            var left = 40;
+            gfx.DrawString("ΣΤΟΙΧΕΙΑ ΛΗΠΤΗ", robotoMonoFont, XBrushes.Black, new XRect(left, top, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("ΔΡΑΣΤΗΡΙΟΤΗΤΑ: " + invoice.Customer.FullDescription, robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString(invoice.Customer.Profession, robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("ΑΦΜ: " + invoice.Customer.VatNumber, robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("ΔΟΥ: " + invoice.Customer.TaxOffice, robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("ΔΙΕΥΘΥΝΣΗ: " + invoice.Customer.Street + " " + invoice.Customer.Number + ", ΤΚ: " + invoice.Customer.PostalCode + ", " + invoice.Customer.City, robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("ΤΗΛΕΦΩΝΑ: " + invoice.Customer.Phones, robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("EMAIL: " + invoice.Customer.Email, robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+        }
+
+        private static void PrintFirstPort(XGraphics gfx, XFont robotoMonoFont, XFont monotypeFont, CultureInfo locale, InvoicePdfVM invoice) {
+            var top = 230;
+            var left = 40;
+            var personsRight = 114;
+            var amountsRight = 150;
+            var totalAmountsRight = 200;
+            gfx.DrawString("CORFU PORT", robotoMonoFont, XBrushes.Black, new XRect(left, top, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("ΕΝΗΛΙΚΕΣ", robotoMonoFont, XBrushes.Black, new XRect(left, top += 20, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("w/TRANSFER", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString(invoice.Ports[0].AdultsWithTransfer.ToString(), robotoMonoFont, XBrushes.Black, new XRect(personsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString(invoice.Ports[0].AdultsPriceWithTransfer.ToString(), robotoMonoFont, XBrushes.Black, new XRect(amountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString(invoice.Ports[0].AdultsTotalAmountWithTransfer.ToString(), robotoMonoFont, XBrushes.Black, new XRect(totalAmountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("w/o TRANSFER", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString(invoice.Ports[0].AdultsWithoutTransfer.ToString(), robotoMonoFont, XBrushes.Black, new XRect(personsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString(invoice.Ports[0].AdultsPriceWithoutTransfer.ToString(), robotoMonoFont, XBrushes.Black, new XRect(amountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString(invoice.Ports[0].AdultsTotalAmountWithoutTransfer.ToString("N2", locale), robotoMonoFont, XBrushes.Black, new XRect(totalAmountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("ΠΑΙΔΙΑ", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("w/TRANSFER", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString(invoice.Ports[0].KidsWithTransfer.ToString(), robotoMonoFont, XBrushes.Black, new XRect(personsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString(invoice.Ports[0].KidsPriceWithTransfer.ToString(), robotoMonoFont, XBrushes.Black, new XRect(amountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString(invoice.Ports[0].KidsTotalAmountWithTransfer.ToString("N2", locale), robotoMonoFont, XBrushes.Black, new XRect(totalAmountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("w/o TRANSFER", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString(invoice.Ports[0].KidsWithoutTransfer.ToString(), robotoMonoFont, XBrushes.Black, new XRect(personsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString(invoice.Ports[0].KidsPriceWithoutTransfer.ToString(), robotoMonoFont, XBrushes.Black, new XRect(amountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString(invoice.Ports[0].KidsTotalAmountWithoutTransfer.ToString("N2", locale), robotoMonoFont, XBrushes.Black, new XRect(totalAmountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("ΔΩΡΕΑΝ", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("w/TRANSFER", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString(invoice.Ports[0].FreeWithTransfer.ToString(), robotoMonoFont, XBrushes.Black, new XRect(personsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("w/o TRANSFER", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString(invoice.Ports[0].FreeWithoutTransfer.ToString(), robotoMonoFont, XBrushes.Black, new XRect(personsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("ΣΥΝΟΛΑ", robotoMonoFont, XBrushes.Black, new XRect(left, top += 20, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString(invoice.Ports[0].TotalPax.ToString(), robotoMonoFont, XBrushes.Black, new XRect(personsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString(invoice.Ports[0].TotalAmount.ToString("N2", locale), robotoMonoFont, XBrushes.Black, new XRect(totalAmountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+        }
+
+        private static void PrintSecondPort(XGraphics gfx, XFont robotoMonoFont, CultureInfo locale, InvoicePdfVM invoice) {
+            var top = 230;
+            var left = 250;
+            var personsRight = 314;
+            var amountsRight = 350;
+            var totalAmountsRight = 400;
+            gfx.DrawString("LEFKIMMI PORT", robotoMonoFont, XBrushes.Black, new XRect(left, top, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("ΕΝΗΛΙΚΕΣ", robotoMonoFont, XBrushes.Black, new XRect(left, top += 20, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("w/TRANSFER", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString(invoice.Ports[1].AdultsWithTransfer.ToString(), robotoMonoFont, XBrushes.Black, new XRect(personsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString(invoice.Ports[1].AdultsPriceWithTransfer.ToString(), robotoMonoFont, XBrushes.Black, new XRect(amountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString(invoice.Ports[1].AdultsTotalAmountWithTransfer.ToString("N2", locale), robotoMonoFont, XBrushes.Black, new XRect(totalAmountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("w/o TRANSFER", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString(invoice.Ports[1].AdultsWithoutTransfer.ToString(), robotoMonoFont, XBrushes.Black, new XRect(personsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString(invoice.Ports[1].AdultsPriceWithoutTransfer.ToString(), robotoMonoFont, XBrushes.Black, new XRect(amountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString(invoice.Ports[1].AdultsTotalAmountWithoutTransfer.ToString("N2", locale), robotoMonoFont, XBrushes.Black, new XRect(totalAmountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("ΠΑΙΔΙΑ", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("w/TRANSFER", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString(invoice.Ports[1].KidsWithTransfer.ToString(), robotoMonoFont, XBrushes.Black, new XRect(personsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString(invoice.Ports[1].KidsPriceWithTransfer.ToString(), robotoMonoFont, XBrushes.Black, new XRect(amountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString(invoice.Ports[1].KidsTotalAmountWithTransfer.ToString("N2", locale), robotoMonoFont, XBrushes.Black, new XRect(totalAmountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("w/o TRANSFER", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString(invoice.Ports[1].KidsWithoutTransfer.ToString(), robotoMonoFont, XBrushes.Black, new XRect(personsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString(invoice.Ports[1].KidsPriceWithoutTransfer.ToString(), robotoMonoFont, XBrushes.Black, new XRect(amountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString(invoice.Ports[1].KidsTotalAmountWithoutTransfer.ToString("N2", locale), robotoMonoFont, XBrushes.Black, new XRect(totalAmountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("ΔΩΡΕΑΝ", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("w/TRANSFER", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString(invoice.Ports[1].FreeWithTransfer.ToString(), robotoMonoFont, XBrushes.Black, new XRect(personsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("w/o TRANSFER", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString(invoice.Ports[1].FreeWithoutTransfer.ToString(), robotoMonoFont, XBrushes.Black, new XRect(personsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("ΣΥΝΟΛΑ", robotoMonoFont, XBrushes.Black, new XRect(left, top += 20, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString(invoice.Ports[1].TotalPax.ToString(), robotoMonoFont, XBrushes.Black, new XRect(personsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString(invoice.Ports[1].TotalAmount.ToString("N2", locale), robotoMonoFont, XBrushes.Black, new XRect(totalAmountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+        }
+
+        private static void PrintPortTotals(XGraphics gfx, XFont robotoMonoFont, CultureInfo locale, InvoicePdfVM invoice) {
+            var top = 230;
+            var left = 450;
+            var personsRight = 515;
+            var totalAmountsRight = 560;
+            gfx.DrawString("ΣΥΝΟΛΑ", robotoMonoFont, XBrushes.Black, new XRect(left, top, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("ΕΝΗΛΙΚΕΣ", robotoMonoFont, XBrushes.Black, new XRect(left, top += 20, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("w/TRANSFER", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString((invoice.Ports[0].AdultsWithTransfer + invoice.Ports[1].AdultsWithTransfer).ToString(), robotoMonoFont, XBrushes.Black, new XRect(personsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString((invoice.Ports[0].AdultsTotalAmountWithTransfer + invoice.Ports[1].AdultsTotalAmountWithTransfer).ToString("N2", locale), robotoMonoFont, XBrushes.Black, new XRect(totalAmountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("w/o TRANSFER", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString((invoice.Ports[0].AdultsWithoutTransfer + invoice.Ports[1].AdultsWithoutTransfer).ToString(), robotoMonoFont, XBrushes.Black, new XRect(personsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString((invoice.Ports[0].AdultsTotalAmountWithoutTransfer + invoice.Ports[1].AdultsTotalAmountWithoutTransfer).ToString("N2", locale), robotoMonoFont, XBrushes.Black, new XRect(totalAmountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("ΠΑΙΔΙΑ", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("w/o TRANSFER", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString((invoice.Ports[0].KidsWithTransfer + invoice.Ports[1].KidsWithTransfer).ToString(), robotoMonoFont, XBrushes.Black, new XRect(personsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString((invoice.Ports[0].KidsTotalAmountWithTransfer + invoice.Ports[1].KidsTotalAmountWithTransfer).ToString("N2", locale), robotoMonoFont, XBrushes.Black, new XRect(totalAmountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("w/o TRANSFER", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString((invoice.Ports[0].KidsWithoutTransfer + invoice.Ports[1].KidsWithoutTransfer).ToString(), robotoMonoFont, XBrushes.Black, new XRect(personsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString((invoice.Ports[0].KidsTotalAmountWithoutTransfer + invoice.Ports[1].KidsTotalAmountWithoutTransfer).ToString("N2", locale), robotoMonoFont, XBrushes.Black, new XRect(totalAmountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("ΔΩΡΕΑΝ", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("w/o TRANSFER", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString((invoice.Ports[0].FreeWithTransfer + invoice.Ports[1].FreeWithTransfer).ToString(), robotoMonoFont, XBrushes.Black, new XRect(personsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("w/o TRANSFER", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString((invoice.Ports[0].FreeWithoutTransfer + invoice.Ports[1].FreeWithoutTransfer).ToString(), robotoMonoFont, XBrushes.Black, new XRect(personsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("ΣΥΝΟΛΑ", robotoMonoFont, XBrushes.Black, new XRect(left, top += 20, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString((invoice.Ports[0].TotalPax + invoice.Ports[1].TotalPax).ToString(), robotoMonoFont, XBrushes.Black, new XRect(personsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString((invoice.Ports[0].TotalAmount + invoice.Ports[1].TotalAmount).ToString("N2", locale), robotoMonoFont, XBrushes.Black, new XRect(totalAmountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+        }
+
+        private static void PrintSummary(XGraphics gfx, XFont robotoMonoFont, XFont monotypeFont, CultureInfo locale, InvoicePdfVM invoice) {
+            var top = 400;
+            var left = 450;
+            var amountsRight = 560;
+            gfx.DrawString("ΚΑΘΑΡΗ ΑΞΙΑ", robotoMonoFont, XBrushes.Black, new XRect(left, top, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString(invoice.Summary.NetAmount.ToString("N2", locale), robotoMonoFont, XBrushes.Black, new XRect(amountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("ΦΠΑ " + invoice.Summary.VatPercent + "%", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString(invoice.Summary.VatAmount.ToString("N2", locale), robotoMonoFont, XBrushes.Black, new XRect(amountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("ΣΥΝΟΛΙΚΗ ΑΞΙΑ", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString(invoice.Summary.GrossAmount.ToString("N2", locale), robotoMonoFont, XBrushes.Black, new XRect(amountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+        }
+
+        private static void PrintBalances(XGraphics gfx, XFont robotoMonoFont, XFont monotypeFont, InvoicePdfVM invoice) {
+            var top = 450;
+            var left = 450;
+            var amountsRight = 560;
+            gfx.DrawString("ΥΠΟΛΟΙΠΑ", robotoMonoFont, XBrushes.Black, new XRect(left, top, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("ΠΡΟΗΓΟΥΜΕΝΟ", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString(invoice.PreviousBalance.ToString(), robotoMonoFont, XBrushes.Black, new XRect(amountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("ΝΕΟ", robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString(invoice.NewBalance.ToString(), robotoMonoFont, XBrushes.Black, new XRect(amountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
+        }
+
+        private static XImage BuildQrCode(string qrUrl) {
+            QrCodeEncodingOptions options = new() { DisableECI = true, CharacterSet = "UTF-8" };
+            BarcodeWriter writer = new() { Format = BarcodeFormat.QR_CODE, Options = options };
+            Bitmap qrCodeBitmap = writer.Write(qrUrl);
+            MemoryStream strm = new();
+            qrCodeBitmap.Save(strm, ImageFormat.Png);
+            return XImage.FromStream(strm);
+        }
+
+        private static void PrintBankAccounts(XGraphics gfx, XFont robotoMonoFont) {
+            var bottom = 810;
+            var left = 40;
+            gfx.DrawString("ATTICA BANK GR43 0160 8730 0000 0008 5207 750", robotoMonoFont, XBrushes.Black, new XRect(left, bottom, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("ΠΕΙΡΑΙΩΣ GR17 0171 1740 0061 7413 5517 925", robotoMonoFont, XBrushes.Black, new XRect(left, bottom -= 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("ALPHA BANK GR41 0140 5950 5950 0233 0002 010", robotoMonoFont, XBrushes.Black, new XRect(left, bottom -= 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("EUROBANK GR53 0260 4450 0003 5020 0621 503", robotoMonoFont, XBrushes.Black, new XRect(left, bottom -= 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("ΕΘΝΙΚΗ GR22 0110 8670 0000 8670 0263 444", robotoMonoFont, XBrushes.Black, new XRect(left, bottom -= 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("ΤΡΑΠΕΖΙΚΟΙ ΛΟΓΑΡΙΑΣΜΟΙ", robotoMonoFont, XBrushes.Black, new XRect(left, bottom -= 20, 0, 0), new() { Alignment = XStringAlignment.Near });
+        }
+
+    }
+
+}
