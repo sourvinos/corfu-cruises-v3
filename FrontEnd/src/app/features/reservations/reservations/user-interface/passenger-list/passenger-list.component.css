@@ -4,6 +4,7 @@
 
 #table-wrapper {
     margin: 0;
+    overflow-y: scroll;
 }
 
 #passenger-list {

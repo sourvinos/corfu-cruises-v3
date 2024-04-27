@@ -91,6 +91,7 @@ export class ReservationFormComponent {
         this.doNewOrEditTasks()
         this.doPostInitTasks()
         this.setTabTitle()
+        this.setPassengerListHeight()
     }
 
     ngAfterViewInit(): void {
@@ -551,6 +552,12 @@ export class ReservationFormComponent {
         if (this.sessionStorageService.getItem('returnUrl').includes('/reservations/refNo')) {
             this.parentUrl = this.sessionStorageService.getItem('returnUrl')
         }
+    }
+
+    private setPassengerListHeight(): void {
+        setTimeout(() => {
+            document.getElementById('content').style.height = document.getElementById('form-wrapper').offsetHeight - 64 + 'px'
+        }, 100)
     }
 
     private setRecordId(): void {

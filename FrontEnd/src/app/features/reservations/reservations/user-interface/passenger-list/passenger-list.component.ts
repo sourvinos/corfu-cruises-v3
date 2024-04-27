@@ -35,6 +35,10 @@ export class PassengerListComponent {
 
     //#region public methods
 
+    ngAfterViewInit(): void {
+        // this.setPassengerListHeight()
+    }
+
     public checkTotalPaxAgainstPassengerCount(): boolean {
         if (this.passengers != null) {
             return this.passengers.length >= this.totalPax ? true : false
@@ -112,6 +116,12 @@ export class PassengerListComponent {
             }
         })
 
+    }
+
+    private setPassengerListHeight(): void {
+        setTimeout(() => {
+            document.getElementById('table-wrapper').style.height = document.getElementById('content').offsetHeight - 200 + 'px'
+        }, 200)
     }
 
     private showEmptyForm(): void {
