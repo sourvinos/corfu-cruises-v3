@@ -288,6 +288,12 @@ namespace API.Features.Billing.Invoices {
             }
         }
 
+        [HttpGet("[action]/{filename}")]
+        [Authorize(Roles = "admin")]
+        public IActionResult OpenPdf([FromRoute] string filename) {
+            return invoicePdfRepo.OpenPdf(filename);
+        }
+        
     }
 
 }

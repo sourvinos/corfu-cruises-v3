@@ -257,13 +257,26 @@ export class InvoiceFormComponent {
         })
     }
 
-    public onCreatePdf(): void {
-        this.invoiceHttpService.getForViewer(this.form.value.invoiceId).subscribe(response => {
-            this.invoicePdfHelperService.createPdfInvoiceParts(response.body).then((response) => {
-                this.invoicePdfService.createPdf(response)
-            })
+    public onCreateAndOpenPdf(): void {
+        this.invoiceHttpService.buildPdf(this.form.value.invoiceId).subscribe({
+            next: (response) => {
+                this.invoiceHttpService.openPdf(response.body.filename).subscribe({
+                    next: (response) => {
+                        const blob = new Blob([response], { type: 'application/pdf' })
+                        const fileURL = URL.createObjectURL(blob)
+                        window.open(fileURL, '_blank')
+                    },
+                    error: (errorFromInterceptor) => {
+                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                    }
+                })
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
         })
     }
+
 
     public onSendInvoiceLinkToEmail(): void {
         this.getCustomerDataFromStorage(this.form.value.customer.id).then((response) => {

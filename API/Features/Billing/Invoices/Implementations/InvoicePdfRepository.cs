@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Helpers;
+using Microsoft.AspNetCore.Mvc;
 using PdfSharp;
 using PdfSharp.Drawing;
 using PdfSharp.Fonts;
@@ -42,6 +43,13 @@ namespace API.Features.Billing.Invoices {
             var fullpathname = Path.Combine("Reports" + Path.DirectorySeparatorChar + "Invoices" + Path.DirectorySeparatorChar + filename);
             document.Save(fullpathname);
             return filename;
+        }
+
+        public FileStreamResult OpenPdf(string filename) {
+            var fullpathname = Path.Combine("Reports" + Path.DirectorySeparatorChar + "Invoices" + Path.DirectorySeparatorChar + filename);
+            byte[] byteArray = File.ReadAllBytes(fullpathname);
+            MemoryStream memoryStream = new(byteArray);
+            return new FileStreamResult(memoryStream, "application/pdf");
         }
 
         private static void PrintAade(XGraphics gfx, XFont font, InvoicePdfAadeVM aade) {
@@ -237,7 +245,7 @@ namespace API.Features.Billing.Invoices {
             gfx.DrawString("ΕΘΝΙΚΗ GR22 0110 8670 0000 8670 0263 444", robotoMonoFont, XBrushes.Black, new XRect(left, bottom -= 10, 0, 0), new() { Alignment = XStringAlignment.Near });
             gfx.DrawString("ΤΡΑΠΕΖΙΚΟΙ ΛΟΓΑΡΙΑΣΜΟΙ", robotoMonoFont, XBrushes.Black, new XRect(left, bottom -= 20, 0, 0), new() { Alignment = XStringAlignment.Near });
         }
-
+ 
     }
 
 }

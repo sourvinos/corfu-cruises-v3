@@ -539,12 +539,12 @@
 </mat-autocomplete>
 
 <ng-template #actionsMenu xPosition="before">
-    <button (click)="onCreatePdf()" mat-menu-item>
+    <button (click)="onCreateAndOpenPdf()" mat-menu-item>
         <span>{{ getLabel('printInvoice') }}</span>
     </button>
-    <!-- <button (click)="onSendInvoiceLinkToEmail()" mat-menu-item>
+    <button (click)="onSendInvoiceLinkToEmail()" mat-menu-item>
         <span>{{ getLabel('emailInvoice') }}</span>
-    </button> -->
+    </button>
     <button (click)="onDoSubmitTasks()" mat-menu-item>
         <span>{{ getLabel('submitInvoice') }}</span>
     </button>
