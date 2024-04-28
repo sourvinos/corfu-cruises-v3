@@ -40,6 +40,7 @@ namespace API.Infrastructure.Helpers {
         public static string InvalidCrewSpecialty() { return "The specialty doesn't exist or is inactive."; }
         public static string InvalidPickupPoint() { return "The pickup point doesn't exist or is inactive."; }
         public static string InvalidCoachRoute() { return "The coach route doesn't exist or is inactive."; }
+        public static string InvalidIssueDate() { return "The issue date must be today's date."; }
         public static string InvalidPort() { return "The port doesn't exist or is inactive."; }
         public static string InvalidDocumentType() { return "The document type doesn't exist or is inactive."; }
         public static string PriceFieldsMustBeZeroOrGreater() { return "All amounts must be zero or greater."; }

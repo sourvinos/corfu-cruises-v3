@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using API.Infrastructure.Helpers;
 
 namespace API.Features.Billing.Invoices {
 
@@ -31,12 +32,17 @@ namespace API.Features.Billing.Invoices {
 
         public async Task<int> IsValidAsync(Invoice z, InvoiceWriteDto invoice) {
             return true switch {
+                var x when x == !IsValidIssueDate(invoice) => 405,
                 var x when x == !await IsValidCustomer(invoice) => 450,
                 var x when x == !await IsValidDestination(invoice) => 451,
                 var x when x == !await IsValidShip(invoice) => 454,
                 var x when x == IsAlreadyUpdated(z, invoice) => 415,
                 _ => 200,
             };
+        }
+
+        private static bool IsValidIssueDate(InvoiceWriteDto invoice) {
+            return DateHelpers.DateToISOString(invoice.Date) == DateHelpers.DateToISOString(DateHelpers.GetLocalDateTime());
         }
 
         private async Task<bool> IsValidCustomer(InvoiceWriteDto invoice) {

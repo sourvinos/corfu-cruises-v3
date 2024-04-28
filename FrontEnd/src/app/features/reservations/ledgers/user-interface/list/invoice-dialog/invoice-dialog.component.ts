@@ -206,7 +206,7 @@ export class InvoiceDialogComponent {
 
     public patchFormWithSelectedTripDate(event: any): void {
         this.form.patchValue({
-            tripDate: event.value.date.toDate()
+            tripDate: event.value.date ? event.value.date.toDate() : ''
         })
     }
 
@@ -283,13 +283,6 @@ export class InvoiceDialogComponent {
             this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
         })
     }
-
-    // private populateDocumentTypesAfterShipSelection(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string, shipId: number): void {
-    //     this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
-    //         this[dexieTable] = response.filter(x => x.shipOwner.id == shipId)
-    //         this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
-    //     })
-    // }
 
     private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
         this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
@@ -400,20 +393,18 @@ export class InvoiceDialogComponent {
     }
 
     private saveRecord(invoice: InvoiceWriteDto): void {
-        if (this.checkDates(invoice)) {
-            this.invoiceHttpService.save(invoice).subscribe({
-                next: (response) => {
-                    this.form.patchValue({
-                        invoiceId: response.id
-                    })
-                    this.updateDocumentType(invoice.documentTypeId)
-                    this.onSubmitTasks()
-                },
-                error: (errorFromInterceptor) => {
-                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                }
-            })
-        }
+        this.invoiceHttpService.save(invoice).subscribe({
+            next: (response) => {
+                this.form.patchValue({
+                    invoiceId: response.id
+                })
+                this.updateDocumentType(invoice.documentTypeId)
+                this.onSubmitTasks()
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
+        })
     }
 
     private updateFieldsAfterEmptyDocumentType(): void {
@@ -456,21 +447,6 @@ export class InvoiceDialogComponent {
         this.form.patchValue({
             vatPercent: value.shipOwner.vatPercent
         })
-    }
-
-    private checkDates(invoice: InvoiceWriteDto): boolean {
-        if (this.dateHelperService.isSelectedDateToday(invoice.date) && this.dateHelperService.isTripDateTodayOrPast(invoice.tripDate)) {
-            return true
-        } else {
-            if (!this.dateHelperService.isSelectedDateToday(invoice.date)) {
-                this.dialogService.open(this.messageDialogService.invoiceDateMustBeToday(), 'error', ['ok'])
-                return false
-            }
-            if (!this.dateHelperService.isTripDateTodayOrPast(invoice.tripDate)) {
-                this.dialogService.open(this.messageDialogService.tripDateTodayOrPast(), 'error', ['ok'])
-                return false
-            }
-        }
     }
 
     //#endregion

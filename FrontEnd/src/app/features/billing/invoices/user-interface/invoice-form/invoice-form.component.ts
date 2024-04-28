@@ -253,7 +253,7 @@ export class InvoiceFormComponent {
 
     public patchFormWithSelectedTripDate(event: any): void {
         this.form.patchValue({
-            tripDate: event.value.date.toDate()
+            tripDate: event.value.date ? event.value.date.toDate() : ''
         })
     }
 
@@ -307,21 +307,6 @@ export class InvoiceFormComponent {
     //#endregion
 
     //#region private methods
-
-    private checkDates(invoice: InvoiceWriteDto): boolean {
-        if (this.dateHelperService.isSelectedDateToday(invoice.date) && this.dateHelperService.isTripDateTodayOrPast(invoice.tripDate)) {
-            return true
-        } else {
-            if (!this.dateHelperService.isSelectedDateToday(invoice.date)) {
-                this.dialogService.open(this.messageDialogService.invoiceDateMustBeToday(), 'error', ['ok'])
-                return false
-            }
-            if (!this.dateHelperService.isTripDateTodayOrPast(invoice.tripDate)) {
-                this.dialogService.open(this.messageDialogService.tripDateTodayOrPast(), 'error', ['ok'])
-                return false
-            }
-        }
-    }
 
     private flattenForm(): InvoiceWriteDto {
         return this.invoiceHelperService.flattenForm(this.form.value)
@@ -588,20 +573,18 @@ export class InvoiceFormComponent {
     }
 
     private saveRecord(invoice: InvoiceWriteDto): void {
-        if (this.checkDates(invoice)) {
-            this.invoiceHttpService.save(invoice).subscribe({
-                next: (response) => {
-                    this.form.patchValue({
-                        invoiceId: response.id
-                    })
-                    this.updateDocumentType(invoice.documentTypeId)
-                    this.onDoSubmitTasks()
-                },
-                error: (errorFromInterceptor) => {
-                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                }
-            })
-        }
+        this.invoiceHttpService.save(invoice).subscribe({
+            next: (response) => {
+                this.form.patchValue({
+                    invoiceId: response.id
+                })
+                this.updateDocumentType(invoice.documentTypeId)
+                this.onDoSubmitTasks()
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
+        })
     }
 
     private setRecordId(): void {

@@ -80,6 +80,7 @@ namespace API.Infrastructure.Middleware {
                 402 => ApiMessages.AadeError(),
                 403 => ApiMessages.CheckInAfterDepartureIsNotAllowed(),
                 404 => ApiMessages.RecordNotFound(),
+                405 => ApiMessages.InvalidIssueDate(),
                 408 => ApiMessages.InvalidCoachRoute(),
                 409 => ApiMessages.DuplicateRecord(),
                 410 => ApiMessages.InvalidDateDestinationOrPickupPoint(),
