@@ -61,7 +61,7 @@ export class InvoiceHttpService extends HttpDataService {
     }
 
     emailInvoice(criteria: EmailInvoiceVM): Observable<any> {
-        return this.http.request<EmailInvoiceVM[]>('post', this.url + '/emailPdf', { body: criteria })
+        return this.http.request<EmailInvoiceVM[]>('post', this.url + '/emailInvoice', { body: criteria })
     }
 
 }

@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Helpers;
+using PdfSharp;
 using PdfSharp.Drawing;
 using PdfSharp.Fonts;
 using PdfSharp.Pdf;
@@ -21,6 +22,7 @@ namespace API.Features.Billing.Invoices {
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
             PdfDocument document = new();
             PdfPage page = document.AddPage();
+            page.Size = PageSize.A4;
             XFont logoFont = new("ACCanterBold", 20);
             XFont robotoMonoFont = new("RobotoMono", 6);
             XFont monotypeFont = new("MonoType", 6);
@@ -36,8 +38,7 @@ namespace API.Features.Billing.Invoices {
             PrintBalances(gfx, robotoMonoFont, monotypeFont, invoice);
             PrintBankAccounts(gfx, robotoMonoFont);
             PrintAade(gfx, robotoMonoFont, invoice.Aade);
-
-            var filename = invoice.Customer.VatNumber + ".pdf";
+            var filename = invoice.InvoiceId + ".pdf";
             var fullpathname = Path.Combine("Reports" + Path.DirectorySeparatorChar + "Invoices" + Path.DirectorySeparatorChar + filename);
             document.Save(fullpathname);
             return filename;
@@ -85,8 +86,8 @@ namespace API.Features.Billing.Invoices {
             var top = 130;
             var left = 40;
             gfx.DrawString("ΣΤΟΙΧΕΙΑ ΛΗΠΤΗ", robotoMonoFont, XBrushes.Black, new XRect(left, top, 0, 0), new() { Alignment = XStringAlignment.Near });
-            gfx.DrawString("ΔΡΑΣΤΗΡΙΟΤΗΤΑ: " + invoice.Customer.FullDescription, robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
-            gfx.DrawString(invoice.Customer.Profession, robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString(invoice.Customer.FullDescription, robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            gfx.DrawString("ΔΡΑΣΤΗΡΙΟΤΗΤΑ: " + invoice.Customer.Profession, robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
             gfx.DrawString("ΑΦΜ: " + invoice.Customer.VatNumber, robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
             gfx.DrawString("ΔΟΥ: " + invoice.Customer.TaxOffice, robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });
             gfx.DrawString("ΔΙΕΥΘΥΝΣΗ: " + invoice.Customer.Street + " " + invoice.Customer.Number + ", ΤΚ: " + invoice.Customer.PostalCode + ", " + invoice.Customer.City, robotoMonoFont, XBrushes.Black, new XRect(left, top += 10, 0, 0), new() { Alignment = XStringAlignment.Near });

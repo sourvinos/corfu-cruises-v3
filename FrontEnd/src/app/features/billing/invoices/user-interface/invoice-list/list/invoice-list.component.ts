@@ -265,11 +265,9 @@ export class InvoiceListComponent {
     private sendInvoiceToEmail(invoiceId: string): void {
         this.invoiceHttpService.buildPdf(invoiceId).subscribe({
             next: (response) => {
-                console.log(response)
-                const x = JSON.parse(this.sessionStorageService.getItem('ledgerCriteria'))
                 const criteria: EmailInvoiceVM = {
-                    customerId: x.customer.id,
-                    filenames: response.filter((x: null) => x != null)
+                    customerId: response.body.customerId,
+                    filename: response.body.filename
                 }
                 this.invoiceHttpService.emailInvoice(criteria).subscribe({
                     complete: () => {

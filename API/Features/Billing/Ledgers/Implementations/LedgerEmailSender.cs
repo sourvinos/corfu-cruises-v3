@@ -50,7 +50,7 @@ namespace API.Features.Billing.Ledgers {
             var message = new MimeMessage { Sender = MailboxAddress.Parse(emailSettings.Username) };
             message.From.Add(new MailboxAddress(emailSettings.From, emailSettings.Username));
             message.To.Add(MailboxAddress.Parse(customer.Email));
-            message.Subject = "📧 Η λογιστική καρτέλα και η ανάλυση του λογαριασμού σας.";
+            message.Subject = "📧 Λογιστική καρτέλα και ανάλυση λογαριασμού";
             var builder = new BodyBuilder { HtmlBody = await BuildEmailLedgerTemplate(customer.Description, customer.Email) };
             foreach (var filename in model.Filenames) {
                 builder.Attachments.Add(Path.Combine("Reports" + Path.DirectorySeparatorChar + "Ledgers" + Path.DirectorySeparatorChar + filename));

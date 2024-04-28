@@ -50,11 +50,9 @@ namespace API.Features.Billing.Invoices {
             var message = new MimeMessage { Sender = MailboxAddress.Parse(emailSettings.Username) };
             message.From.Add(new MailboxAddress(emailSettings.From, emailSettings.Username));
             message.To.Add(MailboxAddress.Parse(customer.Email));
-            message.Subject = "📧 Το παραστατικό σας είναι έτοιμο.";
+            message.Subject = "📧 Ηλεκτρονική αποστολή παραστατικών";
             var builder = new BodyBuilder { HtmlBody = await BuildEmailInvoiceTemplate(customer.Description, customer.Email) };
-            foreach (var filename in model.Filenames) {
-                builder.Attachments.Add(Path.Combine("Reports" + Path.DirectorySeparatorChar + "Invoices" + Path.DirectorySeparatorChar + filename));
-            }
+            builder.Attachments.Add(Path.Combine("Reports" + Path.DirectorySeparatorChar + "Invoices" + Path.DirectorySeparatorChar + model.Filename));
             message.Body = builder.ToMessageBody();
             return message;
         }

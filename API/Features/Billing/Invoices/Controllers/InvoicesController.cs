@@ -218,7 +218,10 @@ namespace API.Features.Billing.Invoices {
                     Code = 200,
                     Icon = Icons.Info.ToString(),
                     Message = ApiMessages.OK(),
-                    Body = filename
+                    Body = new EmailInvoiceVM {
+                        CustomerId = x.Customer.Id,
+                        Filename = filename
+                    }
                 };
             } else {
                 throw new CustomException() {
