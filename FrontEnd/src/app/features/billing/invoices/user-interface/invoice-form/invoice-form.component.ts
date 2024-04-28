@@ -17,8 +17,6 @@ import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
 import { InvoiceHelperService } from '../../classes/services/invoice.helper.service'
 import { InvoiceHttpService } from '../../classes/services/invoice-http.service'
-import { InvoicePdfHelperService } from '../../../invoicesCommon/services/invoice-pdf-helper.service'
-import { InvoicePdfService } from '../../../invoicesCommon/services/invoice-pdf.service'
 import { InvoiceReadDto } from '../../classes/dtos/form/invoice-read-dto'
 import { InvoiceWriteDto } from '../../classes/dtos/form/invoice-write-dto'
 import { InvoiceXmlHelperService } from '../../classes/services/invoice-xml-helper.service'
@@ -28,7 +26,6 @@ import { MessageInputHintService } from 'src/app/shared/services/message-input-h
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { PortAutoCompleteVM } from 'src/app/features/reservations/ports/classes/view-models/port-autocomplete-vm'
 import { PriceHttpService } from '../../../prices/classes/services/price-http.service'
-import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { ShipAutoCompleteVM } from './../../../../reservations/ships/classes/view-models/ship-autocomplete-vm'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
@@ -72,7 +69,7 @@ export class InvoiceFormComponent {
 
     //#endregion
 
-    constructor(private invoiceXmlHttpService: InvoiceXmlHttpService, private documentTypeHttpService: DocumentTypeHttpService, private invoicePdfService: InvoicePdfService, private invoicePdfHelperService: InvoicePdfHelperService, private invoiceXmlHelperService: InvoiceXmlHelperService, private dateHelperService: DateHelperService, private priceHttpService: PriceHttpService, private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private invoiceXmlHttpService: InvoiceXmlHttpService, private documentTypeHttpService: DocumentTypeHttpService, private invoiceXmlHelperService: InvoiceXmlHelperService, private dateHelperService: DateHelperService, private priceHttpService: PriceHttpService, private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -274,31 +271,6 @@ export class InvoiceFormComponent {
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
             }
-        })
-    }
-
-
-    public onSendInvoiceLinkToEmail(): void {
-        this.getCustomerDataFromStorage(this.form.value.customer.id).then((response) => {
-            this.invoiceHttpService.sendInvoiceLinkToEmail(this.form.value.invoiceId, response.email).subscribe({
-                next: () => {
-                    this.invoiceHttpService.patchInvoiceWithEmailSent(this.form.value.invoiceId).subscribe({
-                        next: () => {
-                            this.form.patchValue({
-                                isEmailSent: true
-                            })
-                            this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
-                        },
-                        error: (errorFromInterceptor) => {
-                            this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                        }
-                    }
-                    )
-                },
-                error: (errorFromInterceptor: any) => {
-                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                }
-            })
         })
     }
 

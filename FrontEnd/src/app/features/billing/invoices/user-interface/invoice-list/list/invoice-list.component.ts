@@ -235,33 +235,6 @@ export class InvoiceListComponent {
         })
     }
 
-    private sendInvoiceLinkToEmail(customerId: number, invoiceId: string): void {
-        this.getCustomerDataFromStorage(customerId).then((response) => {
-            this.invoiceHttpService.sendInvoiceLinkToEmail(invoiceId, response.email).subscribe({
-                next: () => {
-                    this.invoiceHttpService.patchInvoiceWithEmailSent(invoiceId).subscribe({
-                        next: () => {
-                            const criteria: InvoiceListCriteriaVM = JSON.parse(this.sessionStorageService.getItem('invoice-list-criteria'))
-                            this.loadRecords(criteria).then(() => {
-                                this.filterTableFromStoredFilters()
-                                this.populateDropdownFilters()
-                                this.enableDisableFilters()
-                                this.formatDatesToLocale()
-                            })
-                            this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
-                        },
-                        error: (errorFromInterceptor) => {
-                            this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                        }
-                    })
-                },
-                error: (errorFromInterceptor: any) => {
-                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                }
-            })
-        })
-    }
-
     private sendInvoiceToEmail(invoiceId: string): void {
         this.invoiceHttpService.buildPdf(invoiceId).subscribe({
             next: (response) => {

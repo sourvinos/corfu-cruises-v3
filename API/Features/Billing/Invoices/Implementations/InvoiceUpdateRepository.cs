@@ -45,6 +45,24 @@ namespace API.Features.Billing.Invoices {
             return invoice.ShipOwnerId = ship.ShipOwnerId;
         }
 
+        public void UpdateIsEmailSent(Invoice invoice, string invoiceId) {
+            using var transaction = context.Database.BeginTransaction();
+            invoice.IsEmailSent = true;
+            context.Invoices.Attach(invoice);
+            context.Entry(invoice).Property(x => x.IsEmailSent).IsModified = true;
+            context.SaveChanges();
+            DisposeOrCommit(transaction);
+        }
+
+        public void UpdateIsCancelled(Invoice invoice, string invoiceId) {
+            using var transaction = context.Database.BeginTransaction();
+            invoice.IsCancelled = true;
+            context.Invoices.Attach(invoice);
+            context.Entry(invoice).Property(x => x.IsCancelled).IsModified = true;
+            context.SaveChanges();
+            DisposeOrCommit(transaction);
+        }
+
         private void DisposeOrCommit(IDbContextTransaction transaction) {
             if (testingEnvironment.IsTesting) {
                 transaction.Dispose();
@@ -69,24 +87,6 @@ namespace API.Features.Billing.Invoices {
                 .Except(portsToUpdate, new PortComparerById())
                 .ToList();
             context.InvoicesPorts.RemoveRange(portsToDelete);
-        }
-
-        public void UpdateIsEmailSent(Invoice invoice, string invoiceId) {
-            using var transaction = context.Database.BeginTransaction();
-            invoice.IsEmailSent = true;
-            context.Invoices.Attach(invoice);
-            context.Entry(invoice).Property(x => x.IsEmailSent).IsModified = true;
-            context.SaveChanges();
-            DisposeOrCommit(transaction);
-        }
-
-        public void UpdateIsCancelled(Invoice invoice, string invoiceId) {
-            using var transaction = context.Database.BeginTransaction();
-            invoice.IsCancelled = true;
-            context.Invoices.Attach(invoice);
-            context.Entry(invoice).Property(x => x.IsCancelled).IsModified = true;
-            context.SaveChanges();
-            DisposeOrCommit(transaction);
         }
 
         private class PortComparerById : IEqualityComparer<InvoicePort> {

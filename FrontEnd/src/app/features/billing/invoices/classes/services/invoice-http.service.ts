@@ -5,7 +5,6 @@ import { Observable } from 'rxjs'
 import { AadeVM } from '../view-models/form/aade-vm'
 import { EmailInvoiceVM } from '../view-models/email/email-invoice-vm'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
-import { InvoiceLinkVM } from '../view-models/email/invoiceLink-vm'
 import { InvoiceListCriteriaVM } from '../view-models/criteria/invoice-list-criteria-vm'
 import { InvoiceListVM } from '../view-models/list/invoice-list-vm'
 import { environment } from 'src/environments/environment'
@@ -22,10 +21,6 @@ export class InvoiceHttpService extends HttpDataService {
         return this.http.request<InvoiceListVM[]>('post', environment.apiUrl + '/invoices/getForPeriod', { body: criteria })
     }
 
-    public getForViewer(invoiceId: string): Observable<any> {
-        return this.http.get(environment.apiUrl + '/invoicesViewer/' + invoiceId)
-    }
-
     public validateCustomerData(customerId: number): Observable<any> {
         return this.http.get(environment.apiUrl + '/customers/getByIdForValidation/' + customerId)
     }
@@ -38,14 +33,6 @@ export class InvoiceHttpService extends HttpDataService {
 
     public updateInvoiceAade(aadeVM: AadeVM): Observable<any> {
         return this.http.put<any>(this.url + '/invoiceAade', aadeVM)
-    }
-
-    public sendInvoiceLinkToEmail(invoiceId: string, email: string): any {
-        const x: InvoiceLinkVM = {
-            email: email,
-            invoiceId: invoiceId
-        }
-        return this.http.post(this.url + '/sendInvoiceLinkToEmail', x)
     }
 
     public patchInvoiceWithEmailSent(invoiceId: string): Observable<any> {

@@ -12,7 +12,6 @@ namespace API.Features.Billing.Invoices {
         Task<Invoice> GetByIdForPdfAsync(string invoiceId);
         Task<Invoice> GetByIdForXmlAsync(string invoiceId);
         Task<InvoiceAade> GetInvoiceAadeByIdAsync(string invoiceId);
-        Task<Invoice> GetForViewerByIdAsync(string invoiceId);
 
     }
 

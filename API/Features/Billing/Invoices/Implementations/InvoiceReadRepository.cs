@@ -95,26 +95,6 @@ namespace API.Features.Billing.Invoices {
                 .SingleOrDefaultAsync();
         }
 
-        public async Task<Invoice> GetForViewerByIdAsync(string invoiceId) {
-            var x = await context.Invoices
-                .AsNoTracking()
-                .Include(x => x.Customer)
-                .Include(x => x.Customer).ThenInclude(x => x.Nationality)
-                .Include(x => x.Customer).ThenInclude(x => x.TaxOffice)
-                .Include(x => x.Destination)
-                .Include(x => x.Ship)
-                .Include(x => x.Ship).ThenInclude(x => x.ShipOwner)
-                .Include(x => x.Ship).ThenInclude(x => x.ShipOwner).ThenInclude(x => x.Nationality)
-                .Include(x => x.Ship).ThenInclude(x => x.ShipOwner).ThenInclude(x => x.TaxOffice)
-                .Include(x => x.DocumentType)
-                .Include(x => x.PaymentMethod)
-                .Include(x => x.Aade)
-                .Include(x => x.InvoicesPorts).ThenInclude(x => x.Port)
-                .Where(x => x.InvoiceId.ToString() == invoiceId)
-                .SingleOrDefaultAsync();
-            return x;
-        }
-
         public async Task<Invoice> GetByIdForXmlAsync(string invoiceId) {
             var x = await context.Invoices
                 .AsNoTracking()

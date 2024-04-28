@@ -17,27 +17,23 @@ namespace API.Features.Billing.Invoices {
 
         #region variables
 
-        private readonly EnvironmentSettings environmentSettings;
         private readonly ICustomerRepository customerRepo;
-        private readonly IInvoiceCalculateBalanceRepo invoiceCalculateBalanceRepo;
+        private readonly IInvoiceCalculateBalanceRepo calculateBalanceRepo;
         private readonly IInvoiceEmailSender emailSender;
         private readonly IInvoicePdfRepository invoicePdfRepo;
         private readonly IInvoiceReadRepository invoiceReadRepo;
-        private readonly IInvoiceSendToEmail invoiceSendToEmail;
         private readonly IInvoiceUpdateRepository invoiceUpdateRepo;
         private readonly IInvoiceValidation invoiceValidation;
         private readonly IMapper mapper;
 
         #endregion
 
-        public InvoicesController(ICustomerRepository customerRepo, IInvoiceCalculateBalanceRepo invoiceCalculateBalance, IInvoiceEmailSender emailSender, IInvoicePdfRepository invoicePdfRepo, IInvoiceReadRepository invoiceReadRepo, IInvoiceSendToEmail invoiceSendToEmail, IInvoiceUpdateRepository invoiceUpdateRepo, IInvoiceValidation invoiceValidation, IMapper mapper, IOptions<EnvironmentSettings> environmentSettings) {
+        public InvoicesController(ICustomerRepository customerRepo, IInvoiceCalculateBalanceRepo calculateBalanceRepo, IInvoiceEmailSender emailSender, IInvoicePdfRepository invoicePdfRepo, IInvoiceReadRepository invoiceReadRepo, IInvoiceUpdateRepository invoiceUpdateRepo, IInvoiceValidation invoiceValidation, IMapper mapper) {
+            this.calculateBalanceRepo = calculateBalanceRepo;
             this.customerRepo = customerRepo;
             this.emailSender = emailSender;
-            this.environmentSettings = environmentSettings.Value;
-            this.invoiceCalculateBalanceRepo = invoiceCalculateBalance;
             this.invoicePdfRepo = invoicePdfRepo;
             this.invoiceReadRepo = invoiceReadRepo;
-            this.invoiceSendToEmail = invoiceSendToEmail;
             this.invoiceUpdateRepo = invoiceUpdateRepo;
             this.invoiceValidation = invoiceValidation;
             this.mapper = mapper;
@@ -80,7 +76,7 @@ namespace API.Features.Billing.Invoices {
             var x = invoiceValidation.IsValidAsync(null, invoice);
             if (await x == 200) {
                 invoice.ShipOwnerId = await invoiceUpdateRepo.AttachShipOwnerIdToInvoiceAsync(invoice);
-                invoice = invoiceCalculateBalanceRepo.AttachBalancesToCreateDto(invoice, invoiceCalculateBalanceRepo.CalculateBalances(invoice, invoice.CustomerId));
+                invoice = calculateBalanceRepo.AttachBalancesToCreateDto(invoice, calculateBalanceRepo.CalculateBalances(invoice, invoice.CustomerId));
                 var z = invoiceUpdateRepo.Create(mapper.Map<InvoiceCreateDto, Invoice>((InvoiceCreateDto)invoiceUpdateRepo.AttachMetadataToPostDto(invoice)));
                 return new Response {
                     Code = 200,
@@ -147,7 +143,7 @@ namespace API.Features.Billing.Invoices {
             var x = await customerRepo.GetByIdAsync(customerId, false);
             if (x != null) {
                 var balanceLimit = x.BalanceLimit;
-                var balance = invoiceCalculateBalanceRepo.CalculatePreviousBalance(customerId);
+                var balance = calculateBalanceRepo.CalculatePreviousBalance(customerId);
                 return new ResponseWithBody {
                     Code = 200,
                     Icon = Icons.Info.ToString(),
@@ -183,28 +179,6 @@ namespace API.Features.Billing.Invoices {
                 throw new CustomException() {
                     ResponseCode = 404
                 };
-            }
-        }
-
-        [HttpPost("sendInvoiceLinkToEmail")]
-        [Authorize(Roles = "admin")]
-        public async Task<Response> Post([FromBody] InvoiceLinkVM invoiceLink) {
-            string baseUrl = environmentSettings.BaseUrl;
-            string returnUrl = Url.Content($"{baseUrl}#/invoicesViewer/{invoiceLink.InvoiceId}");
-            var response = invoiceSendToEmail.SendInvoiceLinkToEmail(invoiceLink, returnUrl);
-            if (response.Exception == null) {
-                return await Task.FromResult(new Response {
-                    Code = 200,
-                    Icon = Icons.Success.ToString(),
-                    Message = ApiMessages.OK()
-                });
-            } else {
-                return await Task.FromResult(new Response {
-                    Code = 498,
-                    Icon = Icons.Error.ToString(),
-                    Id = null,
-                    Message = response.Exception.Message
-                });
             }
         }
 
@@ -293,7 +267,7 @@ namespace API.Features.Billing.Invoices {
         public IActionResult OpenPdf([FromRoute] string filename) {
             return invoicePdfRepo.OpenPdf(filename);
         }
-        
+
     }
 
 }

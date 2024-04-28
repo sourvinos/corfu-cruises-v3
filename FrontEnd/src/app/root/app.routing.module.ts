@@ -47,7 +47,6 @@ const appRoutes: Routes = [
     { path: 'prices', loadChildren: () => import('../features/billing/prices/classes/modules/price.module').then(m => m.PriceModule) },
     { path: 'taxOffices', loadChildren: () => import('../features/billing/taxOffices/classes/modules/taxOffice.module').then(m => m.TaxOfficeModule) },
     { path: 'billing-ledgers', loadChildren: () => import('../features/billing/ledgers/classes/modules/ledger-billing.module').then(m => m.LedgerBillingModule) },
-    { path: 'invoicesViewer', loadChildren: () => import('../features/billing/invoicesViewer/classes/modules/invoiceViewer.module').then(m => m.InvoiceViewerModule) },
     // CheckIn
     { path: 'checkIn', loadChildren: () => import('../features/check-in/classes/modules/check-in.module').then(m => m.CheckInModule) },
     // Empty
