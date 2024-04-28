@@ -20,6 +20,7 @@ import { ReservationHttpService } from '../../classes/services/reservation.http.
 import { ReservationListDestinationVM } from '../../classes/view-models/list/reservation-list-destination-vm'
 import { ReservationListOverbookedDestinationVM } from '../../classes/view-models/list/reservation-list-overbooked-destination-vm'
 import { ReservationListVM } from '../../classes/view-models/list/reservation-list-vm'
+import { ReservationReportPdfService } from '../../classes/reservation-report/services/reservation-report.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
@@ -59,7 +60,7 @@ export class ReservationListComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private cryptoService: CryptoService, private dateHelperService: DateHelperService, private dialogService: DialogService, private driverReportService: DriverReportService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private reservationHttpService: ReservationHttpService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
+    constructor(private activatedRoute: ActivatedRoute, private cryptoService: CryptoService, private dateHelperService: DateHelperService, private dialogService: DialogService, private driverReportService: DriverReportService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private reservationHttpService: ReservationHttpService, private reservationReportPdfService: ReservationReportPdfService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
 
@@ -160,6 +161,12 @@ export class ReservationListComponent {
 
     public createPdf(): void {
         this.driverReportService.doReportTasks(this.getDistinctDriverIds())
+    }
+
+    public createReservationsPdf(): void {
+        if (this.isAnyRowSelected()) {
+            this.reservationReportPdfService.createReport(this.selectedRecords, this.sessionStorageService.getItem('date'))
+        }
     }
 
     public reservationYearIsSelectedYear(date: string): boolean {

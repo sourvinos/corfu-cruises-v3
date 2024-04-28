@@ -720,6 +720,10 @@
                 "description": "Odstranění vybraných záznamů"
             },
             {
+                "id": "createReservationsPdfButton",
+                "description": "Tisk vybraných záznamů"
+            },
+            {
                 "id": "newButton",
                 "description": "Nový"
             },

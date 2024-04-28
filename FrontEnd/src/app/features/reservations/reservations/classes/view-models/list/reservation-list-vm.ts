@@ -9,6 +9,7 @@ import { SimpleEntity } from './../../../../../../shared/classes/simple-entity'
 export interface ReservationListVM {
 
     reservationId: string
+    refNo: string
     date: string
     adults: number
     kids: number
@@ -23,6 +24,7 @@ export interface ReservationListVM {
     port: ReservationListPortVM
     portAlternate: ReservationListPortVM
     ship: ReservationListShipVM
-    user: string
+    time: string
+    passengerCount: number
 
 }

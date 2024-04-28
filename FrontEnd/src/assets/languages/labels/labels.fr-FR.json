@@ -720,6 +720,10 @@
                 "description": "Suppression des enregistrements sélectionnés"
             },
             {
+                "id": "createReservationsPdfButton",
+                "description": "Imprimer les enregistrements sélectionnés"
+            },
+            {
                 "id": "newButton",
                 "description": "Nouvelle"
             },

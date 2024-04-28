@@ -252,4 +252,7 @@
     <button (click)="deleteRange()" [disabled]="!isAdmin()" mat-menu-item>
         <span>{{ getLabel('rangeDelete') }}</span>
     </button>
+    <button (click)="createReservationsPdf()" [disabled]="!isAdmin()" mat-menu-item>
+        <span>{{ getLabel('createReservationsPdfButton') }}</span>
+    </button>
 </ng-template>

@@ -720,6 +720,10 @@
                 "description": "Löschen ausgewählter Datensätze"
             },
             {
+                "id": "createReservationsPdfButton",
+                "description": "Ausgewählte Sätze drucken"
+            },
+            {
                 "id": "newButton",
                 "description": "NEU"
             },

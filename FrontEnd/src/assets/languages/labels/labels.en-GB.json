@@ -720,6 +720,10 @@
                 "description": "Delete selected records"
             },
             {
+                "id": "createReservationsPdfButton",
+                "description": "Print selected records"
+            },
+            {
                 "id": "newButton",
                 "description": "New record"
             },

@@ -720,6 +720,10 @@
                 "description": "Διαγραφή επιλεγμένων εγγραφών"
             },
             {
+                "id": "createReservationsPdfButton",
+                "description": "Εκτύπωση επιλεγμένων εγγραφών"
+            },
+            {
                 "id": "newButton",
                 "description": "Νεα εγγραφη"
             },
