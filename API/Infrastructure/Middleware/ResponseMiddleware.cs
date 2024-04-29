@@ -81,6 +81,7 @@ namespace API.Infrastructure.Middleware {
                 403 => ApiMessages.CheckInAfterDepartureIsNotAllowed(),
                 404 => ApiMessages.RecordNotFound(),
                 405 => ApiMessages.InvalidIssueDate(),
+                406 => ApiMessages.InvalidBank(),
                 408 => ApiMessages.InvalidCoachRoute(),
                 409 => ApiMessages.DuplicateRecord(),
                 410 => ApiMessages.InvalidDateDestinationOrPickupPoint(),

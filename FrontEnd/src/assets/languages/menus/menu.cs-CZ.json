@@ -27,6 +27,7 @@
     { "id": "customers", "description": "Zákazníci" },
     { "id": "prices", "description": "Ceníky" },
     { "id": "banks", "description": "Banky" },
+    { "id": "bankAccounts", "description": "Bankovní účty" },
     { "id": "paymentMethods", "description": "Platební metody" },
     { "id": "ledgers", "description": "Zákaznická karta" },
     { "id": "balanceSheet", "description": "Bilance" },

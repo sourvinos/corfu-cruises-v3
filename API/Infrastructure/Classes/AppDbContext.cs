@@ -29,6 +29,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using API.Features.Billing.Banks;
+using API.Features.Billing.BankAccounts;
 
 namespace API.Infrastructure.Classes {
 
@@ -62,6 +63,7 @@ namespace API.Infrastructure.Classes {
         #region DbSets - Billing
 
         public DbSet<Bank> Banks { get; set; }
+        public DbSet<BankAccount> BankAccounts { get; set; }
         public DbSet<DocumentType> DocumentTypes { get; set; }
         public DbSet<InvoiceAade> InvoicesAade { get; set; }
         public DbSet<InvoicePort> InvoicesPorts { get; set; }
@@ -108,6 +110,7 @@ namespace API.Infrastructure.Classes {
             #endregion
             #region billing
             modelBuilder.ApplyConfiguration(new BanksConfig());
+            modelBuilder.ApplyConfiguration(new BankAccountsConfig());
             modelBuilder.ApplyConfiguration(new DocumentTypeConfig());
             modelBuilder.ApplyConfiguration(new InvoicesAadeConfig());
             modelBuilder.ApplyConfiguration(new InvoicesConfig());

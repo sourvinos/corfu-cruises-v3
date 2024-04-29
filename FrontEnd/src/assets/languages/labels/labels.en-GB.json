@@ -3548,7 +3548,77 @@
             },
             {
                 "id": "isActive",
-                "description": "Ενεργη"
+                "description": "Ενεργή"
+            },
+            {
+                "id": "post",
+                "description": "Αρχική καταχώριση"
+            },
+            {
+                "id": "put",
+                "description": "Τελευταία ενημέρωση"
+            },
+            {
+                "id": "deleteButton",
+                "description": "Διαγραφη"
+            },
+            {
+                "id": "saveButton",
+                "description": "Αποθηκευση"
+            }
+        ]
+    },
+    {
+        "feature": "bankAccountList",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Τραπεζικοί λογαριασμοί"
+            },
+            {
+                "id": "headerIsActive",
+                "description": "Ενεργός"
+            },
+            {
+                "id": "headerBankDescription",
+                "description": "Τράπεζα"
+            },
+            {
+                "id": "headerShipOwnerDescription",
+                "description": "Πλοιοκτήτης"
+            },
+            {
+                "id": "headerIban",
+                "description": "IBAN"
+            },
+            {
+                "id": "newRecord",
+                "description": "Νεα εγγραφη"
+            }
+        ]
+    },
+    {
+        "feature": "bankAccountForm",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Τραπεζικός λογαριασμός"
+            },
+            {
+                "id": "bank",
+                "description": "Τράπεζα"
+            },
+            {
+                "id": "shipOwner",
+                "description": "Πλοιοκτήτης"
+            },
+            {
+                "id": "iban",
+                "description": "IBAN"
+            },
+            {
+                "id": "isActive",
+                "description": "Ενεργός"
             },
             {
                 "id": "post",

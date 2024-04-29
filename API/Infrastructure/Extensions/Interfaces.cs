@@ -1,3 +1,4 @@
+using API.Features.Billing.BankAccounts;
 using API.Features.Billing.Banks;
 using API.Features.Billing.DocumentTypes;
 using API.Features.Billing.Invoices;
@@ -40,52 +41,50 @@ namespace API.Infrastructure.Extensions {
         public static void AddInterfaces(IServiceCollection services) {
             services.AddScoped<Token>();
             #region reservations
-            // Tables
+            services.AddTransient<IAvailabilityCalendar, AvailabilityCalendar>();
+            services.AddTransient<IBoardingRepository, BoardingRepository>();
             services.AddTransient<ICoachRouteRepository, CoachRouteRepository>();
+            services.AddTransient<ICoachRouteValidation, CoachRouteValidation>();
             services.AddTransient<ICrewSpecialtyRepository, CrewSpecialtyRepository>();
             services.AddTransient<ICustomerRepository, CustomerRepository>();
+            services.AddTransient<ICustomerValidation, CustomerValidation>();
             services.AddTransient<IDestinationRepository, DestinationRepository>();
+            services.AddTransient<IDestinationValidation, DestinationValidation>();
             services.AddTransient<IDriverRepository, DriverRepository>();
+            services.AddTransient<IDriverValidation, DriverValidation>();
             services.AddTransient<IGenderRepository, GenderRepository>();
             services.AddTransient<IGenderRepository, GenderRepository>();
             services.AddTransient<IIdentityDocumentRepository, IdentityDocumentRepository>();
-            services.AddTransient<INationalityRepository, NationalityRepository>();
-            services.AddTransient<IPickupPointRepository, PickupPointRepository>();
-            services.AddTransient<IPortRepository, PortRepository>();
-            services.AddTransient<IScheduleRepository, ScheduleRepository>();
-            services.AddTransient<IShipCrewRepository, ShipCrewRepository>();
-            services.AddTransient<IShipOwnerRepository, ShipOwnerRepository>();
-            services.AddTransient<IShipRepository, ShipRepository>();
-            services.AddTransient<IUserRepository, UserRepository>();
-            // Tasks
-            services.AddTransient<IBoardingRepository, BoardingRepository>();
+            services.AddTransient<IIdentityDocumentValidation, IdentityDocumentValidation>();
             services.AddTransient<ILedgerRepository, LedgerRepository>();
             services.AddTransient<IManifestRepository, ManifestRepository>();
-            // Reservations - Availability
-            services.AddTransient<IReservationCalendar, ReservationCalendar>();
-            services.AddTransient<IReservationReadRepository, ReservationReadRepository>();
-            services.AddTransient<IReservationUpdateRepository, ReservationUpdateRepository>();
-            services.AddTransient<IAvailabilityCalendar, AvailabilityCalendar>();
-            services.AddTransient<IReservationSendToEmail, ReservationSendToEmail>();
-            // Validations
-            services.AddTransient<ICoachRouteValidation, CoachRouteValidation>();
-            services.AddTransient<ICustomerValidation, CustomerValidation>();
-            services.AddTransient<IDestinationValidation, DestinationValidation>();
-            services.AddTransient<IDriverValidation, DriverValidation>();
-            services.AddTransient<IIdentityDocumentValidation, IdentityDocumentValidation>();
+            services.AddTransient<INationalityRepository, NationalityRepository>();
+            services.AddTransient<IPickupPointRepository, PickupPointRepository>();
             services.AddTransient<IPickupPointValidation, PickupPointValidation>();
+            services.AddTransient<IPortRepository, PortRepository>();
             services.AddTransient<IPortValidation, PortValidation>();
+            services.AddTransient<IReservationCalendar, ReservationCalendar>();
             services.AddTransient<IReservationParameterValidation, ParameterValidation>();
             services.AddTransient<IReservationParametersRepository, ParametersRepository>();
+            services.AddTransient<IReservationReadRepository, ReservationReadRepository>();
+            services.AddTransient<IReservationSendToEmail, ReservationSendToEmail>();
+            services.AddTransient<IReservationUpdateRepository, ReservationUpdateRepository>();
             services.AddTransient<IReservationValidation, ReservationValidation>();
+            services.AddTransient<IScheduleRepository, ScheduleRepository>();
             services.AddTransient<IScheduleValidation, ScheduleValidation>();
+            services.AddTransient<IShipCrewRepository, ShipCrewRepository>();
             services.AddTransient<IShipCrewValidation, ShipCrewValidation>();
+            services.AddTransient<IShipOwnerRepository, ShipOwnerRepository>();
             services.AddTransient<IShipOwnerValidation, ShipOwnerValidation>();
+            services.AddTransient<IShipRepository, ShipRepository>();
             services.AddTransient<IShipValidation, ShipValidation>();
             services.AddTransient<IStatisticsRepository, StatisticsRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserValidation<IUser>, UserValidation>();
             #endregion
             #region billing
+            services.AddTransient<IBankAccountRepository, BankAccountRepository>();
+            services.AddTransient<IBankAccountValidation, BankAccountValidation>();
             services.AddTransient<IBankRepository, BankRepository>();
             services.AddTransient<IBankValidation, BankValidation>();
             services.AddTransient<IDocumentTypeRepository, DocumentTypeRepository>();
@@ -98,6 +97,7 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IInvoiceValidation, InvoiceValidation>();
             services.AddTransient<IInvoiceXmlRepository, InvoiceXmlRepository>();
             services.AddTransient<ILedgerBillingRepository, LedgerBillingRepository>();
+            services.AddTransient<ILedgerEmailSender, LedgerEmailSender>();
             services.AddTransient<IPaymentMethodRepository, PaymentMethodRepository>();
             services.AddTransient<IPaymentMethodValidation, PaymentMethodValidation>();
             services.AddTransient<IPriceCloneRepository, PriceCloneRepository>();
@@ -114,7 +114,6 @@ namespace API.Infrastructure.Extensions {
             #endregion
             #region common
             services.AddTransient<IEmailSender, EmailSender>();
-            services.AddTransient<ILedgerEmailSender, LedgerEmailSender>();
             #endregion
             #region checkIn
             services.AddTransient<ICheckInReadRepository, CheckInReadRepository>();

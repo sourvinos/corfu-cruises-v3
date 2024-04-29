@@ -27,6 +27,7 @@
     { "id": "customers", "description": "Clients" },
     { "id": "prices", "description": "Listes de prix" },
     { "id": "banks", "description": "Banques" },
+    { "id": "bankAccounts", "description": "Comptes bancaires" },
     { "id": "paymentMethods", "description": "Moyens de paiement" },
     { "id": "ledgers", "description": "Registres des clients" },
     { "id": "balanceSheet", "description": "Bilan" },

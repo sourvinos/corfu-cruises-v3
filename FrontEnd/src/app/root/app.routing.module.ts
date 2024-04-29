@@ -41,6 +41,7 @@ const appRoutes: Routes = [
     { path: 'reservation-parameters', loadChildren: () => import('../features/reservations/parameters/classes/modules/reservation-parameters.module').then(m => m.ReservationParametersModule) },
     // Billing
     { path: 'banks', loadChildren: () => import('../features/billing/banks/classes/modules/bank.module').then(m => m.BankModule) },
+    { path: 'bankAccounts', loadChildren: () => import('../features/billing/bankAccounts/classes/modules/bankAccount.module').then(m => m.BankAccountModule) },
     { path: 'billing-ledgers', loadChildren: () => import('../features/billing/ledgers/classes/modules/ledger-billing.module').then(m => m.LedgerBillingModule) },
     { path: 'documentTypes', loadChildren: () => import('../features/billing/documentTypes/classes/modules/documentType.module').then(m => m.DocumentTypeModule) },
     { path: 'invoices', loadChildren: () => import('../features/billing/invoices/classes/modules/invoice.module').then(m => m.InvoiceModule) },

@@ -27,6 +27,7 @@
     { "id": "customers", "description": "Πελάτες" },
     { "id": "prices", "description": "Τιμοκατάλογοι" },
     { "id": "banks", "description": "Τράπεζες" },
+    { "id": "bankAccounts", "description": "Τραπεζικοί λογαριασμοί" },
     { "id": "paymentMethods", "description": "Τρόποι πληρωμής" },
     { "id": "ledgers", "description": "Καρτέλες πελατών" },
     { "id": "balanceSheet", "description": "Ισοζύγιο" },
