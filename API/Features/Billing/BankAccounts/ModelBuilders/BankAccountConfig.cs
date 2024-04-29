@@ -9,8 +9,8 @@ namespace API.Features.Billing.BankAccounts {
             // PK
             entity.Property(x => x.Id).ValueGeneratedOnAdd();
             // FKs
-            entity.Property(x => x.BankId).IsRequired(true);
             entity.Property(x => x.ShipOwnerId).IsRequired(true);
+            entity.Property(x => x.BankId).IsRequired(true);
             // Fields
             entity.Property(x => x.Iban).HasMaxLength(128).IsRequired(true);
             entity.Property(x => x.IsActive);

@@ -9,11 +9,11 @@ import { FormResolved } from 'src/app/shared/classes/form-resolved'
 
 export class BankAccountFormResolver {
 
-    constructor(private bankAccountService: BankAccountHttpService) { }
+    constructor(private bankAccountHttpService: BankAccountHttpService) { }
 
     resolve(route: ActivatedRouteSnapshot): any {
-        return this.bankAccountService.getSingle(route.params.id).pipe(
-            map((bankAccountForm) => new FormResolved(bankAccountForm)),
+        return this.bankAccountHttpService.getSingle(route.params.id).pipe(
+            map((form) => new FormResolved(form)),
             catchError((err: any) => of(new FormResolved(null, err)))
         )
     }

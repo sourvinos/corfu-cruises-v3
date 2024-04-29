@@ -9,8 +9,8 @@ namespace API.Features.Billing.BankAccounts {
         // PK
         public int Id { get; set; }
         // FKs
-        public int BankId { get; set; }
         public int ShipOwnerId { get; set; }
+        public int BankId { get; set; }
         // Fields
         public string Iban { get; set; }
         public bool IsActive { get; set; }
@@ -20,8 +20,8 @@ namespace API.Features.Billing.BankAccounts {
         public string PutAt { get; set; }
         public string PutUser { get; set; }
         // Navigation
-        public Bank Bank { get; set; }
         public ShipOwner ShipOwner { get; set; }
+        public Bank Bank { get; set; }
 
     }
 

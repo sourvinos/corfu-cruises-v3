@@ -6,8 +6,8 @@ export interface BankAccountReadDto extends Metadata {
     // PK
     id: number
     // Object fields
-    bank: SimpleEntity
     shipOwner: SimpleEntity
+    bank: SimpleEntity
     // Fields
     iban: string
     isActive: boolean

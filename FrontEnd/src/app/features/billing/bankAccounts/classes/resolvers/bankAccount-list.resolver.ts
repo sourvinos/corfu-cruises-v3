@@ -9,11 +9,11 @@ import { ListResolved } from '../../../../../shared/classes/list-resolved'
 
 export class BankAccountListResolver {
 
-    constructor(private bankAccountService: BankAccountHttpService) { }
+    constructor(private bankAccountHttpService: BankAccountHttpService) { }
 
     resolve(): Observable<ListResolved> {
-        return this.bankAccountService.getAll().pipe(
-            map((bankAccountList) => new ListResolved(bankAccountList)),
+        return this.bankAccountHttpService.getAll().pipe(
+            map((list) => new ListResolved(list)),
             catchError((err: any) => of(new ListResolved(null, err)))
         )
     }

@@ -2,18 +2,18 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { Component, ViewChild } from '@angular/core'
 import { Table } from 'primeng/table'
 // Custom
+import { BankAccountListVM } from '../classes/view-models/bankAccount-list-vm'
+import { BankListVM } from '../../banks/classes/view-models/bank-list-vm'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { ListResolved } from 'src/app/shared/classes/list-resolved'
+import { MenuItem } from 'primeng/api'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
-import { BankAccountListVM } from '../classes/view-models/bankAccount-list-vm'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
-import { MenuItem } from 'primeng/api'
-import { BankListVM } from '../../banks/classes/view-models/bank-list-vm'
 
 @Component({
     selector: 'bankAccount-list',

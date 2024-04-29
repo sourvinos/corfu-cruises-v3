@@ -15,21 +15,11 @@ namespace API.Features.Billing.BankAccounts {
 
         public int IsValid(BankAccount z, BankAccountWriteDto bankAccount) {
             return true switch {
-                var x when x == !IsValidBank(bankAccount) => 406,
                 var x when x == !IsValidShipOwner(bankAccount) => 449,
+                var x when x == !IsValidBank(bankAccount) => 406,
                 var x when x == IsAlreadyUpdated(z, bankAccount) => 415,
                 _ => 200,
             };
-        }
-
-        private bool IsValidBank(BankAccountWriteDto bankAccount) {
-            return bankAccount.Id == 0
-                ? context.Banks
-                    .AsNoTracking()
-                    .SingleOrDefault(x => x.Id == bankAccount.BankId && x.IsActive) != null
-                : context.Banks
-                    .AsNoTracking()
-                    .SingleOrDefault(x => x.Id == bankAccount.BankId) != null;
         }
 
         private bool IsValidShipOwner(BankAccountWriteDto bankAccount) {
@@ -40,6 +30,16 @@ namespace API.Features.Billing.BankAccounts {
                 : context.ShipOwners
                     .AsNoTracking()
                     .SingleOrDefault(x => x.Id == bankAccount.ShipOwnerId) != null;
+        }
+
+        private bool IsValidBank(BankAccountWriteDto bankAccount) {
+            return bankAccount.Id == 0
+                ? context.Banks
+                    .AsNoTracking()
+                    .SingleOrDefault(x => x.Id == bankAccount.BankId && x.IsActive) != null
+                : context.Banks
+                    .AsNoTracking()
+                    .SingleOrDefault(x => x.Id == bankAccount.BankId) != null;
         }
 
         private static bool IsAlreadyUpdated(BankAccount z, BankAccountWriteDto bankAccount) {

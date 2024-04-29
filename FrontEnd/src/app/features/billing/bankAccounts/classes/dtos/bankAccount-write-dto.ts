@@ -3,8 +3,8 @@ export interface BankAccountWriteDto {
     // PK
     id: number
     // FKs
-    bankId: number
     shipOwnerId: number
+    bankId: number
     // Fields
     iban: string
     isActive: boolean
