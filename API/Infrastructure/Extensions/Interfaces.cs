@@ -1,3 +1,4 @@
+using API.Features.Billing.Banks;
 using API.Features.Billing.DocumentTypes;
 using API.Features.Billing.Invoices;
 using API.Features.Billing.Ledgers;
@@ -85,12 +86,14 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IUserValidation<IUser>, UserValidation>();
             #endregion
             #region billing
+            services.AddTransient<IBankRepository, BankRepository>();
+            services.AddTransient<IBankValidation, BankValidation>();
             services.AddTransient<IDocumentTypeRepository, DocumentTypeRepository>();
             services.AddTransient<IDocumentTypeValidation, DocumentTypeValidation>();
             services.AddTransient<IInvoiceCalculateBalanceRepo, InvoiceCalculateBalanceRepo>();
+            services.AddTransient<IInvoiceEmailSender, InvoiceEmailSender>();
             services.AddTransient<IInvoicePdfRepository, InvoicePdfRepository>();
             services.AddTransient<IInvoiceReadRepository, InvoiceReadRepository>();
-            services.AddTransient<IInvoiceEmailSender, InvoiceEmailSender>();
             services.AddTransient<IInvoiceUpdateRepository, InvoiceUpdateRepository>();
             services.AddTransient<IInvoiceValidation, InvoiceValidation>();
             services.AddTransient<IInvoiceXmlRepository, InvoiceXmlRepository>();

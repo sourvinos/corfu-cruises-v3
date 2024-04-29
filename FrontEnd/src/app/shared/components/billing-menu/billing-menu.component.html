@@ -6,6 +6,7 @@
         <button (click)="doNavigation('invoices',true)" mat-menu-item><span>{{ getLabel('invoices') }}</span></button>
         <button (click)="doNavigation('receipts',true)" mat-menu-item> <span>{{ getLabel('transactions') }}</span></button>
         <mat-divider></mat-divider>
+        <button (click)="doNavigation('banks',true)" mat-menu-item>{{ getLabel("banks") }}</button>
         <button (click)="doNavigation('taxOffices',true)" mat-menu-item>{{ getLabel("taxOffices") }}</button>
         <button (click)="doNavigation('documentTypes',true)" mat-menu-item>{{ getLabel("documentTypes") }}</button>
         <button (click)="doNavigation('customers',true)" mat-menu-item>{{ getLabel("customers") }}</button>

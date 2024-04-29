@@ -11,10 +11,13 @@ export class DexieService extends Dexie {
     constructor() {
         super('CorfuCruisesDB')
         this.version(1).stores({
+            banks: 'id, description',
             coachRoutes: 'id, abbreviation',
             crewSpecialties: 'id, description',
             customers: 'id, description',
+            customersCriteria: 'id, description',
             destinations: 'id, description',
+            destinationsCriteria: 'id, description',
             documentTypesInvoice: 'id, abbreviation',
             documentTypesReceipt: 'id, abbreviation',
             drivers: 'id, description',
@@ -23,14 +26,12 @@ export class DexieService extends Dexie {
             paymentMethods: 'id, description',
             pickupPoints: 'id, description',
             ports: 'id, description',
+            portsCriteria: 'id, description',
             shipOwners: 'id, description',
             ships: 'id, description',
+            shipsCriteria: 'id, description',
             taxOffices: 'id, description',
             vatRegimes: 'id, description',
-            customersCriteria: 'id, description',
-            destinationsCriteria: 'id, description',
-            portsCriteria: 'id, description',
-            shipsCriteria: 'id, description',
         })
         this.open()
     }

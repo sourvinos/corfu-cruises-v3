@@ -2835,35 +2835,6 @@
         ]
     },
     {
-        "feature": "billingparameters",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Ρυθμίσεις"
-            },
-            {
-                "id": "vatPercent",
-                "description": "Ποσοστό ΦΠΑ"
-            },
-            {
-                "id": "vatCategoryId",
-                "description": "Κατηγορία ΦΠΑ"
-            },
-            {
-                "id": "saveButton",
-                "description": "Αποθηκευση"
-            },
-            {
-                "id": "post",
-                "description": "Αρχική καταχώριση"
-            },
-            {
-                "id": "put",
-                "description": "Τελευταία ενημέρωση"
-            }
-        ]
-    },
-    {
         "feature": "invoiceList",
         "labels": [
             {
@@ -3540,6 +3511,60 @@
             {
                 "id": "previous",
                 "description": "Previous"
+            }
+        ]
+    },
+    {
+        "feature": "bankList",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Τράπεζες"
+            },
+            {
+                "id": "headerIsActive",
+                "description": "Ενεργή"
+            },
+            {
+                "id": "headerDescription",
+                "description": "Περιγραφή"
+            },
+            {
+                "id": "newRecord",
+                "description": "Νεα εγγραφη"
+            }
+        ]
+    },
+    {
+        "feature": "bankForm",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Τράπεζα"
+            },
+            {
+                "id": "description",
+                "description": "Περιγραφή"
+            },
+            {
+                "id": "isActive",
+                "description": "Ενεργη"
+            },
+            {
+                "id": "post",
+                "description": "Αρχική καταχώριση"
+            },
+            {
+                "id": "put",
+                "description": "Τελευταία ενημέρωση"
+            },
+            {
+                "id": "deleteButton",
+                "description": "Διαγραφη"
+            },
+            {
+                "id": "saveButton",
+                "description": "Αποθηκευση"
             }
         ]
     }

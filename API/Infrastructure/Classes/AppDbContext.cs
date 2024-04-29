@@ -28,6 +28,7 @@ using API.Infrastructure.Users;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using API.Features.Billing.Banks;
 
 namespace API.Infrastructure.Classes {
 
@@ -60,10 +61,11 @@ namespace API.Infrastructure.Classes {
 
         #region DbSets - Billing
 
+        public DbSet<Bank> Banks { get; set; }
         public DbSet<DocumentType> DocumentTypes { get; set; }
-        public DbSet<TransactionsBase> Transactions { get; set; }
         public DbSet<InvoiceAade> InvoicesAade { get; set; }
         public DbSet<InvoicePort> InvoicesPorts { get; set; }
+        public DbSet<TransactionsBase> Transactions { get; set; }
         public DbSet<PaymentMethod> PaymentMethods { get; set; }
         public DbSet<Price> Prices { get; set; }
         public DbSet<TaxOffice> TaxOffices { get; set; }
@@ -105,7 +107,7 @@ namespace API.Infrastructure.Classes {
             modelBuilder.ApplyConfiguration(new ShipsConfig());
             #endregion
             #region billing
-            modelBuilder.ApplyConfiguration(new TransactionConfig());
+            modelBuilder.ApplyConfiguration(new BanksConfig());
             modelBuilder.ApplyConfiguration(new DocumentTypeConfig());
             modelBuilder.ApplyConfiguration(new InvoicesAadeConfig());
             modelBuilder.ApplyConfiguration(new InvoicesConfig());
@@ -113,8 +115,9 @@ namespace API.Infrastructure.Classes {
             modelBuilder.ApplyConfiguration(new ParametersConfig());
             modelBuilder.ApplyConfiguration(new PaymentMethodsConfig());
             modelBuilder.ApplyConfiguration(new PricesConfig());
-            modelBuilder.ApplyConfiguration(new TaxOfficesConfig());
             modelBuilder.ApplyConfiguration(new ReceiptsConfig());
+            modelBuilder.ApplyConfiguration(new TaxOfficesConfig());
+            modelBuilder.ApplyConfiguration(new TransactionConfig());
             modelBuilder.ApplyConfiguration(new VatRegimeConfig());
             #endregion
             #region common

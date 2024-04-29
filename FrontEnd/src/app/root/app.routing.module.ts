@@ -40,13 +40,14 @@ const appRoutes: Routes = [
     { path: 'users', loadChildren: () => import('../features/reservations/users/classes/modules/user.module').then(m => m.UserModule) },
     { path: 'reservation-parameters', loadChildren: () => import('../features/reservations/parameters/classes/modules/reservation-parameters.module').then(m => m.ReservationParametersModule) },
     // Billing
-    { path: 'invoices', loadChildren: () => import('../features/billing/invoices/classes/modules/invoice.module').then(m => m.InvoiceModule) },
-    { path: 'receipts', loadChildren: () => import('../features/billing/receipts/classes/modules/receipt.module').then(m => m.ReceiptModule) },
+    { path: 'banks', loadChildren: () => import('../features/billing/banks/classes/modules/bank.module').then(m => m.BankModule) },
+    { path: 'billing-ledgers', loadChildren: () => import('../features/billing/ledgers/classes/modules/ledger-billing.module').then(m => m.LedgerBillingModule) },
     { path: 'documentTypes', loadChildren: () => import('../features/billing/documentTypes/classes/modules/documentType.module').then(m => m.DocumentTypeModule) },
+    { path: 'invoices', loadChildren: () => import('../features/billing/invoices/classes/modules/invoice.module').then(m => m.InvoiceModule) },
     { path: 'paymentMethods', loadChildren: () => import('../features/billing/paymentMethods/classes/modules/paymentMethod.module').then(m => m.PaymentMethodModule) },
     { path: 'prices', loadChildren: () => import('../features/billing/prices/classes/modules/price.module').then(m => m.PriceModule) },
+    { path: 'receipts', loadChildren: () => import('../features/billing/receipts/classes/modules/receipt.module').then(m => m.ReceiptModule) },
     { path: 'taxOffices', loadChildren: () => import('../features/billing/taxOffices/classes/modules/taxOffice.module').then(m => m.TaxOfficeModule) },
-    { path: 'billing-ledgers', loadChildren: () => import('../features/billing/ledgers/classes/modules/ledger-billing.module').then(m => m.LedgerBillingModule) },
     // CheckIn
     { path: 'checkIn', loadChildren: () => import('../features/check-in/classes/modules/check-in.module').then(m => m.CheckInModule) },
     // Empty

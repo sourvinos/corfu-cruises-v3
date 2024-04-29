@@ -255,6 +255,10 @@
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
 }
 
+.p-menuitem-content {
+    background-color: var(--color-menu-background) !important;
+}
+
 .p-menuitem-link:hover {
     background-color: var(--color-mat-menu-background-hover);
 }

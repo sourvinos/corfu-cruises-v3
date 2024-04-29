@@ -4,6 +4,7 @@ import { Observable } from 'rxjs'
 import { Router } from '@angular/router'
 import { map } from 'rxjs/operators'
 // Custom
+import { BankService } from 'src/app/features/billing/banks/classes/services/bank.service'
 import { ChangePasswordViewModel } from './../../features/reservations/users/classes/view-models/change-password-view-model'
 import { CoachRouteService } from './../../features/reservations/coachRoutes/classes/services/coachRoute.service'
 import { CrewSpecialtyHttpService } from './../../features/reservations/crewSpecialties/classes/services/crewSpecialty-http.service'
@@ -42,7 +43,7 @@ export class AccountService extends HttpDataService {
 
     //#endregion
 
-    constructor(httpClient: HttpClient, private coachRouteService: CoachRouteService, private crewSpecialtyHttpService: CrewSpecialtyHttpService, private cryptoService: CryptoService, private customerHttpService: CustomerHttpService, private destinationHttpService: DestinationHttpService, private dexieService: DexieService, private documentTypeHttpService: DocumentTypeHttpService, private driverService: DriverService, private genderService: GenderService, private interactionService: InteractionService, private nationalityService: NationalityHttpService, private ngZone: NgZone, private paymentMethodService: PaymentMethodHttpService, private pickupPointService: PickupPointService, private portHttpService: PortHttpService, private router: Router, private sessionStorageService: SessionStorageService, private shipHttpService: ShipHttpService, private shipOwnerService: ShipOwnerHttpService, private taxOfficeService: TaxOfficeService, private vatRegimeService: VatRegimeService) {
+    constructor(httpClient: HttpClient, private bankService: BankService, private coachRouteService: CoachRouteService, private crewSpecialtyHttpService: CrewSpecialtyHttpService, private cryptoService: CryptoService, private customerHttpService: CustomerHttpService, private destinationHttpService: DestinationHttpService, private dexieService: DexieService, private documentTypeHttpService: DocumentTypeHttpService, private driverService: DriverService, private genderService: GenderService, private interactionService: InteractionService, private nationalityService: NationalityHttpService, private ngZone: NgZone, private paymentMethodService: PaymentMethodHttpService, private pickupPointService: PickupPointService, private portHttpService: PortHttpService, private router: Router, private sessionStorageService: SessionStorageService, private shipHttpService: ShipHttpService, private shipOwnerService: ShipOwnerHttpService, private taxOfficeService: TaxOfficeService, private vatRegimeService: VatRegimeService) {
         super(httpClient, environment.apiUrl)
     }
 
@@ -77,6 +78,7 @@ export class AccountService extends HttpDataService {
             { 'item': 'manifest-criteria', 'when': 'production' },
             { 'item': 'invoice-list-criteria', 'when': 'always' },
             // Table filters
+            { 'item': 'bankList-filters', 'when': 'always' }, { 'item': 'bankList-id', 'when': 'always' }, { 'item': 'bankList-scrollTop', 'when': 'always' },
             { 'item': 'coachRouteList-filters', 'when': 'always' }, { 'item': 'coachRouteList-id', 'when': 'always' }, { 'item': 'coachRouteList-scrollTop', 'when': 'always' },
             { 'item': 'crewSpecialtyList-filters', 'when': 'always' }, { 'item': 'crewSpecialtyList-id', 'when': 'always' }, { 'item': 'crewSpecialtyList-scrollTop', 'when': 'always' },
             { 'item': 'customerList-filters', 'when': 'always' }, { 'item': 'customerList-id', 'when': 'always' }, { 'item': 'customerList-scrollTop', 'when': 'always' },
@@ -85,10 +87,10 @@ export class AccountService extends HttpDataService {
             { 'item': 'driverList-filters', 'when': 'always' }, { 'item': 'driverList-id', 'when': 'always' }, { 'item': 'driverList-scrollTop', 'when': 'always' },
             { 'item': 'genderList-filters', 'when': 'always' }, { 'item': 'genderList-id', 'when': 'always' }, { 'item': 'genderList-scrollTop', 'when': 'always' },
             { 'item': 'invoiceList-filters', 'when': 'always' }, { 'item': 'invoiceList-id', 'when': 'always' }, { 'item': 'invoiceList-scrollTop', 'when': 'always' },
-            { 'item': 'receiptList-filters', 'when': 'always' }, { 'item': 'receiptList-id', 'when': 'always' }, { 'item': 'receiptList-scrollTop', 'when': 'always' },
             { 'item': 'pickupPointList-filters', 'when': 'always' }, { 'item': 'pickupPointList-id', 'when': 'always' }, { 'item': 'pickupPointList-scrollTop', 'when': 'always' },
             { 'item': 'portList-filters', 'when': 'always' }, { 'item': 'portList-id', 'when': 'always' }, { 'item': 'portList-scrollTop', 'when': 'always' },
             { 'item': 'priceList-filters', 'when': 'always' }, { 'item': 'priceList-id', 'when': 'always' }, { 'item': 'priceList-scrollTop', 'when': 'always' },
+            { 'item': 'receiptList-filters', 'when': 'always' }, { 'item': 'receiptList-id', 'when': 'always' }, { 'item': 'receiptList-scrollTop', 'when': 'always' },
             { 'item': 'registrarList-filters', 'when': 'always' }, { 'item': 'registrarList-id', 'when': 'always' }, { 'item': 'registrarList-scrollTop', 'when': 'always' },
             { 'item': 'scheduleList-filters', 'when': 'always' }, { 'item': 'scheduleList-id', 'when': 'always' }, { 'item': 'scheduleList-scrollTop', 'when': 'always' },
             { 'item': 'shipCrewList-filters', 'when': 'always' }, { 'item': 'shipCrewList-id', 'when': 'always' }, { 'item': 'shipCrewList-scrollTop', 'when': 'always' },
@@ -187,6 +189,7 @@ export class AccountService extends HttpDataService {
         // Billing
         this.dexieService.populateDocumentTypesTable('documentTypesInvoice', this.documentTypeHttpService, 1)
         this.dexieService.populateDocumentTypesTable('documentTypesReceipt', this.documentTypeHttpService, 2)
+        this.dexieService.populateTable('banks', this.bankService)
         this.dexieService.populateTable('paymentMethods', this.paymentMethodService)
         this.dexieService.populateTable('taxOffices', this.taxOfficeService)
         this.dexieService.populateTable('vatRegimes', this.vatRegimeService)
