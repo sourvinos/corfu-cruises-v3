@@ -728,6 +728,10 @@
                 "description": "New record"
             },
             {
+                "id": "headerDate",
+                "description": "Date"
+            },
+            {
                 "id": "headerRefNo",
                 "description": "RefNo"
             },

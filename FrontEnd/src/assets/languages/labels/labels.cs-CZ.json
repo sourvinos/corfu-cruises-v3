@@ -728,6 +728,10 @@
                 "description": "Nový"
             },
             {
+                "id": "headerDate",
+                "description": "Datum"
+            },
+            {
                 "id": "headerRefNo",
                 "description": "RefNo"
             },

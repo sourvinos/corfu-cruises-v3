@@ -728,6 +728,10 @@
                 "description": "Νεα εγγραφη"
             },
             {
+                "id": "headerDate",
+                "description": "Ημερομηνία"
+            },
+            {
                 "id": "headerRefNo",
                 "description": "RefNo"
             },

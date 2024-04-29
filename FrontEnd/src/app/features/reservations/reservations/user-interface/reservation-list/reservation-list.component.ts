@@ -214,15 +214,6 @@ export class ReservationListComponent {
         return this.dateHelperService.formatISODateToLocale(date, showWeekday, showYear)
     }
 
-    public getDateFromStorage(): string {
-        const date = this.sessionStorageService.getItem('date')
-        if (date != '') {
-            return date
-        } else {
-            return this.dateHelperService.formatDateToIso(new Date())
-        }
-    }
-
     public getEmoji(emoji: string): string {
         return this.emojiService.getEmoji(emoji)
     }
