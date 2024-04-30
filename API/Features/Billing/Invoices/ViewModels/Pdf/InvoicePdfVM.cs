@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using API.Infrastructure.Classes;
 
 namespace API.Features.Billing.Invoices {
 
@@ -19,7 +20,7 @@ namespace API.Features.Billing.Invoices {
         public InvoicePdfSummaryVM Summary { get; set; }
         public decimal PreviousBalance { get; set; }
         public decimal NewBalance { get; set; }
-        public string[] BankAccounts { get; set; }
+        public SimpleEntity[] BankAccounts { get; set; }
 
     }
 

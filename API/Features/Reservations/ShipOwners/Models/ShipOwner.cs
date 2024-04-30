@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using API.Features.Billing.BankAccounts;
 using API.Features.Billing.TaxOffices;
 using API.Features.Billing.VatRegimes;
 using API.Features.Reservations.Nationalities;
@@ -46,8 +48,8 @@ namespace API.Features.Reservations.ShipOwners {
         public Nationality Nationality { get; set; }
         public TaxOffice TaxOffice { get; set; }
         public VatRegime VatRegime { get; set; }
+        public List<BankAccount> BankAccounts { get; set; }
 
     }
-
 
 }

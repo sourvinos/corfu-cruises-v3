@@ -1,17 +1,17 @@
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Globalization;
-using System.IO;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Helpers;
 using Microsoft.AspNetCore.Mvc;
-using PdfSharp;
 using PdfSharp.Drawing;
 using PdfSharp.Fonts;
 using PdfSharp.Pdf;
-using ZXing;
+using PdfSharp;
+using System.Drawing.Imaging;
+using System.Drawing;
+using System.Globalization;
+using System.IO;
 using ZXing.QrCode;
 using ZXing.Windows.Compatibility;
+using ZXing;
 
 namespace API.Features.Billing.Invoices {
 
@@ -38,7 +38,7 @@ namespace API.Features.Billing.Invoices {
             AddPortTotals(gfx, robotoMonoFont, locale, invoice);
             AddSummary(gfx, robotoMonoFont, robotoMonoFontBig, locale, invoice);
             AddBalances(gfx, robotoMonoFont, robotoMonoFontBig, locale, invoice);
-            AddBankAccounts(gfx, robotoMonoFont);
+            AddBankAccounts(gfx, robotoMonoFont, invoice);
             PrintAade(gfx, robotoMonoFont, invoice.Aade);
             var filename = invoice.InvoiceId + ".pdf";
             var fullpathname = Path.Combine("Reports" + Path.DirectorySeparatorChar + "Invoices" + Path.DirectorySeparatorChar + filename);
@@ -206,7 +206,7 @@ namespace API.Features.Billing.Invoices {
             gfx.DrawString((invoice.Ports[0].TotalPax + invoice.Ports[1].TotalPax).ToString(), robotoMonoFont, XBrushes.Black, new XRect(personsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
             gfx.DrawString((invoice.Ports[0].TotalAmount + invoice.Ports[1].TotalAmount).ToString("N2", locale), robotoMonoFont, XBrushes.Black, new XRect(totalAmountsRight, top, 0, 0), new() { Alignment = XStringAlignment.Far });
         }
- 
+
         private static void AddSummary(XGraphics gfx, XFont robotoMonoFont, XFont robotoMonoFontBig, CultureInfo locale, InvoicePdfVM invoice) {
             var top = 420;
             var left = 450;
@@ -241,14 +241,12 @@ namespace API.Features.Billing.Invoices {
             gfx.DrawString("UID " + aade.UId, font, XBrushes.Black, new XRect(right, bottom, 0, 0), new() { Alignment = XStringAlignment.Far });
         }
 
-        private static void AddBankAccounts(XGraphics gfx, XFont robotoMonoFont) {
-            var bottom = 810;
+        private static void AddBankAccounts(XGraphics gfx, XFont robotoMonoFont, InvoicePdfVM invoice) {
+            var bottom = 820;
             var left = 40;
-            gfx.DrawString("ATTICA BANK GR43 0160 8730 0000 0008 5207 750", robotoMonoFont, XBrushes.Black, new XRect(left, bottom, 0, 0), new() { Alignment = XStringAlignment.Near });
-            gfx.DrawString("ΠΕΙΡΑΙΩΣ GR17 0171 1740 0061 7413 5517 925", robotoMonoFont, XBrushes.Black, new XRect(left, bottom -= 10, 0, 0), new() { Alignment = XStringAlignment.Near });
-            gfx.DrawString("ALPHA BANK GR41 0140 5950 5950 0233 0002 010", robotoMonoFont, XBrushes.Black, new XRect(left, bottom -= 10, 0, 0), new() { Alignment = XStringAlignment.Near });
-            gfx.DrawString("EUROBANK GR53 0260 4450 0003 5020 0621 503", robotoMonoFont, XBrushes.Black, new XRect(left, bottom -= 10, 0, 0), new() { Alignment = XStringAlignment.Near });
-            gfx.DrawString("ΕΘΝΙΚΗ GR22 0110 8670 0000 8670 0263 444", robotoMonoFont, XBrushes.Black, new XRect(left, bottom -= 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            foreach (var bankAccount in invoice.BankAccounts) {
+                gfx.DrawString(bankAccount.Description, robotoMonoFont, XBrushes.Black, new XRect(left, bottom -= 10, 0, 0), new() { Alignment = XStringAlignment.Near });
+            }
             gfx.DrawString("ΤΡΑΠΕΖΙΚΟΙ ΛΟΓΑΡΙΑΣΜΟΙ", robotoMonoFont, XBrushes.Black, new XRect(left, bottom -= 20, 0, 0), new() { Alignment = XStringAlignment.Near });
             gfx.DrawLine(XPens.LightGray, left, bottom += 10, 119, bottom);
         }
@@ -265,7 +263,7 @@ namespace API.Features.Billing.Invoices {
         private static XSolidBrush SetTextColor(int value) {
             return value == 0 ? XBrushes.LightGray : XBrushes.Black;
         }
- 
+
     }
 
 }

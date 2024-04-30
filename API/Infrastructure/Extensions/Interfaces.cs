@@ -39,7 +39,6 @@ namespace API.Infrastructure.Extensions {
     public static class Interfaces {
 
         public static void AddInterfaces(IServiceCollection services) {
-            services.AddScoped<Token>();
             #region reservations
             services.AddTransient<IAvailabilityCalendar, AvailabilityCalendar>();
             services.AddTransient<IBoardingRepository, BoardingRepository>();
@@ -110,9 +109,9 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<ITaxOfficeValidation, TaxOfficeValidation>();
             services.AddTransient<IVatRegimeRepository, VatRegimeRepository>();
             services.AddTransient<IVatRegimeValidation, VatRegimeValidation>();
-            services.AddTransient<IVatRegimeValidation, VatRegimeValidation>();
             #endregion
-            #region common
+            #region shared
+            services.AddScoped<Token>();
             services.AddTransient<IEmailSender, EmailSender>();
             #endregion
             #region checkIn
@@ -125,4 +124,3 @@ namespace API.Infrastructure.Extensions {
     }
 
 }
-

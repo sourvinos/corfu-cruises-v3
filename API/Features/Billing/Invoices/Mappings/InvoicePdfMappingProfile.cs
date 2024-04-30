@@ -1,4 +1,5 @@
 using System.Linq;
+using API.Infrastructure.Classes;
 using API.Infrastructure.Helpers;
 using AutoMapper;
 
@@ -86,10 +87,10 @@ namespace API.Features.Billing.Invoices {
                     VatAmount = x.VatAmount,
                     GrossAmount = x.GrossAmount
                 }))
-                .ForMember(x => x.BankAccounts, x => x.MapFrom(x => new string[] {
-                        "DSDS",
-                        "DSDDS"
-                    }));
+                .ForMember(x => x.BankAccounts, x => x.MapFrom(x => x.Ship.ShipOwner.BankAccounts.Select(bankAccount => new SimpleEntity {
+                    Id = bankAccount.Bank.Id,
+                    Description = bankAccount.Bank.Description + " " + bankAccount.Iban
+                })));
             CreateMap<Invoice, InvoiceBalanceVM>()
                 .ForMember(x => x.PreviousBalance, x => x.MapFrom(x => x.PreviousBalance))
                 .ForMember(x => x.NewBalance, x => x.MapFrom(x => x.NewBalance));
