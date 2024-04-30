@@ -91,8 +91,13 @@ button.transparent {
     transition: color var(--theme-delay) !important;
 }
 
+button.transparent:hover {
+    background-color: var(--color-transparent-button-hover) !important;
+}
+
 button.transparent > .mdc-button__label {
     color: var(--color-transparent-button) !important;
+    transition: color var(--theme-delay) !important;
 }
 
 button.no-right-border-radius {

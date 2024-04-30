@@ -167,7 +167,6 @@
 
 /* Hint with error */
 .mat-mdc-form-field-error {
-    background-color: var(--color-background) !important;
     color: var(--color-input-error) !important;
     font-family: var(--font-family-asty) !important;
     font-weight: 300;
@@ -178,6 +177,11 @@
 /* Hide hint */
 .mat-mdc-form-field.hide-hint {
     height: 3.5rem;
+}
+
+/* Hide hint */
+.mat-mdc-form-field.hide-hint .mat-mdc-form-field-subscript-wrapper .mat-mdc-form-field-error-wrapper {
+    opacity: 0 !important;
 }
 
 /* Hint with error */

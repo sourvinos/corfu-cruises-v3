@@ -2908,7 +2908,7 @@
             },
             {
                 "id": "date",
-                "description": "Ημερομηνία"
+                "description": "Ημερομηνία έκδοσης"
             },
             {
                 "id": "tripDate",
