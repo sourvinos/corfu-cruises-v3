@@ -1,4 +1,3 @@
-import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Component, Inject } from '@angular/core'
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
@@ -6,10 +5,12 @@ import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { Observable, map, startWith } from 'rxjs'
 // Custom
 import { BillingCriteriaVM } from 'src/app/features/billing/invoices/classes/view-models/form/billing-criteria-vm'
+import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { DocumentTypeAutoCompleteVM } from 'src/app/features/billing/documentTypes/classes/view-models/documentType-autocomplete-vm'
 import { DocumentTypeHttpService } from 'src/app/features/billing/documentTypes/classes/services/documentType-http.service'
+import { DocumentTypeReadDto } from 'src/app/features/billing/documentTypes/classes/dtos/documentType-read-dto'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
 import { InvoiceHelperService } from 'src/app/features/billing/invoices/classes/services/invoice.helper.service'
@@ -22,9 +23,9 @@ import { MessageInputHintService } from 'src/app/shared/services/message-input-h
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { PriceHttpService } from 'src/app/features/billing/prices/classes/services/price-http.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
+import { ShipAutoCompleteVM } from 'src/app/features/reservations/ships/classes/view-models/ship-autocomplete-vm'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
-import { ShipAutoCompleteVM } from 'src/app/features/reservations/ships/classes/view-models/ship-autocomplete-vm'
 
 @Component({
     selector: 'invoice-dialog.component',
@@ -222,10 +223,18 @@ export class InvoiceDialogComponent {
     }
 
     public updateFieldsAfterDocumentTypeSelection(value: DocumentTypeAutoCompleteVM): void {
-        this.form.patchValue({
-            documentTypeDescription: value.description,
-            invoiceNo: value.lastNo += 1,
-            batch: value.batch
+        this.documentTypeHttpService.getSingle(value.id).subscribe({
+            next: (response) => {
+                const x: DocumentTypeReadDto = response.body
+                this.form.patchValue({
+                    documentTypeDescription: x.description,
+                    invoiceNo: x.lastNo += 1,
+                    batch: x.batch
+                })
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
         })
     }
 
@@ -434,9 +443,7 @@ export class InvoiceDialogComponent {
 
     private updateDocumentType(id: number): void {
         this.documentTypeHttpService.updateLastNo(id).subscribe({
-            next: (response) => {
-                this.invoiceHelperService.updateBrowserStorageAfterApiUpdate(response.body)
-            },
+            next: () => { },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
             }

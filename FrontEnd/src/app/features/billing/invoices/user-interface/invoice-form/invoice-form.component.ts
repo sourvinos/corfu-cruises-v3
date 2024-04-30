@@ -12,6 +12,7 @@ import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { DocumentTypeAutoCompleteVM } from '../../../documentTypes/classes/view-models/documentType-autocomplete-vm'
 import { DocumentTypeHttpService } from '../../../documentTypes/classes/services/documentType-http.service'
+import { DocumentTypeReadDto } from '../../../documentTypes/classes/dtos/documentType-read-dto'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -231,10 +232,18 @@ export class InvoiceFormComponent {
     }
 
     public updateFieldsAfterDocumentTypeSelection(value: DocumentTypeAutoCompleteVM): void {
-        this.form.patchValue({
-            documentTypeDescription: value.description,
-            invoiceNo: value.lastNo += 1,
-            batch: value.batch
+        this.documentTypeHttpService.getSingle(value.id).subscribe({
+            next: (response) => {
+                const x: DocumentTypeReadDto = response.body
+                this.form.patchValue({
+                    documentTypeDescription: x.description,
+                    invoiceNo: x.lastNo += 1,
+                    batch: x.batch
+                })
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
         })
     }
 
@@ -638,9 +647,7 @@ export class InvoiceFormComponent {
 
     private updateDocumentType(id: number): void {
         this.documentTypeHttpService.updateLastNo(id).subscribe({
-            next: (response) => {
-                this.invoiceHelperService.updateBrowserStorageAfterApiUpdate(response.body)
-            },
+            next: () => { },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
             }
@@ -649,10 +656,6 @@ export class InvoiceFormComponent {
 
     private leftAlignLastTab(): void {
         this.helperService.leftAlignLastTab()
-    }
-
-    private getCustomerDataFromStorage(customerId: number): Promise<any> {
-        return this.dexieService.getById('customers', customerId)
     }
 
     private updateVatPercentAfterShipSelection(value: any): void {
