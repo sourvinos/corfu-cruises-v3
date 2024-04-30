@@ -75,7 +75,7 @@ namespace API.Features.Billing.Invoices {
             var x = invoiceValidation.IsValidAsync(null, invoice);
             if (await x == 200) {
                 invoice.ShipOwnerId = await invoiceUpdateRepo.AttachShipOwnerIdToInvoiceAsync(invoice);
-                invoice = calculateBalanceRepo.AttachBalancesToCreateDto(invoice, calculateBalanceRepo.CalculateBalances(invoice, invoice.CustomerId));
+                invoice = calculateBalanceRepo.AttachBalancesToCreateDto(invoice, calculateBalanceRepo.CalculateBalances(invoice, invoice.CustomerId, invoice.ShipOwnerId));
                 var z = invoiceUpdateRepo.Create(mapper.Map<InvoiceCreateDto, Invoice>((InvoiceCreateDto)invoiceUpdateRepo.AttachMetadataToPostDto(invoice)));
                 return new Response {
                     Code = 200,
@@ -136,13 +136,13 @@ namespace API.Features.Billing.Invoices {
             }
         }
 
-        [HttpGet("validateBalance/{customerId}")]
+        [HttpGet("validateBalance/{customerId}/{shipOwnerId}")]
         [Authorize(Roles = "user, admin")]
-        public async Task<ResponseWithBody> ValidateBalance(int customerId) {
+        public async Task<ResponseWithBody> ValidateBalance(int customerId, int shipOwnerId) {
             var x = await customerRepo.GetByIdAsync(customerId, false);
             if (x != null) {
                 var balanceLimit = x.BalanceLimit;
-                var balance = calculateBalanceRepo.CalculatePreviousBalance(customerId);
+                var balance = calculateBalanceRepo.CalculatePreviousBalance(customerId, shipOwnerId);
                 return new ResponseWithBody {
                     Code = 200,
                     Icon = Icons.Info.ToString(),
