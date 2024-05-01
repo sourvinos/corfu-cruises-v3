@@ -33,14 +33,14 @@ namespace API.Features.Billing.DocumentTypes {
         }
 
         public async Task<IEnumerable<DocumentTypeBrowserVM>> GetForBrowserAsync(int discriminatorId) {
-            var DocumentTypes = await context.DocumentTypes
+            var documentTypes = await context.DocumentTypes
                 .AsNoTracking()
                 .Include(x => x.Ship)
                 .Include(x => x.ShipOwner)
                 .Where(x => x.DiscriminatorId == discriminatorId)
                 .OrderBy(x => x.ShipOwner.Description).ThenBy(x => x.Ship.Description).ThenBy(x => x.DiscriminatorId).ThenBy(x => x.Description).ThenBy(x => x.Batch)
                 .ToListAsync();
-            return mapper.Map<IEnumerable<DocumentType>, IEnumerable<DocumentTypeBrowserVM>>(DocumentTypes);
+            return mapper.Map<IEnumerable<DocumentType>, IEnumerable<DocumentTypeBrowserVM>>(documentTypes);
         }
 
         public async Task<DocumentTypeBrowserVM> GetByIdForBrowserAsync(int id) {

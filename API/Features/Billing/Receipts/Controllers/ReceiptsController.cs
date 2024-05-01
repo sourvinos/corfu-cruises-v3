@@ -16,14 +16,18 @@ namespace API.Features.Billing.Receipts {
 
         private readonly IMapper mapper;
         private readonly IReceiptCalculateBalanceRepo receiptCalculateBalanceRepo;
+        private readonly IReceiptEmailSender emailSender;
+        private readonly IReceiptPdfRepository receiptPdfRepo;
         private readonly IReceiptRepository receiptRepo;
         private readonly IReceiptValidation receiptValidation;
 
         #endregion
 
-        public ReceiptsController(IMapper mapper, IReceiptCalculateBalanceRepo receiptCalculateBalanceRepo, IReceiptRepository transactionRepo, IReceiptValidation transactionValidation) {
+        public ReceiptsController(IMapper mapper, IReceiptCalculateBalanceRepo receiptCalculateBalanceRepo, IReceiptEmailSender emailSender, IReceiptPdfRepository receiptPdfRepo, IReceiptRepository transactionRepo, IReceiptValidation transactionValidation) {
+            this.emailSender = emailSender;
             this.mapper = mapper;
             this.receiptCalculateBalanceRepo = receiptCalculateBalanceRepo;
+            this.receiptPdfRepo = receiptPdfRepo;
             this.receiptRepo = transactionRepo;
             this.receiptValidation = transactionValidation;
         }
@@ -64,7 +68,7 @@ namespace API.Features.Billing.Receipts {
         public async Task<Response> PostAsync([FromBody] ReceiptWriteDto receipt) {
             var x = receiptValidation.IsValidAsync(null, receipt);
             if (await x == 200) {
-                receipt = receiptCalculateBalanceRepo.AttachBalancesToCreateDto(receipt, receiptCalculateBalanceRepo.CalculateBalances(receipt, receipt.CustomerId));
+                receipt = receiptCalculateBalanceRepo.AttachBalancesToCreateDto(receipt, receiptCalculateBalanceRepo.CalculateBalances(receipt, receipt.CustomerId, receipt.ShipOwnerId));
                 var z = receiptRepo.Create(mapper.Map<ReceiptWriteDto, Receipt>((ReceiptWriteDto)receiptRepo.AttachMetadataToPostDto(receipt)));
                 return new Response {
                     Code = 200,
@@ -82,16 +86,16 @@ namespace API.Features.Billing.Receipts {
         [HttpPut]
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<Response> PutAsync([FromBody] ReceiptWriteDto receipt) {
+        public async Task<ResponseWithBody> PutAsync([FromBody] ReceiptWriteDto receipt) {
             var x = await receiptRepo.GetByIdAsync(receipt.InvoiceId.ToString(), false);
             if (x != null) {
                 var z = receiptValidation.IsValidAsync(x, receipt);
                 if (await z == 200) {
-                    var i = receiptRepo.Update(mapper.Map<ReceiptWriteDto, Receipt>((ReceiptWriteDto)receiptRepo.AttachMetadataToPutDto(x, receipt)));
-                    return new Response {
+                    receiptRepo.Update(mapper.Map<ReceiptWriteDto, Receipt>((ReceiptWriteDto)receiptRepo.AttachMetadataToPutDto(x, receipt)));
+                    return new ResponseWithBody {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
-                        Id = i.InvoiceId.ToString(),
+                        Body = "i.InvoiceId.ToString()",
                         Message = ApiMessages.OK()
                     };
                 } else {
@@ -123,6 +127,73 @@ namespace API.Features.Billing.Receipts {
                     ResponseCode = 404
                 };
             }
+        }
+
+        [HttpGet("buildReceiptPdf/{invoiceId}")]
+        [Authorize(Roles = "admin")]
+        public async Task<ResponseWithBody> BuildPdf(string invoiceId) {
+            var x = await receiptRepo.GetByIdForPdfAsync(invoiceId);
+            if (x != null) {
+                var filename = receiptPdfRepo.BuildPdf(mapper.Map<Receipt, ReceiptPdfVM>(x));
+                return new ResponseWithBody {
+                    Code = 200,
+                    Icon = Icons.Info.ToString(),
+                    Message = ApiMessages.OK(),
+                    Body = new EmailReceiptVM {
+                        CustomerId = x.Customer.Id,
+                        Filename = filename
+                    }
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 404
+                };
+            }
+        }
+
+        [HttpPost("[action]")]
+        [Authorize(Roles = "admin")]
+        public Response EmailReceipt([FromBody] EmailReceiptVM model) {
+            var response = emailSender.SendReceiptToEmail(model);
+            if (response.Exception == null) {
+                return new Response {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                return new Response {
+                    Code = 498,
+                    Icon = Icons.Error.ToString(),
+                    Id = null,
+                    Message = response.Exception.Message
+                };
+            }
+        }
+
+        [HttpPatch("email/{invoiceId}")]
+        [Authorize(Roles = "admin")]
+        public async Task<Response> PatchEmail(string invoiceId) {
+            var x = await receiptRepo.GetByIdAsync(invoiceId, false);
+            if (x != null) {
+                receiptRepo.UpdateIsEmailSent(x, invoiceId);
+                return new Response {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Id = invoiceId.ToString(),
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 404
+                };
+            }
+        }
+
+        [HttpGet("[action]/{filename}")]
+        [Authorize(Roles = "admin")]
+        public IActionResult OpenPdf([FromRoute] string filename) {
+            return receiptPdfRepo.OpenPdf(filename);
         }
 
     }

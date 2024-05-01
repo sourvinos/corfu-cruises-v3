@@ -173,10 +173,6 @@ export class InvoiceListComponent {
         }
     }
 
-    private getCustomerDataFromStorage(customerId: number): Promise<any> {
-        return this.dexieService.getById('customers', customerId)
-    }
-
     private getVirtualElement(): void {
         this.virtualElement = document.getElementsByClassName('p-scroller-inline')[0]
     }

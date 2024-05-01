@@ -29,6 +29,10 @@ namespace API.Features.Billing.DocumentTypes {
                 } : new SimpleEntity {
                     Id = x.Ship.Id,
                     Description = x.Ship.Description
+                }))
+                .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new SimpleEntity {
+                    Id = x.ShipOwner.Id,
+                    Description = x.ShipOwner.Description
                 }));
             // Read
             CreateMap<DocumentType, DocumentTypeReadDto>()

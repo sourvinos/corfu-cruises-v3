@@ -13,8 +13,8 @@ namespace API.Features.Billing.Receipts {
 
         public ReceiptCalculateBalanceRepo(AppDbContext appDbContext, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, settings, userManager) { }
 
-        public ReceiptBalanceVM CalculateBalances(ReceiptWriteDto invoice, int customerId) {
-            decimal previousBalance = CalculatePreviousBalance(customerId);
+        public ReceiptBalanceVM CalculateBalances(ReceiptWriteDto invoice, int customerId, int shipOwnerId) {
+            decimal previousBalance = CalculatePreviousBalance(customerId, shipOwnerId);
             decimal newAmount = DetermineDebitOrCreditForNewRecord(invoice);
             return new ReceiptBalanceVM {
                 PreviousBalance = previousBalance,
@@ -28,12 +28,12 @@ namespace API.Features.Billing.Receipts {
             return invoice;
         }
 
-        public decimal CalculatePreviousBalance(int customerId) {
+        public decimal CalculatePreviousBalance(int customerId, int shipOwnerId) {
             var records = context.Transactions
                 .AsNoTracking()
                 .Include(x => x.Customer)
                 .Include(x => x.DocumentType)
-                .Where(x => x.CustomerId == customerId && !x.IsCancelled)
+                .Where(x => x.CustomerId == customerId && x.ShipOwnerId == shipOwnerId && !x.IsCancelled)
                 .OrderBy(x => x.Date)
                 .ToList();
             decimal previousBalance = 0;

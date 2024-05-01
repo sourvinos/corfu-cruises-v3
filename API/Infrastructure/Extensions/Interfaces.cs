@@ -103,6 +103,8 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IPriceRepository, PriceRepository>();
             services.AddTransient<IPriceValidation, PriceValidation>();
             services.AddTransient<IReceiptCalculateBalanceRepo, ReceiptCalculateBalanceRepo>();
+            services.AddTransient<IReceiptEmailSender, ReceiptEmailSender>();
+            services.AddTransient<IReceiptPdfRepository, ReceiptPdfRepository>();
             services.AddTransient<IReceiptRepository, ReceiptRepository>();
             services.AddTransient<IReceiptValidation, ReceiptValidation>();
             services.AddTransient<ITaxOfficeRepository, TaxOfficeRepository>();

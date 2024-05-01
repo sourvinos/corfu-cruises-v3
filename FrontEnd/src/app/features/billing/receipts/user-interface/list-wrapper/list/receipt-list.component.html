@@ -87,6 +87,7 @@
                         <td class="width-6"><span class="right with-right-padding">{{ formatNumberToLocale(record.grossAmount) }}</span></td>
                         <td class="width-3">
                             <span *ngIf="record.isEmailSent" class="icon center blue email material-symbols-outlined">mail</span>
+                            <span *ngIf="!record.isEmailSent"></span>
                         </td>
                     </tr>
                 </ng-template>

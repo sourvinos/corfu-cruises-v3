@@ -7,10 +7,13 @@ import { Table } from 'primeng/table'
 import { formatNumber } from '@angular/common'
 // Custom
 import { DateHelperService } from '../../../../../../shared/services/date-helper.service'
+import { DialogService } from 'src/app/shared/services/modal-dialog.service'
+import { EmailReceiptVM } from '../../../classes/view-models/email/email-receipt-vm'
 import { EmojiService } from '../../../../../../shared/services/emoji.service'
 import { HelperService } from '../../../../../../shared/services/helper.service'
 import { InteractionService } from '../../../../../../shared/services/interaction.service'
 import { LocalStorageService } from '../../../../../../shared/services/local-storage.service'
+import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from '../../../../../../shared/services/message-label.service'
 import { ReceiptHttpService } from '../../../classes/services/receipt-http.service'
 import { ReceiptListCriteriaVM } from '../../../classes/view-models/criteria/receipt-list-criteria-vm'
@@ -64,7 +67,21 @@ export class ReceiptListComponent {
 
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private receiptHttpService: ReceiptHttpService, private receiptListExportService: ReceiptListExportService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(
+        private dateAdapter: DateAdapter<any>,
+        private dateHelperService: DateHelperService,
+        private dialogService: DialogService,
+        private emojiService: EmojiService,
+        private helperService: HelperService,
+        private interactionService: InteractionService,
+        private localStorageService: LocalStorageService,
+        private messageDialogService: MessageDialogService,
+        private messageLabelService: MessageLabelService,
+        private receiptHttpService: ReceiptHttpService,
+        private receiptListExportService: ReceiptListExportService,
+        private router: Router,
+        private sessionStorageService: SessionStorageService
+    ) { }
 
     //#region lifecycle hooks
 
@@ -218,6 +235,43 @@ export class ReceiptListComponent {
         })
     }
 
+    private sendReceiptToEmail(invoiceId: string): void {
+        this.receiptHttpService.buildPdf(invoiceId).subscribe({
+            next: (response) => {
+                const criteria: EmailReceiptVM = {
+                    customerId: response.body.customerId,
+                    filename: response.body.filename
+                }
+                this.receiptHttpService.emailReceipt(criteria).subscribe({
+                    complete: () => {
+                        this.receiptHttpService.patchReceiptWithEmailSent(invoiceId).subscribe({
+                            next: () => {
+                                const criteria: ReceiptListCriteriaVM = JSON.parse(this.sessionStorageService.getItem('receipt-list-criteria'))
+                                this.loadRecords(criteria).then(() => {
+                                    this.filterTableFromStoredFilters()
+                                    this.populateDropdownFilters()
+                                    this.enableDisableFilters()
+                                    this.formatDatesToLocale()
+                                })
+                                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
+                            },
+                            error: (errorFromInterceptor) => {
+                                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                            }
+                        })
+                    },
+                    error: (errorFromInterceptor) => {
+                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                    }
+                })
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
+        })
+    }
+
+
     //#endregion
 
     //#region specific methods
@@ -253,7 +307,8 @@ export class ReceiptListComponent {
 
     private initContextMenu(): void {
         this.menuItems = [
-            { label: 'Επεξεργασία', command: () => this.editRecord(this.selectedRecord.invoiceId.toString()) }
+            { label: 'Επεξεργασία', command: () => this.editRecord(this.selectedRecord.invoiceId.toString()) },
+            { label: 'Αποστολή με email', command: () => this.sendReceiptToEmail(this.selectedRecord.invoiceId) }
         ]
     }
 

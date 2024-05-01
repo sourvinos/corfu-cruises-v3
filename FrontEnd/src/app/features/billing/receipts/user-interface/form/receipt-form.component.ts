@@ -22,6 +22,7 @@ import { ReceiptReadDto } from '../../classes/dtos/receipt-read-dto'
 import { ReceiptWriteDto } from '../../classes/dtos/receipt-write-dto'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
+import { DocumentTypeReadDto } from '../../../documentTypes/classes/dtos/documentType-read-dto'
 
 @Component({
     selector: 'receipt-form',
@@ -34,7 +35,7 @@ export class ReceiptFormComponent {
     //#region common variables
 
     private record: ReceiptReadDto
-    private recordId: string
+    private recordId: number
     public feature = 'receiptForm'
     public featureIcon = 'receipts'
     public form: FormGroup
@@ -60,11 +61,12 @@ export class ReceiptFormComponent {
 
     ngOnInit(): void {
         this.initForm()
-        this.updateFieldsAfterEmptyDocumentType()
+        // this.updateFieldsAfterEmptyDocumentType()
         this.setRecordId()
         this.getRecord()
         this.populateFields()
         this.populateDropdowns()
+        this.populateDocumentTypes()
     }
 
     //#endregion
@@ -99,11 +101,23 @@ export class ReceiptFormComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public onCreatePdf(): void {
-        this.receiptHttpService.getForViewer(this.form.value.invoiceId).subscribe(response => {
-            this.receiptPdfHelperService.createPdfReceiptParts(response.body).then((response) => {
-                this.receiptPdfService.createReport(response)
-            })
+    public onCreateAndOpenPdf(): void {
+        this.receiptHttpService.buildPdf(this.form.value.invoiceId).subscribe({
+            next: (response) => {
+                this.receiptHttpService.openPdf(response.body.filename).subscribe({
+                    next: (response) => {
+                        const blob = new Blob([response], { type: 'application/pdf' })
+                        const fileURL = URL.createObjectURL(blob)
+                        window.open(fileURL, '_blank')
+                    },
+                    error: (errorFromInterceptor) => {
+                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                    }
+                })
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
         })
     }
 
@@ -137,10 +151,18 @@ export class ReceiptFormComponent {
     }
 
     public updateFieldsAfterDocumentTypeSelection(value: DocumentTypeAutoCompleteVM): void {
-        this.form.patchValue({
-            documentTypeDescription: value.description,
-            invoiceNo: value.lastNo += 1,
-            batch: value.batch
+        this.documentTypeHttpService.getSingle(value.id).subscribe({
+            next: (response) => {
+                const x: DocumentTypeReadDto = response.body
+                this.form.patchValue({
+                    documentTypeDescription: x.description,
+                    invoiceNo: x.lastNo += 1,
+                    batch: x.batch
+                })
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
         })
     }
 
@@ -169,7 +191,7 @@ export class ReceiptFormComponent {
     }
 
     private getRecord(): Promise<any> {
-        if (this.recordId != undefined) {
+        if (this.recordId) {
             return new Promise((resolve) => {
                 const formResolved: FormResolved = this.activatedRoute.snapshot.data['receiptForm']
                 if (formResolved.error == null) {
@@ -208,6 +230,12 @@ export class ReceiptFormComponent {
             putAt: [''],
             putUser: [''],
         })
+    }
+
+    private populateDocumentTypes(): void {
+        if (this.recordId) {
+            this.populateDocumentTypesAfterShipOwnerSelection('documentTypesReceipt', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation', this.form.value.shipOwner.id)
+        }
     }
 
     private populateDocumentTypesAfterShipOwnerSelection(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string, shipOwnerId: number): void {
@@ -259,11 +287,14 @@ export class ReceiptFormComponent {
 
     private saveRecord(receipt: ReceiptWriteDto): void {
         this.receiptHttpService.save(receipt).subscribe({
-            next: () => {
-                this.updateDocumentType(receipt.documentTypeId)
+            next: (response) => {
+                this.form.patchValue({
+                    invoiceId: response.id
+                })
+                this.updateApiDocumentType(receipt.documentTypeId)
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
-            error: (errorFromInterceptor: any) => {
+            error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
             }
         })
@@ -295,15 +326,17 @@ export class ReceiptFormComponent {
         })
     }
 
-    private updateDocumentType(id: number): void {
-        this.documentTypeHttpService.updateLastNo(id).subscribe({
-            next: (response) => {
-                this.receiptHelperService.updateBrowserStorageAfterApiUpdate(response.body)
-            },
-            error: (errorFromInterceptor) => {
-                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-            }
-        })
+    private updateApiDocumentType(id: number): void {
+        if (this.recordId == undefined) {
+            this.documentTypeHttpService.updateLastNo(id).subscribe({
+                next: (response) => {
+                    this.receiptHelperService.updateBrowserStorageAfterApiUpdate(response.body)
+                },
+                error: (errorFromInterceptor) => {
+                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                }
+            })
+        }
     }
 
     //#endregion
