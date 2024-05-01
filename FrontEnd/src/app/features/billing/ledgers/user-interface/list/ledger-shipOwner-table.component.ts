@@ -8,6 +8,7 @@ import { LedgerVM } from '../../classes/view-models/criteria/ledger-vm'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { LedgerCriteriaVM } from '../../classes/view-models/criteria/ledger-criteria-vm'
 
 @Component({
     selector: 'ledgerShipOwnerTable',
@@ -19,8 +20,9 @@ export class LedgerShipOwnerTableComponent {
 
     //#region variables
 
-    @Input() records: LedgerVM[] = []
     @ViewChild('table') table: Table
+    @Input() records: LedgerVM[] = []
+    @Input() criteria: LedgerCriteriaVM
 
     public feature = 'billingLedger'
 
@@ -40,10 +42,10 @@ export class LedgerShipOwnerTableComponent {
 
     public async onDoPrintTasks(): Promise<void> {
         const criteria = {
-            fromDate: '2024-01-01',
-            toDate: '2024-12-31',
+            fromDate: this.criteria.fromDate,
+            toDate: this.criteria.toDate,
             shipOwnerId: this.records[1].shipOwner.id,
-            customerId: this.records[1].customer.id
+            customerId: this.criteria.customer.id
         }
         this.ledgerHttpService.buildPdf(criteria).subscribe({
             next: (response) => {

@@ -29,7 +29,7 @@
     { "id": "banks", "description": "Banky" },
     { "id": "bankAccounts", "description": "Bankovní účty" },
     { "id": "paymentMethods", "description": "Platební metody" },
-    { "id": "ledgers", "description": "Zákaznická karta" },
+    { "id": "ledgers", "description": "Καρτέλα πελάτη" },
     { "id": "balanceSheet", "description": "Bilance" },
     { "id": "billing-parameters", "description": "Parametry" }
 ]

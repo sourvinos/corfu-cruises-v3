@@ -6,12 +6,13 @@ import { DateHelperService } from '../../../../../shared/services/date-helper.se
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { EmailLedgerVM } from '../../classes/view-models/email/email-ledger-vm'
 import { HelperService } from '../../../../../shared/services/helper.service'
+import { LedgerCriteriaVM } from '../../classes/view-models/criteria/ledger-criteria-vm'
 import { LedgerHttpService } from '../../classes/services/ledger-http.service'
 import { LedgerVM } from '../../classes/view-models/criteria/ledger-vm'
 import { LocalStorageService } from '../../../../../shared/services/local-storage.service'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from '../../../../../shared/services/message-label.service'
-import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
+import { LedgerPdfCriteriaVM } from '../../classes/view-models/criteria/ledger-pdf-criteria-vm'
 
 @Component({
     selector: 'ledger',
@@ -21,10 +22,11 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 
 export class LedgerBillingComponent {
 
-    //#region common
+    //#region variables
 
     @ViewChild('table') table: Table
 
+    public criteria: LedgerCriteriaVM
     public feature = 'billingLedger'
     public featureIcon = 'ledgers'
     public icon = 'home'
@@ -35,7 +37,7 @@ export class LedgerBillingComponent {
 
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private helperService: HelperService, private ledgerHttpService: LedgerHttpService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private sessionStorageService: SessionStorageService) { }
+    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private helperService: HelperService, private ledgerHttpService: LedgerHttpService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService) { }
 
     //#region lifecycle hooks
 
@@ -53,18 +55,17 @@ export class LedgerBillingComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public onDoSearchTasks(event: any): void {
-        this.sessionStorageService.saveItem('ledgerCriteria', JSON.stringify(event))
-        this.loadRecordsForShipOwner(event, 'shipOwnerRecordsA', 1)
-        this.loadRecordsForShipOwner(event, 'shipOwnerRecordsB', 2)
-        this.loadRecordsForShipOwner(event, 'shipOwnerTotal', null)
+    public onDoSearchTasks(event: LedgerCriteriaVM): void {
+        this.populateCriteria(event)
+        this.loadRecordsForShipOwner(this.criteria, 'shipOwnerRecordsA', 1)
+        this.loadRecordsForShipOwner(this.criteria, 'shipOwnerRecordsB', 2)
+        this.loadRecordsForShipOwner(this.criteria, 'shipOwnerTotal', null)
     }
 
     public async onDoEmailTasks(): Promise<void> {
-        const values = await Promise.all([this.p1(), this.p2()])
-        const x = JSON.parse(this.sessionStorageService.getItem('ledgerCriteria'))
+        const values = await Promise.all([this.buildPdfShipOwnerA(), this.buildPdfShipOwnerB()])
         const criteria: EmailLedgerVM = {
-            customerId: x.customer.id,
+            customerId: this.criteria.customer.id,
             filenames: values.filter(x => x != null)
         }
         this.ledgerHttpService.emailLedger(criteria).subscribe({
@@ -81,12 +82,12 @@ export class LedgerBillingComponent {
 
     //#region private methods
 
-    private p1(): any {
+    private buildPdfShipOwnerA(): any {
         return new Promise((resolve) => {
             if (this.shipOwnerRecordsA.length > 3) {
-                const criteria = {
-                    fromDate: '2024-01-01',
-                    toDate: '2024-12-31',
+                const criteria: LedgerPdfCriteriaVM = {
+                    fromDate: this.criteria.fromDate,
+                    toDate: this.criteria.toDate,
                     shipOwnerId: this.shipOwnerRecordsA[1].shipOwner.id,
                     customerId: this.shipOwnerRecordsA[1].customer.id
                 }
@@ -101,12 +102,12 @@ export class LedgerBillingComponent {
         })
     }
 
-    private p2(): any {
+    private buildPdfShipOwnerB(): any {
         return new Promise((resolve) => {
             if (this.shipOwnerRecordsB.length > 3) {
                 const criteria = {
-                    fromDate: '2024-01-01',
-                    toDate: '2024-12-31',
+                    fromDate: this.criteria.fromDate,
+                    toDate: this.criteria.toDate,
                     shipOwnerId: this.shipOwnerRecordsB[1].shipOwner.id,
                     customerId: this.shipOwnerRecordsB[1].customer.id
                 }
@@ -121,19 +122,27 @@ export class LedgerBillingComponent {
         })
     }
 
-    private loadRecordsForShipOwner(event, shipOwnerRecords, shipOwnerId): void {
-        const criteria = {
-            fromDate: event.fromDate,
-            toDate: event.toDate,
+    private loadRecordsForShipOwner(criteria: LedgerCriteriaVM, shipOwnerRecords, shipOwnerId): void {
+        const x: LedgerPdfCriteriaVM = {
+            fromDate: criteria.fromDate,
+            toDate: criteria.toDate,
             shipOwnerId: shipOwnerId,
-            customerId: event.customer.id
+            customerId: criteria.customer.id
         }
-        this.ledgerHttpService.get(criteria).subscribe(response => {
+        this.ledgerHttpService.get(x).subscribe(response => {
             this[shipOwnerRecords] = response
             this[shipOwnerRecords].forEach(record => {
                 record.formattedDate = this.dateHelperService.formatISODateToLocale(record.date)
             })
         })
+    }
+
+    private populateCriteria(event: LedgerCriteriaVM): void {
+        this.criteria = {
+            fromDate: event.fromDate,
+            toDate: event.toDate,
+            customer: event.customer
+        }
     }
 
     private setListHeight(): void {

@@ -29,7 +29,7 @@
     { "id": "banks", "description": "Τράπεζες" },
     { "id": "bankAccounts", "description": "Τραπεζικοί λογαριασμοί" },
     { "id": "paymentMethods", "description": "Τρόποι πληρωμής" },
-    { "id": "ledgers", "description": "Καρτέλες πελατών" },
+    { "id": "ledgers", "description": "Καρτέλα πελάτη" },
     { "id": "balanceSheet", "description": "Ισοζύγιο" },
     { "id": "billing-parameters", "description": "Παράμετροι"    }
 ]

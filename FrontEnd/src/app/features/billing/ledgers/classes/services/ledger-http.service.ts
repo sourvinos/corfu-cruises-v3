@@ -2,11 +2,11 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 // Custom
+import { EmailLedgerVM } from '../view-models/email/email-ledger-vm'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
-import { LedgerCriteriaVM } from '../view-models/criteria/ledger-criteria-vm'
+import { LedgerPdfCriteriaVM } from '../view-models/criteria/ledger-pdf-criteria-vm'
 import { LedgerVM } from '../view-models/criteria/ledger-vm'
 import { environment } from 'src/environments/environment'
-import { EmailLedgerVM } from '../view-models/email/email-ledger-vm'
 
 @Injectable({ providedIn: 'root' })
 
@@ -16,11 +16,11 @@ export class LedgerHttpService extends HttpDataService {
         super(httpClient, environment.apiUrl + '/ledgersbilling')
     }
 
-    get(criteria: LedgerCriteriaVM): Observable<LedgerVM[]> {
+    get(criteria: LedgerPdfCriteriaVM): Observable<LedgerVM[]> {
         return this.http.request<LedgerVM[]>('post', this.url + '/buildLedger', { body: criteria })
     }
 
-    buildPdf(criteria: LedgerCriteriaVM): Observable<any> {
+    buildPdf(criteria: LedgerPdfCriteriaVM): Observable<any> {
         return this.http.request<LedgerVM[]>('post', this.url + '/buildLedgerPdf', { body: criteria })
     }
 
@@ -28,7 +28,7 @@ export class LedgerHttpService extends HttpDataService {
         return this.http.request<EmailLedgerVM[]>('post', this.url + '/emailLedger', { body: criteria })
     }
 
-    public openPdf(filename: string): Observable<any> {
+    openPdf(filename: string): Observable<any> {
         return this.http.get(this.url + '/openPdf/' + filename, { responseType: 'arraybuffer' })
     }
 

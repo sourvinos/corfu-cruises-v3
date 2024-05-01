@@ -20,7 +20,7 @@
                         <th class="width-4" pSortableColumn="documentType.batch">{{ getLabel("headerDocumentTypeBatch") }}</th>
                         <th class="width-4" pSortableColumn="no">{{ getLabel("headerNo") }}</th>
                         <th class="width-6" pSortableColumn="grossAmount">{{ getLabel("headerGrossAmount") }}</th>
-                        <th class="width-3"></th>
+                        <th rowspan="2" class="border-bottom width-3"><span class="icon center blue email material-symbols-outlined">mail</span></th>
                     </tr>
                     <tr>
                         <th class="width-9">
@@ -73,7 +73,6 @@
                         <th class="width-4"></th>
                         <th class="width-4"></th>
                         <th class="width-6"></th>
-                        <th class="width-3"></th>
                     </tr>
                 </ng-template>
                 <ng-template let-record pTemplate="body">

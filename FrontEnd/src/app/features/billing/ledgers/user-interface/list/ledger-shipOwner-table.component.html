@@ -29,7 +29,7 @@
 
 <div id="footer">
     <div id="align-right">
-        <button (click)="onDoPrintTasks()" class="transparent" mat-flat-button>
+        <button *ngIf="criteria" (click)="onDoPrintTasks()" class="transparent" mat-flat-button>
             <span>ΕΚΤΥΠΩΣΗ</span>
         </button>
     </div>

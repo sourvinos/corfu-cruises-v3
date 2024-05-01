@@ -29,7 +29,7 @@
     { "id": "banks", "description": "Banken" },
     { "id": "bankAccounts", "description": "Bankkonten" },
     { "id": "paymentMethods", "description": "Zahlungsarten" },
-    { "id": "ledgers", "description": "Kundenkarte" },
+    { "id": "ledgers", "description": "Καρτέλα πελάτη" },
     { "id": "balanceSheet", "description": "Bilanz" },
     { "id": "billing-parameters", "description": "Parameter"    }
 ]

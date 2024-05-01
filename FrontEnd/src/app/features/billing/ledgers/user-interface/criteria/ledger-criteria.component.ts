@@ -10,7 +10,6 @@ import { MessageInputHintService } from 'src/app/shared/services/message-input-h
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
-import { ActivatedRoute } from '@angular/router'
 
 @Component({
     selector: 'ledger-criteria',
@@ -20,15 +19,14 @@ import { ActivatedRoute } from '@angular/router'
 
 export class LedgerCriteriaComponent {
 
-    //#region common variables
+    //#region variables
 
+    @Output() outputSelected = new EventEmitter()
     public feature = 'ledgerCriteria'
     public featureIcon = 'ledgers'
     public form: FormGroup
     public icon = 'arrow_back'
-
     public parentUrl = '/home'
-    @Output() outputSelected = new EventEmitter()
 
     //#endregion
 
@@ -39,7 +37,7 @@ export class LedgerCriteriaComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private dexieService: DexieService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService) { }
+    constructor(private dateHelperService: DateHelperService, private dexieService: DexieService, private formBuilder: FormBuilder, private helperService: HelperService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService) { }
 
     //#region lifecycle hooks
 
@@ -95,10 +93,18 @@ export class LedgerCriteriaComponent {
 
     //#region private methods
 
+    private filterAutocomplete(array: string, field: string, value: any): any[] {
+        if (typeof value !== 'object') {
+            const filtervalue = value.toLowerCase()
+            return this[array].filter((element: { [x: string]: string; }) =>
+                element[field].toLowerCase().startsWith(filtervalue))
+        }
+    }
+
     private initForm(): void {
         this.form = this.formBuilder.group({
-            fromDate: ['2024-01-01', [Validators.required]],
-            toDate: ['2024-12-31', [Validators.required]],
+            fromDate: ['', [Validators.required]],
+            toDate: ['', [Validators.required]],
             customer: ['', [Validators.required, ValidationService.RequireAutocomplete]]
         })
     }
@@ -112,14 +118,6 @@ export class LedgerCriteriaComponent {
             this[dexieTable] = response
             this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
         })
-    }
-
-    private filterAutocomplete(array: string, field: string, value: any): any[] {
-        if (typeof value !== 'object') {
-            const filtervalue = value.toLowerCase()
-            return this[array].filter((element: { [x: string]: string; }) =>
-                element[field].toLowerCase().startsWith(filtervalue))
-        }
     }
 
     private updateFormControls(event: any): void {
