@@ -10,21 +10,21 @@
 
         <mat-tab-group mat-stretch-tabs="false">
             <mat-tab label="Corfu Cruises">
-                <div id="general-tab">
+                <div class="general-tab">
                     <div id="table-wrapper">
                         <ledgerShipOwnerTable [records]="shipOwnerRecordsA"></ledgerShipOwnerTable>
                     </div>
                 </div>
             </mat-tab>
             <mat-tab label="Pandis Family">
-                <div id="general-tab">
+                <div class="general-tab">
                     <div id="table-wrapper">
                         <ledgerShipOwnerTable [records]="shipOwnerRecordsB"></ledgerShipOwnerTable>
                     </div>
                 </div>
             </mat-tab>
             <mat-tab label="Γενικά σύνολα">
-                <div id="general-tab">
+                <div class="general-tab">
                     <div id="table-wrapper">
                         <ledgerShipOwnerTable [records]="shipOwnerTotal"></ledgerShipOwnerTable>
                     </div>
@@ -36,7 +36,7 @@
 
     <div id="footer">
         <div id="align-right">
-            <button (click)="onPrint()" class="primary" mat-flat-button>{{ getLabel("printButton") | uppercase }}</button>
+            <button (click)="onDoEmailTasks()" class="primary" mat-flat-button>{{ getLabel("printButton") | uppercase }}</button>
         </div>
     </div>
 

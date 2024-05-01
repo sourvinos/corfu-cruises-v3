@@ -42,6 +42,7 @@ export class LedgerBillingComponent {
     ngOnInit(): void {
         this.setLocale()
         this.setTabTitle()
+        this.setListHeight()
     }
 
     //#endregion
@@ -59,7 +60,7 @@ export class LedgerBillingComponent {
         this.loadRecordsForShipOwner(event, 'shipOwnerTotal', null)
     }
 
-    public async onPrint(): Promise<void> {
+    public async onDoEmailTasks(): Promise<void> {
         const values = await Promise.all([this.p1(), this.p2()])
         const x = JSON.parse(this.sessionStorageService.getItem('ledgerCriteria'))
         const criteria: EmailLedgerVM = {
@@ -133,6 +134,12 @@ export class LedgerBillingComponent {
                 record.formattedDate = this.dateHelperService.formatISODateToLocale(record.date)
             })
         })
+    }
+
+    private setListHeight(): void {
+        setTimeout(() => {
+            document.getElementById('content').style.height = document.getElementById('list-wrapper').offsetHeight - 64 + 'px'
+        }, 100)
     }
 
     private setLocale(): void {

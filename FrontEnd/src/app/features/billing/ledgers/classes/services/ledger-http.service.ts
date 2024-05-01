@@ -28,4 +28,8 @@ export class LedgerHttpService extends HttpDataService {
         return this.http.request<EmailLedgerVM[]>('post', this.url + '/emailLedger', { body: criteria })
     }
 
+    public openPdf(filename: string): Observable<any> {
+        return this.http.get(this.url + '/openPdf/' + filename, { responseType: 'arraybuffer' })
+    }
+
 }
