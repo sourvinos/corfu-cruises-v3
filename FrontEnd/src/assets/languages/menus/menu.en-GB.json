@@ -16,7 +16,7 @@
     { "id": "genders", "description": "Genders" },
     { "id": "boarding", "description": "Boarding" },
     { "id": "manifest", "description": "Ship manifest" },
-    { "id": "ledgers", "description": "Customer ledgers" },
+    { "id": "reservation-ledgers", "description": "Customer ledgers" },
     { "id": "statistics", "description": "Statistics" },
     { "id": "reservation-parameters", "description": "Parameters" },
     { "id": "users", "description": "Users" },
@@ -29,7 +29,7 @@
     { "id": "banks", "description": "Banks" },
     { "id": "bankAccounts", "description": "Bank accounts" },
     { "id": "paymentMethods", "description": "Payment methods" },
-    { "id": "ledgers", "description": "Καρτέλα πελάτη" },
+    { "id": "billing-ledgers", "description": "Καρτέλα πελάτη" },
     { "id": "balanceSheet", "description": "Balance sheet" },
     { "id": "billing-parameters", "description": "Parameters"    }
 ]

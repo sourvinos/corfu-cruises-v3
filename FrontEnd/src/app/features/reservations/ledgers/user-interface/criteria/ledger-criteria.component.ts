@@ -55,8 +55,6 @@ export class LedgerCriteriaComponent {
         this.initForm()
         this.populateDropdowns()
         this.getConnectedUserRole()
-        this.setLedgerCriteria()
-        this.populateFieldsFromStoredVariables()
         this.populateCheckboxesFromForm()
         this.setLocale()
         this.subscribeToInteractionService()
@@ -123,24 +121,14 @@ export class LedgerCriteriaComponent {
 
     //#region private methods
 
-    private addSelectedCriteriaFromStorage(arrayName: string): void {
-        const x = this.form.controls[arrayName] as FormArray
-        this.criteria[arrayName].forEach((element: any) => {
-            x.push(new FormControl({
-                'id': element.id,
-                'description': element.description
-            }))
-        })
-    }
-
     public getConnectedUserRole(): boolean {
         return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true'
     }
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            fromDate: ['', [Validators.required]],
-            toDate: ['', [Validators.required]],
+            fromDate: [new Date(), [Validators.required]],
+            toDate: [new Date(), [Validators.required]],
             selectedCustomers: this.formBuilder.array([], this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' ? Validators.required : null),
             selectedDestinations: this.formBuilder.array([], Validators.required),
             selectedPorts: this.formBuilder.array([], Validators.required),
@@ -165,39 +153,11 @@ export class LedgerCriteriaComponent {
         })
     }
 
-    private populateFieldsFromStoredVariables(): void {
-        if (this.sessionStorageService.getItem('ledger-criteria')) {
-            this.criteria = JSON.parse(this.sessionStorageService.getItem('ledger-criteria'))
-            this.form.patchValue({
-                fromDate: this.criteria.fromDate,
-                toDate: this.criteria.toDate,
-                selectedCustomers: this.addSelectedCriteriaFromStorage('selectedCustomers'),
-                selectedDestinations: this.addSelectedCriteriaFromStorage('selectedDestinations'),
-                selectedPorts: this.addSelectedCriteriaFromStorage('selectedPorts'),
-                selectedShips: this.addSelectedCriteriaFromStorage('selectedShips')
-            })
-        }
-    }
-
     private populateCheckboxesFromForm(): void {
         this.selectedCustomers = this.form.value.selectedCustomers
         this.selectedDestinations = this.form.value.selectedDestinations
         this.selectedPorts = this.form.value.selectedPorts
         this.selectedShips = this.form.value.selectedShips
-    }
-
-    private setLedgerCriteria(): void {
-        if (this.sessionStorageService.getItem('ledger-criteria') == '') {
-            const criteria: LedgerCriteriaVM = {
-                fromDate: this.dateHelperService.formatDateToIso(new Date()),
-                toDate: this.dateHelperService.formatDateToIso(new Date()),
-                selectedCustomers: [],
-                selectedDestinations: [],
-                selectedPorts: [],
-                selectedShips: []
-            }
-            this.sessionStorageService.saveItem('ledger-criteria', JSON.stringify(criteria))
-        }
     }
 
     private setLocale(): void {

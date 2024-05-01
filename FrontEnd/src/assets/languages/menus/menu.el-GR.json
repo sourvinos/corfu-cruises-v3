@@ -16,7 +16,7 @@
     { "id": "genders", "description": "Φύλα" },
     { "id": "boarding", "description": "Επιβίβαση" },
     { "id": "manifest", "description": "Κατάσταση πλοίου" },
-    { "id": "ledgers", "description": "Καρτέλες πελατών" },
+    { "id": "reservation-ledgers", "description": "Καρτέλες πελατών" },
     { "id": "statistics", "description": "Στατιστικά" },
     { "id": "reservation-parameters", "description": "Παράμετροι" },
     { "id": "users", "description": "Χρήστες" },
@@ -29,7 +29,7 @@
     { "id": "banks", "description": "Τράπεζες" },
     { "id": "bankAccounts", "description": "Τραπεζικοί λογαριασμοί" },
     { "id": "paymentMethods", "description": "Τρόποι πληρωμής" },
-    { "id": "ledgers", "description": "Καρτέλα πελάτη" },
+    { "id": "billing-ledgers", "description": "Καρτέλα πελάτη" },
     { "id": "balanceSheet", "description": "Ισοζύγιο" },
     { "id": "billing-parameters", "description": "Παράμετροι"    }
 ]
