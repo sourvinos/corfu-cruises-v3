@@ -55,6 +55,7 @@ export class LedgerCriteriaComponent {
         this.initForm()
         this.populateDropdowns()
         this.getConnectedUserRole()
+        this.setLedgerCriteria()
         this.populateFieldsFromStoredVariables()
         this.populateCheckboxesFromForm()
         this.setLocale()
@@ -183,6 +184,20 @@ export class LedgerCriteriaComponent {
         this.selectedDestinations = this.form.value.selectedDestinations
         this.selectedPorts = this.form.value.selectedPorts
         this.selectedShips = this.form.value.selectedShips
+    }
+
+    private setLedgerCriteria(): void {
+        if (this.sessionStorageService.getItem('ledger-criteria') == '') {
+            const criteria: LedgerCriteriaVM = {
+                fromDate: this.dateHelperService.formatDateToIso(new Date()),
+                toDate: this.dateHelperService.formatDateToIso(new Date()),
+                selectedCustomers: [],
+                selectedDestinations: [],
+                selectedPorts: [],
+                selectedShips: []
+            }
+            this.sessionStorageService.saveItem('ledger-criteria', JSON.stringify(criteria))
+        }
     }
 
     private setLocale(): void {
