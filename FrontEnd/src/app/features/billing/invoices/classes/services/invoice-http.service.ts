@@ -43,8 +43,8 @@ export class InvoiceHttpService extends HttpDataService {
         return this.http.patch<any>(this.url + '/isCancelled/' + invoiceId, null)
     }
 
-    public buildPdf(invoiceId: string): Observable<any> {
-        return this.http.request<any>('get', this.url + '/buildInvoicePdf/' + invoiceId)
+    public buildPdf(invoiceIds: string[]): Observable<any> {
+        return this.http.post<any>(this.url + '/buildInvoicePdfs', invoiceIds)
     }
 
     public emailInvoice(criteria: EmailInvoiceVM): Observable<any> {

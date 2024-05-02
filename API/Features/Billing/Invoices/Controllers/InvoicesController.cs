@@ -7,6 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace API.Features.Billing.Invoices {
@@ -181,32 +182,36 @@ namespace API.Features.Billing.Invoices {
             }
         }
 
-        [HttpGet("buildInvoicePdf/{invoiceId}")]
+        [HttpPost("buildInvoicePdfs")]
         [Authorize(Roles = "admin")]
-        public async Task<ResponseWithBody> BuildPdf(string invoiceId) {
-            var x = await invoiceReadRepo.GetByIdForPdfAsync(invoiceId);
-            if (x != null) {
-                var filename = invoicePdfRepo.BuildPdf(mapper.Map<Invoice, InvoicePdfVM>(x));
-                return new ResponseWithBody {
-                    Code = 200,
-                    Icon = Icons.Info.ToString(),
-                    Message = ApiMessages.OK(),
-                    Body = new EmailInvoiceVM {
-                        CustomerId = x.Customer.Id,
-                        Filename = filename
-                    }
-                };
-            } else {
-                throw new CustomException() {
-                    ResponseCode = 404
-                };
+        public async Task<ResponseWithBody> BuildInvoicePdfs([FromBody] string[] invoiceIds) {
+            var filenames = new List<string>();
+            foreach (var invoiceId in invoiceIds) {
+                var x = await invoiceReadRepo.GetByIdForPdfAsync(invoiceId);
+                if (x != null) {
+                    var z = invoicePdfRepo.BuildPdf(mapper.Map<Invoice, InvoicePdfVM>(x));
+                    filenames.Add(z);
+                } else {
+                    throw new CustomException() {
+                        ResponseCode = 404
+                    };
+                }
             }
+            return new ResponseWithBody {
+                Code = 200,
+                Icon = Icons.Info.ToString(),
+                Message = ApiMessages.OK(),
+                Body = new EmailInvoiceVM {
+                    CustomerId = 2,
+                    Filenames = filenames.ToArray()
+                }
+            };
         }
 
         [HttpPost("[action]")]
         [Authorize(Roles = "admin")]
-        public Response EmailInvoice([FromBody] EmailInvoiceVM model) {
-            var response = emailSender.SendInvoiceToEmail(model);
+        public Response EmailInvoices([FromBody] EmailInvoicesVM model) {
+            var response = emailSender.SendInvoicesToEmail(model);
             if (response.Exception == null) {
                 return new Response {
                     Code = 200,

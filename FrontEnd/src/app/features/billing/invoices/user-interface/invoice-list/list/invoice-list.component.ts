@@ -8,8 +8,8 @@ import { Table } from 'primeng/table'
 import { formatNumber } from '@angular/common'
 // Custom
 import { DateHelperService } from '../../../../../../shared/services/date-helper.service'
-import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from '../../../../../../shared/services/modal-dialog.service'
+import { EmailInvoiceVM } from '../../../classes/view-models/email/email-invoice-vm'
 import { EmojiService } from '../../../../../../shared/services/emoji.service'
 import { HelperService } from '../../../../../../shared/services/helper.service'
 import { InteractionService } from '../../../../../../shared/services/interaction.service'
@@ -20,7 +20,7 @@ import { LocalStorageService } from '../../../../../../shared/services/local-sto
 import { MessageDialogService } from '../../../../../../shared/services/message-dialog.service'
 import { MessageLabelService } from '../../../../../../shared/services/message-label.service'
 import { SessionStorageService } from '../../../../../../shared/services/session-storage.service'
-import { EmailInvoiceVM } from '../../../classes/view-models/email/email-invoice-vm'
+import { forkJoin } from 'rxjs'
 
 @Component({
     selector: 'invoice-list',
@@ -41,6 +41,7 @@ export class InvoiceListComponent {
     public icon = 'home'
     public parentUrl = '/home'
     public records: InvoiceListVM[] = []
+    public selectedRecords: InvoiceListVM[] = []
     public recordsFilteredCount = 0
 
     //#endregion
@@ -67,11 +68,10 @@ export class InvoiceListComponent {
     public filterDate = ''
     public form: FormGroup
     public recordsFiltered: InvoiceListVM[]
-    private criteria: InvoiceListCriteriaVM
 
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private invoiceHttpService: InvoiceHttpService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private invoiceHttpService: InvoiceHttpService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -184,7 +184,7 @@ export class InvoiceListComponent {
     private initContextMenu(): void {
         this.menuItems = [
             { label: 'Επεξεργασία', command: () => this.editRecord(this.selectedRecord.invoiceId.toString()) },
-            { label: 'Αποστολή με email', command: () => this.sendInvoiceToEmail(this.selectedRecord.invoiceId) }
+            { label: 'Αποστολή με email', command: () => this.processSelected() }
         ]
     }
 
@@ -231,41 +231,67 @@ export class InvoiceListComponent {
         })
     }
 
-    private sendInvoiceToEmail(invoiceId: string): void {
-        this.invoiceHttpService.buildPdf(invoiceId).subscribe({
+    public async processSelected(): Promise<void> {
+        const ids = []
+        this.selectedRecords.forEach(record => {
+            ids.push(record.invoiceId)
+        })
+        this.invoiceHttpService.buildPdf(ids).subscribe({
             next: (response) => {
-                const criteria: EmailInvoiceVM = {
-                    customerId: response.body.customerId,
-                    filename: response.body.filename
-                }
-                this.invoiceHttpService.emailInvoice(criteria).subscribe({
-                    complete: () => {
-                        this.invoiceHttpService.patchInvoiceWithEmailSent(invoiceId).subscribe({
-                            next: () => {
-                                const criteria: InvoiceListCriteriaVM = JSON.parse(this.sessionStorageService.getItem('invoice-list-criteria'))
-                                this.loadRecords(criteria).then(() => {
-                                    this.filterTableFromStoredFilters()
-                                    this.populateDropdownFilters()
-                                    this.enableDisableFilters()
-                                    this.formatDatesToLocale()
-                                })
-                                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
-                            },
-                            error: (errorFromInterceptor) => {
-                                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                            }
-                        })
-                    },
-                    error: (errorFromInterceptor) => {
-                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                    }
-                })
-            },
-            error: (errorFromInterceptor) => {
-                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                console.log('ok' + response)
             }
         })
     }
+
+
+    // private buildPdfs(): Promise<any> {
+    //     return new Promise((resolve) => {
+    //         const x = this.selectedRecords.forEach(record => {
+    //             this.invoiceHttpService.buildPdf(record.invoiceId).subscribe({
+    //                 next: () => {
+    //                     resolve(x)
+    //                     console.log('ok')
+    //                 }
+    //             })
+    //         })
+    //     })
+    // }
+
+    // private sendInvoicesToEmail(invoices: InvoiceListVM[]): void {
+    //     this.invoiceHttpService.buildPdf(invoices[0].invoiceId).subscribe({
+    //         next: (response) => {
+    //             const criteria: EmailInvoiceVM = {
+    //                 customerId: response.body.customerId,
+    //                 filename: response.body.filename
+    //             }
+    //             this.invoiceHttpService.emailInvoice(criteria).subscribe({
+    //                 complete: () => {
+    //                     this.invoiceHttpService.patchInvoiceWithEmailSent(invoices[0].invoiceId).subscribe({
+    //                         next: () => {
+    //                             const criteria: InvoiceListCriteriaVM = JSON.parse(this.sessionStorageService.getItem('invoice-list-criteria'))
+    //                             this.loadRecords(criteria).then(() => {
+    //                                 this.filterTableFromStoredFilters()
+    //                                 this.populateDropdownFilters()
+    //                                 this.enableDisableFilters()
+    //                                 this.formatDatesToLocale()
+    //                             })
+    //                             this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
+    //                         },
+    //                         error: (errorFromInterceptor) => {
+    //                             this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+    //                         }
+    //                     })
+    //                 },
+    //                 error: (errorFromInterceptor) => {
+    //                     this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+    //                 }
+    //             })
+    //         },
+    //         error: (errorFromInterceptor) => {
+    //             this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+    //         }
+    //     })
+    // }
 
     //#endregion
 

@@ -33,7 +33,7 @@ namespace API.Features.Billing.Invoices {
 
         #region public methods
 
-        public async Task SendInvoiceToEmail(EmailInvoiceVM model) {
+        public async Task SendInvoicesToEmail(EmailInvoicesVM model) {
             using var smtp = new SmtpClient();
             smtp.Connect(emailSettings.SmtpClient, emailSettings.Port);
             smtp.Authenticate(emailSettings.Username, emailSettings.Password);
@@ -45,14 +45,16 @@ namespace API.Features.Billing.Invoices {
 
         #region private methods
 
-        private async Task<MimeMessage> BuildInvoiceMessage(EmailInvoiceVM model) {
+        private async Task<MimeMessage> BuildInvoiceMessage(EmailInvoicesVM model) {
             var customer = GetCustomerAsync(model.CustomerId).Result;
             var message = new MimeMessage { Sender = MailboxAddress.Parse(emailSettings.Username) };
             message.From.Add(new MailboxAddress(emailSettings.From, emailSettings.Username));
             message.To.Add(MailboxAddress.Parse(customer.Email));
             message.Subject = "📧 Ηλεκτρονική αποστολή παραστατικών";
             var builder = new BodyBuilder { HtmlBody = await BuildEmailInvoiceTemplate(customer.Description, customer.Email) };
-            builder.Attachments.Add(Path.Combine("Reports" + Path.DirectorySeparatorChar + "Invoices" + Path.DirectorySeparatorChar + model.Filename));
+            foreach (var filename in model.Filenames) {
+                builder.Attachments.Add(Path.Combine("Reports" + Path.DirectorySeparatorChar + "Invoices" + Path.DirectorySeparatorChar + filename));
+            }
             message.Body = builder.ToMessageBody();
             return message;
         }

@@ -24,7 +24,7 @@ import { SessionStorageService } from '../../../../../../shared/services/session
 @Component({
     selector: 'receipt-list',
     templateUrl: './receipt-list.component.html',
-    styleUrls: ['../../../../../../../assets/styles/custom/lists.css']
+    styleUrls: ['../../../../../../../assets/styles/custom/lists.css', './receipt-list.component.css']
 })
 
 export class ReceiptListComponent {

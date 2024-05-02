@@ -49,7 +49,7 @@ namespace API.Features.Billing.Ledgers {
             XGraphics gfx = XGraphics.FromPdfPage(page);
             gfx.DrawString(ledger[1].ShipOwner.Description, logoFont, XBrushes.Black, new XPoint(40, 40));
             gfx.DrawString("ΚΑΡΤΕΛΑ ΠΕΛΑΤΗ: " + ledger[1].Customer.Description, robotoMonoFont, XBrushes.Black, new XPoint(40, 53));
-            gfx.DrawString("ΔΙΑΣΤΗΜΑ: " + criteria.FromDate + " - " + criteria.ToDate, robotoMonoFont, XBrushes.Black, new XPoint(40, 62));
+            gfx.DrawString("ΔΙΑΣΤΗΜΑ: " + DateHelpers.FormatDateStringToLocaleString(criteria.FromDate) + " - " + DateHelpers.FormatDateStringToLocaleString(criteria.ToDate), robotoMonoFont, XBrushes.Black, new XPoint(40, 62));
             gfx.DrawString("ΗΜΕΡΟΜΗΝΙΑ", robotoMonoFont, XBrushes.Black, new XPoint(40, 90));
             gfx.DrawString("ΠΑΡΑΣΤΑΤΙΚΟ", robotoMonoFont, XBrushes.Black, new XPoint(80, 90));
             gfx.DrawString("ΣΕΙΡΑ", robotoMonoFont, XBrushes.Black, new XPoint(218, 90));
