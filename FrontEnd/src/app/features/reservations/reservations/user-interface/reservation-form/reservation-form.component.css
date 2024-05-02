@@ -110,14 +110,14 @@
     text-overflow: ellipsis;
 }
 
-.autocomplete-pickup-point span:nth-child(1) {
+.autocomplete-pickup-point span:nth-child(2) {
     width: 60%;
 }
 
-.autocomplete-pickup-point span:nth-child(2) {
+.autocomplete-pickup-point span:nth-child(3) {
     width: 30%;
 }
 
-.autocomplete-pickup-point span:nth-child(3) {
+.autocomplete-pickup-point span:nth-child(4) {
     width: 10%;
 }

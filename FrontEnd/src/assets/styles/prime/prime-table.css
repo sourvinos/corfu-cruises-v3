@@ -148,9 +148,8 @@
     align-items: center;
     display: flex;
     height: 1.6875rem;
-    overflow: hidden !important;
+    overflow: scroll !important;
     padding: 0.0625rem 0.3125rem 0 0.3125rem !important;
-    text-overflow: ellipsis !important;
     transition: color var(--theme-delay);
     white-space: nowrap !important;
 }

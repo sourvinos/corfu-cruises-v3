@@ -149,6 +149,10 @@ export class ReservationFormComponent {
         return this.emojiService.getEmoji(this.passengerDifferenceColor)
     }
 
+    public getEmojiForActiveRecord(isActive: boolean): string {
+        return this.emojiService.getEmoji(isActive ? 'active' : 'notActive')
+    }
+
     public isAdmin(): boolean {
         return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' ? true : false
     }
@@ -334,7 +338,6 @@ export class ReservationFormComponent {
         this.setParentUrl()
         this.subscribeToInteractionService()
         this.updateTabVisibility()
-        // this.saveReservationDate()
     }
 
     private filterAutocomplete(array: string, field: string, value: any): any[] {
