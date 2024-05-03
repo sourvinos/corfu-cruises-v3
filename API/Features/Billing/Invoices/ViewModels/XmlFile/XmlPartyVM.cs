@@ -1,6 +1,6 @@
 namespace API.Features.Billing.Invoices {
 
-    public class XmlPartyVM {
+    public abstract class XmlPartyVM {
 
         public string VatNumber { get; set; }
         public string Country { get; set; }

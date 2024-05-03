@@ -12,7 +12,7 @@ namespace API.Features.Billing.Invoices {
                     SubscriptionKey = x.Ship.ShipOwner.IsDemoMyData ? x.Ship.ShipOwner.DemoSubscriptionKey : x.Ship.ShipOwner.LiveSubscriptionKey,
                     Url = x.Ship.ShipOwner.IsDemoMyData ? x.Ship.ShipOwner.DemoUrl : x.Ship.ShipOwner.LiveUrl
                 }))
-                .ForMember(x => x.Issuer, x => x.MapFrom(x => new XmlPartyVM {
+                .ForMember(x => x.Issuer, x => x.MapFrom(x => new XmlIssuerVM {
                     VatNumber = x.Ship.ShipOwner.VatNumber,
                     Country = x.Ship.ShipOwner.Nationality.Code,
                     Branch = x.Ship.ShipOwner.Branch,
@@ -23,10 +23,11 @@ namespace API.Features.Billing.Invoices {
                         City = x.Ship.ShipOwner.City
                     }
                 }))
-                .ForMember(x => x.CounterPart, x => x.MapFrom(x => new XmlPartyVM {
+                .ForMember(x => x.CounterPart, x => x.MapFrom(x => new XmlCounterPartVM {
                     VatNumber = x.Customer.VatNumber,
                     Country = x.Customer.Nationality.Code,
                     Branch = x.Customer.Branch,
+                    Name = x.Customer.FullDescription,
                     Address = new XmlAddressVM {
                         Street = x.Customer.Street,
                         Number = x.Customer.Number,

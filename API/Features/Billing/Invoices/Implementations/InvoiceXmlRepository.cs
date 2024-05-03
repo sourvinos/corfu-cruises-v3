@@ -33,6 +33,9 @@ namespace API.Features.Billing.Invoices {
             xtw.WriteElementString("vatNumber", invoice.CounterPart.VatNumber);
             xtw.WriteElementString("country", invoice.CounterPart.Country);
             xtw.WriteElementString("branch", invoice.CounterPart.Branch.ToString());
+            if (invoice.CounterPart.Country != "GR") {
+                xtw.WriteElementString("name", invoice.CounterPart.Name);
+            }
             xtw.WriteStartElement("address");
             xtw.WriteElementString("postalCode", invoice.CounterPart.Address.PostalCode);
             xtw.WriteElementString("city", invoice.CounterPart.Address.City);
