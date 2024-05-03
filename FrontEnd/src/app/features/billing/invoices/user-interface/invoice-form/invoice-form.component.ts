@@ -264,9 +264,9 @@ export class InvoiceFormComponent {
     }
 
     public onCreateAndOpenPdf(): void {
-        this.invoiceHttpService.buildPdf(this.form.value.invoiceId).subscribe({
+        this.invoiceHttpService.buildPdf(new Array(this.form.value.invoiceId)).subscribe({
             next: (response) => {
-                this.invoiceHttpService.openPdf(response.body.filename).subscribe({
+                this.invoiceHttpService.openPdf(response.body[0]).subscribe({
                     next: (response) => {
                         const blob = new Blob([response], { type: 'application/pdf' })
                         const fileURL = URL.createObjectURL(blob)
