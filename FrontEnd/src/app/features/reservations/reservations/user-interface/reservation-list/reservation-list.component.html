@@ -208,25 +208,7 @@
             <ng-container *ngTemplateOutlet="contextMenu"></ng-container>
         </mat-menu>
         <div class="filter-pill">
-            <div class="pill">
-                <mat-icon class="material-icons-outlined">functions</mat-icon>
-                <div class="description number">
-                    <span>{{ totalPax[0] | padNumber : 3 : ' ' }}</span>
-                </div>
-            </div>
-            <div (click)="resetTableFilters()" class="pill number reset-table-filter">
-                <mat-icon *ngIf="totalPax[0]==totalPax[1]" class="material-icons-outlined">filter_alt</mat-icon>
-                <mat-icon *ngIf="totalPax[0]!=totalPax[1]" class="material-icons-outlined">filter_alt_off</mat-icon>
-                <div class="description number">
-                    <span>{{ totalPax[1] | padNumber : 3 : ' ' }}</span>
-                </div>
-            </div>
-            <div class="pill number">
-                <mat-icon class="material-symbols-outlined">select_all</mat-icon>
-                <div class="description number">
-                    <span>{{ totalPax[2] | padNumber : 3 : ' ' }}</span>
-                </div>
-            </div>
+            <table-total-filtered-records (resetTableFilters)="resetTableFilters()" [filteredRecordCount]="totalPax[1]" [recordCount]="totalPax[0]" [selectedRecordCount]="totalPax[2]" [mustShowSelectedFilteredCount]="true"></table-total-filtered-records>
         </div>
         <div id="align-right">
             <button (click)="newRecord()" class="primary" mat-flat-button>{{ getLabel('newButton') | uppercase }}</button>
