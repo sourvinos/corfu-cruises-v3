@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Linq;
 
 namespace API.Infrastructure.Auth {
 
@@ -40,8 +41,8 @@ namespace API.Infrastructure.Auth {
         }
 
         [HttpPost("[action]")]
-        public IActionResult Logout([FromBody] string userId) {
-            var tokens = context.Tokens.Where(x => x.UserId == userId).ToList();
+        public IActionResult Logout([FromBody] JObject z) {
+            var tokens = context.Tokens.Where(x => x.UserId == z.First.FirstOrDefault().ToString()).ToList();
             context.Tokens.RemoveRange(tokens);
             context.SaveChanges();
             return StatusCode(200, new {
@@ -79,8 +80,8 @@ namespace API.Infrastructure.Auth {
                 ClientId = clientId,
                 UserId = userId,
                 Value = Guid.NewGuid().ToString("N"),
-                CreatedDate = DateTime.UtcNow,
-                ExpiryTime = DateTime.UtcNow.AddMinutes(90)
+                CreatedDate = DateHelpers.GetLocalDateTime(),
+                ExpiryTime = DateHelpers.GetLocalDateTime().AddMinutes(90)
             };
         }
 

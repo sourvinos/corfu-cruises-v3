@@ -140,9 +140,10 @@ export class AccountService extends HttpDataService {
     }
 
     public logout(): void {
-        this.clearSessionStorage()
+        this.clearUserTokens()
         this.refreshMenus()
         this.navigateToLogin()
+        this.clearSessionStorage()
     }
 
     public resetPassword(vm: ResetPasswordViewModel): Observable<any> {
@@ -155,6 +156,13 @@ export class AccountService extends HttpDataService {
 
     private clearConsole(): void {
         console.clear()
+    }
+
+    private clearUserTokens(): void {
+        const userId = this.cryptoService.decrypt(this.sessionStorageService.getItem('userId'))
+        this.http.post<any>(this.apiUrl + '/auth/logout', { 'userId': userId }).subscribe(() => {
+            // Nothing left to do
+        })
     }
 
     private navigateToLogin(): void {
