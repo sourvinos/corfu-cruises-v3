@@ -37,7 +37,7 @@
                     </div>
                     <div class="group-input-field">
                         <!-- Abbreviation -->
-                        <mat-form-field style="width: 20%;">
+                        <mat-form-field style="width: 30%;">
                             <mat-label>{{ getLabel('abbreviation') }}</mat-label>
                             <input [inputTabStop]="input" dataTabIndex="3" formControlName="abbreviation" matInput>
                             <mat-error *ngIf="abbreviation.hasError('required')">{{ getHint("required") }}</mat-error>
@@ -49,7 +49,7 @@
                             <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
                         </mat-form-field>
                         <!-- Batch -->
-                        <mat-form-field style="width:20%;">
+                        <mat-form-field style="width:30%;">
                             <mat-label>{{ getLabel('batch') }}</mat-label>
                             <input [inputTabStop]="input" dataTabIndex="5" formControlName="batch" matInput>
                             <mat-error *ngIf="batch.hasError('required')">{{ getHint("required") }}</mat-error>
@@ -141,12 +141,18 @@
 
 <mat-autocomplete #shipOwners="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
     <mat-option *ngFor="let option of dropdownShipOwners | async" [value]="option">
-        {{ option.description }}
+        <span *ngIf="option.isActive; else showGhost">{{ getEmojiForActiveRecord(true) }}</span>
+        <span>{{ option.description }}</span>
     </mat-option>
 </mat-autocomplete>
 
 <mat-autocomplete #ships="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
     <mat-option *ngFor="let option of dropdownShips | async" [value]="option">
-        {{ option.description }}
+        <span *ngIf="option.isActive; else showGhost">{{ getEmojiForActiveRecord(true) }}</span>
+        <span>{{ option.description }}</span>
     </mat-option>
 </mat-autocomplete>
+
+<ng-template #showGhost>
+    <span>{{ getEmojiForActiveRecord(false) }}</span>
+</ng-template>

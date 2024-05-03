@@ -88,6 +88,10 @@ export class DocumentTypeFormComponent {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
     }
 
+    public getEmojiForActiveRecord(isActive: boolean): string {
+        return this.emojiService.getEmoji(isActive ? 'active' : 'notActive')
+    }
+
     public getLastDate(): string {
         return this.form.value.lastDate
     }
@@ -225,11 +229,9 @@ export class DocumentTypeFormComponent {
 
     private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string, includeWildCard: boolean): void {
         this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
-            this[dexieTable] = response
-            includeWildCard ? this[dexieTable].unshift({ 'id': '0', 'description': '[' + this.emojiService.getEmoji('wildcard') + ']' }) : null
+            this[dexieTable] = this.recordId == undefined ? response.filter(x => x.isActive) : response
+            includeWildCard ? this[dexieTable].unshift({ 'id': '0', 'description': '[' + this.emojiService.getEmoji('wildcard') + ']', 'isActive': true }) : null
             this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
-            // this[dexieTable] = this.recordId == undefined ? response.filter(x => x.isActive) : response
-            // this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
         })
     }
 
