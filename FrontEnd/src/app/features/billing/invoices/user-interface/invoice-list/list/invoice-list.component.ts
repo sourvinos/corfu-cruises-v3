@@ -9,7 +9,6 @@ import { formatNumber } from '@angular/common'
 // Custom
 import { DateHelperService } from '../../../../../../shared/services/date-helper.service'
 import { DialogService } from '../../../../../../shared/services/modal-dialog.service'
-import { EmailInvoiceVM } from '../../../classes/view-models/email/email-invoice-vm'
 import { EmojiService } from '../../../../../../shared/services/emoji.service'
 import { HelperService } from '../../../../../../shared/services/helper.service'
 import { InteractionService } from '../../../../../../shared/services/interaction.service'
@@ -20,7 +19,7 @@ import { LocalStorageService } from '../../../../../../shared/services/local-sto
 import { MessageDialogService } from '../../../../../../shared/services/message-dialog.service'
 import { MessageLabelService } from '../../../../../../shared/services/message-label.service'
 import { SessionStorageService } from '../../../../../../shared/services/session-storage.service'
-import { forkJoin } from 'rxjs'
+import { EmailInvoiceVM } from '../../../classes/view-models/email/email-invoice-vm'
 
 @Component({
     selector: 'invoice-list',
@@ -96,6 +95,12 @@ export class InvoiceListComponent {
 
     //#region public methods
 
+    public clearDateFilter(): void {
+        this.table.filter('', 'date', 'equals')
+        this.filterDate = ''
+        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
+    }
+
     public doSearchTasks(event: any): void {
         if (event.fromDate != '' && event.toDate != '') {
             this.loadRecords(event).then(() => {
@@ -112,6 +117,13 @@ export class InvoiceListComponent {
         this.storeScrollTop()
         this.storeSelectedId(id)
         this.navigateToRecord(id)
+    }
+
+    public filterByDate(event: MatDatepickerInputEvent<Date>): void {
+        const date = this.dateHelperService.formatDateToIso(new Date(event.value), false)
+        this.table.filter(date, 'date', 'equals')
+        this.filterDate = date
+        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
     }
 
     public filterRecords(event: any): void {
@@ -134,12 +146,39 @@ export class InvoiceListComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
+    public hasDateFilter(): string {
+        return this.filterDate == '' ? 'hidden' : ''
+    }
+
     public highlightRow(id: any): void {
         this.helperService.highlightRow(id)
     }
 
     public newRecord(): void {
         this.router.navigate([this.url + '/new'])
+    }
+
+    public processSelectedRecords(): void {
+        if (this.isAnyRowSelected()) {
+            if (this.selectedRowsAreSameCustomer()) {
+                const ids = []
+                this.selectedRecords.forEach(record => {
+                    ids.push(record.invoiceId)
+                })
+                this.invoiceHttpService.buildPdf(ids).subscribe({
+                    next: (response) => {
+                        const criteria: EmailInvoiceVM = {
+                            customerId: this.selectedRecords[0].customer.id,
+                            filenames: response.body
+                        }
+                        this.emailInvoices(criteria)
+                    },
+                    error: (errorFromInterceptor) => {
+                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                    }
+                })
+            }
+        }
     }
 
     public resetTableFilters(): void {
@@ -149,6 +188,38 @@ export class InvoiceListComponent {
     //#endregion
 
     //#region private methods
+
+    private addSelectedRecordToSelectedRecords(record: InvoiceListVM): void {
+        this.selectedRecords = []
+        this.selectedRecords.push(record)
+    }
+
+    private emailInvoices(criteria: EmailInvoiceVM): void {
+        this.invoiceHttpService.emailInvoices(criteria).subscribe({
+            complete: () => {
+                this.invoiceHttpService.patchInvoicesWithEmailSent(this.removeExtensionsFromFileNames(criteria.filenames)).subscribe({
+                    next: () => {
+                        const criteria: InvoiceListCriteriaVM = JSON.parse(this.sessionStorageService.getItem('invoice-list-criteria'))
+                        this.loadRecords(criteria).then(() => {
+                            this.filterTableFromStoredFilters()
+                            this.populateDropdownFilters()
+                            this.enableDisableFilters()
+                            this.formatDatesToLocale()
+                        })
+                        this.selectedRecords = []
+                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
+                    },
+                    error: (errorFromInterceptor) => {
+                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                    }
+                })
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
+        })
+
+    }
 
     private enableDisableFilters(): void {
         this.records.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()
@@ -173,6 +244,12 @@ export class InvoiceListComponent {
         }
     }
 
+    private formatDatesToLocale(): void {
+        this.records.forEach(record => {
+            record.formattedDate = this.dateHelperService.formatISODateToLocale(record.date)
+        })
+    }
+
     private getVirtualElement(): void {
         this.virtualElement = document.getElementsByClassName('p-scroller-inline')[0]
     }
@@ -184,9 +261,33 @@ export class InvoiceListComponent {
     private initContextMenu(): void {
         this.menuItems = [
             { label: 'Επεξεργασία', command: () => this.editRecord(this.selectedRecord.invoiceId.toString()) },
-            { label: 'Αποστολή με email', command: () => this.processSelected() }
+            {
+                label: 'Αποστολή με email', command: (): void => {
+                    this.addSelectedRecordToSelectedRecords(this.selectedRecord)
+                    this.processSelectedRecords()
+                }
+            }
         ]
     }
+
+    private isAnyRowSelected(): boolean {
+        if (this.selectedRecords.length == 0) {
+            this.dialogService.open(this.messageDialogService.noRecordsSelected(), 'error', ['ok'])
+            return false
+        }
+        return true
+    }
+
+    private selectedRowsAreSameCustomer(): boolean {
+        const z = this.selectedRecords[0].customer.id
+        const x = this.selectedRecords.filter(x => x.customer.id == z)
+        if (x.length != this.selectedRecords.length) {
+            this.dialogService.open(this.messageDialogService.selectedRowsAreSameCustomer(), 'error', ['ok'])
+            return false
+        }
+        return true
+    }
+
 
     private loadRecords(criteria: InvoiceListCriteriaVM): Promise<InvoiceListVM[]> {
         return new Promise((resolve) => {
@@ -199,6 +300,14 @@ export class InvoiceListComponent {
 
     private navigateToRecord(id: any): void {
         this.router.navigate([this.url, id])
+    }
+
+    private populateDropdownFilters(): void {
+        this.dropdownCustomers = this.helperService.getDistinctRecords(this.records, 'customer', 'description')
+        this.dropdownDestinations = this.helperService.getDistinctRecords(this.records, 'destination', 'description')
+        this.dropdownDocumentTypes = this.helperService.getDistinctRecords(this.records, 'documentType', 'description')
+        this.dropdownShipOwners = this.helperService.getDistinctRecords(this.records, 'shipOwner', 'description')
+        this.dropdownShips = this.helperService.getDistinctRecords(this.records, 'ship', 'description')
     }
 
     private scrollToSavedPosition(): void {
@@ -231,105 +340,16 @@ export class InvoiceListComponent {
         })
     }
 
-    public async processSelected(): Promise<void> {
-        const ids = []
-        this.selectedRecords.forEach(record => {
-            ids.push(record.invoiceId)
-        })
-        this.invoiceHttpService.buildPdf(ids).subscribe({
-            next: (response) => {
-                console.log('ok' + response)
-            }
-        })
-    }
-
-
-    // private buildPdfs(): Promise<any> {
-    //     return new Promise((resolve) => {
-    //         const x = this.selectedRecords.forEach(record => {
-    //             this.invoiceHttpService.buildPdf(record.invoiceId).subscribe({
-    //                 next: () => {
-    //                     resolve(x)
-    //                     console.log('ok')
-    //                 }
-    //             })
-    //         })
-    //     })
-    // }
-
-    // private sendInvoicesToEmail(invoices: InvoiceListVM[]): void {
-    //     this.invoiceHttpService.buildPdf(invoices[0].invoiceId).subscribe({
-    //         next: (response) => {
-    //             const criteria: EmailInvoiceVM = {
-    //                 customerId: response.body.customerId,
-    //                 filename: response.body.filename
-    //             }
-    //             this.invoiceHttpService.emailInvoice(criteria).subscribe({
-    //                 complete: () => {
-    //                     this.invoiceHttpService.patchInvoiceWithEmailSent(invoices[0].invoiceId).subscribe({
-    //                         next: () => {
-    //                             const criteria: InvoiceListCriteriaVM = JSON.parse(this.sessionStorageService.getItem('invoice-list-criteria'))
-    //                             this.loadRecords(criteria).then(() => {
-    //                                 this.filterTableFromStoredFilters()
-    //                                 this.populateDropdownFilters()
-    //                                 this.enableDisableFilters()
-    //                                 this.formatDatesToLocale()
-    //                             })
-    //                             this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
-    //                         },
-    //                         error: (errorFromInterceptor) => {
-    //                             this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-    //                         }
-    //                     })
-    //                 },
-    //                 error: (errorFromInterceptor) => {
-    //                     this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-    //                 }
-    //             })
-    //         },
-    //         error: (errorFromInterceptor) => {
-    //             this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-    //         }
-    //     })
-    // }
-
-    //#endregion
-
-    //#region specific methods
-
-    public clearDateFilter(): void {
-        this.table.filter('', 'date', 'equals')
-        this.filterDate = ''
-        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
-    }
-
-    public filterByDate(event: MatDatepickerInputEvent<Date>): void {
-        const date = this.dateHelperService.formatDateToIso(new Date(event.value), false)
-        this.table.filter(date, 'date', 'equals')
-        this.filterDate = date
-        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
-    }
-
-    public hasDateFilter(): string {
-        return this.filterDate == '' ? 'hidden' : ''
-    }
-
-    private formatDatesToLocale(): void {
-        this.records.forEach(record => {
-            record.formattedDate = this.dateHelperService.formatISODateToLocale(record.date)
-        })
-    }
-
-    private populateDropdownFilters(): void {
-        this.dropdownCustomers = this.helperService.getDistinctRecords(this.records, 'customer', 'abbreviation')
-        this.dropdownDestinations = this.helperService.getDistinctRecords(this.records, 'destination', 'description')
-        this.dropdownDocumentTypes = this.helperService.getDistinctRecords(this.records, 'documentType', 'description')
-        this.dropdownShipOwners = this.helperService.getDistinctRecords(this.records, 'shipOwner', 'description')
-        this.dropdownShips = this.helperService.getDistinctRecords(this.records, 'ship', 'description')
-    }
-
     private setLocale(): void {
         this.dateAdapter.setLocale(this.localStorageService.getLanguage())
+    }
+
+    private removeExtensionsFromFileNames(filenames: string[]): string[] {
+        const x = []
+        filenames.forEach(filename => {
+            x.push(filename.substring(0, filename.length - 4))
+        })
+        return x
     }
 
     //#endregion

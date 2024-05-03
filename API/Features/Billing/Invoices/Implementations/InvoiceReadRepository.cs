@@ -72,6 +72,13 @@ namespace API.Features.Billing.Invoices {
                     .SingleOrDefaultAsync();
         }
 
+        public async Task<Invoice> GetByIdForPatchEmailSent(string invoiceId) {
+            return await context.Invoices
+                .AsNoTracking()
+                .Where(x => x.InvoiceId.ToString() == invoiceId)
+                .SingleOrDefaultAsync();
+        }
+
         public async Task<Invoice> GetByIdForPdfAsync(string invoiceId) {
             return await context.Invoices
                 .AsNoTracking()

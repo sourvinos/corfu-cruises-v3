@@ -17,14 +17,14 @@ namespace API.Features.Billing.Invoices {
 
         #region variables
 
-        private readonly EmailSettings emailSettings;
+        private readonly EmailInvoicingSettings emailSettings;
         private readonly ICustomerRepository customerRepo;
         private readonly IMapper mapper;
         private readonly IReservationParametersRepository parametersRepo;
 
         #endregion
 
-        public InvoiceEmailSender(ICustomerRepository customerRepo, IOptions<EmailSettings> emailSettings, IMapper mapper, IReservationParametersRepository parametersRepo) {
+        public InvoiceEmailSender(ICustomerRepository customerRepo, IOptions<EmailInvoicingSettings> emailSettings, IMapper mapper, IReservationParametersRepository parametersRepo) {
             this.customerRepo = customerRepo;
             this.emailSettings = emailSettings.Value;
             this.mapper = mapper;
@@ -35,7 +35,7 @@ namespace API.Features.Billing.Invoices {
 
         public async Task SendInvoicesToEmail(EmailInvoicesVM model) {
             using var smtp = new SmtpClient();
-            smtp.Connect(emailSettings.SmtpClient, emailSettings.Port);
+            smtp.Connect(emailSettings.SmtpClient, emailSettings.Port, false);
             smtp.Authenticate(emailSettings.Username, emailSettings.Password);
             await smtp.SendAsync(await BuildInvoiceMessage(model));
             smtp.Disconnect(true);
@@ -51,7 +51,7 @@ namespace API.Features.Billing.Invoices {
             message.From.Add(new MailboxAddress(emailSettings.From, emailSettings.Username));
             message.To.Add(MailboxAddress.Parse(customer.Email));
             message.Subject = "📧 Ηλεκτρονική αποστολή παραστατικών";
-            var builder = new BodyBuilder { HtmlBody = await BuildEmailInvoiceTemplate(customer.Description, customer.Email) };
+            var builder = new BodyBuilder { HtmlBody = await BuildEmailInvoiceTemplate(customer.Email) };
             foreach (var filename in model.Filenames) {
                 builder.Attachments.Add(Path.Combine("Reports" + Path.DirectorySeparatorChar + "Invoices" + Path.DirectorySeparatorChar + filename));
             }
@@ -59,7 +59,7 @@ namespace API.Features.Billing.Invoices {
             return message;
         }
 
-        private async Task<string> BuildEmailInvoiceTemplate(string displayname, string email) {
+        private async Task<string> BuildEmailInvoiceTemplate(string email) {
             RazorLightEngine engine = new RazorLightEngineBuilder()
                 .UseEmbeddedResourcesProject(Assembly.GetEntryAssembly())
                 .Build();
@@ -67,7 +67,6 @@ namespace API.Features.Billing.Invoices {
                 "key",
                 LoadEmailInvoiceTemplateFromFile(),
                 new EmailInvoiceTemplateVM {
-                    Displayname = displayname,
                     Email = email,
                     CompanyPhones = this.parametersRepo.GetAsync().Result.Phones,
                 });

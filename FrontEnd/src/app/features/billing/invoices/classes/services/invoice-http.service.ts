@@ -35,8 +35,8 @@ export class InvoiceHttpService extends HttpDataService {
         return this.http.put<any>(this.url + '/invoiceAade', aadeVM)
     }
 
-    public patchInvoiceWithEmailSent(invoiceId: string): Observable<any> {
-        return this.http.patch<any>(this.url + '/email/' + invoiceId, null)
+    public patchInvoicesWithEmailSent(invoiceIds: string[]): Observable<any> {
+        return this.http.patch<any>(this.url + '/patchInvoicesWithEmailSent', invoiceIds)
     }
 
     public patchInvoiceWithIsCancelled(invoiceId: string): Observable<any> {
@@ -47,8 +47,8 @@ export class InvoiceHttpService extends HttpDataService {
         return this.http.post<any>(this.url + '/buildInvoicePdfs', invoiceIds)
     }
 
-    public emailInvoice(criteria: EmailInvoiceVM): Observable<any> {
-        return this.http.request<EmailInvoiceVM[]>('post', this.url + '/emailInvoice', { body: criteria })
+    public emailInvoices(criteria: EmailInvoiceVM): Observable<any> {
+        return this.http.request<EmailInvoiceVM[]>('post', this.url + '/emailInvoices', { body: criteria })
     }
 
     public openPdf(filename: string): Observable<any> {

@@ -92,6 +92,7 @@ namespace API {
             services.Configure<CookiePolicyOptions>(options => { options.CheckConsentNeeded = _ => true; options.MinimumSameSitePolicy = SameSiteMode.None; });
             services.Configure<EnvironmentSettings>(options => Configuration.GetSection("EnvironmentSettings").Bind(options));
             services.Configure<EmailSettings>(options => Configuration.GetSection("EmailSettings").Bind(options));
+            services.Configure<EmailInvoicingSettings>(options => Configuration.GetSection("EmailInvoicingSettings").Bind(options));
             services.Configure<TokenSettings>(options => Configuration.GetSection("TokenSettings").Bind(options));
             services.Configure<TestingEnvironment>(options => Configuration.GetSection("TestingEnvironment").Bind(options));
         }

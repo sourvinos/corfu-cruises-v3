@@ -25,7 +25,7 @@ namespace API.Features.Billing.Invoices {
             PdfPage page = document.AddPage();
             page.Size = PageSize.A4;
             XFont logoFont = new("ACCanterBold", 20);
-            XFont robotoMonoFont = new("RobotoMono", 6);
+            XFont robotoMonoFont = new("RobotoMono", 7);
             XFont robotoMonoFontBig = new("RobotoMono", 8);
             XGraphics gfx = XGraphics.FromPdfPage(page);
             AddLogo(gfx);

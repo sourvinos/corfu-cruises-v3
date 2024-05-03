@@ -201,10 +201,7 @@ namespace API.Features.Billing.Invoices {
                 Code = 200,
                 Icon = Icons.Info.ToString(),
                 Message = ApiMessages.OK(),
-                Body = new EmailInvoiceVM {
-                    CustomerId = 2,
-                    Filenames = filenames.ToArray()
-                }
+                Body = filenames.ToArray()
             };
         }
 
@@ -228,23 +225,24 @@ namespace API.Features.Billing.Invoices {
             }
         }
 
-        [HttpPatch("email/{invoiceId}")]
+        [HttpPatch("[action]")]
         [Authorize(Roles = "admin")]
-        public async Task<Response> PatchEmail(string invoiceId) {
-            var x = await invoiceReadRepo.GetByIdAsync(invoiceId, false);
-            if (x != null) {
-                invoiceUpdateRepo.UpdateIsEmailSent(x, invoiceId);
-                return new Response {
-                    Code = 200,
-                    Icon = Icons.Success.ToString(),
-                    Id = invoiceId.ToString(),
-                    Message = ApiMessages.OK()
-                };
-            } else {
-                throw new CustomException() {
-                    ResponseCode = 404
-                };
+        public async Task<Response> PatchInvoicesWithEmailSent([FromBody] string[] invoiceIds) {
+            foreach (var invoiceId in invoiceIds) {
+                var x = await invoiceReadRepo.GetByIdForPatchEmailSent(invoiceId);
+                if (x != null) {
+                    invoiceUpdateRepo.UpdateIsEmailSent(x, invoiceId);
+                } else {
+                    throw new CustomException() {
+                        ResponseCode = 404
+                    };
+                }
             }
+            return new Response {
+                Code = 200,
+                Icon = Icons.Info.ToString(),
+                Message = ApiMessages.OK()
+            };
         }
 
         [HttpPatch("isCancelled/{invoiceId}")]
