@@ -94,9 +94,36 @@
     padding: 0;
 }
 
-#dialog-footer #align-right {
+#dialog-footer {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1rem 0 1rem;
+}
+
+#load-charges-result {
+    align-items: center;
+    color: var(--color-text);
     column-gap: 0.5rem;
     display: flex;
-    justify-content: flex-end;
-    margin: 0 1rem 0 0;
+    font-family: var(--font-family-asty);
+    font-size: 0.875rem;
+    font-weight: 300;
+}
+
+#dialog-footer #align-left {
+    align-items: center;
+    display: flex;
+}
+
+#dialog-footer #align-right {
+    column-gap: 1rem;
+    display: flex;
+}
+
+.material-symbols-outlined.green {
+    color: var(--color-green);
+}
+
+.material-symbols-outlined.red {
+    color: var(--color-orange);
 }

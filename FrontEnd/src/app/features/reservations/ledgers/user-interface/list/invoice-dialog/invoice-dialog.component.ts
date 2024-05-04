@@ -5,7 +5,6 @@ import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { Observable, map, startWith } from 'rxjs'
 // Custom
 import { BillingCriteriaVM } from 'src/app/features/billing/invoices/classes/view-models/form/billing-criteria-vm'
-import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { DocumentTypeAutoCompleteVM } from 'src/app/features/billing/documentTypes/classes/view-models/documentType-autocomplete-vm'
@@ -22,7 +21,6 @@ import { MessageDialogService } from 'src/app/shared/services/message-dialog.ser
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { PriceHttpService } from 'src/app/features/billing/prices/classes/services/price-http.service'
-import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { ShipAutoCompleteVM } from 'src/app/features/reservations/ships/classes/view-models/ship-autocomplete-vm'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
@@ -43,6 +41,7 @@ export class InvoiceDialogComponent {
     public form: FormGroup
     public input: InputTabStopDirective
     public parentUrl = null
+    private isPriceListValid = false
 
     //#endregion
 
@@ -55,16 +54,18 @@ export class InvoiceDialogComponent {
 
     //#endregion
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dateHelperService: DateHelperService, private invoiceXmlHttpService: InvoiceXmlHttpService, private dexieService: DexieService, private dialogRef: MatDialogRef<InvoiceDialogComponent>, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private invoiceXmlHelperService: InvoiceXmlHelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceHttpService: PriceHttpService, private sessionStorageService: SessionStorageService) { }
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dexieService: DexieService, private dialogRef: MatDialogRef<InvoiceDialogComponent>, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private invoiceXmlHelperService: InvoiceXmlHelperService, private invoiceXmlHttpService: InvoiceXmlHttpService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceHttpService: PriceHttpService,) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
         this.initForm()
-        this.updateFieldsAfterEmptyDocumentType()
         this.populateDropdowns()
         this.populateFields()
-        this.onDoCalculations()
+    }
+
+    ngAfterViewInit(): void {
+        this.onRetrievePrices()
     }
 
     //#endregion
@@ -103,7 +104,7 @@ export class InvoiceDialogComponent {
             this.priceHttpService.retrievePrices(x).subscribe({
                 next: (response: any) => {
                     if (response.body.length != 2) {
-                        this.dialogService.open(this.messageDialogService.priceRetrieverIsEmpty(), 'question', ['ok'])
+                        this.isPriceListValid = false
                     } else {
                         this.form.patchValue({
                             portA: {
@@ -119,16 +120,18 @@ export class InvoiceDialogComponent {
                                 kids_B_PriceWithoutTransfer: response.body[1].kidsWithoutTransfer,
                             },
                         })
-                        this.onDoCalculations()
-                        this.dialogService.open(this.messageDialogService.priceRetrieverIsValid(), 'ok', ['ok'])
+                        this.isPriceListValid = true
                     }
                 },
-                error: (errorFromInterceptor) => {
-                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                error: () => {
+                    this.isPriceListValid = false
+                },
+                complete: () => {
+                    this.onDoCalculations()
                 }
             })
         } else {
-            this.dialogService.open(this.messageDialogService.priceRetrieverHasErrors(), 'error', ['ok'])
+            this.isPriceListValid = false
         }
     }
 
@@ -154,6 +157,10 @@ export class InvoiceDialogComponent {
 
     public getDate(): string {
         return this.form.value.date
+    }
+
+    public getPriceListValidity(): boolean {
+        return this.isPriceListValid
     }
 
     public getTripDate(): string {
@@ -412,18 +419,6 @@ export class InvoiceDialogComponent {
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-            }
-        })
-    }
-
-    private updateFieldsAfterEmptyDocumentType(): void {
-        this.form.get('documentType').valueChanges.subscribe(value => {
-            if (value == '') {
-                this.form.patchValue({
-                    documentTypeDescription: '',
-                    invoiceNo: 0,
-                    batch: ''
-                })
             }
         })
     }

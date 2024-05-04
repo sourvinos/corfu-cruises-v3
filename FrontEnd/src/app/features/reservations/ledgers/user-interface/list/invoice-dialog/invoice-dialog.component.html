@@ -2,14 +2,6 @@
 
     <div id="dialog-header">
         <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
-        <div id="header-buttons">
-            <button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" mat-icon-button>
-                <mat-icon class="material-icons-outlined">more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" class="primary" xPosition="before">
-                <ng-container *ngTemplateOutlet="actionsMenu"></ng-container>
-            </mat-menu>
-        </div>
     </div>
 
     <div id="dialog-content">
@@ -452,6 +444,12 @@
     </div>
 
     <div id="dialog-footer">
+        <div id="align-left">
+            <span id="load-charges-result">
+                <span [ngClass]="getPriceListValidity() ? 'green' : 'red'" class="material-symbols-outlined">install_desktop</span>
+                <span>{{ getPriceListValidity() ? 'Οι χρεώσεις βρέθηκαν και έγιναν οι υπολογισμοί' : 'Οι χρεώσεις δεν βρέθηκαν ή είναι ελλειπείς' }}</span>
+            </span>
+        </div>
         <div id="align-right">
             <button (click)="onClose()" class="transparent" mat-flat-button tabindex="-1">
                 <span>{{ getLabel("cancelButton") | uppercase }}</span>
@@ -485,9 +483,3 @@
         {{ option.description }}
     </mat-option>
 </mat-autocomplete>
-
-<ng-template #actionsMenu>
-    <button (click)="onRetrievePrices()" mat-menu-item>
-        <span>{{ getLabel('retrievePrices') }}</span>
-    </button>
-</ng-template>
