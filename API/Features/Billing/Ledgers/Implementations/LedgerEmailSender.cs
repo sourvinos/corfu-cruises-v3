@@ -18,14 +18,14 @@ namespace API.Features.Billing.Ledgers {
 
         #region variables
 
-        private readonly EmailSettings emailSettings;
+        private readonly EmailInvoicingSettings emailSettings;
         private readonly ICustomerRepository customerRepo;
         private readonly IMapper mapper;
         private readonly IReservationParametersRepository parametersRepo;
 
         #endregion
 
-        public LedgerEmailSender(ICustomerRepository customerRepo, IOptions<EmailSettings> emailSettings, IMapper mapper, IReservationParametersRepository parametersRepo) {
+        public LedgerEmailSender(ICustomerRepository customerRepo, IOptions<EmailInvoicingSettings> emailSettings, IMapper mapper, IReservationParametersRepository parametersRepo) {
             this.customerRepo = customerRepo;
             this.emailSettings = emailSettings.Value;
             this.mapper = mapper;
@@ -59,7 +59,7 @@ namespace API.Features.Billing.Ledgers {
             message.From.Add(new MailboxAddress(emailSettings.From, emailSettings.Username));
             message.To.Add(MailboxAddress.Parse(customer.Email));
             message.Subject = "📧 Λογιστική καρτέλα και ανάλυση λογαριασμού";
-            var builder = new BodyBuilder { HtmlBody = await BuildEmailLedgerTemplate(customer.Description, customer.Email) };
+            var builder = new BodyBuilder { HtmlBody = await BuildEmailLedgerTemplate(customer.Email) };
             foreach (var filename in model.Filenames) {
                 builder.Attachments.Add(Path.Combine("Reports" + Path.DirectorySeparatorChar + "Ledgers" + Path.DirectorySeparatorChar + filename));
             }
@@ -67,7 +67,7 @@ namespace API.Features.Billing.Ledgers {
             return message;
         }
 
-        private async Task<string> BuildEmailLedgerTemplate(string displayname, string email) {
+        private async Task<string> BuildEmailLedgerTemplate(string email) {
             RazorLightEngine engine = new RazorLightEngineBuilder()
                 .UseEmbeddedResourcesProject(Assembly.GetEntryAssembly())
                 .Build();
@@ -75,7 +75,6 @@ namespace API.Features.Billing.Ledgers {
                 "key",
                 LoadEmailLedgerTemplateFromFile(),
                 new EmailLedgerTemplateVM {
-                    Displayname = displayname,
                     Email = email,
                     CompanyPhones = this.parametersRepo.GetAsync().Result.Phones,
                 });

@@ -1,3 +1,4 @@
+using API.Features.Billing.Invoices;
 using API.Features.Reservations.Customers;
 using API.Features.Reservations.Parameters;
 using API.Infrastructure.Helpers;
@@ -17,14 +18,14 @@ namespace API.Features.Billing.Receipts {
 
         #region variables
 
-        private readonly EmailSettings emailSettings;
+        private readonly EmailInvoicingSettings emailSettings;
         private readonly ICustomerRepository customerRepo;
         private readonly IMapper mapper;
         private readonly IReservationParametersRepository parametersRepo;
 
         #endregion
 
-        public ReceiptEmailSender(ICustomerRepository customerRepo, IOptions<EmailSettings> emailSettings, IMapper mapper, IReservationParametersRepository parametersRepo) {
+        public ReceiptEmailSender(ICustomerRepository customerRepo, IOptions<EmailInvoicingSettings> emailSettings, IMapper mapper, IReservationParametersRepository parametersRepo) {
             this.customerRepo = customerRepo;
             this.emailSettings = emailSettings.Value;
             this.mapper = mapper;
@@ -51,28 +52,27 @@ namespace API.Features.Billing.Receipts {
             message.From.Add(new MailboxAddress(emailSettings.From, emailSettings.Username));
             message.To.Add(MailboxAddress.Parse(customer.Email));
             message.Subject = "📧 Ηλεκτρονική αποστολή παραστατικών";
-            var builder = new BodyBuilder { HtmlBody = await BuildEmailReceiptTemplate(customer.Description, customer.Email) };
+            var builder = new BodyBuilder { HtmlBody = await BuildEmailReceiptTemplate(customer.Email) };
             builder.Attachments.Add(Path.Combine("Reports" + Path.DirectorySeparatorChar + "Invoices" + Path.DirectorySeparatorChar + model.Filename));
             message.Body = builder.ToMessageBody();
             return message;
         }
 
-        private async Task<string> BuildEmailReceiptTemplate(string displayname, string email) {
+        private async Task<string> BuildEmailReceiptTemplate(string email) {
             RazorLightEngine engine = new RazorLightEngineBuilder()
                 .UseEmbeddedResourcesProject(Assembly.GetEntryAssembly())
                 .Build();
             return await engine.CompileRenderStringAsync(
                 "key",
                 LoadEmailRreceiptTemplateFromFile(),
-                new EmailReceiptTemplateVM {
-                    Displayname = displayname,
+                new EmailInvoiceTemplateVM {
                     Email = email,
                     CompanyPhones = this.parametersRepo.GetAsync().Result.Phones,
                 });
         }
 
         private static string LoadEmailRreceiptTemplateFromFile() {
-            string FilePath = Directory.GetCurrentDirectory() + "\\Templates\\EmailReceipt.cshtml";
+            string FilePath = Directory.GetCurrentDirectory() + "\\Templates\\EmailInvoice.cshtml";
             StreamReader str = new(FilePath);
             string template = str.ReadToEnd();
             str.Close();
