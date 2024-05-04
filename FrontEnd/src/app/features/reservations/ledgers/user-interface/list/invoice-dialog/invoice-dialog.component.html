@@ -43,7 +43,7 @@
                             <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
                         </button>
                     </div>
-                    <mat-error *ngIf="documentType.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                    <mat-error *ngIf="documentType.hasError('required')">{{ getHint("required") }}</mat-error>
                     <mat-error *ngIf="!documentType.hasError('required') && documentType.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
                 </mat-form-field>
                 <div class="group-input-field">
@@ -76,19 +76,19 @@
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withTransfer') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="5" formControlName="adults_A_WithTransfer" matInput type="number">
-                                    <mat-error *ngIf="adults_A_WithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="adults_A_WithTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!adults_A_WithTransfer.hasError('required') && adults_A_WithTransfer.hasError('min') || adults_A_WithTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('price') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="6" formControlName="adults_A_PriceWithTransfer" matInput type="number">
-                                    <mat-error *ngIf="adults_A_PriceWithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="adults_A_PriceWithTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!adults_A_PriceWithTransfer.hasError('required') && adults_A_PriceWithTransfer.hasError('min') || adults_A_PriceWithTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="adults_A_AmountWithTransfer" matInput type="number" readonly>
-                                    <mat-error *ngIf="adults_A_AmountWithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="adults_A_AmountWithTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!adults_A_AmountWithTransfer.hasError('required') && adults_A_AmountWithTransfer.hasError('min') || adults_A_AmountWithTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                             </div>
@@ -96,19 +96,19 @@
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withoutTransfer') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="7" formControlName="adults_A_WithoutTransfer" matInput type="number">
-                                    <mat-error *ngIf="adults_A_WithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="adults_A_WithoutTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!adults_A_WithoutTransfer.hasError('required') && adults_A_WithoutTransfer.hasError('min') || adults_A_WithoutTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('price') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="8" formControlName="adults_A_PriceWithoutTransfer" matInput type="number">
-                                    <mat-error *ngIf="adults_A_PriceWithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="adults_A_PriceWithoutTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!adults_A_PriceWithoutTransfer.hasError('required') && adults_A_PriceWithoutTransfer.hasError('min') || adults_A_PriceWithoutTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="adults_A_AmountWithoutTransfer" matInput type="number" readonly>
-                                    <mat-error *ngIf="adults_A_AmountWithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="adults_A_AmountWithoutTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!adults_A_AmountWithoutTransfer.hasError('required') && adults_A_AmountWithoutTransfer.hasError('min') || adults_A_AmountWithoutTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                             </div>
@@ -122,19 +122,19 @@
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withTransfer') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="9" formControlName="kids_A_WithTransfer" matInput type="number">
-                                    <mat-error *ngIf="kids_A_WithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="kids_A_WithTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!kids_A_WithTransfer.hasError('required') && kids_A_WithTransfer.hasError('min') || kids_A_WithTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('price') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="10" formControlName="kids_A_PriceWithTransfer" matInput type="number">
-                                    <mat-error *ngIf="kids_A_PriceWithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="kids_A_PriceWithTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!kids_A_PriceWithTransfer.hasError('required') && kids_A_PriceWithTransfer.hasError('min') || kids_A_PriceWithTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="kids_A_AmountWithTransfer" matInput type="number" readonly>
-                                    <mat-error *ngIf="kids_A_AmountWithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="kids_A_AmountWithTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!kids_A_AmountWithTransfer.hasError('required') && kids_A_AmountWithTransfer.hasError('min') || kids_A_AmountWithTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                             </div>
@@ -142,19 +142,19 @@
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withoutTransfer') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="11" formControlName="kids_A_WithoutTransfer" matInput type="number">
-                                    <mat-error *ngIf="kids_A_WithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="kids_A_WithoutTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!kids_A_WithoutTransfer.hasError('required') && kids_A_WithoutTransfer.hasError('min') || kids_A_WithoutTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('price') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="12" formControlName="kids_A_PriceWithoutTransfer" matInput type="number">
-                                    <mat-error *ngIf="kids_A_PriceWithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="kids_A_PriceWithoutTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!kids_A_PriceWithoutTransfer.hasError('required') && kids_A_PriceWithoutTransfer.hasError('min') || kids_A_PriceWithoutTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="kids_A_AmountWithoutTransfer" matInput type="number" readonly>
-                                    <mat-error *ngIf="kids_A_AmountWithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="kids_A_AmountWithoutTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!kids_A_AmountWithoutTransfer.hasError('required') && kids_A_AmountWithoutTransfer.hasError('min') || kids_A_AmountWithoutTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                             </div>
@@ -168,7 +168,7 @@
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withTransfer') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="13" formControlName="free_A_WithTransfer" matInput type="number">
-                                    <mat-error *ngIf="free_A_WithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="free_A_WithTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!free_A_WithTransfer.hasError('required') && free_A_WithTransfer.hasError('min') || free_A_WithTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                                 <div style="width:100%"></div>
@@ -178,7 +178,7 @@
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withoutTransfer') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="14" formControlName="free_A_WithoutTransfer" matInput type="number">
-                                    <mat-error *ngIf="free_A_WithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="free_A_WithoutTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!free_A_WithoutTransfer.hasError('required') && free_A_WithoutTransfer.hasError('min') || free_A_WithoutTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                                 <div style="width:100%"></div>
@@ -217,7 +217,7 @@
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withTransfer') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="15" formControlName="adults_B_WithTransfer" matInput type="number">
-                                    <mat-error *ngIf="adults_B_WithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="adults_B_WithTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!adults_B_WithTransfer.hasError('required') && adults_B_WithTransfer.hasError('min') || adults_B_WithTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                                 <mat-form-field class="hide-hint">
@@ -229,7 +229,7 @@
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="adults_B_AmountWithTransfer" matInput type="number" readonly>
-                                    <mat-error *ngIf="adults_B_AmountWithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="adults_B_AmountWithTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!adults_B_AmountWithTransfer.hasError('required') && adults_B_AmountWithTransfer.hasError('min') || adults_B_AmountWithTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                             </div>
@@ -237,19 +237,19 @@
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withoutTransfer') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="17" formControlName="adults_B_WithoutTransfer" matInput type="number">
-                                    <mat-error *ngIf="adults_B_WithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="adults_B_WithoutTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!adults_B_WithoutTransfer.hasError('required') && adults_B_WithoutTransfer.hasError('min') || adults_B_WithoutTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('price') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="18" formControlName="adults_B_PriceWithoutTransfer" matInput type="number">
-                                    <mat-error *ngIf="adults_B_PriceWithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="adults_B_PriceWithoutTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!adults_B_PriceWithoutTransfer.hasError('required') && adults_B_PriceWithoutTransfer.hasError('min') || adults_B_PriceWithoutTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="adults_B_AmountWithoutTransfer" matInput type="number" readonly>
-                                    <mat-error *ngIf="adults_B_AmountWithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="adults_B_AmountWithoutTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!adults_B_AmountWithoutTransfer.hasError('required') && adults_B_AmountWithoutTransfer.hasError('min') || adults_B_AmountWithoutTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                             </div>
@@ -263,19 +263,19 @@
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withTransfer') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="19" formControlName="kids_B_WithTransfer" matInput type="number">
-                                    <mat-error *ngIf="kids_B_WithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="kids_B_WithTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!kids_B_WithTransfer.hasError('required') && kids_B_WithTransfer.hasError('min') || kids_B_WithTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('price') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="20" formControlName="kids_B_PriceWithTransfer" matInput type="number">
-                                    <mat-error *ngIf="kids_B_PriceWithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="kids_B_PriceWithTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!kids_B_PriceWithTransfer.hasError('required') && kids_B_PriceWithTransfer.hasError('min') || kids_B_PriceWithTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="kids_B_AmountWithTransfer" matInput type="number" readonly>
-                                    <mat-error *ngIf="kids_B_AmountWithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="kids_B_AmountWithTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!kids_B_AmountWithTransfer.hasError('required') && kids_B_AmountWithTransfer.hasError('min') || kids_B_AmountWithTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                             </div>
@@ -283,19 +283,19 @@
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withoutTransfer') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="21" formControlName="kids_B_WithoutTransfer" matInput type="number">
-                                    <mat-error *ngIf="kids_B_WithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="kids_B_WithoutTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!kids_B_WithoutTransfer.hasError('required') && kids_B_WithoutTransfer.hasError('min') || kids_B_WithoutTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('price') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="22" formControlName="kids_B_PriceWithoutTransfer" matInput type="number">
-                                    <mat-error *ngIf="kids_B_PriceWithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="kids_B_PriceWithoutTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!kids_B_PriceWithoutTransfer.hasError('required') && kids_B_PriceWithoutTransfer.hasError('min') || kids_B_PriceWithoutTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('total') }}</mat-label>
                                     <input class="right" formControlName="kids_B_AmountWithoutTransfer" matInput type="number" readonly>
-                                    <mat-error *ngIf="kids_B_AmountWithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="kids_B_AmountWithoutTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!kids_B_AmountWithoutTransfer.hasError('required') && kids_B_AmountWithoutTransfer.hasError('min') || kids_B_AmountWithoutTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                             </div>
@@ -309,7 +309,7 @@
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withTransfer') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="23" formControlName="free_B_WithTransfer" matInput type="number">
-                                    <mat-error *ngIf="free_B_WithTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="free_B_WithTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!free_B_WithTransfer.hasError('required') && free_B_WithTransfer.hasError('min') || free_B_WithTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                                 <div style="width:100%"></div>
@@ -319,7 +319,7 @@
                                 <mat-form-field class="hide-hint">
                                     <mat-label>{{ getLabel('withoutTransfer') }}</mat-label>
                                     <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="24" formControlName="free_B_WithoutTransfer" matInput type="number">
-                                    <mat-error *ngIf="free_B_WithoutTransfer.hasError('required')">{{ getHint("requiredShort") }}</mat-error>
+                                    <mat-error *ngIf="free_B_WithoutTransfer.hasError('required')">{{ getHint("required") }}</mat-error>
                                     <mat-error *ngIf="!free_B_WithoutTransfer.hasError('required') && free_B_WithoutTransfer.hasError('min') || free_B_WithoutTransfer.hasError('max')">{{ getHint("invalidShort") }}</mat-error>
                                 </mat-form-field>
                                 <div style="width:100%"></div>

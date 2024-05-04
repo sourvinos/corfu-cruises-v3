@@ -15,7 +15,6 @@
         { "id": "passwordsNoMatch", "description": "Neues Passwort und Bestätigung des neuen Passworts stimmen nicht überein" },
         { "id": "remainingCharacters", "description": "Sie können bis zu xx weitere Zeichen eingeben" },
         { "id": "required", "description": "Dieses Feld ist erforderlich" },
-        { "id": "requiredShort", "description": "Erforderliches" },
         { "id": "shouldBeEmptyPlusOrMinus", "description": "Dieses Feld darf leer sein oder das Symbol + oder - enthalten" },
         { "id": "shouldBeCapitalLetterOrSpace", "description": "Nur lateinische Großbuchstaben sind erlaubt" },
         { "id": "shouldBeCapitalLetter", "description": "Nur lateinische Großbuchstaben sind erlaubt" },

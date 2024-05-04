@@ -15,7 +15,6 @@
         { "id": "passwordsNoMatch", "description": "New password and confirm new password do not match" },
         { "id": "remainingCharacters", "description": "You can give up to xx more characters" },
         { "id": "required", "description": "This field is required" },
-        { "id": "requiredShort", "description": "Required" },
         { "id": "shouldBeEmptyPlusOrMinus", "description": "This field may be blank or have the + or - symbol" },
         { "id": "shouldBeCapitalLetterOrSpace", "description": "Only Latin capital letters are allowed" },
         { "id": "shouldBeFiveCapitalLetters", "description": "Only five (5) Latin capital letters are allowed" },

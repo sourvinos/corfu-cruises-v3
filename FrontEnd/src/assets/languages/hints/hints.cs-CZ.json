@@ -15,7 +15,6 @@
         { "id": "passwordsNoMatch", "description": "Nové heslo a potvrzení nového hesla se neshodují" },
         { "id": "remainingCharacters", "description": "Můžete uvést až xx dalších znaků" },
         { "id": "required", "description": "Toto pole je povinné" },
-        { "id": "requiredShort", "description": "Povinné" },
         { "id": "shouldBeEmptyPlusOrMinus", "description": "Toto pole může být prázdné nebo může obsahovat symbol + nebo -." },
         { "id": "shouldBeCapitalLetterOrSpace", "description": "Povolena jsou pouze velká písmena latinky" },
         { "id": "shouldBeCapitalLetter", "description": "Povolena jsou pouze velká písmena latinky" },

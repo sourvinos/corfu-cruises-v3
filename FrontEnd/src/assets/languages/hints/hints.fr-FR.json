@@ -15,7 +15,6 @@
         { "id": "passwordsNoMatch", "description": "Le nouveau mot de passe et la confirmation du nouveau mot de passe ne correspondent pas" },
         { "id": "remainingCharacters", "description": "Vous pouvez donner jusqu'à xx caractères supplémentaires" },
         { "id": "required", "description": "Ce champ est obligatoire" },
-        { "id": "requiredShort", "description": "Obligatoire" },
         { "id": "shouldBeEmptyPlusOrMinus", "description": "Ce champ peut être vide ou comporter le symbole + ou -." },
         { "id": "shouldBeCapitalLetterOrSpace", "description": "Seules les lettres majuscules latines sont autorisées" },
         { "id": "shouldBeCapitalLetter", "description": "Seules les lettres majuscules latines sont autorisées" },

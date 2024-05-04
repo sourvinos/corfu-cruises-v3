@@ -62,6 +62,7 @@ export class InvoiceDialogComponent {
         this.initForm()
         this.populateDropdowns()
         this.populateFields()
+        this.updateFieldsAfterShipSelection(this.form.value.ship)
     }
 
     ngAfterViewInit(): void {
@@ -432,6 +433,10 @@ export class InvoiceDialogComponent {
             destination: {
                 id: this.data[0].destination.id,
                 description: this.data[0].destination.description
+            },
+            ship: {
+                id: this.data[0].ship.id,
+                description: this.data[0].ship.description
             }
         })
     }

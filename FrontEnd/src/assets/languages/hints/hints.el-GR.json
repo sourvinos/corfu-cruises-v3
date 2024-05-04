@@ -15,7 +15,6 @@
         { "id": "passwordsNoMatch", "description": "Ο νέος κωδικός και η επιβεβαίωση νέου κωδικού δεν συμφωνούν" },
         { "id": "remainingCharacters", "description": "Μπορείτε να δώσετε ακόμα έως και xx χαρακτήρες" },
         { "id": "required", "description": "Αυτό το πεδίο είναι υποχρεωτικό" },
-        { "id": "requiredShort", "description": "Υποχρεωτικό" },
         { "id": "shouldBeEmptyPlusOrMinus", "description": "Αυτό το πεδίο επιτρέπεται να είναι κενό ή να έχει το σύμβολο + ή -" },
         { "id": "shouldBeCapitalLetterOrSpace", "description": "Επιτρέπονται μόνο λατινικά κεφαλαία γράμματα" },
         { "id": "shouldBeFiveCapitalLetters", "description": "Επιτρέπονται μόνο πέντε (5) λατινικά κεφαλαία γράμματα" },
