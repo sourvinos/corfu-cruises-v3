@@ -8,6 +8,7 @@ import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { DocumentTypeAutoCompleteVM } from '../../../documentTypes/classes/view-models/documentType-autocomplete-vm'
 import { DocumentTypeHttpService } from '../../../documentTypes/classes/services/documentType-http.service'
+import { DocumentTypeReadDto } from '../../../documentTypes/classes/dtos/documentType-read-dto'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -16,13 +17,10 @@ import { MessageInputHintService } from 'src/app/shared/services/message-input-h
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { ReceiptHelperService } from '../../classes/services/receipt.helper.service'
 import { ReceiptHttpService } from '../../classes/services/receipt-http.service'
-import { ReceiptPdfHelperService } from '../../../receiptsViewer/classes/services/receipt-pdf-helper.service'
-import { ReceiptPdfService } from '../../../receiptsViewer/classes/services/receipt-pdf.service'
 import { ReceiptReadDto } from '../../classes/dtos/receipt-read-dto'
 import { ReceiptWriteDto } from '../../classes/dtos/receipt-write-dto'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
-import { DocumentTypeReadDto } from '../../../documentTypes/classes/dtos/documentType-read-dto'
 
 @Component({
     selector: 'receipt-form',
@@ -55,13 +53,12 @@ export class ReceiptFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private receiptHelperService: ReceiptHelperService, private receiptHttpService: ReceiptHttpService, private receiptPdfService: ReceiptPdfService, private receiptPdfHelperService: ReceiptPdfHelperService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private receiptHelperService: ReceiptHelperService, private receiptHttpService: ReceiptHttpService, private router: Router) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
         this.initForm()
-        // this.updateFieldsAfterEmptyDocumentType()
         this.setRecordId()
         this.getRecord()
         this.populateFields()
@@ -312,18 +309,6 @@ export class ReceiptFormComponent {
             return this[array].filter((element: { [x: string]: string; }) =>
                 element[field].toLowerCase().startsWith(filtervalue))
         }
-    }
-
-    private updateFieldsAfterEmptyDocumentType(): void {
-        this.form.get('documentType').valueChanges.subscribe(value => {
-            if (value == '') {
-                this.form.patchValue({
-                    documentTypeDescription: '',
-                    invoiceNo: 0,
-                    batch: ''
-                })
-            }
-        })
     }
 
     private updateApiDocumentType(id: number): void {

@@ -16,10 +16,6 @@ export class ReceiptHttpService extends HttpDataService {
         super(httpClient, environment.apiUrl + '/receipts')
     }
 
-    public getForViewer(invoiceId: string): Observable<any> {
-        return this.http.get(environment.apiUrl + '/receiptsViewer/' + invoiceId)
-    }
-
     public getForList(criteria: ReceiptListCriteriaVM): Observable<ReceiptListVM[]> {
         return this.http.request<ReceiptListVM[]>('post', environment.apiUrl + '/receipts/getForPeriod', { body: criteria })
     }

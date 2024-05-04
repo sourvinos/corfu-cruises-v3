@@ -76,7 +76,6 @@ export class InvoiceFormComponent {
 
     ngOnInit(): void {
         this.initForm()
-        this.updateFieldsAfterEmptyDocumentType()
         this.setRecordId()
         this.getRecord()
         this.populateFields()
@@ -631,18 +630,6 @@ export class InvoiceFormComponent {
         } else {
             this.dialogService.open(this.messageDialogService.priceRetrieverHasErrors(), 'error', ['ok'])
         }
-    }
-
-    private updateFieldsAfterEmptyDocumentType(): void {
-        this.form.get('documentType').valueChanges.subscribe(value => {
-            if (value == '') {
-                this.form.patchValue({
-                    documentTypeDescription: '',
-                    invoiceNo: 0,
-                    batch: ''
-                })
-            }
-        })
     }
 
     private updateDocumentType(id: number): void {

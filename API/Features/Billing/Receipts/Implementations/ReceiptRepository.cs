@@ -81,23 +81,6 @@ namespace API.Features.Billing.Receipts {
                 .SingleOrDefaultAsync();
         }
 
-        public async Task<Receipt> GetForViewerByIdAsync(string invoiceId) {
-            var x = await context.Receipts
-                .AsNoTracking()
-                .Include(x => x.Customer)
-                .Include(x => x.Customer).ThenInclude(x => x.Nationality)
-                .Include(x => x.Customer).ThenInclude(x => x.TaxOffice)
-                .Include(x => x.ShipOwner)
-                .Include(x => x.ShipOwner)
-                .Include(x => x.ShipOwner).ThenInclude(x => x.Nationality)
-                .Include(x => x.ShipOwner).ThenInclude(x => x.TaxOffice)
-                .Include(x => x.DocumentType)
-                .Include(x => x.PaymentMethod)
-                .Where(x => x.InvoiceId.ToString() == invoiceId)
-                .SingleOrDefaultAsync();
-            return x;
-        }
-
         public void UpdateIsEmailSent(Receipt invoice, string invoiceId) {
             using var transaction = context.Database.BeginTransaction();
             invoice.IsEmailSent = true;
