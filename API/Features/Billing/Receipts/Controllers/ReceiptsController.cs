@@ -111,25 +111,6 @@ namespace API.Features.Billing.Receipts {
             }
         }
 
-        [HttpDelete("{id}")]
-        [Authorize(Roles = "admin")]
-        public async Task<Response> Delete([FromRoute] string id) {
-            var x = await receiptRepo.GetByIdAsync(id, false);
-            if (x != null) {
-                receiptRepo.Delete(x);
-                return new Response {
-                    Code = 200,
-                    Icon = Icons.Success.ToString(),
-                    Id = x.InvoiceId.ToString(),
-                    Message = ApiMessages.OK()
-                };
-            } else {
-                throw new CustomException() {
-                    ResponseCode = 404
-                };
-            }
-        }
-
         [HttpGet("buildReceiptPdf/{invoiceId}")]
         [Authorize(Roles = "admin")]
         public async Task<ResponseWithBody> BuildPdf(string invoiceId) {

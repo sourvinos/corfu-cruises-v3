@@ -118,21 +118,6 @@ export class ReceiptFormComponent {
         })
     }
 
-    public onDelete(): void {
-        this.dialogService.open(this.messageDialogService.confirmDelete(), 'question', ['abort', 'ok']).subscribe(response => {
-            if (response) {
-                this.receiptHttpService.delete(this.form.value.invoiceId).subscribe({
-                    complete: () => {
-                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
-                    },
-                    error: (errorFromInterceptor) => {
-                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                    }
-                })
-            }
-        })
-    }
-
     public onSave(): void {
         this.saveRecord(this.flattenForm())
     }

@@ -492,10 +492,6 @@
 
     <div id="footer">
         <div id="align-right">
-            <button *ngIf="form.value.invoiceId != ''" (click)="onDelete()" [disabled]="isSubmitted()" class="delete" mat-flat-button>
-                <mat-icon *ngIf="isSubmitted()" class="material-icons-outlined">lock</mat-icon>
-                <span>{{ getLabel('deleteButton') | uppercase }}</span>
-            </button>
             <button (click)="onSave()" [disabled]="!form.valid || form.value.invoiceId != '' || onComparePriceTotals() == false" class="primary" mat-flat-button>
                 <mat-icon *ngIf="!form.valid || form.value.invoiceId != '' || onComparePriceTotals() == false" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("saveButton") | uppercase }}</span>
