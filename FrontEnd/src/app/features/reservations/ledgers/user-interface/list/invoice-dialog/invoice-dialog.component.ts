@@ -62,7 +62,6 @@ export class InvoiceDialogComponent {
         this.initForm()
         this.populateDropdowns()
         this.populateFields()
-        this.updateFieldsAfterShipSelection(this.form.value.ship)
     }
 
     ngAfterViewInit(): void {
@@ -234,10 +233,12 @@ export class InvoiceDialogComponent {
         this.documentTypeHttpService.getSingle(value.id).subscribe({
             next: (response) => {
                 const x: DocumentTypeReadDto = response.body
-                this.form.patchValue({
-                    documentTypeDescription: x.description,
-                    invoiceNo: x.lastNo += 1,
-                    batch: x.batch
+                this.getLastDocumentTypeNo(value.id).subscribe(response => {
+                    this.form.patchValue({
+                        documentTypeDescription: x.description,
+                        invoiceNo: response.body + 1,
+                        batch: x.batch
+                    })
                 })
             },
             error: (errorFromInterceptor) => {
@@ -252,6 +253,10 @@ export class InvoiceDialogComponent {
 
     private flattenForm(): InvoiceWriteDto {
         return this.invoiceHelperService.flattenForm(this.form.value)
+    }
+
+    private getLastDocumentTypeNo(id: number): Observable<any> {
+        return this.documentTypeHttpService.getLastDocumentTypeNo(id)
     }
 
     private patchFormWithCalculations(calculationsA: any, calculationsB: any, calculationTotals: any): void {
@@ -415,7 +420,6 @@ export class InvoiceDialogComponent {
                 this.form.patchValue({
                     invoiceId: response.id
                 })
-                // this.updateDocumentType(invoice.documentTypeId)
                 this.onSubmitTasks()
             },
             error: (errorFromInterceptor) => {
@@ -433,22 +437,9 @@ export class InvoiceDialogComponent {
             destination: {
                 id: this.data[0].destination.id,
                 description: this.data[0].destination.description
-            },
-            ship: {
-                id: this.data[0].ship.id,
-                description: this.data[0].ship.description
             }
         })
     }
-
-    // private updateDocumentType(id: number): void {
-    //     this.documentTypeHttpService.updateLastNo(id).subscribe({
-    //         next: () => { },
-    //         error: (errorFromInterceptor) => {
-    //             this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-    //         }
-    //     })
-    // }
 
     private updateVatPercentAfterShipSelection(value: any): void {
         this.form.patchValue({
@@ -470,10 +461,6 @@ export class InvoiceDialogComponent {
 
     get documentType(): AbstractControl {
         return this.form.get('documentType')
-    }
-
-    get lastNo(): AbstractControl {
-        return this.form.get('lastNo')
     }
 
     get paymentMethod(): AbstractControl {

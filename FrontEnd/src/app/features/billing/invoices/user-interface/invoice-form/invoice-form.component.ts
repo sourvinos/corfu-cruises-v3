@@ -80,7 +80,7 @@ export class InvoiceFormComponent {
         this.getRecord()
         this.populateFields()
         this.populateDropdowns()
-        this.onDoCalculations()
+        this.onDoPortCalculations()
     }
 
     ngAfterViewInit(): void {
@@ -105,14 +105,14 @@ export class InvoiceFormComponent {
         return x == z || z == 0
     }
 
-    public onDoCalculations(): void {
+    public onDoPortCalculations(): void {
         this.patchFormWithCalculations(
             this.invoiceHelperService.calculatePortA(this.form.value),
             this.invoiceHelperService.calculatePortB(this.form.value),
             this.invoiceHelperService.calculatePortTotals(this.form.value))
     }
 
-    public onDoInvoiceCalculations(): void {
+    public onDoSummaryCalculations(): void {
         const grossAmount = parseFloat(this.form.value.grossAmount)
         const vatPercent = parseFloat(this.form.value.vatPercent) / 100
         const netAmount = grossAmount / (1 + vatPercent)
@@ -122,6 +122,10 @@ export class InvoiceFormComponent {
             vatAmount: vatAmount.toFixed(2),
             grossAmount: grossAmount.toFixed(2)
         })
+    }
+
+    public onDoSubmitTasks(): void {
+        this.doSubmitTasks()
     }
 
     public enableOrDisableAutoComplete(event: any): void {
@@ -210,26 +214,6 @@ export class InvoiceFormComponent {
         })
     }
 
-    public onDoSubmitTasks(): void {
-        this.invoiceXmlHttpService.get(this.form.value.invoiceId).subscribe(response => {
-            this.invoiceXmlHttpService.uploadInvoice(response.body).subscribe({
-                next: (response) => {
-                    this.invoiceHttpService.updateInvoiceAade(this.invoiceXmlHelperService.processInvoiceSuccessResponse(response)).subscribe({
-                        next: () => {
-                            this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
-                        },
-                        error: (errorFromInterceptor) => {
-                            this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                        }
-                    })
-                },
-                error: (errorFromInterceptor) => {
-                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                }
-            })
-        })
-    }
-
     public updateFieldsAfterDocumentTypeSelection(value: DocumentTypeAutoCompleteVM): void {
         this.documentTypeHttpService.getSingle(value.id).subscribe({
             next: (response) => {
@@ -302,6 +286,26 @@ export class InvoiceFormComponent {
     //#endregion
 
     //#region private methods
+
+    private doSubmitTasks(): void {
+        this.invoiceXmlHttpService.get(this.form.value.invoiceId).subscribe(response => {
+            this.invoiceXmlHttpService.uploadInvoice(response.body).subscribe({
+                next: (response) => {
+                    this.invoiceHttpService.updateInvoiceAade(this.invoiceXmlHelperService.processInvoiceSuccessResponse(response)).subscribe({
+                        next: () => {
+                            this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                        },
+                        error: (errorFromInterceptor) => {
+                            this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                        }
+                    })
+                },
+                error: (errorFromInterceptor) => {
+                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                }
+            })
+        })
+    }
 
     private flattenForm(): InvoiceWriteDto {
         return this.invoiceHelperService.flattenForm(this.form.value)
@@ -577,8 +581,7 @@ export class InvoiceFormComponent {
                 this.form.patchValue({
                     invoiceId: response.id
                 })
-                this.updateDocumentType(invoice.documentTypeId)
-                this.onDoSubmitTasks()
+                this.doSubmitTasks()
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
