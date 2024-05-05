@@ -67,6 +67,10 @@
                 "message": "Neue Reservierungen mit Überweisung, während wir geschlossen sind, sind nicht zulässig. Bitte wenden Sie sich an einen Administrator."
             },
             {
+                "error": 467,
+                "message": "Εντοπίστηκαν κενά στις εγγραφές των παραστατικών."
+            },
+            {
                 "error": 491,
                 "message": "Dieser Eintrag ist in Gebrauch und kann nicht gelöscht werden."
             },

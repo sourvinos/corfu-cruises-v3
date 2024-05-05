@@ -415,7 +415,7 @@ export class InvoiceDialogComponent {
                 this.form.patchValue({
                     invoiceId: response.id
                 })
-                this.updateDocumentType(invoice.documentTypeId)
+                // this.updateDocumentType(invoice.documentTypeId)
                 this.onSubmitTasks()
             },
             error: (errorFromInterceptor) => {
@@ -441,14 +441,14 @@ export class InvoiceDialogComponent {
         })
     }
 
-    private updateDocumentType(id: number): void {
-        this.documentTypeHttpService.updateLastNo(id).subscribe({
-            next: () => { },
-            error: (errorFromInterceptor) => {
-                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-            }
-        })
-    }
+    // private updateDocumentType(id: number): void {
+    //     this.documentTypeHttpService.updateLastNo(id).subscribe({
+    //         next: () => { },
+    //         error: (errorFromInterceptor) => {
+    //             this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+    //         }
+    //     })
+    // }
 
     private updateVatPercentAfterShipSelection(value: any): void {
         this.form.patchValue({

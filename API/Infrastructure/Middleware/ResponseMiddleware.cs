@@ -104,6 +104,8 @@ namespace API.Infrastructure.Middleware {
                 461 => ApiMessages.PriceFieldsMustBeZeroOrGreater(),
                 462 => ApiMessages.InvalidDatePeriod(),
                 465 => ApiMessages.InvalidDocumentType(),
+                466 => ApiMessages.TransactionCompositeIndexIsInvalid(),
+                467 => ApiMessages.TransactionCountMismatch(),
                 453 => ApiMessages.InvalidDriver(),
                 454 => ApiMessages.InvalidShip(),
                 455 => ApiMessages.InvalidPassengerCount(),

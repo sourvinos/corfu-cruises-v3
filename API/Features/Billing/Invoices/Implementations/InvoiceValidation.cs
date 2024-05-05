@@ -2,37 +2,25 @@ using System;
 using System.Threading.Tasks;
 using API.Infrastructure.Users;
 using API.Infrastructure.Classes;
-using API.Infrastructure.Extensions;
 using API.Infrastructure.Implementations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using API.Infrastructure.Helpers;
+using System.Linq;
 
 namespace API.Features.Billing.Invoices {
 
     public class InvoiceValidation : Repository<Invoice>, IInvoiceValidation {
 
-        private readonly IHttpContextAccessor httpContext;
-        private readonly UserManager<UserExtended> userManager;
-
-        public InvoiceValidation(AppDbContext context, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> testingEnvironment, UserManager<UserExtended> userManager) : base(context, httpContext, testingEnvironment, userManager) {
-            this.httpContext = httpContext;
-            this.userManager = userManager;
-        }
-
-        public bool IsUserOwner(int customerId) {
-            return Identity.GetConnectedUserDetails(userManager, Identity.GetConnectedUserId(httpContext)).CustomerId == customerId;
-        }
-
-        private static bool IsAlreadyUpdated(Invoice z, InvoiceWriteDto invoice) {
-            return z != null && z.PutAt != invoice.PutAt;
-        }
+        public InvoiceValidation(AppDbContext context, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> testingEnvironment, UserManager<UserExtended> userManager) : base(context, httpContext, testingEnvironment, userManager) { }
 
         public async Task<int> IsValidAsync(Invoice z, InvoiceWriteDto invoice) {
             return true switch {
                 var x when x == !IsValidIssueDate(invoice) => 405,
+                var x when x == !await IsCompositeKeyValidAsync(invoice) => 466,
+                var x when x == !await IsInvoiceCountEqualToLastInvoiceNo(invoice) => 467,
                 var x when x == !await IsValidCustomer(invoice) => 450,
                 var x when x == !await IsValidDestination(invoice) => 451,
                 var x when x == !await IsValidShip(invoice) => 454,
@@ -42,7 +30,35 @@ namespace API.Features.Billing.Invoices {
         }
 
         private static bool IsValidIssueDate(InvoiceWriteDto invoice) {
-            return DateHelpers.DateToISOString(invoice.Date) == DateHelpers.DateToISOString(DateHelpers.GetLocalDateTime());
+            return invoice.InvoiceId != Guid.Empty || DateHelpers.DateToISOString(invoice.Date) == DateHelpers.DateToISOString(DateHelpers.GetLocalDateTime());
+        }
+
+        private async Task<bool> IsCompositeKeyValidAsync(InvoiceWriteDto invoice) {
+            if (invoice.InvoiceId == Guid.Empty) {
+                var x = await context.Transactions
+                    .AsNoTracking()
+                    .Where(x => invoice.Date.Year == DateHelpers.GetLocalDateTime().Year && x.DocumentTypeId == invoice.DocumentTypeId && x.InvoiceNo == invoice.InvoiceNo)
+                    .SingleOrDefaultAsync();
+                return x == null;
+            } else {
+                return true;
+            }
+        }
+
+        private async Task<bool> IsInvoiceCountEqualToLastInvoiceNo(InvoiceWriteDto invoice) {
+            if (invoice.InvoiceId == Guid.Empty) {
+                var x = await context.Transactions
+                    .AsNoTracking()
+                    .Where(x => invoice.Date.Year == DateHelpers.GetLocalDateTime().Year && x.DocumentTypeId == invoice.DocumentTypeId)
+                    .ToListAsync();
+                return x.Count == invoice.InvoiceNo - 1;
+            } else {
+                return true;
+            }
+        }
+
+        private static bool IsAlreadyUpdated(Invoice z, InvoiceWriteDto invoice) {
+            return z != null && z.PutAt != invoice.PutAt;
         }
 
         private async Task<bool> IsValidCustomer(InvoiceWriteDto invoice) {

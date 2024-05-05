@@ -59,6 +59,8 @@ namespace API.Infrastructure.Helpers {
         public static string AadeError() { return "Aade update was not completed"; }
         public static string CheckInAfterDepartureIsNotAllowed() { return "Check-in after departure is not allowed"; }
         public static string CustomerDataIsInvalid() { return "Customer data is invalid"; }
+        public static string TransactionCompositeIndexIsInvalid() { return "Duplicate transactions are not allowed"; }
+        public static string TransactionCountMismatch() { return "Transaction count doesn't match invoice number"; }
 
         #endregion
 

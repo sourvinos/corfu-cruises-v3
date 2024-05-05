@@ -234,10 +234,12 @@ export class InvoiceFormComponent {
         this.documentTypeHttpService.getSingle(value.id).subscribe({
             next: (response) => {
                 const x: DocumentTypeReadDto = response.body
-                this.form.patchValue({
-                    documentTypeDescription: x.description,
-                    invoiceNo: x.lastNo += 1,
-                    batch: x.batch
+                this.getLastDocumentTypeNo(value.id).subscribe(response => {
+                    this.form.patchValue({
+                        documentTypeDescription: x.description,
+                        invoiceNo: response.body + 1,
+                        batch: x.batch
+                    })
                 })
             },
             error: (errorFromInterceptor) => {
@@ -418,6 +420,10 @@ export class InvoiceFormComponent {
             putAt: [''],
             putUser: [''],
         })
+    }
+
+    private getLastDocumentTypeNo(id: number): Observable<any> {
+        return this.documentTypeHttpService.getLastDocumentTypeNo(id)
     }
 
     private isCustomerDataValid(): Promise<any> {
@@ -633,7 +639,7 @@ export class InvoiceFormComponent {
     }
 
     private updateDocumentType(id: number): void {
-        this.documentTypeHttpService.updateLastNo(id).subscribe({
+        this.documentTypeHttpService.getLastDocumentTypeNo(id).subscribe({
             next: () => { },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])

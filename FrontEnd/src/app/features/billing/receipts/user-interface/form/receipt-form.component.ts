@@ -288,7 +288,7 @@ export class ReceiptFormComponent {
                 this.form.patchValue({
                     invoiceId: response.id
                 })
-                this.updateApiDocumentType(receipt.documentTypeId)
+                // this.updateApiDocumentType(receipt.documentTypeId)
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
             error: (errorFromInterceptor) => {
@@ -311,18 +311,18 @@ export class ReceiptFormComponent {
         }
     }
 
-    private updateApiDocumentType(id: number): void {
-        if (this.recordId == undefined) {
-            this.documentTypeHttpService.updateLastNo(id).subscribe({
-                next: (response) => {
-                    this.receiptHelperService.updateBrowserStorageAfterApiUpdate(response.body)
-                },
-                error: (errorFromInterceptor) => {
-                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                }
-            })
-        }
-    }
+    // private updateApiDocumentType(id: number): void {
+    //     if (this.recordId == undefined) {
+    //         this.documentTypeHttpService.updateLastNo(id).subscribe({
+    //             next: (response) => {
+    //                 this.receiptHelperService.updateBrowserStorageAfterApiUpdate(response.body)
+    //             },
+    //             error: (errorFromInterceptor) => {
+    //                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+    //             }
+    //         })
+    //     }
+    // }
 
     //#endregion
 

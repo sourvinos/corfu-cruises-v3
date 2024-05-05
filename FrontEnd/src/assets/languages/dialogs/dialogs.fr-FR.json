@@ -67,6 +67,10 @@
                 "message": "Les nouvelles réservations avec transfert pendant notre fermeture ne sont pas autorisées. Veuillez contacter un administrateur."
             },
             {
+                "error": 467,
+                "message": "Εντοπίστηκαν κενά στις εγγραφές των παραστατικών."
+            },
+            {
                 "error": 491,
                 "message": "Cet enregistrement est en cours d'utilisation et ne peut pas être supprimé."
             },

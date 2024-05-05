@@ -21,8 +21,8 @@ export class DocumentTypeHttpService extends HttpDataService {
         return this.http.get<DocumentTypeAutoCompleteVM[]>(environment.apiUrl + '/documentTypes/getForBrowser' + x)
     }
 
-    public updateLastNo(id: number): Observable<any> {
-        return this.http.request('put', this.url + '/updateLastNo/' + id)
+    public getLastDocumentTypeNo(id: number): Observable<any> {
+        return this.http.request('get', this.url + '/getLastDocumentTypeNo/' + id)
     }
 
     //#endregion

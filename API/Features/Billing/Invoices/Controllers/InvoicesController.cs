@@ -72,6 +72,7 @@ namespace API.Features.Billing.Invoices {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public async Task<Response> PostAsync([FromBody] InvoiceCreateDto invoice) {
+            invoice.InvoiceNo = await invoiceUpdateRepo.IncreaseInvoiceNoAsync(invoice);
             var x = invoiceValidation.IsValidAsync(null, invoice);
             if (await x == 200) {
                 invoice.ShipOwnerId = await invoiceUpdateRepo.AttachShipOwnerIdToInvoiceAsync(invoice);

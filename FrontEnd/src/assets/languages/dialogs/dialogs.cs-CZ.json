@@ -67,6 +67,10 @@
                 "message": "Nové rezervace s převodem v době, kdy máme zavřeno, nejsou povoleny. Kontaktujte prosím správce."
             },
             {
+                "error": 467,
+                "message": "Εντοπίστηκαν κενά στις εγγραφές των παραστατικών."
+            },
+            {
                 "error": 491,
                 "message": "Tento záznam je používán a nelze jej smazat."
             },

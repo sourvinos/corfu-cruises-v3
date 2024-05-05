@@ -67,6 +67,10 @@
                 "message": "New reservations with transfer while we are closed are not allowed. Please contact an administrator."
             },
             {
+                "error": 467,
+                "message": "Εντοπίστηκαν κενά στις εγγραφές των παραστατικών."
+            },
+            {
                 "error": 491,
                 "message": "This record is in use and can't be deleted."
             },

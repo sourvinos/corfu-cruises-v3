@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
+using API.Infrastructure.Helpers;
 
 namespace API.Features.Billing.Invoices {
 
@@ -61,6 +62,16 @@ namespace API.Features.Billing.Invoices {
             context.Entry(invoice).Property(x => x.IsCancelled).IsModified = true;
             context.SaveChanges();
             DisposeOrCommit(transaction);
+        }
+
+        public async Task<int> IncreaseInvoiceNoAsync(InvoiceCreateDto invoice) {
+            var lastInvoiceNo = await context.Transactions
+                .AsNoTracking()
+                .Where(x => invoice.Date.Year == DateHelpers.GetLocalDateTime().Year && x.DocumentTypeId == invoice.DocumentTypeId)
+                .OrderBy(x => x.InvoiceNo)
+                .Select(x => x.InvoiceNo)
+                .LastOrDefaultAsync();
+            return lastInvoiceNo += 1;
         }
 
         private void DisposeOrCommit(IDbContextTransaction transaction) {

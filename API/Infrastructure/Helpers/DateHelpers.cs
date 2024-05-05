@@ -30,8 +30,7 @@ namespace API.Infrastructure.Helpers {
         }
 
         public static DateTime GetLocalDateTime() {
-            var x = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, "E. Europe Standard Time");
-            return x;
+            return TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, "E. Europe Standard Time");
         }
 
         public static string GetTrimmedUnixTime() {
