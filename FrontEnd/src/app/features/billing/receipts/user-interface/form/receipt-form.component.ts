@@ -151,16 +151,32 @@ export class ReceiptFormComponent {
         this.documentTypeHttpService.getSingle(value.id).subscribe({
             next: (response) => {
                 const x: DocumentTypeReadDto = response.body
-                this.form.patchValue({
-                    documentTypeDescription: x.description,
-                    invoiceNo: x.lastNo += 1,
-                    batch: x.batch
+                this.getLastDocumentTypeNo(value.id).subscribe(response => {
+                    this.form.patchValue({
+                        documentTypeDescription: x.description,
+                        invoiceNo: response.body + 1,
+                        batch: x.batch
+                    })
                 })
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
             }
         })
+
+        // this.documentTypeHttpService.getSingle(value.id).subscribe({
+        //     next: (response) => {
+        //         const x: DocumentTypeReadDto = response.body
+        //         this.form.patchValue({
+        //             documentTypeDescription: x.description,
+        //             invoiceNo: x.lastNo += 1,
+        //             batch: x.batch
+        //         })
+        //     },
+        //     error: (errorFromInterceptor) => {
+        //         this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+        //     }
+        // })
     }
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
@@ -185,6 +201,10 @@ export class ReceiptFormComponent {
 
     private flattenForm(): ReceiptWriteDto {
         return this.receiptHelperService.flattenForm(this.form.value)
+    }
+
+    private getLastDocumentTypeNo(id: number): Observable<any> {
+        return this.documentTypeHttpService.getLastDocumentTypeNo(id)
     }
 
     private getRecord(): Promise<any> {
@@ -288,7 +308,6 @@ export class ReceiptFormComponent {
                 this.form.patchValue({
                     invoiceId: response.id
                 })
-                // this.updateApiDocumentType(receipt.documentTypeId)
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
             error: (errorFromInterceptor) => {

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
+using API.Infrastructure.Helpers;
+using System.Linq;
 
 namespace API.Features.Billing.Receipts {
 
@@ -16,12 +18,43 @@ namespace API.Features.Billing.Receipts {
 
         public async Task<int> IsValidAsync(Receipt z, ReceiptWriteDto receipt) {
             return true switch {
+                var x when x == !IsValidIssueDate(receipt) => 405,
+                var x when x == !await IsCompositeKeyValidAsync(receipt) => 466,
+                var x when x == !await IsInvoiceCountEqualToLastInvoiceNo(receipt) => 467,
                 var x when x == !await IsValidCustomer(receipt) => 450,
                 var x when x == !await IsValidDocumentType(receipt) => 465,
                 var x when x == !await IsValidShipOwner(receipt) => 449,
                 var x when x == IsAlreadyUpdated(z, receipt) => 415,
                 _ => 200,
             };
+        }
+
+        private static bool IsValidIssueDate(ReceiptWriteDto invoice) {
+            return invoice.InvoiceId != Guid.Empty || DateHelpers.DateToISOString(invoice.Date) == DateHelpers.DateToISOString(DateHelpers.GetLocalDateTime());
+        }
+
+        private async Task<bool> IsCompositeKeyValidAsync(ReceiptWriteDto receipt) {
+            if (receipt.InvoiceId == Guid.Empty) {
+                var x = await context.Transactions
+                    .AsNoTracking()
+                    .Where(x => receipt.Date.Year == DateHelpers.GetLocalDateTime().Year && x.DocumentTypeId == receipt.DocumentTypeId && x.InvoiceNo == receipt.InvoiceNo)
+                    .SingleOrDefaultAsync();
+                return x == null;
+            } else {
+                return true;
+            }
+        }
+
+        private async Task<bool> IsInvoiceCountEqualToLastInvoiceNo(ReceiptWriteDto receipt) {
+            if (receipt.InvoiceId == Guid.Empty) {
+                var x = await context.Transactions
+                    .AsNoTracking()
+                    .Where(x => receipt.Date.Year == DateHelpers.GetLocalDateTime().Year && x.DocumentTypeId == receipt.DocumentTypeId)
+                    .ToListAsync();
+                return x.Count == receipt.InvoiceNo - 1;
+            } else {
+                return true;
+            }
         }
 
         private async Task<bool> IsValidCustomer(ReceiptWriteDto receipt) {

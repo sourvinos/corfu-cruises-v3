@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using System;
 using Microsoft.EntityFrameworkCore.Storage;
+using API.Infrastructure.Helpers;
 
 namespace API.Features.Billing.Receipts {
 
@@ -88,6 +89,16 @@ namespace API.Features.Billing.Receipts {
             context.Entry(invoice).Property(x => x.IsEmailSent).IsModified = true;
             context.SaveChanges();
             DisposeOrCommit(transaction);
+        }
+
+         public async Task<int> IncreaseInvoiceNoAsync(ReceiptWriteDto receipt) {
+            var lastInvoiceNo = await context.Transactions
+                .AsNoTracking()
+                .Where(x => receipt.Date.Year == DateHelpers.GetLocalDateTime().Year && x.DocumentTypeId == receipt.DocumentTypeId)
+                .OrderBy(x => x.InvoiceNo)
+                .Select(x => x.InvoiceNo)
+                .LastOrDefaultAsync();
+            return lastInvoiceNo += 1;
         }
 
         private void DisposeOrCommit(IDbContextTransaction transaction) {

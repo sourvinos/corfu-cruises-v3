@@ -10,6 +10,7 @@ namespace API.Features.Billing.Receipts {
         Task<IEnumerable<ReceiptListVM>> GetForPeriodAsync(ReceiptListCriteriaVM criteria);
         Task<Receipt> GetByIdAsync(string transactionId, bool includeTables);
         Task<Receipt> GetByIdForPdfAsync(string invoiceId);
+        Task<int> IncreaseInvoiceNoAsync(ReceiptWriteDto invoice);
         void UpdateIsEmailSent(Receipt invoice, string invoiceId);
     
     }

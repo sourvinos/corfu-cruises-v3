@@ -66,6 +66,7 @@ namespace API.Features.Billing.Receipts {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public async Task<Response> PostAsync([FromBody] ReceiptWriteDto receipt) {
+            receipt.InvoiceNo = await receiptRepo.IncreaseInvoiceNoAsync(receipt);
             var x = receiptValidation.IsValidAsync(null, receipt);
             if (await x == 200) {
                 receipt = receiptCalculateBalanceRepo.AttachBalancesToCreateDto(receipt, receiptCalculateBalanceRepo.CalculateBalances(receipt, receipt.CustomerId, receipt.ShipOwnerId));
