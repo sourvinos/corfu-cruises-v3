@@ -15,6 +15,13 @@ namespace API.Infrastructure.Helpers {
             return fullpathname;
         }
 
+        public static string CreateResponseFullPathName(string subdirectory) {
+            var filename = "aadeCustomer.xml";
+            var fullpathname = Path.Combine("Reports" + Path.DirectorySeparatorChar + subdirectory, filename);
+            return fullpathname;
+        }
+
+
     }
 
 }

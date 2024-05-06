@@ -45,6 +45,7 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<ICoachRouteRepository, CoachRouteRepository>();
             services.AddTransient<ICoachRouteValidation, CoachRouteValidation>();
             services.AddTransient<ICrewSpecialtyRepository, CrewSpecialtyRepository>();
+            services.AddTransient<ICustomerAadeRepository, CustomerAadeRepository>();
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<ICustomerValidation, CustomerValidation>();
             services.AddTransient<IDestinationRepository, DestinationRepository>();
