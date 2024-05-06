@@ -35,6 +35,7 @@ export class ReservationSearchComponent {
         })
         dialogRef.afterClosed().subscribe(result => {
             if (result !== undefined) {
+                this.sessionStorageService.saveItem('isSearchByRefNo', 'true')
                 this.router.navigate(['reservations/refNo', result.refNo])
             }
         })

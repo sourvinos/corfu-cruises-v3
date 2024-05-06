@@ -214,6 +214,15 @@ export class ReservationListComponent {
         return this.dateHelperService.formatISODateToLocale(date, showWeekday, showYear)
     }
 
+    public getDateFromStorage(): string {
+        const date = this.sessionStorageService.getItem('date')
+        if (date != '') {
+            return date
+        } else {
+            return this.dateHelperService.formatDateToIso(new Date())
+        }
+    }
+
     public getEmoji(emoji: string): string {
         return this.emojiService.getEmoji(emoji)
     }
@@ -234,7 +243,12 @@ export class ReservationListComponent {
         return this.records.length == 0
     }
 
+    public isSearchByRefNo(): boolean {
+        return this.sessionStorageService.getItem('isSearchByRefNo') ? true : false
+    }
+
     public newRecord(): void {
+        this.sessionStorageService.deleteItems([{ 'item': 'isSearchByRefNo', 'when': 'always' }])
         this.router.navigate([this.parentUrl, 'new'])
     }
 

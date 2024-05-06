@@ -189,7 +189,8 @@ export class AvailabilityComponent {
             { 'item': 'reservationList-id', 'when': 'always' },
             { 'item': 'reservationList-scrollTop', 'when': 'always' },
             { 'item': 'date', 'when': 'always' },
-            { 'item': 'returnUrl', 'when': 'always' }
+            { 'item': 'returnUrl', 'when': 'always' },
+            { 'item': 'isSearchByRefNo', 'when': 'always' }
         ])
     }
 

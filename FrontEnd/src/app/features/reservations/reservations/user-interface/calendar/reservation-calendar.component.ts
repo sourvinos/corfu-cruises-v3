@@ -173,7 +173,8 @@ export class ReservationCalendarComponent {
             { 'item': 'reservationList-scrollTop', 'when': 'always' },
             { 'item': 'date', 'when': 'always' },
             { 'item': 'destination', 'when': 'always' },
-            { 'item': 'returnUrl', 'when': 'always' }
+            { 'item': 'returnUrl', 'when': 'always' },
+            { 'item': 'isSearchByRefNo', 'when': 'always' }
         ])
     }
 
