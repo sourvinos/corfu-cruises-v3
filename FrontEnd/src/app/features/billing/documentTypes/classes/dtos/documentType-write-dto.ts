@@ -9,8 +9,6 @@ export interface DocumentTypeWriteDto {
     abbreviation: string
     description: string
     batch: string
-    lastDate: string
-    lastNo: number
     customers: string
     suppliers: string
     discriminatorId: number

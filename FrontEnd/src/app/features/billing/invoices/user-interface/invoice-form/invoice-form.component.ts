@@ -661,10 +661,6 @@ export class InvoiceFormComponent {
         return this.form.get('documentType')
     }
 
-    get lastNo(): AbstractControl {
-        return this.form.get('lastNo')
-    }
-
     get paymentMethod(): AbstractControl {
         return this.form.get('paymentMethod')
     }

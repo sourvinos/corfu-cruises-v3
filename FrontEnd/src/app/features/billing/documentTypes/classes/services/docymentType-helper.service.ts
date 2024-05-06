@@ -17,11 +17,14 @@ export class DocumentTypeHelperService {
                 'id': vm.ship.id,
                 'description': vm.ship.description
             },
+            'shipOwner': {
+                'id': vm.shipOwner.id,
+                'description': vm.shipOwner.description
+            },
             'abbreviation': vm.abbreviation,
             'description': vm.description,
             'batch': vm.batch,
-            'isActive': vm.isActive,
-            'lastNo': vm.lastNo
+            'isActive': vm.isActive
         })
     }
 

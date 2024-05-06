@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { Observable, map, startWith } from 'rxjs'
 // Custom
-import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { DocumentTypeHelperService } from '../classes/services/docymentType-helper.service'
@@ -54,7 +53,7 @@ export class DocumentTypeFormComponent {
     //#endregion
 
 
-    constructor(private activatedRoute: ActivatedRoute, private documentTypeHelperService: DocumentTypeHelperService, private documentTypeHttpService: DocumentTypeHttpService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: DialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private documentTypeHelperService: DocumentTypeHelperService, private documentTypeHttpService: DocumentTypeHttpService, private dateAdapter: DateAdapter<any>, private dexieService: DexieService, private dialogService: DialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -92,10 +91,6 @@ export class DocumentTypeFormComponent {
         return this.emojiService.getEmoji(isActive ? 'active' : 'notActive')
     }
 
-    public getLastDate(): string {
-        return this.form.value.lastDate
-    }
-
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
     }
@@ -128,12 +123,6 @@ export class DocumentTypeFormComponent {
         this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
     }
 
-    public patchFormWithSelectedDate(event: any): void {
-        this.form.patchValue({
-            lastDate: event.value.date
-        })
-    }
-
     //#endregion
 
     //#region private methods
@@ -154,8 +143,6 @@ export class DocumentTypeFormComponent {
             abbreviation: this.form.value.abbreviation,
             description: this.form.value.description,
             batch: this.form.value.batch,
-            lastDate: this.dateHelperService.formatDateToIso(new Date(this.form.value.lastDate)),
-            lastNo: this.form.value.lastNo,
             customers: this.form.value.customers,
             suppliers: this.form.value.suppliers,
             discriminatorId: parseInt(this.form.value.discriminatorId),
@@ -205,8 +192,6 @@ export class DocumentTypeFormComponent {
             abbreviation: ['', [Validators.required, Validators.maxLength(5)]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
             batch: ['', [Validators.required, Validators.maxLength(5)]],
-            lastDate: ['', [Validators.required, Validators.maxLength(10)]],
-            lastNo: [0, [Validators.required, Validators.min(0), Validators.max(9999)]],
             customers: ['', [Validators.maxLength(1), ValidationService.shouldBeEmptyPlusOrMinus]],
             suppliers: ['', [Validators.maxLength(1), ValidationService.shouldBeEmptyPlusOrMinus]],
             discriminatorId: ['', [Validators.required]],
@@ -244,8 +229,6 @@ export class DocumentTypeFormComponent {
                 abbreviation: this.record.abbreviation,
                 description: this.record.description,
                 batch: this.record.batch,
-                lastDate: this.record.lastDate,
-                lastNo: this.record.lastNo,
                 customers: this.record.customers,
                 suppliers: this.record.suppliers,
                 discriminatorId: this.record.discriminatorId.toString(),
@@ -316,14 +299,6 @@ export class DocumentTypeFormComponent {
 
     get batch(): AbstractControl {
         return this.form.get('batch')
-    }
-
-    get lastDate(): AbstractControl {
-        return this.form.get('lastDate')
-    }
-
-    get lastNo(): AbstractControl {
-        return this.form.get('lastNo')
     }
 
     get customers(): AbstractControl {

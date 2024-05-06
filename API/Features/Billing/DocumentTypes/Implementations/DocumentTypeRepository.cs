@@ -70,19 +70,7 @@ namespace API.Features.Billing.DocumentTypes {
                 .LastOrDefaultAsync();
             return lastInvoiceNo;
         }
-
-        public void UpdateLastNo(int id) {
-            using var transaction = context.Database.BeginTransaction();
-            var record = context.DocumentTypes.SingleOrDefault(x => x.Id == id);
-            record.LastNo += 1;
-            context.SaveChanges();
-            if (testingEnvironment.IsTesting) {
-                transaction.Dispose();
-            } else {
-                transaction.Commit();
-            }
-        }
-
+ 
     }
 
 }

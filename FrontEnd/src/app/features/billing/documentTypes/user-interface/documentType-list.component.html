@@ -16,8 +16,6 @@
                         <th class="width-20" pSortableColumn="ship.description">{{ getLabel("headerShip") }}</th>
                         <th class="width-24" pSortableColumn="description">{{ getLabel("headerDescription") }}</th>
                         <th class="width-5" pSortableColumn="batch">{{ getLabel("headerBatch") }}</th>
-                        <th class="width-6" pSortableColumn="lastDate">{{ getLabel("headerLastDate") }}</th>
-                        <th class="width-5" pSortableColumn="lastNo">{{ getLabel("headerLastNo") }}</th>
                         <th class="width-5" pSortableColumn="table8_1">{{ getLabel("headerTable8_1") }}</th>
                         <th class="width-5" pSortableColumn="table8_8">{{ getLabel("headerTable8_8") }}</th>
                         <th class="width-5" pSortableColumn="table8_9">{{ getLabel("headerTable8_9") }}</th>
@@ -52,15 +50,6 @@
                         </th>
                         <th class=""><input (input)="table.filter($event.target.value, 'description', 'contains')" [value]="$any(table).filters['description']?.value" class="p-inputtext"></th>
                         <th class=""><input (input)="table.filter($event.target.value, 'batch', 'contains')" [value]="$any(table).filters['batch']?.value" class="center p-inputtext"></th>
-                        <th class="">
-                            <div class="date-picker-wrapper">
-                                <input (dateInput)="onFilterByDate($event)" [matDatepicker]="picker" [ngModel]="filterDate" class="center p-inputtext" readonly>
-                                <mat-datepicker-toggle [for]="picker" class="color-table-header" matSuffix></mat-datepicker-toggle>
-                                <mat-datepicker #picker></mat-datepicker>
-                                <span (click)="onClearDateFilter()" [ngClass]="hasDateFilter()" class="date-clear-icon pi pi-filter-slash"></span>
-                            </div>
-                        </th>
-                        <th class=""><input (input)="table.filter($event.target.value, 'lastNo', 'contains')" [value]="$any(table).filters['lastNo']?.value" class="center p-inputtext"></th>
                         <th class=""><input (input)="table.filter($event.target.value, 'table8_1', 'contains')" [value]="$any(table).filters['table8_1']?.value" class="center p-inputtext"></th>
                         <th class=""><input (input)="table.filter($event.target.value, 'table8_8', 'contains')" [value]="$any(table).filters['table8_8']?.value" class="center p-inputtext"></th>
                         <th class=""><input (input)="table.filter($event.target.value, 'table8_9', 'contains')" [value]="$any(table).filters['table8_9']?.value" class="center p-inputtext"></th>
@@ -76,8 +65,6 @@
                         </td>
                         <td class=""><span>{{ record.description }}</span></td>
                         <td class=""><span class="center">{{ record.batch }}</span></td>
-                        <td class=""><span class="center">{{ record.formattedLastDate }}</span></td>
-                        <td class=""><span class="center">{{ record.lastNo }}</span></td>
                         <td class=""><span class="center">{{ record.table8_1 }}</span></td>
                         <td class=""><span class="center">{{ record.table8_8 }}</span></td>
                         <td class=""><span class="center">{{ record.table8_9 }}</span></td>

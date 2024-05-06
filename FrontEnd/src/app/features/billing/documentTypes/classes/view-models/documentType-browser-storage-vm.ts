@@ -8,7 +8,6 @@ export interface DocumentTypeBrowserStorageVM {
     abbreviation: string
     description: string
     batch: string
-    lastNo: number
     isActive: boolean
 
 }

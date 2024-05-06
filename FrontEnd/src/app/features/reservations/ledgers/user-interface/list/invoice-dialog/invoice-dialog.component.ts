@@ -199,7 +199,7 @@ export class InvoiceDialogComponent {
                 vatAmount: vatAmount.toFixed(2),
                 grossAmount: grossAmount.toFixed(2)
             })
-        }, 1000)
+        }, 500)
     }
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {

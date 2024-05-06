@@ -149,19 +149,6 @@ export class ReceiptFormComponent {
             }
         })
 
-        // this.documentTypeHttpService.getSingle(value.id).subscribe({
-        //     next: (response) => {
-        //         const x: DocumentTypeReadDto = response.body
-        //         this.form.patchValue({
-        //             documentTypeDescription: x.description,
-        //             invoiceNo: x.lastNo += 1,
-        //             batch: x.batch
-        //         })
-        //     },
-        //     error: (errorFromInterceptor) => {
-        //         this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-        //     }
-        // })
     }
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
@@ -315,19 +302,6 @@ export class ReceiptFormComponent {
         }
     }
 
-    // private updateApiDocumentType(id: number): void {
-    //     if (this.recordId == undefined) {
-    //         this.documentTypeHttpService.updateLastNo(id).subscribe({
-    //             next: (response) => {
-    //                 this.receiptHelperService.updateBrowserStorageAfterApiUpdate(response.body)
-    //             },
-    //             error: (errorFromInterceptor) => {
-    //                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-    //             }
-    //         })
-    //     }
-    // }
-
     //#endregion
 
     //#region getters
@@ -346,10 +320,6 @@ export class ReceiptFormComponent {
 
     get documentType(): AbstractControl {
         return this.form.get('documentType')
-    }
-
-    get lastNo(): AbstractControl {
-        return this.form.get('lastNo')
     }
 
     get paymentMethod(): AbstractControl {

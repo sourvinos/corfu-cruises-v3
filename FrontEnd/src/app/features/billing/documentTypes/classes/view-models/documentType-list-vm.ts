@@ -8,9 +8,6 @@ export interface DocumentTypeListVM {
     abbreviation: string
     description: string
     batch: string
-    lastDate: string
-    formattedLastDate: string
-    lastNo: number
     isActive: boolean
     customers: string
     suppliers: string

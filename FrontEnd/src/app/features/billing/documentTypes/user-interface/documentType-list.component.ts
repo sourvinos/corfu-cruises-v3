@@ -4,7 +4,6 @@ import { DateAdapter } from '@angular/material/core'
 import { MenuItem } from 'primeng/api'
 import { Table } from 'primeng/table'
 // Custom
-import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { DocumentTypeListVM } from '../classes/view-models/documentType-list-vm'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
@@ -12,7 +11,6 @@ import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { ListResolved } from '../../../../shared/classes/list-resolved'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
-import { MatDatepickerInputEvent } from '@angular/material/datepicker'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
@@ -61,7 +59,7 @@ export class DocumentTypeListComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -69,7 +67,6 @@ export class DocumentTypeListComponent {
         this.loadRecords().then(() => {
             this.populateDropdownFilters()
             this.filterTableFromStoredFilters()
-            this.formatDatesToLocale()
             this.subscribeToInteractionService()
             this.setTabTitle()
             this.setLocale()
@@ -146,17 +143,9 @@ export class DocumentTypeListComponent {
                 this.filterColumn(filters.ship, 'ship', 'contains')
                 this.filterColumn(filters.description, 'description', 'contains')
                 this.filterColumn(filters.batch, 'batch', 'contains')
-                this.filterColumn(filters.lastDate, 'lastDate', 'equals')
-                this.filterColumn(filters.lastNo, 'lastNo', 'equals')
                 this.filterColumn(filters.table8_1, 'table8_1', 'contains')
                 this.filterColumn(filters.table8_8, 'table8_8', 'contains')
                 this.filterColumn(filters.table8_9, 'table8_9', 'contains')
-                if (filters.lastDate != undefined) {
-                    if (filters.lastDate.value != null) {
-                        const date = new Date(Date.parse(filters.lastDate.value))
-                        this.filterDate = this.dateAdapter.createDate(date.getFullYear(), date.getMonth(), parseInt(date.getDate().toLocaleString()))
-                    }
-                }
             }, 500)
         }
     }
@@ -227,29 +216,6 @@ export class DocumentTypeListComponent {
     //#endregion
 
     //#region specific methods
-
-    public onClearDateFilter(): void {
-        this.table.filter('', 'lastDate', 'equals')
-        this.filterDate = ''
-        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
-    }
-
-    public onFilterByDate(event: MatDatepickerInputEvent<Date>): void {
-        const date = this.dateHelperService.formatDateToIso(new Date(event.value), false)
-        this.table.filter(date, 'lastDate', 'equals')
-        this.filterDate = date
-        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
-    }
-
-    public hasDateFilter(): string {
-        return this.filterDate == '' ? 'hidden' : ''
-    }
-
-    private formatDatesToLocale(): void {
-        this.records.forEach(record => {
-            record.formattedLastDate = this.dateHelperService.formatISODateToLocale(record.lastDate)
-        })
-    }
 
     private populateDropdownFilters(): void {
         this.distinctShips = this.helperService.getDistinctRecords(this.records, 'ship', 'description')

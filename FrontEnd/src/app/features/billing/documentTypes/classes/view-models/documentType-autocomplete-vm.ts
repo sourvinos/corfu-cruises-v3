@@ -7,6 +7,5 @@ export interface DocumentTypeAutoCompleteVM {
     description: string
     ship: SimpleEntity
     batch: string
-    lastNo: number
 
 }

@@ -2716,14 +2716,6 @@
                 "description": "Σειρά"
             },
             {
-                "id": "headerLastDate",
-                "description": "Ημερομηνία"
-            },
-            {
-                "id": "headerLastNo",
-                "description": "Νο"
-            },
-            {
                 "id": "headerTable8_1",
                 "description": "Πίνακας 8.1"
             },
@@ -2775,14 +2767,6 @@
             {
                 "id": "batch",
                 "description": "Σειρά"
-            },
-            {
-                "id": "lastDate",
-                "description": "Τελευταία ημερομηνία"
-            },
-            {
-                "id": "lastNo",
-                "description": "Τελευταίο Νο"
             },
             {
                 "id": "customers",

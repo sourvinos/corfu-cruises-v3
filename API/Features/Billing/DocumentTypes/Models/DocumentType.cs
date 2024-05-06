@@ -1,5 +1,4 @@
-﻿using System;
-using API.Features.Reservations.ShipOwners;
+﻿using API.Features.Reservations.ShipOwners;
 using API.Features.Reservations.Ships;
 using API.Infrastructure.Interfaces;
 
@@ -16,8 +15,6 @@ namespace API.Features.Billing.DocumentTypes {
         public string Abbreviation { get; set; }
         public string Description { get; set; }
         public string Batch { get; set; }
-        public DateTime LastDate { get; set; }
-        public int LastNo { get; set; }
         public string Customers { get; set; }
         public string Suppliers { get; set; }
         public int DiscriminatorId { get; set; }
