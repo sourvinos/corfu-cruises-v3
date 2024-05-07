@@ -84,12 +84,8 @@ export class DexieService extends Dexie {
         return await this.table(table).get({ id: id })
     }
 
-    public getByKey(table: string, id: any): Promise<any> {
-        return new Promise((resolve) => {
-            this.table(table).get(id).then(response => {
-                resolve(response)
-            })
-        })
+    public async getByDescription(table: string, description: string): Promise<any> {
+        return await this.table(table).get({ description: description })
     }
 
     public update(table: string, item: any): void {
