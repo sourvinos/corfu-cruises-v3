@@ -2,6 +2,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 // Custom
+import { CustomerAadeHttpService } from '../classes/services/customer-aade-http.service'
 import { CustomerHttpService } from '../classes/services/customer-http.service'
 import { CustomerReadDto } from '../classes/dtos/customer-read-dto'
 import { CustomerWriteDto } from '../classes/dtos/customer-write-dto'
@@ -17,6 +18,7 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 import { Observable, map, startWith } from 'rxjs'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
+import { CustomerAadeRequestVM } from '../classes/view-models/customer-aade-vm'
 
 @Component({
     selector: 'customer-form',
@@ -48,7 +50,7 @@ export class CustomerFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private customerHttpService: CustomerHttpService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private customerAadeHttpService: CustomerAadeHttpService, private customerHttpService: CustomerHttpService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -117,6 +119,18 @@ export class CustomerFormComponent {
 
     public onSave(): void {
         this.saveRecord(this.flattenForm())
+    }
+
+    public onSearchAadeRegistry(): void {
+        if (this.isVatNumberGiven()) {
+            this.customerAadeHttpService.searchRegistry(this.buildCustomerAadeRequesrtVM()).subscribe(response => {
+                if (this.isCustomerFound(response)) {
+                    this.processAadeResponse(response)
+                } else {
+                    this.dialogService.open(this.messageDialogService.customerAadeDoesNotExist(), 'error', ['ok']).subscribe()
+                }
+            })
+        }
     }
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
@@ -282,6 +296,38 @@ export class CustomerFormComponent {
         this.activatedRoute.params.subscribe(x => {
             this.recordId = x.id
         })
+    }
+
+    private isVatNumberGiven(): boolean {
+        return true
+    }
+
+    private buildCustomerAadeRequesrtVM(): CustomerAadeRequestVM {
+        const x: CustomerAadeRequestVM = {
+            username: 'KEP997346439',
+            password: 'PKE997346439',
+            vatNumber: '099863549'
+        }
+        return x
+    }
+
+    public processAadeResponse(response: any): any {
+        const document = new DOMParser().parseFromString(response.message, 'text/xml')
+        this.form.patchValue({
+            'fullDescription': document.querySelector('onomasia').innerHTML,
+            'vatNumber': document.querySelector('afm').innerHTML,
+            'taxOffice.description': document.querySelector('doy_descr').innerHTML,
+            'profession': document.querySelector('firm_act_descr').innerHTML,
+            'street': document.querySelector('postal_address').innerHTML,
+            'number': document.querySelector('postal_address_no').innerHTML,
+            'postalCode': document.querySelector('postal_zip_code').innerHTML,
+            'city': document.querySelector('postal_area_description').innerHTML
+        })
+    }
+
+    public isCustomerFound(response: any): boolean {
+        const document = new DOMParser().parseFromString(response.message, 'text/xml')
+        return document.querySelector('afm').innerHTML ? true : false
     }
 
     //#endregion

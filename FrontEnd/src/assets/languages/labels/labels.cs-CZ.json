@@ -153,6 +153,10 @@
                 "description": "Poslední aktualizace"
             },
             {
+                "id": "searchAadeRegistry",
+                "description": "Αναζήτηση στοιχείων στο μητρώο επιχειρήσεων"
+            },
+            {
                 "id": "deleteButton",
                 "description": "Smazat"
             },

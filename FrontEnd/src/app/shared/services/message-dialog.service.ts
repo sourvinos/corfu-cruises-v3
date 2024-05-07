@@ -48,6 +48,7 @@ export class MessageDialogService {
     }
 
     public accountNotConfirmed(): string { return this.getDescription(this.feature, 'accountNotConfirmed') }
+    public customerAadeDoesNotExist(): string { return this.getDescription(this.feature, 'customerAadeDoesNotExist') }
     public authenticationFailed(): string { return this.getDescription(this.feature, 'authenticationFailed') }
     public maximumBalanceExceeded(): string { return this.getDescription(this.feature, 'maximumBalanceExceeded') }
     public emailSent(): string { return this.getDescription(this.feature, 'emailSent') }

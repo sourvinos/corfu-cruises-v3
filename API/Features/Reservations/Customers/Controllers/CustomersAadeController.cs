@@ -18,24 +18,16 @@ namespace API.Features.Reservations.Customers {
             this.repo = repo;
         }
 
-        [HttpGet]
+        [HttpPost("[action]")]
         [Authorize(Roles = "admin")]
-        public Response GetAsync() {
-            var x = repo.GetAsync();
-            if (x != null) {
-                return new Response {
-                    Code = 200,
-                    Icon = Icons.Info.ToString(),
-                    Id = null,
-                    Message = ApiMessages.OK()
-                };
-            } else {
-                throw new CustomException() {
-                    ResponseCode = 404
-                };
-            }
+        public ResponseWithBody SearchRegistry([FromBody] CustomerAadeVM vm) {
+            return new ResponseWithBody {
+                Code = 200,
+                Icon = Icons.Info.ToString(),
+                Body = vm.VatNumber,
+                Message = repo.GetResponse(vm)
+            };
         }
-
 
     }
 

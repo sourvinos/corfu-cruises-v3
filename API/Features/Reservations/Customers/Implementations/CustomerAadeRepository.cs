@@ -1,34 +1,26 @@
-using AutoMapper;
 using System.Xml;
 using System.Net;
 using System.IO;
-using API.Infrastructure.Helpers;
 
 namespace API.Features.Reservations.Customers {
 
     public class CustomerAadeRepository : ICustomerAadeRepository {
 
-        private readonly IMapper mapper;
-
         public CustomerAadeRepository() { }
 
-        public StreamWriter GetAsync() {
-            return SaveResponse(DoTasks());
-        }
-
-        private static string DoTasks() {
+        public string GetResponse(CustomerAadeVM vm) {
             const string url = "https://www1.gsis.gr/wsaade/RgWsPublic2/RgWsPublic2";
             const string action = "POST";
             XmlDocument soapEnvelopeXml = CreateSoapEnvelope();
-            soapEnvelopeXml = ReplaceFieldsWithVariables(soapEnvelopeXml);
+            soapEnvelopeXml = ReplaceFieldsWithVariables(soapEnvelopeXml, vm);
             HttpWebRequest webRequest = CreateWebRequest(url, action);
             InsertSoapEnvelopeIntoWebRequest(soapEnvelopeXml, webRequest);
-            string result;
-            using (WebResponse response = webRequest.GetResponse()) {
-                using StreamReader rd = new(response.GetResponseStream());
-                result = rd.ReadToEnd();
+            string response;
+            using (WebResponse x = webRequest.GetResponse()) {
+                using StreamReader rd = new(x.GetResponseStream());
+                response = rd.ReadToEnd();
             }
-            return result;
+            return response;
         }
 
         private static HttpWebRequest CreateWebRequest(string url, string action) {
@@ -69,20 +61,14 @@ namespace API.Features.Reservations.Customers {
             soapEnvelopeXml.Save(stream);
         }
 
-        private static XmlDocument ReplaceFieldsWithVariables(XmlDocument soapEnvelopeXml) {
+        private static XmlDocument ReplaceFieldsWithVariables(XmlDocument soapEnvelopeXml, CustomerAadeVM vm) {
             var x = soapEnvelopeXml.GetElementsByTagName("ns1:Username");
-            x[0].InnerText = "KEP997346439";
+            x[0].InnerText = vm.Username;
             var z = soapEnvelopeXml.GetElementsByTagName("ns1:Password");
-            z[0].InnerText = "PKE997346439";
+            z[0].InnerText = vm.Password;
             var i = soapEnvelopeXml.GetElementsByTagName("ns3:afm_called_for");
-            i[0].InnerText = "099863549";
+            i[0].InnerText = vm.VatNumber;
             return soapEnvelopeXml;
-        }
-
-        private static StreamWriter SaveResponse(string response) {
-            using StreamWriter outputFile = new(FileSystemHelpers.CreateResponseFullPathName("xmls"));
-            outputFile.Write(response);
-            return outputFile;
         }
 
     }

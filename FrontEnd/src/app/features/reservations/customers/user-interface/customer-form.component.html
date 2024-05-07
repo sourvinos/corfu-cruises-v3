@@ -10,7 +10,7 @@
             <mat-tab-group mat-stretch-tabs="false">
                 <mat-tab label="{{ getLabel('tab1') }}">
                     <div id="general-tab">
-                        <div class="group-input-field"> 
+                        <div class="group-input-field">
                             <!-- Description -->
                             <mat-form-field style="width: 30%;">
                                 <mat-label>{{ getLabel('description') }}</mat-label>
@@ -158,6 +158,12 @@
     </div>
 
     <div id="footer">
+        <button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" mat-icon-button>
+            <mat-icon class="material-icons-outlined">more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" class="primary">
+            <ng-container *ngTemplateOutlet="utilityMenu"></ng-container>
+        </mat-menu>
         <div id="align-right">
             <button (click)="onDelete()" *ngIf="form.value.id !== 0" class="delete" mat-flat-button>{{ getLabel("deleteButton") | uppercase }}</button>
             <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
@@ -186,3 +192,9 @@
         {{ option.description }}
     </mat-option>
 </mat-autocomplete>
+
+<ng-template #utilityMenu>
+    <button (click)="onSearchAadeRegistry()" mat-menu-item>
+        <span>{{ getLabel("searchAadeRegistry") }}</span>
+    </button>
+</ng-template>
