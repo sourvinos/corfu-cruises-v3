@@ -14,7 +14,7 @@ namespace API.Features.Reservations.ShipCrews {
             // Fields
             RuleFor(x => x.Lastname).NotEmpty().Matches("^[a-zA-Z]+([ a-zA-Z]+)?$").MaximumLength(128);
             RuleFor(x => x.Firstname).NotEmpty().Matches("^[a-zA-Z]+([ a-zA-Z]+)?$").MaximumLength(128);
-            RuleFor(x => x.Birthdate).Must(DateHelpers.BeCorrectFormat);
+            RuleFor(x => x.Birthdate).Must(DateHelpers.BeCorrectFormat).Must(DateHelpers.AgeMustBeMaxOneHundredYears);
         }
 
     }

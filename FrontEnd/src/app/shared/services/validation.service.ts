@@ -78,6 +78,15 @@ export class ValidationService {
         }
     }
 
+    static ageIsLessThanOneHundredYears(control: AbstractControl): any {
+        if (control.value) {
+            const today = new Date().getFullYear()
+            const given = new Date(control.value).getFullYear()
+            return today - given <= 100 ? null : { ageIsLessThanOneHundredYears: true }
+        }
+        return null
+    }
+
     static RequireAutocomplete(control: AbstractControl): any {
         const selection: any = control.value
         if (typeof selection === 'string') {

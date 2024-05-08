@@ -22,7 +22,7 @@ namespace API.Features.Reservations.Reservations {
                 passenger.RuleFor(x => x.NationalityId).NotEmpty();
                 passenger.RuleFor(x => x.Lastname).NotEmpty().Matches("^[a-zA-Z]+([ a-zA-Z]+)?$").MaximumLength(128);
                 passenger.RuleFor(x => x.Firstname).NotEmpty().Matches("^[a-zA-Z]+([ a-zA-Z]+)?$").MaximumLength(128);
-                passenger.RuleFor(x => x.Birthdate).Must(DateHelpers.BeCorrectFormat);
+                passenger.RuleFor(x => x.Birthdate).Must(DateHelpers.BeCorrectFormat).Must(DateHelpers.AgeMustBeMaxOneHundredYears);
                 passenger.RuleFor(x => x.Remarks).MaximumLength(128);
                 passenger.RuleFor(x => x.SpecialCare).MaximumLength(128);
             });

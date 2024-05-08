@@ -34,7 +34,7 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 
 export class ShipCrewFormComponent {
 
-    //#region common #8
+    //#region common
 
     private record: ShipCrewReadDto
     private recordId: number
@@ -47,7 +47,7 @@ export class ShipCrewFormComponent {
 
     //#endregion
 
-    //#region autocompletes #4
+    //#region autocompletes
 
     public isAutoCompleteDisabled = true
     public dropdownGenders: Observable<GenderAutoCompleteVM[]>
@@ -87,9 +87,9 @@ export class ShipCrewFormComponent {
         if (event.target.value == '') this.isAutoCompleteDisabled = true
     }
 
-    public convertFutureDateToPastDate(): void {
+    public convertFutureDateToPast(): void {
         this.form.patchValue({
-            birthdate: this.dateHelperService.gotoPreviousCenturyIfFutureDate(this.form.value.birthdate)
+            birthdate: this.dateHelperService.convertFutureDateToPast(this.form.value.birthdate)
         })
     }
 
@@ -101,10 +101,6 @@ export class ShipCrewFormComponent {
 
     public enableOrDisableAutoComplete(event: any): void {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
-    }
-
-    public getDate(): string {
-        return this.form.value.birthdate
     }
 
     public getHint(id: string, minmax = 0): string {
@@ -136,12 +132,6 @@ export class ShipCrewFormComponent {
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
         this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
-    }
-
-    public patchFormWithSelectedDate(event: any): void {
-        this.form.patchValue({
-            birthdate: this.dateHelperService.gotoPreviousCenturyIfFutureDate(event.value.date)
-        })
     }
 
     //#endregion
@@ -201,7 +191,7 @@ export class ShipCrewFormComponent {
             id: 0,
             lastname: ['', [Validators.required, ValidationService.shouldBeCapitalLetterOrSpace, Validators.maxLength(128)]],
             firstname: ['', [Validators.required, ValidationService.shouldBeCapitalLetterOrSpace, Validators.maxLength(128)]],
-            birthdate: ['', [Validators.required]],
+            birthdate: ['', [Validators.required, ValidationService.ageIsLessThanOneHundredYears]],
             ship: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             gender: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             nationality: ['', [Validators.required, ValidationService.RequireAutocomplete]],

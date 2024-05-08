@@ -84,7 +84,7 @@ export class PassengerFormComponent {
 
     public patchFormWithSelectedDate(event: any): void {
         this.form.patchValue({
-            birthdate: this.dateHelperService.gotoPreviousCenturyIfFutureDate(event.value.date)
+            birthdate: this.dateHelperService.convertFutureDateToPast(event.value.date)
         })
     }
 

@@ -104,15 +104,10 @@ export class DateHelperService {
      * @param date a moment.js object
      * @returns a moment.js object
      */
-    public gotoPreviousCenturyIfFutureDate(date: any): Date {
-        // const given = date
-        const today = new Date()
-        // const past = given
-        if (date > today) {
-            return date.add(-100, 'years')
-        } else {
-            return date
-        }
+    public convertFutureDateToPast(date: any): Date {
+        return new Date(date) > new Date()
+            ? date.add(-100, 'years')
+            : date
     }
 
     public isSelectedDateToday(date: string): boolean {

@@ -29,6 +29,10 @@ namespace API.Infrastructure.Helpers {
             return DateTime.TryParseExact(date, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out _);
         }
 
+        public static bool AgeMustBeMaxOneHundredYears(string date) {
+            return DateTime.Now.Year - StringToDate(date).Year <= 100;
+        }
+
         public static DateTime GetLocalDateTime() {
             return TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, "E. Europe Standard Time");
         }

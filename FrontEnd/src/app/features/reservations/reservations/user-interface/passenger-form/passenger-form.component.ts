@@ -28,7 +28,7 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 
 export class PassengerFormComponent {
 
-    //#region common #7
+    //#region common
 
     private record: PassengerReadDto
     public feature = 'passengerForm'
@@ -40,13 +40,7 @@ export class PassengerFormComponent {
 
     //#endregion
 
-    //#region specific #1
-
-    public minBirthDate = new Date(new Date().getFullYear() - 99, 0, 1)
-
-    //#endregion
-
-    //#region autocompletes #3
+    //#region autocompletes
 
     public isAutoCompleteDisabled = true
     public dropdownGenders: Observable<SimpleEntity[]>
@@ -80,6 +74,12 @@ export class PassengerFormComponent {
         if (event.target.value == '') this.isAutoCompleteDisabled = true
     }
 
+    public convertFutureDateToPast(): void {
+        this.form.patchValue({
+            birthdate: this.dateHelperService.convertFutureDateToPast(this.form.value.birthdate)
+        })
+    }
+
     public convertToUpperCase(fieldName: string): void {
         this.form.patchValue({
             [fieldName]: this.form.controls[fieldName].value.toUpperCase()
@@ -88,10 +88,6 @@ export class PassengerFormComponent {
 
     public enableOrDisableAutoComplete(event: any): void {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
-    }
-
-    public getDate(): string {
-        return this.form.value.birthdate
     }
 
     public getHint(id: string, minmax = 0): string {
@@ -117,12 +113,6 @@ export class PassengerFormComponent {
     public onSave(): void {
         this.storeNationality()
         this.closeDialog()
-    }
-
-    public patchFormWithSelectedDate(event: any): void {
-        this.form.patchValue({
-            birthdate: this.dateHelperService.gotoPreviousCenturyIfFutureDate(event.value.date)
-        })
     }
 
     public updateFieldsAfterNationalitySelection(value: NationalityVM): void {
@@ -159,19 +149,17 @@ export class PassengerFormComponent {
 
     private flattenForm(): any {
         return {
-            'id': this.form.value.id == 0
-                ? this.assignTempIdToNewPassenger()
-                : this.form.value.id,
-            'reservationId': this.form.value.reservationId,
-            'lastname': this.form.value.lastname,
-            'firstname': this.form.value.firstname,
-            'occupantId': 2,
-            'birthdate': this.dateHelperService.formatDateToIso(new Date(this.form.value.birthdate)),
-            'nationality': this.form.value.nationality,
-            'gender': this.form.value.gender,
-            'specialCare': this.form.value.specialCare,
-            'remarks': this.form.value.remarks,
-            'isBoarded': this.form.value.isBoarded
+            id: this.form.value.id == 0 ? this.assignTempIdToNewPassenger() : this.form.value.id,
+            reservationId: this.form.value.reservationId,
+            lastname: this.form.value.lastname,
+            firstname: this.form.value.firstname,
+            occupantId: 2,
+            birthdate: this.dateHelperService.formatDateToIso(new Date(this.form.value.birthdate)),
+            nationality: this.form.value.nationality,
+            gender: this.form.value.gender,
+            specialCare: this.form.value.specialCare,
+            remarks: this.form.value.remarks,
+            isBoarded: this.form.value.isBoarded
         }
     }
 
@@ -204,7 +192,7 @@ export class PassengerFormComponent {
             nationality: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             lastname: ['', [Validators.required, ValidationService.shouldBeCapitalLetterOrSpace, Validators.maxLength(128)]],
             firstname: ['', [Validators.required, ValidationService.shouldBeCapitalLetterOrSpace, Validators.maxLength(128)]],
-            birthdate: ['', [Validators.required]],
+            birthdate: ['', [Validators.required, ValidationService.ageIsLessThanOneHundredYears]],
             specialCare: ['', Validators.maxLength(128)],
             remarks: ['', Validators.maxLength(128)],
             isBoarded: [{ value: false, disabled: !this.isAdmin }],

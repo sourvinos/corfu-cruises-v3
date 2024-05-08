@@ -21,6 +21,8 @@ export class DatePickerComponent {
     @Input() parentDate: string
     @Input() readOnly: boolean
     @Input() showHint: boolean
+    @Input() min: Date
+    @Input() max: Date
     @Output() outputValue = new EventEmitter()
 
     public feature = 'date-picker'
@@ -45,7 +47,6 @@ export class DatePickerComponent {
         this.form.patchValue({
             date: this.dateHelperService.formatDateToIso(new Date())
         })
-        // this.emitFormValues()
     }
 
     public emitFormValues(): void {
