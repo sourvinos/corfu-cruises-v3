@@ -310,7 +310,7 @@ export class CustomerFormComponent {
         this.form.patchValue({
             'fullDescription': document.querySelector('onomasia').innerHTML,
             'vatNumber': document.querySelector('afm').innerHTML,
-            'taxOffice': await this.dexieService.getByDescription('taxOffices', 'ΚΕΡΚΥΡΑΣ'),
+            'taxOffice': await this.dexieService.getByDescription('taxOffices', document.querySelector('doy_descr').innerHTML),
             'profession': document.querySelector('firm_act_descr').innerHTML,
             'street': document.querySelector('postal_address').innerHTML,
             'number': document.querySelector('postal_address_no').innerHTML,
