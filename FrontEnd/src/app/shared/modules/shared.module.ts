@@ -9,7 +9,6 @@ import { AbsPipe } from '../pipes/abs.pipe'
 import { CriteriaFieldsetCheckboxesComponent } from '../components/criteria-fieldset-checkboxes/criteria-fieldset-checkboxes.component'
 import { CriteriaFieldsetRadiosComponent } from '../components/criteria-fieldset-radios/criteria-fieldset-radios.component'
 import { CriteriaFieldsetWeekdaysComponent } from '../components/criteria-fieldset-weekdays/criteria-fieldset-weekdays.component'
-import { DatePickerComponent } from '../components/date-picker/date-picker.component'
 import { DateRangePickerComponent } from '../components/date-range-picker/date-range-picker.component'
 import { DeleteRangeDialogComponent } from '../components/delete-range-dialog/delete-range-dialog.component'
 import { EmojiDirective } from '../directives/emoji.directive'
@@ -39,7 +38,6 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         CriteriaFieldsetCheckboxesComponent,
         CriteriaFieldsetRadiosComponent,
         CriteriaFieldsetWeekdaysComponent,
-        DatePickerComponent,
         DateRangePickerComponent,
         DeleteRangeDialogComponent,
         EmojiDirective,
@@ -77,7 +75,6 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         CriteriaFieldsetCheckboxesComponent,
         CriteriaFieldsetRadiosComponent,
         CriteriaFieldsetWeekdaysComponent,
-        DatePickerComponent,
         DateRangePickerComponent,
         DeleteRangeDialogComponent,
         EmojiDirective,

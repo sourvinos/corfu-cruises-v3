@@ -45,9 +45,21 @@
             </mat-form-field>
             <div class="group-input-field" formGroupName="datePeriod">
                 <!-- From -->
-                <date-picker (outputValue)="patchFormWithSelectedFrom($event)" [dataTabIndex]="4" [isAdminOrNewRecord]=true [label]="getLabel('from')" [parentDate]="getFrom()" [showHint]=false style="width: 50% !important;"></date-picker>
+                <mat-form-field>
+                    <mat-label>{{ getLabel('from') }}</mat-label>
+                    <input [inputTabStop]="input" [matDatepicker]="fromPicker" dataTabIndex="4" formControlName="from" matInput>
+                    <mat-datepicker-toggle matIconSuffix [for]="fromPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #fromPicker></mat-datepicker>
+                    <mat-error *ngIf="from.hasError('required')">{{ getHint("required") }}</mat-error>
+                </mat-form-field>
                 <!-- To -->
-                <date-picker (outputValue)="patchFormWithSelectedTo($event)" [dataTabIndex]="5" [isAdminOrNewRecord]=true [label]="getLabel('to')" [parentDate]="getTo()" [showHint]=false style="width: 50% !important;"></date-picker>
+                <mat-form-field>
+                    <mat-label>{{ getLabel('to') }}</mat-label>
+                    <input [inputTabStop]="input" [matDatepicker]="toPicker" dataTabIndex="5" formControlName="to" matInput>
+                    <mat-datepicker-toggle matIconSuffix [for]="toPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #toPicker></mat-datepicker>
+                    <mat-error *ngIf="to.hasError('required')">{{ getHint("required") }}</mat-error>
+                </mat-form-field>
             </div>
             <div class="group-input-field">
                 <!-- Adults with transfer -->

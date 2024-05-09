@@ -1,21 +1,23 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component } from '@angular/core'
+import { DateAdapter } from '@angular/material/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 import { Observable } from 'rxjs'
 import { map, startWith } from 'rxjs/operators'
 // Custom
-import { DateHelperService } from '../../../../../shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from '../../../../../shared/services/modal-dialog.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
+import { InteractionService } from 'src/app/shared/services/interaction.service'
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { PriceReadDto } from '../../classes/dtos/price-read-dto'
 import { PriceHttpService } from '../../classes/services/price-http.service'
+import { PriceReadDto } from '../../classes/dtos/price-read-dto'
 import { PriceWriteDto } from '../../classes/dtos/price-write-dto'
 import { SimpleEntity } from '../../../../../shared/classes/simple-entity'
 import { ValidationService } from '../../../../../shared/services/validation.service'
@@ -50,7 +52,7 @@ export class PriceFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceService: PriceHttpService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceService: PriceHttpService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -60,6 +62,8 @@ export class PriceFormComponent {
         this.getRecord()
         this.populateFields()
         this.populateDropdowns()
+        this.subscribeToInteractionService()
+        this.setLocale()
     }
 
     ngAfterViewInit(): void {
@@ -89,10 +93,6 @@ export class PriceFormComponent {
         })
     }
 
-    public getFrom(): string {
-        return this.form.value.datePeriod.from
-    }
-
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
     }
@@ -103,10 +103,6 @@ export class PriceFormComponent {
 
     public getRemarksLength(): any {
         return this.form.value.remarks != null ? this.form.value.remarks.length : 0
-    }
-
-    public getTo(): string {
-        return this.form.value.datePeriod.to
     }
 
     public onDelete(): void {
@@ -130,22 +126,6 @@ export class PriceFormComponent {
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
         this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
-    }
-
-    public patchFormWithSelectedFrom(event: any): void {
-        this.form.patchValue({
-            datePeriod: {
-                from: this.dateHelperService.formatDateToIso(new Date(event.value.date))
-            }
-        })
-    }
-
-    public patchFormWithSelectedTo(event: any): void {
-        this.form.patchValue({
-            datePeriod: {
-                to: this.dateHelperService.formatDateToIso(new Date(event.value.date))
-            }
-        })
     }
 
     //#endregion
@@ -281,9 +261,19 @@ export class PriceFormComponent {
         })
     }
 
+    private setLocale(): void {
+        this.dateAdapter.setLocale(this.localStorageService.getLanguage())
+    }
+
     private setRecordId(): void {
         this.activatedRoute.params.subscribe(x => {
             this.recordId = x.id
+        })
+    }
+
+    private subscribeToInteractionService(): void {
+        this.interactionService.refreshDateAdapter.subscribe(() => {
+            this.setLocale()
         })
     }
 

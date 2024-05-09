@@ -27,7 +27,13 @@
                         <span id="ref-no-body">{{ form.value.refNo }}</span>
                     </div>
                     <!-- Date -->
-                    <date-picker (outputValue)="patchFormWithSelectedDate($event)" [dataTabIndex]="1" [isAdminOrNewRecord]=isAdminOrNewRecord() [label]="getLabel('date')" [parentDate]="getDate()" [readOnly]=!isAdminOrNewRecord() [showHint]=false></date-picker>
+                    <mat-form-field>
+                        <mat-label>{{ getLabel('date') }}</mat-label>
+                        <input [inputTabStop]="input" [matDatepicker]="datePicker" [readOnly]=!isAdminOrNewRecord() dataTabIndex="1" formControlName="date" matInput>
+                        <mat-datepicker-toggle matIconSuffix [for]="datePicker"></mat-datepicker-toggle>
+                        <mat-datepicker #datePicker></mat-datepicker>
+                        <mat-error *ngIf="date.hasError('required')">{{ getHint("required") }}</mat-error>
+                    </mat-form-field>
                     <!-- Ticket No -->
                     <mat-form-field>
                         <mat-icon *ngIf="!isAdminOrNewRecord()" class="material-icons-outlined small">lock</mat-icon>
@@ -211,7 +217,7 @@
 <mat-autocomplete #destinations="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
     <mat-option *ngFor="let option of dropdownDestinations | async" [value]="option">
         <span *ngIf="option.isActive; else showGhost">{{ getEmojiForActiveRecord(true) }}</span>
-        <span>{{ option.description }}</span>        
+        <span>{{ option.description }}</span>
     </mat-option>
 </mat-autocomplete>
 

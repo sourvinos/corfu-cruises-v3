@@ -1,10 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, ViewChild } from '@angular/core'
-import { DateAdapter } from '@angular/material/core'
-import { MatDatepickerInputEvent } from '@angular/material/datepicker'
 import { Table } from 'primeng/table'
 // Custom
-import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
@@ -47,13 +44,7 @@ export class ShipCrewListComponent {
 
     //#endregion
 
-    //#region specific
-
-    public filterDate = ''
-
-    //#endregion
-
-    constructor(private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -61,10 +52,8 @@ export class ShipCrewListComponent {
         this.loadRecords().then(() => {
             this.populateDropdownFilters()
             this.filterTableFromStoredFilters()
-            this.formatDatesToLocale()
             this.subscribeToInteractionService()
             this.setTabTitle()
-            this.setLocale()
             this.setSidebarsHeight()
         })
     }
@@ -112,8 +101,7 @@ export class ShipCrewListComponent {
     }
 
     public resetTableFilters(): void {
-        this.filterDate = ''
-        this.helperService.clearTableTextFilters(this.table, ['lastname', 'firstname', 'birthdate'])
+        this.helperService.clearTableTextFilters(this.table, ['lastname', 'firstname'])
     }
 
     //#endregion
@@ -122,12 +110,6 @@ export class ShipCrewListComponent {
 
     private enableDisableFilters(): void {
         this.records.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()
-    }
-
-    private formatDatesToLocale(): void {
-        this.records.forEach(record => {
-            record.formattedBirthdate = this.dateHelperService.formatISODateToLocale(record.birthdate)
-        })
     }
 
     private filterColumn(element: { value: any }, field: string, matchMode: string): void {
@@ -145,11 +127,6 @@ export class ShipCrewListComponent {
                 this.filterColumn(filters.specialty, 'specialty', 'in')
                 this.filterColumn(filters.lastname, 'lastname', 'contains')
                 this.filterColumn(filters.firstname, 'firstname', 'contains')
-                this.filterColumn(filters.birthdate, 'birthdate', 'equals')
-                if (filters.birthdate != undefined) {
-                    const date = new Date(Date.parse(filters.birthdate.value))
-                    this.filterDate = this.dateAdapter.createDate(date.getFullYear(), date.getMonth(), parseInt(date.getDate().toLocaleString()))
-                }
             }, 500)
         }
     }
@@ -206,10 +183,6 @@ export class ShipCrewListComponent {
     }
 
     private subscribeToInteractionService(): void {
-        this.interactionService.refreshDateAdapter.subscribe(() => {
-            this.formatDatesToLocale()
-            this.setLocale()
-        })
         this.interactionService.refreshTabTitle.subscribe(() => {
             this.setTabTitle()
         })
@@ -218,27 +191,6 @@ export class ShipCrewListComponent {
     private populateDropdownFilters(): void {
         this.distinctShips = this.helperService.getDistinctRecords(this.records, 'ship', 'description')
         this.distinctSpecialties = this.helperService.getDistinctRecords(this.records, 'specialty', 'description')
-    }
-
-    private setLocale(): void {
-        this.dateAdapter.setLocale(this.localStorageService.getLanguage())
-    }
-
-    public clearDateFilter(): void {
-        this.table.filter('', 'birthdate', 'equals')
-        this.filterDate = ''
-        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
-    }
-
-    public filterByDate(event: MatDatepickerInputEvent<Date>): void {
-        const date = this.dateHelperService.formatDateToIso(new Date(event.value), false)
-        this.table.filter(date, 'birthdate', 'equals')
-        this.filterDate = date
-        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
-    }
-
-    public hasDateFilter(): string {
-        return this.filterDate == '' ? 'hidden' : ''
     }
 
     //#endregion

@@ -132,14 +132,6 @@ export class InvoiceFormComponent {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
     }
 
-    public getDate(): string {
-        return this.form.value.date
-    }
-
-    public getTripDate(): string {
-        return this.form.value.tripDate
-    }
-
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
     }
@@ -219,18 +211,6 @@ export class InvoiceFormComponent {
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
         this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
-    }
-
-    public patchFormWithSelectedDate(event: any): void {
-        this.form.patchValue({
-            date: event.value.date.toDate()
-        })
-    }
-
-    public patchFormWithSelectedTripDate(event: any): void {
-        this.form.patchValue({
-            tripDate: event.value.date ? event.value.date.toDate() : ''
-        })
     }
 
     public onCreateAndOpenPdf(): void {
@@ -624,15 +604,6 @@ export class InvoiceFormComponent {
         } else {
             this.dialogService.open(this.messageDialogService.priceRetrieverHasErrors(), 'error', ['ok'])
         }
-    }
-
-    private updateDocumentType(id: number): void {
-        this.documentTypeHttpService.getLastDocumentTypeNo(id).subscribe({
-            next: () => { },
-            error: (errorFromInterceptor) => {
-                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-            }
-        })
     }
 
     private leftAlignLastTab(): void {

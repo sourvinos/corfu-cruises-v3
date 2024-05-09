@@ -28,12 +28,12 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 @Component({
     selector: 'schedule-edit',
     templateUrl: './schedule-edit-form.component.html',
-    styleUrls: ['../../../../../../assets/styles/custom/forms.css', './schedule-edit-form.component.css']
+    styleUrls: ['../../../../../../assets/styles/custom/forms.css']
 })
 
 export class ScheduleEditFormComponent {
 
-    //#region common #8
+    //#region common
 
     private record: ScheduleReadDto
     private recordId: number
@@ -46,7 +46,7 @@ export class ScheduleEditFormComponent {
 
     //#endregion
 
-    //#region autocompletes #3
+    //#region autocompletes
 
     public isAutoCompleteDisabled = true
     public dropdownDestinations: Observable<DestinationAutoCompleteVM[]>
@@ -123,12 +123,6 @@ export class ScheduleEditFormComponent {
         this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
     }
 
-    public patchFormWithSelectedDate(event: any): void {
-        this.form.patchValue({
-            date: event.value.date
-        })
-    }
-
     //#endregion
 
     //#region private methods
@@ -158,10 +152,6 @@ export class ScheduleEditFormComponent {
         this.helperService.focusOnField()
     }
 
-    public getDate(): string {
-        return this.form.value.date
-    }
-
     private getRecord(): Promise<any> {
         if (this.recordId != undefined) {
             return new Promise((resolve) => {
@@ -186,7 +176,7 @@ export class ScheduleEditFormComponent {
     private initForm(): void {
         this.form = this.formBuilder.group({
             id: 0,
-            date: ['', [Validators.required, Validators.maxLength(10)]],
+            date: ['', [Validators.required]],
             destination: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             port: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             maxPax: [0, [Validators.required, Validators.min(0), Validators.max(999)]],

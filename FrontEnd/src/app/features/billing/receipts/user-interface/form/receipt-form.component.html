@@ -16,9 +16,22 @@
 
         <form [formGroup]="form" id="form">
             <div class="group-input-field">
-                <!-- Dates -->
-                <date-picker (outputValue)="patchFormWithSelectedDate($event)" [dataTabIndex]="1" [isAdminOrNewRecord]=true [label]="getLabel('date')" [parentDate]="getDate()" [readOnly]=true [showHint]=false></date-picker>
-                <date-picker (outputValue)="patchFormWithSelectedTripDate($event)" [dataTabIndex]="2" [isAdminOrNewRecord]=true [label]="getLabel('tripDate')" [parentDate]="getTripDate()" [readOnly]=false [showHint]=false></date-picker>
+                <!-- Issue date -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('date') }}</mat-label>
+                    <input [inputTabStop]="input" [matDatepicker]="datePicker" dataTabIndex="1" formControlName="date" matInput readonly>
+                    <mat-datepicker-toggle matIconSuffix [for]="datePicker" disabled></mat-datepicker-toggle>
+                    <mat-datepicker #datePicker></mat-datepicker>
+                    <mat-error *ngIf="date.hasError('required')">{{ getHint("required") }}</mat-error>
+                </mat-form-field>
+                <!-- Trip date -->
+                <mat-form-field>
+                    <mat-label>{{ getLabel('tripDate') }}</mat-label>
+                    <input [inputTabStop]="input" [matDatepicker]="tripDatePicker" dataTabIndex="2" formControlName="tripDate" matInput>
+                    <mat-datepicker-toggle matIconSuffix [for]="tripDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #tripDatePicker></mat-datepicker>
+                    <mat-error *ngIf="tripDate.hasError('required')">{{ getHint("required") }}</mat-error>
+                </mat-form-field>
                 <!-- ShipOwner -->
                 <mat-form-field>
                     <mat-label>{{ getLabel('shipOwner') }}</mat-label>

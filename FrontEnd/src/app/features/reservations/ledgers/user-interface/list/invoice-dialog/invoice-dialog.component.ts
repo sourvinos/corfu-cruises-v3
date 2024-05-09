@@ -155,16 +155,8 @@ export class InvoiceDialogComponent {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
     }
 
-    public getDate(): string {
-        return this.form.value.date
-    }
-
     public getPriceListValidity(): boolean {
         return this.isPriceListValid
-    }
-
-    public getTripDate(): string {
-        return this.form.value.tripDate
     }
 
     public getLabel(id: string): string {
@@ -204,18 +196,6 @@ export class InvoiceDialogComponent {
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
         this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
-    }
-
-    public patchFormWithSelectedDate(event: any): void {
-        this.form.patchValue({
-            date: event.value.date.toDate()
-        })
-    }
-
-    public patchFormWithSelectedTripDate(event: any): void {
-        this.form.patchValue({
-            tripDate: event.value.date ? event.value.date.toDate() : ''
-        })
     }
 
     public updateFieldsAfterShipSelection(value: SimpleEntity): void {

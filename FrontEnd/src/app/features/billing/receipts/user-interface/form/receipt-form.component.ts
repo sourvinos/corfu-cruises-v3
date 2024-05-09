@@ -82,14 +82,6 @@ export class ReceiptFormComponent {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
     }
 
-    public getDate(): string {
-        return this.form.value.date
-    }
-
-    public getTripDate(): string {
-        return this.form.value.tripDate
-    }
-
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
     }
@@ -153,18 +145,6 @@ export class ReceiptFormComponent {
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
         this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
-    }
-
-    public patchFormWithSelectedDate(event: any): void {
-        this.form.patchValue({
-            date: event.value.date
-        })
-    }
-
-    public patchFormWithSelectedTripDate(event: any): void {
-        this.form.patchValue({
-            tripDate: event.value.date
-        })
     }
 
     //#endregion
