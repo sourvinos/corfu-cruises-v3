@@ -193,10 +193,10 @@ export class PriceFormComponent {
             }, {
                 validator: ValidationService.validDatePeriod
             }),
-            adultsWithTransfer: [0, [Validators.required, Validators.maxLength(7)]],
-            adultsWithoutTransfer: [0, [Validators.required, Validators.maxLength(7)]],
-            kidsWithTransfer: [0, [Validators.required, Validators.maxLength(7)]],
-            kidsWithoutTransfer: [0, [Validators.required, Validators.maxLength(7)]],
+            adultsWithTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999.99)]],
+            adultsWithoutTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999.99)]],
+            kidsWithTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999.99)]],
+            kidsWithoutTransfer: [0, [Validators.required, Validators.min(0), Validators.max(999.99)]],
             postAt: [''],
             postUser: [''],
             putAt: [''],

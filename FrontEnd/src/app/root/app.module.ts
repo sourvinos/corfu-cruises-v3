@@ -58,7 +58,7 @@ registerLocaleData(localeFr)
         LoginModule,
         PrimeNgModule,
         ReactiveFormsModule,
-        SharedModule
+        SharedModule,
     ],
     providers: [
         Title, { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }

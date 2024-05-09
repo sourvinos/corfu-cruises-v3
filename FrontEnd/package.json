@@ -27,6 +27,7 @@
         "file-saver": "2.0.5",
         "guid-typescript": "1.0.9",
         "jwt-decode": "4.0.0",
+        "ngx-currency": "4.0.0",
         "pdfmake": "0.2.9",
         "pretty-print-json": "3.0.0",
         "primeng": "16.9.1",

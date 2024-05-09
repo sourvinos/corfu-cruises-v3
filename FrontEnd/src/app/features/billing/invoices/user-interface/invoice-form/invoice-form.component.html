@@ -120,7 +120,7 @@
                             <mat-form-field>
                                 <mat-icon class="material-icons-outlined small">lock</mat-icon>
                                 <mat-label>{{ getLabel('netAmount') }}</mat-label>
-                                <input class="right" formControlName="netAmount" matInput readonly type="number">
+                                <input currencyMask formControlName="netAmount" matInput readonly>
                                 <mat-error *ngIf="netAmount.hasError('required')">{{ getHint("required") }}</mat-error>
                                 <mat-error *ngIf="!netAmount.hasError('required') && netAmount.hasError('min') || netAmount.hasError('max')">{{ getHint("invalid") }}</mat-error>
                             </mat-form-field>
@@ -128,20 +128,20 @@
                             <mat-form-field>
                                 <mat-icon class="material-icons-outlined small">lock</mat-icon>
                                 <mat-label>{{ getLabel('vatPercent') }}</mat-label>
-                                <input class="right" formControlName="vatPercent" matInput readonly type="number">
+                                <input currencyMask formControlName="vatPercent" matInput readonly>
                             </mat-form-field>
                             <!-- Vat Amount -->
                             <mat-form-field>
                                 <mat-icon class="material-icons-outlined small">lock</mat-icon>
                                 <mat-label>{{ getLabel('vatAmount') }}</mat-label>
-                                <input class="right" formControlName="vatAmount" matInput readonly type="number">
+                                <input currencyMask formControlName="vatAmount" matInput readonly>
                             </mat-form-field>
                             <!-- Gross Amount -->
                             <mat-form-field>
                                 <mat-label>{{ getLabel('grossAmount') }}</mat-label>
-                                <input (blur)="onDoSummaryCalculations()" [inputTabStop]="input" class="right" dataTabIndex="7" formControlName="grossAmount" matInput type="number">
+                                <input (blur)="onDoSummaryCalculations()" [inputTabStop]="input" currencyMask dataTabIndex="7" formControlName="grossAmount" matInput>
                                 <mat-error *ngIf="grossAmount.hasError('required')">{{ getHint("required") }}</mat-error>
-                                <mat-error *ngIf="!grossAmount.hasError('required') && grossAmount.hasError('min') || grossAmount.hasError('max')">{{ getHint("invalid") }}</mat-error>
+                                <mat-error *ngIf="!grossAmount.hasError('required') && grossAmount.hasError('min') || grossAmount.hasError('max')">{{ getHint("invalidRange") }}</mat-error>
                             </mat-form-field>
                         </div>
                         <div class="group-input-field">
@@ -186,11 +186,11 @@
                                         </mat-form-field>
                                         <mat-form-field class="hide-hint price">
                                             <mat-label>{{ getLabel('price') }}</mat-label>
-                                            <input (blur)="onDoPortCalculations()" [inputTabStop]="input" class="right" dataTabIndex="2" formControlName="adults_A_PriceWithTransfer" matInput type="number">
+                                            <input (blur)="onDoPortCalculations()" [inputTabStop]="input" currencyMask dataTabIndex="2" formControlName="adults_A_PriceWithTransfer" matInput>
                                         </mat-form-field>
                                         <mat-form-field class="hide-hint total">
                                             <mat-label>{{ getLabel('total') }}</mat-label>
-                                            <input class="right" formControlName="adults_A_AmountWithTransfer" matInput type="number" readonly>
+                                            <input class="right" currencyMask formControlName="adults_A_AmountWithTransfer" matInput readonly>
                                         </mat-form-field>
                                     </div>
                                     <div class="group-input-field">
@@ -200,11 +200,11 @@
                                         </mat-form-field>
                                         <mat-form-field class="hide-hint price">
                                             <mat-label>{{ getLabel('price') }}</mat-label>
-                                            <input (blur)="onDoPortCalculations()" [inputTabStop]="input" class="right" dataTabIndex="4" formControlName="adults_A_PriceWithoutTransfer" matInput type="number">
+                                            <input (blur)="onDoPortCalculations()" [inputTabStop]="input" currencyMask dataTabIndex="4" formControlName="adults_A_PriceWithoutTransfer" matInput>
                                         </mat-form-field>
                                         <mat-form-field class="hide-hint total">
                                             <mat-label>{{ getLabel('total') }}</mat-label>
-                                            <input class="right" formControlName="adults_A_AmountWithoutTransfer" matInput type="number" readonly>
+                                            <input currencyMask formControlName="adults_A_AmountWithoutTransfer" matInput readonly>
                                         </mat-form-field>
                                     </div>
                                 </div>
@@ -220,11 +220,11 @@
                                         </mat-form-field>
                                         <mat-form-field class="hide-hint price">
                                             <mat-label>{{ getLabel('price') }}</mat-label>
-                                            <input (blur)="onDoPortCalculations()" [inputTabStop]="input" class="right" dataTabIndex="6" formControlName="kids_A_PriceWithTransfer" matInput type="number">
+                                            <input (blur)="onDoPortCalculations()" [inputTabStop]="input" currencyMask dataTabIndex="6" formControlName="kids_A_PriceWithTransfer" matInput>
                                         </mat-form-field>
                                         <mat-form-field class="hide-hint total">
                                             <mat-label>{{ getLabel('total') }}</mat-label>
-                                            <input class="right" formControlName="kids_A_AmountWithTransfer" matInput type="number" readonly>
+                                            <input currencyMask formControlName="kids_A_AmountWithTransfer" matInput readonly>
                                         </mat-form-field>
                                     </div>
                                     <div class="group-input-field">
@@ -234,11 +234,11 @@
                                         </mat-form-field>
                                         <mat-form-field class="hide-hint price">
                                             <mat-label>{{ getLabel('price') }}</mat-label>
-                                            <input (blur)="onDoPortCalculations()" [inputTabStop]="input" class="right" dataTabIndex="8" formControlName="kids_A_PriceWithoutTransfer" matInput type="number">
+                                            <input (blur)="onDoPortCalculations()" [inputTabStop]="input" currencyMask dataTabIndex="8" formControlName="kids_A_PriceWithoutTransfer" matInput>
                                         </mat-form-field>
                                         <mat-form-field class="hide-hint total">
                                             <mat-label>{{ getLabel('total') }}</mat-label>
-                                            <input class="right" formControlName="kids_A_AmountWithoutTransfer" matInput type="number" readonly>
+                                            <input currencyMask formControlName="kids_A_AmountWithoutTransfer" matInput readonly>
                                         </mat-form-field>
                                     </div>
                                 </div>
@@ -276,7 +276,7 @@
                                         </mat-form-field>
                                         <mat-form-field class="hide-hint person">
                                             <mat-label>{{ getLabel('total') }}</mat-label>
-                                            <input class="right" formControlName="total_A_Amount" matInput type="number">
+                                            <input currencyMask formControlName="total_A_Amount" matInput>
                                         </mat-form-field>
                                     </div>
                                 </div>
@@ -299,11 +299,11 @@
                                         </mat-form-field>
                                         <mat-form-field class="hide-hint price">
                                             <mat-label>{{ getLabel('price') }}</mat-label>
-                                            <input (blur)="onDoPortCalculations()" [inputTabStop]="input" class="right" dataTabIndex="12" formControlName="adults_B_PriceWithTransfer" matInput type="number">
+                                            <input (blur)="onDoPortCalculations()" [inputTabStop]="input" currencyMask dataTabIndex="12" formControlName="adults_B_PriceWithTransfer" matInput>
                                         </mat-form-field>
                                         <mat-form-field class="hide-hint total">
                                             <mat-label>{{ getLabel('total') }}</mat-label>
-                                            <input class="right" formControlName="adults_B_AmountWithTransfer" matInput type="number" readonly>
+                                            <input currencyMask currencyMask formControlName="adults_B_AmountWithTransfer" matInput readonly>
                                         </mat-form-field>
                                     </div>
                                     <div class="group-input-field">
@@ -313,11 +313,11 @@
                                         </mat-form-field>
                                         <mat-form-field class="hide-hint price">
                                             <mat-label>{{ getLabel('price') }}</mat-label>
-                                            <input (blur)="onDoPortCalculations()" [inputTabStop]="input" class="right" dataTabIndex="14" formControlName="adults_B_PriceWithoutTransfer" matInput type="number">
+                                            <input (blur)="onDoPortCalculations()" [inputTabStop]="input" currencyMask dataTabIndex="14" formControlName="adults_B_PriceWithoutTransfer" matInput>
                                         </mat-form-field>
                                         <mat-form-field class="hide-hint total">
                                             <mat-label>{{ getLabel('total') }}</mat-label>
-                                            <input class="right" formControlName="adults_B_AmountWithoutTransfer" matInput type="number" readonly>
+                                            <input currencyMask currencyMask formControlName="adults_B_AmountWithoutTransfer" matInput readonly>
                                         </mat-form-field>
                                     </div>
                                 </div>
@@ -333,11 +333,11 @@
                                         </mat-form-field>
                                         <mat-form-field class="hide-hint price">
                                             <mat-label>{{ getLabel('price') }}</mat-label>
-                                            <input (blur)="onDoPortCalculations()" [inputTabStop]="input" class="right" dataTabIndex="16" formControlName="kids_B_PriceWithTransfer" matInput type="number">
+                                            <input (blur)="onDoPortCalculations()" [inputTabStop]="input" currencyMask dataTabIndex="16" formControlName="kids_B_PriceWithTransfer" matInput>
                                         </mat-form-field>
                                         <mat-form-field class="hide-hint total">
                                             <mat-label>{{ getLabel('total') }}</mat-label>
-                                            <input class="right" formControlName="kids_B_AmountWithTransfer" matInput type="number" readonly>
+                                            <input currencyMask formControlName="kids_B_AmountWithTransfer" matInput readonly>
                                         </mat-form-field>
                                     </div>
                                     <div class="group-input-field">
@@ -347,11 +347,11 @@
                                         </mat-form-field>
                                         <mat-form-field class="hide-hint price">
                                             <mat-label>{{ getLabel('price') }}</mat-label>
-                                            <input (blur)="onDoPortCalculations()" [inputTabStop]="input" class="right" dataTabIndex="18" formControlName="kids_B_PriceWithoutTransfer" matInput type="number">
+                                            <input (blur)="onDoPortCalculations()" [inputTabStop]="input" currencyMask dataTabIndex="18" formControlName="kids_B_PriceWithoutTransfer" matInput>
                                         </mat-form-field>
                                         <mat-form-field class="hide-hint total">
                                             <mat-label>{{ getLabel('total') }}</mat-label>
-                                            <input class="right" formControlName="kids_B_AmountWithoutTransfer" matInput type="number" readonly>
+                                            <input currencyMask formControlName="kids_B_AmountWithoutTransfer" matInput readonly>
                                         </mat-form-field>
                                     </div>
                                 </div>
@@ -389,7 +389,7 @@
                                         </mat-form-field>
                                         <mat-form-field class="hide-hint person">
                                             <mat-label>{{ getLabel('total') }}</mat-label>
-                                            <input class="right" formControlName="total_B_Amount" matInput type="number">
+                                            <input currencyMask formControlName="total_B_Amount" matInput>
                                         </mat-form-field>
                                     </div>
                                 </div>
@@ -412,7 +412,7 @@
                                         </mat-form-field>
                                         <mat-form-field class="hide-hint total">
                                             <mat-label>{{ getLabel('total') }}</mat-label>
-                                            <input class="right" formControlName="adults_TotalAmount_WithTransfer" matInput type="number" readonly>
+                                            <input currencyMask formControlName="adults_TotalAmount_WithTransfer" matInput readonly>
                                         </mat-form-field>
                                     </div>
                                     <div class="group-input-field">
@@ -422,7 +422,7 @@
                                         </mat-form-field>
                                         <mat-form-field class="hide-hint total">
                                             <mat-label>{{ getLabel('total') }}</mat-label>
-                                            <input class="right" formControlName="adults_TotalAmount_WithoutTransfer" matInput type="number" readonly>
+                                            <input currencyMask formControlName="adults_TotalAmount_WithoutTransfer" matInput readonly>
                                         </mat-form-field>
                                     </div>
                                 </div>
@@ -438,7 +438,7 @@
                                         </mat-form-field>
                                         <mat-form-field class="hide-hint total">
                                             <mat-label>{{ getLabel('total') }}</mat-label>
-                                            <input class="right" formControlName="kids_TotalAmount_WithTransfer" matInput type="number" readonly>
+                                            <input currencyMask formControlName="kids_TotalAmount_WithTransfer" matInput readonly>
                                         </mat-form-field>
                                     </div>
                                     <div class="group-input-field">
@@ -448,7 +448,7 @@
                                         </mat-form-field>
                                         <mat-form-field class="hide-hint total">
                                             <mat-label>{{ getLabel('total') }}</mat-label>
-                                            <input class="right" formControlName="kids_TotalAmount_WithoutTransfer" matInput type="number" readonly>
+                                            <input currencyMask formControlName="kids_TotalAmount_WithoutTransfer" matInput readonly>
                                         </mat-form-field>
                                     </div>
                                 </div>
@@ -484,7 +484,7 @@
                                         </mat-form-field>
                                         <mat-form-field class="hide-hint person">
                                             <mat-label>{{ getLabel('total') }}</mat-label>
-                                            <input class="right" formControlName="total_Amount" matInput type="number">
+                                            <input currencyMask formControlName="total_Amount" matInput>
                                         </mat-form-field>
                                     </div>
                                 </div>

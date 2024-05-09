@@ -28,7 +28,7 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 
 export class CustomerFormComponent {
 
-    //#region common #8
+    //#region common
 
     private record: CustomerReadDto
     private recordId: number
@@ -135,9 +135,39 @@ export class CustomerFormComponent {
         this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
     }
 
+    public async processAadeResponse(response: any): Promise<any> {
+        const document = new DOMParser().parseFromString(response.message, 'text/xml')
+        this.form.patchValue({
+            'fullDescription': document.querySelector('onomasia').innerHTML,
+            'vatNumber': document.querySelector('afm').innerHTML,
+            'taxOffice': await this.dexieService.getByDescription('taxOffices', document.querySelector('doy_descr').innerHTML),
+            'profession': document.querySelector('firm_act_descr').innerHTML,
+            'street': document.querySelector('postal_address').innerHTML,
+            'number': document.querySelector('postal_address_no').innerHTML,
+            'postalCode': document.querySelector('postal_zip_code').innerHTML,
+            'city': document.querySelector('postal_area_description').innerHTML,
+            'nationality': await this.dexieService.getByDescription('nationalities', 'GREECE'),
+            'vatRegime': await this.dexieService.getByDescription('vatRegimes', document.querySelector('normal_vat_system_flag').innerHTML == 'Y' ? 'ΚΑΝΟΝΙΚΟ' : 'ΑΠΑΛΛΑΓΗ')
+        })
+    }
+
+    public isCustomerFound(response: any): boolean {
+        const document = new DOMParser().parseFromString(response.message, 'text/xml')
+        return document.querySelector('afm').innerHTML ? true : false
+    }
+
     //#endregion
 
     //#region private methods
+
+    private buildCustomerAadeRequesrtVM(vatNumber: string): CustomerAadeRequestVM {
+        const x: CustomerAadeRequestVM = {
+            username: 'KEP997346439',
+            password: 'PKE997346439',
+            vatNumber: vatNumber
+        }
+        return x
+    }
 
     private filterAutocomplete(array: string, field: string, value: any): any[] {
         if (typeof value !== 'object') {
@@ -263,7 +293,7 @@ export class CustomerFormComponent {
                 personInCharge: this.record.personInCharge,
                 phones: this.record.phones,
                 email: this.record.email,
-                balanceLimit: this.record.balanceLimit.toFixed(2),
+                balanceLimit: this.record.balanceLimit,
                 remarks: this.record.remarks,
                 isActive: this.record.isActive,
                 postAt: this.record.postAt,
@@ -294,36 +324,6 @@ export class CustomerFormComponent {
         this.activatedRoute.params.subscribe(x => {
             this.recordId = x.id
         })
-    }
-
-    private buildCustomerAadeRequesrtVM(vatNumber: string): CustomerAadeRequestVM {
-        const x: CustomerAadeRequestVM = {
-            username: 'KEP997346439',
-            password: 'PKE997346439',
-            vatNumber: vatNumber
-        }
-        return x
-    }
-
-    public async processAadeResponse(response: any): Promise<any> {
-        const document = new DOMParser().parseFromString(response.message, 'text/xml')
-        this.form.patchValue({
-            'fullDescription': document.querySelector('onomasia').innerHTML,
-            'vatNumber': document.querySelector('afm').innerHTML,
-            'taxOffice': await this.dexieService.getByDescription('taxOffices', document.querySelector('doy_descr').innerHTML),
-            'profession': document.querySelector('firm_act_descr').innerHTML,
-            'street': document.querySelector('postal_address').innerHTML,
-            'number': document.querySelector('postal_address_no').innerHTML,
-            'postalCode': document.querySelector('postal_zip_code').innerHTML,
-            'city': document.querySelector('postal_area_description').innerHTML,
-            'nationality': await this.dexieService.getByDescription('nationalities', 'GREECE'),
-            'vatRegime': await this.dexieService.getByDescription('vatRegimes', document.querySelector('normal_vat_system_flag').innerHTML == 'Y' ? 'ΚΑΝΟΝΙΚΟ' : 'ΑΠΑΛΛΑΓΗ')
-        })
-    }
-
-    public isCustomerFound(response: any): boolean {
-        const document = new DOMParser().parseFromString(response.message, 'text/xml')
-        return document.querySelector('afm').innerHTML ? true : false
     }
 
     //#endregion
@@ -385,7 +385,6 @@ export class CustomerFormComponent {
     get phones(): AbstractControl {
         return this.form.get('phones')
     }
-
 
     get email(): AbstractControl {
         return this.form.get('email')

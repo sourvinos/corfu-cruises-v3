@@ -110,7 +110,7 @@
                         <!-- Balance limit -->
                         <mat-form-field>
                             <mat-label>{{ getLabel('balanceLimit') }}</mat-label>
-                            <input (blur)="formatPriceField('balanceLimit',2)" [inputTabStop]="input" dataTabIndex="13" formControlName="balanceLimit" inputDecimal matInput type="number">
+                            <input [inputTabStop]="input" currencyMask dataTabIndex="13" formControlName="balanceLimit" matInput>
                             <mat-error *ngIf="balanceLimit.hasError('required')">{{ getHint("required") }}</mat-error>
                             <mat-error *ngIf="balanceLimit.hasError('min') || balanceLimit.hasError('max')">{{ getHint("invalidRange") }}</mat-error>
                         </mat-form-field>

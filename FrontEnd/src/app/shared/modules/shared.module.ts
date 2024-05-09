@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { NgModule } from '@angular/core'
+import { NgxCurrencyDirective, NgxCurrencyInputMode, provideEnvironmentNgxCurrency } from 'ngx-currency'
 import { PrimeNgModule } from './primeng.module'
 import { RouterModule } from '@angular/router'
 import { ZXingScannerModule } from '@zxing/ngx-scanner'
@@ -64,6 +65,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         CommonModule,
         FormsModule,
         MaterialModule,
+        NgxCurrencyDirective,
         PrimeNgModule,
         ReactiveFormsModule,
         RouterModule,
@@ -89,6 +91,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         MaterialModule,
         MetadataPanelComponent,
         MonthSelectorComponent,
+        NgxCurrencyDirective,
         PadNumberPipe,
         PrettyPrintPipe,
         PrimeNgModule,
@@ -100,7 +103,22 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         ThemeSelectorComponent,
         TrimStringPipe,
         YearSelectorComponent,
-        ZXingScannerModule,
+        ZXingScannerModule
+    ], providers: [
+        provideEnvironmentNgxCurrency({
+            align: 'right',
+            allowNegative: true,
+            allowZero: true,
+            decimal: '.',
+            inputMode: NgxCurrencyInputMode.Natural,
+            max: null,
+            min: null,
+            nullable: true,
+            precision: 2,
+            prefix: '€ ',
+            suffix: '',
+            thousands: ','
+        })
     ]
 })
 
