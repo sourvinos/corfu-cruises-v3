@@ -77,10 +77,10 @@ export class ReservationHttpService extends HttpDataService {
         return this.http.request<void>('delete', this.url + '/deleteRange', { body: ids })
     }
 
-    public validateBalance(): any {
+    public validateCreditLimit(): any {
         if (this.isAdmin() == false) {
             const customerId = parseInt(this.cryptoService.decrypt(this.sessionStorageService.getItem('customerId')))
-            return this.http.get(environment.apiUrl + '/invoices/validateBalance/' + customerId)
+            return this.http.get(environment.apiUrl + '/invoices/validateCreditLimit/' + customerId)
         } else {
             return true
         }

@@ -311,7 +311,7 @@ export class ReservationFormComponent {
                 this.getStoredDestination()
                 this.getPassengerDifferenceColor()
             } else {
-                this.reservationHttpService.validateBalance().subscribe((response: { body: { maxAllowed: number } }) => {
+                this.reservationHttpService.validateCreditLimit().subscribe((response: { body: { maxAllowed: number } }) => {
                     if (response.body.maxAllowed > 0) {
                         this.getStoredDate()
                         this.getStoredDestination()

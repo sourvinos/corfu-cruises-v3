@@ -92,7 +92,7 @@
             },
             {
                 "id": "maximumBalanceExceeded",
-                "message": "Sie haben das maximal zulässige Kreditlimit erreicht. Bitte kontaktieren Sie einen Administrator."
+                "message": "Sie haben Ihr Kreditlimit überschritten. Bitte wenden Sie sich an einen Administrator."
             },
             {
                 "id": "emailSent",

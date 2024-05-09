@@ -92,7 +92,7 @@
             },
             {
                 "id": "maximumBalanceExceeded",
-                "message": "Vous avez atteint la limite de crédit maximale autorisée. Veuillez contacter un administrateur."
+                "message": "Vous avez dépassé votre limite de crédit. Veuillez contacter un administrateur."
             },
             {
                 "id": "emailSent",

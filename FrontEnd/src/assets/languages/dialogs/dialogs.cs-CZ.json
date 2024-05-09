@@ -92,7 +92,7 @@
             },
             {
                 "id": "maximumBalanceExceeded",
-                "message": "Dosáhli jste maximálního povoleného úvěrového limitu. Kontaktujte prosím správce."
+                "message": "Překročili jste svůj úvěrový limit. Kontaktujte prosím správce."
             },
             {
                 "id": "emailSent",

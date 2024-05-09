@@ -118,13 +118,13 @@ namespace API.Features.Billing.Invoices {
             }
         }
 
-        [HttpGet("validateBalance/{customerId}/{shipOwnerId}")]
+        [HttpGet("validateCreditLimit/{customerId}")]
         [Authorize(Roles = "user, admin")]
-        public async Task<ResponseWithBody> ValidateBalance(int customerId, int shipOwnerId) {
+        public async Task<ResponseWithBody> ValidateCreditLimit(int customerId) {
             var x = await customerRepo.GetByIdAsync(customerId, false);
             if (x != null) {
                 var balanceLimit = x.BalanceLimit;
-                var balance = calculateBalanceRepo.CalculatePreviousBalance(customerId, shipOwnerId);
+                var balance = calculateBalanceRepo.ValidateCreditLimit(customerId);
                 return new ResponseWithBody {
                     Code = 200,
                     Icon = Icons.Info.ToString(),
