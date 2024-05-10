@@ -125,9 +125,8 @@ export class AccountService extends HttpDataService {
         )
     }
 
-    public login(userName: string, password: string): Observable<void> {
+    public login(userName: string, password: string, language: string): Observable<void> {
         const grantType = 'password'
-        const language = localStorage.getItem('language') || 'en-GB'
         return this.http.post<any>(this.urlToken, { language, userName, password, grantType }).pipe(map(response => {
             this.setUserData(response)
             this.setDotNetVersion(response)

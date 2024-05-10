@@ -53,7 +53,7 @@ namespace API.Infrastructure.Auth {
         private async Task<Login> Login(TokenRequest model) {
             var user = await userManager.FindByNameAsync(model.Username);
             if (user?.IsActive == true && await userManager.IsEmailConfirmedAsync(user) && await userManager.CheckPasswordAsync(user, model.Password)) {
-                var newRefreshToken = CreateRefreshToken(settings.ClientId, user.Id);
+                var newRefreshToken = CreateRefreshToken(settings.ClientId, user.Id, model.Language);
                 context.Tokens.Add(newRefreshToken);
                 await context.SaveChangesAsync();
                 var response = await CreateAccessToken(user, newRefreshToken.Value);
@@ -75,13 +75,14 @@ namespace API.Infrastructure.Auth {
             }
         }
 
-        private static Token CreateRefreshToken(string clientId, string userId) {
+        private static Token CreateRefreshToken(string clientId, string userId, string language) {
             return new Token() {
                 ClientId = clientId,
                 UserId = userId,
                 Value = Guid.NewGuid().ToString("N"),
                 CreatedDate = DateHelpers.GetLocalDateTime(),
-                ExpiryTime = DateHelpers.GetLocalDateTime().AddMinutes(90)
+                ExpiryTime = DateHelpers.GetLocalDateTime().AddMinutes(90),
+                Language = language
             };
         }
 
@@ -92,11 +93,11 @@ namespace API.Infrastructure.Auth {
             var tokenHandler = new JwtSecurityTokenHandler();
             var tokenDescriptor = new SecurityTokenDescriptor {
                 Subject = new ClaimsIdentity(new Claim[] {
-                    new Claim(ClaimTypes.NameIdentifier, user.Id),
-                    new Claim(ClaimTypes.Role, roles.FirstOrDefault()),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                    new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-                    new Claim("LoggedOn", DateTime.UtcNow.ToString())
+                    new(ClaimTypes.NameIdentifier, user.Id),
+                    new(ClaimTypes.Role, roles.FirstOrDefault()),
+                    new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new(JwtRegisteredClaimNames.Sub, user.UserName),
+                    new("LoggedOn", DateTime.UtcNow.ToString())
                     }),
                 SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature),
                 Issuer = settings.Site,
@@ -118,7 +119,7 @@ namespace API.Infrastructure.Auth {
             if (existingToken == null) AuthenticationFailed();
             var user = await userManager.FindByIdAsync(existingToken.UserId);
             if (user == null) AuthenticationFailed();
-            var newToken = CreateRefreshToken(existingToken.ClientId, existingToken.UserId);
+            var newToken = CreateRefreshToken(existingToken.ClientId, existingToken.UserId, model.Language);
             context.Tokens.Add(newToken);
             context.Tokens.Remove(existingToken);
             context.SaveChanges();

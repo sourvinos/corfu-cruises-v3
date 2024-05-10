@@ -10,6 +10,7 @@ import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { HelperService, indicate } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
@@ -42,7 +43,21 @@ export class LoginFormComponent {
 
     //#endregion
 
-    constructor(private accountService: AccountService, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService, private titleService: Title) { }
+    constructor(
+        private accountService: AccountService,
+        private dateHelperService: DateHelperService,
+        private dialogService: DialogService,
+        private emojiService: EmojiService,
+        private formBuilder: FormBuilder,
+        private helperService: HelperService,
+        private localStorageService: LocalStorageService,
+        private messageDialogService: MessageDialogService,
+        private messageHintService: MessageInputHintService,
+        private messageLabelService: MessageLabelService,
+        private router: Router,
+        private sessionStorageService: SessionStorageService,
+        private titleService: Title,
+    ) { }
 
     //#region lifecycle hooks
 
@@ -78,7 +93,7 @@ export class LoginFormComponent {
     }
 
     public onLogin(): void {
-        this.accountService.login(this.form.value.username, this.form.value.password).pipe(indicate(this.isLoading)).subscribe({
+        this.accountService.login(this.form.value.username, this.form.value.password, this.localStorageService.getItem('language')).pipe(indicate(this.isLoading)).subscribe({
             complete: () => {
                 this.goHome()
             },
