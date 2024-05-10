@@ -28,8 +28,8 @@ export class CheckInHttpService extends HttpDataService {
         return this.http.put<any>(this.url, reservation)
     }
 
-    sendEmail(reservation: CheckInReservationReadDto): Observable<any> {
-        return this.http.post<any>(this.url + '/emailReservation', reservation)
+    sendEmail(reservationId: string): Observable<any> {
+        return this.http.get<any>(this.url + '/emailBoardingPass/' + reservationId)
     }
 
 }

@@ -100,7 +100,7 @@ export class PassengerListComponent {
         const x = this.checkInHelperService.flattenForm(JSON.parse(this.localStorageService.getItem('reservation')))
         this.checkInHttpService.updateReservation(x).subscribe({
             next: () => {
-                this.router.navigate(['checkIn/completion'])
+                this.router.navigate(['checkIn/email'])
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])

@@ -33,6 +33,7 @@ export class EmailFormComponent {
 
     ngOnInit(): void {
         this.initForm()
+        this.populateForm()
     }
 
     //#endregion
@@ -59,7 +60,7 @@ export class EmailFormComponent {
         this.reservation = JSON.parse(this.localStorageService.getItem('reservation'))
         this.reservation.email = this.form.value.email
         this.localStorageService.saveItem('reservation', JSON.stringify(this.reservation))
-        this.checkInHttpService.sendEmail(this.reservation).subscribe({
+        this.checkInHttpService.sendEmail(this.reservation.reservationId).subscribe({
             complete: () => {
                 this.router.navigate(['checkIn/completion'])
             },
@@ -76,6 +77,13 @@ export class EmailFormComponent {
     private initForm(): void {
         this.form = this.formBuilder.group({
             email: ['', [Validators.email, Validators.maxLength(128), Validators.required]],
+        })
+    }
+
+    private populateForm(): void {
+        const x = JSON.parse(this.localStorageService.getItem('reservation'))
+        this.form.patchValue({
+            email: x.email
         })
     }
 

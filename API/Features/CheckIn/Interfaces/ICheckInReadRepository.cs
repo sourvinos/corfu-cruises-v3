@@ -7,7 +7,8 @@ namespace API.Features.CheckIn {
 
         Task<Reservation> GetByRefNo(string refNo);
         Task<Reservation> GetByDate(string date, int destinationId, string lastname, string firstname);
-        Task<Reservation> GetById(string reservationId, bool includeTables);
+        Task<Reservation> GetByIdAsync(string reservationId, bool includeTables);
+        Task SendReservationToEmail(BoardingPassReservationVM reservation);
 
     }
 

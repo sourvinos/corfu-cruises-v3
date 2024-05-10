@@ -3478,6 +3478,10 @@
             },
             {
                 "id": "completion-description",
+                "description": "Právě jsme vám poslali e-mail s palubním lístkem. Pokud jste jej neobdrželi, zkontrolujte, zda jste zadali správný e-mail a zda jste zkontrolovali složku se spamem."
+            },
+            {
+                "id": "completion-thank-you",
                 "description": "Přejeme vám příjemnou cestu a děkujeme, že jste si vybrali Corfu Cruises."
             },
             {

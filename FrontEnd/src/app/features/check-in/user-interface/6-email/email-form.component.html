@@ -24,7 +24,7 @@
         <button (click)="previous()" class="primary" mat-flat-button>
             <span>{{ getLabel("previous") | uppercase }}</span>
         </button>
-        <button (click)="next()" class="accent" mat-flat-button>
+        <button (click)="next()" [disabled]="!form.valid" class="accent" mat-flat-button>
             <span>{{ getLabel("next") | uppercase }}</span>
         </button>
     </div>

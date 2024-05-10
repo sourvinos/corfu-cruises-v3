@@ -46,7 +46,7 @@ namespace API.Features.CheckIn {
             return await reservation;
         }
 
-        public async Task<Reservation> GetById(string reservationId, bool includeTables) {
+        public async Task<Reservation> GetByIdAsync(string reservationId, bool includeTables) {
             return includeTables
                 ? await context.Reservations
                     .AsNoTracking()
@@ -65,6 +65,10 @@ namespace API.Features.CheckIn {
                     .SingleOrDefaultAsync();
         }
 
+        public Task SendReservationToEmail(BoardingPassReservationVM reservation) {
+            throw new NotImplementedException();
+        }
+        
     }
 
 }

@@ -119,6 +119,7 @@ namespace API.Infrastructure.Extensions {
             #endregion
             #region checkIn
             services.AddTransient<ICheckInReadRepository, CheckInReadRepository>();
+            services.AddTransient<ICheckInSendToEmail, CheckInSendToEmail>();
             services.AddTransient<ICheckInUpdateRepository, CheckInUpdateRepository>();
             services.AddTransient<ICheckInValidation, CheckInValidation>();
             #endregion

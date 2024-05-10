@@ -55,6 +55,30 @@ namespace API.Features.CheckIn {
                 .ForMember(x => x.SpecialCare, x => x.MapFrom(x => x.SpecialCare.Trim()))
                 .ForMember(x => x.Remarks, x => x.MapFrom(x => x.Remarks.Trim()))
                 .ForMember(x => x.OccupantId, x => x.MapFrom(x => 2));
+            // Boarding pass
+            CreateMap<Reservation, CheckInBoardingPassReservationVM>()
+               .ForMember(x => x.Date, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Date)))
+               .ForMember(x => x.RefNo, x => x.MapFrom(x => x.RefNo))
+               .ForMember(x => x.Destination, x => x.MapFrom(x => new SimpleEntity {
+                   Id = x.Destination.Id,
+                   Description = x.Destination.Description
+               }))
+               .ForMember(x => x.Customer, x => x.MapFrom(x => new SimpleEntity {
+                   Id = x.Customer.Id,
+                   Description = x.Customer.Description
+               }))
+               .ForMember(x => x.PickupPoint, x => x.MapFrom(x => new CheckInBoardingPassPickupPointVM {
+                   Description = x.PickupPoint.Description,
+                   ExactPoint = x.PickupPoint.ExactPoint,
+                   Time = x.PickupPoint.Time
+               }))
+               .ForMember(x => x.Email, x => x.MapFrom(x => x.Email))
+               .ForMember(x => x.Phones, x => x.MapFrom(x => x.Phones))
+               .ForMember(x => x.Remarks, x => x.MapFrom(x => x.Remarks))
+               .ForMember(x => x.Passengers, x => x.MapFrom(x => x.Passengers.Select(passenger => new CheckInBoardingPassPassengerVM {
+                   Lastname = passenger.Lastname,
+                   Firstname = passenger.Firstname
+               })));
         }
 
     }

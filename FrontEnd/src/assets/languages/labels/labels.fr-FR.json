@@ -3478,6 +3478,10 @@
             },
             {
                 "id": "completion-description",
+                "description": "Nous venons de vous envoyer un courriel contenant la carte d'embarquement. Si vous ne l'avez pas reçu, veuillez vous assurer que vous avez fourni l'adresse électronique correcte et que vous avez vérifié votre dossier de courrier indésirable."
+            },
+            {
+                "id": "completion-thank-you",
                 "description": "Nous vous souhaitons un agréable voyage et vous remercions d'avoir choisi Corfu Cruises."
             },
             {

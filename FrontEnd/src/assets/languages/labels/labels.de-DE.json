@@ -3478,7 +3478,11 @@
             },
             {
                 "id": "completion-description",
-                "description": "Wir wünschen Ihnen eine angenehme Reise und danken Ihnen, dass Sie sich für Corfu Cruises entschieden haben."
+                "description": "Wir haben Ihnen gerade eine E-Mail mit der Bordkarte geschickt. Sollten Sie diese nicht erhalten haben, vergewissern Sie sich bitte, dass Sie die richtige E-Mail-Adresse angegeben und Ihren Spam-Ordner überprüft haben."
+            },
+            {
+                "id": "completion-thank-you",
+                "description": "Wir wünschen Ihnen eine gute Reise und danken Ihnen, dass Sie sich für Corfu Cruises entschieden haben."
             },
             {
                 "id": "help",

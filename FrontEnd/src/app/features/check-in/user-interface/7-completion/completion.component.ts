@@ -21,6 +21,10 @@ export class CompletionComponent {
         this.router.navigateByUrl('/checkIn')
     }
 
+    public previous(): void {
+        this.router.navigate(['checkIn/email'])
+    }
+
     //#endregion
 
     //#region private methods

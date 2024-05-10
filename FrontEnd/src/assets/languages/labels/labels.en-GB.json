@@ -3478,7 +3478,11 @@
             },
             {
                 "id": "completion-description",
-                "description": "We wish you an enjoyable trip and thank you for choosing Corfu Cruises."
+                "description": "We have just sent you an email with the boarding pass. If you haven't received it, please make sure you have provided the correct email and that you have checked your spam folder."
+            },
+            {
+                "id": "completion-thank-you",
+                "description": "We wish you a pleasant journey and thank you for choosing Corfu Cruises."
             },
             {
                 "id": "help",

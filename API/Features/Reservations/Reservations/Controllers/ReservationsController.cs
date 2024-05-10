@@ -241,7 +241,6 @@ namespace API.Features.Reservations.Reservations {
                     ResponseCode = 404
                 };
             }
-
         }
 
         private ReservationWriteDto AttachPortIdToDto(ReservationWriteDto reservation) {
