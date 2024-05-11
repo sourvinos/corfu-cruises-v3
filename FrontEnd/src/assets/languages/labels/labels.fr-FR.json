@@ -2671,6 +2671,10 @@
                 "description": "Μετρητά"
             },
             {
+                "id": "isDefault",
+                "description": "Εξ' ορισμού προεπιλογή"
+            },
+            {
                 "id": "isActive",
                 "description": "Ενεργός"
             },
@@ -2803,6 +2807,10 @@
             {
                 "id": "table8_9",
                 "description": "Πίνακας 8.9"
+            },
+            {
+                "id": "isDefault",
+                "description": "Εξ' ορισμού προεπιλογή"
             },
             {
                 "id": "isActive",

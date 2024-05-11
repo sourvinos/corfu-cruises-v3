@@ -12,19 +12,20 @@ export class DocumentTypeHelperService {
     public updateBrowserStorageAfterApiUpdate(table: string, response: any): void {
         const vm: DocumentTypeBrowserStorageVM = response
         this.dexieService.update(table, {
-            'id': vm.id,
-            'ship': {
-                'id': vm.ship.id,
-                'description': vm.ship.description
+            id: vm.id,
+            ship: {
+                id: vm.ship.id,
+                description: vm.ship.description
             },
-            'shipOwner': {
-                'id': vm.shipOwner.id,
+            shipOwner: {
+                id: vm.shipOwner.id,
                 'description': vm.shipOwner.description
             },
-            'abbreviation': vm.abbreviation,
-            'description': vm.description,
-            'batch': vm.batch,
-            'isActive': vm.isActive
+            abbreviation: vm.abbreviation,
+            description: vm.description,
+            batch: vm.batch,
+            isDefault: vm.isDefault,
+            isActive: vm.isActive
         })
     }
 

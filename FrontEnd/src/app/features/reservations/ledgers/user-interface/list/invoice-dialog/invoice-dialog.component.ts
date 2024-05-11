@@ -65,7 +65,19 @@ export class InvoiceDialogComponent {
     }
 
     ngAfterViewInit(): void {
-        this.onRetrievePrices()
+        this.retrievePrices()
+        this.updateFields()
+        setTimeout(() => {
+            this.updateFieldsAfterShipSelection(this.form.value.ship)
+            setTimeout(() => {
+                setTimeout(async () => {
+                    this.form.patchValue({
+                        'documentType': await this.dexieService.getDefaultDocumentType('documentTypesInvoice', this.form.value.ship.id)
+                    })
+                    this.updateFieldsAfterDocumentTypeSelection(this.form.value.documentType)
+                }, 1000)
+            }, 1000)
+        }, 1000)
     }
 
     //#endregion
@@ -92,47 +104,6 @@ export class InvoiceDialogComponent {
                 }
             })
         })
-    }
-
-    public onRetrievePrices(): void {
-        const x: BillingCriteriaVM = {
-            date: this.data[0].date,
-            customerId: this.data[0].customer.id,
-            destinationId: this.data[0].destination.id,
-        }
-        if (this.invoiceHelperService.validatePriceRetriever(x)) {
-            this.priceHttpService.retrievePrices(x).subscribe({
-                next: (response: any) => {
-                    if (response.body.length != 2) {
-                        this.isPriceListValid = false
-                    } else {
-                        this.form.patchValue({
-                            portA: {
-                                adults_A_PriceWithTransfer: response.body[0].adultsWithTransfer,
-                                adults_A_PriceWithoutTransfer: response.body[0].adultsWithoutTransfer,
-                                kids_A_PriceWithTransfer: response.body[0].kidsWithTransfer,
-                                kids_A_PriceWithoutTransfer: response.body[0].kidsWithoutTransfer,
-                            },
-                            portB: {
-                                adults_B_PriceWithTransfer: response.body[1].adultsWithTransfer,
-                                adults_B_PriceWithoutTransfer: response.body[1].adultsWithoutTransfer,
-                                kids_B_PriceWithTransfer: response.body[1].kidsWithTransfer,
-                                kids_B_PriceWithoutTransfer: response.body[1].kidsWithoutTransfer,
-                            },
-                        })
-                        this.isPriceListValid = true
-                    }
-                },
-                error: () => {
-                    this.isPriceListValid = false
-                },
-                complete: () => {
-                    this.onDoCalculations()
-                }
-            })
-        } else {
-            this.isPriceListValid = false
-        }
     }
 
     public onSave(): void {
@@ -418,6 +389,54 @@ export class InvoiceDialogComponent {
                 id: this.data[0].destination.id,
                 description: this.data[0].destination.description
             }
+        })
+    }
+
+    private retrievePrices(): void {
+        const x: BillingCriteriaVM = {
+            date: this.data[0].date,
+            customerId: this.data[0].customer.id,
+            destinationId: this.data[0].destination.id,
+        }
+        if (this.invoiceHelperService.validatePriceRetriever(x)) {
+            this.priceHttpService.retrievePrices(x).subscribe({
+                next: (response: any) => {
+                    if (response.body.length != 2) {
+                        this.isPriceListValid = false
+                    } else {
+                        this.form.patchValue({
+                            portA: {
+                                adults_A_PriceWithTransfer: response.body[0].adultsWithTransfer,
+                                adults_A_PriceWithoutTransfer: response.body[0].adultsWithoutTransfer,
+                                kids_A_PriceWithTransfer: response.body[0].kidsWithTransfer,
+                                kids_A_PriceWithoutTransfer: response.body[0].kidsWithoutTransfer,
+                            },
+                            portB: {
+                                adults_B_PriceWithTransfer: response.body[1].adultsWithTransfer,
+                                adults_B_PriceWithoutTransfer: response.body[1].adultsWithoutTransfer,
+                                kids_B_PriceWithTransfer: response.body[1].kidsWithTransfer,
+                                kids_B_PriceWithoutTransfer: response.body[1].kidsWithoutTransfer,
+                            },
+                        })
+                        this.isPriceListValid = true
+                    }
+                },
+                error: () => {
+                    this.isPriceListValid = false
+                },
+                complete: () => {
+                    this.onDoCalculations()
+                }
+            })
+        } else {
+            this.isPriceListValid = false
+        }
+    }
+
+    private async updateFields(): Promise<void> {
+        this.form.patchValue({
+            'ship': await this.dexieService.getByDescription('ships', this.data[0].ship.description),
+            'paymentMethod': await this.dexieService.getByDefault('paymentMethods')
         })
     }
 

@@ -7,6 +7,7 @@ export interface PaymentMethodWriteDto {
     // Fields
     description: string
     isCash: boolean
+    isDefault: boolean
     isActive: boolean
     // Rowversion
     putAt: string

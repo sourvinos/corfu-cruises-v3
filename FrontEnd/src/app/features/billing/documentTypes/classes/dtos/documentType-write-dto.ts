@@ -16,6 +16,7 @@ export interface DocumentTypeWriteDto {
     table8_1: string
     table8_8: string
     table8_9: string
+    isDefault: boolean
     isActive: boolean
     // Metadata
     putAt: string

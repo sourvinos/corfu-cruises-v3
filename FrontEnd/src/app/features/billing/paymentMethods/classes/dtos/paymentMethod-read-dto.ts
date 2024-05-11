@@ -8,6 +8,7 @@ export interface PaymentMethodReadDto extends Metadata {
     // Fields
     description: string
     isCash: boolean
+    isDefault: boolean
     isActive: boolean
 
 }

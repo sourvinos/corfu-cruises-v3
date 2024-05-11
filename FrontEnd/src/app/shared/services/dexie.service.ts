@@ -18,12 +18,12 @@ export class DexieService extends Dexie {
             customersCriteria: 'id, description',
             destinations: 'id, description',
             destinationsCriteria: 'id, description',
-            documentTypesInvoice: 'id, abbreviation',
+            documentTypesInvoice: 'id, abbreviation, isDefault',
             documentTypesReceipt: 'id, abbreviation',
             drivers: 'id, description',
             genders: 'id, description',
             nationalities: 'id, description',
-            paymentMethods: 'id, description',
+            paymentMethods: 'id, description, isDefault',
             pickupPoints: 'id, description',
             ports: 'id, description',
             portsCriteria: 'id, description',
@@ -86,6 +86,14 @@ export class DexieService extends Dexie {
 
     public async getByDescription(table: string, description: string): Promise<any> {
         return await this.table(table).get({ description: description })
+    }
+
+    public async getByDefault(table: string): Promise<any> {
+        return this.table(table).filter(x => x.isDefault).first()
+    }
+
+    public async getDefaultDocumentType(table: string, shipId: number): Promise<any> {
+        return this.table(table).filter(x => x.ship.id == shipId && x.isDefault).first()
     }
 
     public update(table: string, item: any): void {

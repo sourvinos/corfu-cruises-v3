@@ -19,6 +19,7 @@ export interface DocumentTypeReadDto extends Metadata {
     table8_1: string
     table8_8: string
     table8_9: string
+    isDefault: boolean
     isActive: boolean
     // Metadata
     postAt: string

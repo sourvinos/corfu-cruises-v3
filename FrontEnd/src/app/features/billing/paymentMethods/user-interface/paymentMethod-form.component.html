@@ -14,10 +14,20 @@
                 <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="description.hasError('maxlength')">{{ getHint("maxLength", description.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
-            <!-- Active -->
-            <mat-checkbox formControlName="isActive">
-                <span>{{ getLabel("isActive") }}</span>
-            </mat-checkbox>
+            <div class="stacked-checkboxes">
+                <!-- Cash -->
+                <mat-checkbox formControlName="isCash">
+                    <span>{{ getLabel("isCash") }}</span>
+                </mat-checkbox>
+                <!-- Default -->
+                <mat-checkbox formControlName="isDefault">
+                    <span>{{ getLabel("isDefault") }}</span>
+                </mat-checkbox>
+                <!-- Active -->
+                <mat-checkbox formControlName="isActive">
+                    <span>{{ getLabel("isActive") }}</span>
+                </mat-checkbox>
+            </div>
             <div class="align-bottom">
                 <!-- Metadata -->
                 <metadata-panel [feature]="feature" [postAt]="form.value.postAt" [postUser]="form.value.postUser" [putAt]="form.value.putAt" [putUser]="form.value.putUser"></metadata-panel>

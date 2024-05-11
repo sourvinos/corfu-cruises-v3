@@ -54,6 +54,7 @@ export class LedgerCriteriaComponent {
     ngOnInit(): void {
         this.initForm()
         this.populateDropdowns()
+        this.populateFieldsFromStoredVariables()
         this.getConnectedUserRole()
         this.populateCheckboxesFromForm()
         this.setLocale()
@@ -121,6 +122,16 @@ export class LedgerCriteriaComponent {
 
     //#region private methods
 
+    private addSelectedCriteriaFromStorage(arrayName: string): void {
+        const x = this.form.controls[arrayName] as FormArray
+        this.criteria[arrayName].forEach((element: any) => {
+            x.push(new FormControl({
+                'id': element.id,
+                'description': element.description
+            }))
+        })
+    }
+
     public getConnectedUserRole(): boolean {
         return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true'
     }
@@ -158,6 +169,19 @@ export class LedgerCriteriaComponent {
         this.selectedDestinations = this.form.value.selectedDestinations
         this.selectedPorts = this.form.value.selectedPorts
         this.selectedShips = this.form.value.selectedShips
+    }
+
+    private populateFieldsFromStoredVariables(): void {
+        if (this.sessionStorageService.getItem('ledger-criteria')) {
+            this.criteria = JSON.parse(this.sessionStorageService.getItem('ledger-criteria'))
+            this.form.patchValue({
+                fromDate: this.criteria.fromDate,
+                selectedCustomers: this.addSelectedCriteriaFromStorage('selectedCustomers'),
+                selectedDestinations: this.addSelectedCriteriaFromStorage('selectedDestinations'),
+                selectedPorts: this.addSelectedCriteriaFromStorage('selectedPorts'),
+                selectedships: this.addSelectedCriteriaFromStorage('selectedShips'),
+            })
+        }
     }
 
     private setLocale(): void {

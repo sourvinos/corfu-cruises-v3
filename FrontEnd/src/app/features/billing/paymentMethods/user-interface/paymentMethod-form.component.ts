@@ -91,6 +91,7 @@ export class PaymentMethodFormComponent {
             id: this.form.value.id != '' ? this.form.value.id : null,
             description: this.form.value.description,
             isCash: this.form.value.isCash,
+            isDefault: this.form.value.isDefault,
             isActive: this.form.value.isActive,
             putAt: this.form.value.putAt
         }
@@ -125,7 +126,8 @@ export class PaymentMethodFormComponent {
         this.form = this.formBuilder.group({
             id: '',
             description: ['', [Validators.required, Validators.maxLength(128)]],
-            isCash: true,
+            isCash: false,
+            isDefault: false,
             isActive: true,
             postAt: [''],
             postUser: [''],
@@ -140,6 +142,7 @@ export class PaymentMethodFormComponent {
                 id: this.record.id,
                 description: this.record.description,
                 isCash: this.record.isCash,
+                isDefault: this.record.isDefault,
                 isActive: this.record.isActive,
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
@@ -181,6 +184,10 @@ export class PaymentMethodFormComponent {
 
     get isCash(): AbstractControl {
         return this.form.get('isCash')
+    }
+
+    get isDefault(): AbstractControl {
+        return this.form.get('isDefault')
     }
 
     get postAt(): AbstractControl {

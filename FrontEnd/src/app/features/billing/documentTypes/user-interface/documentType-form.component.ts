@@ -150,6 +150,7 @@ export class DocumentTypeFormComponent {
             table8_8: this.form.value.table8_8,
             table8_9: this.form.value.table8_9,
             isMyData: this.form.value.isMyData,
+            isDefault: this.form.value.isDefault,
             isActive: this.form.value.isActive,
             putAt: this.form.value.putAt
         }
@@ -195,6 +196,7 @@ export class DocumentTypeFormComponent {
             customers: ['', [Validators.maxLength(1), ValidationService.shouldBeEmptyPlusOrMinus]],
             suppliers: ['', [Validators.maxLength(1), ValidationService.shouldBeEmptyPlusOrMinus]],
             discriminatorId: ['', [Validators.required]],
+            isDefault: true,
             isActive: true,
             isMyData: true,
             table8_1: ['', [Validators.maxLength(32)]],
@@ -232,6 +234,7 @@ export class DocumentTypeFormComponent {
                 customers: this.record.customers,
                 suppliers: this.record.suppliers,
                 discriminatorId: this.record.discriminatorId.toString(),
+                isDefault: this.record.isDefault,
                 isActive: this.record.isActive,
                 isMyData: this.record.isMyData,
                 table8_1: this.record.table8_1,

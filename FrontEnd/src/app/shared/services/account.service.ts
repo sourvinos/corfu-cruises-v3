@@ -101,7 +101,7 @@ export class AccountService extends HttpDataService {
             // Tasks filters
             { 'item': 'reservationList-filters', 'when': 'always' }, { 'item': 'reservationList-id', 'when': 'always' }, { 'item': 'reservationList-scrollTop', 'when': 'always' },
             { 'item': 'boardingList-filters', 'when': 'always' }, { 'item': 'boardingList-id', 'when': 'always' }, { 'item': 'boardingList-scrollTop', 'when': 'always' },
-            { 'item': 'ledgerList-filters', 'when': 'always' }, { 'item': 'ledgerList-id', 'when': 'always' }, { 'item': 'ledgerList-scrollTop', 'when': 'always' },
+            { 'item': 'ledgerList-filters', 'when': 'production' }, { 'item': 'ledgerList-id', 'when': 'production' }, { 'item': 'ledgerList-scrollTop', 'when': 'always' },
             // Statistics
             { 'item': 'selectedYear', 'when': 'always' },
         ])

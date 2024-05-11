@@ -10,6 +10,7 @@ namespace API.Features.Billing.PaymentMethods {
         public int MyDataId { get; set; }
         public string Description { get; set; }
         public bool IsCash { get; set; }
+        public bool IsDefault { get; set; }
         public bool IsActive { get; set; }
         // Metadata
         public string PostAt { get; set; }

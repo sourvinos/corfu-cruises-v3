@@ -17,6 +17,7 @@ namespace API.Features.Billing.DocumentTypes {
         public string Customers { get; set; }
         public string Suppliers { get; set; }
         public int DiscriminatorId { get; set; }
+        public bool IsDefault { get; set; }
         public bool IsActive { get; set; }
         public bool IsMyData { get; set; }
         public string Table8_1 { get; set; }
