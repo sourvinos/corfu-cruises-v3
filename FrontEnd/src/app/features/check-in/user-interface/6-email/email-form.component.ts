@@ -59,14 +59,15 @@ export class EmailFormComponent {
     public next(): void {
         this.reservation = JSON.parse(this.localStorageService.getItem('reservation'))
         this.reservation.email = this.form.value.email
-        this.localStorageService.saveItem('reservation', JSON.stringify(this.reservation))
-        this.checkInHttpService.sendEmail(this.reservation.reservationId).subscribe({
-            complete: () => {
-                this.router.navigate(['checkIn/completion'])
-            },
-            error: () => {
-                this.dialogService.open(this.messageSnackbarService.emailNotSent(), 'error', ['ok'])
-            }
+        this.checkInHttpService.updateEmail(this.reservation).subscribe(() => {
+            this.checkInHttpService.sendEmail(this.reservation.reservationId).subscribe({
+                complete: () => {
+                    this.router.navigate(['checkIn/completion'])
+                },
+                error: () => {
+                    this.dialogService.open(this.messageSnackbarService.emailNotSent(), 'error', ['ok'])
+                }
+            })
         })
     }
 

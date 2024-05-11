@@ -103,6 +103,23 @@ namespace API.Features.CheckIn {
             }
         }
 
+        [HttpPatch]
+        public async Task<Response> UpdateEmail([FromBody] CheckInUpdateEmailVM vm) {
+            var x = await checkInReadRepo.GetByIdAsync(vm.ReservationId, false);
+            if (x != null) {
+                checkInUpdateRepo.UpdateEmail(x, vm.Email);
+                return new Response {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Id = x.ReservationId.ToString(),
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 404
+                };
+            }
+        }
 
         [HttpGet("emailBoardingPass/{reservationId}")]
         public async Task<Response> EmailBoardingPass(string reservationId) {

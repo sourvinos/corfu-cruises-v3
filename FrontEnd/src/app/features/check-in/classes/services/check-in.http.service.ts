@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 // Custom
-import { CheckInReservationReadDto } from '../dtos/check-in-reservation-read-dto'
 import { CheckInReservationWriteDto } from '../dtos/check-in-reservation-write-dto'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { environment } from 'src/environments/environment'
@@ -26,6 +25,10 @@ export class CheckInHttpService extends HttpDataService {
 
     updateReservation(reservation: CheckInReservationWriteDto): Observable<any> {
         return this.http.put<any>(this.url, reservation)
+    }
+
+    updateEmail(reservation: CheckInReservationWriteDto): Observable<any> {
+        return this.http.patch<any>(this.url, reservation)
     }
 
     sendEmail(reservationId: string): Observable<any> {

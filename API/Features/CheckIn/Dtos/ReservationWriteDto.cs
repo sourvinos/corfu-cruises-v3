@@ -6,8 +6,6 @@ namespace API.Features.CheckIn {
     public class ReservationWriteDto {
 
         public Guid ReservationId { get; set; }
-        public string RefNo { get; set; }
-        public string Email { get; set; }
         public string PutAt { get; set; }
         public List<PassengerWriteDto> Passengers { get; set; }
 

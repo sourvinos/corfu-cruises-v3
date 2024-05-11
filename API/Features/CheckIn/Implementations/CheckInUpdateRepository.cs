@@ -4,15 +4,19 @@ using System.Linq;
 using API.Features.Reservations.Reservations;
 using API.Infrastructure.Classes;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.Options;
 
 namespace API.Features.CheckIn {
 
     public class CheckInUpdateRepository : ICheckInUpdateRepository {
 
-        protected readonly AppDbContext context;
+        private readonly AppDbContext context;
+        private readonly TestingEnvironment testingEnvironment;
 
-        public CheckInUpdateRepository(AppDbContext context) {
+        public CheckInUpdateRepository(AppDbContext context, IOptions<TestingEnvironment> testingEnvironment) {
             this.context = context;
+            this.testingEnvironment = testingEnvironment.Value;
         }
 
         public Reservation Update(Guid reservationId, Reservation reservation) {
@@ -23,6 +27,15 @@ namespace API.Features.CheckIn {
             context.SaveChanges();
             transaction.Commit();
             return reservation;
+        }
+
+        public void UpdateEmail(Reservation reservation, string email) {
+            using var transaction = context.Database.BeginTransaction();
+            reservation.Email = email;
+            context.Reservations.Attach(reservation);
+            context.Entry(reservation).Property(x => x.Email).IsModified = true;
+            context.SaveChanges();
+            DisposeOrCommit(transaction);
         }
 
         private void AddPassengers(List<Passenger> passengers) {
@@ -57,7 +70,15 @@ namespace API.Features.CheckIn {
                 return x.Id.GetHashCode();
             }
         }
- 
+
+        private void DisposeOrCommit(IDbContextTransaction transaction) {
+            if (testingEnvironment.IsTesting) {
+                transaction.Dispose();
+            } else {
+                transaction.Commit();
+            }
+        }
+
     }
 
 }
