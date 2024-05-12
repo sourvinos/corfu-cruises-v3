@@ -64,20 +64,14 @@ export class InvoiceDialogComponent {
         this.populateFields()
     }
 
-    ngAfterViewInit(): void {
-        this.retrievePrices()
-        this.updateFields()
-        setTimeout(() => {
-            this.updateFieldsAfterShipSelection(this.form.value.ship)
-            setTimeout(() => {
-                setTimeout(async () => {
-                    this.form.patchValue({
-                        'documentType': await this.dexieService.getDefaultDocumentType('documentTypesInvoice', this.form.value.ship.id)
-                    })
-                    this.updateFieldsAfterDocumentTypeSelection(this.form.value.documentType)
-                }, 1000)
-            }, 1000)
-        }, 1000)
+    async ngAfterViewInit(): Promise<void> {
+        await this.getPrices()
+        await this.updateShipFromParent()
+        await this.updatePaymentMethodWithDefaultValue()
+        await this.updateFieldsAfterShipSelection(this.form.value.ship)
+        await this.getDefaultDocumentTypeAfterShipSelection()
+        await this.updateDocumentTypeFieldsAfterDocumentTypeSelection(this.form.value.documentType)
+        await this.onDoCalculations()
     }
 
     //#endregion
@@ -142,7 +136,7 @@ export class InvoiceDialogComponent {
         this.dialogRef.close()
     }
 
-    public onDoCalculations(): void {
+    public async onDoCalculations(): Promise<void> {
         this.patchFormWithCalculations(
             this.invoiceHelperService.calculatePortA(this.form.value),
             this.invoiceHelperService.calculatePortB(this.form.value),
@@ -152,35 +146,27 @@ export class InvoiceDialogComponent {
     }
 
     public calculateInvoiceSummary(): void {
-        setTimeout(() => {
-            const grossAmount = parseFloat(this.form.value.portTotals.total_Amount)
-            const vatPercent = parseFloat(this.form.value.vatPercent) / 100
-            const netAmount = grossAmount / (1 + vatPercent)
-            const vatAmount = netAmount * vatPercent
-            this.form.patchValue({
-                netAmount: netAmount.toFixed(2),
-                vatAmount: vatAmount.toFixed(2),
-                grossAmount: grossAmount.toFixed(2)
-            })
-        }, 500)
+        const grossAmount = parseFloat(this.form.value.portTotals.total_Amount)
+        const vatPercent = parseFloat(this.form.value.vatPercent) / 100
+        const netAmount = grossAmount / (1 + vatPercent)
+        const vatAmount = netAmount * vatPercent
+        this.form.patchValue({
+            netAmount: netAmount.toFixed(2),
+            vatAmount: vatAmount.toFixed(2),
+            grossAmount: grossAmount.toFixed(2)
+        })
     }
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
         this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
     }
 
-    public updateFieldsAfterShipSelection(value: SimpleEntity): void {
-        this.form.patchValue({
-            documentType: '',
-            documentTypeDescription: '',
-            invoiceNo: 0,
-            batch: ''
-        })
+    public async updateFieldsAfterShipSelection(value: SimpleEntity): Promise<void> {
         this.populateDocumentTypesAfterShipSelection('documentTypesInvoice', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation', value.id)
         this.updateVatPercentAfterShipSelection(this.form.value.ship)
     }
 
-    public updateFieldsAfterDocumentTypeSelection(value: DocumentTypeAutoCompleteVM): void {
+    public async updateDocumentTypeFieldsAfterDocumentTypeSelection(value: DocumentTypeAutoCompleteVM): Promise<void> {
         this.documentTypeHttpService.getSingle(value.id).subscribe({
             next: (response) => {
                 const x: DocumentTypeReadDto = response.body
@@ -392,7 +378,7 @@ export class InvoiceDialogComponent {
         })
     }
 
-    private retrievePrices(): void {
+    private async getPrices(): Promise<void> {
         const x: BillingCriteriaVM = {
             date: this.data[0].date,
             customerId: this.data[0].customer.id,
@@ -423,9 +409,6 @@ export class InvoiceDialogComponent {
                 },
                 error: () => {
                     this.isPriceListValid = false
-                },
-                complete: () => {
-                    this.onDoCalculations()
                 }
             })
         } else {
@@ -433,9 +416,14 @@ export class InvoiceDialogComponent {
         }
     }
 
-    private async updateFields(): Promise<void> {
+    private async updateShipFromParent(): Promise<void> {
         this.form.patchValue({
             'ship': await this.dexieService.getByDescription('ships', this.data[0].ship.description),
+        })
+    }
+
+    private async updatePaymentMethodWithDefaultValue(): Promise<void> {
+        this.form.patchValue({
             'paymentMethod': await this.dexieService.getByDefault('paymentMethods')
         })
     }
@@ -443,6 +431,12 @@ export class InvoiceDialogComponent {
     private updateVatPercentAfterShipSelection(value: any): void {
         this.form.patchValue({
             vatPercent: value.shipOwner.vatPercent
+        })
+    }
+
+    private async getDefaultDocumentTypeAfterShipSelection(): Promise<void> {
+        this.form.patchValue({
+            'documentType': await this.dexieService.getDefaultDocumentType('documentTypesInvoice', this.form.value.ship.id)
         })
     }
 

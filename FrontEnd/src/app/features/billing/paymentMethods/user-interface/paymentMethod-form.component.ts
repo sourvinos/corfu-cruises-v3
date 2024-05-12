@@ -159,7 +159,12 @@ export class PaymentMethodFormComponent {
     private saveRecord(paymentMethod: PaymentMethodWriteDto): void {
         this.paymentMethodHttpService.save(paymentMethod).subscribe({
             next: (response) => {
-                this.dexieService.update('paymentMethods', { 'id': response.id, 'description': paymentMethod.description, 'isActive': paymentMethod.isActive })
+                this.dexieService.update('paymentMethods', {
+                    id: parseInt(response.id),
+                    description: paymentMethod.description,
+                    isDefault: paymentMethod.isDefault,
+                    isActive: paymentMethod.isActive
+                })
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
             error: (errorFromInterceptor) => {
