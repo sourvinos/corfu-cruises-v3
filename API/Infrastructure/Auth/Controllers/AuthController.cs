@@ -80,8 +80,8 @@ namespace API.Infrastructure.Auth {
                 ClientId = clientId,
                 UserId = userId,
                 Value = Guid.NewGuid().ToString("N"),
-                CreatedDate = DateHelpers.GetLocalDateTime(),
-                ExpiryTime = DateHelpers.GetLocalDateTime().AddMinutes(90),
+                CreatedDate = DateTime.UtcNow,
+                ExpiryTime = DateTime.UtcNow.AddMinutes(90),
                 Language = language
             };
         }

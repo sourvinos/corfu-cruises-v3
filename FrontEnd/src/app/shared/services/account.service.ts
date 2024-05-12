@@ -27,6 +27,7 @@ import { SessionStorageService } from './session-storage.service'
 import { ShipHttpService } from '../../features/reservations/ships/classes/services/ship-http.service'
 import { ShipOwnerHttpService } from '../../features/reservations/shipOwners/classes/services/shipOwner-http.service'
 import { TaxOfficeService } from './../../features/billing/taxOffices/classes/services/taxOffice.service'
+import { TokenRequest } from '../classes/token-request'
 import { VatRegimeService } from 'src/app/features/billing/vatRegimes/services/vatRegime-http.service'
 import { environment } from '../../../environments/environment'
 
@@ -112,10 +113,14 @@ export class AccountService extends HttpDataService {
     }
 
     public getNewRefreshToken(): Observable<any> {
-        const userId = this.cryptoService.decrypt(this.sessionStorageService.getItem('userId'))
-        const refreshToken = sessionStorage.getItem('refreshToken')
-        const grantType = 'refresh_token'
-        return this.http.post<any>(this.urlToken, { userId, refreshToken, grantType }).pipe(
+        const token: TokenRequest = {
+            userId: this.cryptoService.decrypt(this.sessionStorageService.getItem('userId')),
+            password: null,
+            grantType: 'refresh_token',
+            refreshToken: sessionStorage.getItem('refreshToken'),
+            language: localStorage.getItem('language')
+        }
+        return this.http.post<any>(this.urlToken, token).pipe(
             map(response => {
                 if (response.token) {
                     this.setAuthSettings(response)
