@@ -70,19 +70,23 @@
                         </mat-form-field>
                     </div>
                     <div class="stacked-checkboxes">
-                        <!-- Discriminator -->
-                        <mat-radio-group formControlName="discriminatorId">
-                            <mat-radio-button value=1>{{ getLabel("refersToInvoice") }}</mat-radio-button>
-                            <mat-radio-button value=2>{{ getLabel("refersToReceipt") }}</mat-radio-button>
-                        </mat-radio-group>
-                        <!-- Default -->
-                        <mat-checkbox formControlName="isDefault">
-                            <span>{{ getLabel("isDefault") }}</span>
-                        </mat-checkbox>
-                        <!-- Active -->
-                        <mat-checkbox formControlName="isActive">
-                            <span>{{ getLabel("isActive") }}</span>
-                        </mat-checkbox>
+                        <div class="stacked-checkboxes">
+                            <!-- Discriminator -->
+                            <mat-radio-group formControlName="discriminatorId">
+                                <mat-radio-button value=1>{{ getLabel("refersToInvoice") }}</mat-radio-button>
+                                <mat-radio-button value=2>{{ getLabel("refersToReceipt") }}</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div class="stacked-checkboxes">
+                            <!-- Default -->
+                            <mat-checkbox formControlName="isDefault">
+                                <span>{{ getLabel("isDefault") }}</span>
+                            </mat-checkbox>
+                            <!-- Active -->
+                            <mat-checkbox formControlName="isActive">
+                                <span>{{ getLabel("isActive") }}</span>
+                            </mat-checkbox>
+                        </div>
                     </div>
                 </mat-tab>
                 <mat-tab label="{{ getLabel('tab2') }}">

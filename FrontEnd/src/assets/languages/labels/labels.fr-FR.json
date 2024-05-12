@@ -2667,6 +2667,10 @@
                 "description": "Περιγραφή"
             },
             {
+                "id": "myDataId",
+                "description": "Πίνακας 8.12"
+            },
+            {
                 "id": "isCash",
                 "description": "Μετρητά"
             },

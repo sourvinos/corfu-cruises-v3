@@ -6,6 +6,7 @@ export interface PaymentMethodWriteDto {
     id: Guid
     // Fields
     description: string
+    myDataId: string
     isCash: boolean
     isDefault: boolean
     isActive: boolean

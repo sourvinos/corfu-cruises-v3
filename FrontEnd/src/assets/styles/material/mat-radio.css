@@ -15,7 +15,7 @@
 .mat-mdc-radio-group {
     display: flex !important;
     flex-direction: column !important;
-    row-gap: 0.5rem;
+    row-gap: 1rem;
 }
 
 .mat-mdc-radio-button .mdc-radio {

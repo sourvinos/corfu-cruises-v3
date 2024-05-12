@@ -13,6 +13,7 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 import { PaymentMethodHttpService } from '../classes/services/paymentMethod-http.service'
 import { PaymentMethodReadDto } from '../classes/dtos/paymentMethod-read-dto'
 import { PaymentMethodWriteDto } from '../classes/dtos/paymentMethod-write-dto'
+import { ValidationService } from 'src/app/shared/services/validation.service'
 
 @Component({
     selector: 'PaymentMethod-form',
@@ -90,6 +91,7 @@ export class PaymentMethodFormComponent {
         return {
             id: this.form.value.id != '' ? this.form.value.id : null,
             description: this.form.value.description,
+            myDataId: this.form.value.myDataId,
             isCash: this.form.value.isCash,
             isDefault: this.form.value.isDefault,
             isActive: this.form.value.isActive,
@@ -126,6 +128,7 @@ export class PaymentMethodFormComponent {
         this.form = this.formBuilder.group({
             id: '',
             description: ['', [Validators.required, Validators.maxLength(128)]],
+            myDataId: ['', [Validators.required, Validators.maxLength(1), ValidationService.shouldBeOnlyNumbers]],
             isCash: false,
             isDefault: false,
             isActive: true,
@@ -141,6 +144,7 @@ export class PaymentMethodFormComponent {
             this.form.setValue({
                 id: this.record.id,
                 description: this.record.description,
+                myDataId: this.record.myDataId,
                 isCash: this.record.isCash,
                 isDefault: this.record.isDefault,
                 isActive: this.record.isActive,
@@ -187,12 +191,8 @@ export class PaymentMethodFormComponent {
         return this.form.get('description')
     }
 
-    get isCash(): AbstractControl {
-        return this.form.get('isCash')
-    }
-
-    get isDefault(): AbstractControl {
-        return this.form.get('isDefault')
+    get myDataId(): AbstractControl {
+        return this.form.get('myDataId')
     }
 
     get postAt(): AbstractControl {
