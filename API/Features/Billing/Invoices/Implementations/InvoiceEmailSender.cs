@@ -49,7 +49,7 @@ namespace API.Features.Billing.Invoices {
             var customer = GetCustomerAsync(model.CustomerId).Result;
             var message = new MimeMessage { Sender = MailboxAddress.Parse(emailSettings.Username) };
             message.From.Add(new MailboxAddress(emailSettings.From, emailSettings.Username));
-            message.To.Add(MailboxAddress.Parse(customer.Email));
+            message.To.AddRange(BuildReceivers(customer.Email));
             message.Subject = "📧 Ηλεκτρονική αποστολή παραστατικών";
             var builder = new BodyBuilder { HtmlBody = await BuildEmailInvoiceTemplate(customer.Email) };
             foreach (var filename in model.Filenames) {
@@ -57,6 +57,15 @@ namespace API.Features.Billing.Invoices {
             }
             message.Body = builder.ToMessageBody();
             return message;
+        }
+
+        private static InternetAddressList BuildReceivers(string email) {
+            InternetAddressList x = new();
+            var emails = email.Split(",");
+            foreach (string address in emails) {
+                x.Add(MailboxAddress.Parse(EmailHelpers.BeValidEmailAddress(address.Trim()) ? address.Trim() : "postmaster@appcorfucruises.com"));
+            }
+            return x;
         }
 
         private async Task<string> BuildEmailInvoiceTemplate(string email) {

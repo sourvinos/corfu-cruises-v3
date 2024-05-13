@@ -244,7 +244,7 @@ export class CustomerFormComponent {
             city: ['', [Validators.required, Validators.maxLength(128)]],
             phones: ['', [Validators.maxLength(128)]],
             personInCharge: ['', [Validators.maxLength(128)]],
-            email: ['', [Validators.email, Validators.maxLength(128)]],
+            email: ['', [Validators.maxLength(128)]],
             balanceLimit: [0, [Validators.required, Validators.min(0), Validators.max(99999.99)]],
             remarks: ['', Validators.maxLength(2048)],
             isActive: true,

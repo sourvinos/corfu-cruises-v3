@@ -1,4 +1,3 @@
-using API.Infrastructure.Helpers;
 using FluentValidation;
 
 namespace API.Features.Reservations.Customers {
@@ -22,7 +21,7 @@ namespace API.Features.Reservations.Customers {
             RuleFor(x => x.City).NotEmpty().MaximumLength(128);
             RuleFor(x => x.PersonInCharge).MaximumLength(128);
             RuleFor(x => x.Phones).MaximumLength(128);
-            RuleFor(x => x.Email).Must(EmailHelpers.BeEmptyOrValidEmailAddress).MaximumLength(128);
+            RuleFor(x => x.Email).MaximumLength(128);
             RuleFor(x => x.BalanceLimit).InclusiveBetween(0, 99999);
             RuleFor(x => x.Remarks).MaximumLength(2048);
         }
