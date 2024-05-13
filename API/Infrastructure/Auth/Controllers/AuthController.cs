@@ -98,7 +98,7 @@ namespace API.Infrastructure.Auth {
                     new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new(JwtRegisteredClaimNames.Sub, user.UserName),
                     new("LoggedOn", DateTime.UtcNow.ToString())
-                    }),
+                }),
                 SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature),
                 Issuer = settings.Site,
                 Audience = settings.Audience,
