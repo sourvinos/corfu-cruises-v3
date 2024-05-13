@@ -56,7 +56,7 @@ namespace API.Infrastructure.Auth {
                 var newRefreshToken = CreateRefreshToken(settings.ClientId, user.Id, model.Language);
                 context.Tokens.Add(newRefreshToken);
                 await context.SaveChangesAsync();
-                var response = await CreateAccessToken(user, newRefreshToken.Value);
+                var response = await CreateToken(user, newRefreshToken.Value);
                 return new Login {
                     UserId = user.Id,
                     IsAdmin = user.IsAdmin,
@@ -75,19 +75,41 @@ namespace API.Infrastructure.Auth {
             }
         }
 
-        private static Token CreateRefreshToken(string clientId, string userId, string language) {
+        private async Task<Login> RefreshToken(TokenRequest model) {
+            var existingToken = context.Tokens.FirstOrDefault(t => t.ClientId == settings.ClientId && t.Value == model.RefreshToken);
+            if (existingToken == null) AuthenticationFailed();
+            var user = await userManager.FindByIdAsync(existingToken.UserId);
+            if (user == null) AuthenticationFailed();
+            var newToken = CreateRefreshToken(existingToken.ClientId, existingToken.UserId, model.Language);
+            context.Tokens.Add(newToken);
+            context.Tokens.Remove(existingToken);
+            context.SaveChanges();
+            var token = await CreateToken(user, newToken.Value);
+            return new Login {
+                UserId = user.Id,
+                IsAdmin = user.IsAdmin,
+                Displayname = user.Displayname,
+                CustomerId = user.CustomerId,
+                IsFirstFieldFocused = user.IsFirstFieldFocused,
+                Token = token.Token,
+                RefreshToken = token.RefreshToken,
+                Expiration = token.Expiration,
+                DotNetVersion = GetNetVersion()
+            };
+        }
+
+        private Token CreateRefreshToken(string clientId, string userId, string language) {
             return new Token() {
                 ClientId = clientId,
                 UserId = userId,
                 Value = Guid.NewGuid().ToString("N"),
                 CreatedDate = DateTime.UtcNow,
-                ExpiryTime = DateTime.UtcNow.AddMinutes(90),
+                ExpiryTime = DateTime.UtcNow.AddMinutes(Convert.ToDouble(settings.ExpireTime)),
                 Language = language
             };
         }
 
-        private async Task<TokenResponse> CreateAccessToken(UserExtended user, string refreshToken) {
-            double tokenExpiryTime = Convert.ToDouble(settings.ExpireTime);
+        private async Task<TokenResponse> CreateToken(UserExtended user, string refreshToken) {
             var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(settings.Secret));
             var roles = await userManager.GetRolesAsync(user);
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -102,7 +124,7 @@ namespace API.Infrastructure.Auth {
                 SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature),
                 Issuer = settings.Site,
                 Audience = settings.Audience,
-                Expires = DateTime.UtcNow.AddMinutes(tokenExpiryTime)
+                Expires = DateTime.UtcNow.AddMinutes(Convert.ToDouble(settings.ExpireTime))
             };
             var newtoken = tokenHandler.CreateToken(tokenDescriptor);
             var encodedToken = tokenHandler.WriteToken(newtoken);
@@ -112,29 +134,6 @@ namespace API.Infrastructure.Auth {
                 Expiration = newtoken.ValidTo,
             };
             return response;
-        }
-
-        private async Task<Login> RefreshToken(TokenRequest model) {
-            var existingToken = context.Tokens.FirstOrDefault(t => t.ClientId == settings.ClientId && t.Value == model.RefreshToken);
-            if (existingToken == null) AuthenticationFailed();
-            var user = await userManager.FindByIdAsync(existingToken.UserId);
-            if (user == null) AuthenticationFailed();
-            var newToken = CreateRefreshToken(existingToken.ClientId, existingToken.UserId, model.Language);
-            context.Tokens.Add(newToken);
-            context.Tokens.Remove(existingToken);
-            context.SaveChanges();
-            var token = await CreateAccessToken(user, newToken.Value);
-            return new Login {
-                UserId = user.Id,
-                IsAdmin = user.IsAdmin,
-                Displayname = user.Displayname,
-                CustomerId = user.CustomerId,
-                IsFirstFieldFocused = user.IsFirstFieldFocused,
-                Token = token.Token,
-                RefreshToken = token.RefreshToken,
-                Expiration = token.Expiration,
-                DotNetVersion = GetNetVersion()
-            };
         }
 
         private static void AuthenticationFailed() {

@@ -10,7 +10,7 @@ export class DexieService extends Dexie {
 
     constructor() {
         super('CorfuCruisesDB')
-        this.version(1).stores({
+        this.version(2).stores({
             banks: 'id, description',
             coachRoutes: 'id, abbreviation',
             crewSpecialties: 'id, description',
