@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms'
+import { MatDatepickerInputEvent } from '@angular/material/datepicker'
 import { Router } from '@angular/router'
 // Custom
 import { BoardingCriteriaPanelVM } from '../../classes/view-models/criteria/boarding-criteria-panel-vm'
@@ -90,6 +91,12 @@ export class BoardingCriteriaComponent {
                 'description': element.description,
                 'isActive': element.isActive
             }))
+        })
+    }
+
+    public patchFormWithSelectedDate(event: MatDatepickerInputEvent<Date>): void {
+        this.form.patchValue({
+            date: this.dateHelperService.formatDateToIso(new Date(event.value))
         })
     }
 

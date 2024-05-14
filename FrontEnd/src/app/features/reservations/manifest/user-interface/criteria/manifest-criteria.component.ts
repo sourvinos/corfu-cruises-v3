@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms'
+import { MatDatepickerInputEvent } from '@angular/material/datepicker'
 import { Router } from '@angular/router'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
@@ -96,9 +97,9 @@ export class ManifestCriteriaComponent {
         })
     }
 
-    public patchFormWithSelectedDate(event: any): void {
+    public patchFormWithSelectedDate(event: MatDatepickerInputEvent<Date>): void {
         this.form.patchValue({
-            date: this.dateHelperService.formatDateToIso(new Date(event.value.date))
+            date: this.dateHelperService.formatDateToIso(new Date(event.value))
         })
     }
 
@@ -118,7 +119,7 @@ export class ManifestCriteriaComponent {
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            date: [this.dateHelperService.formatDateToIso(new Date()), Validators.required],
+            date: [new Date(), Validators.required],
             selectedDestinations: this.formBuilder.array([], Validators.required),
             selectedPorts: this.formBuilder.array([], Validators.required),
             selectedShips: this.formBuilder.array([], Validators.required),
