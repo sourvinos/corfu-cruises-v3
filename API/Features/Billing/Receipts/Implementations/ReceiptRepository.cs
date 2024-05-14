@@ -91,7 +91,7 @@ namespace API.Features.Billing.Receipts {
             DisposeOrCommit(transaction);
         }
 
-         public async Task<int> IncreaseInvoiceNoAsync(ReceiptWriteDto receipt) {
+        public async Task<int> IncreaseInvoiceNoAsync(ReceiptWriteDto receipt) {
             var lastInvoiceNo = await context.Transactions
                 .AsNoTracking()
                 .Where(x => receipt.Date.Year == DateHelpers.GetLocalDateTime().Year && x.DocumentTypeId == receipt.DocumentTypeId)
@@ -107,6 +107,13 @@ namespace API.Features.Billing.Receipts {
             } else {
                 transaction.Commit();
             }
+        }
+
+        public async Task<Receipt> GetByIdForPatchEmailSent(string invoiceId) {
+            return await context.Receipts
+                .AsNoTracking()
+                .Where(x => x.InvoiceId.ToString() == invoiceId)
+                .SingleOrDefaultAsync();
         }
 
     }

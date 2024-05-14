@@ -218,7 +218,6 @@ export class InvoiceListComponent {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
             }
         })
-
     }
 
     private enableDisableFilters(): void {

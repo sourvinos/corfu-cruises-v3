@@ -40,6 +40,7 @@ export class ReceiptListComponent {
     public icon = 'home'
     public parentUrl = '/home'
     public records: ReceiptListVM[] = []
+    public selectedRecords: ReceiptListVM[] = []
     public recordsFilteredCount = 0
 
     //#endregion
@@ -104,7 +105,7 @@ export class ReceiptListComponent {
 
     //#endregion
 
-    //#region public common methods
+    //#region public methods
 
     public editRecord(id: string): void {
         this.storeScrollTop()
@@ -156,6 +157,29 @@ export class ReceiptListComponent {
         }
     }
 
+    public processSelectedRecords(): void {
+        if (this.isAnyRowSelected()) {
+            if (this.selectedRowsAreSameCustomer()) {
+                const ids = []
+                this.selectedRecords.forEach(record => {
+                    ids.push(record.invoiceId)
+                })
+                this.receiptHttpService.buildPdf(ids).subscribe({
+                    next: (response) => {
+                        const criteria: EmailReceiptVM = {
+                            customerId: this.selectedRecords[0].customer.id,
+                            filenames: response.body
+                        }
+                        this.emailReceipts(criteria)
+                    },
+                    error: (errorFromInterceptor) => {
+                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                    }
+                })
+            }
+        }
+    }
+
     public resetTableFilters(): void {
         this.helperService.clearTableTextFilters(this.table, [''])
     }
@@ -163,6 +187,21 @@ export class ReceiptListComponent {
     //#endregion
 
     //#region private methods
+
+    private selectedRowsAreSameCustomer(): boolean {
+        const z = this.selectedRecords[0].customer.id
+        const x = this.selectedRecords.filter(x => x.customer.id == z)
+        if (x.length != this.selectedRecords.length) {
+            this.dialogService.open(this.messageDialogService.selectedRowsAreSameCustomer(), 'error', ['ok'])
+            return false
+        }
+        return true
+    }
+
+    private addSelectedRecordToSelectedRecords(record: ReceiptListVM): void {
+        this.selectedRecords = []
+        this.selectedRecords.push(record)
+    }
 
     private enableDisableFilters(): void {
         this.records.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()
@@ -190,6 +229,14 @@ export class ReceiptListComponent {
 
     private hightlightSavedRow(): void {
         this.helperService.highlightSavedRow(this.feature)
+    }
+
+    private isAnyRowSelected(): boolean {
+        if (this.selectedRecords.length == 0) {
+            this.dialogService.open(this.messageDialogService.noRecordsSelected(), 'error', ['ok'])
+            return false
+        }
+        return true
     }
 
     private loadRecords(criteria: ReceiptListCriteriaVM): Promise<ReceiptListVM[]> {
@@ -235,30 +282,20 @@ export class ReceiptListComponent {
         })
     }
 
-    private sendReceiptToEmail(invoiceId: string): void {
-        this.receiptHttpService.buildPdf(invoiceId).subscribe({
-            next: (response) => {
-                const criteria: EmailReceiptVM = {
-                    customerId: response.body.customerId,
-                    filename: response.body.filename
-                }
-                this.receiptHttpService.emailReceipt(criteria).subscribe({
-                    complete: () => {
-                        this.receiptHttpService.patchReceiptWithEmailSent(invoiceId).subscribe({
-                            next: () => {
-                                const criteria: ReceiptListCriteriaVM = JSON.parse(this.sessionStorageService.getItem('receipt-list-criteria'))
-                                this.loadRecords(criteria).then(() => {
-                                    this.filterTableFromStoredFilters()
-                                    this.populateDropdownFilters()
-                                    this.enableDisableFilters()
-                                    this.formatDatesToLocale()
-                                })
-                                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
-                            },
-                            error: (errorFromInterceptor) => {
-                                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                            }
+    private emailReceipts(criteria: EmailReceiptVM): void {
+        this.receiptHttpService.emailReceipts(criteria).subscribe({
+            complete: () => {
+                this.receiptHttpService.patchReceiptWithEmailSent(this.removeExtensionsFromFileNames(criteria.filenames)).subscribe({
+                    next: () => {
+                        const criteria: ReceiptListCriteriaVM = JSON.parse(this.sessionStorageService.getItem('receipt-list-criteria'))
+                        this.loadRecords(criteria).then(() => {
+                            this.filterTableFromStoredFilters()
+                            this.populateDropdownFilters()
+                            this.enableDisableFilters()
+                            this.formatDatesToLocale()
                         })
+                        this.selectedRecords = []
+                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
                     },
                     error: (errorFromInterceptor) => {
                         this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
@@ -271,6 +308,13 @@ export class ReceiptListComponent {
         })
     }
 
+    private removeExtensionsFromFileNames(filenames: string[]): string[] {
+        const x = []
+        filenames.forEach(filename => {
+            x.push(filename.substring(0, filename.length - 4))
+        })
+        return x
+    }
 
     //#endregion
 
@@ -308,7 +352,12 @@ export class ReceiptListComponent {
     private initContextMenu(): void {
         this.menuItems = [
             { label: 'Επεξεργασία', command: () => this.editRecord(this.selectedRecord.invoiceId.toString()) },
-            { label: 'Αποστολή με email', command: () => this.sendReceiptToEmail(this.selectedRecord.invoiceId) }
+            {
+                label: 'Αποστολή με email', command: (): void => {
+                    this.addSelectedRecordToSelectedRecords(this.selectedRecord)
+                    this.processSelectedRecords()
+                }
+            }
         ]
     }
 

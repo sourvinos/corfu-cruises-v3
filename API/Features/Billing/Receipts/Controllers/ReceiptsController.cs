@@ -111,32 +111,33 @@ namespace API.Features.Billing.Receipts {
             }
         }
 
-        [HttpGet("buildReceiptPdf/{invoiceId}")]
+        [HttpPost("buildReceiptPdfs")]
         [Authorize(Roles = "admin")]
-        public async Task<ResponseWithBody> BuildPdf(string invoiceId) {
-            var x = await receiptRepo.GetByIdForPdfAsync(invoiceId);
-            if (x != null) {
-                var filename = receiptPdfRepo.BuildPdf(mapper.Map<Receipt, ReceiptPdfVM>(x));
-                return new ResponseWithBody {
-                    Code = 200,
-                    Icon = Icons.Info.ToString(),
-                    Message = ApiMessages.OK(),
-                    Body = new EmailReceiptVM {
-                        CustomerId = x.Customer.Id,
-                        Filename = filename
-                    }
-                };
-            } else {
-                throw new CustomException() {
-                    ResponseCode = 404
-                };
+        public async Task<ResponseWithBody> BuildReceiptPdfs([FromBody] string[] invoiceIds) {
+            var filenames = new List<string>();
+            foreach (var invoiceId in invoiceIds) {
+                var x = await receiptRepo.GetByIdForPdfAsync(invoiceId);
+                if (x != null) {
+                    var z = receiptPdfRepo.BuildPdf(mapper.Map<Receipt, ReceiptPdfVM>(x));
+                    filenames.Add(z);
+                } else {
+                    throw new CustomException() {
+                        ResponseCode = 404
+                    };
+                }
             }
+            return new ResponseWithBody {
+                Code = 200,
+                Icon = Icons.Info.ToString(),
+                Message = ApiMessages.OK(),
+                Body = filenames.ToArray()
+            };
         }
 
         [HttpPost("[action]")]
         [Authorize(Roles = "admin")]
-        public Response EmailReceipt([FromBody] EmailReceiptVM model) {
-            var response = emailSender.SendReceiptToEmail(model);
+        public Response EmailReceipts([FromBody] EmailReceiptVM model) {
+            var response = emailSender.SendReceiptsToEmail(model);
             if (response.Exception == null) {
                 return new Response {
                     Code = 200,
@@ -153,23 +154,24 @@ namespace API.Features.Billing.Receipts {
             }
         }
 
-        [HttpPatch("email/{invoiceId}")]
+        [HttpPatch("[action]")]
         [Authorize(Roles = "admin")]
-        public async Task<Response> PatchEmail(string invoiceId) {
-            var x = await receiptRepo.GetByIdAsync(invoiceId, false);
-            if (x != null) {
-                receiptRepo.UpdateIsEmailSent(x, invoiceId);
-                return new Response {
-                    Code = 200,
-                    Icon = Icons.Success.ToString(),
-                    Id = invoiceId.ToString(),
-                    Message = ApiMessages.OK()
-                };
-            } else {
-                throw new CustomException() {
-                    ResponseCode = 404
-                };
+        public async Task<Response> PatchReceiptsWithEmailSent([FromBody] string[] invoiceIds) {
+            foreach (var invoiceId in invoiceIds) {
+                var x = await receiptRepo.GetByIdForPatchEmailSent(invoiceId);
+                if (x != null) {
+                    receiptRepo.UpdateIsEmailSent(x, invoiceId);
+                } else {
+                    throw new CustomException() {
+                        ResponseCode = 404
+                    };
+                }
             }
+            return new Response {
+                Code = 200,
+                Icon = Icons.Info.ToString(),
+                Message = ApiMessages.OK()
+            };
         }
 
         [HttpGet("[action]/{filename}")]

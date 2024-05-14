@@ -20,20 +20,20 @@ export class ReceiptHttpService extends HttpDataService {
         return this.http.request<ReceiptListVM[]>('post', environment.apiUrl + '/receipts/getForPeriod', { body: criteria })
     }
 
-    public buildPdf(invoiceId: string): Observable<any> {
-        return this.http.request<any>('get', this.url + '/buildReceiptPdf/' + invoiceId)
+    public buildPdf(invoiceIds: string[]): Observable<any> {
+        return this.http.post<any>(this.url + '/buildReceiptPdfs', invoiceIds)
     }
 
     public openPdf(filename: string): Observable<any> {
         return this.http.get(this.url + '/openPdf/' + filename, { responseType: 'arraybuffer' })
     }
 
-    public emailReceipt(criteria: EmailReceiptVM): Observable<any> {
-        return this.http.request<EmailReceiptVM[]>('post', this.url + '/emailReceipt', { body: criteria })
+    public emailReceipts(criteria: EmailReceiptVM): Observable<any> {
+        return this.http.request<EmailReceiptVM[]>('post', this.url + '/emailReceipts', { body: criteria })
     }
 
-    public patchReceiptWithEmailSent(invoiceId: string): Observable<any> {
-        return this.http.patch<any>(this.url + '/email/' + invoiceId, null)
+    public patchReceiptWithEmailSent(invoiceIds: string[]): Observable<any> {
+        return this.http.patch<any>(this.url + '/patchReceiptsWithEmailSent', invoiceIds)
     }
 
     public override save(formData: any): Observable<any> {

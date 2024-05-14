@@ -34,7 +34,7 @@ namespace API.Features.Billing.Receipts {
 
         #region public methods
 
-        public async Task SendReceiptToEmail(EmailReceiptVM model) {
+        public async Task SendReceiptsToEmail(EmailReceiptVM model) {
             using var smtp = new SmtpClient();
             smtp.Connect(emailSettings.SmtpClient, emailSettings.Port);
             smtp.Authenticate(emailSettings.Username, emailSettings.Password);
@@ -50,12 +50,23 @@ namespace API.Features.Billing.Receipts {
             var customer = GetCustomerAsync(model.CustomerId).Result;
             var message = new MimeMessage { Sender = MailboxAddress.Parse(emailSettings.Username) };
             message.From.Add(new MailboxAddress(emailSettings.From, emailSettings.Username));
-            message.To.Add(MailboxAddress.Parse(customer.Email));
+            message.To.AddRange(BuildReceivers(customer.Email));
             message.Subject = "📧 Ηλεκτρονική αποστολή παραστατικών";
             var builder = new BodyBuilder { HtmlBody = await BuildEmailReceiptTemplate(customer.Email) };
-            builder.Attachments.Add(Path.Combine("Reports" + Path.DirectorySeparatorChar + "Invoices" + Path.DirectorySeparatorChar + model.Filename));
+            foreach (var filename in model.Filenames) {
+                builder.Attachments.Add(Path.Combine("Reports" + Path.DirectorySeparatorChar + "Invoices" + Path.DirectorySeparatorChar + filename));
+            }
             message.Body = builder.ToMessageBody();
             return message;
+        }
+
+        private static InternetAddressList BuildReceivers(string email) {
+            InternetAddressList x = new();
+            var emails = email.Split(",");
+            foreach (string address in emails) {
+                x.Add(MailboxAddress.Parse(EmailHelpers.BeValidEmailAddress(address.Trim()) ? address.Trim() : "postmaster@appcorfucruises.com"));
+            }
+            return x;
         }
 
         private async Task<string> BuildEmailReceiptTemplate(string email) {
