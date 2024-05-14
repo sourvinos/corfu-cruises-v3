@@ -1,3 +1,7 @@
+#header {
+    margin: 0 auto 0 auto;
+}
+
 #form-wrapper {
     height: 100%;
     margin: 0 auto 0 auto;
@@ -9,30 +13,20 @@
     height: 100%;
 }
 
-#form .group-input-field > date-picker {
-    width: 100%;
-}
-
-#form .group-input-field:first-child {
-    display: flex;
-    margin: 0 0 0 auto;
-    width: 33%;
-}
-
-#form .group-input-field:last-child {
+#form .group-input-field {
     column-gap: 0.5rem;
     display: flex;
     height: 100%;
 }
 
-@media (width <= 1366px) {
-    #form-wrapper {
+@media (width <=1366px) {
+    #header, #form-wrapper {
         width: 100%
     }
 }
 
 @media (width > 1366px) {
-    #form-wrapper {
+    #header, #form-wrapper {
         width: 80%
     }
 }

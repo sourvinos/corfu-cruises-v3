@@ -2248,12 +2248,8 @@
         ]
     },
     {
-        "feature": "date-picker",
+        "feature": "date-picker-pill",
         "labels": [
-            {
-                "id": "hint",
-                "description": "Select the date"
-            },
             {
                 "id": "today",
                 "description": "Today"

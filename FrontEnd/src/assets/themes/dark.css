@@ -1,5 +1,6 @@
 * {
     --color-background: #2b2a33;
+    --color-button-fab-hover: #4b4b4b;
     --color-calendar-day: #7BB7DD;
     --color-dialog-areas-seperator: #858585;
     --color-dialog-background: #6b6b6b;
@@ -11,6 +12,6 @@
     --color-secondary: #7BB7DD;
     --color-table-row-percentage: #b5838d;
     --color-text: #ffffff;
-    --color-transparent-button: #ffffff;
     --color-transparent-button-hover: #5d5d5d;
+    --color-transparent-button: #ffffff;
 }

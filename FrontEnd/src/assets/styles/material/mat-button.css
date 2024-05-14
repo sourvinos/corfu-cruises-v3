@@ -58,6 +58,10 @@ button.fab-with-no-background {
     color: var(--color-text) !important;
 }
 
+button.fab:hover {
+    background-color: var(--color-button-fab-hover);
+}
+
 button.delete {
     background-color: var(--color-button-delete) !important;
 }

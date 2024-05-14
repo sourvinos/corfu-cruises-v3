@@ -1,11 +1,11 @@
 import { Component } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
-import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms'
-import { MatDatepickerInputEvent } from '@angular/material/datepicker'
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms'
 import { Router } from '@angular/router'
 // Custom
 import { BoardingCriteriaPanelVM } from '../../classes/view-models/criteria/boarding-criteria-panel-vm'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
+import { DebugDialogService } from '../../../availability/classes/services/debug-dialog.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
@@ -46,7 +46,7 @@ export class BoardingCriteriaComponent {
 
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private debugDialogService: DebugDialogService, private dexieService: DexieService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -70,12 +70,12 @@ export class BoardingCriteriaComponent {
         this.navigateToList()
     }
 
-    public getHint(id: string, minmax = 0): string {
-        return this.messageHintService.getDescription(id, minmax)
-    }
-
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
+    }
+
+    public onShowFormValue(): void {
+        this.debugDialogService.open(this.form.value, '', ['ok'])
     }
 
     public patchFormWithSelectedArrays(event: SimpleEntity[], name: string): void {
@@ -94,9 +94,9 @@ export class BoardingCriteriaComponent {
         })
     }
 
-    public patchFormWithSelectedDate(event: MatDatepickerInputEvent<Date>): void {
+    public patchFormWithSelectedDate(event: any): void {
         this.form.patchValue({
-            date: this.dateHelperService.formatDateToIso(new Date(event.value))
+            date: event
         })
     }
 
@@ -180,14 +180,6 @@ export class BoardingCriteriaComponent {
         this.interactionService.refreshTabTitle.subscribe(() => {
             this.setTabTitle()
         })
-    }
-
-    //#endregion
-
-    //#region getters
-
-    get date(): AbstractControl {
-        return this.form.get('date')
     }
 
     //#endregion

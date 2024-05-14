@@ -1,16 +1,15 @@
 import { Component } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
-import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms'
-import { MatDatepickerInputEvent } from '@angular/material/datepicker'
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms'
 import { Router } from '@angular/router'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
+import { DebugDialogService } from '../../../availability/classes/services/debug-dialog.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { ManifestSearchCriteriaVM } from '../../classes/view-models/criteria/manifest-search-criteria-vm'
-import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleCriteriaEntity } from 'src/app/shared/classes/simple-criteria-entity'
@@ -46,7 +45,7 @@ export class ManifestCriteriaComponent {
 
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private debugDialogService: DebugDialogService, private dexieService: DexieService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -70,16 +69,12 @@ export class ManifestCriteriaComponent {
         this.navigateToList()
     }
 
-    public getDate(): string {
-        return this.form.value.date
-    }
-
-    public getHint(id: string, minmax = 0): string {
-        return this.messageHintService.getDescription(id, minmax)
-    }
-
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
+    }
+
+    public onShowFormValue(): void {
+        this.debugDialogService.open(this.form.value, '', ['ok'])
     }
 
     public patchFormWithSelectedArrays(event: SimpleEntity[], name: string): void {
@@ -97,9 +92,9 @@ export class ManifestCriteriaComponent {
         })
     }
 
-    public patchFormWithSelectedDate(event: MatDatepickerInputEvent<Date>): void {
+    public patchFormWithSelectedDate(event: any): void {
         this.form.patchValue({
-            date: this.dateHelperService.formatDateToIso(new Date(event.value))
+            date: event
         })
     }
 
@@ -119,7 +114,7 @@ export class ManifestCriteriaComponent {
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            date: [new Date(), Validators.required],
+            date: [this.dateHelperService.formatDateToIso(new Date()), Validators.required],
             selectedDestinations: this.formBuilder.array([], Validators.required),
             selectedPorts: this.formBuilder.array([], Validators.required),
             selectedShips: this.formBuilder.array([], Validators.required),
@@ -146,7 +141,7 @@ export class ManifestCriteriaComponent {
         if (this.sessionStorageService.getItem('manifest-criteria')) {
             this.criteria = JSON.parse(this.sessionStorageService.getItem('manifest-criteria'))
             this.form.patchValue({
-                date: this.criteria.date,
+                date: this.dateHelperService.formatDateToIso(new Date(this.criteria.date)),
                 selectedDestinations: this.addSelectedCriteriaFromStorage('selectedDestinations'),
                 selectedPorts: this.addSelectedCriteriaFromStorage('selectedPorts'),
                 selectedShips: this.addSelectedCriteriaFromStorage('selectedShips')
@@ -164,12 +159,12 @@ export class ManifestCriteriaComponent {
         this.dateAdapter.setLocale(this.localStorageService.getLanguage())
     }
 
-    private setTabTitle(): void {
-        this.helperService.setTabTitle(this.feature)
-    }
-
     private setSidebarsHeight(): void {
         this.helperService.setSidebarsTopMargin('0')
+    }
+
+    private setTabTitle(): void {
+        this.helperService.setTabTitle(this.feature)
     }
 
     private storeCriteria(): void {
@@ -183,14 +178,6 @@ export class ManifestCriteriaComponent {
         this.interactionService.refreshTabTitle.subscribe(() => {
             this.setTabTitle()
         })
-    }
-
-    //#endregion
-
-    //#region getters
-
-    get date(): AbstractControl {
-        return this.form.get('date')
     }
 
     //#endregion
