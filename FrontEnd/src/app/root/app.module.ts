@@ -14,7 +14,6 @@ import { SharedModule } from 'src/app/shared/modules/shared.module'
 // Components
 import { BillingMenuComponent } from '../shared/components/billing-menu/billing-menu.component'
 import { CardsMenuComponent } from '../shared/components/home/cards-menu.component'
-import { EmptyPageComponent } from '../shared/components/empty-page/empty-page.component'
 import { HomeComponent } from '../shared/components/home/home.component'
 import { LogoutComponent } from '../shared/components/logout/logout.component'
 import { ReservationSearchComponent } from '../shared/components/reservation-search/reservation-search.component'
@@ -40,7 +39,6 @@ registerLocaleData(localeFr)
         AppComponent,
         BillingMenuComponent,
         CardsMenuComponent,
-        EmptyPageComponent,
         HomeComponent,
         LogoutComponent,
         ReservationSearchComponent,

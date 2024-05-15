@@ -905,12 +905,20 @@
                 "description": "Passagiere"
             },
             {
+                "id": "tab3",
+                "description": "Retail Services"
+            },
+            {
                 "id": "deleteButton",
                 "description": "Löschen"
             },
             {
                 "id": "saveButton",
                 "description": "Speichern"
+            },
+            {
+                "id": "saveAndKeepFormOpen",
+                "description": "Save and keep form open"
             }
         ]
     },

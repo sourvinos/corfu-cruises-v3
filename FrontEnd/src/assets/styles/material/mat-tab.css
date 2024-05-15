@@ -9,6 +9,10 @@
     row-gap: 1rem;
 }
 
+.mdc-tab--active {
+    background-color: var(--color-tab-active) !important;
+}
+
 .mat-mdc-tab .mdc-tab__text-label {
     color: var(--color-text) !important;
     font-family: var(--font-family-asty) !important;

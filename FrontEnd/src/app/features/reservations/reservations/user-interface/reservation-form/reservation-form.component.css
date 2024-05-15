@@ -14,23 +14,12 @@
     margin: 0 1rem 0 0;
 }
 
-#tab-scroller {
-    display: flex;
-    gap: 0.5rem;
-}
-
-#reservation-tab {
+#general-tab, #passengers-tab, #retail-service-tab {
     display: flex;
     flex-direction: column;
     height: 100%;
     justify-content: center;
-}
-
-#passengers-tab {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
+    overflow: hidden;
 }
 
 #table-wrapper {
@@ -51,6 +40,7 @@
 
 .material-symbols-outlined:hover {
     cursor: pointer;
+    margin: 0.125rem 0 0 0;
 }
 
 #ref-no, #total-pax {

@@ -905,12 +905,20 @@
                 "description": "Pasažéři"
             },
             {
+                "id": "tab3",
+                "description": "Retail Services"
+            },
+            {
                 "id": "deleteButton",
                 "description": "Smazat"
             },
             {
                 "id": "saveButton",
                 "description": "Uložit"
+            },
+            {
+                "id": "saveAndKeepFormOpen",
+                "description": "Save and keep form open"
             }
         ]
     },

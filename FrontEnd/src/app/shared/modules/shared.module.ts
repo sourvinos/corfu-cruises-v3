@@ -14,6 +14,7 @@ import { DatePickerPillComponent } from '../components/date-picker-pill/date-pic
 import { DateRangePickerComponent } from '../components/date-range-picker/date-range-picker.component'
 import { DeleteRangeDialogComponent } from '../components/delete-range-dialog/delete-range-dialog.component'
 import { EmojiDirective } from '../directives/emoji.directive'
+import { EmptyPageComponent } from '../components/empty-page/empty-page.component'
 import { HomeButtonAndTitleComponent } from '../components/home-button-and-title/home-button-and-title.component'
 import { InputMaxLengthDirective } from '../directives/input-maxLength.directive'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -44,6 +45,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         DateRangePickerComponent,
         DeleteRangeDialogComponent,
         EmojiDirective,
+        EmptyPageComponent,
         HomeButtonAndTitleComponent,
         InputMaxLengthDirective,
         InputTabStopDirective,
@@ -83,6 +85,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         DateRangePickerComponent,
         DeleteRangeDialogComponent,
         EmojiDirective,
+        EmptyPageComponent,
         FormsModule,
         HomeButtonAndTitleComponent,
         InputMaxLengthDirective,

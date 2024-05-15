@@ -42,7 +42,7 @@ import { ValidationService } from './../../../../../shared/services/validation.s
 
 export class ReservationFormComponent {
 
-    //#region common #8
+    //#region common
 
     private record: ReservationReadDto
     private recordId: string
@@ -55,7 +55,7 @@ export class ReservationFormComponent {
 
     //#endregion
 
-    //#region specific #7
+    //#region specific
 
     private mirrorRecord: ReservationReadDto
     private mustGoBackAfterSave = true
@@ -66,7 +66,7 @@ export class ReservationFormComponent {
 
     //#endregion
 
-    //#region autocompletes #7
+    //#region autocompletes
 
     public isAutoCompleteDisabled = true
     public dropdownCustomers: Observable<CustomerAutoCompleteVM[]>
@@ -95,6 +95,7 @@ export class ReservationFormComponent {
     }
 
     ngAfterViewInit(): void {
+        this.leftAlignLastTab()
         this.focusOnField()
     }
 
@@ -130,10 +131,6 @@ export class ReservationFormComponent {
 
     public enableOrDisableAutoComplete(event: any): void {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
-    }
-
-    public getDate(): string {
-        return this.form.value.date
     }
 
     public getHint(id: string, minmax = 0): string {
@@ -220,8 +217,8 @@ export class ReservationFormComponent {
         }
     }
 
-    public onSave(): void {
-        this.saveRecord(this.flattenForm())
+    public onSave(keepFormOpen: boolean): void {
+        this.saveRecord(this.flattenForm(), keepFormOpen)
     }
 
     public onShowCachedReservationDialog(): void {
@@ -246,24 +243,8 @@ export class ReservationFormComponent {
         })
     }
 
-    public onShowPassengersTab(): void {
-        this.isReservationTabVisible = false
-        this.isPassengersTabVisible = true
-    }
-
-    public onShowReservationTab(): void {
-        this.isReservationTabVisible = true
-        this.isPassengersTabVisible = false
-    }
-
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
         this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
-    }
-
-    public patchFormWithSelectedDate(event: any): void {
-        this.form.patchValue({
-            date: event.value.date
-        })
     }
 
     public updateFieldsAfterPickupPointSelection(value: PickupPointAutoCompleteVM): void {
@@ -449,6 +430,10 @@ export class ReservationFormComponent {
         })
     }
 
+    private leftAlignLastTab(): void {
+        this.isAdmin() ? this.helperService.leftAlignLastTab() : null
+    }
+
     private patchFormWithPassengers(passengers: any): void {
         this.form.patchValue({
             passengers: passengers
@@ -503,7 +488,7 @@ export class ReservationFormComponent {
         })
     }
 
-    private saveRecord(reservation: ReservationWriteDto): void {
+    private saveRecord(reservation: ReservationWriteDto, keepFormOpen: boolean): void {
         this.reservationHttpService.saveReservation(reservation).subscribe({
             next: (response) => {
                 const date = this.dateHelperService.formatDateToIso(new Date(this.form.value.date))
@@ -511,7 +496,7 @@ export class ReservationFormComponent {
                 this.parentUrl = this.sessionStorageService.getItem('returnUrl').includes('refNo')
                     ? this.sessionStorageService.getItem('returnUrl')
                     : '/reservations/date/' + date
-                this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'ok', this.parentUrl, this.mustGoBackAfterSave)
+                this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'ok', this.parentUrl, this.mustGoBackAfterSave || !keepFormOpen)
                 this.form.patchValue({
                     putAt: response.body
                 })

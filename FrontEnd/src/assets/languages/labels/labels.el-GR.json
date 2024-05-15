@@ -805,6 +805,10 @@
         "feature": "reservationForm",
         "labels": [
             {
+                "id": "tab1",
+                "description": "Γενικά"
+            },
+            {
                 "id": "header",
                 "description": "Κράτηση"
             },
@@ -897,12 +901,12 @@
                 "description": "Αποστολή κάρτας επιβίβασης με email"
             },
             {
-                "id": "toggle-button-general",
-                "description": "Γενικα"
+                "id": "tab2",
+                "description": "Επιβάτες"
             },
             {
-                "id": "toggle-button-passengers",
-                "description": "Επιβατες"
+                "id": "tab3",
+                "description": "Υπηρεσίες λιανικής πώλησης"
             },
             {
                 "id": "deleteButton",
@@ -911,6 +915,10 @@
             {
                 "id": "saveButton",
                 "description": "Αποθηκευση"
+            },
+            {
+                "id": "saveAndKeepFormOpen",
+                "description": "Αποθήκευση χωρίς έξοδο από τη φόρμα"
             }
         ]
     },
