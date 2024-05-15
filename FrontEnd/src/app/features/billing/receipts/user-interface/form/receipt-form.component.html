@@ -5,6 +5,15 @@
         <div id="header">
             <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
             <div id="header-buttons">
+                <button class="fab fab-with-no-background transparent" mat-icon-button>
+                    <mat-icon [ngClass]="isEmailSent() ? 'vivid-color' : 'pale-color'" class="icon blue material-symbols-outlined">email</mat-icon>
+                </button>
+                <button class="fab fab-with-no-background transparent" mat-icon-button>
+                    <mat-icon [ngClass]="isSubmitted() ? 'vivid-color' : 'pale-color'" class="icon green material-symbols-outlined">upload_2</mat-icon>
+                </button>
+                <button class="fab fab-with-no-background transparent" mat-icon-button>
+                    <mat-icon [ngClass]="isCancelled() ? 'vivid-color' : 'pale-color'" class="icon orange material-symbols-outlined">upload_2</mat-icon>
+                </button>
                 <button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" mat-icon-button>
                     <mat-icon class="material-icons-outlined">more_vert</mat-icon>
                 </button>
@@ -171,5 +180,8 @@
 <ng-template #actionsMenu>
     <button (click)="onCreateAndOpenPdf()" mat-menu-item>
         <span>{{ getLabel('printInvoice') }}</span>
+    </button>
+    <button (click)="onCancelInvoice()" mat-menu-item>
+        <span>{{ getLabel('cancelInvoice') }}</span>
     </button>
 </ng-template>

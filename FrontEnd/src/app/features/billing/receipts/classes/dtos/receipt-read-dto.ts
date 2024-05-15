@@ -18,6 +18,8 @@ export interface ReceiptReadDto extends Metadata {
     shipOwner: SimpleEntity
     grossAmount: number
     remarks: string
+    isEmailSent: boolean,
+    isCancelled: boolean,
     // Metadata
     postAt: string
     postUser: string

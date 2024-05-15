@@ -21,6 +21,8 @@
                         <th class="width-4" pSortableColumn="no">{{ getLabel("headerNo") }}</th>
                         <th class="width-6" pSortableColumn="grossAmount">{{ getLabel("headerGrossAmount") }}</th>
                         <th rowspan="2" class="border-bottom width-3"><span class="icon center blue email material-symbols-outlined">mail</span></th>
+                        <th rowspan="2" class="border-bottom width-3"><span class="icon center green email material-symbols-outlined">upload_2</span></th>
+                        <th rowspan="2" class="border-bottom width-3"><span class="icon center orange email material-symbols-outlined">upload_2</span></th>
                     </tr>
                     <tr>
                         <th class="width-9">
@@ -72,7 +74,7 @@
                         </th>
                         <th class="width-4"></th>
                         <th class="width-4"></th>
-                        <th class="width-6"></th>
+                        <th class="width-4"></th>
                     </tr>
                 </ng-template>
                 <ng-template let-record pTemplate="body">
@@ -87,6 +89,13 @@
                         <td class="width-3">
                             <span *ngIf="record.isEmailSent" class="icon center blue email material-symbols-outlined">mail</span>
                             <span *ngIf="!record.isEmailSent"></span>
+                        </td>
+                        <td class="width-3">
+                            <span></span>
+                        </td>
+                        <td class="width-3">
+                            <span *ngIf="record.isCancelled" class="icon center orange material-symbols-outlined">upload_2</span>
+                            <span *ngIf="!record.isCancelled"></span>
                         </td>
                     </tr>
                 </ng-template>

@@ -94,6 +94,18 @@ export class ReceiptFormComponent {
         return this.recordId == undefined
     }
 
+    public isCancelled(): boolean {
+        return this.form.value.isCancelled
+    }
+
+    public isEmailSent(): boolean {
+        return this.form.value.isEmailSent
+    }
+
+    public isSubmitted(): boolean {
+        return false
+    }
+
     public onCreateAndOpenPdf(): void {
         this.receiptHttpService.buildPdf(new Array(this.form.value.invoiceId)).subscribe({
             next: (response) => {
@@ -115,7 +127,18 @@ export class ReceiptFormComponent {
     }
 
     public onCancelInvoice(): void {
-        // this.isEditingAllowed = true
+        this.dialogService.open(this.messageDialogService.confirmCancelInvoice(), 'question', ['abort', 'ok']).subscribe(response => {
+            if (response) {
+                this.receiptHttpService.patchInvoiceWithIsCancelled(this.form.value.invoiceId).subscribe({
+                    next: () => {
+                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                    },
+                    error: (errorFromInterceptor) => {
+                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                    }
+                })
+            }
+        })
     }
 
     public onSave(): void {
@@ -202,6 +225,8 @@ export class ReceiptFormComponent {
             invoiceNo: 0,
             grossAmount: [0, [Validators.required, Validators.min(1), Validators.max(99999)]],
             remarks: ['', Validators.maxLength(128)],
+            isEmailSent: false,
+            isCancelled: false,
             postAt: [''],
             postUser: [''],
             putAt: [''],
@@ -250,6 +275,8 @@ export class ReceiptFormComponent {
                 paymentMethod: { 'id': this.record.paymentMethod.id, 'description': this.record.paymentMethod.description },
                 grossAmount: this.record.grossAmount,
                 remarks: this.record.remarks,
+                isEmailSent: this.record.isEmailSent,
+                isCancelled: this.record.isCancelled,
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
                 putAt: this.record.putAt,

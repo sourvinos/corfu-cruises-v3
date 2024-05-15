@@ -91,6 +91,15 @@ namespace API.Features.Billing.Receipts {
             DisposeOrCommit(transaction);
         }
 
+        public void UpdateIsCancelled(Receipt invoice, string invoiceId) {
+            using var transaction = context.Database.BeginTransaction();
+            invoice.IsCancelled = true;
+            context.Receipts.Attach(invoice);
+            context.Entry(invoice).Property(x => x.IsCancelled).IsModified = true;
+            context.SaveChanges();
+            DisposeOrCommit(transaction);
+        }
+
         public async Task<int> IncreaseInvoiceNoAsync(ReceiptWriteDto receipt) {
             var lastInvoiceNo = await context.Transactions
                 .AsNoTracking()

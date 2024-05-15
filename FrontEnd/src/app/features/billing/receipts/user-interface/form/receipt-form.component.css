@@ -38,6 +38,14 @@
     margin: 0;
 }
 
+.vivid-color {
+    opacity: 1;
+}
+
+.pale-color {
+    opacity: 0.15;
+}
+
 .group-input-field:last-child {
     margin-top: auto;
 }

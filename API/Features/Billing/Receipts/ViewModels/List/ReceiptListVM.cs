@@ -13,6 +13,7 @@ namespace API.Features.Billing.Receipts {
         public int InvoiceNo { get; set; }
         public decimal GrossAmount { get; set; }
         public string Remarks { get; set; }
+        public bool IsCancelled { get; set; }
         public bool IsEmailSent { get; set; }
 
     }

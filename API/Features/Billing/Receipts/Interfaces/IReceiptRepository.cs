@@ -12,6 +12,7 @@ namespace API.Features.Billing.Receipts {
         Task<Receipt> GetByIdForPdfAsync(string invoiceId);
         Task<Receipt> GetByIdForPatchEmailSent(string invoiceId);
         Task<int> IncreaseInvoiceNoAsync(ReceiptWriteDto invoice);
+        void UpdateIsCancelled(Receipt invoice, string invoiceId);
         void UpdateIsEmailSent(Receipt invoice, string invoiceId);
 
     }

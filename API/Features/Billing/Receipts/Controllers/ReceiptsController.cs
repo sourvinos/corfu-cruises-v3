@@ -174,6 +174,25 @@ namespace API.Features.Billing.Receipts {
             };
         }
 
+        [HttpPatch("isCancelled/{invoiceId}")]
+        [Authorize(Roles = "admin")]
+        public async Task<Response> PatchIsCancelled(string invoiceId) {
+            var x = await receiptRepo.GetByIdAsync(invoiceId, false);
+            if (x != null) {
+                receiptRepo.UpdateIsCancelled(x, invoiceId);
+                return new Response {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Id = invoiceId.ToString(),
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 404
+                };
+            }
+        }
+
         [HttpGet("[action]/{filename}")]
         [Authorize(Roles = "admin")]
         public IActionResult OpenPdf([FromRoute] string filename) {
