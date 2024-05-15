@@ -15,6 +15,8 @@ export interface ReceiptWriteDto {
     invoiceNo: number
     grossAmount: number
     remarks: string
+    isEmailSent: boolean
+    isCancelled: boolean
     // Metadata
     putAt: string
 

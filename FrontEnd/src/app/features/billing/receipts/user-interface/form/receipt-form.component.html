@@ -181,6 +181,9 @@
     <button (click)="onCreateAndOpenPdf()" mat-menu-item>
         <span>{{ getLabel('printInvoice') }}</span>
     </button>
+    <button (click)="onEmailInvoice()" mat-menu-item>
+        <span>{{ getLabel('emailInvoice') }}</span>
+    </button>
     <button (click)="onCancelInvoice()" mat-menu-item>
         <span>{{ getLabel('cancelInvoice') }}</span>
     </button>

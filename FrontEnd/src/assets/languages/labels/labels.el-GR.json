@@ -610,7 +610,7 @@
             },
             {
                 "id": "emailUserDetails",
-                "description": "Αποστολή στοιχείων στο email"
+                "description": "Αποστολή στοιχείων με email"
             },
             {
                 "id": "deleteDexieDB",
@@ -894,7 +894,7 @@
             },
             {
                 "id": "emailBoardingPass",
-                "description": "Αποστολή κάρτας επιβίβασης στο email"
+                "description": "Αποστολή κάρτας επιβίβασης με email"
             },
             {
                 "id": "toggle-button-general",
@@ -3222,12 +3222,12 @@
                 "description": "Εκτύπωση"
             },
             {
-                "id": "cancelInvoice",
-                "description": "Ακύρωση"
-            },
-            {
                 "id": "emailInvoice",
                 "description": "Αποστολή με email"
+            },
+            {
+                "id": "cancelInvoice",
+                "description": "Ακύρωση"
             }
         ]
     },

@@ -23,6 +23,8 @@ export class ReceiptHelperService {
             invoiceNo: formValue.invoiceNo,
             grossAmount: formValue.grossAmount,
             remarks: formValue.remarks,
+            isEmailSent: formValue.isEmailSent,
+            isCancelled: formValue.isCancelled,
             putAt: formValue.putAt
         }
         return x
