@@ -2,11 +2,11 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 // Custom
+import { EmailReceiptVM } from '../view-models/email/email-receipt-vm'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { ReceiptListCriteriaVM } from '../view-models/criteria/receipt-list-criteria-vm'
 import { ReceiptListVM } from '../view-models/list/receipt-list-vm'
 import { environment } from 'src/environments/environment'
-import { EmailReceiptVM } from '../view-models/email/email-receipt-vm'
 
 @Injectable({ providedIn: 'root' })
 

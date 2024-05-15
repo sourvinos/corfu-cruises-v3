@@ -91,9 +91,9 @@ export class ReceiptFormComponent {
     }
 
     public onCreateAndOpenPdf(): void {
-        this.receiptHttpService.buildPdf(this.form.value.invoiceId).subscribe({
+        this.receiptHttpService.buildPdf(new Array(this.form.value.invoiceId)).subscribe({
             next: (response) => {
-                this.receiptHttpService.openPdf(response.body.filename).subscribe({
+                this.receiptHttpService.openPdf(response.body[0]).subscribe({
                     next: (response) => {
                         const blob = new Blob([response], { type: 'application/pdf' })
                         const fileURL = URL.createObjectURL(blob)
