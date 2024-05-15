@@ -90,6 +90,10 @@ export class ReceiptFormComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
+    public isEditingAllowed(): boolean {
+        return this.recordId == undefined
+    }
+
     public onCreateAndOpenPdf(): void {
         this.receiptHttpService.buildPdf(new Array(this.form.value.invoiceId)).subscribe({
             next: (response) => {
@@ -108,6 +112,10 @@ export class ReceiptFormComponent {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
             }
         })
+    }
+
+    public onCancelInvoice(): void {
+        // this.isEditingAllowed = true
     }
 
     public onSave(): void {
@@ -256,10 +264,7 @@ export class ReceiptFormComponent {
 
     private saveRecord(receipt: ReceiptWriteDto): void {
         this.receiptHttpService.save(receipt).subscribe({
-            next: (response) => {
-                this.form.patchValue({
-                    invoiceId: response.id
-                })
+            next: () => {
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
             error: (errorFromInterceptor) => {

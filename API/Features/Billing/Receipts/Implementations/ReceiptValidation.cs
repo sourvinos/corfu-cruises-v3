@@ -41,7 +41,7 @@ namespace API.Features.Billing.Receipts {
                     .SingleOrDefaultAsync();
                 return x == null;
             } else {
-                return true;
+                return await Task.Run(() => true);
             }
         }
 
@@ -53,7 +53,7 @@ namespace API.Features.Billing.Receipts {
                     .ToListAsync();
                 return x.Count == receipt.InvoiceNo - 1;
             } else {
-                return true;
+                return await Task.Run(() => true);
             }
         }
 
@@ -63,7 +63,7 @@ namespace API.Features.Billing.Receipts {
                     .AsNoTracking()
                     .FirstOrDefaultAsync(x => x.Id == receipt.CustomerId && x.IsActive) != null;
             }
-            return context.Customers
+            return await context.Customers
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == receipt.CustomerId) != null;
         }
@@ -74,7 +74,7 @@ namespace API.Features.Billing.Receipts {
                     .AsNoTracking()
                     .FirstOrDefaultAsync(x => x.Id == receipt.DocumentTypeId && x.IsActive) != null;
             }
-            return context.DocumentTypes
+            return await context.DocumentTypes
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == receipt.DocumentTypeId) != null;
         }
@@ -85,7 +85,7 @@ namespace API.Features.Billing.Receipts {
                     .AsNoTracking()
                     .FirstOrDefaultAsync(x => x.Id == receipt.ShipOwnerId && x.IsActive) != null;
             }
-            return context.ShipOwners
+            return await context.ShipOwners
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == receipt.ShipOwnerId) != null;
         }

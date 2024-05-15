@@ -3222,6 +3222,10 @@
                 "description": "Εκτύπωση"
             },
             {
+                "id": "cancelInvoice",
+                "description": "Ακύρωση"
+            },
+            {
                 "id": "emailInvoice",
                 "description": "Αποστολή με email"
             }

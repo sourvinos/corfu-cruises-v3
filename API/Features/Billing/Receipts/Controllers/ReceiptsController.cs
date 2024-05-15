@@ -90,18 +90,18 @@ namespace API.Features.Billing.Receipts {
         public async Task<ResponseWithBody> PutAsync([FromBody] ReceiptWriteDto receipt) {
             var x = await receiptRepo.GetByIdAsync(receipt.InvoiceId.ToString(), false);
             if (x != null) {
-                var z = receiptValidation.IsValidAsync(x, receipt);
-                if (await z == 200) {
+                var z = await receiptValidation.IsValidAsync(x, receipt);
+                if (z == 200) {
                     receiptRepo.Update(mapper.Map<ReceiptWriteDto, Receipt>((ReceiptWriteDto)receiptRepo.AttachMetadataToPutDto(x, receipt)));
                     return new ResponseWithBody {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
-                        Body = "i.InvoiceId.ToString()",
+                        Body = receipt.InvoiceId.ToString(),
                         Message = ApiMessages.OK()
                     };
                 } else {
                     throw new CustomException() {
-                        ResponseCode = await z
+                        ResponseCode = z
                     };
                 }
             } else {
