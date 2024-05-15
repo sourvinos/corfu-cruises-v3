@@ -85,7 +85,7 @@ namespace API.Features.Billing.Invoices {
             var top = 79;
             var right = 560;
             gfx.DrawLine(XPens.LightGray, right - 100, top += 2, right, top);
-            gfx.DrawString("ΗΜΕΡΟΜΗΝΙΑ ΕΚΔΡΟΜΗΣ: " + DateHelpers.FormatDateStringToLocaleString(invoice.Header.Date), robotoMonoFont, XBrushes.Black, new XRect(right, top += 5, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString("ΗΜΕΡΟΜΗΝΙΑ ΕΚΔΡΟΜΗΣ: " + DateHelpers.FormatDateStringToLocaleString(invoice.Header.TripDate), robotoMonoFont, XBrushes.Black, new XRect(right, top += 5, 0, 0), new() { Alignment = XStringAlignment.Far });
             gfx.DrawString("ΠΛΟΙΟ: " + invoice.Ship.Description + " " + invoice.Ship.RegistryNo, robotoMonoFont, XBrushes.Black, new XRect(right, top += 10, 0, 0), new() { Alignment = XStringAlignment.Far });
             gfx.DrawString("ΜΕΤΑΦΟΡΑ ΑΤΟΜΩΝ ΣΕ ΕΚΔΡΟΜΗ: " + invoice.Destination, robotoMonoFont, XBrushes.Black, new XRect(right, top += 10, 0, 0), new() { Alignment = XStringAlignment.Far });
         }
