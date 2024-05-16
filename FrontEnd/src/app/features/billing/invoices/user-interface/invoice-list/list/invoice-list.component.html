@@ -156,7 +156,10 @@
 </div>
 
 <ng-template #threeDotsMenu>
-    <button (click)="processSelectedRecords()" mat-menu-item>
-        <span>Αποστολή με email</span>
+    <button (click)="buildAndOpenSelectedRecords()" mat-menu-item>
+        <span>Ανοιγμα επιλεγμένων</span>
+    </button>
+    <button (click)="buildAndEmailSelectedRecords()" mat-menu-item>
+        <span>Αποστολή επιλεγμένων με email</span>
     </button>
 </ng-template>

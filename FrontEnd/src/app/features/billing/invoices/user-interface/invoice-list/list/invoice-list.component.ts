@@ -158,7 +158,7 @@ export class InvoiceListComponent {
         this.router.navigate([this.url + '/new'])
     }
 
-    public processSelectedRecords(): void {
+    public buildAndEmailSelectedRecords(): void {
         if (this.isAnyRowSelected()) {
             if (this.selectedRowsAreSameCustomer()) {
                 const ids = []
@@ -172,6 +172,36 @@ export class InvoiceListComponent {
                             filenames: response.body
                         }
                         this.emailInvoices(criteria)
+                    },
+                    error: (errorFromInterceptor) => {
+                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                    }
+                })
+            }
+        }
+    }
+
+    public buildAndOpenSelectedRecords(): void {
+        if (this.isAnyRowSelected()) {
+            if (this.selectedRowsAreSameCustomer()) {
+                const ids = []
+                this.selectedRecords.forEach(record => {
+                    ids.push(record.invoiceId)
+                })
+                this.invoiceHttpService.buildPdf(ids).subscribe({
+                    next: () => {
+                        ids.forEach(id => {
+                            this.invoiceHttpService.openPdf(id + '.pdf').subscribe({
+                                next: (response) => {
+                                    const blob = new Blob([response], { type: 'application/pdf' })
+                                    const fileURL = URL.createObjectURL(blob)
+                                    window.open(fileURL, '_blank')
+                                },
+                                error: (errorFromInterceptor) => {
+                                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                                }
+                            })
+                        })
                     },
                     error: (errorFromInterceptor) => {
                         this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
@@ -263,7 +293,7 @@ export class InvoiceListComponent {
             {
                 label: 'Αποστολή με email', command: (): void => {
                     this.addSelectedRecordToSelectedRecords(this.selectedRecord)
-                    this.processSelectedRecords()
+                    this.buildAndEmailSelectedRecords()
                 }
             }
         ]
