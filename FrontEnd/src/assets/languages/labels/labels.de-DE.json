@@ -805,6 +805,10 @@
         "feature": "reservationForm",
         "labels": [
             {
+                "id": "tab1",
+                "description": "Allgemein"
+            },
+            {
                 "id": "header",
                 "description": "Reservierung"
             },
@@ -897,16 +901,12 @@
                 "description": "Bordkarte per E-Mail versenden"
             },
             {
-                "id": "toggle-button-general",
-                "description": "Allgemein"
-            },
-            {
-                "id": "toggle-button-passengers",
+                "id": "tab2",
                 "description": "Passagiere"
             },
             {
                 "id": "tab3",
-                "description": "Retail Services"
+                "description": "Retail services"
             },
             {
                 "id": "deleteButton",
@@ -2785,6 +2785,10 @@
                 "description": "Σειρά"
             },
             {
+                "id": "batchInEnglish",
+                "description": "Σειρά στα Αγγλικά"
+            },
+            {
                 "id": "customers",
                 "description": "Πελάτες"
             },
@@ -2797,7 +2801,7 @@
                 "description": "Χρεωστική ή πιστωτική τιμολόγηση"
             },
             {
-                "id": "refersToTransaction",
+                "id": "refersToReceipt",
                 "description": "Είσπραξη ή πληρωμή"
             },
             {

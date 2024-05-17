@@ -2717,7 +2717,7 @@
             },
             {
                 "id": "headerShipOwner",
-                "description": "Πλοιοκτήτης"
+                "description": "Εκδότης"
             },
             {
                 "id": "headerShip",
@@ -2766,7 +2766,7 @@
             },
             {
                 "id": "shipOwner",
-                "description": "Πλοιοκτήτης"
+                "description": "Εκδότης"
             },
             {
                 "id": "ship",
@@ -2783,6 +2783,10 @@
             {
                 "id": "batch",
                 "description": "Σειρά"
+            },
+            {
+                "id": "batchInEnglish",
+                "description": "Σειρά στα Αγγλικά"
             },
             {
                 "id": "customers",
@@ -3175,7 +3179,7 @@
             },
             {
                 "id": "shipOwner",
-                "description": "Πλοιοκτήτης"
+                "description": "Εκδότης"
             },
             {
                 "id": "documentTypeAbbreviation",
@@ -3601,7 +3605,7 @@
             },
             {
                 "id": "headerShipOwnerDescription",
-                "description": "Πλοιοκτήτης"
+                "description": "Κάτοχος"
             },
             {
                 "id": "headerIban",
@@ -3626,7 +3630,7 @@
             },
             {
                 "id": "shipOwner",
-                "description": "Πλοιοκτήτης"
+                "description": "Κάτοχος"
             },
             {
                 "id": "iban",

@@ -12,6 +12,7 @@ export interface DocumentTypeReadDto extends Metadata {
     abbreviation: string
     description: string
     batch: string
+    batchInEnglish: string
     customers: string
     suppliers: string
     discriminatorId: number

@@ -48,7 +48,9 @@ namespace API.Features.Billing.DocumentTypes {
             // Write
             CreateMap<DocumentTypeWriteDto, DocumentType>()
                 .ForMember(x => x.Abbreviation, x => x.MapFrom(x => x.Abbreviation.Trim()))
-                .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()));
+                .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
+                .ForMember(x => x.Batch, x => x.MapFrom(x => x.Batch.Trim()))
+                .ForMember(x => x.BatchInEnglish, x => x.MapFrom(x => x.BatchInEnglish.Trim()));
         }
 
     }

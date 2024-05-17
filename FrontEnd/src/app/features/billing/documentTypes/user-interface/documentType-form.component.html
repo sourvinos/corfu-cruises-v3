@@ -37,7 +37,7 @@
                     </div>
                     <div class="group-input-field">
                         <!-- Abbreviation -->
-                        <mat-form-field style="width: 30%;">
+                        <mat-form-field style="width: 20%;">
                             <mat-label>{{ getLabel('abbreviation') }}</mat-label>
                             <input [inputTabStop]="input" dataTabIndex="3" formControlName="abbreviation" matInput>
                             <mat-error *ngIf="abbreviation.hasError('required')">{{ getHint("required") }}</mat-error>
@@ -49,23 +49,29 @@
                             <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
                         </mat-form-field>
                         <!-- Batch -->
-                        <mat-form-field style="width:30%;">
+                        <mat-form-field style="width:20%;">
                             <mat-label>{{ getLabel('batch') }}</mat-label>
                             <input [inputTabStop]="input" dataTabIndex="5" formControlName="batch" matInput>
                             <mat-error *ngIf="batch.hasError('required')">{{ getHint("required") }}</mat-error>
+                        </mat-form-field>
+                        <!-- BatchInEnglish -->
+                        <mat-form-field style="width:20%;">
+                            <mat-label>{{ getLabel('batchInEnglish') }}</mat-label>
+                            <input [inputTabStop]="input" dataTabIndex="6" formControlName="batchInEnglish" matInput>
+                            <mat-error *ngIf="batchInEnglish.hasError('required')">{{ getHint("required") }}</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="group-input-field">
                         <!-- Customers -->
                         <mat-form-field>
                             <mat-label>{{ getLabel('customers') }}</mat-label>
-                            <input [inputTabStop]="input" dataTabIndex="6" formControlName="customers" matInput>
+                            <input [inputTabStop]="input" dataTabIndex="7" formControlName="customers" matInput>
                             <mat-error *ngIf="customers.hasError('shouldBeEmptyPlusOrMinus')">{{ getHint("shouldBeEmptyPlusOrMinus") }}</mat-error>
                         </mat-form-field>
                         <!-- Suppliers -->
                         <mat-form-field>
                             <mat-label>{{ getLabel('suppliers') }}</mat-label>
-                            <input [inputTabStop]="input" dataTabIndex="7" formControlName="suppliers" matInput>
+                            <input [inputTabStop]="input" dataTabIndex="8" formControlName="suppliers" matInput>
                             <mat-error *ngIf="suppliers.hasError('shouldBeEmptyPlusOrMinus')">{{ getHint("shouldBeEmptyPlusOrMinus") }}</mat-error>
                         </mat-form-field>
                     </div>

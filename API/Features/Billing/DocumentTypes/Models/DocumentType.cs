@@ -15,6 +15,7 @@ namespace API.Features.Billing.DocumentTypes {
         public string Abbreviation { get; set; }
         public string Description { get; set; }
         public string Batch { get; set; }
+        public string BatchInEnglish { get; set; }
         public string Customers { get; set; }
         public string Suppliers { get; set; }
         public int DiscriminatorId { get; set; }

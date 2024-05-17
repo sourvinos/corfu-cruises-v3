@@ -805,6 +805,10 @@
         "feature": "reservationForm",
         "labels": [
             {
+                "id": "tab1",
+                "description": "Overview"
+            },
+            {
                 "id": "header",
                 "description": "Reservation"
             },
@@ -897,16 +901,12 @@
                 "description": "Send boarding pass to email"
             },
             {
-                "id": "toggle-button-general",
-                "description": "Overview"
-            },
-            {
-                "id": "toggle-button-passengers",
+                "id": "tab2",
                 "description": "Passengers"
             },
             {
                 "id": "tab3",
-                "description": "Retail Services"
+                "description": "Retail services"
             },
             {
                 "id": "deleteButton",
@@ -2717,7 +2717,7 @@
             },
             {
                 "id": "headerShipOwner",
-                "description": "Πλοιοκτήτης"
+                "description": "Εκδότης"
             },
             {
                 "id": "headerShip",
@@ -2766,7 +2766,7 @@
             },
             {
                 "id": "shipOwner",
-                "description": "Πλοιοκτήτης"
+                "description": "Εκδότης"
             },
             {
                 "id": "ship",
@@ -2785,6 +2785,10 @@
                 "description": "Σειρά"
             },
             {
+                "id": "batchInEnglish",
+                "description": "Σειρά στα Αγγλικά"
+            },
+            {
                 "id": "customers",
                 "description": "Πελάτες"
             },
@@ -2797,7 +2801,7 @@
                 "description": "Χρεωστική ή πιστωτική τιμολόγηση"
             },
             {
-                "id": "refersToTransaction",
+                "id": "refersToReceipt",
                 "description": "Είσπραξη ή πληρωμή"
             },
             {
@@ -2855,7 +2859,7 @@
             },
             {
                 "id": "headerShipOwnerDescription",
-                "description": "Πλοιοκτήτης"
+                "description": "Εκδότης"
             },
             {
                 "id": "headerCustomerDescription",
@@ -3175,7 +3179,7 @@
             },
             {
                 "id": "shipOwner",
-                "description": "Πλοιοκτήτης"
+                "description": "Εκδότης"
             },
             {
                 "id": "documentTypeAbbreviation",
@@ -3601,7 +3605,7 @@
             },
             {
                 "id": "headerShipOwnerDescription",
-                "description": "Πλοιοκτήτης"
+                "description": "Κάτοχος"
             },
             {
                 "id": "headerIban",
@@ -3626,7 +3630,7 @@
             },
             {
                 "id": "shipOwner",
-                "description": "Πλοιοκτήτης"
+                "description": "Κάτοχος"
             },
             {
                 "id": "iban",
