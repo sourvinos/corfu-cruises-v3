@@ -8,7 +8,7 @@
 
         <ledger-criteria (outputSelected)="onDoSearchTasks($event)"></ledger-criteria>
 
-        <mat-tab-group mat-stretch-tabs="false">
+        <mat-tab-group mat-stretch-tabs="false" (selectedIndexChange)="onSelectedTabChange()">
             <mat-tab label="Corfu Cruises">
                 <div class="general-tab">
                     <div id="table-wrapper">

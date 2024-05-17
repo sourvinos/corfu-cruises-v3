@@ -36,7 +36,7 @@ export class PassengerListComponent {
     //#region public methods
 
     ngAfterViewInit(): void {
-        // this.setPassengerListHeight()
+        this.setPassengerListHeight()
     }
 
     public checkTotalPaxAgainstPassengerCount(): boolean {

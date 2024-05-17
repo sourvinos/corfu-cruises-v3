@@ -13,7 +13,7 @@ import { LedgerCriteriaVM } from '../../classes/view-models/criteria/ledger-crit
 @Component({
     selector: 'ledgerShipOwnerTable',
     templateUrl: './ledger-shipOwner-table.component.html',
-    styleUrls: ['../../../../../../assets/styles/custom/lists.css', './ledger.component.css']
+    styleUrls: ['../../../../../../assets/styles/custom/lists.css', './ledger.component.css', './ledger-shipOwner-table.component.css']
 })
 
 export class LedgerShipOwnerTableComponent {
@@ -29,6 +29,12 @@ export class LedgerShipOwnerTableComponent {
     //#endregion
 
     constructor(private dialogService: DialogService, private ledgerHttpService: LedgerHttpService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService) { }
+
+    ngOnInit(): void {
+        setTimeout(() => {
+            document.getElementById('table-wrapper').style.height = document.getElementById('content').offsetHeight - 278 + 'px'
+        }, 1000)
+    }
 
     //#region public methods
 

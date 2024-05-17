@@ -47,6 +47,10 @@ export class LedgerBillingComponent {
         this.setListHeight()
     }
 
+    ngAfterViewInit(): void {
+        // document.getElementById('table-wrapper').style.visibility = 'hidden'
+    }
+
     //#endregion
 
     //#region public methods
@@ -76,6 +80,13 @@ export class LedgerBillingComponent {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
             }
         })
+    }
+
+    public onSelectedTabChange(): void {
+        setTimeout(() => {
+            // document.getElementById('table-wrapper').style.visibility = 'visible !important'
+            document.getElementById('table-wrapper').style.height = document.getElementById('content').offsetHeight - 278 + 'px'
+        }, 1000)
     }
 
     //#endregion
