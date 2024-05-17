@@ -18,11 +18,12 @@ import { ShipOwnerHttpService } from '../classes/services/shipOwner-http.service
 import { ShipOwnerWriteDto } from '../classes/dtos/shipOwner-write-dto'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
+import { environment } from 'src/environments/environment'
 
 @Component({
     selector: 'ship-owner-form',
     templateUrl: './shipOwner-form.component.html',
-    styleUrls: ['../../../../../assets/styles/custom/forms.css']
+    styleUrls: ['../../../../../assets/styles/custom/forms.css', './shipOwner-form.component.css']
 })
 
 export class ShipOwnerFormComponent {
@@ -81,6 +82,10 @@ export class ShipOwnerFormComponent {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
     }
 
+    public getFlag(language: string): string {
+        return environment.nationalitiesIconDirectory + language + '.png'
+    }
+
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
     }
@@ -132,6 +137,7 @@ export class ShipOwnerFormComponent {
             taxOfficeId: this.form.value.taxOffice.id,
             vatRegimeId: this.form.value.vatRegime.id,
             description: this.form.value.description,
+            descriptionInEnglish: this.form.value.descriptionInEnglish,
             vatNumber: this.form.value.vatNumber,
             branch: this.form.value.branch,
             profession: this.form.value.profession,
@@ -189,6 +195,7 @@ export class ShipOwnerFormComponent {
             taxOffice: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             vatRegime: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
+            descriptionInEnglish: ['', [Validators.required, Validators.maxLength(128)]],
             vatNumber: ['', [Validators.required, Validators.maxLength(36)]],
             branch: [0, [Validators.required, Validators.min(0), Validators.max(10)]],
             profession: ['', [Validators.maxLength(128)]],
@@ -238,6 +245,7 @@ export class ShipOwnerFormComponent {
                 taxOffice: { 'id': this.record.taxOffice.id, 'description': this.record.taxOffice.description },
                 vatRegime: { 'id': this.record.vatRegime.id, 'description': this.record.vatRegime.description },
                 description: this.record.description,
+                descriptionInEnglish: this.record.descriptionInEnglish,
                 vatNumber: this.record.vatNumber,
                 branch: this.record.branch,
                 profession: this.record.profession,
@@ -307,6 +315,10 @@ export class ShipOwnerFormComponent {
 
     get description(): AbstractControl {
         return this.form.get('description')
+    }
+
+    get descriptionInEnglish(): AbstractControl {
+        return this.form.get('descriptionInEnglish')
     }
 
     get vatNumber(): AbstractControl {

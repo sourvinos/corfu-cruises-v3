@@ -7,6 +7,7 @@ export interface ShipOwnerBrowserStorageVM {
     // Fields
     abbreviation: string
     description: string
+    descriptionInEnglish: string
     vatNumber: string
     branch: number
     address: string

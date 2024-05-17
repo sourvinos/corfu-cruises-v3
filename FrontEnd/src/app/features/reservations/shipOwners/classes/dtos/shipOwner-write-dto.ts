@@ -10,6 +10,7 @@ export interface ShipOwnerWriteDto {
     vatMyDataId: number
     vatPercent: number
     description: string
+    descriptionInEnglish: string
     vatNumber: string
     branch: number
     profession: string

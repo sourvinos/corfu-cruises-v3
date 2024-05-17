@@ -1686,6 +1686,10 @@
                 "description": "Επωνυμία ή όνομα"
             },
             {
+                "id": "descriptionInEnglish",
+                "description": "Επωνυμία ή όνομα"
+            },
+            {
                 "id": "vatNumber",
                 "description": "ΑΦΜ"
             },
