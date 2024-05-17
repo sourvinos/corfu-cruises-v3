@@ -42,10 +42,14 @@ namespace API.Infrastructure.Helpers {
         }
 
         public static string FormatDateStringToLocaleString(string date) {
-            var year = date[..4];
-            var month = date.Substring(5, 2);
-            var day = date.Substring(8, 2);
-            return day + "/" + month + "/" + year;
+            if (date != "") {
+                var year = date[..4];
+                var month = date.Substring(5, 2);
+                var day = date.Substring(8, 2);
+                return day + "/" + month + "/" + year;
+            } else {
+                return "";
+            }
         }
 
     }

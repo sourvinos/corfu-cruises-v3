@@ -60,7 +60,7 @@ namespace API.Features.Billing.Ledgers {
             int verticalPosition = 100;
             for (int i = 0; i < ledger.Count; i++) {
                 verticalPosition += 12;
-                gfx.DrawString(ledger[i].Date, robotoMonoFont, XBrushes.Black, new XPoint(40, verticalPosition));
+                gfx.DrawString(DateHelpers.FormatDateStringToLocaleString(ledger[i].Date), robotoMonoFont, XBrushes.Black, new XPoint(40, verticalPosition));
                 gfx.DrawString(ledger[i].DocumentType.Description, robotoMonoFont, XBrushes.Black, new XPoint(80, verticalPosition));
                 gfx.DrawString(ledger[i].DocumentType.Batch, robotoMonoFont, XBrushes.Black, new XPoint(220, verticalPosition));
                 gfx.DrawString(ledger[i].InvoiceNo, robotoMonoFont, XBrushes.Black, new XPoint(270, verticalPosition));
