@@ -1,12 +1,10 @@
-import { Guid } from 'guid-typescript'
 import { Metadata } from 'src/app/shared/classes/metadata'
 
 export interface PaymentMethodReadDto extends Metadata {
 
-    // PK
-    id: Guid
-    // Fields
+    id: number
     description: string
+    descriptionEn: string
     myDataId: string
     isCash: boolean
     isDefault: boolean

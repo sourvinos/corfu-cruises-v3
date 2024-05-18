@@ -1,8 +1,6 @@
-import { Guid } from 'guid-typescript'
-
 export interface PaymentMethodListVM {
 
-    id: Guid
+    id: number
     description: string
     isCash: boolean
     isActive: boolean

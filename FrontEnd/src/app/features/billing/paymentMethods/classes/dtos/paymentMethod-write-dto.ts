@@ -1,16 +1,12 @@
-import { Guid } from 'guid-typescript'
-
 export interface PaymentMethodWriteDto {
 
-    // PK
-    id: Guid
-    // Fields
+    id: number
     description: string
+    descriptionEn: string
     myDataId: string
     isCash: boolean
     isDefault: boolean
     isActive: boolean
-    // Rowversion
     putAt: string
 
 }

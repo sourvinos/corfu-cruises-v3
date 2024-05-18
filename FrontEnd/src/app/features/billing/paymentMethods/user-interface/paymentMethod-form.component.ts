@@ -14,16 +14,17 @@ import { PaymentMethodHttpService } from '../classes/services/paymentMethod-http
 import { PaymentMethodReadDto } from '../classes/dtos/paymentMethod-read-dto'
 import { PaymentMethodWriteDto } from '../classes/dtos/paymentMethod-write-dto'
 import { ValidationService } from 'src/app/shared/services/validation.service'
+import { environment } from 'src/environments/environment'
 
 @Component({
     selector: 'PaymentMethod-form',
     templateUrl: './PaymentMethod-form.component.html',
-    styleUrls: ['../../../../../assets/styles/custom/forms.css']
+    styleUrls: ['../../../../../assets/styles/custom/forms.css', './paymentMethod-form.component.css']
 })
 
 export class PaymentMethodFormComponent {
 
-    //#region common #8
+    //#region variables
 
     private record: PaymentMethodReadDto
     private recordId: string
@@ -36,7 +37,7 @@ export class PaymentMethodFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private paymentMethodHttpService: PaymentMethodHttpService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private paymentMethodHttpService: PaymentMethodHttpService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -54,6 +55,10 @@ export class PaymentMethodFormComponent {
     //#endregion
 
     //#region public methods
+
+    public getFlag(language: string): string {
+        return environment.nationalitiesIconDirectory + language + '.png'
+    }
 
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
@@ -91,6 +96,7 @@ export class PaymentMethodFormComponent {
         return {
             id: this.form.value.id != '' ? this.form.value.id : null,
             description: this.form.value.description,
+            descriptionEn: this.form.value.descriptionEn,
             myDataId: this.form.value.myDataId,
             isCash: this.form.value.isCash,
             isDefault: this.form.value.isDefault,
@@ -128,6 +134,7 @@ export class PaymentMethodFormComponent {
         this.form = this.formBuilder.group({
             id: '',
             description: ['', [Validators.required, Validators.maxLength(128)]],
+            descriptionEn: ['', [Validators.required, Validators.maxLength(128)]],
             myDataId: ['', [Validators.required, Validators.maxLength(1), ValidationService.shouldBeOnlyNumbers]],
             isCash: false,
             isDefault: false,
@@ -144,6 +151,7 @@ export class PaymentMethodFormComponent {
             this.form.setValue({
                 id: this.record.id,
                 description: this.record.description,
+                descriptionEn: this.record.descriptionEn,
                 myDataId: this.record.myDataId,
                 isCash: this.record.isCash,
                 isDefault: this.record.isDefault,
@@ -165,7 +173,7 @@ export class PaymentMethodFormComponent {
             next: (response) => {
                 this.dexieService.update('paymentMethods', {
                     id: parseInt(response.id),
-                    description: paymentMethod.description,
+                    description: paymentMethod.descriptionEn,
                     isDefault: paymentMethod.isDefault,
                     isActive: paymentMethod.isActive
                 })
@@ -189,6 +197,10 @@ export class PaymentMethodFormComponent {
 
     get description(): AbstractControl {
         return this.form.get('description')
+    }
+
+    get descriptionEn(): AbstractControl {
+        return this.form.get('descriptionEn')
     }
 
     get myDataId(): AbstractControl {

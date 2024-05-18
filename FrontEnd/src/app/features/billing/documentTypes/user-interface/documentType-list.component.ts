@@ -24,7 +24,7 @@ import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
 export class DocumentTypeListComponent {
 
-    //#region common variables
+    //#region variables
 
     @ViewChild('table') table: Table
 
@@ -36,12 +36,6 @@ export class DocumentTypeListComponent {
     public parentUrl = '/home'
     public records: DocumentTypeListVM[]
     public recordsFilteredCount: number
-
-    //#endregion
-
-    //#region variables
-
-    public filterDate = ''
 
     //#endregion
 

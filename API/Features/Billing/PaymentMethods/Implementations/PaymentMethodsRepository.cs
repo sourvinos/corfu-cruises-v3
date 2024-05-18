@@ -31,7 +31,7 @@ namespace API.Features.Billing.PaymentMethods {
         public async Task<IEnumerable<PaymentMethodBrowserVM>> GetForBrowserAsync() {
             var paymentMethods = await context.PaymentMethods
                 .AsNoTracking()
-                .OrderBy(x => x.Description)
+                .OrderBy(x => x.DescriptionEn)
                 .ToListAsync();
             return mapper.Map<IEnumerable<PaymentMethod>, IEnumerable<PaymentMethodBrowserVM>>(paymentMethods);
         }

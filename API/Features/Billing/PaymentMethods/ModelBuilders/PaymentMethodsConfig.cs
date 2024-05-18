@@ -10,6 +10,7 @@ namespace API.Features.Billing.PaymentMethods {
             entity.Property(x => x.Id).ValueGeneratedOnAdd();
             // Fields
             entity.Property(x => x.Description).HasMaxLength(128).IsRequired(true);
+            entity.Property(x => x.DescriptionEn).HasMaxLength(128).IsRequired(true);
             entity.Property(x => x.IsCash);
             entity.Property(x => x.IsDefault);
             entity.Property(x => x.IsActive);

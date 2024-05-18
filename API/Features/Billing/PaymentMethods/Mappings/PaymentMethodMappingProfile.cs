@@ -6,10 +6,12 @@ namespace API.Features.Billing.PaymentMethods {
 
         public PaymentMethodMappingProfile() {
             CreateMap<PaymentMethod, PaymentMethodListVM>();
-            CreateMap<PaymentMethod, PaymentMethodBrowserVM>();
+            CreateMap<PaymentMethod, PaymentMethodBrowserVM>()
+                .ForMember(x => x.Description, x => x.MapFrom(x => x.DescriptionEn));
             CreateMap<PaymentMethod, PaymentMethodReadDto>();
             CreateMap<PaymentMethodWriteDto, PaymentMethod>()
-                .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()));
+                .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
+                .ForMember(x => x.DescriptionEn, x => x.MapFrom(x => x.DescriptionEn.Trim()));
         }
 
     }

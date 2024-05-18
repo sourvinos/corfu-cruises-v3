@@ -2664,6 +2664,10 @@
             {
                 "id": "newRecord",
                 "description": "Νεα εγγραφη"
+            },
+            {
+                "id": "contextMenuEdit",
+                "description": "Επεξεργασία"
             }
         ]
     },

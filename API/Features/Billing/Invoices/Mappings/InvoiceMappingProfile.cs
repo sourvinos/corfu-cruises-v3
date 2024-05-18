@@ -41,7 +41,7 @@ namespace API.Features.Billing.Invoices {
                 }))
                 .ForMember(x => x.PaymentMethod, x => x.MapFrom(x => new SimpleEntity {
                     Id = x.PaymentMethod.Id,
-                    Description = x.PaymentMethod.Description
+                    Description = x.PaymentMethod.DescriptionEn
                 }))
                 .ForMember(x => x.Aade, x => x.MapFrom(x => new InvoiceFormAadeVM {
                     InvoiceId = x.Aade.InvoiceId,
