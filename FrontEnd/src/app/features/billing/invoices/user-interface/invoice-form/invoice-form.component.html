@@ -30,6 +30,7 @@
                         <div class="group-input-field">
                             <!-- Issue date -->
                             <mat-form-field>
+                                <mat-icon class="material-icons-outlined small">lock</mat-icon>
                                 <mat-label>{{ getLabel('date') }}</mat-label>
                                 <input [inputTabStop]="input" [matDatepicker]="datePicker" dataTabIndex="1" formControlName="date" matInput readonly>
                                 <mat-datepicker-toggle matIconSuffix [for]="datePicker" disabled></mat-datepicker-toggle>
@@ -46,10 +47,11 @@
                             </mat-form-field>
                             <!-- Ship -->
                             <mat-form-field>
+                                <mat-icon *ngIf="!isEditingAllowed()" class="material-icons-outlined small">lock</mat-icon>
                                 <mat-label>{{ getLabel('ship') }}</mat-label>
-                                <input #inputAutoComplete #triggerShip="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="ships" dataTabIndex="3" formControlName="ship" matInput>
+                                <input #inputAutoComplete #triggerShip="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="ships" [readonly]="!isEditingAllowed()" dataTabIndex="3" formControlName="ship" matInput>
                                 <div matSuffix style="display:flex">
-                                    <button (click)="openOrCloseAutoComplete(triggerShip, 'ship')" mat-icon-button type="button">
+                                    <button (click)="openOrCloseAutoComplete(triggerShip, 'ship')" [disabled]="!isEditingAllowed()" mat-icon-button type="button">
                                         <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
                                     </button>
                                 </div>
@@ -86,10 +88,11 @@
                         <div class="group-input-field">
                             <!-- Document type abbreviation-->
                             <mat-form-field style="width: 400px;">
+                                <mat-icon *ngIf="isEditingAllowed()" class="material-icons-outlined small">lock</mat-icon>
                                 <mat-label>{{ getLabel('documentTypeAbbreviation') }}</mat-label>
-                                <input #inputAutoComplete #triggerDocumentType="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="documentTypes" dataTabIndex="6" formControlName="documentType" matInput>
+                                <input #inputAutoComplete #triggerDocumentType="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="documentTypes" [readonly]="!isEditingAllowed()" dataTabIndex="6" formControlName="documentType" matInput>
                                 <div matSuffix style="display:flex">
-                                    <button (click)="openOrCloseAutoComplete(triggerDocumentType, 'documentType')" mat-icon-button type="button">
+                                    <button (click)="openOrCloseAutoComplete(triggerDocumentType, 'documentType')" [disabled]="!isEditingAllowed()" mat-icon-button type="button">
                                         <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
                                     </button>
                                 </div>
@@ -504,6 +507,9 @@
     </div>
 
     <div id="footer">
+        <button (click)="onShowFormValue()" class="fab fab-with-no-background" mat-icon-button>
+            <span class="material-icons-outlined">pest_control</span>
+        </button>
         <div id="align-right">
             <button (click)="onSave()" [disabled]="!form.valid || form.value.invoiceId != '' || onComparePriceTotals() == false" class="primary" mat-flat-button>
                 <mat-icon *ngIf="!form.valid || form.value.invoiceId != '' || onComparePriceTotals() == false" class="material-icons-outlined">lock</mat-icon>

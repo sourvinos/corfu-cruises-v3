@@ -7,6 +7,7 @@ export interface DocumentTypeWriteDto {
     shipOwnerId: number
     // Fields
     abbreviation: string
+    abbreviationEn: string
     description: string
     batch: string
     batchEn: string

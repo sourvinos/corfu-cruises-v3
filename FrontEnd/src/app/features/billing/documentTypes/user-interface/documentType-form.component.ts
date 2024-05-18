@@ -146,6 +146,7 @@ export class DocumentTypeFormComponent {
             shipId: this.form.value.ship.id == 0 ? null : this.form.value.ship.id,
             shipOwnerId: this.form.value.shipOwner.id,
             abbreviation: this.form.value.abbreviation,
+            abbreviationEn: this.form.value.abbreviationEn,
             description: this.form.value.description,
             batch: this.form.value.batch,
             batchEn: this.form.value.batchEn,
@@ -197,6 +198,7 @@ export class DocumentTypeFormComponent {
             ship: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             shipOwner: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             abbreviation: ['', [Validators.required, Validators.maxLength(5)]],
+            abbreviationEn: ['', [Validators.required, Validators.maxLength(5)]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
             batch: ['', [Validators.required, Validators.maxLength(5)]],
             batchEn: ['', [Validators.required, Validators.maxLength(5)]],
@@ -236,6 +238,7 @@ export class DocumentTypeFormComponent {
                 ship: { 'id': this.record.ship.id, 'description': this.record.ship.id == 0 ? this.emojiService.getEmoji('wildcard') : this.record.ship.description },
                 shipOwner: { 'id': this.record.shipOwner.id, 'description': this.record.shipOwner.description },
                 abbreviation: this.record.abbreviation,
+                abbreviationEn: this.record.abbreviationEn,
                 description: this.record.description,
                 batch: this.record.batch,
                 batchEn: this.record.batchEn,
@@ -302,6 +305,10 @@ export class DocumentTypeFormComponent {
 
     get abbreviation(): AbstractControl {
         return this.form.get('abbreviation')
+    }
+
+    get abbreviationEn(): AbstractControl {
+        return this.form.get('abbreviationEn')
     }
 
     get description(): AbstractControl {

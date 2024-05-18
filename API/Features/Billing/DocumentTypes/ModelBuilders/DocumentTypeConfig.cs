@@ -12,6 +12,7 @@ namespace API.Features.Billing.DocumentTypes {
             entity.Property(x => x.ShipOwnerId).IsRequired(true);
             // Fields
             entity.Property(x => x.Abbreviation).HasMaxLength(5).IsRequired(true);
+            entity.Property(x => x.AbbreviationEn).HasMaxLength(5).IsRequired(true);
             entity.Property(x => x.Description).HasMaxLength(128).IsRequired(true);
             entity.Property(x => x.Batch).HasMaxLength(5).IsRequired(true);
             entity.Property(x => x.BatchEn).HasMaxLength(5).IsRequired(true);

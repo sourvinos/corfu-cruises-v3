@@ -120,6 +120,12 @@
     display: flex;
 }
 
+.autocomplete-document-type {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-between;
+}
+
 .material-symbols-outlined.green {
     color: var(--color-green);
 }

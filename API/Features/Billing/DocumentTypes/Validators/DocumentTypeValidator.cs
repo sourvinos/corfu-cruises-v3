@@ -9,6 +9,7 @@ namespace API.Features.Billing.DocumentTypes {
             RuleFor(x => x.ShipOwnerId).NotEmpty();
             // Fields
             RuleFor(x => x.Abbreviation).NotEmpty().MaximumLength(5);
+            RuleFor(x => x.AbbreviationEn).NotEmpty().MaximumLength(5);
             RuleFor(x => x.Description).NotEmpty().MaximumLength(128);
             RuleFor(x => x.Batch).NotNull().MaximumLength(5);
             RuleFor(x => x.BatchEn).NotNull().MaximumLength(5);

@@ -21,30 +21,13 @@ namespace API.Features.Billing.DocumentTypes {
                 }));
             // Browser
             CreateMap<DocumentType, DocumentTypeBrowserVM>()
-                .ForMember(x => x.Ship, x => x.MapFrom(x => x.Ship == null ? new SimpleEntity {
-                    Id = 0,
-                    Description = "(EMPTY)"
-                } : new SimpleEntity {
-                    Id = x.Ship.Id,
-                    Description = x.Ship.Description
-                }))
-                .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new SimpleEntity {
-                    Id = x.ShipOwner.Id,
-                    Description = x.ShipOwner.Description
-                }));
+                .ForMember(x => x.Abbreviation, x => x.MapFrom(x => x.AbbreviationEn))
+                .ForMember(x => x.Ship, x => x.MapFrom(x => x.Ship == null ? new SimpleEntity { Id = 0, Description = "(EMPTY)" } : new SimpleEntity { Id = x.Ship.Id, Description = x.Ship.Description }))
+                .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new SimpleEntity { Id = x.ShipOwner.Id, Description = x.ShipOwner.DescriptionEn }));
             // Read
             CreateMap<DocumentType, DocumentTypeReadDto>()
-                .ForMember(x => x.Ship, x => x.MapFrom(x => x.Ship == null ? new SimpleEntity {
-                    Id = 0,
-                    Description = "(EMPTY)"
-                } : new SimpleEntity {
-                    Id = x.Ship.Id,
-                    Description = x.Ship.Description
-                }))
-                .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new SimpleEntity {
-                    Id = x.ShipOwner.Id,
-                    Description = x.ShipOwner.Description
-                }));
+                .ForMember(x => x.Ship, x => x.MapFrom(x => x.Ship == null ? new SimpleEntity { Id = 0, Description = "(EMPTY)" } : new SimpleEntity { Id = x.Ship.Id, Description = x.Ship.Description }))
+                .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new SimpleEntity { Id = x.ShipOwner.Id, Description = x.ShipOwner.Description }));
             // Write
             CreateMap<DocumentTypeWriteDto, DocumentType>()
                 .ForMember(x => x.Abbreviation, x => x.MapFrom(x => x.Abbreviation.Trim()))

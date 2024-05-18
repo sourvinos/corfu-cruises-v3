@@ -48,7 +48,7 @@ namespace API.Features.Billing.Receipts {
                 }))
                 .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new SimpleEntity {
                     Id = x.ShipOwner.Id,
-                    Description = x.ShipOwner.Description
+                    Description = x.ShipOwner.DescriptionEn
                 }));
             CreateMap<ReceiptWriteDto, Receipt>()
                 .ForMember(x => x.DiscriminatorId, x => x.MapFrom(x => 2))

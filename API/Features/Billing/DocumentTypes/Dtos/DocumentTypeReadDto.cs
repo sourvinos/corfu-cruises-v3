@@ -12,6 +12,7 @@ namespace API.Features.Billing.DocumentTypes {
         public SimpleEntity ShipOwner { get; set; }
         // Fields
         public string Abbreviation { get; set; }
+        public string AbbreviationEn { get; set; }
         public string Description { get; set; }
         public string Batch { get; set; }
         public string BatchEn { get; set; }

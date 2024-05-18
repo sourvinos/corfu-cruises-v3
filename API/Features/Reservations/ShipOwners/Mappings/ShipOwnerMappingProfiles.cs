@@ -7,7 +7,8 @@ namespace API.Features.Reservations.ShipOwners {
 
         public ShipOwnerMappingProfile() {
             CreateMap<ShipOwner, ShipOwnerListVM>();
-            CreateMap<ShipOwner, ShipOwnerBrowserVM>();
+            CreateMap<ShipOwner, ShipOwnerBrowserVM>()
+                .ForMember(x => x.Description, x => x.MapFrom(x => x.DescriptionEn));
             CreateMap<ShipOwner, ShipOwnerReadDto>()
                 .ForMember(x => x.TaxOffice, x => x.MapFrom(x => new SimpleEntity { Id = x.TaxOffice.Id, Description = x.TaxOffice.Description }))
                 .ForMember(x => x.Nationality, x => x.MapFrom(x => new SimpleEntity { Id = x.Nationality.Id, Description = x.Nationality.Description }))

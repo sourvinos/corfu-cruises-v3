@@ -48,7 +48,7 @@
                     <mat-label>{{ getLabel('shipOwner') }}</mat-label>
                     <input #inputAutoComplete #triggerShipOwner="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="shipOwners" [readonly]="!isEditingAllowed()" dataTabIndex="3" formControlName="shipOwner" matInput>
                     <div matSuffix style="display:flex">
-                        <button (click)="openOrCloseAutoComplete(triggerShipOwner, 'shipOwner')" mat-icon-button type="button">
+                        <button (click)="openOrCloseAutoComplete(triggerShipOwner, 'shipOwner')" [disabled]="!isEditingAllowed()" mat-icon-button type="button">
                             <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
                         </button>
                     </div>
@@ -140,6 +140,9 @@
     </div>
 
     <div id="footer">
+        <button (click)="onShowFormValue()" class="fab fab-with-no-background" mat-icon-button>
+            <span class="material-icons-outlined">pest_control</span>
+        </button>
         <div id="align-right">
             <button (click)="onSave()" [disabled]="!form.valid" class="primary" mat-flat-button>
                 <mat-icon *ngIf="!form.valid" class="material-icons-outlined">lock</mat-icon>

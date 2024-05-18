@@ -4,6 +4,7 @@ import { Component } from '@angular/core'
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { Observable, map, startWith } from 'rxjs'
 // Custom
+import { DebugDialogService } from 'src/app/features/reservations/availability/classes/services/debug-dialog.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { DocumentTypeAutoCompleteVM } from '../../../documentTypes/classes/view-models/documentType-autocomplete-vm'
@@ -54,7 +55,7 @@ export class ReceiptFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private receiptHelperService: ReceiptHelperService, private receiptHttpService: ReceiptHttpService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private debugDialogService: DebugDialogService, private dexieService: DexieService, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private receiptHelperService: ReceiptHelperService, private receiptHttpService: ReceiptHttpService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -165,6 +166,10 @@ export class ReceiptFormComponent {
 
     public onSave(): void {
         this.saveRecord(this.flattenForm())
+    }
+
+    public onShowFormValue(): void {
+        this.debugDialogService.open(this.form.value, '', ['ok'])
     }
 
     public updateFieldsAfterShipOwnerSelection(value: SimpleEntity): void {

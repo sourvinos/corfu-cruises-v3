@@ -10,6 +10,7 @@ export interface DocumentTypeReadDto extends Metadata {
     shipOwner: SimpleEntity
     // Fields
     abbreviation: string
+    abbreviationEn: string
     description: string
     batch: string
     batchEn: string

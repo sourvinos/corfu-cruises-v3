@@ -19,7 +19,7 @@
                         </mat-form-field>
                         <!-- descriptionEn -->
                         <mat-form-field class="language-label">
-                            <mat-label>{{ getLabel('descriptionEn') }}</mat-label>
+                            <mat-label>{{ getLabel('description') }}</mat-label>
                             <input [inputTabStop]="input" dataTabIndex="2" formControlName="descriptionEn" matInput>
                             <mat-error *ngIf="descriptionEn.hasError('required')">{{ getHint("required") }}</mat-error>
                             <img [src]="getFlag('gb')" class="flag">

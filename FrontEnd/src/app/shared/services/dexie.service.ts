@@ -27,7 +27,7 @@ export class DexieService extends Dexie {
             pickupPoints: 'id, description',
             ports: 'id, description',
             portsCriteria: 'id, description',
-            shipOwners: 'id, description',
+            shipOwners: 'id, description, descriptionEn',
             ships: 'id, description',
             shipsCriteria: 'id, description',
             taxOffices: 'id, description',

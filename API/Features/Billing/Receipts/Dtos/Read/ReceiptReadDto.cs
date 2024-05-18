@@ -13,8 +13,8 @@ namespace API.Features.Billing.Receipts {
         public int DocumentTypeId { get; set; }
         public int PaymentMethodId { get; set; }
         // Fields
-        public DateTime Date { get; set; }
-        public DateTime TripDate { get; set; }
+        public string Date { get; set; }
+        public string TripDate { get; set; }
         public int InvoiceNo { get; set; }
         public decimal GrossAmount { get; set; }
         public string Remarks { get; set; }

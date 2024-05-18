@@ -19,7 +19,7 @@ export class DocumentTypeHelperService {
             },
             shipOwner: {
                 id: vm.shipOwner.id,
-                'description': vm.shipOwner.description
+                description: vm.shipOwner.description
             },
             abbreviation: vm.abbreviation,
             description: vm.description,

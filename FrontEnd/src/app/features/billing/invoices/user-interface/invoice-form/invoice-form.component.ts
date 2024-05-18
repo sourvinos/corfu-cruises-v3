@@ -7,6 +7,7 @@ import { Observable, map, startWith } from 'rxjs'
 import { BillingCriteriaVM } from '../../classes/view-models/form/billing-criteria-vm'
 import { CustomerAutoCompleteVM } from 'src/app/features/reservations/customers/classes/view-models/customer-autocomplete-vm'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
+import { DebugDialogService } from 'src/app/features/reservations/availability/classes/services/debug-dialog.service'
 import { DestinationAutoCompleteVM } from 'src/app/features/reservations/destinations/classes/view-models/destination-autocomplete-vm'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
@@ -39,7 +40,7 @@ import { ValidationService } from 'src/app/shared/services/validation.service'
 
 export class InvoiceFormComponent {
 
-    //#region common variables
+    //#region common
 
     private record: InvoiceReadDto
     private recordId: string
@@ -52,7 +53,7 @@ export class InvoiceFormComponent {
 
     //#endregion
 
-    //#region specific variables
+    //#region specific
 
     public isNewRecord: boolean
 
@@ -70,7 +71,7 @@ export class InvoiceFormComponent {
 
     //#endregion
 
-    constructor(private invoiceXmlHttpService: InvoiceXmlHttpService, private documentTypeHttpService: DocumentTypeHttpService, private invoiceXmlHelperService: InvoiceXmlHelperService, private dateHelperService: DateHelperService, private priceHttpService: PriceHttpService, private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private debugDialogService: DebugDialogService, private dexieService: DexieService, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private invoiceXmlHelperService: InvoiceXmlHelperService, private invoiceXmlHttpService: InvoiceXmlHttpService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceHttpService: PriceHttpService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -80,6 +81,7 @@ export class InvoiceFormComponent {
         this.getRecord()
         this.populateFields()
         this.populateDropdowns()
+        this.populateDocumentTypesAfterLoadRecord()
         this.onDoPortCalculations()
     }
 
@@ -128,6 +130,48 @@ export class InvoiceFormComponent {
         this.doSubmitTasks()
     }
 
+    public onRetrievePrices(): void {
+        const x: BillingCriteriaVM = {
+            date: this.dateHelperService.formatDateToIso(new Date(this.form.value.date)),
+            customerId: this.form.value.customer.id,
+            destinationId: this.form.value.destination.id
+        }
+        if (this.invoiceHelperService.validatePriceRetriever(x)) {
+            this.priceHttpService.retrievePrices(x).subscribe({
+                next: (response: any) => {
+                    if (response.body.length != 2) {
+                        this.dialogService.open(this.messageDialogService.priceRetrieverIsEmpty(), 'question', ['ok'])
+                    } else {
+                        this.form.patchValue({
+                            portA: {
+                                adults_A_PriceWithTransfer: response.body[0].adultsWithTransfer,
+                                adults_A_PriceWithoutTransfer: response.body[0].adultsWithoutTransfer,
+                                kids_A_PriceWithTransfer: response.body[0].kidsWithTransfer,
+                                kids_A_PriceWithoutTransfer: response.body[0].kidsWithoutTransfer,
+                            },
+                            portB: {
+                                adults_B_PriceWithTransfer: response.body[1].adultsWithTransfer,
+                                adults_B_PriceWithoutTransfer: response.body[1].adultsWithoutTransfer,
+                                kids_B_PriceWithTransfer: response.body[1].kidsWithTransfer,
+                                kids_B_PriceWithoutTransfer: response.body[1].kidsWithoutTransfer,
+                            },
+                        })
+                        this.dialogService.open(this.messageDialogService.priceRetrieverIsValid(), 'ok', ['ok'])
+                    }
+                },
+                error: (errorFromInterceptor) => {
+                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                }
+            })
+        } else {
+            this.dialogService.open(this.messageDialogService.priceRetrieverHasErrors(), 'error', ['ok'])
+        }
+    }
+
+    public onShowFormValue(): void {
+        this.debugDialogService.open(this.form.value, '', ['ok'])
+    }
+
     public enableOrDisableAutoComplete(event: any): void {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
     }
@@ -138,6 +182,10 @@ export class InvoiceFormComponent {
 
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
+    }
+
+    public isEditingAllowed(): boolean {
+        return this.recordId == undefined
     }
 
     public isEmailSent(): boolean {
@@ -443,6 +491,12 @@ export class InvoiceFormComponent {
         })
     }
 
+    private populateDocumentTypesAfterLoadRecord(): void {
+        if (this.record != undefined) {
+            this.populateDocumentTypesAfterShipSelection('documentTypesInvoice', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation', this.record.ship.id)
+        }
+    }
+
     private populateDocumentTypesAfterShipSelection(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string, shipId: number): void {
         this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
             this[dexieTable] = response.filter(x => x.ship.id == shipId).filter(x => x.isActive)
@@ -565,44 +619,6 @@ export class InvoiceFormComponent {
             const filtervalue = value.toLowerCase()
             return this[array].filter((element: { [x: string]: string; }) =>
                 element[field].toLowerCase().startsWith(filtervalue))
-        }
-    }
-
-    public onRetrievePrices(): void {
-        const x: BillingCriteriaVM = {
-            date: this.dateHelperService.formatDateToIso(new Date(this.form.value.date)),
-            customerId: this.form.value.customer.id,
-            destinationId: this.form.value.destination.id
-        }
-        if (this.invoiceHelperService.validatePriceRetriever(x)) {
-            this.priceHttpService.retrievePrices(x).subscribe({
-                next: (response: any) => {
-                    if (response.body.length != 2) {
-                        this.dialogService.open(this.messageDialogService.priceRetrieverIsEmpty(), 'question', ['ok'])
-                    } else {
-                        this.form.patchValue({
-                            portA: {
-                                adults_A_PriceWithTransfer: response.body[0].adultsWithTransfer,
-                                adults_A_PriceWithoutTransfer: response.body[0].adultsWithoutTransfer,
-                                kids_A_PriceWithTransfer: response.body[0].kidsWithTransfer,
-                                kids_A_PriceWithoutTransfer: response.body[0].kidsWithoutTransfer,
-                            },
-                            portB: {
-                                adults_B_PriceWithTransfer: response.body[1].adultsWithTransfer,
-                                adults_B_PriceWithoutTransfer: response.body[1].adultsWithoutTransfer,
-                                kids_B_PriceWithTransfer: response.body[1].kidsWithTransfer,
-                                kids_B_PriceWithoutTransfer: response.body[1].kidsWithoutTransfer,
-                            },
-                        })
-                        this.dialogService.open(this.messageDialogService.priceRetrieverIsValid(), 'ok', ['ok'])
-                    }
-                },
-                error: (errorFromInterceptor) => {
-                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                }
-            })
-        } else {
-            this.dialogService.open(this.messageDialogService.priceRetrieverHasErrors(), 'error', ['ok'])
         }
     }
 
