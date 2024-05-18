@@ -37,6 +37,14 @@ namespace API.Features.Reservations.Ships {
             return mapper.Map<IEnumerable<Ship>, IEnumerable<ShipBrowserVM>>(ships);
         }
 
+        public async Task<ShipBrowserVM> GetByIdForBrowserAsync(int id) {
+            var record = await context.Ships
+                .AsNoTracking()
+                .Include(x => x.ShipOwner)
+                .SingleOrDefaultAsync(x => x.Id == id);
+            return mapper.Map<Ship, ShipBrowserVM>(record);
+        }
+
         public async Task<IEnumerable<SimpleEntity>> GetForCriteriaAsync() {
             var ships = await context.Ships
                 .AsNoTracking()

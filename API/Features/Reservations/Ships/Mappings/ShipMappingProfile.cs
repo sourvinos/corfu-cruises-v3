@@ -10,12 +10,12 @@ namespace API.Features.Reservations.Ships {
             CreateMap<Ship, ShipBrowserVM>()
                 .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new ShipOwnerBrowserVM {
                     Id = x.ShipOwner.Id,
-                    Description = x.ShipOwner.Description,
+                    Description = x.ShipOwner.DescriptionEn,
                     VatPercent = x.ShipOwner.VatPercent
                 }));
             CreateMap<Ship, SimpleEntity>();
             CreateMap<Ship, ShipReadDto>()
-                .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new SimpleEntity { Id = x.ShipOwner.Id, Description = x.ShipOwner.Description }));
+                .ForMember(x => x.ShipOwner, x => x.MapFrom(x => new SimpleEntity { Id = x.ShipOwner.Id, Description = x.ShipOwner.DescriptionEn }));
             CreateMap<ShipWriteDto, Ship>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
                 .ForMember(x => x.Abbreviation, x => x.MapFrom(x => x.Abbreviation.Trim()))

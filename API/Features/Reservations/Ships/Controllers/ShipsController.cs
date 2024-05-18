@@ -66,14 +66,14 @@ namespace API.Features.Reservations.Ships {
         [HttpPost]
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public Response Post([FromBody] ShipWriteDto ship) {
+        public ResponseWithBody Post([FromBody] ShipWriteDto ship) {
             var x = shipValidation.IsValid(null, ship);
             if (x == 200) {
                 var z = shipRepo.Create(mapper.Map<ShipWriteDto, Ship>((ShipWriteDto)shipRepo.AttachMetadataToPostDto(ship)));
-                return new Response {
+                return new ResponseWithBody {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = z.Id.ToString(),
+                    Body = shipRepo.GetByIdForBrowserAsync(z.Id).Result,
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -86,16 +86,16 @@ namespace API.Features.Reservations.Ships {
         [HttpPut]
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<Response> Put([FromBody] ShipWriteDto ship) {
+        public async Task<ResponseWithBody> Put([FromBody] ShipWriteDto ship) {
             var x = await shipRepo.GetByIdAsync(ship.Id, false);
             if (x != null) {
                 var z = shipValidation.IsValid(x, ship);
                 if (z == 200) {
                     shipRepo.Update(mapper.Map<ShipWriteDto, Ship>((ShipWriteDto)shipRepo.AttachMetadataToPutDto(x, ship)));
-                    return new Response {
+                    return new ResponseWithBody {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
-                        Id = x.Id.ToString(),
+                        Body = shipRepo.GetByIdForBrowserAsync(ship.Id).Result,
                         Message = ApiMessages.OK(),
                     };
                 } else {

@@ -9,6 +9,7 @@ namespace API.Features.Reservations.Ships {
 
         Task<IEnumerable<ShipListVM>> GetAsync();
         Task<IEnumerable<ShipBrowserVM>> GetForBrowserAsync();
+        Task<ShipBrowserVM> GetByIdForBrowserAsync(int id);
         Task<IEnumerable<SimpleEntity>> GetForCriteriaAsync();
         Task<Ship> GetByIdAsync(int id, bool includeTables);
 

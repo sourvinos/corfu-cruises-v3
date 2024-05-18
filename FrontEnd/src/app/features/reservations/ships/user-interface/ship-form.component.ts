@@ -13,9 +13,10 @@ import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { ShipBrowserStorageVM } from '../classes/view-models/ship-browser-storage-vm'
+import { ShipHttpService } from '../classes/services/ship-http.service'
 import { ShipOwnerBrowserStorageVM } from '../../shipOwners/classes/view-models/shipOwner-autocomplete-vm'
 import { ShipReadDto } from '../classes/dtos/ship-read-dto'
-import { ShipHttpService } from '../classes/services/ship-http.service'
 import { ShipWriteDto } from '../classes/dtos/ship-write-dto'
 import { ValidationService } from 'src/app/shared/services/validation.service'
 
@@ -210,7 +211,17 @@ export class ShipFormComponent {
     private saveRecord(ship: ShipWriteDto): void {
         this.shipService.save(ship).subscribe({
             next: (response) => {
-                this.dexieService.update('ships', { 'id': parseInt(response.id), 'description': ship.description, 'isActive': ship.isActive })
+                const vm: ShipBrowserStorageVM = response.body
+                this.dexieService.update('ships', {
+                    id: parseInt(response.id),
+                    description: ship.description,
+                    isActive: ship.isActive,
+                    shipOwner: {
+                        id: vm.shipOwner.id,
+                        description: vm.shipOwner.description,
+                        vatPercent: vm.shipOwner.vatPercent
+                    }
+                })
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
             error: (errorFromInterceptor) => {
