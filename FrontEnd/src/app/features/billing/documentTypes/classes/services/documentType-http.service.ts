@@ -17,8 +17,11 @@ export class DocumentTypeHttpService extends HttpDataService {
     //#region public methods
 
     public getBrowserStorage(discriminatorId: number): Observable<DocumentTypeAutoCompleteVM[]> {
-        const x = discriminatorId == 1 ? 'Invoice' : 'Receipt'
-        return this.http.get<DocumentTypeAutoCompleteVM[]>(environment.apiUrl + '/documentTypes/getForBrowser' + x)
+        switch (discriminatorId) {
+            case 1: return this.http.get<DocumentTypeAutoCompleteVM[]>(environment.apiUrl + '/documentTypes/getForBrowser' + 'Invoice')
+            case 2: return this.http.get<DocumentTypeAutoCompleteVM[]>(environment.apiUrl + '/documentTypes/getForBrowser' + 'Receipt')
+            case 3: return this.http.get<DocumentTypeAutoCompleteVM[]>(environment.apiUrl + '/documentTypes/getForBrowser' + 'Retail')
+        }
     }
 
     public getLastDocumentTypeNo(id: number): Observable<any> {

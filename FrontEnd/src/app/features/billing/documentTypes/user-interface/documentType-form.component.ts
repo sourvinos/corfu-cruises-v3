@@ -168,7 +168,11 @@ export class DocumentTypeFormComponent {
     }
 
     private getDiscriminatorDescription(): string {
-        return this.form.value.discriminatorId == '1' ? 'documentTypesInvoice' : 'documentTypesReceipt'
+        switch (parseInt(this.form.value.discriminatorId)) {
+            case 1: return 'documentTypesInvoice'
+            case 2: return 'documentTypesReceipt'
+            case 3: return 'documentTypesRetail'
+        }
     }
 
     private getRecord(): Promise<any> {

@@ -2825,6 +2825,10 @@
                 "description": "Είσπραξη ή πληρωμή"
             },
             {
+                "id": "refersToRetail",
+                "description": "Παροχή υπηρεσιών σε ιδιώτες"
+            },
+            {
                 "id": "isMyData",
                 "description": "Ενημερώνει myDATA"
             },

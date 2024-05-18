@@ -21,8 +21,8 @@ namespace API.Features.Billing.DocumentTypes {
         #endregion
 
         public DocumentTypesController(IDocumentTypeRepository DocumentTypeRepo, IDocumentTypeValidation DocumentTypeValidation, IMapper mapper) {
-            this.documentTypeRepo = DocumentTypeRepo;
-            this.documentTypeValidation = DocumentTypeValidation;
+            documentTypeRepo = DocumentTypeRepo;
+            documentTypeValidation = DocumentTypeValidation;
             this.mapper = mapper;
         }
 
@@ -36,6 +36,12 @@ namespace API.Features.Billing.DocumentTypes {
         [Authorize(Roles = "user, admin")]
         public async Task<IEnumerable<DocumentTypeBrowserVM>> GetForBrowserInvoiceAsync() {
             return await documentTypeRepo.GetForBrowserAsync(1);
+        }
+
+        [HttpGet("[action]")]
+        [Authorize(Roles = "user, admin")]
+        public async Task<IEnumerable<DocumentTypeBrowserVM>> GetForBrowserRetailAsync() {
+            return await documentTypeRepo.GetForBrowserAsync(3);
         }
 
         [HttpGet("[action]")]
