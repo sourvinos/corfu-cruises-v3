@@ -174,6 +174,7 @@ export class PaymentMethodFormComponent {
                 this.dexieService.update('paymentMethods', {
                     id: parseInt(response.id),
                     description: paymentMethod.descriptionEn,
+                    isCash: paymentMethod.isCash,
                     isDefault: paymentMethod.isDefault,
                     isActive: paymentMethod.isActive
                 })

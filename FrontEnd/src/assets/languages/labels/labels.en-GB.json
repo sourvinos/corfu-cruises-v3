@@ -2658,6 +2658,14 @@
                 "description": "Τρόποι πληρωμής"
             },
             {
+                "id": "headerIsActive",
+                "description": "Ενεργός"
+            },
+            {
+                "id": "headerIsCash",
+                "description": "Μετρητά"
+            },
+            {
                 "id": "headerDescription",
                 "description": "Περιγραφή"
             },
