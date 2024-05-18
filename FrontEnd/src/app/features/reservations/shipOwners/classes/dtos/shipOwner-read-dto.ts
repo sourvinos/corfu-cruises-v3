@@ -13,7 +13,7 @@ export interface ShipOwnerReadDto extends Metadata {
     vatMyDataId: number
     vatPercent: number
     description: string
-    descriptionInEnglish: string
+    descriptionEn: string
     vatNumber: string
     branch: number
     profession: string

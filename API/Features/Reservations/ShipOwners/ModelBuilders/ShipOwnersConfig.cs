@@ -14,7 +14,7 @@ namespace API.Features.Reservations.ShipOwners {
             entity.Property(x => x.VatRegimeId).IsRequired(true);
             // Fields
             entity.Property(x => x.Description).HasMaxLength(128).IsRequired(true);
-            entity.Property(x => x.DescriptionInEnglish).HasMaxLength(128).IsRequired(true);
+            entity.Property(x => x.DescriptionEn).HasMaxLength(128).IsRequired(true);
             entity.Property(x => x.VatNumber).HasDefaultValue("").HasMaxLength(36);
             entity.Property(x => x.VatPercent).HasDefaultValue(0).HasMaxLength(5);
             entity.Property(x => x.Profession).HasDefaultValue("").HasMaxLength(128);

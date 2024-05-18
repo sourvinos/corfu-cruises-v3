@@ -7,6 +7,6 @@ export interface DocumentTypeAutoCompleteVM {
     description: string
     ship: SimpleEntity
     batch: string
-    batchInEnglish: string
+    batchEn: string
 
 }

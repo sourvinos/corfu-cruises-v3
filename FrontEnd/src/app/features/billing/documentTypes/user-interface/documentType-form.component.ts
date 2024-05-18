@@ -22,11 +22,12 @@ import { MessageInputHintService } from 'src/app/shared/services/message-input-h
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
+import { environment } from 'src/environments/environment'
 
 @Component({
     selector: 'documentType-form',
     templateUrl: './documentType-form.component.html',
-    styleUrls: ['../../../../../assets/styles/custom/forms.css']
+    styleUrls: ['../../../../../assets/styles/custom/forms.css', './documentType-form.component.css']
 })
 
 export class DocumentTypeFormComponent {
@@ -91,6 +92,10 @@ export class DocumentTypeFormComponent {
         return this.emojiService.getEmoji(isActive ? 'active' : 'notActive')
     }
 
+    public getFlag(language: string): string {
+        return environment.nationalitiesIconDirectory + language + '.png'
+    }
+
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
     }
@@ -143,7 +148,7 @@ export class DocumentTypeFormComponent {
             abbreviation: this.form.value.abbreviation,
             description: this.form.value.description,
             batch: this.form.value.batch,
-            batchInEnglish: this.form.value.batchInEnglish,
+            batchEn: this.form.value.batchEn,
             customers: this.form.value.customers,
             suppliers: this.form.value.suppliers,
             discriminatorId: parseInt(this.form.value.discriminatorId),
@@ -194,7 +199,7 @@ export class DocumentTypeFormComponent {
             abbreviation: ['', [Validators.required, Validators.maxLength(5)]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
             batch: ['', [Validators.required, Validators.maxLength(5)]],
-            batchInEnglish: ['', [Validators.required, Validators.maxLength(5)]],
+            batchEn: ['', [Validators.required, Validators.maxLength(5)]],
             customers: ['', [Validators.maxLength(1), ValidationService.shouldBeEmptyPlusOrMinus]],
             suppliers: ['', [Validators.maxLength(1), ValidationService.shouldBeEmptyPlusOrMinus]],
             discriminatorId: ['', [Validators.required]],
@@ -233,7 +238,7 @@ export class DocumentTypeFormComponent {
                 abbreviation: this.record.abbreviation,
                 description: this.record.description,
                 batch: this.record.batch,
-                batchInEnglish: this.record.batchInEnglish,
+                batchEn: this.record.batchEn,
                 customers: this.record.customers,
                 suppliers: this.record.suppliers,
                 discriminatorId: this.record.discriminatorId.toString(),
@@ -307,8 +312,8 @@ export class DocumentTypeFormComponent {
         return this.form.get('batch')
     }
 
-    get batchInEnglish(): AbstractControl {
-        return this.form.get('batchInEnglish')
+    get batchEn(): AbstractControl {
+        return this.form.get('batchEn')
     }
 
     get customers(): AbstractControl {

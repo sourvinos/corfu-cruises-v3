@@ -17,11 +17,11 @@
                             <mat-error *ngIf="description.hasError('required')">{{ getHint("required") }}</mat-error>
                             <img [src]="getFlag('gr')" class="flag">
                         </mat-form-field>
-                        <!-- DescriptionInEnglish -->
+                        <!-- descriptionEn -->
                         <mat-form-field class="language-label">
-                            <mat-label>{{ getLabel('descriptionInEnglish') }}</mat-label>
-                            <input [inputTabStop]="input" dataTabIndex="2" formControlName="descriptionInEnglish" matInput>
-                            <mat-error *ngIf="descriptionInEnglish.hasError('required')">{{ getHint("required") }}</mat-error>
+                            <mat-label>{{ getLabel('descriptionEn') }}</mat-label>
+                            <input [inputTabStop]="input" dataTabIndex="2" formControlName="descriptionEn" matInput>
+                            <mat-error *ngIf="descriptionEn.hasError('required')">{{ getHint("required") }}</mat-error>
                             <img [src]="getFlag('gb')" class="flag">
                         </mat-form-field>
                     </div>
@@ -108,24 +108,6 @@
                             <mat-error *ngIf="!nationality.hasError('required') && nationality.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
                         </mat-form-field>
                     </div>
-                    <div class="group-input-field">
-                        <!-- Person in charge -->
-                        <mat-form-field>
-                            <mat-label>{{ getLabel('personInCharge') }}</mat-label>
-                            <input [inputTabStop]="input" dataTabIndex="13" formControlName="personInCharge" matInput>
-                        </mat-form-field>
-                        <!-- Phones -->
-                        <mat-form-field>
-                            <mat-label>{{ getLabel('phones') }}</mat-label>
-                            <input [inputTabStop]="input" dataTabIndex="14" formControlName="phones" matInput>
-                        </mat-form-field>
-                        <!-- Email -->
-                        <mat-form-field>
-                            <mat-label>{{ getLabel('email') }}</mat-label>
-                            <input [inputTabStop]="input" dataTabIndex="15" formControlName="email" matInput>
-                            <mat-error *ngIf="email.hasError('email')">{{ getHint("invalid") }}</mat-error>
-                        </mat-form-field>
-                    </div>
                     <!-- Active -->
                     <div class="stacked-checkboxes">
                         <mat-checkbox formControlName="isGroupJP">
@@ -137,6 +119,24 @@
                     </div>
                 </mat-tab>
                 <mat-tab label="{{ getLabel('tab2') }}">
+                    <!-- Person in charge -->
+                    <mat-form-field>
+                        <mat-label>{{ getLabel('personInCharge') }}</mat-label>
+                        <input [inputTabStop]="input" dataTabIndex="1" formControlName="personInCharge" matInput>
+                    </mat-form-field>
+                    <!-- Phones -->
+                    <mat-form-field>
+                        <mat-label>{{ getLabel('phones') }}</mat-label>
+                        <input [inputTabStop]="input" dataTabIndex="2" formControlName="phones" matInput>
+                    </mat-form-field>
+                    <!-- Email -->
+                    <mat-form-field>
+                        <mat-label>{{ getLabel('email') }}</mat-label>
+                        <input [inputTabStop]="input" dataTabIndex="3" formControlName="email" matInput>
+                        <mat-error *ngIf="email.hasError('email')">{{ getHint("invalid") }}</mat-error>
+                    </mat-form-field>
+                </mat-tab>
+                <mat-tab label="{{ getLabel('tab3') }}">
                     <div class="group-input-field">
                         <!-- Demo url -->
                         <mat-form-field>

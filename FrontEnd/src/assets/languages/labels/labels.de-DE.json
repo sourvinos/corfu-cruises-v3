@@ -1663,6 +1663,10 @@
             {
                 "id": "newRecord",
                 "description": "Νεα εγγραφη"
+            },
+            {
+                "id": "contextMenuEdit",
+                "description": "Επεξεργασία"
             }
         ]
     },
@@ -1679,6 +1683,10 @@
             },
             {
                 "id": "tab2",
+                "description": "Επικοινωνία"
+            },
+            {
+                "id": "tab3",
                 "description": "myData"
             },
             {
@@ -1686,7 +1694,7 @@
                 "description": "Επωνυμία ή όνομα"
             },
             {
-                "id": "descriptionInEnglish",
+                "id": "descriptionEn",
                 "description": "Επωνυμία ή όνομα"
             },
             {
@@ -2789,8 +2797,8 @@
                 "description": "Σειρά"
             },
             {
-                "id": "batchInEnglish",
-                "description": "Σειρά στα Αγγλικά"
+                "id": "batchEn",
+                "description": "Σειρά"
             },
             {
                 "id": "customers",

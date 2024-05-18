@@ -8,7 +8,7 @@ export interface DocumentTypeBrowserStorageVM {
     abbreviation: string
     description: string
     batch: string
-    batchInEnglish: string
+    batchEn: string
     isDefault: boolean
     isActive: boolean
 

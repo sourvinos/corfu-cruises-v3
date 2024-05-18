@@ -11,7 +11,7 @@ namespace API.Features.Billing.DocumentTypes {
             RuleFor(x => x.Abbreviation).NotEmpty().MaximumLength(5);
             RuleFor(x => x.Description).NotEmpty().MaximumLength(128);
             RuleFor(x => x.Batch).NotNull().MaximumLength(5);
-            RuleFor(x => x.BatchInEnglish).NotNull().MaximumLength(5);
+            RuleFor(x => x.BatchEn).NotNull().MaximumLength(5);
             RuleFor(x => x.DiscriminatorId).NotNull().InclusiveBetween(1, 2);
             RuleFor(x => x.Customers).NotNull().MaximumLength(1).Matches(@"^[+|\-| ]*$");
             RuleFor(x => x.Suppliers).NotNull().MaximumLength(1).Matches(@"^[+|\-| ]*$");

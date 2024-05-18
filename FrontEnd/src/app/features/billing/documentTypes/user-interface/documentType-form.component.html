@@ -53,12 +53,14 @@
                             <mat-label>{{ getLabel('batch') }}</mat-label>
                             <input [inputTabStop]="input" dataTabIndex="5" formControlName="batch" matInput>
                             <mat-error *ngIf="batch.hasError('required')">{{ getHint("required") }}</mat-error>
+                            <img [src]="getFlag('gr')" class="flag">
                         </mat-form-field>
-                        <!-- BatchInEnglish -->
+                        <!-- batchEn -->
                         <mat-form-field style="width:20%;">
-                            <mat-label>{{ getLabel('batchInEnglish') }}</mat-label>
-                            <input [inputTabStop]="input" dataTabIndex="6" formControlName="batchInEnglish" matInput>
-                            <mat-error *ngIf="batchInEnglish.hasError('required')">{{ getHint("required") }}</mat-error>
+                            <mat-label>{{ getLabel('batchEn') }}</mat-label>
+                            <input [inputTabStop]="input" dataTabIndex="6" formControlName="batchEn" matInput>
+                            <mat-error *ngIf="batchEn.hasError('required')">{{ getHint("required") }}</mat-error>
+                            <img [src]="getFlag('gb')" class="flag">
                         </mat-form-field>
                     </div>
                     <div class="group-input-field">

@@ -137,7 +137,7 @@ export class ShipOwnerFormComponent {
             taxOfficeId: this.form.value.taxOffice.id,
             vatRegimeId: this.form.value.vatRegime.id,
             description: this.form.value.description,
-            descriptionInEnglish: this.form.value.descriptionInEnglish,
+            descriptionEn: this.form.value.descriptionEn,
             vatNumber: this.form.value.vatNumber,
             branch: this.form.value.branch,
             profession: this.form.value.profession,
@@ -195,7 +195,7 @@ export class ShipOwnerFormComponent {
             taxOffice: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             vatRegime: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
-            descriptionInEnglish: ['', [Validators.required, Validators.maxLength(128)]],
+            descriptionEn: ['', [Validators.required, Validators.maxLength(128)]],
             vatNumber: ['', [Validators.required, Validators.maxLength(36)]],
             branch: [0, [Validators.required, Validators.min(0), Validators.max(10)]],
             profession: ['', [Validators.maxLength(128)]],
@@ -245,7 +245,7 @@ export class ShipOwnerFormComponent {
                 taxOffice: { 'id': this.record.taxOffice.id, 'description': this.record.taxOffice.description },
                 vatRegime: { 'id': this.record.vatRegime.id, 'description': this.record.vatRegime.description },
                 description: this.record.description,
-                descriptionInEnglish: this.record.descriptionInEnglish,
+                descriptionEn: this.record.descriptionEn,
                 vatNumber: this.record.vatNumber,
                 branch: this.record.branch,
                 profession: this.record.profession,
@@ -282,7 +282,7 @@ export class ShipOwnerFormComponent {
     private saveRecord(shipOwner: ShipOwnerWriteDto): void {
         this.shipOwnerService.save(shipOwner).subscribe({
             next: (response) => {
-                this.dexieService.update('shipOwners', { 'id': parseInt(response.id), 'description': shipOwner.description, 'isActive': shipOwner.isActive })
+                this.dexieService.update('shipOwners', { 'id': parseInt(response.id), 'description': shipOwner.description, 'descriptionEn': shipOwner.descriptionEn, 'isActive': shipOwner.isActive })
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
             error: (errorFromInterceptor) => {
@@ -317,8 +317,8 @@ export class ShipOwnerFormComponent {
         return this.form.get('description')
     }
 
-    get descriptionInEnglish(): AbstractControl {
-        return this.form.get('descriptionInEnglish')
+    get descriptionEn(): AbstractControl {
+        return this.form.get('descriptionEn')
     }
 
     get vatNumber(): AbstractControl {

@@ -14,7 +14,7 @@ namespace API.Features.Reservations.ShipOwners {
                 .ForMember(x => x.VatRegime, x => x.MapFrom(x => new SimpleEntity { Id = x.VatRegime.Id, Description = x.VatRegime.Description }));
             CreateMap<ShipOwnerWriteDto, ShipOwner>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description.Trim()))
-                .ForMember(x => x.DescriptionInEnglish, x => x.MapFrom(x => x.DescriptionInEnglish.Trim()))
+                .ForMember(x => x.DescriptionEn, x => x.MapFrom(x => x.DescriptionEn.Trim()))
                 .ForMember(x => x.VatNumber, x => x.MapFrom(x => x.VatNumber.Trim()))
                 .ForMember(x => x.Profession, x => x.MapFrom(x => x.Profession.Trim()))
                 .ForMember(x => x.Street, x => x.MapFrom(x => x.Street.Trim()))

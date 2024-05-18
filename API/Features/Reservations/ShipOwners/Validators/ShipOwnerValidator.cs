@@ -12,7 +12,7 @@ namespace API.Features.Reservations.ShipOwners {
             RuleFor(x => x.VatRegimeId).NotEmpty();
             // Fields
             RuleFor(x => x.Description).NotEmpty().MaximumLength(128);
-            RuleFor(x => x.DescriptionInEnglish).NotEmpty().MaximumLength(128);
+            RuleFor(x => x.DescriptionEn).NotEmpty().MaximumLength(128);
             RuleFor(x => x.VatNumber).NotEmpty().MaximumLength(36);
             RuleFor(x => x.VatMyDataId).InclusiveBetween(1, 8);
             RuleFor(x => x.VatPercent).GreaterThanOrEqualTo(0);

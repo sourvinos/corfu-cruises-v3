@@ -1,5 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, ViewChild } from '@angular/core'
+import { MenuItem } from 'primeng/api'
 import { Table } from 'primeng/table'
 // Custom
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
@@ -20,7 +21,7 @@ import { ShipOwnerListVM } from '../classes/view-models/shipOwner-list-vm'
 
 export class ShipOwnerListComponent {
 
-    //#region common #9
+    //#region common 
 
     @ViewChild('table') table: Table
 
@@ -35,6 +36,13 @@ export class ShipOwnerListComponent {
 
     //#endregion
 
+    //#region context menu
+
+    public menuItems!: MenuItem[]
+    public selectedRecord!: ShipOwnerListVM
+
+    //#endregion
+
     constructor(private activatedRoute: ActivatedRoute, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
@@ -45,6 +53,7 @@ export class ShipOwnerListComponent {
             this.subscribeToInteractionService()
             this.setTabTitle()
             this.setSidebarsHeight()
+            this.initContextMenu()
         })
     }
 
@@ -59,13 +68,7 @@ export class ShipOwnerListComponent {
 
     //#endregion
 
-    //#region public common methods #7
-
-    public editRecord(id: number): void {
-        this.storeScrollTop()
-        this.storeSelectedId(id)
-        this.navigateToRecord(id)
-    }
+    //#region public
 
     public filterRecords(event: any): void {
         this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
@@ -82,12 +85,18 @@ export class ShipOwnerListComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public highlightRow(id: any): void {
-        this.helperService.highlightRow(id)
-    }
-
     public newRecord(): void {
         this.router.navigate([this.url + '/new'], { queryParams: { returnUrl: this.url } })
+    }
+
+    public onEditRecord(id: number): void {
+        this.storeScrollTop()
+        this.storeSelectedId(id)
+        this.navigateToRecord(id)
+    }
+
+    public onHighlightRow(id: any): void {
+        this.helperService.highlightRow(id)
     }
 
     public resetTableFilters(): void {
@@ -96,7 +105,7 @@ export class ShipOwnerListComponent {
 
     //#endregion
 
-    //#region private common methods #13
+    //#region private 
 
     private enableDisableFilters(): void {
         this.records.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()
@@ -130,6 +139,12 @@ export class ShipOwnerListComponent {
 
     private hightlightSavedRow(): void {
         this.helperService.highlightSavedRow(this.feature)
+    }
+
+    private initContextMenu(): void {
+        this.menuItems = [
+            { label: this.getLabel('contextMenuEdit'), command: () => this.onEditRecord(this.selectedRecord.id) }
+        ]
     }
 
     private loadRecords(): Promise<any> {
