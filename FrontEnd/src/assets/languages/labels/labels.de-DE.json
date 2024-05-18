@@ -54,6 +54,10 @@
             {
                 "id": "newRecord",
                 "description": "Neuer Rekord"
+            },
+            {
+                "id": "contextMenuEdit",
+                "description": "Επεξεργασία"
             }
         ]
     },

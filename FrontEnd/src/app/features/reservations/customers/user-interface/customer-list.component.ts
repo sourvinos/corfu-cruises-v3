@@ -1,5 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, ViewChild } from '@angular/core'
+import { MenuItem } from 'primeng/api'
 import { Table } from 'primeng/table'
 // Custom
 import { CustomerListVM } from '../classes/view-models/customer-list-vm'
@@ -20,7 +21,7 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 
 export class CustomerListComponent {
 
-    //#region common #9
+    //#region common
 
     @ViewChild('table') table: Table
 
@@ -35,10 +36,16 @@ export class CustomerListComponent {
 
     //#endregion
 
+    //#region context menu
+
+    public menuItems!: MenuItem[]
+    public selectedRecord!: CustomerListVM
+
+    //#endregion
+
     constructor(private activatedRoute: ActivatedRoute, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
-
 
     ngOnInit(): void {
         this.loadRecords().then(() => {
@@ -46,6 +53,7 @@ export class CustomerListComponent {
             this.subscribeToInteractionService()
             this.setTabTitle()
             this.setSidebarsHeight()
+            this.initContextMenu()
         })
     }
 
@@ -60,18 +68,7 @@ export class CustomerListComponent {
 
     //#endregion
 
-    //#region public common methods #7
-
-    public editRecord(id: number): void {
-        this.storeScrollTop()
-        this.storeSelectedId(id)
-        this.navigateToRecord(id)
-    }
-
-    public filterRecords(event: any): void {
-        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
-        this.recordsFilteredCount = event.filteredValue.length
-    }
+    //#region public methods
 
     public getEmoji(anything: any): string {
         return typeof anything == 'string'
@@ -83,21 +80,32 @@ export class CustomerListComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public highlightRow(id: any): void {
+    public onEditRecord(id: number): void {
+        this.storeScrollTop()
+        this.storeSelectedId(id)
+        this.navigateToRecord(id)
+    }
+
+    public onFilterRecords(event: any): void {
+        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
+        this.recordsFilteredCount = event.filteredValue.length
+    }
+
+    public onHighlightRow(id: any): void {
         this.helperService.highlightRow(id)
     }
 
-    public newRecord(): void {
+    public onNewRecord(): void {
         this.router.navigate([this.url + '/new'])
     }
 
-    public resetTableFilters(): void {
+    public onResetTableFilters(): void {
         this.helperService.clearTableTextFilters(this.table, ['description', 'email', 'phones'])
     }
 
     //#endregion
 
-    //#region private common methods #13
+    //#region private methods
 
     private enableDisableFilters(): void {
         this.records.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()
@@ -131,6 +139,12 @@ export class CustomerListComponent {
 
     private hightlightSavedRow(): void {
         this.helperService.highlightSavedRow(this.feature)
+    }
+
+    private initContextMenu(): void {
+        this.menuItems = [
+            { label: this.getLabel('contextMenuEdit'), command: () => this.onEditRecord(this.selectedRecord.id) }
+        ]
     }
 
     private loadRecords(): Promise<any> {
@@ -177,7 +191,6 @@ export class CustomerListComponent {
             this.setTabTitle()
         })
     }
-
 
     //#endregion
 

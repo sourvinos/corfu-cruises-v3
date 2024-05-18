@@ -43,7 +43,6 @@ export class PaymentMethodListComponent {
 
     //#endregion
 
-
     constructor(private activatedRoute: ActivatedRoute, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
@@ -101,7 +100,7 @@ export class PaymentMethodListComponent {
     }
 
     public resetTableFilters(): void {
-        this.helperService.clearTableTextFilters(this.table, ['description', 'email', 'phones'])
+        this.helperService.clearTableTextFilters(this.table, ['description'])
     }
 
     //#endregion
@@ -123,9 +122,8 @@ export class PaymentMethodListComponent {
         if (filters != undefined) {
             setTimeout(() => {
                 this.filterColumn(filters.isActive, 'isActive', 'contains')
+                this.filterColumn(filters.isCash, 'isCash', 'contains')
                 this.filterColumn(filters.description, 'description', 'contains')
-                this.filterColumn(filters.email, 'email', 'contains')
-                this.filterColumn(filters.phones, 'phones', 'contains')
             }, 500)
         }
     }

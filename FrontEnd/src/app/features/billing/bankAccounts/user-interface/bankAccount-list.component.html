@@ -44,7 +44,7 @@
                                 </ng-template>
                             </p-columnFilter>
                         </th>
-                        <th class="width-20"><input (input)="table.filter($event.target.value, 'description', 'contains')" [value]="$any(table).filters['description']?.value" class="p-inputtext"></th>
+                        <th class="width-20"><input (input)="table.filter($event.target.value, 'iban', 'contains')" [value]="$any(table).filters['iban']?.value" class="p-inputtext"></th>
                     </tr>
                 </ng-template>
                 <ng-template let-record pTemplate="body">

@@ -54,6 +54,10 @@
             {
                 "id": "newRecord",
                 "description": "Nouveau record"
+            },
+            {
+                "id": "contextMenuEdit",
+                "description": "Επεξεργασία"
             }
         ]
     },

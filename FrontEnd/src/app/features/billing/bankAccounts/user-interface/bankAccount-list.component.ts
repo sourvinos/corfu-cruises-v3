@@ -138,9 +138,9 @@ export class BankAccountListComponent {
         if (filters != undefined) {
             setTimeout(() => {
                 this.filterColumn(filters.isActive, 'isActive', 'contains')
-                this.filterColumn(filters.bank, 'bank', 'in')
                 this.filterColumn(filters.shipOwner, 'shipOwner', 'in')
-                this.filterColumn(filters.description, 'description', 'contains')
+                this.filterColumn(filters.bank, 'bank', 'in')
+                this.filterColumn(filters.iban, 'iban', 'contains')
             }, 500)
         }
     }

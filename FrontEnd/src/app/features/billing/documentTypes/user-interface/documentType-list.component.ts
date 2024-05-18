@@ -134,6 +134,7 @@ export class DocumentTypeListComponent {
         if (filters != undefined) {
             setTimeout(() => {
                 this.filterColumn(filters.isActive, 'isActive', 'contains')
+                this.filterColumn(filters.shipOwner, 'shipOwner', 'contains')
                 this.filterColumn(filters.ship, 'ship', 'contains')
                 this.filterColumn(filters.description, 'description', 'contains')
                 this.filterColumn(filters.batch, 'batch', 'contains')
