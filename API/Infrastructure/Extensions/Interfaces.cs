@@ -74,6 +74,7 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IScheduleValidation, ScheduleValidation>();
             services.AddTransient<IShipCrewRepository, ShipCrewRepository>();
             services.AddTransient<IShipCrewValidation, ShipCrewValidation>();
+            services.AddTransient<IShipOwnerAadeRepository, ShipOwnerAadeRepository>();
             services.AddTransient<IShipOwnerRepository, ShipOwnerRepository>();
             services.AddTransient<IShipOwnerValidation, ShipOwnerValidation>();
             services.AddTransient<IShipRepository, ShipRepository>();

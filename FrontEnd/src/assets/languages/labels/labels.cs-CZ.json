@@ -1808,6 +1808,10 @@
             {
                 "id": "saveButton",
                 "description": "Αποθηκευση"
+            },
+            {
+                "id": "searchAadeRegistry",
+                "description": "Αναζήτηση στοιχείων στο μητρώο επιχειρήσεων"
             }
         ]
     },

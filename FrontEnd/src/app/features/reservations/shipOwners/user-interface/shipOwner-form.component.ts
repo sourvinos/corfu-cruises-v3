@@ -13,8 +13,10 @@ import { MessageDialogService } from 'src/app/shared/services/message-dialog.ser
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { NationalityVM } from '../../reservations/classes/view-models/passenger/nationality-vm'
-import { ShipOwnerReadDto } from '../classes/dtos/shipOwner-read-dto'
+import { ShipOwnerAadeHttpService } from '../classes/services/shipOwner-aade-http.service'
+import { ShipOwnerAadeRequestVM } from '../classes/view-models/shipOwner-aade-vm'
 import { ShipOwnerHttpService } from '../classes/services/shipOwner-http.service'
+import { ShipOwnerReadDto } from '../classes/dtos/shipOwner-read-dto'
 import { ShipOwnerWriteDto } from '../classes/dtos/shipOwner-write-dto'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
@@ -50,7 +52,7 @@ export class ShipOwnerFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private shipOwnerService: ShipOwnerHttpService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private shipOwnerService: ShipOwnerHttpService, private shipOwnerAadeHttpService: ShipOwnerAadeHttpService) { }
 
     //#region lifecycle hooks
 
@@ -114,6 +116,16 @@ export class ShipOwnerFormComponent {
         this.saveRecord(this.flattenForm())
     }
 
+    public onSearchAadeRegistry(): void {
+        this.shipOwnerAadeHttpService.searchRegistry(this.buildShipOwnerAadeRequesrtVM(this.form.value.vatNumber)).subscribe(response => {
+            if (this.isShipOwnerFound(response)) {
+                this.processAadeResponse(response)
+            } else {
+                this.dialogService.open(this.messageDialogService.customerAadeDoesNotExist(), 'error', ['ok']).subscribe()
+            }
+        })
+    }
+
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
         this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
     }
@@ -121,6 +133,15 @@ export class ShipOwnerFormComponent {
     //#endregion
 
     //#region private methods
+
+    private buildShipOwnerAadeRequesrtVM(vatNumber: string): ShipOwnerAadeRequestVM {
+        const x: ShipOwnerAadeRequestVM = {
+            username: 'KEP997346439',
+            password: 'PKE997346439',
+            vatNumber: vatNumber
+        }
+        return x
+    }
 
     private filterAutocomplete(array: string, field: string, value: any): any[] {
         if (typeof value !== 'object') {
@@ -224,6 +245,11 @@ export class ShipOwnerFormComponent {
         })
     }
 
+    public isShipOwnerFound(response: any): boolean {
+        const document = new DOMParser().parseFromString(response.message, 'text/xml')
+        return document.querySelector('afm').innerHTML ? true : false
+    }
+
     private populateDropdowns(): void {
         this.populateDropdownFromDexieDB('nationalities', 'dropdownNationalities', 'nationality', 'description', 'description')
         this.populateDropdownFromDexieDB('taxOffices', 'dropdownTaxOffices', 'taxOffice', 'description', 'description')
@@ -273,6 +299,22 @@ export class ShipOwnerFormComponent {
                 putUser: this.record.putUser
             })
         }
+    }
+
+    public async processAadeResponse(response: any): Promise<any> {
+        const document = new DOMParser().parseFromString(response.message, 'text/xml')
+        this.form.patchValue({
+            'description': document.querySelector('onomasia').innerHTML,
+            'vatNumber': document.querySelector('afm').innerHTML,
+            'taxOffice': await this.dexieService.getByDescription('taxOffices', document.querySelector('doy_descr').innerHTML),
+            'profession': document.querySelector('firm_act_descr').innerHTML,
+            'street': document.querySelector('postal_address').innerHTML,
+            'number': document.querySelector('postal_address_no').innerHTML,
+            'postalCode': document.querySelector('postal_zip_code').innerHTML,
+            'city': document.querySelector('postal_area_description').innerHTML,
+            'nationality': await this.dexieService.getByDescription('nationalities', 'GREECE'),
+            'vatRegime': await this.dexieService.getByDescription('vatRegimes', document.querySelector('normal_vat_system_flag').innerHTML == 'Y' ? 'ΚΑΝΟΝΙΚΟ' : 'ΑΠΑΛΛΑΓΗ')
+        })
     }
 
     private resetForm(): void {
