@@ -30,7 +30,6 @@ using API.Infrastructure.Users;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using API.Features.Billing.Retail;
 
 namespace API.Infrastructure.Classes {
 
@@ -71,8 +70,6 @@ namespace API.Infrastructure.Classes {
         public DbSet<PaymentMethod> PaymentMethods { get; set; }
         public DbSet<Price> Prices { get; set; }
         public DbSet<Receipt> Receipts { get; set; }
-        public DbSet<Retail> Retails { get; set; }
-        public DbSet<RetailAade> RetailsAade { get; set; }
         public DbSet<TaxOffice> TaxOffices { get; set; }
         public DbSet<TransactionsBase> Transactions { get; set; }
         public DbSet<VatRegime> VatRegimes { get; set; }
@@ -113,6 +110,7 @@ namespace API.Infrastructure.Classes {
             modelBuilder.ApplyConfiguration(new BankAccountsConfig());
             modelBuilder.ApplyConfiguration(new BanksConfig());
             modelBuilder.ApplyConfiguration(new DocumentTypeConfig());
+            modelBuilder.ApplyConfiguration(new TransactionConfig());
             modelBuilder.ApplyConfiguration(new InvoicesAadeConfig());
             modelBuilder.ApplyConfiguration(new InvoicesConfig());
             modelBuilder.ApplyConfiguration(new InvoicesPortsConfig());
@@ -120,10 +118,7 @@ namespace API.Infrastructure.Classes {
             modelBuilder.ApplyConfiguration(new PaymentMethodsConfig());
             modelBuilder.ApplyConfiguration(new PricesConfig());
             modelBuilder.ApplyConfiguration(new ReceiptsConfig());
-            modelBuilder.ApplyConfiguration(new RetailsAadeConfig());
-            modelBuilder.ApplyConfiguration(new RetailsConfig());
             modelBuilder.ApplyConfiguration(new TaxOfficesConfig());
-            modelBuilder.ApplyConfiguration(new TransactionConfig());
             modelBuilder.ApplyConfiguration(new VatRegimeConfig());
             #endregion
             #region common

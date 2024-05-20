@@ -6,7 +6,6 @@ using API.Features.Billing.Ledgers;
 using API.Features.Billing.PaymentMethods;
 using API.Features.Billing.Prices;
 using API.Features.Billing.Receipts;
-using API.Features.Billing.Retail;
 using API.Features.Billing.TaxOffices;
 using API.Features.Billing.VatRegimes;
 using API.Features.CheckIn;
@@ -110,9 +109,6 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IReceiptPdfRepository, ReceiptPdfRepository>();
             services.AddTransient<IReceiptRepository, ReceiptRepository>();
             services.AddTransient<IReceiptValidation, ReceiptValidation>();
-            services.AddTransient<IRetailReadRepository, RetailReadRepository>();
-            services.AddTransient<IRetailUpdateRepository, RetailUpdateRepository>();
-            services.AddTransient<IRetailValidation, RetailValidation>();
             services.AddTransient<ITaxOfficeRepository, TaxOfficeRepository>();
             services.AddTransient<ITaxOfficeValidation, TaxOfficeValidation>();
             services.AddTransient<IVatRegimeRepository, VatRegimeRepository>();
