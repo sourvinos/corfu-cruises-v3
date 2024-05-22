@@ -28,6 +28,10 @@ export class DocumentTypeHttpService extends HttpDataService {
         return this.http.request('get', this.url + '/getLastDocumentTypeNo/' + id)
     }
 
+    public getLastDocumentTypeNoFromRetailSales(id: number): Observable<any> {
+        return this.http.request('get', this.url + '/getLastDocumentTypeNoFromRetailSales/' + id)
+    }
+
     //#endregion
 
 }

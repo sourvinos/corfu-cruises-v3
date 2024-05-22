@@ -120,10 +120,6 @@ export class RetailSaleListComponent {
         this.helperService.highlightRow(id)
     }
 
-    public newRecord(): void {
-        this.router.navigate([this.url + '/new'])
-    }
-
     public doSearchTasks(event: any): void {
         if (event.fromDate != '' && event.toDate != '') {
             this.loadRecords(event).then(() => {

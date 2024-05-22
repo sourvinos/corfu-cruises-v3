@@ -7,6 +7,7 @@ import { PassengerWriteDto } from '../dtos/form/passenger-write-dto'
 import { ReservationReadDto } from '../dtos/form/reservation-read-dto'
 import { ReservationWriteDto } from '../dtos/form/reservation-write-dto'
 import { SessionStorageService } from './../../../../../shared/services/session-storage.service'
+import { RetailSaleWriteDto } from 'src/app/features/retail-sales/classes/dtos/retailSale-write-dto'
 
 @Injectable({ providedIn: 'root' })
 
@@ -32,7 +33,7 @@ export class ReservationHelperService {
         }
     }
 
-    public flattenForm(form: any): ReservationWriteDto {
+    public flattenReservationForm(form: any): ReservationWriteDto {
         return {
             reservationId: form.reservationId != '' ? form.reservationId : null,
             customerId: form.customer.id,
@@ -53,6 +54,28 @@ export class ReservationHelperService {
             remarks: form.remarks,
             putAt: form.putAt,
             passengers: this.mapPassengers(form)
+        }
+    }
+
+    public flattenRetailSaleForm(form: any): RetailSaleWriteDto {
+        return {
+            reservationId: form.reservationId,
+            documentTypeId: form.documentType.id,
+            paymentMethodId: form.paymentMethod.id,
+            shipOwnerId: form.shipOwner.id,
+            date: this.dateHelperService.formatDateToIso(new Date(form.date)),
+            invoiceNo: form.invoiceNo,
+            adults: form.adults,
+            adultsPrice: form.adultsPrice,
+            kids: form.kids,
+            kidsPrice: form.kidsPrice,
+            free: form.free,
+            netAmount: form.netAmount,
+            vatPercent: form.vatPercent,
+            vatAmount: form.vatAmount,
+            grossAmount: form.grossAmount,
+            passenger: form.passenger,
+            remarks: form.remarks
         }
     }
 

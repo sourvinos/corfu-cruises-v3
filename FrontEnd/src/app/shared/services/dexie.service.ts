@@ -89,8 +89,8 @@ export class DexieService extends Dexie {
         return await this.table(table).get({ description: description })
     }
 
-    public async getByDefault(table: string): Promise<any> {
-        return this.table(table).filter(x => x.isDefault).first()
+    public async getByDefault(table: string, field: string): Promise<any> {
+        return this.table(table).filter(x => x[field]).first()
     }
 
     public async getDefaultDocumentType(table: string, shipId: number): Promise<any> {

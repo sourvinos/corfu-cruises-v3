@@ -143,7 +143,17 @@ namespace API.Features.Billing.DocumentTypes {
                 Body = await documentTypeRepo.GetLastDocumentTypeNoAsync(id),
                 Message = ApiMessages.OK()
             };
-
+        }
+ 
+        [HttpGet("[action]/{id}")]
+        [Authorize(Roles = "admin")]
+        public async Task<ResponseWithBody> GetLastDocumentTypeNoFromRetailSalesAsync(int id) {
+            return new ResponseWithBody {
+                Code = 200,
+                Icon = Icons.Success.ToString(),
+                Body = await documentTypeRepo.GetLastDocumentTypeNoFromRetailSalesAsync(id),
+                Message = ApiMessages.OK()
+            };
         }
 
     }

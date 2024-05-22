@@ -364,13 +364,13 @@
                                     </mat-form-field>
                                 </div>
                             </div>
-                            <div id="footer" style="margin-top: auto;">
-                                <button (click)="onSave(false)" [disabled]="!retailSaleForm.valid" class="primary" mat-flat-button>
-                                    <mat-icon *ngIf="!retailSaleForm.valid" class="material-icons-outlined">lock</mat-icon>
-                                    <span>{{ getLabel("saveButton") | uppercase }}</span>
-                                </button>
-                            </div>
                         </form>
+                        <div id="footer" style="margin-top: auto;">
+                            <button (click)="onSaveRetailSale()" [disabled]="!retailSaleForm.valid" class="primary" id="saveRetailSaleButton" mat-flat-button>
+                                <mat-icon *ngIf="!retailSaleForm.valid" class="material-icons-outlined">lock</mat-icon>
+                                <span>{{ getLabel("saveButton") | uppercase }}</span>
+                            </button>
+                        </div>
                     </div>
                 </mat-tab>
             </mat-tab-group>
@@ -384,7 +384,7 @@
                 <mat-icon *ngIf="!isAdmin()" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel('deleteButton') | uppercase }}</span>
             </button>
-            <button (click)="onSave(false)" [disabled]="!reservationForm.valid || !checkForDifferenceBetweenTotalPaxAndPassengers()" class="no-right-border-radius primary" mat-flat-button>
+            <button (click)="onSaveReservation(false)" [disabled]="!reservationForm.valid || !checkForDifferenceBetweenTotalPaxAndPassengers()" class="no-right-border-radius primary" mat-flat-button>
                 <mat-icon *ngIf="!reservationForm.valid || !checkForDifferenceBetweenTotalPaxAndPassengers()" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("saveButton") | uppercase }}</span>
             </button>
@@ -481,7 +481,7 @@
 
 <div id="menus">
     <ng-template #saveMenuTemplate xPosition="before">
-        <button (click)="onSave(true)" mat-menu-item>
+        <button (click)="onSaveReservation(true)" mat-menu-item>
             <span>{{ getLabel('saveAndKeepFormOpen') }}</span>
         </button>
     </ng-template>

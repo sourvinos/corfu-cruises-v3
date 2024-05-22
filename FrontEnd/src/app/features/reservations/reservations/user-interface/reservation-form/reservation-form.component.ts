@@ -38,6 +38,8 @@ import { DocumentTypeAutoCompleteVM } from 'src/app/features/billing/documentTyp
 import { DocumentTypeHttpService } from 'src/app/features/billing/documentTypes/classes/services/documentType-http.service'
 import { DocumentTypeReadDto } from 'src/app/features/billing/documentTypes/classes/dtos/documentType-read-dto'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
+import { RetailSaleWriteDto } from 'src/app/features/retail-sales/classes/dtos/retailSale-write-dto'
+import { RetailSaleHttpService } from 'src/app/features/retail-sales/classes/services/retailSale-http.service'
 
 @Component({
     selector: 'reservation-form',
@@ -88,7 +90,7 @@ export class ReservationFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private boardingPassService: BoardingPassService, private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialog: MatDialog, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private reservationHelperService: ReservationHelperService, private reservationHttpService: ReservationHttpService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private activatedRoute: ActivatedRoute, private boardingPassService: BoardingPassService, private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialog: MatDialog, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private reservationHelperService: ReservationHelperService, private reservationHttpService: ReservationHttpService, private retailSaleHttpService: RetailSaleHttpService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -96,6 +98,7 @@ export class ReservationFormComponent {
         this.initReservationForm()
         this.initRetailSaleForm()
         this.updateFieldsAfterEmptyPickupPoint()
+        this.updatePaymentMethodWithDefaultValue()
         this.setRecordId()
         this.setNewRecord()
         this.doNewOrEditTasks()
@@ -107,6 +110,8 @@ export class ReservationFormComponent {
     ngAfterViewInit(): void {
         this.leftAlignLastTab()
         this.focusOnField()
+        this.updatePassengerWithFirstPassenger()
+        this.updateRetailSaleFormWithReservationId()
     }
 
     ngOnDestroy(): void {
@@ -261,8 +266,12 @@ export class ReservationFormComponent {
         }
     }
 
-    public onSave(keepFormOpen: boolean): void {
-        this.saveRecord(this.flattenForm(), keepFormOpen)
+    public onSaveReservation(keepFormOpen: boolean): void {
+        this.saveReservation(this.flattenReservationForm(), keepFormOpen)
+    }
+
+    public onSaveRetailSale(): void {
+        this.saveRetailSale(this.flattenRetailSaleForm())
     }
 
     public onShowCachedReservationDialog(): void {
@@ -379,8 +388,12 @@ export class ReservationFormComponent {
         }
     }
 
-    private flattenForm(): ReservationWriteDto {
-        return this.reservationHelperService.flattenForm(this.reservationForm.value)
+    private flattenReservationForm(): ReservationWriteDto {
+        return this.reservationHelperService.flattenReservationForm(this.reservationForm.value)
+    }
+
+    private flattenRetailSaleForm(): RetailSaleWriteDto {
+        return this.reservationHelperService.flattenRetailSaleForm(this.retailSaleForm.value)
     }
 
     private focusOnField(): void {
@@ -420,7 +433,7 @@ export class ReservationFormComponent {
     }
 
     private getLastDocumentTypeNo(id: number): Observable<any> {
-        return this.documentTypeHttpService.getLastDocumentTypeNo(id)
+        return this.documentTypeHttpService.getLastDocumentTypeNoFromRetailSales(id)
     }
 
     private getStoredDate(): void {
@@ -455,6 +468,7 @@ export class ReservationFormComponent {
 
     private initRetailSaleForm(): void {
         this.retailSaleForm = this.formBuilder.group({
+            reservationId: '',
             date: [new Date(), [Validators.required]],
             tripDate: [new Date(), [Validators.required]],
             shipOwner: ['', [Validators.required, ValidationService.RequireAutocomplete]],
@@ -462,7 +476,6 @@ export class ReservationFormComponent {
             documentTypeDescription: '',
             batch: '',
             invoiceNo: 0,
-            passenger: [''],
             paymentMethod: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             adults: [0],
             adultsPrice: [0],
@@ -476,6 +489,7 @@ export class ReservationFormComponent {
             vatPercent: [0],
             vatAmount: [0, ValidationService.isGreaterThanZero],
             grossAmount: [0, [Validators.required, Validators.min(1), Validators.max(99999)]],
+            passenger: ['', [Validators.required]],
             remarks: ['']
         })
     }
@@ -578,7 +592,11 @@ export class ReservationFormComponent {
         })
     }
 
-    private saveRecord(reservation: ReservationWriteDto, keepFormOpen: boolean): void {
+    private saveCachedReservation(): void {
+        this.localStorageService.saveItem('reservation', JSON.stringify(this.reservationHelperService.createCachedReservation(this.reservationForm.value)))
+    }
+
+    private saveReservation(reservation: ReservationWriteDto, keepFormOpen: boolean): void {
         this.reservationHttpService.saveReservation(reservation).subscribe({
             next: (response) => {
                 const date = this.dateHelperService.formatDateToIso(new Date(this.reservationForm.value.date))
@@ -600,8 +618,16 @@ export class ReservationFormComponent {
         })
     }
 
-    private saveCachedReservation(): void {
-        this.localStorageService.saveItem('reservation', JSON.stringify(this.reservationHelperService.createCachedReservation(this.reservationForm.value)))
+    private saveRetailSale(retailSale: RetailSaleWriteDto): void {
+        this.retailSaleHttpService.save(retailSale).subscribe({
+            next: () => {
+                this.retailSaleForm.setErrors({ invalid: true })
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
+        })
+
     }
 
     private setLocale(): void {
@@ -684,6 +710,25 @@ export class ReservationFormComponent {
         })
     }
 
+    private async updatePaymentMethodWithDefaultValue(): Promise<void> {
+        this.retailSaleForm.patchValue({
+            'paymentMethod': await this.dexieService.getByDefault('paymentMethods', 'isCash')
+        })
+    }
+
+    private updatePassengerWithFirstPassenger(): void {
+        const x = this.reservationForm.value.passengers[0]
+        this.retailSaleForm.patchValue({
+            passenger: x != undefined ? x.lastname + ' ' + x.firstname : ''
+        })
+    }
+
+    private updateRetailSaleFormWithReservationId(): void {
+        this.retailSaleForm.patchValue({
+            reservationId: this.reservationForm.value.reservationId
+        })
+    }
+
     private updateTabVisibility(): void {
         this.isReservationTabVisible = true
         this.isPassengersTabVisible = false
@@ -694,7 +739,6 @@ export class ReservationFormComponent {
             vatPercent: value.vatPercent
         })
     }
-
 
     //#endregion
 

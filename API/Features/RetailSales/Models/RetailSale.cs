@@ -19,10 +19,17 @@ namespace API.Features.RetailSales {
         // Fields
         public DateTime Date { get; set; }
         public int InvoiceNo { get; set; }
+        public int Adults { get; set; }
+        public decimal AdultsPrice { get; set; }
+        public int Kids { get; set; }
+        public decimal KidsPrice { get; set; }
+        public int Free { get; set; }
+        public int TotalPax { get; set; }
         public decimal NetAmount { get; set; }
         public decimal VatPercent { get; set; }
         public decimal VatAmount { get; set; }
         public decimal GrossAmount { get; set; }
+        public string Passenger { get; set; }
         public string Remarks { get; set; }
         public bool IsEmailSent { get; set; }
         public bool IsCancelled { get; set; }

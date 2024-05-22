@@ -424,7 +424,7 @@ export class InvoiceDialogComponent {
 
     private async updatePaymentMethodWithDefaultValue(): Promise<void> {
         this.form.patchValue({
-            'paymentMethod': await this.dexieService.getByDefault('paymentMethods')
+            'paymentMethod': await this.dexieService.getByDefault('paymentMethods', 'isDefault')
         })
     }
 

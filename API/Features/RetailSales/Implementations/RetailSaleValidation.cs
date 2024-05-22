@@ -27,31 +27,23 @@ namespace API.Features.RetailSales {
         }
 
         private static bool IsValidIssueDate(RetailSaleWriteDto invoice) {
-            return invoice.ReservationId != Guid.Empty || DateHelpers.DateToISOString(invoice.Date) == DateHelpers.DateToISOString(DateHelpers.GetLocalDateTime());
+            return DateHelpers.DateToISOString(invoice.Date) == DateHelpers.DateToISOString(DateHelpers.GetLocalDateTime());
         }
 
         private async Task<bool> IsCompositeKeyValidAsync(RetailSaleWriteDto invoice) {
-            if (invoice.ReservationId == Guid.Empty) {
-                var x = await context.Transactions
-                    .AsNoTracking()
-                    .Where(x => invoice.Date.Year == DateHelpers.GetLocalDateTime().Year && x.DocumentTypeId == invoice.DocumentTypeId && x.InvoiceNo == invoice.InvoiceNo)
-                    .SingleOrDefaultAsync();
-                return x == null;
-            } else {
-                return true;
-            }
+            var x = await context.RetailSales
+                .AsNoTracking()
+                .Where(x => invoice.Date.Year == DateHelpers.GetLocalDateTime().Year && x.DocumentTypeId == invoice.DocumentTypeId && x.InvoiceNo == invoice.InvoiceNo)
+                .SingleOrDefaultAsync();
+            return x == null;
         }
 
         private async Task<bool> IsInvoiceCountEqualToLastInvoiceNo(RetailSaleWriteDto invoice) {
-            if (invoice.ReservationId == Guid.Empty) {
-                var x = await context.RetailSales
-                    .AsNoTracking()
-                    .Where(x => invoice.Date.Year == DateHelpers.GetLocalDateTime().Year && x.DocumentTypeId == invoice.DocumentTypeId)
-                    .ToListAsync();
-                return x.Count == invoice.InvoiceNo - 1;
-            } else {
-                return true;
-            }
+            var x = await context.RetailSales
+                .AsNoTracking()
+                .Where(x => invoice.Date.Year == DateHelpers.GetLocalDateTime().Year && x.DocumentTypeId == invoice.DocumentTypeId)
+                .ToListAsync();
+            return x.Count == invoice.InvoiceNo - 1;
         }
 
         private static bool IsAlreadyUpdated(RetailSale z, RetailSaleWriteDto invoice) {

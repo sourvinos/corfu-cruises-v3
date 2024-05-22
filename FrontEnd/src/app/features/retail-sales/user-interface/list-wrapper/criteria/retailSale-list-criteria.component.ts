@@ -35,7 +35,6 @@ export class RetailSaleListCriteriaComponent {
         this.initForm()
         this.setRetailSaleListCriteria()
         this.populateFieldsFromStoredVariables()
-        this.emitValues()
     }
 
     //#endregion

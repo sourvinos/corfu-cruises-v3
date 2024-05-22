@@ -78,6 +78,13 @@ export class AccountService extends HttpDataService {
             { 'item': 'ledger-criteria', 'when': 'production' },
             { 'item': 'manifest-criteria', 'when': 'production' },
             { 'item': 'invoice-list-criteria', 'when': 'always' },
+            { 'item': 'retailSale-list-criteria', 'when': 'always' },
+            { 'item': 'receipt-list-criteria', 'when': 'always' },
+            // Tasks
+            { 'item': 'reservationList-filters', 'when': 'always' }, { 'item': 'reservationList-id', 'when': 'always' }, { 'item': 'reservationList-scrollTop', 'when': 'always' },
+            { 'item': 'boardingList-filters', 'when': 'always' }, { 'item': 'boardingList-id', 'when': 'always' }, { 'item': 'boardingList-scrollTop', 'when': 'always' },
+            { 'item': 'ledgerList-filters', 'when': 'always' },
+            { 'item': 'retailSaleList-filters', 'when': 'always' },
             // Table filters
             { 'item': 'bankList-filters', 'when': 'always' }, { 'item': 'bankList-id', 'when': 'always' }, { 'item': 'bankList-scrollTop', 'when': 'always' },
             { 'item': 'coachRouteList-filters', 'when': 'always' }, { 'item': 'coachRouteList-id', 'when': 'always' }, { 'item': 'coachRouteList-scrollTop', 'when': 'always' },
@@ -99,10 +106,6 @@ export class AccountService extends HttpDataService {
             { 'item': 'shipOwnerList-filters', 'when': 'always' }, { 'item': 'shipOwnerList-id', 'when': 'always' }, { 'item': 'shipOwnerList-scrollTop', 'when': 'always' },
             { 'item': 'shipRouteList-filters', 'when': 'always' }, { 'item': 'shipRouteList-id', 'when': 'always' }, { 'item': 'shipRouteList-scrollTop', 'when': 'always' },
             { 'item': 'userList-filters', 'when': 'always' }, { 'item': 'userList-id', 'when': 'always' }, { 'item': 'userList-scrollTop', 'when': 'always' },
-            // Tasks filters
-            { 'item': 'reservationList-filters', 'when': 'always' }, { 'item': 'reservationList-id', 'when': 'always' }, { 'item': 'reservationList-scrollTop', 'when': 'always' },
-            { 'item': 'boardingList-filters', 'when': 'always' }, { 'item': 'boardingList-id', 'when': 'always' }, { 'item': 'boardingList-scrollTop', 'when': 'always' },
-            { 'item': 'ledgerList-filters', 'when': 'production' }, { 'item': 'ledgerList-id', 'when': 'production' }, { 'item': 'ledgerList-scrollTop', 'when': 'always' },
             // Statistics
             { 'item': 'selectedYear', 'when': 'always' },
         ])

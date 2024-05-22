@@ -71,6 +71,16 @@ namespace API.Features.Billing.DocumentTypes {
             return lastInvoiceNo;
         }
 
+        public async Task<int> GetLastDocumentTypeNoFromRetailSalesAsync(int documentTypeId) {
+            var lastInvoiceNo = await context.RetailSales
+                .AsNoTracking()
+                .Where(x => x.Date.Year == DateHelpers.GetLocalDateTime().Year && x.DocumentTypeId == documentTypeId)
+                .OrderBy(x => x.InvoiceNo)
+                .Select(x => x.InvoiceNo)
+                .LastOrDefaultAsync();
+            return lastInvoiceNo;
+        }
+
     }
 
 }
