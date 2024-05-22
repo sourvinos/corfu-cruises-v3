@@ -88,6 +88,10 @@
         "description": "Πωλήσεις"
     },
     {
+        "id": "retailSales",
+        "description": "Λιανικές πωλήσεις"
+    },
+    {
         "id": "transactions",
         "description": "Εισπράξεις"
     },

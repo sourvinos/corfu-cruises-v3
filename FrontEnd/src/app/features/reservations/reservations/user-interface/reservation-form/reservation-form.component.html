@@ -15,14 +15,14 @@
             </div>
         </div>
 
-        <form [formGroup]="form" id="form">
+        <form [formGroup]="reservationForm" id="form">
             <mat-tab-group mat-stretch-tabs="false">
                 <mat-tab label="{{ getLabel('tab1') }}">
                     <div id="general-tab">
                         <div class="group-input-field">
                             <!-- RefNo -->
                             <div id="ref-no" style="width: 20% !important;">
-                                <span id="ref-no-body">{{ form.value.refNo }}</span>
+                                <span id="ref-no-body">{{ reservationForm.value.refNo }}</span>
                             </div>
                             <!-- Date -->
                             <mat-form-field>
@@ -30,7 +30,7 @@
                                 <input [inputTabStop]="input" [matDatepicker]="datePicker" [readOnly]=!isAdminOrNewRecord() dataTabIndex="1" formControlName="date" matInput>
                                 <mat-datepicker-toggle matIconSuffix [for]="datePicker"></mat-datepicker-toggle>
                                 <mat-datepicker #datePicker></mat-datepicker>
-                                <mat-error *ngIf="date.hasError('required')">{{ getHint("required") }}</mat-error>
+                                <mat-error *ngIf="reservationDate.hasError('required')">{{ getHint("required") }}</mat-error>
                             </mat-form-field>
                             <!-- Ticket No -->
                             <mat-form-field>
@@ -187,18 +187,190 @@
                         </div>
                         <div class="align-bottom">
                             <!-- Metadata -->
-                            <metadata-panel [feature]="feature" [postAt]="form.value.postAt" [postUser]="form.value.postUser" [putAt]="form.value.putAt" [putUser]="form.value.putUser"></metadata-panel>
+                            <metadata-panel [feature]="feature" [postAt]="reservationForm.value.postAt" [postUser]="reservationForm.value.postUser" [putAt]="reservationForm.value.putAt" [putUser]="reservationForm.value.putUser"></metadata-panel>
                         </div>
                     </div>
                 </mat-tab>
                 <mat-tab label="{{ getLabel('tab2') }}">
                     <div id="passengers-tab">
-                        <passenger-list [passengers]="form.value.passengers" [reservationId]="form.value.reservationId" [totalPax]="form.value.totalPax" (outputPassengerCount)="getPassengerDifferenceColor()" (outputPassengers)="doTasksAfterPassengerFormIsClosed($event)"></passenger-list>
+                        <passenger-list [passengers]="reservationForm.value.passengers" [reservationId]="reservationForm.value.reservationId" [totalPax]="reservationForm.value.totalPax" (outputPassengerCount)="getPassengerDifferenceColor()" (outputPassengers)="doTasksAfterPassengerFormIsClosed($event)"></passenger-list>
                     </div>
                 </mat-tab>
                 <mat-tab *ngIf="isAdmin()" class="left-align" label="{{ getLabel('tab3') }}">
-                    <div id="retail-service-tab">
-                        <empty-page></empty-page>
+                    <div id="retail-sale-tab">
+                        <form [formGroup]="retailSaleForm" id="retail-sale-form">
+                            <div id="top-panel">
+                                <div class="group-input-field">
+                                    <!-- Issue date -->
+                                    <mat-form-field>
+                                        <mat-icon class="material-icons-outlined small">lock</mat-icon>
+                                        <mat-label>{{ getLabel('date') }}</mat-label>
+                                        <input [inputTabStop]="input" [matDatepicker]="datePicker" dataTabIndex="1" formControlName="date" matInput readonly>
+                                        <mat-datepicker-toggle matIconSuffix [for]="datePicker" disabled></mat-datepicker-toggle>
+                                        <mat-datepicker #datePicker></mat-datepicker>
+                                        <mat-error *ngIf="saleDate.hasError('required')">{{ getHint("required") }}</mat-error>
+                                    </mat-form-field>
+                                    <!-- Trip date -->
+                                    <mat-form-field>
+                                        <mat-label>{{ getLabel('tripDate') }}</mat-label>
+                                        <input [inputTabStop]="input" [matDatepicker]="tripDatePicker" dataTabIndex="2" formControlName="tripDate" matInput>
+                                        <mat-datepicker-toggle matIconSuffix [for]="tripDatePicker"></mat-datepicker-toggle>
+                                        <mat-datepicker #tripDatePicker></mat-datepicker>
+                                        <mat-error *ngIf="tripDate.hasError('required')">{{ getHint("required") }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="group-input-field">
+                                    <!-- ShipOwner -->
+                                    <mat-form-field>
+                                        <mat-label>{{ getLabel('shipOwner') }}</mat-label>
+                                        <input #inputAutoComplete #triggerShipOwner="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="shipOwners" dataTabIndex="3" formControlName="shipOwner" matInput>
+                                        <div matSuffix style="display:flex">
+                                            <button (click)="openOrCloseAutoComplete(triggerShipOwner, 'shipOwner')" mat-icon-button type="button">
+                                                <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
+                                            </button>
+                                        </div>
+                                        <mat-error *ngIf="shipOwner.hasError('required')">{{ getHint("required") }}</mat-error>
+                                        <mat-error *ngIf="!shipOwner.hasError('required') && shipOwner.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
+                                    </mat-form-field>
+                                    <div class="group-input-field">
+                                        <!-- Document type abbreviation-->
+                                        <mat-form-field>
+                                            <mat-label>{{ getLabel('documentTypeAbbreviation') }}</mat-label>
+                                            <input #inputAutoComplete #triggerDocumentType="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="documentTypes" dataTabIndex="4" formControlName="documentType" matInput>
+                                            <div matSuffix style="display:flex">
+                                                <button (click)="openOrCloseAutoComplete(triggerDocumentType, 'documentType')" mat-icon-button type="button">
+                                                    <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
+                                                </button>
+                                            </div>
+                                            <mat-error *ngIf="documentType.hasError('required')">{{ getHint("required") }}</mat-error>
+                                            <mat-error *ngIf="!documentType.hasError('required') && documentType.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
+                                        </mat-form-field>
+                                        <!-- Batch -->
+                                        <mat-form-field>
+                                            <mat-icon class="material-icons-outlined small">lock</mat-icon>
+                                            <mat-label>{{ getLabel('batch') }}</mat-label>
+                                            <input formControlName="batch" matInput readonly>
+                                        </mat-form-field>
+                                        <!-- No -->
+                                        <mat-form-field>
+                                            <mat-icon class="material-icons-outlined small">lock</mat-icon>
+                                            <mat-label>{{ getLabel('no') }}</mat-label>
+                                            <input [inputTabStop]="input" class="right" formControlName="invoiceNo" matInput type="number">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="group-input-field">
+                                    <!-- Payment method -->
+                                    <mat-form-field>
+                                        <mat-label>{{ getLabel('paymentMethod') }}</mat-label>
+                                        <input #inputAutoComplete #triggerPaymentMethod="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="paymentMethods" dataTabIndex="5" formControlName="paymentMethod" matInput>
+                                        <div matSuffix style="display:flex">
+                                            <button (click)="openOrCloseAutoComplete(triggerPaymentMethod, 'paymentMethod')" mat-icon-button type="button">
+                                                <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
+                                            </button>
+                                        </div>
+                                        <mat-error *ngIf="paymentMethod.hasError('required')">{{ getHint("required") }}</mat-error>
+                                        <mat-error *ngIf="!paymentMethod.hasError('required') && paymentMethod.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
+                                    </mat-form-field>
+                                    <!-- Passenger -->
+                                    <mat-form-field>
+                                        <mat-label>{{ getLabel("passenger") }}</mat-label>
+                                        <input [inputTabStop]="input" dataTabIndex="6" formControlName="passenger" matInput>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div id="bottom-panel">
+                                <div id="left-panel">
+                                    <div class="group-input-field">
+                                        <!-- Adults -->
+                                        <mat-form-field>
+                                            <mat-label>{{ getLabel('adults') }}</mat-label>
+                                            <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="7" formControlName="adults" matInput type="number">
+                                            <mat-error *ngIf="retailSaleAdults.hasError('required')">{{ getHint("required") }}</mat-error>
+                                        </mat-form-field>
+                                        <mat-form-field>
+                                            <mat-label>{{ getLabel('price') }}</mat-label>
+                                            <input (blur)="onDoCalculations()" [inputTabStop]="input" currencyMask dataTabIndex="8" formControlName="adultsPrice" matInput>
+                                            <mat-error *ngIf="adultsPrice.hasError('required')">{{ getHint("required") }}</mat-error>
+                                        </mat-form-field>
+                                        <mat-form-field>
+                                            <mat-label>{{ getLabel('total') }}</mat-label>
+                                            <mat-icon class="material-icons-outlined small">lock</mat-icon>
+                                            <input currencyMask formControlName="adultsAmount" matInput readonly>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="group-input-field">
+                                        <!-- Kids -->
+                                        <mat-form-field>
+                                            <mat-label>{{ getLabel('kids') }}</mat-label>
+                                            <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="9" formControlName="kids" matInput type="number">
+                                        </mat-form-field>
+                                        <mat-form-field>
+                                            <mat-label>{{ getLabel('price') }}</mat-label>
+                                            <input (blur)="onDoCalculations()" [inputTabStop]="input" currencyMask dataTabIndex="10" formControlName="kidsPrice" matInput>
+                                        </mat-form-field>
+                                        <mat-form-field>
+                                            <mat-label>{{ getLabel('total') }}</mat-label>
+                                            <mat-icon class="material-icons-outlined small">lock</mat-icon>
+                                            <input currencyMask formControlName="kidsAmount" matInput readonly>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="group-input-field">
+                                        <!-- Free -->
+                                        <mat-form-field>
+                                            <mat-label>{{ getLabel('free') }}</mat-label>
+                                            <input (blur)="onDoCalculations()" [inputTabStop]="input" class="right" dataTabIndex="11" formControlName="free" matInput type="number">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="group-input-field">
+                                        <!-- Pax -->
+                                        <mat-form-field>
+                                            <mat-label>{{ getLabel('total') }}</mat-label>
+                                            <input class="right" formControlName="pax" matInput type="number">
+                                        </mat-form-field>
+                                        <!-- GrossAmount -->
+                                        <mat-form-field>
+                                            <mat-label>{{ getLabel('total') }}</mat-label>
+                                            <input currencyMask formControlName="grossAmount" matInput>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div id="right-panel">
+                                    <!-- Net Amount -->
+                                    <mat-form-field>
+                                        <mat-icon class="material-icons-outlined small">lock</mat-icon>
+                                        <mat-label>{{ getLabel('netAmount') }}</mat-label>
+                                        <input currencyMask formControlName="netAmount" matInput readonly>
+                                    </mat-form-field>
+                                    <div class="group-input-field">
+                                        <!-- Vat Percent -->
+                                        <mat-form-field>
+                                            <mat-icon class="material-icons-outlined small">lock</mat-icon>
+                                            <mat-label>{{ getLabel('vatPercent') }}</mat-label>
+                                            <input class="right" formControlName="vatPercent" matInput readonly>
+                                        </mat-form-field>
+                                        <!-- Vat Amount -->
+                                        <mat-form-field>
+                                            <mat-icon class="material-icons-outlined small">lock</mat-icon>
+                                            <mat-label>{{ getLabel('vatAmount') }}</mat-label>
+                                            <input currencyMask formControlName="vatAmount" matInput readonly>
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- Gross Amount -->
+                                    <mat-form-field style="margin-top: auto;">
+                                        <mat-icon class="material-icons-outlined small">lock</mat-icon>
+                                        <mat-label>{{ getLabel('grossAmount') }}</mat-label>
+                                        <input currencyMask formControlName="grossAmount" matInput readonly>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div id="footer" style="margin-top: auto;">
+                                <button (click)="onSave(false)" [disabled]="!retailSaleForm.valid" class="primary" mat-flat-button>
+                                    <mat-icon *ngIf="!retailSaleForm.valid" class="material-icons-outlined">lock</mat-icon>
+                                    <span>{{ getLabel("saveButton") | uppercase }}</span>
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </mat-tab>
             </mat-tab-group>
@@ -208,15 +380,15 @@
 
     <div id="footer">
         <div id="align-right">
-            <button *ngIf="form.value.reservationId != ''" (click)="onDelete()" [disabled]="!isAdmin()" class="delete" mat-flat-button>
+            <button *ngIf="reservationForm.value.reservationId != ''" (click)="onDelete()" [disabled]="!isAdmin()" class="delete" mat-flat-button>
                 <mat-icon *ngIf="!isAdmin()" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel('deleteButton') | uppercase }}</span>
             </button>
-            <button (click)="onSave(false)" [disabled]="!form.valid || !checkForDifferenceBetweenTotalPaxAndPassengers()" class="no-right-border-radius primary" mat-flat-button>
-                <mat-icon *ngIf="!form.valid || !checkForDifferenceBetweenTotalPaxAndPassengers()" class="material-icons-outlined">lock</mat-icon>
+            <button (click)="onSave(false)" [disabled]="!reservationForm.valid || !checkForDifferenceBetweenTotalPaxAndPassengers()" class="no-right-border-radius primary" mat-flat-button>
+                <mat-icon *ngIf="!reservationForm.valid || !checkForDifferenceBetweenTotalPaxAndPassengers()" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("saveButton") | uppercase }}</span>
             </button>
-            <button [disabled]="!form.valid || !checkForDifferenceBetweenTotalPaxAndPassengers() || !isAdmin()" [matMenuTriggerFor]="saveMenu" class="no-left-border-radius primary-darker" mat-flat-button>
+            <button [disabled]="!reservationForm.valid || !checkForDifferenceBetweenTotalPaxAndPassengers() || !isAdmin()" [matMenuTriggerFor]="saveMenu" class="no-left-border-radius primary-darker" mat-flat-button>
                 <mat-icon class="big material-symbols-outlined">expand_less</mat-icon>
             </button>
             <mat-menu #saveMenu="matMenu" class="primary">
@@ -269,6 +441,27 @@
 <mat-autocomplete #ports="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
     <mat-option *ngFor="let option of dropdownPorts | async" [value]="option">
         <span *ngIf="option.isActive; else showGhost">{{ getEmojiForActiveRecord(true) }}</span>
+        {{ option.description }}
+    </mat-option>
+</mat-autocomplete>
+
+<mat-autocomplete #shipOwners="matAutocomplete" (optionSelected)="updateDocumentTypesAfterShipOwnerSelection($event.option.value)" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
+    <mat-option *ngFor="let option of dropdownShipOwners | async" [value]="option">
+        {{ option.description }}
+    </mat-option>
+</mat-autocomplete>
+
+<mat-autocomplete #documentTypes="matAutocomplete" (optionSelected)="updateDocumentTypeFieldsAfterDocumentTypeSelection($event.option.value)" [displayWith]="autocompleteFields.bind(this, 'abbreviation')" autoActiveFirstOption>
+    <mat-option *ngFor="let option of dropdownDocumentTypes | async" [value]="option">
+        <div class="autocomplete-document-type">
+            <span>{{ option.abbreviation }}</span>
+            <span>{{ option.batch }}</span>
+        </div>
+    </mat-option>
+</mat-autocomplete>
+
+<mat-autocomplete #paymentMethods="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
+    <mat-option *ngFor="let option of dropdownPaymentMethods | async" [value]="option">
         {{ option.description }}
     </mat-option>
 </mat-autocomplete>

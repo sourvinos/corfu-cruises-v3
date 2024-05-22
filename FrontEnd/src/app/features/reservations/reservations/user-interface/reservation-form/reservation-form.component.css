@@ -14,11 +14,10 @@
     margin: 0 1rem 0 0;
 }
 
-#general-tab, #passengers-tab, #retail-service-tab {
+#general-tab, #passengers-tab, #retail-sale-tab {
     display: flex;
     flex-direction: column;
     height: 100%;
-    justify-content: center;
     overflow: hidden;
 }
 
@@ -110,4 +109,21 @@
 
 .autocomplete-pickup-point span:nth-child(4) {
     width: 10%;
+}
+
+#retail-sale-form {
+    column-gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#bottom-panel {
+    display: flex;
+    justify-content: space-between;
+}
+
+#right-panel {
+    display: flex;
+    flex-direction: column;
 }

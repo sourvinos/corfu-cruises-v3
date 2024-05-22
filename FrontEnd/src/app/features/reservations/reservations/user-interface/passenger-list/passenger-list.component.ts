@@ -119,9 +119,9 @@ export class PassengerListComponent {
     }
 
     private setPassengerListHeight(): void {
-        setTimeout(() => {
-            document.getElementById('table-wrapper').style.height = document.getElementById('content').offsetHeight - 200 + 'px'
-        }, 200)
+        document.getElementById('table-wrapper')
+            ? document.getElementById('table-wrapper').style.height = document.getElementById('content').offsetHeight - 200 + 'px'
+            : null
     }
 
     private showEmptyForm(): void {

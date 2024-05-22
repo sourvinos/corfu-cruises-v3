@@ -51,6 +51,8 @@ const appRoutes: Routes = [
     { path: 'taxOffices', loadChildren: () => import('../features/billing/taxOffices/classes/modules/taxOffice.module').then(m => m.TaxOfficeModule) },
     // CheckIn
     { path: 'checkIn', loadChildren: () => import('../features/check-in/classes/modules/check-in.module').then(m => m.CheckInModule) },
+    // Retail sales
+    { path: 'retailSales', loadChildren: () => import('../features/retail-sales/classes/modules/retailSale.module').then(m => m.RetailSaleModule) },
     // Empty
     { path: '**', component: EmptyPageComponent }
 ]

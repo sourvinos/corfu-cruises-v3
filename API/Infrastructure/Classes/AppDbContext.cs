@@ -30,6 +30,7 @@ using API.Infrastructure.Users;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using API.Features.RetailSales;
 
 namespace API.Infrastructure.Classes {
 
@@ -38,7 +39,6 @@ namespace API.Infrastructure.Classes {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         #region DbSets - Reservations
-
         public DbSet<CoachRoute> CoachRoutes { get; set; }
         public DbSet<CrewSpecialty> CrewSpecialties { get; set; }
         public DbSet<Customer> Customers { get; set; }
@@ -57,10 +57,8 @@ namespace API.Infrastructure.Classes {
         public DbSet<Ship> Ships { get; set; }
         public DbSet<ShipCrew> ShipCrews { get; set; }
         public DbSet<ShipOwner> ShipOwners { get; set; }
-
         #endregion
         #region DbSets - Billing
-
         public DbSet<Bank> Banks { get; set; }
         public DbSet<BankAccount> BankAccounts { get; set; }
         public DbSet<DocumentType> DocumentTypes { get; set; }
@@ -73,12 +71,12 @@ namespace API.Infrastructure.Classes {
         public DbSet<TaxOffice> TaxOffices { get; set; }
         public DbSet<TransactionsBase> Transactions { get; set; }
         public DbSet<VatRegime> VatRegimes { get; set; }
-
+        #endregion
+        #region DbSets - RetailSales
+        public DbSet<RetailSale> RetailSales { get; set; }
         #endregion
         #region DbSets - Common
-
         public DbSet<Token> Tokens { get; set; }
-
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
@@ -120,6 +118,9 @@ namespace API.Infrastructure.Classes {
             modelBuilder.ApplyConfiguration(new ReceiptsConfig());
             modelBuilder.ApplyConfiguration(new TaxOfficesConfig());
             modelBuilder.ApplyConfiguration(new VatRegimeConfig());
+            #endregion
+            #region retailSales
+            modelBuilder.ApplyConfiguration(new RetailSaleConfig());
             #endregion
             #region common
             modelBuilder.ApplyConfiguration(new UsersConfig());

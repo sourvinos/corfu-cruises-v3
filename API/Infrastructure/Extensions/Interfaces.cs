@@ -30,6 +30,7 @@ using API.Features.Reservations.ShipCrews;
 using API.Features.Reservations.ShipOwners;
 using API.Features.Reservations.Ships;
 using API.Features.Reservations.Statistics;
+using API.Features.RetailSales;
 using API.Infrastructure.Auth;
 using API.Infrastructure.Users;
 using Microsoft.Extensions.DependencyInjection;
@@ -123,6 +124,11 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<ICheckInSendToEmail, CheckInSendToEmail>();
             services.AddTransient<ICheckInUpdateRepository, CheckInUpdateRepository>();
             services.AddTransient<ICheckInValidation, CheckInValidation>();
+            #endregion
+            #region retailSales
+            services.AddTransient<IRetailSaleReadRepository, RetailSaleReadRepository>();
+            services.AddTransient<IRetailSaleUpdateRepository, RetailSaleUpdateRepository>();
+            services.AddTransient<IRetailSaleValidation, RetailSaleValidation>();
             #endregion
         }
 

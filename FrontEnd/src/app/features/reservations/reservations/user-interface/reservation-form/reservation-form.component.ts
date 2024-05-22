@@ -33,6 +33,11 @@ import { ReservationReadDto } from '../../classes/dtos/form/reservation-read-dto
 import { ReservationWriteDto } from '../../classes/dtos/form/reservation-write-dto'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { ValidationService } from './../../../../../shared/services/validation.service'
+import { ShipOwnerBrowserStorageVM } from '../../../shipOwners/classes/view-models/shipOwner-autocomplete-vm'
+import { DocumentTypeAutoCompleteVM } from 'src/app/features/billing/documentTypes/classes/view-models/documentType-autocomplete-vm'
+import { DocumentTypeHttpService } from 'src/app/features/billing/documentTypes/classes/services/documentType-http.service'
+import { DocumentTypeReadDto } from 'src/app/features/billing/documentTypes/classes/dtos/documentType-read-dto'
+import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
 @Component({
     selector: 'reservation-form',
@@ -48,7 +53,8 @@ export class ReservationFormComponent {
     private recordId: string
     public feature = 'reservationForm'
     public featureIcon = 'reservations'
-    public form: FormGroup
+    public reservationForm: FormGroup
+    public retailSaleForm: FormGroup
     public icon = 'arrow_back'
     public input: InputTabStopDirective
     public parentUrl = ''
@@ -75,16 +81,20 @@ export class ReservationFormComponent {
     public dropdownPickupPoints: Observable<PickupPointAutoCompleteVM[]>
     public dropdownPorts: Observable<PortAutoCompleteVM[]>
     public dropdownPortsAlternate: Observable<PortAutoCompleteVM[]>
+    public dropdownShipOwners: Observable<ShipOwnerBrowserStorageVM[]>
     public dropdownShips: Observable<DriverAutoCompleteVM[]>
+    public dropdownDocumentTypes: Observable<DocumentTypeAutoCompleteVM[]>
+    public dropdownPaymentMethods: Observable<SimpleEntity[]>
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private boardingPassService: BoardingPassService, private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialog: MatDialog, private dialogService: DialogService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private reservationHelperService: ReservationHelperService, private reservationHttpService: ReservationHttpService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private activatedRoute: ActivatedRoute, private boardingPassService: BoardingPassService, private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialog: MatDialog, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private reservationHelperService: ReservationHelperService, private reservationHttpService: ReservationHttpService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
-        this.initForm()
+        this.initReservationForm()
+        this.initRetailSaleForm()
         this.updateFieldsAfterEmptyPickupPoint()
         this.setRecordId()
         this.setNewRecord()
@@ -112,7 +122,7 @@ export class ReservationFormComponent {
     }
 
     public checkForDifferenceBetweenTotalPaxAndPassengers(element?: any): boolean {
-        return this.reservationHelperService.checkForDifferenceBetweenTotalPaxAndPassengers(element, this.form.value.totalPax, this.form.value.passengers.length)
+        return this.reservationHelperService.checkForDifferenceBetweenTotalPaxAndPassengers(element, this.reservationForm.value.totalPax, this.reservationForm.value.passengers.length)
     }
 
     public checkForEmptyAutoComplete(event: { target: { value: any } }): void {
@@ -142,7 +152,7 @@ export class ReservationFormComponent {
     }
 
     public getPassengerDifferenceColor(): string {
-        this.passengerDifferenceColor = this.reservationHelperService.getPassengerDifferenceColor(this.form.value.totalPax, this.form.value.passengers ? this.form.value.passengers.length : 0)
+        this.passengerDifferenceColor = this.reservationHelperService.getPassengerDifferenceColor(this.reservationForm.value.totalPax, this.reservationForm.value.passengers ? this.reservationForm.value.passengers.length : 0)
         return this.emojiService.getEmoji(this.passengerDifferenceColor)
     }
 
@@ -175,7 +185,7 @@ export class ReservationFormComponent {
     public onDelete(): void {
         this.dialogService.open(this.messageDialogService.confirmDelete(), 'question', ['abort', 'ok']).subscribe(response => {
             if (response) {
-                this.reservationHttpService.delete(this.form.value.reservationId).subscribe({
+                this.reservationHttpService.delete(this.reservationForm.value.reservationId).subscribe({
                     complete: () => {
                         this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
                         this.localStorageService.deleteItems([{ 'item': 'reservation', 'when': 'always' },])
@@ -189,12 +199,46 @@ export class ReservationFormComponent {
         })
     }
 
+    public onDoCalculations(): void {
+        this.calculateAmounts()
+        this.calculatePax()
+        this.calculateSummary()
+    }
+
+    private calculateSummary(): void {
+        const grossAmount = parseFloat(this.retailSaleForm.value.grossAmount)
+        const vatPercent = parseFloat(this.retailSaleForm.value.vatPercent) / 100
+        const netAmount = grossAmount / (1 + vatPercent)
+        const vatAmount = netAmount * vatPercent
+        this.retailSaleForm.patchValue({
+            netAmount: netAmount,
+            vatAmount: vatAmount,
+            grossAmount: grossAmount
+        })
+    }
+
+    private calculateAmounts(): void {
+        const adultsAmount = this.retailSaleForm.value.adults * this.retailSaleForm.value.adultsPrice
+        const kidsAmount = this.retailSaleForm.value.kids * this.retailSaleForm.value.kidsPrice
+        this.retailSaleForm.patchValue({
+            adultsAmount: adultsAmount,
+            kidsAmount: kidsAmount,
+            grossAmount: adultsAmount + kidsAmount
+        })
+    }
+
+    private calculatePax(): void {
+        this.retailSaleForm.patchValue({
+            pax: this.retailSaleForm.value.adults + this.retailSaleForm.value.kids + this.retailSaleForm.value.free
+        })
+    }
+
     public onEmailBoardingPass(): void {
-        if (this.helperService.deepEqual(this.form.value, this.mirrorRecord) == false || this.arePassengersMissing() || this.form.value.email == '') {
+        if (this.helperService.deepEqual(this.reservationForm.value, this.mirrorRecord) == false || this.arePassengersMissing() || this.reservationForm.value.email == '') {
             this.mustGoBackAfterSave = false
             this.dialogService.open(this.messageDialogService.threePointReservationValidation(), 'error', ['ok'])
         } else {
-            this.boardingPassService.emailBoardingPass(this.form.value.reservationId).subscribe({
+            this.boardingPassService.emailBoardingPass(this.reservationForm.value.reservationId).subscribe({
                 next: () => {
                     this.helperService.doPostSaveFormTasks(this.messageDialogService.emailSent(), 'ok', this.parentUrl, false)
                     this.mustGoBackAfterSave = true
@@ -207,12 +251,12 @@ export class ReservationFormComponent {
     }
 
     public onPrintBoardingPass(): void {
-        if (this.helperService.deepEqual(this.form.value, this.mirrorRecord) == false || this.arePassengersMissing()) {
+        if (this.helperService.deepEqual(this.reservationForm.value, this.mirrorRecord) == false || this.arePassengersMissing()) {
             this.mustGoBackAfterSave = false
             this.dialogService.open(this.messageDialogService.twoPointReervationValidation(), 'error', ['ok'])
         } else {
             this.boardingPassService.getCompanyData().then(response => {
-                this.boardingPassService.printBoardingPass(this.boardingPassService.createBoardingPass(this.form.value, response.body.phones, response.body.email))
+                this.boardingPassService.printBoardingPass(this.boardingPassService.createBoardingPass(this.reservationForm.value, response.body.phones, response.body.email))
             })
         }
     }
@@ -244,11 +288,17 @@ export class ReservationFormComponent {
     }
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
-        this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
+        this.helperService.openOrCloseAutocomplete(this.reservationForm, element, trigger)
+    }
+
+    public async updateDocumentTypesAfterShipOwnerSelection(value: SimpleEntity): Promise<void> {
+        this.populateDocumentTypesAfterShipOwnerSelection('documentTypesRetail', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation', value.id)
+        this.updateVatPercentAfterShipOwnerSelection(this.retailSaleForm.value.shipOwner)
+        this.calculateSummary()
     }
 
     public updateFieldsAfterPickupPointSelection(value: PickupPointAutoCompleteVM): void {
-        this.form.patchValue({
+        this.reservationForm.patchValue({
             exactPoint: value.exactPoint,
             time: value.time,
             port: {
@@ -267,12 +317,12 @@ export class ReservationFormComponent {
     //#region private methods
 
     private arePassengersMissing(): boolean {
-        return this.form.value.totalPax != this.form.value.passengers.length
+        return this.reservationForm.value.totalPax != this.reservationForm.value.passengers.length
     }
 
     private calculateTotalPax(): void {
-        const totalPax = parseInt(this.form.value.adults, 10) + parseInt(this.form.value.kids, 10) + parseInt(this.form.value.free, 10)
-        this.form.patchValue({
+        const totalPax = parseInt(this.reservationForm.value.adults, 10) + parseInt(this.reservationForm.value.kids, 10) + parseInt(this.reservationForm.value.free, 10)
+        this.reservationForm.patchValue({
             totalPax: Number(totalPax) ? totalPax : 0
         })
     }
@@ -282,7 +332,7 @@ export class ReservationFormComponent {
     }
 
     private cloneRecord(): void {
-        this.mirrorRecord = this.form.value
+        this.mirrorRecord = this.reservationForm.value
     }
 
     private doNewOrEditTasks(): void {
@@ -330,7 +380,7 @@ export class ReservationFormComponent {
     }
 
     private flattenForm(): ReservationWriteDto {
-        return this.reservationHelperService.flattenForm(this.form.value)
+        return this.reservationHelperService.flattenForm(this.reservationForm.value)
     }
 
     private focusOnField(): void {
@@ -341,7 +391,7 @@ export class ReservationFormComponent {
         if (this.isNewRecord && this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'false') {
             this.reservationHelperService.getLinkedCustomer().then((response => {
                 if (response != undefined) {
-                    this.form.patchValue({
+                    this.reservationForm.patchValue({
                         customer: {
                             'id': response.id,
                             'description': response.description
@@ -369,10 +419,14 @@ export class ReservationFormComponent {
         this.record = JSON.parse(this.localStorageService.getItem('reservation'))
     }
 
+    private getLastDocumentTypeNo(id: number): Observable<any> {
+        return this.documentTypeHttpService.getLastDocumentTypeNo(id)
+    }
+
     private getStoredDate(): void {
         if (this.sessionStorageService.getItem('date') != '') {
             const x = this.sessionStorageService.getItem('date')
-            this.form.patchValue({
+            this.reservationForm.patchValue({
                 date: x
             })
         }
@@ -381,7 +435,7 @@ export class ReservationFormComponent {
     private getStoredDestination(): void {
         if (this.sessionStorageService.getItem('destination') != '') {
             const x = JSON.parse(this.sessionStorageService.getItem('destination'))
-            this.form.patchValue({
+            this.reservationForm.patchValue({
                 destination: {
                     id: x.id,
                     description: x.description
@@ -399,8 +453,35 @@ export class ReservationFormComponent {
         }
     }
 
-    private initForm(): void {
-        this.form = this.formBuilder.group({
+    private initRetailSaleForm(): void {
+        this.retailSaleForm = this.formBuilder.group({
+            date: [new Date(), [Validators.required]],
+            tripDate: [new Date(), [Validators.required]],
+            shipOwner: ['', [Validators.required, ValidationService.RequireAutocomplete]],
+            documentType: ['', [Validators.required, ValidationService.RequireAutocomplete]],
+            documentTypeDescription: '',
+            batch: '',
+            invoiceNo: 0,
+            passenger: [''],
+            paymentMethod: ['', [Validators.required, ValidationService.RequireAutocomplete]],
+            adults: [0],
+            adultsPrice: [0],
+            adultsAmount: [0],
+            kids: [0],
+            kidsPrice: [0],
+            kidsAmount: [0],
+            free: [0],
+            pax: [0],
+            netAmount: [0, ValidationService.isGreaterThanZero],
+            vatPercent: [0],
+            vatAmount: [0, ValidationService.isGreaterThanZero],
+            grossAmount: [0, [Validators.required, Validators.min(1), Validators.max(99999)]],
+            remarks: ['']
+        })
+    }
+
+    private initReservationForm(): void {
+        this.reservationForm = this.formBuilder.group({
             reservationId: '',
             date: ['', [Validators.required]],
             refNo: '',
@@ -435,30 +516,39 @@ export class ReservationFormComponent {
     }
 
     private patchFormWithPassengers(passengers: any): void {
-        this.form.patchValue({
+        this.reservationForm.patchValue({
             passengers: passengers
         })
     }
 
-    private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('customers', 'dropdownCustomers', 'customer', 'description', 'description')
-        this.populateDropdownFromDexieDB('destinations', 'dropdownDestinations', 'destination', 'description', 'description')
-        this.populateDropdownFromDexieDB('drivers', 'dropdownDrivers', 'driver', 'description', 'description')
-        this.populateDropdownFromDexieDB('pickupPoints', 'dropdownPickupPoints', 'pickupPoint', 'description', 'description')
-        this.populateDropdownFromDexieDB('ports', 'dropdownPorts', 'port', 'description', 'description')
-        this.populateDropdownFromDexieDB('ports', 'dropdownPorts', 'portAlternate', 'description', 'description')
-        this.populateDropdownFromDexieDB('ships', 'dropdownShips', 'ship', 'description', 'description')
+    private populateDocumentTypesAfterShipOwnerSelection(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string, shipOwnerId: number): void {
+        this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
+            this[dexieTable] = response.filter(x => x.shipOwner.id == shipOwnerId).filter(x => x.isActive)
+            this[filteredTable] = this.retailSaleForm.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
+        })
     }
 
-    private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
+    private populateDropdowns(): void {
+        this.populateDropdownFromDexieDB('reservationForm', 'customers', 'dropdownCustomers', 'customer', 'description', 'description')
+        this.populateDropdownFromDexieDB('reservationForm', 'destinations', 'dropdownDestinations', 'destination', 'description', 'description')
+        this.populateDropdownFromDexieDB('reservationForm', 'drivers', 'dropdownDrivers', 'driver', 'description', 'description')
+        this.populateDropdownFromDexieDB('reservationForm', 'pickupPoints', 'dropdownPickupPoints', 'pickupPoint', 'description', 'description')
+        this.populateDropdownFromDexieDB('reservationForm', 'ports', 'dropdownPorts', 'port', 'description', 'description')
+        this.populateDropdownFromDexieDB('reservationForm', 'ports', 'dropdownPorts', 'portAlternate', 'description', 'description')
+        this.populateDropdownFromDexieDB('reservationForm', 'ships', 'dropdownShips', 'ship', 'description', 'description')
+        this.populateDropdownFromDexieDB('retailSaleForm', 'shipOwners', 'dropdownShipOwners', 'shipOwner', 'description', 'description')
+        this.populateDropdownFromDexieDB('retailSaleForm', 'paymentMethods', 'dropdownPaymentMethods', 'paymentMethod', 'description', 'description')
+    }
+
+    private populateDropdownFromDexieDB(form: string, dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
         this.dexieService.table(dexieTable).orderBy(orderBy).toArray().then((response) => {
             this[dexieTable] = this.recordId == undefined ? response.filter(x => x.isActive) : response
-            this[filteredTable] = this.form.get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
+            this[filteredTable] = this[form].get(formField).valueChanges.pipe(startWith(''), map(value => this.filterAutocomplete(dexieTable, modelProperty, value)))
         })
     }
 
     private populateFields(): void {
-        this.form.setValue({
+        this.reservationForm.setValue({
             reservationId: this.record.reservationId,
             date: this.record.date,
             refNo: this.record.refNo,
@@ -491,16 +581,16 @@ export class ReservationFormComponent {
     private saveRecord(reservation: ReservationWriteDto, keepFormOpen: boolean): void {
         this.reservationHttpService.saveReservation(reservation).subscribe({
             next: (response) => {
-                const date = this.dateHelperService.formatDateToIso(new Date(this.form.value.date))
+                const date = this.dateHelperService.formatDateToIso(new Date(this.reservationForm.value.date))
                 this.sessionStorageService.saveItem('date', date)
                 this.parentUrl = this.sessionStorageService.getItem('returnUrl').includes('refNo')
                     ? this.sessionStorageService.getItem('returnUrl')
                     : '/reservations/date/' + date
                 this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'ok', this.parentUrl, this.mustGoBackAfterSave || !keepFormOpen)
-                this.form.patchValue({
+                this.reservationForm.patchValue({
                     putAt: response.body
                 })
-                this.mirrorRecord = this.form.value
+                this.mirrorRecord = this.reservationForm.value
                 this.localStorageService.deleteItems([{ 'item': 'reservation', 'when': 'always' },])
                 this.sessionStorageService.deleteItems([{ 'item': 'nationality', 'when': 'always' }])
             },
@@ -510,12 +600,8 @@ export class ReservationFormComponent {
         })
     }
 
-    private saveReservationDate(): void {
-        this.sessionStorageService.saveItem('date', this.form.value.date)
-    }
-
     private saveCachedReservation(): void {
-        this.localStorageService.saveItem('reservation', JSON.stringify(this.reservationHelperService.createCachedReservation(this.form.value)))
+        this.localStorageService.saveItem('reservation', JSON.stringify(this.reservationHelperService.createCachedReservation(this.reservationForm.value)))
     }
 
     private setLocale(): void {
@@ -567,10 +653,28 @@ export class ReservationFormComponent {
         })
     }
 
+    public async updateDocumentTypeFieldsAfterDocumentTypeSelection(value: DocumentTypeAutoCompleteVM): Promise<void> {
+        this.documentTypeHttpService.getSingle(value.id).subscribe({
+            next: (response) => {
+                const x: DocumentTypeReadDto = response.body
+                this.getLastDocumentTypeNo(value.id).subscribe(response => {
+                    this.retailSaleForm.patchValue({
+                        documentTypeDescription: x.description,
+                        invoiceNo: response.body + 1,
+                        batch: x.batch
+                    })
+                })
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
+        })
+    }
+
     private updateFieldsAfterEmptyPickupPoint(): void {
-        this.form.get('pickupPoint').valueChanges.subscribe(value => {
+        this.reservationForm.get('pickupPoint').valueChanges.subscribe(value => {
             if (value == '') {
-                this.form.patchValue({
+                this.reservationForm.patchValue({
                     exactPoint: '',
                     time: '',
                     port: '',
@@ -585,92 +689,139 @@ export class ReservationFormComponent {
         this.isPassengersTabVisible = false
     }
 
+    private updateVatPercentAfterShipOwnerSelection(value: any): void {
+        this.retailSaleForm.patchValue({
+            vatPercent: value.vatPercent
+        })
+    }
+
+
     //#endregion
 
     //#region getters
 
     get refNo(): AbstractControl {
-        return this.form.get('refNo')
+        return this.reservationForm.get('refNo')
     }
 
-    get date(): AbstractControl {
-        return this.form.get('date')
+    get reservationDate(): AbstractControl {
+        return this.reservationForm.get('date')
     }
 
     get destination(): AbstractControl {
-        return this.form.get('destination')
+        return this.reservationForm.get('destination')
     }
 
     get customer(): AbstractControl {
-        return this.form.get('customer')
+        return this.reservationForm.get('customer')
     }
 
     get pickupPoint(): AbstractControl {
-        return this.form.get('pickupPoint')
+        return this.reservationForm.get('pickupPoint')
     }
 
     get ticketNo(): AbstractControl {
-        return this.form.get('ticketNo')
+        return this.reservationForm.get('ticketNo')
     }
 
     get adults(): AbstractControl {
-        return this.form.get('adults')
+        return this.reservationForm.get('adults')
     }
 
     get kids(): AbstractControl {
-        return this.form.get('kids')
+        return this.reservationForm.get('kids')
     }
 
     get free(): AbstractControl {
-        return this.form.get('free')
+        return this.reservationForm.get('free')
     }
 
     get totalPax(): AbstractControl {
-        return this.form.get('totalPax')
+        return this.reservationForm.get('totalPax')
     }
 
     get email(): AbstractControl {
-        return this.form.get('email')
+        return this.reservationForm.get('email')
     }
 
     get phones(): AbstractControl {
-        return this.form.get('phones')
+        return this.reservationForm.get('phones')
     }
 
     get remarks(): AbstractControl {
-        return this.form.get('remarks')
+        return this.reservationForm.get('remarks')
     }
 
     get driver(): AbstractControl {
-        return this.form.get('driver')
+        return this.reservationForm.get('driver')
     }
 
     get ship(): AbstractControl {
-        return this.form.get('ship')
+        return this.reservationForm.get('ship')
     }
 
     get port(): AbstractControl {
-        return this.form.get('port')
+        return this.reservationForm.get('port')
     }
 
     get portAlternate(): AbstractControl {
-        return this.form.get('portAlternate')
+        return this.reservationForm.get('portAlternate')
     }
 
     get postAt(): AbstractControl {
-        return this.form.get('postAt')
+        return this.reservationForm.get('postAt')
     }
 
     get postUser(): AbstractControl {
-        return this.form.get('postUser')
+        return this.reservationForm.get('postUser')
     }
 
     get putAt(): AbstractControl {
-        return this.form.get('putAt')
+        return this.reservationForm.get('putAt')
     }
 
     get putUser(): AbstractControl {
-        return this.form.get('putUser')
+        return this.reservationForm.get('putUser')
+    }
+
+    get saleDate(): AbstractControl {
+        return this.retailSaleForm.get('date')
+    }
+
+    get tripDate(): AbstractControl {
+        return this.retailSaleForm.get('tripDate')
+    }
+
+    get shipOwner(): AbstractControl {
+        return this.retailSaleForm.get('shipOwner')
+    }
+
+    get documentType(): AbstractControl {
+        return this.retailSaleForm.get('documentType')
+    }
+
+    get paymentMethod(): AbstractControl {
+        return this.retailSaleForm.get('paymentMethod')
+    }
+
+    get passenger(): AbstractControl {
+        return this.retailSaleForm.get('passenger')
+    }
+
+    get retailSaleAdults(): AbstractControl {
+        return this.retailSaleForm.get('adults')
+    }
+
+    get adultsPrice(): AbstractControl {
+        return this.retailSaleForm.get('adultsPrice')
+    }
+
+    get retailSaleKids(): AbstractControl {
+        return this.retailSaleForm.get('kids')
+    }
+
+    get kidsPrice(): AbstractControl {
+        return this.retailSaleForm.get('kidsPrice')
     }
 
     //#endregion
