@@ -1,6 +1,7 @@
 using System.Linq;
 using API.Features.Reservations.Nationalities;
 using API.Features.Reservations.PickupPoints;
+using API.Features.RetailSales;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Helpers;
 using AutoMapper;
@@ -61,7 +62,40 @@ namespace API.Features.Reservations.Reservations {
                         Id = passenger.Gender.Id,
                         Description = passenger.Gender.Description
                     }
-                })));
+                })))
+                .ForMember(x => x.RetailSale, x => x.MapFrom(x => new RetailSaleReadDto {
+                    Id = x.RetailSale.Id,
+                    ReservationId = x.RetailSale.ReservationId,
+                    Date = DateHelpers.DateToISOString(x.RetailSale.Date),
+                    TripDate = DateHelpers.DateToISOString(x.Date),
+                    InvoiceNo = x.RetailSale.InvoiceNo,
+                    Adults = x.RetailSale.Adults,
+                    AdultsPrice = x.RetailSale.AdultsPrice,
+                    Kids = x.RetailSale.Kids,
+                    KidsPrice = x.RetailSale.KidsPrice,
+                    Free = x.RetailSale.Free,
+                    NetAmount = x.RetailSale.NetAmount,
+                    VatPercent = x.RetailSale.VatPercent,
+                    VatAmount = x.RetailSale.VatAmount,
+                    GrossAmount = x.RetailSale.GrossAmount,
+                    DocumentType = new RetailSaleReadDtoDocumentType {
+                        Id = x.RetailSale.DocumentType.Id,
+                        AbbreviationEn = x.RetailSale.DocumentType.AbbreviationEn,
+                        BatchEn = x.RetailSale.DocumentType.BatchEn
+                    },
+                    PaymentMethod = new SimpleEntity {
+                        Id = x.RetailSale.PaymentMethod.Id,
+                        Description = x.RetailSale.PaymentMethod.DescriptionEn
+                    },
+                    ShipOwner = new SimpleEntity {
+                        Id = x.RetailSale.ShipOwner.Id,
+                        Description = x.RetailSale.ShipOwner.DescriptionEn
+                    },
+                    PostAt = x.RetailSale.PostAt,
+                    PostUser = x.RetailSale.PostUser,
+                    PutAt = x.RetailSale.PutAt,
+                    PutUser = x.RetailSale.PutUser
+                }));
             // Read passenger
             CreateMap<Passenger, PassengerReadDto>()
                 .ForMember(x => x.Birthdate, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Birthdate)))

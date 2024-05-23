@@ -112,6 +112,8 @@ export class ReservationFormComponent {
         this.focusOnField()
         this.updatePassengerWithFirstPassenger()
         this.updateRetailSaleFormWithReservationId()
+        this.updateRetailSaleFormWithTripDate()
+        this.updateRetailSaleFormWithPax()
     }
 
     ngOnDestroy(): void {
@@ -137,6 +139,7 @@ export class ReservationFormComponent {
     public doPaxCalculations(): void {
         this.calculateTotalPax()
         this.getPassengerDifferenceColor()
+        this.updateRetailSaleFormWithPax()
     }
 
     public doTasksAfterPassengerFormIsClosed(passengers: any): void {
@@ -712,7 +715,22 @@ export class ReservationFormComponent {
 
     private async updatePaymentMethodWithDefaultValue(): Promise<void> {
         this.retailSaleForm.patchValue({
-            'paymentMethod': await this.dexieService.getByDefault('paymentMethods', 'isCash')
+            paymentMethod: await this.dexieService.getByDefault('paymentMethods', 'isCash')
+        })
+    }
+
+    private updateRetailSaleFormWithPax(): void {
+        this.retailSaleForm.patchValue({
+            adults: this.reservationForm.value.adults,
+            kids: this.reservationForm.value.kids,
+            free: this.reservationForm.value.free,
+            pax: this.reservationForm.value.totalPax
+        })
+    }
+
+    private updateRetailSaleFormWithTripDate(): void {
+        this.retailSaleForm.patchValue({
+            tripDate: this.reservationForm.value.date
         })
     }
 

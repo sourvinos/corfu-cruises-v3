@@ -76,6 +76,9 @@ namespace API.Features.Reservations.Reservations {
                     .Include(x => x.Ship)
                     .Include(x => x.Passengers).ThenInclude(x => x.Gender)
                     .Include(x => x.Passengers).ThenInclude(x => x.Nationality)
+                    .Include(x => x.RetailSale).ThenInclude(x => x.ShipOwner)
+                    .Include(x => x.RetailSale).ThenInclude(x => x.PaymentMethod)
+                    .Include(x => x.RetailSale).ThenInclude(x => x.DocumentType)
                     .Where(x => x.ReservationId.ToString() == reservationId)
                     .SingleOrDefaultAsync()
                : await context.Reservations

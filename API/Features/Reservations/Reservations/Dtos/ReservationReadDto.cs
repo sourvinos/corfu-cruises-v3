@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using API.Features.Reservations.PickupPoints;
+using API.Features.RetailSales;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Interfaces;
 
@@ -20,6 +21,8 @@ namespace API.Features.Reservations.Reservations {
         public string Email { get; set; }
         public string Phones { get; set; }
         public string Remarks { get; set; }
+        public List<PassengerReadDto> Passengers { get; set; }
+        public RetailSaleReadDto RetailSale { get; set; }
         // Metadata
         public string PostAt { get; set; }
         public string PostUser { get; set; }
@@ -32,7 +35,6 @@ namespace API.Features.Reservations.Reservations {
         public PickupPointBrowserVM PickupPoint { get; set; }
         public SimpleEntity PortAlternate { get; set; }
         public SimpleEntity Ship { get; set; }
-        public List<PassengerReadDto> Passengers { get; set; }
 
     }
 

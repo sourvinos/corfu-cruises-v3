@@ -6,6 +6,7 @@ using API.Features.Reservations.Drivers;
 using API.Features.Reservations.PickupPoints;
 using API.Features.Reservations.Ports;
 using API.Features.Reservations.Ships;
+using API.Features.RetailSales;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations.Reservations {
@@ -33,6 +34,8 @@ namespace API.Features.Reservations.Reservations {
         public string Email { get; set; }
         public string Phones { get; set; }
         public string Remarks { get; set; }
+        public List<Passenger> Passengers { get; set; }
+        public RetailSale RetailSale { get; set; }
         // Metadata
         public string PostAt { get; set; }
         public string PostUser { get; set; }
@@ -46,7 +49,6 @@ namespace API.Features.Reservations.Reservations {
         public Port Port { get; set; }
         public Port PortAlternate { get; set; }
         public Ship Ship { get; set; }
-        public List<Passenger> Passengers { get; set; }
 
     }
 
