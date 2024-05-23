@@ -1,4 +1,5 @@
 using System.Linq;
+using API.Features.Billing.DocumentTypes;
 using API.Features.Reservations.Nationalities;
 using API.Features.Reservations.PickupPoints;
 using API.Features.RetailSales;
@@ -78,19 +79,33 @@ namespace API.Features.Reservations.Reservations {
                     VatPercent = x.RetailSale.VatPercent,
                     VatAmount = x.RetailSale.VatAmount,
                     GrossAmount = x.RetailSale.GrossAmount,
-                    DocumentType = new RetailSaleReadDtoDocumentType {
+                    DocumentType = new DocumentTypeBrowserVM {
+                        Abbreviation = x.RetailSale.DocumentType.AbbreviationEn,
+                        Batch = x.RetailSale.DocumentType.BatchEn,
+                        Description = x.RetailSale.DocumentType.Description,
                         Id = x.RetailSale.DocumentType.Id,
-                        AbbreviationEn = x.RetailSale.DocumentType.AbbreviationEn,
-                        BatchEn = x.RetailSale.DocumentType.BatchEn
+                        IsActive = x.RetailSale.DocumentType.IsActive,
+                        IsDefault = x.RetailSale.DocumentType.IsDefault,
+                        Ship = new SimpleEntity {
+                            Id = x.Ship.Id,
+                            Description = x.Ship.Description
+                        },
+                        ShipOwner = new SimpleEntity {
+                            Id = x.RetailSale.ShipOwner.Id,
+                            Description = x.RetailSale.ShipOwner.Description
+                        },
                     },
                     PaymentMethod = new SimpleEntity {
                         Id = x.RetailSale.PaymentMethod.Id,
                         Description = x.RetailSale.PaymentMethod.DescriptionEn
                     },
-                    ShipOwner = new SimpleEntity {
+                    ShipOwner = new RetailSaleReadDtoShipOwner {
                         Id = x.RetailSale.ShipOwner.Id,
-                        Description = x.RetailSale.ShipOwner.DescriptionEn
+                        Description = x.RetailSale.ShipOwner.DescriptionEn,
+                        VatPercent = x.RetailSale.ShipOwner.VatPercent,
+                        IsActive = x.RetailSale.ShipOwner.IsActive
                     },
+                    Passenger = x.RetailSale.Passenger,
                     PostAt = x.RetailSale.PostAt,
                     PostUser = x.RetailSale.PostUser,
                     PutAt = x.RetailSale.PutAt,

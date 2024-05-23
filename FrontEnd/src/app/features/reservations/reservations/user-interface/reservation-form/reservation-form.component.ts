@@ -40,6 +40,7 @@ import { DocumentTypeReadDto } from 'src/app/features/billing/documentTypes/clas
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { RetailSaleWriteDto } from 'src/app/features/retail-sales/classes/dtos/retailSale-write-dto'
 import { RetailSaleHttpService } from 'src/app/features/retail-sales/classes/services/retailSale-http.service'
+import { RetailSaleReadDtoDocumentType } from '../../classes/dtos/form/retailSale-read-dto-documentType'
 
 @Component({
     selector: 'reservation-form',
@@ -68,8 +69,7 @@ export class ReservationFormComponent {
     private mirrorRecord: ReservationReadDto
     private mustGoBackAfterSave = true
     public isNewRecord: boolean
-    public isPassengersTabVisible: boolean
-    public isReservationTabVisible: boolean
+    public isNewRetailSale: boolean
     public passengerDifferenceColor: string
 
     //#endregion
@@ -98,10 +98,10 @@ export class ReservationFormComponent {
         this.initReservationForm()
         this.initRetailSaleForm()
         this.updateFieldsAfterEmptyPickupPoint()
-        this.updatePaymentMethodWithDefaultValue()
         this.setRecordId()
         this.setNewRecord()
-        this.doNewOrEditTasks()
+        this.doNewOrEditReservationTasks()
+        this.doNewOrEditRetailSaleTasks()
         this.doPostInitTasks()
         this.setTabTitle()
         this.setPassengerListHeight()
@@ -110,10 +110,6 @@ export class ReservationFormComponent {
     ngAfterViewInit(): void {
         this.leftAlignLastTab()
         this.focusOnField()
-        this.updatePassengerWithFirstPassenger()
-        this.updateRetailSaleFormWithReservationId()
-        this.updateRetailSaleFormWithTripDate()
-        this.updateRetailSaleFormWithPax()
     }
 
     ngOnDestroy(): void {
@@ -144,7 +140,7 @@ export class ReservationFormComponent {
 
     public doTasksAfterPassengerFormIsClosed(passengers: any): void {
         this.patchFormWithPassengers(passengers)
-        this.saveCachedReservation()
+        // this.saveCachedReservation()
     }
 
     public enableOrDisableAutoComplete(event: any): void {
@@ -219,9 +215,9 @@ export class ReservationFormComponent {
         const netAmount = grossAmount / (1 + vatPercent)
         const vatAmount = netAmount * vatPercent
         this.retailSaleForm.patchValue({
-            netAmount: netAmount,
-            vatAmount: vatAmount,
-            grossAmount: grossAmount
+            netAmount: netAmount.toFixed(2),
+            vatAmount: vatAmount.toFixed(2),
+            grossAmount: grossAmount.toFixed(2)
         })
     }
 
@@ -288,7 +284,7 @@ export class ReservationFormComponent {
             if (result !== undefined) {
                 if (result.selectedOption.id == 1) {
                     this.getCachedReservation()
-                    this.populateFields()
+                    this.populateReservationFields()
                     this.getPassengerDifferenceColor()
                 }
                 if (result.selectedOption.id == 2) {
@@ -347,7 +343,7 @@ export class ReservationFormComponent {
         this.mirrorRecord = this.reservationForm.value
     }
 
-    private doNewOrEditTasks(): void {
+    private doNewOrEditReservationTasks(): void {
         if (this.isNewRecord) {
             if (this.isAdmin()) {
                 this.getStoredDate()
@@ -368,7 +364,10 @@ export class ReservationFormComponent {
             }
         } else {
             this.getRecord()
-            this.populateFields()
+            this.populateReservationFields()
+            this.populateRetailSaleFields()
+            this.updateDocumentTypesAfterShipOwnerSelection(this.retailSaleForm.value.shipOwner)
+            this.onDoCalculations()
             this.getPassengerDifferenceColor()
             this.cloneRecord()
         }
@@ -380,7 +379,6 @@ export class ReservationFormComponent {
         this.setLocale()
         this.setParentUrl()
         this.subscribeToInteractionService()
-        this.updateTabVisibility()
     }
 
     private filterAutocomplete(array: string, field: string, value: any): any[] {
@@ -564,7 +562,7 @@ export class ReservationFormComponent {
         })
     }
 
-    private populateFields(): void {
+    private populateReservationFields(): void {
         this.reservationForm.setValue({
             reservationId: this.record.reservationId,
             date: this.record.date,
@@ -595,8 +593,59 @@ export class ReservationFormComponent {
         })
     }
 
+    private populateRetailSaleFields(): void {
+        this.retailSaleForm.patchValue({
+            id: this.record.retailSale.id,
+            reservationId: this.record.retailSale.reservationId,
+            date: this.record.retailSale.date,
+            tripDate: this.record.retailSale.tripDate,
+            invoiceNo: this.record.retailSale.invoiceNo,
+            documentType: {
+                abbreviation: this.record.retailSale.documentType.abbreviation,
+                batch: this.record.retailSale.documentType.batch,
+                description: this.record.retailSale.documentType.description,
+                id: this.record.retailSale.documentType.id,
+                isActive: this.record.retailSale.documentType.isActive,
+                isDefault: this.record.retailSale.documentType.isDefault,
+                ship: {
+                    id: this.record.retailSale.documentType.ship.id,
+                    description: this.record.retailSale.documentType.ship.description,
+                },
+                shipOwner: {
+                    id: this.record.retailSale.documentType.shipOwner.id,
+                    description: this.record.retailSale.documentType.shipOwner.description,
+                },
+            },
+            batch: this.record.retailSale.documentType.batch,
+            paymentMethod: {
+                id: this.record.retailSale.paymentMethod.id,
+                description: this.record.retailSale.paymentMethod.description
+            },
+            shipOwner: {
+                id: this.record.retailSale.shipOwner.id,
+                description: this.record.retailSale.shipOwner.description,
+                vatPercent: this.record.retailSale.shipOwner.vatPercent,
+                isActive: this.record.retailSale.shipOwner.isActive
+            },
+            passenger: this.record.retailSale.passenger,
+            adults: this.record.retailSale.adults,
+            adultsPrice: this.record.retailSale.adultsPrice,
+            kids: this.record.retailSale.kids,
+            kidsPrice: this.record.retailSale.kidsPrice,
+            free: this.record.retailSale.free,
+            netAmount: this.record.retailSale.netAmount,
+            vatPercent: this.record.retailSale.vatPercent,
+            vatAmount: this.record.retailSale.vatAmount,
+            grossAmount: this.record.retailSale.grossAmount,
+            postAt: this.record.retailSale.postAt,
+            postUser: this.record.retailSale.postUser,
+            putAt: this.record.retailSale.putAt,
+            putUser: this.record.retailSale.putUser
+        })
+    }
+
     private saveCachedReservation(): void {
-        this.localStorageService.saveItem('reservation', JSON.stringify(this.reservationHelperService.createCachedReservation(this.reservationForm.value)))
+        // this.localStorageService.saveItem('reservation', JSON.stringify(this.reservationHelperService.createCachedReservation(this.reservationForm.value)))
     }
 
     private saveReservation(reservation: ReservationWriteDto, keepFormOpen: boolean): void {
@@ -690,7 +739,7 @@ export class ReservationFormComponent {
                     this.retailSaleForm.patchValue({
                         documentTypeDescription: x.description,
                         invoiceNo: response.body + 1,
-                        batch: x.batch
+                        batch: x.batchEn
                     })
                 })
             },
@@ -747,15 +796,20 @@ export class ReservationFormComponent {
         })
     }
 
-    private updateTabVisibility(): void {
-        this.isReservationTabVisible = true
-        this.isPassengersTabVisible = false
-    }
-
     private updateVatPercentAfterShipOwnerSelection(value: any): void {
         this.retailSaleForm.patchValue({
             vatPercent: value.vatPercent
         })
+    }
+
+    private doNewOrEditRetailSaleTasks(): void {
+        if (this.retailSaleForm.value.reservationId == '') {
+            this.isNewRetailSale = true
+            this.updatePassengerWithFirstPassenger()
+            this.updateRetailSaleFormWithTripDate()
+            this.updateRetailSaleFormWithPax()
+            this.updatePaymentMethodWithDefaultValue()
+        }
     }
 
     //#endregion

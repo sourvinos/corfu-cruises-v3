@@ -198,6 +198,7 @@
                 </mat-tab>
                 <mat-tab *ngIf="isAdmin()" class="left-align" label="{{ getLabel('tab3') }}">
                     <div id="retail-sale-tab">
+                        {{ retailSaleForm.value | json }}
                         <form [formGroup]="retailSaleForm" id="retail-sale-form">
                             <div id="top-panel">
                                 <div class="group-input-field">

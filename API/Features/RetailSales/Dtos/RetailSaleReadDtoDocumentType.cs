@@ -3,8 +3,8 @@ namespace API.Features.RetailSales {
     public class RetailSaleReadDtoDocumentType {
 
         public int Id { get; set; }
-        public string AbbreviationEn { get; set; }
-        public string BatchEn { get; set; }
+        public string Abbreviation { get; set; }
+        public string Batch { get; set; }
 
     }
 

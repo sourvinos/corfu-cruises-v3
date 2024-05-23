@@ -104,44 +104,44 @@ export class ReservationHelperService {
         }
     }
 
-    public createCachedReservation(form: any): ReservationReadDto {
-        return {
-            reservationId: form.reservationId,
-            customer: form.customer,
-            destination: form.destination,
-            driver: form.driver,
-            pickupPoint: {
-                id: form.pickupPoint.id,
-                description: form.pickupPoint.description,
-                exactPoint: form.exactPoint,
-                time: form.time,
-                port: {
-                    id: form.port.id,
-                    description: form.port.description,
-                    isActive: form.port.isActive
-                },
-                isActive: form.pickupPoint.isActive
-            },
-            port: form.port,
-            portAlternate: form.portAlternate,
-            ship: form.ship,
-            date: form.date,
-            refNo: form.refNo,
-            email: form.email,
-            phones: form.phones,
-            remarks: form.remarks,
-            adults: form.adults,
-            kids: form.kids,
-            free: form.free,
-            totalPax: form.totalPax,
-            ticketNo: form.ticketNo,
-            passengers: form.passengers,
-            postAt: form.postAt,
-            postUser: form.postUser,
-            putAt: form.putAt,
-            putUser: form.putUser
-        }
-    }
+    // public createCachedReservation(form: any): ReservationReadDto {
+    //     return {
+    //         reservationId: form.reservationId,
+    //         customer: form.customer,
+    //         destination: form.destination,
+    //         driver: form.driver,
+    //         pickupPoint: {
+    //             id: form.pickupPoint.id,
+    //             description: form.pickupPoint.description,
+    //             exactPoint: form.exactPoint,
+    //             time: form.time,
+    //             port: {
+    //                 id: form.port.id,
+    //                 description: form.port.description,
+    //                 isActive: form.port.isActive
+    //             },
+    //             isActive: form.pickupPoint.isActive
+    //         },
+    //         port: form.port,
+    //         portAlternate: form.portAlternate,
+    //         ship: form.ship,
+    //         date: form.date,
+    //         refNo: form.refNo,
+    //         email: form.email,
+    //         phones: form.phones,
+    //         remarks: form.remarks,
+    //         adults: form.adults,
+    //         kids: form.kids,
+    //         free: form.free,
+    //         totalPax: form.totalPax,
+    //         ticketNo: form.ticketNo,
+    //         passengers: form.passengers,
+    //         postAt: form.postAt,
+    //         postUser: form.postUser,
+    //         putAt: form.putAt,
+    //         putUser: form.putUser
+    //     }
+    // }
 
     //#endregion
 
