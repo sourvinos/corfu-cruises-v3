@@ -13,6 +13,7 @@ import { EmojiService } from './../../../../../shared/services/emoji.service'
 import { HelperService } from './../../../../../shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { ListResolved } from 'src/app/shared/classes/list-resolved'
+import { MenuItem } from 'primeng/api'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { ReservationAssignDialogComponent } from '../reservation-assign-dialog/reservation-assign-dialog.component'
@@ -60,6 +61,13 @@ export class ReservationListComponent {
 
     //#endregion
 
+    //#region context menu
+
+    public menuItems!: MenuItem[]
+    public selectedRecord!: ReservationListVM
+
+    //#endregion
+
     constructor(private activatedRoute: ActivatedRoute, private cryptoService: CryptoService, private dateHelperService: DateHelperService, private dialogService: DialogService, private driverReportService: DriverReportService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private reservationHttpService: ReservationHttpService, private reservationReportPdfService: ReservationReportPdfService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
@@ -76,6 +84,7 @@ export class ReservationListComponent {
         this.setTabTitle()
         this.doVirtualTableTasks()
         this.setSidebarsHeight()
+        this.initContextMenu()
     }
 
     ngOnDestroy(): void {
@@ -196,13 +205,6 @@ export class ReservationListComponent {
         }
     }
 
-    public editRecord(id: string): void {
-        this.storeScrollTop()
-        this.storeSelectedId(id)
-        this.gotoEditForm(id)
-        this.storeUrl()
-    }
-
     public filterRecords(event: any): void {
         this.helperService.clearTableCheckboxes()
         this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
@@ -231,10 +233,6 @@ export class ReservationListComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public highlightRow(id: any): void {
-        this.helperService.highlightRow(id)
-    }
-
     public isAdmin(): boolean {
         return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' ? true : false
     }
@@ -245,6 +243,17 @@ export class ReservationListComponent {
 
     public isSearchByRefNo(): boolean {
         return this.sessionStorageService.getItem('isSearchByRefNo') ? true : false
+    }
+
+    public onEditRecord(id: string): void {
+        this.storeScrollTop()
+        this.storeSelectedId(id)
+        this.gotoEditForm(id)
+        this.storeUrl()
+    }
+
+    public onHighlightRow(id: any): void {
+        this.helperService.highlightRow(id)
     }
 
     public newRecord(): void {
@@ -356,6 +365,12 @@ export class ReservationListComponent {
 
     private hightlightSavedRow(): void {
         this.helperService.highlightSavedRow(this.feature)
+    }
+
+    private initContextMenu(): void {
+        this.menuItems = [
+            { label: this.getLabel('contextMenuEdit'), command: () => this.onEditRecord(this.selectedRecord.reservationId) }
+        ]
     }
 
     private isAnyRowSelected(): boolean {

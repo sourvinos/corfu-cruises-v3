@@ -802,6 +802,10 @@
             {
                 "id": "headerTime",
                 "description": "Ωρα"
+            },
+            {
+                "id": "contextMenuEdit",
+                "description": "Επεξεργασία"
             }
         ]
     },
