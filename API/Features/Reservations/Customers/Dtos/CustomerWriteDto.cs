@@ -9,8 +9,10 @@ namespace API.Features.Reservations.Customers {
         // FKs
         public int NationalityId { get; set; }
         public int TaxOfficeId { get; set; }
-        public int VatRegimeId { get; set; }
         // Fields
+        public int VatPercent { get; set; }
+        public int VatPercentId { get; set; }
+        public int VatExemptionId { get; set; }
         public string Description { get; set; }
         public string FullDescription { get; set; }
         public string VatNumber { get; set; }

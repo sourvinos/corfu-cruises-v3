@@ -11,8 +11,10 @@ namespace API.Features.Reservations.Customers {
             // FKs
             entity.Property(x => x.NationalityId).IsRequired(true);
             entity.Property(x => x.TaxOfficeId).IsRequired(true);
-            entity.Property(x => x.VatRegimeId).IsRequired(true);
             // Fields
+            entity.Property(x => x.VatPercent).IsRequired(true);
+            entity.Property(x => x.VatPercentId).IsRequired(true);
+            entity.Property(x => x.VatExemptionId).IsRequired(true);
             entity.Property(x => x.Description).HasMaxLength(128).IsRequired(true);
             entity.Property(x => x.FullDescription).HasMaxLength(512).IsRequired(true);
             entity.Property(x => x.VatNumber).HasMaxLength(36).IsRequired(true);

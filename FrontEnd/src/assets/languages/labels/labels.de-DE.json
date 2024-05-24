@@ -93,10 +93,6 @@
                 "description": "Finanzamt"
             },
             {
-                "id": "vatRegime",
-                "description": "MwSt.-Regelung"
-            },
-            {
                 "id": "branch",
                 "description": "Nummer der Filiale"
             },
@@ -1706,10 +1702,6 @@
                 "description": "ΔΟΥ"
             },
             {
-                "id": "vatRegime",
-                "description": "Καθεστώς ΦΠΑ"
-            },
-            {
                 "id": "branch",
                 "description": "Αρ. εγκατάστασης"
             },
@@ -1784,10 +1776,6 @@
             {
                 "id": "vatPercent",
                 "description": "Συντελεστής ΦΠΑ"
-            },
-            {
-                "id": "vatMyDataId",
-                "description": "Κατηγορία ΦΠΑ"
             },
             {
                 "id": "isActive",

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using API.Features.Billing.BankAccounts;
 using API.Features.Billing.TaxOffices;
-using API.Features.Billing.VatRegimes;
 using API.Features.Reservations.Nationalities;
 using API.Infrastructure.Interfaces;
 
@@ -14,13 +13,14 @@ namespace API.Features.Reservations.ShipOwners {
         // FKs
         public int NationalityId { get; set; }
         public int TaxOfficeId { get; set; }
-        public int VatRegimeId { get; set; }
         // Fields
+        public int VatPercent { get; set; }
+        public int VatPercentId { get; set; }
+        public int VatExemptionId { get; set; }
         public string Description { get; set; }
         public string DescriptionEn { get; set; }
         public string VatNumber { get; set; }
         public int VatMyDataId { get; set; }
-        public decimal VatPercent { get; set; }
         public int Branch { get; set; }
         public string Profession { get; set; }
         public string Street { get; set; }
@@ -48,7 +48,6 @@ namespace API.Features.Reservations.ShipOwners {
         // Navigation
         public Nationality Nationality { get; set; }
         public TaxOffice TaxOffice { get; set; }
-        public VatRegime VatRegime { get; set; }
         public List<BankAccount> BankAccounts { get; set; }
 
     }

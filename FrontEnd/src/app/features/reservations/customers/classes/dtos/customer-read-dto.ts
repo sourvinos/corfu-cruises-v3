@@ -1,7 +1,6 @@
 import { Metadata } from '../../../../../shared/classes/metadata'
 import { NationalityDropdownVM } from '../../../nationalities/classes/view-models/nationality-autocomplete-vm'
 import { TaxOfficeAutoCompleteVM } from 'src/app/features/billing/taxOffices/classes/view-models/taxOffice-autocomplete-vm'
-import { VatRegimeAutoCompleteVM } from 'src/app/features/billing/vatRegimes/classes/view-models/vatRegime-autocomplete-vm'
 
 export interface CustomerReadDto extends Metadata {
 
@@ -10,8 +9,10 @@ export interface CustomerReadDto extends Metadata {
     // Object fields
     nationality: NationalityDropdownVM
     taxOffice: TaxOfficeAutoCompleteVM
-    vatRegime: VatRegimeAutoCompleteVM
     // Fields
+    vatPercent: number
+    vatPercentId: number
+    vatExemptionId: number
     description: string
     fullDescription: string
     vatNumber: string

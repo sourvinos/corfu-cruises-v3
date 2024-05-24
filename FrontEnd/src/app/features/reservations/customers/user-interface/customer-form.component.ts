@@ -46,7 +46,6 @@ export class CustomerFormComponent {
     public isAutoCompleteDisabled = true
     public dropdownNationalities: Observable<SimpleEntity[]>
     public dropdownTaxOffices: Observable<SimpleEntity[]>
-    public dropdownVatRegimes: Observable<SimpleEntity[]>
 
     //#endregion
 
@@ -147,7 +146,7 @@ export class CustomerFormComponent {
             'postalCode': document.querySelector('postal_zip_code').innerHTML,
             'city': document.querySelector('postal_area_description').innerHTML,
             'nationality': await this.dexieService.getByDescription('nationalities', 'GREECE'),
-            'vatRegime': await this.dexieService.getByDescription('vatRegimes', document.querySelector('normal_vat_system_flag').innerHTML == 'Y' ? 'ΚΑΝΟΝΙΚΟ' : 'ΑΠΑΛΛΑΓΗ')
+            'vatExemptionId': document.querySelector('normal_vat_system_flag').innerHTML == 'Y' ? 0 : 1
         })
     }
 
@@ -182,7 +181,9 @@ export class CustomerFormComponent {
             id: this.form.value.id,
             nationalityId: this.form.value.nationality.id,
             taxOfficeId: this.form.value.taxOffice.id,
-            vatRegimeId: this.form.value.vatRegime.id,
+            vatPercent: this.form.value.vatPercent,
+            vatPercentId: this.form.value.vatPercentId,
+            vatExemptionId: this.form.value.vatExemptionId,
             description: this.form.value.description,
             fullDescription: this.form.value.fullDescription,
             vatNumber: this.form.value.vatNumber,
@@ -232,7 +233,9 @@ export class CustomerFormComponent {
             id: 0,
             nationality: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             taxOffice: ['', [Validators.required, ValidationService.RequireAutocomplete]],
-            vatRegime: ['', [Validators.required, ValidationService.RequireAutocomplete]],
+            vatPercent: [0, [Validators.required, Validators.min(0), Validators.max(100)]],
+            vatPercentId: [0, [Validators.required,Validators.min(1), Validators.max(9)]],
+            vatExemptionId: [0, [Validators.required, Validators.min(0), Validators.max(30)]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
             fullDescription: ['', [Validators.required, Validators.maxLength(512)]],
             vatNumber: ['', [Validators.required, Validators.maxLength(36)]],
@@ -264,7 +267,6 @@ export class CustomerFormComponent {
     private populateDropdowns(): void {
         this.populateDropdownFromDexieDB('nationalities', 'dropdownNationalities', 'nationality', 'description', 'description')
         this.populateDropdownFromDexieDB('taxOffices', 'dropdownTaxOffices', 'taxOffice', 'description', 'description')
-        this.populateDropdownFromDexieDB('vatRegimes', 'dropdownVatRegimes', 'vatRegime', 'description', 'description')
     }
 
     private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
@@ -280,7 +282,9 @@ export class CustomerFormComponent {
                 id: this.record.id,
                 nationality: { 'id': this.record.nationality.id, 'description': this.record.nationality.description },
                 taxOffice: { 'id': this.record.taxOffice.id, 'description': this.record.taxOffice.description },
-                vatRegime: { 'id': this.record.vatRegime.id, 'description': this.record.vatRegime.description },
+                vatPercent: this.record.vatPercent,
+                vatPercentId: this.record.vatPercentId,
+                vatExemptionId: this.record.vatExemptionId,
                 description: this.record.description,
                 fullDescription: this.record.fullDescription,
                 vatNumber: this.record.vatNumber,
@@ -338,8 +342,16 @@ export class CustomerFormComponent {
         return this.form.get('taxOffice')
     }
 
-    get vatRegime(): AbstractControl {
-        return this.form.get('vatRegime')
+    get vatPercent(): AbstractControl {
+        return this.form.get('vatPercent')
+    }
+
+    get vatPercentId(): AbstractControl {
+        return this.form.get('vatPercentId')
+    }
+
+    get vatExemptionId(): AbstractControl {
+        return this.form.get('vatExemptionId')
     }
 
     get description(): AbstractControl {

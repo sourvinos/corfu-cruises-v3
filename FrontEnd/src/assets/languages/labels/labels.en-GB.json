@@ -66,71 +66,79 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Customer"
+                "description": "Πελάτης"
             },
             {
                 "id": "tab1",
-                "description": "General"
+                "description": "Γενικά"
             },
             {
                 "id": "tab2",
-                "description": "Contact"
+                "description": "Επικοινωνία"
             },
             {
                 "id": "description",
-                "description": "Abbr."
+                "description": "Συντ."
             },
             {
                 "id": "fullDescription",
-                "description": "Name"
+                "description": "Επωνυμία"
             },
             {
                 "id": "vatNumber",
-                "description": "Tax number"
+                "description": "ΑΦΜ"
             },
             {
                 "id": "taxOffice",
-                "description": "Bureau des impôts"
+                "description": "ΔΟΥ"
             },
             {
-                "id": "vatRegime",
-                "description": "Régime de TVA"
+                "id": "vatPercent",
+                "description": "Ποσοστό ΦΠΑ"
+            },
+            {
+                "id": "vatPercentId",
+                "description": "Κατηγορία ΦΠΑ - Πίνακας 8.2"
+            },
+            {
+                "id": "vatExemptionId",
+                "description": "Κατηγορία Αιτίας Εξαίρεσης ΦΠΑ - Πίνακας 8.3"
             },
             {
                 "id": "branch",
-                "description": "Branch number"
+                "description": "Αρ. εγκατάστασης"
             },
             {
                 "id": "profession",
-                "description": "Profession"
+                "description": "Δραστηριότητα"
             },
             {
                 "id": "street",
-                "description": "Street"
+                "description": "Οδός"
             },
             {
                 "id": "number",
-                "description": "Number"
+                "description": "Αριθμός"
             },
             {
                 "id": "postalCode",
-                "description": "Postal code"
+                "description": "ΤΚ"
             },
             {
                 "id": "city",
-                "description": "City"
+                "description": "Πόλη"
             },
             {
                 "id": "nationality",
-                "description": "Country"
+                "description": "Χώρα"
             },
             {
                 "id": "personInCharge",
-                "description": "Person in charge"
+                "description": "Υπεύθυνος επικοινωνίας"
             },
             {
                 "id": "phones",
-                "description": "Phones"
+                "description": "Τηλέφωνα"
             },
             {
                 "id": "email",
@@ -138,23 +146,23 @@
             },
             {
                 "id": "balanceLimit",
-                "description": "Debt limit"
+                "description": "Οριο οφειλής"
             },
             {
                 "id": "remarks",
-                "description": "Remarques"
+                "description": "Σχόλια"
             },
             {
                 "id": "isActive",
-                "description": "Active"
+                "description": "Ενεργός"
             },
             {
                 "id": "post",
-                "description": "Initial entry"
+                "description": "Αρχική καταχώριση"
             },
             {
                 "id": "put",
-                "description": "Last update"
+                "description": "Τελευταία ενημέρωση"
             },
             {
                 "id": "searchAadeRegistry",
@@ -162,11 +170,11 @@
             },
             {
                 "id": "deleteButton",
-                "description": "Delete"
+                "description": "Διαγραφη"
             },
             {
                 "id": "saveButton",
-                "description": "Save"
+                "description": "Αποθηκευση"
             }
         ]
     },
@@ -1778,10 +1786,6 @@
                 "description": "ΔΟΥ"
             },
             {
-                "id": "vatRegime",
-                "description": "Καθεστώς ΦΠΑ"
-            },
-            {
                 "id": "branch",
                 "description": "Αρ. εγκατάστασης"
             },
@@ -1855,11 +1859,15 @@
             },
             {
                 "id": "vatPercent",
-                "description": "Συντελεστής ΦΠΑ"
+                "description": "Ποσοστό ΦΠΑ λιανικών πωλήσεων"
             },
             {
-                "id": "vatMyDataId",
-                "description": "Κατηγορία ΦΠΑ"
+                "id": "vatPercentId",
+                "description": "Κατηγορία ΦΠΑ - Πίνακας 8.2"
+            },
+            {
+                "id": "vatExemptionId",
+                "description": "Κατηγορία Αιτίας Εξαίρεσης ΦΠΑ - Πίνακας 8.3"
             },
             {
                 "id": "isActive",

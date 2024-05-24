@@ -1,14 +1,14 @@
-import { Guid } from 'guid-typescript'
-
 export interface CustomerWriteDto {
 
     // PK
     id: number
     // FKs
     nationalityId: number
-    taxOfficeId: Guid
-    vatRegimeId: Guid
+    taxOfficeId: number
     // Fields
+    vatPercent: number
+    vatPercentId: number
+    vatExemptionId: number
     description: string
     fullDescription: string
     vatNumber: string

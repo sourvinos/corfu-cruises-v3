@@ -7,7 +7,6 @@ using API.Features.Billing.PaymentMethods;
 using API.Features.Billing.Prices;
 using API.Features.Billing.Receipts;
 using API.Features.Billing.TaxOffices;
-using API.Features.Billing.VatRegimes;
 using API.Features.CheckIn;
 using API.Features.Reservations.Availability;
 using API.Features.Reservations.Boarding;
@@ -112,8 +111,6 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IReceiptValidation, ReceiptValidation>();
             services.AddTransient<ITaxOfficeRepository, TaxOfficeRepository>();
             services.AddTransient<ITaxOfficeValidation, TaxOfficeValidation>();
-            services.AddTransient<IVatRegimeRepository, VatRegimeRepository>();
-            services.AddTransient<IVatRegimeValidation, VatRegimeValidation>();
             #endregion
             #region shared
             services.AddScoped<Token>();

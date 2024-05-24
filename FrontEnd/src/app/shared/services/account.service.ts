@@ -28,7 +28,6 @@ import { ShipHttpService } from '../../features/reservations/ships/classes/servi
 import { ShipOwnerHttpService } from '../../features/reservations/shipOwners/classes/services/shipOwner-http.service'
 import { TaxOfficeService } from './../../features/billing/taxOffices/classes/services/taxOffice.service'
 import { TokenRequest } from '../classes/token-request'
-import { VatRegimeService } from 'src/app/features/billing/vatRegimes/services/vatRegime-http.service'
 import { environment } from '../../../environments/environment'
 
 @Injectable({ providedIn: 'root' })
@@ -44,7 +43,7 @@ export class AccountService extends HttpDataService {
 
     //#endregion
 
-    constructor(httpClient: HttpClient, private bankService: BankService, private coachRouteService: CoachRouteService, private crewSpecialtyHttpService: CrewSpecialtyHttpService, private cryptoService: CryptoService, private customerHttpService: CustomerHttpService, private destinationHttpService: DestinationHttpService, private dexieService: DexieService, private documentTypeHttpService: DocumentTypeHttpService, private driverService: DriverService, private genderService: GenderService, private interactionService: InteractionService, private nationalityService: NationalityHttpService, private ngZone: NgZone, private paymentMethodService: PaymentMethodHttpService, private pickupPointService: PickupPointService, private portHttpService: PortHttpService, private router: Router, private sessionStorageService: SessionStorageService, private shipHttpService: ShipHttpService, private shipOwnerService: ShipOwnerHttpService, private taxOfficeService: TaxOfficeService, private vatRegimeService: VatRegimeService) {
+    constructor(httpClient: HttpClient, private bankService: BankService, private coachRouteService: CoachRouteService, private crewSpecialtyHttpService: CrewSpecialtyHttpService, private cryptoService: CryptoService, private customerHttpService: CustomerHttpService, private destinationHttpService: DestinationHttpService, private dexieService: DexieService, private documentTypeHttpService: DocumentTypeHttpService, private driverService: DriverService, private genderService: GenderService, private interactionService: InteractionService, private nationalityService: NationalityHttpService, private ngZone: NgZone, private paymentMethodService: PaymentMethodHttpService, private pickupPointService: PickupPointService, private portHttpService: PortHttpService, private router: Router, private sessionStorageService: SessionStorageService, private shipHttpService: ShipHttpService, private shipOwnerService: ShipOwnerHttpService, private taxOfficeService: TaxOfficeService) {
         super(httpClient, environment.apiUrl)
     }
 
@@ -208,7 +207,6 @@ export class AccountService extends HttpDataService {
         this.dexieService.populateTable('banks', this.bankService)
         this.dexieService.populateTable('paymentMethods', this.paymentMethodService)
         this.dexieService.populateTable('taxOffices', this.taxOfficeService)
-        this.dexieService.populateTable('vatRegimes', this.vatRegimeService)
         // Criteria
         this.dexieService.populateCriteria('customersCriteria', this.customerHttpService)
         this.dexieService.populateCriteria('destinationsCriteria', this.destinationHttpService)

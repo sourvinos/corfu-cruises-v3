@@ -5,10 +5,10 @@ export interface ShipOwnerWriteDto {
     // FKs
     nationalityId: number
     taxOfficeId: number
-    vatRegimeId: number
     // Fields
-    vatMyDataId: number
     vatPercent: number
+    vatPercentId: number
+    vatExemptionId: number
     description: string
     descriptionEn: string
     vatNumber: string

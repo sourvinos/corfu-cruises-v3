@@ -31,8 +31,7 @@ export class DexieService extends Dexie {
             shipOwners: 'id, description, descriptionEn',
             ships: 'id, description',
             shipsCriteria: 'id, description',
-            taxOffices: 'id, description',
-            vatRegimes: 'id, description',
+            taxOffices: 'id, description'
         })
         this.open()
     }

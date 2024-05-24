@@ -93,8 +93,16 @@
                 "description": "ΔΟΥ"
             },
             {
-                "id": "vatRegime",
-                "description": "Καθεστώς ΦΠΑ"
+                "id": "vatPercent",
+                "description": "Ποσοστό ΦΠΑ"
+            },
+            {
+                "id": "vatPercentId",
+                "description": "Κατηγορία ΦΠΑ - Πίνακας 8.2"
+            },
+            {
+                "id": "vatExemptionId",
+                "description": "Κατηγορία Αιτίας Εξαίρεσης ΦΠΑ - Πίνακας 8.3"
             },
             {
                 "id": "branch",
@@ -1778,10 +1786,6 @@
                 "description": "ΔΟΥ"
             },
             {
-                "id": "vatRegime",
-                "description": "Καθεστώς ΦΠΑ"
-            },
-            {
                 "id": "branch",
                 "description": "Αρ. εγκατάστασης"
             },
@@ -1855,11 +1859,15 @@
             },
             {
                 "id": "vatPercent",
-                "description": "Συντελεστής ΦΠΑ"
+                "description": "Ποσοστό ΦΠΑ λιανικών πωλήσεων"
             },
             {
-                "id": "vatMyDataId",
-                "description": "Κατηγορία ΦΠΑ"
+                "id": "vatPercentId",
+                "description": "Κατηγορία ΦΠΑ - Πίνακας 8.2"
+            },
+            {
+                "id": "vatExemptionId",
+                "description": "Κατηγορία Αιτίας Εξαίρεσης ΦΠΑ - Πίνακας 8.3"
             },
             {
                 "id": "isActive",

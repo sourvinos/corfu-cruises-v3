@@ -59,7 +59,6 @@ namespace API.Features.Reservations.Customers {
                     .AsNoTracking()
                     .Include(x => x.Nationality)
                     .Include(x => x.TaxOffice)
-                    .Include(x => x.VatRegime)
                     .SingleOrDefaultAsync(x => x.Id == id)
                 : await context.Customers
                     .AsNoTracking()

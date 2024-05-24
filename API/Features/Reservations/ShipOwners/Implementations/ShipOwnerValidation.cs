@@ -17,7 +17,6 @@ namespace API.Features.Reservations.ShipOwners {
             return true switch {
                 var x when x == !await IsValidNationality(shipOwner) => 456,
                 var x when x == !await IsValidTaxOffice(shipOwner) => 458,
-                var x when x == !await IsValidVatRegime(shipOwner) => 463,
                 var x when x == IsAlreadyUpdated(z, shipOwner) => 415,
                 _ => 200,
             };
@@ -43,17 +42,6 @@ namespace API.Features.Reservations.ShipOwners {
             return await context.TaxOffices
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == shipOwner.TaxOfficeId) != null;
-        }
-
-        private async Task<bool> IsValidVatRegime(ShipOwnerWriteDto shipOwner) {
-            if (shipOwner.Id == 0) {
-                return await context.VatRegimes
-                    .AsNoTracking()
-                    .FirstOrDefaultAsync(x => x.Id == shipOwner.VatRegimeId && x.IsActive) != null;
-            }
-            return await context.VatRegimes
-                .AsNoTracking()
-                .FirstOrDefaultAsync(x => x.Id == shipOwner.VatRegimeId) != null;
         }
 
         private static bool IsAlreadyUpdated(ShipOwner z, ShipOwnerWriteDto ship) {

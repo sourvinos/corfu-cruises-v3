@@ -7,7 +7,6 @@ using API.Features.Billing.Prices;
 using API.Features.Billing.Receipts;
 using API.Features.Billing.TaxOffices;
 using API.Features.Billing.Transactions;
-using API.Features.Billing.VatRegimes;
 using API.Features.Reservations.CoachRoutes;
 using API.Features.Reservations.CrewSpecialties;
 using API.Features.Reservations.Customers;
@@ -70,7 +69,6 @@ namespace API.Infrastructure.Classes {
         public DbSet<Receipt> Receipts { get; set; }
         public DbSet<TaxOffice> TaxOffices { get; set; }
         public DbSet<TransactionsBase> Transactions { get; set; }
-        public DbSet<VatRegime> VatRegimes { get; set; }
         #endregion
         #region DbSets - RetailSales
         public DbSet<RetailSale> RetailSales { get; set; }
@@ -117,7 +115,6 @@ namespace API.Infrastructure.Classes {
             modelBuilder.ApplyConfiguration(new PricesConfig());
             modelBuilder.ApplyConfiguration(new ReceiptsConfig());
             modelBuilder.ApplyConfiguration(new TaxOfficesConfig());
-            modelBuilder.ApplyConfiguration(new VatRegimeConfig());
             #endregion
             #region retailSales
             modelBuilder.ApplyConfiguration(new RetailSaleConfig());

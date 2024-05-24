@@ -1,6 +1,5 @@
 ﻿using API.Features.Reservations.Nationalities;
 using API.Features.Billing.TaxOffices;
-using API.Features.Billing.VatRegimes;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations.Customers {
@@ -12,8 +11,10 @@ namespace API.Features.Reservations.Customers {
         // Fks
         public int NationalityId { get; set; }
         public int TaxOfficeId { get; set; }
-        public int VatRegimeId { get; set; }
         // Fields
+        public int VatPercent { get; set; }
+        public int VatPercentId { get; set; }
+        public int VatExemptionId { get; set; }
         public string Description { get; set; }
         public string FullDescription { get; set; }
         public string VatNumber { get; set; }
@@ -37,7 +38,6 @@ namespace API.Features.Reservations.Customers {
         // Navigation
         public Nationality Nationality { get; set; }
         public TaxOffice TaxOffice { get; set; }
-        public VatRegime VatRegime { get; set; }
 
     }
 
