@@ -5,6 +5,7 @@ namespace API.Features.Reservations.Manifest {
     public class ManifestPassengerVM {
 
         public int Id { get; set; }
+        public string RefNo { get; set; }
         public string Lastname { get; set; }
         public string Firstname { get; set; }
         public string Birthdate { get; set; }

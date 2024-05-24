@@ -4,7 +4,7 @@
     </button>
     <mat-menu #menu="matMenu" class="primary">
         <button (click)="doNavigation('invoices',true)" mat-menu-item><span>{{ getLabel('invoices') }}</span></button>
-        <button (click)="doNavigation('retailSales',true)" mat-menu-item><span>{{ getLabel('retailSales') }}</span></button>
+        <!-- <button (click)="doNavigation('retailSales',true)" mat-menu-item><span>{{ getLabel('retailSales') }}</span></button> -->
         <button (click)="doNavigation('receipts',true)" mat-menu-item> <span>{{ getLabel('transactions') }}</span></button>
         <mat-divider></mat-divider>
         <button (click)="doNavigation('customers',true)" mat-menu-item>{{ getLabel("customers") }}</button>

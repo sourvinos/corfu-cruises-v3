@@ -365,7 +365,7 @@ export class ReservationFormComponent {
         } else {
             this.getRecord()
             this.populateReservationFields()
-            this.populateRetailSaleFields()
+            // this.populateRetailSaleFields()
             this.updateDocumentTypesAfterShipOwnerSelection(this.retailSaleForm.value.shipOwner)
             this.onDoCalculations()
             this.getPassengerDifferenceColor()
@@ -551,8 +551,8 @@ export class ReservationFormComponent {
         this.populateDropdownFromDexieDB('reservationForm', 'ports', 'dropdownPorts', 'port', 'description', 'description')
         this.populateDropdownFromDexieDB('reservationForm', 'ports', 'dropdownPorts', 'portAlternate', 'description', 'description')
         this.populateDropdownFromDexieDB('reservationForm', 'ships', 'dropdownShips', 'ship', 'description', 'description')
-        this.populateDropdownFromDexieDB('retailSaleForm', 'shipOwners', 'dropdownShipOwners', 'shipOwner', 'description', 'description')
-        this.populateDropdownFromDexieDB('retailSaleForm', 'paymentMethods', 'dropdownPaymentMethods', 'paymentMethod', 'description', 'description')
+        // this.populateDropdownFromDexieDB('retailSaleForm', 'shipOwners', 'dropdownShipOwners', 'shipOwner', 'description', 'description')
+        // this.populateDropdownFromDexieDB('retailSaleForm', 'paymentMethods', 'dropdownPaymentMethods', 'paymentMethod', 'description', 'description')
     }
 
     private populateDropdownFromDexieDB(form: string, dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {

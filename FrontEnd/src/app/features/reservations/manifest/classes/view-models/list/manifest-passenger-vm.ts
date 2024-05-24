@@ -5,6 +5,7 @@ import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 export interface ManifestPassengerVM {
 
     id: number
+    refNo: string
     lastname: string
     firstname: string
     birthdate: string

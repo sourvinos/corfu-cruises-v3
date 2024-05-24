@@ -1669,7 +1669,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Κατάσταση επιβαινόντων"
+                "description": "Κατάσταση πλοίου"
             },
             {
                 "id": "tab1",
@@ -1678,6 +1678,10 @@
             {
                 "id": "tab2",
                 "description": "Πλήρωμα"
+            },
+            {
+                "id": "headerRefNo",
+                "description": "RefNo"
             },
             {
                 "id": "headerLastname",

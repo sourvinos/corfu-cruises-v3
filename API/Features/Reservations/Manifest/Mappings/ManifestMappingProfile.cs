@@ -10,6 +10,7 @@ namespace API.Features.Reservations.Manifest {
 
         public ManifestMappingProfile() {
             CreateMap<Passenger, ManifestPassengerVM>()
+                .ForMember(x => x.RefNo, x => x.MapFrom(x => x.Reservation.RefNo))
                 .ForMember(x => x.Birthdate, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Birthdate)))
                 .ForMember(x => x.Gender, x => x.MapFrom(x => new SimpleEntity { Id = x.Gender.Id, Description = x.Gender.Description }))
                 .ForMember(x => x.Nationality, x => x.MapFrom(x => new ManifestNationalityVM { Id = x.Nationality.Id, Code = x.Nationality.Code, Description = x.Nationality.Description, }))
