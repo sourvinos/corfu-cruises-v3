@@ -215,7 +215,7 @@ export class ShipOwnerFormComponent {
             nationality: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             taxOffice: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             vatPercent: [0, [Validators.required, Validators.min(0), Validators.max(100)]],
-            vatPercentId: [0, [Validators.required,Validators.min(1), Validators.max(9)]],
+            vatPercentId: [0, [Validators.required, Validators.min(1), Validators.max(9)]],
             vatExemptionId: [0, [Validators.required, Validators.min(0), Validators.max(30)]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
             descriptionEn: ['', [Validators.required, Validators.maxLength(128)]],
@@ -323,7 +323,12 @@ export class ShipOwnerFormComponent {
     private saveRecord(shipOwner: ShipOwnerWriteDto): void {
         this.shipOwnerService.save(shipOwner).subscribe({
             next: (response) => {
-                this.dexieService.update('shipOwners', { 'id': parseInt(response.id), 'description': shipOwner.description, 'descriptionEn': shipOwner.descriptionEn, 'isActive': shipOwner.isActive })
+                this.dexieService.update('shipOwners', {
+                    'id': parseInt(response.id),
+                    'description': shipOwner.descriptionEn,
+                    'vatPercent': shipOwner.vatPercent,
+                    'isActive': shipOwner.isActive
+                })
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
             error: (errorFromInterceptor) => {

@@ -5,10 +5,11 @@ namespace API.Infrastructure.Interfaces {
         // Fks
         public int NationalityId { get; set; }
         public int TaxOfficeId { get; set; }
-        public int VatExemptionId { get; set; }
         // Fields
+        public decimal VatPercent { get; set; }
+        public int VatPercentId { get; set; }
+        public int VatExemptionId { get; set; }
         public string VatNumber { get; set; }
-        public int VatPercent { get; set; }
         public int Branch { get; set; }
         public string Profession { get; set; }
         public string Street { get; set; }

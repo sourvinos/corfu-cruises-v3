@@ -3,7 +3,7 @@ import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 // Custom
 import { CustomerAadeHttpService } from '../classes/services/customer-aade-http.service'
-import { CustomerAadeRequestVM } from '../classes/view-models/customer-aade-vm'
+import { CustomerAadeRequestVM } from '../classes/view-models/customer-aade-request-vm'
 import { CustomerHttpService } from '../classes/services/customer-http.service'
 import { CustomerReadDto } from '../classes/dtos/customer-read-dto'
 import { CustomerWriteDto } from '../classes/dtos/customer-write-dto'
@@ -234,7 +234,7 @@ export class CustomerFormComponent {
             nationality: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             taxOffice: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             vatPercent: [0, [Validators.required, Validators.min(0), Validators.max(100)]],
-            vatPercentId: [0, [Validators.required,Validators.min(1), Validators.max(9)]],
+            vatPercentId: [0, [Validators.required, Validators.min(1), Validators.max(9)]],
             vatExemptionId: [0, [Validators.required, Validators.min(0), Validators.max(30)]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
             fullDescription: ['', [Validators.required, Validators.maxLength(512)]],
@@ -314,8 +314,14 @@ export class CustomerFormComponent {
 
     private saveRecord(customer: CustomerWriteDto): void {
         this.customerHttpService.save(customer).subscribe({
-            next: (response: any) => {
-                this.dexieService.update('customers', { 'id': parseInt(response.body.id), 'description': response.body.description, 'email': response.body.email, 'isActive': response.body.isActive })
+            next: (response) => {
+                this.dexieService.update('customers', {
+                    'id': parseInt(response.body.id),
+                    'description': response.body.description,
+                    'email': response.body.email,
+                    'vatPercent': response.body.vatPercent,
+                    'isActive': response.body.isActive
+                })
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
             },
             error: (errorFromInterceptor) => {

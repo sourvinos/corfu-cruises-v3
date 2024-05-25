@@ -115,15 +115,7 @@ export class InvoiceFormComponent {
     }
 
     public onDoSummaryCalculations(): void {
-        const grossAmount = parseFloat(this.form.value.grossAmount)
-        const vatPercent = parseFloat(this.form.value.vatPercent) / 100
-        const netAmount = grossAmount / (1 + vatPercent)
-        const vatAmount = netAmount * vatPercent
-        this.form.patchValue({
-            netAmount: netAmount.toFixed(2),
-            vatAmount: vatAmount.toFixed(2),
-            grossAmount: grossAmount.toFixed(2)
-        })
+        this.calculateSummary()
     }
 
     public onDoSubmitTasks(): void {
@@ -293,7 +285,15 @@ export class InvoiceFormComponent {
             batch: ''
         })
         this.populateDocumentTypesAfterShipSelection('documentTypesInvoice', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation', value.id)
-        this.updateVatPercentAfterShipSelection(this.form.value.ship)
+    }
+
+    public async updateFieldsAfterCustomerSelection(value: SimpleEntity): Promise<void> {
+        await this.dexieService.getById('customers', value.id).then(response => {
+            this.form.patchValue({
+                vatPercent: response.vatPercent
+            })
+            this.calculateSummary()
+        })
     }
 
     //#endregion
@@ -590,6 +590,18 @@ export class InvoiceFormComponent {
         }
     }
 
+    private calculateSummary(): void {
+        const grossAmount = parseFloat(this.form.value.grossAmount)
+        const vatPercent = parseFloat(this.form.value.vatPercent) / 100
+        const netAmount = grossAmount / (1 + vatPercent)
+        const vatAmount = netAmount * vatPercent
+        this.form.patchValue({
+            netAmount: netAmount.toFixed(2),
+            vatAmount: vatAmount.toFixed(2),
+            grossAmount: grossAmount.toFixed(2)
+        })
+    }
+
     private resetForm(): void {
         this.form.reset()
     }
@@ -624,12 +636,6 @@ export class InvoiceFormComponent {
 
     private leftAlignLastTab(): void {
         this.helperService.leftAlignLastTab()
-    }
-
-    private updateVatPercentAfterShipSelection(value: any): void {
-        this.form.patchValue({
-            vatPercent: value.shipOwner.vatPercent
-        })
     }
 
     //#endregion

@@ -163,7 +163,6 @@ export class InvoiceDialogComponent {
 
     public async updateFieldsAfterShipSelection(value: SimpleEntity): Promise<void> {
         this.populateDocumentTypesAfterShipSelection('documentTypesInvoice', 'dropdownDocumentTypes', 'documentType', 'abbreviation', 'abbreviation', value.id)
-        this.updateVatPercentAfterShipSelection(this.form.value.ship)
     }
 
     public async updateDocumentTypeFieldsAfterDocumentTypeSelection(value: DocumentTypeAutoCompleteVM): Promise<void> {
@@ -365,16 +364,23 @@ export class InvoiceDialogComponent {
         })
     }
 
-    private populateFields(): void {
-        this.form.patchValue({
-            customer: {
-                id: this.data[0].customer.id,
-                description: this.data[0].customer.description
-            },
-            destination: {
-                id: this.data[0].destination.id,
-                description: this.data[0].destination.description
-            }
+    private async populateFields(): Promise<void> {
+        await this.dexieService.getById('customers', this.data[0].customer.id).then(response => {
+            this.form.patchValue({
+                customer: {
+                    id: response.id,
+                    description: response.description
+                },
+                vatPercent: response.vatPercent
+            })
+        })
+        await this.dexieService.getById('destinations', this.data[0].destination.id).then(response => {
+            this.form.patchValue({
+                destination: {
+                    id: response.id,
+                    description: response.description
+                }
+            })
         })
     }
 
@@ -425,12 +431,6 @@ export class InvoiceDialogComponent {
     private async updatePaymentMethodWithDefaultValue(): Promise<void> {
         this.form.patchValue({
             'paymentMethod': await this.dexieService.getByDefault('paymentMethods', 'isDefault')
-        })
-    }
-
-    private updateVatPercentAfterShipSelection(value: any): void {
-        this.form.patchValue({
-            vatPercent: value.shipOwner.vatPercent
         })
     }
 

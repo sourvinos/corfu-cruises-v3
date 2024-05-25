@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 // Custom
-import { CustomerAadeRequestVM } from '../view-models/customer-aade-vm'
+import { CustomerAadeRequestVM } from '../view-models/customer-aade-request-vm'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { environment } from 'src/environments/environment'
 
