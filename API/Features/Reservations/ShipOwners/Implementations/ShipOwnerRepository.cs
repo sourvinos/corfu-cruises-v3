@@ -23,7 +23,7 @@ namespace API.Features.Reservations.ShipOwners {
         public async Task<IEnumerable<ShipOwnerListVM>> GetAsync() {
             var shipOwners = await context.ShipOwners
                 .AsNoTracking()
-                .OrderBy(x => x.Description)
+                .OrderBy(x => x.DescriptionEn)
                 .ToListAsync();
             return mapper.Map<IEnumerable<ShipOwner>, IEnumerable<ShipOwnerListVM>>(shipOwners);
         }

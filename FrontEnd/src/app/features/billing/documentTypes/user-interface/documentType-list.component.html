@@ -13,8 +13,8 @@
                     <tr>
                         <th class="width-5" pSortableColumn="isActive">{{ getLabel("headerIsActive") }}</th>
                         <th class="width-20" pSortableColumn="shipOwner.description">{{ getLabel("headerShipOwner") }}</th>
-                        <th class="width-20" pSortableColumn="description">{{ getLabel("headerDescription") }}</th>
                         <th class="width-20" pSortableColumn="ship.description">{{ getLabel("headerShip") }}</th>
+                        <th class="width-20" pSortableColumn="description">{{ getLabel("headerDescription") }}</th>
                         <th class="width-5" pSortableColumn="batch">{{ getLabel("headerBatch") }}</th>
                         <th class="width-5" pSortableColumn="table8_1">{{ getLabel("headerTable8_1") }}</th>
                         <th class="width-5" pSortableColumn="table8_8">{{ getLabel("headerTable8_8") }}</th>
@@ -35,7 +35,6 @@
                                 </ng-template>
                             </p-columnFilter>
                         </th>
-                        <th class="width-20"><input (input)="table.filter($event.target.value, 'description', 'contains')" [value]="$any(table).filters['description']?.value" class="p-inputtext"></th>
                         <th class="width-20">
                             <p-columnFilter [showMenu]="false" field="ship" matchMode="in">
                                 <ng-template let-filter="filterCallback" let-value pTemplate="filter">
@@ -49,6 +48,7 @@
                                 </ng-template>
                             </p-columnFilter>
                         </th>
+                        <th class="width-20"><input (input)="table.filter($event.target.value, 'description', 'contains')" [value]="$any(table).filters['description']?.value" class="p-inputtext"></th>
                         <th class="width-5"><input (input)="table.filter($event.target.value, 'batch', 'contains')" [value]="$any(table).filters['batch']?.value" class="center p-inputtext"></th>
                         <th class="width-5"><input (input)="table.filter($event.target.value, 'table8_1', 'contains')" [value]="$any(table).filters['table8_1']?.value" class="center p-inputtext"></th>
                         <th class="width-5"><input (input)="table.filter($event.target.value, 'table8_8', 'contains')" [value]="$any(table).filters['table8_8']?.value" class="center p-inputtext"></th>
@@ -59,11 +59,11 @@
                     <tr (click)="onHighlightRow(record.id)" (contextmenu)="onHighlightRow(record.id)" (dblclick)="onEditRecord(record.id)" [attr.id]=record.id [pContextMenuRow]="record" style="height: 32px;">
                         <td class="width-5"><span class="center no-left-padding" style="font-size: 0.5rem; padding-top: 0 !important;">{{ getEmoji(record.isActive) }}</span></td>
                         <td class="width-20"><span>{{ record.shipOwner.description }}</span></td>
-                        <td class="width-20"><span>{{ record.description }}</span></td>
                         <td class="width-20">
                             <span *ngIf="record.ship.id == 0" style="font-size: 0.5rem; padding-top: 0 !important;">{{ getEmoji('wildcard') }}</span>
                             <span *ngIf="record.ship.id != 0">{{ record.ship.description }}</span>
                         </td>
+                        <td class="width-20"><span>{{ record.description }}</span></td>
                         <td class="width-5"><span class="center">{{ record.batch }}</span></td>
                         <td class="width-5"><span class="center">{{ record.table8_1 }}</span></td>
                         <td class="width-5"><span class="center">{{ record.table8_8 }}</span></td>

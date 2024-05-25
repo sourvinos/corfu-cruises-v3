@@ -28,7 +28,7 @@ namespace API.Features.Billing.DocumentTypes {
                 .AsNoTracking()
                 .Include(x => x.Ship)
                 .Include(x => x.ShipOwner)
-                .OrderBy(x => x.ShipOwner.Description).ThenBy(x => x.Description).ThenBy(x => x.Ship.Description)
+                .OrderBy(x => x.ShipOwner.DescriptionEn).ThenBy(x => x.Ship.Description).ThenBy(x => x.Description).ThenBy(x => x.Batch)
                 .ToListAsync();
             return mapper.Map<IEnumerable<DocumentType>, IEnumerable<DocumentTypeListVM>>(DocumentTypes);
         }

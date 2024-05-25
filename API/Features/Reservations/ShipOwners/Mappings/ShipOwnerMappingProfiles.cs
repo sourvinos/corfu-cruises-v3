@@ -6,7 +6,8 @@ namespace API.Features.Reservations.ShipOwners {
     public class ShipOwnerMappingProfile : Profile {
 
         public ShipOwnerMappingProfile() {
-            CreateMap<ShipOwner, ShipOwnerListVM>();
+            CreateMap<ShipOwner, ShipOwnerListVM>()
+                .ForMember(x => x.Description, x => x.MapFrom(x => x.DescriptionEn));
             CreateMap<ShipOwner, ShipOwnerBrowserVM>()
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.DescriptionEn));
             CreateMap<ShipOwner, ShipOwnerReadDto>()
