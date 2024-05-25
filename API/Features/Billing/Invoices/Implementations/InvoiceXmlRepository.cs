@@ -59,6 +59,9 @@ namespace API.Features.Billing.Invoices {
             xtw.WriteElementString("netValue", invoice.InvoiceDetail.NetValue.ToString());
             xtw.WriteElementString("vatCategory", invoice.InvoiceDetail.VatCategory.ToString());
             xtw.WriteElementString("vatAmount", invoice.InvoiceDetail.VatAmount.ToString());
+            if (invoice.InvoiceDetail.VatCategory == 7) {
+                xtw.WriteElementString("vatExemptionCategory", invoice.InvoiceDetail.VatExemptionCategory.ToString());
+            }
             xtw.WriteStartElement("incomeClassification");
             xtw.WriteElementString("icls:classificationType", invoice.InvoiceSummary.IncomeClassification.ClassificationType);
             xtw.WriteElementString("icls:classificationCategory", invoice.InvoiceSummary.IncomeClassification.ClassificationCategory);

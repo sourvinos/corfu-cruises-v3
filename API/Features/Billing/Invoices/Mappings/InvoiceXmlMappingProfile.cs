@@ -52,7 +52,8 @@ namespace API.Features.Billing.Invoices {
                     LineNumber = 1,
                     NetValue = x.NetAmount,
                     VatCategory = x.Customer.VatPercentId,
-                    VatAmount = x.VatAmount
+                    VatAmount = x.VatAmount,
+                    VatExemptionCategory = x.Customer.VatExemptionId
                 }))
                 .ForMember(x => x.InvoiceSummary, x => x.MapFrom(x => new XmlInvoiceSummaryVM {
                     TotalNetValue = x.NetAmount,

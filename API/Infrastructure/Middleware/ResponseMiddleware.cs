@@ -112,7 +112,6 @@ namespace API.Infrastructure.Middleware {
                 456 => ApiMessages.InvalidNationality(),
                 457 => ApiMessages.InvalidGender(),
                 458 => ApiMessages.InvalidTaxOffice(),
-                463 => ApiMessages.InvalidVatRegime(),
                 464 => ApiMessages.InvalidCrewSpecialty(),
                 459 => ApiMessages.SimpleUserNightRestrictions(),
                 490 => ApiMessages.NotOwnRecord(),

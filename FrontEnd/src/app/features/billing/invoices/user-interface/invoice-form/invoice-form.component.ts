@@ -360,7 +360,7 @@ export class InvoiceFormComponent {
             ship: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             netAmount: [0, ValidationService.isGreaterThanZero],
             vatPercent: [0],
-            vatAmount: [0, ValidationService.isGreaterThanZero],
+            vatAmount: [0],
             grossAmount: [0, [Validators.required, Validators.min(1), Validators.max(99999)]],
             portA: this.formBuilder.group({
                 id: 0,

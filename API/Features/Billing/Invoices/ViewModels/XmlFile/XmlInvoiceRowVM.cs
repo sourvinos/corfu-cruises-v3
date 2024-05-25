@@ -6,6 +6,7 @@ namespace API.Features.Billing.Invoices {
         public decimal NetValue { get; set; }
         public int VatCategory { get; set; }
         public decimal VatAmount { get; set; }
+        public int VatExemptionCategory { get; set; }
 
     }
 
