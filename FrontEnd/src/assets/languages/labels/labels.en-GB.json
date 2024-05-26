@@ -44,6 +44,10 @@
                 "description": "Abbr."
             },
             {
+                "id": "headerVatNumber",
+                "description": "ΑΦΜ"
+            },
+            {
                 "id": "headerPhones",
                 "description": "Phones"
             },

@@ -123,6 +123,7 @@ export class CustomerListComponent {
             setTimeout(() => {
                 this.filterColumn(filters.isActive, 'isActive', 'contains')
                 this.filterColumn(filters.description, 'description', 'contains')
+                this.filterColumn(filters.vatNumber, 'vatNumber', 'contains')
                 this.filterColumn(filters.email, 'email', 'contains')
                 this.filterColumn(filters.phones, 'phones', 'contains')
             }, 500)

@@ -1,7 +1,8 @@
 export interface CustomerListVM {
 
     id: number
-    abbreviation: string
+    description: string
+    vatNumber: string
     email: string
     phones: string
     isActive: boolean
