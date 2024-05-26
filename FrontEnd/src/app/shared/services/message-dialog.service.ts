@@ -82,6 +82,7 @@ export class MessageDialogService {
     public errorsInRegistrars(): string { return this.getDescription(this.feature, 'errorsInRegistrars') }
     public checkInAfterDepartureIsNotAllowed(): string { return this.getDescription(this.feature, 'checkInAfterDepartureIsNotAllowed') }
     public customerDataIsInvalid(): string { return this.getDescription(this.feature, 'customerDataIsInvalid') }
+    public customerVatNumberIsDuplicate(): string { return this.getDescription(this.feature, 'customerVatNumberIsDuplicate') }
 
     public filterResponse(error: any, feature = 'snackbarMessages'): string {
         let returnValue = ''

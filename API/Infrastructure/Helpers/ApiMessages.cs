@@ -41,6 +41,7 @@ namespace API.Infrastructure.Helpers {
         public static string InvalidCoachRoute() { return "The coach route doesn't exist or is inactive."; }
         public static string InvalidIssueDate() { return "The issue date must be today's date."; }
         public static string InvalidBank() { return "The bank doesn't exist or is inactive."; }
+        public static string VatNumberIsDuplicate() { return "OK, but the VAT number already exists."; }
         public static string InvalidPort() { return "The port doesn't exist or is inactive."; }
         public static string InvalidDocumentType() { return "The document type doesn't exist or is inactive."; }
         public static string PriceFieldsMustBeZeroOrGreater() { return "All amounts must be zero or greater."; }

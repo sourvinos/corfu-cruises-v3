@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System.Linq;
 
 namespace API.Features.Reservations.Customers {
 
@@ -23,8 +24,18 @@ namespace API.Features.Reservations.Customers {
             };
         }
 
-        private static bool IsAlreadyUpdated(Customer z, CustomerWriteDto customer) {
-            return z != null && z.PutAt != customer.PutAt;
+        public async Task<int> IsValidWithWarningAsync(CustomerWriteDto customer) {
+            return true switch {
+                var x when x == !await IsVatNumberDuplicate(customer) => 407,
+                _ => 200,
+            };
+        }
+
+        private async Task<bool> IsVatNumberDuplicate(CustomerWriteDto customer) {
+            var x = await context.Customers
+                .Where(x => x.VatNumber == customer.VatNumber)
+                .FirstOrDefaultAsync();
+            return x == null;
         }
 
         private async Task<bool> IsValidNationality(CustomerWriteDto customer) {
@@ -51,6 +62,10 @@ namespace API.Features.Reservations.Customers {
 
         private static bool BalanceLimitMustBeZeroOrGreater(CustomerWriteDto customer) {
             return customer.BalanceLimit >= 0;
+        }
+
+        private static bool IsAlreadyUpdated(Customer z, CustomerWriteDto customer) {
+            return z != null && z.PutAt != customer.PutAt;
         }
 
     }

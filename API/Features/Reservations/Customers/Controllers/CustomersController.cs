@@ -69,12 +69,13 @@ namespace API.Features.Reservations.Customers {
         public async Task<ResponseWithBody> PostAsync([FromBody] CustomerWriteDto customer) {
             var x = customerValidation.IsValidAsync(null, customer);
             if (await x == 200) {
+                var isValidWithWarnings = await customerValidation.IsValidWithWarningAsync(customer);
                 var z = customerRepo.Create(mapper.Map<CustomerWriteDto, Customer>((CustomerWriteDto)customerRepo.AttachMetadataToPostDto(customer)));
                 return new ResponseWithBody {
-                    Code = 200,
+                    Code = isValidWithWarnings,
                     Icon = Icons.Success.ToString(),
                     Body = customerRepo.GetByIdForBrowserAsync(z.Id).Result,
-                    Message = ApiMessages.OK()
+                    Message = isValidWithWarnings == 200 ? ApiMessages.OK() : ApiMessages.VatNumberIsDuplicate()
                 };
             } else {
                 throw new CustomException() {

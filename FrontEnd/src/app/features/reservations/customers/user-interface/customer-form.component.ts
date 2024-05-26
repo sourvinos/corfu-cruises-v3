@@ -322,7 +322,11 @@ export class CustomerFormComponent {
                     'vatPercent': response.body.vatPercent,
                     'isActive': response.body.isActive
                 })
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                this.helperService.doPostSaveFormTasks(
+                    response.code == 200 ? this.messageDialogService.success() : this.messageDialogService.customerVatNumberIsDuplicate(),
+                    response.code == 200 ? 'ok' : 'ok',
+                    this.parentUrl,
+                    true)
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
