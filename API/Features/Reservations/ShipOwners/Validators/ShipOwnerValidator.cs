@@ -9,13 +9,13 @@ namespace API.Features.Reservations.ShipOwners {
             // FKs
             RuleFor(x => x.NationalityId).NotEmpty();
             RuleFor(x => x.TaxOfficeId).NotEmpty();
-            RuleFor(x => x.VatExemptionId).InclusiveBetween(0, 30); ;
             // Fields
+            RuleFor(x => x.VatPercent).GreaterThanOrEqualTo(0);
+            RuleFor(x => x.VatPercentId).InclusiveBetween(1, 9); ;
+            RuleFor(x => x.VatExemptionId).InclusiveBetween(0, 30); ;
             RuleFor(x => x.Description).NotEmpty().MaximumLength(128);
             RuleFor(x => x.DescriptionEn).NotEmpty().MaximumLength(128);
-            RuleFor(x => x.VatPercent).GreaterThanOrEqualTo(0);
             RuleFor(x => x.VatNumber).NotEmpty().MaximumLength(36);
-            RuleFor(x => x.VatMyDataId).InclusiveBetween(1, 8);
             RuleFor(x => x.Branch).InclusiveBetween(0, 10);
             RuleFor(x => x.Profession).MaximumLength(128);
             RuleFor(x => x.Street).MaximumLength(128);

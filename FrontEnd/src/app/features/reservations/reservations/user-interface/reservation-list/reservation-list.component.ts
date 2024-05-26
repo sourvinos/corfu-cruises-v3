@@ -369,7 +369,8 @@ export class ReservationListComponent {
 
     private initContextMenu(): void {
         this.menuItems = [
-            { label: this.getLabel('contextMenuEdit'), command: () => this.onEditRecord(this.selectedRecord.reservationId) }
+            { label: this.getLabel('contextMenuEdit'), command: () => this.onEditRecord(this.selectedRecord.reservationId) },
+            { label: this.getLabel('contextMenuCopy'), command: () => this.helperService.copyToClipboard() },
         ]
     }
 

@@ -1,3 +1,4 @@
+import { Clipboard } from '@angular/cdk/clipboard'
 import { FormGroup } from '@angular/forms'
 import { Injectable, QueryList } from '@angular/core'
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete'
@@ -37,9 +38,14 @@ export class HelperService {
 
     //#endregion
 
-    constructor(private localStorageService: LocalStorageService, private dialogService: DialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService, private titleService: Title) { }
+    constructor(private clipboard: Clipboard, private dialogService: DialogService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService, private titleService: Title) { }
 
     //#region public methods
+
+    public copyToClipboard(): void {
+        this.clipboard.copy(window.getSelection().toString())
+    }
+
 
     public leftAlignLastTab(): void {
         const tabs = document.getElementsByClassName('mat-mdc-tab') as HTMLCollectionOf<HTMLElement>
