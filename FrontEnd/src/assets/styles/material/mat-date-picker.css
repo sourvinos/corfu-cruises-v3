@@ -1,7 +1,7 @@
 /* Wrapper */
 .mat-datepicker-content {
     background-color: var(--color-secondary) !important;
-    padding: 1rem 1.375rem 1rem 1rem;
+    padding: 1rem;
 }
 
 /* Header */
@@ -11,33 +11,37 @@
 
 /* Month selector */
 .mat-calendar-period-button > .mdc-button__label {
-    color: var(--color-datepicker-calendar) !important;
+    color: var(--color-button-text) !important;
     top: -0.1875rem !important;
 }
 
 /* Month selector arrow */
 .mat-calendar-arrow {
-    fill: var(--color-datepicker-calendar) !important;
+    fill: var(--color-button-text) !important;
 }
 
 /* Previous - Next */
 .mat-calendar-previous-button::after, .mat-calendar-next-button::after {
-    color: var(--color-datepicker-calendar) !important;
+    color: var(--color-button-text) !important;
     top: -0.5rem !important;
 }
 
 /* Table */
 .mat-calendar-table-header th {
-    color: var(--color-datepicker-calendar) !important;
+    color: var(--color-button-text) !important;
 }
 
 .mat-calendar-body-label {
-    color: var(--color-secondary) !important;
+    color: transparent !important;
     padding: 0 !important;
 }
 
 .mat-calendar-body-cell-content {
-    color: var(--color-datepicker-calendar) !important;
+    color: var(--color-button-text) !important;
+}
+
+.mat-calendar-body-selected {
+    color: var(--color-button-text) !important;
 }
 
 /* Today */
@@ -49,5 +53,3 @@
 .mat-calendar-body-selected.mat-calendar-body-today {
     box-shadow: none !important;
 }
-
-
