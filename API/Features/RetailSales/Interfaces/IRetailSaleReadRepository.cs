@@ -7,6 +7,7 @@ namespace API.Features.RetailSales {
     public interface IRetailSaleReadRepository : IRepository<RetailSale> {
 
         Task<IEnumerable<RetailSaleListVM>> GetForPeriodAsync(RetailSaleListCriteriaVM criteria);
+        Task<RetailSale> GetByIdForXmlAsync(string invoiceId);
 
     }
 

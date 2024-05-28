@@ -1,5 +1,4 @@
 using System.Linq;
-using API.Features.Billing.DocumentTypes;
 using API.Features.Reservations.Nationalities;
 using API.Features.Reservations.PickupPoints;
 using API.Features.RetailSales;
@@ -79,21 +78,10 @@ namespace API.Features.Reservations.Reservations {
                     VatPercent = x.RetailSale.VatPercent,
                     VatAmount = x.RetailSale.VatAmount,
                     GrossAmount = x.RetailSale.GrossAmount,
-                    DocumentType = new DocumentTypeBrowserVM {
-                        Abbreviation = x.RetailSale.DocumentType.AbbreviationEn,
-                        Batch = x.RetailSale.DocumentType.BatchEn,
-                        Description = x.RetailSale.DocumentType.Description,
+                    DocumentType = new RetailSaleReadDtoDocumentType {
                         Id = x.RetailSale.DocumentType.Id,
-                        IsActive = x.RetailSale.DocumentType.IsActive,
-                        IsDefault = x.RetailSale.DocumentType.IsDefault,
-                        Ship = new SimpleEntity {
-                            Id = x.Ship.Id,
-                            Description = x.Ship.Description
-                        },
-                        ShipOwner = new SimpleEntity {
-                            Id = x.RetailSale.ShipOwner.Id,
-                            Description = x.RetailSale.ShipOwner.Description
-                        },
+                        Abbreviation = x.RetailSale.DocumentType.AbbreviationEn,
+                        Batch = x.RetailSale.DocumentType.BatchEn
                     },
                     PaymentMethod = new SimpleEntity {
                         Id = x.RetailSale.PaymentMethod.Id,

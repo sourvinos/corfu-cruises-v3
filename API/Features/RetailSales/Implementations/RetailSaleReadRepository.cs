@@ -26,11 +26,20 @@ namespace API.Features.RetailSales {
                 .AsNoTracking()
                 .Include(x => x.DocumentType)
                 .Include(x => x.ShipOwner)
-                .Include(x => x.Reservation).ThenInclude(x => x.Customer)
+                // .Include(x => x.Reservation).ThenInclude(x => x.Customer)
                 .Where(x => x.Date >= Convert.ToDateTime(criteria.FromDate) && x.Date <= Convert.ToDateTime(criteria.ToDate))
                 .OrderBy(x => x.Date).ThenBy(x => x.ShipOwner.Description).ThenBy(x => x.InvoiceNo)
                 .ToListAsync();
             return mapper.Map<IEnumerable<RetailSale>, IEnumerable<RetailSaleListVM>>(invoices);
+        }
+
+        public async Task<RetailSale> GetByIdForXmlAsync(string invoiceId) {
+            return await context.RetailSales
+                .AsNoTracking()
+                .Include(x => x.ShipOwner).ThenInclude(x => x.Nationality)
+                .Include(x => x.DocumentType)
+                .Include(x => x.PaymentMethod)
+                .SingleOrDefaultAsync(x => x.ReservationId.ToString() == invoiceId);
         }
 
     }

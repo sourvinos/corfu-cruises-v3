@@ -126,6 +126,7 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IRetailSaleReadRepository, RetailSaleReadRepository>();
             services.AddTransient<IRetailSaleUpdateRepository, RetailSaleUpdateRepository>();
             services.AddTransient<IRetailSaleValidation, RetailSaleValidation>();
+            services.AddTransient<IRetailSaleXmlRepository, RetailSaleXmlRepository>();
             #endregion
         }
 

@@ -1,0 +1,19 @@
+using System;
+
+namespace API.Features.RetailSales {
+
+    public class XmlRetailSaleVM {
+
+        public Guid InvoiceId { get; set; }
+        public XmlCredentialsVM Credentials { get; set; }
+        public XmlIssuerVM Issuer { get; set; }
+        public XmlCounterPartVM CounterPart { get; set; }
+        public XmlRetailSaleHeaderVM InvoiceHeader { get; set; }
+        public XmlPaymentMethodVM PaymentMethod { get; set; }
+        public XmlRetailSaleRowVM InvoiceDetail { get; set; }
+        public XmlRetailSaleSummaryVM InvoiceSummary { get; set; }
+        public XmlAadeVM Aade { get; set; }
+
+    }
+
+}

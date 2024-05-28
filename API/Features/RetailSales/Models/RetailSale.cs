@@ -1,6 +1,5 @@
 using API.Features.Billing.DocumentTypes;
 using API.Features.Billing.PaymentMethods;
-using API.Features.Reservations.Reservations;
 using API.Features.Reservations.ShipOwners;
 using API.Infrastructure.Interfaces;
 using System;
@@ -34,7 +33,6 @@ namespace API.Features.RetailSales {
         public bool IsEmailSent { get; set; }
         public bool IsCancelled { get; set; }
         // Navigation
-        public Reservation Reservation { get; set; }
         public DocumentType DocumentType { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
         public ShipOwner ShipOwner { get; set; }

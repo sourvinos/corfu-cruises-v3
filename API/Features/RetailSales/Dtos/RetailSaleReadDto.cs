@@ -1,5 +1,4 @@
 using System;
-using API.Features.Billing.DocumentTypes;
 using API.Infrastructure.Classes;
 
 namespace API.Features.RetailSales {
@@ -11,7 +10,7 @@ namespace API.Features.RetailSales {
         public string Date { get; set; }
         public string TripDate { get; set; }
         public int InvoiceNo { get; set; }
-        public DocumentTypeBrowserVM DocumentType { get; set; }
+        public RetailSaleReadDtoDocumentType DocumentType { get; set; }
         public SimpleEntity PaymentMethod { get; set; }
         public RetailSaleReadDtoShipOwner ShipOwner { get; set; }
         public int Adults { get; set; }

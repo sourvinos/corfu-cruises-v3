@@ -40,7 +40,7 @@ import { DocumentTypeReadDto } from 'src/app/features/billing/documentTypes/clas
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { RetailSaleWriteDto } from 'src/app/features/retail-sales/classes/dtos/retailSale-write-dto'
 import { RetailSaleHttpService } from 'src/app/features/retail-sales/classes/services/retailSale-http.service'
-import { RetailSaleReadDtoDocumentType } from '../../classes/dtos/form/retailSale-read-dto-documentType'
+import { environment } from 'src/environments/environment'
 
 @Component({
     selector: 'reservation-form',
@@ -170,6 +170,10 @@ export class ReservationFormComponent {
 
     public isAdminOrNewRecord(): boolean {
         return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' || this.recordId == null
+    }
+
+    public isDevelopment(): boolean {
+        return environment.production == false
     }
 
     public isReservationInStorage(): boolean {
@@ -365,7 +369,7 @@ export class ReservationFormComponent {
         } else {
             this.getRecord()
             this.populateReservationFields()
-            // this.populateRetailSaleFields()
+            this.populateRetailSaleFields()
             this.updateDocumentTypesAfterShipOwnerSelection(this.retailSaleForm.value.shipOwner)
             this.onDoCalculations()
             this.getPassengerDifferenceColor()
@@ -551,8 +555,8 @@ export class ReservationFormComponent {
         this.populateDropdownFromDexieDB('reservationForm', 'ports', 'dropdownPorts', 'port', 'description', 'description')
         this.populateDropdownFromDexieDB('reservationForm', 'ports', 'dropdownPorts', 'portAlternate', 'description', 'description')
         this.populateDropdownFromDexieDB('reservationForm', 'ships', 'dropdownShips', 'ship', 'description', 'description')
-        // this.populateDropdownFromDexieDB('retailSaleForm', 'shipOwners', 'dropdownShipOwners', 'shipOwner', 'description', 'description')
-        // this.populateDropdownFromDexieDB('retailSaleForm', 'paymentMethods', 'dropdownPaymentMethods', 'paymentMethod', 'description', 'description')
+        this.populateDropdownFromDexieDB('retailSaleForm', 'shipOwners', 'dropdownShipOwners', 'shipOwner', 'description', 'description')
+        this.populateDropdownFromDexieDB('retailSaleForm', 'paymentMethods', 'dropdownPaymentMethods', 'paymentMethod', 'description', 'description')
     }
 
     private populateDropdownFromDexieDB(form: string, dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
@@ -601,20 +605,9 @@ export class ReservationFormComponent {
             tripDate: this.record.retailSale.tripDate,
             invoiceNo: this.record.retailSale.invoiceNo,
             documentType: {
-                abbreviation: this.record.retailSale.documentType.abbreviation,
-                batch: this.record.retailSale.documentType.batch,
-                description: this.record.retailSale.documentType.description,
                 id: this.record.retailSale.documentType.id,
-                isActive: this.record.retailSale.documentType.isActive,
-                isDefault: this.record.retailSale.documentType.isDefault,
-                ship: {
-                    id: this.record.retailSale.documentType.ship.id,
-                    description: this.record.retailSale.documentType.ship.description,
-                },
-                shipOwner: {
-                    id: this.record.retailSale.documentType.shipOwner.id,
-                    description: this.record.retailSale.documentType.shipOwner.description,
-                },
+                abbreviation: this.record.retailSale.documentType.abbreviation,
+                batch: this.record.retailSale.documentType.batch
             },
             batch: this.record.retailSale.documentType.batch,
             paymentMethod: {
