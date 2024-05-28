@@ -1,5 +1,6 @@
 using API.Features.Billing.DocumentTypes;
 using API.Features.Billing.PaymentMethods;
+using API.Features.Reservations.Reservations;
 using API.Features.Reservations.ShipOwners;
 using API.Infrastructure.Interfaces;
 using System;
@@ -36,6 +37,7 @@ namespace API.Features.RetailSales {
         public DocumentType DocumentType { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
         public ShipOwner ShipOwner { get; set; }
+        public Reservation Reservation { get; set; }
         // Aade
         public string Uid { get; set; }
         public string Mark { get; set; }

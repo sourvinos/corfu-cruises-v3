@@ -13,15 +13,15 @@ namespace API.Features.RetailSales {
 
         #region variables
 
-        private readonly IRetailSaleXmlRepository invoiceAadeRepo;
-        private readonly IRetailSaleReadRepository invoiceReadRepo;
         private readonly IMapper mapper;
+        private readonly IRetailSaleReadRepository invoiceReadRepo;
+        private readonly IRetailSaleXmlRepository invoiceXmlRepo;
 
         #endregion
 
-        public RetailSalesXmlController(IRetailSaleXmlRepository invoiceAadeRepo, IRetailSaleReadRepository invoiceReadRepo, IMapper mapper) {
-            this.invoiceAadeRepo = invoiceAadeRepo;
+        public RetailSalesXmlController(IRetailSaleReadRepository invoiceReadRepo, IRetailSaleXmlRepository invoiceXmlRepo, IMapper mapper) {
             this.invoiceReadRepo = invoiceReadRepo;
+            this.invoiceXmlRepo = invoiceXmlRepo;
             this.mapper = mapper;
         }
 
@@ -43,26 +43,26 @@ namespace API.Features.RetailSales {
             }
         }
 
-        // [HttpPost("uploadInvoice")]
-        // [Authorize(Roles = "admin")]
-        // public ResponseWithBody UploadInvoice([FromBody] XmlInvoiceVM invoice) {
-        //     var response = SaveInvoicePrettyResponse(invoice.InvoiceHeader, "xmls", invoiceAadeRepo.UploadXMLAsync(XElement.Load(invoiceAadeRepo.CreateXMLFileAsync(invoice)), invoice.Credentials).Result);
-        //     if (response.Contains("Success")) {
-        //         return new ResponseWithBody {
-        //             Code = 200,
-        //             Icon = Icons.Success.ToString(),
-        //             Body = new {
-        //                 invoice.InvoiceId,
-        //                 response
-        //             },
-        //             Message = ApiMessages.OK()
-        //         };
-        //     } else {
-        //         throw new CustomException() {
-        //             ResponseCode = 402
-        //         };
-        //     }
-        // }
+        [HttpPost("uploadInvoice")]
+        [Authorize(Roles = "admin")]
+        public ResponseWithBody UploadInvoice([FromBody] XmlRetailSaleVM invoice) {
+            var response = SaveInvoicePrettyResponse(invoice.InvoiceHeader, "xmls", invoiceXmlRepo.UploadXMLAsync(XElement.Load(invoiceXmlRepo.CreateXMLFileAsync(invoice)), invoice.Credentials).Result);
+            if (response.Contains("Success")) {
+                return new ResponseWithBody {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Body = new {
+                        invoice.InvoiceId,
+                        response
+                    },
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 402
+                };
+            }
+        }
 
         // [HttpPost("cancelInvoice")]
         // [Authorize(Roles = "admin")]
@@ -91,6 +91,14 @@ namespace API.Features.RetailSales {
         //         .Replace("<string xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/\">", "")
         //         .Replace("</string>", "")).ToString();
         // }
+
+        private string SaveInvoicePrettyResponse(XmlRetailSaleHeaderVM invoice, string subdirectory, string response) {
+            return invoiceXmlRepo.SaveInvoiceResponse(invoice, subdirectory, response
+                .Replace("&lt;", "<")
+                .Replace("&gt;", ">")
+                .Replace("<string xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/\">", "")
+                .Replace("</string>", "")).ToString();
+        }
 
     }
 

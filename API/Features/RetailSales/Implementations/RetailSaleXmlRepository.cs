@@ -29,18 +29,6 @@ namespace API.Features.RetailSales {
             xtw.WriteElementString("country", invoice.Issuer.Country);
             xtw.WriteElementString("branch", invoice.Issuer.Branch.ToString());
             xtw.WriteEndElement();
-            xtw.WriteStartElement("counterpart");
-            xtw.WriteElementString("vatNumber", invoice.CounterPart.VatNumber);
-            xtw.WriteElementString("country", invoice.CounterPart.Country);
-            xtw.WriteElementString("branch", invoice.CounterPart.Branch.ToString());
-            if (invoice.CounterPart.Country != "GR") {
-                xtw.WriteElementString("name", invoice.CounterPart.Name);
-            }
-            xtw.WriteStartElement("address");
-            xtw.WriteElementString("postalCode", invoice.CounterPart.Address.PostalCode);
-            xtw.WriteElementString("city", invoice.CounterPart.Address.City);
-            xtw.WriteEndElement();
-            xtw.WriteEndElement();
             xtw.WriteStartElement("invoiceHeader");
             xtw.WriteElementString("series", invoice.InvoiceHeader.Series);
             xtw.WriteElementString("aa", invoice.InvoiceHeader.Aa);

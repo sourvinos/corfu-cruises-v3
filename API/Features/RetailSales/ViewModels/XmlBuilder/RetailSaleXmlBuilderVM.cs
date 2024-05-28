@@ -4,7 +4,7 @@ namespace API.Features.RetailSales {
 
     public class RetailSaleXmlBuilderVM {
 
-        public Guid InvoiceId { get; set; }
+        public Guid ReservationId { get; set; }
         public XmlCredentialsVM Credentials { get; set; }
         public XmlPartyVM Issuer { get; set; }
         public XmlPartyVM CounterPart { get; set; }
