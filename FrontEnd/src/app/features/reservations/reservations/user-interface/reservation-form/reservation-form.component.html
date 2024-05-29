@@ -6,10 +6,10 @@
             <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
             <div id="header-buttons">
                 <span *ngIf="isReservationInStorage()" (click)="onShowCachedReservationDialog()" class="material-symbols-outlined accent">warning</span>
-                <button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" mat-icon-button>
+                <button [matMenuTriggerFor]="boardingPass" class="fab fab-with-no-background" mat-icon-button>
                     <mat-icon class="material-icons-outlined">more_vert</mat-icon>
                 </button>
-                <mat-menu #menu="matMenu" class="primary">
+                <mat-menu #boardingPass="matMenu" class="primary">
                     <ng-container *ngTemplateOutlet="boardingPassMenu"></ng-container>
                 </mat-menu>
             </div>
@@ -366,6 +366,12 @@
                             </div>
                         </form>
                         <div id="footer" style="margin-top: auto;">
+                            <button [matMenuTriggerFor]="retailSale" class="fab fab-with-no-background" mat-icon-button>
+                                <mat-icon class="material-icons-outlined">more_vert</mat-icon>
+                            </button>
+                            <mat-menu #retailSale="matMenu" class="primary">
+                                <ng-container *ngTemplateOutlet="retailSaleMenu"></ng-container>
+                            </mat-menu>
                             <button (click)="onSaveRetailSale()" [disabled]="!retailSaleForm.valid || !isNewRetailSale" class="primary" id="saveRetailSaleButton" mat-flat-button>
                                 <mat-icon *ngIf="!retailSaleForm.valid || !isNewRetailSale" class="material-icons-outlined">lock</mat-icon>
                                 <span>{{ getLabel("saveButton") | uppercase }}</span>
@@ -471,6 +477,10 @@
     </mat-option>
 </mat-autocomplete>
 
+<ng-template #showGhost>
+    <span>{{ getEmojiForActiveRecord(false) }}</span>
+</ng-template>
+
 <ng-template #boardingPassMenu xPosition="before">
     <button (click)="onPrintBoardingPass()" mat-menu-item>
         <span>{{ getLabel('printBoardingPass') }}</span>
@@ -480,14 +490,23 @@
     </button>
 </ng-template>
 
-<ng-template #showGhost>
-    <span>{{ getEmojiForActiveRecord(false) }}</span>
+<ng-template #saveMenuTemplate xPosition="before">
+    <button (click)="onSaveReservation(true)" mat-menu-item>
+        <span>{{ getLabel('saveAndKeepFormOpen') }}</span>
+    </button>
 </ng-template>
 
-<div id="menus">
-    <ng-template #saveMenuTemplate xPosition="before">
-        <button (click)="onSaveReservation(true)" mat-menu-item>
-            <span>{{ getLabel('saveAndKeepFormOpen') }}</span>
-        </button>
-    </ng-template>
-</div>
+<ng-template #retailSaleMenu xPosition="before">
+    <button (click)="onBuildAndOpenRetailSalePdf()" mat-menu-item>
+        <span>{{ getLabel('printRetailSale') }}</span>
+    </button>
+    <button mat-menu-item>
+        <span>{{ getLabel('emailRetailSale') }}</span>
+    </button>
+    <button mat-menu-item>
+        <span>{{ getLabel('submitRetailSale') }}</span>
+    </button>
+    <button mat-menu-item>
+        <span>{{ getLabel('cancelRetailSale') }}</span>
+    </button>
+</ng-template>

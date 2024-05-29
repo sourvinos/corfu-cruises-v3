@@ -80,6 +80,12 @@ namespace API.Features.RetailSales {
             };
         }
 
+        [HttpGet("[action]/{filename}")]
+        [Authorize(Roles = "admin")]
+        public IActionResult OpenPdf([FromRoute] string filename) {
+            return invoicePdfRepo.OpenPdf(filename);
+        }
+
     }
 
 }

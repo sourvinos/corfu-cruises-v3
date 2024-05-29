@@ -1007,6 +1007,22 @@
             {
                 "id": "grossAmount",
                 "description": "Σύνολο με ΦΠΑ"
+            },
+            {
+                "id": "printRetailSale",
+                "description": "Εκτύπωση"
+            },
+            {
+                "id": "emailRetailSale",
+                "description": "Αποστολή με email"
+            },
+            {
+                "id": "submitRetailSale",
+                "description": "Επανυποβολή"
+            },
+            {
+                "id": "cancelRetailSale",
+                "description": "Ακύρωση"
             }
         ]
     },

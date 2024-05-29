@@ -19,4 +19,12 @@ export class RetailSaleHttpService extends HttpDataService {
         return this.http.request<RetailSaleListVM[]>('post', environment.apiUrl + '/retailSales/getForPeriod', { body: criteria })
     }
 
+    public buildPdf(invoiceIds: string[]): Observable<any> {
+        return this.http.post<any>(this.url + '/buildInvoicePdfs', invoiceIds)
+    }
+
+    public openPdf(filename: string): Observable<any> {
+        return this.http.get(this.url + '/openPdf/' + filename, { responseType: 'arraybuffer' })
+    }
+
 }

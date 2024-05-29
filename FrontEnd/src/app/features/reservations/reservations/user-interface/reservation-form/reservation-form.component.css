@@ -22,6 +22,10 @@
     overflow: hidden;
 }
 
+#retail-sale-tab > #footer {
+    justify-content: space-between;
+}
+
 #table-wrapper {
     margin: 0;
 }

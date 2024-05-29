@@ -190,6 +190,26 @@ export class ReservationFormComponent {
         }
     }
 
+    public onBuildAndOpenRetailSalePdf(): void {
+        this.retailSaleHttpService.buildPdf(new Array(this.reservationForm.value.reservationId)).subscribe({
+            next: (response) => {
+                this.retailSaleHttpService.openPdf(response.body[0]).subscribe({
+                    next: (response) => {
+                        const blob = new Blob([response], { type: 'application/pdf' })
+                        const fileURL = URL.createObjectURL(blob)
+                        window.open(fileURL, '_blank')
+                    },
+                    error: (errorFromInterceptor) => {
+                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                    }
+                })
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
+        })
+    }
+
     public onDelete(): void {
         this.dialogService.open(this.messageDialogService.confirmDelete(), 'question', ['abort', 'ok']).subscribe(response => {
             if (response) {
