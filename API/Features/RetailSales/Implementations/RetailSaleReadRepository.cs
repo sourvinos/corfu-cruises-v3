@@ -42,6 +42,20 @@ namespace API.Features.RetailSales {
                 .SingleOrDefaultAsync(x => x.ReservationId.ToString() == invoiceId);
         }
 
+        public async Task<RetailSale> GetByIdForPdfAsync(string invoiceId) {
+            return await context.RetailSales
+                .Include(x => x.ShipOwner).ThenInclude(x => x.TaxOffice)
+                .Include(x => x.ShipOwner).ThenInclude(x => x.Nationality)
+                .Include(x => x.ShipOwner).ThenInclude(x => x.BankAccounts.Where(x => x.IsActive)).ThenInclude(x => x.Bank)
+                .Include(x => x.DocumentType)
+                .Include(x => x.PaymentMethod)
+                .Include(x => x.Reservation)
+                .Include(x => x.Reservation).ThenInclude(x => x.Destination)
+                .Include(x => x.Reservation).ThenInclude(x => x.Customer)
+                .Include(x => x.Reservation).ThenInclude(x => x.Passengers)
+                .SingleOrDefaultAsync(x => x.ReservationId.ToString() == invoiceId);
+        }
+
     }
 
 }

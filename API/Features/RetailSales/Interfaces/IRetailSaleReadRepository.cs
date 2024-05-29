@@ -8,6 +8,7 @@ namespace API.Features.RetailSales {
 
         Task<IEnumerable<RetailSaleListVM>> GetForPeriodAsync(RetailSaleListCriteriaVM criteria);
         Task<RetailSale> GetByIdForXmlAsync(string invoiceId);
+        Task<RetailSale> GetByIdForPdfAsync(string invoiceId);
 
     }
 
