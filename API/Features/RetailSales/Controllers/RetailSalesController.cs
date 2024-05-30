@@ -18,6 +18,7 @@ namespace API.Features.RetailSales {
         private readonly IRetailSalePdfRepository invoicePdfRepo;
         private readonly IRetailSaleReadRepository retailSaleReadRepo;
         private readonly IRetailSaleUpdateRepository retailSaleUpdateRepo;
+
         private readonly IRetailSaleValidation retailSaleValidation;
 
         #endregion

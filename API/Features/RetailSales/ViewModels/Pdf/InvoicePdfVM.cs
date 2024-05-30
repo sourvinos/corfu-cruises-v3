@@ -10,6 +10,7 @@ namespace API.Features.RetailSales {
         public InvoicePdfDocumentTypeVM DocumentType { get; set; }
         public InvoicePdfHeaderVM Header { get; set; }
         public InvoicePdfReservationVM Reservation { get; set; }
+        public InvoicePdfPaxAndPricesVM Persons { get; set; }
         public List<InvoicePdfPassengerVM> Passengers { get; set; }
         public InvoicePdfAadeVM Aade { get; set; }
         public InvoicePdfSummaryVM Summary { get; set; }

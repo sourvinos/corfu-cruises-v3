@@ -39,6 +39,21 @@ namespace API.Features.RetailSales {
                     TicketNo = x.Reservation.TicketNo,
                     Destination = x.Reservation.Destination.Description,
                     Customer = x.Reservation.Customer.Description,
+                    PickupPoint = x.Reservation.PickupPoint.Description,
+                    ExactPoint = x.Reservation.PickupPoint.ExactPoint,
+                    Time = x.Reservation.PickupPoint.Time,
+                    Remarks = x.Reservation.Remarks
+                }))
+                .ForMember(x => x.Persons, x => x.MapFrom(x => new InvoicePdfPaxAndPricesVM {
+                    Adults = x.Adults,
+                    AdultsPrice = x.AdultsPrice,
+                    AdultsTotalPrice = x.Adults * x.AdultsPrice,
+                    Kids = x.Kids,
+                    KidsPrice = x.KidsPrice,
+                    KidsTotalPrice = x.Kids * x.KidsPrice,
+                    Free = x.Free,
+                    TotalPax = x.Adults + x.Kids + x.Free,
+                    TotalPrice = x.Adults * x.AdultsPrice + x.Kids * x.KidsPrice
                 }))
                 .ForMember(x => x.Passengers, x => x.MapFrom(x => x.Reservation.Passengers.Select(passenger => new InvoicePdfPassengerVM {
                     Lastname = passenger.Lastname,
@@ -58,9 +73,7 @@ namespace API.Features.RetailSales {
                     UId = x.Uid,
                     Mark = x.Mark,
                     QrUrl = x.QrUrl
-                }))
-
-                ;
+                }));
         }
 
     }

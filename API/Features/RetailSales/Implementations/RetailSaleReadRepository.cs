@@ -52,6 +52,7 @@ namespace API.Features.RetailSales {
                 .Include(x => x.Reservation)
                 .Include(x => x.Reservation).ThenInclude(x => x.Destination)
                 .Include(x => x.Reservation).ThenInclude(x => x.Customer)
+                .Include(x => x.Reservation).ThenInclude(x => x.PickupPoint)
                 .Include(x => x.Reservation).ThenInclude(x => x.Passengers)
                 .SingleOrDefaultAsync(x => x.ReservationId.ToString() == invoiceId);
         }
