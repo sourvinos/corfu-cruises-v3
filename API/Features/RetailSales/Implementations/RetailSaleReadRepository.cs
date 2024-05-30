@@ -10,15 +10,18 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace API.Features.RetailSales {
 
     public class RetailSaleReadRepository : Repository<RetailSale>, IRetailSaleReadRepository {
 
         private readonly IMapper mapper;
+        private readonly TestingEnvironment testingEnvironment;
 
         public RetailSaleReadRepository(AppDbContext context, IHttpContextAccessor httpContext, IMapper mapper, IOptions<TestingEnvironment> testingEnvironment, UserManager<UserExtended> userManager) : base(context, httpContext, testingEnvironment, userManager) {
             this.mapper = mapper;
+            this.testingEnvironment = testingEnvironment.Value;
         }
 
         public async Task<IEnumerable<RetailSaleListVM>> GetForPeriodAsync(RetailSaleListCriteriaVM criteria) {
@@ -56,6 +59,31 @@ namespace API.Features.RetailSales {
                 .Include(x => x.Reservation).ThenInclude(x => x.Passengers)
                 .SingleOrDefaultAsync(x => x.ReservationId.ToString() == invoiceId);
         }
+
+        public async Task<RetailSale> GetByIdForPatchEmailSent(string reservationId) {
+            return await context.RetailSales
+                .AsNoTracking()
+                .Where(x => x.ReservationId.ToString() == reservationId)
+                .SingleOrDefaultAsync();
+        }
+
+        public void UpdateIsEmailSent(RetailSale invoice, string invoiceId) {
+            using var transaction = context.Database.BeginTransaction();
+            invoice.IsEmailSent = true;
+            context.RetailSales.Attach(invoice);
+            context.Entry(invoice).Property(x => x.IsEmailSent).IsModified = true;
+            context.SaveChanges();
+            DisposeOrCommit(transaction);
+        }
+
+        private void DisposeOrCommit(IDbContextTransaction transaction) {
+            if (testingEnvironment.IsTesting) {
+                transaction.Dispose();
+            } else {
+                transaction.Commit();
+            }
+        }
+
 
     }
 

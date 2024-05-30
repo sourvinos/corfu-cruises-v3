@@ -39,6 +39,15 @@ namespace API.Features.RetailSales {
             return lastInvoiceNo += 1;
         }
 
+        public void UpdateIsEmailSent(RetailSale invoice, string invoiceId) {
+            using var transaction = context.Database.BeginTransaction();
+            invoice.IsEmailSent = true;
+            context.RetailSales.Attach(invoice);
+            context.Entry(invoice).Property(x => x.IsEmailSent).IsModified = true;
+            context.SaveChanges();
+            DisposeOrCommit(transaction);
+        }
+
         private void DisposeOrCommit(IDbContextTransaction transaction) {
             if (testingEnvironment.IsTesting) {
                 transaction.Dispose();

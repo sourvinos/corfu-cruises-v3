@@ -41,6 +41,7 @@ import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { RetailSaleWriteDto } from 'src/app/features/retail-sales/classes/dtos/retailSale-write-dto'
 import { RetailSaleHttpService } from 'src/app/features/retail-sales/classes/services/retailSale-http.service'
 import { environment } from 'src/environments/environment'
+import { EmailRetailSaleVM } from 'src/app/features/retail-sales/classes/view-models/email/email-retailSale-vm'
 
 @Component({
     selector: 'reservation-form',
@@ -191,7 +192,7 @@ export class ReservationFormComponent {
     }
 
     public onBuildAndOpenRetailSalePdf(): void {
-        this.retailSaleHttpService.buildPdf(new Array(this.reservationForm.value.reservationId)).subscribe({
+        this.retailSaleHttpService.buildPdf(this.reservationForm.value.reservationId).subscribe({
             next: (response) => {
                 this.retailSaleHttpService.openPdf(response.body[0]).subscribe({
                     next: (response) => {
@@ -231,6 +232,21 @@ export class ReservationFormComponent {
         this.calculateAmounts()
         this.calculatePax()
         this.calculateSummary()
+    }
+
+    public onEmailRetailSale(): void {
+        this.retailSaleHttpService.buildPdf(this.reservationForm.value.reservationId).subscribe({
+            next: (response) => {
+                const criteria: EmailRetailSaleVM = {
+                    email: this.reservationForm.value.email,
+                    filename: response.body
+                }
+                this.emailRetailSale(criteria)
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
+        })
     }
 
     private calculateSummary(): void {
@@ -403,6 +419,27 @@ export class ReservationFormComponent {
         this.setLocale()
         this.setParentUrl()
         this.subscribeToInteractionService()
+    }
+
+    private emailRetailSale(criteria: EmailRetailSaleVM): void {
+        this.retailSaleHttpService.emailRetailSale(criteria).subscribe({
+            complete: () => {
+                this.retailSaleHttpService.patchRetailSaleWithEmailSent(criteria.filename).subscribe({
+                    next: () => {
+                        this.retailSaleForm.patchValue({
+                            isEmailSent: true
+                        })
+                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
+                    },
+                    error: (errorFromInterceptor) => {
+                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                    }
+                })
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
+        })
     }
 
     private filterAutocomplete(array: string, field: string, value: any): any[] {
@@ -823,6 +860,10 @@ export class ReservationFormComponent {
             this.updateRetailSaleFormWithPax()
             this.updatePaymentMethodWithDefaultValue()
         }
+    }
+
+    private removeExtensionsFromFileName(filename: string): string {
+        return filename.substring(0, filename.length - 4)
     }
 
     //#endregion

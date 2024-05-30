@@ -161,7 +161,6 @@ export class ReceiptFormComponent {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
             }
         })
-
     }
 
     public onSave(): void {
