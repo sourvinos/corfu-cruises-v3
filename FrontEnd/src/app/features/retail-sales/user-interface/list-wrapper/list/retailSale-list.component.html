@@ -9,11 +9,11 @@
         <retailSale-list-criteria (outputSelected)="doSearchTasks($event)"></retailSale-list-criteria>
 
         <div id="table-wrapper">
-            <p-contextMenu #contextMenu [model]="menuItems"></p-contextMenu>
-            <p-table #table (onFilter)="filterRecords($event)" [(contextMenuSelection)]="selectedRecord" [contextMenu]="contextMenu" [scrollable]="true" [value]="records" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
+            <p-table #table (onFilter)="filterRecords($event)" [scrollable]="true" [value]="records" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
                 <ng-template pTemplate="header">
                     <tr>
                         <th class="width-9" pSortableColumn="date">{{ getLabel("headerDate") }}</th>
+                        <th class="width-5" pSortableColumn="refNo">{{ getLabel('headerRefNo') }}</th>
                         <th class="width-18" pSortableColumn="shipOwner.description">{{ getLabel("headerShipOwner") }}</th>
                         <th class="width-18" pSortableColumn="customer.description">{{ getLabel("headerCustomer") }}</th>
                         <th class="width-18" pSortableColumn="documentType.description">{{ getLabel("headerDocumentTypeDescription") }}</th>
@@ -33,6 +33,7 @@
                                 <mat-datepicker #picker></mat-datepicker>
                             </div>
                         </th>
+                        <th class="width-5"><input (input)="table.filter($event.target.value, 'refNo' , 'contains' )" [value]="$any(table).filters['refNo']?.value" class="p-inputtext"></th>
                         <th class="width-18">
                             <p-columnFilter [showMenu]="false" field="shipOwner" matchMode="in">
                                 <ng-template let-filter="filterCallback" let-value pTemplate="filter">
@@ -78,8 +79,9 @@
                     </tr>
                 </ng-template>
                 <ng-template let-record pTemplate="body">
-                    <tr (click)="highlightRow(record.invoiceId)" (contextmenu)="highlightRow(record.invoiceId)" (dblclick)="editRecord(record.invoiceId)" [attr.id]=record.invoiceId [pContextMenuRow]="record" style="height: 32px;">
+                    <tr (click)="highlightRow(record.invoiceId)" [attr.id]=record.invoiceId style="height: 32px;">
                         <td class="width-9"><span class="center">{{ record.formattedDate }}</span></td>
+                        <td class="width-5"><span class="center">{{ record.refNo }}</span></td>
                         <td class="width-18"><span>{{ record.shipOwner.description }}</span></td>
                         <td class="width-18"><span>{{ record.customer.description }}</span></td>
                         <td class="width-18"><span>{{ record.documentType.description }}</span></td>
@@ -91,7 +93,8 @@
                             <span *ngIf="!record.isEmailSent"></span>
                         </td>
                         <td class="width-3">
-                            <span></span>
+                            <span *ngIf="record.isAadeUpdated" class="icon center green material-symbols-outlined">upload_2</span>
+                            <span *ngIf="!record.isAadeUpdated"></span>
                         </td>
                         <td class="width-3">
                             <span *ngIf="record.isCancelled" class="icon center orange material-symbols-outlined">upload_2</span>

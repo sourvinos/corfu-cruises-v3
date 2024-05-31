@@ -67,6 +67,13 @@ namespace API.Features.RetailSales {
                 .SingleOrDefaultAsync();
         }
 
+        public async Task<RetailSale> GetByIdForPatchAade(string reservationId) {
+            return await context.RetailSales
+                .AsNoTracking()
+                .Where(x => x.ReservationId.ToString() == reservationId)
+                .SingleOrDefaultAsync();
+        }
+
         public void UpdateIsEmailSent(RetailSale invoice, string invoiceId) {
             using var transaction = context.Database.BeginTransaction();
             invoice.IsEmailSent = true;

@@ -3802,6 +3802,10 @@
                 "description": "Ημερομηνία"
             },
             {
+                "id": "headerRefNo",
+                "description": "RefNo"
+            },
+            {
                 "id": "headerShipOwner",
                 "description": "Εκδότης"
             },

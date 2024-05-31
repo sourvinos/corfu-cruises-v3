@@ -10,6 +10,7 @@ namespace API.Features.RetailSales {
         Task<RetailSale> GetByIdForXmlAsync(string invoiceId);
         Task<RetailSale> GetByIdForPdfAsync(string invoiceId);
         Task<RetailSale> GetByIdForPatchEmailSent(string invoiceId);
+        Task<RetailSale> GetByIdForPatchAade(string invoiceId);
         void UpdateIsEmailSent(RetailSale invoice, string invoiceId);
 
     }

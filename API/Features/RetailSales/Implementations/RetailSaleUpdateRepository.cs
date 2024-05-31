@@ -48,6 +48,21 @@ namespace API.Features.RetailSales {
             DisposeOrCommit(transaction);
         }
 
+        public void UpdateAade(RetailSale invoice, RetailSaleAadeVM aade) {
+            using var transaction = context.Database.BeginTransaction();
+            invoice.Uid = aade.UId;
+            invoice.Mark = aade.Mark;
+            invoice.MarkCancel = aade.MarkCancel;
+            invoice.QrUrl = aade.QrUrl;
+            context.RetailSales.Attach(invoice);
+            context.Entry(invoice).Property(x => x.Uid).IsModified = true;
+            context.Entry(invoice).Property(x => x.Mark).IsModified = true;
+            context.Entry(invoice).Property(x => x.MarkCancel).IsModified = true;
+            context.Entry(invoice).Property(x => x.QrUrl).IsModified = true;
+            context.SaveChanges();
+            DisposeOrCommit(transaction);
+        }
+
         private void DisposeOrCommit(IDbContextTransaction transaction) {
             if (testingEnvironment.IsTesting) {
                 transaction.Dispose();

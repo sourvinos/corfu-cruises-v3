@@ -9,6 +9,7 @@ namespace API.Features.RetailSales {
 
         public RetailSaleMappingProfile() {
             CreateMap<RetailSale, RetailSaleListVM>()
+                .ForMember(x => x.RefNo, x => x.MapFrom(x => x.Reservation.RefNo))
                 .ForMember(x => x.Date, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Date)))
                 .ForMember(x => x.Customer, x => x.MapFrom(x => new SimpleEntity { Id = x.Reservation.Customer.Id, Description = x.Reservation.Customer.Description }))
                 .ForMember(x => x.DocumentType, x => x.MapFrom(x => new DocumentTypeVM { Id = x.DocumentType.Id, Description = x.DocumentType.Description, Batch = x.DocumentType.Batch }))

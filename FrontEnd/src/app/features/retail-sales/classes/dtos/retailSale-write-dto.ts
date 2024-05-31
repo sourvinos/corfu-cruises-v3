@@ -1,4 +1,5 @@
 import { Guid } from 'guid-typescript'
+
 export interface RetailSaleWriteDto {
 
     // FKs
@@ -17,7 +18,6 @@ export interface RetailSaleWriteDto {
     netAmount: number
     vatPercent: number
     vatAmount: number
-    grossAmount: number
     passenger: string
     remarks: string
 

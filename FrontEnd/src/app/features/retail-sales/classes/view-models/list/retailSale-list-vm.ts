@@ -3,7 +3,8 @@ import { DocumentTypeVM } from './documentType-vm'
 
 export interface RetailSaleListVM {
 
-    invoiceId: string
+    reservationId: string
+    refNo: string
     date: string
     formattedDate: string
     customer: SimpleEntity

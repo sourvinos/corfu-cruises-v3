@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { MatDatepickerInputEvent } from '@angular/material/datepicker'
-import { MenuItem } from 'primeng/api'
 import { Router } from '@angular/router'
 import { Table } from 'primeng/table'
 import { formatNumber } from '@angular/common'
@@ -51,13 +50,6 @@ export class RetailSaleListComponent {
 
     //#endregion
 
-    //#region context menu
-
-    public menuItems!: MenuItem[]
-    public selectedRecord!: RetailSaleListVM
-
-    //#endregion
-
     //#region specific
 
     public recordsFiltered: RetailSaleListVM[]
@@ -73,7 +65,6 @@ export class RetailSaleListComponent {
         this.setTabTitle()
         this.setLocale()
         this.setSidebarsHeight()
-        this.initContextMenu()
         this.enableDisableFilters()
     }
 
@@ -249,12 +240,6 @@ export class RetailSaleListComponent {
         this.dropdownCustomers = this.helperService.getDistinctRecords(this.records, 'customer', 'description')
         this.dropdownDocumentTypes = this.helperService.getDistinctRecords(this.records, 'documentType', 'description')
         this.dropdownShipOwners = this.helperService.getDistinctRecords(this.records, 'shipOwner', 'description')
-    }
-
-    private initContextMenu(): void {
-        this.menuItems = [
-            { label: 'Επεξεργασία', command: () => this.editRecord(this.selectedRecord.invoiceId.toString()) }
-        ]
     }
 
     private setLocale(): void {

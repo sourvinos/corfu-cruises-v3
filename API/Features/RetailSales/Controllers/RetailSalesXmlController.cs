@@ -52,7 +52,7 @@ namespace API.Features.RetailSales {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
                     Body = new {
-                        invoice.InvoiceId,
+                        invoice.ReservationId,
                         response
                     },
                     Message = ApiMessages.OK()
@@ -82,14 +82,6 @@ namespace API.Features.RetailSales {
         //             ResponseCode = 402
         //         };
         //     }
-        // }
-
-        // private string SaveInvoicePrettyResponse(XmlInvoiceHeaderVM invoice, string subdirectory, string response) {
-        //     return invoiceAadeRepo.SaveInvoiceResponse(invoice, subdirectory, response
-        //         .Replace("&lt;", "<")
-        //         .Replace("&gt;", ">")
-        //         .Replace("<string xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/\">", "")
-        //         .Replace("</string>", "")).ToString();
         // }
 
         private string SaveInvoicePrettyResponse(XmlRetailSaleHeaderVM invoice, string subdirectory, string response) {

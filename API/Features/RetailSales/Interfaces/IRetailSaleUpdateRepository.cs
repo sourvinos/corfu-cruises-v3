@@ -9,6 +9,7 @@ namespace API.Features.RetailSales {
         RetailSale Update(Guid reservationId, RetailSale invoice);
         Task<int> IncreaseInvoiceNoAsync(RetailSaleWriteDto invoice);
         void UpdateIsEmailSent(RetailSale invoice, string invoiceId);
+        void UpdateAade(RetailSale invoice, RetailSaleAadeVM aade);
 
     }
 

@@ -372,8 +372,8 @@
                             <mat-menu #retailSale="matMenu" class="primary">
                                 <ng-container *ngTemplateOutlet="retailSaleMenu"></ng-container>
                             </mat-menu>
-                            <button (click)="onSaveRetailSale()" [disabled]="!retailSaleForm.valid || !isNewRetailSale" class="primary" id="saveRetailSaleButton" mat-flat-button>
-                                <mat-icon *ngIf="!retailSaleForm.valid || !isNewRetailSale" class="material-icons-outlined">lock</mat-icon>
+                            <button (click)="onSaveRetailSale()" [disabled]="!retailSaleForm.valid || !isNewRetailSale || !isReservationFormPristine()" class="primary" id="saveRetailSaleButton" mat-flat-button>
+                                <mat-icon *ngIf="!retailSaleForm.valid || !isNewRetailSale || !isReservationFormPristine()" class="material-icons-outlined">lock</mat-icon>
                                 <span>{{ getLabel("saveButton") | uppercase }}</span>
                             </button>
                         </div>
@@ -497,16 +497,16 @@
 </ng-template>
 
 <ng-template #retailSaleMenu xPosition="before">
-    <button (click)="onBuildAndOpenRetailSalePdf()" mat-menu-item>
+    <button [disabled]="!areFormsPristine()" (click)="onBuildAndOpenRetailSalePdf()" mat-menu-item>
         <span>{{ getLabel('printRetailSale') }}</span>
     </button>
-    <button (click)="onEmailRetailSale()" mat-menu-item>
+    <button [disabled]="!areFormsPristineAndEmailIsGiven()" (click)="onEmailRetailSale()" mat-menu-item>
         <span>{{ getLabel('emailRetailSale') }}</span>
     </button>
-    <button mat-menu-item>
+    <button [disabled]="!areFormsPristine()" (click)="onDoSubmitTasks()" mat-menu-item>
         <span>{{ getLabel('submitRetailSale') }}</span>
     </button>
-    <button mat-menu-item>
+    <button [disabled]="true" mat-menu-item>
         <span>{{ getLabel('cancelRetailSale') }}</span>
     </button>
 </ng-template>

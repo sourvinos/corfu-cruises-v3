@@ -42,6 +42,8 @@ import { RetailSaleWriteDto } from 'src/app/features/retail-sales/classes/dtos/r
 import { RetailSaleHttpService } from 'src/app/features/retail-sales/classes/services/retailSale-http.service'
 import { environment } from 'src/environments/environment'
 import { EmailRetailSaleVM } from 'src/app/features/retail-sales/classes/view-models/email/email-retailSale-vm'
+import { RetailSaleXmlHttpService } from 'src/app/features/retail-sales/classes/services/retailSale-xml-http.service'
+import { RetailSaleXmlHelperService } from 'src/app/features/retail-sales/classes/services/retailSale-xml-helper.service'
 
 @Component({
     selector: 'reservation-form',
@@ -91,7 +93,7 @@ export class ReservationFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private boardingPassService: BoardingPassService, private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialog: MatDialog, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private reservationHelperService: ReservationHelperService, private reservationHttpService: ReservationHttpService, private retailSaleHttpService: RetailSaleHttpService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private activatedRoute: ActivatedRoute, private boardingPassService: BoardingPassService, private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialog: MatDialog, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private reservationHelperService: ReservationHelperService, private reservationHttpService: ReservationHttpService, private retailSaleHttpService: RetailSaleHttpService, private retailSaleXmlHelperService: RetailSaleXmlHelperService, private retailSaleXmlHttpService: RetailSaleXmlHttpService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -141,7 +143,7 @@ export class ReservationFormComponent {
 
     public doTasksAfterPassengerFormIsClosed(passengers: any): void {
         this.patchFormWithPassengers(passengers)
-        // this.saveCachedReservation()
+        this.saveCachedReservation()
     }
 
     public enableOrDisableAutoComplete(event: any): void {
@@ -177,6 +179,14 @@ export class ReservationFormComponent {
         return environment.production == false
     }
 
+    public isReservationFormPristine(): boolean {
+        return this.reservationForm.pristine
+    }
+
+    public isRetailSaleFormPristine(): boolean {
+        return this.retailSaleForm.pristine
+    }
+
     public isReservationInStorage(): boolean {
         try {
             const x = JSON.parse(this.localStorageService.getItem('reservation'))
@@ -194,7 +204,7 @@ export class ReservationFormComponent {
     public onBuildAndOpenRetailSalePdf(): void {
         this.retailSaleHttpService.buildPdf(this.reservationForm.value.reservationId).subscribe({
             next: (response) => {
-                this.retailSaleHttpService.openPdf(response.body[0]).subscribe({
+                this.retailSaleHttpService.openPdf(response.body).subscribe({
                     next: (response) => {
                         const blob = new Blob([response], { type: 'application/pdf' })
                         const fileURL = URL.createObjectURL(blob)
@@ -232,6 +242,10 @@ export class ReservationFormComponent {
         this.calculateAmounts()
         this.calculatePax()
         this.calculateSummary()
+    }
+
+    public onDoSubmitTasks(): void {
+        this.doSubmitTasks()
     }
 
     public onEmailRetailSale(): void {
@@ -360,6 +374,14 @@ export class ReservationFormComponent {
         })
     }
 
+    public areFormsPristine(): boolean {
+        return this.retailSaleForm.pristine && this.retailSaleForm.valid && this.reservationForm.pristine
+    }
+
+    public areFormsPristineAndEmailIsGiven(): boolean {
+        return this.retailSaleForm.pristine && this.retailSaleForm.valid && this.reservationForm.pristine && this.reservationForm.value.email != ''
+    }
+
     //#endregion
 
     //#region private methods
@@ -419,6 +441,26 @@ export class ReservationFormComponent {
         this.setLocale()
         this.setParentUrl()
         this.subscribeToInteractionService()
+    }
+
+    private doSubmitTasks(): void {
+        this.retailSaleXmlHttpService.get(this.reservationForm.value.reservationId).subscribe(response => {
+            this.retailSaleXmlHttpService.uploadInvoice(response.body).subscribe({
+                next: (response) => {
+                    this.retailSaleHttpService.patchRetailSaleAade(this.retailSaleXmlHelperService.processRetailSaleSuccessResponse(response)).subscribe({
+                        next: () => {
+                            this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                        },
+                        error: (errorFromInterceptor) => {
+                            this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                        }
+                    })
+                },
+                error: (errorFromInterceptor) => {
+                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                }
+            })
+        })
     }
 
     private emailRetailSale(criteria: EmailRetailSaleVM): void {
@@ -655,47 +697,49 @@ export class ReservationFormComponent {
     }
 
     private populateRetailSaleFields(): void {
-        this.retailSaleForm.patchValue({
-            id: this.record.retailSale.id,
-            reservationId: this.record.retailSale.reservationId,
-            date: this.record.retailSale.date,
-            tripDate: this.record.retailSale.tripDate,
-            invoiceNo: this.record.retailSale.invoiceNo,
-            documentType: {
-                id: this.record.retailSale.documentType.id,
-                abbreviation: this.record.retailSale.documentType.abbreviation,
-                batch: this.record.retailSale.documentType.batch
-            },
-            batch: this.record.retailSale.documentType.batch,
-            paymentMethod: {
-                id: this.record.retailSale.paymentMethod.id,
-                description: this.record.retailSale.paymentMethod.description
-            },
-            shipOwner: {
-                id: this.record.retailSale.shipOwner.id,
-                description: this.record.retailSale.shipOwner.description,
-                vatPercent: this.record.retailSale.shipOwner.vatPercent,
-                isActive: this.record.retailSale.shipOwner.isActive
-            },
-            passenger: this.record.retailSale.passenger,
-            adults: this.record.retailSale.adults,
-            adultsPrice: this.record.retailSale.adultsPrice,
-            kids: this.record.retailSale.kids,
-            kidsPrice: this.record.retailSale.kidsPrice,
-            free: this.record.retailSale.free,
-            netAmount: this.record.retailSale.netAmount,
-            vatPercent: this.record.retailSale.vatPercent,
-            vatAmount: this.record.retailSale.vatAmount,
-            grossAmount: this.record.retailSale.grossAmount,
-            postAt: this.record.retailSale.postAt,
-            postUser: this.record.retailSale.postUser,
-            putAt: this.record.retailSale.putAt,
-            putUser: this.record.retailSale.putUser
-        })
+        if (this.record.retailSale) {
+            this.retailSaleForm.patchValue({
+                id: this.record.retailSale.id,
+                reservationId: this.record.retailSale.reservationId,
+                date: this.record.retailSale.date,
+                tripDate: this.record.retailSale.tripDate,
+                invoiceNo: this.record.retailSale.invoiceNo,
+                documentType: {
+                    id: this.record.retailSale.documentType.id,
+                    abbreviation: this.record.retailSale.documentType.abbreviation,
+                    batch: this.record.retailSale.documentType.batch
+                },
+                batch: this.record.retailSale.documentType.batch,
+                paymentMethod: {
+                    id: this.record.retailSale.paymentMethod.id,
+                    description: this.record.retailSale.paymentMethod.description
+                },
+                shipOwner: {
+                    id: this.record.retailSale.shipOwner.id,
+                    description: this.record.retailSale.shipOwner.description,
+                    vatPercent: this.record.retailSale.shipOwner.vatPercent,
+                    isActive: this.record.retailSale.shipOwner.isActive
+                },
+                passenger: this.record.retailSale.passenger,
+                adults: this.record.retailSale.adults,
+                adultsPrice: this.record.retailSale.adultsPrice,
+                kids: this.record.retailSale.kids,
+                kidsPrice: this.record.retailSale.kidsPrice,
+                free: this.record.retailSale.free,
+                netAmount: this.record.retailSale.netAmount,
+                vatPercent: this.record.retailSale.vatPercent,
+                vatAmount: this.record.retailSale.vatAmount,
+                grossAmount: this.record.retailSale.grossAmount,
+                postAt: this.record.retailSale.postAt,
+                postUser: this.record.retailSale.postUser,
+                putAt: this.record.retailSale.putAt,
+                putUser: this.record.retailSale.putUser
+            })
+        }
     }
 
     private saveCachedReservation(): void {
-        // this.localStorageService.saveItem('reservation', JSON.stringify(this.reservationHelperService.createCachedReservation(this.reservationForm.value)))
+        this.localStorageService.saveItem('reservation', JSON.stringify(this.reservationHelperService.createCachedReservation(this.reservationForm.value)))
     }
 
     private saveReservation(reservation: ReservationWriteDto, keepFormOpen: boolean): void {
@@ -706,10 +750,13 @@ export class ReservationFormComponent {
                 this.parentUrl = this.sessionStorageService.getItem('returnUrl').includes('refNo')
                     ? this.sessionStorageService.getItem('returnUrl')
                     : '/reservations/date/' + date
-                this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'ok', this.parentUrl, this.mustGoBackAfterSave || !keepFormOpen)
-                this.reservationForm.patchValue({
-                    putAt: response.body
-                })
+                this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'ok', this.parentUrl, !keepFormOpen)
+                if (keepFormOpen) {
+                    this.reservationForm.patchValue({
+                        putAt: response.id
+                    })
+                    this.reservationForm.markAsPristine()
+                }
                 this.mirrorRecord = this.reservationForm.value
                 this.localStorageService.deleteItems([{ 'item': 'reservation', 'when': 'always' },])
                 this.sessionStorageService.deleteItems([{ 'item': 'nationality', 'when': 'always' }])
@@ -721,8 +768,10 @@ export class ReservationFormComponent {
     }
 
     private saveRetailSale(retailSale: RetailSaleWriteDto): void {
+        retailSale.reservationId = this.reservationForm.value.reservationId
         this.retailSaleHttpService.save(retailSale).subscribe({
             next: () => {
+                this.doSubmitTasks()
                 this.retailSaleForm.setErrors({ invalid: true })
             },
             error: (errorFromInterceptor) => {
@@ -840,12 +889,6 @@ export class ReservationFormComponent {
         })
     }
 
-    private updateRetailSaleFormWithReservationId(): void {
-        this.retailSaleForm.patchValue({
-            reservationId: this.reservationForm.value.reservationId
-        })
-    }
-
     private updateVatPercentAfterShipOwnerSelection(value: any): void {
         this.retailSaleForm.patchValue({
             vatPercent: value.vatPercent
@@ -860,10 +903,6 @@ export class ReservationFormComponent {
             this.updateRetailSaleFormWithPax()
             this.updatePaymentMethodWithDefaultValue()
         }
-    }
-
-    private removeExtensionsFromFileName(filename: string): string {
-        return filename.substring(0, filename.length - 4)
     }
 
     //#endregion

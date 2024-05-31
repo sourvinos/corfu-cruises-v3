@@ -4,10 +4,10 @@ import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { PassengerWriteDto } from '../dtos/form/passenger-write-dto'
-import { ReservationReadDto } from '../dtos/form/reservation-read-dto'
 import { ReservationWriteDto } from '../dtos/form/reservation-write-dto'
 import { SessionStorageService } from './../../../../../shared/services/session-storage.service'
 import { RetailSaleWriteDto } from 'src/app/features/retail-sales/classes/dtos/retailSale-write-dto'
+import { ReservationReadDto } from '../dtos/form/reservation-read-dto'
 
 @Injectable({ providedIn: 'root' })
 
@@ -73,7 +73,6 @@ export class ReservationHelperService {
             netAmount: form.netAmount,
             vatPercent: form.vatPercent,
             vatAmount: form.vatAmount,
-            grossAmount: form.grossAmount,
             passenger: form.passenger,
             remarks: form.remarks
         }
@@ -104,44 +103,45 @@ export class ReservationHelperService {
         }
     }
 
-    // public createCachedReservation(form: any): ReservationReadDto {
-    //     return {
-    //         reservationId: form.reservationId,
-    //         customer: form.customer,
-    //         destination: form.destination,
-    //         driver: form.driver,
-    //         pickupPoint: {
-    //             id: form.pickupPoint.id,
-    //             description: form.pickupPoint.description,
-    //             exactPoint: form.exactPoint,
-    //             time: form.time,
-    //             port: {
-    //                 id: form.port.id,
-    //                 description: form.port.description,
-    //                 isActive: form.port.isActive
-    //             },
-    //             isActive: form.pickupPoint.isActive
-    //         },
-    //         port: form.port,
-    //         portAlternate: form.portAlternate,
-    //         ship: form.ship,
-    //         date: form.date,
-    //         refNo: form.refNo,
-    //         email: form.email,
-    //         phones: form.phones,
-    //         remarks: form.remarks,
-    //         adults: form.adults,
-    //         kids: form.kids,
-    //         free: form.free,
-    //         totalPax: form.totalPax,
-    //         ticketNo: form.ticketNo,
-    //         passengers: form.passengers,
-    //         postAt: form.postAt,
-    //         postUser: form.postUser,
-    //         putAt: form.putAt,
-    //         putUser: form.putUser
-    //     }
-    // }
+    public createCachedReservation(form: any): ReservationReadDto {
+        return {
+            reservationId: form.reservationId,
+            customer: form.customer,
+            destination: form.destination,
+            driver: form.driver,
+            pickupPoint: {
+                id: form.pickupPoint.id,
+                description: form.pickupPoint.description,
+                exactPoint: form.exactPoint,
+                time: form.time,
+                port: {
+                    id: form.port.id,
+                    description: form.port.description,
+                    isActive: form.port.isActive
+                },
+                isActive: form.pickupPoint.isActive
+            },
+            port: form.port,
+            portAlternate: form.portAlternate,
+            ship: form.ship,
+            date: form.date,
+            refNo: form.refNo,
+            email: form.email,
+            phones: form.phones,
+            remarks: form.remarks,
+            adults: form.adults,
+            kids: form.kids,
+            free: form.free,
+            totalPax: form.totalPax,
+            ticketNo: form.ticketNo,
+            passengers: form.passengers,
+            postAt: form.postAt,
+            postUser: form.postUser,
+            putAt: form.putAt,
+            putUser: form.putUser,
+            retailSale: null
+        }
+    }
 
     //#endregion
 

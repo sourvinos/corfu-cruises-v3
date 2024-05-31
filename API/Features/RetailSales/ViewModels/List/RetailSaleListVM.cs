@@ -7,6 +7,7 @@ namespace API.Features.RetailSales {
 
         public string ReservationId { get; set; }
         public string Date { get; set; }
+        public string RefNo { get; set; }
         public int InvoiceNo { get; set; }
         public SimpleEntity Customer { get; set; }
         public SimpleEntity Destination { get; set; }

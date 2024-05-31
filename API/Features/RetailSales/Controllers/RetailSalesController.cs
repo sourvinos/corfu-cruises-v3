@@ -116,6 +116,26 @@ namespace API.Features.RetailSales {
             };
         }
 
+        [HttpPatch("retailSaleAade")]
+        [Authorize(Roles = "admin")]
+        [ServiceFilter(typeof(ModelValidationAttribute))]
+        public async Task<Response> PatchRetailSaleWithAade([FromBody] RetailSaleAadeVM invoiceAade) {
+            var x = await retailSaleReadRepo.GetByIdForPatchAade(invoiceAade.ReservationId.ToString());
+            if (x != null) {
+                retailSaleUpdateRepo.UpdateAade(x, invoiceAade);
+                return new Response {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Id = invoiceAade.ReservationId.ToString(),
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 404
+                };
+            }
+        }
+
         [HttpGet("[action]/{filename}")]
         [Authorize(Roles = "admin")]
         public IActionResult OpenPdf([FromRoute] string filename) {

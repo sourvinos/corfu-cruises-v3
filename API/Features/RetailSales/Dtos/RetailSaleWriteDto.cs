@@ -17,10 +17,7 @@ namespace API.Features.RetailSales {
         public int Kids { get; set; }
         public decimal KidsPrice { get; set; }
         public int Free { get; set; }
-        public decimal NetAmount { get; set; }
         public decimal VatPercent { get; set; }
-        public decimal VatAmount { get; set; }
-        public decimal GrossAmount { get; set; }
         public string Passenger { get; set; }
         public string Remarks { get; set; }
         public string PostAt { get; set; }

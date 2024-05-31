@@ -121,11 +121,11 @@ namespace API.Features.Reservations.Reservations {
                     UpdateShipIdWithNull(reservation);
                     var z = reservationValidation.IsValidAsync(x, reservation, scheduleRepo);
                     if (await z == 200) {
-                        reservationUpdateRepo.Update(reservation.ReservationId, mapper.Map<ReservationWriteDto, Reservation>((ReservationWriteDto)reservationUpdateRepo.AttachMetadataToPutDto(x, reservation)));
+                        var i = reservationUpdateRepo.Update(reservation.ReservationId, mapper.Map<ReservationWriteDto, Reservation>((ReservationWriteDto)reservationUpdateRepo.AttachMetadataToPutDto(x, reservation)));
                         return new Response {
                             Code = 200,
                             Icon = Icons.Success.ToString(),
-                            Id = x.ReservationId.ToString(),
+                            Id = i.PutAt,
                             Message = reservation.RefNo
                         };
                     } else {

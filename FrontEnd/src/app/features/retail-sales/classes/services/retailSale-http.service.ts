@@ -7,6 +7,7 @@ import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { RetailSaleListCriteriaVM } from '../view-models/criteria/retailSale-list-criteria-vm'
 import { RetailSaleListVM } from '../view-models/list/retailSale-list-vm'
 import { environment } from 'src/environments/environment'
+import { AadeVM } from '../view-models/form/aade-vm'
 
 @Injectable({ providedIn: 'root' })
 
@@ -32,8 +33,12 @@ export class RetailSaleHttpService extends HttpDataService {
         return this.http.patch<any>(this.url + '/patchRetailSaleWithEmailSent/' + invoiceId, null)
     }
 
+    public patchRetailSaleAade(aadeVM: AadeVM): Observable<any> {
+        return this.http.patch<any>(this.url + '/retailSaleAade', aadeVM)
+    }
+
     public openPdf(filename: string): Observable<any> {
-        return this.http.get(this.url + '/openPdf/' + filename, { responseType: 'arraybuffer' })
+        return this.http.get(this.url + '/openPdf/' + filename + '.pdf', { responseType: 'arraybuffer' })
     }
 
 }
