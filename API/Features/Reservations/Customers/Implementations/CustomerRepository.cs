@@ -73,6 +73,14 @@ namespace API.Features.Reservations.Customers {
             };
         }
 
+        public async Task<IList<CustomerListVM>> GetForBalanceSheetAsync() {
+            var customers = await context.Customers
+                .AsNoTracking()
+                .OrderBy(x => x.Description)
+                .ToListAsync();
+            return mapper.Map<IEnumerable<Customer>, IList<CustomerListVM>>(customers);
+        }
+
     }
 
 }

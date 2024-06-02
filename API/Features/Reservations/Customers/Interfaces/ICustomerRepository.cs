@@ -13,6 +13,7 @@ namespace API.Features.Reservations.Customers {
         Task<CustomerBrowserVM> GetByIdForBrowserAsync(int id);
         CustomerValidVM GetCustomerData(Customer x);
         Task<Customer> GetByIdAsync(int id, bool includeTables);
+        Task<IList<CustomerListVM>> GetForBalanceSheetAsync();
 
     }
 

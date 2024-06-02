@@ -11,6 +11,7 @@ using Microsoft.Extensions.Options;
 using API.Features.Billing.Transactions;
 using AutoMapper;
 using System.Threading.Tasks;
+using API.Features.Reservations.Customers;
 
 namespace API.Features.Billing.BalanceSheet {
 
@@ -27,7 +28,6 @@ namespace API.Features.Billing.BalanceSheet {
                 .AsNoTracking()
                 .Include(x => x.Customer)
                 .Include(x => x.DocumentType)
-                .Include(x => x.ShipOwner)
                 .Where(x => x.Date <= Convert.ToDateTime(toDate)
                     && (x.CustomerId == customerId)
                     && (x.ShipOwner.Id == shipOwnerId || shipOwnerId == null)
@@ -46,7 +46,7 @@ namespace API.Features.Billing.BalanceSheet {
             return records;
         }
 
-        public BalanceSheetVM BuildPrevious(IEnumerable<BalanceSheetVM> records, string fromDate) {
+        public BalanceSheetVM BuildPrevious(CustomerListVM customer, IEnumerable<BalanceSheetVM> records, string fromDate) {
             decimal debit = 0;
             decimal credit = 0;
             decimal balance = 0;
@@ -57,11 +57,11 @@ namespace API.Features.Billing.BalanceSheet {
                     balance = balance + record.Debit - record.Credit;
                 }
             }
-            var total = BuildTotalLine(records.First(), debit, credit, balance, "ΣΥΝΟΛΑ ΠΡΟΗΓΟΥΜΕΝΗΣ ΠΕΡΙΟΔΟΥ");
+            var total = BuildTotalLine(customer, debit, credit, balance, "ΣΥΝΟΛΑ ΠΡΟΗΓΟΥΜΕΝΗΣ ΠΕΡΙΟΔΟΥ");
             return total;
         }
 
-        public List<BalanceSheetVM> BuildRequested(IEnumerable<BalanceSheetVM> records, string fromDate) {
+        public List<BalanceSheetVM> BuildRequested(CustomerListVM customer, IEnumerable<BalanceSheetVM> records, string fromDate) {
             decimal debit = 0;
             decimal credit = 0;
             decimal balance = 0;
@@ -74,12 +74,12 @@ namespace API.Features.Billing.BalanceSheet {
                     balance += record.Debit - record.Credit;
                 }
             }
-            var total = BuildTotalLine(records.First(), debit, credit, balance, "ΣΥΝΟΛΑ ΖΗΤΟΥΜΕΝΗΣ ΠΕΡΙΟΔΟΥ");
+            var total = BuildTotalLine(customer, debit, credit, balance, "ΣΥΝΟΛΑ ΖΗΤΟΥΜΕΝΗΣ ΠΕΡΙΟΔΟΥ");
             requestedPeriod.Add(total);
             return requestedPeriod;
         }
 
-        public BalanceSheetVM BuildTotal(IEnumerable<BalanceSheetVM> records) {
+        public BalanceSheetVM BuildTotal(CustomerListVM customer, IEnumerable<BalanceSheetVM> records) {
             decimal debit = 0;
             decimal credit = 0;
             decimal balance = 0;
@@ -88,7 +88,7 @@ namespace API.Features.Billing.BalanceSheet {
                 credit += record.Credit;
                 balance += record.Debit - record.Credit;
             }
-            var total = BuildTotalLine(records.First(), debit, credit, balance, "ΓΕΝΙΚΑ ΣΥΝΟΛΑ");
+            var total = BuildTotalLine(customer, debit, credit, balance, "ΓΕΝΙΚΑ ΣΥΝΟΛΑ");
             return total;
         }
 
@@ -103,21 +103,17 @@ namespace API.Features.Billing.BalanceSheet {
             return final;
         }
 
-        public BalanceSheetSummaryVM Summarize(IEnumerable<BalanceSheetVM> records) {
+        public BalanceSheetSummaryVM Summarize(CustomerListVM customer, IEnumerable<BalanceSheetVM> records) {
             var previousBalance = records.First().Balance;
             var requestedDebit = records.SkipLast(1).Last().Debit;
             var requestedCredit = records.SkipLast(1).Last().Credit;
             var requestedBalance = records.SkipLast(1).Last().Balance;
             var actualBalance = previousBalance + requestedBalance;
             var summary = new BalanceSheetSummaryVM {
-                ShipOwner = records.Select(x => new SimpleEntity {
-                    Id = records.First().ShipOwner.Id,
-                    Description = records.First().ShipOwner.Description
-                }).First(),
-                Customer = records.Select(x => new SimpleEntity {
-                    Id = records.First().Customer.Id,
-                    Description = records.First().Customer.Description
-                }).First(),
+                Customer = new SimpleEntity {
+                    Id = customer.Id,
+                    Description = customer.Description
+                },
                 PreviousBalance = previousBalance,
                 Debit = requestedDebit,
                 Credit = requestedCredit,
@@ -137,23 +133,13 @@ namespace API.Features.Billing.BalanceSheet {
             return mapper.Map<IEnumerable<TransactionsBase>, IEnumerable<BalanceSheetVM>>(records);
         }
 
-        private static BalanceSheetVM BuildTotalLine(BalanceSheetVM firstRecord, decimal debit, decimal credit, decimal balance, string label) {
+        private static BalanceSheetVM BuildTotalLine(CustomerListVM customer, decimal debit, decimal credit, decimal balance, string label) {
             var total = new BalanceSheetVM {
                 Date = "",
-                ShipOwner = new SimpleEntity {
-                    Id = firstRecord.ShipOwner.Id,
-                    Description = firstRecord.ShipOwner.Description
-                },
                 Customer = new SimpleEntity {
-                    Id = firstRecord.Customer.Id,
-                    Description = firstRecord.Customer.Description
+                    Id = customer.Id,
+                    Description = customer.Description
                 },
-                DocumentType = new DocumentTypeVM {
-                    Id = 0,
-                    Description = label,
-                    Batch = ""
-                },
-                InvoiceNo = "",
                 Debit = debit,
                 Credit = credit,
                 Balance = balance
