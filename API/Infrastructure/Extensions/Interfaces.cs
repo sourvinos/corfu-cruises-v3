@@ -1,3 +1,4 @@
+using API.Features.Billing.BalanceSheet;
 using API.Features.Billing.BankAccounts;
 using API.Features.Billing.Banks;
 using API.Features.Billing.DocumentTypes;
@@ -111,6 +112,7 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IReceiptValidation, ReceiptValidation>();
             services.AddTransient<ITaxOfficeRepository, TaxOfficeRepository>();
             services.AddTransient<ITaxOfficeValidation, TaxOfficeValidation>();
+            services.AddTransient<IBalanceSheetRepository, BalanceSheetRepository>();
             #endregion
             #region shared
             services.AddScoped<Token>();
