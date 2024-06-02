@@ -66,7 +66,7 @@
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(2) > th:first-child {
-    border-left: 0.0625rem solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+    border-left: none;
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(2) > th:last-child {

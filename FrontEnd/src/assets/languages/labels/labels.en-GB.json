@@ -3822,5 +3822,38 @@
                 "description": "Νεα εγγραφη"
             }
         ]
+    },
+    {
+        "feature": "balanceSheet",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Ισοζύγιο πελατών"
+            },
+            {
+                "id": "headerCustomer",
+                "description": "Επωνυμία"
+            },
+            {
+                "id": "headerPreviousBalance",
+                "description": "Προηγ. υπόλοιπο"
+            },
+            {
+                "id": "headerPeriod",
+                "description": "Ζητούμενη περίοδος"
+            },
+            {
+                "id": "headerDebit",
+                "description": "Χρέωση"
+            },
+            {
+                "id": "headerCredit",
+                "description": "Πίστωση"
+            },
+            {
+                "id": "headerActualBalance",
+                "description": "Υπόλοιπο"
+            }
+        ]
     }
 ]

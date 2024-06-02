@@ -1,0 +1,14 @@
+<div id="form-wrapper">
+
+    <form [formGroup]="form" id="form">
+        <div class="group-input-field">
+            <!-- Date range -->
+            <date-range-picker [parentDateRange]="getDateRange()" [readOnly]=false [showHint]=false (outputValues)="doDateTasks($event)"></date-range-picker>
+            <!-- Button -->
+            <button (click)="onSearch()" [disabled]="!form.valid" class="fab primary" id="search-button" mat-icon-button>
+                <mat-icon class="material-icons-outlined">arrow_forward</mat-icon>
+            </button>
+        </div>
+    </form>
+
+</div>

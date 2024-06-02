@@ -1,0 +1,37 @@
+<div id="list-wrapper">
+
+    <div id="content">
+
+        <div id="header">
+            <home-button-and-title [featureIcon]="featureIcon" [feature]="feature" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
+        </div>
+
+        <balanceSheet-criteria (outputSelected)="onDoSearchTasks($event)"></balanceSheet-criteria>
+
+        <mat-tab-group mat-stretch-tabs="false" (selectedIndexChange)="onSelectedTabChange()">
+            <mat-tab label="Corfu Cruises">
+                <div class="general-tab">
+                    <div id="table-wrapper">
+                        <balanceSheetShipOwnerTable [records]="shipOwnerRecordsA" [criteria]="criteria"></balanceSheetShipOwnerTable>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab label="Pandis Family">
+                <div class="general-tab">
+                    <div id="table-wrapper">
+                        <balanceSheetShipOwnerTable [records]="shipOwnerRecordsB" [criteria]="criteria"></balanceSheetShipOwnerTable>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab label="Γενικά σύνολα">
+                <div class="general-tab">
+                    <div id="table-wrapper">
+                        <balanceSheetShipOwnerTable [records]="shipOwnerTotal"></balanceSheetShipOwnerTable>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+
+    </div>
+
+</div>
