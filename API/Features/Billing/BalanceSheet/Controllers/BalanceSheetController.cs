@@ -37,13 +37,7 @@ namespace API.Features.Billing.BalanceSheet {
                 var total = repo.BuildTotal(customer, records);
                 var merged = repo.MergePreviousRequestedAndTotal(previous, requested, total);
                 var summary = repo.Summarize(customer, merged);
-                if (criteria.IncludeZeroBalanceRecords) {
-                    summaries.Add(summary);
-                } else {
-                    if (summary.ActualBalance != 0) {
-                        summaries.Add(summary);
-                    }
-                }
+                summaries.Add(summary);
             }
             return summaries;
         }

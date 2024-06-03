@@ -5,7 +5,6 @@ namespace API.Features.Billing.BalanceSheet {
         public string FromDate { get; set; }
         public string ToDate { get; set; }
         public int? ShipOwnerId { get; set; }
-        public bool IncludeZeroBalanceRecords { get; set; }
 
     }
 

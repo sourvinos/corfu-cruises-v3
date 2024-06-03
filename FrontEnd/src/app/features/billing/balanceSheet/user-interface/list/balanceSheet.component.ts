@@ -30,9 +30,14 @@ export class BalanceSheetComponent {
     public icon = 'home'
     public parentUrl = '/home'
     public shipOwnerRecordsA: BalanceSheetVM[] = []
+    public shipOwnerFilteredRecordsA: BalanceSheetVM[] = []
     public shipOwnerRecordsB: BalanceSheetVM[] = []
+    public shipOwnerFilteredRecordsB: BalanceSheetVM[] = []
     public shipOwnerTotal: BalanceSheetVM[] = []
-    public zeroBalanceRowVisibility: boolean
+    public shipOwnerFilteredTotal: BalanceSheetVM[] = []
+    public showZeroBalanceRow: boolean = true
+    public showZeroFilteredBalanceRow: boolean = true
+
     //#endregion
 
     constructor(private balanceSheetHttpService: BalanceSheetHttpService, private dateHelperService: DateHelperService, private helperService: HelperService, private interactionService: InteractionService, private messageLabelService: MessageLabelService, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
@@ -77,16 +82,16 @@ export class BalanceSheetComponent {
         dialogRef.afterClosed().subscribe(criteria => {
             if (criteria !== undefined) {
                 this.buildCriteriaVM(criteria)
-                this.loadRecordsForShipOwner(this.criteria, 'shipOwnerRecordsA', 1)
-                this.loadRecordsForShipOwner(this.criteria, 'shipOwnerRecordsB', 2)
-                this.loadRecordsForShipOwner(this.criteria, 'shipOwnerTotal', null)
+                this.loadRecordsForShipOwner(this.criteria, 'shipOwnerRecordsA', 'shipOwnerFilteredRecordsA', 1)
+                this.loadRecordsForShipOwner(this.criteria, 'shipOwnerRecordsB', 'shipOwnerFilteredRecordsB', 2)
+                this.loadRecordsForShipOwner(this.criteria, 'shipOwnerTotal', 'shipOwnerFilteredTotal', null)
             }
         })
     }
 
     public onToggleZeroBalanceRows(): void {
-        this.toggleZeroBalanceRecords()
         this.storeZeroBalanceVisibility()
+        this.toggleZeroBalanceRecords()
     }
 
     //#endregion
@@ -97,20 +102,19 @@ export class BalanceSheetComponent {
         this.criteria = {
             fromDate: event.fromDate,
             toDate: event.toDate,
-            shipOwnerId: event.shipOwnerId,
-            includeZeroBalanceRecords: event.includeZeroBalanceRecords
+            shipOwnerId: event.shipOwnerId
         }
     }
 
-    private loadRecordsForShipOwner(criteria: BalanceSheetCriteriaVM, shipOwnerRecords: string, shipOwnerId: number): void {
+    private loadRecordsForShipOwner(criteria: BalanceSheetCriteriaVM, shipOwnerRecords: string, shipOwnerFilteredRecords: string, shipOwnerId: number): void {
         const x: BalanceSheetCriteriaVM = {
             fromDate: criteria.fromDate,
             toDate: criteria.toDate,
-            shipOwnerId: shipOwnerId,
-            includeZeroBalanceRecords: criteria.includeZeroBalanceRecords
+            shipOwnerId: shipOwnerId
         }
         this.balanceSheetHttpService.get(x).subscribe(response => {
             this[shipOwnerRecords] = response
+            this[shipOwnerFilteredRecords] = response
         })
     }
 
@@ -125,7 +129,7 @@ export class BalanceSheetComponent {
     }
 
     private storeZeroBalanceVisibility(): void {
-        this.sessionStorageService.saveItem('zeroBalanceRowVisibility', this.zeroBalanceRowVisibility ? '1' : '0')
+        // this.showZeroBalanceRow = !this.showZeroBalanceRow
     }
 
     private subscribeToInteractionService(): void {
@@ -139,9 +143,15 @@ export class BalanceSheetComponent {
     }
 
     private toggleZeroBalanceRecords(): void {
-        this.shipOwnerRecordsA = this.shipOwnerRecordsA.filter(x => x.actualBalance != 0)
-        this.shipOwnerRecordsB = this.shipOwnerRecordsB.filter(x => x.actualBalance != 0)
-        this.shipOwnerTotal = this.shipOwnerTotal.filter(x => x.actualBalance != 0)
+        if (this.showZeroBalanceRow) {
+            this.shipOwnerFilteredRecordsA = this.shipOwnerRecordsA
+            this.shipOwnerFilteredRecordsB = this.shipOwnerRecordsB
+            this.shipOwnerFilteredTotal = this.shipOwnerTotal
+        } else {
+            this.shipOwnerFilteredRecordsA = this.shipOwnerRecordsA.filter(x => x.actualBalance != 0)
+            this.shipOwnerFilteredRecordsB = this.shipOwnerRecordsB.filter(x => x.actualBalance != 0)
+            this.shipOwnerFilteredTotal = this.shipOwnerTotal.filter(x => x.actualBalance != 0)
+        }
     }
 
     //#endregion

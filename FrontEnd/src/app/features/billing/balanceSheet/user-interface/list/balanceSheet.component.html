@@ -15,17 +15,17 @@
         <mat-tab-group mat-stretch-tabs="false" (selectedIndexChange)="onSelectedTabChange()">
             <mat-tab label="Corfu Cruises">
                 <div id="table-wrapper">
-                    <balanceSheetShipOwnerTable [records]="shipOwnerRecordsA" [criteria]="criteria"></balanceSheetShipOwnerTable>
+                    <balanceSheetShipOwnerTable [records]="shipOwnerFilteredRecordsA" [criteria]="criteria"></balanceSheetShipOwnerTable>
                 </div>
             </mat-tab>
             <mat-tab label="Pandis Family">
                 <div id="table-wrapper">
-                    <balanceSheetShipOwnerTable [records]="shipOwnerRecordsB" [criteria]="criteria"></balanceSheetShipOwnerTable>
+                    <balanceSheetShipOwnerTable [records]="shipOwnerFilteredRecordsB" [criteria]="criteria"></balanceSheetShipOwnerTable>
                 </div>
             </mat-tab>
             <mat-tab label="Γενικά σύνολα">
                 <div id="table-wrapper">
-                    <balanceSheetShipOwnerTable [records]="shipOwnerTotal"></balanceSheetShipOwnerTable>
+                    <balanceSheetShipOwnerTable [records]="shipOwnerFilteredTotal"></balanceSheetShipOwnerTable>
                 </div>
             </mat-tab>
         </mat-tab-group>
@@ -49,7 +49,7 @@
 
 <ng-template #utilityMenu>
     <button (click)="onToggleZeroBalanceRows()" mat-menu-item>
-        <mat-checkbox [(ngModel)]="zeroBalanceRowVisibility">
+        <mat-checkbox [(ngModel)]="showZeroBalanceRow">
             <span>{{ getLabel('zeroBalanceRowVisibility') }}</span>
         </mat-checkbox>
     </button>

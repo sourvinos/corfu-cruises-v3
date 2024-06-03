@@ -77,8 +77,7 @@ export class BalanceSheetCriteriaDialogComponent {
     private initForm(): void {
         this.form = this.formBuilder.group({
             fromDate: ['', [Validators.required]],
-            toDate: ['', [Validators.required]],
-            includeZeroBalanceRecords: false
+            toDate: ['', [Validators.required]]
         })
     }
 
