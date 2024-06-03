@@ -4,34 +4,53 @@
 
         <div id="header">
             <home-button-and-title [featureIcon]="featureIcon" [feature]="feature" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
+            <div id="header-right">
+                <span id="criteria-caption">{{ getCriteria() }}</span>
+                <button (click)="onShowCriteriaDialog()" class="fab fab-with-no-background" mat-icon-button>
+                    <mat-icon class="material-icons-outlined">filter_alt</mat-icon>
+                </button>
+            </div>
         </div>
-
-        <balanceSheet-criteria (outputSelected)="onDoSearchTasks($event)"></balanceSheet-criteria>
 
         <mat-tab-group mat-stretch-tabs="false" (selectedIndexChange)="onSelectedTabChange()">
             <mat-tab label="Corfu Cruises">
-                <div class="general-tab">
-                    <div id="table-wrapper">
-                        <balanceSheetShipOwnerTable [records]="shipOwnerRecordsA" [criteria]="criteria"></balanceSheetShipOwnerTable>
-                    </div>
+                <div id="table-wrapper">
+                    <balanceSheetShipOwnerTable [records]="shipOwnerRecordsA" [criteria]="criteria"></balanceSheetShipOwnerTable>
                 </div>
             </mat-tab>
             <mat-tab label="Pandis Family">
-                <div class="general-tab">
-                    <div id="table-wrapper">
-                        <balanceSheetShipOwnerTable [records]="shipOwnerRecordsB" [criteria]="criteria"></balanceSheetShipOwnerTable>
-                    </div>
+                <div id="table-wrapper">
+                    <balanceSheetShipOwnerTable [records]="shipOwnerRecordsB" [criteria]="criteria"></balanceSheetShipOwnerTable>
                 </div>
             </mat-tab>
             <mat-tab label="Γενικά σύνολα">
-                <div class="general-tab">
-                    <div id="table-wrapper">
-                        <balanceSheetShipOwnerTable [records]="shipOwnerTotal"></balanceSheetShipOwnerTable>
-                    </div>
+                <div id="table-wrapper">
+                    <balanceSheetShipOwnerTable [records]="shipOwnerTotal"></balanceSheetShipOwnerTable>
                 </div>
             </mat-tab>
         </mat-tab-group>
 
     </div>
 
+    <div id="footer">
+        <button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" mat-icon-button>
+            <mat-icon class="material-icons-outlined">more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" class="primary">
+            <ng-container *ngTemplateOutlet="utilityMenu"></ng-container>
+        </mat-menu>
+
+        <div id="align-right">
+            <button class="primary" mat-flat-button>{{ getLabel("exportButton") | uppercase }}</button>
+        </div>
+    </div>
+
 </div>
+
+<ng-template #utilityMenu>
+    <button (click)="onToggleZeroBalanceRows()" mat-menu-item>
+        <mat-checkbox [(ngModel)]="zeroBalanceRowVisibility">
+            <span>{{ getLabel('zeroBalanceRowVisibility') }}</span>
+        </mat-checkbox>
+    </button>
+</ng-template>

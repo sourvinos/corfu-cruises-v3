@@ -3840,6 +3840,31 @@
         ]
     },
     {
+        "feature": "balanceSheetCriteria",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Ισοζύγιο πελατών"
+            },
+            {
+                "id": "subHeader",
+                "description": "Δώστε τα κριτήρια με τα οποία θα γίνει η αναζήτηση"
+            },
+            {
+                "id": "inclueZeroBalanceRecords",
+                "description": "Να συμπεριληφθούν εγγραφές με μηδενικό υπόλοιπο"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Ακυρο"
+            },
+            {
+                "id": "okButton",
+                "description": "Συνεχεια"
+            }
+        ]
+    },
+    {
         "feature": "balanceSheet",
         "labels": [
             {
@@ -3869,6 +3894,14 @@
             {
                 "id": "headerActualBalance",
                 "description": "Υπόλοιπο"
+            },
+            {
+                "id": "zeroBalanceRowVisibility",
+                "description": "Εμφάνιση μηδενικών υπολοίπων"
+            },
+            {
+                "id": "exportButton",
+                "description": "Δημιουργια αρχειου xls"
             }
         ]
     }

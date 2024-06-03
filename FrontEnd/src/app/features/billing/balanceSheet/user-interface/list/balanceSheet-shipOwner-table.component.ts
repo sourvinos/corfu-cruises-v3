@@ -10,7 +10,7 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 @Component({
     selector: 'balanceSheetShipOwnerTable',
     templateUrl: './balanceSheet-shipOwner-table.component.html',
-    styleUrls: ['../../../../../../assets/styles/custom/lists.css', './balanceSheet.component.css', './balanceSheet-shipOwner-table.component.css']
+    styleUrls: ['../../../../../../assets/styles/custom/lists.css']
 })
 
 export class BalanceSheetShipOwnerTableComponent {
@@ -27,11 +27,18 @@ export class BalanceSheetShipOwnerTableComponent {
 
     constructor(private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService) { }
 
+    //#region lifecycle hooks
+
     ngOnInit(): void {
         setTimeout(() => {
-            document.getElementById('table-wrapper').style.height = document.getElementById('content').offsetHeight - 278 + 'px'
-        }, 1000)
+            const x = document.getElementsByClassName('table-wrapper') as HTMLCollectionOf<HTMLInputElement>
+            for (let i = 0; i < x.length; i++) {
+                x[i].style.height = document.getElementById('content').offsetHeight - 150 + 'px'
+            }
+        }, 100)
     }
+
+    //#endregion
 
     //#region public methods
 

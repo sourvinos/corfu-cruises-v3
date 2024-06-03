@@ -196,7 +196,7 @@
                         <passenger-list [passengers]="reservationForm.value.passengers" [reservationId]="reservationForm.value.reservationId" [totalPax]="reservationForm.value.totalPax" (outputPassengerCount)="getPassengerDifferenceColor()" (outputPassengers)="doTasksAfterPassengerFormIsClosed($event)"></passenger-list>
                     </div>
                 </mat-tab>
-                <mat-tab *ngIf="isAdmin() && isDevelopment()" class="left-align" label="{{ getLabel('tab3') }}">
+                <mat-tab *ngIf="isAdmin()" class="left-align" label="{{ getLabel('tab3') }}">
                     <div id="retail-sale-tab">
                         <form [formGroup]="retailSaleForm" id="retail-sale-form">
                             <div id="top-panel">
@@ -377,11 +377,6 @@
                                 <span>{{ getLabel("saveButton") | uppercase }}</span>
                             </button>
                         </div>
-                    </div>
-                </mat-tab>
-                <mat-tab *ngIf="isAdmin() && !isDevelopment()" class="left-align" label="{{ getLabel('tab3') }}">
-                    <div id="retail-sale-tab">
-                        <empty-page></empty-page>
                     </div>
                 </mat-tab>
             </mat-tab-group>

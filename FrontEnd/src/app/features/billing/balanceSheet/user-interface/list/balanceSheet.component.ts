@@ -1,14 +1,16 @@
 import { Component, ViewChild } from '@angular/core'
-import { DateAdapter } from '@angular/material/core'
+import { MatDialog } from '@angular/material/dialog'
 import { Table } from 'primeng/table'
 // Custom
+import { BalanceSheetCriteriaDialogComponent } from '../criteria/balanceSheet-criteria-dialog.component'
 import { BalanceSheetCriteriaVM } from '../../classes/criteria/balanceSheet-criteria-vm'
 import { BalanceSheetHttpService } from '../../classes/services/balanceSheet-http.service'
 import { BalanceSheetVM } from '../../classes/list/balanceSheet-vm'
-import { DateHelperService } from '../../../../../shared/services/date-helper.service'
+import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { HelperService } from '../../../../../shared/services/helper.service'
-import { LocalStorageService } from '../../../../../shared/services/local-storage.service'
-import { MessageLabelService } from '../../../../../shared/services/message-label.service'
+import { InteractionService } from 'src/app/shared/services/interaction.service'
+import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 
 @Component({
     selector: 'balanceSheet',
@@ -30,64 +32,86 @@ export class BalanceSheetComponent {
     public shipOwnerRecordsA: BalanceSheetVM[] = []
     public shipOwnerRecordsB: BalanceSheetVM[] = []
     public shipOwnerTotal: BalanceSheetVM[] = []
+    public zeroBalanceRowVisibility: boolean
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private helperService: HelperService, private balanceSheetHttpService: BalanceSheetHttpService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService) { }
+    constructor(private balanceSheetHttpService: BalanceSheetHttpService, private dateHelperService: DateHelperService, private helperService: HelperService, private interactionService: InteractionService, private messageLabelService: MessageLabelService, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
-        this.setLocale()
         this.setTabTitle()
+        this.subscribeToInteractionService()
         this.setListHeight()
-    }
-
-    ngAfterViewInit(): void {
-        // document.getElementById('table-wrapper').style.visibility = 'hidden'
     }
 
     //#endregion
 
     //#region public methods
 
+    public getCriteria(): string {
+        if (this.criteria) {
+            return this.criteria.fromDate + ' - ' + this.criteria.toDate
+        }
+    }
+
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public onDoSearchTasks(event: BalanceSheetCriteriaVM): void {
-        this.populateCriteria(event)
-        this.loadRecordsForShipOwner(this.criteria, 'shipOwnerRecordsA', 1)
-        this.loadRecordsForShipOwner(this.criteria, 'shipOwnerRecordsB', 2)
-        this.loadRecordsForShipOwner(this.criteria, 'shipOwnerTotal', null)
-    }
-
     public onSelectedTabChange(): void {
         setTimeout(() => {
-            document.getElementById('table-wrapper').style.height = document.getElementById('content').offsetHeight - 278 + 'px'
-        }, 1000)
+            const x = document.getElementsByClassName('table-wrapper') as HTMLCollectionOf<HTMLInputElement>
+            for (let i = 0; i < x.length; i++) {
+                x[i].style.height = document.getElementById('content').offsetHeight - 150 + 'px'
+            }
+        }, 100)
+    }
+
+    public onShowCriteriaDialog(): void {
+        const dialogRef = this.dialog.open(BalanceSheetCriteriaDialogComponent, {
+            height: '36.0625rem',
+            panelClass: 'dialog',
+            width: '32rem',
+        })
+        dialogRef.afterClosed().subscribe(criteria => {
+            if (criteria !== undefined) {
+                this.buildCriteriaVM(criteria)
+                this.loadRecordsForShipOwner(this.criteria, 'shipOwnerRecordsA', 1)
+                this.loadRecordsForShipOwner(this.criteria, 'shipOwnerRecordsB', 2)
+                this.loadRecordsForShipOwner(this.criteria, 'shipOwnerTotal', null)
+            }
+        })
+    }
+
+    public onToggleZeroBalanceRows(): void {
+        this.toggleZeroBalanceRecords()
+        this.storeZeroBalanceVisibility()
     }
 
     //#endregion
 
     //#region private methods
 
+    private buildCriteriaVM(event: BalanceSheetCriteriaVM): void {
+        this.criteria = {
+            fromDate: event.fromDate,
+            toDate: event.toDate,
+            shipOwnerId: event.shipOwnerId,
+            includeZeroBalanceRecords: event.includeZeroBalanceRecords
+        }
+    }
+
     private loadRecordsForShipOwner(criteria: BalanceSheetCriteriaVM, shipOwnerRecords: string, shipOwnerId: number): void {
         const x: BalanceSheetCriteriaVM = {
             fromDate: criteria.fromDate,
             toDate: criteria.toDate,
-            shipOwnerId: shipOwnerId
+            shipOwnerId: shipOwnerId,
+            includeZeroBalanceRecords: criteria.includeZeroBalanceRecords
         }
         this.balanceSheetHttpService.get(x).subscribe(response => {
             this[shipOwnerRecords] = response
         })
-    }
-
-    private populateCriteria(event: BalanceSheetCriteriaVM): void {
-        this.criteria = {
-            fromDate: event.fromDate,
-            toDate: event.toDate,
-            shipOwnerId: event.shipOwnerId
-        }
     }
 
     private setListHeight(): void {
@@ -96,12 +120,28 @@ export class BalanceSheetComponent {
         }, 100)
     }
 
-    private setLocale(): void {
-        this.dateAdapter.setLocale(this.localStorageService.getLanguage())
-    }
-
     private setTabTitle(): void {
         this.helperService.setTabTitle(this.feature)
+    }
+
+    private storeZeroBalanceVisibility(): void {
+        this.sessionStorageService.saveItem('zeroBalanceRowVisibility', this.zeroBalanceRowVisibility ? '1' : '0')
+    }
+
+    private subscribeToInteractionService(): void {
+        this.interactionService.refreshTabTitle.subscribe(() => { this.setTabTitle() })
+        this.interactionService.emitDateRange.subscribe((response) => {
+            if (response) {
+                this.criteria.fromDate = this.dateHelperService.formatISODateToLocale(response.fromDate)
+                this.criteria.toDate = this.dateHelperService.formatISODateToLocale(response.toDate)
+            }
+        })
+    }
+
+    private toggleZeroBalanceRecords(): void {
+        this.shipOwnerRecordsA = this.shipOwnerRecordsA.filter(x => x.actualBalance != 0)
+        this.shipOwnerRecordsB = this.shipOwnerRecordsB.filter(x => x.actualBalance != 0)
+        this.shipOwnerTotal = this.shipOwnerTotal.filter(x => x.actualBalance != 0)
     }
 
     //#endregion

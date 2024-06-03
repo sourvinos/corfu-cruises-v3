@@ -84,7 +84,6 @@ export class LedgerBillingComponent {
 
     public onSelectedTabChange(): void {
         setTimeout(() => {
-            // document.getElementById('table-wrapper').style.visibility = 'visible !important'
             document.getElementById('table-wrapper').style.height = document.getElementById('content').offsetHeight - 278 + 'px'
         }, 1000)
     }
