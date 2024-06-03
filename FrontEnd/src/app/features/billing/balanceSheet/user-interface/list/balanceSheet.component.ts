@@ -1,6 +1,5 @@
-import { Component, ViewChild } from '@angular/core'
+import { Component } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
-import { Table } from 'primeng/table'
 // Custom
 import { BalanceSheetCriteriaDialogComponent } from '../criteria/balanceSheet-criteria-dialog.component'
 import { BalanceSheetCriteriaVM } from '../../classes/criteria/balanceSheet-criteria-vm'
@@ -10,7 +9,6 @@ import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { HelperService } from '../../../../../shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 
 @Component({
     selector: 'balanceSheet',
@@ -21,8 +19,6 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 export class BalanceSheetComponent {
 
     //#region variables
-
-    @ViewChild('table') table: Table
 
     public criteria: BalanceSheetCriteriaVM
     public feature = 'balanceSheet'
@@ -36,11 +32,10 @@ export class BalanceSheetComponent {
     public shipOwnerTotal: BalanceSheetVM[] = []
     public shipOwnerFilteredTotal: BalanceSheetVM[] = []
     public showZeroBalanceRow: boolean = true
-    public showZeroFilteredBalanceRow: boolean = true
 
     //#endregion
 
-    constructor(private balanceSheetHttpService: BalanceSheetHttpService, private dateHelperService: DateHelperService, private helperService: HelperService, private interactionService: InteractionService, private messageLabelService: MessageLabelService, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
+    constructor(private balanceSheetHttpService: BalanceSheetHttpService, private dateHelperService: DateHelperService, private helperService: HelperService, private interactionService: InteractionService, private messageLabelService: MessageLabelService, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
 
@@ -81,6 +76,7 @@ export class BalanceSheetComponent {
         })
         dialogRef.afterClosed().subscribe(criteria => {
             if (criteria !== undefined) {
+                this.initVariables()
                 this.buildCriteriaVM(criteria)
                 this.loadRecordsForShipOwner(this.criteria, 'shipOwnerRecordsA', 'shipOwnerFilteredRecordsA', 1)
                 this.loadRecordsForShipOwner(this.criteria, 'shipOwnerRecordsB', 'shipOwnerFilteredRecordsB', 2)
@@ -90,7 +86,6 @@ export class BalanceSheetComponent {
     }
 
     public onToggleZeroBalanceRows(): void {
-        this.storeZeroBalanceVisibility()
         this.toggleZeroBalanceRecords()
     }
 
@@ -118,6 +113,10 @@ export class BalanceSheetComponent {
         })
     }
 
+    private initVariables(): void {
+        this.showZeroBalanceRow = true
+    }
+
     private setListHeight(): void {
         setTimeout(() => {
             document.getElementById('content').style.height = document.getElementById('list-wrapper').offsetHeight - 64 + 'px'
@@ -126,10 +125,6 @@ export class BalanceSheetComponent {
 
     private setTabTitle(): void {
         this.helperService.setTabTitle(this.feature)
-    }
-
-    private storeZeroBalanceVisibility(): void {
-        // this.showZeroBalanceRow = !this.showZeroBalanceRow
     }
 
     private subscribeToInteractionService(): void {

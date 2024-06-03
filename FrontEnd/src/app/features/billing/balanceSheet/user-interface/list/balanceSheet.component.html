@@ -39,16 +39,18 @@
         <mat-menu #menu="matMenu" class="primary">
             <ng-container *ngTemplateOutlet="utilityMenu"></ng-container>
         </mat-menu>
-
         <div id="align-right">
-            <button class="primary" mat-flat-button>{{ getLabel("exportButton") | uppercase }}</button>
+            <button [disabled]="shipOwnerTotal.length==0" class="primary" mat-flat-button>
+                <mat-icon *ngIf="shipOwnerTotal.length==0" class="material-icons-outlined">lock</mat-icon>
+                <span>{{ getLabel("exportButton") | uppercase }}</span>
+            </button>
         </div>
     </div>
 
 </div>
 
 <ng-template #utilityMenu>
-    <button (click)="onToggleZeroBalanceRows()" mat-menu-item>
+    <button [disabled]="shipOwnerTotal.length==0" (click)="onToggleZeroBalanceRows()" mat-menu-item>
         <mat-checkbox [(ngModel)]="showZeroBalanceRow">
             <span>{{ getLabel('zeroBalanceRowVisibility') }}</span>
         </mat-checkbox>
