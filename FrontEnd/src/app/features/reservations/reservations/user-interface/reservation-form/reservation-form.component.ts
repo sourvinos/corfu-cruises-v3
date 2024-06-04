@@ -191,6 +191,10 @@ export class ReservationFormComponent {
         return this.retailSaleForm.pristine
     }
 
+    public hasReservationGuidAsId(): boolean {
+        return this.reservationForm.value.reservationId != ''
+    }
+
     public isReservationInStorage(): boolean {
         try {
             const x = JSON.parse(this.localStorageService.getItem('reservation'))
@@ -453,7 +457,7 @@ export class ReservationFormComponent {
                 next: (response) => {
                     this.retailSaleHttpService.patchRetailSaleAade(this.retailSaleXmlHelperService.processRetailSaleSuccessResponse(response)).subscribe({
                         next: () => {
-                            this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                            this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
                         },
                         error: (errorFromInterceptor) => {
                             this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
@@ -757,7 +761,12 @@ export class ReservationFormComponent {
                 this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'ok', this.parentUrl, !keepFormOpen)
                 if (keepFormOpen) {
                     this.reservationForm.patchValue({
-                        putAt: response.id
+                        reservationId: response.body.reservationId,
+                        refNo: response.body.refNo,
+                        postAt: response.body.postAt,
+                        postUser: response.body.postUser,
+                        putAt: response.body.putAt,
+                        putUser: response.body.putUser
                     })
                     this.reservationForm.markAsPristine()
                 }
@@ -776,7 +785,8 @@ export class ReservationFormComponent {
         this.retailSaleHttpService.save(retailSale).subscribe({
             next: () => {
                 this.doSubmitTasks()
-                this.retailSaleForm.setErrors({ invalid: true })
+                this.reservationForm.markAsPristine()
+                this.retailSaleForm.markAsPristine()
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])

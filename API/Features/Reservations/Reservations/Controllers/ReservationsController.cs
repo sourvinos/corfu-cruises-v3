@@ -89,7 +89,7 @@ namespace API.Features.Reservations.Reservations {
         [HttpPost]
         [Authorize(Roles = "user, admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<Response> Post([FromBody] ReservationWriteDto reservation) {
+        public async Task<ResponseWithBody> Post([FromBody] ReservationWriteDto reservation) {
             UpdateDriverIdWithNull(reservation);
             UpdateShipIdWithNull(reservation);
             AttachPortIdToDto(reservation);
@@ -97,10 +97,10 @@ namespace API.Features.Reservations.Reservations {
             var z = reservationValidation.IsValidAsync(null, reservation, scheduleRepo);
             if (await z == 200) {
                 var x = reservationUpdateRepo.Create(mapper.Map<ReservationWriteDto, Reservation>((ReservationWriteDto)reservationUpdateRepo.AttachMetadataToPostDto(reservation)));
-                return new Response {
+                return new ResponseWithBody {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = x.PutAt,
+                    Body = x,
                     Message = reservation.RefNo
                 };
             } else {
@@ -113,7 +113,7 @@ namespace API.Features.Reservations.Reservations {
         [HttpPut]
         [Authorize(Roles = "user, admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<Response> PutAsync([FromBody] ReservationWriteDto reservation) {
+        public async Task<ResponseWithBody> PutAsync([FromBody] ReservationWriteDto reservation) {
             var x = await reservationReadRepo.GetByIdAsync(reservation.ReservationId.ToString(), false);
             if (x != null) {
                 if (Identity.IsUserAdmin(httpContext) || reservationValidation.IsUserOwner(x.CustomerId)) {
@@ -122,10 +122,10 @@ namespace API.Features.Reservations.Reservations {
                     var z = reservationValidation.IsValidAsync(x, reservation, scheduleRepo);
                     if (await z == 200) {
                         var i = reservationUpdateRepo.Update(reservation.ReservationId, mapper.Map<ReservationWriteDto, Reservation>((ReservationWriteDto)reservationUpdateRepo.AttachMetadataToPutDto(x, reservation)));
-                        return new Response {
+                        return new ResponseWithBody {
                             Code = 200,
                             Icon = Icons.Success.ToString(),
-                            Id = i.PutAt,
+                            Body = i,
                             Message = reservation.RefNo
                         };
                     } else {

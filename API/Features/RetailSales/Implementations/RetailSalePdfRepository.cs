@@ -36,7 +36,6 @@ namespace API.Features.RetailSales {
             AddPaxAndPrices(gfx, headerFont, robotoMonoFont, locale, invoice);
             AddPassengers(gfx, headerFont, robotoMonoFont, invoice);
             AddSummary(gfx, headerFont, robotoMonoFont, robotoMonoFontBig, locale, invoice);
-            AddBankAccounts(gfx, headerFont, robotoMonoFont, invoice);
             AddAade(gfx, robotoMonoFont, invoice.Aade);
             var filename = invoice.ReservationId + ".pdf";
             var fullpathname = Path.Combine("Reports" + Path.DirectorySeparatorChar + "Invoices" + Path.DirectorySeparatorChar + filename);
@@ -144,15 +143,6 @@ namespace API.Features.RetailSales {
             gfx.DrawString("MAPK " + aade.Mark, font, XBrushes.Black, new XRect(right, bottom - 70, 0, 0), new() { Alignment = XStringAlignment.Far });
             gfx.DrawImage(AddQrCode(aade.QrUrl), 500, 749, 60, 60);
             gfx.DrawString("UID " + aade.UId, font, XBrushes.Black, new XRect(right, bottom, 0, 0), new() { Alignment = XStringAlignment.Far });
-        }
-
-        private static void AddBankAccounts(XGraphics gfx, XFont headerFont, XFont robotoMonoFont, InvoicePdfVM invoice) {
-            var bottom = 820;
-            var left = 40;
-            foreach (var bankAccount in invoice.BankAccounts) {
-                gfx.DrawString(bankAccount.Description, robotoMonoFont, XBrushes.Black, new XRect(left, bottom -= 10, 0, 0), new() { Alignment = XStringAlignment.Near });
-            }
-            gfx.DrawString("ΤΡΑΠΕΖΙΚΟΙ ΛΟΓΑΡΙΑΣΜΟΙ", headerFont, XBrushes.Black, new XRect(left, bottom -= 20, 0, 0), new() { Alignment = XStringAlignment.Near });
         }
 
         private static XImage AddQrCode(string qrUrl) {
