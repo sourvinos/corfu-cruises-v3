@@ -7,6 +7,7 @@ using API.Features.Billing.Ledgers;
 using API.Features.Billing.PaymentMethods;
 using API.Features.Billing.Prices;
 using API.Features.Billing.Receipts;
+using API.Features.Billing.Revenues;
 using API.Features.Billing.TaxOffices;
 using API.Features.CheckIn;
 using API.Features.Reservations.Availability;
@@ -113,6 +114,7 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<ITaxOfficeRepository, TaxOfficeRepository>();
             services.AddTransient<ITaxOfficeValidation, TaxOfficeValidation>();
             services.AddTransient<IBalanceSheetRepository, BalanceSheetRepository>();
+            services.AddTransient<IRevenuesRepository, RevenuesRepository>();
             #endregion
             #region shared
             services.AddScoped<Token>();
