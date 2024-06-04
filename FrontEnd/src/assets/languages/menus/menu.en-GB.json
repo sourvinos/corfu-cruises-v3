@@ -129,7 +129,11 @@
     },
     {
         "id": "balanceSheet",
-        "description": "Ισοζύγιο"
+        "description": "Ισοζύγιο πελατών"
+    },
+    {
+        "id": "revenues",
+        "description": "Εσοδα πωλήσεων"
     },
     {
         "id": "billing-parameters",

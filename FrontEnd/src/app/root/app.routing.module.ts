@@ -50,6 +50,7 @@ const appRoutes: Routes = [
     { path: 'prices', loadChildren: () => import('../features/billing/prices/classes/modules/price.module').then(m => m.PriceModule) },
     { path: 'receipts', loadChildren: () => import('../features/billing/receipts/classes/modules/receipt.module').then(m => m.ReceiptModule) },
     { path: 'taxOffices', loadChildren: () => import('../features/billing/taxOffices/classes/modules/taxOffice.module').then(m => m.TaxOfficeModule) },
+    { path: 'revenues', loadChildren: () => import('../features/billing/revenues/classes/modules/revenues.module').then(m => m.RevenuesModule) },
     // CheckIn
     { path: 'checkIn', loadChildren: () => import('../features/check-in/classes/modules/check-in.module').then(m => m.CheckInModule) },
     // Retail sales
