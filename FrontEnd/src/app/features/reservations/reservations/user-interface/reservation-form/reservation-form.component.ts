@@ -176,7 +176,11 @@ export class ReservationFormComponent {
     }
 
     public isDevelopment(): boolean {
-        return environment.production == false
+        return environment.isDevelopment == true
+    }
+
+    public isProductionDemo(): boolean {
+        return environment.isProductionDemo == true
     }
 
     public isReservationFormPristine(): boolean {

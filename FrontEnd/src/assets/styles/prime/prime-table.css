@@ -43,6 +43,8 @@
 
 .p-datatable .p-datatable-thead > tr:nth-child(1) > th {
     border-bottom: none;
+    border-right: none;
+    border-left: 0.0625rem solid color-mix(in srgb, var(--color-primary) 30%, transparent);
     border-top: 0.0625rem solid color-mix(in srgb, var(--color-primary) 30%, transparent);
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
 }
@@ -61,12 +63,10 @@
 
 .p-datatable .p-datatable-thead > tr:nth-child(2) > th:not(.header-datepicker) {
     border-bottom: 0.0625rem solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+    border-left: 0.0625rem solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+    border-right: none;
     border-top: none;
     padding: 0 0.5rem 0.6875rem 0.5rem;
-}
-
-.p-datatable .p-datatable-thead > tr:nth-child(2) > th:first-child {
-    border-left: none;
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(2) > th:last-child {

@@ -17,5 +17,7 @@ export const environment = {
         password: '',
         noRobot: false
     },
-    production: true
+    isDevelopment: false,
+    isProductionDemo: true,
+    isProductionLive: false
 }

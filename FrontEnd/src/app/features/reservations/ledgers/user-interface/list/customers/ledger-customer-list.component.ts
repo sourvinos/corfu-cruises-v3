@@ -16,7 +16,6 @@ import { MatDialog } from '@angular/material/dialog'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
-import { environment } from 'src/environments/environment'
 
 @Component({
     selector: 'ledger-customer-list',
@@ -66,10 +65,6 @@ export class LedgerCustomerListComponent {
 
     public isAdmin(): boolean {
         return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' ? true : false
-    }
-
-    public isProduction(): boolean {
-        return environment.production
     }
 
     public processEmittedRecords(emittedObject: LedgerReservationVM[]): void {

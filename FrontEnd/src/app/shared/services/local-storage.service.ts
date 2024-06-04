@@ -25,7 +25,7 @@ export class LocalStorageService {
 
     public deleteItems(items: any): void {
         items.forEach((element: { when: string; item: string }) => {
-            if (element.when == 'always' || environment.production) {
+            if (element.when == 'always' || environment.isProductionLive) {
                 localStorage.removeItem(element.item)
             }
         })
