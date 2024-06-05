@@ -1,8 +1,8 @@
 import { formatNumber } from '@angular/common'
 import { Component, Input } from '@angular/core'
 // Custom
-import { BalanceSheetCriteriaVM } from '../../classes/criteria/balanceSheet-criteria-vm'
-import { BalanceSheetVM } from '../../classes/list/balanceSheet-vm'
+import { BalanceSheetCriteriaVM } from '../../classes/view-models/criteria/balanceSheet-criteria-vm'
+import { BalanceSheetVM } from '../../classes/view-models/list/balanceSheet-vm'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 

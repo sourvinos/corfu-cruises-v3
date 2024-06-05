@@ -2,13 +2,14 @@ import { Component } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
 // Custom
 import { BalanceSheetCriteriaDialogComponent } from '../criteria/balanceSheet-criteria-dialog.component'
-import { BalanceSheetCriteriaVM } from '../../classes/criteria/balanceSheet-criteria-vm'
+import { BalanceSheetCriteriaVM } from '../../classes/view-models/criteria/balanceSheet-criteria-vm'
 import { BalanceSheetHttpService } from '../../classes/services/balanceSheet-http.service'
-import { BalanceSheetVM } from '../../classes/list/balanceSheet-vm'
+import { BalanceSheetVM } from '../../classes/view-models/list/balanceSheet-vm'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { HelperService } from '../../../../../shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { BalanceSheetExportService } from '../../classes/services/balanceSheet-export.service'
 
 @Component({
     selector: 'balanceSheet',
@@ -35,7 +36,15 @@ export class BalanceSheetComponent {
 
     //#endregion
 
-    constructor(private balanceSheetHttpService: BalanceSheetHttpService, private dateHelperService: DateHelperService, private helperService: HelperService, private interactionService: InteractionService, private messageLabelService: MessageLabelService, public dialog: MatDialog) { }
+    constructor(
+        private balanceSheetHttpService: BalanceSheetHttpService,
+        private dateHelperService: DateHelperService,
+        private helperService: HelperService,
+        private interactionService: InteractionService,
+        private messageLabelService: MessageLabelService,
+        private balanceSheetExportService: BalanceSheetExportService,
+        public dialog: MatDialog
+    ) { }
 
     //#region lifecycle hooks
 
@@ -57,6 +66,14 @@ export class BalanceSheetComponent {
 
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
+    }
+
+    public onExportTasks(): void {
+        const x = this.balanceSheetExportService.buildVM(this.shipOwnerFilteredRecordsA)
+        const z = this.balanceSheetExportService.buildVM(this.shipOwnerFilteredRecordsB)
+        const i = this.balanceSheetExportService.buildVM(this.shipOwnerFilteredTotal)
+        this.balanceSheetExportService.exportToExcel(x, z, i)
+        // this.balanceSheetExportService.exportToExcel(this.balanceSheetExportService.buildVM(this.shipOwnerRecordsA))
     }
 
     public onSelectedTabChange(): void {

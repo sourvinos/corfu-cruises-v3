@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
 // Custom
-import { BalanceSheetCriteriaVM } from '../criteria/balanceSheet-criteria-vm'
-import { BalanceSheetVM } from '../list/balanceSheet-vm'
+import { BalanceSheetCriteriaVM } from '../view-models/criteria/balanceSheet-criteria-vm'
+import { BalanceSheetVM } from '../view-models/list/balanceSheet-vm'
 import { environment } from 'src/environments/environment'
 
 @Injectable({ providedIn: 'root' })
