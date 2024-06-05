@@ -2,32 +2,32 @@
     <p-table #table [scrollable]="true" [virtualScrollItemSize]="32" [value]="records" [virtualScroll]="false" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
         <ng-template pTemplate="header">
             <tr>
-                <th class="border-bottom width-15" rowspan="2">{{ getLabel("headerCustomer") }}</th>
-                <th class="border-bottom width-3" rowspan="2">{{ getLabel("headerPreviousBalance") }}</th>
-                <th colspan="2">{{ getLabel("headerPeriod") }}</th>
-                <th class="border-bottom width-3" rowspan="2">{{ getLabel("headerActualBalance") }}</th>
+                <th class="width-15" pSortableColumn="customer.description">{{ getLabel("headerCustomer") }}</th>
+                <th class="width-3" pSortableColumn="previous">{{ getLabel("headerPrevious") }}</th>
+                <th class="width-3" pSortableColumn="periodBalance">{{ getLabel("headerRequested") }}</th>
+                <th class="width-3" pSortableColumn="total">{{ getLabel("headerTotal") }}</th>
             </tr>
             <tr>
-                <th class="border-top second-row width-3">{{ getLabel("headerDebit") }}</th>
-                <th class="border-top second-row width-3">{{ getLabel("headerCredit") }}</th>
+                <th class="width-15"><input (input)="table.filter($event.target.value, 'customer.description', 'contains')" [value]="$any(table).filters['customer.description']?.value" class="p-inputtext"></th>
+                <th class="width-3"><input (input)="table.filter($event.target.value, 'previous', 'contains')" [value]="$any(table).filters['previous']?.value" class="p-inputtext"></th>
+                <th class="width-3"><input (input)="table.filter($event.target.value, 'periodBalance', 'contains')" [value]="$any(table).filters['periodBalance']?.value" class="p-inputtext"></th>
+                <th class="width-3"><input (input)="table.filter($event.target.value, 'total', 'contains')" [value]="$any(table).filters['total']?.value" class="p-inputtext"></th>
             </tr>
         </ng-template>
         <ng-template let-record pTemplate="body">
             <tr style="height: 32px;">
                 <td class="width-15"><span>{{ record.customer.description }}</span></td>
-                <td class="width-3"><span class="number right with-right-padding">{{ formatNumberToLocale(record.previousBalance) }}</span></td>
-                <td class="width-3"><span class="number right with-right-padding">{{ formatNumberToLocale(record.debit) }}</span></td>
-                <td class="width-3"><span class="number right with-right-padding">{{ formatNumberToLocale(record.credit) }}</span></td>
-                <td class="width-3"><span class="number right with-right-padding">{{ formatNumberToLocale(record.actualBalance) }}</span></td>
+                <td class="right width-3"><span class="number right with-right-padding">{{ formatNumberToLocale(record.previous) }}</span></td>
+                <td class="right width-3"><span class="number right with-right-padding">{{ formatNumberToLocale(record.periodBalance) }}</span></td>
+                <td class="right width-3"><span class="number right with-right-padding">{{ formatNumberToLocale(record.total) }}</span></td>
             </tr>
         </ng-template>
         <ng-template pTemplate="footer">
             <tr style="height: 32px;">
-                <td class=""><span></span></td>
-                <td class="right "><span class="number with-right-padding">{{ formatNumberToLocale(totals.previousBalance) }}</span></td>
-                <td class="right "><span class="number with-right-padding">{{ formatNumberToLocale(totals.debit) }}</span></td>
-                <td class="right "><span class="number with-right-padding">{{ formatNumberToLocale(totals.credit) }}</span></td>
-                <td class="right "><span class="number with-right-padding">{{ formatNumberToLocale(totals.actualBalance) }}</span></td>
+                <td class="width-15"><span></span></td>
+                <td class="right width-3"><span class="number with-right-padding">{{ formatNumberToLocale(totals.previous) }}</span></td>
+                <td class="right width-3"><span class="number with-right-padding">{{ formatNumberToLocale(totals.periodBalance) }}</span></td>
+                <td class="right width-3"><span class="number with-right-padding">{{ formatNumberToLocale(totals.total) }}</span></td>
             </tr>
         </ng-template>
     </p-table>

@@ -6,10 +6,10 @@ namespace API.Features.Billing.Revenues {
 
         public string Date { get; set; }
         public SimpleEntity Customer { get; set; }
-        public string InvoiceNo { get; set; }
         public decimal Debit { get; set; }
         public decimal Credit { get; set; }
-        public decimal Balance { get; set; }
+        public decimal PeriodBalance { get; set; }
+        public decimal Total { get; set; }
 
     }
 

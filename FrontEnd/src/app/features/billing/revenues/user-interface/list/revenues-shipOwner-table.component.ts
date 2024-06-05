@@ -44,7 +44,7 @@ export class RevenuesShipOwnerTableComponent {
         setTimeout(() => {
             const x = document.getElementsByClassName('table-wrapper') as HTMLCollectionOf<HTMLInputElement>
             for (let i = 0; i < x.length; i++) {
-                x[i].style.height = document.getElementById('content').offsetHeight - 150 + 'px'
+                x[i].style.height = document.getElementById('content').offsetHeight - 152 + 'px'
             }
         }, 100)
     }
@@ -52,11 +52,11 @@ export class RevenuesShipOwnerTableComponent {
     private calculateTotals(): void {
         this.totals = {
             customer: { id: 0, description: '', isActive: true },
-            shipOwner: { id: 0, description: '', isActive: true },
-            previousBalance: this.records.reduce((sum: number, array: { previousBalance: number }) => sum + array.previousBalance, 0),
+            previous: this.records.reduce((sum: number, array: { previous: number }) => sum + array.previous, 0),
             debit: this.records.reduce((sum: number, array: { debit: number }) => sum + array.debit, 0),
             credit: this.records.reduce((sum: number, array: { credit: number }) => sum + array.credit, 0),
-            actualBalance: this.records.reduce((sum: number, array: { actualBalance: number }) => sum + array.actualBalance, 0),
+            periodBalance: this.records.reduce((sum: number, array: { debit: number }) => sum + array.debit, 0) - this.records.reduce((sum: number, array: { credit: number }) => sum + array.credit, 0),
+            total: this.records.reduce((sum: number, array: { total: number }) => sum + array.total, 0),
         }
     }
 

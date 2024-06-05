@@ -63,7 +63,7 @@ export class RevenuesComponent {
         setTimeout(() => {
             const x = document.getElementsByClassName('table-wrapper') as HTMLCollectionOf<HTMLInputElement>
             for (let i = 0; i < x.length; i++) {
-                x[i].style.height = document.getElementById('content').offsetHeight - 150 + 'px'
+                x[i].style.height = document.getElementById('content').offsetHeight - 152 + 'px'
             }
         }, 100)
     }
@@ -119,7 +119,7 @@ export class RevenuesComponent {
 
     private setListHeight(): void {
         setTimeout(() => {
-            document.getElementById('content').style.height = document.getElementById('list-wrapper').offsetHeight - 64 + 'px'
+            document.getElementById('content').style.height = document.getElementById('list-wrapper').offsetHeight - 66 + 'px'
         }, 100)
     }
 
@@ -143,9 +143,9 @@ export class RevenuesComponent {
             this.shipOwnerFilteredRecordsB = this.shipOwnerRecordsB
             this.shipOwnerFilteredTotal = this.shipOwnerTotal
         } else {
-            this.shipOwnerFilteredRecordsA = this.shipOwnerRecordsA.filter(x => x.actualBalance != 0)
-            this.shipOwnerFilteredRecordsB = this.shipOwnerRecordsB.filter(x => x.actualBalance != 0)
-            this.shipOwnerFilteredTotal = this.shipOwnerTotal.filter(x => x.actualBalance != 0)
+            this.shipOwnerFilteredRecordsA = this.shipOwnerRecordsA.filter(x => x.total != 0)
+            this.shipOwnerFilteredRecordsB = this.shipOwnerRecordsB.filter(x => x.total != 0)
+            this.shipOwnerFilteredTotal = this.shipOwnerTotal.filter(x => x.total != 0)
         }
     }
 

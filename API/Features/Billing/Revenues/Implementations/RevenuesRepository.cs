@@ -11,7 +11,6 @@ using Microsoft.Extensions.Options;
 using API.Features.Billing.Transactions;
 using AutoMapper;
 using System.Threading.Tasks;
-using API.Features.Reservations.Customers;
 
 namespace API.Features.Billing.Revenues {
 
@@ -39,10 +38,9 @@ namespace API.Features.Billing.Revenues {
         }
 
         public IEnumerable<RevenuesVM> BuildBalanceForRevenues(IEnumerable<RevenuesVM> records) {
-            decimal balance = 0;
             foreach (var record in records) {
-                balance = balance + record.Debit - record.Credit;
-                record.Balance = balance;
+                record.PeriodBalance = record.Debit - record.Credit;
+                record.Total = record.Debit - record.Credit;
             }
             return records;
         }
@@ -58,7 +56,7 @@ namespace API.Features.Billing.Revenues {
                     balance = balance + record.Debit - record.Credit;
                 }
             }
-            var total = BuildTotalLine(customer, debit, credit, balance, "ΣΥΝΟΛΑ ΠΡΟΗΓΟΥΜΕΝΗΣ ΠΕΡΙΟΔΟΥ");
+            var total = BuildTotalLine(customer, debit, credit, balance);
             return total;
         }
 
@@ -75,7 +73,7 @@ namespace API.Features.Billing.Revenues {
                     balance += record.Debit - record.Credit;
                 }
             }
-            var total = BuildTotalLine(customer, debit, credit, balance, "ΣΥΝΟΛΑ ΖΗΤΟΥΜΕΝΗΣ ΠΕΡΙΟΔΟΥ");
+            var total = BuildTotalLine(customer, debit, credit, balance);
             requestedPeriod.Add(total);
             return requestedPeriod;
         }
@@ -89,7 +87,7 @@ namespace API.Features.Billing.Revenues {
                 credit += record.Credit;
                 balance += record.Debit - record.Credit;
             }
-            var total = BuildTotalLine(customer, debit, credit, balance, "ΓΕΝΙΚΑ ΣΥΝΟΛΑ");
+            var total = BuildTotalLine(customer, debit, credit, balance);
             return total;
         }
 
@@ -105,21 +103,19 @@ namespace API.Features.Billing.Revenues {
         }
 
         public RevenuesSummaryVM Summarize(SimpleEntity customer, IEnumerable<RevenuesVM> records) {
-            var previousBalance = records.First().Balance;
+            var previous = records.First().Total;
             var requestedDebit = records.SkipLast(1).Last().Debit;
             var requestedCredit = records.SkipLast(1).Last().Credit;
-            var requestedBalance = records.SkipLast(1).Last().Balance;
-            var actualBalance = previousBalance + requestedBalance;
             var summary = new RevenuesSummaryVM {
                 Customer = new SimpleEntity {
                     Id = customer.Id,
                     Description = customer.Description
                 },
-                PreviousBalance = previousBalance,
+                Previous = previous,
                 Debit = requestedDebit,
                 Credit = requestedCredit,
-                Balance = requestedDebit - requestedCredit,
-                ActualBalance = actualBalance
+                PeriodBalance = requestedDebit - requestedCredit,
+                Total = previous + requestedDebit - requestedCredit
             };
             return summary;
         }
@@ -134,18 +130,17 @@ namespace API.Features.Billing.Revenues {
             return mapper.Map<IEnumerable<TransactionsBase>, IEnumerable<RevenuesVM>>(records);
         }
 
-        private static RevenuesVM BuildTotalLine(SimpleEntity customer, decimal debit, decimal credit, decimal balance, string label) {
-            var total = new RevenuesVM {
-                Date = "",
+        private static RevenuesVM BuildTotalLine(SimpleEntity customer, decimal debit, decimal credit, decimal total) {
+            var totals = new RevenuesVM {
                 Customer = new SimpleEntity {
                     Id = customer.Id,
                     Description = customer.Description
                 },
                 Debit = debit,
                 Credit = credit,
-                Balance = balance
+                Total = total
             };
-            return total;
+            return totals;
         }
 
     }

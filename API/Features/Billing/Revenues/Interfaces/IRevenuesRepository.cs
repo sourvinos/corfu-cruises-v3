@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using API.Features.Reservations.Customers;
 using API.Infrastructure.Classes;
 
 namespace API.Features.Billing.Revenues {

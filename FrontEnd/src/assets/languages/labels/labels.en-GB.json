@@ -1007,6 +1007,22 @@
             {
                 "id": "grossAmount",
                 "description": "Σύνολο με ΦΠΑ"
+            },
+            {
+                "id": "printRetailSale",
+                "description": "Εκτύπωση"
+            },
+            {
+                "id": "emailRetailSale",
+                "description": "Αποστολή με email"
+            },
+            {
+                "id": "submitRetailSale",
+                "description": "Επανυποβολή"
+            },
+            {
+                "id": "cancelRetailSale",
+                "description": "Ακύρωση"
             }
         ]
     },
@@ -3824,6 +3840,27 @@
         ]
     },
     {
+        "feature": "balanceSheetCriteria",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Ισοζύγιο πελατών"
+            },
+            {
+                "id": "subHeader",
+                "description": "Δώστε τα κριτήρια με τα οποία θα γίνει η αναζήτηση"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Ακυρο"
+            },
+            {
+                "id": "okButton",
+                "description": "Συνεχεια"
+            }
+        ]
+    },
+    {
         "feature": "balanceSheet",
         "labels": [
             {
@@ -3855,8 +3892,66 @@
                 "description": "Υπόλοιπο"
             },
             {
+                "id": "zeroBalanceRowVisibility",
+                "description": "Εμφάνιση μηδενικών υπολοίπων"
+            },
+            {
                 "id": "exportButton",
                 "description": "Δημιουργία αρχείου xls"
+            }
+        ]
+    },
+    {
+        "feature": "revenuesCriteria",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Εσοδα πωλήσεων"
+            },
+            {
+                "id": "subHeader",
+                "description": "Δώστε τα κριτήρια με τα οποία θα γίνει η αναζήτηση"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Ακυρο"
+            },
+            {
+                "id": "okButton",
+                "description": "Συνεχεια"
+            }
+        ]
+    },
+    {
+        "feature": "revenues",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Εσοδα πωλήσεων"
+            },
+            {
+                "id": "headerCustomer",
+                "description": "Επωνυμία"
+            },
+            {
+                "id": "headerPrevious",
+                "description": "Προηγ. περίοδος"
+            },
+            {
+                "id": "headerRequested",
+                "description": "Ζητούμενη περίοδος"
+            },
+            {
+                "id": "headerTotal",
+                "description": "Σύνολο"
+            },
+            {
+                "id": "zeroBalanceRowVisibility",
+                "description": "Εμφάνιση μηδενικών υπολοίπων"
+            },
+            {
+                "id": "exportButton",
+                "description": "Δημιουργια αρχειου xls"
             }
         ]
     }

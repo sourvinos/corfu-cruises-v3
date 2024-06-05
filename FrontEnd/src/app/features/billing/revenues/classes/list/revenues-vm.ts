@@ -3,10 +3,10 @@ import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 export interface RevenuesVM {
 
     customer: SimpleEntity
-    shipOwner: SimpleEntity
-    previousBalance: number
+    previous: number
     debit: number
     credit: number
-    actualBalance: number
+    periodBalance: number
+    total: number
 
 }

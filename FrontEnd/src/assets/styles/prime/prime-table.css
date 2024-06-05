@@ -54,7 +54,7 @@
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(1) > th:hover {
-    background-color: var(--color-background) !important;
+    background-color: var(--color-table-header-footer) !important;
 }
 
 .p-datatable .p-datatable-thead > tr:nth-child(1) > th:last-child {
@@ -74,7 +74,7 @@
 }
 
 .p-datatable .p-sortable-column.p-highlight {
-    background-color: var(--color-background) !important;
+    background-color: var(--color-table-header-footer) !important;
 }
 
 .p-datatable .p-datatable-thead > tr > th > .date-picker-wrapper > .mat-datepicker-toggle > .mat-mdc-icon-button > svg {

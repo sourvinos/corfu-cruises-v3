@@ -3851,10 +3851,6 @@
                 "description": "Δώστε τα κριτήρια με τα οποία θα γίνει η αναζήτηση"
             },
             {
-                "id": "inclueZeroBalanceRecords",
-                "description": "Να συμπεριληφθούν εγγραφές με μηδενικό υπόλοιπο"
-            },
-            {
                 "id": "cancelButton",
                 "description": "Ακυρο"
             },
@@ -3894,6 +3890,60 @@
             {
                 "id": "headerActualBalance",
                 "description": "Υπόλοιπο"
+            },
+            {
+                "id": "zeroBalanceRowVisibility",
+                "description": "Εμφάνιση μηδενικών υπολοίπων"
+            },
+            {
+                "id": "exportButton",
+                "description": "Δημιουργια αρχειου xls"
+            }
+        ]
+    },
+    {
+        "feature": "revenuesCriteria",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Εσοδα πωλήσεων"
+            },
+            {
+                "id": "subHeader",
+                "description": "Δώστε τα κριτήρια με τα οποία θα γίνει η αναζήτηση"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Ακυρο"
+            },
+            {
+                "id": "okButton",
+                "description": "Συνεχεια"
+            }
+        ]
+    },
+    {
+        "feature": "revenues",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Εσοδα πωλήσεων"
+            },
+            {
+                "id": "headerCustomer",
+                "description": "Επωνυμία"
+            },
+            {
+                "id": "headerPrevious",
+                "description": "Προηγ. περίοδος"
+            },
+            {
+                "id": "headerRequested",
+                "description": "Ζητούμενη περίοδος"
+            },
+            {
+                "id": "headerTotal",
+                "description": "Σύνολο"
             },
             {
                 "id": "zeroBalanceRowVisibility",

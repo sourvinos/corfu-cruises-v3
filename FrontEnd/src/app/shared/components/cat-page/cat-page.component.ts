@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, Input } from '@angular/core'
 // Custom
 import { environment } from 'src/environments/environment'
 
@@ -11,6 +11,10 @@ import { environment } from 'src/environments/environment'
 export class CatPageComponent {
 
     //#region variables
+
+    @Input() header: string
+    @Input() subHeader: string
+    @Input() icon: string
 
     public imgIsLoaded = false
 

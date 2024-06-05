@@ -12,23 +12,25 @@
             </div>
         </div>
 
-        <mat-tab-group mat-stretch-tabs="false" (selectedIndexChange)="onSelectedTabChange()">
-            <mat-tab label="Corfu Cruises">
-                <div id="table-wrapper">
-                    <revenuesShipOwnerTable [records]="shipOwnerFilteredRecordsA" [criteria]="criteria"></revenuesShipOwnerTable>
-                </div>
-            </mat-tab>
-            <mat-tab label="Pandis Family">
-                <div id="table-wrapper">
-                    <revenuesShipOwnerTable [records]="shipOwnerFilteredRecordsB" [criteria]="criteria"></revenuesShipOwnerTable>
-                </div>
-            </mat-tab>
-            <mat-tab label="Γενικά σύνολα">
-                <div id="table-wrapper">
-                    <revenuesShipOwnerTable [records]="shipOwnerFilteredTotal"></revenuesShipOwnerTable>
-                </div>
-            </mat-tab>
-        </mat-tab-group>
+        <ng-template [ngIf]="shipOwnerFilteredTotal.length > 0" [ngIfElse]="noData">
+            <mat-tab-group mat-stretch-tabs="false" (selectedIndexChange)="onSelectedTabChange()">
+                <mat-tab label="Corfu Cruises">
+                    <div id="table-wrapper">
+                        <revenuesShipOwnerTable [records]="shipOwnerFilteredRecordsA" [criteria]="criteria"></revenuesShipOwnerTable>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Pandis Family">
+                    <div id="table-wrapper">
+                        <revenuesShipOwnerTable [records]="shipOwnerFilteredRecordsB" [criteria]="criteria"></revenuesShipOwnerTable>
+                    </div>
+                </mat-tab>
+                <mat-tab class="left-align" label="Γενικά σύνολα">
+                    <div id="table-wrapper">
+                        <revenuesShipOwnerTable [records]="shipOwnerFilteredTotal"></revenuesShipOwnerTable>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </ng-template>
 
     </div>
 
@@ -55,4 +57,8 @@
             <span>{{ getLabel('zeroBalanceRowVisibility') }}</span>
         </mat-checkbox>
     </button>
+</ng-template>
+
+<ng-template #noData>
+    <cat-page icon="face" header="Δεν βρήκαμε τίποτα για να εμφανίσουμε εδώ." subHeader="Πρέπει πρώτα να επιλέξετε κριτήρια!"></cat-page>
 </ng-template>

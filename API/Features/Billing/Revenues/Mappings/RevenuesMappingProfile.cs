@@ -14,7 +14,6 @@ namespace API.Features.Billing.Revenues {
                     Id = source.Customer.Id,
                     Description = source.Customer.Description
                 }))
-                .ForMember(x => x.InvoiceNo, x => x.MapFrom(x => x.InvoiceNo.ToString()))
                 .ForMember(x => x.Debit, x => x.MapFrom(source => source.DocumentType.Customers == "+" || source.DocumentType.Suppliers == "-" ? source.GrossAmount : 0))
                 .ForMember(x => x.Credit, x => x.MapFrom(source => source.DocumentType.Customers == "-" || source.DocumentType.Suppliers == "+" ? source.GrossAmount : 0));
         }
