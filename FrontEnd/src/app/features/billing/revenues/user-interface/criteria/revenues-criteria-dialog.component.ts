@@ -7,7 +7,6 @@ import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 
 @Component({
@@ -20,9 +19,8 @@ export class RevenuesCriteriaDialogComponent {
 
     //#region variables
 
-    private feature: 'revenuesCriteria'
+    private feature: string
     public form: FormGroup
-    public records: SimpleEntity[]
 
     //#endregion
 

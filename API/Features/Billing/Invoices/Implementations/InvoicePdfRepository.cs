@@ -12,6 +12,7 @@ using System.IO;
 using ZXing.QrCode;
 using ZXing.Windows.Compatibility;
 using ZXing;
+using System.Collections.Generic;
 
 namespace API.Features.Billing.Invoices {
 
@@ -46,6 +47,37 @@ namespace API.Features.Billing.Invoices {
             return filename;
         }
 
+        public string BuildMultiPagePdf(IEnumerable<InvoicePdfVM> invoices) {
+            PdfDocument document = new();
+            GlobalFontSettings.FontResolver = new FileFontResolver();
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+            XFont logoFont = new("ACCanterBold", 20);
+            XFont robotoMonoFont = new("RobotoMono", 7);
+            XFont robotoMonoFontBig = new("RobotoMono", 8);
+            CultureInfo locale = CultureInfo.CreateSpecificCulture("el-GR");
+            foreach (var invoice in invoices) {
+                PdfPage page = document.AddPage();
+                page.Size = PageSize.A4;
+                XGraphics gfx = XGraphics.FromPdfPage(page);
+                AddLogo(gfx);
+                AddIssuer(gfx, logoFont, robotoMonoFont, invoice);
+                AddInvoiceDetails(gfx, robotoMonoFont, invoice);
+                AddTripDetails(gfx, robotoMonoFont, invoice);
+                AddCounterPart(gfx, robotoMonoFont, invoice);
+                AddFirstPort(gfx, robotoMonoFont, locale, invoice);
+                AddSecondPort(gfx, robotoMonoFont, locale, invoice);
+                AddPortTotals(gfx, robotoMonoFont, locale, invoice);
+                AddSummary(gfx, robotoMonoFont, robotoMonoFontBig, locale, invoice);
+                AddBalances(gfx, robotoMonoFont, robotoMonoFontBig, locale, invoice);
+                AddBankAccounts(gfx, robotoMonoFont, invoice);
+                PrintAade(gfx, robotoMonoFont, invoice.Aade);
+            }
+            var filename = "CombinedInvoices" + ".pdf";
+            var fullpathname = Path.Combine("Reports" + Path.DirectorySeparatorChar + "Invoices" + Path.DirectorySeparatorChar + filename);
+            document.Save(fullpathname);
+            return filename;
+        }
+
         public FileStreamResult OpenPdf(string filename) {
             var fullpathname = Path.Combine("Reports" + Path.DirectorySeparatorChar + "Invoices" + Path.DirectorySeparatorChar + filename);
             byte[] byteArray = File.ReadAllBytes(fullpathname);
@@ -53,7 +85,7 @@ namespace API.Features.Billing.Invoices {
             return new FileStreamResult(memoryStream, "application/pdf");
         }
 
-        public void AddLogo(XGraphics gfx) {
+        private static void AddLogo(XGraphics gfx) {
             XImage image = XImage.FromFile(Path.Combine("Images" + Path.DirectorySeparatorChar + "Background.png"));
             gfx.DrawImage(image, 40, 20, 100, 100);
         }

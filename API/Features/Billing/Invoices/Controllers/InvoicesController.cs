@@ -251,6 +251,29 @@ namespace API.Features.Billing.Invoices {
             return invoicePdfRepo.OpenPdf(filename);
         }
 
+        [HttpPost("buildMultiPagePdf")]
+        [Authorize(Roles = "admin")]
+        public async Task<ResponseWithBody> BuildMultiPagePdfAsync([FromBody] string[] invoiceIds) {
+            var invoices = new List<InvoicePdfVM>();
+            foreach (var invoiceId in invoiceIds) {
+                var x = await invoiceReadRepo.GetByIdForPdfAsync(invoiceId);
+                if (x != null) {
+                    invoices.Add(mapper.Map<Invoice, InvoicePdfVM>(x));
+                } else {
+                    throw new CustomException() {
+                        ResponseCode = 404
+                    };
+                }
+            }
+            var filename = invoicePdfRepo.BuildMultiPagePdf(invoices);
+            return new ResponseWithBody {
+                Code = 200,
+                Icon = Icons.Info.ToString(),
+                Message = ApiMessages.OK(),
+                Body = filename
+            };
+        }
+
     }
 
 }
