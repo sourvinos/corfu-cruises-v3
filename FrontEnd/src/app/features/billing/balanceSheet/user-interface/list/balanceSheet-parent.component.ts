@@ -3,28 +3,27 @@ import { MatDialog } from '@angular/material/dialog'
 // Custom
 import { BalanceSheetCriteriaDialogComponent } from '../criteria/balanceSheet-criteria-dialog.component'
 import { BalanceSheetCriteriaVM } from '../../classes/view-models/criteria/balanceSheet-criteria-vm'
+import { BalanceSheetExportService } from '../../classes/services/balanceSheet-export.service'
 import { BalanceSheetHttpService } from '../../classes/services/balanceSheet-http.service'
 import { BalanceSheetVM } from '../../classes/view-models/list/balanceSheet-vm'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { HelperService } from '../../../../../shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { BalanceSheetExportService } from '../../classes/services/balanceSheet-export.service'
 
 @Component({
     selector: 'balanceSheet',
-    templateUrl: './balanceSheet.component.html',
-    styleUrls: ['../../../../../../assets/styles/custom/lists.css', './balanceSheet.component.css']
+    templateUrl: './balanceSheet-parent.component.html',
+    styleUrls: ['../../../../../../assets/styles/custom/lists.css', './balanceSheet-parent.component.css']
 })
 
-export class BalanceSheetComponent {
+export class BalanceSheetParentComponent {
 
     //#region variables
 
     public criteria: BalanceSheetCriteriaVM
     public feature = 'balanceSheet'
     public featureIcon = 'balanceSheet'
-    public icon = 'home'
     public parentUrl = '/home'
     public shipOwnerRecordsA: BalanceSheetVM[] = []
     public shipOwnerFilteredRecordsA: BalanceSheetVM[] = []
@@ -36,15 +35,7 @@ export class BalanceSheetComponent {
 
     //#endregion
 
-    constructor(
-        private balanceSheetHttpService: BalanceSheetHttpService,
-        private dateHelperService: DateHelperService,
-        private helperService: HelperService,
-        private interactionService: InteractionService,
-        private messageLabelService: MessageLabelService,
-        private balanceSheetExportService: BalanceSheetExportService,
-        public dialog: MatDialog
-    ) { }
+    constructor(private balanceSheetExportService: BalanceSheetExportService, private balanceSheetHttpService: BalanceSheetHttpService, private dateHelperService: DateHelperService, private helperService: HelperService, private interactionService: InteractionService, private messageLabelService: MessageLabelService, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
 
@@ -59,9 +50,7 @@ export class BalanceSheetComponent {
     //#region public methods
 
     public getCriteria(): string {
-        if (this.criteria) {
-            return this.criteria.fromDate + ' - ' + this.criteria.toDate
-        }
+        return this.criteria ? this.criteria.fromDate + ' - ' + this.criteria.toDate : ''
     }
 
     public getLabel(id: string): string {
@@ -73,7 +62,6 @@ export class BalanceSheetComponent {
         const z = this.balanceSheetExportService.buildVM(this.shipOwnerFilteredRecordsB)
         const i = this.balanceSheetExportService.buildVM(this.shipOwnerFilteredTotal)
         this.balanceSheetExportService.exportToExcel(x, z, i)
-        // this.balanceSheetExportService.exportToExcel(this.balanceSheetExportService.buildVM(this.shipOwnerRecordsA))
     }
 
     public onSelectedTabChange(): void {

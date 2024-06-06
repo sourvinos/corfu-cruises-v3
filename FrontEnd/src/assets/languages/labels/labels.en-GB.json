@@ -3865,7 +3865,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Balance Sheet"
+                "description": "Ισοζύγιο πελατών"
             },
             {
                 "id": "headerCustomer",
@@ -3897,7 +3897,15 @@
             },
             {
                 "id": "exportButton",
-                "description": "Δημιουργία αρχείου xls"
+                "description": "Εξαγωγη σε αρχειο xls"
+            },
+            {
+                "id": "noDataHeader",
+                "description": "Δεν βρήκαμε τίποτα για να εμφανίσουμε εδώ."
+            },
+            {
+                "id": "noDataSubHeader",
+                "description": "Πρέπει πρώτα να επιλέξετε κριτήρια!"
             }
         ]
     },
