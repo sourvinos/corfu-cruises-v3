@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
-import { HttpDataService } from 'src/app/shared/services/http-data.service'
 // Custom
-import { RevenuesCriteriaVM } from '../criteria/revenues-criteria-vm'
-import { RevenuesVM } from '../list/revenues-vm'
+import { HttpDataService } from 'src/app/shared/services/http-data.service'
+import { RevenuesCriteriaVM } from '../view-models/criteria/revenues-criteria-vm'
+import { RevenuesVM } from '../view-models/list/revenues-vm'
 import { environment } from 'src/environments/environment'
 
 @Injectable({ providedIn: 'root' })

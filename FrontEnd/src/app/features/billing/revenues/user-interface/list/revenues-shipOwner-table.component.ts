@@ -1,10 +1,10 @@
-import { formatNumber } from '@angular/common'
 import { Component, Input } from '@angular/core'
+import { formatNumber } from '@angular/common'
 // Custom
-import { RevenuesCriteriaVM } from '../../classes/criteria/revenues-criteria-vm'
-import { RevenuesVM } from '../../classes/list/revenues-vm'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { RevenuesCriteriaVM } from '../../classes/view-models/criteria/revenues-criteria-vm'
+import { RevenuesVM } from '../../classes/view-models/list/revenues-vm'
 
 @Component({
     selector: 'revenuesShipOwnerTable',

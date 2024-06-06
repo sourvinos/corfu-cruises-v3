@@ -1,13 +1,14 @@
-import { Component, Inject, NgZone } from '@angular/core'
+import { Component, NgZone } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
+import { MatDialogRef } from '@angular/material/dialog'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
+import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 
 @Component({
     selector: 'revenues-criteria-dialog',
@@ -25,7 +26,7 @@ export class RevenuesCriteriaDialogComponent {
 
     //#endregion
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogRef: MatDialogRef<RevenuesCriteriaDialogComponent>, private formBuilder: FormBuilder, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private ngZone: NgZone) {
+    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogRef: MatDialogRef<RevenuesCriteriaDialogComponent>, private formBuilder: FormBuilder, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private ngZone: NgZone, private sessionStorageService: SessionStorageService) {
         this.feature = 'revenuesCriteria'
     }
 
@@ -34,6 +35,7 @@ export class RevenuesCriteriaDialogComponent {
     ngOnInit(): void {
         this.initForm()
         this.setLocale()
+        this.populateFormFromStoredFields(this.getCriteriaFromStorage())
         this.subscribeToInteractionService()
     }
 
@@ -66,6 +68,7 @@ export class RevenuesCriteriaDialogComponent {
     public onSearch(): void {
         this.ngZone.run(() => {
             this.interactionService.updateDateRange(this.form.value)
+            this.sessionStorageService.saveItem('revenuesCriteria', JSON.stringify(this.form.value))
             this.dialogRef.close(this.form.value)
         })
     }
@@ -74,10 +77,21 @@ export class RevenuesCriteriaDialogComponent {
 
     //#region private methods
 
+    private getCriteriaFromStorage(): any {
+        return this.sessionStorageService.getItem('revenuesCriteria') ? JSON.parse(this.sessionStorageService.getItem('revenuesCriteria')) : ''
+    }
+
     private initForm(): void {
         this.form = this.formBuilder.group({
             fromDate: ['', [Validators.required]],
             toDate: ['', [Validators.required]]
+        })
+    }
+
+    private populateFormFromStoredFields(object: any): void {
+        this.form.patchValue({
+            fromDate: object.fromDate,
+            toDate: object.toDate
         })
     }
 

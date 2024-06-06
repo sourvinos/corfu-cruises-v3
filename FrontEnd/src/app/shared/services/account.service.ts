@@ -79,6 +79,7 @@ export class AccountService extends HttpDataService {
             { 'item': 'invoice-list-criteria', 'when': 'always' },
             { 'item': 'retailSale-list-criteria', 'when': 'always' },
             { 'item': 'receipt-list-criteria', 'when': 'always' },
+            { 'item': 'revenuesCriteria', 'when': 'always' },
             // Tasks
             { 'item': 'reservationList-filters', 'when': 'always' }, { 'item': 'reservationList-id', 'when': 'always' }, { 'item': 'reservationList-scrollTop', 'when': 'always' },
             { 'item': 'boardingList-filters', 'when': 'always' }, { 'item': 'boardingList-id', 'when': 'always' }, { 'item': 'boardingList-scrollTop', 'when': 'always' },

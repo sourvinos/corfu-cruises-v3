@@ -3951,7 +3951,15 @@
             },
             {
                 "id": "exportButton",
-                "description": "Δημιουργια αρχειου xls"
+                "description": "Εξαγωγη σε αρχειο xls"
+            },
+            {
+                "id": "noDataHeader",
+                "description": "Δεν βρήκαμε τίποτα για να εμφανίσουμε εδώ."
+            },
+            {
+                "id": "noDataSubHeader",
+                "description": "Πρέπει πρώτα να επιλέξετε κριτήρια!"
             }
         ]
     }

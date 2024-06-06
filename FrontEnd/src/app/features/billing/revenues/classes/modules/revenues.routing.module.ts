@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
 // Custom
 import { AuthGuardService } from 'src/app/shared/services/auth-guard.service'
-import { RevenuesComponent } from '../../user-interface/list/revenues.component'
+import { RevenuesParentComponent } from '../../user-interface/list/revenues-parent.component'
 
 const routes: Routes = [
-    { path: '', component: RevenuesComponent, canActivate: [AuthGuardService], runGuardsAndResolvers: 'always' }
+    { path: '', component: RevenuesParentComponent, canActivate: [AuthGuardService], runGuardsAndResolvers: 'always' }
 ]
 
 @NgModule({

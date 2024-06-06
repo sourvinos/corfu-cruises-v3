@@ -1,29 +1,29 @@
 import { Component } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
 // Custom
-import { RevenuesCriteriaDialogComponent } from '../criteria/revenues-criteria-dialog.component'
-import { RevenuesCriteriaVM } from '../../classes/criteria/revenues-criteria-vm'
-import { RevenuesHttpService } from '../../classes/services/revenues-http.service'
-import { RevenuesVM } from '../../classes/list/revenues-vm'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { HelperService } from '../../../../../shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { RevenuesCriteriaDialogComponent } from '../criteria/revenues-criteria-dialog.component'
+import { RevenuesCriteriaVM } from '../../classes/view-models/criteria/revenues-criteria-vm'
+import { RevenuesExportService } from '../../classes/services/revenues-export.service'
+import { RevenuesHttpService } from '../../classes/services/revenues-http.service'
+import { RevenuesVM } from '../../classes/view-models/list/revenues-vm'
 
 @Component({
     selector: 'revenues',
-    templateUrl: './revenues.component.html',
-    styleUrls: ['../../../../../../assets/styles/custom/lists.css', './revenues.component.css']
+    templateUrl: './revenues-parent.component.html',
+    styleUrls: ['../../../../../../assets/styles/custom/lists.css', './revenues-parent.component.css']
 })
 
-export class RevenuesComponent {
+export class RevenuesParentComponent {
 
     //#region variables
 
     public criteria: RevenuesCriteriaVM
     public feature = 'revenues'
     public featureIcon = 'revenues'
-    public icon = 'home'
     public parentUrl = '/home'
     public shipOwnerRecordsA: RevenuesVM[] = []
     public shipOwnerFilteredRecordsA: RevenuesVM[] = []
@@ -35,7 +35,7 @@ export class RevenuesComponent {
 
     //#endregion
 
-    constructor(private revenuesHttpService: RevenuesHttpService, private dateHelperService: DateHelperService, private helperService: HelperService, private interactionService: InteractionService, private messageLabelService: MessageLabelService, public dialog: MatDialog) { }
+    constructor(private dateHelperService: DateHelperService, private helperService: HelperService, private interactionService: InteractionService, private messageLabelService: MessageLabelService, private revenuesExportService: RevenuesExportService, private revenuesHttpService: RevenuesHttpService, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
 
@@ -50,13 +50,18 @@ export class RevenuesComponent {
     //#region public methods
 
     public getCriteria(): string {
-        if (this.criteria) {
-            return this.criteria.fromDate + ' - ' + this.criteria.toDate
-        }
+        return this.criteria ? this.criteria.fromDate + ' - ' + this.criteria.toDate : ''
     }
 
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
+    }
+
+    public onExportTasks(): void {
+        const x = this.revenuesExportService.buildVM(this.shipOwnerFilteredRecordsA)
+        const z = this.revenuesExportService.buildVM(this.shipOwnerFilteredRecordsB)
+        const i = this.revenuesExportService.buildVM(this.shipOwnerFilteredTotal)
+        this.revenuesExportService.exportToExcel(x, z, i)
     }
 
     public onSelectedTabChange(): void {

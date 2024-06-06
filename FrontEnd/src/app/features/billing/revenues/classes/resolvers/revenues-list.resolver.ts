@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core'
 import { Observable, of } from 'rxjs'
 import { catchError, map } from 'rxjs/operators'
 // Custom
-import { RevenuesHttpService } from '../services/revenues-http.service'
 import { ListResolved } from '../../../../../shared/classes/list-resolved'
+import { RevenuesHttpService } from '../services/revenues-http.service'
 
 @Injectable({ providedIn: 'root' })
 
