@@ -5,11 +5,11 @@ import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { HelperService } from '../../../../../shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { RevenuesCriteriaDialogComponent } from '../criteria/revenues-criteria-dialog.component'
 import { RevenuesCriteriaVM } from '../../classes/view-models/criteria/revenues-criteria-vm'
 import { RevenuesExportService } from '../../classes/services/revenues-export.service'
 import { RevenuesHttpService } from '../../classes/services/revenues-http.service'
 import { RevenuesVM } from '../../classes/view-models/list/revenues-vm'
+import { CriteriaDateRangeDialogComponent } from 'src/app/shared/components/criteria-date-range-dialog/criteria-date-range-dialog.component'
 
 @Component({
     selector: 'revenues',
@@ -74,7 +74,7 @@ export class RevenuesParentComponent {
     }
 
     public onShowCriteriaDialog(): void {
-        const dialogRef = this.dialog.open(RevenuesCriteriaDialogComponent, {
+        const dialogRef = this.dialog.open(CriteriaDateRangeDialogComponent, {
             height: '36.0625rem',
             panelClass: 'dialog',
             width: '32rem',

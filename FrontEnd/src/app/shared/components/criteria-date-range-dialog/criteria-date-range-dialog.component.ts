@@ -1,7 +1,7 @@
-import { Component, NgZone } from '@angular/core'
+import { Component, Inject, NgZone } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { MatDialogRef } from '@angular/material/dialog'
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
@@ -10,12 +10,12 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 
 @Component({
-    selector: 'revenues-criteria-dialog',
-    templateUrl: './revenues-criteria-dialog.component.html',
-    styleUrls: ['./revenues-criteria-dialog.component.css']
+    selector: 'criteria-date-range-dialog',
+    templateUrl: './criteria-date-range-dialog.component.html',
+    styleUrls: ['./criteria-date-range-dialog.component.css']
 })
 
-export class RevenuesCriteriaDialogComponent {
+export class CriteriaDateRangeDialogComponent {
 
     //#region variables
 
@@ -24,8 +24,8 @@ export class RevenuesCriteriaDialogComponent {
 
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogRef: MatDialogRef<RevenuesCriteriaDialogComponent>, private formBuilder: FormBuilder, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private ngZone: NgZone, private sessionStorageService: SessionStorageService) {
-        this.feature = 'revenuesCriteria'
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogRef: MatDialogRef<CriteriaDateRangeDialogComponent>, private formBuilder: FormBuilder, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private ngZone: NgZone, private sessionStorageService: SessionStorageService) {
+        this.feature = data
     }
 
     //#region lifecycle hooks
@@ -66,7 +66,7 @@ export class RevenuesCriteriaDialogComponent {
     public onSearch(): void {
         this.ngZone.run(() => {
             this.interactionService.updateDateRange(this.form.value)
-            this.sessionStorageService.saveItem('revenuesCriteria', JSON.stringify(this.form.value))
+            this.sessionStorageService.saveItem(this.feature, JSON.stringify(this.form.value))
             this.dialogRef.close(this.form.value)
         })
     }
@@ -76,7 +76,7 @@ export class RevenuesCriteriaDialogComponent {
     //#region private methods
 
     private getCriteriaFromStorage(): any {
-        return this.sessionStorageService.getItem('revenuesCriteria') ? JSON.parse(this.sessionStorageService.getItem('revenuesCriteria')) : ''
+        return this.sessionStorageService.getItem(this.feature) ? JSON.parse(this.sessionStorageService.getItem(this.feature)) : ''
     }
 
     private initForm(): void {

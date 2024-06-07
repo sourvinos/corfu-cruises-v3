@@ -8,6 +8,7 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner'
 // Custom
 import { AbsPipe } from '../pipes/abs.pipe'
 import { CatPageComponent } from '../components/cat-page/cat-page.component'
+import { CriteriaDateRangeDialogComponent } from '../components/criteria-date-range-dialog/criteria-date-range-dialog.component'
 import { CriteriaFieldsetCheckboxesComponent } from '../components/criteria-fieldset-checkboxes/criteria-fieldset-checkboxes.component'
 import { CriteriaFieldsetRadiosComponent } from '../components/criteria-fieldset-radios/criteria-fieldset-radios.component'
 import { CriteriaFieldsetWeekdaysComponent } from '../components/criteria-fieldset-weekdays/criteria-fieldset-weekdays.component'
@@ -40,6 +41,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
     declarations: [
         AbsPipe,
         CatPageComponent,
+        CriteriaDateRangeDialogComponent,
         CriteriaFieldsetCheckboxesComponent,
         CriteriaFieldsetRadiosComponent,
         CriteriaFieldsetWeekdaysComponent,
@@ -81,6 +83,7 @@ import { YearSelectorComponent } from '../components/year-selector/year-selector
         AbsPipe,
         CatPageComponent,
         CommonModule,
+        CriteriaDateRangeDialogComponent,
         CriteriaFieldsetCheckboxesComponent,
         CriteriaFieldsetRadiosComponent,
         CriteriaFieldsetWeekdaysComponent,

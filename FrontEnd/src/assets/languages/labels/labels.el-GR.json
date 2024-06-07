@@ -2983,7 +2983,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Πωλήσεις"
+                "description": "Ημερολόγιο πωλήσεων"
             },
             {
                 "id": "headerDate",
@@ -3910,11 +3910,11 @@
         ]
     },
     {
-        "feature": "revenuesCriteria",
+        "feature": "invoiceListCriteria",
         "labels": [
             {
                 "id": "header",
-                "description": "Εσοδα πωλήσεων"
+                "description": "Ημερολόγιο πωλήσεων"
             },
             {
                 "id": "subHeader",
