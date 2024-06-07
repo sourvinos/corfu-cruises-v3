@@ -13,10 +13,10 @@ import { DocumentTypeReadDto } from 'src/app/features/billing/documentTypes/clas
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
 import { InvoiceHelperService } from 'src/app/features/billing/invoices/classes/services/invoice.helper.service'
-import { InvoiceHttpService } from 'src/app/features/billing/invoices/classes/services/invoice-http.service'
+import { InvoiceHttpDataService } from 'src/app/features/billing/invoices/classes/services/invoice-http-data.service'
 import { InvoiceWriteDto } from 'src/app/features/billing/invoices/classes/dtos/form/invoice-write-dto'
 import { InvoiceXmlHelperService } from 'src/app/features/billing/invoices/classes/services/invoice-xml-helper.service'
-import { InvoiceXmlHttpService } from 'src/app/features/billing/invoices/classes/services/invoice-xml-http.service'
+import { InvoiceHttpXmlService } from 'src/app/features/billing/invoices/classes/services/invoice-http-xml.service'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
@@ -54,7 +54,7 @@ export class InvoiceDialogComponent {
 
     //#endregion
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dexieService: DexieService, private dialogRef: MatDialogRef<InvoiceDialogComponent>, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private invoiceXmlHelperService: InvoiceXmlHelperService, private invoiceXmlHttpService: InvoiceXmlHttpService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceHttpService: PriceHttpService,) { }
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dexieService: DexieService, private dialogRef: MatDialogRef<InvoiceDialogComponent>, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpDataService, private invoiceXmlHelperService: InvoiceXmlHelperService, private invoiceXmlHttpService: InvoiceHttpXmlService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceHttpService: PriceHttpService,) { }
 
     //#region lifecycle hooks
 

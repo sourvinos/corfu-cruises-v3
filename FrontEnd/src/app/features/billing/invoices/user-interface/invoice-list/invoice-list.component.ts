@@ -15,7 +15,7 @@ import { EmojiService } from '../../../../../shared/services/emoji.service'
 import { HelperService } from '../../../../../shared/services/helper.service'
 import { InteractionService } from '../../../../../shared/services/interaction.service'
 import { InvoiceHttpPdfService } from '../../classes/services/invoice-http-pdf.service'
-import { InvoiceHttpService } from '../../classes/services/invoice-http.service'
+import { InvoiceHttpDataService } from '../../classes/services/invoice-http-data.service'
 import { InvoiceListCriteriaVM } from './../../classes/view-models/criteria/invoice-list-criteria-vm'
 import { InvoiceListVM } from '../../classes/view-models/list/invoice-list-vm'
 import { LocalStorageService } from '../../../../../shared/services/local-storage.service'
@@ -31,7 +31,7 @@ import { SessionStorageService } from '../../../../../shared/services/session-st
 
 export class InvoiceListComponent {
 
-    //#region common
+    //#region variables
 
     @ViewChild('table') table: Table
 
@@ -45,6 +45,8 @@ export class InvoiceListComponent {
     public records: InvoiceListVM[] = []
     public selectedRecords: InvoiceListVM[] = []
     public recordsFilteredCount = 0
+    public filterDate = ''
+    public recordsFiltered: InvoiceListVM[]
 
     //#endregion
 
@@ -67,12 +69,9 @@ export class InvoiceListComponent {
 
     //#region specific
 
-    public filterDate = ''
-    public recordsFiltered: InvoiceListVM[]
-
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private invoiceHttpPdfService: InvoiceHttpPdfService, private invoiceHttpService: InvoiceHttpService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
+    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private invoiceHttpPdfService: InvoiceHttpPdfService, private invoiceHttpService: InvoiceHttpDataService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
 

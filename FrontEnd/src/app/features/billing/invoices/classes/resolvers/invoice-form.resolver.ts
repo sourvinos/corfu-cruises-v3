@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core'
 import { catchError, map, of } from 'rxjs'
 // Custom
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
-import { InvoiceHttpService } from '../services/invoice-http.service'
+import { InvoiceHttpDataService } from '../services/invoice-http-data.service'
 
 @Injectable({ providedIn: 'root' })
 
 export class InvoiceFormResolver {
 
-    constructor(private invoiceHttpService: InvoiceHttpService) { }
+    constructor(private invoiceHttpService: InvoiceHttpDataService) { }
 
     resolve(route: ActivatedRouteSnapshot): any {
         return this.invoiceHttpService.getSingle(route.params.id).pipe(

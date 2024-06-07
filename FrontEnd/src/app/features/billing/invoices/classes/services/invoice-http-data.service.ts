@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment'
 
 @Injectable({ providedIn: 'root' })
 
-export class InvoiceHttpService extends HttpDataService {
+export class InvoiceHttpDataService extends HttpDataService {
 
     constructor(httpClient: HttpClient) {
         super(httpClient, environment.apiUrl + '/invoices')

@@ -19,11 +19,11 @@
                     <tr>
                         <th class="width-3"></th>
                         <th class="width-9" pSortableColumn="date">{{ getLabel("headerDate") }}</th>
-                        <th class="width-14" pSortableColumn="shipOwner.description">{{ getLabel("headerShipOwnerDescription") }}</th>
-                        <th class="width-14" pSortableColumn="ship.description">{{ getLabel("headerShipDescription") }}</th>
-                        <th class="width-14" pSortableColumn="destination.description">{{ getLabel("headerDestinationDescription") }}</th>
-                        <th class="width-14" pSortableColumn="customer.description">{{ getLabel("headerCustomerDescription") }}</th>
-                        <th class="width-14" pSortableColumn="documentType.description">{{ getLabel("headerDocumentTypeDescription") }}</th>
+                        <th class="width-11" pSortableColumn="shipOwner.description">{{ getLabel("headerShipOwnerDescription") }}</th>
+                        <th class="width-11" pSortableColumn="ship.description">{{ getLabel("headerShipDescription") }}</th>
+                        <th class="width-11" pSortableColumn="destination.description">{{ getLabel("headerDestinationDescription") }}</th>
+                        <th class="width-11" pSortableColumn="customer.description">{{ getLabel("headerCustomerDescription") }}</th>
+                        <th class="width-11" pSortableColumn="documentType.description">{{ getLabel("headerDocumentTypeDescription") }}</th>
                         <th class="width-4" pSortableColumn="documentType.batch">{{ getLabel("headerDocumentTypeBatch") }}</th>
                         <th class="width-4" pSortableColumn="no">{{ getLabel("headerNo") }}</th>
                         <th class="width-6" pSortableColumn="totalGrossAmount">{{ getLabel("headerGrossAmount") }}</th>
@@ -41,7 +41,7 @@
                                 <mat-datepicker #picker></mat-datepicker>
                             </div>
                         </th>
-                        <th class="width-14">
+                        <th class="width-11">
                             <p-columnFilter [showMenu]="false" field="shipOwner" matchMode="in">
                                 <ng-template let-filter="filterCallback" let-value pTemplate="filter">
                                     <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="dropdownShipOwners" [placeholder]="getEmoji('wildcard')" optionLabel="description">
@@ -54,7 +54,7 @@
                                 </ng-template>
                             </p-columnFilter>
                         </th>
-                        <th class="width-14">
+                        <th class="width-11">
                             <p-columnFilter [showMenu]="false" field="ship" matchMode="in">
                                 <ng-template let-filter="filterCallback" let-value pTemplate="filter">
                                     <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="dropdownShips" [placeholder]="getEmoji('wildcard')" optionLabel="description">
@@ -67,7 +67,7 @@
                                 </ng-template>
                             </p-columnFilter>
                         </th>
-                        <th class="width-14">
+                        <th class="width-11">
                             <p-columnFilter [showMenu]="false" field="destination" matchMode="in">
                                 <ng-template let-filter="filterCallback" let-value pTemplate="filter">
                                     <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="dropdownDestinations" [placeholder]="getEmoji('wildcard')" optionLabel="description">
@@ -80,7 +80,7 @@
                                 </ng-template>
                             </p-columnFilter>
                         </th>
-                        <th class="width-14">
+                        <th class="width-11">
                             <p-columnFilter [showMenu]="false" field="customer" matchMode="in">
                                 <ng-template let-filter="filterCallback" let-value pTemplate="filter">
                                     <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="dropdownCustomers" [placeholder]="getEmoji('wildcard')" optionLabel="description">
@@ -93,7 +93,7 @@
                                 </ng-template>
                             </p-columnFilter>
                         </th>
-                        <th class="width-14">
+                        <th class="width-11">
                             <p-columnFilter [showMenu]="false" field="documentType" matchMode="in">
                                 <ng-template let-filter="filterCallback" let-value pTemplate="filter">
                                     <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="dropdownDocumentTypes" [placeholder]="getEmoji('wildcard')" optionLabel="description">
@@ -115,11 +115,11 @@
                     <tr (click)="highlightRow(record.invoiceId)" (contextmenu)="highlightRow(record.invoiceId)" (dblclick)="editRecord(record.invoiceId)" [attr.id]=record.invoiceId style="height: 32px;" [pContextMenuRow]="record">
                         <td class="width-3"><span class="center" style="padding-top: 0.25rem !important;"><p-tableCheckbox [value]="record"></p-tableCheckbox></span></td>
                         <td class="width-9"><span class="center">{{ record.formattedDate }}</span></td>
-                        <td class="width-14"><span>{{ record.shipOwner.description }}</span></td>
-                        <td class="width-14"><span>{{ record.ship.description }}</span></td>
-                        <td class="width-14"><span>{{ record.destination.description }}</span></td>
-                        <td class="width-14"><span>{{ record.customer.description }}</span></td>
-                        <td class="width-14"><span>{{ record.documentType.description }}</span></td>
+                        <td class="width-11"><span>{{ record.shipOwner.description }}</span></td>
+                        <td class="width-11"><span>{{ record.ship.description }}</span></td>
+                        <td class="width-11"><span>{{ record.destination.description }}</span></td>
+                        <td class="width-11"><span>{{ record.customer.description }}</span></td>
+                        <td class="width-11"><span>{{ record.documentType.description }}</span></td>
                         <td class="width-4"><span class="center">{{ record.documentType.batch }}</span></td>
                         <td class="width-4"><span class="center">{{ record.invoiceNo }}</span></td>
                         <td class="width-6"><span class="right with-right-padding">{{ formatNumberToLocale(record.grossAmount) }}</span></td>

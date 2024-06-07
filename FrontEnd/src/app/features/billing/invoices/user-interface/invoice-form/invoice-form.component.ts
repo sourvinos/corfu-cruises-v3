@@ -19,11 +19,11 @@ import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
 import { InvoiceHelperService } from '../../classes/services/invoice.helper.service'
 import { InvoiceHttpPdfService } from '../../classes/services/invoice-http-pdf.service'
-import { InvoiceHttpService } from '../../classes/services/invoice-http.service'
+import { InvoiceHttpDataService } from '../../classes/services/invoice-http-data.service'
 import { InvoiceReadDto } from '../../classes/dtos/form/invoice-read-dto'
 import { InvoiceWriteDto } from '../../classes/dtos/form/invoice-write-dto'
 import { InvoiceXmlHelperService } from '../../classes/services/invoice-xml-helper.service'
-import { InvoiceXmlHttpService } from '../../classes/services/invoice-xml-http.service'
+import { InvoiceHttpXmlService } from '../../classes/services/invoice-http-xml.service'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
@@ -72,7 +72,7 @@ export class InvoiceFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private debugDialogService: DebugDialogService, private dexieService: DexieService, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpPdfService: InvoiceHttpPdfService, private invoiceHttpService: InvoiceHttpService, private invoiceXmlHelperService: InvoiceXmlHelperService, private invoiceXmlHttpService: InvoiceXmlHttpService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceHttpService: PriceHttpService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private debugDialogService: DebugDialogService, private dexieService: DexieService, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpPdfService: InvoiceHttpPdfService, private invoiceHttpService: InvoiceHttpDataService, private invoiceXmlHelperService: InvoiceXmlHelperService, private invoiceXmlHttpService: InvoiceHttpXmlService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceHttpService: PriceHttpService, private router: Router) { }
 
     //#region lifecycle hooks
 

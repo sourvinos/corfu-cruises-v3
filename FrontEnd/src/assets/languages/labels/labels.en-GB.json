@@ -2979,6 +2979,27 @@
         ]
     },
     {
+        "feature": "invoiceListCriteria",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Ημερολόγιο πωλήσεων"
+            },
+            {
+                "id": "subHeader",
+                "description": "Δώστε τα κριτήρια με τα οποία θα γίνει η αναζήτηση"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Ακυρο"
+            },
+            {
+                "id": "okButton",
+                "description": "Συνεχεια"
+            }
+        ]
+    },
+    {
         "feature": "invoiceList",
         "labels": [
             {

@@ -3,13 +3,13 @@ import { Observable, of } from 'rxjs'
 import { catchError, map } from 'rxjs/operators'
 // Custom
 import { ListResolved } from '../../../../../shared/classes/list-resolved'
-import { InvoiceHttpService } from '../services/invoice-http.service'
+import { InvoiceHttpDataService } from '../services/invoice-http-data.service'
 
 @Injectable({ providedIn: 'root' })
 
 export class InvoiceListResolver {
 
-    constructor(private invoiceHttpService: InvoiceHttpService) { }
+    constructor(private invoiceHttpService: InvoiceHttpDataService) { }
 
     resolve(): Observable<ListResolved> {
         return this.invoiceHttpService.getAll()

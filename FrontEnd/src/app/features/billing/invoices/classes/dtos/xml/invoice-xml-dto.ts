@@ -1,4 +1,5 @@
 import { Guid } from 'guid-typescript'
+// Custom
 import { InvoiceXmlCredentialsDto } from './invoice-xml-credentials-dto'
 import { InvoiceXmlHeaderDto } from './invoice-xml-header-dto'
 import { InvoiceXmlPartyTypeDto } from './invoice-xml-partyType-dto'

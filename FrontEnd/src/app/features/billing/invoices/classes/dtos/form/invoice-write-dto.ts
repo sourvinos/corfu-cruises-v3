@@ -4,15 +4,12 @@ import { PortWriteDto } from './port-write-dto'
 
 export interface InvoiceWriteDto {
 
-    // PK
     invoiceId: Guid
-    // FKs
     customerId: number
     destinationId: number
     documentTypeId: number
     paymentMethodId: number
     shipId: number
-    // Fields
     date: string
     tripDate: string
     invoiceNo: number
@@ -22,7 +19,6 @@ export interface InvoiceWriteDto {
     grossAmount: number
     invoicesPorts: PortWriteDto[]
     remarks: string
-    // Metadata
     putAt: string
 
 }
