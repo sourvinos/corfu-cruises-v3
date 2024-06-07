@@ -4,9 +4,13 @@
 
         <div id="header">
             <home-button-and-title [featureIcon]="featureIcon" [feature]="feature" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
+            <div id="header-right">
+                <span id="criteria-caption">{{ getCriteria() }}</span>
+                <button (click)="onShowCriteriaDialog()" class="fab fab-with-no-background" mat-icon-button>
+                    <mat-icon class="material-icons-outlined">filter_alt</mat-icon>
+                </button>
+            </div>
         </div>
-
-        <invoice-list-criteria (outputSelected)="doSearchTasks($event)"></invoice-list-criteria>
 
         <div id="table-wrapper">
             <p-contextMenu #contextMenu [model]="menuItems"></p-contextMenu>
@@ -157,7 +161,7 @@
 
 <ng-template #threeDotsMenu>
     <button (click)="buildAndOpenSelectedRecords()" mat-menu-item>
-        <span>Ανοιγμα επιλεγμένων</span>
+        <span>Προεπισκόπηση επιλεγμένων</span>
     </button>
     <button (click)="buildAndEmailSelectedRecords()" mat-menu-item>
         <span>Αποστολή επιλεγμένων με email</span>

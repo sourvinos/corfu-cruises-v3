@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { FormGroup } from '@angular/forms'
 import { MatDatepickerInputEvent } from '@angular/material/datepicker'
+import { MatDialog } from '@angular/material/dialog'
 import { MenuItem } from 'primeng/api'
 import { Router } from '@angular/router'
 import { Table } from 'primeng/table'
@@ -15,6 +16,7 @@ import { HelperService } from '../../../../../../shared/services/helper.service'
 import { InteractionService } from '../../../../../../shared/services/interaction.service'
 import { InvoiceHttpPdfService } from '../../../classes/services/invoice-http-pdf.service'
 import { InvoiceHttpService } from '../../../classes/services/invoice-http.service'
+import { InvoiceListCriteriaDialogComponent } from '../criteria/invoice-list-criteria-dialog.component'
 import { InvoiceListCriteriaVM } from '../../../classes/view-models/criteria/invoice-list-criteria-vm'
 import { InvoiceListVM } from '../../../classes/view-models/list/invoice-list-vm'
 import { LocalStorageService } from '../../../../../../shared/services/local-storage.service'
@@ -34,6 +36,7 @@ export class InvoiceListComponent {
 
     @ViewChild('table') table: Table
 
+    public criteria: InvoiceListCriteriaVM
     private url = 'invoices'
     private virtualElement: any
     public feature = 'invoiceList'
@@ -71,7 +74,22 @@ export class InvoiceListComponent {
 
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private invoiceHttpPdfService: InvoiceHttpPdfService, private invoiceHttpService: InvoiceHttpService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(
+        private dateAdapter: DateAdapter<any>,
+        private dateHelperService: DateHelperService,
+        private dialogService: DialogService,
+        private emojiService: EmojiService,
+        private helperService: HelperService,
+        private interactionService: InteractionService,
+        private invoiceHttpPdfService: InvoiceHttpPdfService,
+        private invoiceHttpService: InvoiceHttpService,
+        private localStorageService: LocalStorageService,
+        private messageDialogService: MessageDialogService,
+        private messageLabelService: MessageLabelService,
+        private router: Router,
+        private sessionStorageService: SessionStorageService,
+        public dialog: MatDialog,
+    ) { }
 
     //#region lifecycle hooks
 
@@ -81,6 +99,7 @@ export class InvoiceListComponent {
         this.setSidebarsHeight()
         this.initContextMenu()
         this.enableDisableFilters()
+        this.subscribeToInteractionService()
     }
 
     ngAfterViewInit(): void {
@@ -135,6 +154,10 @@ export class InvoiceListComponent {
 
     public formatNumberToLocale(number: number, decimals = true): string {
         return formatNumber(number, this.localStorageService.getItem('language'), decimals ? '1.2' : '1.0')
+    }
+
+    public getCriteria(): string {
+        return this.criteria ? this.criteria.fromDate + ' - ' + this.criteria.toDate : ''
     }
 
     public getEmoji(anything: any): string {
@@ -216,6 +239,26 @@ export class InvoiceListComponent {
         this.helperService.clearTableTextFilters(this.table, [''])
     }
 
+    public onShowCriteriaDialog(): void {
+        const dialogRef = this.dialog.open(InvoiceListCriteriaDialogComponent, {
+            height: '36.0625rem',
+            panelClass: 'dialog',
+            width: '32rem',
+        })
+        dialogRef.afterClosed().subscribe(criteria => {
+            if (criteria !== undefined) {
+                this.buildCriteriaVM(criteria)
+                this.loadRecords(criteria).then(() => {
+                    this.filterTableFromStoredFilters()
+                    this.populateDropdownFilters()
+                    this.enableDisableFilters()
+                    this.formatDatesToLocale()
+                    this.subscribeToInteractionService()
+                })
+            }
+        })
+    }
+
     //#endregion
 
     //#region private methods
@@ -224,6 +267,14 @@ export class InvoiceListComponent {
         this.selectedRecords = []
         this.selectedRecords.push(record)
     }
+
+    private buildCriteriaVM(event: InvoiceListCriteriaVM): void {
+        this.criteria = {
+            fromDate: event.fromDate,
+            toDate: event.toDate
+        }
+    }
+
 
     private emailInvoices(criteria: EmailInvoiceVM): void {
         this.invoiceHttpService.emailInvoices(criteria).subscribe({
@@ -318,7 +369,6 @@ export class InvoiceListComponent {
         return true
     }
 
-
     private loadRecords(criteria: InvoiceListCriteriaVM): Promise<InvoiceListVM[]> {
         return new Promise((resolve) => {
             this.invoiceHttpService.getForList(criteria).subscribe(response => {
@@ -362,11 +412,17 @@ export class InvoiceListComponent {
 
     private subscribeToInteractionService(): void {
         this.interactionService.refreshDateAdapter.subscribe(() => {
-            this.formatDatesToLocale()
             this.setLocale()
+            this.formatDatesToLocale()
         })
         this.interactionService.refreshTabTitle.subscribe(() => {
             this.setTabTitle()
+        })
+        this.interactionService.emitDateRange.subscribe((response) => {
+            if (response) {
+                this.criteria.fromDate = this.dateHelperService.formatISODateToLocale(response.fromDate)
+                this.criteria.toDate = this.dateHelperService.formatISODateToLocale(response.toDate)
+            }
         })
     }
 
