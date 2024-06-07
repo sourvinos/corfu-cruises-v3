@@ -9,9 +9,11 @@ import { formatNumber } from '@angular/common'
 // Custom
 import { DateHelperService } from '../../../../../../shared/services/date-helper.service'
 import { DialogService } from '../../../../../../shared/services/modal-dialog.service'
+import { EmailInvoiceVM } from '../../../classes/view-models/email/email-invoice-vm'
 import { EmojiService } from '../../../../../../shared/services/emoji.service'
 import { HelperService } from '../../../../../../shared/services/helper.service'
 import { InteractionService } from '../../../../../../shared/services/interaction.service'
+import { InvoiceHttpPdfService } from '../../../classes/services/invoice-http-pdf.service'
 import { InvoiceHttpService } from '../../../classes/services/invoice-http.service'
 import { InvoiceListCriteriaVM } from '../../../classes/view-models/criteria/invoice-list-criteria-vm'
 import { InvoiceListVM } from '../../../classes/view-models/list/invoice-list-vm'
@@ -19,7 +21,6 @@ import { LocalStorageService } from '../../../../../../shared/services/local-sto
 import { MessageDialogService } from '../../../../../../shared/services/message-dialog.service'
 import { MessageLabelService } from '../../../../../../shared/services/message-label.service'
 import { SessionStorageService } from '../../../../../../shared/services/session-storage.service'
-import { EmailInvoiceVM } from '../../../classes/view-models/email/email-invoice-vm'
 
 @Component({
     selector: 'invoice-list',
@@ -70,7 +71,7 @@ export class InvoiceListComponent {
 
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private invoiceHttpService: InvoiceHttpService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private invoiceHttpPdfService: InvoiceHttpPdfService, private invoiceHttpService: InvoiceHttpService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -165,7 +166,7 @@ export class InvoiceListComponent {
                 this.selectedRecords.forEach(record => {
                     ids.push(record.invoiceId)
                 })
-                this.invoiceHttpService.buildPdf(ids).subscribe({
+                this.invoiceHttpPdfService.buildPdf(ids).subscribe({
                     next: (response) => {
                         const criteria: EmailInvoiceVM = {
                             customerId: this.selectedRecords[0].customer.id,
@@ -188,10 +189,10 @@ export class InvoiceListComponent {
                 this.selectedRecords.forEach(record => {
                     ids.push(record.invoiceId)
                 })
-                this.invoiceHttpService.buildPdf(ids).subscribe({
+                this.invoiceHttpPdfService.buildPdf(ids).subscribe({
                     next: () => {
                         ids.forEach(id => {
-                            this.invoiceHttpService.openPdf(id + '.pdf').subscribe({
+                            this.invoiceHttpPdfService.openPdf(id + '.pdf').subscribe({
                                 next: (response) => {
                                     const blob = new Blob([response], { type: 'application/pdf' })
                                     const fileURL = URL.createObjectURL(blob)

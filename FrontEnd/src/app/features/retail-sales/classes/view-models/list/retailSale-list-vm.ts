@@ -3,6 +3,7 @@ import { DocumentTypeVM } from './documentType-vm'
 
 export interface RetailSaleListVM {
 
+    id: number
     reservationId: string
     refNo: string
     date: string

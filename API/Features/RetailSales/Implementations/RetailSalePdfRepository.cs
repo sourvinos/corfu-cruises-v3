@@ -12,10 +12,13 @@ using System.IO;
 using ZXing.QrCode;
 using ZXing.Windows.Compatibility;
 using ZXing;
+using System.Collections.Generic;
 
 namespace API.Features.RetailSales {
 
     public class RetailSalePdfRepository : IRetailSalePdfRepository {
+
+        #region public methods
 
         public string BuildPdf(InvoicePdfVM invoice) {
             var locale = CultureInfo.CreateSpecificCulture("el-GR");
@@ -43,12 +46,44 @@ namespace API.Features.RetailSales {
             return filename;
         }
 
+        public string BuildMultiPagePdf(IEnumerable<InvoicePdfVM> invoices) {
+            PdfDocument document = new();
+            GlobalFontSettings.FontResolver = new FileFontResolver();
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+            XFont logoFont = new("ACCanterBold", 20);
+            XFont headerFont = new("ACCanterBold", 10);
+            XFont robotoMonoFont = new("RobotoMono", 7);
+            XFont robotoMonoFontBig = new("RobotoMono", 8);
+            CultureInfo locale = CultureInfo.CreateSpecificCulture("el-GR");
+            foreach (var invoice in invoices) {
+                PdfPage page = document.AddPage();
+                page.Size = PageSize.A4;
+                XGraphics gfx = XGraphics.FromPdfPage(page);
+                AddLogo(gfx);
+                AddIssuer(gfx, logoFont, robotoMonoFont, invoice);
+                AddInvoiceDetails(gfx, headerFont, robotoMonoFont, invoice);
+                AddReservation(gfx, headerFont, robotoMonoFont, invoice);
+                AddPaxAndPrices(gfx, headerFont, robotoMonoFont, locale, invoice);
+                AddPassengers(gfx, headerFont, robotoMonoFont, invoice);
+                AddSummary(gfx, headerFont, robotoMonoFont, robotoMonoFontBig, locale, invoice);
+                AddAade(gfx, robotoMonoFont, invoice.Aade);
+            }
+            var filename = "CombinedInvoices" + ".pdf";
+            var fullpathname = Path.Combine("Reports" + Path.DirectorySeparatorChar + "Invoices" + Path.DirectorySeparatorChar + filename);
+            document.Save(fullpathname);
+            return filename;
+        }
+
         public FileStreamResult OpenPdf(string filename) {
             var fullpathname = Path.Combine("Reports" + Path.DirectorySeparatorChar + "Invoices" + Path.DirectorySeparatorChar + filename);
             byte[] byteArray = File.ReadAllBytes(fullpathname);
             MemoryStream memoryStream = new(byteArray);
             return new FileStreamResult(memoryStream, "application/pdf");
         }
+
+        #endregion
+
+        #region private methods
 
         public void AddLogo(XGraphics gfx) {
             XImage image = XImage.FromFile(Path.Combine("Images" + Path.DirectorySeparatorChar + "Background.png"));
@@ -157,6 +192,8 @@ namespace API.Features.RetailSales {
         private static XSolidBrush SetTextColor(int value) {
             return value == 0 ? XBrushes.LightGray : XBrushes.Black;
         }
+
+        #endregion
 
     }
 

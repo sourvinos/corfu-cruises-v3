@@ -16,6 +16,7 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 import { RetailSaleHttpService } from '../../../classes/services/retailSale-http.service'
 import { RetailSaleListCriteriaVM } from '../../../classes/view-models/criteria/retailSale-list-criteria-vm'
 import { RetailSaleListVM } from '../../../classes/view-models/list/retailSale-list-vm'
+import { RetailSalePdfHttpService } from './../../../classes/services/retailSale-pdf-http.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 
 @Component({
@@ -57,7 +58,7 @@ export class RetailSaleListComponent {
 
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private retailSaleHttpService: RetailSaleHttpService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private retailSalePdfHttpService: RetailSalePdfHttpService, private retailSaleHttpService: RetailSaleHttpService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -122,6 +123,34 @@ export class RetailSaleListComponent {
             })
         }
     }
+
+    public onBuildAndOpenSelectedInSingleDocument(): void {
+        if (this.isAnyRowSelected()) {
+            const ids = []
+            this.selectedRecords.forEach(record => {
+                ids.push(record.reservationId)
+            })
+            this.retailSalePdfHttpService.buildMultiPagePdf(ids).subscribe({
+                next: (response) => {
+                    this.retailSalePdfHttpService.openPdf(response.body).subscribe({
+                        next: (response) => {
+                            const blob = new Blob([response], { type: 'application/pdf' })
+                            const fileURL = URL.createObjectURL(blob)
+                            window.open(fileURL, '_blank')
+                        },
+                        error: (errorFromInterceptor) => {
+                            this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                        }
+                    })
+
+                },
+                error: (errorFromInterceptor) => {
+                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                }
+            })
+        }
+    }
+
 
     public resetTableFilters(): void {
         this.helperService.clearTableTextFilters(this.table, [''])

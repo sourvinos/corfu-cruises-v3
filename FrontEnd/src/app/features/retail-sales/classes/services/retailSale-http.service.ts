@@ -21,10 +21,6 @@ export class RetailSaleHttpService extends HttpDataService {
         return this.http.request<RetailSaleListVM[]>('post', environment.apiUrl + '/retailSales/getForPeriod', { body: criteria })
     }
 
-    public buildPdf(invoiceId: string): Observable<any> {
-        return this.http.get<any>(this.url + '/buildInvoicePdf/' + invoiceId)
-    }
-
     public emailRetailSale(criteria: EmailRetailSaleVM): Observable<any> {
         return this.http.request<EmailRetailSaleVM>('post', this.url + '/emailRetailSale', { body: criteria })
     }
@@ -35,10 +31,6 @@ export class RetailSaleHttpService extends HttpDataService {
 
     public patchRetailSaleAade(aadeVM: AadeVM): Observable<any> {
         return this.http.patch<any>(this.url + '/retailSaleAade', aadeVM)
-    }
-
-    public openPdf(filename: string): Observable<any> {
-        return this.http.get(this.url + '/openPdf/' + filename + '.pdf', { responseType: 'arraybuffer' })
     }
 
 }

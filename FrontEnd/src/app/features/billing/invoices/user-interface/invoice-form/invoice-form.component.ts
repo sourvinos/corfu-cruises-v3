@@ -18,6 +18,7 @@ import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
 import { InvoiceHelperService } from '../../classes/services/invoice.helper.service'
+import { InvoiceHttpPdfService } from '../../classes/services/invoice-http-pdf.service'
 import { InvoiceHttpService } from '../../classes/services/invoice-http.service'
 import { InvoiceReadDto } from '../../classes/dtos/form/invoice-read-dto'
 import { InvoiceWriteDto } from '../../classes/dtos/form/invoice-write-dto'
@@ -71,7 +72,7 @@ export class InvoiceFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private debugDialogService: DebugDialogService, private dexieService: DexieService, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpService: InvoiceHttpService, private invoiceXmlHelperService: InvoiceXmlHelperService, private invoiceXmlHttpService: InvoiceXmlHttpService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceHttpService: PriceHttpService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private debugDialogService: DebugDialogService, private dexieService: DexieService, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpPdfService: InvoiceHttpPdfService, private invoiceHttpService: InvoiceHttpService, private invoiceXmlHelperService: InvoiceXmlHelperService, private invoiceXmlHttpService: InvoiceXmlHttpService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceHttpService: PriceHttpService, private router: Router) { }
 
     //#region lifecycle hooks
 
@@ -254,9 +255,9 @@ export class InvoiceFormComponent {
     }
 
     public onCreateAndOpenPdf(): void {
-        this.invoiceHttpService.buildPdf(new Array(this.form.value.invoiceId)).subscribe({
+        this.invoiceHttpPdfService.buildPdf(new Array(this.form.value.invoiceId)).subscribe({
             next: (response) => {
-                this.invoiceHttpService.openPdf(response.body[0]).subscribe({
+                this.invoiceHttpPdfService.openPdf(response.body[0]).subscribe({
                     next: (response) => {
                         const blob = new Blob([response], { type: 'application/pdf' })
                         const fileURL = URL.createObjectURL(blob)

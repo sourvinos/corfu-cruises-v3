@@ -16,16 +16,14 @@ namespace API.Features.RetailSales {
 
         private readonly IMapper mapper;
         private readonly IRetailSaleEmailSender emailSender;
-        private readonly IRetailSalePdfRepository invoicePdfRepo;
         private readonly IRetailSaleReadRepository retailSaleReadRepo;
         private readonly IRetailSaleUpdateRepository retailSaleUpdateRepo;
         private readonly IRetailSaleValidation retailSaleValidation;
 
         #endregion
 
-        public RetailSalesController(IMapper mapper, IRetailSaleEmailSender emailSender, IRetailSalePdfRepository invoicePdfRepo, IRetailSaleReadRepository retailSaleReadRepo, IRetailSaleUpdateRepository retailSaleUpdateRepo, IRetailSaleValidation retailSaleValidation) {
+        public RetailSalesController(IMapper mapper, IRetailSaleEmailSender emailSender, IRetailSaleReadRepository retailSaleReadRepo, IRetailSaleUpdateRepository retailSaleUpdateRepo, IRetailSaleValidation retailSaleValidation) {
             this.emailSender = emailSender;
-            this.invoicePdfRepo = invoicePdfRepo;
             this.mapper = mapper;
             this.retailSaleReadRepo = retailSaleReadRepo;
             this.retailSaleUpdateRepo = retailSaleUpdateRepo;
@@ -57,25 +55,6 @@ namespace API.Features.RetailSales {
                     ResponseCode = await x
                 };
             }
-        }
-
-        [HttpGet("buildInvoicePdf/{invoiceId}")]
-        [Authorize(Roles = "admin")]
-        public async Task<ResponseWithBody> BuildInvoicePdf(string invoiceId) {
-            var x = await retailSaleReadRepo.GetByIdForPdfAsync(invoiceId);
-            if (x != null) {
-                var z = invoicePdfRepo.BuildPdf(mapper.Map<RetailSale, InvoicePdfVM>(x));
-            } else {
-                throw new CustomException() {
-                    ResponseCode = 404
-                };
-            }
-            return new ResponseWithBody {
-                Code = 200,
-                Icon = Icons.Info.ToString(),
-                Message = ApiMessages.OK(),
-                Body = invoiceId
-            };
         }
 
         [HttpPost("[action]")]
@@ -134,12 +113,6 @@ namespace API.Features.RetailSales {
                     ResponseCode = 404
                 };
             }
-        }
-
-        [HttpGet("[action]/{filename}")]
-        [Authorize(Roles = "admin")]
-        public IActionResult OpenPdf([FromRoute] string filename) {
-            return invoicePdfRepo.OpenPdf(filename);
         }
 
     }

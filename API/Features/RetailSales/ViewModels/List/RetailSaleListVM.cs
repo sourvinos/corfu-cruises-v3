@@ -5,6 +5,7 @@ namespace API.Features.RetailSales {
 
     public class RetailSaleListVM {
 
+        public int Id { get; set; }
         public string ReservationId { get; set; }
         public string Date { get; set; }
         public string RefNo { get; set; }

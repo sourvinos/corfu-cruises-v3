@@ -19,7 +19,6 @@ namespace API.Features.Billing.Invoices {
         private readonly ICustomerRepository customerRepo;
         private readonly IInvoiceCalculateBalanceRepo calculateBalanceRepo;
         private readonly IInvoiceEmailSender emailSender;
-        private readonly IInvoicePdfRepository invoicePdfRepo;
         private readonly IInvoiceReadRepository invoiceReadRepo;
         private readonly IInvoiceUpdateRepository invoiceUpdateRepo;
         private readonly IInvoiceValidation invoiceValidation;
@@ -27,11 +26,10 @@ namespace API.Features.Billing.Invoices {
 
         #endregion
 
-        public InvoicesController(ICustomerRepository customerRepo, IInvoiceCalculateBalanceRepo calculateBalanceRepo, IInvoiceEmailSender emailSender, IInvoicePdfRepository invoicePdfRepo, IInvoiceReadRepository invoiceReadRepo, IInvoiceUpdateRepository invoiceUpdateRepo, IInvoiceValidation invoiceValidation, IMapper mapper) {
+        public InvoicesController(ICustomerRepository customerRepo, IInvoiceCalculateBalanceRepo calculateBalanceRepo, IInvoiceEmailSender emailSender, IInvoiceReadRepository invoiceReadRepo, IInvoiceUpdateRepository invoiceUpdateRepo, IInvoiceValidation invoiceValidation, IMapper mapper) {
             this.calculateBalanceRepo = calculateBalanceRepo;
             this.customerRepo = customerRepo;
             this.emailSender = emailSender;
-            this.invoicePdfRepo = invoicePdfRepo;
             this.invoiceReadRepo = invoiceReadRepo;
             this.invoiceUpdateRepo = invoiceUpdateRepo;
             this.invoiceValidation = invoiceValidation;
@@ -163,29 +161,6 @@ namespace API.Features.Billing.Invoices {
             }
         }
 
-        [HttpPost("buildInvoicePdfs")]
-        [Authorize(Roles = "admin")]
-        public async Task<ResponseWithBody> BuildInvoicePdfs([FromBody] string[] invoiceIds) {
-            var filenames = new List<string>();
-            foreach (var invoiceId in invoiceIds) {
-                var x = await invoiceReadRepo.GetByIdForPdfAsync(invoiceId);
-                if (x != null) {
-                    var z = invoicePdfRepo.BuildPdf(mapper.Map<Invoice, InvoicePdfVM>(x));
-                    filenames.Add(z);
-                } else {
-                    throw new CustomException() {
-                        ResponseCode = 404
-                    };
-                }
-            }
-            return new ResponseWithBody {
-                Code = 200,
-                Icon = Icons.Info.ToString(),
-                Message = ApiMessages.OK(),
-                Body = filenames.ToArray()
-            };
-        }
-
         [HttpPost("[action]")]
         [Authorize(Roles = "admin")]
         public Response EmailInvoices([FromBody] EmailInvoicesVM model) {
@@ -243,35 +218,6 @@ namespace API.Features.Billing.Invoices {
                     ResponseCode = 404
                 };
             }
-        }
-
-        [HttpGet("[action]/{filename}")]
-        [Authorize(Roles = "admin")]
-        public IActionResult OpenPdf([FromRoute] string filename) {
-            return invoicePdfRepo.OpenPdf(filename);
-        }
-
-        [HttpPost("buildMultiPagePdf")]
-        [Authorize(Roles = "admin")]
-        public async Task<ResponseWithBody> BuildMultiPagePdfAsync([FromBody] string[] invoiceIds) {
-            var invoices = new List<InvoicePdfVM>();
-            foreach (var invoiceId in invoiceIds) {
-                var x = await invoiceReadRepo.GetByIdForPdfAsync(invoiceId);
-                if (x != null) {
-                    invoices.Add(mapper.Map<Invoice, InvoicePdfVM>(x));
-                } else {
-                    throw new CustomException() {
-                        ResponseCode = 404
-                    };
-                }
-            }
-            var filename = invoicePdfRepo.BuildMultiPagePdf(invoices);
-            return new ResponseWithBody {
-                Code = 200,
-                Icon = Icons.Info.ToString(),
-                Message = ApiMessages.OK(),
-                Body = filename
-            };
         }
 
     }

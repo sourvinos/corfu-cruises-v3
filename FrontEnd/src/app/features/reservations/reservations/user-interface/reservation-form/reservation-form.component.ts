@@ -44,6 +44,7 @@ import { environment } from 'src/environments/environment'
 import { EmailRetailSaleVM } from 'src/app/features/retail-sales/classes/view-models/email/email-retailSale-vm'
 import { RetailSaleXmlHttpService } from 'src/app/features/retail-sales/classes/services/retailSale-xml-http.service'
 import { RetailSaleXmlHelperService } from 'src/app/features/retail-sales/classes/services/retailSale-xml-helper.service'
+import { RetailSalePdfHttpService } from 'src/app/features/retail-sales/classes/services/retailSale-pdf-http.service'
 
 @Component({
     selector: 'reservation-form',
@@ -93,7 +94,7 @@ export class ReservationFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private boardingPassService: BoardingPassService, private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialog: MatDialog, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private reservationHelperService: ReservationHelperService, private reservationHttpService: ReservationHttpService, private retailSaleHttpService: RetailSaleHttpService, private retailSaleXmlHelperService: RetailSaleXmlHelperService, private retailSaleXmlHttpService: RetailSaleXmlHttpService, private router: Router, private sessionStorageService: SessionStorageService) { }
+    constructor(private activatedRoute: ActivatedRoute, private boardingPassService: BoardingPassService, private cryptoService: CryptoService, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialog: MatDialog, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private emojiService: EmojiService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private reservationHelperService: ReservationHelperService, private reservationHttpService: ReservationHttpService, private retailSaleHttpService: RetailSaleHttpService, private retailSalePdfHttpService: RetailSalePdfHttpService, private retailSaleXmlHelperService: RetailSaleXmlHelperService, private retailSaleXmlHttpService: RetailSaleXmlHttpService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
     //#region lifecycle hooks
 
@@ -210,9 +211,9 @@ export class ReservationFormComponent {
     }
 
     public onBuildAndOpenRetailSalePdf(): void {
-        this.retailSaleHttpService.buildPdf(this.reservationForm.value.reservationId).subscribe({
+        this.retailSalePdfHttpService.buildSinglePagePdf(this.reservationForm.value.reservationId).subscribe({
             next: (response) => {
-                this.retailSaleHttpService.openPdf(response.body).subscribe({
+                this.retailSalePdfHttpService.openPdf(response.body).subscribe({
                     next: (response) => {
                         const blob = new Blob([response], { type: 'application/pdf' })
                         const fileURL = URL.createObjectURL(blob)
@@ -257,7 +258,7 @@ export class ReservationFormComponent {
     }
 
     public onEmailRetailSale(): void {
-        this.retailSaleHttpService.buildPdf(this.reservationForm.value.reservationId).subscribe({
+        this.retailSalePdfHttpService.buildSinglePagePdf(this.reservationForm.value.reservationId).subscribe({
             next: (response) => {
                 const criteria: EmailRetailSaleVM = {
                     email: this.reservationForm.value.email,

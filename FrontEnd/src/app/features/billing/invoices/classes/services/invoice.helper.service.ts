@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core'
 import { BillingCriteriaVM } from '../view-models/form/billing-criteria-vm'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { DexieService } from 'src/app/shared/services/dexie.service'
-import { DocumentTypeHttpService } from '../../../documentTypes/classes/services/documentType-http.service'
 import { DocumentTypeReadDto } from '../../../documentTypes/classes/dtos/documentType-read-dto'
 import { InvoiceWriteDto } from '../dtos/form/invoice-write-dto'
 import { PortWriteDto } from '../dtos/form/port-write-dto'
@@ -12,7 +11,7 @@ import { PortWriteDto } from '../dtos/form/port-write-dto'
 
 export class InvoiceHelperService {
 
-    constructor(private dexieService: DexieService, private dateHelperService: DateHelperService, private documentTypeHttpService: DocumentTypeHttpService) { }
+    constructor(private dexieService: DexieService, private dateHelperService: DateHelperService) { }
 
     //#region public methods
 
