@@ -2,8 +2,8 @@ namespace API.Features.Billing.Invoices {
 
     public class InvoiceListAadeVM {
 
-        public string Mark { get; set; }
-        public string MarkCancel { get; set; }
+        public bool Mark { get; set; }
+        public bool MarkCancel { get; set; }
 
     }
 

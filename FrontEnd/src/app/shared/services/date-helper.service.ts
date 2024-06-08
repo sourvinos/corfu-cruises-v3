@@ -122,7 +122,7 @@ export class DateHelperService {
         return x <= z
     }
 
-    //#endregion
+        //#endregion
 
     //#region private methods
 
@@ -161,3 +161,4 @@ export class DateHelperService {
     //#endregion
 
 }
+

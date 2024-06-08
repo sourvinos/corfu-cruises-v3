@@ -141,6 +141,9 @@ export class HelperService {
         document.querySelectorAll<HTMLInputElement>('.p-inputtext, .mat-input-element').forEach(box => {
             box.value = ''
         })
+        document.querySelectorAll<HTMLElement>('.p-date-filter-clear-button').forEach(box => {
+            box.style.visibility = 'hidden'
+        })
     }
 
     public flattenObject(object: any): any {

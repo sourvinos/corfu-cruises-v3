@@ -90,8 +90,12 @@
     color: var(--color-text);
     font-size: 0.75rem;
     line-height: 0;
-    margin: -47px 0 0 -24px;
+    margin: -50px 0 0 -24px;
     position: absolute;
+}
+
+.p-date-filter-clear-button {
+    margin: -31px 0 0 -12px;
 }
 
 .p-column-filter-menu-button, .p-column-filter-clear-button .p-icon-wrapper svg {
@@ -150,4 +154,8 @@
 
 .color-table-header > button > svg {
     color: var(--color-text) !important;
+}
+
+.p-element .center > .p-column-filter > .p-element > .p-inputtext {
+    text-align: center;
 }

@@ -8,6 +8,7 @@ export interface InvoiceListVM {
     date: string
     destination: SimpleEntity
     documentType: DocumentTypeVM
+    batch: string
     grossAmount: number
     invoiceId: string
     invoiceNo: number
