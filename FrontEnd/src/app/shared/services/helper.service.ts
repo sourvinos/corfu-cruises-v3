@@ -137,6 +137,7 @@ export class HelperService {
         table.clear()
         inputs.forEach(input => {
             table.filter('', input, 'contains')
+            table.filter('', input, 'equals')
         })
         document.querySelectorAll<HTMLInputElement>('.p-inputtext, .mat-input-element').forEach(box => {
             box.value = ''

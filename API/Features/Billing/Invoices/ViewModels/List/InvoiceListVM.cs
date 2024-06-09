@@ -9,7 +9,7 @@ namespace API.Features.Billing.Invoices {
         public int InvoiceNo { get; set; }
         public SimpleEntity Customer { get; set; }
         public SimpleEntity Destination { get; set; }
-        public DocumentTypeVM DocumentType { get; set; }
+        public SimpleEntity DocumentType { get; set; }
         public SimpleEntity Ship { get; set; }
         public SimpleEntity ShipOwner { get; set; }
         public decimal GrossAmount { get; set; }

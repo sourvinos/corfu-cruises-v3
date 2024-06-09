@@ -1,6 +1,4 @@
 import { Component, ViewChild } from '@angular/core'
-import { DateAdapter } from '@angular/material/core'
-import { MatDatepickerInputEvent } from '@angular/material/datepicker'
 import { MatDialog } from '@angular/material/dialog'
 import { MenuItem } from 'primeng/api'
 import { Router } from '@angular/router'
@@ -45,7 +43,6 @@ export class InvoiceListComponent {
     public records: InvoiceListVM[] = []
     public selectedRecords: InvoiceListVM[] = []
     public recordsFilteredCount = 0
-    public filterDate = ''
     public recordsFiltered: InvoiceListVM[]
 
     //#endregion
@@ -68,7 +65,7 @@ export class InvoiceListComponent {
 
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private invoiceHttpPdfService: InvoiceHttpPdfService, private invoiceHttpService: InvoiceHttpDataService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
+    constructor(private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private invoiceHttpPdfService: InvoiceHttpPdfService, private invoiceHttpService: InvoiceHttpDataService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
 
@@ -84,29 +81,18 @@ export class InvoiceListComponent {
 
     //#region public methods
 
-    public clearDateFilter(): void {
-        this.table.filter('', 'date', 'equals')
-        this.filterDate = ''
-        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
-    }
-
     public editRecord(id: string): void {
         this.storeScrollTop()
         this.storeSelectedId(id)
         this.navigateToRecord(id)
     }
 
-    public filterByDate(event: MatDatepickerInputEvent<Date>): void {
-        const date = this.dateHelperService.formatDateToIso(new Date(event.value), false)
-        this.table.filter(date, 'date', 'equals')
-        this.filterDate = date
-        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
-    }
-
     public filterRecords(event: any): void {
-        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
-        this.recordsFiltered = event.filteredValue
-        this.recordsFilteredCount = event.filteredValue.length
+        setTimeout(() => {
+            this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
+            this.recordsFiltered = event.filteredValue
+            this.recordsFilteredCount = event.filteredValue.length
+        }, 500)
     }
 
     public formatNumberToLocale(number: number, decimals = true): string {
@@ -125,10 +111,6 @@ export class InvoiceListComponent {
 
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
-    }
-
-    public hasDateFilter(): string {
-        return this.filterDate == '' ? 'hidden' : ''
     }
 
     public onHighlightRow(id: any): void {
@@ -193,7 +175,7 @@ export class InvoiceListComponent {
     }
 
     public resetTableFilters(): void {
-        this.helperService.clearTableTextFilters(this.table, [''])
+        this.helperService.clearTableTextFilters(this.table, ['batch', 'invoiceNo', 'grossAmount'])
     }
 
     public onShowCriteriaDialog(): void {
@@ -205,8 +187,13 @@ export class InvoiceListComponent {
         })
         dialogRef.afterClosed().subscribe(criteria => {
             if (criteria !== undefined) {
-                this.buildCriteriaVM(criteria)
-                this.doSearchTasks()
+                this.loadRecords().then(() => {
+                    this.buildCriteriaVM(criteria)
+                    this.clearTable()
+                    this.resetTableFilters()
+                    this.deleteStoredFilters()
+                    this.doSearchTasks()
+                })
             }
         })
     }
@@ -227,13 +214,36 @@ export class InvoiceListComponent {
         }
     }
 
+    private clearSelectedRecords(): void {
+        this.selectedRecords = []
+    }
+
+    private clearTable(): void {
+        this.table.clear()
+    }
+
+    private createDateObjects(): void {
+        this.records.forEach(record => {
+            record.date = {
+                id: this.dateHelperService.convertIsoDateToUnixTime(record.date.toString()),
+                description: this.formatDateToLocale(record.date.toString()),
+                isActive: true
+            }
+        })
+    }
+
+    private deleteStoredFilters(): void {
+        this.sessionStorageService.deleteItems([{ 'item': 'invoiceList-filters', 'when': 'always' }])
+    }
+
     private doSearchTasks(): void {
         this.loadRecords().then(() => {
-            this.flattenNestedObjects()
+            this.createDateObjects()
+            this.initFilteredRecordsCount()
             this.filterTableFromStoredFilters()
             this.populateDropdownFilters()
-            this.formatDatesToLocale()
             this.doVirtualTableTasks()
+            this.clearSelectedRecords()
         })
     }
 
@@ -250,12 +260,7 @@ export class InvoiceListComponent {
             complete: () => {
                 this.invoiceHttpService.patchInvoicesWithEmailSent(this.removeExtensionsFromFileNames(criteria.filenames)).subscribe({
                     next: () => {
-                        this.loadRecords().then(() => {
-                            this.filterTableFromStoredFilters()
-                            this.populateDropdownFilters()
-                            this.formatDatesToLocale()
-                        })
-                        this.selectedRecords = []
+                        this.doSearchTasks()
                         this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
                     },
                     error: (errorFromInterceptor) => {
@@ -277,10 +282,9 @@ export class InvoiceListComponent {
 
     private filterTableFromStoredFilters(): void {
         const filters = this.sessionStorageService.getFilters(this.feature + '-' + 'filters')
-        if (filters != undefined) {
+        if (filters) {
             setTimeout(() => {
-                this.filterDate = filters.date ? filters.date.value : ''
-                this.filterColumn(filters.date, 'date', 'equals')
+                this.filterColumn(filters.date, 'date', 'in')
                 this.filterColumn(filters.customer, 'customer', 'in')
                 this.filterColumn(filters.destination, 'destination', 'in')
                 this.filterColumn(filters.ship, 'ship', 'in')
@@ -293,16 +297,8 @@ export class InvoiceListComponent {
         }
     }
 
-    private flattenNestedObjects(): void {
-        this.records.forEach(record => {
-            record.batch = record.documentType.batch
-        })
-    }
-
-    private formatDatesToLocale(): void {
-        this.records.forEach(record => {
-            record.formattedDate = this.dateHelperService.formatISODateToLocale(record.date)
-        })
+    private formatDateToLocale(date: string): string {
+        return this.dateHelperService.formatISODateToLocale(date)
     }
 
     private getStoredCriteria(): void {
@@ -330,14 +326,18 @@ export class InvoiceListComponent {
 
     private initContextMenu(): void {
         this.menuItems = [
-            { label: 'Επεξεργασία', command: () => this.editRecord(this.selectedRecord.invoiceId.toString()) },
+            { label: this.getLabel('contextMenuEdit'), command: () => this.editRecord(this.selectedRecord.invoiceId.toString()) },
             {
-                label: 'Αποστολή με email', command: (): void => {
+                label: this.getLabel('contextMenuEmail'), command: (): void => {
                     this.addSelectedRecordToSelectedRecords(this.selectedRecord)
                     this.buildAndEmailSelectedRecords()
                 }
             }
         ]
+    }
+
+    private initFilteredRecordsCount(): void {
+        this.recordsFilteredCount = this.records.length
     }
 
     private isAnyRowSelected(): boolean {
@@ -362,7 +362,7 @@ export class InvoiceListComponent {
     }
 
     private populateDropdownFilters(): void {
-        this.dropdownDates = this.getDistinctDates(this.records, 'date', 'date')
+        this.dropdownDates = this.helperService.getDistinctRecords(this.records, 'date', 'date')
         this.dropdownCustomers = this.helperService.getDistinctRecords(this.records, 'customer', 'description')
         this.dropdownDestinations = this.helperService.getDistinctRecords(this.records, 'destination', 'description')
         this.dropdownDocumentTypes = this.helperService.getDistinctRecords(this.records, 'documentType', 'description')
@@ -392,10 +392,6 @@ export class InvoiceListComponent {
         return true
     }
 
-    private setLocale(): void {
-        this.dateAdapter.setLocale(this.localStorageService.getLanguage())
-    }
-
     private setTabTitle(): void {
         this.helperService.setTabTitle(this.feature)
     }
@@ -409,10 +405,6 @@ export class InvoiceListComponent {
     }
 
     private subscribeToInteractionService(): void {
-        this.interactionService.refreshDateAdapter.subscribe(() => {
-            this.setLocale()
-            this.formatDatesToLocale()
-        })
         this.interactionService.refreshTabTitle.subscribe(() => {
             this.setTabTitle()
         })
@@ -425,16 +417,5 @@ export class InvoiceListComponent {
     }
 
     //#endregion
-
-    private getDistinctDates(records: any[], object: string, orderField: string): any[] {
-        const distinctRecords = (Object.values(records.reduce(function (x, item) {
-            if (!x[item[object]]) {
-                x[item[object]] = item[object]
-            }
-            return x
-        }, {})))
-        distinctRecords.sort((a, b) => (a[orderField] > b[orderField]) ? 1 : -1)
-        return distinctRecords
-    }
 
 }

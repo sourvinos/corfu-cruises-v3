@@ -122,7 +122,13 @@ export class DateHelperService {
         return x <= z
     }
 
-        //#endregion
+    public convertIsoDateToUnixTime(date: string): number {
+        const x = this.createDateFromString(date)
+        const z = x.getTime()
+        return z
+    }
+
+    //#endregion
 
     //#region private methods
 

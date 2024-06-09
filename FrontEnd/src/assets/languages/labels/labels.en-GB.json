@@ -3004,7 +3004,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Πωλήσεις"
+                "description": "Ημερολόγιο πωλήσεων"
             },
             {
                 "id": "headerDate",
@@ -3027,12 +3027,8 @@
                 "description": "Πλοίο"
             },
             {
-                "id": "headerDocumentTypeDescription",
-                "description": "Τύπος παραστατικού"
-            },
-            {
-                "id": "headerDocumentTypeBatch",
-                "description": "Σειρά"
+                "id": "headerDocumentType",
+                "description": "Παραστατικό"
             },
             {
                 "id": "headerNo",
@@ -3045,6 +3041,22 @@
             {
                 "id": "newRecord",
                 "description": "Νεα εγγραφη"
+            },
+            {
+                "id": "noDataHeader",
+                "description": "Δεν βρήκαμε τίποτα για να εμφανίσουμε εδώ."
+            },
+            {
+                "id": "noDataSubHeader",
+                "description": "Ισως θα πρέπει να δώσετε διαφορετικά κριτήρια!"
+            },
+            {
+                "id": "contextMenuEdit",
+                "description": "Επεξεργασία"
+            },
+            {
+                "id": "contextMenuEmail",
+                "description": "Αποστολή με email"
             }
         ]
     },
@@ -3857,6 +3869,14 @@
             {
                 "id": "newRecord",
                 "description": "Νεα εγγραφη"
+            },
+            {
+                "id": "noDataHeader",
+                "description": "Δεν βρήκαμε τίποτα για να εμφανίσουμε εδώ."
+            },
+            {
+                "id": "noDataSubHeader",
+                "description": "Ισως θα πρέπει να δώσετε διαφορετικά κριτήρια!"
             }
         ]
     },

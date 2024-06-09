@@ -3027,12 +3027,8 @@
                 "description": "Πλοίο"
             },
             {
-                "id": "headerDocumentTypeDescription",
-                "description": "Τύπος παραστατικού"
-            },
-            {
-                "id": "headerDocumentTypeBatch",
-                "description": "Σειρά"
+                "id": "headerDocumentType",
+                "description": "Παραστατικό"
             },
             {
                 "id": "headerNo",
@@ -3053,6 +3049,14 @@
             {
                 "id": "noDataSubHeader",
                 "description": "Ισως θα πρέπει να δώσετε διαφορετικά κριτήρια!"
+            },
+            {
+                "id": "contextMenuEdit",
+                "description": "Επεξεργασία"
+            },
+            {
+                "id": "contextMenuEmail",
+                "description": "Αποστολή με email"
             }
         ]
     },
