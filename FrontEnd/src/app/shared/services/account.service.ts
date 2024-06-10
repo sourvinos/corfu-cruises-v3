@@ -77,7 +77,7 @@ export class AccountService extends HttpDataService {
             { 'item': 'ledger-criteria', 'when': 'production' },
             { 'item': 'manifest-criteria', 'when': 'production' },
             { 'item': 'invoiceListCriteria', 'when': 'always' },
-            { 'item': 'retailSale-list-criteria', 'when': 'always' },
+            { 'item': 'retailSaleListCriteria', 'when': 'always' },
             { 'item': 'receipt-list-criteria', 'when': 'always' },
             { 'item': 'balanceSheetCriteria', 'when': 'always' },
             { 'item': 'revenuesCriteria', 'when': 'always' },

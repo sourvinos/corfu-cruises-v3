@@ -23,12 +23,11 @@
                             <th class="width-18" pSortableColumn="shipOwner.description">{{ getLabel("headerShipOwner") }}</th>
                             <th class="width-18" pSortableColumn="customer.description">{{ getLabel("headerCustomer") }}</th>
                             <th class="width-18" pSortableColumn="documentType.description">{{ getLabel("headerDocumentTypeDescription") }}</th>
-                            <th class="width-4" pSortableColumn="documentType.batch">{{ getLabel("headerDocumentTypeBatch") }}</th>
-                            <th class="width-4" pSortableColumn="no">{{ getLabel("headerNo") }}</th>
+                            <th class="width-4" pSortableColumn="invoiceNo">{{ getLabel("headerNo") }}</th>
                             <th class="width-6" pSortableColumn="grossAmount">{{ getLabel("headerGrossAmount") }}</th>
-                            <th rowspan="2" class="border-bottom width-3"><span class="icon center blue email material-symbols-outlined">mail</span></th>
-                            <th rowspan="2" class="border-bottom width-3"><span class="icon center green email material-symbols-outlined">upload_2</span></th>
-                            <th rowspan="2" class="border-bottom width-3"><span class="icon center orange email material-symbols-outlined">upload_2</span></th>
+                            <th class="border-bottom width-3" rowspan="2" pSortableColumn="isEmailSent"><span class="icon center blue material-symbols-outlined">mail</span></th>
+                            <th class="border-bottom width-3" rowspan="2" pSortableColumn="aade.mark"><span class="icon center green material-symbols-outlined">upload_2</span></th>
+                            <th class="border-bottom width-3" rowspan="2" pSortableColumn="aade.markCancel"><span class="icon center orange material-symbols-outlined">upload_2</span></th>
                         </tr>
                         <tr>
                             <th class="width-3"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
@@ -86,32 +85,39 @@
                                 </p-columnFilter>
                             </th>
                             <th class="width-4"></th>
-                            <th class="width-4"></th>
-                            <th class="width-4"></th>
+                            <th class="width-4" style="border-right: none;"></th>
                         </tr>
                     </ng-template>
                     <ng-template let-record pTemplate="body">
-                        <tr (click)="highlightRow(record.invoiceId)" [attr.id]=record.id style="height: 32px;">
-                            <td class="width-3"><span class="center" style="padding-top: 0.25rem !important;"><p-tableCheckbox [value]="record"></p-tableCheckbox></span></td>
+                        <tr (click)="onHighlightRow(record.invoiceId)" [attr.id]=record.id style="height: 32px;">
+                            <td class="width-3"><span class="center no-overflow" style="padding-top: 0.25rem !important;"><p-tableCheckbox [value]="record"></p-tableCheckbox></span></td>
                             <td class="width-7"><span class="center no-overflow">{{ record.date.description }}</span></td>
                             <td class="width-5"><span class="center">{{ record.refNo }}</span></td>
                             <td class="width-18"><span>{{ record.shipOwner.description }}</span></td>
                             <td class="width-18"><span>{{ record.customer.description }}</span></td>
                             <td class="width-18"><span>{{ record.documentType.description }}</span></td>
-                            <td class="width-4"><span class="center">{{ record.documentType.batch }}</span></td>
                             <td class="width-4"><span class="center">{{ record.invoiceNo }}</span></td>
                             <td class="width-6"><span class="right with-right-padding">{{ formatNumberToLocale(record.grossAmount) }}</span></td>
                             <td class="width-3">
-                                <span *ngIf="record.isEmailSent" class="icon center blue email material-symbols-outlined">mail</span>
-                                <span *ngIf="!record.isEmailSent"></span>
+                                <span class="center no-overflow">
+                                    <ng-template [ngIf]="record.isEmailSent" [ngIfElse]="noIcon">
+                                        <span class="icon center blue email material-symbols-outlined no-overflow">email</span>
+                                    </ng-template>
+                                </span>
                             </td>
                             <td class="width-3">
-                                <span *ngIf="record.isAadeUpdated" class="icon center green material-symbols-outlined">upload_2</span>
-                                <span *ngIf="!record.isAadeUpdated"></span>
+                                <span class="center no-overflow">
+                                    <ng-template [ngIf]="record.aade.mark != ''" [ngIfElse]="noIcon">
+                                        <span class="icon center green material-symbols-outlined no-overflow">upload_2</span>
+                                    </ng-template>
+                                </span>
                             </td>
                             <td class="width-3">
-                                <span *ngIf="record.isCancelled" class="icon center orange material-symbols-outlined">upload_2</span>
-                                <span *ngIf="!record.isCancelled"></span>
+                                <span class="center no-overflow">
+                                    <ng-template [ngIf]="record.aade.markCancel != ''" [ngIfElse]="noIcon">
+                                        <span class="icon center orange material-symbols-outlined no-overflow">upload_2</span>
+                                    </ng-template>
+                                </span>
                             </td>
                         </tr>
                     </ng-template>

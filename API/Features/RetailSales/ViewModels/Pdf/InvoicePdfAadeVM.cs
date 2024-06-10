@@ -1,4 +1,4 @@
-namespace API.Features.RetailSales  {
+namespace API.Features.RetailSales {
 
     public class InvoicePdfAadeVM {
 

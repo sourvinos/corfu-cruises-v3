@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core'
-import { DateAdapter } from '@angular/material/core'
 import { MatDialog } from '@angular/material/dialog'
 import { MenuItem } from 'primeng/api'
 import { Router } from '@angular/router'
@@ -63,7 +62,7 @@ export class RetailSaleListComponent {
 
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private retailSalePdfHttpService: RetailSalePdfHttpService, private retailSaleHttpService: RetailSaleHttpService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
+    constructor(private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private retailSalePdfHttpService: RetailSalePdfHttpService, private retailSaleHttpService: RetailSaleHttpService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
 
@@ -111,7 +110,7 @@ export class RetailSaleListComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public highlightRow(id: any): void {
+    public onHighlightRow(id: any): void {
         this.helperService.highlightRow(id)
     }
 
@@ -209,7 +208,6 @@ export class RetailSaleListComponent {
             this.clearSelectedRecords()
         })
     }
-
 
     private doVirtualTableTasks(): void {
         setTimeout(() => {

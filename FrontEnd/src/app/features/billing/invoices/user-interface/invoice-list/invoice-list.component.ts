@@ -174,10 +174,6 @@ export class InvoiceListComponent {
         }
     }
 
-    public resetTableFilters(): void {
-        this.table != undefined ? this.helperService.clearTableTextFilters(this.table, ['invoiceNo', 'grossAmount']) : null
-    }
-
     public onShowCriteriaDialog(): void {
         const dialogRef = this.dialog.open(CriteriaDateRangeDialogComponent, {
             data: 'invoiceListCriteria',
@@ -196,6 +192,10 @@ export class InvoiceListComponent {
                 })
             }
         })
+    }
+
+    public resetTableFilters(): void {
+        this.table != undefined ? this.helperService.clearTableTextFilters(this.table, ['invoiceNo', 'grossAmount']) : null
     }
 
     //#endregion
