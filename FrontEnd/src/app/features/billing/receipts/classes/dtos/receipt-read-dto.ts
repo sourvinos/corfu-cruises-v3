@@ -1,6 +1,6 @@
 import { Guid } from 'guid-typescript'
 // Custom
-import { DocumentTypeVM } from '../view-models/list/documentType-vm'
+import { DocumentTypeVM } from '../view-models/form/documentType-vm'
 import { Metadata } from 'src/app/shared/classes/metadata'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 

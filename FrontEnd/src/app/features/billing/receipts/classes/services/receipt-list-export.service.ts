@@ -17,7 +17,7 @@ export class ReceiptListExportService {
         this.exportRecords = []
         records.forEach(record => {
             this.exportRecords.push({
-                date: this.dateHelperService.formatISODateToLocale(record.date),
+                date: this.dateHelperService.formatISODateToLocale(record.date.description),
                 shipOwner: record.shipOwner.description,
                 customer: record.customer.description,
                 documentType: record.documentType.description,

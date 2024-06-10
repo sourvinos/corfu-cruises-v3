@@ -1,30 +1,30 @@
-import { Router } from '@angular/router'
 import { Component, ViewChild } from '@angular/core'
-import { DateAdapter } from '@angular/material/core'
-import { MatDatepickerInputEvent } from '@angular/material/datepicker'
+import { MatDialog } from '@angular/material/dialog'
 import { MenuItem } from 'primeng/api'
+import { Router } from '@angular/router'
 import { Table } from 'primeng/table'
 import { formatNumber } from '@angular/common'
 // Custom
-import { DateHelperService } from '../../../../../../shared/services/date-helper.service'
+import { CriteriaDateRangeDialogComponent } from 'src/app/shared/components/criteria-date-range-dialog/criteria-date-range-dialog.component'
+import { DateHelperService } from '../../../../../shared/services/date-helper.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
-import { EmailReceiptVM } from '../../../classes/view-models/email/email-receipt-vm'
-import { EmojiService } from '../../../../../../shared/services/emoji.service'
-import { HelperService } from '../../../../../../shared/services/helper.service'
-import { InteractionService } from '../../../../../../shared/services/interaction.service'
-import { LocalStorageService } from '../../../../../../shared/services/local-storage.service'
+import { EmailReceiptVM } from '../../classes/view-models/email/email-receipt-vm'
+import { EmojiService } from '../../../../../shared/services/emoji.service'
+import { HelperService } from '../../../../../shared/services/helper.service'
+import { InteractionService } from '../../../../../shared/services/interaction.service'
+import { LocalStorageService } from '../../../../../shared/services/local-storage.service'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
-import { MessageLabelService } from '../../../../../../shared/services/message-label.service'
-import { ReceiptHttpService } from '../../../classes/services/receipt-http.service'
-import { ReceiptListCriteriaVM } from '../../../classes/view-models/criteria/receipt-list-criteria-vm'
-import { ReceiptListExportService } from '../../../classes/services/receipt-list-export.service'
-import { ReceiptListVM } from '../../../classes/view-models/list/receipt-list-vm'
-import { SessionStorageService } from '../../../../../../shared/services/session-storage.service'
+import { MessageLabelService } from '../../../../../shared/services/message-label.service'
+import { ReceiptHttpService } from '../../classes/services/receipt-http.service'
+import { ReceiptListCriteriaVM } from '../../classes/view-models/criteria/receipt-list-criteria-vm'
+import { ReceiptListExportService } from '../../classes/services/receipt-list-export.service'
+import { ReceiptListVM } from '../../classes/view-models/list/receipt-list-vm'
+import { SessionStorageService } from '../../../../../shared/services/session-storage.service'
 
 @Component({
     selector: 'receipt-list',
     templateUrl: './receipt-list.component.html',
-    styleUrls: ['../../../../../../../assets/styles/custom/lists.css', './receipt-list.component.css']
+    styleUrls: ['../../../../../../assets/styles/custom/lists.css', './receipt-list.component.css']
 })
 
 export class ReceiptListComponent {
@@ -33,6 +33,7 @@ export class ReceiptListComponent {
 
     @ViewChild('table') table: Table
 
+    private criteria: ReceiptListCriteriaVM
     private url = 'receipts'
     private virtualElement: any
     public feature = 'receiptList'
@@ -42,11 +43,13 @@ export class ReceiptListComponent {
     public records: ReceiptListVM[] = []
     public selectedRecords: ReceiptListVM[] = []
     public recordsFilteredCount = 0
+    public recordsFiltered: ReceiptListVM[]
 
     //#endregion
 
     //#region dropdown filters
 
+    public dropdownDates = []
     public dropdownCustomers = []
     public dropdownShipOwners = []
     public dropdownDestinations = []
@@ -61,46 +64,16 @@ export class ReceiptListComponent {
 
     //#endregion
 
-    //#region specific
-
-    public recordsFiltered: ReceiptListVM[]
-    public filterDate = ''
-
-    //#endregion
-
-    constructor(
-        private dateAdapter: DateAdapter<any>,
-        private dateHelperService: DateHelperService,
-        private dialogService: DialogService,
-        private emojiService: EmojiService,
-        private helperService: HelperService,
-        private interactionService: InteractionService,
-        private localStorageService: LocalStorageService,
-        private messageDialogService: MessageDialogService,
-        private messageLabelService: MessageLabelService,
-        private receiptHttpService: ReceiptHttpService,
-        private receiptListExportService: ReceiptListExportService,
-        private router: Router,
-        private sessionStorageService: SessionStorageService
-    ) { }
+    constructor(private dateHelperService: DateHelperService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private receiptHttpService: ReceiptHttpService, private receiptListExportService: ReceiptListExportService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
         this.setTabTitle()
-        this.setLocale()
-        this.setSidebarsHeight()
+        this.subscribeToInteractionService()
         this.initContextMenu()
-        this.enableDisableFilters()
-    }
-
-    ngAfterViewInit(): void {
-        setTimeout(() => {
-            this.getVirtualElement()
-            this.scrollToSavedPosition()
-            this.hightlightSavedRow()
-            this.enableDisableFilters()
-        }, 500)
+        this.getStoredCriteria()
+        this.doSearchTasks()
     }
 
     //#endregion
@@ -127,6 +100,10 @@ export class ReceiptListComponent {
         return formatNumber(number, this.localStorageService.getItem('language'), decimals ? '1.2' : '1.0')
     }
 
+    public getCriteria(): string {
+        return this.criteria ? this.criteria.fromDate + ' - ' + this.criteria.toDate : ''
+    }
+
     public getEmoji(anything: any): string {
         return typeof anything == 'string'
             ? this.emojiService.getEmoji(anything)
@@ -137,24 +114,32 @@ export class ReceiptListComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public highlightRow(id: any): void {
+    public onHighlightRow(id: any): void {
         this.helperService.highlightRow(id)
     }
 
-    public newRecord(): void {
+    public onNewRecord(): void {
         this.router.navigate([this.url + '/new'])
     }
 
-    public doSearchTasks(event: any): void {
-        if (event.fromDate != '' && event.toDate != '') {
-            this.loadRecords(event).then(() => {
-                this.filterTableFromStoredFilters()
-                this.populateDropdownFilters()
-                this.enableDisableFilters()
-                this.formatDatesToLocale()
-                this.subscribeToInteractionService()
-            })
-        }
+    public onShowCriteriaDialog(): void {
+        const dialogRef = this.dialog.open(CriteriaDateRangeDialogComponent, {
+            data: 'receiptListCriteria',
+            height: '36.0625rem',
+            panelClass: 'dialog',
+            width: '32rem',
+        })
+        dialogRef.afterClosed().subscribe(criteria => {
+            if (criteria !== undefined) {
+                this.loadRecords().then(() => {
+                    this.buildCriteriaVM(criteria)
+                    this.clearTable()
+                    this.resetTableFilters()
+                    this.deleteStoredFilters()
+                    this.doSearchTasks()
+                })
+            }
+        })
     }
 
     public processSelectedRecords(): void {
@@ -203,8 +188,52 @@ export class ReceiptListComponent {
         this.selectedRecords.push(record)
     }
 
-    private enableDisableFilters(): void {
-        this.records.length == 0 ? this.helperService.disableTableFilters() : this.helperService.enableTableFilters()
+    private buildCriteriaVM(event: ReceiptListCriteriaVM): void {
+        this.criteria = {
+            fromDate: event.fromDate,
+            toDate: event.toDate
+        }
+    }
+
+    private clearSelectedRecords(): void {
+        this.selectedRecords = []
+    }
+
+    private clearTable(): void {
+        this.table != undefined ? this.table.clear() : null
+    }
+
+    private createDateObjects(): void {
+        this.records.forEach(record => {
+            record.date = {
+                id: this.dateHelperService.convertIsoDateToUnixTime(record.date.toString()),
+                description: this.formatDateToLocale(record.date.toString()),
+                isActive: true
+            }
+        })
+    }
+
+    private deleteStoredFilters(): void {
+        this.sessionStorageService.deleteItems([{ 'item': 'receiptList-filters', 'when': 'always' }])
+    }
+
+    private doSearchTasks(): void {
+        this.loadRecords().then(() => {
+            this.createDateObjects()
+            this.initFilteredRecordsCount()
+            this.filterTableFromStoredFilters()
+            this.populateDropdownFilters()
+            this.doVirtualTableTasks()
+            this.clearSelectedRecords()
+        })
+    }
+
+    private doVirtualTableTasks(): void {
+        setTimeout(() => {
+            this.getVirtualElement()
+            this.scrollToSavedPosition()
+            this.hightlightSavedRow()
+        }, 1000)
     }
 
     private filterColumn(element: { value: any }, field: string, matchMode: string): void {
@@ -231,6 +260,10 @@ export class ReceiptListComponent {
         this.helperService.highlightSavedRow(this.feature)
     }
 
+    private initFilteredRecordsCount(): void {
+        this.recordsFilteredCount = this.records.length
+    }
+
     private isAnyRowSelected(): boolean {
         if (this.selectedRecords.length == 0) {
             this.dialogService.open(this.messageDialogService.noRecordsSelected(), 'error', ['ok'])
@@ -239,9 +272,9 @@ export class ReceiptListComponent {
         return true
     }
 
-    private loadRecords(criteria: ReceiptListCriteriaVM): Promise<ReceiptListVM[]> {
+    private loadRecords(): Promise<ReceiptListVM[]> {
         return new Promise((resolve) => {
-            this.receiptHttpService.getForList(criteria).subscribe(response => {
+            this.receiptHttpService.getForList(this.criteria).subscribe(response => {
                 this.records = response
                 resolve(this.records)
             })
@@ -254,10 +287,6 @@ export class ReceiptListComponent {
 
     private scrollToSavedPosition(): void {
         this.helperService.scrollToSavedPosition(this.virtualElement, this.feature)
-    }
-
-    private setSidebarsHeight(): void {
-        this.helperService.setSidebarsTopMargin('0')
     }
 
     private setTabTitle(): void {
@@ -273,12 +302,14 @@ export class ReceiptListComponent {
     }
 
     private subscribeToInteractionService(): void {
-        this.interactionService.refreshDateAdapter.subscribe(() => {
-            this.formatDatesToLocale()
-            this.setLocale()
-        })
         this.interactionService.refreshTabTitle.subscribe(() => {
             this.setTabTitle()
+        })
+        this.interactionService.emitDateRange.subscribe((response) => {
+            if (response) {
+                this.criteria.fromDate = this.dateHelperService.formatISODateToLocale(response.fromDate)
+                this.criteria.toDate = this.dateHelperService.formatISODateToLocale(response.toDate)
+            }
         })
     }
 
@@ -287,14 +318,7 @@ export class ReceiptListComponent {
             complete: () => {
                 this.receiptHttpService.patchReceiptWithEmailSent(this.removeExtensionsFromFileNames(criteria.filenames)).subscribe({
                     next: () => {
-                        const criteria: ReceiptListCriteriaVM = JSON.parse(this.sessionStorageService.getItem('receipt-list-criteria'))
-                        this.loadRecords(criteria).then(() => {
-                            this.filterTableFromStoredFilters()
-                            this.populateDropdownFilters()
-                            this.enableDisableFilters()
-                            this.formatDatesToLocale()
-                        })
-                        this.selectedRecords = []
+                        this.doSearchTasks()
                         this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
                     },
                     error: (errorFromInterceptor) => {
@@ -320,27 +344,23 @@ export class ReceiptListComponent {
 
     //#region specific methods
 
-    public clearDateFilter(): void {
-        this.table.filter('', 'date', 'equals')
-        this.filterDate = ''
-        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
+    private getStoredCriteria(): void {
+        const storedCriteria: any = this.sessionStorageService.getItem('receiptListCriteria') ? JSON.parse(this.sessionStorageService.getItem('receiptListCriteria')) : ''
+        if (storedCriteria) {
+            this.criteria = {
+                fromDate: this.dateHelperService.formatISODateToLocale(storedCriteria.fromDate),
+                toDate: this.dateHelperService.formatISODateToLocale(storedCriteria.toDate)
+            }
+        } else {
+            this.criteria = {
+                fromDate: this.dateHelperService.formatISODateToLocale(this.dateHelperService.formatDateToIso(new Date())),
+                toDate: this.dateHelperService.formatISODateToLocale(this.dateHelperService.formatDateToIso(new Date()))
+            }
+        }
     }
 
-    public filterByDate(event: MatDatepickerInputEvent<Date>): void {
-        const date = this.dateHelperService.formatDateToIso(new Date(event.value), false)
-        this.table.filter(date, 'date', 'equals')
-        this.filterDate = date
-        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
-    }
-
-    public hasDateFilter(): string {
-        return this.filterDate == '' ? 'hidden' : ''
-    }
-
-    private formatDatesToLocale(): void {
-        this.records.forEach(record => {
-            record.formattedDate = this.dateHelperService.formatISODateToLocale(record.date)
-        })
+    private formatDateToLocale(date: string): string {
+        return this.dateHelperService.formatISODateToLocale(date)
     }
 
     private populateDropdownFilters(): void {
@@ -359,10 +379,6 @@ export class ReceiptListComponent {
                 }
             }
         ]
-    }
-
-    private setLocale(): void {
-        this.dateAdapter.setLocale(this.localStorageService.getLanguage())
     }
 
     //#endregion

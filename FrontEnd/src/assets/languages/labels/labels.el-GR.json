@@ -3283,11 +3283,32 @@
         ]
     },
     {
+        "feature": "receiptListCriteria",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Ημερολόγιο εισπράξεων"
+            },
+            {
+                "id": "subHeader",
+                "description": "Δώστε τα κριτήρια με τα οποία θα γίνει η αναζήτηση"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Ακυρο"
+            },
+            {
+                "id": "okButton",
+                "description": "Συνεχεια"
+            }
+        ]
+    },
+    {
         "feature": "receiptList",
         "labels": [
             {
                 "id": "header",
-                "description": "Εισπράξεις"
+                "description": "Ημερολόγιο εισπράξεων"
             },
             {
                 "id": "headerDate",
@@ -3302,12 +3323,8 @@
                 "description": "Πελάτης"
             },
             {
-                "id": "headerDocumentTypeDescription",
-                "description": "Τύπος παραστατικού"
-            },
-            {
-                "id": "headerDocumentTypeBatch",
-                "description": "Σειρά"
+                "id": "headerDocumentType",
+                "description": "Παραστατικό"
             },
             {
                 "id": "headerNo",
@@ -3324,6 +3341,14 @@
             {
                 "id": "newRecord",
                 "description": "Νεα εγγραφη"
+            },
+            {
+                "id": "noDataHeader",
+                "description": "Δεν βρήκαμε τίποτα για να εμφανίσουμε"
+            },
+            {
+                "id": "noDataSubHeader",
+                "description": "Ισως θα πρέπει να δώσετε διαφορετικά κριτήρια"
             }
         ]
     },
