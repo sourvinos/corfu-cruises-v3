@@ -128,6 +128,13 @@ export class DateHelperService {
         return z
     }
 
+    public removeInvalidClassFromRangePicker(): void {
+        const z = document.querySelectorAll('.mdc-text-field--invalid') as NodeListOf<HTMLElement>
+        z.forEach(x => {
+            x.classList.remove('mdc-text-field--invalid')
+        })
+    }
+
     //#endregion
 
     //#region private methods

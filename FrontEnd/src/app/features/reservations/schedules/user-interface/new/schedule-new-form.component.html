@@ -10,7 +10,7 @@
             <form [formGroup]="form" id="form">
                 <div class="group-input-field">
                     <!-- Date range -->
-                    <date-range-picker [parentDateRange]="getDateRange()" [readOnly]=true [showHint]=false (outputValues)="doDateTasks($event)"></date-range-picker>
+                    <date-range-picker [parentDateRange]="getDateRange()" (outputValues)="doDateTasks($event)"></date-range-picker>
                     <mat-form-field>
                         <mat-label>{{ getLabel('maxPax') }}</mat-label>
                         <input class="right" formControlName="maxPax" matInput type="number">

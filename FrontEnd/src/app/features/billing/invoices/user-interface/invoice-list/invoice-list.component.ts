@@ -175,7 +175,7 @@ export class InvoiceListComponent {
     }
 
     public resetTableFilters(): void {
-        this.helperService.clearTableTextFilters(this.table, ['batch', 'invoiceNo', 'grossAmount'])
+        this.table != undefined ? this.helperService.clearTableTextFilters(this.table, ['invoiceNo', 'grossAmount']) : null
     }
 
     public onShowCriteriaDialog(): void {
@@ -219,7 +219,7 @@ export class InvoiceListComponent {
     }
 
     private clearTable(): void {
-        this.table.clear()
+        this.table != undefined ? this.table.clear() : null
     }
 
     private createDateObjects(): void {

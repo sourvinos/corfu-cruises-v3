@@ -83,6 +83,10 @@
         {
             "id": "shouldBeOnlyNumbers",
             "description": "Το πεδίο πρέπει να έχει μόνο αριθμητικούς χαρακτήρες"
+        },
+        {
+            "id": "invalidDateRange",
+            "description": "Το διάστημα δεν είναι σωστό"
         }
     ]
 }

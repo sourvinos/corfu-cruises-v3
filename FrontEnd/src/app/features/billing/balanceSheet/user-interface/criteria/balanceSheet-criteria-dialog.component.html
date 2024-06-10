@@ -7,7 +7,7 @@
 
     <div id="dialog-content">
         <form [formGroup]="form" id="form">
-            <date-range-picker [parentDateRange]="getDateRange()" [readOnly]=true [showHint]=false (outputValues)="patchFormWithSelectedDateRange($event)"></date-range-picker>
+            <date-range-picker [parentDateRange]="getDateRange()" (outputValues)="patchFormWithSelectedDateRange($event)"></date-range-picker>
         </form>
     </div>
 

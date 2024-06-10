@@ -9,6 +9,7 @@ import { LocalStorageService } from '../../services/local-storage.service'
 import { MatDatepickerInputEvent } from '@angular/material/datepicker'
 import { MessageInputHintService } from '../../services/message-input-hint.service'
 import { MessageLabelService } from '../../services/message-label.service'
+import { ValidationService } from '../../services/validation.service'
 
 @Component({
     selector: 'date-range-picker',
@@ -20,8 +21,6 @@ export class DateRangePickerComponent {
     //#region variables
 
     @Input() parentDateRange: string[]
-    @Input() showHint: boolean
-    @Input() readOnly: boolean
     @Output() outputValues = new EventEmitter()
 
     public feature = 'date-range-picker'
@@ -43,8 +42,20 @@ export class DateRangePickerComponent {
 
     //#region public methods
 
+    public doTodayTasks(): void {
+        this.form.patchValue({
+            fromDate: this.dateHelperService.formatDateToIso(new Date()),
+            toDate: this.dateHelperService.formatDateToIso(new Date())
+        })
+        this.outputValues.emit(this.form)
+    }
+
     public emitFormValues(event: MatDatepickerInputEvent<Date>): void {
-        this.form.patchValue({ date: this.dateHelperService.formatISODateToLocale(this.dateHelperService.formatDateToIso(new Date(event.value))) })
+        this.form.patchValue({
+            date: new Date(event.value)
+        })
+        this.parentDateRange[0] = this.form.value.fromDate
+        this.parentDateRange[1] = this.form.value.toDate
         this.outputValues.emit(this.form)
     }
 
@@ -56,12 +67,16 @@ export class DateRangePickerComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public doTodayTasks(): void {
-        this.form.patchValue({
-            fromDate: this.dateHelperService.formatDateToIso(new Date()),
-            toDate: this.dateHelperService.formatDateToIso(new Date())
-        })
-        this.outputValues.emit(this.form)
+    public isInvalidDateRange(): boolean {
+        if (this.form.value.fromDate != null && this.form.value.toDate != null) {
+            if (this.form.value.fromDate > this.form.value.toDate) {
+                return true
+            } else {
+                this.dateHelperService.removeInvalidClassFromRangePicker()
+            }
+        } else {
+            return true
+        }
     }
 
     //#endregion
@@ -70,8 +85,10 @@ export class DateRangePickerComponent {
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            fromDate: [this.parentDateRange[0], [Validators.required]],
-            toDate: [this.parentDateRange[1], [Validators.required]]
+            fromDate: [new Date(this.parentDateRange[0]), Validators.required],
+            toDate: [new Date(this.parentDateRange[1]), Validators.required]
+        }, {
+            validator: ValidationService.validDatePeriod
         })
     }
 

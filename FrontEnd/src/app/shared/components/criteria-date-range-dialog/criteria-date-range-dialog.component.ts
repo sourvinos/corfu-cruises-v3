@@ -8,6 +8,7 @@ import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
+import { ValidationService } from '../../services/validation.service'
 
 @Component({
     selector: 'criteria-date-range-dialog',
@@ -81,8 +82,10 @@ export class CriteriaDateRangeDialogComponent {
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            fromDate: ['', [Validators.required]],
-            toDate: ['', [Validators.required]]
+            fromDate: ['', Validators.required],
+            toDate: ['', Validators.required]
+        }, {
+            validator: ValidationService.validDatePeriod
         })
     }
 

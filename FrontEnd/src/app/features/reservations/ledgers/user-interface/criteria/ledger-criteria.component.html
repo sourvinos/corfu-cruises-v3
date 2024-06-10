@@ -12,7 +12,7 @@
                     <div></div>
                     <div></div>
                     <div></div>
-                    <date-range-picker [parentDateRange]="getDateRange()" [readOnly]=true [showHint]=false (outputValues)="patchFormWithSelectedDateRange($event)"></date-range-picker>
+                    <date-range-picker [parentDateRange]="getDateRange()" (outputValues)="patchFormWithSelectedDateRange($event)"></date-range-picker>
                 </div>
                 <div class="group-input-field">
                     <criteria-fieldset-checkboxes *ngIf="isAdmin()" (outputSelected)="patchFormWithSelectedArrays($event,'selectedCustomers')" [array]="customersCriteria" [caption]="'customers'" [feature]="feature" [selected]="selectedCustomers"></criteria-fieldset-checkboxes>

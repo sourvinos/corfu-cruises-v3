@@ -1,15 +1,14 @@
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
-import { DocumentTypeVM } from './documentType-vm'
 
 export interface RetailSaleListVM {
 
     id: number
     reservationId: string
     refNo: string
-    date: string
+    date: SimpleEntity
     formattedDate: string
     customer: SimpleEntity
-    documentType: DocumentTypeVM
+    documentType: SimpleEntity
     paymentMethod: SimpleEntity
     shipOwner: SimpleEntity
     invoiceNo: number
