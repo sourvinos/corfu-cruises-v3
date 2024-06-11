@@ -25,10 +25,10 @@ namespace API.Features.RetailSales {
             this.mapper = mapper;
         }
 
-        [HttpGet("{invoiceId}")]
+        [HttpGet("{reservationId}")]
         [Authorize(Roles = "admin")]
-        public async Task<ResponseWithBody> GetByIdAsync(int id) {
-            var x = await invoiceReadRepo.GetByIdForXmlAsync(id);
+        public async Task<ResponseWithBody> GetByIdAsync(string reservationId) {
+            var x = await invoiceReadRepo.GetByIdForXmlAsync(reservationId);
             if (x != null) {
                 return new ResponseWithBody {
                     Code = 200,

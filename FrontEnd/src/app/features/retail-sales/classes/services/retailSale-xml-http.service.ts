@@ -13,8 +13,8 @@ export class RetailSaleXmlHttpService extends HttpDataService {
         super(httpClient, environment.apiUrl + '/retailSalesXml')
     }
 
-    public get(invoiceId: string): Observable<any> {
-        return this.http.get(this.url + '/' + invoiceId)
+    public get(reservationId: string): Observable<any> {
+        return this.http.get(this.url + '/' + reservationId)
     }
 
     public uploadInvoice(invoice: any): Observable<any> {

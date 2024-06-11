@@ -36,13 +36,13 @@ namespace API.Features.RetailSales {
             return mapper.Map<IEnumerable<RetailSale>, IEnumerable<RetailSaleListVM>>(invoices);
         }
 
-        public async Task<RetailSale> GetByIdForXmlAsync(int id) {
+        public async Task<RetailSale> GetByIdForXmlAsync(string reservationId) {
             return await context.RetailSales
                 .AsNoTracking()
                 .Include(x => x.ShipOwner).ThenInclude(x => x.Nationality)
                 .Include(x => x.DocumentType)
                 .Include(x => x.PaymentMethod)
-                .SingleOrDefaultAsync(x => x.Id == id);
+                .SingleOrDefaultAsync(x => x.ReservationId.ToString() == reservationId);
         }
 
         public async Task<RetailSale> GetByIdForPdfAsync(int id) {
@@ -67,10 +67,10 @@ namespace API.Features.RetailSales {
                 .SingleOrDefaultAsync();
         }
 
-        public async Task<RetailSale> GetByIdForPatchAade(int id) {
+        public async Task<RetailSale> GetByIdForPatchAade(string reservationId) {
             return await context.RetailSales
                 .AsNoTracking()
-                .Where(x => x.Id == id)
+                .Where(x => x.ReservationId.ToString() == reservationId)
                 .SingleOrDefaultAsync();
         }
 
@@ -99,9 +99,6 @@ namespace API.Features.RetailSales {
             throw new NotImplementedException();
         }
 
-        public Task<RetailSale> GetByIdForPatchAade(string id) {
-            throw new NotImplementedException();
-        }
     }
 
 }

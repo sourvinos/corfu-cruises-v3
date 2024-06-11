@@ -99,13 +99,13 @@ namespace API.Features.RetailSales {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public async Task<Response> PatchRetailSaleWithAade([FromBody] RetailSaleAadeVM invoiceAade) {
-            var x = await retailSaleReadRepo.GetByIdForPatchAade(invoiceAade.Id);
+            var x = await retailSaleReadRepo.GetByIdForPatchAade(invoiceAade.ReservationId);
             if (x != null) {
                 retailSaleUpdateRepo.UpdateAade(x, invoiceAade);
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = invoiceAade.Id.ToString(),
+                    Id = invoiceAade.ReservationId.ToString(),
                     Message = ApiMessages.OK()
                 };
             } else {
