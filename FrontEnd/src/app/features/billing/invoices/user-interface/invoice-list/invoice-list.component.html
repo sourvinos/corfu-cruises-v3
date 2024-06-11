@@ -15,11 +15,11 @@
         <ng-template [ngIf]="records.length > 0" [ngIfElse]="noData">
             <div id="table-wrapper">
                 <p-contextMenu #contextMenu [model]="menuItems"></p-contextMenu>
-                <p-table #table (onFilter)="filterRecords($event)" [(contextMenuSelection)]="selectedRecord" [contextMenu]="contextMenu" [(selection)]="selectedRecords" [scrollable]="true" [value]="records" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="invoiceId" scrollHeight="flex" selectionMode="single" sortMode="multiple">
+                <p-table #table (onFilter)="filterRecords($event)" [(contextMenuSelection)]="selectedRecord" [contextMenu]="contextMenu" [scrollable]="true" [(selection)]="selectedRecords" [value]="records" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="invoiceId" scrollHeight="flex" selectionMode="single" sortMode="multiple">
                     <ng-template pTemplate="header">
                         <tr>
                             <th class="width-3"></th>
-                            <th class="width-7" pSortableColumn="date">{{ getLabel("headerDate") }}</th>
+                            <th class="width-7" pSortableColumn="date.id">{{ getLabel("headerDate") }}</th>
                             <th class="width-11" pSortableColumn="shipOwner.description">{{ getLabel("headerShipOwnerDescription") }}</th>
                             <th class="width-11" pSortableColumn="ship.description">{{ getLabel("headerShipDescription") }}</th>
                             <th class="width-11" pSortableColumn="destination.description">{{ getLabel("headerDestinationDescription") }}</th>

@@ -27,8 +27,8 @@ namespace API.Features.RetailSales {
 
         [HttpGet("{invoiceId}")]
         [Authorize(Roles = "admin")]
-        public async Task<ResponseWithBody> GetByIdAsync(string invoiceId) {
-            var x = await invoiceReadRepo.GetByIdForXmlAsync(invoiceId);
+        public async Task<ResponseWithBody> GetByIdAsync(int id) {
+            var x = await invoiceReadRepo.GetByIdForXmlAsync(id);
             if (x != null) {
                 return new ResponseWithBody {
                     Code = 200,

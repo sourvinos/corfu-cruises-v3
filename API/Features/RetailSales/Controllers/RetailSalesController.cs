@@ -79,10 +79,10 @@ namespace API.Features.RetailSales {
 
         [HttpPatch("[action]/{invoiceId}")]
         [Authorize(Roles = "admin")]
-        public async Task<Response> PatchRetailSaleWithEmailSent(string invoiceId) {
-            var x = await retailSaleReadRepo.GetByIdForPatchEmailSent(invoiceId);
+        public async Task<Response> PatchRetailSaleWithEmailSent(int id) {
+            var x = await retailSaleReadRepo.GetByIdForPatchEmailSent(id);
             if (x != null) {
-                retailSaleUpdateRepo.UpdateIsEmailSent(x, invoiceId);
+                retailSaleUpdateRepo.UpdateIsEmailSent(x);
             } else {
                 throw new CustomException() {
                     ResponseCode = 404
@@ -99,13 +99,13 @@ namespace API.Features.RetailSales {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public async Task<Response> PatchRetailSaleWithAade([FromBody] RetailSaleAadeVM invoiceAade) {
-            var x = await retailSaleReadRepo.GetByIdForPatchAade(invoiceAade.ReservationId.ToString());
+            var x = await retailSaleReadRepo.GetByIdForPatchAade(invoiceAade.Id);
             if (x != null) {
                 retailSaleUpdateRepo.UpdateAade(x, invoiceAade);
                 return new Response {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = invoiceAade.ReservationId.ToString(),
+                    Id = invoiceAade.Id.ToString(),
                     Message = ApiMessages.OK()
                 };
             } else {

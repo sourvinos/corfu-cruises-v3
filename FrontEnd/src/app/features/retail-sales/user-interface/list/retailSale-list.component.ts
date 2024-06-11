@@ -118,7 +118,7 @@ export class RetailSaleListComponent {
         if (this.isAnyRowSelected()) {
             const ids = []
             this.selectedRecords.forEach(record => {
-                ids.push(record.reservationId)
+                ids.push(record.id)
             })
             this.retailSalePdfHttpService.buildMultiPagePdf(ids).subscribe({
                 next: (response) => {
@@ -162,7 +162,7 @@ export class RetailSaleListComponent {
     }
 
     public resetTableFilters(): void {
-        this.table != undefined ? this.helperService.clearTableTextFilters(this.table, ['invoiceNo', 'grossAmount']) : null
+        this.table != undefined ? this.helperService.clearTableTextFilters(this.table, ['refNo', 'invoiceNo', 'grossAmount']) : null
     }
 
     //#endregion

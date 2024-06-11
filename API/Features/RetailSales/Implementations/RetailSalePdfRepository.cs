@@ -40,7 +40,7 @@ namespace API.Features.RetailSales {
             AddPassengers(gfx, headerFont, robotoMonoFont, invoice);
             AddSummary(gfx, headerFont, robotoMonoFont, robotoMonoFontBig, locale, invoice);
             AddAade(gfx, robotoMonoFont, invoice.Aade);
-            var filename = invoice.ReservationId + ".pdf";
+            var filename = invoice.Id + ".pdf";
             var fullpathname = Path.Combine("Reports" + Path.DirectorySeparatorChar + "Invoices" + Path.DirectorySeparatorChar + filename);
             document.Save(fullpathname);
             return filename;
@@ -175,9 +175,11 @@ namespace API.Features.RetailSales {
         private static void AddAade(XGraphics gfx, XFont font, InvoicePdfAadeVM aade) {
             var bottom = 810;
             var right = 560;
-            gfx.DrawString("MAPK " + aade.Mark, font, XBrushes.Black, new XRect(right, bottom - 70, 0, 0), new() { Alignment = XStringAlignment.Far });
-            gfx.DrawImage(AddQrCode(aade.QrUrl), 500, 749, 60, 60);
-            gfx.DrawString("UID " + aade.UId, font, XBrushes.Black, new XRect(right, bottom, 0, 0), new() { Alignment = XStringAlignment.Far });
+            gfx.DrawString(aade.Mark != "" ? "MAPK " + aade.Mark : "", font, XBrushes.Black, new XRect(right, bottom - 70, 0, 0), new() { Alignment = XStringAlignment.Far });
+            if (aade.Mark != "") {
+                gfx.DrawImage(AddQrCode(aade.QrUrl != "" ? aade.QrUrl : "NOTHING HERE"), 500, 749, 60, 60);
+            }
+            gfx.DrawString(aade.UId != "" ? aade.UId : "ΧΩΡΙΣ ΜΑΡΚ ΛΟΓΩ ΑΠΩΛΕΙΑΣ ΔΙΑΣΥΝΔΕΣΗΣ", font, XBrushes.Black, new XRect(right, bottom, 0, 0), new() { Alignment = XStringAlignment.Far });
         }
 
         private static XImage AddQrCode(string qrUrl) {
@@ -187,10 +189,6 @@ namespace API.Features.RetailSales {
             MemoryStream strm = new();
             qrCodeBitmap.Save(strm, ImageFormat.Png);
             return XImage.FromStream(strm);
-        }
-
-        private static XSolidBrush SetTextColor(int value) {
-            return value == 0 ? XBrushes.LightGray : XBrushes.Black;
         }
 
         #endregion

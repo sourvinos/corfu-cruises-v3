@@ -25,10 +25,10 @@ namespace API.Features.RetailSales {
             this.retailSaleReadRepo = retailSaleReadRepo;
         }
 
-        [HttpGet("buildInvoicePdf/{invoiceId}")]
+        [HttpGet("buildInvoicePdf/{id}")]
         [Authorize(Roles = "admin")]
-        public async Task<ResponseWithBody> BuildInvoicePdf(string invoiceId) {
-            var x = await retailSaleReadRepo.GetByIdForPdfAsync(invoiceId);
+        public async Task<ResponseWithBody> BuildInvoicePdf(int id) {
+            var x = await retailSaleReadRepo.GetByIdForPdfAsync(id);
             if (x != null) {
                 var z = retailSalePdfRepo.BuildPdf(mapper.Map<RetailSale, InvoicePdfVM>(x));
             } else {
@@ -40,16 +40,16 @@ namespace API.Features.RetailSales {
                 Code = 200,
                 Icon = Icons.Info.ToString(),
                 Message = ApiMessages.OK(),
-                Body = invoiceId
+                Body = id
             };
         }
 
         [HttpPost("buildMultiPagePdf")]
         [Authorize(Roles = "admin")]
-        public async Task<ResponseWithBody> BuildMultiPagePdfAsync([FromBody] string[] invoiceIds) {
+        public async Task<ResponseWithBody> BuildMultiPagePdfAsync([FromBody] int[] ids) {
             var invoices = new List<InvoicePdfVM>();
-            foreach (var invoiceId in invoiceIds) {
-                var x = await retailSaleReadRepo.GetByIdForPdfAsync(invoiceId);
+            foreach (var id in ids) {
+                var x = await retailSaleReadRepo.GetByIdForPdfAsync(id);
                 if (x != null) {
                     invoices.Add(mapper.Map<RetailSale, InvoicePdfVM>(x));
                 } else {

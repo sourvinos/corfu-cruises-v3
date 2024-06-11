@@ -39,7 +39,7 @@ namespace API.Features.RetailSales {
             return lastInvoiceNo += 1;
         }
 
-        public void UpdateIsEmailSent(RetailSale invoice, string invoiceId) {
+        public void UpdateIsEmailSent(RetailSale invoice) {
             using var transaction = context.Database.BeginTransaction();
             invoice.IsEmailSent = true;
             context.RetailSales.Attach(invoice);

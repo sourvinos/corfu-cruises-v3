@@ -72,8 +72,8 @@ export class HelperService {
 
     public getDistinctRecords(records: any[], object: string, orderField: string): any[] {
         const distinctRecords = (Object.values(records.reduce(function (x, item) {
-            if (!x[item[object].id]) {
-                x[item[object].id] = item[object]
+            if (!x[item[object].description]) {
+                x[item[object].description] = item[object]
             }
             return x
         }, {})))

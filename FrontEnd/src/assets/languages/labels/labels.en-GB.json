@@ -3308,7 +3308,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Εισπράξεις"
+                "description": "Ημερολόγιο εισπράξεων"
             },
             {
                 "id": "headerDate",
@@ -3319,7 +3319,7 @@
                 "description": "Εκδότης"
             },
             {
-                "id": "headerCustomerDescription",
+                "id": "headerCustomer",
                 "description": "Πελάτης"
             },
             {
@@ -3335,8 +3335,8 @@
                 "description": "Αξία"
             },
             {
-                "id": "createFile",
-                "description": "Δημιουργία αρχείου xls"
+                "id": "exportSelected",
+                "description": "Εξαγωγή επιλεγμένων εγγραφών"
             },
             {
                 "id": "newRecord",
@@ -3893,12 +3893,8 @@
                 "description": "Πελάτης"
             },
             {
-                "id": "headerDocumentTypeDescription",
-                "description": "Τύπος παραστατικού"
-            },
-            {
-                "id": "headerDocumentTypeBatch",
-                "description": "Σειρά"
+                "id": "headerDocumentType",
+                "description": "Παραστατικό"
             },
             {
                 "id": "headerNo",

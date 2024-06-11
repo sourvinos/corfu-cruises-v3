@@ -86,8 +86,10 @@ export class ReceiptListComponent {
         this.navigateToRecord(id)
     }
 
-    public exportRecords(): void {
-        this.receiptListExportService.exportToExcel(this.receiptListExportService.buildList(this.recordsFiltered))
+    public exportSelected(): void {
+        if (this.isAnyRowSelected()) {
+            this.receiptListExportService.exportToExcel(this.receiptListExportService.buildList(this.selectedRecords))
+        }
     }
 
     public filterRecords(event: any): void {
@@ -166,22 +168,12 @@ export class ReceiptListComponent {
     }
 
     public resetTableFilters(): void {
-        this.helperService.clearTableTextFilters(this.table, [''])
+        this.table != undefined ? this.helperService.clearTableTextFilters(this.table, ['invoiceNo', 'grossAmount']) : null
     }
 
     //#endregion
 
     //#region private methods
-
-    private selectedRowsAreSameCustomer(): boolean {
-        const z = this.selectedRecords[0].customer.id
-        const x = this.selectedRecords.filter(x => x.customer.id == z)
-        if (x.length != this.selectedRecords.length) {
-            this.dialogService.open(this.messageDialogService.selectedRowsAreSameCustomer(), 'error', ['ok'])
-            return false
-        }
-        return true
-    }
 
     private addSelectedRecordToSelectedRecords(record: ReceiptListVM): void {
         this.selectedRecords = []
@@ -236,6 +228,25 @@ export class ReceiptListComponent {
         }, 1000)
     }
 
+    private emailReceipts(criteria: EmailReceiptVM): void {
+        this.receiptHttpService.emailReceipts(criteria).subscribe({
+            complete: () => {
+                this.receiptHttpService.patchReceiptWithEmailSent(this.removeExtensionsFromFileNames(criteria.filenames)).subscribe({
+                    next: () => {
+                        this.doSearchTasks()
+                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
+                    },
+                    error: (errorFromInterceptor) => {
+                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                    }
+                })
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
+        })
+    }
+
     private filterColumn(element: { value: any }, field: string, matchMode: string): void {
         if (element != undefined && (element.value != null || element.value != undefined)) {
             this.table.filter(element.value, field, matchMode)
@@ -252,12 +263,43 @@ export class ReceiptListComponent {
         }
     }
 
+    private formatDateToLocale(date: string): string {
+        return this.dateHelperService.formatISODateToLocale(date)
+    }
+
     private getVirtualElement(): void {
         this.virtualElement = document.getElementsByClassName('p-scroller-inline')[0]
     }
 
+    private getStoredCriteria(): void {
+        const storedCriteria: any = this.sessionStorageService.getItem('receiptListCriteria') ? JSON.parse(this.sessionStorageService.getItem('receiptListCriteria')) : ''
+        if (storedCriteria) {
+            this.criteria = {
+                fromDate: this.dateHelperService.formatISODateToLocale(storedCriteria.fromDate),
+                toDate: this.dateHelperService.formatISODateToLocale(storedCriteria.toDate)
+            }
+        } else {
+            this.criteria = {
+                fromDate: this.dateHelperService.formatISODateToLocale(this.dateHelperService.formatDateToIso(new Date())),
+                toDate: this.dateHelperService.formatISODateToLocale(this.dateHelperService.formatDateToIso(new Date()))
+            }
+        }
+    }
+
     private hightlightSavedRow(): void {
         this.helperService.highlightSavedRow(this.feature)
+    }
+
+    private initContextMenu(): void {
+        this.menuItems = [
+            { label: 'Επεξεργασία', command: () => this.editRecord(this.selectedRecord.invoiceId.toString()) },
+            {
+                label: 'Αποστολή με email', command: (): void => {
+                    this.addSelectedRecordToSelectedRecords(this.selectedRecord)
+                    this.processSelectedRecords()
+                }
+            }
+        ]
     }
 
     private initFilteredRecordsCount(): void {
@@ -285,8 +327,33 @@ export class ReceiptListComponent {
         this.router.navigate([this.url, id])
     }
 
+    private populateDropdownFilters(): void {
+        this.dropdownDates = this.helperService.getDistinctRecords(this.records, 'date', 'description')
+        this.dropdownCustomers = this.helperService.getDistinctRecords(this.records, 'customer', 'description')
+        this.dropdownDocumentTypes = this.helperService.getDistinctRecords(this.records, 'documentType', 'description')
+        this.dropdownShipOwners = this.helperService.getDistinctRecords(this.records, 'shipOwner', 'description')
+    }
+
+    private removeExtensionsFromFileNames(filenames: string[]): string[] {
+        const x = []
+        filenames.forEach(filename => {
+            x.push(filename.substring(0, filename.length - 4))
+        })
+        return x
+    }
+
     private scrollToSavedPosition(): void {
         this.helperService.scrollToSavedPosition(this.virtualElement, this.feature)
+    }
+
+    private selectedRowsAreSameCustomer(): boolean {
+        const z = this.selectedRecords[0].customer.id
+        const x = this.selectedRecords.filter(x => x.customer.id == z)
+        if (x.length != this.selectedRecords.length) {
+            this.dialogService.open(this.messageDialogService.selectedRowsAreSameCustomer(), 'error', ['ok'])
+            return false
+        }
+        return true
     }
 
     private setTabTitle(): void {
@@ -311,74 +378,6 @@ export class ReceiptListComponent {
                 this.criteria.toDate = this.dateHelperService.formatISODateToLocale(response.toDate)
             }
         })
-    }
-
-    private emailReceipts(criteria: EmailReceiptVM): void {
-        this.receiptHttpService.emailReceipts(criteria).subscribe({
-            complete: () => {
-                this.receiptHttpService.patchReceiptWithEmailSent(this.removeExtensionsFromFileNames(criteria.filenames)).subscribe({
-                    next: () => {
-                        this.doSearchTasks()
-                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
-                    },
-                    error: (errorFromInterceptor) => {
-                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                    }
-                })
-            },
-            error: (errorFromInterceptor) => {
-                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-            }
-        })
-    }
-
-    private removeExtensionsFromFileNames(filenames: string[]): string[] {
-        const x = []
-        filenames.forEach(filename => {
-            x.push(filename.substring(0, filename.length - 4))
-        })
-        return x
-    }
-
-    //#endregion
-
-    //#region specific methods
-
-    private getStoredCriteria(): void {
-        const storedCriteria: any = this.sessionStorageService.getItem('receiptListCriteria') ? JSON.parse(this.sessionStorageService.getItem('receiptListCriteria')) : ''
-        if (storedCriteria) {
-            this.criteria = {
-                fromDate: this.dateHelperService.formatISODateToLocale(storedCriteria.fromDate),
-                toDate: this.dateHelperService.formatISODateToLocale(storedCriteria.toDate)
-            }
-        } else {
-            this.criteria = {
-                fromDate: this.dateHelperService.formatISODateToLocale(this.dateHelperService.formatDateToIso(new Date())),
-                toDate: this.dateHelperService.formatISODateToLocale(this.dateHelperService.formatDateToIso(new Date()))
-            }
-        }
-    }
-
-    private formatDateToLocale(date: string): string {
-        return this.dateHelperService.formatISODateToLocale(date)
-    }
-
-    private populateDropdownFilters(): void {
-        this.dropdownCustomers = this.helperService.getDistinctRecords(this.records, 'customer', 'abbreviation')
-        this.dropdownDocumentTypes = this.helperService.getDistinctRecords(this.records, 'documentType', 'description')
-        this.dropdownShipOwners = this.helperService.getDistinctRecords(this.records, 'shipOwner', 'description')
-    }
-
-    private initContextMenu(): void {
-        this.menuItems = [
-            { label: 'Επεξεργασία', command: () => this.editRecord(this.selectedRecord.invoiceId.toString()) },
-            {
-                label: 'Αποστολή με email', command: (): void => {
-                    this.addSelectedRecordToSelectedRecords(this.selectedRecord)
-                    this.processSelectedRecords()
-                }
-            }
-        ]
     }
 
     //#endregion

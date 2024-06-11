@@ -13,5 +13,6 @@ export interface ReceiptListVM {
     grossAmount: number
     remarks: string
     isEmailSent: boolean
+    isCancelled: boolean
 
 }

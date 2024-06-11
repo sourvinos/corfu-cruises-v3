@@ -7,11 +7,11 @@ namespace API.Features.RetailSales {
     public interface IRetailSaleReadRepository : IRepository<RetailSale> {
 
         Task<IEnumerable<RetailSaleListVM>> GetForPeriodAsync(RetailSaleListCriteriaVM criteria);
-        Task<RetailSale> GetByIdForXmlAsync(string invoiceId);
-        Task<RetailSale> GetByIdForPdfAsync(string invoiceId);
-        Task<RetailSale> GetByIdForPatchEmailSent(string invoiceId);
-        Task<RetailSale> GetByIdForPatchAade(string invoiceId);
-        void UpdateIsEmailSent(RetailSale invoice, string invoiceId);
+        Task<RetailSale> GetByIdForXmlAsync(int id);
+        Task<RetailSale> GetByIdForPdfAsync(int id);
+        Task<RetailSale> GetByIdForPatchEmailSent(int id);
+        Task<RetailSale> GetByIdForPatchAade(int id);
+        void UpdateIsEmailSent(RetailSale invoice);
 
     }
 

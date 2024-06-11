@@ -14,15 +14,15 @@
 
         <ng-template [ngIf]="records.length > 0" [ngIfElse]="noData">
             <div id="table-wrapper">
-                <p-table #table (onFilter)="filterRecords($event)" [(selection)]="selectedRecords" [scrollable]="true" [value]="records" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="invoiceId" scrollHeight="flex" selectionMode="single" sortMode="multiple">
+                <p-table #table (onFilter)="filterRecords($event)" [scrollable]="true" [(selection)]="selectedRecords" [value]="records" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
                     <ng-template pTemplate="header">
                         <tr>
                             <th class="width-3"></th>
-                            <th class="width-7" pSortableColumn="date">{{ getLabel("headerDate") }}</th>
+                            <th class="width-7" pSortableColumn="date.id">{{ getLabel("headerDate") }}</th>
                             <th class="width-5" pSortableColumn="refNo">{{ getLabel('headerRefNo') }}</th>
-                            <th class="width-18" pSortableColumn="shipOwner.description">{{ getLabel("headerShipOwner") }}</th>
-                            <th class="width-18" pSortableColumn="customer.description">{{ getLabel("headerCustomer") }}</th>
-                            <th class="width-18" pSortableColumn="documentType.description">{{ getLabel("headerDocumentTypeDescription") }}</th>
+                            <th class="width-11" pSortableColumn="shipOwner.description">{{ getLabel("headerShipOwner") }}</th>
+                            <th class="width-11" pSortableColumn="customer.description">{{ getLabel("headerCustomer") }}</th>
+                            <th class="width-11" pSortableColumn="documentType.description">{{ getLabel("headerDocumentType") }}</th>
                             <th class="width-4" pSortableColumn="invoiceNo">{{ getLabel("headerNo") }}</th>
                             <th class="width-6" pSortableColumn="grossAmount">{{ getLabel("headerGrossAmount") }}</th>
                             <th class="border-bottom width-3" rowspan="2" pSortableColumn="isEmailSent"><span class="icon center blue material-symbols-outlined">mail</span></th>
@@ -44,8 +44,9 @@
                                     </ng-template>
                                 </p-columnFilter>
                             </th>
-                            <th class="width-5"><input (input)="table.filter($event.target.value, 'refNo' , 'contains' )" [value]="$any(table).filters['refNo']?.value" class="p-inputtext"></th>
-                            <th class="width-18">
+                            <th class="width-5">
+                                <p-columnFilter field="refNo" matchMode="contains" (input)="table.filter($event.target.value, 'refNo', 'contains')" value="$any(table).filters['refNo']?.value" class="center p-inputtext"></p-columnFilter>
+                            <th class="width-11">
                                 <p-columnFilter [showMenu]="false" field="shipOwner" matchMode="in">
                                     <ng-template let-filter="filterCallback" let-value pTemplate="filter">
                                         <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="dropdownShipOwners" [placeholder]="getEmoji('wildcard')" optionLabel="description">
@@ -58,7 +59,7 @@
                                     </ng-template>
                                 </p-columnFilter>
                             </th>
-                            <th class="width-18">
+                            <th class="width-11">
                                 <p-columnFilter [showMenu]="false" field="customer" matchMode="in">
                                     <ng-template let-filter="filterCallback" let-value pTemplate="filter">
                                         <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="dropdownCustomers" [placeholder]="getEmoji('wildcard')" optionLabel="description">
@@ -71,7 +72,7 @@
                                     </ng-template>
                                 </p-columnFilter>
                             </th>
-                            <th class="width-18">
+                            <th class="width-11">
                                 <p-columnFilter [showMenu]="false" field="documentType" matchMode="in">
                                     <ng-template let-filter="filterCallback" let-value pTemplate="filter">
                                         <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="dropdownDocumentTypes" [placeholder]="getEmoji('wildcard')" optionLabel="description">
@@ -84,19 +85,23 @@
                                     </ng-template>
                                 </p-columnFilter>
                             </th>
-                            <th class="width-4"></th>
-                            <th class="width-4" style="border-right: none;"></th>
+                            <th class="width-4">
+                                <p-columnFilter field="invoiceNo" matchMode="contains" (input)="table.filter($event.target.value, 'invoiceNo', 'contains')" value="$any(table).filters['invoiceNo']?.value" class="center p-inputtext"></p-columnFilter>
+                            </th>
+                            <th class="width-4" style="border-right: none;">
+                                <p-columnFilter field="grossAmount" matchMode="contains" (input)="table.filter($event.target.value, 'grossAmount', 'contains')" value="$any(table).filters['grossAmount']?.value" class="center p-inputtext"></p-columnFilter>
+                            </th>
                         </tr>
                     </ng-template>
                     <ng-template let-record pTemplate="body">
-                        <tr (click)="onHighlightRow(record.invoiceId)" [attr.id]=record.id style="height: 32px;">
+                        <tr (click)="onHighlightRow(record.id)" [attr.id]=record.id style="height: 32px;">
                             <td class="width-3"><span class="center no-overflow" style="padding-top: 0.25rem !important;"><p-tableCheckbox [value]="record"></p-tableCheckbox></span></td>
                             <td class="width-7"><span class="center no-overflow">{{ record.date.description }}</span></td>
-                            <td class="width-5"><span class="center">{{ record.refNo }}</span></td>
-                            <td class="width-18"><span>{{ record.shipOwner.description }}</span></td>
-                            <td class="width-18"><span>{{ record.customer.description }}</span></td>
-                            <td class="width-18"><span>{{ record.documentType.description }}</span></td>
-                            <td class="width-4"><span class="center">{{ record.invoiceNo }}</span></td>
+                            <td class="width-5"><span class="center no-overflow">{{ record.refNo }}</span></td>
+                            <td class="width-11"><span>{{ record.shipOwner.description }}</span></td>
+                            <td class="width-11"><span>{{ record.customer.description }}</span></td>
+                            <td class="width-11"><span>{{ record.documentType.description }}</span></td>
+                            <td class="width-4"><span class="center no-overflow">{{ record.invoiceNo }}</span></td>
                             <td class="width-6"><span class="right with-right-padding">{{ formatNumberToLocale(record.grossAmount) }}</span></td>
                             <td class="width-3">
                                 <span class="center no-overflow">

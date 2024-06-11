@@ -5,7 +5,7 @@ namespace API.Features.RetailSales {
 
     public class InvoicePdfVM {
 
-        public string ReservationId { get; set; }
+        public int Id { get; set; }
         public InvoicePdfPartyVM Issuer { get; set; }
         public InvoicePdfDocumentTypeVM DocumentType { get; set; }
         public InvoicePdfHeaderVM Header { get; set; }

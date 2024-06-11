@@ -36,16 +36,16 @@ namespace API.Features.RetailSales {
             return mapper.Map<IEnumerable<RetailSale>, IEnumerable<RetailSaleListVM>>(invoices);
         }
 
-        public async Task<RetailSale> GetByIdForXmlAsync(string invoiceId) {
+        public async Task<RetailSale> GetByIdForXmlAsync(int id) {
             return await context.RetailSales
                 .AsNoTracking()
                 .Include(x => x.ShipOwner).ThenInclude(x => x.Nationality)
                 .Include(x => x.DocumentType)
                 .Include(x => x.PaymentMethod)
-                .SingleOrDefaultAsync(x => x.ReservationId.ToString() == invoiceId);
+                .SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<RetailSale> GetByIdForPdfAsync(string invoiceId) {
+        public async Task<RetailSale> GetByIdForPdfAsync(int id) {
             return await context.RetailSales
                 .Include(x => x.ShipOwner).ThenInclude(x => x.TaxOffice)
                 .Include(x => x.ShipOwner).ThenInclude(x => x.Nationality)
@@ -57,24 +57,24 @@ namespace API.Features.RetailSales {
                 .Include(x => x.Reservation).ThenInclude(x => x.Customer)
                 .Include(x => x.Reservation).ThenInclude(x => x.PickupPoint)
                 .Include(x => x.Reservation).ThenInclude(x => x.Passengers)
-                .SingleOrDefaultAsync(x => x.ReservationId.ToString() == invoiceId);
+                .SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<RetailSale> GetByIdForPatchEmailSent(string reservationId) {
+        public async Task<RetailSale> GetByIdForPatchEmailSent(int id) {
             return await context.RetailSales
                 .AsNoTracking()
-                .Where(x => x.ReservationId.ToString() == reservationId)
+                .Where(x => x.Id == id)
                 .SingleOrDefaultAsync();
         }
 
-        public async Task<RetailSale> GetByIdForPatchAade(string reservationId) {
+        public async Task<RetailSale> GetByIdForPatchAade(int id) {
             return await context.RetailSales
                 .AsNoTracking()
-                .Where(x => x.ReservationId.ToString() == reservationId)
+                .Where(x => x.Id == id)
                 .SingleOrDefaultAsync();
         }
 
-        public void UpdateIsEmailSent(RetailSale invoice, string invoiceId) {
+        public void UpdateIsEmailSent(RetailSale invoice) {
             using var transaction = context.Database.BeginTransaction();
             invoice.IsEmailSent = true;
             context.RetailSales.Attach(invoice);
@@ -91,7 +91,17 @@ namespace API.Features.RetailSales {
             }
         }
 
+        public Task<RetailSale> GetByIdForPdfAsync(string id) {
+            throw new NotImplementedException();
+        }
 
+        public Task<RetailSale> GetByIdForPatchEmailSent(string id) {
+            throw new NotImplementedException();
+        }
+
+        public Task<RetailSale> GetByIdForPatchAade(string id) {
+            throw new NotImplementedException();
+        }
     }
 
 }

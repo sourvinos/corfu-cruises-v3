@@ -362,7 +362,7 @@ export class InvoiceListComponent {
     }
 
     private populateDropdownFilters(): void {
-        this.dropdownDates = this.helperService.getDistinctRecords(this.records, 'date', 'date')
+        this.dropdownDates = this.helperService.getDistinctRecords(this.records, 'date', 'description')
         this.dropdownCustomers = this.helperService.getDistinctRecords(this.records, 'customer', 'description')
         this.dropdownDestinations = this.helperService.getDistinctRecords(this.records, 'destination', 'description')
         this.dropdownDocumentTypes = this.helperService.getDistinctRecords(this.records, 'documentType', 'description')
