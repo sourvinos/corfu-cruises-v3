@@ -92,7 +92,11 @@ export class ReceiptListComponent {
         }
     }
 
-    public filterRecords(event: any): void {
+    public onFilter(event: any, column: string, matchMode: string): void {
+        if (event) this.table.filter(event, column, matchMode)
+    }
+
+    public onFilterRecords(event: any): void {
         this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
         this.recordsFiltered = event.filteredValue
         this.recordsFilteredCount = event.filteredValue.length

@@ -8,10 +8,18 @@
                 <th class="width-3" pSortableColumn="total">{{ getLabel("headerTotal") }}</th>
             </tr>
             <tr>
-                <th class="width-15"><input (input)="table.filter($event.target.value, 'customer.description', 'contains')" [value]="$any(table).filters['customer.description']?.value" class="p-inputtext"></th>
-                <th class="width-3"><input (input)="table.filter($event.target.value, 'previous', 'contains')" [value]="$any(table).filters['previous']?.value" class="p-inputtext"></th>
-                <th class="width-3"><input (input)="table.filter($event.target.value, 'periodBalance', 'contains')" [value]="$any(table).filters['periodBalance']?.value" class="p-inputtext"></th>
-                <th class="width-3"><input (input)="table.filter($event.target.value, 'total', 'contains')" [value]="$any(table).filters['total']?.value" class="p-inputtext"></th>
+                <th class="width-15">
+                    <p-columnFilter (input)="onFilter($event.target.value,'customer.description','contains')" class="center" field="customer.description"></p-columnFilter>
+                </th>
+                <th class="width-3">
+                    <p-columnFilter (input)="onFilter($event.target.value,'previous','contains')" class="center" field="previous"></p-columnFilter>
+                </th>
+                <th class="width-3">
+                    <p-columnFilter (input)="onFilter($event.target.value,'periodBalance','contains')" class="center" field="periodBalance"></p-columnFilter>
+                </th>
+                <th class="width-3">
+                    <p-columnFilter (input)="onFilter($event.target.value,'total','contains')" class="center" field="total"></p-columnFilter>
+                </th>
             </tr>
         </ng-template>
         <ng-template let-record pTemplate="body">

@@ -1,41 +1,41 @@
 import { Component } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
 // Custom
+import { BalanceSheetCriteriaVM } from '../classes/view-models/criteria/balanceSheet-criteria-vm'
+import { BalanceSheetExportService } from '../classes/services/balanceSheet-export.service'
+import { BalanceSheetHttpService } from '../classes/services/balanceSheet-http.service'
+import { BalanceSheetVM } from '../classes/view-models/list/balanceSheet-vm'
+import { CriteriaDateRangeDialogComponent } from 'src/app/shared/components/criteria-date-range-dialog/criteria-date-range-dialog.component'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
-import { HelperService } from '../../../../../shared/services/helper.service'
+import { HelperService } from '../../../../shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { RevenuesCriteriaVM } from '../../classes/view-models/criteria/revenues-criteria-vm'
-import { RevenuesExportService } from '../../classes/services/revenues-export.service'
-import { RevenuesHttpService } from '../../classes/services/revenues-http.service'
-import { RevenuesVM } from '../../classes/view-models/list/revenues-vm'
-import { CriteriaDateRangeDialogComponent } from 'src/app/shared/components/criteria-date-range-dialog/criteria-date-range-dialog.component'
 
 @Component({
-    selector: 'revenues',
-    templateUrl: './revenues-parent.component.html',
-    styleUrls: ['../../../../../../assets/styles/custom/lists.css', './revenues-parent.component.css']
+    selector: 'balanceSheet',
+    templateUrl: './balanceSheet-parent.component.html',
+    styleUrls: ['../../../../../assets/styles/custom/lists.css', './balanceSheet-parent.component.css']
 })
 
-export class RevenuesParentComponent {
+export class BalanceSheetParentComponent {
 
     //#region variables
 
-    public criteria: RevenuesCriteriaVM
-    public feature = 'revenues'
-    public featureIcon = 'revenues'
+    public criteria: BalanceSheetCriteriaVM
+    public feature = 'balanceSheet'
+    public featureIcon = 'balanceSheet'
     public parentUrl = '/home'
-    public shipOwnerRecordsA: RevenuesVM[] = []
-    public shipOwnerFilteredRecordsA: RevenuesVM[] = []
-    public shipOwnerRecordsB: RevenuesVM[] = []
-    public shipOwnerFilteredRecordsB: RevenuesVM[] = []
-    public shipOwnerTotal: RevenuesVM[] = []
-    public shipOwnerFilteredTotal: RevenuesVM[] = []
+    public shipOwnerRecordsA: BalanceSheetVM[] = []
+    public shipOwnerFilteredRecordsA: BalanceSheetVM[] = []
+    public shipOwnerRecordsB: BalanceSheetVM[] = []
+    public shipOwnerFilteredRecordsB: BalanceSheetVM[] = []
+    public shipOwnerTotal: BalanceSheetVM[] = []
+    public shipOwnerFilteredTotal: BalanceSheetVM[] = []
     public showZeroBalanceRow: boolean = true
 
     //#endregion
 
-    constructor(private dateHelperService: DateHelperService, private helperService: HelperService, private interactionService: InteractionService, private messageLabelService: MessageLabelService, private revenuesExportService: RevenuesExportService, private revenuesHttpService: RevenuesHttpService, public dialog: MatDialog) { }
+    constructor(private balanceSheetExportService: BalanceSheetExportService, private balanceSheetHttpService: BalanceSheetHttpService, private dateHelperService: DateHelperService, private helperService: HelperService, private interactionService: InteractionService, private messageLabelService: MessageLabelService, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
 
@@ -58,24 +58,23 @@ export class RevenuesParentComponent {
     }
 
     public onExportTasks(): void {
-        const x = this.revenuesExportService.buildVM(this.shipOwnerFilteredRecordsA)
-        const z = this.revenuesExportService.buildVM(this.shipOwnerFilteredRecordsB)
-        const i = this.revenuesExportService.buildVM(this.shipOwnerFilteredTotal)
-        this.revenuesExportService.exportToExcel(x, z, i)
+        const x = this.balanceSheetExportService.buildVM(this.shipOwnerFilteredRecordsA)
+        const z = this.balanceSheetExportService.buildVM(this.shipOwnerFilteredRecordsB)
+        const i = this.balanceSheetExportService.buildVM(this.shipOwnerFilteredTotal)
+        this.balanceSheetExportService.exportToExcel(x, z, i)
     }
 
     public onSelectedTabChange(): void {
         setTimeout(() => {
             const x = document.getElementsByClassName('table-wrapper') as HTMLCollectionOf<HTMLInputElement>
             for (let i = 0; i < x.length; i++) {
-                x[i].style.height = document.getElementById('content').offsetHeight - 152 + 'px'
+                x[i].style.height = document.getElementById('content').offsetHeight - 150 + 'px'
             }
         }, 100)
     }
 
     public onShowCriteriaDialog(): void {
         const dialogRef = this.dialog.open(CriteriaDateRangeDialogComponent, {
-            data: 'revenuesCriteria',
             height: '36.0625rem',
             panelClass: 'dialog',
             width: '32rem',
@@ -99,7 +98,7 @@ export class RevenuesParentComponent {
 
     //#region private methods
 
-    private buildCriteriaVM(event: RevenuesCriteriaVM): void {
+    private buildCriteriaVM(event: BalanceSheetCriteriaVM): void {
         this.criteria = {
             fromDate: event.fromDate,
             toDate: event.toDate,
@@ -107,13 +106,13 @@ export class RevenuesParentComponent {
         }
     }
 
-    private loadRecordsForShipOwner(criteria: RevenuesCriteriaVM, shipOwnerRecords: string, shipOwnerFilteredRecords: string, shipOwnerId: number): void {
-        const x: RevenuesCriteriaVM = {
+    private loadRecordsForShipOwner(criteria: BalanceSheetCriteriaVM, shipOwnerRecords: string, shipOwnerFilteredRecords: string, shipOwnerId: number): void {
+        const x: BalanceSheetCriteriaVM = {
             fromDate: criteria.fromDate,
             toDate: criteria.toDate,
             shipOwnerId: shipOwnerId
         }
-        this.revenuesHttpService.get(x).subscribe(response => {
+        this.balanceSheetHttpService.get(x).subscribe(response => {
             this[shipOwnerRecords] = response
             this[shipOwnerFilteredRecords] = response
         })
@@ -125,7 +124,7 @@ export class RevenuesParentComponent {
 
     private setListHeight(): void {
         setTimeout(() => {
-            document.getElementById('content').style.height = document.getElementById('list-wrapper').offsetHeight - 66 + 'px'
+            document.getElementById('content').style.height = document.getElementById('list-wrapper').offsetHeight - 64 + 'px'
         }, 100)
     }
 
@@ -149,9 +148,9 @@ export class RevenuesParentComponent {
             this.shipOwnerFilteredRecordsB = this.shipOwnerRecordsB
             this.shipOwnerFilteredTotal = this.shipOwnerTotal
         } else {
-            this.shipOwnerFilteredRecordsA = this.shipOwnerRecordsA.filter(x => x.total != 0)
-            this.shipOwnerFilteredRecordsB = this.shipOwnerRecordsB.filter(x => x.total != 0)
-            this.shipOwnerFilteredTotal = this.shipOwnerTotal.filter(x => x.total != 0)
+            this.shipOwnerFilteredRecordsA = this.shipOwnerRecordsA.filter(x => x.actualBalance != 0)
+            this.shipOwnerFilteredRecordsB = this.shipOwnerRecordsB.filter(x => x.actualBalance != 0)
+            this.shipOwnerFilteredTotal = this.shipOwnerTotal.filter(x => x.actualBalance != 0)
         }
     }
 

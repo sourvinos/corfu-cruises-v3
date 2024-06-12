@@ -84,7 +84,11 @@ export class RetailSaleListComponent {
         this.navigateToRecord(id)
     }
 
-    public filterRecords(event: any): void {
+    public onFilter(event: any, column: string, matchMode: string): void {
+        if (event) this.table.filter(event, column, matchMode)
+    }
+
+    public onFilterRecords(event: any): void {
         setTimeout(() => {
             this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
             this.recordsFiltered = event.filteredValue
@@ -228,7 +232,12 @@ export class RetailSaleListComponent {
         if (filters != undefined) {
             setTimeout(() => {
                 this.filterColumn(filters.date, 'date', 'in')
+                this.filterColumn(filters.refNo, 'refNo', 'contains')
+                this.filterColumn(filters.shipOwner, 'shipOwner', 'in')
+                this.filterColumn(filters.customer, 'customer', 'in')
                 this.filterColumn(filters.documentType, 'documentType', 'in')
+                this.filterColumn(filters.invoiceNo, 'invoiceNo', 'contains')
+                this.filterColumn(filters.grossAmount, 'grossAmount', 'contains')
             }, 500)
         }
     }

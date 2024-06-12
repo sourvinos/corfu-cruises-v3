@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core'
 // Custom
-import { RevenuesParentComponent } from '../../user-interface/list/revenues-parent.component'
+import { RevenuesParentComponent } from '../../user-interface/revenues-parent.component'
 import { RevenuesRoutingModule } from './revenues.routing.module'
-import { RevenuesShipOwnerTableComponent } from '../../user-interface/list/revenues-shipOwner-table.component'
+import { RevenuesShipOwnerTableComponent } from '../../user-interface/revenues-shipOwner-table.component'
 import { SharedModule } from '../../../../../shared/modules/shared.module'
 
 @NgModule({

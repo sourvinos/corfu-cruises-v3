@@ -1,26 +1,29 @@
+import { Component, Input, ViewChild } from '@angular/core'
+import { Table } from 'primeng/table'
 import { formatNumber } from '@angular/common'
-import { Component, Input } from '@angular/core'
 // Custom
-import { BalanceSheetCriteriaVM } from '../../classes/view-models/criteria/balanceSheet-criteria-vm'
-import { BalanceSheetVM } from '../../classes/view-models/list/balanceSheet-vm'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { RevenuesCriteriaVM } from '../classes/view-models/criteria/revenues-criteria-vm'
+import { RevenuesVM } from '../classes/view-models/list/revenues-vm'
 
 @Component({
-    selector: 'balanceSheetShipOwnerTable',
-    templateUrl: './balanceSheet-shipOwner-table.component.html',
-    styleUrls: ['../../../../../../assets/styles/custom/lists.css']
+    selector: 'revenuesShipOwnerTable',
+    templateUrl: './revenues-shipOwner-table.component.html',
+    styleUrls: ['../../../../../assets/styles/custom/lists.css']
 })
 
-export class BalanceSheetShipOwnerTableComponent {
+export class RevenuesShipOwnerTableComponent {
 
     //#region variables
 
-    @Input() records: BalanceSheetVM[]
-    @Input() criteria: BalanceSheetCriteriaVM
+    @ViewChild('table') table: Table
 
-    public feature = 'balanceSheet'
-    public totals: BalanceSheetVM
+    @Input() records: RevenuesVM[]
+    @Input() criteria: RevenuesCriteriaVM
+
+    public feature = 'revenues'
+    public totals: RevenuesVM
 
     //#endregion
 
@@ -44,7 +47,7 @@ export class BalanceSheetShipOwnerTableComponent {
         setTimeout(() => {
             const x = document.getElementsByClassName('table-wrapper') as HTMLCollectionOf<HTMLInputElement>
             for (let i = 0; i < x.length; i++) {
-                x[i].style.height = document.getElementById('content').offsetHeight - 150 + 'px'
+                x[i].style.height = document.getElementById('content').offsetHeight - 152 + 'px'
             }
         }, 100)
     }
@@ -52,11 +55,11 @@ export class BalanceSheetShipOwnerTableComponent {
     private calculateTotals(): void {
         this.totals = {
             customer: { id: 0, description: '', isActive: true },
-            shipOwner: { id: 0, description: '', isActive: true },
-            previousBalance: this.records.reduce((sum: number, array: { previousBalance: number }) => sum + array.previousBalance, 0),
+            previous: this.records.reduce((sum: number, array: { previous: number }) => sum + array.previous, 0),
             debit: this.records.reduce((sum: number, array: { debit: number }) => sum + array.debit, 0),
             credit: this.records.reduce((sum: number, array: { credit: number }) => sum + array.credit, 0),
-            actualBalance: this.records.reduce((sum: number, array: { actualBalance: number }) => sum + array.actualBalance, 0),
+            periodBalance: this.records.reduce((sum: number, array: { debit: number }) => sum + array.debit, 0) - this.records.reduce((sum: number, array: { credit: number }) => sum + array.credit, 0),
+            total: this.records.reduce((sum: number, array: { total: number }) => sum + array.total, 0),
         }
     }
 
@@ -66,6 +69,10 @@ export class BalanceSheetShipOwnerTableComponent {
 
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
+    }
+
+    public onFilter(event: any, column: string, matchMode: string): void {
+        if (event) this.table.filter(event, column, matchMode)
     }
 
     //#endregion

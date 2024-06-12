@@ -14,7 +14,7 @@
 
         <ng-template [ngIf]="records.length > 0" [ngIfElse]="noData">
             <div id="table-wrapper">
-                <p-table #table (onFilter)="filterRecords($event)" [scrollable]="true" [(selection)]="selectedRecords" [value]="records" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
+                <p-table #table (onFilter)="onFilterRecords($event)" [scrollable]="true" [(selection)]="selectedRecords" [value]="records" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
                     <ng-template pTemplate="header">
                         <tr>
                             <th class="width-3"></th>
@@ -45,7 +45,8 @@
                                 </p-columnFilter>
                             </th>
                             <th class="width-5">
-                                <p-columnFilter field="refNo" matchMode="contains" (input)="table.filter($event.target.value, 'refNo', 'contains')" value="$any(table).filters['refNo']?.value" class="center p-inputtext"></p-columnFilter>
+                                <p-columnFilter (input)="onFilter($event.target.value,'refNo','contains')" class="center" field="refNo"></p-columnFilter>
+                            </th>
                             <th class="width-11">
                                 <p-columnFilter [showMenu]="false" field="shipOwner" matchMode="in">
                                     <ng-template let-filter="filterCallback" let-value pTemplate="filter">
@@ -86,10 +87,10 @@
                                 </p-columnFilter>
                             </th>
                             <th class="width-4">
-                                <p-columnFilter field="invoiceNo" matchMode="contains" (input)="table.filter($event.target.value, 'invoiceNo', 'contains')" value="$any(table).filters['invoiceNo']?.value" class="center p-inputtext"></p-columnFilter>
+                                <p-columnFilter (input)="onFilter($event.target.value,'invoiceNo','contains')" class="center" field="invoiceNo"></p-columnFilter>
                             </th>
-                            <th class="width-4" style="border-right: none;">
-                                <p-columnFilter field="grossAmount" matchMode="contains" (input)="table.filter($event.target.value, 'grossAmount', 'contains')" value="$any(table).filters['grossAmount']?.value" class="center p-inputtext"></p-columnFilter>
+                            <th class="width-6" style="border-right: none;">
+                                <p-columnFilter (input)="onFilter($event.target.value,'grossAmount','contains')" class="center" field="grossAmount"></p-columnFilter>
                             </th>
                         </tr>
                     </ng-template>
