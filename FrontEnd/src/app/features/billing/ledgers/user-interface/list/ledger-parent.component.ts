@@ -35,6 +35,7 @@ export class LedgerParentBillingComponent {
     public shipOwnerRecordsA: LedgerVM[] = []
     public shipOwnerRecordsB: LedgerVM[] = []
     public shipOwnerTotal: LedgerVM[] = []
+    private selectedTabIndex = 0
 
     //#endregion
 
@@ -83,10 +84,12 @@ export class LedgerParentBillingComponent {
         })
     }
 
-    public onSelectedTabChange(): void {
-        setTimeout(() => {
-            document.getElementById('table-wrapper').style.height = document.getElementById('content').offsetHeight - 278 + 'px'
-        }, 1000)
+    public onSelectedTabChange(event: number): void {
+        this.selectedTabIndex = event
+        const x = document.getElementsByClassName('general-tab') as HTMLCollectionOf<HTMLInputElement>
+        for (let i = 0; i < x.length; i++) {
+            x[i].style.height = document.getElementById('content').offsetHeight - 150 + 'px'
+        }
     }
 
     public onShowCriteriaDialog(): void {
@@ -183,8 +186,11 @@ export class LedgerParentBillingComponent {
 
     private setListHeight(): void {
         setTimeout(() => {
-            document.getElementById('content').style.height = document.getElementById('list-wrapper').offsetHeight - 64 + 'px'
-        }, 100)
+            const x = document.getElementsByClassName('table-wrapper') as HTMLCollectionOf<HTMLInputElement>
+            for (let i = 0; i < x.length; i++) {
+                x[i].style.height = document.getElementById('content').offsetHeight - 150 + 'px'
+            }
+        }, 1000)
     }
 
     private setTabTitle(): void {
@@ -205,5 +211,38 @@ export class LedgerParentBillingComponent {
 
 
     //#endregion
+
+    public async onDoPrintTasks(): Promise<void> {
+        console.log(this.selectedTabIndex)
+        let x: any
+        switch (this.selectedTabIndex) {
+            case 0: x = 'shipOwnerRecordsA'; break
+            case 1: x = 'shipOwnerRecordsB'; break
+            case 2: x = 'shipOwnerTotal'
+        }
+        const criteria = {
+            fromDate: this.criteria.fromDate,
+            toDate: this.criteria.toDate,
+            shipOwnerId: this[x][1].shipOwner.id,
+            customerId: this.criteria.customer.id
+        }
+        this.ledgerHttpService.buildPdf(criteria).subscribe({
+            next: (response) => {
+                this.ledgerHttpService.openPdf(response.body).subscribe({
+                    next: (response) => {
+                        const blob = new Blob([response], { type: 'application/pdf' })
+                        const fileURL = URL.createObjectURL(blob)
+                        window.open(fileURL, '_blank')
+                    },
+                    error: (errorFromInterceptor) => {
+                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                    }
+                })
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
+        })
+    }
 
 }

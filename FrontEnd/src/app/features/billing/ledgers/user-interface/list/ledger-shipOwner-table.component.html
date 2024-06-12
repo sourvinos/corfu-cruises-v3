@@ -1,4 +1,4 @@
-<div id="table-wrapper">
+<div class="table-wrapper" style="overflow-y: scroll;">
     <p-table #table [scrollable]="true" [virtualScrollItemSize]="32" [value]="records" [virtualScroll]="false" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
         <ng-template pTemplate="header">
             <tr>
@@ -27,10 +27,10 @@
     </p-table>
 </div>
 
-<div id="footer">
+<!-- <div id="footer">
     <div id="align-right">
         <button *ngIf="criteria" (click)="onDoPrintTasks()" class="transparent" mat-flat-button>
             <span>ΕΚΤΥΠΩΣΗ</span>
         </button>
     </div>
-</div>
+</div> -->
