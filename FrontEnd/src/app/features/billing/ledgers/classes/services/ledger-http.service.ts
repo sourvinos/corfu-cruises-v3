@@ -4,8 +4,8 @@ import { Observable } from 'rxjs'
 // Custom
 import { EmailLedgerVM } from '../view-models/email/email-ledger-vm'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
-import { LedgerPdfCriteriaVM } from '../view-models/criteria/ledger-pdf-criteria-vm'
-import { LedgerVM } from '../view-models/criteria/ledger-vm'
+import { LedgerPdfCriteriaVM } from '../view-models/pdf/ledger-pdf-criteria-vm'
+import { LedgerVM } from '../view-models/list/ledger-vm'
 import { environment } from 'src/environments/environment'
 
 @Injectable({ providedIn: 'root' })

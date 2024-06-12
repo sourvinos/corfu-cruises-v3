@@ -1,26 +1,27 @@
 import { Component, ViewChild } from '@angular/core'
-import { DateAdapter } from '@angular/material/core'
+import { MatDialog } from '@angular/material/dialog'
 import { Table } from 'primeng/table'
 // Custom
 import { DateHelperService } from '../../../../../shared/services/date-helper.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { EmailLedgerVM } from '../../classes/view-models/email/email-ledger-vm'
 import { HelperService } from '../../../../../shared/services/helper.service'
+import { LedgerCriteriaDialogComponent } from '../criteria/ledger-criteria.component'
 import { LedgerCriteriaVM } from '../../classes/view-models/criteria/ledger-criteria-vm'
 import { LedgerHttpService } from '../../classes/services/ledger-http.service'
-import { LedgerVM } from '../../classes/view-models/criteria/ledger-vm'
-import { LocalStorageService } from '../../../../../shared/services/local-storage.service'
+import { LedgerPdfCriteriaVM } from '../../classes/view-models/pdf/ledger-pdf-criteria-vm'
+import { LedgerVM } from '../../classes/view-models/list/ledger-vm'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from '../../../../../shared/services/message-label.service'
-import { LedgerPdfCriteriaVM } from '../../classes/view-models/criteria/ledger-pdf-criteria-vm'
+import { InteractionService } from 'src/app/shared/services/interaction.service'
 
 @Component({
     selector: 'ledger',
-    templateUrl: './ledger.component.html',
-    styleUrls: ['../../../../../../assets/styles/custom/lists.css', './ledger.component.css']
+    templateUrl: './ledger-parent.component.html',
+    styleUrls: ['../../../../../../assets/styles/custom/lists.css', './ledger-parent.component.css']
 })
 
-export class LedgerBillingComponent {
+export class LedgerParentBillingComponent {
 
     //#region variables
 
@@ -37,23 +38,23 @@ export class LedgerBillingComponent {
 
     //#endregion
 
-    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogService: DialogService, private helperService: HelperService, private ledgerHttpService: LedgerHttpService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService) { }
+    constructor(private dateHelperService: DateHelperService, private dialogService: DialogService, private helperService: HelperService, private ledgerHttpService: LedgerHttpService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, public dialog: MatDialog, private interactionService: InteractionService) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
-        this.setLocale()
         this.setTabTitle()
+        this.subscribeToInteractionService()
         this.setListHeight()
-    }
-
-    ngAfterViewInit(): void {
-        // document.getElementById('table-wrapper').style.visibility = 'hidden'
     }
 
     //#endregion
 
     //#region public methods
+
+    public getCriteria(): string {
+        return this.criteria ? this.criteria.customer.description + ', ' + this.criteria.fromDate + ' - ' + this.criteria.toDate : ''
+    }
 
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
@@ -88,9 +89,34 @@ export class LedgerBillingComponent {
         }, 1000)
     }
 
+    public onShowCriteriaDialog(): void {
+        const dialogRef = this.dialog.open(LedgerCriteriaDialogComponent, {
+            height: '36.0625rem',
+            panelClass: 'dialog',
+            width: '32rem',
+        })
+        dialogRef.afterClosed().subscribe(criteria => {
+            if (criteria !== undefined) {
+                this.buildCriteriaVM(criteria)
+                this.loadRecordsForShipOwner(this.criteria, 'shipOwnerRecordsA', 1)
+                this.loadRecordsForShipOwner(this.criteria, 'shipOwnerRecordsB', 2)
+                this.loadRecordsForShipOwner(this.criteria, 'shipOwnerTotal', null)
+            }
+        })
+    }
+
+
     //#endregion
 
     //#region private methods
+
+    private buildCriteriaVM(event: LedgerCriteriaVM): void {
+        this.criteria = {
+            fromDate: event.fromDate,
+            toDate: event.toDate,
+            customer: event.customer
+        }
+    }
 
     private buildPdfShipOwnerA(): any {
         return new Promise((resolve) => {
@@ -161,13 +187,22 @@ export class LedgerBillingComponent {
         }, 100)
     }
 
-    private setLocale(): void {
-        this.dateAdapter.setLocale(this.localStorageService.getLanguage())
-    }
-
     private setTabTitle(): void {
         this.helperService.setTabTitle(this.feature)
     }
+
+    private subscribeToInteractionService(): void {
+        this.interactionService.refreshTabTitle.subscribe(() => {
+            this.setTabTitle()
+        })
+        this.interactionService.emitDateRange.subscribe((response) => {
+            if (response) {
+                this.criteria.fromDate = this.dateHelperService.formatISODateToLocale(response.fromDate)
+                this.criteria.toDate = this.dateHelperService.formatISODateToLocale(response.toDate)
+            }
+        })
+    }
+
 
     //#endregion
 

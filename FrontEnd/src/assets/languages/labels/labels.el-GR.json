@@ -3434,15 +3434,27 @@
         ]
     },
     {
-        "feature": "ledgerCriteria",
+        "feature": "ledgerBillingCriteria",
         "labels": [
+            {
+                "id": "header",
+                "description": "Καρτέλα πελάτη"
+            },
+            {
+                "id": "subHeader",
+                "description": "Δώστε τα κριτήρια με τα οποία θα γίνει η αναζήτηση"
+            },
             {
                 "id": "customer",
                 "description": "Πελάτης"
             },
             {
-                "id": "searchButton",
-                "description": "Αναζητηση"
+                "id": "cancelButton",
+                "description": "Ακυρο"
+            },
+            {
+                "id": "okButton",
+                "description": "Συνεχεια"
             }
         ]
     },
@@ -3488,6 +3500,14 @@
             {
                 "id": "printButton",
                 "description": "Αποστολη με email"
+            },
+            {
+                "id": "noDataHeader",
+                "description": "Δεν βρήκαμε εγγραφές για να εμφανίσουμε"
+            },
+            {
+                "id": "noDataSubHeader",
+                "description": "Ισως πρέπει να δώσετε διαφορετικά κριτήρια"
             }
         ]
     },
@@ -3988,7 +4008,7 @@
             },
             {
                 "id": "noDataSubHeader",
-                "description": "Ισως θα πρέπει να δώσετε διαφορετικά κριτήρια"
+                "description": "Ισως πρέπει να δώσετε διαφορετικά κριτήρια"
             }
         ]
     },

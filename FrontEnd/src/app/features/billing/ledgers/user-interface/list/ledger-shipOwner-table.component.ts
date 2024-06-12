@@ -4,7 +4,7 @@ import { Table } from 'primeng/table'
 // Custom
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { LedgerHttpService } from '../../classes/services/ledger-http.service'
-import { LedgerVM } from '../../classes/view-models/criteria/ledger-vm'
+import { LedgerVM } from '../../classes/view-models/list/ledger-vm'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
@@ -13,7 +13,7 @@ import { LedgerCriteriaVM } from '../../classes/view-models/criteria/ledger-crit
 @Component({
     selector: 'ledgerShipOwnerTable',
     templateUrl: './ledger-shipOwner-table.component.html',
-    styleUrls: ['../../../../../../assets/styles/custom/lists.css', './ledger.component.css', './ledger-shipOwner-table.component.css']
+    styleUrls: ['../../../../../../assets/styles/custom/lists.css', './ledger-parent.component.css', './ledger-shipOwner-table.component.css']
 })
 
 export class LedgerShipOwnerTableComponent {

@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core'
 // Custom
-import { LedgerBillingComponent } from '../../user-interface/list/ledger.component'
 import { LedgerBillingRoutingModule } from './ledger-billing.routing.module'
-import { LedgerCriteriaComponent } from '../../user-interface/criteria/ledger-criteria.component'
+import { LedgerCriteriaDialogComponent } from '../../user-interface/criteria/ledger-criteria.component'
+import { LedgerParentBillingComponent } from '../../user-interface/list/ledger-parent.component'
 import { LedgerShipOwnerTableComponent } from '../../user-interface/list/ledger-shipOwner-table.component'
 import { SharedModule } from '../../../../../shared/modules/shared.module'
 
 @NgModule({
     declarations: [
-        LedgerCriteriaComponent,
-        LedgerBillingComponent,
+        LedgerCriteriaDialogComponent,
+        LedgerParentBillingComponent,
         LedgerShipOwnerTableComponent
     ],
     imports: [

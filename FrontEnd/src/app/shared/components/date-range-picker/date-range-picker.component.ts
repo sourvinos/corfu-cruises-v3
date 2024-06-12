@@ -35,6 +35,7 @@ export class DateRangePickerComponent {
 
     ngOnInit(): void {
         this.initForm()
+        this.setLocale()
         this.subscribeToInteractionService()
     }
 
