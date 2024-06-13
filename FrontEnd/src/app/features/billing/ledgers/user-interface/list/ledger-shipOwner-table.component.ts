@@ -1,14 +1,10 @@
 import { formatNumber } from '@angular/common'
-import { Component, Input, ViewChild } from '@angular/core'
-import { Table } from 'primeng/table'
+import { Component, Input } from '@angular/core'
 // Custom
-import { DialogService } from 'src/app/shared/services/modal-dialog.service'
-import { LedgerHttpService } from '../../classes/services/ledger-http.service'
+import { LedgerCriteriaVM } from '../../classes/view-models/criteria/ledger-criteria-vm'
 import { LedgerVM } from '../../classes/view-models/list/ledger-vm'
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
-import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { LedgerCriteriaVM } from '../../classes/view-models/criteria/ledger-criteria-vm'
 
 @Component({
     selector: 'ledgerShipOwnerTable',
@@ -20,7 +16,6 @@ export class LedgerShipOwnerTableComponent {
 
     //#region variables
 
-    @ViewChild('table') table: Table
     @Input() records: LedgerVM[] = []
     @Input() criteria: LedgerCriteriaVM
 
@@ -28,16 +23,15 @@ export class LedgerShipOwnerTableComponent {
 
     //#endregion
 
-    constructor(private dialogService: DialogService, private ledgerHttpService: LedgerHttpService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService) { }
+    constructor(private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService) { }
+
+    //#region lifecycle hooks
 
     ngOnInit(): void {
-        setTimeout(() => {
-            const x = document.getElementsByClassName('table-wrapper') as HTMLCollectionOf<HTMLInputElement>
-            for (let i = 0; i < x.length; i++) {
-                x[i].style.height = document.getElementById('content').offsetHeight - 150 + 'px'
-            }
-        }, 1000)
+        this.adjustTableHeight()
     }
+
+    //#endregion
 
     //#region public methods
 
@@ -49,31 +43,18 @@ export class LedgerShipOwnerTableComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    // public async onDoPrintTasks(): Promise<void> {
-    //     const criteria = {
-    //         fromDate: this.criteria.fromDate,
-    //         toDate: this.criteria.toDate,
-    //         shipOwnerId: this.records[1].shipOwner.id,
-    //         customerId: this.criteria.customer.id
-    //     }
-    //     this.ledgerHttpService.buildPdf(criteria).subscribe({
-    //         next: (response) => {
-    //             this.ledgerHttpService.openPdf(response.body).subscribe({
-    //                 next: (response) => {
-    //                     const blob = new Blob([response], { type: 'application/pdf' })
-    //                     const fileURL = URL.createObjectURL(blob)
-    //                     window.open(fileURL, '_blank')
-    //                 },
-    //                 error: (errorFromInterceptor) => {
-    //                     this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-    //                 }
-    //             })
-    //         },
-    //         error: (errorFromInterceptor) => {
-    //             this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-    //         }
-    //     })
-    // }
+    //#endregion
+
+    //#region private methods
+
+    private adjustTableHeight(): void {
+        setTimeout(() => {
+            const x = document.getElementsByClassName('table-wrapper') as HTMLCollectionOf<HTMLInputElement>
+            for (let i = 0; i < x.length; i++) {
+                x[i].style.height = document.getElementById('content').offsetHeight - 150 + 'px'
+            }
+        }, 100)
+    }
 
     //#endregion
 

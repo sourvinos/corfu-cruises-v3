@@ -1,11 +1,11 @@
-import { Component, ViewChild } from '@angular/core'
+import { Component } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
-import { Table } from 'primeng/table'
 // Custom
 import { DateHelperService } from '../../../../../shared/services/date-helper.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { EmailLedgerVM } from '../../classes/view-models/email/email-ledger-vm'
 import { HelperService } from '../../../../../shared/services/helper.service'
+import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { LedgerCriteriaDialogComponent } from '../criteria/ledger-criteria.component'
 import { LedgerCriteriaVM } from '../../classes/view-models/criteria/ledger-criteria-vm'
 import { LedgerHttpService } from '../../classes/services/ledger-http.service'
@@ -13,7 +13,6 @@ import { LedgerPdfCriteriaVM } from '../../classes/view-models/pdf/ledger-pdf-cr
 import { LedgerVM } from '../../classes/view-models/list/ledger-vm'
 import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageLabelService } from '../../../../../shared/services/message-label.service'
-import { InteractionService } from 'src/app/shared/services/interaction.service'
 
 @Component({
     selector: 'ledger',
@@ -25,12 +24,9 @@ export class LedgerParentBillingComponent {
 
     //#region variables
 
-    @ViewChild('table') table: Table
-
     public criteria: LedgerCriteriaVM
     public feature = 'billingLedger'
     public featureIcon = 'ledgers'
-    public icon = 'home'
     public parentUrl = '/home'
     public shipOwnerRecordsA: LedgerVM[] = []
     public shipOwnerRecordsB: LedgerVM[] = []
@@ -39,7 +35,7 @@ export class LedgerParentBillingComponent {
 
     //#endregion
 
-    constructor(private dateHelperService: DateHelperService, private dialogService: DialogService, private helperService: HelperService, private ledgerHttpService: LedgerHttpService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, public dialog: MatDialog, private interactionService: InteractionService) { }
+    constructor(private dateHelperService: DateHelperService, private dialogService: DialogService, private helperService: HelperService, private interactionService: InteractionService, private ledgerHttpService: LedgerHttpService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
 
@@ -61,11 +57,8 @@ export class LedgerParentBillingComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public onDoSearchTasks(event: LedgerCriteriaVM): void {
-        this.populateCriteria(event)
-        this.loadRecordsForShipOwner(this.criteria, 'shipOwnerRecordsA', 1)
-        this.loadRecordsForShipOwner(this.criteria, 'shipOwnerRecordsB', 2)
-        this.loadRecordsForShipOwner(this.criteria, 'shipOwnerTotal', null)
+    public isTotalTabSelected(): boolean {
+        return this.shipOwnerTotal.length == 0 || this.selectedTabIndex == 2
     }
 
     public async onDoEmailTasks(): Promise<void> {
@@ -84,12 +77,47 @@ export class LedgerParentBillingComponent {
         })
     }
 
+    public async onDoPrintTasks(): Promise<void> {
+        console.log(this.selectedTabIndex)
+        let x: any
+        switch (this.selectedTabIndex) {
+            case 0: x = 'shipOwnerRecordsA'; break
+            case 1: x = 'shipOwnerRecordsB'; break
+            case 2: x = 'shipOwnerTotal'
+        }
+        const criteria = {
+            fromDate: this.criteria.fromDate,
+            toDate: this.criteria.toDate,
+            shipOwnerId: this[x][1].shipOwner.id,
+            customerId: this.criteria.customer.id
+        }
+        this.ledgerHttpService.buildPdf(criteria).subscribe({
+            next: (response) => {
+                this.ledgerHttpService.openPdf(response.body).subscribe({
+                    next: (response) => {
+                        const blob = new Blob([response], { type: 'application/pdf' })
+                        const fileURL = URL.createObjectURL(blob)
+                        window.open(fileURL, '_blank')
+                    },
+                    error: (errorFromInterceptor) => {
+                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                    }
+                })
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
+        })
+    }
+
     public onSelectedTabChange(event: number): void {
         this.selectedTabIndex = event
-        const x = document.getElementsByClassName('general-tab') as HTMLCollectionOf<HTMLInputElement>
-        for (let i = 0; i < x.length; i++) {
-            x[i].style.height = document.getElementById('content').offsetHeight - 150 + 'px'
-        }
+        setTimeout(() => {
+            const x = document.getElementsByClassName('table-wrapper') as HTMLCollectionOf<HTMLInputElement>
+            for (let i = 0; i < x.length; i++) {
+                x[i].style.height = document.getElementById('content').offsetHeight - 150 + 'px'
+            }
+        }, 100)
     }
 
     public onShowCriteriaDialog(): void {
@@ -107,7 +135,6 @@ export class LedgerParentBillingComponent {
             }
         })
     }
-
 
     //#endregion
 
@@ -161,7 +188,7 @@ export class LedgerParentBillingComponent {
         })
     }
 
-    private loadRecordsForShipOwner(criteria: LedgerCriteriaVM, shipOwnerRecords, shipOwnerId): void {
+    private loadRecordsForShipOwner(criteria: LedgerCriteriaVM, shipOwnerRecords: string, shipOwnerId: number): void {
         const x: LedgerPdfCriteriaVM = {
             fromDate: criteria.fromDate,
             toDate: criteria.toDate,
@@ -176,21 +203,10 @@ export class LedgerParentBillingComponent {
         })
     }
 
-    private populateCriteria(event: LedgerCriteriaVM): void {
-        this.criteria = {
-            fromDate: event.fromDate,
-            toDate: event.toDate,
-            customer: event.customer
-        }
-    }
-
     private setListHeight(): void {
         setTimeout(() => {
-            const x = document.getElementsByClassName('table-wrapper') as HTMLCollectionOf<HTMLInputElement>
-            for (let i = 0; i < x.length; i++) {
-                x[i].style.height = document.getElementById('content').offsetHeight - 150 + 'px'
-            }
-        }, 1000)
+            document.getElementById('content').style.height = document.getElementById('list-wrapper').offsetHeight - 64 + 'px'
+        }, 100)
     }
 
     private setTabTitle(): void {
@@ -209,40 +225,6 @@ export class LedgerParentBillingComponent {
         })
     }
 
-
     //#endregion
-
-    public async onDoPrintTasks(): Promise<void> {
-        console.log(this.selectedTabIndex)
-        let x: any
-        switch (this.selectedTabIndex) {
-            case 0: x = 'shipOwnerRecordsA'; break
-            case 1: x = 'shipOwnerRecordsB'; break
-            case 2: x = 'shipOwnerTotal'
-        }
-        const criteria = {
-            fromDate: this.criteria.fromDate,
-            toDate: this.criteria.toDate,
-            shipOwnerId: this[x][1].shipOwner.id,
-            customerId: this.criteria.customer.id
-        }
-        this.ledgerHttpService.buildPdf(criteria).subscribe({
-            next: (response) => {
-                this.ledgerHttpService.openPdf(response.body).subscribe({
-                    next: (response) => {
-                        const blob = new Blob([response], { type: 'application/pdf' })
-                        const fileURL = URL.createObjectURL(blob)
-                        window.open(fileURL, '_blank')
-                    },
-                    error: (errorFromInterceptor) => {
-                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                    }
-                })
-            },
-            error: (errorFromInterceptor) => {
-                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-            }
-        })
-    }
 
 }

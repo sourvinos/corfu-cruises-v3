@@ -3438,7 +3438,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Καρτέλα πελάτη"
+                "description": "Λογιστική καρτέλα πελάτη"
             },
             {
                 "id": "subHeader",
@@ -3508,6 +3508,10 @@
             {
                 "id": "noDataSubHeader",
                 "description": "Ισως πρέπει να δώσετε διαφορετικά κριτήρια"
+            },
+            {
+                "id": "previewSelected",
+                "description": "Προεπισκόπηση εκτύπωσης"
             }
         ]
     },
