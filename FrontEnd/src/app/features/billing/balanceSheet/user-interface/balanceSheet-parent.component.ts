@@ -75,6 +75,7 @@ export class BalanceSheetParentComponent {
 
     public onShowCriteriaDialog(): void {
         const dialogRef = this.dialog.open(CriteriaDateRangeDialogComponent, {
+            data: 'balanceSheetCriteria',
             height: '36.0625rem',
             panelClass: 'dialog',
             width: '32rem',

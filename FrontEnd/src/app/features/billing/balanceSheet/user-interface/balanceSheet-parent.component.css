@@ -8,13 +8,6 @@
     flex-direction: row;
 }
 
-#grid-wrapper {
-    column-gap: 0.5rem;
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-}
-
 #criteria-caption {
     color: var(--color-text);
     font-family: var(--font-family-asty);
