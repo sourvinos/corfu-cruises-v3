@@ -55,6 +55,7 @@ namespace API {
                     builder.EnableStringComparisonTranslations();
                     builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
                 });
+                options.EnableSensitiveDataLogging();
             });
             ConfigureServices(services);
         }

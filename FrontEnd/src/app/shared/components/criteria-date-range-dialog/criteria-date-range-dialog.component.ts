@@ -77,7 +77,9 @@ export class CriteriaDateRangeDialogComponent {
     //#region private methods
 
     private getCriteriaFromStorage(): any {
-        return this.sessionStorageService.getItem(this.feature) ? JSON.parse(this.sessionStorageService.getItem(this.feature)) : ''
+        return this.sessionStorageService.getItem(this.feature)
+            ? JSON.parse(this.sessionStorageService.getItem(this.feature)) 
+            : ''
     }
 
     private initForm(): void {

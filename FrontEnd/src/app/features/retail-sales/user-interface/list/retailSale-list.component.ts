@@ -101,7 +101,9 @@ export class RetailSaleListComponent {
     }
 
     public getCriteria(): string {
-        return this.criteria ? this.criteria.fromDate + ' - ' + this.criteria.toDate : ''
+        return this.criteria
+            ? this.dateHelperService.formatISODateToLocale(this.criteria.fromDate) + ' - ' + this.dateHelperService.formatISODateToLocale(this.criteria.toDate)
+            : ''
     }
 
     public getEmoji(anything: any): string {
@@ -250,13 +252,13 @@ export class RetailSaleListComponent {
         const storedCriteria: any = this.sessionStorageService.getItem('retailSaleListCriteria') ? JSON.parse(this.sessionStorageService.getItem('retailSaleListCriteria')) : ''
         if (storedCriteria) {
             this.criteria = {
-                fromDate: this.dateHelperService.formatISODateToLocale(storedCriteria.fromDate),
-                toDate: this.dateHelperService.formatISODateToLocale(storedCriteria.toDate)
+                fromDate: storedCriteria.fromDate,
+                toDate: storedCriteria.toDate
             }
         } else {
             this.criteria = {
-                fromDate: this.dateHelperService.formatISODateToLocale(this.dateHelperService.formatDateToIso(new Date())),
-                toDate: this.dateHelperService.formatISODateToLocale(this.dateHelperService.formatDateToIso(new Date()))
+                fromDate: this.dateHelperService.formatDateToIso(new Date()),
+                toDate: this.dateHelperService.formatDateToIso(new Date())
             }
         }
     }
@@ -327,8 +329,8 @@ export class RetailSaleListComponent {
         })
         this.interactionService.emitDateRange.subscribe((response) => {
             if (response) {
-                this.criteria.fromDate = this.dateHelperService.formatISODateToLocale(response.fromDate)
-                this.criteria.toDate = this.dateHelperService.formatISODateToLocale(response.toDate)
+                this.criteria.fromDate = response.fromDate
+                this.criteria.toDate = response.toDate
             }
         })
     }

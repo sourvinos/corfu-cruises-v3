@@ -50,7 +50,9 @@ export class BalanceSheetParentComponent {
     //#region public methods
 
     public getCriteria(): string {
-        return this.criteria ? this.criteria.fromDate + ' - ' + this.criteria.toDate : ''
+        return this.criteria
+            ? this.dateHelperService.formatISODateToLocale(this.criteria.fromDate) + ' - ' + this.dateHelperService.formatISODateToLocale(this.criteria.toDate)
+            : ''
     }
 
     public getLabel(id: string): string {
@@ -137,8 +139,8 @@ export class BalanceSheetParentComponent {
         this.interactionService.refreshTabTitle.subscribe(() => { this.setTabTitle() })
         this.interactionService.emitDateRange.subscribe((response) => {
             if (response) {
-                this.criteria.fromDate = this.dateHelperService.formatISODateToLocale(response.fromDate)
-                this.criteria.toDate = this.dateHelperService.formatISODateToLocale(response.toDate)
+                this.criteria.fromDate = response.fromDate
+                this.criteria.toDate = response.toDate
             }
         })
     }
