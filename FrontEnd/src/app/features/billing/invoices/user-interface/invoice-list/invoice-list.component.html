@@ -167,7 +167,7 @@
             <ng-container *ngTemplateOutlet="threeDotsMenu"></ng-container>
         </mat-menu>
         <div class="filter-pill">
-            <table-total-filtered-records (resetTableFilters)="resetTableFilters()" [filteredRecordCount]="recordsFilteredCount" [recordCount]="records.length" [selectedRecordCount]="selectedRecords.length" [mustShowSelectedFilteredCount]="true"></table-total-filtered-records>
+            <table-total-filtered-records (resetTableFilters)="onClearFilterTasks()" [filteredRecordCount]="recordsFilteredCount" [recordCount]="records.length" [selectedRecordCount]="selectedRecords.length" [mustShowSelectedFilteredCount]="true"></table-total-filtered-records>
         </div>
         <div id="align-right">
             <button (click)="onNewRecord()" class="primary" mat-flat-button>{{ getLabel("newRecord") | uppercase }}</button>

@@ -135,13 +135,14 @@ export class HelperService {
 
     public clearTableTextFilters(table: Table, inputs: string[]): void {
         table.clear()
-        inputs.forEach(input => {
-            table.filter('', input, 'contains')
-            table.filter('', input, 'equals')
-        })
-        document.querySelectorAll<HTMLInputElement>('.p-inputtext, .mat-input-element').forEach(box => {
-            box.value = ''
-        })
+        // table.clearFilterValues()
+        // inputs.forEach(input => {
+        //     table.filter(null, input, 'contains')
+        //     table.filter('', input, 'equals')
+        // })
+        // document.querySelectorAll<HTMLInputElement>('.p-inputtext, .mat-input-element').forEach(box => {
+        //     box.value = ''
+        // })
         document.querySelectorAll<HTMLElement>('.p-date-filter-clear-button').forEach(box => {
             box.style.visibility = 'hidden'
         })

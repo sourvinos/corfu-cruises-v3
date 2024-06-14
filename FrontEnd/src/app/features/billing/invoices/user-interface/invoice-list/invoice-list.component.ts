@@ -74,7 +74,16 @@ export class InvoiceListComponent {
         this.subscribeToInteractionService()
         this.initContextMenu()
         this.getStoredCriteria()
-        this.doSearchTasks()
+        this.buildCriteriaVM(this.criteria).then((response) => {
+            this.loadRecords(response).then(() => {
+                this.createDateObjects()
+                this.initFilteredRecordsCount()
+                this.filterTableFromStoredFilters()
+                this.populateDropdownFilters()
+                this.doVirtualTableTasks()
+                this.clearSelectedRecords()
+            })
+        })
     }
 
     //#endregion
@@ -85,6 +94,12 @@ export class InvoiceListComponent {
         this.storeScrollTop()
         this.storeSelectedId(id)
         this.navigateToRecord(id)
+    }
+
+    public onClearFilterTasks(): void {
+        this.clearFilters()
+        this.deleteStoredFilters()
+        this.clearSelectedRecords()
     }
 
     public onFilter(event: any, column: string, matchMode: string): void {
@@ -189,19 +204,19 @@ export class InvoiceListComponent {
         })
         dialogRef.afterClosed().subscribe(criteria => {
             if (criteria !== undefined) {
-                this.loadRecords().then(() => {
-                    this.buildCriteriaVM(criteria)
-                    this.clearTable()
-                    this.resetTableFilters()
-                    this.deleteStoredFilters()
-                    this.doSearchTasks()
+                this.onClearFilterTasks()
+                this.buildCriteriaVM(criteria).then((response) => {
+                    this.loadRecords(response).then(() => {
+                        this.createDateObjects()
+                        this.initFilteredRecordsCount()
+                        this.filterTableFromStoredFilters()
+                        this.populateDropdownFilters()
+                        this.doVirtualTableTasks()
+                        this.clearSelectedRecords()
+                    })
                 })
             }
         })
-    }
-
-    public resetTableFilters(): void {
-        this.table != undefined ? this.helperService.clearTableTextFilters(this.table, ['invoiceNo', 'grossAmount']) : null
     }
 
     //#endregion
@@ -213,19 +228,24 @@ export class InvoiceListComponent {
         this.selectedRecords.push(record)
     }
 
-    private buildCriteriaVM(event: InvoiceListCriteriaVM): void {
-        this.criteria = {
-            fromDate: event.fromDate,
-            toDate: event.toDate
-        }
+    private buildCriteriaVM(event: InvoiceListCriteriaVM): Promise<any> {
+        return new Promise((resolve) => {
+            this.criteria = {
+                fromDate: event.fromDate,
+                toDate: event.toDate
+            }
+            resolve(this.criteria)
+        })
+    }
+
+    private clearFilters(): void {
+        this.table != undefined
+            ? this.helperService.clearTableTextFilters(this.table, ['invoiceNo', 'grossAmount'])
+            : null
     }
 
     private clearSelectedRecords(): void {
         this.selectedRecords = []
-    }
-
-    private clearTable(): void {
-        this.table != undefined ? this.table.clear() : null
     }
 
     private createDateObjects(): void {
@@ -242,17 +262,6 @@ export class InvoiceListComponent {
         this.sessionStorageService.deleteItems([{ 'item': 'invoiceList-filters', 'when': 'always' }])
     }
 
-    private doSearchTasks(): void {
-        this.loadRecords().then(() => {
-            this.createDateObjects()
-            this.initFilteredRecordsCount()
-            this.filterTableFromStoredFilters()
-            this.populateDropdownFilters()
-            this.doVirtualTableTasks()
-            this.clearSelectedRecords()
-        })
-    }
-
     private doVirtualTableTasks(): void {
         setTimeout(() => {
             this.getVirtualElement()
@@ -266,7 +275,6 @@ export class InvoiceListComponent {
             complete: () => {
                 this.invoiceHttpService.patchInvoicesWithEmailSent(this.removeExtensionsFromFileNames(criteria.filenames)).subscribe({
                     next: () => {
-                        this.doSearchTasks()
                         this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
                     },
                     error: (errorFromInterceptor) => {
@@ -296,10 +304,9 @@ export class InvoiceListComponent {
                 this.filterColumn(filters.ship, 'ship', 'in')
                 this.filterColumn(filters.shipOwner, 'shipOwner', 'in')
                 this.filterColumn(filters.documentType, 'documentType', 'in')
-                this.filterColumn(filters.batch, 'batch', 'contains')
                 this.filterColumn(filters.invoiceNo, 'invoiceNo', 'contains')
                 this.filterColumn(filters.grossAmount, 'grossAmount', 'contains')
-            }, 500)
+            }, 1000)
         }
     }
 
@@ -354,9 +361,9 @@ export class InvoiceListComponent {
         return true
     }
 
-    private loadRecords(): Promise<InvoiceListVM[]> {
+    private loadRecords(criteria: InvoiceListCriteriaVM): Promise<InvoiceListVM[]> {
         return new Promise((resolve) => {
-            this.invoiceHttpService.getForList(this.criteria).subscribe(response => {
+            this.invoiceHttpService.getForList(criteria).subscribe(response => {
                 this.records = response
                 resolve(this.records)
             })
