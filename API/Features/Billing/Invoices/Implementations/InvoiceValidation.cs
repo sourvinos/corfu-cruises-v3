@@ -24,6 +24,7 @@ namespace API.Features.Billing.Invoices {
                 var x when x == !await IsValidCustomer(invoice) => 450,
                 var x when x == !await IsValidDestination(invoice) => 451,
                 var x when x == !await IsValidShip(invoice) => 454,
+                var x when x == !await IsInvoiceAlreadySaved(invoice) => 463,
                 var x when x == IsAlreadyUpdated(z, invoice) => 415,
                 _ => 200,
             };
@@ -52,6 +53,18 @@ namespace API.Features.Billing.Invoices {
                     .Where(x => invoice.Date.Year == DateHelpers.GetLocalDateTime().Year && x.DocumentTypeId == invoice.DocumentTypeId)
                     .ToListAsync();
                 return x.Count == invoice.InvoiceNo - 1;
+            } else {
+                return true;
+            }
+        }
+
+        private async Task<bool> IsInvoiceAlreadySaved(InvoiceWriteDto invoice) {
+            if (invoice.InvoiceId == Guid.Empty) {
+                var x = await context.Invoices
+                    .AsNoTracking()
+                    .Where(x => x.Date == invoice.Date && x.CustomerId == invoice.CustomerId && x.DocumentTypeId == invoice.DocumentTypeId && x.DestinationId == invoice.DestinationId && x.GrossAmount == invoice.GrossAmount)
+                    .ToListAsync();
+                return x == null;
             } else {
                 return true;
             }

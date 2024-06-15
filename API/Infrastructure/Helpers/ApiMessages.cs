@@ -47,6 +47,7 @@ namespace API.Infrastructure.Helpers {
         public static string PriceFieldsMustBeZeroOrGreater() { return "All amounts must be zero or greater."; }
         public static string InvalidDatePeriod() { return "The date period is not correct."; }
         public static string InvalidPassengerCount() { return "Total persons must be equal or greater than the passenger count."; }
+        public static string InvoiceIsAlreadySaved() { return "This invoice already exists."; }
         public static string SimpleUserNightRestrictions() { return "New reservations for the next day with transfer after 22:00 are not allowed"; }
         public static string SimpleUserCanNotAddReservationAfterDepartureTime() { return "Reservations after departure are not allowed"; }
         public static string InvalidPortOrder() { return "The stop order already exists."; }

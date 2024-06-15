@@ -111,6 +111,7 @@ namespace API.Infrastructure.Middleware {
                 460 => ApiMessages.InvalidPort(),
                 461 => ApiMessages.PriceFieldsMustBeZeroOrGreater(),
                 462 => ApiMessages.InvalidDatePeriod(),
+                463 => ApiMessages.InvoiceIsAlreadySaved(),
                 464 => ApiMessages.InvalidCrewSpecialty(),
                 465 => ApiMessages.InvalidDocumentType(),
                 466 => ApiMessages.TransactionCompositeIndexIsInvalid(),
