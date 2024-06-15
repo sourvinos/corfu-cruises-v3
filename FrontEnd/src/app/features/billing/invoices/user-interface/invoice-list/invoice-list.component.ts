@@ -80,8 +80,8 @@ export class InvoiceListComponent {
                 this.initFilteredRecordsCount()
                 this.filterTableFromStoredFilters()
                 this.populateDropdownFilters()
-                this.doVirtualTableTasks()
                 this.clearSelectedRecords()
+                this.doVirtualTableTasks()
             })
         })
     }
@@ -119,6 +119,11 @@ export class InvoiceListComponent {
         this.buildCriteriaVM(this.criteria).then((response) => {
             this.loadRecords(response).then(() => {
                 this.createDateObjects()
+                this.initFilteredRecordsCount()
+                this.filterTableFromStoredFilters()
+                this.populateDropdownFilters()
+                this.clearSelectedRecords()
+                this.doVirtualTableTasks()
             })
         })
     }
@@ -220,8 +225,8 @@ export class InvoiceListComponent {
                         this.initFilteredRecordsCount()
                         this.filterTableFromStoredFilters()
                         this.populateDropdownFilters()
-                        this.doVirtualTableTasks()
                         this.clearSelectedRecords()
+                        this.doVirtualTableTasks()
                     })
                 })
             }
