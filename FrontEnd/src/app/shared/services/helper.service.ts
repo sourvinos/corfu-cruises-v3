@@ -70,10 +70,10 @@ export class HelperService {
         return this.appName
     }
 
-    public getDistinctRecords(records: any[], object: string, orderField: string): any[] {
+    public getDistinctRecords(records: any[], object: string, orderField: string, field = 'id'): any[] {
         const distinctRecords = (Object.values(records.reduce(function (x, item) {
-            if (!x[item[object].description]) {
-                x[item[object].description] = item[object]
+            if (!x[item[object][field]]) {
+                x[item[object][field]] = item[object]
             }
             return x
         }, {})))
