@@ -115,6 +115,14 @@ export class InvoiceListComponent {
         }, 500)
     }
 
+    public onRefreshList(): void {
+        this.buildCriteriaVM(this.criteria).then((response) => {
+            this.loadRecords(response).then(() => {
+                this.createDateObjects()
+            })
+        })
+    }
+
     public formatNumberToLocale(number: number, decimals = true): string {
         return formatNumber(number, this.localStorageService.getItem('language'), decimals ? '1.2' : '1.0')
     }
