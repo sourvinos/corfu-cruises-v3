@@ -100,6 +100,7 @@ export class InvoiceListComponent {
         this.clearFilters()
         this.deleteStoredFilters()
         this.clearSelectedRecords()
+        this.initFilteredRecordsCount()
     }
 
     public onFilter(event: any, column: string, matchMode: string): void {
