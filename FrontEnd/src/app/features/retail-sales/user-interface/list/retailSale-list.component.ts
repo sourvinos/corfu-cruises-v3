@@ -71,7 +71,16 @@ export class RetailSaleListComponent {
         this.subscribeToInteractionService()
         this.initContextMenu()
         this.getStoredCriteria()
-        this.doSearchTasks()
+        this.buildCriteriaVM(this.criteria).then((response) => {
+            this.loadRecords(response).then(() => {
+                this.createDateObjects()
+                this.initFilteredRecordsCount()
+                this.filterTableFromStoredFilters()
+                this.populateDropdownFilters()
+                this.doVirtualTableTasks()
+                this.clearSelectedRecords()
+            })
+        })
     }
 
     //#endregion
@@ -82,6 +91,12 @@ export class RetailSaleListComponent {
         this.storeScrollTop()
         this.storeSelectedId(id)
         this.navigateToRecord(id)
+    }
+
+    public onClearFilterTasks(): void {
+        this.clearFilters()
+        this.deleteStoredFilters()
+        this.clearSelectedRecords()
     }
 
     public onFilter(event: any, column: string, matchMode: string): void {
@@ -156,12 +171,16 @@ export class RetailSaleListComponent {
         })
         dialogRef.afterClosed().subscribe(criteria => {
             if (criteria !== undefined) {
-                this.loadRecords().then(() => {
-                    this.buildCriteriaVM(criteria)
-                    this.clearTable()
-                    this.resetTableFilters()
-                    this.deleteStoredFilters()
-                    this.doSearchTasks()
+                this.onClearFilterTasks()
+                this.buildCriteriaVM(criteria).then((response) => {
+                    this.loadRecords(response).then(() => {
+                        this.createDateObjects()
+                        this.initFilteredRecordsCount()
+                        this.filterTableFromStoredFilters()
+                        this.populateDropdownFilters()
+                        this.doVirtualTableTasks()
+                        this.clearSelectedRecords()
+                    })
                 })
             }
         })
@@ -175,19 +194,25 @@ export class RetailSaleListComponent {
 
     //#region private methods
 
-    private buildCriteriaVM(event: RetailSaleListCriteriaVM): void {
-        this.criteria = {
-            fromDate: event.fromDate,
-            toDate: event.toDate
-        }
+    private buildCriteriaVM(event: RetailSaleListCriteriaVM): Promise<RetailSaleListCriteriaVM> {
+        return new Promise((resolve) => {
+            this.criteria = {
+                fromDate: event.fromDate,
+                toDate: event.toDate
+            }
+            resolve(this.criteria)
+        })
+
+    }
+
+    private clearFilters(): void {
+        this.table != undefined
+            ? this.helperService.clearTableTextFilters(this.table, ['invoiceNo', 'grossAmount'])
+            : null
     }
 
     private clearSelectedRecords(): void {
         this.selectedRecords = []
-    }
-
-    private clearTable(): void {
-        this.table != undefined ? this.table.clear() : null
     }
 
     private createDateObjects(): void {
@@ -202,17 +227,6 @@ export class RetailSaleListComponent {
 
     private deleteStoredFilters(): void {
         this.sessionStorageService.deleteItems([{ 'item': 'retailSaleList-filters', 'when': 'always' }])
-    }
-
-    private doSearchTasks(): void {
-        this.loadRecords().then(() => {
-            this.createDateObjects()
-            this.initFilteredRecordsCount()
-            this.filterTableFromStoredFilters()
-            this.populateDropdownFilters()
-            this.doVirtualTableTasks()
-            this.clearSelectedRecords()
-        })
     }
 
     private doVirtualTableTasks(): void {
@@ -287,9 +301,9 @@ export class RetailSaleListComponent {
         return true
     }
 
-    private loadRecords(): Promise<RetailSaleListVM[]> {
+    private loadRecords(criteria: RetailSaleListCriteriaVM): Promise<RetailSaleListVM[]> {
         return new Promise((resolve) => {
-            this.retailSaleHttpService.getForList(this.criteria).subscribe(response => {
+            this.retailSaleHttpService.getForList(criteria).subscribe(response => {
                 this.records = response
                 resolve(this.records)
             })
@@ -301,7 +315,7 @@ export class RetailSaleListComponent {
     }
 
     private populateDropdownFilters(): void {
-        this.dropdownDates = this.helperService.getDistinctRecords(this.records, 'date', 'date')
+        this.dropdownDates = this.helperService.getDistinctRecords(this.records, 'date', 'description')
         this.dropdownCustomers = this.helperService.getDistinctRecords(this.records, 'customer', 'description')
         this.dropdownDocumentTypes = this.helperService.getDistinctRecords(this.records, 'documentType', 'description')
         this.dropdownShipOwners = this.helperService.getDistinctRecords(this.records, 'shipOwner', 'description')

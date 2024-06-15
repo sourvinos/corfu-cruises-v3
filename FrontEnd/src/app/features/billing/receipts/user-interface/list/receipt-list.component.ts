@@ -73,7 +73,16 @@ export class ReceiptListComponent {
         this.subscribeToInteractionService()
         this.initContextMenu()
         this.getStoredCriteria()
-        this.doSearchTasks()
+        this.buildCriteriaVM(this.criteria).then((response) => {
+            this.loadRecords(response).then(() => {
+                this.createDateObjects()
+                this.initFilteredRecordsCount()
+                this.filterTableFromStoredFilters()
+                this.populateDropdownFilters()
+                this.doVirtualTableTasks()
+                this.clearSelectedRecords()
+            })
+        })
     }
 
     //#endregion
@@ -92,14 +101,22 @@ export class ReceiptListComponent {
         }
     }
 
+    public onClearFilterTasks(): void {
+        this.clearFilters()
+        this.deleteStoredFilters()
+        this.clearSelectedRecords()
+    }
+
     public onFilter(event: any, column: string, matchMode: string): void {
         if (event) this.table.filter(event, column, matchMode)
     }
 
     public onFilterRecords(event: any): void {
-        this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
-        this.recordsFiltered = event.filteredValue
-        this.recordsFilteredCount = event.filteredValue.length
+        setTimeout(() => {
+            this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
+            this.recordsFiltered = event.filteredValue
+            this.recordsFilteredCount = event.filteredValue.length
+        }, 500)
     }
 
     public formatNumberToLocale(number: number, decimals = true): string {
@@ -139,12 +156,16 @@ export class ReceiptListComponent {
         })
         dialogRef.afterClosed().subscribe(criteria => {
             if (criteria !== undefined) {
-                this.loadRecords().then(() => {
-                    this.buildCriteriaVM(criteria)
-                    this.clearTable()
-                    this.resetTableFilters()
-                    this.deleteStoredFilters()
-                    this.doSearchTasks()
+                this.onClearFilterTasks()
+                this.buildCriteriaVM(criteria).then((response) => {
+                    this.loadRecords(response).then(() => {
+                        this.createDateObjects()
+                        this.initFilteredRecordsCount()
+                        this.filterTableFromStoredFilters()
+                        this.populateDropdownFilters()
+                        this.doVirtualTableTasks()
+                        this.clearSelectedRecords()
+                    })
                 })
             }
         })
@@ -186,19 +207,24 @@ export class ReceiptListComponent {
         this.selectedRecords.push(record)
     }
 
-    private buildCriteriaVM(event: ReceiptListCriteriaVM): void {
-        this.criteria = {
-            fromDate: event.fromDate,
-            toDate: event.toDate
-        }
+    private buildCriteriaVM(event: ReceiptListCriteriaVM): Promise<any> {
+        return new Promise((resolve) => {
+            this.criteria = {
+                fromDate: event.fromDate,
+                toDate: event.toDate
+            }
+            resolve(this.criteria)
+        })
+    }
+
+    private clearFilters(): void {
+        this.table != undefined
+            ? this.helperService.clearTableTextFilters(this.table, ['invoiceNo', 'grossAmount'])
+            : null
     }
 
     private clearSelectedRecords(): void {
         this.selectedRecords = []
-    }
-
-    private clearTable(): void {
-        this.table != undefined ? this.table.clear() : null
     }
 
     private createDateObjects(): void {
@@ -215,17 +241,6 @@ export class ReceiptListComponent {
         this.sessionStorageService.deleteItems([{ 'item': 'receiptList-filters', 'when': 'always' }])
     }
 
-    private doSearchTasks(): void {
-        this.loadRecords().then(() => {
-            this.createDateObjects()
-            this.initFilteredRecordsCount()
-            this.filterTableFromStoredFilters()
-            this.populateDropdownFilters()
-            this.doVirtualTableTasks()
-            this.clearSelectedRecords()
-        })
-    }
-
     private doVirtualTableTasks(): void {
         setTimeout(() => {
             this.getVirtualElement()
@@ -239,7 +254,6 @@ export class ReceiptListComponent {
             complete: () => {
                 this.receiptHttpService.patchReceiptWithEmailSent(this.removeExtensionsFromFileNames(criteria.filenames)).subscribe({
                     next: () => {
-                        this.doSearchTasks()
                         this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
                     },
                     error: (errorFromInterceptor) => {
@@ -263,18 +277,18 @@ export class ReceiptListComponent {
         const filters = this.sessionStorageService.getFilters(this.feature + '-' + 'filters')
         if (filters != undefined) {
             setTimeout(() => {
+                this.filterColumn(filters.date, 'date', 'in')
+                this.filterColumn(filters.shipOwner, 'shipOwner', 'in')
                 this.filterColumn(filters.customer, 'customer', 'in')
                 this.filterColumn(filters.documentType, 'documentType', 'in')
-            }, 500)
+                this.filterColumn(filters.invoiceNo, 'invoiceNo', 'contains')
+                this.filterColumn(filters.grossAmount, 'grossAmount', 'contains')
+            }, 1000)
         }
     }
 
     private formatDateToLocale(date: string): string {
         return this.dateHelperService.formatISODateToLocale(date)
-    }
-
-    private getVirtualElement(): void {
-        this.virtualElement = document.getElementsByClassName('p-scroller-inline')[0]
     }
 
     private getStoredCriteria(): void {
@@ -290,6 +304,10 @@ export class ReceiptListComponent {
                 toDate: this.dateHelperService.formatDateToIso(new Date())
             }
         }
+    }
+
+    private getVirtualElement(): void {
+        this.virtualElement = document.getElementsByClassName('p-scroller-inline')[0]
     }
 
     private hightlightSavedRow(): void {
@@ -320,9 +338,9 @@ export class ReceiptListComponent {
         return true
     }
 
-    private loadRecords(): Promise<ReceiptListVM[]> {
+    private loadRecords(criteria: ReceiptListCriteriaVM): Promise<ReceiptListVM[]> {
         return new Promise((resolve) => {
-            this.receiptHttpService.getForList(this.criteria).subscribe(response => {
+            this.receiptHttpService.getForList(criteria).subscribe(response => {
                 this.records = response
                 resolve(this.records)
             })
