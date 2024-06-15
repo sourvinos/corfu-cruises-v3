@@ -64,7 +64,7 @@ namespace API.Features.Billing.Invoices {
                     .AsNoTracking()
                     .Where(x => x.Date == invoice.Date && x.CustomerId == invoice.CustomerId && x.DocumentTypeId == invoice.DocumentTypeId && x.DestinationId == invoice.DestinationId && x.GrossAmount == invoice.GrossAmount)
                     .ToListAsync();
-                return x == null;
+                return x.Count == 0;
             } else {
                 return true;
             }

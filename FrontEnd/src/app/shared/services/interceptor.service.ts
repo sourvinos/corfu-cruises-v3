@@ -110,6 +110,7 @@ export class InterceptorService {
             case 491: return throwError(() => new Error('491')) // record can't be deleted because it's in use
             case 492: return throwError(() => new Error('492')) // unable to create user or update user, username and/or password not unique
             case 493: return throwError(() => new Error('493')) // port approach order already exists
+            case 463: return throwError(() => new Error('463')) // invoice already exists
             default:
                 return throwError(() => new Error('500'))
         }
