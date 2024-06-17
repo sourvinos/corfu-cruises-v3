@@ -10,16 +10,16 @@
             <p-table #table (onFilter)="filterRecords($event)" [scrollable]="true" [value]="records" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
                 <ng-template pTemplate="header">
                     <tr>
-                        <th class="width-5" pSortableColumn="isActive">{{ getLabel("headerIsActive") }}</th>
-                        <th class="width-5" pSortableColumn="date">{{ getLabel("headerYear") }}</th>
-                        <th class="width-9" pSortableColumn="date">{{ getLabel("headerDate") }}</th>
-                        <th class="width-20" pSortableColumn="destination.description">{{ getLabel("headerDestinationDescription") }}</th>
-                        <th class="width-20" pSortableColumn="port.description">{{ getLabel("headerPortDescription") }}</th>
-                        <th class="width-5" pSortableColumn="maxPax">{{ getLabel("headerMaxPax") }}</th>
+                        <th class="no-border-bottom width-5" pSortableColumn="isActive">{{ getLabel("headerIsActive") }}</th>
+                        <th class="no-border-bottom width-5" pSortableColumn="date">{{ getLabel("headerYear") }}</th>
+                        <th class="no-border-bottom width-9" pSortableColumn="date">{{ getLabel("headerDate") }}</th>
+                        <th class="no-border-bottom width-20" pSortableColumn="destination.description">{{ getLabel("headerDestinationDescription") }}</th>
+                        <th class="no-border-bottom width-20" pSortableColumn="port.description">{{ getLabel("headerPortDescription") }}</th>
+                        <th class="no-border-bottom width-5" pSortableColumn="maxPax">{{ getLabel("headerMaxPax") }}</th>
                     </tr>
                     <tr>
-                        <th class="width-5"><p-columnFilter field="isActive" type="boolean"></p-columnFilter></th>
-                        <th class="width-5">
+                        <th class="no-border-top width-5"><p-columnFilter field="isActive" type="boolean"></p-columnFilter></th>
+                        <th class="no-border-top width-5">
                             <p-columnFilter [showMenu]="false" field="year" matchMode="in">
                                 <ng-template let-filter="filterCallback" let-value pTemplate="filter">
                                     <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="dropdownYears" [placeholder]="getEmoji('wildcard')" optionLabel="description">
@@ -32,7 +32,7 @@
                                 </ng-template>
                             </p-columnFilter>
                         </th>
-                        <th class="width-9">
+                        <th class="no-border-top width-9">
                             <div class="date-picker-wrapper">
                                 <input (dateInput)="filterByDate($event)" [matDatepicker]="picker" [ngModel]="filterDate" class="left p-inputtext" readonly>
                                 <mat-datepicker-toggle [for]="picker" class="color-table-header" matSuffix></mat-datepicker-toggle>
@@ -40,7 +40,7 @@
                                 <mat-datepicker #picker></mat-datepicker>
                             </div>
                         </th>
-                        <th class="width-20">
+                        <th class="no-border-top width-20">
                             <p-columnFilter [showMenu]="false" field="destination" matchMode="in">
                                 <ng-template let-filter="filterCallback" let-value pTemplate="filter">
                                     <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="dropdownDestinations" [placeholder]="getEmoji('wildcard')" optionLabel="description">
@@ -53,7 +53,7 @@
                                 </ng-template>
                             </p-columnFilter>
                         </th>
-                        <th class="width-20">
+                        <th class="no-border-top width-20">
                             <p-columnFilter [showMenu]="false" field="port" matchMode="in">
                                 <ng-template let-filter="filterCallback" let-value pTemplate="filter">
                                     <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="dropdownPorts" [placeholder]="getEmoji('wildcard')" optionLabel="description">
@@ -66,19 +66,19 @@
                                 </ng-template>
                             </p-columnFilter>
                         </th>
-                        <th class="width-5">
-                            <input (input)="table.filter($event.target.value, 'maxPax', 'contains')" [value]="$any(table).filters['maxPax']?.value" class="center p-inputtext">
+                        <th class="no-border-top width-5">
+                            <input (input)="table.filter($event.target.value, 'maxPax', 'contains')" [value]="$any(table).filters['maxPax']?.value" class="center p-inputtext no-overflow">
                         </th>
                     </tr>
                 </ng-template>
                 <ng-template let-record pTemplate="body">
                     <tr (click)="highlightRow(record.id)" (dblclick)="editRecord(record.id)" [attr.id]=record.id style="height: 32px;">
-                        <td class="width-5"><span class="center no-left-padding" style="font-size: 0.5rem; padding-top: 0 !important;">{{ getEmoji(record.isActive) }}</span></td>
-                        <td class="width-5"><span class="center">{{ record.year.description }}</span></td>
-                        <td class="width-9"><span class="center">{{ record.formattedDate }}</span></td>
+                        <td class="width-5"><span class="center no-left-padding no-overflow" style="font-size: 0.5rem; padding-top: 0 !important;">{{ getEmoji(record.isActive) }}</span></td>
+                        <td class="width-5"><span class="center no-overflow">{{ record.year.description }}</span></td>
+                        <td class="width-9"><span class="center no-overflow">{{ record.formattedDate }}</span></td>
                         <td class="width-20"><span>{{ record.destination.description }}</span></td>
                         <td class="width-20"><span>{{ record.port.description }}</span></td>
-                        <td class="width-5"><span class="center">{{ record.maxPax }}</span></td>
+                        <td class="width-5"><span class="center no-overflow">{{ record.maxPax }}</span></td>
                     </tr>
                 </ng-template>
             </p-table>

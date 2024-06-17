@@ -2720,6 +2720,10 @@
                 "description": "Οικονομικές υπηρεσίες"
             },
             {
+                "id": "headerIsActive",
+                "description": "Ενεργός"
+            },
+            {
                 "id": "headerDescription",
                 "description": "Περιγραφή"
             },

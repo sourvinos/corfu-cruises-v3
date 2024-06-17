@@ -749,7 +749,7 @@
             },
             {
                 "id": "headerDate",
-                "description": "Ημερομηνία"
+                "description": "Ημερ/νία"
             },
             {
                 "id": "headerRefNo",
@@ -2718,6 +2718,10 @@
             {
                 "id": "header",
                 "description": "Οικονομικές υπηρεσίες"
+            },
+            {
+                "id": "headerIsActive",
+                "description": "Ενεργός"
             },
             {
                 "id": "headerDescription",
