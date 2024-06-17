@@ -289,6 +289,7 @@ export class InvoiceListComponent {
             complete: () => {
                 this.invoiceHttpService.patchInvoicesWithEmailSent(this.removeExtensionsFromFileNames(criteria.filenames)).subscribe({
                     next: () => {
+                        this.onRefreshList()
                         this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
                     },
                     error: (errorFromInterceptor) => {
