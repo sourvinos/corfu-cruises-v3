@@ -110,6 +110,10 @@
 }
 
 .p-datatable .p-datatable-tbody > tr > td {
+    border-bottom: 0.0625rem solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+    border-left: none;
+    border-right: none;
+    border-top: none;
     color: var(--color-text);
     font-family: var(--font-family-consolas) !important;
     font-size: var(--font-size-table-row);
