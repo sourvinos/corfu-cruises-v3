@@ -35,7 +35,7 @@ namespace API.Features.Billing.Invoices {
 
         public async Task SendInvoicesToEmail(EmailInvoicesVM model) {
             using var smtp = new SmtpClient();
-            smtp.Connect(emailSettings.SmtpClient, emailSettings.Port, false);
+            smtp.Connect(emailSettings.SmtpClient, emailSettings.Port, true);
             smtp.Authenticate(emailSettings.Username, emailSettings.Password);
             await smtp.SendAsync(await BuildInvoiceMessage(model));
             smtp.Disconnect(true);
