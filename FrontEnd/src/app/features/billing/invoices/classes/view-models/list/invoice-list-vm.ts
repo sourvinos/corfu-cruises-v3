@@ -12,6 +12,7 @@ export interface InvoiceListVM {
     invoiceId: string
     invoiceNo: number
     formattedDate: string
+    isEmailPending: boolean
     isEmailSent: boolean
     ship: SimpleEntity
     shipOwner: SimpleEntity

@@ -2,6 +2,7 @@
 
     public class InvoicePdfPartyVM {
 
+        public int Id { get; set; }
         public string FullDescription { get; set; }
         public string Nationality { get; set; }
         public string TaxOffice { get; set; }

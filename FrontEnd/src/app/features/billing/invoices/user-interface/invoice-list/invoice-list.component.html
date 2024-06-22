@@ -135,7 +135,10 @@
                             <td class="width-6"><span class="right with-right-padding">{{ formatNumberToLocale(record.grossAmount) }}</span></td>
                             <td class="width-3">
                                 <span class="center no-overflow">
-                                    <ng-template [ngIf]="record.isEmailSent" [ngIfElse]="noIcon">
+                                    <ng-template [ngIf]="record.isEmailPending && !record.isEmailSent" [ngIfElse]="noIcon">
+                                        <span class="icon center orange email material-symbols-outlined no-overflow">email</span>
+                                    </ng-template>
+                                    <ng-template [ngIf]="!record.isEmailPending && record.isEmailSent" [ngIfElse]="noIcon">
                                         <span class="icon center blue email material-symbols-outlined no-overflow">email</span>
                                     </ng-template>
                                 </span>
@@ -183,7 +186,7 @@
     <button (click)="buildAndOpenSelectedRecords()" mat-menu-item>
         <span>Προεπισκόπηση επιλεγμένων</span>
     </button>
-    <button (click)="buildAndEmailSelectedRecords()" mat-menu-item>
+    <button (click)="addSelectedRecordsToEmailQueue()" mat-menu-item>
         <span>Αποστολή επιλεγμένων με email</span>
     </button>
 </ng-template>

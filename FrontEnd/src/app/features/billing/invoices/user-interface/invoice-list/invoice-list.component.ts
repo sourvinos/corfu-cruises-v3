@@ -179,33 +179,53 @@ export class InvoiceListComponent {
         }
     }
 
+    public addSelectedRecordsToEmailQueue(): void {
+        if (this.isAnyRowSelected()) {
+            // if (this.selectedRowsAreSameCustomer()) {
+            const ids = []
+            this.selectedRecords.forEach(record => {
+                ids.push(record.invoiceId)
+            })
+            this.invoiceHttpService.patchInvoicesWithEmailPending(ids).subscribe({
+                next: () => {
+                    this.onRefreshList()
+                    this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
+                },
+                error: (errorFromInterceptor) => {
+                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                }
+            })
+            // }
+        }
+    }
+
     public buildAndOpenSelectedRecords(): void {
         if (this.isAnyRowSelected()) {
-            if (this.selectedRowsAreSameCustomer()) {
-                const ids = []
-                this.selectedRecords.forEach(record => {
-                    ids.push(record.invoiceId)
-                })
-                this.invoiceHttpPdfService.buildPdf(ids).subscribe({
-                    next: () => {
-                        ids.forEach(id => {
-                            this.invoiceHttpPdfService.openPdf(id + '.pdf').subscribe({
-                                next: (response) => {
-                                    const blob = new Blob([response], { type: 'application/pdf' })
-                                    const fileURL = URL.createObjectURL(blob)
-                                    window.open(fileURL, '_blank')
-                                },
-                                error: (errorFromInterceptor) => {
-                                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                                }
-                            })
+            // if (this.selectedRowsAreSameCustomer()) {
+            const ids = []
+            this.selectedRecords.forEach(record => {
+                ids.push(record.invoiceId)
+            })
+            this.invoiceHttpPdfService.buildPdf(ids).subscribe({
+                next: () => {
+                    ids.forEach(id => {
+                        this.invoiceHttpPdfService.openPdf(id + '.pdf').subscribe({
+                            next: (response) => {
+                                const blob = new Blob([response], { type: 'application/pdf' })
+                                const fileURL = URL.createObjectURL(blob)
+                                window.open(fileURL, '_blank')
+                            },
+                            error: (errorFromInterceptor) => {
+                                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                            }
                         })
-                    },
-                    error: (errorFromInterceptor) => {
-                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                    }
-                })
-            }
+                    })
+                },
+                error: (errorFromInterceptor) => {
+                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                }
+            })
+            // }
         }
     }
 
@@ -358,7 +378,7 @@ export class InvoiceListComponent {
             {
                 label: this.getLabel('contextMenuEmail'), command: (): void => {
                     this.addSelectedRecordToSelectedRecords(this.selectedRecord)
-                    this.buildAndEmailSelectedRecords()
+                    this.addSelectedRecordsToEmailQueue()
                 }
             }
         ]
