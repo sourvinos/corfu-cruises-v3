@@ -35,6 +35,10 @@ export class InvoiceHttpDataService extends HttpDataService {
         return this.http.put<any>(this.url + '/invoiceAade', aadeVM)
     }
 
+    public patchInvoicesWithEmailPending(invoiceIds: string[]): Observable<any> {
+        return this.http.patch<any>(this.url + '/patchInvoicesWithEmailPending', invoiceIds)
+    }
+
     public patchInvoicesWithEmailSent(invoiceIds: string[]): Observable<any> {
         return this.http.patch<any>(this.url + '/patchInvoicesWithEmailSent', invoiceIds)
     }

@@ -19,6 +19,7 @@ namespace API.Features.Billing.Invoices {
                     InvoiceNo = x.InvoiceNo
                 }))
                 .ForMember(x => x.Customer, x => x.MapFrom(x => new InvoicePdfPartyVM {
+                    Id = x.Customer.Id,
                     FullDescription = x.Customer.FullDescription,
                     VatNumber = x.Customer.VatNumber,
                     Branch = x.Customer.Branch,

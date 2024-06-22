@@ -55,6 +55,17 @@ namespace API.Features.Billing.Invoices {
             DisposeOrCommit(transaction);
         }
 
+        public void UpdateIsEmailPending(Invoice invoice, string invoiceId) {
+            using var transaction = context.Database.BeginTransaction();
+            invoice.IsEmailPending = true;
+            invoice.IsEmailSent = false;
+            context.Invoices.Attach(invoice);
+            context.Entry(invoice).Property(x => x.IsEmailPending).IsModified = true;
+            context.Entry(invoice).Property(x => x.IsEmailSent).IsModified = true;
+            context.SaveChanges();
+            DisposeOrCommit(transaction);
+        }
+
         public void UpdateIsCancelled(Invoice invoice, string invoiceId) {
             using var transaction = context.Database.BeginTransaction();
             invoice.IsCancelled = true;

@@ -183,6 +183,26 @@ namespace API.Features.Billing.Invoices {
 
         [HttpPatch("[action]")]
         [Authorize(Roles = "admin")]
+        public async Task<Response> PatchInvoicesWithEmailPending([FromBody] string[] invoiceIds) {
+            foreach (var invoiceId in invoiceIds) {
+                var x = await invoiceReadRepo.GetByIdForPatchEmailSent(invoiceId);
+                if (x != null) {
+                    invoiceUpdateRepo.UpdateIsEmailPending(x, invoiceId);
+                } else {
+                    throw new CustomException() {
+                        ResponseCode = 404
+                    };
+                }
+            }
+            return new Response {
+                Code = 200,
+                Icon = Icons.Info.ToString(),
+                Message = ApiMessages.OK()
+            };
+        }
+
+        [HttpPatch("[action]")]
+        [Authorize(Roles = "admin")]
         public async Task<Response> PatchInvoicesWithEmailSent([FromBody] string[] invoiceIds) {
             foreach (var invoiceId in invoiceIds) {
                 var x = await invoiceReadRepo.GetByIdForPatchEmailSent(invoiceId);
