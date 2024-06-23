@@ -79,8 +79,8 @@ export class ReceiptListComponent {
                 this.initFilteredRecordsCount()
                 this.filterTableFromStoredFilters()
                 this.populateDropdownFilters()
-                this.doVirtualTableTasks()
                 this.clearSelectedRecords()
+                this.doVirtualTableTasks()
             })
         })
     }
@@ -88,6 +88,34 @@ export class ReceiptListComponent {
     //#endregion
 
     //#region public methods
+
+    public buildAndOpenSelectedRecords(): void {
+        if (this.isAnyRowSelected()) {
+            const ids = []
+            this.selectedRecords.forEach(record => {
+                ids.push(record.invoiceId)
+            })
+            this.receiptHttpService.buildPdf(ids).subscribe({
+                next: () => {
+                    ids.forEach(id => {
+                        this.receiptHttpService.openPdf(id + '.pdf').subscribe({
+                            next: (response) => {
+                                const blob = new Blob([response], { type: 'application/pdf' })
+                                const fileURL = URL.createObjectURL(blob)
+                                window.open(fileURL, '_blank')
+                            },
+                            error: (errorFromInterceptor) => {
+                                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                            }
+                        })
+                    })
+                },
+                error: (errorFromInterceptor) => {
+                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                }
+            })
+        }
+    }
 
     public editRecord(id: string): void {
         this.storeScrollTop()
@@ -117,6 +145,19 @@ export class ReceiptListComponent {
             this.recordsFiltered = event.filteredValue
             this.recordsFilteredCount = event.filteredValue.length
         }, 500)
+    }
+
+    public onRefreshList(): void {
+        this.buildCriteriaVM(this.criteria).then((response) => {
+            this.loadRecords(response).then(() => {
+                this.createDateObjects()
+                this.initFilteredRecordsCount()
+                this.filterTableFromStoredFilters()
+                this.populateDropdownFilters()
+                this.clearSelectedRecords()
+                this.doVirtualTableTasks()
+            })
+        })
     }
 
     public formatNumberToLocale(number: number, decimals = true): string {
@@ -163,8 +204,8 @@ export class ReceiptListComponent {
                         this.initFilteredRecordsCount()
                         this.filterTableFromStoredFilters()
                         this.populateDropdownFilters()
-                        this.doVirtualTableTasks()
                         this.clearSelectedRecords()
+                        this.doVirtualTableTasks()
                     })
                 })
             }
@@ -201,6 +242,24 @@ export class ReceiptListComponent {
     //#endregion
 
     //#region private methods
+
+    public addSelectedRecordsToEmailQueue(): void {
+        if (this.isAnyRowSelected()) {
+            const ids = []
+            this.selectedRecords.forEach(record => {
+                ids.push(record.invoiceId)
+            })
+            this.receiptHttpService.patchReceiptsWithEmailPending(ids).subscribe({
+                next: () => {
+                    this.onRefreshList()
+                    this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
+                },
+                error: (errorFromInterceptor) => {
+                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                }
+            })
+        }
+    }
 
     private addSelectedRecordToSelectedRecords(record: ReceiptListVM): void {
         this.selectedRecords = []
@@ -320,7 +379,8 @@ export class ReceiptListComponent {
             {
                 label: 'Αποστολή με email', command: (): void => {
                     this.addSelectedRecordToSelectedRecords(this.selectedRecord)
-                    this.processSelectedRecords()
+                    this.addSelectedRecordsToEmailQueue()
+                    // this.processSelectedRecords()
                 }
             }
         ]

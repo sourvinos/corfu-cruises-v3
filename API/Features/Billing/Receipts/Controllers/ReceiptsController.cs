@@ -66,7 +66,7 @@ namespace API.Features.Billing.Receipts {
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public async Task<Response> PostAsync([FromBody] ReceiptWriteDto receipt) {
-            receipt.InvoiceNo = await receiptRepo.IncreaseInvoiceNoAsync(receipt);
+            receipt.InvoiceNo = await receiptRepo.IncreaseReceiptNoAsync(receipt);
             var x = receiptValidation.IsValidAsync(null, receipt);
             if (await x == 200) {
                 receipt = receiptCalculateBalanceRepo.AttachBalancesToCreateDto(receipt, receiptCalculateBalanceRepo.CalculateBalances(receipt, receipt.CustomerId, receipt.ShipOwnerId));
@@ -134,6 +134,26 @@ namespace API.Features.Billing.Receipts {
             };
         }
 
+        [HttpPatch("[action]")]
+        [Authorize(Roles = "admin")]
+        public async Task<Response> PatchInvoicesWithEmailPending([FromBody] string[] invoiceIds) {
+            foreach (var invoiceId in invoiceIds) {
+                var x = await receiptRepo.GetByIdForPatchEmailSent(invoiceId);
+                if (x != null) {
+                    receiptRepo.UpdateIsEmailPending(x, invoiceId);
+                } else {
+                    throw new CustomException() {
+                        ResponseCode = 404
+                    };
+                }
+            }
+            return new Response {
+                Code = 200,
+                Icon = Icons.Info.ToString(),
+                Message = ApiMessages.OK()
+            };
+        }
+
         [HttpPost("[action]")]
         [Authorize(Roles = "admin")]
         public Response EmailReceipts([FromBody] EmailReceiptVM model) {
@@ -152,6 +172,26 @@ namespace API.Features.Billing.Receipts {
                     Message = response.Exception.Message
                 };
             }
+        }
+
+        [HttpPatch("[action]")]
+        [Authorize(Roles = "admin")]
+        public async Task<Response> PatchReceiptsWithEmailPending([FromBody] string[] invoiceIds) {
+            foreach (var invoiceId in invoiceIds) {
+                var x = await receiptRepo.GetByIdForPatchEmailSent(invoiceId);
+                if (x != null) {
+                    receiptRepo.UpdateIsEmailPending(x, invoiceId);
+                } else {
+                    throw new CustomException() {
+                        ResponseCode = 404
+                    };
+                }
+            }
+            return new Response {
+                Code = 200,
+                Icon = Icons.Info.ToString(),
+                Message = ApiMessages.OK()
+            };
         }
 
         [HttpPatch("[action]")]

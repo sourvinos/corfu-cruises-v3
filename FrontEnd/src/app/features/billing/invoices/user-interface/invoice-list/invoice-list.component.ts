@@ -181,7 +181,6 @@ export class InvoiceListComponent {
 
     public addSelectedRecordsToEmailQueue(): void {
         if (this.isAnyRowSelected()) {
-            // if (this.selectedRowsAreSameCustomer()) {
             const ids = []
             this.selectedRecords.forEach(record => {
                 ids.push(record.invoiceId)
@@ -195,13 +194,11 @@ export class InvoiceListComponent {
                     this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
                 }
             })
-            // }
         }
     }
 
     public buildAndOpenSelectedRecords(): void {
         if (this.isAnyRowSelected()) {
-            // if (this.selectedRowsAreSameCustomer()) {
             const ids = []
             this.selectedRecords.forEach(record => {
                 ids.push(record.invoiceId)
@@ -225,7 +222,6 @@ export class InvoiceListComponent {
                     this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
                 }
             })
-            // }
         }
     }
 

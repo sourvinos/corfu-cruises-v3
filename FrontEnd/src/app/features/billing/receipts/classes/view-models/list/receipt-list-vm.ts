@@ -12,6 +12,7 @@ export interface ReceiptListVM {
     invoiceNo: number
     grossAmount: number
     remarks: string
+    isEmailPending: boolean
     isEmailSent: boolean
     isCancelled: boolean
 

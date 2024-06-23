@@ -20,7 +20,7 @@ namespace API.Features.Billing.Receipts {
             return true switch {
                 var x when x == !IsValidIssueDate(receipt) => 405,
                 var x when x == !await IsCompositeKeyValidAsync(receipt) => 466,
-                var x when x == !await IsInvoiceCountEqualToLastInvoiceNo(receipt) => 467,
+                var x when x == !await IsReceiptCountEqualToLastReceiptNo(receipt) => 467,
                 var x when x == !await IsValidCustomer(receipt) => 450,
                 var x when x == !await IsValidDocumentType(receipt) => 465,
                 var x when x == !await IsValidShipOwner(receipt) => 449,
@@ -29,8 +29,8 @@ namespace API.Features.Billing.Receipts {
             };
         }
 
-        private static bool IsValidIssueDate(ReceiptWriteDto invoice) {
-            return invoice.InvoiceId != Guid.Empty || DateHelpers.DateToISOString(invoice.Date) == DateHelpers.DateToISOString(DateHelpers.GetLocalDateTime());
+        private static bool IsValidIssueDate(ReceiptWriteDto receipt) {
+            return receipt.InvoiceId != Guid.Empty || DateHelpers.DateToISOString(receipt.Date) == DateHelpers.DateToISOString(DateHelpers.GetLocalDateTime());
         }
 
         private async Task<bool> IsCompositeKeyValidAsync(ReceiptWriteDto receipt) {
@@ -45,7 +45,7 @@ namespace API.Features.Billing.Receipts {
             }
         }
 
-        private async Task<bool> IsInvoiceCountEqualToLastInvoiceNo(ReceiptWriteDto receipt) {
+        private async Task<bool> IsReceiptCountEqualToLastReceiptNo(ReceiptWriteDto receipt) {
             if (receipt.InvoiceId == Guid.Empty) {
                 var x = await context.Transactions
                     .AsNoTracking()

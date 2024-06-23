@@ -6,12 +6,12 @@ namespace API.Features.Billing.Receipts {
     public class ReceiptPdfVM {
 
         public Guid InvoiceId { get; set; }
-        public InvoicePdfHeaderVM Header { get; set; }
+        public ReceiptPdfHeaderVM Header { get; set; }
         public string Remarks { get; set; }
-        public InvoicePdfPartyVM Customer { get; set; }
-        public InvoicePdfDocumentTypeVM DocumentType { get; set; }
+        public ReceiptPdfPartyVM Customer { get; set; }
+        public ReceiptPdfDocumentTypeVM DocumentType { get; set; }
         public string PaymentMethod { get; set; }
-        public InvoicePdfPartyVM Issuer { get; set; }
+        public ReceiptPdfPartyVM Issuer { get; set; }
         public InvoicePdfSummaryVM Summary { get; set; }
         public decimal PreviousBalance { get; set; }
         public decimal NewBalance { get; set; }

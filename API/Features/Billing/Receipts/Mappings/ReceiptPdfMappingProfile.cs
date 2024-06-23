@@ -9,16 +9,17 @@ namespace API.Features.Billing.Receipts {
 
         public ReceiptPdfMappingProfile() {
             CreateMap<Receipt, ReceiptPdfVM>()
-                .ForMember(x => x.Header, x => x.MapFrom(x => new InvoicePdfHeaderVM {
+                .ForMember(x => x.Header, x => x.MapFrom(x => new ReceiptPdfHeaderVM {
                     Date = DateHelpers.DateToISOString(x.Date),
                     TripDate = DateHelpers.DateToISOString(x.TripDate),
-                    DocumentType = new InvoicePdfDocumentTypeVM {
+                    DocumentType = new ReceiptPdfDocumentTypeVM {
                         Description = x.DocumentType.Description,
                         Batch = x.DocumentType.Batch
                     },
                     InvoiceNo = x.InvoiceNo
                 }))
-                .ForMember(x => x.Customer, x => x.MapFrom(x => new InvoicePdfPartyVM {
+                .ForMember(x => x.Customer, x => x.MapFrom(x => new ReceiptPdfPartyVM {
+                    Id = x.Customer.Id,
                     FullDescription = x.Customer.FullDescription,
                     VatNumber = x.Customer.VatNumber,
                     Branch = x.Customer.Branch,
@@ -32,11 +33,11 @@ namespace API.Features.Billing.Receipts {
                     Nationality = x.Customer.Nationality.Description,
                     TaxOffice = x.Customer.TaxOffice.Description
                 }))
-                .ForMember(x => x.DocumentType, x => x.MapFrom(x => new InvoicePdfDocumentTypeVM {
+                .ForMember(x => x.DocumentType, x => x.MapFrom(x => new ReceiptPdfDocumentTypeVM {
                     Description = x.DocumentType.Description,
                     Batch = x.DocumentType.Batch
                 }))
-                .ForMember(x => x.Issuer, x => x.MapFrom(x => new InvoicePdfPartyVM {
+                .ForMember(x => x.Issuer, x => x.MapFrom(x => new ReceiptPdfPartyVM {
                     FullDescription = x.ShipOwner.Description,
                     VatNumber = x.ShipOwner.VatNumber,
                     Branch = x.ShipOwner.Branch,

@@ -36,6 +36,10 @@ export class ReceiptHttpService extends HttpDataService {
         return this.http.patch<any>(this.url + '/isCancelled/' + invoiceId, null)
     }
 
+    public patchReceiptsWithEmailPending(invoiceIds: string[]): Observable<any> {
+        return this.http.patch<any>(this.url + '/patchReceiptsWithEmailPending', invoiceIds)
+    }
+
     public patchReceiptWithEmailSent(invoiceIds: string[]): Observable<any> {
         return this.http.patch<any>(this.url + '/patchReceiptsWithEmailSent', invoiceIds)
     }

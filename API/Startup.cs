@@ -1,5 +1,6 @@
 using System;
 using API.Features.Billing.Invoices;
+using API.Features.Billing.Receipts;
 using API.Infrastructure.Auth;
 using API.Infrastructure.Classes;
 using API.Infrastructure.Extensions;
@@ -98,6 +99,7 @@ namespace API {
             services.Configure<TokenSettings>(options => Configuration.GetSection("TokenSettings").Bind(options));
             services.Configure<TestingEnvironment>(options => Configuration.GetSection("TestingEnvironment").Bind(options));
             services.AddHostedService<InvoiceEmailScheduleService>();
+            services.AddHostedService<ReceiptEmailScheduleService>();
         }
 
         public void ConfigureLocalDevelopment(IApplicationBuilder app) {

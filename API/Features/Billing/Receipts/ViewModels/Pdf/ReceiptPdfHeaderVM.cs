@@ -1,10 +1,10 @@
 namespace API.Features.Billing.Receipts {
 
-    public class InvoicePdfHeaderVM {
+    public class ReceiptPdfHeaderVM {
 
         public string Date { get; set; }
         public string TripDate { get; set; }
-        public InvoicePdfDocumentTypeVM DocumentType { get; set; }
+        public ReceiptPdfDocumentTypeVM DocumentType { get; set; }
         public int InvoiceNo { get; set; }
 
     }
