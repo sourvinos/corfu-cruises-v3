@@ -23,7 +23,7 @@ namespace API.Features.Billing.Receipts {
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken) {
             while (!stoppingToken.IsCancellationRequested) {
-                await Task.Delay(TimeSpan.FromSeconds(90), stoppingToken);
+                await Task.Delay(TimeSpan.FromMinutes(7), stoppingToken);
                 var x = receiptRepo.GetFirstWithEmailPending();
                 if (x != null) {
                     await receiptEmailSender.SendReceiptsToEmail(BuildVM(x));

@@ -23,7 +23,7 @@ namespace API.Features.Billing.Invoices {
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken) {
             while (!stoppingToken.IsCancellationRequested) {
-                await Task.Delay(TimeSpan.FromSeconds(120), stoppingToken);
+                await Task.Delay(TimeSpan.FromMinutes(2), stoppingToken);
                 var x = invoiceReadRepo.GetFirstWithEmailPending();
                 if (x != null) {
                     await invoiceEmailSender.SendInvoicesToEmail(BuildVM(x));

@@ -57,7 +57,7 @@ dlldata.c
 
 FrontEnd/package-lock.json
 FrontEnd/ssl/*.*
-appsettings.json
+appsettings*.json
 **/logs
 desktop.ini
 ToDo.txt
