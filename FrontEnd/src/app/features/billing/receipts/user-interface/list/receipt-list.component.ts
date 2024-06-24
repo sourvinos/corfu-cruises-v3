@@ -8,7 +8,6 @@ import { formatNumber } from '@angular/common'
 import { CriteriaDateRangeDialogComponent } from 'src/app/shared/components/criteria-date-range-dialog/criteria-date-range-dialog.component'
 import { DateHelperService } from '../../../../../shared/services/date-helper.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
-import { EmailReceiptVM } from '../../classes/view-models/email/email-receipt-vm'
 import { EmojiService } from '../../../../../shared/services/emoji.service'
 import { HelperService } from '../../../../../shared/services/helper.service'
 import { InteractionService } from '../../../../../shared/services/interaction.service'
@@ -212,29 +211,6 @@ export class ReceiptListComponent {
         })
     }
 
-    public processSelectedRecords(): void {
-        if (this.isAnyRowSelected()) {
-            if (this.selectedRowsAreSameCustomer()) {
-                const ids = []
-                this.selectedRecords.forEach(record => {
-                    ids.push(record.invoiceId)
-                })
-                this.receiptHttpService.buildPdf(ids).subscribe({
-                    next: (response) => {
-                        const criteria: EmailReceiptVM = {
-                            customerId: this.selectedRecords[0].customer.id,
-                            filenames: response.body
-                        }
-                        this.emailReceipts(criteria)
-                    },
-                    error: (errorFromInterceptor) => {
-                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                    }
-                })
-            }
-        }
-    }
-
     public resetTableFilters(): void {
         this.table != undefined ? this.helperService.clearTableTextFilters(this.table, ['invoiceNo', 'grossAmount']) : null
     }
@@ -306,24 +282,6 @@ export class ReceiptListComponent {
             this.scrollToSavedPosition()
             this.hightlightSavedRow()
         }, 1000)
-    }
-
-    private emailReceipts(criteria: EmailReceiptVM): void {
-        this.receiptHttpService.emailReceipts(criteria).subscribe({
-            complete: () => {
-                this.receiptHttpService.patchReceiptWithEmailSent(this.removeExtensionsFromFileNames(criteria.filenames)).subscribe({
-                    next: () => {
-                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
-                    },
-                    error: (errorFromInterceptor) => {
-                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                    }
-                })
-            },
-            error: (errorFromInterceptor) => {
-                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-            }
-        })
     }
 
     private filterColumn(element: { value: any }, field: string, matchMode: string): void {
@@ -418,26 +376,8 @@ export class ReceiptListComponent {
         this.dropdownShipOwners = this.helperService.getDistinctRecords(this.records, 'shipOwner', 'description')
     }
 
-    private removeExtensionsFromFileNames(filenames: string[]): string[] {
-        const x = []
-        filenames.forEach(filename => {
-            x.push(filename.substring(0, filename.length - 4))
-        })
-        return x
-    }
-
     private scrollToSavedPosition(): void {
         this.helperService.scrollToSavedPosition(this.virtualElement, this.feature)
-    }
-
-    private selectedRowsAreSameCustomer(): boolean {
-        const z = this.selectedRecords[0].customer.id
-        const x = this.selectedRecords.filter(x => x.customer.id == z)
-        if (x.length != this.selectedRecords.length) {
-            this.dialogService.open(this.messageDialogService.selectedRowsAreSameCustomer(), 'error', ['ok'])
-            return false
-        }
-        return true
     }
 
     private setTabTitle(): void {

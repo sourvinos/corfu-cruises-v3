@@ -76,7 +76,7 @@ namespace API.Features.Billing.Ledgers {
                 LoadEmailLedgerTemplateFromFile(),
                 new EmailLedgerTemplateVM {
                     Email = email,
-                    CompanyPhones = this.parametersRepo.GetAsync().Result.Phones,
+                    CompanyPhones = parametersRepo.GetAsync().Result.Phones,
                 });
         }
 

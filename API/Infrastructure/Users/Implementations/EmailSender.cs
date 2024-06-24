@@ -49,7 +49,7 @@ namespace API.Infrastructure.Users {
                     Displayname = model.Displayname,
                     Email = model.Email,
                     Url = model.Url,
-                    CompanyPhones = this.parametersRepo.GetAsync().Result.Phones,
+                    CompanyPhones = parametersRepo.GetAsync().Result.Phones,
                     LogoTextBase64 = SetLogoTextAsBackground()
                 });
         }

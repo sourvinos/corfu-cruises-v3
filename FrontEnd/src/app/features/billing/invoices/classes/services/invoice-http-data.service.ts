@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 // Custom
 import { AadeVM } from '../view-models/form/aade-vm'
-import { EmailInvoiceVM } from '../view-models/email/email-invoice-vm'
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { InvoiceListCriteriaVM } from '../view-models/criteria/invoice-list-criteria-vm'
 import { InvoiceListVM } from '../view-models/list/invoice-list-vm'
@@ -39,16 +38,8 @@ export class InvoiceHttpDataService extends HttpDataService {
         return this.http.patch<any>(this.url + '/patchInvoicesWithEmailPending', invoiceIds)
     }
 
-    public patchInvoicesWithEmailSent(invoiceIds: string[]): Observable<any> {
-        return this.http.patch<any>(this.url + '/patchInvoicesWithEmailSent', invoiceIds)
-    }
-
     public patchInvoiceWithIsCancelled(invoiceId: string): Observable<any> {
         return this.http.patch<any>(this.url + '/isCancelled/' + invoiceId, null)
-    }
-
-    public emailInvoices(criteria: EmailInvoiceVM): Observable<any> {
-        return this.http.request<EmailInvoiceVM[]>('post', this.url + '/emailInvoices', { body: criteria })
     }
 
 }

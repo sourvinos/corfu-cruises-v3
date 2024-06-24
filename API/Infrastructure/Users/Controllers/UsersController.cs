@@ -128,7 +128,7 @@ namespace API.Infrastructure.Users {
                 Displayname = model.Displayname,
                 Url = baseUrl,
                 Subject = "Your new account is ready!",
-                CompanyPhones = this.parametersRepo.GetAsync().Result.Phones,
+                CompanyPhones = parametersRepo.GetAsync().Result.Phones,
                 LogoTextBase64 = SetLogoTextAsBackground()
             };
             var response = emailSender.EmailUserDetails(userDetails);

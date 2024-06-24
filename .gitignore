@@ -57,7 +57,11 @@ dlldata.c
 
 FrontEnd/package-lock.json
 FrontEnd/ssl/*.*
-appsettings*.json
+API/appsettings.json
+API/appsettings.LocalDevelopment.json
+API/appsettings.LocalTesting.json
+API/appsettings.ProductionDemo.json
+API/appsettings.ProductionLive.json
 **/logs
 desktop.ini
 ToDo.txt

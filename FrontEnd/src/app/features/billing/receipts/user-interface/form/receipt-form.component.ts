@@ -10,7 +10,6 @@ import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { DocumentTypeAutoCompleteVM } from '../../../documentTypes/classes/view-models/documentType-autocomplete-vm'
 import { DocumentTypeHttpService } from '../../../documentTypes/classes/services/documentType-http.service'
 import { DocumentTypeReadDto } from '../../../documentTypes/classes/dtos/documentType-read-dto'
-import { EmailReceiptVM } from '../../classes/view-models/email/email-receipt-vm'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
@@ -146,23 +145,6 @@ export class ReceiptFormComponent {
         })
     }
 
-    public onEmailInvoice(): void {
-        const ids = []
-        ids.push(this.form.value.invoiceId)
-        this.receiptHttpService.buildPdf(ids).subscribe({
-            next: (response) => {
-                const criteria: EmailReceiptVM = {
-                    customerId: this.form.value.customer.id,
-                    filenames: response.body
-                }
-                this.emailReceipt(criteria)
-            },
-            error: (errorFromInterceptor) => {
-                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-            }
-        })
-    }
-
     public onSave(): void {
         this.saveRecord(this.flattenForm())
     }
@@ -207,27 +189,6 @@ export class ReceiptFormComponent {
     //#endregion
 
     //#region private methods
-
-    private emailReceipt(criteria: EmailReceiptVM): void {
-        this.receiptHttpService.emailReceipts(criteria).subscribe({
-            complete: () => {
-                this.receiptHttpService.patchReceiptWithEmailSent(this.removeExtensionsFromFileNames(criteria.filenames)).subscribe({
-                    next: () => {
-                        this.form.patchValue({
-                            isEmailSent: true
-                        })
-                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
-                    },
-                    error: (errorFromInterceptor) => {
-                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                    }
-                })
-            },
-            error: (errorFromInterceptor) => {
-                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-            }
-        })
-    }
 
     private filterAutocomplete(array: string, field: string, value: any): any[] {
         if (typeof value !== 'object') {
@@ -338,14 +299,6 @@ export class ReceiptFormComponent {
                 putUser: this.record.putUser
             })
         }
-    }
-
-    private removeExtensionsFromFileNames(filenames: string[]): string[] {
-        const x = []
-        filenames.forEach(filename => {
-            x.push(filename.substring(0, filename.length - 4))
-        })
-        return x
     }
 
     private resetForm(): void {

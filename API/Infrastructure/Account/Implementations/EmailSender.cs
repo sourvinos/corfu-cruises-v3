@@ -50,7 +50,7 @@ namespace API.Infrastructure.Account {
                     Displayname = displayname,
                     Email = email,
                     ReturnUrl = returnUrl,
-                    CompanyPhones = this.parametersRepo.GetAsync().Result.Phones,
+                    CompanyPhones = parametersRepo.GetAsync().Result.Phones,
                 });
         }
 

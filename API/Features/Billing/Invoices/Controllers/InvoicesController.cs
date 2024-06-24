@@ -161,26 +161,6 @@ namespace API.Features.Billing.Invoices {
             }
         }
 
-        [HttpPost("[action]")]
-        [Authorize(Roles = "admin")]
-        public Response EmailInvoices([FromBody] EmailInvoicesVM model) {
-            var response = emailSender.SendInvoicesToEmail(model);
-            if (response.Exception == null) {
-                return new Response {
-                    Code = 200,
-                    Icon = Icons.Success.ToString(),
-                    Message = ApiMessages.OK()
-                };
-            } else {
-                return new Response {
-                    Code = 498,
-                    Icon = Icons.Error.ToString(),
-                    Id = null,
-                    Message = response.Exception.Message
-                };
-            }
-        }
-
         [HttpPatch("[action]")]
         [Authorize(Roles = "admin")]
         public async Task<Response> PatchInvoicesWithEmailPending([FromBody] string[] invoiceIds) {

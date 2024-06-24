@@ -8,7 +8,6 @@ import { formatNumber } from '@angular/common'
 import { CriteriaDateRangeDialogComponent } from './../../../../../shared/components/criteria-date-range-dialog/criteria-date-range-dialog.component'
 import { DateHelperService } from '../../../../../shared/services/date-helper.service'
 import { DialogService } from '../../../../../shared/services/modal-dialog.service'
-import { EmailInvoiceVM } from '../../classes/view-models/email/email-invoice-vm'
 import { EmojiService } from '../../../../../shared/services/emoji.service'
 import { HelperService } from '../../../../../shared/services/helper.service'
 import { InteractionService } from '../../../../../shared/services/interaction.service'
@@ -156,29 +155,6 @@ export class InvoiceListComponent {
         this.router.navigate([this.url + '/new'])
     }
 
-    public buildAndEmailSelectedRecords(): void {
-        if (this.isAnyRowSelected()) {
-            if (this.selectedRowsAreSameCustomer()) {
-                const ids = []
-                this.selectedRecords.forEach(record => {
-                    ids.push(record.invoiceId)
-                })
-                this.invoiceHttpPdfService.buildPdf(ids).subscribe({
-                    next: (response) => {
-                        const criteria: EmailInvoiceVM = {
-                            customerId: this.selectedRecords[0].customer.id,
-                            filenames: response.body
-                        }
-                        this.emailInvoices(criteria)
-                    },
-                    error: (errorFromInterceptor) => {
-                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                    }
-                })
-            }
-        }
-    }
-
     public addSelectedRecordsToEmailQueue(): void {
         if (this.isAnyRowSelected()) {
             const ids = []
@@ -300,25 +276,6 @@ export class InvoiceListComponent {
         }, 1000)
     }
 
-    private emailInvoices(criteria: EmailInvoiceVM): void {
-        this.invoiceHttpService.emailInvoices(criteria).subscribe({
-            complete: () => {
-                this.invoiceHttpService.patchInvoicesWithEmailSent(this.removeExtensionsFromFileNames(criteria.filenames)).subscribe({
-                    next: () => {
-                        this.onRefreshList()
-                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
-                    },
-                    error: (errorFromInterceptor) => {
-                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-                    }
-                })
-            },
-            error: (errorFromInterceptor) => {
-                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-            }
-        })
-    }
-
     private filterColumn(element: any, field: string, matchMode: string): void {
         if (element != undefined && (element.value != null || element.value != undefined)) {
             this.table.filter(element.value, field, matchMode)
@@ -414,26 +371,8 @@ export class InvoiceListComponent {
         this.dropdownShips = this.helperService.getDistinctRecords(this.records, 'ship', 'description')
     }
 
-    private removeExtensionsFromFileNames(filenames: string[]): string[] {
-        const x = []
-        filenames.forEach(filename => {
-            x.push(filename.substring(0, filename.length - 4))
-        })
-        return x
-    }
-
     private scrollToSavedPosition(): void {
         this.helperService.scrollToSavedPosition(this.virtualElement, this.feature)
-    }
-
-    private selectedRowsAreSameCustomer(): boolean {
-        const z = this.selectedRecords[0].customer.id
-        const x = this.selectedRecords.filter(x => x.customer.id == z)
-        if (x.length != this.selectedRecords.length) {
-            this.dialogService.open(this.messageDialogService.selectedRowsAreSameCustomer(), 'error', ['ok'])
-            return false
-        }
-        return true
     }
 
     private setTabTitle(): void {

@@ -71,7 +71,7 @@ namespace API.Features.RetailSales {
                 LoadEmailRreceiptTemplateFromFile(),
                 new EmailInvoiceTemplateVM {
                     Email = email,
-                    CompanyPhones = this.parametersRepo.GetAsync().Result.Phones,
+                    CompanyPhones = parametersRepo.GetAsync().Result.Phones,
                 });
         }
 

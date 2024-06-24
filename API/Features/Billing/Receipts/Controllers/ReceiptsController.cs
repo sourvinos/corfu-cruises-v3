@@ -154,26 +154,6 @@ namespace API.Features.Billing.Receipts {
             };
         }
 
-        [HttpPost("[action]")]
-        [Authorize(Roles = "admin")]
-        public Response EmailReceipts([FromBody] EmailReceiptVM model) {
-            var response = emailSender.SendReceiptsToEmail(model);
-            if (response.Exception == null) {
-                return new Response {
-                    Code = 200,
-                    Icon = Icons.Success.ToString(),
-                    Message = ApiMessages.OK()
-                };
-            } else {
-                return new Response {
-                    Code = 498,
-                    Icon = Icons.Error.ToString(),
-                    Id = null,
-                    Message = response.Exception.Message
-                };
-            }
-        }
-
         [HttpPatch("[action]")]
         [Authorize(Roles = "admin")]
         public async Task<Response> PatchReceiptsWithEmailPending([FromBody] string[] invoiceIds) {

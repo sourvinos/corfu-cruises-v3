@@ -56,7 +56,7 @@ namespace API.Features.CheckIn {
                     TicketNo = reservation.TicketNo,
                     TotalPax = reservation.TotalPax,
                     Phones = reservation.Phones,
-                    CompanyPhones = this.parametersRepo.GetAsync().Result.Phones,
+                    CompanyPhones = parametersRepo.GetAsync().Result.Phones,
                     PickupPoint = reservation.PickupPoint,
                     Remarks = reservation.Remarks,
                     Passengers = reservation.Passengers,
