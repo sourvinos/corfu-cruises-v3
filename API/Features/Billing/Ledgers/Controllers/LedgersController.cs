@@ -37,6 +37,8 @@ namespace API.Features.Billing.Ledgers {
         [HttpPost("buildLedgerPdf")]
         [Authorize(Roles = "admin")]
         public async Task<ResponseWithBody> BuildLedgerPdf([FromBody] LedgerCriteria criteria) {
+            var linesPerPage = 55;
+            var linesPrinted = 0;
             var ledger = await ProcessLedger(criteria);
             var locale = CultureInfo.CreateSpecificCulture("el-GR");
             GlobalFontSettings.FontResolver = new FileFontResolver();
@@ -50,16 +52,18 @@ namespace API.Features.Billing.Ledgers {
             gfx.DrawString(ledger[1].ShipOwner.Description, logoFont, XBrushes.Black, new XPoint(40, 40));
             gfx.DrawString("ΚΑΡΤΕΛΑ ΠΕΛΑΤΗ: " + ledger[1].Customer.Description, robotoMonoFont, XBrushes.Black, new XPoint(40, 53));
             gfx.DrawString("ΔΙΑΣΤΗΜΑ: " + DateHelpers.FormatDateStringToLocaleString(criteria.FromDate) + " - " + DateHelpers.FormatDateStringToLocaleString(criteria.ToDate), robotoMonoFont, XBrushes.Black, new XPoint(40, 62));
-            gfx.DrawString("ΗΜΕΡΟΜΗΝΙΑ", robotoMonoFont, XBrushes.Black, new XPoint(40, 90));
-            gfx.DrawString("ΠΑΡΑΣΤΑΤΙΚΟ", robotoMonoFont, XBrushes.Black, new XPoint(80, 90));
-            gfx.DrawString("ΣΕΙΡΑ", robotoMonoFont, XBrushes.Black, new XPoint(218, 90));
-            gfx.DrawString("NO", robotoMonoFont, XBrushes.Black, new XPoint(270, 90));
-            gfx.DrawString("ΧΡΕΩΣΗ", robotoMonoFont, XBrushes.Black, new XPoint(434, 90));
-            gfx.DrawString("ΠΙΣΤΩΣΗ", robotoMonoFont, XBrushes.Black, new XPoint(490, 90));
-            gfx.DrawString("ΥΠΟΛΟΙΠΟ", robotoMonoFont, XBrushes.Black, new XPoint(547, 90));
+            PrintColumnHeaders(gfx, robotoMonoFont);
             int verticalPosition = 100;
             for (int i = 0; i < ledger.Count; i++) {
                 verticalPosition += 12;
+                linesPrinted++;
+                if (linesPrinted > linesPerPage) {
+                    page = document.AddPage();
+                    gfx = XGraphics.FromPdfPage(page);
+                    linesPrinted = 0;
+                    verticalPosition = 100;
+                    PrintColumnHeaders(gfx, robotoMonoFont);
+                }
                 gfx.DrawString(DateHelpers.FormatDateStringToLocaleString(ledger[i].Date), robotoMonoFont, XBrushes.Black, new XPoint(40, verticalPosition));
                 gfx.DrawString(ledger[i].DocumentType.Description, robotoMonoFont, XBrushes.Black, new XPoint(80, verticalPosition));
                 gfx.DrawString(ledger[i].DocumentType.Batch, robotoMonoFont, XBrushes.Black, new XPoint(220, verticalPosition));
@@ -111,6 +115,16 @@ namespace API.Features.Billing.Ledgers {
             var requested = repo.BuildRequested(records, criteria.FromDate);
             var total = repo.BuildTotal(records);
             return repo.MergePreviousRequestedAndTotal(previous, requested, total);
+        }
+
+        private static void PrintColumnHeaders(XGraphics gfx, XFont robotoMonoFont) {
+            gfx.DrawString("ΗΜΕΡΟΜΗΝΙΑ", robotoMonoFont, XBrushes.Black, new XPoint(40, 90));
+            gfx.DrawString("ΠΑΡΑΣΤΑΤΙΚΟ", robotoMonoFont, XBrushes.Black, new XPoint(80, 90));
+            gfx.DrawString("ΣΕΙΡΑ", robotoMonoFont, XBrushes.Black, new XPoint(218, 90));
+            gfx.DrawString("NO", robotoMonoFont, XBrushes.Black, new XPoint(270, 90));
+            gfx.DrawString("ΧΡΕΩΣΗ", robotoMonoFont, XBrushes.Black, new XPoint(434, 90));
+            gfx.DrawString("ΠΙΣΤΩΣΗ", robotoMonoFont, XBrushes.Black, new XPoint(490, 90));
+            gfx.DrawString("ΥΠΟΛΟΙΠΟ", robotoMonoFont, XBrushes.Black, new XPoint(547, 90));
         }
 
     }
