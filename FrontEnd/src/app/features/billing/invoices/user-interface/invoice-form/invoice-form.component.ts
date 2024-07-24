@@ -32,6 +32,8 @@ import { PriceHttpService } from '../../../prices/classes/services/price-http.se
 import { ShipAutoCompleteVM } from './../../../../reservations/ships/classes/view-models/ship-autocomplete-vm'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ValidationService } from 'src/app/shared/services/validation.service'
+import { DeleteRangeDialogComponent } from 'src/app/shared/components/delete-range-dialog/delete-range-dialog.component'
+import { MatDialog } from '@angular/material/dialog'
 
 @Component({
     selector: 'invoice-form',
@@ -72,7 +74,7 @@ export class InvoiceFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private debugDialogService: DebugDialogService, private dexieService: DexieService, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpPdfService: InvoiceHttpPdfService, private invoiceHttpService: InvoiceHttpDataService, private invoiceXmlHelperService: InvoiceXmlHelperService, private invoiceXmlHttpService: InvoiceHttpXmlService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceHttpService: PriceHttpService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private dateHelperService: DateHelperService, private debugDialogService: DebugDialogService, private dexieService: DexieService, private dialogService: DialogService, private documentTypeHttpService: DocumentTypeHttpService, private formBuilder: FormBuilder, private helperService: HelperService, private invoiceHelperService: InvoiceHelperService, private invoiceHttpPdfService: InvoiceHttpPdfService, private invoiceHttpService: InvoiceHttpDataService, private invoiceXmlHelperService: InvoiceXmlHelperService, private invoiceXmlHttpService: InvoiceHttpXmlService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private priceHttpService: PriceHttpService, private router: Router, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
 
@@ -106,6 +108,28 @@ export class InvoiceFormComponent {
         const x = parseFloat(this.form.value.grossAmount)
         const z = parseFloat(this.form.value.portTotals.total_Amount)
         return x == z || z == 0
+    }
+
+    public onDelete(): void {
+        const dialogRef = this.dialog.open(DeleteRangeDialogComponent, {
+            data: 'question',
+            panelClass: 'dialog',
+            height: '18.75rem',
+            width: '31.25rem'
+        })
+        dialogRef.afterClosed().subscribe(result => {
+            if (result != undefined) {
+                this.invoiceHttpService.delete(this.form.value.invoiceId).subscribe({
+                    complete: () => {
+                        this.dexieService.remove('customers', this.form.value.invoiceId)
+                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                    },
+                    error: (errorFromInterceptor) => {
+                        this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+                    }
+                })
+            }
+        })
     }
 
     public onDoPortCalculations(): void {

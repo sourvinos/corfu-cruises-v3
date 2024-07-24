@@ -511,6 +511,7 @@
             <span class="material-icons-outlined">pest_control</span>
         </button>
         <div id="align-right">
+            <button (click)="onDelete()" *ngIf="form.value.invoiceId !== ''" class="delete" mat-flat-button>{{ getLabel("deleteButton") | uppercase }}</button>
             <button (click)="onSave()" [disabled]="!form.valid || form.value.invoiceId != '' || onComparePriceTotals() == false" class="primary" mat-flat-button>
                 <mat-icon *ngIf="!form.valid || form.value.invoiceId != '' || onComparePriceTotals() == false" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("saveButton") | uppercase }}</span>

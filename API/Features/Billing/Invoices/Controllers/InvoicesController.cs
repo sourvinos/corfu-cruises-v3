@@ -220,6 +220,25 @@ namespace API.Features.Billing.Invoices {
             }
         }
 
+        [HttpDelete("{invoiceId}")]
+        [Authorize(Roles = "admin")]
+        public async Task<Response> Delete([FromRoute] string invoiceId) {
+            var x = await invoiceReadRepo.GetByIdAsync(invoiceId, false);
+            if (x != null) {
+                invoiceUpdateRepo.Delete(x);
+                return new Response {
+                    Code = 200,
+                    Icon = Icons.Success.ToString(),
+                    Id = x.InvoiceId.ToString(),
+                    Message = ApiMessages.OK()
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 404
+                };
+            }
+        }
+
     }
 
 }
